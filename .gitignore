@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+backend/.venv
+backend/__pycache__
+backend/*.pyc
+backend/scraped_raw.json
+backend/mercati_clean.json
+backend/serviceAccountKey.json
+.firebase

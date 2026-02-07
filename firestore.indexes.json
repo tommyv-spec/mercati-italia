@@ -1,0 +1,38 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "mercati",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "regione", "order": "ASCENDING" },
+        { "fieldPath": "prossima_data", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "mercati",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "categoria", "order": "ASCENDING" },
+        { "fieldPath": "prossima_data", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "mercati",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "regione", "order": "ASCENDING" },
+        { "fieldPath": "categoria", "order": "ASCENDING" },
+        { "fieldPath": "prossima_data", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "mercati",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "confidence", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

@@ -1,0 +1,33 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Markets: public read + write (for auto-seed from browser) ──
+    // In production, change write to: allow write: if false;
+    // and seed only via Admin SDK (backend pipeline).
+    match /mercati/{marketId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // ─── Sources subcollection ───────────────────────────
+    match /mercati/{marketId}/fonti/{fonteId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // ─── User favorites ──────────────────────────────────
+    match /utenti/{userId}/preferiti/{marketId} {
+      allow read, write: if true;
+      // Production: allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ─── User reports ────────────────────────────────────
+    match /segnalazioni/{reportId} {
+      allow read, write: if true;
+      // Production: allow create: if request.auth != null;
+      // Production: allow read: if request.auth != null && resource.data.user_id == request.auth.uid;
+    }
+  }
+}

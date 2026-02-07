@@ -1,0 +1,2351 @@
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { useMarkets } from "./hooks/useMarkets";
+
+// ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
+const MARKETS = [
+  {
+    id: 1, name: "Mercato di Sant'Ambrogio", city: "Firenze", region: "Toscana",
+    address: "Piazza Lorenzo Ghiberti, 50122 Firenze FI",
+    lat: 43.7696, lng: 11.2644, category: "Alimentare",
+    tags: ["all'aperto", "produttori locali"],
+    dates: ["2026-02-06", "2026-02-07", "2026-02-13", "2026-02-14"],
+    hours: "7:00–14:00", recurrence: "Ogni giorno tranne domenica",
+    description: "Storico mercato coperto nel cuore di Firenze. Frutta, verdura, carne, pesce e specialità toscane. Atmosfera autentica lontana dai circuiti turistici.",
+    source: "Mercatini d'Italia", confidence: 95, lastVerified: "2026-02-04"
+  },
+  {
+    id: 2, name: "Porta Portese", city: "Roma", region: "Lazio",
+    address: "Via Portuense, 00153 Roma RM",
+    lat: 41.8782, lng: 12.4738, category: "Usato",
+    tags: ["all'aperto", "collezionismo", "modernariato"],
+    dates: ["2026-02-08", "2026-02-15", "2026-02-22"],
+    hours: "6:30–14:00", recurrence: "Ogni domenica",
+    description: "Il più grande mercato delle pulci di Roma, attivo dal 1945. Chilometri di bancarelle con tutto l'immaginabile: vestiti, libri, vinili, mobili, elettronica.",
+    source: "IlTurista", confidence: 98, lastVerified: "2026-02-05"
+  },
+  {
+    id: 3, name: "Mercato Antiquario", city: "Arezzo", region: "Toscana",
+    address: "Piazza Grande, 52100 Arezzo AR",
+    lat: 43.4633, lng: 11.8825, category: "Antiquariato",
+    tags: ["all'aperto", "collezionismo"],
+    dates: ["2026-02-07", "2026-02-08", "2026-03-07", "2026-03-08"],
+    hours: "9:00–19:00", recurrence: "Primo weekend del mese",
+    description: "Fiera antiquaria di fama internazionale nella magnifica Piazza Grande. Oltre 500 espositori di antiquariato, modernariato e oggetti da collezione.",
+    source: "Mercatini d'Italia", confidence: 97, lastVerified: "2026-02-03"
+  },
+  {
+    id: 4, name: "Mercato di Modena Antiquaria", city: "Modena", region: "Emilia-Romagna",
+    address: "Parco Novi Sad, 41121 Modena MO",
+    lat: 44.6471, lng: 10.9252, category: "Antiquariato",
+    tags: ["all'aperto", "modernariato"],
+    dates: ["2026-02-08", "2026-03-08"],
+    hours: "8:00–18:00", recurrence: "Quarto weekend del mese",
+    description: "Grande mostra mercato di antiquariato e modernariato nel parco più grande di Modena. Mobili, stampe, ceramiche e curiosità.",
+    source: "CalendarioMercatini", confidence: 85, lastVerified: "2026-01-28"
+  },
+  {
+    id: 5, name: "East Market", city: "Milano", region: "Lombardia",
+    address: "Via Mecenate 88/A, 20138 Milano MI",
+    lat: 45.4451, lng: 9.2305, category: "Vintage e abbigliamento",
+    tags: ["al chiuso", "dischi", "modernariato"],
+    dates: ["2026-02-08", "2026-03-08"],
+    hours: "10:00–21:00", recurrence: "Una domenica al mese",
+    description: "Mercato vintage indoor in un ex capannone industriale. Abbigliamento, vinili, design, arte e street food. L'appuntamento milanese per il vintage.",
+    source: "IlTurista", confidence: 92, lastVerified: "2026-02-01"
+  },
+  {
+    id: 6, name: "Mercato del Capo", city: "Palermo", region: "Sicilia",
+    address: "Via Porta Carini, 90134 Palermo PA",
+    lat: 38.1157, lng: 13.3561, category: "Alimentare",
+    tags: ["all'aperto", "produttori locali"],
+    dates: ["2026-02-06", "2026-02-07", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13"],
+    hours: "7:00–20:00", recurrence: "Tutti i giorni tranne domenica",
+    description: "Mercato storico nel cuore di Palermo. Profumi, colori e sapori della Sicilia: pesce freschissimo, spezie, frutta, panelle e street food.",
+    source: "Mercatini d'Italia", confidence: 90, lastVerified: "2026-02-02"
+  },
+  {
+    id: 7, name: "Mercato delle Erbe", city: "Bologna", region: "Emilia-Romagna",
+    address: "Via Ugo Bassi 25, 40121 Bologna BO",
+    lat: 44.4963, lng: 11.3388, category: "Alimentare",
+    tags: ["al chiuso", "produttori locali"],
+    dates: ["2026-02-06", "2026-02-07", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13"],
+    hours: "7:00–24:00", recurrence: "Ogni giorno tranne domenica",
+    description: "Mercato coperto storico di Bologna, dal 1910. Di giorno prodotti freschi e gastronomia, di sera si trasforma con aperitivi e cena.",
+    source: "IlTurista", confidence: 93, lastVerified: "2026-02-04"
+  },
+  {
+    id: 8, name: "Mercatino dell'Antiquariato", city: "Venezia", region: "Veneto",
+    address: "Campo San Maurizio, 30124 Venezia VE",
+    lat: 45.4327, lng: 12.3328, category: "Antiquariato",
+    tags: ["all'aperto", "collezionismo"],
+    dates: ["2026-02-07", "2026-02-08", "2026-02-09"],
+    hours: "9:00–19:00", recurrence: "Cinque volte l'anno",
+    description: "Elegante mercato antiquario in uno dei campi più belli di Venezia, tra San Marco e l'Accademia. Vetri, argenti, stampe e gioielli d'epoca.",
+    source: "Eventiesagre", confidence: 88, lastVerified: "2026-01-30"
+  },
+  {
+    id: 9, name: "Balon e Gran Balon", city: "Torino", region: "Piemonte",
+    address: "Via Borgo Dora, 10152 Torino TO",
+    lat: 45.0792, lng: 7.6848, category: "Usato",
+    tags: ["all'aperto", "collezionismo", "modernariato"],
+    dates: ["2026-02-07", "2026-02-14", "2026-02-21"],
+    hours: "8:00–18:00", recurrence: "Ogni sabato (Gran Balon: 2ª domenica del mese)",
+    description: "Il mercato delle pulci più antico d'Italia, nel quartiere di Borgo Dora. Oggetti curiosi, mobili, abiti vintage e modernariato piemontese.",
+    source: "Mercatini d'Italia", confidence: 94, lastVerified: "2026-02-03"
+  },
+  {
+    id: 10, name: "Fiera di Santa Lucia", city: "Lecce", region: "Puglia",
+    address: "Piazza Sant'Oronzo, 73100 Lecce LE",
+    lat: 40.3524, lng: 18.1714, category: "Artigianato",
+    tags: ["all'aperto", "serale"],
+    dates: ["2026-02-06", "2026-02-07", "2026-02-08"],
+    hours: "10:00–22:00", recurrence: "Evento periodico",
+    description: "Mercato di artigianato locale nel barocco centro di Lecce. Ceramiche, cartapesta, tessuti, gioielli artigianali e prodotti tipici salentini.",
+    source: "CalendarioMercatini", confidence: 82, lastVerified: "2026-01-25"
+  },
+  {
+    id: 11, name: "Fiera dell'Antiquariato", city: "Napoli", region: "Campania",
+    address: "Via Francesco Caracciolo, 80122 Napoli NA",
+    lat: 40.8303, lng: 14.2268, category: "Antiquariato",
+    tags: ["all'aperto", "collezionismo"],
+    dates: ["2026-02-07", "2026-02-08", "2026-03-07", "2026-03-08"],
+    hours: "8:30–14:00", recurrence: "Primo e terzo weekend del mese",
+    description: "Mercato antiquario sul lungomare di Napoli con vista sul Vesuvio. Ceramiche vietresi, stampe antiche, libri rari e argenteria.",
+    source: "IlTurista", confidence: 87, lastVerified: "2026-02-01"
+  },
+  {
+    id: 12, name: "Mercato Albinelli", city: "Modena", region: "Emilia-Romagna",
+    address: "Via Luigi Albinelli, 41121 Modena MO",
+    lat: 44.6462, lng: 10.9237, category: "Alimentare",
+    tags: ["al chiuso", "produttori locali"],
+    dates: ["2026-02-06", "2026-02-07", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13"],
+    hours: "6:30–14:30", recurrence: "Ogni giorno tranne domenica",
+    description: "Lo storico mercato coperto di Modena, dal 1931. Parmigiano Reggiano, aceto balsamico tradizionale, tortellini e specialità emiliane.",
+    source: "Mercatini d'Italia", confidence: 96, lastVerified: "2026-02-05"
+  }
+];
+
+const CATEGORIES = ["Alimentare", "Antiquariato", "Vintage e abbigliamento", "Usato", "Artigianato", "Misto"];
+const REGIONS = [...new Set(MARKETS.map(m => m.region))].sort();
+const CITIES = [...new Set(MARKETS.map(m => m.city))].sort();
+
+const CATEGORY_ICONS = {
+  "Alimentare": "🍅", "Antiquariato": "🏺", "Vintage e abbigliamento": "👗",
+  "Usato": "📦", "Artigianato": "🎨", "Misto": "🎪"
+};
+
+const CATEGORY_COLORS = {
+  "Alimentare": "#5B7A5E", "Antiquariato": "#C75146", "Vintage e abbigliamento": "#8B6F8E",
+  "Usato": "#B8860B", "Artigianato": "#2E86AB", "Misto": "#E07A5F"
+};
+
+// ─── Utility Functions ──────────────────────────────────────
+const TODAY = new Date("2026-02-06");
+const todayStr = "2026-02-06";
+
+function formatDateIT(dateStr) {
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "short" });
+}
+
+function getDateBadge(dates) {
+  const today = todayStr;
+  const tomorrow = "2026-02-07";
+  const dayOfWeek = TODAY.getDay();
+  const satOffset = 6 - dayOfWeek;
+  const satDate = new Date(TODAY); satDate.setDate(satDate.getDate() + satOffset);
+  const sunDate = new Date(satDate); sunDate.setDate(sunDate.getDate() + 1);
+  const sat = satDate.toISOString().slice(0, 10);
+  const sun = sunDate.toISOString().slice(0, 10);
+
+  if (dates.includes(today)) return { label: "Oggi", color: "#C75146" };
+  if (dates.includes(tomorrow)) return { label: "Domani", color: "#E07A5F" };
+  if (dates.includes(sat) || dates.includes(sun)) return { label: "Questo weekend", color: "#5B7A5E" };
+  return null;
+}
+
+function getNextDate(dates) {
+  return dates.filter(d => d >= todayStr).sort()[0] || dates[dates.length - 1];
+}
+
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+// User position (Firenze as default)
+const USER_LAT = 43.7696;
+const USER_LNG = 11.2558;
+
+// ─── Icons (SVG) ────────────────────────────────────────────
+const Icon = ({ name, size = 20, color = "currentColor", strokeWidth = 1.8 }) => {
+  const icons = {
+    search: <><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></>,
+    filter: <><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></>,
+    heart: <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>,
+    heartFilled: <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>,
+    mapPin: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
+    clock: <><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>,
+    compass: <><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></>,
+    bell: <><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></>,
+    settings: <><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></>,
+    chevronLeft: <polyline points="15 18 9 12 15 6"/>,
+    chevronRight: <polyline points="9 18 15 12 9 6"/>,
+    x: <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>,
+    copy: <><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></>,
+    navigation: <polygon points="3 11 22 2 13 21 11 13 3 11"/>,
+    share: <><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></>,
+    calendar: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></>,
+    list: <><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></>,
+    map: <><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></>,
+    check: <polyline points="20 6 9 17 4 12"/>,
+    minus: <line x1="5" y1="12" x2="19" y2="12"/>,
+    plus: <><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></>,
+    externalLink: <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></>,
+    info: <><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></>,
+    sort: <><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></>,
+    bookmark: <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>,
+  };
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
+      strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+      {icons[name]}
+    </svg>
+  );
+};
+
+// ─── Styles ─────────────────────────────────────────────────
+const styles = `
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --terracotta: #C75146;
+  --terracotta-light: #E8857D;
+  --olive: #5B7A5E;
+  --olive-light: #7FA882;
+  --olive-pale: #E8F0E9;
+  --beige: #F5F0E8;
+  --beige-dark: #E8E0D4;
+  --sand: #D4C5A9;
+  --ink: #2C2416;
+  --ink-light: #5C513F;
+  --ink-lighter: #8C8272;
+  --cream: #FDFBF7;
+  --white: #FFFFFF;
+  --shadow-sm: 0 1px 3px rgba(44,36,22,0.06);
+  --shadow-md: 0 4px 12px rgba(44,36,22,0.08);
+  --shadow-lg: 0 8px 30px rgba(44,36,22,0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Source Sans 3', -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--beige);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(199,81,70,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(199,81,70,0); }
+}
+
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Header ─── */
+.header {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 90%, transparent 100%);
+  padding: 16px 20px 8px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+}
+
+.header-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-title .accent {
+  color: var(--terracotta);
+}
+
+/* ─── Search ─── */
+.search-container {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  border: 2px solid var(--beige-dark);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--white);
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--olive);
+  box-shadow: 0 0 0 3px var(--olive-pale);
+}
+
+.search-input::placeholder {
+  color: var(--ink-lighter);
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-lighter);
+}
+
+/* ─── Quick Chips ─── */
+.chips-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px 0 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chips-row::-webkit-scrollbar { display: none; }
+
+.chip {
+  white-space: nowrap;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1.5px solid var(--beige-dark);
+  background: var(--white);
+  color: var(--ink-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.chip:hover {
+  border-color: var(--sand);
+  background: var(--beige);
+}
+
+.chip.active {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* ─── Controls Row ─── */
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 12px;
+}
+
+.view-toggle {
+  display: flex;
+  background: var(--beige);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 2px;
+}
+
+.view-toggle button {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-lighter);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.view-toggle button.active {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-light);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.filter-btn:hover { border-color: var(--sand); }
+
+.filter-btn.has-filters {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+.filter-count {
+  background: var(--terracotta);
+  color: white;
+  font-size: 11px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-light);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* ─── Market Cards ─── */
+.markets-list {
+  padding: 0 20px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.market-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: fadeInUp 0.4s ease both;
+  border: 1px solid rgba(44,36,22,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.market-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.market-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.card-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.date-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.02em;
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  transition: all 0.2s;
+  color: var(--ink-lighter);
+  flex-shrink: 0;
+}
+
+.fav-btn:hover { color: var(--terracotta); }
+.fav-btn.active { color: var(--terracotta); animation: heartPop 0.35s ease; }
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.card-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+.card-info-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-distance {
+  color: var(--olive);
+  font-weight: 600;
+}
+
+/* ─── Map View ─── */
+.map-container {
+  position: relative;
+  height: calc(100vh - 260px);
+  background: var(--beige);
+  margin: 0 20px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.map-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.map-pin {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.map-pin:hover {
+  transform: scale(1.15);
+}
+
+.map-tooltip {
+  position: absolute;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-lg);
+  z-index: 20;
+  min-width: 220px;
+  max-width: 280px;
+  animation: scaleIn 0.2s ease;
+  border: 1px solid rgba(44,36,22,0.06);
+}
+
+.tooltip-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.tooltip-meta {
+  font-size: 13px;
+  color: var(--ink-light);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tooltip-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tooltip-actions button {
+  flex: 1;
+  padding: 8px;
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tooltip-actions button:hover {
+  background: var(--beige);
+}
+
+.tooltip-actions button.primary {
+  background: var(--terracotta);
+  color: white;
+  border-color: var(--terracotta);
+}
+
+/* ─── Detail Page ─── */
+.detail-page {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--cream);
+  overflow-y: auto;
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.detail-hero {
+  position: relative;
+  padding: 60px 24px 32px;
+  background: linear-gradient(135deg, var(--beige) 0%, var(--beige-dark) 100%);
+  overflow: hidden;
+}
+
+.detail-hero::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  opacity: 0.06;
+}
+
+.detail-back {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  transition: all 0.2s;
+  z-index: 5;
+}
+
+.detail-back:hover { box-shadow: var(--shadow-md); }
+
+.detail-actions-top {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
+
+.detail-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+  color: var(--ink-light);
+}
+
+.detail-icon-btn:hover { box-shadow: var(--shadow-md); }
+.detail-icon-btn.fav-active { color: var(--terracotta); }
+
+.detail-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.detail-name {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.detail-city {
+  font-size: 15px;
+  color: var(--ink-light);
+  font-weight: 500;
+}
+
+.detail-body {
+  padding: 24px;
+}
+
+.detail-section {
+  margin-bottom: 24px;
+  animation: fadeInUp 0.4s ease both;
+}
+
+.detail-section-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-dates-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.date-chip {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--beige);
+  color: var(--ink-light);
+  border: 1px solid var(--beige-dark);
+}
+
+.date-chip.today {
+  background: var(--terracotta);
+  color: white;
+  border-color: var(--terracotta);
+}
+
+.date-chip.weekend {
+  background: var(--olive);
+  color: white;
+  border-color: var(--olive);
+}
+
+.detail-hours {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.detail-recurrence {
+  font-size: 14px;
+  color: var(--ink-lighter);
+  margin-top: 4px;
+}
+
+.detail-address {
+  font-size: 15px;
+  color: var(--ink-light);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.detail-address-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.detail-address-actions button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--terracotta);
+  color: white;
+  border: none;
+}
+.btn-primary:hover { background: #b5443a; }
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--ink);
+  border: 1.5px solid var(--beige-dark);
+}
+.btn-secondary:hover { background: var(--beige); }
+
+.detail-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-light);
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.detail-tag {
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--beige);
+  color: var(--ink-light);
+  border: 1px solid var(--beige-dark);
+}
+
+.detail-provenance {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--beige);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--ink-lighter);
+}
+
+.confidence-bar {
+  height: 4px;
+  background: var(--beige-dark);
+  border-radius: 2px;
+  width: 60px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* ─── Mini Map in Detail ─── */
+.detail-minimap {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--beige);
+  margin-bottom: 12px;
+  position: relative;
+}
+
+/* ─── Filter Panel ─── */
+.filter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44,36,22,0.4);
+  backdrop-filter: blur(4px);
+  z-index: 80;
+  animation: fadeIn 0.2s ease;
+}
+
+.filter-panel {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  background: var(--cream);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  z-index: 85;
+  overflow-y: auto;
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 -4px 30px rgba(44,36,22,0.15);
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 12px;
+  position: sticky;
+  top: 0;
+  background: var(--cream);
+  z-index: 5;
+  border-bottom: 1px solid var(--beige-dark);
+}
+
+.filter-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+}
+
+.filter-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--beige);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-light);
+  transition: all 0.2s;
+}
+
+.filter-body {
+  padding: 20px 24px;
+}
+
+.filter-section {
+  margin-bottom: 24px;
+}
+
+.filter-section-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-lighter);
+  margin-bottom: 10px;
+}
+
+.filter-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-cat-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1.5px solid var(--beige-dark);
+  background: var(--white);
+  color: var(--ink-light);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-cat-chip.active {
+  border-color: currentColor;
+  font-weight: 600;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--white);
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.filter-select:focus { border-color: var(--olive); }
+
+.range-container {
+  padding: 8px 0;
+}
+
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+
+.range-value {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.range-input {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--beige-dark);
+  outline: none;
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(199,81,70,0.3);
+  transition: transform 0.15s;
+}
+
+.range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.filter-footer {
+  display: flex;
+  gap: 10px;
+  padding: 16px 24px 28px;
+  border-top: 1px solid var(--beige-dark);
+  position: sticky;
+  bottom: 0;
+  background: var(--cream);
+}
+
+.filter-footer button {
+  flex: 1;
+  padding: 13px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-reset {
+  background: var(--beige);
+  color: var(--ink-light);
+  border: 1.5px solid var(--beige-dark);
+}
+
+.filter-apply {
+  background: var(--terracotta);
+  color: white;
+  border: none;
+}
+
+.filter-apply:hover { background: #b5443a; }
+
+/* ─── Sorting Dropdown ─── */
+.sort-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 60;
+  overflow: hidden;
+  min-width: 180px;
+  animation: scaleIn 0.15s ease;
+  border: 1px solid rgba(44,36,22,0.06);
+}
+
+.sort-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--ink-light);
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  transition: background 0.15s;
+}
+
+.sort-option:hover { background: var(--beige); }
+.sort-option.active { color: var(--terracotta); font-weight: 600; }
+
+/* ─── Bottom Tabs ─── */
+.bottom-tabs {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: var(--white);
+  border-top: 1px solid var(--beige-dark);
+  display: flex;
+  padding: 6px 8px 22px;
+  z-index: 70;
+  backdrop-filter: blur(12px);
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ink-lighter);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.tab-btn.active {
+  color: var(--terracotta);
+}
+
+.tab-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--terracotta);
+}
+
+/* ─── Favorites Page ─── */
+.page-content {
+  padding: 0 20px 100px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.empty-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: var(--ink-lighter);
+  line-height: 1.5;
+}
+
+/* ─── Notifications / Settings ─── */
+.setting-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(44,36,22,0.04);
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.setting-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.setting-sublabel {
+  font-size: 13px;
+  color: var(--ink-lighter);
+  margin-top: 2px;
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--beige-dark);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.toggle input:checked + .toggle-track {
+  background: var(--olive);
+}
+
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggle input:checked + .toggle-track::after {
+  transform: translateX(20px);
+}
+
+/* ─── Location Selection ─── */
+.location-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.location-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+
+.location-option:hover { border-color: var(--sand); }
+.location-option.active {
+  border-color: var(--olive);
+  background: var(--olive-pale);
+}
+
+.location-option .icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-light);
+}
+
+.manual-city-input {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+.manual-city-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.manual-city-input input:focus { border-color: var(--olive); }
+
+.manual-city-input button {
+  padding: 10px 20px;
+  background: var(--olive);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ─── Settings time pickers ─── */
+.time-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.time-row label {
+  font-size: 13px;
+  color: var(--ink-lighter);
+  min-width: 30px;
+}
+
+.time-row input[type="time"] {
+  padding: 8px 10px;
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  color: var(--ink);
+}
+
+/* ─── Scrollbar ─── */
+.detail-page::-webkit-scrollbar,
+.filter-panel::-webkit-scrollbar { width: 0; }
+
+/* ─── Results count ─── */
+.results-count {
+  padding: 0 20px 8px;
+  font-size: 13px;
+  color: var(--ink-lighter);
+  font-weight: 500;
+}
+
+/* ─── Copied toast ─── */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 200;
+  animation: fadeInUp 0.3s ease;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ─── App version ─── */
+.app-version {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-lighter);
+  padding: 20px;
+  opacity: 0.6;
+}
+`;
+
+// ─── Main App ───────────────────────────────────────────────
+export default function App() {
+  // Data from Firebase (auto-seeds on first load)
+  const {
+    markets: allMarkets,
+    loading: marketsLoading,
+    error: marketsError,
+    seedStatus,
+    favorites,
+    toggleFav: hookToggleFav,
+    categories: hookCategories,
+    regions: hookRegions,
+    cities: hookCities,
+    categoryIcons: hookCatIcons,
+    categoryColors: hookCatColors,
+    dataMode,
+  } = useMarkets();
+
+  const [tab, setTab] = useState("esplora");
+  const [viewMode, setViewMode] = useState("lista");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [dateFilter, setDateFilter] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
+  const [showSort, setShowSort] = useState(false);
+  const [sortBy, setSortBy] = useState("data");
+  const [selectedMarket, setSelectedMarket] = useState(null);
+  const [toast, setToast] = useState(null);
+
+  // Filter states
+  const [filterCategories, setFilterCategories] = useState([]);
+  const [filterRegion, setFilterRegion] = useState("");
+  const [filterCity, setFilterCity] = useState("");
+  const [filterDistance, setFilterDistance] = useState(100);
+  const [activeFilterCount, setActiveFilterCount] = useState(0);
+
+  // Pending filter states (applied on "Applica")
+  const [pendingCats, setPendingCats] = useState([]);
+  const [pendingRegion, setPendingRegion] = useState("");
+  const [pendingCity, setPendingCity] = useState("");
+  const [pendingDist, setPendingDist] = useState(100);
+
+  // Notification settings
+  const [notifFavorites, setNotifFavorites] = useState(true);
+  const [notifNearby, setNotifNearby] = useState(false);
+  const [notifDistance, setNotifDistance] = useState(15);
+  const [quietStart, setQuietStart] = useState("22:00");
+  const [quietEnd, setQuietEnd] = useState("08:00");
+
+  // Settings
+  const [locationMode, setLocationMode] = useState("auto");
+  const [manualCity, setManualCity] = useState("");
+
+  // Map state
+  const [hoveredPin, setHoveredPin] = useState(null);
+  const mapRef = useRef(null);
+
+  // Bridge: use hook's categories/colors/icons, falling back to local constants
+  const CATS = hookCategories.length > 0 ? hookCategories : CATEGORIES;
+  const CAT_ICONS = Object.keys(hookCatIcons).length > 0 ? hookCatIcons : CATEGORY_ICONS;
+  const CAT_COLORS = Object.keys(hookCatColors).length > 0 ? hookCatColors : CATEGORY_COLORS;
+  const REGS = hookRegions.length > 0 ? hookRegions : REGIONS;
+  const CTS = hookCities.length > 0 ? hookCities : CITIES;
+
+  const toggleFav = useCallback((id, e) => {
+    if (e) e.stopPropagation();
+    hookToggleFav(id);
+  }, [hookToggleFav]);
+
+  const showToast = useCallback((msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 2000);
+  }, []);
+
+  // Use hook's markets (already have distances computed)
+  const marketsWithDistance = allMarkets;
+
+  // Apply filters
+  const filteredMarkets = useMemo(() => {
+    let result = [...marketsWithDistance];
+
+    // Search
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(m =>
+        m.name.toLowerCase().includes(q) ||
+        m.city.toLowerCase().includes(q) ||
+        m.category.toLowerCase().includes(q) ||
+        m.tags.some(t => t.toLowerCase().includes(q))
+      );
+    }
+
+    // Date filter
+    if (dateFilter === "oggi") {
+      result = result.filter(m => m.dates.includes(todayStr));
+    } else if (dateFilter === "weekend") {
+      const dayOfWeek = TODAY.getDay();
+      const satOffset = 6 - dayOfWeek;
+      const sat = new Date(TODAY); sat.setDate(sat.getDate() + satOffset);
+      const sun = new Date(sat); sun.setDate(sun.getDate() + 1);
+      const satStr = sat.toISOString().slice(0, 10);
+      const sunStr = sun.toISOString().slice(0, 10);
+      result = result.filter(m => m.dates.includes(satStr) || m.dates.includes(sunStr));
+    } else if (dateFilter === "7giorni") {
+      const end = new Date(TODAY); end.setDate(end.getDate() + 7);
+      const endStr = end.toISOString().slice(0, 10);
+      result = result.filter(m => m.dates.some(d => d >= todayStr && d <= endStr));
+    }
+
+    // Category filter
+    if (filterCategories.length > 0) {
+      result = result.filter(m => filterCategories.includes(m.category));
+    }
+
+    // Region
+    if (filterRegion) {
+      result = result.filter(m => m.region === filterRegion);
+    }
+
+    // City
+    if (filterCity) {
+      result = result.filter(m => m.city === filterCity);
+    }
+
+    // Distance
+    if (filterDistance < 100) {
+      result = result.filter(m => m.distance <= filterDistance);
+    }
+
+    // Sort
+    if (sortBy === "distanza") {
+      result.sort((a, b) => a.distance - b.distance);
+    } else if (sortBy === "data") {
+      result.sort((a, b) => {
+        const aDate = getNextDate(a.dates);
+        const bDate = getNextDate(b.dates);
+        return aDate.localeCompare(bDate);
+      });
+    }
+
+    return result;
+  }, [marketsWithDistance, searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy]);
+
+  const openFilters = () => {
+    setPendingCats([...filterCategories]);
+    setPendingRegion(filterRegion);
+    setPendingCity(filterCity);
+    setPendingDist(filterDistance);
+    setShowFilters(true);
+  };
+
+  const applyFilters = () => {
+    setFilterCategories(pendingCats);
+    setFilterRegion(pendingRegion);
+    setFilterCity(pendingCity);
+    setFilterDistance(pendingDist);
+    let count = 0;
+    if (pendingCats.length > 0) count++;
+    if (pendingRegion) count++;
+    if (pendingCity) count++;
+    if (pendingDist < 100) count++;
+    setActiveFilterCount(count);
+    setShowFilters(false);
+  };
+
+  const resetFilters = () => {
+    setPendingCats([]);
+    setPendingRegion("");
+    setPendingCity("");
+    setPendingDist(100);
+  };
+
+  const resetAllFilters = () => {
+    setFilterCategories([]);
+    setFilterRegion("");
+    setFilterCity("");
+    setFilterDistance(100);
+    setActiveFilterCount(0);
+    setDateFilter(null);
+    setSearchQuery("");
+  };
+
+  // ─── Map projection (Italy bounds) ────────────
+  const mapProject = useCallback((lat, lng, w, h) => {
+    const minLat = 36.5, maxLat = 47.5, minLng = 6.5, maxLng = 19.5;
+    const x = ((lng - minLng) / (maxLng - minLng)) * w;
+    const y = ((maxLat - lat) / (maxLat - minLat)) * h;
+    return { x, y };
+  }, []);
+
+  // ─── Render Functions ─────────────────────────
+
+  const renderMarketCard = (market, index) => {
+    const badge = getDateBadge(market.dates);
+    const nextDate = getNextDate(market.dates);
+    const catColor = CAT_COLORS[market.category] || "#888";
+    const isFav = favorites.has(market.id);
+
+    return (
+      <div
+        key={market.id}
+        className="market-card"
+        style={{ animationDelay: `${index * 50}ms`, '--cat-color': catColor }}
+        onClick={() => setSelectedMarket(market)}
+      >
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: catColor, borderRadius: '4px 0 0 4px' }} />
+        <div className="card-top">
+          <div className="card-badges">
+            <span className="category-badge" style={{ background: catColor + '14', color: catColor }}>
+              {CAT_ICONS[market.category]} {market.category}
+            </span>
+            {badge && (
+              <span className="date-badge" style={{ background: badge.color }}>
+                {badge.label}
+              </span>
+            )}
+          </div>
+          <button
+            className={`fav-btn ${isFav ? 'active' : ''}`}
+            onClick={(e) => toggleFav(market.id, e)}
+            aria-label={isFav ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
+          >
+            <Icon name={isFav ? "heartFilled" : "heart"} size={20} />
+          </button>
+        </div>
+
+        <div className="card-name">{market.name}</div>
+
+        <div className="card-info">
+          <span className="card-info-item">
+            <Icon name="calendar" size={14} color="#8C8272" />
+            {formatDateIT(nextDate)}
+          </span>
+          <span className="card-info-item">
+            <Icon name="clock" size={14} color="#8C8272" />
+            {market.hours}
+          </span>
+          <span className="card-info-item">
+            <Icon name="mapPin" size={14} color="#8C8272" />
+            {market.city}
+          </span>
+          <span className="card-info-item card-distance">
+            a {Math.round(market.distance)} km
+          </span>
+        </div>
+      </div>
+    );
+  };
+
+  const renderMapView = () => {
+    const w = 440, h = 500;
+    return (
+      <div className="map-container" style={{ margin: '0 20px 100px' }}>
+        <svg className="map-svg" viewBox={`0 0 ${w} ${h}`} ref={mapRef}>
+          {/* Background */}
+          <rect width={w} height={h} fill="#E8F0E9" rx="8" />
+
+          {/* Grid lines for texture */}
+          {[...Array(20)].map((_, i) => (
+            <line key={`gl${i}`} x1={0} y1={i * 25} x2={w} y2={i * 25} stroke="#D4E8D6" strokeWidth={0.5} />
+          ))}
+          {[...Array(18)].map((_, i) => (
+            <line key={`gv${i}`} x1={i * 25} y1={0} x2={i * 25} y2={h} stroke="#D4E8D6" strokeWidth={0.5} />
+          ))}
+
+          {/* Italy simplified outline */}
+          <path
+            d="M210,40 L240,35 L270,45 L300,50 L330,55 L350,70 L360,90 L340,95 L310,90 L280,85 L250,80 L220,75 L190,80 L160,85 L130,90 L110,100 L100,120 L95,85 L110,60 L140,45 L170,38 Z
+            M350,100 L370,110 L380,130 L375,150 L360,170 L340,180 L320,170 L310,150 L305,130 L310,110 L330,95 Z
+            M290,95 L310,110 L305,135 L295,160 L280,180 L260,200 L250,220 L260,245 L275,270 L285,295 L280,320 L265,340 L255,360 L260,380 L270,395 L265,410 L250,420 L240,410 L235,390 L225,375 L210,360 L205,340 L215,315 L225,290 L220,265 L210,245 L200,225 L195,200 L200,175 L210,155 L225,135 L240,120 L260,105 Z
+            M120,100 L140,110 L155,130 L160,155 L155,180 L145,200 L135,215 L125,195 L115,170 L105,145 L100,120 Z
+            M250,430 L270,435 L285,450 L275,465 L255,470 L240,458 L235,440 Z"
+            fill="#DAE8DB"
+            stroke="#B8D4BA"
+            strokeWidth={1}
+            opacity={0.7}
+          />
+
+          {/* Market pins */}
+          {filteredMarkets.map(market => {
+            const { x, y } = mapProject(market.lat, market.lng, w, h);
+            const catColor = CAT_COLORS[market.category] || "#888";
+            const isFav = favorites.has(market.id);
+            const isHovered = hoveredPin === market.id;
+
+            return (
+              <g key={market.id} className="map-pin"
+                transform={`translate(${x}, ${y})`}
+                onClick={() => setSelectedMarket(market)}
+                onMouseEnter={() => setHoveredPin(market.id)}
+                onMouseLeave={() => setHoveredPin(null)}
+              >
+                {/* Shadow */}
+                <ellipse cx={0} cy={2} rx={8} ry={3} fill="rgba(0,0,0,0.12)" />
+                {/* Pin body */}
+                <path d="M0,-24 C-10,-24 -16,-16 -16,-9 C-16,2 0,8 0,8 C0,8 16,2 16,-9 C16,-16 10,-24 0,-24Z"
+                  fill={isHovered ? catColor : (isFav ? "#C75146" : catColor)}
+                  stroke="white" strokeWidth={2}
+                  style={{ filter: isHovered ? 'drop-shadow(0 3px 6px rgba(0,0,0,0.2))' : 'none',
+                           transition: 'all 0.2s ease' }}
+                />
+                {/* Emoji icon */}
+                <text x={0} y={-10} textAnchor="middle" fontSize="11" dominantBaseline="central">
+                  {CAT_ICONS[market.category]}
+                </text>
+                {/* Favorite heart */}
+                {isFav && (
+                  <circle cx={10} cy={-22} r={6} fill="#C75146" stroke="white" strokeWidth={1.5} />
+                )}
+              </g>
+            );
+          })}
+        </svg>
+
+        {/* Tooltip */}
+        {hoveredPin && (() => {
+          const market = filteredMarkets.find(m => m.id === hoveredPin);
+          if (!market) return null;
+          const { x, y } = mapProject(market.lat, market.lng, 440, 500);
+          const tooltipLeft = x > 220 ? x - 240 : x + 20;
+          const tooltipTop = Math.max(10, y - 60);
+
+          return (
+            <div className="map-tooltip" style={{ left: `${(tooltipLeft / 440) * 100}%`, top: `${(tooltipTop / 500) * 100}%` }}>
+              <div className="tooltip-name">{market.name}</div>
+              <div className="tooltip-meta">
+                <span>{CAT_ICONS[market.category]} {market.category} · {market.city}</span>
+                <span>{market.hours} · a {Math.round(market.distance)} km</span>
+              </div>
+              <div className="tooltip-actions">
+                <button className="primary" onClick={() => setSelectedMarket(market)}>Dettagli</button>
+                <button onClick={(e) => { e.stopPropagation(); toggleFav(market.id); }}>
+                  {favorites.has(market.id) ? "Salvato" : "Salva"}
+                </button>
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Legend */}
+        <div style={{
+          position: 'absolute', bottom: 12, left: 12, background: 'rgba(253,251,247,0.92)',
+          backdropFilter: 'blur(8px)', borderRadius: 10, padding: '8px 12px',
+          fontSize: 11, color: '#5C513F', display: 'flex', flexWrap: 'wrap', gap: '4px 12px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+        }}>
+          {CATS.slice(0, 5).map(cat => (
+            <span key={cat} style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: CAT_COLORS[cat] }} />
+              {cat.split(' ')[0]}
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderDetail = () => {
+    if (!selectedMarket) return null;
+    const m = selectedMarket;
+    const catColor = CAT_COLORS[m.category] || "#888";
+    const isFav = favorites.has(m.id);
+    const futureDates = m.dates.filter(d => d >= todayStr).sort();
+
+    return (
+      <div className="detail-page">
+        <div className="detail-hero" style={{ background: `linear-gradient(135deg, ${catColor}08 0%, ${catColor}14 100%)` }}>
+          <div style={{ position: 'absolute', top: -40, right: -40, width: 180, height: 180, borderRadius: '50%', background: catColor, opacity: 0.04 }} />
+          <button className="detail-back" onClick={() => setSelectedMarket(null)}>
+            <Icon name="chevronLeft" size={20} />
+          </button>
+          <div className="detail-actions-top">
+            <button className="detail-icon-btn" onClick={() => showToast("Condiviso!")}>
+              <Icon name="share" size={18} />
+            </button>
+            <button
+              className={`detail-icon-btn ${isFav ? 'fav-active' : ''}`}
+              onClick={() => toggleFav(m.id)}
+            >
+              <Icon name={isFav ? "heartFilled" : "heart"} size={18} />
+            </button>
+          </div>
+
+          <span className="detail-category-tag" style={{ background: catColor + '18', color: catColor }}>
+            {CAT_ICONS[m.category]} {m.category}
+          </span>
+          <div className="detail-name">{m.name}</div>
+          <div className="detail-city">
+            <Icon name="mapPin" size={14} color={catColor} strokeWidth={2} /> {m.city}, {m.region}
+          </div>
+        </div>
+
+        <div className="detail-body">
+          {/* Dates */}
+          <div className="detail-section" style={{ animationDelay: '0.05s' }}>
+            <div className="detail-section-title">
+              <Icon name="calendar" size={18} color={catColor} /> Prossime date
+            </div>
+            <div className="detail-dates-chips">
+              {futureDates.map(d => {
+                const isToday = d === todayStr;
+                const dayOfWeek = new Date(d + "T00:00:00").getDay();
+                const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                return (
+                  <span key={d} className={`date-chip ${isToday ? 'today' : isWeekend ? 'weekend' : ''}`}>
+                    {formatDateIT(d)}
+                  </span>
+                );
+              })}
+            </div>
+            {m.recurrence && (
+              <div className="detail-recurrence">{m.recurrence}</div>
+            )}
+          </div>
+
+          {/* Hours */}
+          <div className="detail-section" style={{ animationDelay: '0.1s' }}>
+            <div className="detail-section-title">
+              <Icon name="clock" size={18} color={catColor} /> Orari
+            </div>
+            <div className="detail-hours">{m.hours || "Orari non disponibili"}</div>
+          </div>
+
+          {/* Address */}
+          <div className="detail-section" style={{ animationDelay: '0.15s' }}>
+            <div className="detail-section-title">
+              <Icon name="mapPin" size={18} color={catColor} /> Indirizzo
+            </div>
+            {/* Mini map */}
+            <div className="detail-minimap">
+              <svg viewBox="0 0 400 140" style={{ width: '100%', height: '100%' }}>
+                <rect width="400" height="140" fill="#E8F0E9" />
+                {[...Array(8)].map((_, i) => (
+                  <line key={i} x1={0} y1={i * 20} x2={400} y2={i * 20} stroke="#D4E8D6" strokeWidth={0.5} />
+                ))}
+                {[...Array(20)].map((_, i) => (
+                  <line key={i} x1={i * 20} y1={0} x2={i * 20} y2={140} stroke="#D4E8D6" strokeWidth={0.5} />
+                ))}
+                <circle cx={200} cy={70} r={30} fill={catColor} opacity={0.08} />
+                <circle cx={200} cy={70} r={16} fill={catColor} opacity={0.12} />
+                <g transform="translate(200, 56)">
+                  <path d="M0,-14 C-6,-14 -10,-8 -10,-4 C-10,4 0,10 0,10 C0,10 10,4 10,-4 C10,-8 6,-14 0,-14Z"
+                    fill={catColor} stroke="white" strokeWidth={1.5} />
+                  <text x={0} y={-3} textAnchor="middle" fontSize="8" dominantBaseline="central">
+                    {CAT_ICONS[m.category]}
+                  </text>
+                </g>
+              </svg>
+            </div>
+            <div className="detail-address">{m.address}</div>
+            <div className="detail-address-actions">
+              <button className="btn-primary" onClick={() => showToast("Apertura navigatore...")}>
+                <Icon name="navigation" size={16} color="white" /> Indicazioni
+              </button>
+              <button className="btn-secondary" onClick={() => {
+                navigator.clipboard?.writeText(m.address);
+                showToast("Indirizzo copiato!");
+              }}>
+                <Icon name="copy" size={16} /> Copia
+              </button>
+            </div>
+          </div>
+
+          {/* Description */}
+          {m.description && (
+            <div className="detail-section" style={{ animationDelay: '0.2s' }}>
+              <div className="detail-section-title">
+                <Icon name="info" size={18} color={catColor} /> Descrizione
+              </div>
+              <div className="detail-description">{m.description}</div>
+            </div>
+          )}
+
+          {/* Tags */}
+          {m.tags && m.tags.length > 0 && (
+            <div className="detail-section" style={{ animationDelay: '0.25s' }}>
+              <div className="detail-section-title">Tag</div>
+              <div className="detail-tags">
+                {m.tags.map(t => (
+                  <span key={t} className="detail-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Provenance */}
+          <div className="detail-section" style={{ animationDelay: '0.3s' }}>
+            <div className="detail-provenance">
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 13, marginBottom: 2 }}>Aggiornato il {m.lastVerified}</div>
+                <div style={{ fontSize: 12, opacity: 0.7 }}>Fonte: {m.source}</div>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: 11, marginBottom: 4 }}>Affidabilità</div>
+                <div className="confidence-bar">
+                  <div className="confidence-fill" style={{
+                    width: `${m.confidence}%`,
+                    background: m.confidence > 90 ? '#5B7A5E' : m.confidence > 75 ? '#B8860B' : '#C75146'
+                  }} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ height: 40 }} />
+        </div>
+      </div>
+    );
+  };
+
+  const renderFilterPanel = () => (
+    <>
+      <div className="filter-overlay" onClick={() => setShowFilters(false)} />
+      <div className="filter-panel">
+        <div className="filter-header">
+          <span className="filter-title">Filtri</span>
+          <button className="filter-close" onClick={() => setShowFilters(false)}>
+            <Icon name="x" size={18} />
+          </button>
+        </div>
+        <div className="filter-body">
+          {/* Categories */}
+          <div className="filter-section">
+            <div className="filter-section-label">Categoria</div>
+            <div className="filter-categories">
+              {CATS.map(cat => {
+                const active = pendingCats.includes(cat);
+                const color = CAT_COLORS[cat];
+                return (
+                  <button key={cat}
+                    className={`filter-cat-chip ${active ? 'active' : ''}`}
+                    style={active ? { borderColor: color, color, background: color + '10' } : {}}
+                    onClick={() => {
+                      setPendingCats(prev =>
+                        prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
+                      );
+                    }}
+                  >
+                    {CAT_ICONS[cat]} {cat}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Region */}
+          <div className="filter-section">
+            <div className="filter-section-label">Regione</div>
+            <select className="filter-select" value={pendingRegion}
+              onChange={e => { setPendingRegion(e.target.value); setPendingCity(""); }}>
+              <option value="">Tutte le regioni</option>
+              {REGS.map(r => <option key={r} value={r}>{r}</option>)}
+            </select>
+          </div>
+
+          {/* City */}
+          <div className="filter-section">
+            <div className="filter-section-label">Città</div>
+            <select className="filter-select" value={pendingCity}
+              onChange={e => setPendingCity(e.target.value)}>
+              <option value="">Tutte le città</option>
+              {CTS.filter(c => !pendingRegion || allMarkets.find(m => m.city === c)?.region === pendingRegion)
+                .map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          {/* Distance */}
+          <div className="filter-section">
+            <div className="filter-section-label">Distanza massima</div>
+            <div className="range-container">
+              <div className="range-label">
+                <span>0 km</span>
+                <span className="range-value">{pendingDist} km</span>
+              </div>
+              <input type="range" className="range-input"
+                min={5} max={100} step={5} value={pendingDist}
+                onChange={e => setPendingDist(Number(e.target.value))} />
+            </div>
+          </div>
+        </div>
+        <div className="filter-footer">
+          <button className="filter-reset" onClick={resetFilters}>Reimposta filtri</button>
+          <button className="filter-apply" onClick={applyFilters}>Applica filtri</button>
+        </div>
+      </div>
+    </>
+  );
+
+  const renderExplore = () => (
+    <>
+      <div className="header">
+        <div className="header-title">
+          <span className="accent">Mercati</span> d'Italia
+        </div>
+
+        <div className="search-container">
+          <span className="search-icon"><Icon name="search" size={18} /></span>
+          <input
+            className="search-input"
+            placeholder="Cerca città, mercato o parola chiave"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <div className="chips-row">
+          {[
+            { key: "oggi", label: "Oggi" },
+            { key: "weekend", label: "Questo weekend" },
+            { key: "7giorni", label: "Prossimi 7 giorni" },
+          ].map(({ key, label }) => (
+            <button key={key}
+              className={`chip ${dateFilter === key ? 'active' : ''}`}
+              onClick={() => setDateFilter(dateFilter === key ? null : key)}
+            >{label}</button>
+          ))}
+        </div>
+
+        <div className="controls-row">
+          <div className="view-toggle">
+            <button className={viewMode === "lista" ? "active" : ""} onClick={() => setViewMode("lista")}>
+              <Icon name="list" size={14} /> Lista
+            </button>
+            <button className={viewMode === "mappa" ? "active" : ""} onClick={() => setViewMode("mappa")}>
+              <Icon name="map" size={14} /> Mappa
+            </button>
+          </div>
+
+          <div style={{ position: 'relative' }}>
+            <button className="sort-btn" onClick={() => setShowSort(!showSort)}>
+              <Icon name="sort" size={14} /> Ordina
+            </button>
+            {showSort && (
+              <div className="sort-dropdown">
+                {[
+                  { key: "data", label: "Data", icon: "calendar" },
+                  { key: "distanza", label: "Distanza", icon: "mapPin" },
+                ].map(({ key, label, icon }) => (
+                  <button key={key}
+                    className={`sort-option ${sortBy === key ? 'active' : ''}`}
+                    onClick={() => { setSortBy(key); setShowSort(false); }}
+                  >
+                    <Icon name={icon} size={16} /> {label}
+                    {sortBy === key && <Icon name="check" size={16} color="#C75146" />}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <button className={`filter-btn ${activeFilterCount > 0 ? 'has-filters' : ''}`}
+            onClick={openFilters}>
+            <Icon name="filter" size={14} /> Filtri
+            {activeFilterCount > 0 && <span className="filter-count">{activeFilterCount}</span>}
+          </button>
+        </div>
+      </div>
+
+      <div className="results-count" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span>
+          {marketsLoading
+            ? (seedStatus === 'seeding' ? 'Primo avvio — popolo il database...' : 'Caricamento...')
+            : `${filteredMarkets.length} mercat${filteredMarkets.length === 1 ? 'o' : 'i'} trovat${filteredMarkets.length === 1 ? 'o' : 'i'}`
+          }
+        </span>
+        {dataMode === 'demo' && (
+          <span style={{
+            fontSize: 10, fontWeight: 700, letterSpacing: '0.05em',
+            padding: '2px 8px', borderRadius: 100, 
+            background: 'var(--sand)', color: 'var(--ink-lighter)',
+          }}>DEMO</span>
+        )}
+      </div>
+
+      {marketsLoading ? (
+        <div className="markets-list">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="market-card" style={{
+              height: 120, animation: 'none',
+              background: 'linear-gradient(90deg, var(--white) 25%, var(--beige) 50%, var(--white) 75%)',
+              backgroundSize: '200% 100%',
+              animationName: 'shimmer', animationDuration: '1.5s',
+              animationIterationCount: 'infinite', animationTimingFunction: 'linear',
+            }} />
+          ))}
+        </div>
+      ) : viewMode === "lista" ? (
+        <div className="markets-list">
+          {filteredMarkets.length > 0 ? (
+            filteredMarkets.map((m, i) => renderMarketCard(m, i))
+          ) : (
+            <div className="empty-state">
+              <div className="empty-icon">🔍</div>
+              <div className="empty-title">Nessun mercato trovato</div>
+              <div className="empty-text">Prova a cambiare data, distanza o categoria.</div>
+              <button style={{
+                marginTop: 16, padding: '10px 24px', background: 'var(--terracotta)',
+                color: 'white', border: 'none', borderRadius: 100, fontFamily: 'var(--font-body)',
+                fontSize: 14, fontWeight: 600, cursor: 'pointer'
+              }} onClick={resetAllFilters}>
+                Reimposta
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        renderMapView()
+      )}
+    </>
+  );
+
+  const renderFavorites = () => {
+    const favMarkets = marketsWithDistance.filter(m => favorites.has(m.id));
+    return (
+      <>
+        <div className="header">
+          <div className="header-title">Preferiti</div>
+        </div>
+        <div className="page-content">
+          {favMarkets.length > 0 ? (
+            <div className="markets-list" style={{ padding: 0 }}>
+              {favMarkets.map((m, i) => renderMarketCard(m, i))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <div className="empty-icon">❤️</div>
+              <div className="empty-title">Nessun preferito</div>
+              <div className="empty-text">Salva i mercati che ti interessano per ritrovarli qui.</div>
+            </div>
+          )}
+        </div>
+      </>
+    );
+  };
+
+  const renderNotifications = () => (
+    <>
+      <div className="header">
+        <div className="header-title">Notifiche</div>
+      </div>
+      <div className="page-content">
+        <div className="setting-card">
+          <div className="setting-row">
+            <div>
+              <div className="setting-label">Promemoria per i preferiti</div>
+              <div className="setting-sublabel">Ricevi un avviso il giorno prima</div>
+            </div>
+            <label className="toggle">
+              <input type="checkbox" checked={notifFavorites} onChange={() => setNotifFavorites(!notifFavorites)} />
+              <span className="toggle-track" />
+            </label>
+          </div>
+        </div>
+
+        <div className="setting-card">
+          <div className="setting-row">
+            <div>
+              <div className="setting-label">Avvisi vicino a me</div>
+              <div className="setting-sublabel">Mercati nelle vicinanze nei prossimi giorni</div>
+            </div>
+            <label className="toggle">
+              <input type="checkbox" checked={notifNearby} onChange={() => setNotifNearby(!notifNearby)} />
+              <span className="toggle-track" />
+            </label>
+          </div>
+        </div>
+
+        {notifNearby && (
+          <div className="setting-card" style={{ animation: 'fadeIn 0.3s ease' }}>
+            <div className="filter-section-label">Distanza massima</div>
+            <div className="range-container">
+              <div className="range-label">
+                <span>1 km</span>
+                <span className="range-value">{notifDistance} km</span>
+              </div>
+              <input type="range" className="range-input"
+                min={1} max={50} step={1} value={notifDistance}
+                onChange={e => setNotifDistance(Number(e.target.value))} />
+            </div>
+          </div>
+        )}
+
+        <div className="setting-card">
+          <div className="setting-label" style={{ marginBottom: 4 }}>Orari silenziosi</div>
+          <div className="setting-sublabel">Nessuna notifica in questo intervallo</div>
+          <div className="time-row">
+            <label>Da</label>
+            <input type="time" value={quietStart} onChange={e => setQuietStart(e.target.value)} />
+            <label>A</label>
+            <input type="time" value={quietEnd} onChange={e => setQuietEnd(e.target.value)} />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  const renderSettings = () => (
+    <>
+      <div className="header">
+        <div className="header-title">Impostazioni</div>
+      </div>
+      <div className="page-content">
+        <div className="setting-card">
+          <div className="setting-label" style={{ marginBottom: 4 }}>Posizione</div>
+          <div className="setting-sublabel">Scegli come trovare i mercati vicino a te</div>
+          <div className="location-options">
+            <button
+              className={`location-option ${locationMode === 'auto' ? 'active' : ''}`}
+              onClick={() => setLocationMode('auto')}
+            >
+              <div className="icon-circle"><Icon name="compass" size={18} /></div>
+              <div>
+                <div style={{ fontWeight: 600 }}>Usa la mia posizione</div>
+                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>Posizione automatica</div>
+              </div>
+            </button>
+            <button
+              className={`location-option ${locationMode === 'manual' ? 'active' : ''}`}
+              onClick={() => setLocationMode('manual')}
+            >
+              <div className="icon-circle"><Icon name="mapPin" size={18} /></div>
+              <div>
+                <div style={{ fontWeight: 600 }}>Scegli una città</div>
+                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>Inserisci manualmente</div>
+              </div>
+            </button>
+            <button
+              className={`location-option ${locationMode === 'none' ? 'active' : ''}`}
+              onClick={() => setLocationMode('none')}
+            >
+              <div className="icon-circle"><Icon name="x" size={18} /></div>
+              <div>
+                <div style={{ fontWeight: 600 }}>Non ora</div>
+                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>Naviga senza posizione</div>
+              </div>
+            </button>
+          </div>
+
+          {locationMode === 'manual' && (
+            <div className="manual-city-input">
+              <input placeholder="Es. Firenze" value={manualCity}
+                onChange={e => setManualCity(e.target.value)} />
+              <button onClick={() => showToast(`Posizione: ${manualCity || 'Firenze'}`)}>Conferma</button>
+            </div>
+          )}
+        </div>
+
+        <div className="app-version">
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 16, marginBottom: 4 }}>
+            <span style={{ color: 'var(--terracotta)' }}>Mercati</span> d'Italia
+          </div>
+          Versione 1.0.0 · {dataMode === 'firebase' ? '🟢 Connesso' : '🟡 Demo'}
+        </div>
+      </div>
+    </>
+  );
+
+  return (
+    <>
+      <style>{styles}</style>
+      <div className="app-container" onClick={() => showSort && setShowSort(false)}>
+        {tab === "esplora" && renderExplore()}
+        {tab === "mappa" && (() => { setViewMode("mappa"); return renderExplore(); })()}
+        {tab === "preferiti" && renderFavorites()}
+        {tab === "notifiche" && renderNotifications()}
+        {tab === "impostazioni" && renderSettings()}
+
+        {showFilters && renderFilterPanel()}
+        {selectedMarket && renderDetail()}
+        {toast && <div className="toast">{toast}</div>}
+
+        <nav className="bottom-tabs">
+          {[
+            { id: "esplora", label: "Esplora", icon: "compass" },
+            { id: "preferiti", label: "Preferiti", icon: "heart" },
+            { id: "notifiche", label: "Notifiche", icon: "bell" },
+            { id: "impostazioni", label: "Impostazioni", icon: "settings" },
+          ].map(t => (
+            <button key={t.id} className={`tab-btn ${tab === t.id ? 'active' : ''}`}
+              onClick={() => { setTab(t.id); if (t.id === 'esplora') setViewMode('lista'); }}>
+              <Icon name={t.icon} size={22} strokeWidth={tab === t.id ? 2 : 1.6} />
+              {t.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+    </>
+  );
+}
