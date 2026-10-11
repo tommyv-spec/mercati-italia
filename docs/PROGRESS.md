@@ -18,15 +18,25 @@ Più mercati italiani, dati affidabili, ricerca veloce su telefono, nessun costo
 
 ## Snapshot attuale — ultimo export sul branch
 
-- **13.099 record candidati** con categorie incluse e 20 regioni italiane.
-- **8.202** con almeno una data futura registrata/proiettata. Date automaticamente ricorrenti = *previste*, non edizioni confermate.
-- **13.099** con coordinate, ma molte coordinate dal vecchio archivio indicano solo centri comunali o posizioni non verificate. Non equivalgono a ingressi precisi.
+- **12.650 record candidati** con categorie incluse e 20 regioni italiane.
+- **7.763** con almeno una data futura registrata/proiettata. Date automaticamente ricorrenti = *previste*, non edizioni confermate.
+- **12.650** con coordinate, ma molte coordinate dal vecchio archivio indicano solo centri comunali o posizioni non verificate. Non equivalgono a ingressi precisi.
 - **0** con una verifica umana documentata; UI lo segnala correttamente.
 - Indice globale: **4.369.258 byte** prima della compressione HTTP, contro 7.312.633 della prima versione.
-- Catalogo: `public/data/v1/manifest.json`; `index_schema=2`; 20 shard regionali.
+- Catalogo: `public/data/v1/manifest.json`; `index_schema=3`; 20 shard regionali.
 - La vecchia collezione conteneva moltissimi eventi generici; il numero di record **non** misura la qualità e può contenere ancora duplicati/eventi da rivedere.
 
 **Import riuscito:** GitHub Actions run `38165365302` (prima migrazione completa), run `38165680504` (20 regioni), run `38166243508` (coordinate Milano + fonte Firenze), run `38166397677` (indice compatto); test CI e build verificati nei workflow `quality.yml`.
+
+## CP7 — Audit reale UX e deduplicazione sicura
+
+- [x] Browser mobile Chromium 390×844: ricerca, scheda, filtro città, GPS con consenso, Agenda e controllo di **zero chiamate Firestore/Workers** nel flusso testato. Screenshot e report in artefatti GitHub Actions; un primo test ha superato tutte le verifiche.
+- [x] Ripuliti controlli che simulavano funzioni inesistenti: notifiche sostituite da Agenda, indicazioni e condivisione realmente collegate, nessuna posizione fittizia Firenze.
+- [x] Distanze calcolate solo con GPS autorizzato; raggio vicino a me limitato ai punti precisi, con scelta esplicita per vedere anche posizioni indicative. Dati incerti spiegati nella scheda.
+- [x] Audit doppioni: prima proposta di 3.903 fusioni **bloccata** perché includeva mercati in vie/giorni diversi. Dopo controllo: **446 unioni sicure**, da 13.096 a 12.650; snapshot rigenerato con `index_schema=3` e tutte le 20 regioni.
+- [x] Test Python e build/validazione snapshot superati nel workflow `quality.yml` run `38168363210`.
+- [ ] Retest mobile del nuovo snapshot e review dettagliata su telefono fisico; risultati e intervalli aggiornati per tutti i filtri.
+- [ ] Mappa stradale reale, verifiche umane delle date/sedi/orari, e controllo Cloudflare/Firebase dal dashboard restano aperti.
 
 ## Cosa manca prima di mettere online
 
