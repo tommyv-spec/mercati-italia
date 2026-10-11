@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from export_static import export, normalize, prepare, parse_location, parse_dates
+from export_static import export, normalize, prepare, parse_location, parse_dates, small_index
 from source_milano import convert
 from source_firenze import convert as convert_firenze
 
@@ -96,6 +96,17 @@ class ExportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Conflicting records"):
             prepare([a, b], self.today)
 
+    def test_search_index_is_small_but_supports_7_day_filters(self):
+        dates = [(self.today.isoformat())] * 16
+        raw = market(date=dates, descrizione="Large description " * 100)
+        record, _ = normalize(raw, self.today)
+        indexed = small_index([record])[0]
+        self.assertEqual(len(indexed["date"]), 8)
+        self.assertNotIn("descrizione", indexed)
+        self.assertNotIn("indirizzo", indexed)
+        self.assertNotIn("fonti", indexed)
+        self.assertIn("orario_testo", indexed)
+
     def test_export_manifest_and_immutability(self):
         with tempfile.TemporaryDirectory() as temp:
             out = Path(temp) / "public" / "data" / "v1"
@@ -103,6 +114,8 @@ class ExportTests(unittest.TestCase):
             manifest = result["manifest"]
             self.assertEqual(manifest["total"], 1)
             self.assertEqual(manifest["layout"], "single")
+            self.assertEqual(manifest["index_schema"], 2)
+            self.assertTrue((Path(temp) / "public" / manifest["index"]).is_file())
             asset = Path(temp) / "public" / manifest["catalog"]
             self.assertTrue(asset.exists())
             snapshot = json.loads(asset.read_text("utf-8"))
