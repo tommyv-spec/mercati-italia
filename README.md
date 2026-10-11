@@ -1,5 +1,11 @@
 # Mercati d'Italia
 
+## Procedura dati aggiornati
+
+[Metodo ripetibile, automatismi giornalieri, verifiche e checkpoint](docs/RUNBOOK_DATA_FRESHNESS.md).
+Gli aggiornamenti automatici sono in DEV e non equivalgono a eventi confermati.
+
+
 React 18 + Vite 6 — catalogo nazionale di mercati rionali, antiquariato, vintage, usato e artigianato.
 
 ## Architettura e costi Cloudflare
