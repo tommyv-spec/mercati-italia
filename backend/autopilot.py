@@ -161,9 +161,22 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
     dates_marked_confirmed = []
     verified_fabricated = []
     source_lost = []
+    identity_changed = []
+    # A new official feed cannot silently create a human verification or turn
+    # a projected date into a confirmed calendar occurrence.
+    new_confirmed = sorted(sid for sid in added
+                           if new_by_id[sid].get("date_quality") == "confermata")
+    new_verified = sorted(sid for sid in added
+                          if new_by_id[sid].get("verificato_il"))
+
+    def place_identity(record):
+        return tuple(" ".join(str(record.get(field) or "").casefold().split())
+                     for field in ("regione", "citta"))
 
     for sid in retained:
         before, after = old_by_id[sid], new_by_id[sid]
+        if place_identity(before) != place_identity(after):
+            identity_changed.append(sid)
         if before.get("date_quality") != "confermata" and after.get("date_quality") == "confermata":
             dates_marked_confirmed.append(sid)
         if not before.get("verificato_il") and after.get("verificato_il"):
@@ -174,11 +187,24 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
                         if isinstance(source, dict)}
             if prev_url not in evidence:
                 source_lost.append(sid)
+    old_unknown_share = old_report["fields_missing"].get("source_url", 0) / max(1, len(old_rows))
+    new_unknown_share = new_report["fields_missing"].get("source_url", 0) / max(1, len(new_rows))
+    source_health = all(
+        entry.get("status") in ("retrieved", "resumed_checkpoint", "offline_skipped")
+        for entry in sources_status.values()
+    )
     checks = {
         "min_records": len(new_rows) >= int(gate["min_total_records"]),
         "max_source_loss": loss_ratio <= float(gate["max_record_loss_fraction"]),
         "min_id_retention": retention_ratio >= float(gate["min_id_retention_fraction"]),
         "max_new_records": len(added) <= int(gate["max_new_ids_per_run"]),
+        "no_unreviewed_new_confirmations": not new_confirmed,
+        "no_unreviewed_new_verifications": not new_verified,
+        "unknown_source_share_budget": (
+            new_unknown_share - old_unknown_share <=
+            float(gate["max_unknown_source_share_increase"]) + 1e-12
+        ),
+        "official_sources_available": source_health,
         "forecast_60d": new_report["compact_index_future_coverage"]["60"] >=
             int(fgate["min_records_with_future_date_at_plus_60_days"]),
         "index_under_absolute_budget": new_index <= int(gate["max_gzip_index_bytes"]),
@@ -188,7 +214,7 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
         "no_invented_human_verification": not verified_fabricated,
         "retain_old_source_evidence": not source_lost,
         "forecast_quality_flags": bool(forecast_stats.get("all_dates_marked_forecast", False)),
-        "source_identities_immutable": True,
+        "source_identities_immutable": not identity_changed,
     }
     ok = all(checks.values())
     return {
@@ -204,6 +230,11 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
         "unverified_confirmation_claims": dates_marked_confirmed[:15],
         "unexpected_verification_claims": verified_fabricated[:15],
         "dropped_source_evidence": source_lost[:15],
+        "new_unreviewed_confirmations": new_confirmed[:15],
+        "new_unreviewed_verifications": new_verified[:15],
+        "changed_market_identities": sorted(identity_changed)[:15],
+        "unknown_source_share_before": round(old_unknown_share, 6),
+        "unknown_source_share_after": round(new_unknown_share, 6),
         "sources": sources_status,
         "forecasts": forecast_stats,
         "gates": checks,
@@ -244,6 +275,13 @@ def run(args):
         raise ValueError("Autopilot cannot publish production")
     if not policy["publication"].get("require_security_audit") or not policy["publication"].get("require_mobile_smoke"):
         raise ValueError("Production-grade QA gates cannot be disabled")
+    if policy["gates"].get("allow_new_confident_date_claims") is not False or (
+        policy["gates"].get("allow_new_human_verified_claims") is not False
+    ):
+        raise ValueError("Autopilot must never create unreviewed confirmation or human-verification claims")
+    unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
+    if not 0 <= unknown_budget <= 0.05:
+        raise ValueError("Unknown-source regression budget must be between 0 and 5%")
 
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=True)
@@ -264,8 +302,10 @@ def run(args):
     previous = checkpoint_dir / "baseline.json"
     if args.resume and previous.exists():
         prior = read_json(previous)["result"]
-        if prior.get("baseline_signature") != baseline_id or prior.get("policy_digest") != policy_id:
-            raise ValueError("Cannot resume: baseline/policy changed; start a new run")
+        if (prior.get("baseline_signature") != baseline_id
+                or prior.get("policy_digest") != policy_id
+                or prior.get("today") != args.today.isoformat()):
+            raise ValueError("Cannot resume: baseline, policy or reference date changed; start a new run")
 
     old_report = audit(manifest_path, args.today)
     old_rows = load_existing(manifest_path)

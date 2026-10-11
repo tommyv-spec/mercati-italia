@@ -43,6 +43,9 @@ def policy():
             "min_total_records": 1, "max_record_loss_fraction": 0.03,
             "min_id_retention_fraction": 0.99, "max_new_ids_per_run": 10,
             "max_gzip_index_bytes": 800000, "max_index_growth_fraction": 10,
+            "max_unknown_source_share_increase": 0.01,
+            "allow_new_confident_date_claims": False,
+            "allow_new_human_verified_claims": False,
         },
         "publication": {
             "channel":"dev-only","production_merge":False,
@@ -140,6 +143,81 @@ class AutopilotTests(unittest.TestCase):
             self.assertTrue((folder/"new-index.json").exists())
             self.assertFalse((folder/"unreferenced.json").exists())
 
+
+
+    def test_added_verified_or_confirmed_market_is_quarantined(self):
+        old = market("existing")
+        new = market("new")
+        new["date_quality"] = "confermata"
+        new["verificato_il"] = "2026-10-12"
+        base_report = {
+            "snapshot_total": 1,
+            "compact_index_future_coverage": {"60": 2, "90": 2},
+            "sizes": {"national_index_gzip_bytes": 300},
+            "fields_missing": {"source_url": 0},
+            "documented_verified_records": 0,
+            "position_quality": {},
+        }
+        new_report = {**base_report, "snapshot_total": 2}
+        verdict = compare_candidates([old], [old, new], base_report, new_report,
+                                     policy(), {"all_dates_marked_forecast": True},
+                                     {"milano": {"status": "retrieved"}})
+        self.assertFalse(verdict["approved"])
+        self.assertFalse(verdict["gates"]["no_unreviewed_new_confirmations"])
+        self.assertFalse(verdict["gates"]["no_unreviewed_new_verifications"])
+        self.assertEqual(verdict["new_unreviewed_confirmations"], ["new"])
+
+    def test_failed_official_source_blocks_unattended_release(self):
+        row = market("existing")
+        report = {
+            "snapshot_total": 1,
+            "compact_index_future_coverage": {"60": 2, "90": 2},
+            "sizes": {"national_index_gzip_bytes": 300},
+            "fields_missing": {"source_url": 0},
+            "documented_verified_records": 0,
+            "position_quality": {},
+        }
+        verdict = compare_candidates([row], [row], report, report, policy(),
+                                     {"all_dates_marked_forecast": True},
+                                     {"milano": {"status": "unavailable", "error": "HTTP 503"}})
+        self.assertFalse(verdict["approved"])
+        self.assertFalse(verdict["gates"]["official_sources_available"])
+
+    def test_source_evidence_and_city_cannot_regress_unnoticed(self):
+        old = market("existing")
+        changed = {**old, "citta": "Pisa", "url_fonte": "",
+                   "fonti": [{"url": old["url_fonte"]}]}
+        report = {
+            "snapshot_total": 1,
+            "compact_index_future_coverage": {"60": 2, "90": 2},
+            "sizes": {"national_index_gzip_bytes": 300},
+            "fields_missing": {"source_url": 0},
+            "documented_verified_records": 0,
+            "position_quality": {},
+        }
+        new_report = {**report, "fields_missing": {"source_url": 1}}
+        verdict = compare_candidates([old], [changed], report, new_report,
+                                     policy(), {"all_dates_marked_forecast": True}, {})
+        self.assertFalse(verdict["approved"])
+        self.assertFalse(verdict["gates"]["source_identities_immutable"])
+        self.assertFalse(verdict["gates"]["unknown_source_share_budget"])
+        self.assertEqual(verdict["changed_market_identities"], ["existing"])
+
+    def test_resume_requires_identical_reference_date(self):
+        with tempfile.TemporaryDirectory() as td:
+            folder = Path(td)
+            base = folder / "public" / "data" / "v1"
+            export([market("fi-a")], base, today=TODAY)
+            config = folder / "policy.json"
+            config.write_text(json.dumps(policy()))
+            args = Namespace(manifest=base / "manifest.json", policy=config,
+                             output=folder / "job", today=TODAY,
+                             offline=True, resume=False)
+            run(args)
+            args.today = date(2026, 10, 12)
+            args.resume = True
+            with self.assertRaisesRegex(ValueError, "reference date changed"):
+                run(args)
 
 if __name__ == "__main__":
     unittest.main()
