@@ -181,7 +181,7 @@ class ExportTests(unittest.TestCase):
         raw = market(date=dates, descrizione="Large description " * 100)
         record, _ = normalize(raw, self.today)
         indexed = small_index([record])[0]
-        self.assertEqual(len(indexed[INDEX_FIELDS.index("date")]), 8)
+        self.assertEqual(len(indexed[INDEX_FIELDS.index("date")]), 16)
         self.assertNotIn("descrizione", INDEX_FIELDS)
         self.assertNotIn("indirizzo", INDEX_FIELDS)
         self.assertNotIn("fonti", INDEX_FIELDS)
