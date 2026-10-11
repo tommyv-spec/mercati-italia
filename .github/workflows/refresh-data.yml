@@ -1,0 +1,62 @@
+name: Refresh official market sources
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly source check, rather than paid API calls from every visitor.
+    - cron: '17 04 * * 2'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: static-data-publisher
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Require curated baseline before publishing changes
+        id: baseline
+        shell: bash
+        run: |
+          if [ -s public/data/v1/manifest.json ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::No initial static catalog. First export the verified Firebase/curated baseline; no replacement is allowed."
+          fi
+      - name: Download municipal open data into a temporary file
+        if: steps.baseline.outputs.ready == 'true'
+        run: python backend/source_milano.py --output /tmp/mercati_milano.json
+      - name: Merge with existing curated records
+        if: steps.baseline.outputs.ready == 'true'
+        run: |
+          python backend/merge_catalog.py --new /tmp/mercati_milano.json --out /tmp/mercati_merged.json
+      - name: Export guarded content-hashed static snapshot
+        if: steps.baseline.outputs.ready == 'true'
+        run: |
+          python backend/export_static.py --input /tmp/mercati_merged.json --min-count 10 --max-drop-ratio 0.10
+      - name: Validate new snapshot
+        if: steps.baseline.outputs.ready == 'true'
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Commit only changed snapshots
+        if: steps.baseline.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/v1
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh verified static catalog from official sources"
+            git push
+          else
+            echo "Catalog content unchanged; no deployment needed."
+          fi
