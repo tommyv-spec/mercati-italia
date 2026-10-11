@@ -284,6 +284,15 @@ def markdown(result):
             f"{escape(source['triage_class'])} | {escape(source['organization'])} | "
             f"{escape(source['data_modified']) or 'sconosciuta'} |"
         )
+    lines.extend(["", "## Risorse candidate prioritarie (URL non verificati)", ""])
+    for source in result["sources"][:12]:
+        resource = source["resources"][0]
+        url = resource["url"]
+        for character, escaped in [("(", "%28"), (")", "%29"),
+                                   ("[", "%5B"), ("]", "%5D"),
+                                   ("<", "%3C"), (">", "%3E"), ("|", "%7C")]:
+            url = url.replace(character, escaped)
+        lines.append(f"- {escape(source['title'])}: [{resource['format']}]({url})")
     lines.extend(["", "## Protocollo necessario per aggiungere una fonte", "",
         "1. Confermare che l'ente pubblica davvero il dataset e la risorsa.",
         "2. Verificare licenza e condizioni della singola distribuzione.",

@@ -30,6 +30,22 @@ class AutopilotHistoryTests(unittest.TestCase):
         self.assertNotIn("user",result)
         self.assertTrue(result["dev_only"])
 
+    def test_source_intelligence_metrics_are_reported_without_auto_importing(self):
+        registry = {
+            "scan": {"total_known": 42, "delta": {"new": 2, "changed": 3}},
+            "sources": [
+                {"triage_class": "market_location_candidate"},
+                {"triage_class": "aggregated_statistics"},
+                {"triage_class": "market_location_candidate"},
+            ],
+        }
+        report = summary(decision(), None, None, "200", registry)
+        self.assertEqual(report["source_registry_known"], 42)
+        self.assertEqual(report["source_registry_new"], 2)
+        self.assertEqual(report["source_registry_changed"], 3)
+        self.assertEqual(report["source_location_candidates"], 2)
+        self.assertEqual(report["source_historical_statistics"], 1)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)

@@ -10,16 +10,21 @@ from __future__ import annotations
 import argparse
 import json
 from datetime import datetime, timezone
+from collections import Counter
 from pathlib import Path
 
 HISTORY_LIMIT = 104  # roughly 1 year at two checks per week
 
 
 def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None,
-            run_id: str) -> dict:
+            run_id: str, source_registry: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
+    registry = source_registry or {}
+    intake = registry.get("scan", {})
+    classes = Counter(item.get("triage_class", "unknown")
+                      for item in registry.get("sources", []))
     if "records" not in metric or "future_60" not in metric:
         raise ValueError("Incomplete quality report")
     return {
@@ -36,6 +41,11 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "hours_missing": int(metric["missing_hours"]),
         "source_candidates_scored": len((source_candidates or {}).get("candidates", [])),
         "source_scout_failures": len((source_candidates or {}).get("query_failures", {})),
+        "source_registry_known": int(intake.get("total_known", 0)),
+        "source_registry_new": int(intake.get("delta", {}).get("new", 0)),
+        "source_registry_changed": int(intake.get("delta", {}).get("changed", 0)),
+        "source_location_candidates": int(classes.get("market_location_candidate", 0)),
+        "source_historical_statistics": int(classes.get("aggregated_statistics", 0)),
         "top_improvement_priorities": [
             item["code"] for item in (roadmap or {}).get("queue", [])[:5]
         ],
@@ -64,6 +74,8 @@ def markdown(latest: dict) -> str:
         f"- Posizioni precise dichiarate: **{latest['precise_position_count']}**",
         f"- Orari mancanti: **{latest['hours_missing']:,}**",
         f"- Dataset pubblici candidati individuati: **{latest['source_candidates_scored']}** (licenze da verificare)",
+        f"- Fonti conservate nello storico: **{latest['source_registry_known']}**; nuove: **{latest['source_registry_new']}**; aggiornate: **{latest['source_registry_changed']}**.",
+        f"- Possibili elenchi/sedi: **{latest['source_location_candidates']}**; statistiche storiche aggregate: **{latest['source_historical_statistics']}**.",
         "",
         "## Prossimi miglioramenti calcolati",
         *[f"- {p}" for p in latest["top_improvement_priorities"]],
@@ -102,6 +114,7 @@ def main():
     p.add_argument("--decision", type=Path, required=True)
     p.add_argument("--roadmap", type=Path)
     p.add_argument("--sources", type=Path)
+    p.add_argument("--source-registry", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -109,7 +122,9 @@ def main():
         json.loads(args.decision.read_text("utf-8")),
         json.loads(args.roadmap.read_text("utf-8")) if args.roadmap and args.roadmap.exists() else None,
         json.loads(args.sources.read_text("utf-8")) if args.sources and args.sources.exists() else None,
-        args.run_id
+        args.run_id,
+        json.loads(args.source_registry.read_text("utf-8"))
+        if args.source_registry and args.source_registry.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,

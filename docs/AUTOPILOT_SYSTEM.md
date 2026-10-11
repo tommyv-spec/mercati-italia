@@ -65,6 +65,7 @@ Ogni checkpoint è salvato in `autopilot-output/checkpoints/*.json` e allegato p
 
 - `backend/autopilot_feedback.py` ordina le priorità in base a frequenza del problema, severità, affidabilità e costo di implementazione. Genera `roadmap.json` + `roadmap.md` con criteri di accettazione. Non crea false verifiche.
 - `backend/source_scout.py` cerca **solo metadati** di fonti comunali strutturate nel catalogo nazionale [dati.gov.it](https://www.dati.gov.it/). Esclude mercati finanziari/immobiliari, fonti non strutturate e URL HTTP; ordina i candidati per utilità, formato, ente, licenza dichiarata e aggiornamento.
+- `backend/source_intake.py` conserva in `reports/automation/source-registry.json` le fonti nuove e cambiate, con impronta verificabile dei campi importanti. I metadati aggiornati dal catalogo non sono scambiati per dati sui mercati aggiornati. Ricerche offline o parziali non cancellano fonti conosciute. La coda `reports/automation/SOURCE_QUEUE.md` espone punteggi di **priorità della verifica**, non affidabilità: vecchie tabelle statistiche sono declassate, fonti con potenziali sedi/calendari sono favorite. I primi dataset includono Bologna, Lombardia, Lazio, Roma, Veneto e Corciano; licenze e dati effettivi restano da verificare.
 - **Nuove fonti scoperte = proposta, non import automatico.** Prima di aggiungere un adapter, verificare licenza, condizioni, schema, stabilità dell'identificatore e test. Questo evita di gonfiare il catalogo con dati non riutilizzabili o inventati.
 
 Si tratta di un sistema di **feedback con policy**, non di un'IA che riscrive autonomamente e senza approvazione gli script di produzione.
@@ -126,6 +127,7 @@ npm ci && npm audit --omit=dev --audit-level=high && npm run build
 ## Tracciabilità
 
 - Codice DEV e policy: `backend/autopilot.py`, `backend/autopilot_policy.json`
+- Fonti candidate persistenti: `backend/source_intake.py`, `reports/automation/source-registry.json`, `reports/automation/SOURCE_QUEUE.md`
 - Test: `backend/tests/test_autopilot.py`, `test_autopilot_feedback.py`, `test_recurrence_refresh.py`
 - Controllo mobile: `tests/ui-smoke.mjs`
 - Anteprima: https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/index.html
