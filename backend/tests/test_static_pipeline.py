@@ -142,6 +142,17 @@ class MilanoTests(unittest.TestCase):
         self.assertIsNone(out[0]["lat"])
         self.assertTrue(all(date.fromisoformat(d).weekday() in {1, 5} for d in out[0]["date"]))
 
+    def test_official_4326_coordinates(self):
+        official = {
+            "ID": 1, "MERCATO": "papiniano", "status mss": "attivo",
+            "MARTEDI": "x", "SABATO": "x", "LAT_Y_4326": 45.4582755,
+            "LONG_X_4326": 9.17023017,
+        }
+        out = convert([official], today=date(2026, 10, 11))
+        self.assertEqual(out[0]["lat"], 45.4582755)
+        self.assertEqual(out[0]["lng"], 9.17023017)
+        self.assertEqual(out[0]["position_quality"], "precisa")
+
     def test_inactive_ignored(self):
         self.assertEqual(convert([{"ID": 4, "MERCATO": "closed", "status mss": "non attivo"}]), [])
 
