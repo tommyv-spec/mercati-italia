@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "description": "Fail-closed weekly automation on DEV; no client Cloudflare Worker/Firestore reads",
+  "sources": [
+    {
+      "id": "milano",
+      "enabled": true,
+      "official": true,
+      "min_records": 1,
+      "max_records": 1800,
+      "license": "CC BY 4.0",
+      "stale_source_dates_not_confirmed": true
+    },
+    {
+      "id": "firenze",
+      "enabled": true,
+      "official": true,
+      "min_records": 1,
+      "max_records": 250,
+      "license": "CC BY 4.0",
+      "stale_source_dates_not_confirmed": true
+    }
+  ],
+  "forecast": {
+    "days": 120,
+    "max_source_age_days": 540,
+    "min_records_with_future_date_at_plus_60_days": 8000,
+    "date_quality_label": "prevista"
+  },
+  "gates": {
+    "min_total_records": 12000,
+    "max_record_loss_fraction": 0.02,
+    "min_id_retention_fraction": 0.99,
+    "max_new_ids_per_run": 2000,
+    "max_gzip_index_bytes": 524288,
+    "max_index_growth_fraction": 0.4,
+    "allow_new_confident_date_claims": false,
+    "allow_new_human_verified_claims": false,
+    "max_unknown_source_share_increase": 0.01
+  },
+  "publication": {
+    "channel": "dev-only",
+    "commit_paths": [
+      "public/data/v1"
+    ],
+    "require_security_audit": true,
+    "require_mobile_smoke": true,
+    "production_merge": false,
+    "cloudflare_runtime_requests": false
+  },
+  "monitoring": {
+    "anomaly_issue_title": "[Mercati autopilot] Verifica richiesta",
+    "artifact_retention_days": 30,
+    "checkpoint_on_every_phase": true
+  }
+}
