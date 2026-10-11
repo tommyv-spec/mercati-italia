@@ -1625,7 +1625,7 @@ export default function App() {
     }
 
     return result;
-  }, [marketsWithDistance, searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy]);
+  }, [marketsWithDistance, searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
 
   const openFilters = () => {
     setPendingCats([...filterCategories]);
