@@ -33,13 +33,25 @@ jobs:
           fi
       - name: Query only matching market categories (READ ONLY)
         run: |
-          python backend/source_firestore_public.py --project market-ef407 --limit 3000 --output /tmp/current_markets.json
+          python backend/source_firestore_public.py --project market-ef407 --max-records 20000 --page-size 500 --output /tmp/current_markets.json
+      - name: Checkpoint A - save read-only Firestore export
+        uses: actions/upload-artifact@v4
+        with:
+          name: firestore-markets-review
+          path: /tmp/current_markets.json
+          retention-days: 7
       - name: Import official municipal weekly markets (READ ONLY)
         run: |
           python backend/source_milano.py --output /tmp/milano_markets.json
       - name: Combine sources, retaining evidence
         run: |
           python backend/merge_catalog.py --new /tmp/current_markets.json --new /tmp/milano_markets.json --out /tmp/all_markets.json
+      - name: Checkpoint B - save merged source data
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-markets-review
+          path: /tmp/all_markets.json
+          retention-days: 7
       - name: Build first static dataset with strict guards
         run: |
           python backend/export_static.py --input /tmp/all_markets.json --min-count 20
