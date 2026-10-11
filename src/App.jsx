@@ -1660,6 +1660,11 @@ export default function App() {
     const w = 440, h = 500;
     return (
       <div className="map-container" style={{ margin: '0 20px 100px' }}>
+        <div role="note" style={{ padding: '12px 14px', fontSize: 12, background: 'var(--white)', borderRadius: 8, marginBottom: 10, lineHeight: 1.5 }}>
+          Schema indicativo dell’Italia, non mappa stradale.
+          I pin possono essere approssimativi. Tocca un mercato per controllare indirizzo e fonte.
+          {filteredMarkets.length > 500 && ' Sono mostrati al massimo 500 pin: usa i filtri per restringere.'}
+        </div>
         <svg className="map-svg" viewBox={`0 0 ${w} ${h}`} ref={mapRef}>
           {/* Background */}
           <rect width={w} height={h} fill="#E8F0E9" rx="8" />
@@ -2008,7 +2013,13 @@ export default function App() {
               </div>
               <input type="range" className="range-input"
                 min={5} max={100} step={5} value={pendingDist}
+                disabled={!canUseDistance}
                 onChange={e => setPendingDist(Number(e.target.value))} />
+              {!canUseDistance && (
+                <div className="setting-sublabel">
+                  Per usare il raggio, attiva la posizione in Impostazioni.
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -2050,6 +2061,16 @@ export default function App() {
           ))}
         </div>
 
+        <div className="chips-row" style={{ marginTop: 8, alignItems: 'center' }}>
+          <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
+            disabled={positionStatus === 'requesting'}>
+            <Icon name="mapPin" size={13} />
+            {positionStatus === 'ready' ? 'Vicino a me · posizione attiva' :
+             positionStatus === 'requesting' ? 'Cerco la posizione…' : 'Mercati vicino a me'}
+          </button>
+          {positionError && <span role="alert" style={{ fontSize: 12, color: '#A5443D' }}>{positionError}</span>}
+        </div>
+
         <div className="controls-row">
           <div className="view-toggle">
             <button className={viewMode === "lista" ? "active" : ""} onClick={() => setViewMode("lista")}>
@@ -2072,6 +2093,8 @@ export default function App() {
                 ].map(({ key, label, icon }) => (
                   <button key={key}
                     className={`sort-option ${sortBy === key ? 'active' : ''}`}
+                    disabled={key === 'distanza' && !canUseDistance}
+                    title={key === 'distanza' && !canUseDistance ? 'Attiva la posizione per ordinare per distanza' : ''}
                     onClick={() => { setSortBy(key); setShowSort(false); }}
                   >
                     <Icon name={icon} size={16} /> {label}
@@ -2259,12 +2282,15 @@ export default function App() {
           <div className="location-options">
             <button
               className={`location-option ${locationMode === 'auto' ? 'active' : ''}`}
-              onClick={() => setLocationMode('auto')}
+              onClick={activateNearby}
             >
               <div className="icon-circle"><Icon name="compass" size={18} /></div>
               <div>
                 <div style={{ fontWeight: 600 }}>Usa la mia posizione</div>
-                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>Posizione automatica</div>
+                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>
+                  {positionStatus === 'ready' ? 'Posizione attiva' :
+                   positionStatus === 'requesting' ? 'Richiesta in corso…' : 'Richiede il tuo consenso'}
+                </div>
               </div>
             </button>
             <button
@@ -2279,7 +2305,7 @@ export default function App() {
             </button>
             <button
               className={`location-option ${locationMode === 'none' ? 'active' : ''}`}
-              onClick={() => setLocationMode('none')}
+              onClick={disableLocation}
             >
               <div className="icon-circle"><Icon name="x" size={18} /></div>
               <div>
@@ -2289,12 +2315,27 @@ export default function App() {
             </button>
           </div>
 
-          {locationMode === 'manual' && (
-            <div className="manual-city-input">
-              <input placeholder="Es. Firenze" value={manualCity}
-                onChange={e => setManualCity(e.target.value)} />
-              <button onClick={() => showToast(`Posizione: ${manualCity || 'Firenze'}`)}>Conferma</button>
+          {positionError && <div role="alert" className="setting-sublabel" style={{ marginTop: 12 }}>{positionError}</div>}
+          {canUseDistance && (
+            <div className="setting-sublabel" style={{ marginTop: 10 }}>
+              Distanze calcolate rispetto alla tua posizione. Alcuni mercati hanno solo coordinate indicative.
             </div>
+          )}
+          {locationMode === 'manual' && (
+            <>
+              <div className="manual-city-input">
+                <input list="available-market-cities" placeholder="Es. Firenze" value={manualCity}
+                  onChange={e => setManualCity(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') confirmManualCity(); }} />
+                <datalist id="available-market-cities">
+                  {CTS.map(city => <option key={city} value={city} />)}
+                </datalist>
+                <button onClick={confirmManualCity}>Filtra città</button>
+              </div>
+              <div className="setting-sublabel">
+                La città selezionata filtra i risultati. Non equivale alla posizione GPS.
+              </div>
+            </>
           )}
         </div>
 
@@ -2302,7 +2343,7 @@ export default function App() {
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 16, marginBottom: 4 }}>
             <span style={{ color: 'var(--terracotta)' }}>Mercati</span> d'Italia
           </div>
-          Versione 1.0.0 · {dataMode === 'firebase' ? '🟢 Connesso' : '🟡 Demo'}
+          Versione 1.1 · Catalogo statico (lettura gratuita)
         </div>
       </div>
     </>
