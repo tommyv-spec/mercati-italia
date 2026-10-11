@@ -128,7 +128,7 @@ await stage('Saturday filter + source preservation',async()=>{
 
 await stage('source details and recency labels',async()=>{
   const first=page.locator('.market-card .card-name').first()
-  await first.click()
+  await page.locator('.market-card-open').first().click()
   await page.locator('.detail-page').waitFor({timeout:20000})
   await page.getByText('Caricamento dettagli completi…').waitFor({state:'hidden',timeout:20000})
   const d = {
