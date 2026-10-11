@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from autopilot import (
     compare_candidates, prune_old_assets, retrieve_sources, run,
+    quarantine_absent_official_lombardia,
 )
 from export_static import export
 
@@ -192,6 +193,36 @@ class AutopilotTests(unittest.TestCase):
                                      {"milano": {"status": "unavailable", "error": "HTTP 503"}})
         self.assertFalse(verdict["approved"])
         self.assertFalse(verdict["gates"]["official_sources_available"])
+
+    def test_absent_lombardia_day_quarantines_forecasts_but_preserves_identity(self):
+        old = {**market("lo-mercap-100551-venerdi"),
+               "date_quality": "prevista", "date": ["2026-10-16"],
+               "proiezione_fonte": "ricorrenza_testo"}
+        rows, stats = quarantine_absent_official_lombardia(
+            [old], [old], [], {"lombardia": {"status": "retrieved"}}
+        )
+        self.assertEqual(stats["lombardia_absent"], 1)
+        self.assertEqual(stats["lombardia_quarantined"], 1)
+        self.assertEqual(rows[0]["slug"], old["slug"])
+        self.assertEqual(rows[0]["date"], [])
+        self.assertEqual(rows[0]["date_quality"], "sconosciuta")
+        self.assertEqual(old["date"], ["2026-10-16"])
+
+    def test_offline_or_failed_source_never_declares_missing(self):
+        old = market("lo-mercap-100551-venerdi")
+        for status in ("offline_skipped", "unavailable"):
+            rows, stats = quarantine_absent_official_lombardia(
+                [old], [old], [], {"lombardia": {"status": status}}
+            )
+            self.assertEqual(rows, [old])
+            self.assertEqual(stats["lombardia_absent"], 0)
+
+    def test_bulk_source_shrink_refuses_release(self):
+        old = [market("lo-mercap-" + str(i) + "-sabato") for i in range(100)]
+        with self.assertRaisesRegex(ValueError, "refuse mass"):
+            quarantine_absent_official_lombardia(
+                old, old, [], {"lombardia": {"status": "retrieved"}}
+            )
 
     def test_source_evidence_and_city_cannot_regress_unnoticed(self):
         old = market("existing")

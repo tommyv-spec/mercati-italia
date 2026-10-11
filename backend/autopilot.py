@@ -134,6 +134,54 @@ def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume
     return records, status
 
 
+
+def quarantine_absent_official_lombardia(merged, base, fresh, source_status):
+    """If an enabled source succeeds, remove unsupported forecasts for missing IDs.
+
+    No market identities are deleted. One isolated removal is quarantined;
+    a large shrink blocks the run rather than implying municipal closures.
+    """
+    if source_status.get("lombardia", {}).get("status") != "retrieved":
+        return merged, {"lombardia_absent": 0, "lombardia_quarantined": 0}
+    old = {x["slug"]: x for x in base
+           if str(x.get("slug", "")).startswith("lo-mercap-")}
+    new_ids = {x["slug"] for x in fresh
+               if str(x.get("slug", "")).startswith("lo-mercap-")}
+    missing = set(old) - new_ids
+    allowed = max(3, int(len(old) * 0.02)) if old else 0
+    if len(missing) > allowed:
+        raise ValueError(
+            f"Lombardia official source removed {len(missing)}/{len(old)} "
+            "previously imported rows: refuse mass calendar invalidation"
+        )
+    changed = 0
+    output = []
+    for row in merged:
+        if row["slug"] not in missing or row.get("verificato_il"):
+            output.append(row)
+            continue
+        updated = row.copy()
+        if row.get("date_quality") == "prevista":
+            updated["date"] = []
+            updated["date_quality"] = "sconosciuta"
+            updated["proiezione_regola"] = None
+            updated["proiezione_fonte"] = ""
+            updated["proiezione_generata_il"] = ""
+            updated["ricorrenza_testo"] = (
+                "Non presente nell'ultimo dataset regionale; date da verificare"
+            )
+            changed += 1
+        message = "Non rilevato nell'ultima estrazione ufficiale regionale."
+        if message not in str(updated.get("descrizione") or ""):
+            updated["descrizione"] = (str(updated.get("descrizione") or "") +
+                                     " " + message).strip()
+        output.append(updated)
+    return output, {
+        "lombardia_absent": len(missing),
+        "lombardia_quarantined": changed,
+    }
+
+
 def compact_quality(report: dict):
     return {
         "records": report["snapshot_total"],
@@ -323,6 +371,10 @@ def run(args):
         "total_fetched": len(feeds), "sources": source_status,
     })
     merged, merge_stats = combine(old_rows, feeds)
+    merged, absent_stats = quarantine_absent_official_lombardia(
+        merged, old_rows, feeds, source_status
+    )
+    merge_stats.update(absent_stats)
     if not merged or len(merged) < int(policy["gates"]["min_total_records"]):
         raise ValueError("Merge produced implausible record count")
     save_json(out / "intermediate" / "merged.json", merged)
