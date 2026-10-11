@@ -57,6 +57,27 @@ def validate(manifest_path: Path) -> dict:
     if not all_markets:
         raise ValueError("Empty market catalog")
 
+    # Index entries must be the exact, non-fabricated lightweight projections.
+    index_rel = manifest.get("index")
+    if not index_rel:
+        raise ValueError("Missing lightweight catalog index")
+    if not re.fullmatch(r"data/v1/index-[a-f0-9]{14}\\.json", index_rel):
+        raise ValueError("Unsafe index path")
+    index_asset = public / index_rel
+    if not index_asset.is_file():
+        raise ValueError("Missing global index")
+    index_blob = index_asset.read_bytes()
+    index_sha = index_rel.rsplit("-", 1)[-1].removesuffix(".json")
+    if not hashlib.sha256(index_blob).hexdigest().startswith(index_sha):
+        raise ValueError("Global index content hash mismatch")
+    index_obj = json.loads(index_blob)
+    if index_obj.get("schema") != 1 or len(index_obj.get("markets", [])) != len(all_markets):
+        raise ValueError("Index count/schema mismatch")
+    from export_static import small_index
+    expected_index = small_index(all_markets)
+    if index_obj["markets"] != expected_index:
+        raise ValueError("Search index differs from source market records")
+
     from export_static import compact_json, CANONICAL_REGIONS
     invalid_regions = {m["regione"] for m in all_markets if m["regione"] not in CANONICAL_REGIONS}
     if invalid_regions:
@@ -66,7 +87,7 @@ def validate(manifest_path: Path) -> dict:
     )).hexdigest()
     if signature != manifest.get("content_signature"):
         raise ValueError("Content signature mismatch")
-    return {"records": len(all_markets), "assets": len(parts), "regions": len({m["regione"] for m in all_markets})}
+    return {"records": len(all_markets), "assets": len(parts), "index_bytes": len(index_blob), "regions": len({m["regione"] for m in all_markets})}
 
 
 def main():
