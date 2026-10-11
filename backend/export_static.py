@@ -202,6 +202,9 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "descrizione": safe_string(raw.get("descrizione"), 900),
         "date": parse_dates(raw.get("date"), today),
         "date_quality": quality,
+        "proiezione_regola": raw.get("proiezione_regola") if isinstance(raw.get("proiezione_regola"), dict) else None,
+        "proiezione_generata_il": safe_string(raw.get("proiezione_generata_il"), 10),
+        "proiezione_fonte": safe_string(raw.get("proiezione_fonte"), 45),
         "confidence": confidence,  # Legacy field; not a verification probability.
         "completezza": completeness,
         "fonte": source, "url_fonte": source_url,
@@ -404,7 +407,9 @@ def small_index(markets: list[dict]) -> list[list]:
     result = []
     for market in markets:
         row = [market.get(key) for key in INDEX_FIELDS]
-        row[-1] = (row[-1] or [])[:8]
+        # 16 nearest forecast dates span over 60 days for weekly markets,
+        # while scheduled weekly publishing keeps refreshing this compact index.
+        row[-1] = (row[-1] or [])[:16]
         result.append(row)
     return result
 
