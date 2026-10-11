@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
   isGenericCityWeeklyMarket, displayEntries, groupVenues, distinctWeekdays,
-  nextMatchingDate, weekdayFromISO, reliableVenueAddress,
+  nextMatchingDate, weekdayFromISO, reliableVenueAddress, shouldAutoExpandWeeklyGroup,
 } from '../src/lib/marketGrouping.js'
 
 const make = (day, address, i) => ({
@@ -111,4 +111,14 @@ test('weekday parsing safely preserves Italian local calendar day', () => {
   assert.equal(weekdayFromISO('2026-10-17'), 5)
   assert.equal(weekdayFromISO('2026-13-40'), null)
   assert.equal(weekdayFromISO('2026-10-17T12:00'), null)
+})
+
+test('nationwide weekday filtering does not auto-fetch hundreds of regional venue shards', () => {
+  const group = displayEntries(florence)[0]
+  assert.equal(shouldAutoExpandWeeklyGroup(group, 5), false)
+  assert.equal(shouldAutoExpandWeeklyGroup(group, 5, '', 'Mercato settimanale'), false)
+  assert.equal(shouldAutoExpandWeeklyGroup(group, 5, 'Roma'), false)
+  assert.equal(shouldAutoExpandWeeklyGroup(group, 5, 'Firenze'), true)
+  assert.equal(shouldAutoExpandWeeklyGroup(group, 5, '', 'Firenze'), true)
+  assert.equal(shouldAutoExpandWeeklyGroup(group, null, 'Firenze'), false)
 })
