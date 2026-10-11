@@ -9,12 +9,15 @@
   },
   "max_source_age_days": 540,
   "metrics": {
+    "dataset_updated_not_specific_market": 1127,
+    "recent_dataset_only_update": 1127,
     "source_date_91_to_365d": 12561,
     "source_date_outside_limit": 89,
-    "total": 12650,
-    "with_any_future_date": 11108,
-    "with_forecast_dates": 11108,
-    "without_documented_verification": 12650
+    "source_date_within_30d": 1127,
+    "total": 13777,
+    "with_any_future_date": 11845,
+    "with_forecast_dates": 11845,
+    "without_documented_verification": 13777
   },
   "publisher_evidence": [
     {
@@ -32,11 +35,11 @@
       "status": "metadata_checked"
     },
     {
-      "last_publisher_data_change": null,
-      "license_comparison": "not_evaluated",
+      "last_publisher_data_change": "2022-07-04",
+      "license_comparison": "publisher_claim_missing_review_required",
       "market_records_verified_by_metadata": 0,
       "publisher": "Roma Capitale",
-      "status": "needs_review"
+      "status": "metadata_checked"
     }
   ],
   "reference_date": "2026-10-11",
@@ -51,6 +54,10 @@
     {
       "count": 2197,
       "domain": "www.eventiesagre.it"
+    },
+    {
+      "count": 1127,
+      "domain": "www.dati.lombardia.it"
     },
     {
       "count": 432,
@@ -87,15 +94,10 @@
     {
       "count": 8,
       "domain": "www.trentino.com"
-    },
-    {
-      "count": 8,
-      "domain": "www.umbriaeventi.com"
     }
   ],
   "warnings": [
     "no_record_has_documented_verification",
-    "source_data_older_than_allowed_forecast_window",
-    "publisher_metadata_unavailable_or_changed"
+    "source_data_older_than_allowed_forecast_window"
   ]
 }

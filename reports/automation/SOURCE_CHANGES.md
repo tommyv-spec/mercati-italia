@@ -7,6 +7,6 @@ Questo controllo serve a individuare dove testare un importer già autorizzato.
 |---|---|---|---|
 | Comune di Bologna | unchanged | 2025-12-31 | 2025-12-31 |
 | Regione Lombardia | unchanged | 2026-10-06 | 2026-10-06 |
-| Roma Capitale | publisher_unavailable | - | - |
+| Roma Capitale | recovered | - | 2022-07-04 |
 
 Nessuna licenza, evento o import viene approvato automaticamente.

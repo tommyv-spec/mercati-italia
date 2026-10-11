@@ -2,25 +2,26 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38183446043](https://github.com/tommyv-spec/mercati-italia/actions/runs/38183446043) — UTC 2026-10-11T23:14:56.555444+00:00
+- Ultimo run: [38185129614](https://github.com/tommyv-spec/mercati-italia/actions/runs/38185129614) — UTC 2026-10-11T23:41:47.548821+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: no (contenuto invariato)
-- Schede nel catalogo: **12,650**
-- Schede con date previste a +60 giorni: **11,056**
-- Schede con date previste a +90 giorni: **11,048**
-- Indice nazionale gzip: **347.8 KiB**
+- Nuova versione di dati: sì
+- Schede nel catalogo: **13,777**
+- Schede con date previste a +60 giorni: **11,793**
+- Schede con date previste a +90 giorni: **11,785**
+- Indice nazionale gzip: **394.6 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **10,627**
+- Orari mancanti: **10,969**
 - Dataset pubblici candidati individuati: **42** (licenze da verificare)
 - Fonti conservate nello storico: **42**; nuove: **0**; aggiornate: **0**.
 - Possibili elenchi/sedi: **8**; statistiche storiche aggregate: **12**.
-- Fonti datate negli ultimi 30 giorni: **0**; oltre soglia: **89**; senza data: **0**.
+- Lombardia MERCap: **1127** record non ambigui su **1360**, in revisione **233**.
+- Fonti datate negli ultimi 30 giorni: **1127**; oltre soglia: **89**; senza data: **0**.
+- Aggiornamenti del solo dataset (non dei singoli mercati): **1127**, di cui recenti **1127**.
 - Date previste con origine vecchia/sconosciuta: **0**.
-- Metadati degli enti leggibili: **2/3**.
+- Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
-- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 
 ## Prossimi miglioramenti calcolati
 - verified_source_evidence
