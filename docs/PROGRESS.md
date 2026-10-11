@@ -12,11 +12,11 @@ Nessuna modifica di questo branch deve essere considerata deployata finché non 
 
 ## Checkpoint
 - [x] CP0 — Audit repo: pipeline monofonte, geocodifica che ripiega sul centro città, merge con perdita fonti, ricorrenze fragili, read max 300, Firestore aperto.
-- [ ] CP1 — Hardening regole Firestore e disabilitazione demo/seed in produzione.
-- [ ] CP2 — Query frontend più corrette e paginazione; protezioni per coordinate e date.
-- [ ] CP3 — Ingestione fonte ufficiale Milano e metadata di precisione/provenienza.
-- [ ] CP4 — Dedup, ricorrenze e geocodifica; quality gate prima del DB.
-- [ ] CP5 — Test, workflow CI, istruzioni di rilascio e audit finale.
+- [x] CP1 — Regole Firestore sicure versionate + auto-seed browser disabilitato (**da distribuire manualmente su Firebase**).
+- [x] CP2 — Frontend passato a lettura statica + preferiti locali, 0 query DB per vista; eliminato limite 300, date hardcoded e mock dal bundle (**catalogo iniziale non ancora esportato**).
+- [x] CP3 — Importatore Comune di Milano DS291 (fonte 2024: date previste, NON confermate); esportatore statico con chunk adattivi, cache immutabile e manifest.
+- [ ] CP4 — Merge conservativo + provenance e quality gate implementati; restano da migliorare dedup cross-source e parser delle ricorrenze originali.
+- [ ] CP5 — Test Python e build Vite configurati in GitHub Actions; PR #1 aperta in bozza. Verifica in corso e istruzioni di rilascio da completare.
 
 ## Note
 - La configurazione Firebase nel frontend è pubblica per progetto: il vero controllo di accesso sono le regole Firestore.
@@ -32,3 +32,23 @@ Nessuna modifica di questo branch deve essere considerata deployata finché non 
 - [ ] PR review e differenze controllate
 - [ ] Pubblicazione regole con credenziali del progetto (se autorizzata e tecnicamente possibile)
 - [ ] Dry-run sorgenti reali con conteggi; solo dopo, import in DB
+
+## Cloudflare, costi e release (2026-10-11)
+- Design selezionato: Vite SPA statica su Cloudflare Pages, nessuna funzione eseguita su `/`, `/assets/*` o `/data/*`; pubblico legge manifest + file immutabili; preferiti localStorage.
+- Pagina tariffe ufficiale: https://developers.cloudflare.com/pages/functions/pricing/ (richieste asset statici gratis e illimitate, le Functions/Workers sono soggette a fatturazione/quote).
+- Configurazione nel repo: `public/_routes.json` riserva alle Functions solo `/api/*` e `public/_headers` imposta cache; una route esterna definita nel dashboard potrebbe comunque invocare un Worker.
+- Il consumo Cloudflare reale NON è ancora stato ispezionato. Né Firebase rules né Cloudflare Pages sono stati deployati.
+- `backend/export_static.py`: input JSON dalla pipeline o `--firestore` con Firebase Admin SDK; no richieste ai DB durante le visite. Rifiuta dataset vuoti e forti cali; manifest pubblicato per ultimo.
+- `backend/merge_catalog.py`: unisce feed nuovi al catalogo già validato senza cancellare assenti; gestisce collisioni senza fondere arbitrariamente mercati distinti.
+- `backend/source_milano.py`: primo connettore; la base è 2024 e richiede riconferma prima di dichiarare date reali.
+- `.github/workflows/refresh-data.yml`: update settimanale, ma si FERMA se manca il catalogo baseline; questo evita di rimpiazzare il catalogo nazionale con la sola Milano.
+- `.github/workflows/quality.yml`: test e controllo build su ogni PR e branch improve.
+- Branch: https://github.com/tommyv-spec/mercati-italia/tree/improve/data-quality-security-performance-2026-10-11
+- PR in bozza: https://github.com/tommyv-spec/mercati-italia/pull/1
+
+## Prima di fare merge o attivare il nuovo sito
+1. Backup del Firestore esistente e primo export in `public/data/v1/manifest.json` usando `backend/export_static.py --firestore` (servono credenziali Firebase Admin, non disponibili nella sessione GitHub).
+2. Validazione `python backend/validate_static.py --manifest public/data/v1/manifest.json` e confronto visuale di mercati, filtri e date.
+3. Esecuzione e superamento di tutti i test, verifica richieste Network browser: solo HTML/JS/CSS/JSON statici.
+4. Deployment separato delle regole Firestore (procedura Firebase Console o CLI).
+5. Controllo Cloudflare billing/Workers routes reali nel dashboard. Non promettere spesa zero per altri servizi attivi (dominio, piano, ecc.).
