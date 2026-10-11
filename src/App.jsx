@@ -1923,27 +1923,6 @@ export default function App() {
             <div className="detail-section-title">
               <Icon name="mapPin" size={18} color={catColor} /> Indirizzo
             </div>
-            {/* Mini map */}
-            <div className="detail-minimap">
-              <svg viewBox="0 0 400 140" style={{ width: '100%', height: '100%' }}>
-                <rect width="400" height="140" fill="#E8F0E9" />
-                {[...Array(8)].map((_, i) => (
-                  <line key={i} x1={0} y1={i * 20} x2={400} y2={i * 20} stroke="#D4E8D6" strokeWidth={0.5} />
-                ))}
-                {[...Array(20)].map((_, i) => (
-                  <line key={i} x1={i * 20} y1={0} x2={i * 20} y2={140} stroke="#D4E8D6" strokeWidth={0.5} />
-                ))}
-                <circle cx={200} cy={70} r={30} fill={catColor} opacity={0.08} />
-                <circle cx={200} cy={70} r={16} fill={catColor} opacity={0.12} />
-                <g transform="translate(200, 56)">
-                  <path d="M0,-14 C-6,-14 -10,-8 -10,-4 C-10,4 0,10 0,10 C0,10 10,4 10,-4 C10,-8 6,-14 0,-14Z"
-                    fill={catColor} stroke="white" strokeWidth={1.5} />
-                  <text x={0} y={-3} textAnchor="middle" fontSize="8" dominantBaseline="central">
-                    {CAT_ICONS[m.category]}
-                  </text>
-                </g>
-              </svg>
-            </div>
             <div className="detail-address">{m.address || 'Indirizzo non verificato'}</div>
             {m.positionQuality !== 'precisa' && (
               <div style={{ fontSize: 12, color: '#8C8272', marginTop: 6 }}>Posizione indicativa o da verificare</div>
