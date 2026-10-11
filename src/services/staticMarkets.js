@@ -140,7 +140,9 @@ function normalize(m, userLat, userLng) {
     status: m.status || 'non_confermato',
     fonte: m.fonte || '',
     url_fonte: m.url_fonte || '',
-    distance: haversine(userLat, userLng, lat, lng),
+    distance: Number.isFinite(userLat) && Number.isFinite(userLng)
+      && Number.isFinite(lat) && Number.isFinite(lng)
+      ? haversine(userLat, userLng, lat, lng) : null,
   }
 }
 
