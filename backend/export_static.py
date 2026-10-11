@@ -445,7 +445,7 @@ def export(records: list, out: Path, today: date | None = None,
 
     signature = hashlib.sha256(compact_json(markets)).hexdigest()
     if (previous and previous.get("content_signature") == signature
-            and previous.get("index_schema") == 4
+            and previous.get("index_schema") == 5
             and previous.get("index")
             and (out.parent.parent / previous["index"]).is_file()):
         return {"unchanged": True, "stats": stats, "manifest": previous}
@@ -475,7 +475,7 @@ def export(records: list, out: Path, today: date | None = None,
     manifest = {
         "schema": 1, "layout": layout, "total": len(markets),
         "index": index_path,
-        "index_schema": 4,
+        "index_schema": 5,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "content_signature": signature,
         "regions_summary": stats["by_region"],
