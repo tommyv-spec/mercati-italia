@@ -1,5 +1,7 @@
 import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense } from "react";
 import { useMarkets } from "./hooks/useMarkets";
+import { displayEntries, weekdayFromISO, WEEKDAY_LABELS } from './lib/marketGrouping';
+import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
@@ -1381,6 +1383,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   // Prioritize visits people can actually plan; deselect to browse undated markets.
   const [dateFilter, setDateFilter] = useState('7giorni');
+  const [weekdayFilter, setWeekdayFilter] = useState(null);
   const [visibleCount, setVisibleCount] = useState(60);
   const [showFilters, setShowFilters] = useState(false);
   const [showSort, setShowSort] = useState(false);
@@ -1574,7 +1577,7 @@ export default function App() {
   const marketsWithDistance = allMarkets;
 
   // Render at most 60 cards initially on slow mobile browsers.
-  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
+  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekdayFilter]);
 
   // Apply filters
   const filteredMarkets = useMemo(() => {
@@ -1606,6 +1609,14 @@ export default function App() {
       const end = new Date(TODAY); end.setDate(end.getDate() + 7);
       const endStr = localISO(end);
       result = result.filter(m => m.dates.some(d => d >= todayStr && d <= endStr));
+    }
+
+    // A day-of-week filter is applied to individual source appointments BEFORE
+    // aggregating their city/venue display. It never alters the stored records.
+    if (weekdayFilter !== null) {
+      result = result.filter(m => (m.dates || []).some(
+        d => d >= todayStr && weekdayFromISO(d) === weekdayFilter
+      ));
     }
 
     // Category filter
@@ -1658,6 +1669,12 @@ export default function App() {
     return result;
   }, [marketsWithDistance, searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
 
+  // Group generic city-wide weekly listings only for presentation. The
+  // map and the underlying dataset retain every individually sourced record.
+  const groupedList = useMemo(() => displayEntries(filteredMarkets, {
+    keepSingleWeeklyGroups: weekdayFilter !== null,
+  }), [filteredMarkets, weekdayFilter]);
+
   const openFilters = () => {
     setPendingCats([...filterCategories]);
     setPendingRegion(filterRegion);
@@ -1702,6 +1719,7 @@ export default function App() {
     setIncludeEstimatedNearby(false);
     setActiveFilterCount(0);
     setDateFilter(null);
+    setWeekdayFilter(null);
     setSearchQuery("");
   };
 
@@ -2075,6 +2093,30 @@ export default function App() {
           ))}
         </div>
 
+        {viewMode === 'lista' && (
+          <div className="chips-row" aria-label="Filtra per giorno della settimana"
+            style={{ gap: 5, marginTop: 3, paddingBottom: 5, flexWrap: 'nowrap',
+              overflowX: 'auto', scrollbarWidth: 'thin' }}>
+            {WEEKDAY_LABELS.map((day, i) => (
+              <button key={day} type="button" aria-pressed={weekdayFilter === i}
+                aria-label={'Mostra mercati del ' + ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'][i]}
+                className={`chip ${weekdayFilter === i ? 'active' : ''}`}
+                style={{ flexShrink: 0, minWidth: 39, padding: '7px 10px', fontSize: 12 }}
+                onClick={() => {
+                  setWeekdayFilter(v => v === i ? null : i);
+                  // Clicking a weekday asks for the next occurrence, not only today's.
+                  if (weekdayFilter !== i) setDateFilter('7giorni');
+                }}>
+                {day}
+              </button>
+            ))}
+            {weekdayFilter !== null && (
+              <button type="button" className="chip" style={{ flexShrink: 0, padding: '7px 9px' }}
+                onClick={() => setWeekdayFilter(null)} aria-label="Togli filtro giorno">×</button>
+            )}
+          </div>
+        )}
+
         {viewMode === 'lista' && !canUseDistance && !filterCity && !filterRegion && !searchQuery.trim() && (
           <div role="note" style={{
             background: '#F0EEE8', borderRadius: 12, padding: '12px 14px',
@@ -2189,8 +2231,10 @@ export default function App() {
         <span>
           {marketsLoading
             ? 'Caricamento mercati statici...'
-            : `${filteredMarkets.length.toLocaleString('it-IT')} mercat${filteredMarkets.length === 1 ? 'o' : 'i'} ${dateFilter === 'oggi' ? 'previsti oggi' : dateFilter === 'weekend' ? 'previsti nel weekend' : dateFilter === '7giorni' ? 'previsti nei prossimi 7 giorni' : 'nel catalogo'}${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : !canUseDistance ? ' · Italia' : ''}`
+            : `${filteredMarkets.length.toLocaleString('it-IT')} appuntament${filteredMarkets.length === 1 ? 'o' : 'i'} ${dateFilter === 'oggi' ? 'previsti oggi' : dateFilter === 'weekend' ? 'previsti nel weekend' : dateFilter === '7giorni' ? 'previsti nei prossimi 7 giorni' : 'nel catalogo'}${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : !canUseDistance ? ' · Italia' : ''}`
           }
+          {viewMode === 'lista' && groupedList.length < filteredMarkets.length && !marketsLoading &&
+            ` · ${groupedList.length.toLocaleString('it-IT')} schede`}
         </span>
         {dataMode === 'demo' && (
           <span style={{
@@ -2222,13 +2266,19 @@ export default function App() {
         </div>
       ) : viewMode === "lista" ? (
         <div className="markets-list">
-          {filteredMarkets.length > 0 ? (
+          {groupedList.length > 0 ? (
             <>
-              {filteredMarkets.slice(0, visibleCount).map((m, i) => renderMarketCard(m, i))}
-              {visibleCount < filteredMarkets.length && (
+              {groupedList.slice(0, visibleCount).map((entry, i) =>
+                entry.kind === 'group'
+                  ? <WeeklyCityGroup key={entry.key} group={entry}
+                      loadMarket={getMarketDetails} onOpenMarket={openMarket}
+                      selectedWeekday={weekdayFilter} autoExpand={weekdayFilter !== null} />
+                  : renderMarketCard(entry.market, i)
+              )}
+              {visibleCount < groupedList.length && (
                 <button className="btn-secondary" onClick={() => setVisibleCount(n => n + 60)}
                   style={{ margin: '18px auto 30px', padding: '12px 24px', display: 'block' }}>
-                  Mostra altri mercati ({Math.min(visibleCount, filteredMarkets.length)} di {filteredMarkets.length})
+                  Mostra altre schede ({Math.min(visibleCount, groupedList.length)} di {groupedList.length})
                 </button>
               )}
             </>
