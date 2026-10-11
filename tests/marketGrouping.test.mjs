@@ -54,6 +54,22 @@ test('Saturday filter keeps only Piazza I maggio and shows one auto-expandable w
   assert.equal(nextMatchingDate(saturday[0].dates, 5, new Date(2026, 9, 11)), '2026-10-17')
 })
 
+test('unknown seventh Firenze record stays unsited and does not merge with Monday address', () => {
+  const unknownMonday = {
+    ...florence[0],
+    id: 'mercato-settimanale-a-firenze-firenze-lunedi',
+    name: 'Mercato settimanale a Firenze',
+    address: '',
+  }
+  const entries = displayEntries([...florence, unknownMonday])
+  assert.equal(entries.length, 1)
+  assert.equal(entries[0].markets.length, 7)
+  const venues = groupVenues([...florence, unknownMonday])
+  assert.equal(venues.filter(v => v.verifiedAddress).length, 4)
+  assert.equal(venues.filter(v => !v.verifiedAddress).length, 1)
+  assert.equal(venues.find(v => v.address === 'Largo Monzani').markets.length, 3)
+})
+
 test('named neighborhood markets never collapse into generic city-wide group', () => {
   const extra = { ...florence[0], id: 'san-lorenzo', name: 'Mercato di San Lorenzo' }
   assert.equal(isGenericCityWeeklyMarket(extra), false)
