@@ -437,7 +437,14 @@ jobs:
     timeout-minutes: 4
     permissions:
       issues: write
+      actions: read
     steps:
+      - uses: actions/download-artifact@v4
+        if: always()
+        continue-on-error: true
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output
       - uses: actions/github-script@v7
         with:
           script: |
@@ -455,6 +462,32 @@ jobs:
                 ...context.repo, state:'open', per_page:100,
               });
               const issue = issues.find(x => !x.pull_request && x.title === title);
+              const freshTitle = '[Mercati autopilot] Dati da verificare';
+              const freshIssue = issues.find(x => !x.pull_request && x.title === freshTitle);
+              let freshnessAlert = null;
+              try {
+                const fs = require('fs');
+                freshnessAlert = JSON.parse(
+                  fs.readFileSync('autopilot-output/freshness-alert.json', 'utf8'));
+              } catch (error) {
+                core.info('Freshness alert unavailable in this run.');
+              }
+              if (success && freshnessAlert) {
+                if (freshnessAlert.attention_required) {
+                  const issueBody = freshnessAlert.body + '\n\nUltimo ciclo completato: ' + link;
+                  if (!freshIssue) {
+                    await github.rest.issues.create({...context.repo,
+                      title: freshTitle, body: issueBody});
+                  } else if (!(freshIssue.body || '').includes(
+                      'Firma stato: ' + freshnessAlert.signature)) {
+                    await github.rest.issues.update({...context.repo,
+                      issue_number: freshIssue.number, body: issueBody});
+                  }
+                } else if (freshIssue) {
+                  await github.rest.issues.update({...context.repo,
+                    issue_number: freshIssue.number, state: 'closed'});
+                }
+              }
               if (success) {
                 if (issue) {
                   await github.rest.issues.createComment({...context.repo,issue_number:issue.number,body:'Ripristinato: '+link});
