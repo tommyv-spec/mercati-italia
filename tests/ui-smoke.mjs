@@ -1,0 +1,84 @@
+/**
+ * Mobile browser smoke test for real visitor actions.
+ * Run with: npm install --no-save playwright@1.55.0 && node tests/ui-smoke.mjs
+ * Assumes Vite app is running at http://127.0.0.1:5173/.
+ */
+import { chromium } from 'playwright'
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
+
+const BASE = process.env.UI_BASE || 'http://127.0.0.1:5173'
+const browser = await chromium.launch({ headless: true })
+const context = await browser.newContext({
+  viewport: { width: 390, height: 844 },
+  deviceScaleFactor: 1,
+  isMobile: true,
+  hasTouch: true,
+  locale: 'it-IT',
+})
+const page = await context.newPage()
+const remoteDataRequests = []
+const pageErrors = []
+page.on('pageerror', error => pageErrors.push(error.message))
+page.on('request', request => {
+  const url = request.url()
+  if (/firestore\.googleapis\.com|firebaseio\.com|workers\.dev/i.test(url)) {
+    remoteDataRequests.push(url)
+  }
+})
+
+async function assertCards() {
+  await page.locator('.market-card').first().waitFor({ timeout: 45000 })
+}
+
+try {
+  const response = await page.goto(BASE, { waitUntil: 'domcontentloaded', timeout: 45000 })
+  assert.equal(response?.status(), 200)
+  await assertCards()
+  assert.equal(await page.getByText('Mercati vicino a me', { exact: false }).count() > 0, true)
+  assert.equal(await page.locator('.market-card .card-distance').count(), 0,
+    'Without permission, app must not show fabricated distances')
+
+  // Real navigation: home → market detail → back.
+  await page.locator('.market-card').first().click()
+  await page.locator('.detail-page').waitFor()
+  assert.equal(await page.getByRole('button', { name: 'Condividi questo mercato' }).count(), 1)
+  await page.locator('.detail-back').click()
+
+  // Manual city selection filters actual results, not a cosmetic toast.
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Impostazioni' }).click()
+  await page.getByRole('button', { name: /Scegli una città/ }).click()
+  await page.locator('.manual-city-input input').fill('Firenze')
+  await page.getByRole('button', { name: 'Filtra città' }).click()
+  await assertCards()
+  const firstCity = await page.locator('.market-card').first().innerText()
+  assert.match(firstCity, /Firenze/i, 'Manual city filter did not affect the results')
+
+  // Location opt-in: only now is browser GPS permission used.
+  await context.grantPermissions(['geolocation'], { origin: BASE })
+  await context.setGeolocation({ latitude: 43.77, longitude: 11.25 })
+  await page.getByRole('button', { name: /Mercati vicino a me|Vicino a me/ }).first().click()
+  await page.getByText('Vicino a me · posizione attiva', { exact: false }).waitFor({ timeout: 20000 })
+  await assertCards()
+  assert.equal(await page.locator('.market-card .card-distance').count() > 0, true,
+    'No distance after GPS permission')
+
+  // Existing favorites are local-only; Agenda never promises background push.
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Agenda' }).click()
+  await page.getByText('Le notifiche push automatiche non sono ancora attive.', { exact: false }).waitFor()
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Esplora' }).click()
+
+  await page.screenshot({ path: 'ux-phone.png', fullPage: true, animations: 'disabled' })
+  await fs.writeFile('ux-smoke-result.json', JSON.stringify({
+    marketCardsFound: await page.locator('.market-card').count(),
+    staticOnly: remoteDataRequests.length === 0,
+    pageErrors,
+    remoteDataRequests,
+    viewport: { width: 390, height: 844 },
+  }, null, 2))
+  assert.deepEqual(remoteDataRequests, [], 'Public visitor must not query a paid database')
+  assert.deepEqual(pageErrors, [], 'Browser runtime exceptions')
+  console.log('PASS: mobile visitor experience smoke test')
+} finally {
+  await browser.close()
+}
