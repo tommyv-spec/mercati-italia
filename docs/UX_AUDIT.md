@@ -55,3 +55,12 @@ Non dichiarare l'app «completa e verificata» finché:
 - Serve rieseguire export statico con i nuovi filtri prima della produzione. Non eliminare definitivamente i record sorgente; tenere traccia degli esclusi e analizzare i falsi positivi.
 - Test mobile ripetuto anche sulle nuove etichette vicino a me; richiedere screenshot più recente prima di chiudere il checkpoint.
 - Test automatico mobile non equivale a user testing: devono ancora essere verificati manualmente i flussi su Android e iPhone fisici e con accessibilità attivata.
+
+## Checkpoint deduplicazione e UX — aggiornamento 11 ottobre 2026
+- Screenshot mobile (390 × 844) controllati: card leggibili e filtri utilizzabili, ma primo dataset mostrava tre varianti per Archi e un navigatore attivabile su indirizzo vago «centro».
+- Un primo tentativo di dedup (13.096 -> 9.193) è stato GIUSTAMENTE bloccato: avrebbe fuso diversi mercati settimanali in vie e giorni distinti, come Sesto San Giovanni e Chivasso.
+- La regola è stata corretta: mai unire giorni diversi né strada diversa; mai assorbire un appuntamento specifico in una scheda generica comunale. Riduzione successiva consentita dalle quality gates: **13.096 -> 12.650**, ossia **446** unioni prudenti, 20 regioni conservate. Test Python e build statici superati.
+- Nuovo indice leggero schema 3 porta la qualità della posizione già nella lista; prima non era disponibile, quindi i filtri «vicino a me» potevano trattare come precisi punti non verificati.
+- «Vicino a me»: entro 50 km mostra SOLO coordinate precise per impostazione iniziale. C'è un opt-in esplicito per includere posizioni indicative, con avviso sui limiti. Senza posizione utente non mostra distanze.
+- Dettagli: blocco indicazioni su «centro» o indirizzi vaghi; rimangono la fonte originale e le note sulle date non confermate.
+- Controlli ancora non superati: verifica accurata di orari, sedi e prossime date nel mondo reale; zero verifiche umane nel dataset. L'app resta su branch PR bozza, non su produzione.
