@@ -30,7 +30,8 @@ page.on('request', request => {
 async function assertCards() {
   await page.waitForFunction(() => {
     const text = document.querySelector('.results-count')?.textContent || ''
-    return /trovati|trovato/.test(text) && !text.includes('Caricamento')
+    return !!document.querySelector('.market-card .card-name') &&
+      text.length > 0 && !text.includes('Caricamento')
   }, null, { timeout: 45000 })
   await page.locator('.market-card').first().waitFor({ timeout: 45000 })
 }
