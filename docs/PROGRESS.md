@@ -64,3 +64,15 @@ npm run build
 - Non usare il geocoder pubblico Nominatim per elaborazioni geografiche massive. Non spacciare dati previsti o fonte del 2023/2024 come verificati nel 2026.
 
 **Principio di sicurezza:** nessuna migrazione operativa o sostituzione pubblica deve distruggere l'archivio precedente. L'importazione Firestore già eseguita è stata di sola lettura; la nuova pubblicazione è separata.
+
+## CP8 — Fix della preview DEV segnalata dall'utente (11 ottobre 2026)
+
+- [x] Audit browser iPhone13 (Playwright su Chrome reale): inizialmente la preview caricava oltre 7.500 risultati stimati senza spiegare la zona; la vecchia mappa era solo SVG, alcuni pin occlusi dal menu; richiesta GPS negata cancellava il filtro città; un refactoring aveva causato un errore fatale `useRef is not defined`.
+- [x] Corretti il crash `useRef`, i filtri città e reset, GPS con consenso e fallback senza perdita di filtri, indicazione visibile che le date previste non sono confermate, banner «tutta Italia», classifica dei risultati, weekend di domenica.
+- [x] Sostituita mappa SVG con MapLibre GL JS lazy, clustering, popup, navigazione, posizione precisa vs indicativa, zoom automatico sui mercati filtrati; font cluster Noto Sans supportato da OpenFreeMap (correzione 404 glyph).
+- [x] Migliorato indice nazionale con `index_schema=4`: array compatti, 12.650 record preservati, dettagli regionali caricati solo quando si apre una scheda. I JSON rimangono file statici, senza Firebase/Workers durante le visite.
+- [x] Build di staging GitHub Actions run `38171786850`, commit `f6f934a39fb4b36a8d16a3de898fed38de36b620`; esito SUCCESS. Prima dell'update, test di 11 flussi su `site-ready` (port4176) fallimenti 0, errori JavaScript 0. Preview nuova `site-v2` (port4177) verificata: mappa caricata, zero HTTP 404 font, nessun page error.
+- [x] DEV temporaneo aggiornato su `https://share-thats-battery-fax.trycloudflare.com/` senza cambiare URL del Quick Tunnel. Tunnel cloudflared PID17432 invariato, ora servizio statico Python con gzip/ETag e cache sul port4173 (PID16608), verificato HTTP200 dall'esterno; server vecchio e i suoi file rimangono disponibili per rollback.
+- [ ] Verifica browser iPhone sul link pubblico in corso al checkpoint; completare e salvare numeri dal test esterno, QA su telefoni fisici non eseguita.
+- [ ] Non equiparare la funzionalità software a date e indirizzi verificati: 0 verifiche umane documentate, posizioni indicative e data quality rimangono criticità per il rilascio pubblico.
+
