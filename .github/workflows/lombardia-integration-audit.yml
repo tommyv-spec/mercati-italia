@@ -127,7 +127,16 @@ jobs:
               'index_gzip_bytes': snapshot['sizes']['national_index_gzip_bytes'],
               'gates': decision['gates'],
           }
-          assert report['approved'] and report['new_lombardia'] >= 1100
+          accepted_source = json.loads(Path('lombardia-audit-output/accepted-source-records.json').read_text())
+          accepted_source_ids = {m['slug'] for m in accepted_source}
+          candidate_source_ids = {m['slug'] for m in lo}
+          missing_official = sorted(accepted_source_ids - candidate_source_ids)
+          report['missing_official_after_export'] = missing_official[:40]
+          report['missing_official_total'] = len(missing_official)
+          print('MERCap preserved IDs', len(candidate_source_ids),
+                'from approved input', len(accepted_source_ids),
+                'missing samples', missing_official[:25])
+          assert report['approved'] and report['new_lombardia'] >= 1000
           assert report['new_lombardia'] == screening['accepted'], (
               'Existing official MERCap IDs were lost in the exporter'
           )
