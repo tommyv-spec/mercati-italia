@@ -5,11 +5,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import {
   fetchMarkets, fetchMarketById, getFavorites,
-  toggleFavorite as apiToggleFavorite, getDataMode, haversine,
+  toggleFavorite as apiToggleFavorite, getDataMode,
 } from '../services/staticMarkets'
-
-const DEFAULT_LAT = 43.7696
-const DEFAULT_LNG = 11.2558
 
 const CATEGORY_LABELS = {
   alimentare: 'Alimentare',
@@ -55,9 +52,7 @@ function adaptMarket(m, userLat, userLng) {
     positionQuality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',
     sourceUrl: m.url_fonte || '',
-    distance: m.distance != null
-      ? m.distance
-      : (userLat && m.lat ? haversine(userLat, userLng, m.lat, m.lng) : 999),
+    distance: Number.isFinite(m.distance) ? m.distance : null,
   }
 }
 
@@ -68,11 +63,52 @@ export function useMarkets() {
   const [error, setError] = useState(null)
   const [favorites, setFavorites] = useState(new Set())
   const [filterOptions, setFilterOptions] = useState({ regioni: [], citta: [] })
-  const [userLat] = useState(DEFAULT_LAT)
-  const [userLng] = useState(DEFAULT_LNG)
+  // Explicit opt-in only. Never pretend the visitor is located in Florence.
+  const [userPosition, setUserPosition] = useState(null)
+  const [positionStatus, setPositionStatus] = useState('idle')
+  const [positionError, setPositionError] = useState('')
+  const userLat = userPosition?.lat ?? null
+  const userLng = userPosition?.lng ?? null
   const dataMode = getDataMode()
 
-  // Load: auto-seed then fetch
+  const requestPosition = useCallback(() => {
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      setPositionStatus('unavailable')
+      setPositionError('La posizione non è disponibile su questo dispositivo.')
+      return
+    }
+    setPositionStatus('requesting')
+    setPositionError('')
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position?.coords?.latitude
+        const lng = position?.coords?.longitude
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+          setPositionStatus('error')
+          setPositionError('Non sono riuscito a leggere la posizione.')
+          return
+        }
+        setUserPosition({ lat, lng })
+        setPositionStatus('ready')
+        setPositionError('')
+      },
+      (error) => {
+        setPositionStatus(error?.code === 1 ? 'denied' : 'error')
+        setPositionError(error?.code === 1
+          ? 'Accesso alla posizione negato. Puoi cercare per città.'
+          : 'Posizione non disponibile. Puoi cercare per città.')
+      },
+      { enableHighAccuracy: false, timeout: 12000, maximumAge: 300000 }
+    )
+  }, [])
+
+  const clearPosition = useCallback(() => {
+    setUserPosition(null)
+    setPositionStatus('idle')
+    setPositionError('')
+  }, [])
+
+  // Load the static catalog; recalculate distances after opt-in positioning.
   useEffect(() => {
     let cancelled = false
 
@@ -80,13 +116,12 @@ export function useMarkets() {
       try {
         setLoading(true)
 
-        // Fetch only server-managed records. Never auto-write demo data.
-        // Fetch markets + favorites + filter options
+        // Load published static records. Never write data on behalf of a visitor.
         const [rawMarkets, favs] = await Promise.all([
           fetchMarkets({ userLat, userLng }),
           getFavorites(),
         ])
-        // Avoid a second full Firestore collection read for filter choices.
+        // Reuse local catalog; no additional database calls.
         const filters = {
           regioni: [...new Set(rawMarkets.map(m => m.regione).filter(Boolean))].sort(),
           citta: [...new Set(rawMarkets.map(m => m.citta).filter(Boolean))].sort(),
@@ -147,6 +182,7 @@ export function useMarkets() {
     categories, regions, cities,
     categoryIcons: CATEGORY_ICONS,
     categoryColors: CATEGORY_COLORS,
-    dataMode, userLat, userLng,
+    dataMode, userLat, userLng, positionStatus, positionError,
+    requestPosition, clearPosition,
   }
 }
