@@ -54,7 +54,7 @@ def audit(manifest_path: Path, today: date | None = None) -> dict:
 
     assert manifest["total"] == len(records), "Snapshot total differs from published manifest"
     assert len(index["markets"]) == len(records), "Index record count mismatch"
-    assert manifest["index_schema"] == 4, "Unknown compact schema"
+    assert manifest["index_schema"] in (4, 5), "Unknown compact schema"
 
     by_category = Counter()
     by_source = Counter()
