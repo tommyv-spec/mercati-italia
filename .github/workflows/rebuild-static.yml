@@ -6,8 +6,6 @@ on:
       - improve/data-quality-security-performance-2026-10-11
     paths:
       - .github/workflows/rebuild-static.yml
-      - backend/export_static.py
-      - backend/tests/test_static_pipeline.py
 
 permissions:
   contents: write
@@ -71,6 +69,19 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data/v1
           if ! git diff --cached --quiet; then
-            git commit -m "data: rebuild conservative de-duplicated market snapshots"
-            git push
+            git commit -m "data: rebuild versioned static market index"
+            for attempt in 1 2 3; do
+              git fetch origin "${GITHUB_REF_NAME}"
+              git rebase "origin/${GITHUB_REF_NAME}" || {
+                git rebase --abort || true
+                echo "::error::Snapshot changed concurrently; review and rerun, never force-push."
+                exit 1
+              }
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                exit 0
+              fi
+              sleep 3
+            done
+            echo "::error::Could not push updated snapshot after 3 safe retries."
+            exit 1
           fi
