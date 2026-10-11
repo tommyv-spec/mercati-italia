@@ -1361,6 +1361,8 @@ export default function App() {
     categoryIcons: hookCatIcons,
     categoryColors: hookCatColors,
     dataMode,
+    userLat, userLng, positionStatus, positionError,
+    requestPosition, clearPosition,
   } = useMarkets();
 
   const [tab, setTab] = useState("esplora");
@@ -1390,15 +1392,8 @@ export default function App() {
   const [pendingCity, setPendingCity] = useState("");
   const [pendingDist, setPendingDist] = useState(100);
 
-  // Notification settings
-  const [notifFavorites, setNotifFavorites] = useState(true);
-  const [notifNearby, setNotifNearby] = useState(false);
-  const [notifDistance, setNotifDistance] = useState(15);
-  const [quietStart, setQuietStart] = useState("22:00");
-  const [quietEnd, setQuietEnd] = useState("08:00");
-
   // Settings
-  const [locationMode, setLocationMode] = useState("auto");
+  const [locationMode, setLocationMode] = useState("none");
   const [manualCity, setManualCity] = useState("");
 
   // Map state
@@ -1411,6 +1406,7 @@ export default function App() {
   const CAT_COLORS = Object.keys(hookCatColors).length > 0 ? hookCatColors : CATEGORY_COLORS;
   const REGS = hookRegions.length > 0 ? hookRegions : REGIONS;
   const CTS = hookCities.length > 0 ? hookCities : CITIES;
+  const canUseDistance = Number.isFinite(userLat) && Number.isFinite(userLng);
 
   const toggleFav = useCallback((id, e) => {
     if (e) e.stopPropagation();
@@ -1436,11 +1432,44 @@ export default function App() {
     setTimeout(() => setToast(null), 2000);
   }, []);
 
+  const activateNearby = () => {
+    setLocationMode('auto');
+    setFilterCity('');
+    setFilterDistance(100);
+    setSortBy('distanza');
+    requestPosition();
+  };
+
+  const confirmManualCity = () => {
+    const name = manualCity.trim().toLocaleLowerCase('it');
+    const match = CTS.find(city => city.toLocaleLowerCase('it') === name);
+    if (!match) {
+      showToast('Scegli una città presente nel catalogo.');
+      return;
+    }
+    clearPosition();
+    setLocationMode('manual');
+    setFilterCity(match);
+    setFilterRegion('');
+    setFilterDistance(100);
+    setSortBy('data');
+    setActiveFilterCount(1);
+    setTab('esplora');
+    showToast('Filtra per città: ' + match);
+  };
+
+  const disableLocation = () => {
+    clearPosition();
+    setLocationMode('none');
+    setFilterDistance(100);
+    setSortBy('data');
+  };
+
   // Use hook's markets (already have distances computed)
   const marketsWithDistance = allMarkets;
 
   // Render at most 60 cards initially on slow mobile browsers.
-  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy]);
+  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance]);
 
   // Apply filters
   const filteredMarkets = useMemo(() => {
@@ -1490,13 +1519,13 @@ export default function App() {
     }
 
     // Distance
-    if (filterDistance < 100) {
-      result = result.filter(m => m.distance <= filterDistance);
+    if (canUseDistance && filterDistance < 100) {
+      result = result.filter(m => Number.isFinite(m.distance) && m.distance <= filterDistance);
     }
 
     // Sort
-    if (sortBy === "distanza") {
-      result.sort((a, b) => a.distance - b.distance);
+    if (sortBy === "distanza" && canUseDistance) {
+      result.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
     } else if (sortBy === "data") {
       result.sort((a, b) => {
         const aDate = getNextDate(a.dates);
@@ -1520,12 +1549,12 @@ export default function App() {
     setFilterCategories(pendingCats);
     setFilterRegion(pendingRegion);
     setFilterCity(pendingCity);
-    setFilterDistance(pendingDist);
+    setFilterDistance(canUseDistance ? pendingDist : 100);
     let count = 0;
     if (pendingCats.length > 0) count++;
     if (pendingRegion) count++;
     if (pendingCity) count++;
-    if (pendingDist < 100) count++;
+    if (canUseDistance && pendingDist < 100) count++;
     setActiveFilterCount(count);
     setShowFilters(false);
   };
@@ -1569,6 +1598,15 @@ export default function App() {
         className="market-card"
         style={{ animationDelay: `${Math.min(index, 12) * 50}ms`, '--cat-color': catColor }}
         onClick={() => openMarket(market)}
+        tabIndex={0}
+        role="button"
+        aria-label={'Apri i dettagli di ' + market.name}
+        onKeyDown={(e) => {
+          if (e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            openMarket(market);
+          }
+        }}
       >
         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: catColor, borderRadius: '4px 0 0 4px' }} />
         <div className="card-top">
@@ -1600,15 +1638,19 @@ export default function App() {
           </span>
           <span className="card-info-item">
             <Icon name="clock" size={14} color="#8C8272" />
-            {market.hours}
+            {market.hours || 'Orari da verificare'}
           </span>
           <span className="card-info-item">
             <Icon name="mapPin" size={14} color="#8C8272" />
             {market.city}
           </span>
-          <span className="card-info-item card-distance">
-            {Number.isFinite(market.distance) ? 'a ' + Math.round(market.distance) + ' km' : 'Posizione da verificare'}
-          </span>
+          {canUseDistance && (
+            <span className="card-info-item card-distance">
+              {Number.isFinite(market.distance)
+                ? (market.positionQuality === 'precisa' ? '' : 'circa ') + Math.round(market.distance) + ' km'
+                : 'Distanza non disponibile'}
+            </span>
+          )}
         </div>
       </div>
     );
