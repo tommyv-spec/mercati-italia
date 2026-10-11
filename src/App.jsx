@@ -1523,14 +1523,25 @@ export default function App() {
   };
 
   const activateNearby = () => {
+    // Asking permission must not erase the visitor's current city/filter.
+    // Activate nearby only AFTER the browser provides coordinates.
     setLocationMode('auto');
-    setFilterCity('');
-    setIncludeEstimatedNearby(false);
-    setFilterDistance(50);
-    setActiveFilterCount(1 + Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
-    setSortBy('distanza');
-    requestPosition();
+    if (!canUseDistance) requestPosition();
   };
+
+  useEffect(() => {
+    if (positionStatus === 'ready' && canUseDistance && locationMode === 'auto') {
+      setFilterCity('');
+      setFilterRegion('');
+      setIncludeEstimatedNearby(false);
+      setFilterDistance(50);
+      setActiveFilterCount(1 + Number(filterCategories.length > 0));
+      setSortBy('distanza');
+    } else if (['denied', 'error', 'unavailable'].includes(positionStatus) && locationMode === 'auto') {
+      // GPS denial is not an empty city search: keep all existing filters.
+      setLocationMode('none');
+    }
+  }, [positionStatus, canUseDistance, locationMode]);
 
   const confirmManualCity = () => {
     const name = manualCity.trim().toLocaleLowerCase('it');
