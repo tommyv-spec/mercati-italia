@@ -239,9 +239,19 @@ def convert(payload, today=None):
             recurrence = ("Periodicità: " + str(record.get("periodicita_tipo") or "da verificare")
                           + ("; giorno indicato " + DAY_LABELS[day] if day is not None else "")
                           + "; date da verificare")
-        address = str(record.get("indirizzi") or record.get("ubicazione") or "").strip()[:240]
-        if not address:
-            address = "Sede da verificare"
+        raw_address = str(record.get("indirizzi") or record.get("ubicazione") or "").strip()[:240]
+        # A historical relocation note (e.g. "from October 2012 on Via...")
+        # is not a current usable navigation address. Keep it as evidence,
+        # but do not give the user confident directions to the older venue.
+        historical_address_note = bool(re.search(
+            r"\([^)]*\b20[0-3]\d\b[^)]*\)", raw_address
+        ))
+        address = "" if historical_address_note else raw_address
+        label_address = re.sub(r"\([^)]*\)", "", raw_address).strip(" ,;-")
+        label_address = re.sub(r"\b20[0-3]\d\b", "", label_address).strip(" ,;-")
+        name = ("Mercato di " + city.title() + " – " + label_address.title()
+                if label_address and not historical_address_note
+                else "Mercato comunale di " + city.title() + " (sede da verificare)")
         latitude, longitude = point(record)
         descr = (
             "Sede censita nell'archivio MERCap della Regione Lombardia. "
@@ -250,9 +260,11 @@ def convert(payload, today=None):
             "Nome descrittivo composto da Comune e sede, non denominazione ufficiale. "
             "Codice fonte: " + ident + "."
         )
+        if historical_address_note:
+            descr += " Nota storica sulla sede, NON verificata: " + raw_address + "."
         output.append({
             "slug": slug,
-            "nome": ("Mercato di " + city.title() + " – " + address.title())[:158],
+            "nome": name[:158],
             "citta": city.title(), "provincia": province, "regione": "Lombardia",
             "indirizzo": address, "lat": latitude, "lng": longitude,
             "position_quality": "non_verificata" if latitude is not None else "sconosciuta",

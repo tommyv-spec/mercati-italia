@@ -96,6 +96,25 @@ class LombardiaTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Ambiguous repeated"):
             convert(payload(items),today=self.now)
 
+    def test_historical_relocation_note_cannot_become_current_address_or_edition(self):
+        items = [row(30000+i) for i in range(1099)]
+        items.append(row(529773, day=None, freq=None, city="ACQUANEGRA SUL CHIESE",
+                         despro="MN", istat="20001",
+                         indirizzi="", ubicazione=(
+                             "PIAZZA MARCONI (DA OTTOBRE 2012 VIA MATTEOTTI IN VIA SPERIMENTALE)"
+                         )))
+        converted = convert(payload(items), today=self.now)
+        specific = next(x for x in converted if x["id_fonte"] == "529773")
+        self.assertEqual(specific["slug"], "lo-mercap-529773-senza-giorno")
+        self.assertNotIn("2012", specific["nome"])
+        self.assertEqual(specific["indirizzo"], "")
+        self.assertIn("2012 VIA MATTEOTTI", specific["descrizione"])
+        from export_static import normalize
+        record, error = normalize(specific, self.now)
+        self.assertIsNone(error)
+        self.assertIsNotNone(record)
+        self.assertEqual(record["date"], [])
+
     def test_coordinate_requires_agreement_with_geopoint(self):
         correct = row(1)
         self.assertEqual(point(correct), (45.538489,8.995265))
