@@ -2272,7 +2272,11 @@ export default function App() {
                 entry.kind === 'group'
                   ? <WeeklyCityGroup key={entry.key} group={entry}
                       loadMarket={getMarketDetails} onOpenMarket={openMarket}
-                      selectedWeekday={weekdayFilter} autoExpand={weekdayFilter !== null} />
+                      selectedWeekday={weekdayFilter}
+                      autoExpand={weekdayFilter !== null && (
+                        (Boolean(filterCity) && entry.city.toLocaleLowerCase('it') === filterCity.toLocaleLowerCase('it')) ||
+                        (Boolean(searchQuery.trim()) && entry.city.toLocaleLowerCase('it') === searchQuery.trim().toLocaleLowerCase('it'))
+                      )} />
                   : renderMarketCard(entry.market, i)
               )}
               {visibleCount < groupedList.length && (
