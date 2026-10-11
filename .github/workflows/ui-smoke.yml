@@ -1,0 +1,51 @@
+name: UX mobile smoke test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - tests/ui-smoke.mjs
+      - .github/workflows/ui-smoke.yml
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install application
+        run: npm ci --no-audit --no-fund
+      - name: Install headless browser only for CI
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static Vite app
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/mercati-vite.log 2>&1 &
+          for i in $(seq 1 45); do
+            curl -fsS http://127.0.0.1:5173/ > /dev/null && exit 0
+            sleep 2
+          done
+          cat /tmp/mercati-vite.log
+          exit 1
+      - name: Test visitor journey without backend requests
+        run: node tests/ui-smoke.mjs
+      - name: Save mobile screenshot and result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercati-ux-mobile
+          path: |
+            ux-phone.png
+            ux-smoke-result.json
+            /tmp/mercati-vite.log
+          if-no-files-found: ignore
+          retention-days: 7
