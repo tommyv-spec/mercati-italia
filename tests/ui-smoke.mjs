@@ -35,6 +35,7 @@ try {
   const response = await page.goto(BASE, { waitUntil: 'domcontentloaded', timeout: 45000 })
   assert.equal(response?.status(), 200)
   await assertCards()
+  await page.screenshot({ path: 'ux-home.png', animations: 'disabled' })
   assert.equal(await page.getByText('Mercati vicino a me', { exact: false }).count() > 0, true)
   assert.equal(await page.locator('.market-card .card-distance').count(), 0,
     'Without permission, app must not show fabricated distances')
@@ -42,6 +43,7 @@ try {
   // Real navigation: home → market detail → back.
   await page.locator('.market-card').first().click()
   await page.locator('.detail-page').waitFor()
+  await page.screenshot({ path: 'ux-detail.png', animations: 'disabled' })
   assert.equal(await page.getByRole('button', { name: 'Condividi questo mercato' }).count(), 1)
   await page.locator('.detail-back').click()
 
@@ -58,10 +60,13 @@ try {
   await context.grantPermissions(['geolocation'], { origin: BASE })
   await context.setGeolocation({ latitude: 43.77, longitude: 11.25 })
   await page.getByRole('button', { name: /Mercati vicino a me|Vicino a me/ }).first().click()
-  await page.getByText('Vicino a me · posizione attiva', { exact: false }).waitFor({ timeout: 20000 })
+  await page.getByText('Vicino a me · raggio indicativo 50 km', { exact: false }).waitFor({ timeout: 20000 })
   await assertCards()
   assert.equal(await page.locator('.market-card .card-distance').count() > 0, true,
-    'No distance after GPS permission')
+    'No location status after GPS permission')
+  assert.equal(await page.locator('.market-card .card-distance').filter({ hasText: 'circa 0 km' }).count(), 0,
+    'Unverified coordinates must not be presented as zero kilometers')
+  await page.screenshot({ path: 'ux-nearby.png', animations: 'disabled' })
 
   // Existing favorites are local-only; Agenda never promises background push.
   await page.locator('.bottom-tabs').getByRole('button', { name: 'Agenda' }).click()
