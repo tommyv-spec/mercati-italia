@@ -1746,6 +1746,7 @@ export default function App() {
               <Icon name="calendar" size={18} color={catColor} /> Prossime date
             </div>
             <div className="detail-dates-chips">
+              {futureDates.length === 0 && <span className="date-chip">Date da verificare</span>}
               {futureDates.map(d => {
                 const isToday = d === todayStr;
                 const dayOfWeek = new Date(d + "T00:00:00").getDay();
@@ -1759,6 +1760,11 @@ export default function App() {
             </div>
             {m.recurrence && (
               <div className="detail-recurrence">{m.recurrence}</div>
+            )}
+            {m.dateQuality !== 'confermata' && (
+              <div style={{ fontSize: 12, color: '#8C8272', marginTop: 8 }}>
+                Date previste, non confermate per ogni singola edizione. Controlla la fonte prima di partire.
+              </div>
             )}
           </div>
 
@@ -1839,15 +1845,26 @@ export default function App() {
           <div className="detail-section" style={{ animationDelay: '0.3s' }}>
             <div className="detail-provenance">
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13, marginBottom: 2 }}>Aggiornato il {m.lastVerified}</div>
-                <div style={{ fontSize: 12, opacity: 0.7 }}>Fonte: {m.source}</div>
+                <div style={{ fontSize: 13, marginBottom: 2 }}>
+                  {m.lastVerified ? 'Verificato il ' + m.lastVerified : 'Non verificato di recente'}
+                </div>
+                <div style={{ fontSize: 12, opacity: 0.7 }}>
+                  Fonte: {m.source || 'non disponibile'}
+                  {m.sourceUpdated ? ' · dati del ' + m.sourceUpdated : ''}
+                </div>
+                {m.sourceUrl && (
+                  <a href={m.sourceUrl} target="_blank" rel="noopener noreferrer"
+                     style={{ display: 'inline-block', fontSize: 12, marginTop: 5 }}>
+                    Controlla la fonte originale
+                  </a>
+                )}
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 11, marginBottom: 4 }}>Affidabilità</div>
+                <div style={{ fontSize: 11, marginBottom: 4 }}>Completezza dati</div>
                 <div className="confidence-bar">
                   <div className="confidence-fill" style={{
-                    width: `${m.confidence}%`,
-                    background: m.confidence > 90 ? '#5B7A5E' : m.confidence > 75 ? '#B8860B' : '#C75146'
+                    width: `${m.dataCompleteness}%`,
+                    background: m.dataCompleteness > 80 ? '#5B7A5E' : m.dataCompleteness > 55 ? '#B8860B' : '#C75146'
                   }} />
                 </div>
               </div>
