@@ -102,11 +102,11 @@ jobs:
           overlap = [x for x in lo if (key(x.get('citta')),key(x.get('indirizzo'))) in seen]
           snapshot = audit(candidate)
           decision = json.loads(Path('lombardia-audit-output/release-decision.json').read_text())
-          overlap = json.loads(Path('lombardia-audit-output/overlap-summary.json').read_text())
+          screening = json.loads(Path('lombardia-audit-output/overlap-summary.json').read_text())
           report = {
-              'overlap_triage': overlap['counts'],
-              'source_after_quarantine': overlap['accepted'],
-              'source_quarantined': overlap['quarantined'],
+              'overlap_triage': screening['counts'],
+              'source_after_quarantine': screening['accepted'],
+              'source_quarantined': screening['quarantined'],
               'approved': decision['approved'],
               'base_records': len(base),
               'candidate_records': len(merged),
