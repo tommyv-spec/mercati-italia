@@ -134,6 +134,16 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     if age < 0:
         return record, "source_from_future"
     if age > max_stale_days:
+        # Never leave predicted future editions visible after their only
+        # supporting source ages out. This is a safety downgrade, NOT a
+        # deletion of the underlying market identity or source history.
+        if record.get("date_quality") == "prevista" and record.get("date"):
+            record["date"] = []
+            record["date_quality"] = "sconosciuta"
+            record["proiezione_regola"] = None
+            record["proiezione_generata_il"] = ""
+            record["proiezione_fonte"] = ""
+            return record, "expired_stale_forecast"
         return record, "stale_source"
 
     # Clear any old *projected* dates and replace with rolling predictions,

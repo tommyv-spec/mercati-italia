@@ -84,11 +84,31 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(reason,"non_projected_source_date")
             self.assertEqual(old,renewed)
 
-    def test_stale_official_2024_not_projected(self):
-        old=record(aggiornato_il="2024-05-27",fonte="Comune di Milano - CC BY")
+    def test_stale_official_2024_predictions_expire_without_deleting_market(self):
+        old=record(aggiornato_il="2024-05-27",fonte="Comune di Milano - CC BY",
+                   proiezione_fonte="ricorrenza_testo", proiezione_generata_il="2026-10-01")
         renewed,reason=refresh_record(old,self.now)
+        self.assertEqual(reason,"expired_stale_forecast")
+        self.assertEqual(renewed["slug"],old["slug"])
+        self.assertEqual(renewed["date"],[])
+        self.assertEqual(renewed["date_quality"],"sconosciuta")
+        self.assertEqual(renewed["proiezione_fonte"],"")
+        self.assertEqual(old["date"],["2026-10-17","2026-10-24"])
+
+    def test_stale_source_without_forecast_is_idempotent(self):
+        old=record(aggiornato_il="2024-05-27",date=[],date_quality="sconosciuta")
+        newer,reason=refresh_record(old,self.now)
         self.assertEqual(reason,"stale_source")
-        self.assertEqual(renewed,old)
+        self.assertEqual(newer,old)
+
+    def test_expired_forecast_cannot_renew_without_updated_source(self):
+        old=record(aggiornato_il="2024-05-27",
+                   date=["2026-10-17"],date_quality="prevista")
+        expired,reason=refresh_record(old,self.now)
+        self.assertEqual(reason,"expired_stale_forecast")
+        again,reason_again=refresh_record(expired,self.now)
+        self.assertEqual(reason_again,"stale_source")
+        self.assertEqual(again,expired)
 
     def test_canceled_not_reanimated(self):
         newer,reason=refresh_record(record(status="annullato"),self.now)
