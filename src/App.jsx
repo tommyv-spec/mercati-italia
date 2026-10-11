@@ -2064,7 +2064,7 @@ export default function App() {
           ))}
         </div>
 
-        {!canUseDistance && !filterCity && !filterRegion && !searchQuery.trim() && (
+        {viewMode === 'lista' && !canUseDistance && !filterCity && !filterRegion && !searchQuery.trim() && (
           <div role="note" style={{
             background: '#F0EEE8', borderRadius: 12, padding: '12px 14px',
             margin: '6px 0 12px', fontSize: 12, lineHeight: 1.5,
