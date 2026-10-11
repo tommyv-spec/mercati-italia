@@ -253,6 +253,11 @@ def market_weekday_suffix(slug: str) -> str:
 
 def safe_same_market(a: dict, b: dict) -> bool:
     """Never fuse different street markets or different weekday occurrences."""
+    suffix_a = market_weekday_suffix(a.get("slug", ""))
+    suffix_b = market_weekday_suffix(b.get("slug", ""))
+    # A day-specific record cannot absorb another day or a summary.
+    if suffix_a != suffix_b:
+        return False
     address_a = specific_market_address(a.get("indirizzo", ""))
     address_b = specific_market_address(b.get("indirizzo", ""))
     if address_a and address_b:
