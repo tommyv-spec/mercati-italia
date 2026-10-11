@@ -55,7 +55,7 @@ try {
     'Without permission, app must not show fabricated distances')
 
   // Real navigation: home → market detail → back.
-  await page.locator('.market-card').first().click()
+  await page.locator('.market-card-open').first().click()
   await page.locator('.detail-page').waitFor()
   await page.getByText('Caricamento dettagli completi…').waitFor({ state: 'hidden', timeout: 20000 })
   await page.screenshot({ path: 'ux-detail.png', animations: 'disabled' })
