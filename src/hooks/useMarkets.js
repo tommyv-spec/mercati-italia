@@ -4,7 +4,7 @@
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import {
-  fetchMarkets, getFavorites,
+  fetchMarkets, fetchMarketById, getFavorites,
   toggleFavorite as apiToggleFavorite, getDataMode, haversine,
 } from '../services/staticMarkets'
 
@@ -121,6 +121,11 @@ export function useMarkets() {
     } catch {}
   }, [])
 
+  const getMarketDetails = useCallback(async marketId => {
+    const raw = await fetchMarketById(marketId)
+    return raw ? adaptMarket(raw, userLat, userLng) : null
+  }, [userLat, userLng])
+
   const categories = useMemo(() =>
     ['Alimentare', 'Antiquariato', 'Vintage e abbigliamento', 'Usato', 'Artigianato', 'Misto'], [])
 
@@ -138,7 +143,7 @@ export function useMarkets() {
 
   return {
     markets, loading, error, seedStatus,
-    favorites, toggleFav,
+    favorites, toggleFav, getMarketDetails,
     categories, regions, cities,
     categoryIcons: CATEGORY_ICONS,
     categoryColors: CATEGORY_COLORS,
