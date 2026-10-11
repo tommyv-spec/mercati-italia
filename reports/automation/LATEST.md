@@ -2,7 +2,7 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38181009160](https://github.com/tommyv-spec/mercati-italia/actions/runs/38181009160) — UTC 2026-10-11T22:36:41.641222+00:00
+- Ultimo run: [38181508107](https://github.com/tommyv-spec/mercati-italia/actions/runs/38181508107) — UTC 2026-10-11T22:44:23.712285+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: no (contenuto invariato)
 - Schede nel catalogo: **12,650**
@@ -13,6 +13,8 @@
 - Posizioni precise dichiarate: **89**
 - Orari mancanti: **10,627**
 - Dataset pubblici candidati individuati: **42** (licenze da verificare)
+- Fonti conservate nello storico: **42**; nuove: **0**; aggiornate: **0**.
+- Possibili elenchi/sedi: **8**; statistiche storiche aggregate: **12**.
 
 ## Prossimi miglioramenti calcolati
 - verified_source_evidence

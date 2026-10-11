@@ -1,0 +1,192 @@
+{
+  "checked_hosts": [
+    "dati.comune.roma.it",
+    "opendata.comune.bologna.it",
+    "www.dati.lombardia.it"
+  ],
+  "imports": 0,
+  "max_read_bytes_per_request": 65536,
+  "max_requests": 3,
+  "metadata_only": true,
+  "reports": [
+    {
+      "adapter_enabled": false,
+      "events_confirmed": 0,
+      "field_hints": {
+        "address": [
+          "ubicazione"
+        ],
+        "hours": [
+          "orario_svolgimento"
+        ],
+        "latitude": [
+          "lat"
+        ],
+        "name": [
+          "denominazione",
+          "tipologia_mercato",
+          "nome_quartiere",
+          "nome_zona"
+        ],
+        "weekday": [
+          "giorni_svolgimento"
+        ]
+      },
+      "fields": [
+        "denominazione",
+        "tipologia",
+        "tipologia_mercato",
+        "ubicazione",
+        "specializzazione",
+        "numero_posteggi",
+        "numero_chioschi_alimentari",
+        "numero_chioschi_non_alimentari",
+        "numero_chioschi_misti",
+        "numero_chioschi_prodotti_agricoli",
+        "giorni_svolgimento",
+        "orario_svolgimento",
+        "nome_quartiere",
+        "nome_zona",
+        "area_statistica",
+        "codice_area_statistica",
+        "codice_quartiere",
+        "codice_zona",
+        "long",
+        "lat",
+        "geopoint",
+        "zona_pross"
+      ],
+      "format": "JSON",
+      "id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
+      "sample_bytes": 3862,
+      "sample_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere/records?limit=5",
+      "source_license_verified": false,
+      "status": "schema_preview_only",
+      "title": "Mercati e fiere",
+      "truncated": false
+    },
+    {
+      "adapter_enabled": false,
+      "events_confirmed": 0,
+      "field_hints": {
+        "address": [
+          "ubicazione"
+        ],
+        "municipality": [
+          "descom"
+        ],
+        "name": [
+          "anno_istituzione_mercato"
+        ],
+        "weekday": [
+          "periodicita_tipo",
+          "giorno"
+        ]
+      },
+      "fields": [
+        "codice_id",
+        "istat_provincia",
+        "despro",
+        "istat",
+        "descom",
+        "ubicazione",
+        "indirizzi",
+        "periodicita_tipo",
+        "giorno",
+        "mesi_svolgimento",
+        "dalle_ore_invernale",
+        "alle_ore_invernale",
+        "dalle_ore_estivo",
+        "alle_ore_estivo",
+        "anno_istituzione_mercato",
+        "n_post_alim",
+        "n_post_non_alim",
+        "n_post_tot",
+        "sup_post_non_alim",
+        "sup_post_alim",
+        "sup_post_tot",
+        "postdestprodtiplomb",
+        "postdestprodagric",
+        "postdestbattitori",
+        "postdestprodflorov",
+        "geo_x",
+        "geo_y",
+        "location",
+        ":@computed_region_ttgh_9sm5",
+        ":@computed_region_af5v_nc64"
+      ],
+      "format": "JSON",
+      "id": "2e41941b-80fb-4ded-8330-427383f725f8",
+      "sample_bytes": 3303,
+      "sample_url": "https://www.dati.lombardia.it/resource/68zx-njaw.json?%24limit=5",
+      "source_license_verified": false,
+      "status": "schema_preview_only",
+      "title": "Mercati su aree pubbliche",
+      "truncated": false
+    },
+    {
+      "adapter_enabled": false,
+      "events_confirmed": 0,
+      "field_hints": {
+        "address": [
+          "INDIRIZZO"
+        ],
+        "hours": [
+          "Apertura_Lunedi",
+          "Chiusura_Lunedi",
+          "Apertura_Martedi",
+          "Chiusura_Martedi",
+          "Apertura_Mercoledi",
+          "Chiusura_Mercoledi"
+        ],
+        "municipality": [
+          "Municipio"
+        ],
+        "name": [
+          "Nome_Mercato",
+          "Note_mercato"
+        ]
+      },
+      "fields": [
+        "Municipio",
+        "Nome_Mercato",
+        "INDIRIZZO",
+        "Civico",
+        "Esp_Civico",
+        "Altre_indicazioni",
+        "CAP",
+        "TIPOLOGIA",
+        "Note_mercato",
+        "POSTEGGI_TOTALI",
+        "POSTEGGI_OCCUPATI",
+        "NUMERO_OPERATORI",
+        "POSTEGGI_ALIMENTARI",
+        "POSTEGGI_NON_ALIMENTARI",
+        "Apertura_Lunedi",
+        "Chiusura_Lunedi",
+        "Apertura_Martedi",
+        "Chiusura_Martedi",
+        "Apertura_Mercoledi",
+        "Chiusura_Mercoledi",
+        "Apertura_Giovedi",
+        "Chiusura_Giovedi",
+        "Apertura_Venedi",
+        "Chiusura_Venedi",
+        "Apertura_Sabato",
+        "Chiusura_Sabato",
+        "Note_orari",
+        "AGGIORNATO"
+      ],
+      "format": "CSV",
+      "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
+      "sample_bytes": 38408,
+      "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
+      "source_license_verified": false,
+      "status": "schema_preview_only",
+      "title": "Dati sui Mercati Rionali",
+      "truncated": false
+    }
+  ],
+  "schema": 1,
+  "verified_event_count": 0
+}

@@ -4,33 +4,50 @@
 Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 
 - Fonti note: **42**; viste ora: **42**.
-- Nuove: **42**; cambiate: **0**.
+- Nuove: **0**; cambiate: **0**.
 - Query fallite: **0**; offline: **False**.
+- Probabili elenchi/sedi: **8**; statistiche aggregate: **12**.
+- Il punteggio indica solo la priorità della verifica. NON è una misura di affidabilità.
 - La ricerca restituisce solo i primi risultati. Una fonte non vista non è stata cancellata.
 - Una modifica ai metadati NON dimostra che siano cambiati mercati o orari.
 
-| Priorità | Dataset | Editore dichiarato | Licenza dichiarata | Data dati dichiarata |
-|---:|---|---|---|---|
-| 1 | Attività commerciali: mercati settimanali scoperti | Comune di Milano | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | sconosciuta |
-| 2 | Mercati rionali COPERTI per stand e metri quadri 2018 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T09:38:24.669301 |
-| 3 | Mercati rionali scoperti per numero posti settore 2018 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T09:53:11.798433 |
-| 4 | Dati sui Mercati Rionali | Roma Capitale | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | sconosciuta |
-| 5 | Mercati rionali scoperti per residenti per posto e per circoscrizione 2019 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T10:14:01.793933 |
-| 6 | Mercati rionali scoperti per residenti per posto e per circoscrizione 2018 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T10:10:35.023124 |
-| 7 | Mercati rionali scoperti per residenti per posto e per circoscrizione 2017 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2019-07-08T09:54:01.189314 |
-| 8 | Mercati rionali COPERTI per stand e metri quadri 2019 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T09:43:44.981856 |
-| 9 | Mercati rionali scoperti per numero posti settore 2019 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T09:57:11.147926 |
-| 10 | Mercati rionali COPERTI per stand e metri quadri 2017 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2019-07-08T09:48:34.642469 |
-| 11 | Mercati rionali scoperti per numero posti settore e circoscrizione 2018 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T10:01:38.096230 |
-| 12 | Mercati rionali scoperti per numero posti settore e circoscrizione 2017 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2019-07-11T07:23:26.980571 |
-| 13 | Mercati rionali scoperti per numero posti settore 2017 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2019-07-09T09:51:51.548527 |
-| 14 | Mercati rionali scoperti per numero posti settore e circoscrizione 2019 | Comune di Torino | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2020-07-06T10:05:26.913505 |
-| 15 | Mercati e fiere | Comune di Bologna | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | 2025-12-31T12:31:56+00:00 |
-| 16 | Elenco dei mercati settimanali | Comune di Corciano | da verificare | 07-01-2026 |
-| 17 | Posteggi mercati e fiere - Comune di Pianiga | Regione Veneto | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | sconosciuta |
-| 18 | Fiere e mercati - Comune di Casalserugo | Regione Veneto | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | sconosciuta |
-| 19 | Mercati su aree pubbliche | Regione Lombardia | Creative Commons CC0 1.0 Universale - Public Domain Dedication (CC0 1.0) | sconosciuta |
-| 20 | Fiere e mercati - Comune di Soave | Regione Veneto | Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0) | sconosciuta |
+| Priorità | Punti | Dataset | Tipo | Editore dichiarato | Data dati dichiarata |
+|---:|---:|---|---|---|---|
+| 1 | 23 | Mercati e fiere | mixed_events_candidate | Comune di Bologna | 2025-12-31T12:31:56+00:00 |
+| 2 | 23 | Elenco dei mercati settimanali | market_location_candidate | Comune di Corciano | 07-01-2026 |
+| 3 | 18 | Mercati su aree pubbliche | market_location_candidate | Regione Lombardia | sconosciuta |
+| 4 | 16 | Dati sui Mercati Rionali | market_location_candidate | Roma Capitale | sconosciuta |
+| 5 | 14 | Attività commerciali: mercati settimanali scoperti | market_location_candidate | Comune di Milano | sconosciuta |
+| 6 | 13 | Fiere e mercati - Comune di Casalserugo | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 7 | 13 | Fiere e mercati - Comune di Soave | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 8 | 13 | Fiere e mercati - Comune di Fontaniva | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 9 | 13 | Fiere e mercati - Comune di Badia Polesine | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 10 | 13 | Fiere e mercati - Comune di Lazise | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 11 | 13 | Fiere e mercati - Comune di Meolo | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 12 | 13 | Fiere e mercati - Comune di Pianiga | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 13 | 13 | Fiere e mercati - Comune di Marcon | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 14 | 13 | Fiere e mercati - Comune di Povegliano Veronese | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 15 | 13 | Fiere e mercati - Comune di Sarego | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 16 | 13 | Fiere e mercati - Comune di Brendola | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 17 | 13 | Fiere e mercati - Comune di Nogara | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 18 | 13 | Fiere e mercati - Comune di Sandrigo | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 19 | 13 | Fiere e mercati - Comune di Sona | mixed_events_candidate | Regione Veneto | sconosciuta |
+| 20 | 9 | Posteggi mercati e fiere - Comune di Pianiga | mixed_events_candidate | Regione Veneto | sconosciuta |
+
+## Risorse candidate prioritarie (URL non verificati)
+
+- Mercati e fiere: [CSV](https://opendata.comune.bologna.it/api/v2/catalog/datasets/mercati-e-fiere/exports/csv?use_labels=true)
+- Elenco dei mercati settimanali: [CSV](https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv)
+- Mercati su aree pubbliche: [CSV](https://www.dati.lombardia.it/api/views/68zx-njaw/rows.csv?accessType=DOWNLOAD)
+- Dati sui Mercati Rionali: [CSV](https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv)
+- Attività commerciali: mercati settimanali scoperti: [CSV](https://dati.comune.milano.it/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/5d4a83c3-6ac5-4430-b5a9-d669a933b036/download/mss-mag24_final.csv)
+- Fiere e mercati - Comune di Casalserugo: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/c97582dd-d37d-4f1d-a1c5-b0b90188c651.csv)
+- Fiere e mercati - Comune di Soave: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9.csv)
+- Fiere e mercati - Comune di Fontaniva: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/04bc0bfa-d895-49a9-a603-150234cc4ee9.csv)
+- Fiere e mercati - Comune di Badia Polesine: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/d305152b-ec6a-466e-b417-02316d603d0c.csv)
+- Fiere e mercati - Comune di Lazise: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/5e0e619c-eb69-4a82-b2a4-532a01118c4c.csv)
+- Fiere e mercati - Comune di Meolo: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/f49044ef-b659-4290-bd85-1d5c1a8b427d.csv)
+- Fiere e mercati - Comune di Pianiga: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/aef03b7d-d4bc-4554-ad58-3585109e965e.csv)
 
 ## Protocollo necessario per aggiungere una fonte
 
