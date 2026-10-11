@@ -17,6 +17,7 @@ export default function WeeklyCityGroup({
   const [detailsById, setDetailsById] = useState({})
   const [loading, setLoading] = useState(false)
   const [loadError, setLoadError] = useState('')
+  const [showUnknownVenues, setShowUnknownVenues] = useState(false)
 
   const idsKey = group.markets.map(m => m.id).join('|')
   useEffect(() => {
@@ -63,6 +64,15 @@ export default function WeeklyCityGroup({
     return groupVenues(group.markets.map(m => detailsById[m.id] || m))
   }, [group.markets, detailsById, expanded])
 
+  const knownVenues = venues.filter(venue => venue.verifiedAddress)
+  const unknownVenues = venues.filter(venue => !venue.verifiedAddress)
+  // A record without an address may refer to a named venue in this city,
+  // but source evidence is insufficient to assert that it does.
+  const displayedVenues = [
+    ...knownVenues,
+    ...(showUnknownVenues || knownVenues.length === 0 ? unknownVenues : []),
+  ]
+
   const uncertain = group.markets.some(m => m.dateQuality !== 'confermata')
 
   return (
@@ -101,11 +111,21 @@ export default function WeeklyCityGroup({
           {!loading && venues.length > 0 && (
             <>
               <p className="weekly-venue-total">
-                {venues.length} {venues.length === 1 ? 'sede riportata' : 'sedi riportate'}.
+                {knownVenues.length} {knownVenues.length === 1 ? 'sede riportata' : 'sedi riportate'}
+                {unknownVenues.length > 0 && ` · ${unknownVenues.length} ${unknownVenues.length === 1 ? 'scheda' : 'schede'} senza indirizzo`}.
                 Ogni appuntamento conserva la propria scheda e fonte.
               </p>
-              {venues.map((venue, i) => (
+              {unknownVenues.length > 0 && knownVenues.length > 0 && (
+                <button type="button" className="weekly-unknown-toggle"
+                  aria-expanded={showUnknownVenues}
+                  onClick={() => setShowUnknownVenues(v => !v)}>
+                  {showUnknownVenues ? 'Nascondi' : 'Mostra'}
+                  {` ${unknownVenues.length} ${unknownVenues.length === 1 ? 'appuntamento' : 'appuntamenti'} senza sede identificata`}
+                </button>
+              )}
+              {displayedVenues.map((venue, i) => (
                 <section className="weekly-venue" key={venue.key}
+                  data-known={venue.verifiedAddress ? 'true' : 'false'}
                   aria-label={venue.address || 'Sede da verificare'}>
                   <div className="weekly-venue-title-row">
                     <span className="weekly-venue-index">{i + 1}</span>
