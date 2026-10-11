@@ -68,6 +68,13 @@ Ogni checkpoint è salvato in `autopilot-output/checkpoints/*.json` e allegato p
 - `backend/source_intake.py` conserva in `reports/automation/source-registry.json` le fonti nuove e cambiate, con impronta verificabile dei campi importanti. I metadati aggiornati dal catalogo non sono scambiati per dati sui mercati aggiornati. Ricerche offline o parziali non cancellano fonti conosciute. La coda `reports/automation/SOURCE_QUEUE.md` espone punteggi di **priorità della verifica**, non affidabilità: vecchie tabelle statistiche sono declassate, fonti con potenziali sedi/calendari sono favorite. I primi dataset includono Bologna, Lombardia, Lazio, Roma, Veneto e Corciano; licenze e dati effettivi restano da verificare.
 - **Nuove fonti scoperte = proposta, non import automatico.** Prima di aggiungere un adapter, verificare licenza, condizioni, schema, stabilità dell'identificatore e test. Questo evita di gonfiare il catalogo con dati non riutilizzabili o inventati.
 
+### Campionamento sicuro delle nuove fonti
+
+- `backend/source_probe.py` può leggere fino a **3 campioni**, massimo **64 KiB** ciascuno, solo da `opendata.comune.bologna.it`, `www.dati.lombardia.it` e `dati.comune.roma.it`. Gli URL non autorizzati e i redirect vengono rifiutati.
+- Lo script cerca colonne come nome, indirizzo, comune, giorno e orari, ma conserva **solo i nomi delle colonne**, mai i record originali. Se una risposta è troppo grande o non leggibile, segnala una verifica da fare.
+- Produce `reports/automation/source-probes.json` e `reports/automation/SOURCE_SCHEMA.md`, con traccia del risultato e suggerimenti di mapping. Né la licenza né gli orari né le date diventano automaticamente confermati.
+- Gli adapter vengono aggiunti all'import ufficiale soltanto dopo verifica dei diritti di riuso, della struttura, della stabilità dell'ID e dei test. La nuova procedura usa il tempo di GitHub Actions; non invoca Cloudflare per le visite degli utenti.
+
 Si tratta di un sistema di **feedback con policy**, non di un'IA che riscrive autonomamente e senza approvazione gli script di produzione.
 
 ## Soglie attuali (modificabili in una sola policy)
