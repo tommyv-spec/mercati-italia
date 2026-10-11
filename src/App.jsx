@@ -1667,7 +1667,7 @@ export default function App() {
     }
 
     return result;
-  }, [marketsWithDistance, searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
+  }, [marketsWithDistance, searchQuery, dateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
 
   // Group generic city-wide weekly listings only for presentation. The
   // map and the underlying dataset retain every individually sourced record.
