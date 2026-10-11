@@ -9,7 +9,7 @@ on:
     paths:
       - .github/workflows/market-autopilot.yml
   schedule:
-    - cron: '17 04 * * 2,5'
+    - cron: '17 04 * * *'
   workflow_dispatch:
     inputs:
       offline:
@@ -97,6 +97,37 @@ jobs:
           if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
           python backend/source_probe.py --registry autopilot-output/source-registry.json --out autopilot-output/source-probes.json --report autopilot-output/SOURCE_SCHEMA.md "${args[@]}"
           cat autopilot-output/SOURCE_SCHEMA.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Recheck official publisher metadata and license claims (no import)
+        if: success()
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          python backend/source_evidence.py \
+            --registry autopilot-output/source-registry.json \
+            --out autopilot-output/source-evidence.json \
+            --report autopilot-output/SOURCE_EVIDENCE.md \
+            "${args[@]}"
+          cat autopilot-output/SOURCE_EVIDENCE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Audit real source age, projected dates and documented verification
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          max_age="$(python -c 'import json; print(json.load(open("backend/autopilot_policy.json"))["forecast"]["max_source_age_days"])')"
+          python backend/freshness_monitor.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --publisher-evidence autopilot-output/source-evidence.json \
+            --out autopilot-output/freshness.json \
+            --report autopilot-output/FRESHNESS.md \
+            --max-source-age-days "$max_age"
+          python backend/freshness_alert.py \
+            --freshness autopilot-output/freshness.json \
+            --out autopilot-output/freshness-alert.json
+          cat autopilot-output/FRESHNESS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve checkpoints and candidate even after failures
         if: always()
         uses: actions/upload-artifact@v4
