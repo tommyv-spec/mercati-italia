@@ -155,6 +155,27 @@ jobs:
               raise ValueError('Schema preview made an unauthorized approval')
           print('Official source schema previews remain quarantine-only.')
           PY
+      - name: Reject false inferred market identities and unknown-coordinate labels
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          probes = json.loads(Path('autopilot-output/source-probes.json').read_text())
+          name_false_friends = {'tipologia_mercato', 'nome_quartiere', 'nome_zona',
+                                'note_mercato', 'anno_istituzione_mercato'}
+          for item in probes['reports']:
+              hints = item.get('field_hints', {})
+              values = {name.casefold() for name in hints.get('name', [])}
+              if values & name_false_friends:
+                  raise ValueError('False market-name inference in official data: ' + item['id'])
+              coordinates = {name.casefold() for key in ('latitude', 'longitude')
+                             for name in hints.get(key, [])}
+              if coordinates & {'geo_x', 'geo_y'}:
+                  raise ValueError('Coordinates without verified CRS were treated as degrees')
+              if item.get('status') == 'schema_preview_only' and not item.get('fields'):
+                  raise ValueError('Empty schema was accepted')
+          print('Market identity and coordinate inference remained conservative.')
+          PY
       - name: Verify candidate approved and replace ONLY local static data
         run: |
           python - <<'PY'
