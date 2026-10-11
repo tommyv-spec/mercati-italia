@@ -1,71 +1,53 @@
-name: Publish separate static DEV preview (free)
-on:
-  push:
-    branches:
-      - improve/data-quality-security-performance-2026-10-11
-    paths:
-      - .github/workflows/publish-dev-static.yml
-      - 'src/**'
-      - 'tests/marketGrouping.test.mjs'
-      - 'public/data/v1/manifest.json'
-      - 'package.json'
-      - 'package-lock.json'
+# Legacy publisher retired. Only the guarded Autopilot workflow on main
+# may write to dev-static-preview, after source, policy and browser QA pass.
+# Keep this manual workflow as a reproducible read-only emergency audit.
+name: Manual static DEV bundle audit (no publication)
 
-concurrency:
-  group: standalone-dev-static-preview
-  cancel-in-progress: true
+on:
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  publish:
+  build-and-smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - name: Verify curated snapshot integrity
-        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Repeat dataset and importer regression tests
+        run: |
+          python -m unittest discover -s backend/tests -v
+          python backend/validate_static.py --manifest public/data/v1/manifest.json
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - name: Build portable static assets with RELATIVE base
+      - name: Repeat safe static build and dependency tests
         run: |
           npm ci --no-audit --no-fund
-          node --test tests/marketGrouping.test.mjs
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
           npm run build -- --base=./
-      - name: Verify static manifest, no secret credentials, relative JS and assets
+      - name: Install browser and smoke-test mobile UI before uploading
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import json
-          d=Path("dist")
-          m=json.loads((d/"data/v1/manifest.json").read_text())
-          assert m["total"] > 10000 and m["index_schema"] == 5
-          assert (d/m["index"]).is_file()
-          html=(d/"index.html").read_text()
-          assert 'src="./assets/' in html
-          assert not list(d.rglob("*serviceAccount*"))
-          print("Static-only development bundle validated:",m["total"],"market sources")
-          PY
-      - name: Commit built preview to isolated dev-static-preview branch
-        shell: bash
-        run: |
-          set -euo pipefail
-          snapshot="$(mktemp -d)"
-          cp -a dist/. "$snapshot/"
-          touch "$snapshot/.nojekyll"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch --orphan dev-static-preview
-          git rm -rf . >/dev/null 2>&1 || true
-          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-          cp -a "$snapshot"/. .
-          git add -A
-          git commit -m "dev preview: mobile city/venue/day grouping - verified static bundle"
-          git push --force origin HEAD:refs/heads/dev-static-preview
-          echo "DEV_URL=https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/index.html" >> "$GITHUB_STEP_SUMMARY"
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/mercati-dev-audit.log 2>&1 &
+          for i in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/ui-smoke.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manually-audited-dev-build
+          path: |
+            dist/
+            ux-*.png
+            ux-smoke-result.json
+          retention-days: 7
+          if-no-files-found: error

@@ -1,10 +1,8 @@
 name: Refresh static market catalog (source-bound forecasts)
+# Legacy refresh is manual only. Autopilot on main owns daily schedule
+# and guards DEV publication against stale and unsigned releases.
 on:
   workflow_dispatch:
-  schedule:
-    # Runs ONLY after this workflow is merged into the default branch.
-    # Weekly forecast regeneration does not cost Cloudflare per-visit reads.
-    - cron: '17 04 * * 2'
 
 permissions:
   contents: write
