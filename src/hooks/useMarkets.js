@@ -9,7 +9,7 @@
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import {
-  fetchMarkets, fetchFilterOptions, getFavorites,
+  fetchMarkets, getFavorites,
   toggleFavorite as apiToggleFavorite, getDataMode, haversine,
 } from '../services/api'
 
@@ -52,7 +52,8 @@ function adaptMarket(m, userLat, userLng) {
     description: m.descrizione || '',
     source: m.fonte || '',
     confidence: m.confidence || 50,
-    lastVerified: m.aggiornato_il ? m.aggiornato_il.slice(0, 10) : '',
+    // Last scrape is not a human confirmation.
+    lastVerified: m.verificato_il ? m.verificato_il.slice(0, 10) : '',
     distance: m.distance != null
       ? m.distance
       : (userLat && m.lat ? haversine(userLat, userLng, m.lat, m.lng) : 999),
@@ -80,11 +81,15 @@ export function useMarkets() {
 
         // Fetch only server-managed records. Never auto-write demo data.
         // Fetch markets + favorites + filter options
-        const [rawMarkets, favs, filters] = await Promise.all([
+        const [rawMarkets, favs] = await Promise.all([
           fetchMarkets({ userLat, userLng }),
           getFavorites(),
-          fetchFilterOptions(),
         ])
+        // Avoid a second full Firestore collection read for filter choices.
+        const filters = {
+          regioni: [...new Set(rawMarkets.map(m => m.regione).filter(Boolean))].sort(),
+          citta: [...new Set(rawMarkets.map(m => m.citta).filter(Boolean))].sort(),
+        }
         if (cancelled) return
 
         setMarkets(rawMarkets.map(m => adaptMarket(m, userLat, userLng)))
