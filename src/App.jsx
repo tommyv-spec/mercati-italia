@@ -1674,6 +1674,13 @@ export default function App() {
     setPendingRegion("");
     setPendingCity("");
     setPendingDist(100);
+    setFilterCategories([]);
+    setFilterRegion("");
+    setFilterCity("");
+    setFilterDistance(100);
+    setActiveFilterCount(0);
+    setIncludeEstimatedNearby(false);
+    setShowFilters(false);
   };
 
   const resetAllFilters = () => {
@@ -2079,6 +2086,29 @@ export default function App() {
                   }}>{city}</button>
               ))}
             </div>
+          </div>
+        )}
+        {(filterCity || filterRegion || filterCategories.length > 0) && (
+          <div className="chips-row" style={{ gap: 8, alignItems: 'center', margin: '2px 0 8px' }}>
+            {filterCity && (
+              <button className="chip active" onClick={() => {
+                setFilterCity('');
+                setActiveFilterCount(Math.max(0, activeFilterCount - 1));
+              }} aria-label={'Rimuovi filtro città ' + filterCity}>Città: {filterCity} ×</button>
+            )}
+            {filterRegion && (
+              <button className="chip active" onClick={() => {
+                setFilterRegion('');
+                setActiveFilterCount(Math.max(0, activeFilterCount - 1));
+              }} aria-label={'Rimuovi filtro regione ' + filterRegion}>Regione: {filterRegion} ×</button>
+            )}
+            {filterCategories.length > 0 && (
+              <button className="chip active" onClick={() => {
+                setFilterCategories([]);
+                setActiveFilterCount(Math.max(0, activeFilterCount - 1));
+              }}>Categorie ×</button>
+            )}
+            <button className="chip" onClick={resetAllFilters}>Azzera filtri</button>
           </div>
         )}
         <div className="chips-row" style={{ marginTop: 8, alignItems: 'center' }}>
