@@ -91,8 +91,10 @@ def convert(records: list[dict], today: date | None = None) -> list[dict]:
         day_names = ", ".join(label for label, _ in days)
         street = str(_value(row, "INDIRIZZO", "indirizzo", "via", "VIA", "LOCALIZZAZIONE") or "").strip()
         postcode = str(_value(row, "CAP") or "").strip()
-        lat = _coordinate(row, ("LATITUDINE", "latitudine", "lat", "LAT"))
-        lng = _coordinate(row, ("LONGITUDINE", "longitudine", "lng", "LON", "lon"))
+        lat = _coordinate(row, ("LAT_Y_4326", "LATITUDINE", "latitudine", "lat", "LAT"))
+        lng = _coordinate(row, ("LONG_X_4326", "LONGITUDINE", "longitudine", "lng", "LON", "lon"))
+        if lat is None or lng is None or not (45.35 <= lat <= 45.65 and 9.0 <= lng <= 9.45):
+            lat, lng = None, None
         # Never geocode the municipality centroid as a precise market point.
         area = str(_value(row, "NIL") or "").strip()
         details = "Mercato settimanale scoperto nel Comune di Milano."
@@ -104,7 +106,7 @@ def convert(records: list[dict], today: date | None = None) -> list[dict]:
             "citta": "Milano", "provincia": "MI", "regione": "Lombardia",
             "indirizzo": street + (", " + postcode if postcode and street else ""),
             "lat": lat, "lng": lng,
-            "position_quality": "non_verificata" if lat is not None else "sconosciuta",
+            "position_quality": "precisa" if lat is not None else "sconosciuta",
             "categoria": "misto",
             "tags": ["mercato settimanale", "all'aperto"],
             "status": "non_confermato",
