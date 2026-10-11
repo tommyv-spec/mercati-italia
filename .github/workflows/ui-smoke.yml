@@ -45,6 +45,9 @@ jobs:
           name: mercati-ux-mobile
           path: |
             ux-phone.png
+            ux-home.png
+            ux-detail.png
+            ux-nearby.png
             ux-smoke-result.json
             /tmp/mercati-vite.log
           if-no-files-found: ignore
