@@ -53,6 +53,27 @@ jobs:
           args=()
           if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
           python backend/autopilot.py --output autopilot-output "${args[@]}"
+      - name: Rank improvement opportunities from measured data
+        if: success()
+        run: |
+          python backend/autopilot_feedback.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --out autopilot-output/roadmap.json
+          cat autopilot-output/roadmap.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Discover new municipal structured sources (read-only, no auto-import)
+        if: success()
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then
+            python backend/source_scout.py --offline --out autopilot-output/official-candidates.json
+          else
+            python backend/source_scout.py --out autopilot-output/official-candidates.json || {
+              echo "::warning::Source discovery offline; keep last approved source adapters."
+            }
+          fi
       - name: Preserve checkpoints and candidate even after failures
         if: always()
         uses: actions/upload-artifact@v4
