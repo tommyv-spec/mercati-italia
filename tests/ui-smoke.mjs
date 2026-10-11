@@ -88,13 +88,18 @@ try {
     hasText: 'Mercati settimanali a Firenze',
   }).first()
   await cityGroup.waitFor({ timeout: 20000 })
-  assert.equal(await cityGroup.getByText('6 appuntamenti').count(), 1)
+  assert.equal(await cityGroup.getByText('7 appuntamenti').count(), 1)
   await cityGroup.getByRole('button', { name: 'Visualizza sedi e giornate' }).click()
   await cityGroup.getByText('Caricamento sedi…').waitFor({ state: 'hidden', timeout: 25000 })
   await cityGroup.getByText('Largo Monzani', { exact: true }).waitFor()
-  assert.equal(await cityGroup.locator('.weekly-venue').count(), 4,
+  assert.equal(await cityGroup.locator('.weekly-venue[data-known="true"]').count(), 4,
     'Firenze weekly listings must be four venues, not six duplicate cards')
   assert.equal(await cityGroup.getByText('Piazza i maggio', { exact: true }).count(), 1)
+  assert.equal(await cityGroup.getByRole('button', { name: /1 appuntamento senza sede identificata/ }).count(), 1)
+  assert.equal(await cityGroup.locator('.weekly-venue[data-known="false"]').count(), 0)
+  await cityGroup.getByRole('button', { name: /1 appuntamento senza sede identificata/ }).click()
+  assert.equal(await cityGroup.locator('.weekly-venue[data-known="false"]').count(), 1)
+  await cityGroup.getByRole('button', { name: /1 appuntamento senza sede identificata/ }).click()
   await page.screenshot({ path: 'ux-weekly-city.png', animations: 'disabled' })
 
   // Saturday must reveal only the specific Piazza I maggio schedule.
