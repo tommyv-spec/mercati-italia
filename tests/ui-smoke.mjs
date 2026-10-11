@@ -82,6 +82,33 @@ try {
   const firstCity = await page.locator('.market-card').first().innerText()
   assert.match(firstCity, /Firenze/i, 'Manual city filter did not affect the results')
 
+  // Firenze's six generic weekday records must appear as one city group,
+  // with four physical venue labels after lazy-loading regional details.
+  const cityGroup = page.getByTestId('weekly-city-group').filter({
+    hasText: 'Mercati settimanali a Firenze',
+  }).first()
+  await cityGroup.waitFor({ timeout: 20000 })
+  assert.equal(await cityGroup.getByText('6 appuntamenti').count(), 1)
+  await cityGroup.getByRole('button', { name: 'Visualizza sedi e giornate' }).click()
+  await cityGroup.getByText('Caricamento sedi…').waitFor({ state: 'hidden', timeout: 25000 })
+  await cityGroup.getByText('Largo Monzani', { exact: true }).waitFor()
+  assert.equal(await cityGroup.locator('.weekly-venue').count(), 4,
+    'Firenze weekly listings must be four venues, not six duplicate cards')
+  assert.equal(await cityGroup.getByText('Piazza i maggio', { exact: true }).count(), 1)
+  await page.screenshot({ path: 'ux-weekly-city.png', animations: 'disabled' })
+
+  // Saturday must reveal only the specific Piazza I maggio schedule.
+  await page.getByRole('button', { name: 'Mostra mercati del sabato' }).click()
+  const saturdayGroup = page.getByTestId('weekly-city-group').filter({
+    hasText: 'Mercati settimanali a Firenze',
+  }).first()
+  await saturdayGroup.waitFor()
+  await saturdayGroup.getByText('Piazza i maggio', { exact: true }).waitFor({ timeout: 25000 })
+  assert.equal(await saturdayGroup.getByText('Largo Monzani', { exact: true }).count(), 0)
+  await page.screenshot({ path: 'ux-weekly-saturday.png', animations: 'disabled' })
+  await page.getByRole('button', { name: 'Togli filtro giorno' }).click()
+  await assertCards()
+
   // Location opt-in: only now is browser GPS permission used.
   await context.grantPermissions(['geolocation'], { origin: BASE })
   await context.setGeolocation({ latitude: 43.77, longitude: 11.25 })
