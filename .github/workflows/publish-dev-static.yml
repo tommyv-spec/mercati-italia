@@ -5,6 +5,11 @@ on:
       - improve/data-quality-security-performance-2026-10-11
     paths:
       - .github/workflows/publish-dev-static.yml
+      - 'src/**'
+      - 'tests/marketGrouping.test.mjs'
+      - 'public/data/v1/manifest.json'
+      - 'package.json'
+      - 'package-lock.json'
 
 permissions:
   contents: write
