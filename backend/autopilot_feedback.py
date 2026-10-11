@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -17,9 +18,12 @@ def measure_issue(code: str, severity: int, affected: int, total: int,
                   automation_possible: str, action: str, acceptance: str,
                   confidence: float = 0.9, implementation_cost: int = 3) -> dict:
     prevalence = affected / max(total, 1)
-    # Higher prevalence / confidence / severity and lower effort -> higher priority.
-    score = round(severity * (0.25 + prevalence) * confidence /
-                  max(1, implementation_cost), 3)
+    # Quality risk and user harm dominate low-effort busywork: coverage already
+    # fixed for 87% of records should rank below 0% documented verification.
+    # Logarithmic effort discount still favors feasible automations without
+    # hiding P0 safety defects behind trivial fast wins.
+    score = round(severity * (0.05 + prevalence) * confidence /
+                  (1 + math.log2(1 + max(1, implementation_cost))), 3)
     return {
         "code": code, "priority_score": score,
         "severity": severity, "affected_records": affected,
