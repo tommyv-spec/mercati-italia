@@ -35,6 +35,8 @@ jobs:
           cache: npm
       - name: Install frontend dependencies
         run: npm ci --no-audit --no-fund
+      - name: Block vulnerable production dependencies
+        run: npm audit --omit=dev --audit-level=high
       - name: Test weekly city and venue grouping
         run: node --test tests/marketGrouping.test.mjs
       - name: Build Vite static site
