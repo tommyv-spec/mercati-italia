@@ -1368,7 +1368,8 @@ export default function App() {
   const [tab, setTab] = useState("esplora");
   const [viewMode, setViewMode] = useState("lista");
   const [searchQuery, setSearchQuery] = useState("");
-  const [dateFilter, setDateFilter] = useState(null);
+  // Prioritize visits people can actually plan; deselect to browse undated markets.
+  const [dateFilter, setDateFilter] = useState('7giorni');
   const [visibleCount, setVisibleCount] = useState(60);
   const [showFilters, setShowFilters] = useState(false);
   const [showSort, setShowSort] = useState(false);
@@ -1507,8 +1508,8 @@ export default function App() {
   const activateNearby = () => {
     setLocationMode('auto');
     setFilterCity('');
-    setFilterDistance(100);
-    setActiveFilterCount(Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
+    setFilterDistance(50);
+    setActiveFilterCount(1 + Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
     setSortBy('distanza');
     requestPosition();
   };
@@ -1600,7 +1601,10 @@ export default function App() {
 
     // Sort
     if (sortBy === "distanza" && canUseDistance) {
-      result.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+      const priority = (market) => market.positionQuality === 'precisa'
+        ? 0 : market.positionQuality === 'approssimata' ? 1 : 2;
+      result.sort((a, b) => priority(a) - priority(b) ||
+        (a.distance ?? Infinity) - (b.distance ?? Infinity));
     } else {
       result.sort((a, b) => {
         const aDate = getNextDate(a.dates);
@@ -1721,9 +1725,11 @@ export default function App() {
           </span>
           {canUseDistance && (
             <span className="card-info-item card-distance">
-              {Number.isFinite(market.distance)
-                ? (market.positionQuality === 'precisa' ? '' : 'circa ') + Math.round(market.distance) + ' km'
-                : 'Distanza non disponibile'}
+              {market.positionQuality === 'precisa' && Number.isFinite(market.distance)
+                ? 'a ' + Math.round(market.distance) + ' km'
+                : market.positionQuality === 'approssimata' && Number.isFinite(market.distance)
+                  ? 'circa ' + Math.round(market.distance) + ' km (stimati)'
+                  : 'Posizione da verificare'}
             </span>
           )}
         </div>
@@ -2122,12 +2128,18 @@ export default function App() {
           <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
             disabled={positionStatus === 'requesting'}>
             <Icon name="mapPin" size={13} />
-            {positionStatus === 'ready' ? 'Vicino a me · posizione attiva' :
+            {positionStatus === 'ready' ? 'Vicino a me · raggio indicativo 50 km' :
              positionStatus === 'requesting' ? 'Cerco la posizione…' : 'Mercati vicino a me'}
           </button>
           {positionError && <span role="alert" style={{ fontSize: 12, color: '#A5443D' }}>{positionError}</span>}
         </div>
 
+        {canUseDistance && (
+          <p role="note" style={{ fontSize: 11, lineHeight: 1.5, color: '#7D7267', margin: '4px 20px 10px' }}>
+            Le coordinate di molti mercati non sono ancora verificate.
+            Il raggio è indicativo: verifica sempre l’indirizzo nella scheda.
+          </p>
+        )}
         <div className="controls-row">
           <div className="view-toggle">
             <button className={viewMode === "lista" ? "active" : ""} onClick={() => setViewMode("lista")}>
