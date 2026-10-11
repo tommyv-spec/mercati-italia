@@ -8,6 +8,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from export_static import export, normalize, prepare, parse_location, parse_dates
 from source_milano import convert
+from source_firenze import convert as convert_firenze
 
 
 def market(slug="mercato-centro-roma", **kwargs):
@@ -143,6 +144,43 @@ class MilanoTests(unittest.TestCase):
 
     def test_inactive_ignored(self):
         self.assertEqual(convert([{"ID": 4, "MERCATO": "closed", "status mss": "non attivo"}]), [])
+
+
+
+class FirenzeTests(unittest.TestCase):
+    def test_official_point_and_uncertain_schedule(self):
+        geojson = {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature", "id": 12,
+                "geometry": {"type": "Point", "coordinates": [11.25, 43.77]},
+                "properties": {
+                    "nome": "Mercato delle Pulci",
+                    "indirizzo": "Piazza Annigoni",
+                    "descrizione": "Oggetti usati e libri",
+                    "feelflorence_link": "https://www.feelflorence.it/it/punti-di-interesse/test",
+                    "orari": "lunedì e domenica 9-19",
+                },
+            }],
+        }
+        items = convert_firenze(geojson)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["categoria"], "usato")
+        self.assertEqual(items[0]["lat"], 43.77)
+        self.assertEqual(items[0]["lng"], 11.25)
+        self.assertEqual(items[0]["position_quality"], "precisa")
+        self.assertEqual(items[0]["date_quality"], "sconosciuta")
+        self.assertEqual(items[0]["date"], [])
+        self.assertEqual(items[0]["aggiornato_il"], "2023-03-03")
+
+    def test_geojson_refuses_invalid_coordinates(self):
+        geojson = {
+            "type": "FeatureCollection",
+            "features": [{"type": "Feature", "id": 1,
+                          "geometry": {"type": "Point", "coordinates": [0, 0]},
+                          "properties": {"nome": "Mercato Test"}}],
+        }
+        self.assertIsNone(convert_firenze(geojson)[0]["lat"])
 
 
 if __name__ == "__main__":
