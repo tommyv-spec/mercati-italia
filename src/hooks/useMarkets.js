@@ -12,7 +12,6 @@ import {
   fetchMarkets, fetchFilterOptions, getFavorites,
   toggleFavorite as apiToggleFavorite, getDataMode, haversine,
 } from '../services/api'
-import { autoSeed } from '../services/seed'
 
 const DEFAULT_LAT = 43.7696
 const DEFAULT_LNG = 11.2558
@@ -63,7 +62,7 @@ function adaptMarket(m, userLat, userLng) {
 export function useMarkets() {
   const [markets, setMarkets] = useState([])
   const [loading, setLoading] = useState(true)
-  const [seedStatus, setSeedStatus] = useState(null) // null | 'seeding' | 'done'
+  const seedStatus = null // demo data must never be written by a browser
   const [error, setError] = useState(null)
   const [favorites, setFavorites] = useState(new Set())
   const [filterOptions, setFilterOptions] = useState({ regioni: [], citta: [] })
@@ -79,17 +78,8 @@ export function useMarkets() {
       try {
         setLoading(true)
 
-        // Step 1: Auto-seed if Firestore is empty
-        setSeedStatus('seeding')
-        const seedResult = await autoSeed()
-        if (cancelled) return
-        setSeedStatus('done')
-
-        if (seedResult.seeded) {
-          console.log(`[useMarkets] Seeded ${seedResult.count} markets`)
-        }
-
-        // Step 2: Fetch markets + favorites + filter options
+        // Fetch only server-managed records. Never auto-write demo data.
+        // Fetch markets + favorites + filter options
         const [rawMarkets, favs, filters] = await Promise.all([
           fetchMarkets({ userLat, userLng }),
           getFavorites(),
