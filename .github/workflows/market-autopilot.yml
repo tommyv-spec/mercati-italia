@@ -1,0 +1,275 @@
+# Only trusted SCHEDULER lives on main. All implementation, data snapshots and
+# publication remain isolated in the DEV branch. No Cloudflare Worker/KV/D1
+# or Firebase call occurs when a visitor browses the static preview.
+name: Mercati Autopilot — scheduled DEV improvements
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/market-autopilot.yml
+  schedule:
+    - cron: '17 04 * * 2,5'
+  workflow_dispatch:
+    inputs:
+      offline:
+        type: boolean
+        required: false
+        default: false
+        description: 'Use existing sources only; no external official feed download'
+
+concurrency:
+  group: mercati-autopilot-dev
+  cancel-in-progress: false
+
+env:
+  DEV_BRANCH: improve/data-quality-security-performance-2026-10-11
+  CHECKPOINT_NAME: mercati-checkpoints-${{ github.run_id }}
+  BUILD_NAME: mercati-qa-build-${{ github.run_id }}
+
+jobs:
+  candidate:
+    name: Source → merge → recurrence → export → quality gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEV_BRANCH }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify source adapters and all trusted automation rules
+        run: python -m unittest discover -s backend/tests -v
+      - name: Run fail-closed Autopilot with checkpoint persistence
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          python backend/autopilot.py --output autopilot-output "${args[@]}"
+      - name: Preserve checkpoints and candidate even after failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output/
+          retention-days: 30
+          if-no-files-found: warn
+
+  qa:
+    name: Security, compiled static site, mobile browser checks
+    needs: candidate
+    if: needs.candidate.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEV_BRANCH }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output
+      - name: Verify candidate approved and replace ONLY local static data
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, shutil
+          decision = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if not decision['approved']:
+              raise ValueError('Candidate was not approved by the policy engine')
+          candidate = Path('autopilot-output/candidate/public/data/v1')
+          if not (candidate / 'manifest.json').is_file():
+              raise ValueError('Approved catalog artifact missing')
+          target = Path('public/data/v1')
+          shutil.rmtree(target)
+          shutil.copytree(candidate, target)
+          print('Candidate installed in ephemeral QA runner only.')
+          PY
+      - name: Verify hashes, index and conservative source integrity
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Dependency, data grouping and static build checks
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/marketGrouping.test.mjs
+          npm run build -- --base=./
+      - name: Install mobile browser for end-to-end smoke
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start locally built static site
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/mercati-autopilot-preview.log 2>&1 &
+          for attempt in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/mercati-autopilot-preview.log
+          exit 1
+      - name: Exercise real user flows — no billed backend calls
+        env:
+          UI_BASE: http://127.0.0.1:4173/
+        run: node tests/ui-smoke.mjs
+      - name: Save tested static distribution (for separate DEV publication)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error
+      - name: Save mobile QA and screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercati-autopilot-mobile-${{ github.run_id }}
+          path: |
+            ux-*.png
+            ux-smoke-result.json
+            /tmp/mercati-autopilot-preview.log
+          retention-days: 30
+          if-no-files-found: warn
+
+  publish_dev:
+    name: Update DEV catalog + separately hosted static preview
+    needs: [candidate, qa]
+    if: needs.candidate.result == 'success' && needs.qa.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEV_BRANCH }}
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: autopilot-built-site
+      - name: Prevent overwriting newer DEV catalog changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$DEV_BRANCH"
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          report = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if not report.get('approved'):
+              raise ValueError('Autopilot policy did not approve this candidate')
+          actual = subprocess.check_output(
+              ['git', 'show', 'origin/' + subprocess.check_output(
+                  ['git', 'branch', '--show-current'], text=True).strip()
+               + ':public/data/v1/manifest.json'], text=True)
+          current = json.loads(actual)
+          if current['content_signature'] != report['base_signature']:
+              raise ValueError('DEV market catalog changed after QA: refusing stale overwrite')
+          target = Path('autopilot-output/candidate/public/data/v1/manifest.json')
+          if not target.is_file() or json.loads(target.read_text())['content_signature'] != report['new_signature']:
+              raise ValueError('Candidate artifact signature mismatch')
+          PY
+      - name: Update ONLY DEV data files if content changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json, shutil
+          report = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if report['has_changes']:
+              source = Path('autopilot-output/candidate/public/data/v1')
+              target = Path('public/data/v1')
+              shutil.rmtree(target)
+              shutil.copytree(source, target)
+          print('candidate_changed=',report['has_changes'])
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/data/v1
+          if ! git diff --cached --quiet; then
+            git commit -m "autopilot: refresh source-bound predicted dates (DEV only)"
+            git fetch origin "$DEV_BRANCH"
+            git rebase "origin/$DEV_BRANCH" || {
+              git rebase --abort || true
+              echo "::error::Concurrent code/data change requires review; no force-push"
+              exit 1
+            }
+            git push origin "HEAD:$DEV_BRANCH"
+          else
+            echo "No DEV catalog changes, retaining current version."
+          fi
+      - name: Rebuild ONLY isolated dev-static-preview branch from tested distribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          snapshot="$(mktemp -d)"
+          cp -a autopilot-built-site/. "$snapshot/"
+          touch "$snapshot/.nojekyll"
+          git switch --orphan dev-static-preview
+          git rm -rf . >/dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -a "$snapshot"/. .
+          git add -A
+          git commit -m "autopilot: approved static DEV preview build"
+          git push --force origin HEAD:refs/heads/dev-static-preview
+          echo '### Verified DEV preview' >> "$GITHUB_STEP_SUMMARY"
+          echo 'https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/index.html' >> "$GITHUB_STEP_SUMMARY"
+
+  notify:
+    name: Failure monitoring and automatic GitHub incident
+    needs: [candidate, qa, publish_dev]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const results = {
+              candidate: '${{ needs.candidate.result }}',
+              qa: '${{ needs.qa.result }}',
+              publish_dev: '${{ needs.publish_dev.result }}',
+            };
+            const success = Object.values(results).every(x => x === 'success');
+            const title = '[Mercati autopilot] Verifica richiesta';
+            const link = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `Autopilot run: ${link}\n\nJobs: \`\`\`json\n${JSON.stringify(results,null,2)}\n\`\`\`\n\nPubblicazione DEV bloccata quando uno dei controlli fallisce. I checkpoint (se disponibili) sono negli artefatti del run.`;
+            try {
+              const {data: issues} = await github.rest.issues.listForRepo({
+                ...context.repo, state:'open', per_page:100,
+              });
+              const issue = issues.find(x => !x.pull_request && x.title === title);
+              if (success) {
+                if (issue) {
+                  await github.rest.issues.createComment({...context.repo,issue_number:issue.number,body:'Ripristinato: '+link});
+                  await github.rest.issues.update({...context.repo,issue_number:issue.number,state:'closed'});
+                }
+              } else if (issue) {
+                await github.rest.issues.createComment({...context.repo,issue_number:issue.number,body});
+              } else {
+                await github.rest.issues.create({...context.repo,title,body});
+              }
+            } catch (error) {
+              core.warning('GitHub issue notification unavailable: ' + String(error).slice(0,250));
+            }
