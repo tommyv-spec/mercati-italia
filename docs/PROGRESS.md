@@ -35,7 +35,8 @@ Più mercati italiani, dati affidabili, ricerca veloce su telefono, nessun costo
 - [x] Distanze calcolate solo con GPS autorizzato; raggio vicino a me limitato ai punti precisi, con scelta esplicita per vedere anche posizioni indicative. Dati incerti spiegati nella scheda.
 - [x] Audit doppioni: prima proposta di 3.903 fusioni **bloccata** perché includeva mercati in vie/giorni diversi. Dopo controllo: **446 unioni sicure**, da 13.096 a 12.650; snapshot rigenerato con `index_schema=3` e tutte le 20 regioni.
 - [x] Test Python e build/validazione snapshot superati nel workflow `quality.yml` run `38168363210`.
-- [ ] Retest mobile del nuovo snapshot e review dettagliata su telefono fisico; risultati e intervalli aggiornati per tutti i filtri.
+- [x] Retest automatico Chromium mobile dopo snapshot 12.650 e UX fixes: run `38168580936` PASS, 60 card, zero JavaScript page errors, zero richieste Firebase/Workers nel percorso simulato. Screenshot casa, scheda e GPS nell'artefatto `mercati-ux-mobile`.
+- [ ] Review su telefoni fisici Android/iOS, contrasto/accessibilità e UX con utenti reali; il test emulato non basta.
 - [ ] Mappa stradale reale, verifiche umane delle date/sedi/orari, e controllo Cloudflare/Firebase dal dashboard restano aperti.
 
 ## Cosa manca prima di mettere online
