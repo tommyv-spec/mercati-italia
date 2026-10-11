@@ -38,7 +38,7 @@ jobs:
       - name: Block vulnerable production dependencies
         run: npm audit --omit=dev --audit-level=high
       - name: Test weekly city and venue grouping
-        run: node --test tests/marketGrouping.test.mjs
+        run: node --test tests/*.test.mjs
       - name: Build Vite static site
         run: npm run build
       - name: Assert Cloudflare has no billed function route for static pages

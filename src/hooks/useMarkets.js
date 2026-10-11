@@ -4,7 +4,7 @@
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import {
-  fetchMarkets, fetchMarketById, getFavorites,
+  fetchMarkets, fetchMarketById, getFavorites, revalidateCatalogIfStale,
   toggleFavorite as apiToggleFavorite, getDataMode,
 } from '../services/staticMarkets'
 
@@ -59,6 +59,7 @@ function adaptMarket(m, userLat, userLng) {
 export function useMarkets() {
   const [markets, setMarkets] = useState([])
   const [loading, setLoading] = useState(true)
+  const [catalogRevision, setCatalogRevision] = useState(0)
   const seedStatus = null // Retained for compatibility; no browser-side seed
   const [error, setError] = useState(null)
   const [favorites, setFavorites] = useState(new Set())
@@ -108,6 +109,29 @@ export function useMarkets() {
     setPositionError('')
   }, [])
 
+  // Keep long-open tabs current without polling while hidden or invoking
+  // Firestore, Workers, Functions or other dynamic backends.
+  useEffect(() => {
+    let mounted = true
+    const check = () => {
+      if (document.visibilityState === 'hidden') return
+      revalidateCatalogIfStale().then(changed => {
+        if (mounted && changed) setCatalogRevision(value => value + 1)
+      }).catch(() => {
+        // Preserve the last tested working catalog; retry at the next check.
+      })
+    }
+    document.addEventListener('visibilitychange', check)
+    window.addEventListener('focus', check)
+    const interval = window.setInterval(check, 30 * 60 * 1000)
+    return () => {
+      mounted = false
+      document.removeEventListener('visibilitychange', check)
+      window.removeEventListener('focus', check)
+      window.clearInterval(interval)
+    }
+  }, [])
+
   // Load the static catalog; recalculate distances after opt-in positioning.
   useEffect(() => {
     let cancelled = false
@@ -141,7 +165,7 @@ export function useMarkets() {
 
     init()
     return () => { cancelled = true }
-  }, [userLat, userLng])
+  }, [userLat, userLng, catalogRevision])
 
   const toggleFav = useCallback(async (marketId) => {
     setFavorites(prev => {

@@ -5,7 +5,10 @@
  * The update job creates a manifest and content-hashed JSON assets at build time.
  * Browser Cache-Control handles subsequent visits and refreshes.
  */
-const BASE_URL = import.meta.env.BASE_URL || '/'
+const BASE_URL = import.meta.env?.BASE_URL || '/'
+export const CATALOG_CHECK_INTERVAL_MS = 30 * 60 * 1000
+let lastCatalogCheckAt = 0
+let catalogRecheckPromise = null
 const FAVORITES_KEY = 'mercati_preferiti'
 let catalogPromise
 const regionPromises = new Map()
@@ -17,8 +20,10 @@ function staticURL(path) {
   return BASE_URL.replace(/\/$/, '/') + path
 }
 
-async function loadJSON(path, immutable = false) {
-  const response = await fetch(staticURL(path), { cache: immutable ? 'force-cache' : 'default' })
+async function loadJSON(path, immutable = false, revalidate = false) {
+  const response = await fetch(staticURL(path), {
+    cache: immutable ? 'force-cache' : revalidate ? 'no-cache' : 'default',
+  })
   if (!response.ok) throw new Error('Catalogo non disponibile: ' + path + ' (' + response.status + ')')
   return response.json()
 }
@@ -35,8 +40,7 @@ async function mapLimited(items, concurrency, mapper) {
   return output
 }
 
-async function loadCatalog() {
-  const manifest = await loadJSON('data/v1/manifest.json')
+async function loadCatalogFromManifest(manifest) {
   if (manifest.schema !== 1 || !Number.isInteger(manifest.total) || manifest.total < 0) {
     throw new Error('Manifest del catalogo non valido')
   }
@@ -90,6 +94,47 @@ async function loadCatalog() {
     ids.add(market.slug)
   }
   return { manifest, markets }
+}
+
+async function loadCatalog() {
+  const result = await loadCatalogFromManifest(await loadJSON('data/v1/manifest.json'))
+  lastCatalogCheckAt = Date.now()
+  return result
+}
+
+// A browser tab can remain open after the daily deployment. Only the small
+// static manifest is revalidated, at most once per 30 minutes while visible.
+// Unchanged manifests avoid downloading a new index or regional data.
+export function shouldRevalidateCatalog(lastCheck, now = Date.now()) {
+  return Number.isFinite(now) && (!lastCheck || (now >= lastCheck
+    && now - lastCheck >= CATALOG_CHECK_INTERVAL_MS))
+}
+
+export async function revalidateCatalogIfStale(now = Date.now()) {
+  const current = await fetchCatalog()
+  if (catalogRecheckPromise) return catalogRecheckPromise
+  if (!shouldRevalidateCatalog(lastCatalogCheckAt, now)) return false
+  catalogRecheckPromise = (async () => {
+    const manifest = await loadJSON('data/v1/manifest.json', false, true)
+    if (manifest.content_signature && current.manifest.content_signature
+        && manifest.content_signature === current.manifest.content_signature
+        && manifest.index === current.manifest.index) {
+      lastCatalogCheckAt = now
+      return false
+    }
+    // Prepare all data before switching. A missing shard/index must never
+    // replace the last working catalog in the active browser session.
+    const next = await loadCatalogFromManifest(manifest)
+    catalogPromise = Promise.resolve(next)
+    regionPromises.clear()
+    lastCatalogCheckAt = now
+    return true
+  })()
+  try {
+    return await catalogRecheckPromise
+  } finally {
+    catalogRecheckPromise = null
+  }
 }
 
 export async function fetchCatalog() {
