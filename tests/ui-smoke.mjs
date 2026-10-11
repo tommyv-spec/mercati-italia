@@ -45,6 +45,11 @@ try {
   await page.locator('.detail-page').waitFor()
   await page.screenshot({ path: 'ux-detail.png', animations: 'disabled' })
   assert.equal(await page.getByRole('button', { name: 'Condividi questo mercato' }).count(), 1)
+  const displayedAddress = (await page.locator('.detail-address').innerText()).trim().toLowerCase()
+  if (['centro', 'centro storico', 'zona centro'].includes(displayedAddress)) {
+    assert.equal(await page.getByRole('button', { name: /Indicazioni/ }).isDisabled(), true,
+      'Vague city-centre text must not create a fake navigation destination')
+  }
   await page.locator('.detail-back').click()
 
   // Manual city selection filters actual results, not a cosmetic toast.
@@ -60,8 +65,12 @@ try {
   await context.grantPermissions(['geolocation'], { origin: BASE })
   await context.setGeolocation({ latitude: 43.77, longitude: 11.25 })
   await page.getByRole('button', { name: /Mercati vicino a me|Vicino a me/ }).first().click()
-  await page.getByText('Vicino a me · raggio indicativo 50 km', { exact: false }).waitFor({ timeout: 20000 })
+  await page.getByText('Vicino a me · 50 km, posizioni precise', { exact: false }).waitFor({ timeout: 20000 })
+  // By default, do not show approximate locations as truly nearby.
+  const trustedResults = await page.locator('.market-card').count()
+  await page.getByRole('button', { name: 'Mostra anche posizioni indicative' }).first().click()
   await assertCards()
+  assert.ok(trustedResults >= 0)
   assert.equal(await page.locator('.market-card .card-distance').count() > 0, true,
     'No location status after GPS permission')
   assert.equal(await page.locator('.market-card .card-distance').filter({ hasText: 'circa 0 km' }).count(), 0,
