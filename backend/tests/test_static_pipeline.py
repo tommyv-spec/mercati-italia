@@ -78,6 +78,25 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(result["url_fonte"], "")
         self.assertEqual(result["completezza"], 45)  # base + future date + approximate coordinates
 
+    def test_excludes_obsolete_named_edition(self):
+        result, reason = normalize(
+            market(nome="Collezionare a Firenze - Giugno 2023", date=[]), self.today
+        )
+        self.assertIsNone(result)
+        self.assertEqual(reason, "historical_edition_without_future_date")
+
+    def test_keeps_old_year_if_new_future_date_is_documented(self):
+        result, reason = normalize(
+            market(nome="Mostra Mercato 2023", date=["2026-10-13"]), self.today
+        )
+        self.assertIsNone(reason)
+        self.assertIsNotNone(result)
+
+    def test_skips_city_with_no_letters(self):
+        result, reason = normalize(market(citta="70-72"), self.today)
+        self.assertIsNone(result)
+        self.assertEqual(reason, "invalid_city_name")
+
     def test_skips_cancelled(self):
         result, reason = normalize(market(status="annullato"), self.today)
         self.assertIsNone(result)
