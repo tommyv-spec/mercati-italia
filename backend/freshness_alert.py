@@ -15,10 +15,13 @@ from pathlib import Path
 TITLE = "[Mercati autopilot] Dati da verificare"
 
 
-def build(freshness):
+def build(freshness, source_changes=None):
     if freshness.get("schema") != 1 or not isinstance(freshness.get("metrics"), dict):
         raise ValueError("Freshness report schema mismatch")
     m = freshness["metrics"]
+    changes = source_changes or {}
+    if changes and (changes.get("schema") != 1 or changes.get("imported_markets") != 0):
+        raise ValueError("Invalid publisher change review")
     total = int(m.get("total", 0))
     problem = {
         "total": total,
@@ -31,6 +34,10 @@ def build(freshness):
             str(p.get("publisher", "")) for p in freshness.get("publisher_evidence", [])
             if p.get("status") not in ("metadata_checked", "offline")
         ),
+        "publisher_new_data_claims": sorted(
+            str(p.get("publisher", "")) for p in changes.get("results", [])
+            if p.get("change_type") == "publisher_data_date_advanced"
+        ),
     }
     if any(not isinstance(n, int) or n < 0 for n in problem.values()
            if isinstance(n, int)):
@@ -42,6 +49,7 @@ def build(freshness):
         problem["stale_forecast"] > 0,
         problem["unsupported_confirmation"] > 0,
         bool(problem["publisher_unavailable"]),
+        bool(problem["publisher_new_data_claims"]),
     ))
     signature = hashlib.sha256(json.dumps(
         problem, sort_keys=True, ensure_ascii=False, separators=(",", ":")
@@ -57,6 +65,7 @@ def build(freshness):
         f"- Date previste da fonte vecchia/sconosciuta: {problem['stale_forecast']:,}",
         f"- Date confermate senza prova: {problem['unsupported_confirmation']:,}",
         f"- Publisher non raggiungibili / metadati cambiati: {', '.join(problem['publisher_unavailable']) or 'nessuno'}",
+        f"- Enti che dichiarano dati aggiornati rispetto al controllo precedente: {', '.join(problem['publisher_new_data_claims']) or 'nessuno'}",
         "",
         "Correggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.",
         "",
@@ -74,10 +83,13 @@ def build(freshness):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--freshness", type=Path, required=True)
+    p.add_argument("--source-changes", type=Path)
     p.add_argument("--out", type=Path, required=True)
     args = p.parse_args()
     data = json.loads(args.freshness.read_text("utf-8"))
-    result = build(data)
+    changes = json.loads(args.source_changes.read_text("utf-8")) if (
+        args.source_changes and args.source_changes.is_file()) else None
+    result = build(data, changes)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, indent=2, ensure_ascii=False, sort_keys=True) + "\n",
                         encoding="utf-8")

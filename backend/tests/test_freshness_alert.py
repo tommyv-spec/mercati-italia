@@ -34,6 +34,19 @@ class AlertTests(unittest.TestCase):
         self.assertTrue(out["attention_required"])
         self.assertEqual(out["problems"]["publisher_unavailable"], ["Lombardia"])
 
+    def test_new_publisher_data_date_creates_an_actionable_review(self):
+        changes = {
+            "schema": 1, "imported_markets": 0,
+            "results": [
+                {"publisher": "Regione Lombardia",
+                 "change_type": "publisher_data_date_advanced"}
+            ],
+        }
+        report = build(report(), changes)
+        self.assertTrue(report["attention_required"])
+        self.assertEqual(report["problems"]["publisher_new_data_claims"], ["Regione Lombardia"])
+        self.assertIn("Regione Lombardia", report["body"])
+
     def test_bad_report_rejected(self):
         with self.assertRaises(ValueError):
             build({"schema": 2, "metrics": {}})
