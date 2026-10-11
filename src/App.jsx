@@ -1960,7 +1960,9 @@ export default function App() {
                 </div>
                 <div style={{ fontSize: 12, opacity: 0.7 }}>
                   Fonte: {m.source || 'non disponibile'}
-                  {m.sourceUpdated ? ' · dati del ' + m.sourceUpdated : ''}
+                  {m.sourceUpdated ? (m.sourceUpdateScope === 'dataset'
+                    ? ' · dataset aggiornato il ' + m.sourceUpdated + ' (non verifica del singolo mercato)'
+                    : ' · dati del ' + m.sourceUpdated) : ''}
                 </div>
                 {m.sourceUrl && (
                   <a href={m.sourceUrl} target="_blank" rel="noopener noreferrer"

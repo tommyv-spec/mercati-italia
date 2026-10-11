@@ -129,7 +129,10 @@ def combine(base: list, incoming: list) -> tuple[list, dict]:
             matched += 1
             continue
         key = _location_key(record)
-        matches = candidate_names.get(key, []) if key[-1] else []
+        # A MERCap row is an independent day-level source identity.
+        # Never absorb it into a generic record via city/address guesswork.
+        matches = (candidate_names.get(key, []) if key[-1]
+                   and not slug.startswith("lo-mercap-") else [])
         if len(matches) == 1:
             chosen = matches[0]
             output[chosen] = _merge(output[chosen], record)

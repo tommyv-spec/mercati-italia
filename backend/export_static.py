@@ -212,6 +212,12 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "verificato_il": safe_string(raw.get("verificato_il"), 35),
         "aggiornato_il": safe_string(raw.get("aggiornato_il"), 35),
     }
+    # Scope=dataset means a bulk publisher update is not proof that this
+    # particular market was inspected or confirmed.
+    if raw.get("aggiornamento_ambito") == "dataset":
+        result["aggiornamento_ambito"] = "dataset"
+    if raw.get("id_fonte"):
+        result["id_fonte"] = safe_string(raw.get("id_fonte"), 40)
     return result, None
 
 

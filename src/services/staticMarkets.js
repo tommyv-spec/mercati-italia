@@ -188,6 +188,7 @@ function normalize(m, userLat, userLng) {
     completezza: m.completezza ?? 0,
     verificato_il: m.verificato_il || '',
     aggiornato_il: m.aggiornato_il || '',
+    aggiornamento_ambito: m.aggiornamento_ambito || '',
     date_quality: m.date_quality || 'prevista',
     position_quality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',
