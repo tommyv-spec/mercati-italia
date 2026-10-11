@@ -46,3 +46,12 @@ Non dichiarare l'app «completa e verificata» finché:
 - la nuova release passa test automatici ed end-to-end su dispositivi;
 - Cloudflare serve le richieste di catalogo come file statici (Network browser + dashboard);
 - i campi più importanti delle schede scelte per il test (date, luogo e orario) sono confrontati con fonti primarie recenti.
+
+## Checkpoint UX browser mobile — 11 ottobre 2026
+- Browser Chromium mobile emulato (390x844); test visita schermata principale, scheda, ricerca città, autorizzazione GPS e Agenda.
+- Run iniziale: https://github.com/tommyv-spec/mercati-italia/actions/runs/38166839296 — PASS. 60 card renderizzate (paginazione), nessun errore JS, zero richieste a Firestore/Workers nella visita simulata. Artefatto con screenshot nella pagina Actions.
+- La schermata reale ha mostrato difetti che il build statico NON poteva trovare: risultati non pertinenti, doppioni e titoli riferiti al 2023, distanze «circa 0 km» ricavate da coordinate non verificate, elenco iniziale di oltre 13.000 candidati.
+- Correzioni dopo la review visiva: predefinito filtro «prossimi 7 giorni» (deselezionabile), pulsante vicino a me con raggio indicativo di 50 km, nessun numero di chilometri per coordinate non verificate, ordinamento che privilegia posizioni precise, avvisi visibili su approssimazioni. Aggiunti filtri a monte per edizioni storiche senza date future e città senza lettere.
+- Serve rieseguire export statico con i nuovi filtri prima della produzione. Non eliminare definitivamente i record sorgente; tenere traccia degli esclusi e analizzare i falsi positivi.
+- Test mobile ripetuto anche sulle nuove etichette vicino a me; richiedere screenshot più recente prima di chiudere il checkpoint.
+- Test automatico mobile non equivale a user testing: devono ancora essere verificati manualmente i flussi su Android e iPhone fisici e con accessibilità attivata.
