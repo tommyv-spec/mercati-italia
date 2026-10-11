@@ -5,19 +5,23 @@
   "failed_release_gates": [],
   "forecast_from_stale_sources": 0,
   "freshness_errors": [],
-  "freshness_warnings": [],
+  "freshness_warnings": [
+    "no_record_has_documented_verification",
+    "source_data_older_than_allowed_forecast_window",
+    "publisher_metadata_unavailable_or_changed"
+  ],
   "hours_missing": 10627,
   "index_gzip_bytes": 356152,
   "precise_position_count": 89,
   "predicted_60d": 11056,
   "predicted_90d": 11048,
-  "publisher_metadata_checked": 0,
-  "publisher_metadata_readable": 0,
+  "publisher_metadata_checked": 3,
+  "publisher_metadata_readable": 2,
   "quality_approved": true,
   "record_count": 12650,
-  "recorded_utc": "2026-10-11T23:03:33.309497+00:00",
-  "run_id": "38182696509",
-  "source_age_over_limit": 0,
+  "recorded_utc": "2026-10-11T23:05:54.260672+00:00",
+  "run_id": "38182718799",
+  "source_age_over_limit": 89,
   "source_age_within_30_days": 0,
   "source_candidates_scored": 42,
   "source_date_unknown": 0,
@@ -34,5 +38,5 @@
     "supplier_concentration",
     "recurring_date_coverage"
   ],
-  "workflow_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/38182696509"
+  "workflow_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/38182718799"
 }

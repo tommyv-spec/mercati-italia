@@ -1,0 +1,101 @@
+{
+  "catalog_was_modified": false,
+  "errors": [],
+  "examples": {
+    "confirmation_without_evidence": [],
+    "future_source_timestamp": [],
+    "stale_projected": [],
+    "unknown_origin": []
+  },
+  "max_source_age_days": 540,
+  "metrics": {
+    "source_date_91_to_365d": 12561,
+    "source_date_outside_limit": 89,
+    "total": 12650,
+    "with_any_future_date": 11108,
+    "with_forecast_dates": 11108,
+    "without_documented_verification": 12650
+  },
+  "publisher_evidence": [
+    {
+      "last_publisher_data_change": "2025-12-31",
+      "license_comparison": "publisher_and_catalog_agree_review_required",
+      "market_records_verified_by_metadata": 0,
+      "publisher": "Comune di Bologna",
+      "status": "metadata_checked"
+    },
+    {
+      "last_publisher_data_change": "2026-10-06",
+      "license_comparison": "publisher_and_catalog_agree_review_required",
+      "market_records_verified_by_metadata": 0,
+      "publisher": "Regione Lombardia",
+      "status": "metadata_checked"
+    },
+    {
+      "last_publisher_data_change": null,
+      "license_comparison": "not_evaluated",
+      "market_records_verified_by_metadata": 0,
+      "publisher": "Roma Capitale",
+      "status": "needs_review"
+    }
+  ],
+  "reference_date": "2026-10-11",
+  "safe_for_automatic_quality_promotion": true,
+  "schema": 1,
+  "snapshot_measurement_not_event_verification": true,
+  "source_domains_top": [
+    {
+      "count": 9647,
+      "domain": "www.happings.com"
+    },
+    {
+      "count": 2197,
+      "domain": "www.eventiesagre.it"
+    },
+    {
+      "count": 432,
+      "domain": "www.cosedicasa.com"
+    },
+    {
+      "count": 85,
+      "domain": "dati.comune.milano.it"
+    },
+    {
+      "count": 70,
+      "domain": "dati.comune.roma.it"
+    },
+    {
+      "count": 22,
+      "domain": "www.cosafareafirenze.it"
+    },
+    {
+      "count": 13,
+      "domain": "www.romatoday.it"
+    },
+    {
+      "count": 9,
+      "domain": "www.genovatoday.it"
+    },
+    {
+      "count": 8,
+      "domain": "emiliaromagnaturismo.it"
+    },
+    {
+      "count": 8,
+      "domain": "www.eventi.bergamo.it"
+    },
+    {
+      "count": 8,
+      "domain": "www.trentino.com"
+    },
+    {
+      "count": 8,
+      "domain": "www.umbriaeventi.com"
+    }
+  ],
+  "warnings": [
+    "no_record_has_documented_verification",
+    "source_data_older_than_allowed_forecast_window",
+    "publisher_metadata_unavailable_or_changed"
+  ]
+}
