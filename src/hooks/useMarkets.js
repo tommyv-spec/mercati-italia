@@ -46,7 +46,9 @@ function adaptMarket(m, userLat, userLng) {
     recurrence: m.ricorrenza_testo || '',
     description: m.descrizione || '',
     source: m.fonte || '',
-    confidence: m.confidence || 50,
+    confidence: m.confidence ?? 0,
+    dataCompleteness: m.completezza ?? 0,
+    sourceUpdated: m.aggiornato_il ? m.aggiornato_il.slice(0, 10) : '',
     // Last scrape is not a human confirmation.
     lastVerified: m.verificato_il ? m.verificato_il.slice(0, 10) : '',
     dateQuality: m.date_quality || 'prevista',
