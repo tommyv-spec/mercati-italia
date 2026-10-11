@@ -46,12 +46,20 @@ async function loadCatalog() {
     if (index.schema !== 1 || !Array.isArray(index.markets) || index.markets.length !== manifest.total) {
       throw new Error('Indice mercati incompleto')
     }
+    // Schema 4 stores compact arrays, preserving display fields and date filters.
+    const columns = ['slug', 'nome', 'citta', 'regione', 'categoria', 'tags',
+      'lat', 'lng', 'position_quality', 'orario_testo', 'date_quality', 'date']
+    const markets = index.markets.map(record => {
+      if (!Array.isArray(record)) return record // legacy preview compatibility
+      if (record.length !== columns.length) throw new Error('Formato indice errato')
+      return Object.fromEntries(columns.map((key, i) => [key, record[i]]))
+    })
     const ids = new Set()
-    for (const record of index.markets) {
+    for (const record of markets) {
       if (!record.slug || ids.has(record.slug)) throw new Error('Indice duplicato o non valido')
       ids.add(record.slug)
     }
-    return { manifest, markets: index.markets }
+    return { manifest, markets }
   }
 
   let parts
