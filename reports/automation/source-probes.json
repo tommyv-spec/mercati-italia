@@ -16,17 +16,28 @@
         "address": [
           "ubicazione"
         ],
+        "district": [
+          "nome_quartiere",
+          "nome_zona"
+        ],
+        "geometry_requires_crs_review": [
+          "geopoint"
+        ],
         "hours": [
           "orario_svolgimento"
         ],
         "latitude": [
           "lat"
         ],
+        "longitude": [
+          "long"
+        ],
+        "market_type": [
+          "tipologia",
+          "tipologia_mercato"
+        ],
         "name": [
-          "denominazione",
-          "tipologia_mercato",
-          "nome_quartiere",
-          "nome_zona"
+          "denominazione"
         ],
         "weekday": [
           "giorni_svolgimento"
@@ -58,6 +69,9 @@
       ],
       "format": "JSON",
       "id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
       "sample_bytes": 3862,
       "sample_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere/records?limit=5",
       "source_license_verified": false,
@@ -70,13 +84,25 @@
       "events_confirmed": 0,
       "field_hints": {
         "address": [
-          "ubicazione"
+          "ubicazione",
+          "indirizzi"
+        ],
+        "geometry_requires_crs_review": [
+          "geo_x",
+          "geo_y",
+          "location"
+        ],
+        "hours": [
+          "dalle_ore_invernale",
+          "alle_ore_invernale",
+          "dalle_ore_estivo",
+          "alle_ore_estivo"
         ],
         "municipality": [
           "descom"
         ],
-        "name": [
-          "anno_istituzione_mercato"
+        "stable_id_candidate": [
+          "codice_id"
         ],
         "weekday": [
           "periodicita_tipo",
@@ -117,6 +143,10 @@
       ],
       "format": "JSON",
       "id": "2e41941b-80fb-4ded-8330-427383f725f8",
+      "review_blockers": [
+        "explicit_market_name_missing",
+        "geometry_crs_and_coordinate_units_unknown"
+      ],
       "sample_bytes": 3303,
       "sample_url": "https://www.dati.lombardia.it/resource/68zx-njaw.json?%24limit=5",
       "source_license_verified": false,
@@ -131,6 +161,9 @@
         "address": [
           "INDIRIZZO"
         ],
+        "district": [
+          "Municipio"
+        ],
         "hours": [
           "Apertura_Lunedi",
           "Chiusura_Lunedi",
@@ -139,11 +172,14 @@
           "Apertura_Mercoledi",
           "Chiusura_Mercoledi"
         ],
-        "municipality": [
-          "Municipio"
+        "market_type": [
+          "TIPOLOGIA"
         ],
         "name": [
-          "Nome_Mercato",
+          "Nome_Mercato"
+        ],
+        "notes": [
+          "Altre_indicazioni",
           "Note_mercato"
         ]
       },
@@ -179,6 +215,9 @@
       ],
       "format": "CSV",
       "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
       "sample_bytes": 38408,
       "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
       "source_license_verified": false,
