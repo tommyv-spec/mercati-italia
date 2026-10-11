@@ -79,7 +79,7 @@ class LombardiaTests(unittest.TestCase):
 
     def test_partial_months_only_generate_within_declared_months(self):
         items = [row(30000+i, months="LUGLIO, AGOSTO") for i in range(1100)]
-        output = convert(payload(items),today=date(2026, 7, 1))
+        output = convert(payload(items, date_str="2026-06-25"), today=date(2026, 7, 1))
         self.assertTrue(output[0]["date"])
         self.assertTrue(all(int(d[5:7]) in (7,8) for d in output[0]["date"]))
         self.assertNotIn("Ogni ", output[0]["ricorrenza_testo"])
