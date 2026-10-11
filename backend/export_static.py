@@ -120,11 +120,18 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     regione_raw = safe_string(raw.get("regione"), 80)
     if not all((nome, citta, regione_raw)):
         return None, "name_city_region_missing"
+    if not re.search(r"[a-zA-ZÀ-ÖØ-öø-ÿ]", citta):
+        return None, "invalid_city_name"
     regione = canonical_region(regione_raw)
     if not regione:
         return None, "not_italian_region"
     if raw.get("status") in ("archiviato", "annullato"):
         return None, "inactive_market"
+    # Editions titled with a past year and no future dates are historical,
+    # not upcoming markets. Leave raw records intact in the original source.
+    editions = [int(year) for year in re.findall(r"\b20[0-3][0-9]\b", nome)]
+    if editions and max(editions) < today.year and not parse_dates(raw.get("date"), today):
+        return None, "historical_edition_without_future_date"
     # Categories outside the product scope (for example "sagra" or
     # "carnevale") must not silently turn into generic market records.
     raw_category = raw.get("categoria")
