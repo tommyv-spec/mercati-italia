@@ -1,3 +1,5 @@
+# Lombardia MERCap has passed a full read-only integration and browser audit.
+# Only this scheduled workflow may publish the screened official source to DEV.
 # Re-runnable methodology: docs/RUNBOOK_DATA_FRESHNESS.md
 # Source data freshness is measured separately from workflow completion time.
 # Only trusted SCHEDULER lives on main. All implementation, data snapshots and
