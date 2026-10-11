@@ -7,6 +7,10 @@ on:
     paths:
       - tests/ui-smoke.mjs
       - .github/workflows/ui-smoke.yml
+      - src/App.jsx
+      - src/hooks/useMarkets.js
+      - src/services/staticMarkets.js
+      - public/data/v1/manifest.json
 
 permissions:
   contents: read
