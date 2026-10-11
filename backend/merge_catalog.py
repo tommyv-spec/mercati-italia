@@ -86,7 +86,17 @@ def _merge(existing, incoming):
     merged = {**other, **best}
     merged["slug"] = existing["slug"]  # never break bookmarked stable IDs
     # Fill blanks, but never turn an estimated date into a confirmed date.
+    # Blank in a newer authoritative feed can mean the old dates are no
+    # longer supported. Never resurrect old projected dates or copy a
+    # different source's verification/status metadata into the new record.
+    evidence_fields = {
+        "date", "date_quality", "aggiornato_il", "verificato_il", "status",
+        "proiezione_regola", "proiezione_generata_il", "proiezione_fonte",
+        "confidence", "completezza",
+    }
     for name, value in other.items():
+        if name in evidence_fields:
+            continue
         if merged.get(name) in (None, "", []) and value not in (None, "", []):
             merged[name] = value
     merged["fonti"] = _source_evidence(existing) + [
