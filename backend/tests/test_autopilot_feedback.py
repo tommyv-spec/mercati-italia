@@ -25,6 +25,20 @@ class SourceScoutTests(unittest.TestCase):
         self.assertEqual(result["license_status"],"claimed_open_license_review_required")
         self.assertGreater(result["score"],10)
 
+    def test_harvest_timestamp_is_not_dataset_freshness(self):
+        row = {
+            "id": "metadata-not-data",
+            "title": "Mercati settimanali Firenze",
+            "license_title": "CC BY 4.0",
+            "metadata_modified": "2026-10-12T12:00:00",
+            "resources": [{"format": "CSV", "url": "https://dati.comune.fi.it/mercati.csv"}],
+        }
+        candidate_only_metadata = candidate(row)
+        candidate_with_data_date = candidate({**row, "modified": "2026-09-10"})
+        self.assertEqual(candidate_only_metadata["data_modified"], "")
+        self.assertEqual(candidate_only_metadata["metadata_modified"], "2026-10-12T12:00:00")
+        self.assertEqual(candidate_with_data_date["score"] - candidate_only_metadata["score"], 3)
+
     def test_financial_markets_are_rejected(self):
         self.assertIsNone(candidate({
             "id":"finance","title":"Mercati finanziari e prezzi azioni",
@@ -51,6 +65,8 @@ class SourceScoutTests(unittest.TestCase):
         self.assertEqual(len(result["candidates"]),1)
         self.assertFalse(result["candidates"][0]["automatic_import_allowed"])
         self.assertTrue(result["no_unapproved_source_imports"])
+        self.assertFalse(result["offline_mode"])
+        self.assertFalse(result["truncated"])
 
 
 class ContinuousImprovementTests(unittest.TestCase):

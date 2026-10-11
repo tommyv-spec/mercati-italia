@@ -77,7 +77,13 @@ def candidate(row: dict) -> dict | None:
         format_name = clean_text(item.get("format")).upper().replace(".", "")
         url = clean_text(item.get("url"))
         parts = urlsplit(url)
-        if parts.scheme != "https" or not parts.hostname:
+        try:
+            safe = (parts.scheme == "https" and bool(parts.hostname)
+                    and not parts.username and not parts.password
+                    and parts.port in (None, 443) and not parts.fragment)
+        except ValueError:
+            safe = False
+        if not safe:
             continue
         if format_name not in FORMAT_SCORE:
             continue
@@ -92,12 +98,23 @@ def candidate(row: dict) -> dict | None:
     if not isinstance(org, dict):
         org = {}
     status = license_status(row)
-    modified = clean_text(row.get("metadata_modified") or row.get("modified"))
+    # CKAN metadata_modified often reflects a catalog harvest, not changes
+    # to the market dataset. Only rank freshness from a separately declared
+    # dataset / distribution modification date. Still NOT human verification.
+    metadata_modified = clean_text(row.get("metadata_modified"))
+    data_modified = clean_text(row.get("modified") or row.get("data_modified"))
+    if not data_modified:
+        resource_dates = [
+            clean_text(item.get("last_modified") or item.get("modified"))
+            for item in row.get("resources") or [] if isinstance(item, dict)
+        ]
+        data_modified = max((d for d in resource_dates if d), default="")
     freshness = 0
     try:
-        if modified:
-            year = int(modified[:4])
-            freshness = 3 if year >= 2025 else (1 if year >= 2023 else 0)
+        if re.match(r"^\d{4}-\d\d-\d\d", data_modified):
+            year = int(data_modified[:4])
+            if 2000 <= year <= datetime.now(timezone.utc).year:
+                freshness = 3 if year >= 2025 else (1 if year >= 2023 else 0)
     except ValueError:
         pass
     score = max(FORMAT_SCORE[s["format"]] for s in sources) + freshness
@@ -107,7 +124,8 @@ def candidate(row: dict) -> dict | None:
         "id": clean_text(row.get("id") or row.get("name"))[:160],
         "title": title[:240],
         "organization": clean_text(org.get("title") or row.get("author"))[:180],
-        "metadata_modified": modified[:30],
+        "metadata_modified": metadata_modified[:30],
+        "data_modified": data_modified[:30],
         "license": clean_text(row.get("license_title") or row.get("license_id"))[:180],
         "license_status": status,
         "score": score,
@@ -142,6 +160,10 @@ def discover(offline: bool = False, fixtures: dict | None = None) -> dict:
         "queries": list(QUERIES),
         "query_failures": errors,
         "metadata_only": True,
+        "offline_mode": bool(offline),
+        "candidate_limit": 80,
+        "ranked_candidate_count": len(ranked),
+        "truncated": len(ranked) > 80,
         "no_unapproved_source_imports": True,
         "candidates": ranked[:80],
     }
