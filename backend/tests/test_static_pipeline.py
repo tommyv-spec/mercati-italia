@@ -56,6 +56,11 @@ class ExportTests(unittest.TestCase):
         self.assertIsNone(result)
         self.assertEqual(reason, "excluded_non_market_category")
 
+    def test_generic_festival_requires_market_evidence(self):
+        row, reason = normalize(market(nome="Festa della Castagna", categoria="misto"), self.today)
+        self.assertIsNone(row)
+        self.assertEqual(reason, "generic_without_market_evidence")
+
     def test_skips_cancelled(self):
         result, reason = normalize(market(status="annullato"), self.today)
         self.assertIsNone(result)
