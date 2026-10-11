@@ -393,21 +393,20 @@ def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
 # Small index contains all fields used by list/search/map, but not full
 # descriptions, long date schedules, source evidence or street addresses.
 # Clicking a card fetches just one cached region's full detail JSON.
+# Schema 4: compact positional rows for fast first paint on slow mobile networks.
+# Full descriptive text and source metadata stay in the lazy-loaded regional file.
 INDEX_FIELDS = (
     "slug", "nome", "citta", "regione", "categoria", "tags",
-    "lat", "lng", "position_quality", "orario_testo", "date_quality",
+    "lat", "lng", "position_quality", "orario_testo", "date_quality", "date",
 )
 
-
-def small_index(markets: list[dict]) -> list[dict]:
-    output = []
+def small_index(markets: list[dict]) -> list[list]:
+    result = []
     for market in markets:
-        row = {key: market[key] for key in INDEX_FIELDS if key in market}
-        # Eight chronological dates suffice for today, weekend, and next
-        # 7 days. The detail shard contains the full schedule.
-        row["date"] = market["date"][:8]
-        output.append(row)
-    return output
+        row = [market.get(key) for key in INDEX_FIELDS]
+        row[-1] = (row[-1] or [])[:8]
+        result.append(row)
+    return result
 
 
 
@@ -441,7 +440,7 @@ def export(records: list, out: Path, today: date | None = None,
 
     signature = hashlib.sha256(compact_json(markets)).hexdigest()
     if (previous and previous.get("content_signature") == signature
-            and previous.get("index_schema") == 3
+            and previous.get("index_schema") == 4
             and previous.get("index")
             and (out.parent.parent / previous["index"]).is_file()):
         return {"unchanged": True, "stats": stats, "manifest": previous}
@@ -471,7 +470,7 @@ def export(records: list, out: Path, today: date | None = None,
     manifest = {
         "schema": 1, "layout": layout, "total": len(markets),
         "index": index_path,
-        "index_schema": 3,
+        "index_schema": 4,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "content_signature": signature,
         "regions_summary": stats["by_region"],
