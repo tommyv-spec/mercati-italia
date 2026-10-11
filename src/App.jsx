@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense } from "react";
 import { useMarkets } from "./hooks/useMarkets";
-import { displayEntries, weekdayFromISO, WEEKDAY_LABELS } from './lib/marketGrouping';
+import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup } from './lib/marketGrouping';
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
@@ -2273,10 +2273,7 @@ export default function App() {
                   ? <WeeklyCityGroup key={entry.key} group={entry}
                       loadMarket={getMarketDetails} onOpenMarket={openMarket}
                       selectedWeekday={weekdayFilter}
-                      autoExpand={weekdayFilter !== null && (
-                        (Boolean(filterCity) && entry.city.toLocaleLowerCase('it') === filterCity.toLocaleLowerCase('it')) ||
-                        (Boolean(searchQuery.trim()) && entry.city.toLocaleLowerCase('it') === searchQuery.trim().toLocaleLowerCase('it'))
-                      )} />
+                      autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdayFilter, filterCity, searchQuery)} />
                   : renderMarketCard(entry.market, i)
               )}
               {visibleCount < groupedList.length && (
