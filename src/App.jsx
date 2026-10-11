@@ -1,5 +1,6 @@
-import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { useState, useCallback, useMemo, useEffect, lazy, Suspense } from "react";
 import { useMarkets } from "./hooks/useMarkets";
+const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
 // Market records come from the versioned static catalog, not bundled fixtures.
@@ -1758,118 +1759,14 @@ export default function App() {
     );
   };
 
-  const renderMapView = () => {
-    const w = 440, h = 500;
-    return (
-      <div className="map-container" style={{ margin: '0 20px 100px' }}>
-        <div role="note" style={{ padding: '12px 14px', fontSize: 12, background: 'var(--white)', borderRadius: 8, marginBottom: 10, lineHeight: 1.5 }}>
-          Schema indicativo dell’Italia, non mappa stradale.
-          I pin possono essere approssimativi. Tocca un mercato per controllare indirizzo e fonte.
-          {filteredMarkets.length > 500 && ' Sono mostrati al massimo 500 pin: usa i filtri per restringere.'}
-        </div>
-        <svg className="map-svg" viewBox={`0 0 ${w} ${h}`} ref={mapRef}>
-          {/* Background */}
-          <rect width={w} height={h} fill="#E8F0E9" rx="8" />
-
-          {/* Grid lines for texture */}
-          {[...Array(20)].map((_, i) => (
-            <line key={`gl${i}`} x1={0} y1={i * 25} x2={w} y2={i * 25} stroke="#D4E8D6" strokeWidth={0.5} />
-          ))}
-          {[...Array(18)].map((_, i) => (
-            <line key={`gv${i}`} x1={i * 25} y1={0} x2={i * 25} y2={h} stroke="#D4E8D6" strokeWidth={0.5} />
-          ))}
-
-          {/* Italy simplified outline */}
-          <path
-            d="M210,40 L240,35 L270,45 L300,50 L330,55 L350,70 L360,90 L340,95 L310,90 L280,85 L250,80 L220,75 L190,80 L160,85 L130,90 L110,100 L100,120 L95,85 L110,60 L140,45 L170,38 Z
-            M350,100 L370,110 L380,130 L375,150 L360,170 L340,180 L320,170 L310,150 L305,130 L310,110 L330,95 Z
-            M290,95 L310,110 L305,135 L295,160 L280,180 L260,200 L250,220 L260,245 L275,270 L285,295 L280,320 L265,340 L255,360 L260,380 L270,395 L265,410 L250,420 L240,410 L235,390 L225,375 L210,360 L205,340 L215,315 L225,290 L220,265 L210,245 L200,225 L195,200 L200,175 L210,155 L225,135 L240,120 L260,105 Z
-            M120,100 L140,110 L155,130 L160,155 L155,180 L145,200 L135,215 L125,195 L115,170 L105,145 L100,120 Z
-            M250,430 L270,435 L285,450 L275,465 L255,470 L240,458 L235,440 Z"
-            fill="#DAE8DB"
-            stroke="#B8D4BA"
-            strokeWidth={1}
-            opacity={0.7}
-          />
-
-          {/* Market pins */}
-          {filteredMarkets.filter(m => Number.isFinite(m.lat) && Number.isFinite(m.lng)).slice(0, 500).map(market => {
-            const { x, y } = mapProject(market.lat, market.lng, w, h);
-            const catColor = CAT_COLORS[market.category] || "#888";
-            const isFav = favorites.has(market.id);
-            const isHovered = hoveredPin === market.id;
-
-            return (
-              <g key={market.id} className="map-pin"
-                transform={`translate(${x}, ${y})`}
-                onClick={() => openMarket(market)}
-                onMouseEnter={() => setHoveredPin(market.id)}
-                onMouseLeave={() => setHoveredPin(null)}
-              >
-                {/* Shadow */}
-                <ellipse cx={0} cy={2} rx={8} ry={3} fill="rgba(0,0,0,0.12)" />
-                {/* Pin body */}
-                <path d="M0,-24 C-10,-24 -16,-16 -16,-9 C-16,2 0,8 0,8 C0,8 16,2 16,-9 C16,-16 10,-24 0,-24Z"
-                  fill={isHovered ? catColor : (isFav ? "#C75146" : catColor)}
-                  stroke="white" strokeWidth={2}
-                  style={{ filter: isHovered ? 'drop-shadow(0 3px 6px rgba(0,0,0,0.2))' : 'none',
-                           transition: 'all 0.2s ease' }}
-                />
-                {/* Emoji icon */}
-                <text x={0} y={-10} textAnchor="middle" fontSize="11" dominantBaseline="central">
-                  {CAT_ICONS[market.category]}
-                </text>
-                {/* Favorite heart */}
-                {isFav && (
-                  <circle cx={10} cy={-22} r={6} fill="#C75146" stroke="white" strokeWidth={1.5} />
-                )}
-              </g>
-            );
-          })}
-        </svg>
-
-        {/* Tooltip */}
-        {hoveredPin && (() => {
-          const market = filteredMarkets.find(m => m.id === hoveredPin);
-          if (!market) return null;
-          const { x, y } = mapProject(market.lat, market.lng, 440, 500);
-          const tooltipLeft = x > 220 ? x - 240 : x + 20;
-          const tooltipTop = Math.max(10, y - 60);
-
-          return (
-            <div className="map-tooltip" style={{ left: `${(tooltipLeft / 440) * 100}%`, top: `${(tooltipTop / 500) * 100}%` }}>
-              <div className="tooltip-name">{market.name}</div>
-              <div className="tooltip-meta">
-                <span>{CAT_ICONS[market.category]} {market.category} · {market.city}</span>
-                <span>{market.hours} · a {Number.isFinite(market.distance) ? Math.round(market.distance) : '–'} km</span>
-              </div>
-              <div className="tooltip-actions">
-                <button className="primary" onClick={() => openMarket(market)}>Dettagli</button>
-                <button onClick={(e) => { e.stopPropagation(); toggleFav(market.id); }}>
-                  {favorites.has(market.id) ? "Salvato" : "Salva"}
-                </button>
-              </div>
-            </div>
-          );
-        })()}
-
-        {/* Legend */}
-        <div style={{
-          position: 'absolute', bottom: 12, left: 12, background: 'rgba(253,251,247,0.92)',
-          backdropFilter: 'blur(8px)', borderRadius: 10, padding: '8px 12px',
-          fontSize: 11, color: '#5C513F', display: 'flex', flexWrap: 'wrap', gap: '4px 12px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
-        }}>
-          {CATS.slice(0, 5).map(cat => (
-            <span key={cat} style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: CAT_COLORS[cat] }} />
-              {cat.split(' ')[0]}
-            </span>
-          ))}
-        </div>
-      </div>
-    );
-  };
+  const renderMapView = () => (
+    <Suspense fallback={<div role="status" style={{
+      margin: '22px 18px 110px', padding: 22, background: 'var(--white)',
+      borderRadius: 12, color: 'var(--ink-lighter)' }}>Caricamento mappa interattiva…</div>}>
+      <MarketsMap markets={filteredMarkets} userLat={userLat} userLng={userLng}
+        onSelect={openMarket} />
+    </Suspense>
+  );
 
   const renderDetail = () => {
     if (!selectedMarket) return null;
@@ -2462,7 +2359,7 @@ export default function App() {
       <style>{styles}</style>
       <div className="app-container" onClick={() => showSort && setShowSort(false)}>
         {tab === "esplora" && renderExplore()}
-        {tab === "mappa" && (() => { setViewMode("mappa"); return renderExplore(); })()}
+        {tab === "mappa" && renderExplore()}
         {tab === "preferiti" && renderFavorites()}
         {tab === "notifiche" && renderNotifications()}
         {tab === "impostazioni" && renderSettings()}
