@@ -13,6 +13,8 @@ on:
       - backend/tests/test_source_lombardia.py
       - backend/lombardia_overlap.py
       - backend/tests/test_lombardia_overlap.py
+      - backend/autopilot.py
+      - backend/export_static.py
 
 permissions:
   contents: read
@@ -126,6 +128,9 @@ jobs:
               'gates': decision['gates'],
           }
           assert report['approved'] and report['new_lombardia'] >= 1100
+          assert report['new_lombardia'] == screening['accepted'], (
+              'Existing official MERCap IDs were lost in the exporter'
+          )
           assert report['human_verified_lombardia'] == 0
           assert report['lombardia_precise_coordinates_claimed'] == 0
           assert report['dataset_scoped_dates'] == report['new_lombardia']
