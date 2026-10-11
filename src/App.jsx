@@ -2182,66 +2182,70 @@ export default function App() {
     );
   };
 
-  const renderNotifications = () => (
-    <>
-      <div className="header">
-        <div className="header-title">Notifiche</div>
-      </div>
-      <div className="page-content">
-        <div className="setting-card">
-          <div className="setting-row">
-            <div>
-              <div className="setting-label">Promemoria per i preferiti</div>
-              <div className="setting-sublabel">Ricevi un avviso il giorno prima</div>
-            </div>
-            <label className="toggle">
-              <input type="checkbox" checked={notifFavorites} onChange={() => setNotifFavorites(!notifFavorites)} />
-              <span className="toggle-track" />
-            </label>
-          </div>
-        </div>
+  const renderNotifications = () => {
+    const savedMarkets = marketsWithDistance.filter(market => favorites.has(market.id));
+    const scheduled = savedMarkets
+      .map(market => ({ market, next: getNextDate(market.dates) }))
+      .filter(item => item.next)
+      .sort((left, right) => left.next.localeCompare(right.next))
+      .slice(0, 30);
+    const missingDates = savedMarkets.filter(market => !getNextDate(market.dates));
 
-        <div className="setting-card">
-          <div className="setting-row">
-            <div>
-              <div className="setting-label">Avvisi vicino a me</div>
-              <div className="setting-sublabel">Mercati nelle vicinanze nei prossimi giorni</div>
-            </div>
-            <label className="toggle">
-              <input type="checkbox" checked={notifNearby} onChange={() => setNotifNearby(!notifNearby)} />
-              <span className="toggle-track" />
-            </label>
-          </div>
+    return (
+      <>
+        <div className="header">
+          <div className="header-title">Agenda preferiti</div>
         </div>
-
-        {notifNearby && (
-          <div className="setting-card" style={{ animation: 'fadeIn 0.3s ease' }}>
-            <div className="filter-section-label">Distanza massima</div>
-            <div className="range-container">
-              <div className="range-label">
-                <span>1 km</span>
-                <span className="range-value">{notifDistance} km</span>
-              </div>
-              <input type="range" className="range-input"
-                min={1} max={50} step={1} value={notifDistance}
-                onChange={e => setNotifDistance(Number(e.target.value))} />
+        <div className="page-content">
+          <div className="setting-card">
+            <div className="setting-label">I prossimi mercati che hai salvato</div>
+            <div className="setting-sublabel">
+              Qui trovi le date disponibili. Le notifiche push automatiche non sono ancora attive.
+              Controlla sempre se la data è confermata prima di partire.
             </div>
           </div>
-        )}
-
-        <div className="setting-card">
-          <div className="setting-label" style={{ marginBottom: 4 }}>Orari silenziosi</div>
-          <div className="setting-sublabel">Nessuna notifica in questo intervallo</div>
-          <div className="time-row">
-            <label>Da</label>
-            <input type="time" value={quietStart} onChange={e => setQuietStart(e.target.value)} />
-            <label>A</label>
-            <input type="time" value={quietEnd} onChange={e => setQuietEnd(e.target.value)} />
-          </div>
+          {savedMarkets.length === 0 ? (
+            <div className="empty-state">
+              <div className="empty-icon">♡</div>
+              <div className="empty-title">Nessun mercato salvato</div>
+              <div className="empty-text">Salva un mercato dalla ricerca per vederlo qui.</div>
+              <button className="btn-primary" style={{ padding: '10px 20px', marginTop: 12 }}
+                onClick={() => setTab('esplora')}>Cerca mercati</button>
+            </div>
+          ) : (
+            <>
+              {scheduled.length > 0 ? (
+                <div className="markets-list" style={{ padding: 0 }}>
+                  {scheduled.map(({ market, next }, index) => (
+                    <button key={market.id} className="setting-card" style={{
+                      display: 'flex', width: '100%', textAlign: 'left', gap: 12,
+                      alignItems: 'center', cursor: 'pointer', border: 'none',
+                    }} onClick={() => openMarket(market)}>
+                      <span style={{ minWidth: 85, fontWeight: 700 }}>{formatDateIT(next)}</span>
+                      <span style={{ flex: 1 }}>
+                        <strong>{market.name}</strong>
+                        <span style={{ display: 'block', fontSize: 12, opacity: 0.75 }}>
+                          {market.city} · {market.dateQuality === 'confermata' ? 'Confermata' : 'Prevista, da verificare'}
+                        </span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="setting-card">Nessuna data futura disponibile per i tuoi preferiti.</div>
+              )}
+              {missingDates.length > 0 && (
+                <div className="setting-card" style={{ marginTop: 12 }}>
+                  <div className="setting-label">{missingDates.length} preferiti senza prossima data</div>
+                  <div className="setting-sublabel">Li trovi nella sezione Preferiti. Verifica la fonte ufficiale.</div>
+                </div>
+              )}
+            </>
+          )}
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  };
 
   const renderSettings = () => (
     <>
@@ -2322,7 +2326,7 @@ export default function App() {
           {[
             { id: "esplora", label: "Esplora", icon: "compass" },
             { id: "preferiti", label: "Preferiti", icon: "heart" },
-            { id: "notifiche", label: "Notifiche", icon: "bell" },
+            { id: "notifiche", label: "Agenda", icon: "calendar" },
             { id: "impostazioni", label: "Impostazioni", icon: "settings" },
           ].map(t => (
             <button key={t.id} className={`tab-btn ${tab === t.id ? 'active' : ''}`}
