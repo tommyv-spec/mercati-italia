@@ -195,7 +195,7 @@ class ExportTests(unittest.TestCase):
             manifest = result["manifest"]
             self.assertEqual(manifest["total"], 1)
             self.assertEqual(manifest["layout"], "single")
-            self.assertEqual(manifest["index_schema"], 4)
+            self.assertEqual(manifest["index_schema"], 5)
             self.assertTrue((Path(temp) / "public" / manifest["index"]).is_file())
             index = json.loads((Path(temp) / "public" / manifest["index"]).read_text("utf-8"))
             self.assertIsInstance(index["markets"][0], list)
