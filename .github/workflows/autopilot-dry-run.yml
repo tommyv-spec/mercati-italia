@@ -1,0 +1,34 @@
+name: Autopilot — full dry-run checkpoint
+on:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/autopilot-dry-run.yml
+
+permissions:
+  contents: read
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify all deterministic rules
+        run: python -m unittest discover -s backend/tests -v
+      - name: Execute all autopilot phases OFFLINE without changing the catalog
+        run: |
+          python backend/autopilot.py --offline --today 2026-10-11 \
+            --output autopilot-output
+      - name: Persist six checkpoints, input quality and proposed snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autopilot-offline-e2e
+          path: autopilot-output/
+          retention-days: 14
+          if-no-files-found: error
