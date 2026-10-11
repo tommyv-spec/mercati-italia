@@ -1480,7 +1480,7 @@ export default function App() {
       return market.lat + ',' + market.lng;
     }
     const address = market.address?.trim() || '';
-    const specificStreet = /\\b(via|viale|piazza|piazzale|piazzetta|corso|largo|vicolo|strada|contrada|lungomare|località|localita|borgo|parco)\\b/i;
+    const specificStreet = /\b(via|viale|piazza|piazzale|piazzetta|corso|largo|vicolo|strada|contrada|lungomare|località|localita|borgo|parco)\b/i;
     if (address.length >= 9 && specificStreet.test(address)) {
       return [market.name, address, market.city, 'Italia'].filter(Boolean).join(', ');
     }
