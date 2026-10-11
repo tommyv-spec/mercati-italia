@@ -35,6 +35,8 @@ jobs:
           cache: npm
       - name: Install frontend dependencies
         run: npm ci --no-audit --no-fund
+      - name: Test weekly city and venue grouping
+        run: node --test tests/marketGrouping.test.mjs
       - name: Build Vite static site
         run: npm run build
       - name: Assert Cloudflare has no billed function route for static pages
