@@ -246,11 +246,33 @@ def source_duplicate_group(market: dict) -> tuple | None:
     )
 
 
+def market_weekday_suffix(slug: str) -> str:
+    match = re.search(r"-(lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)$", slug or "")
+    return match.group(1) if match else ""
+
+
 def safe_same_market(a: dict, b: dict) -> bool:
+    """Never fuse different street markets or different weekday occurrences."""
     address_a = specific_market_address(a.get("indirizzo", ""))
     address_b = specific_market_address(b.get("indirizzo", ""))
-    if address_a and address_b and address_a != address_b:
+    if address_a and address_b:
+        if address_a != address_b:
+            return False
+    elif address_a or address_b:
+        # A city-wide summary must not swallow one of its local street events.
         return False
+    else:
+        # Both vague/missing: merge only same documented weekday occurrence
+        # and effectively identical point. Otherwise hold for manual review.
+        suffix_a = market_weekday_suffix(a.get("slug", ""))
+        suffix_b = market_weekday_suffix(b.get("slug", ""))
+        if not suffix_a or suffix_a != suffix_b:
+            return False
+        if any(m.get("lat") is None or m.get("lng") is None for m in (a, b)):
+            return False
+        if abs(a["lat"] - b["lat"]) > 0.0003 or abs(a["lng"] - b["lng"]) > 0.0003:
+            return False
+
     if a.get("position_quality") == "precisa" and b.get("position_quality") == "precisa":
         if a.get("lat") is not None and b.get("lat") is not None:
             if abs(a["lat"] - b["lat"]) > 0.002 or abs(a["lng"] - b["lng"]) > 0.002:
