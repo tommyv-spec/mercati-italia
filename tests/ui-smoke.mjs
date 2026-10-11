@@ -16,6 +16,15 @@ const context = await browser.newContext({
   hasTouch: true,
   locale: 'it-IT',
 })
+// rawgit.hack shows a safety interstitial to new browser visitors.
+ // CI opts into this exact public repository by setting the documented
+ // prefixed cookie; real visitors see and approve the warning themselves.
+if (new URL(BASE).hostname === 'raw.githack.com') {
+  await context.addCookies([{
+    name: '__Http-phish', value: '1', url: 'https://raw.githack.com/',
+    secure: true, httpOnly: true, sameSite: 'Lax',
+  }])
+}
 const page = await context.newPage()
 const remoteDataRequests = []
 const pageErrors = []
@@ -119,7 +128,7 @@ try {
   await assertCards()
 
   // Location opt-in: only now is browser GPS permission used.
-  await context.grantPermissions(['geolocation'], { origin: BASE })
+  await context.grantPermissions(['geolocation'], { origin: new URL(BASE).origin })
   await context.setGeolocation({ latitude: 43.77, longitude: 11.25 })
   await page.getByRole('button', { name: /Mercati vicino a me|Vicino a me/ }).first().click()
   await page.getByText('Vicino a me · 50 km, posizioni precise', { exact: false }).waitFor({ timeout: 20000 })
