@@ -36,10 +36,13 @@ jobs:
       - name: Download municipal open data into a temporary file
         if: steps.baseline.outputs.ready == 'true'
         run: python backend/source_milano.py --output /tmp/mercati_milano.json
+      - name: Fetch official Firenze historic markets
+        if: steps.baseline.outputs.ready == 'true'
+        run: python backend/source_firenze.py --output /tmp/mercati_firenze.json
       - name: Merge with existing curated records
         if: steps.baseline.outputs.ready == 'true'
         run: |
-          python backend/merge_catalog.py --new /tmp/mercati_milano.json --out /tmp/mercati_merged.json
+          python backend/merge_catalog.py --new /tmp/mercati_milano.json --new /tmp/mercati_firenze.json --out /tmp/mercati_merged.json
       - name: Export guarded content-hashed static snapshot
         if: steps.baseline.outputs.ready == 'true'
         run: |
