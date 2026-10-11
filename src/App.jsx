@@ -32,16 +32,17 @@ function formatDateIT(dateStr) {
     : d.toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' });
 }
 
-function getDateBadge(dates = []) {
+function getDateBadge(dates = [], quality = 'prevista') {
+  const suffix = quality === 'confermata' ? '' : ' (previsto)';
   const now = new Date();
   const today = localISO(now);
   const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
   const satDate = new Date(now); satDate.setDate(satDate.getDate() + ((6 - now.getDay() + 7) % 7));
   const sunDate = new Date(satDate); sunDate.setDate(sunDate.getDate() + 1);
-  if (dates.includes(today)) return { label: 'Oggi (previsto)', color: '#C75146' };
-  if (dates.includes(localISO(tomorrow))) return { label: 'Domani (previsto)', color: '#E07A5F' };
+  if (dates.includes(today)) return { label: 'Oggi' + suffix, color: '#C75146' };
+  if (dates.includes(localISO(tomorrow))) return { label: 'Domani' + suffix, color: '#E07A5F' };
   if (dates.includes(localISO(satDate)) || dates.includes(localISO(sunDate))) {
-    return { label: 'Weekend (previsto)', color: '#5B7A5E' };
+    return { label: 'Weekend' + suffix, color: '#5B7A5E' };
   }
   return null;
 }
@@ -1365,6 +1366,7 @@ export default function App() {
   const [viewMode, setViewMode] = useState("lista");
   const [searchQuery, setSearchQuery] = useState("");
   const [dateFilter, setDateFilter] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(60);
   const [showFilters, setShowFilters] = useState(false);
   const [showSort, setShowSort] = useState(false);
   const [sortBy, setSortBy] = useState("data");
@@ -1418,6 +1420,9 @@ export default function App() {
 
   // Use hook's markets (already have distances computed)
   const marketsWithDistance = allMarkets;
+
+  // Render at most 60 cards initially on slow mobile browsers.
+  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy]);
 
   // Apply filters
   const filteredMarkets = useMemo(() => {
@@ -1535,7 +1540,7 @@ export default function App() {
   // ─── Render Functions ─────────────────────────
 
   const renderMarketCard = (market, index) => {
-    const badge = getDateBadge(market.dates);
+    const badge = getDateBadge(market.dates, market.dateQuality);
     const nextDate = getNextDate(market.dates);
     const catColor = CAT_COLORS[market.category] || "#888";
     const isFav = favorites.has(market.id);
@@ -1544,7 +1549,7 @@ export default function App() {
       <div
         key={market.id}
         className="market-card"
-        style={{ animationDelay: `${index * 50}ms`, '--cat-color': catColor }}
+        style={{ animationDelay: `${Math.min(index, 12) * 50}ms`, '--cat-color': catColor }}
         onClick={() => setSelectedMarket(market)}
       >
         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: catColor, borderRadius: '4px 0 0 4px' }} />
@@ -1584,7 +1589,7 @@ export default function App() {
             {market.city}
           </span>
           <span className="card-info-item card-distance">
-            a {Number.isFinite(market.distance) ? Math.round(market.distance) : '–'} km
+            {Number.isFinite(market.distance) ? 'a ' + Math.round(market.distance) + ' km' : 'Posizione da verificare'}
           </span>
         </div>
       </div>
@@ -1621,7 +1626,7 @@ export default function App() {
           />
 
           {/* Market pins */}
-          {filteredMarkets.filter(m => Number.isFinite(m.lat) && Number.isFinite(m.lng)).map(market => {
+          {filteredMarkets.filter(m => Number.isFinite(m.lat) && Number.isFinite(m.lng)).slice(0, 500).map(market => {
             const { x, y } = mapProject(market.lat, market.lng, w, h);
             const catColor = CAT_COLORS[market.category] || "#888";
             const isFav = favorites.has(market.id);
@@ -1791,7 +1796,10 @@ export default function App() {
                 </g>
               </svg>
             </div>
-            <div className="detail-address">{m.address}</div>
+            <div className="detail-address">{m.address || 'Indirizzo non verificato'}</div>
+            {m.positionQuality !== 'precisa' && (
+              <div style={{ fontSize: 12, color: '#8C8272', marginTop: 6 }}>Posizione indicativa o da verificare</div>
+            )}
             <div className="detail-address-actions">
               <button className="btn-primary" onClick={() => showToast("Apertura navigatore...")}>
                 <Icon name="navigation" size={16} color="white" /> Indicazioni
@@ -2016,6 +2024,13 @@ export default function App() {
         )}
       </div>
 
+      {marketsError && !marketsLoading && (
+        <div role="alert" className="empty-state">
+          <div className="empty-title">Catalogo temporaneamente non disponibile</div>
+          <div className="empty-text">{marketsError}</div>
+        </div>
+      )}
+
       {marketsLoading ? (
         <div className="markets-list">
           {[1, 2, 3].map(i => (
@@ -2031,7 +2046,15 @@ export default function App() {
       ) : viewMode === "lista" ? (
         <div className="markets-list">
           {filteredMarkets.length > 0 ? (
-            filteredMarkets.map((m, i) => renderMarketCard(m, i))
+            <>
+              {filteredMarkets.slice(0, visibleCount).map((m, i) => renderMarketCard(m, i))}
+              {visibleCount < filteredMarkets.length && (
+                <button className="btn-secondary" onClick={() => setVisibleCount(n => n + 60)}
+                  style={{ margin: '18px auto 30px', padding: '12px 24px', display: 'block' }}>
+                  Mostra altri mercati ({Math.min(visibleCount, filteredMarkets.length)} di {filteredMarkets.length})
+                </button>
+              )}
+            </>
           ) : (
             <div className="empty-state">
               <div className="empty-icon">🔍</div>
