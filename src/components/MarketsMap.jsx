@@ -7,11 +7,11 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/positron'
 const COLORS = {
-  'Alimentare': '#5B7A5E',
-  'Antiquariato': '#C75146',
-  'Vintage e abbigliamento': '#8B6F8E',
-  'Usato': '#B8860B',
-  'Artigianato': '#2E86AB',
+  'Alimentare': '#446E47',
+  'Antiquariato': '#B94439',
+  'Vintage e abbigliamento': '#705073',
+  'Usato': '#805B08',
+  'Artigianato': '#216886',
   'Misto': '#7E796E',
 }
 
@@ -93,7 +93,7 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
       body.append(info)
       const open = document.createElement('button')
       open.textContent = 'Apri scheda'
-      open.style.cssText = 'background:#C75146;color:#fff;border:0;border-radius:7px;padding:8px 13px;cursor:pointer'
+      open.style.cssText = 'background:#B94439;color:#fff;border:0;border-radius:7px;padding:8px 13px;cursor:pointer'
       open.addEventListener('click', () => {
         popupRef.current?.remove()
         onSelectRef.current?.(market)
