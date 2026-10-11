@@ -1385,6 +1385,7 @@ export default function App() {
   const [filterRegion, setFilterRegion] = useState("");
   const [filterCity, setFilterCity] = useState("");
   const [filterDistance, setFilterDistance] = useState(100);
+  const [includeEstimatedNearby, setIncludeEstimatedNearby] = useState(false);
   const [activeFilterCount, setActiveFilterCount] = useState(0);
 
   // Pending filter states (applied on "Applica")
@@ -1508,6 +1509,7 @@ export default function App() {
   const activateNearby = () => {
     setLocationMode('auto');
     setFilterCity('');
+    setIncludeEstimatedNearby(false);
     setFilterDistance(50);
     setActiveFilterCount(1 + Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
     setSortBy('distanza');
@@ -1545,7 +1547,7 @@ export default function App() {
   const marketsWithDistance = allMarkets;
 
   // Render at most 60 cards initially on slow mobile browsers.
-  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance]);
+  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
 
   // Apply filters
   const filteredMarkets = useMemo(() => {
@@ -1596,7 +1598,11 @@ export default function App() {
 
     // Distance
     if (canUseDistance && filterDistance < 100) {
-      result = result.filter(m => Number.isFinite(m.distance) && m.distance <= filterDistance);
+      result = result.filter(m =>
+        Number.isFinite(m.distance) &&
+        m.distance <= filterDistance &&
+        (includeEstimatedNearby || m.positionQuality === 'precisa')
+      );
     }
 
     // Sort
@@ -1650,6 +1656,7 @@ export default function App() {
     setFilterRegion("");
     setFilterCity("");
     setFilterDistance(100);
+    setIncludeEstimatedNearby(false);
     setActiveFilterCount(0);
     setDateFilter(null);
     setSearchQuery("");
@@ -2128,17 +2135,22 @@ export default function App() {
           <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
             disabled={positionStatus === 'requesting'}>
             <Icon name="mapPin" size={13} />
-            {positionStatus === 'ready' ? 'Vicino a me · raggio indicativo 50 km' :
+            {positionStatus === 'ready' ? (includeEstimatedNearby ? 'Vicino a me · posizioni indicative' : 'Vicino a me · 50 km, posizioni precise') :
              positionStatus === 'requesting' ? 'Cerco la posizione…' : 'Mercati vicino a me'}
           </button>
           {positionError && <span role="alert" style={{ fontSize: 12, color: '#A5443D' }}>{positionError}</span>}
         </div>
 
-        {canUseDistance && (
-          <p role="note" style={{ fontSize: 11, lineHeight: 1.5, color: '#7D7267', margin: '4px 20px 10px' }}>
-            Le coordinate di molti mercati non sono ancora verificate.
-            Il raggio è indicativo: verifica sempre l’indirizzo nella scheda.
-          </p>
+        {canUseDistance && filterDistance < 100 && (
+          <div role="note" style={{ fontSize: 12, lineHeight: 1.5, color: '#7D7267', margin: '4px 20px 10px' }}>
+            {includeEstimatedNearby
+              ? 'Mostriamo anche mercati con coordinate non verificate. Alcuni possono non essere davvero vicini.'
+              : 'Nel raggio mostriamo solo mercati con posizione precisa. Altri mercati possono mancare.'}
+            <button className="chip" style={{ display: 'block', marginTop: 8 }}
+              onClick={() => setIncludeEstimatedNearby(prev => !prev)}>
+              {includeEstimatedNearby ? 'Escludi posizioni indicative' : 'Mostra anche posizioni indicative'}
+            </button>
+          </div>
         )}
         <div className="controls-row">
           <div className="view-toggle">
@@ -2233,7 +2245,15 @@ export default function App() {
             <div className="empty-state">
               <div className="empty-icon">🔍</div>
               <div className="empty-title">Nessun mercato trovato</div>
-              <div className="empty-text">Prova a cambiare data, distanza o categoria.</div>
+              <div className="empty-text">
+                {canUseDistance && filterDistance < 100 && !includeEstimatedNearby
+                  ? 'Nessun mercato con posizione precisa in questo raggio e periodo. Puoi includere quelli con posizione indicativa.'
+                  : 'Prova a cambiare data, distanza, città o categoria.'}
+              </div>
+              {canUseDistance && filterDistance < 100 && !includeEstimatedNearby && (
+                <button className="btn-secondary" style={{ padding: '10px 18px', marginTop: 12 }}
+                  onClick={() => setIncludeEstimatedNearby(true)}>Mostra posizioni indicative</button>
+              )}
               <button style={{
                 marginTop: 16, padding: '10px 24px', background: 'var(--terracotta)',
                 color: 'white', border: 'none', borderRadius: 100, fontFamily: 'var(--font-body)',
