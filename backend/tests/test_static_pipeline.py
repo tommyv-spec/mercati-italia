@@ -142,6 +142,26 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(rows[0]["date"], ["2026-10-11", "2026-10-18"])
         self.assertEqual(rows[0]["date_quality"], "prevista")
 
+    def test_distinct_lombardia_publisher_ids_same_street_day_never_merge(self):
+        first = market(
+            slug="lo-mercap-100551-venerdi",
+            nome="Mercato di Pogliano Milanese – Via Europa",
+            regione="Lombardia", citta="Pogliano Milanese",
+            indirizzo="VIA EUROPA", date=["2026-10-16"],
+            url_fonte="https://www.dati.lombardia.it/d/68zx-njaw",
+        )
+        second = market(
+            slug="lo-mercap-100552-venerdi",
+            nome=first["nome"], regione=first["regione"],
+            citta=first["citta"], indirizzo=first["indirizzo"],
+            date=first["date"], url_fonte=first["url_fonte"],
+        )
+        cleaned, report = prepare([first, second], self.today)
+        self.assertEqual(len(cleaned), 2)
+        self.assertEqual(report["same_source_duplicates_merged"], 0)
+        self.assertEqual({r["slug"] for r in cleaned},
+                         {"lo-mercap-100551-venerdi", "lo-mercap-100552-venerdi"})
+
     def test_preserves_different_weekdays_at_same_street(self):
         source = "https://example.org/markets/by-city"
         first = market(slug="mercato-semanale-di-roma-roma-lunedi",
