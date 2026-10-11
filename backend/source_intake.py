@@ -10,6 +10,8 @@ import argparse
 import hashlib
 import json
 import re
+from collections import Counter
+from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -74,6 +76,92 @@ def normalize(item):
         "review_required": ["publisher_authority", "license_terms",
                             "actual_schema", "data_freshness", "record_sample"],
     }
+
+
+
+def published_data_date(raw):
+    value = clean(raw, 30)
+    try:
+        if re.match(r"^\d{4}-\d\d-\d\d", value):
+            return date.fromisoformat(value[:10])
+        if re.match(r"^\d\d-\d\d-\d{4}$", value):
+            day, month, year = map(int, value.split("-"))
+            return date(year, month, day)
+    except ValueError:
+        pass
+    return None
+
+
+def triage(row, today):
+    """Rank likely useful *source reviews*, never market reliability or truth."""
+    title = row["title"].casefold()
+    score = int(row["score"])
+    reasons = []
+    bucket = "general_market_candidate"
+    stats = ("residenti per posto", "metri quadri", "numero posti settore",
+             "per circoscrizione", "numero di stand", "numero di posteggi")
+    if any(word in title for word in stats):
+        bucket = "aggregated_statistics"
+        score -= 18
+        reasons.append("aggregated_statistics_not_market_schedule")
+    elif "mercati settimanali" in title or "mercati su aree pubbliche" in title:
+        bucket = "market_location_candidate"
+        score += 8
+    elif "mercati rionali" in title:
+        bucket = "market_location_candidate"
+        score += 6
+    elif "censimento dei mercati" in title:
+        bucket = "market_location_candidate"
+        score += 5
+    elif "mercati e fiere" in title or "fiere e mercati" in title:
+        bucket = "mixed_events_candidate"
+        score += 3
+    if "posteggi" in title and bucket != "aggregated_statistics":
+        score -= 4
+        reasons.append("stalls_not_necessarily_visitable_markets")
+
+    # A historical year in a title is much stronger evidence of obsolescence
+    # than a newly harvested CKAN metadata_modified timestamp.
+    title_years = [int(value) for value in re.findall(r"\b20\d{2}\b", title)]
+    if title_years and max(title_years) < today.year - 2:
+        score -= 8
+        reasons.append("historical_year_in_title")
+    declared = published_data_date(row.get("data_modified"))
+    if declared is None:
+        reasons.append("source_data_freshness_unknown")
+    else:
+        age = (today - declared).days
+        if age < -30:
+            reasons.append("future_dated_metadata_requires_check")
+        elif age <= 365:
+            score += 6
+            reasons.append("publisher_reports_recent_dataset_date")
+        elif age <= 730:
+            score += 2
+        elif age > 1825:
+            score -= 7
+            reasons.append("source_data_older_than_five_years")
+        else:
+            score -= 3
+            reasons.append("source_data_older_than_two_years")
+
+    if row["license_status"] != "claimed_open_license_review_required":
+        score -= 4
+        reasons.append("license_not_identified")
+    paths = " ".join(item["url"].casefold() for item in row["resources"])
+    if "f758d24c-8805-40b0-9a72-a8aac06d1e98" in paths:
+        score -= 10
+        reasons.append("existing_milano_adapter_covers_dataset")
+    # Resource names like mercati_rionali_giugno_2022 also matter if the
+    # catalog does not declare a data modification date.
+    if not declared:
+        filenames = [item["url"].split("?")[0].rsplit("/", 1)[-1] for item in row["resources"]]
+        fileyears = [int(y) for name in filenames
+                     for y in re.findall(r"(?<!\d)20\d{2}(?!\d)", name)]
+        if fileyears and max(fileyears) < today.year - 2:
+            score -= 5
+            reasons.append("historical_year_in_resource_filename")
+    return score, bucket, reasons
 
 
 def fingerprint(row):
@@ -148,8 +236,13 @@ def evaluate(scout, previous=None):
             if ident not in seen:
                 item["not_seen_in_latest_sample"] = True
                 changes["not_seen_in_sample"] += 1
+    scan_date = published_data_date(timestamp)
+    if scan_date is None:
+        raise ValueError("Source discovery timestamp is not a valid ISO date")
+    for item in stored.values():
+        item["triage_score"], item["triage_class"], item["triage_reasons"] = triage(item, scan_date)
     ranked = sorted(stored.values(), key=lambda s: (
-        s["not_seen_in_latest_sample"], -int(s.get("score", 0)), s["id"]
+        s["not_seen_in_latest_sample"], -s["triage_score"], s["id"]
     ))
     return {
         "schema": VERSION, "last_scan_utc": timestamp,
@@ -168,6 +261,7 @@ def evaluate(scout, previous=None):
 
 def markdown(result):
     scan = result["scan"]
+    kinds = Counter(item["triage_class"] for item in result["sources"])
     def escape(value):
         return clean(value, 240).replace("|", "/").replace(chr(96), "'")
     lines = [
@@ -177,15 +271,17 @@ def markdown(result):
         f"- Fonti note: **{scan['total_known']}**; viste ora: **{scan['candidates_seen']}**.",
         f"- Nuove: **{scan['delta']['new']}**; cambiate: **{scan['delta']['changed']}**.",
         f"- Query fallite: **{scan['query_failures']}**; offline: **{scan['offline']}**.",
+        f"- Probabili elenchi/sedi: **{kinds.get('market_location_candidate', 0)}**; statistiche aggregate: **{kinds.get('aggregated_statistics', 0)}**.",
+        "- Il punteggio indica solo la priorità della verifica. NON è una misura di affidabilità.",
         "- La ricerca restituisce solo i primi risultati. Una fonte non vista non è stata cancellata.",
         "- Una modifica ai metadati NON dimostra che siano cambiati mercati o orari.", "",
-        "| Priorità | Dataset | Editore dichiarato | Licenza dichiarata | Data dati dichiarata |",
-        "|---:|---|---|---|---|",
+        "| Priorità | Punti | Dataset | Tipo | Editore dichiarato | Data dati dichiarata |",
+        "|---:|---:|---|---|---|---|",
     ]
     for i, source in enumerate(result["sources"][:20], 1):
         lines.append(
-            f"| {i} | {escape(source['title'])} | {escape(source['organization'])} | "
-            f"{escape(source['license']) or 'da verificare'} | "
+            f"| {i} | {source['triage_score']} | {escape(source['title'])} | "
+            f"{escape(source['triage_class'])} | {escape(source['organization'])} | "
             f"{escape(source['data_modified']) or 'sconosciuta'} |"
         )
     lines.extend(["", "## Protocollo necessario per aggiungere una fonte", "",

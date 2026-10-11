@@ -4,7 +4,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from source_intake import evaluate, fingerprint, normalize, markdown
+from source_intake import evaluate, fingerprint, normalize, markdown, published_data_date
 
 
 def row(ident="a", metadata="2026-10-12", data_modified=""):
@@ -67,6 +67,37 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(len(newer["sources"]), 2)
         self.assertTrue(next(x for x in newer["sources"] if x["id"] == "b")["not_seen_in_latest_sample"])
         self.assertEqual(newer["scan"]["delta"]["not_seen_in_sample"], 1)
+
+    def test_fresh_location_sources_outrank_old_aggregate_statistics(self):
+        old_stats = row("torino", data_modified="2020-07-06")
+        old_stats["title"] = "Mercati rionali COPERTI per stand e metri quadri 2018"
+        bologna = row("bologna", data_modified="2025-12-31")
+        bologna["title"] = "Mercati e fiere"
+        bologna["score"] = 14
+        lombardia = row("lombardia")
+        lombardia["title"] = "Mercati su aree pubbliche"
+        lombardia["score"] = 10
+        result = evaluate(scout([old_stats, bologna, lombardia]))
+        ranks = {x["id"]: x["triage_score"] for x in result["sources"]}
+        self.assertGreater(ranks["bologna"], ranks["torino"])
+        self.assertGreater(ranks["lombardia"], ranks["torino"])
+        self.assertEqual(result["sources"][-1]["triage_class"], "aggregated_statistics")
+        self.assertIn("historical_year_in_title", result["sources"][-1]["triage_reasons"])
+
+    def test_already_onboarded_official_dataset_is_not_first_new_priority(self):
+        known = row("milano")
+        known["resources"][0]["url"] = (
+            "https://dati.comune.milano.it/dataset/"
+            "f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/data.csv"
+        )
+        result = evaluate(scout([known]))
+        self.assertIn("existing_milano_adapter_covers_dataset",
+                      result["sources"][0]["triage_reasons"])
+        self.assertLess(result["sources"][0]["triage_score"], 15)
+
+    def test_parse_declared_data_dates_not_harvest_dates(self):
+        self.assertEqual(published_data_date("07-01-2026").isoformat(), "2026-01-07")
+        self.assertIsNone(published_data_date("unknown"))
 
     def test_bad_urls_and_duplicate_ids_fail_closed(self):
         invalid = row()
