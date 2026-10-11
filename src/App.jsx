@@ -34,16 +34,17 @@ function formatDateIT(dateStr) {
 }
 
 function getDateBadge(dates = [], quality = 'prevista') {
-  const suffix = quality === 'confermata' ? '' : ' (previsto)';
+  const confirmed = quality === 'confermata';
+  const suffix = confirmed ? '' : ' · da verificare';
   const now = new Date();
   const today = localISO(now);
   const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
   const satDate = new Date(now); satDate.setDate(satDate.getDate() + ((6 - now.getDay() + 7) % 7));
   const sunDate = new Date(satDate); sunDate.setDate(sunDate.getDate() + 1);
-  if (dates.includes(today)) return { label: 'Oggi' + suffix, color: '#C75146' };
-  if (dates.includes(localISO(tomorrow))) return { label: 'Domani' + suffix, color: '#E07A5F' };
+  if (dates.includes(today)) return { label: 'Oggi' + suffix, color: confirmed ? '#C75146' : '#81796D' };
+  if (dates.includes(localISO(tomorrow))) return { label: 'Domani' + suffix, color: confirmed ? '#C75146' : '#81796D' };
   if (dates.includes(localISO(satDate)) || dates.includes(localISO(sunDate))) {
-    return { label: 'Weekend' + suffix, color: '#5B7A5E' };
+    return { label: 'Weekend' + suffix, color: confirmed ? '#5B7A5E' : '#81796D' };
   }
   return null;
 }
@@ -1584,7 +1585,7 @@ export default function App() {
       result = result.filter(m => m.dates.includes(todayStr));
     } else if (dateFilter === "weekend") {
       const dayOfWeek = TODAY.getDay();
-      const satOffset = (6 - dayOfWeek + 7) % 7;
+      const satOffset = dayOfWeek === 0 ? -1 : 6 - dayOfWeek;
       const sat = new Date(TODAY); sat.setDate(sat.getDate() + satOffset);
       const sun = new Date(sat); sun.setDate(sun.getDate() + 1);
       const satStr = localISO(sat);
@@ -1627,10 +1628,19 @@ export default function App() {
       result.sort((a, b) => priority(a) - priority(b) ||
         (a.distance ?? Infinity) - (b.distance ?? Infinity));
     } else {
+      // Same-day markets should not default to an accidental alphabetical
+      // order by region (Abruzzo -> Veneto). Prefer more useful records.
+      const rank = market =>
+        (market.dateQuality === 'confermata' ? 50 : 0) +
+        (market.positionQuality === 'precisa' ? 9 : 0) +
+        (market.hours ? 5 : 0) +
+        (market.category !== 'Misto' ? 3 : 0);
       result.sort((a, b) => {
         const aDate = getNextDate(a.dates);
         const bDate = getNextDate(b.dates);
-        return (aDate || '9999').localeCompare(bDate || '9999');
+        return (aDate || '9999').localeCompare(bDate || '9999') ||
+          rank(b) - rank(a) ||
+          a.name.localeCompare(b.name, 'it');
       });
     }
 
@@ -2047,6 +2057,30 @@ export default function App() {
           ))}
         </div>
 
+        {!canUseDistance && !filterCity && !filterRegion && !searchQuery.trim() && (
+          <div role="note" style={{
+            background: '#F0EEE8', borderRadius: 12, padding: '12px 14px',
+            margin: '6px 0 12px', fontSize: 12, lineHeight: 1.5,
+            color: 'var(--ink-light)',
+          }}>
+            <strong style={{ display: 'block', marginBottom: 3, fontSize: 13, color: 'var(--ink)' }}>
+              Stai esplorando tutta Italia
+            </strong>
+            Cerca la tua città nella barra sopra, oppure usa la posizione per trovare
+            mercati nella tua zona. Le date automatiche non sono conferme degli organizzatori.
+            <div style={{ display: 'flex', gap: 6, marginTop: 9, flexWrap: 'wrap' }}>
+              {['Firenze', 'Roma', 'Milano'].map(city => (
+                <button key={city} type="button" className="chip"
+                  onClick={() => {
+                    setFilterRegion('');
+                    setFilterCity(city);
+                    setActiveFilterCount(1);
+                    setViewMode('lista');
+                  }}>{city}</button>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="chips-row" style={{ marginTop: 8, alignItems: 'center' }}>
           <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
             disabled={positionStatus === 'requesting'}>
@@ -2114,7 +2148,7 @@ export default function App() {
         <span>
           {marketsLoading
             ? 'Caricamento mercati statici...'
-            : `${filteredMarkets.length} mercat${filteredMarkets.length === 1 ? 'o' : 'i'} trovat${filteredMarkets.length === 1 ? 'o' : 'i'}`
+            : `${filteredMarkets.length.toLocaleString('it-IT')} mercat${filteredMarkets.length === 1 ? 'o' : 'i'} ${dateFilter === 'oggi' ? 'previsti oggi' : dateFilter === 'weekend' ? 'previsti nel weekend' : dateFilter === '7giorni' ? 'previsti nei prossimi 7 giorni' : 'nel catalogo'}${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : !canUseDistance ? ' · Italia' : ''}`
           }
         </span>
         {dataMode === 'demo' && (
