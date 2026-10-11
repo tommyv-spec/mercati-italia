@@ -109,6 +109,7 @@ try {
   await cityGroup.getByRole('button', { name: /1 appuntamento senza sede identificata/ }).click()
   assert.equal(await cityGroup.locator('.weekly-venue[data-known="false"]').count(), 1)
   await cityGroup.getByRole('button', { name: /1 appuntamento senza sede identificata/ }).click()
+  await page.locator('.toast').waitFor({ state: 'hidden', timeout: 10000 })
   await page.screenshot({ path: 'ux-weekly-city.png', animations: 'disabled' })
 
   // Saturday must reveal only the specific Piazza I maggio schedule.
