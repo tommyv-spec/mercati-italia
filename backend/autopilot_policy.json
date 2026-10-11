@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "Fail-closed weekly automation on DEV; no client Cloudflare Worker/Firestore reads",
+  "description": "Fail-closed daily DEV automation with source-level freshness, identity and no dynamic billed reads",
   "sources": [
     {
       "id": "milano",
@@ -18,6 +18,15 @@
       "min_records": 3,
       "max_records": 250,
       "license": "CC BY 4.0",
+      "stale_source_dates_not_confirmed": true
+    },
+    {
+      "id": "lombardia",
+      "enabled": true,
+      "official": true,
+      "min_records": 1100,
+      "max_records": 2400,
+      "license": "CC0 1.0 declared by Regione Lombardia (publisher metadata, review still required)",
       "stale_source_dates_not_confirmed": true
     }
   ],
