@@ -21,6 +21,14 @@ import unicodedata
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
+
+CANONICAL_REGIONS = [
+    "Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna",
+    "Friuli Venezia Giulia", "Lazio", "Liguria", "Lombardia", "Marche",
+    "Molise", "Piemonte", "Puglia", "Sardegna", "Sicilia", "Toscana",
+    "Trentino-Alto Adige", "Umbria", "Valle d'Aosta", "Veneto",
+]
 
 VALID_STATUSES = {"attivo", "non_confermato", "annullato", "archiviato"}
 VALID_CATEGORIES = {
@@ -37,6 +45,28 @@ ITALY_BOUNDS = (35.0, 48.0, 6.0, 19.6)
 def slugify(text: str) -> str:
     ascii_text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
     return re.sub(r"[^a-z0-9]+", "-", ascii_text.lower()).strip("-")[:100]
+
+
+def canonical_region(name: str) -> str | None:
+    key = slugify(name)
+    lookup = {slugify(r): r for r in CANONICAL_REGIONS}
+    lookup.update({
+        "val-d-aosta": "Valle d'Aosta",
+        "valle-daosta": "Valle d'Aosta",
+        "trentino-altoadige": "Trentino-Alto Adige",
+        "friuli-venezia-giulia": "Friuli Venezia Giulia",
+    })
+    return lookup.get(key)
+
+
+def sanitize_url(value) -> str:
+    candidate = safe_string(value, 650)
+    parts = urlsplit(candidate)
+    if parts.scheme.lower() not in {"http", "https"} or not parts.hostname:
+        return ""
+    if parts.username or parts.password:
+        return ""
+    return candidate
 
 
 def compact_json(value) -> bytes:
@@ -87,9 +117,12 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         return None, "record_not_object"
     nome = safe_string(raw.get("nome"), 160)
     citta = safe_string(raw.get("citta"), 120)
-    regione = safe_string(raw.get("regione"), 80)
-    if not all((nome, citta, regione)):
+    regione_raw = safe_string(raw.get("regione"), 80)
+    if not all((nome, citta, regione_raw)):
         return None, "name_city_region_missing"
+    regione = canonical_region(regione_raw)
+    if not regione:
+        return None, "not_italian_region"
     if raw.get("status") in ("archiviato", "annullato"):
         return None, "inactive_market"
     # Categories outside the product scope (for example "sagra" or
@@ -112,6 +145,8 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
 
     lat, lng, position_quality = parse_location(raw)
     status = raw.get("status") if raw.get("status") in VALID_STATUSES else "non_confermato"
+    if status == "attivo" and not raw.get("verificato_il"):
+        status = "non_confermato"
     category = raw.get("categoria") if raw.get("categoria") in VALID_CATEGORIES else "misto"
     quality = raw.get("date_quality", "prevista")
     if quality not in VALID_DATE_QUALITY:
@@ -126,7 +161,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     raw_tags = raw.get("tags") or []
     tags = sorted({safe_string(tag, 60) for tag in raw_tags if isinstance(tag, str)}) if isinstance(raw_tags, list) else []
     source = safe_string(raw.get("fonte") or raw.get("fonte_nome"), 100)
-    source_url = safe_string(raw.get("url_fonte"), 650)
+    source_url = sanitize_url(raw.get("url_fonte"))
     evidence = raw.get("fonti")
     evidence = evidence if isinstance(evidence, list) else []
     clean_sources = []
@@ -135,13 +170,20 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
             continue
         clean_sources.append({
             "nome": safe_string(source_record.get("nome"), 100),
-            "url": safe_string(source_record.get("url"), 650),
+            "url": sanitize_url(source_record.get("url")),
         })
     if source or source_url:
         primary = {"nome": source, "url": source_url}
         if primary not in clean_sources:
             clean_sources.append(primary)
     clean_sources = sorted(clean_sources, key=lambda record: (record["nome"], record["url"]))
+    completeness = 25  # name + city + valid Italian region
+    completeness += 15 if raw.get("indirizzo") else 0
+    completeness += 15 if lat is not None and position_quality == "precisa" else (5 if lat is not None else 0)
+    completeness += 15 if parse_dates(raw.get("date"), today) else 0
+    completeness += 10 if raw.get("orario_testo") else 0
+    completeness += 15 if source_url else 0
+    completeness += 5 if raw.get("verificato_il") else 0
 
     result = {
         "slug": slug, "nome": nome, "citta": citta, "provincia": safe_string(raw.get("provincia"), 2),
@@ -153,7 +195,8 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "descrizione": safe_string(raw.get("descrizione"), 900),
         "date": parse_dates(raw.get("date"), today),
         "date_quality": quality,
-        "confidence": confidence,
+        "confidence": confidence,  # Legacy field; not a verification probability.
+        "completezza": completeness,
         "fonte": source, "url_fonte": source_url,
         "fonti": clean_sources,
         "verificato_il": safe_string(raw.get("verificato_il"), 35),
