@@ -1,11 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
-import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
 // Public, keyless vector basemap; no Cloudflare Worker/D1/KV calls.
 // https://openfreemap.org/quick_start/
-maplibregl.setWorkerUrl(workerUrl)
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/positron'
 const COLORS = {
