@@ -26,6 +26,7 @@ from pathlib import Path
 from audit_dataset import audit
 from export_static import export
 from merge_catalog import combine, load_existing
+from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import refresh_records
 import source_milano
 import source_firenze
@@ -367,8 +368,30 @@ def run(args):
     })
 
     feeds, source_status = retrieve_sources(policy, out, args.today, args.offline, args.resume)
+    raw_fetched = len(feeds)
+    report = {
+        "schema": 1, "review_only": True, "source_total": 0,
+        "accepted": 0, "quarantined": 0, "counts": {},
+        "quarantined_examples": [], "market_confirmations": 0,
+        "deleted_existing_records": 0,
+    }
+    if source_status.get("lombardia", {}).get("status") == "retrieved":
+        candidates = [x for x in feeds if str(x["slug"]).startswith("lo-mercap-")]
+        reviewed, report = review_lombardia_overlaps(old_rows, candidates)
+        if len(reviewed) < 950:
+            raise ValueError("Lombardia: too many records overlap with the baseline; manual QA")
+        selected = {x["slug"] for x in reviewed}
+        feeds = [x for x in feeds if not str(x["slug"]).startswith("lo-mercap-")
+                 or x["slug"] in selected]
+        source_status["lombardia"]["accepted_after_overlap_qa"] = len(reviewed)
+        source_status["lombardia"]["quarantined_review"] = report["quarantined"]
+    save_json(out / "lombardia-overlaps.json", report)
+    (out / "LOMBARDIA_OVERLAPS.md").write_text(
+        lombardia_overlap_markdown(report), encoding="utf-8")
     checkpoint(out, "sources", {
-        "total_fetched": len(feeds), "sources": source_status,
+        "total_fetched": raw_fetched, "total_after_review": len(feeds),
+        "sources": source_status,
+        "lombardia_overlap_quarantined": report["quarantined"],
     })
     merged, merge_stats = combine(old_rows, feeds)
     merged, absent_stats = quarantine_absent_official_lombardia(
