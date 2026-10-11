@@ -92,6 +92,11 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         return None, "name_city_region_missing"
     if raw.get("status") in ("archiviato", "annullato"):
         return None, "inactive_market"
+    # Categories outside the product scope (for example "sagra" or
+    # "carnevale") must not silently turn into generic market records.
+    raw_category = raw.get("categoria")
+    if raw_category and raw_category not in VALID_CATEGORIES:
+        return None, "excluded_non_market_category"
 
     slug = safe_string(raw.get("slug"), 130) or slugify(nome + "-" + citta)
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
