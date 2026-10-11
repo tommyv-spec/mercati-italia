@@ -127,6 +127,30 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(rows[0]["date"], ["2026-10-11", "2026-10-18"])
         self.assertEqual(rows[0]["date_quality"], "prevista")
 
+    def test_preserves_different_weekdays_at_same_street(self):
+        source = "https://example.org/markets/by-city"
+        first = market(slug="mercato-semanale-di-roma-roma-lunedi",
+                       nome="Mercato settimanale di Roma",
+                       citta="Roma", indirizzo="Via Nazionale 12", url_fonte=source)
+        second = market(slug="mercato-semanale-di-roma-roma-giovedi",
+                        nome="Mercato settimanale di Roma",
+                        citta="Roma", indirizzo="Via Nazionale 12", url_fonte=source)
+        rows, report = prepare([first, second], self.today)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(report["same_source_duplicates_merged"], 0)
+
+    def test_keeps_general_market_record_separate_from_weekday(self):
+        source = "https://example.org/markets/by-city"
+        summary = market(slug="mercato-settimanale-di-roma-roma",
+                         nome="Mercato settimanale di Roma",
+                         citta="Roma", indirizzo="Via Nazionale 12", url_fonte=source)
+        monday = market(slug="mercato-settimanale-di-roma-roma-lunedi",
+                        nome="Mercato settimanale di Roma",
+                        citta="Roma", indirizzo="Via Nazionale 12", url_fonte=source)
+        rows, report = prepare([summary, monday], self.today)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(report["same_source_duplicates_merged"], 0)
+
     def test_does_not_merge_same_name_at_distinct_addresses(self):
         source = "https://example.org/markets/all"
         a = market(slug="market-1", nome="Mercato artigianale",
