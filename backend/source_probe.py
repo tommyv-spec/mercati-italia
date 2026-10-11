@@ -25,14 +25,25 @@ HOSTS = frozenset({
 })
 MAX_PROBES = 3
 MAX_BYTES = 65536
+# Exact matches are intentional. A name-like suffix may describe a district,
+# note or year, not the market name. Projected x/y is never labeled lat/lon.
 COLUMN_ALIASES = {
-    "name": ("nome_mercato", "mercato", "denominazione", "nome", "name"),
-    "address": ("indirizzo", "via", "piazza", "ubicazione", "localizzazione", "sede"),
-    "municipality": ("comune", "citta", "città", "municipio", "descom", "istat_comune"),
-    "weekday": ("giorno", "giorni", "periodicita", "periodicità", "settimana", "frequenza"),
-    "hours": ("orario", "apertura", "chiusura", "orari"),
+    "name": ("nome_mercato", "denominazione_mercato", "denominazione", "nome", "name"),
+    "address": ("indirizzo", "indirizzi", "via", "piazza", "ubicazione",
+                "localizzazione", "sede"),
+    "municipality": ("comune", "citta", "descom", "nome_comune"),
+    "district": ("municipio", "nome_quartiere", "nome_zona", "zona", "quartiere"),
+    "weekday": ("giorno", "giorni_svolgimento", "giorno_settimana",
+                "periodicita", "periodicita_tipo", "frequenza"),
+    "hours": ("orario", "orari", "orario_svolgimento", "note_orari",
+              "dalle_ore_invernale", "alle_ore_invernale",
+              "dalle_ore_estivo", "alle_ore_estivo"),
     "latitude": ("latitudine", "latitude", "lat"),
-    "longitude": ("longitudine", "longitude", "lng", "lon"),
+    "longitude": ("longitudine", "longitude", "lng", "lon", "long"),
+    "geometry_requires_crs_review": ("geo_x", "geo_y", "geopoint", "location"),
+    "market_type": ("tipologia", "tipologia_mercato"),
+    "notes": ("note_mercato", "altre_indicazioni"),
+    "stable_id_candidate": ("codice_id", "codice_mercato", "id"),
 }
 
 
@@ -108,8 +119,12 @@ def infer_columns(columns):
         possible = []
         for original in columns:
             name = column_name(original)
-            if any(alias == name or name.startswith(alias + "_")
-                   or name.endswith("_" + alias) for alias in aliases):
+            matched = name in aliases
+            if concept == "hours" and name.startswith(
+                ("apertura_", "chiusura_", "dalle_ore_", "alle_ore_", "orario_")
+            ):
+                matched = True
+            if matched:
                 possible.append(original)
         if possible:
             found[concept] = possible[:6]
@@ -171,6 +186,16 @@ def survey(registry, fetch=limited_fetch, offline=False):
                 fields = extract_columns(data, fmt, truncated)
                 report["fields"] = fields
                 report["field_hints"] = infer_columns(fields)
+                blockers = []
+                if not report["field_hints"].get("name"):
+                    blockers.append("explicit_market_name_missing")
+                if not report["field_hints"].get("municipality"):
+                    blockers.append("municipality_must_be_validated_from_publisher_context")
+                if (report["field_hints"].get("geometry_requires_crs_review")
+                        and not (report["field_hints"].get("latitude")
+                                 and report["field_hints"].get("longitude"))):
+                    blockers.append("geometry_crs_and_coordinate_units_unknown")
+                report["review_blockers"] = blockers
                 report["status"] = "schema_preview_only"
                 report["sample_bytes"] = len(data)
                 report["truncated"] = truncated
@@ -201,6 +226,7 @@ def markdown(data):
             "- Formato: " + item["format"],
             "- Campi: " + ", ".join(item["fields"][:24]),
             "- Possibili mappature: " + json.dumps(item["field_hints"], ensure_ascii=False),
+            "- Punti da risolvere: " + ", ".join(item.get("review_blockers", [])),
             "- Verifiche obbligatorie: licenza, schema completo, ID stabili, date attuali, dedup.",
             "",
         ])
