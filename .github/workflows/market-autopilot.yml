@@ -81,6 +81,11 @@ jobs:
               echo "::warning::Source discovery offline; keep last approved source adapters."
             }
           fi
+      - name: Persist a bounded review-only source intake snapshot
+        if: success()
+        run: |
+          python backend/source_intake.py             --scout autopilot-output/official-candidates.json             --previous reports/automation/source-registry.json             --out autopilot-output/source-registry.json             --report autopilot-output/SOURCE_QUEUE.md
+          cat autopilot-output/SOURCE_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve checkpoints and candidate even after failures
         if: always()
         uses: actions/upload-artifact@v4
@@ -112,6 +117,18 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$(cat autopilot-output/dev-source-sha.txt)"
+      - name: Assert newly discovered sources have no automatic import permission
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          info = json.loads(Path('autopilot-output/source-registry.json').read_text())
+          if info['record_imports'] != 0 or info['source_licenses_verified_by_automation'] != 0:
+              raise ValueError('Source discovery must not import or verify records')
+          if any(item['automatic_import_allowed'] for item in info['sources']):
+              raise ValueError('Unreviewed dataset granted import permissions')
+          print('Metadata-only intake safety check passed.')
+          PY
       - name: Verify candidate approved and replace ONLY local static data
         run: |
           python - <<'PY'
@@ -239,6 +256,15 @@ jobs:
           if not target.is_file() or json.loads(target.read_text())['content_signature'] != report['new_signature']:
               raise ValueError('Candidate artifact signature mismatch')
           PY
+      - name: Stage QA-approved source discovery history for DEV only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s autopilot-output/source-registry.json
+          test -s autopilot-output/SOURCE_QUEUE.md
+          mkdir -p reports/automation
+          cp autopilot-output/source-registry.json reports/automation/source-registry.json
+          cp autopilot-output/SOURCE_QUEUE.md reports/automation/SOURCE_QUEUE.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
