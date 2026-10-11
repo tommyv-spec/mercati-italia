@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from argparse import Namespace
 from datetime import date
 from pathlib import Path
@@ -119,6 +120,15 @@ class AutopilotTests(unittest.TestCase):
         verdict=compare_candidates([prev],[newer],report,report,policy(),
                                    {"all_dates_marked_forecast":True},{})
         self.assertFalse(verdict["gates"]["retain_old_source_evidence"])
+
+    def test_suspicious_official_feed_size_is_quarantined(self):
+        config = policy()
+        config["sources"][0]["min_records"] = 2
+        with tempfile.TemporaryDirectory() as td:
+            with patch("autopilot.source_feed", return_value=[market("only-row")]):
+                with self.assertRaisesRegex(ValueError, "returned 1 records"):
+                    retrieve_sources(config, Path(td), TODAY,
+                                     offline=False, resume=False)
 
     def test_unapproved_source_ids_fail_closed(self):
         bad=policy()

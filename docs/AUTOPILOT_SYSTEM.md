@@ -1,6 +1,6 @@
 # Mercati Autopilot — metodologia e sistema automatico
 
-Aggiornato: 11 ottobre 2026. Il sistema esegue il lavoro ripetitivo su GitHub Actions, **non** in ChatGPT, nel browser dell'utente o sul PC privato.
+Aggiornato: 12 ottobre 2026. Il sistema esegue il lavoro ripetitivo su GitHub Actions, **non** in ChatGPT, nel browser dell'utente o sul PC privato.
 
 ## Obiettivo
 
@@ -46,6 +46,8 @@ Quality gates: record, identità, licenze/evidenze, date, budget KB
 
 **Solo lo scheduler** `.github/workflows/market-autopilot.yml` è su `main`. Legge e prova il branch `improve/data-quality-security-performance-2026-10-11`. Non modifica `main`, i dati Firestore né l'app in produzione Cloudflare. Il token con scrittura è confinato al job di promozione del catalogo DEV, che gira solo dopo QA positiva.
 
+**Revisione bloccata per esecuzione:** il primo job salva l'SHA esatto di DEV e i job successivi verificano di usare lo stesso codice. Se DEV cambia, la pubblicazione si ferma. È vietato fare rebase di un catalogo già testato su codice nuovo e non verificato. Il push standard rifiuta modifiche concorrenti.
+
 ## Le sei fasi e i relativi checkpoint
 
 | Fase | Script | Risultato e condizioni |
@@ -57,7 +59,7 @@ Quality gates: record, identità, licenze/evidenze, date, budget KB
 | 04 export | `backend/export_static.py` | Scrive asset JSON con hash in una **cartella temporanea**, mantenendo quelli dell'ultima generazione per compatibilità cache. |
 | 05 quality | `backend/validate_static.py`, `audit_dataset.py` | Confronta numeri, firme, 60 giorni di copertura, budget rete e identità; rifiuta la nuova versione se peggiora oltre soglia. |
 
-Ogni checkpoint è salvato in `autopilot-output/checkpoints/*.json` e allegato per 30 giorni alle esecuzioni GitHub Actions. `--resume` può ricaricare i risultati già acquisiti solo se policy e catalogo iniziale hanno ancora la stessa firma. Un candidato respinto **non** altera la cartella `public/data/v1` in DEV.
+Ogni checkpoint è salvato in `autopilot-output/checkpoints/*.json` e allegato per 30 giorni alle esecuzioni GitHub Actions. `--resume` può ricaricare i risultati già acquisiti solo se policy, catalogo iniziale **e data di riferimento** coincidono. Un candidato respinto **non** altera la cartella `public/data/v1` in DEV.
 
 ## Miglioramento continuo basato sui dati
 
@@ -76,6 +78,10 @@ Si tratta di un sistema di **feedback con policy**, non di un'IA che riscrive au
 - Indice gzip massimo **512 KiB**, crescita massima **40%** rispetto all'indice precedente.
 - Divieto automatico di passare da `prevista` a `confermata` e divieto di inventare `verificato_il`.
 - Se una fonte storica o nuova prova a cambiare/privare un record della sua fonte originale, la pubblicazione viene respinta finché non si conserva evidenza.
+- Un feed ufficiale non raggiungibile o troppo piccolo viene quarantinato. Milano deve restituire almeno **60** schede (85 nell'ultima esecuzione); Firenze almeno **3** (4 nell'ultima esecuzione).
+- Una nuova scheda non può essere marcata `confermata` o `verificato_il` da questa automazione; i cambi di città/regione di un ID esistente sono bloccati.
+- La quota di schede prive di URL fonte può aumentare al massimo di **1 punto percentuale** in un ciclo. La policy non può autorizzare verifiche umane automatiche.
+- Una pubblicazione nuova è consentita solo dopo controlli di routing Cloudflare statico, dipendenze, Python, build e browser mobile.
 
 ## Costi e sicurezza
 
