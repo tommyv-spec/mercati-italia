@@ -1,54 +1,55 @@
-# Mercati d'Italia — checkpoint e piano operativo
-Aggiornato: 2026-10-11. Branch: `improve/data-quality-security-performance-2026-10-11`.
-Nessuna modifica di questo branch deve essere considerata deployata finché non viene verificata su Firebase e sul sito pubblico.
+# Mercati d'Italia — stato e checkpoint verificabili
 
-## Obiettivi
-1. Sicurezza: bloccare modifiche pubbliche ai mercati; togliere l'inserimento di demo nel browser; separare demo/produzione.
-2. Prestazioni: rimuovere limite invisibile di 300 record, introdurre fetch paginato, evitare date scadute e fallback silenziosi.
-3. Qualità: provenienza per campo, geocodifica prudente, ricorrenze affidabili, non perdere dati verificati nella fusione.
-4. Quantità: connettore funzionante per una fonte ufficiale strutturata; framework per altre fonti con import ripetibili.
-5. Test: controlli di normalizzazione, deduplicazione, fonti e sicurezza; CI GitHub.
-6. Operatività: controlli di copertura/affidabilità e report dry-run prima di scrivere in Firestore.
+**Data:** 11 ottobre 2026 · **Branch:** `improve/data-quality-security-performance-2026-10-11` · **PR in bozza:** https://github.com/tommyv-spec/mercati-italia/pull/1
 
-## Checkpoint
-- [x] CP0 — Audit repo: pipeline monofonte, geocodifica che ripiega sul centro città, merge con perdita fonti, ricorrenze fragili, read max 300, Firestore aperto.
-- [x] CP1 — Regole Firestore sicure versionate + auto-seed browser disabilitato (**da distribuire manualmente su Firebase**).
-- [x] CP2 — Frontend passato a lettura statica + preferiti locali, 0 query DB per vista; eliminato limite 300, date hardcoded e mock dal bundle (**catalogo iniziale non ancora esportato**).
-- [x] CP3 — Importatore Comune di Milano DS291 (fonte 2024: date previste, NON confermate); esportatore statico con chunk adattivi, cache immutabile e manifest.
-- [ ] CP4 — Merge conservativo + provenance e quality gate implementati; restano da migliorare dedup cross-source e parser delle ricorrenze originali.
-- [ ] CP5 — Test Python e build Vite configurati in GitHub Actions; PR #1 aperta in bozza. Verifica in corso e istruzioni di rilascio da completare.
+## Obiettivo
 
-## Note
-- La configurazione Firebase nel frontend è pubblica per progetto: il vero controllo di accesso sono le regole Firestore.
-- Le regole versionate NON cambiano la produzione senza un deploy esplicito.
-- Import da ArcGIS: layer `MSS_Mercati_Settimanali_Scoperti` del Comune di Milano, licenza CC BY 4.0; separare la data della fonte dall'ultima scansione.
-- OSM/Nominatim pubblico: niente scraping sistematico/bulk geocoding, rispettare limiti, usare coordinate da fonti ufficiali quando presenti.
-- Bloccare nelle viste “confermato oggi” per sole date generate: le occorrenze stimate restano etichettate.
-- Non sostituire o cancellare i documenti Firestore esistenti durante le importazioni senza snapshot e riconciliazione.
+Più mercati italiani, dati affidabili, ricerca veloce su telefono, nessun costo Cloudflare **per le normali letture del catalogo**. Le visite leggono file statici su Pages. Nessuna visita invoca Firebase, Pages Functions, KV o D1. Il costo reale dell'account Cloudflare e le sue eventuali altre Workers route **non sono ancora stati verificati**.
 
-## Verifiche finali previste
-- [ ] Esecuzione test Python e JavaScript
-- [ ] Build Vite (se l'ambiente consente installazione dipendenze)
-- [ ] PR review e differenze controllate
-- [ ] Pubblicazione regole con credenziali del progetto (se autorizzata e tecnicamente possibile)
-- [ ] Dry-run sorgenti reali con conteggi; solo dopo, import in DB
+## Checkpoint completati
 
-## Cloudflare, costi e release (2026-10-11)
-- Design selezionato: Vite SPA statica su Cloudflare Pages, nessuna funzione eseguita su `/`, `/assets/*` o `/data/*`; pubblico legge manifest + file immutabili; preferiti localStorage.
-- Pagina tariffe ufficiale: https://developers.cloudflare.com/pages/functions/pricing/ (richieste asset statici gratis e illimitate, le Functions/Workers sono soggette a fatturazione/quote).
-- Configurazione nel repo: `public/_routes.json` riserva alle Functions solo `/api/*` e `public/_headers` imposta cache; una route esterna definita nel dashboard potrebbe comunque invocare un Worker.
-- Il consumo Cloudflare reale NON è ancora stato ispezionato. Né Firebase rules né Cloudflare Pages sono stati deployati.
-- `backend/export_static.py`: input JSON dalla pipeline o `--firestore` con Firebase Admin SDK; no richieste ai DB durante le visite. Rifiuta dataset vuoti e forti cali; manifest pubblicato per ultimo.
-- `backend/merge_catalog.py`: unisce feed nuovi al catalogo già validato senza cancellare assenti; gestisce collisioni senza fondere arbitrariamente mercati distinti.
-- `backend/source_milano.py`: primo connettore; la base è 2024 e richiede riconferma prima di dichiarare date reali.
-- `.github/workflows/refresh-data.yml`: update settimanale, ma si FERMA se manca il catalogo baseline; questo evita di rimpiazzare il catalogo nazionale con la sola Milano.
-- `.github/workflows/quality.yml`: test e controllo build su ogni PR e branch improve.
-- Branch: https://github.com/tommyv-spec/mercati-italia/tree/improve/data-quality-security-performance-2026-10-11
-- PR in bozza: https://github.com/tommyv-spec/mercati-italia/pull/1
+- [x] **CP0 — Audit iniziale.** Firestore pubblico scrivibile, auto-seed dal browser, date hardcoded febbraio 2026, dati demo duplicati, frontend limitato a 300 risultati, classificazione/dedup/geocoding fragili.
+- [x] **CP1 — Hardening del codice.** `firestore.rules` impedisce scritture pubbliche. Rimossi Firebase SDK, vecchio browser auto-seed, codice demo e Firestore query dal frontend. **Attenzione: le regole non sono state ancora applicate all'istanza Firebase live.**
+- [x] **CP2 — Catalogo nazionale statico.** Import read-only dell'istanza Firestore esistente a pagine con aggregazione preventiva; 13.501 documenti nelle categorie interrogate, aggiunti 85 record di Milano, poi normalizzati/esclusi i non idonei. Manifest, file regionali versionati con hash e validator. Fonte storica Firestore conservata, nessuna scrittura.
+- [x] **CP3 — Quantità e sorgenti ufficiali.** Importatore Milano DS291 (85 mercati con coordinate 4326, date ricorrenti previste, fonte maggio 2024); Firenze FeelFlorence (4 mercati con coordinate ufficiali, fonte marzo 2023). Connettori eseguibili periodicamente, attribuzione presente, senza fingere verifica attuale.
+- [x] **CP4 — Integrità, sicurezza, qualità.** VentI regioni canoniche, record fuori Italia esclusi; blocco categorie esterne (sagra/carnevale) e titoli generici ambigui; dedup/merge conservativo che preserva fonti e non elimina assenti; coordinate indicative distinte dalle precise; qualità date (confermata, prevista, sconosciuta); punteggio `completezza` separato da verifiche umane. Esportazioni vuote e cali anomali bloccati.
+- [x] **CP5 — Prestazioni/CDN.** Un solo indice statico nazionale per lista/ricerca/filtri/mappa, descrizioni e schede complete lette *solo alla selezione* dalla regione immutabile. Render iniziale massimo 60 carte, poi Mostra altri. Firebase rimossa anche dalle dipendenze NPM. `public/_routes.json` evita l'invocazione Pages Functions sui file pubblici; `public/_headers` abilita cache lunga sugli asset hash e refresh del manifest.
+- [x] **CP6 — CI e rollback.** GitHub Actions testa Python, firma e integrità completa dello snapshot, build Vite, routing Cloudflare. Snapshot precedenti preservati durante gli aggiornamenti. Workflow one-off eseguiti e rimossi; `.github/workflows/refresh-data.yml` e `.github/workflows/quality.yml` sono quelli permanenti. PR lasciata *draft* finché non viene provato il deploy.
 
-## Prima di fare merge o attivare il nuovo sito
-1. Backup del Firestore esistente e primo export in `public/data/v1/manifest.json` usando `backend/export_static.py --firestore` (servono credenziali Firebase Admin, non disponibili nella sessione GitHub).
-2. Validazione `python backend/validate_static.py --manifest public/data/v1/manifest.json` e confronto visuale di mercati, filtri e date.
-3. Esecuzione e superamento di tutti i test, verifica richieste Network browser: solo HTML/JS/CSS/JSON statici.
-4. Deployment separato delle regole Firestore (procedura Firebase Console o CLI).
-5. Controllo Cloudflare billing/Workers routes reali nel dashboard. Non promettere spesa zero per altri servizi attivi (dominio, piano, ecc.).
+## Snapshot attuale — ultimo export sul branch
+
+- **13.099 record candidati** con categorie incluse e 20 regioni italiane.
+- **8.202** con almeno una data futura registrata/proiettata. Date automaticamente ricorrenti = *previste*, non edizioni confermate.
+- **13.099** con coordinate, ma molte coordinate dal vecchio archivio indicano solo centri comunali o posizioni non verificate. Non equivalgono a ingressi precisi.
+- **0** con una verifica umana documentata; UI lo segnala correttamente.
+- Indice globale: **4.369.258 byte** prima della compressione HTTP, contro 7.312.633 della prima versione.
+- Catalogo: `public/data/v1/manifest.json`; `index_schema=2`; 20 shard regionali.
+- La vecchia collezione conteneva moltissimi eventi generici; il numero di record **non** misura la qualità e può contenere ancora duplicati/eventi da rivedere.
+
+**Import riuscito:** GitHub Actions run `38165365302` (prima migrazione completa), run `38165680504` (20 regioni), run `38166243508` (coordinate Milano + fonte Firenze), run `38166397677` (indice compatto); test CI e build verificati nei workflow `quality.yml`.
+
+## Cosa manca prima di mettere online
+
+- [ ] **R1 — Sicurezza effettiva:** deploy delle `firestore.rules` sul vero progetto Firebase con credenziali amministrative e test negativo di scrittura anonima. Le regole nel repository, da sole, **non proteggono il DB di produzione**.
+- [ ] **R2 — Costi effettivi:** audit Cloudflare dashboard (Pages/Workers/Functions, route del dominio, analytics/usage/billing) e conferma che le richieste sul dominio reale non invocano Workers. Cloudflare documenta static asset requests gratuite e illimitate; non garantisce costo zero di altri servizi.
+- [ ] **R3 — Test browser reale:** verifica sito mobile, schede lazy, ricerche, mappa e URL delle fonti con Network tab su preview Pages. Nessun URL di deploy Cloudflare è disponibile in questa sessione.
+- [ ] **R4 — Qualità editoriale:** analisi a campione delle categorie `misto`, conflitti tra fonti, date/festivi, coordinate comunali stimate, possibili mercati distinti con nomi simili; ampliare fonti comunali ufficiali dove possibile.
+- [ ] **R5 — Pubblicazione:** dopo le verifiche precedenti, approvare e unire PR. Configurare su Cloudflare Pages Vite `npm run build`, output `dist`, e verificare il dominio effettivo.
+- [ ] **R6 — Monitoraggio:** misurare dimensione compressa/tempo avvio su mobile; osservare crescita dell'indice e aggiornamenti falliti; aggiungere più regioni da open data aggiornati.
+
+## Comandi riproducibili e link
+
+```bash
+python -m unittest discover -s backend/tests -v
+python backend/validate_static.py --manifest public/data/v1/manifest.json
+npm ci
+npm run build
+```
+
+- README aggiornato: `README.md`.
+- PR: https://github.com/tommyv-spec/mercati-italia/pull/1
+- Tariffe ufficiali: https://developers.cloudflare.com/pages/functions/pricing/
+- Routing statico: https://developers.cloudflare.com/pages/functions/routing/
+- Non usare il geocoder pubblico Nominatim per elaborazioni geografiche massive. Non spacciare dati previsti o fonte del 2023/2024 come verificati nel 2026.
+
+**Principio di sicurezza:** nessuna migrazione operativa o sostituzione pubblica deve distruggere l'archivio precedente. L'importazione Firestore già eseguita è stata di sola lettura; la nuova pubblicazione è separata.
