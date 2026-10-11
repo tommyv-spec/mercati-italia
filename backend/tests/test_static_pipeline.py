@@ -1,7 +1,7 @@
 import json
 import tempfile
 import unittest
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 import sys
 
@@ -97,7 +97,7 @@ class ExportTests(unittest.TestCase):
             prepare([a, b], self.today)
 
     def test_search_index_is_small_but_supports_7_day_filters(self):
-        dates = [(self.today.isoformat())] * 16
+        dates = [(self.today + timedelta(days=i)).isoformat() for i in range(16)]
         raw = market(date=dates, descrizione="Large description " * 100)
         record, _ = normalize(raw, self.today)
         indexed = small_index([record])[0]
