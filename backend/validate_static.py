@@ -61,7 +61,7 @@ def validate(manifest_path: Path) -> dict:
     index_rel = manifest.get("index")
     if not index_rel:
         raise ValueError("Missing lightweight catalog index")
-    if not re.fullmatch(r"data/v1/index-[a-f0-9]{14}\\.json", index_rel):
+    if not re.fullmatch(r"data/v1/index-[a-f0-9]{14}\.json", index_rel):
         raise ValueError("Unsafe index path")
     index_asset = public / index_rel
     if not index_asset.is_file():
