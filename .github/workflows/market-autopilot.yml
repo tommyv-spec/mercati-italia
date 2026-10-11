@@ -86,6 +86,17 @@ jobs:
         run: |
           python backend/source_intake.py             --scout autopilot-output/official-candidates.json             --previous reports/automation/source-registry.json             --out autopilot-output/source-registry.json             --report autopilot-output/SOURCE_QUEUE.md
           cat autopilot-output/SOURCE_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Sample up to three official source schemas in a bounded read-only sandbox
+        if: success()
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          python backend/source_probe.py --registry autopilot-output/source-registry.json --out autopilot-output/source-probes.json --report autopilot-output/SOURCE_SCHEMA.md "${args[@]}"
+          cat autopilot-output/SOURCE_SCHEMA.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve checkpoints and candidate even after failures
         if: always()
         uses: actions/upload-artifact@v4
@@ -128,6 +139,21 @@ jobs:
           if any(item['automatic_import_allowed'] for item in info['sources']):
               raise ValueError('Unreviewed dataset granted import permissions')
           print('Metadata-only intake safety check passed.')
+          PY
+      - name: Reject any source schema preview that grants import authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          probes = json.loads(Path('autopilot-output/source-probes.json').read_text())
+          if probes.get('imports') != 0 or probes.get('verified_event_count') != 0:
+              raise ValueError('Source schema probing cannot verify or publish markets')
+          if len(probes.get('reports', [])) > 3:
+              raise ValueError('Sample rate limit exceeded')
+          if any(r.get('adapter_enabled') or r.get('source_license_verified')
+                 or r.get('events_confirmed') for r in probes['reports']):
+              raise ValueError('Schema preview made an unauthorized approval')
+          print('Official source schema previews remain quarantine-only.')
           PY
       - name: Verify candidate approved and replace ONLY local static data
         run: |
@@ -265,6 +291,10 @@ jobs:
           mkdir -p reports/automation
           cp autopilot-output/source-registry.json reports/automation/source-registry.json
           cp autopilot-output/SOURCE_QUEUE.md reports/automation/SOURCE_QUEUE.md
+          test -s autopilot-output/source-probes.json
+          test -s autopilot-output/SOURCE_SCHEMA.md
+          cp autopilot-output/source-probes.json reports/automation/source-probes.json
+          cp autopilot-output/SOURCE_SCHEMA.md reports/automation/SOURCE_SCHEMA.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -287,6 +317,7 @@ jobs:
             --decision autopilot-output/release-decision.json \
             --roadmap autopilot-output/roadmap.json \
             --sources autopilot-output/official-candidates.json \
+            --source-registry autopilot-output/source-registry.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
