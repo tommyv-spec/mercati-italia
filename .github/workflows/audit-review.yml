@@ -1,0 +1,74 @@
+name: One-time full security, performance and data audit
+on:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/audit-review.yml
+
+permissions:
+  contents: read
+
+jobs:
+  dataset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate snapshot and full-source projection
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Quantify all fields, dates, coordinates, source domains, and expiry
+        run: python backend/audit_dataset.py --out reports/audit/dataset.json
+      - name: Persist complete dataset findings
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-audit-dataset
+          path: reports/audit/dataset.json
+          if-no-files-found: error
+          retention-days: 30
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install site dependencies and build static bundle
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Collect dependency security advisory report
+        run: |
+          mkdir -p reports/audit
+          npm audit --json --omit=dev > reports/audit/npm-security.json || true
+      - name: Install mobile audit browser and accessibility scanner
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0 @axe-core/playwright@4.10.2
+          npx playwright install --with-deps chromium
+      - name: Start static preview (no backend)
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/audit-vite.log 2>&1 &
+          for i in $(seq 1 50); do
+            curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 2
+          done
+          cat /tmp/audit-vite.log
+          exit 1
+      - name: Run cold-mobile and WCAG/browser journey audit
+        run: node tests/audit_browser.mjs
+      - name: Preserve screenshots, measurement, security and error traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-audit-browser
+          path: |
+            reports/audit
+            /tmp/audit-vite.log
+          if-no-files-found: warn
+          retention-days: 30
