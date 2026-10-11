@@ -77,3 +77,17 @@ npm run build
 - [ ] Resta la verifica pratica su iPhone/Android fisici; il test Playwright emulato non prova tutti i browser o GPS reali.
 - [ ] Non equiparare la funzionalità software a date e indirizzi verificati: 0 verifiche umane documentate, posizioni indicative e data quality rimangono criticità per il rilascio pubblico.
 
+
+## CP9 — Raggruppamento città → sedi → giorni (11 ottobre 2026)
+
+- [x] Implementati `src/lib/marketGrouping.js` e `src/components/WeeklyCityGroup.jsx/.css`. Raggruppa soltanto nomi generici `Mercato settimanale di/a [Città]`, conservando tutte le singole fonti e identità record. Gli altri mercati con nome proprio non si uniscono.
+- [x] **Firenze: 7 record sorgente** (lunedì duplicato senza sede), sei giornate, **4 indirizzi riportati**: Largo Monzani 3 giorni, Cascina Rossa martedì, Cintola venerdì, Piazza I Maggio sabato. Il record senza indirizzo rimane accessibile in sezione secondaria e non viene fuso con sedi nominate.
+- [x] Nuovo filtro weekday `Lun–Dom`: applicato ai record prima dell'aggregazione. Per `Sab` + `Firenze`, vista automatica della sola scheda per Piazza I Maggio (prevista, da verificare).
+- [x] Dettagli per sede letti dalla shard regionale solo quando si apre il gruppo. Autoespansione per weekday abilitata esclusivamente se città esplicitamente scelta/cercata; niente download simultanei di tutte le regioni nella ricerca nazionale.
+- [x] QA logica `node --test tests/marketGrouping.test.mjs`, Python e build con `quality.yml` superati.
+- [x] QA browser su URL pubblico esterno con `check-public-preview.yml`, run **38174781919**, conclusione **success**. Screenshots delle sedi e del filtro Sabato nell'artefatto `public-weekly-city-mobile`.
+- [x] Preview DEV statica indipendente dal PC: https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/index.html ; è un proxy terzo gratuito, mostra una conferma al primo accesso e non offre garanzia di uptime. Branch `dev-static-preview` pubblicato e verificato dal browser mobile automatizzato.
+- [ ] Il vecchio URL Cloudflare Quick Tunnel **non è stato aggiornato**: Desktop Commander ha comunicato limite mensile raggiunto. Non riprovare quella connessione finché il servizio non è di nuovo disponibile.
+- [ ] Dati su orari, date e sedi non hanno verifiche umane documentate. Nessuna modifica è stata pubblicata su `main` o sulla produzione Cloudflare.
+
+Design/QA: `docs/WEEKLY_GROUPING.md`.
