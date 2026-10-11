@@ -57,7 +57,10 @@ def validate(manifest_path: Path) -> dict:
     if not all_markets:
         raise ValueError("Empty market catalog")
 
-    from export_static import compact_json
+    from export_static import compact_json, CANONICAL_REGIONS
+    invalid_regions = {m["regione"] for m in all_markets if m["regione"] not in CANONICAL_REGIONS}
+    if invalid_regions:
+        raise ValueError("Non-Italian or inconsistent regions: " + repr(invalid_regions))
     signature = hashlib.sha256(compact_json(
         sorted(all_markets, key=lambda m: (m["regione"], m["citta"], m["nome"], m["slug"]))
     )).hexdigest()
