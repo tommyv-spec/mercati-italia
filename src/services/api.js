@@ -7,7 +7,7 @@
 import { db, auth, isFirebaseConfigured } from '../lib/firebase'
 import {
   collection, doc, query, where, orderBy, limit,
-  getDocs, getDoc, setDoc, deleteDoc, Timestamp,
+  getDocs, getDoc, setDoc, deleteDoc, Timestamp, startAfter,
 } from 'firebase/firestore'
 import { SEED_MARKETS } from '../data/sampleMarkets'
 
@@ -25,7 +25,14 @@ export function haversine(lat1, lng1, lat2, lng2) {
 
 // ─── Date helpers ───────────────────────────────────────────
 
-const TODAY = new Date().toISOString().slice(0, 10)
+// Local calendar dates: UTC timestamps can be a day off in Italy.
+export function todayISO(now = new Date()) {
+  const year = now.getFullYear()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+const allowDemoFallback = import.meta.env.DEV && import.meta.env.VITE_DEMO_MODE === 'true'
 
 function getWeekendDates() {
   const now = new Date()
@@ -33,19 +40,19 @@ function getWeekendDates() {
   const satOffset = 6 - day
   const sat = new Date(now); sat.setDate(sat.getDate() + satOffset)
   const sun = new Date(sat); sun.setDate(sun.getDate() + 1)
-  return [sat.toISOString().slice(0, 10), sun.toISOString().slice(0, 10)]
+  return [todayISO(sat), todayISO(sun)]
 }
 
 function getNext7DaysEnd() {
   const end = new Date(); end.setDate(end.getDate() + 7)
-  return end.toISOString().slice(0, 10)
+  return todayISO(end)
 }
 
 export function getDateBadge(dates) {
   const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1)
-  const tomorrowStr = tomorrow.toISOString().slice(0, 10)
+  const tomorrowStr = todayISO(tomorrow)
   const [sat, sun] = getWeekendDates()
-  if (dates?.includes(TODAY)) return { label: 'Oggi', color: '#C75146' }
+  if (dates?.includes(todayISO())) return { label: 'Oggi', color: '#C75146' }
   if (dates?.includes(tomorrowStr)) return { label: 'Domani', color: '#E07A5F' }
   if (dates?.includes(sat) || dates?.includes(sun)) return { label: 'Questo weekend', color: '#5B7A5E' }
   return null
@@ -53,7 +60,7 @@ export function getDateBadge(dates) {
 
 export function getNextDate(dates) {
   if (!dates?.length) return null
-  return dates.filter(d => d >= TODAY).sort()[0] || dates[dates.length - 1]
+  return dates.filter(d => d >= todayISO()).sort()[0] || null
 }
 
 export function formatDateIT(dateStr) {
@@ -82,12 +89,13 @@ export async function fetchMarkets({
   try {
     markets = await _fetchFromFirestore({ categoria, regione })
   } catch (e) {
-    console.warn('Firestore query failed, using local seed data:', e)
+    if (!allowDemoFallback) throw e
+    console.warn('Firestore query failed. Explicit development demo fallback enabled:', e)
     markets = _seedAsFallback()
   }
 
   // Compute distances
-  if (userLat && userLng) {
+  if (Number.isFinite(userLat) && Number.isFinite(userLng)) {
     markets = markets.map(m => ({
       ...m,
       distance: haversine(userLat, userLng, m.lat, m.lng)
@@ -117,7 +125,8 @@ export async function fetchMarketById(id) {
     if (!snap.exists()) return null
     return _normalizeDoc(snap)
   } catch (e) {
-    console.warn('Firestore fetch failed:', e)
+    if (!allowDemoFallback) throw e
+    console.warn('Firestore fetch failed. Explicit development demo fallback enabled:', e)
     return _seedAsFallback().find(m => m.id === id) || null
   }
 }
@@ -132,7 +141,8 @@ export async function fetchFilterOptions() {
       if (data.citta) citta.add(data.citta)
     })
     return { regioni: [...regioni].sort(), citta: [...citta].sort() }
-  } catch {
+  } catch (e) {
+    if (!allowDemoFallback) throw e
     const fallback = _seedAsFallback()
     return {
       regioni: [...new Set(fallback.map(m => m.regione))].sort(),
@@ -195,14 +205,26 @@ function _toggleLocalFavorite(marketId) {
 async function _fetchFromFirestore({ categoria, regione }) {
   const ref = collection(db, 'mercati')
   const constraints = []
-
+  // Indexed single-field filtering; any additional filters run client-side.
   if (regione) constraints.push(where('regione', '==', regione))
-  else if (categoria) constraints.push(where('categoria', '==', categoria))
+  else if (typeof categoria === 'string') constraints.push(where('categoria', '==', categoria))
 
-  constraints.push(limit(300))
+  const PAGE_SIZE = 250
+  const MAX_RECORDS = 10000
+  const markets = []
+  let cursor = null
+  do {
+    const pageQuery = query(ref, ...constraints, limit(PAGE_SIZE), ...(cursor ? [startAfter(cursor)] : []))
+    const page = await getDocs(pageQuery)
+    markets.push(...page.docs.map(_normalizeDoc))
+    if (page.empty || page.size < PAGE_SIZE) break
+    cursor = page.docs[page.docs.length - 1]
+  } while (markets.length < MAX_RECORDS)
 
-  const snap = await getDocs(query(ref, ...constraints))
-  return snap.docs.map(_normalizeDoc)
+  if (markets.length >= MAX_RECORDS) {
+    throw new Error('Troppi mercati per la ricerca client: usa filtri o una ricerca server-side.')
+  }
+  return markets
 }
 
 function _normalizeDoc(snap) {
@@ -222,8 +244,9 @@ function _normalizeDoc(snap) {
     descrizione: d.descrizione || '',
     confidence: d.confidence || 50,
     aggiornato_il: d.aggiornato_il || '',
+    verificato_il: d.verificato_il || '',
     date: d.date || [],
-    prossima_data: (d.date || [])[0] || null,
+    prossima_data: getNextDate(d.date || []),
     fonte: d.fonte || '',
   }
 }
@@ -247,7 +270,7 @@ function _seedAsFallback() {
     ricorrenza_testo: m.ricorrenza_testo,
     descrizione: m.descrizione,
     confidence: m.confidence,
-    aggiornato_il: new Date().toISOString().slice(0, 10),
+    aggiornato_il: todayISO(),
     date: m.date, // triggers the getter
     prossima_data: m.date[0] || null,
     fonte: m.fonte,
@@ -272,13 +295,13 @@ function _applyFilters(markets, { categoria, regione, citta, maxDistanceKm, date
   }
 
   if (dateFilter === 'oggi') {
-    result = result.filter(m => m.date?.includes(TODAY))
+    result = result.filter(m => m.date?.includes(todayISO()))
   } else if (dateFilter === 'weekend') {
     const [sat, sun] = getWeekendDates()
     result = result.filter(m => m.date?.includes(sat) || m.date?.includes(sun))
   } else if (dateFilter === '7giorni') {
     const endStr = getNext7DaysEnd()
-    result = result.filter(m => m.date?.some(d => d >= TODAY && d <= endStr))
+    result = result.filter(m => m.date?.some(d => d >= todayISO() && d <= endStr))
   }
 
   if (categoria && typeof categoria === 'object' && categoria.length > 0) {
@@ -286,8 +309,8 @@ function _applyFilters(markets, { categoria, regione, citta, maxDistanceKm, date
   }
   if (regione) result = result.filter(m => m.regione === regione)
   if (citta) result = result.filter(m => m.citta === citta)
-  if (maxDistanceKm && maxDistanceKm < 100) {
-    result = result.filter(m => (m.distance || 0) <= maxDistanceKm)
+  if (maxDistanceKm != null) {
+    result = result.filter(m => Number.isFinite(m.distance) && m.distance <= maxDistanceKm)
   }
 
   return result
