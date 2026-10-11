@@ -39,6 +39,13 @@ jobs:
         with:
           ref: ${{ env.DEV_BRANCH }}
           persist-credentials: false
+      - name: Pin the DEV source revision before collecting evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p autopilot-output
+          git rev-parse HEAD > autopilot-output/dev-source-sha.txt
+          echo "Pinned DEV revision: $(cat autopilot-output/dev-source-sha.txt)"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
@@ -100,6 +107,11 @@ jobs:
         with:
           name: ${{ env.CHECKPOINT_NAME }}
           path: autopilot-output
+      - name: Reject QA on a different DEV code revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$(cat autopilot-output/dev-source-sha.txt)"
       - name: Verify candidate approved and replace ONLY local static data
         run: |
           python - <<'PY'
@@ -128,6 +140,17 @@ jobs:
           npm audit --omit=dev --audit-level=high
           node --test tests/marketGrouping.test.mjs
           npm run build -- --base=./
+      - name: Prove ordinary Cloudflare catalog visits avoid Functions
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs')
+          const routes = JSON.parse(fs.readFileSync('dist/_routes.json', 'utf8'))
+          if (routes.include.some(x => x === '/*' || x === '/') ||
+              !routes.exclude.includes('/data/*')) {
+            throw new Error('Cloudflare Functions could intercept normal market visits')
+          }
+          console.log('Static catalog and page routing verified')
+          NODE
       - name: Install mobile browser for end-to-end smoke
         run: |
           npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
@@ -186,6 +209,14 @@ jobs:
         with:
           name: ${{ env.BUILD_NAME }}
           path: autopilot-built-site
+      - name: Refuse publication if DEV moved after candidate build
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="$(cat autopilot-output/dev-source-sha.txt)"
+          test "$(git rev-parse HEAD)" = "$expected"
+          git fetch origin "$DEV_BRANCH"
+          test "$(git rev-parse "origin/$DEV_BRANCH")" = "$expected"
       - name: Prevent overwriting newer DEV catalog changes
         shell: bash
         run: |
@@ -237,12 +268,8 @@ jobs:
           git add -A public/data/v1 reports/automation
           if ! git diff --cached --quiet; then
             git commit -m "autopilot: refresh source-bound predicted dates (DEV only)"
-            git fetch origin "$DEV_BRANCH"
-            git rebase "origin/$DEV_BRANCH" || {
-              git rebase --abort || true
-              echo "::error::Concurrent code/data change requires review; no force-push"
-              exit 1
-            }
+            # A non-fast-forward push safely rejects any concurrent change.
+            # Never rebase a QA-approved dataset onto untested source code.
             git push origin "HEAD:$DEV_BRANCH"
           else
             echo "No DEV catalog changes, retaining current version."
