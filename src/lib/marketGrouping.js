@@ -65,6 +65,13 @@ export function displayEntries(markets, { keepSingleWeeklyGroups = false } = {})
     : [entry])
 }
 
+export function shouldAutoExpandWeeklyGroup(group, weekdayFilter, cityFilter = '', searchQuery = '') {
+  if (weekdayFilter === null) return false
+  const city = italianKey(group.city)
+  return (Boolean(cityFilter) && city === italianKey(cityFilter)) ||
+    (Boolean(searchQuery.trim()) && city === italianKey(searchQuery.trim()))
+}
+
 export function distinctWeekdays(markets) {
   const days = new Set()
   for (const market of markets) {
