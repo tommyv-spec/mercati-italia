@@ -1,0 +1,38 @@
+name: One-time MapLibre security remediation
+on:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/secure-maplibre-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  secure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install audited baseline
+        run: npm ci --no-audit --no-fund
+      - name: Move beyond patched MapLibre security release
+        run: npm install maplibre-gl@6.14.0 --save-exact --no-audit --no-fund
+      - name: Confirm zero known production advisories
+        run: npm audit --omit=dev --audit-level=moderate
+      - name: Build latest map + group components
+        run: |
+          npm run build
+          node --test tests/marketGrouping.test.mjs
+      - name: Commit dependency only on DEV review branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "security: upgrade MapLibre beyond CVE-2026-85061 vulnerable range"
+          git push
