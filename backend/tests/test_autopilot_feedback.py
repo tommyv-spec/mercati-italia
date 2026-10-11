@@ -67,6 +67,8 @@ class ContinuousImprovementTests(unittest.TestCase):
         output=opportunities(metrics)
         codes={issue["code"] for issue in output["queue"]}
         self.assertIn("verified_source_evidence",codes)
+        self.assertEqual(output["queue"][0]["code"], "verified_source_evidence",
+                         "Never optimize easy date forecasts ahead of missing verification")
         self.assertIn("opening_hours_coverage",codes)
         self.assertIn("location_precision",codes)
         self.assertTrue(output["metrics_are_observed_not_verified_events"])
