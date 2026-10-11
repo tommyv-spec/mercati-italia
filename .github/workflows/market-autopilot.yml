@@ -112,6 +112,15 @@ jobs:
             --report autopilot-output/SOURCE_EVIDENCE.md \
             "${args[@]}"
           cat autopilot-output/SOURCE_EVIDENCE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Compare declared source changes to previous scheduled run
+        if: success()
+        run: |
+          python backend/source_change_detector.py \
+            --current autopilot-output/source-evidence.json \
+            --previous reports/automation/source-evidence.json \
+            --out autopilot-output/source-changes.json \
+            --report autopilot-output/SOURCE_CHANGES.md
+          cat autopilot-output/SOURCE_CHANGES.md >> "$GITHUB_STEP_SUMMARY"
       - name: Audit real source age, projected dates and documented verification
         if: success()
         shell: bash
@@ -126,6 +135,7 @@ jobs:
             --max-source-age-days "$max_age"
           python backend/freshness_alert.py \
             --freshness autopilot-output/freshness.json \
+            --source-changes autopilot-output/source-changes.json \
             --out autopilot-output/freshness-alert.json
           cat autopilot-output/FRESHNESS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve checkpoints and candidate even after failures
@@ -215,6 +225,11 @@ jobs:
           report = json.loads(Path('autopilot-output/source-evidence.json').read_text())
           freshness = json.loads(Path('autopilot-output/freshness.json').read_text())
           alert = json.loads(Path('autopilot-output/freshness-alert.json').read_text())
+          changes = json.loads(Path('autopilot-output/source-changes.json').read_text())
+          if changes.get('imported_markets') != 0 or any(
+              item.get('automatic_import_allowed') for item in changes.get('results', [])
+          ):
+              raise ValueError('Publisher change scan must not enable an importer')
           if (report.get('market_imports') != 0
                   or report.get('market_events_confirmed') != 0
                   or report.get('legal_license_approvals') != 0):
@@ -256,7 +271,7 @@ jobs:
         run: |
           npm ci --no-audit --no-fund
           npm audit --omit=dev --audit-level=high
-          node --test tests/marketGrouping.test.mjs
+          node --test tests/*.test.mjs
           npm run build -- --base=./
       - name: Prove ordinary Cloudflare catalog visits avoid Functions
         run: |
@@ -370,7 +385,7 @@ jobs:
           test -s autopilot-output/SOURCE_SCHEMA.md
           cp autopilot-output/source-probes.json reports/automation/source-probes.json
           cp autopilot-output/SOURCE_SCHEMA.md reports/automation/SOURCE_SCHEMA.md
-          for item in source-evidence.json SOURCE_EVIDENCE.md freshness.json FRESHNESS.md freshness-alert.json; do
+          for item in source-evidence.json SOURCE_EVIDENCE.md source-changes.json SOURCE_CHANGES.md freshness.json FRESHNESS.md freshness-alert.json; do
             test -s "autopilot-output/$item"
             cp "autopilot-output/$item" "reports/automation/$item"
           done
