@@ -1,0 +1,44 @@
+{
+  "counts": {
+    "first_observation": 0,
+    "publisher_data_date_advanced": 0,
+    "publisher_data_date_rolled_back": 0,
+    "publisher_metadata_changed": 0,
+    "publisher_unavailable": 1,
+    "recovered": 0,
+    "unchanged": 2
+  },
+  "dataset_timestamp_changes_are_not_record_confirmations": true,
+  "imported_markets": 0,
+  "reference_date": "2026-10-11",
+  "results": [
+    {
+      "automatic_import_allowed": false,
+      "change_type": "unchanged",
+      "current_data_date": "2025-12-31",
+      "events_confirmed": 0,
+      "prior_data_date": "2025-12-31",
+      "publisher": "Comune di Bologna",
+      "source_id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50"
+    },
+    {
+      "automatic_import_allowed": false,
+      "change_type": "unchanged",
+      "current_data_date": "2026-10-06",
+      "events_confirmed": 0,
+      "prior_data_date": "2026-10-06",
+      "publisher": "Regione Lombardia",
+      "source_id": "2e41941b-80fb-4ded-8330-427383f725f8"
+    },
+    {
+      "automatic_import_allowed": false,
+      "change_type": "publisher_unavailable",
+      "current_data_date": null,
+      "events_confirmed": 0,
+      "prior_data_date": null,
+      "publisher": "Roma Capitale",
+      "source_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3"
+    }
+  ],
+  "schema": 1
+}

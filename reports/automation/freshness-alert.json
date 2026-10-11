@@ -1,7 +1,8 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 12,650\n- Senza verifica documentata: 12,650\n- Fonte vecchia oltre soglia: 89\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: Roma Capitale\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: a24d57c608fd9f67",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 12,650\n- Senza verifica documentata: 12,650\n- Fonte vecchia oltre soglia: 89\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: Roma Capitale\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: a5df0c98d04b4a2a",
   "problems": {
+    "publisher_new_data_claims": [],
     "publisher_unavailable": [
       "Roma Capitale"
     ],
@@ -12,6 +13,6 @@
     "unsupported_confirmation": 0,
     "without_verification": 12650
   },
-  "signature": "a24d57c608fd9f67",
+  "signature": "a5df0c98d04b4a2a",
   "title": "[Mercati autopilot] Dati da verificare"
 }
