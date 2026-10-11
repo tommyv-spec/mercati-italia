@@ -223,9 +223,18 @@ jobs:
               shutil.copytree(source, target)
           print('candidate_changed=',report['has_changes'])
           PY
+          # Save a compact, long-term operational memory even when the
+          # catalog itself is unchanged. This keeps trends and unattended runs
+          # visible and prevents silent inactivity of the public repo.
+          python backend/autopilot_history.py \
+            --decision autopilot-output/release-decision.json \
+            --roadmap autopilot-output/roadmap.json \
+            --sources autopilot-output/official-candidates.json \
+            --run-id "${{ github.run_id }}" \
+            --out reports/automation
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A public/data/v1
+          git add -A public/data/v1 reports/automation
           if ! git diff --cached --quiet; then
             git commit -m "autopilot: refresh source-bound predicted dates (DEV only)"
             git fetch origin "$DEV_BRANCH"
