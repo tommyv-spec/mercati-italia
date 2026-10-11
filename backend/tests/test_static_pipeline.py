@@ -234,11 +234,17 @@ class MilanoTests(unittest.TestCase):
         out = convert([record], today=date(2026, 10, 11))
         self.assertEqual(len(out), 1)
         self.assertEqual(out[0]["slug"], "mi-mss-1")
-        self.assertEqual(out[0]["date_quality"], "prevista")
+        self.assertEqual(out[0]["date_quality"], "sconosciuta")
+        self.assertEqual(out[0]["date"], [])
         self.assertEqual(out[0]["status"], "non_confermato")
         self.assertEqual(out[0]["aggiornato_il"], "2024-05-27")
         self.assertIsNone(out[0]["lat"])
-        self.assertTrue(all(date.fromisoformat(d).weekday() in {1, 5} for d in out[0]["date"]))
+        self.assertIn("calendario, sede e orari da verificare", out[0]["descrizione"])
+        # The same source may be used as a *forecast* only near its source date.
+        fresh = convert([record], today=date(2025, 1, 10))[0]
+        self.assertTrue(fresh["date"])
+        self.assertEqual(fresh["date_quality"], "prevista")
+        self.assertTrue(all(date.fromisoformat(d).weekday() in {1, 5} for d in fresh["date"]))
 
     def test_official_4326_coordinates(self):
         official = {
