@@ -36,6 +36,31 @@ jobs:
           name: catalog-before-rebuild
           path: /tmp/static-before-rebuild.tgz
           retention-days: 7
+      - name: Report candidate duplicates before allowing removal
+        run: |
+          python - <<'PY'
+          import sys, json
+          from collections import defaultdict
+          from datetime import date
+          from pathlib import Path
+          sys.path.insert(0, 'backend')
+          from merge_catalog import load_existing
+          from export_static import prepare, source_duplicate_group
+          base = load_existing(Path('public/data/v1/manifest.json'))
+          clean, stats = prepare(base, date.today())
+          print('DEDUP QA', json.dumps(stats, ensure_ascii=False, default=str))
+          groups = defaultdict(list)
+          for item in base:
+              key = source_duplicate_group(item)
+              if key:
+                  groups[key].append(item)
+          ranked = sorted((items for items in groups.values() if len(items) > 1), key=len, reverse=True)
+          for items in ranked[:12]:
+              print('GROUP', len(items), 'sample:', json.dumps([
+                  {'name': x.get('nome'), 'city': x.get('citta'),
+                   'address': x.get('indirizzo'), 'slug': x.get('slug')}
+                  for x in items[:5]], ensure_ascii=False))
+          PY
       - name: Rebuild from current snapshot without network or Firebase
         run: python backend/reprocess_snapshot.py
       - name: Verify all hashes and index
