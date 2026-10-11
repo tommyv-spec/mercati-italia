@@ -42,10 +42,10 @@ class AlertTests(unittest.TestCase):
                  "change_type": "publisher_data_date_advanced"}
             ],
         }
-        report = build(report(), changes)
-        self.assertTrue(report["attention_required"])
-        self.assertEqual(report["problems"]["publisher_new_data_claims"], ["Regione Lombardia"])
-        self.assertIn("Regione Lombardia", report["body"])
+        result = build(report(), changes)
+        self.assertTrue(result["attention_required"])
+        self.assertEqual(result["problems"]["publisher_new_data_claims"], ["Regione Lombardia"])
+        self.assertIn("Regione Lombardia", result["body"])
 
     def test_bad_report_rejected(self):
         with self.assertRaises(ValueError):
