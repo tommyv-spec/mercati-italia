@@ -109,6 +109,43 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(len(rows), 2)
         self.assertEqual(len(report["id_collisions_kept_separate"]), 1)
 
+    def test_merges_same_source_city_and_name_variants(self):
+        source = "https://www.happings.com/it/mercati-settimanali-a-chieti.html"
+        a = market(
+            slug="mercato-settimanale-a-archi-archi-domenica",
+            nome="Mercato settimanale a Archi", citta="Archi",
+            indirizzo="", url_fonte=source, date=["2026-10-11"],
+        )
+        b = market(
+            slug="mercato-settimanale-di-archi-archi-domenica",
+            nome="Mercato settimanale di Archi", citta="Archi",
+            indirizzo="ce...", url_fonte=source, date=["2026-10-18"],
+        )
+        rows, report = prepare([a, b], self.today)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(report["same_source_duplicates_merged"], 1)
+        self.assertEqual(rows[0]["date"], ["2026-10-11", "2026-10-18"])
+        self.assertEqual(rows[0]["date_quality"], "prevista")
+
+    def test_does_not_merge_same_name_at_distinct_addresses(self):
+        source = "https://example.org/markets/all"
+        a = market(slug="market-1", nome="Mercato artigianale",
+                   indirizzo="Via Dante 1", url_fonte=source)
+        b = market(slug="market-2", nome="Mercato artigianale",
+                   indirizzo="Piazza Garibaldi 2", url_fonte=source)
+        rows, report = prepare([a, b], self.today)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(report["same_source_duplicates_merged"], 0)
+
+    def test_does_not_merge_same_name_from_different_sources(self):
+        a = market(slug="market-a", nome="Mercato settimanale",
+                   url_fonte="https://example.org/one")
+        b = market(slug="market-b", nome="Mercato settimanale",
+                   url_fonte="https://example.org/two")
+        rows, report = prepare([a, b], self.today)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(report["same_source_duplicates_merged"], 0)
+
     def test_rejects_conflicting_duplicate_without_address(self):
         a = market("same-slug", orario_testo="08:00-12:00")
         b = market("same-slug", orario_testo="09:00-13:00")
