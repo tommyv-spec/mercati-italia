@@ -170,7 +170,7 @@ class ExportTests(unittest.TestCase):
             manifest = result["manifest"]
             self.assertEqual(manifest["total"], 1)
             self.assertEqual(manifest["layout"], "single")
-            self.assertEqual(manifest["index_schema"], 2)
+            self.assertEqual(manifest["index_schema"], 3)
             self.assertTrue((Path(temp) / "public" / manifest["index"]).is_file())
             asset = Path(temp) / "public" / manifest["catalog"]
             self.assertTrue(asset.exists())
@@ -182,7 +182,7 @@ class ExportTests(unittest.TestCase):
     def test_rejects_accidental_mass_deletion(self):
         with tempfile.TemporaryDirectory() as temp:
             out = Path(temp) / "public" / "data" / "v1"
-            rows = [market(slug="roma-" + str(n)) for n in range(10)]
+            rows = [market(slug="roma-" + str(n), nome="Mercato Centro " + str(n)) for n in range(10)]
             export(rows, out, today=self.today)
             with self.assertRaisesRegex(ValueError, "too many markets"):
                 export(rows[:2], out, today=self.today)
