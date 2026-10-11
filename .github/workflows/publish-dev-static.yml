@@ -11,6 +11,10 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
+concurrency:
+  group: standalone-dev-static-preview
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
