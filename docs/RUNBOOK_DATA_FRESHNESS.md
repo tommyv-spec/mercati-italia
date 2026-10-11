@@ -6,6 +6,23 @@ Non correggere manualmente i singoli mercati per risolvere problemi ricorrenti. 
 
 Un run riuscito non conferma che gli orari, i mercati o i giorni siano aggiornati. La fonte deve essere verificabile. Le ricorrenze calcolate restano **previste**, non confermate.
 
+## Regola obbligatoria: prima lo faccio una volta, poi lo automatizzo
+
+**Manuale una volta → osservazione → script → test → automazione.**
+Questa è la modalità di lavoro predefinita per qualunque nuova fonte, correzione sistematica o funzione del progetto.
+
+1. **Esecuzione reale personalmente controllata.** Leggere la fonte originale, eseguire un esempio completo in modalità sola lettura o in un ambiente isolato, vedere input, passaggi, risposta reale ed effetti. Non basarsi soltanto sulla documentazione o sui metadati.
+2. **Capire davvero il procedimento.** Rilevare struttura dei dati, licenza e attribuzione, identificativi, cambiamenti nel tempo, casi mancanti, duplicati, limiti di download e situazioni ambigue. Verificare almeno un caso normale e un caso che deve essere rifiutato.
+3. **Salvare la prova ripetibile.** Registrare nel repository, senza segreti o dati personali, le osservazioni utili, un campione minimo consentito, schema e provenienza, un esempio di input/output e i criteri di correttezza. Se non è consentito conservare il campione, salvare soltanto test sintetici e fingerprint.
+4. **Solo dopo scrivere lo script.** Trasformare *esattamente* i passaggi verificati in codice deterministico, con parametri espliciti, limiti di rete/costo, logging, gestione errori, checkpoint, idempotenza e modalità offline/dry-run quando appropriata. Non automatizzare ipotesi non verificate.
+5. **Confrontare con il lavoro fatto personalmente.** Eseguire lo script sul caso reale verificato e su fixture di regressione; controllare che produca lo stesso risultato, riconosca errori e non introduca effetti indesiderati.
+6. **Provare il ciclo completo in DEV.** Misurare qualità, completezza, perdita di ID, duplicati, date, sicurezza, prestazioni e UI mobile. Bloccare la pubblicazione se fallisce uno dei controlli. Salvare report e checkpoint.
+7. **Infine pianificare e sorvegliare.** Attivare GitHub Actions soltanto dopo l'esito positivo della simulazione completa. Confrontare ogni nuovo risultato con l'ultimo buono; creare una segnalazione su regressioni o fonti non aggiornate. Evitare un secondo scheduler concorrente.
+
+**Criterio di completamento:** non dichiarare “automatizzato” un flusso finché non esistono (a) esecuzione reale osservata, (b) script nel repository, (c) test di replay e regressione passati, (d) almeno un run DEV completo verificato, (e) un sistema di controllo dei run successivi. Se una parte è mancante, riportarla esplicitamente.
+
+**Esempio già applicato:** per Lombardia MERCap abbiamo prima letto righe e metadati reali, scoperto i record multipli per giorno e una nota storica sulla sede; poi creato adapter, golden test e controllo doppioni; infine fatto un audit completo senza pubblicazione prima di abilitare il refresh giornaliero. Non invertire quest'ordine nelle fonti successive.
+
 ## Unico workflow automatico
 
 GitHub Actions: [Mercati Autopilot](https://github.com/tommyv-spec/mercati-italia/actions/workflows/market-autopilot.yml), ogni giorno alle 04:17 UTC e avvio manuale con **Run workflow**.
