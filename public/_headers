@@ -1,0 +1,12 @@
+/data/v1/manifest.json
+  Cache-Control: public, max-age=1800, stale-while-revalidate=1800
+/data/v1/catalog-*.json
+  Cache-Control: public, max-age=31536000, immutable
+/data/v1/regions/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
