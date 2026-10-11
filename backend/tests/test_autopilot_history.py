@@ -46,6 +46,30 @@ class AutopilotHistoryTests(unittest.TestCase):
         self.assertEqual(report["source_location_candidates"], 2)
         self.assertEqual(report["source_historical_statistics"], 1)
 
+    def test_monitor_data_is_persisted_without_claiming_events_are_verified(self):
+        monitor = {
+            "metrics": {
+                "source_date_within_30d": 5,
+                "source_date_outside_limit": 100,
+                "source_date_unknown": 8,
+                "forecast_from_stale_or_unknown_source": 7,
+            },
+            "warnings": ["source_data_older_than_allowed_forecast_window"],
+            "errors": [],
+        }
+        rights = {"source_evidence": [
+            {"status": "metadata_checked"},
+            {"status": "needs_review"},
+            {"status": "metadata_checked"},
+        ]}
+        value = summary(decision(), None, None, "fresh-1", None, monitor, rights)
+        self.assertEqual(value["source_age_over_limit"], 100)
+        self.assertEqual(value["forecast_from_stale_sources"], 7)
+        self.assertEqual(value["publisher_metadata_readable"], 2)
+        self.assertEqual(value["publisher_metadata_checked"], 3)
+        self.assertIn("oltre soglia", __import__("autopilot_history").markdown(value))
+        self.assertNotIn("verified_event_count", value)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)

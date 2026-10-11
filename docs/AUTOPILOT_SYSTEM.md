@@ -9,7 +9,7 @@ Migliorare progressivamente **qualità, copertura, sicurezza, costi e prestazion
 ## Architettura
 
 ```text
-Scheduler GitHub Actions su main (martedì/venerdì alle 04:17 UTC)
+Scheduler GitHub Actions su main (ogni giorno alle 04:17 UTC)
     │
     ▼
 Check-out di codice DEV (job senza permesso di scrittura)
@@ -77,6 +77,15 @@ Ogni checkpoint è salvato in `autopilot-output/checkpoints/*.json` e allegato p
 
 Si tratta di un sistema di **feedback con policy**, non di un'IA che riscrive autonomamente e senza approvazione gli script di produzione.
 
+## Dati aggiornati e ripetibilità
+
+- **Ogni giorno alle 04:17 UTC**: l'orchestratore su GitHub Actions legge le fonti autorizzate, ricostruisce un catalogo candidato, lo confronta con il precedente, esegue CI e test browser mobile, poi pubblica solo su DEV. GitHub può ritardare le esecuzioni pianificate; non è un servizio real-time.
+- **Sempre rieseguibile**: usare Actions → Mercati Autopilot → Run workflow. Lo script centrale è `python backend/autopilot.py --output autopilot-output`; `--offline` verifica il catalogo senza rete e `--resume` riutilizza solo checkpoint con firma, policy e data identici. Le fasi di monitoraggio sono script separati.
+- **Metadati non equivalgono a dati correnti**: `backend/source_evidence.py` verifica solo fonti ufficiali con endpoint fissi (Bologna, Lombardia, Roma). Registra data dichiarata dei dati, data dei metadati, licenza dichiarata e hash di risposta, senza trasformarli in permessi di importazione.
+- **Freshness indipendente**: `backend/freshness_monitor.py` rilegge lo snapshot e conta fonti recenti, vecchie, sconosciute e previsioni senza evidenza aggiornata. Salva `FRESHNESS.md` e `freshness.json`. La data del run NON sostituisce `aggiornato_il` di una fonte.
+- **Avvisi GitHub automatici**: anomalie bloccanti aprono l'issue Autopilot. Un'issue distinta tiene traccia del debito di aggiornamento (assenza di verifiche documentate, fonti obsolete o metadati publisher non disponibili); non va scambiata con un errore del codice.
+- **Nessuna promessa di dati in tempo reale**: ogni fonte può aggiornare a frequenza propria. Un calendario futuro dedotto da una regola settimanale è una previsione, non una conferma.
+
 ## Soglie attuali (modificabili in una sola policy)
 
 `backend/autopilot_policy.json`:
@@ -94,7 +103,7 @@ Si tratta di un sistema di **feedback con policy**, non di un'IA che riscrive au
 ## Costi e sicurezza
 
 - **Visita utente:** HTML, CSS, JS, cataloghi e indice statici; zero Firestore/Worker/D1/KV per la semplice lettura.
-- **Lavori periodici:** eseguiti da GitHub Actions, circa due volte a settimana; il consumo riguarda quote/minuti/artifact GitHub, **non** richieste dinamiche Cloudflare.
+- **Lavori periodici:** eseguiti giornalmente su GitHub Actions; il consumo riguarda quote/minuti/artifact GitHub, **non** richieste dinamiche Cloudflare. Controllare le quote Actions del repository.
 - **Mappa:** OpenFreeMap rimane servizio terzo con proprie condizioni e disponibilità.
 - **Sicurezza:** `npm audit --omit=dev --audit-level=high` e test Python/Node/mobile bloccano DEV su errore. Non è un pentest.
 - **Fatture Cloudflare:** la sicurezza di costo dell'architettura non implica che l'account non abbia altri servizi fatturabili attivi; serve controllare route e billing reali.
@@ -135,6 +144,8 @@ npm ci && npm audit --omit=dev --audit-level=high && npm run build
 
 - Codice DEV e policy: `backend/autopilot.py`, `backend/autopilot_policy.json`
 - Fonti candidate persistenti: `backend/source_intake.py`, `reports/automation/source-registry.json`, `reports/automation/SOURCE_QUEUE.md`
+- Riscontro ufficiale: `backend/source_evidence.py`, `reports/automation/SOURCE_EVIDENCE.md`
+- Attualità: `backend/freshness_monitor.py`, `reports/automation/FRESHNESS.md`, `reports/automation/freshness.json`
 - Test: `backend/tests/test_autopilot.py`, `test_autopilot_feedback.py`, `test_recurrence_refresh.py`
 - Controllo mobile: `tests/ui-smoke.mjs`
 - Anteprima: https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/index.html

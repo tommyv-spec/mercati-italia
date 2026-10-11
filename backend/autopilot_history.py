@@ -17,7 +17,8 @@ HISTORY_LIMIT = 104  # roughly 1 year at two checks per week
 
 
 def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None,
-            run_id: str, source_registry: dict | None = None) -> dict:
+            run_id: str, source_registry: dict | None = None,
+            freshness: dict | None = None, rights: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -25,6 +26,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     intake = registry.get("scan", {})
     classes = Counter(item.get("triage_class", "unknown")
                       for item in registry.get("sources", []))
+    freshness_metrics = (freshness or {}).get("metrics", {})
+    publisher_checks = (rights or {}).get("source_evidence", [])
     if "records" not in metric or "future_60" not in metric:
         raise ValueError("Incomplete quality report")
     return {
@@ -46,6 +49,15 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "source_registry_changed": int(intake.get("delta", {}).get("changed", 0)),
         "source_location_candidates": int(classes.get("market_location_candidate", 0)),
         "source_historical_statistics": int(classes.get("aggregated_statistics", 0)),
+        "source_age_within_30_days": int(freshness_metrics.get("source_date_within_30d", 0)),
+        "source_age_over_limit": int(freshness_metrics.get("source_date_outside_limit", 0)),
+        "source_date_unknown": int(freshness_metrics.get("source_date_unknown", 0)),
+        "forecast_from_stale_sources": int(freshness_metrics.get("forecast_from_stale_or_unknown_source", 0)),
+        "publisher_metadata_readable": sum(row.get("status") == "metadata_checked"
+                                           for row in publisher_checks),
+        "publisher_metadata_checked": len(publisher_checks),
+        "freshness_warnings": list((freshness or {}).get("warnings", [])),
+        "freshness_errors": list((freshness or {}).get("errors", [])),
         "top_improvement_priorities": [
             item["code"] for item in (roadmap or {}).get("queue", [])[:5]
         ],
@@ -76,6 +88,11 @@ def markdown(latest: dict) -> str:
         f"- Dataset pubblici candidati individuati: **{latest['source_candidates_scored']}** (licenze da verificare)",
         f"- Fonti conservate nello storico: **{latest['source_registry_known']}**; nuove: **{latest['source_registry_new']}**; aggiornate: **{latest['source_registry_changed']}**.",
         f"- Possibili elenchi/sedi: **{latest['source_location_candidates']}**; statistiche storiche aggregate: **{latest['source_historical_statistics']}**.",
+        f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
+        f"- Date previste con origine vecchia/sconosciuta: **{latest['forecast_from_stale_sources']}**.",
+        f"- Metadati degli enti leggibili: **{latest['publisher_metadata_readable']}/{latest['publisher_metadata_checked']}**.",
+        *[f"- ATTENZIONE fonte: {text}" for text in latest["freshness_warnings"]],
+        *[f"- BLOCCO qualità: {text}" for text in latest["freshness_errors"]],
         "",
         "## Prossimi miglioramenti calcolati",
         *[f"- {p}" for p in latest["top_improvement_priorities"]],
@@ -115,6 +132,8 @@ def main():
     p.add_argument("--roadmap", type=Path)
     p.add_argument("--sources", type=Path)
     p.add_argument("--source-registry", type=Path)
+    p.add_argument("--freshness", type=Path)
+    p.add_argument("--source-evidence", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -125,6 +144,10 @@ def main():
         args.run_id,
         json.loads(args.source_registry.read_text("utf-8"))
         if args.source_registry and args.source_registry.is_file() else None,
+        json.loads(args.freshness.read_text("utf-8"))
+        if args.freshness and args.freshness.is_file() else None,
+        json.loads(args.source_evidence.read_text("utf-8"))
+        if args.source_evidence and args.source_evidence.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
