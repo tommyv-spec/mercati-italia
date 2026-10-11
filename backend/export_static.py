@@ -97,6 +97,12 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     raw_category = raw.get("categoria")
     if raw_category and raw_category not in VALID_CATEGORIES:
         return None, "excluded_non_market_category"
+    if raw_category == "misto":
+        # A generic category alone does not prove that a sagra/festival is a
+        # market. Require an explicit market-related title before publishing.
+        title = nome.lower()
+        if not any(word in title for word in ("mercat", "market", "antiquar", "collezion", "brocant", "vintage", "fiera antiquaria")):
+            return None, "generic_without_market_evidence"
 
     slug = safe_string(raw.get("slug"), 130) or slugify(nome + "-" + citta)
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
