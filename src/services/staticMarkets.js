@@ -8,6 +8,7 @@
 const BASE_URL = import.meta.env.BASE_URL || '/'
 const FAVORITES_KEY = 'mercati_preferiti'
 let catalogPromise
+const regionPromises = new Map()
 
 function staticURL(path) {
   if (typeof path !== 'string' || !/^data\/v1\/[a-zA-Z0-9._/-]+\.json$/.test(path) || path.includes('..')) {
@@ -38,6 +39,19 @@ async function loadCatalog() {
   const manifest = await loadJSON('data/v1/manifest.json')
   if (manifest.schema !== 1 || !Number.isInteger(manifest.total) || manifest.total < 0) {
     throw new Error('Manifest del catalogo non valido')
+  }
+
+  if (manifest.index) {
+    const index = await loadJSON(manifest.index, true)
+    if (index.schema !== 1 || !Array.isArray(index.markets) || index.markets.length !== manifest.total) {
+      throw new Error('Indice mercati incompleto')
+    }
+    const ids = new Set()
+    for (const record of index.markets) {
+      if (!record.slug || ids.has(record.slug)) throw new Error('Indice duplicato o non valido')
+      ids.add(record.slug)
+    }
+    return { manifest, markets: index.markets }
   }
 
   let parts
@@ -136,9 +150,37 @@ export async function fetchMarkets({ userLat = null, userLng = null } = {}) {
 }
 
 export async function fetchMarketById(id) {
-  const { markets } = await fetchCatalog()
-  const market = markets.find(m => m.slug === id)
-  return market ? normalize(market, null, null) : null
+  const { manifest, markets } = await fetchCatalog()
+  const summary = markets.find(m => m.slug === id)
+  if (!summary) return null
+
+  // Before the index migration, the entire catalog was already loaded.
+  if (!manifest.index) return normalize(summary, null, null)
+
+  const entry = manifest.layout === 'single'
+    ? { path: manifest.catalog }
+    : manifest.regions.find(part => part.name === summary.regione)
+  if (!entry) throw new Error('Dettagli non disponibili per la regione')
+
+  if (!regionPromises.has(entry.path)) {
+    const request = loadJSON(entry.path, true).then(payload => {
+      if (payload.schema !== 1 || !Array.isArray(payload.markets)) {
+        throw new Error('Dati regionali non validi')
+      }
+      if (entry.count !== undefined && payload.markets.length !== entry.count) {
+        throw new Error('Catalogo regionale incompleto')
+      }
+      return payload.markets
+    }).catch(error => {
+      regionPromises.delete(entry.path)
+      throw error
+    })
+    regionPromises.set(entry.path, request)
+  }
+  const records = await regionPromises.get(entry.path)
+  const detail = records.find(m => m.slug === id)
+  if (!detail) throw new Error('Mercato non trovato nel file regionale')
+  return normalize(detail, null, null)
 }
 
 export async function fetchFilterOptions() {
