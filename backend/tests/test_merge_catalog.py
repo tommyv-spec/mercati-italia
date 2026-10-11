@@ -54,6 +54,20 @@ class ProvenanceMergeTests(unittest.TestCase):
         self.assertEqual(len(merged), 2)
         self.assertEqual(stats["merged"], 0)
 
+    def test_official_weekday_identity_never_absorbed_by_generic_city_card(self):
+        baseline = market(slug="legacy-venerdi", nome="Mercato di Pogliano Milanese – Via Europa",
+                          citta="Pogliano Milanese", indirizzo="Via Europa")
+        official = market(slug="lo-mercap-100551-venerdi",
+                          nome="Mercato di Pogliano Milanese – Via Europa",
+                          citta="Pogliano Milanese", indirizzo="Via Europa",
+                          fonte="Regione Lombardia",
+                          url_fonte="https://www.dati.lombardia.it/d/68zx-njaw")
+        combined, stats = combine([baseline], [official])
+        self.assertEqual(len(combined), 2)
+        self.assertEqual(stats["merged"], 0)
+        self.assertEqual({row["slug"] for row in combined},
+                         {"legacy-venerdi", "lo-mercap-100551-venerdi"})
+
     def test_source_evidence_preserved_and_unique(self):
         original = market(fonte="Old source", url_fonte="https://example.org/old")
         incoming = market(fonte="Municipality", url_fonte="https://example.org/new",

@@ -33,6 +33,21 @@ class ExportTests(unittest.TestCase):
     def setUp(self):
         self.today = date(2026, 10, 11)
 
+    def test_dataset_timestamp_scope_survives_only_as_detail_provenance(self):
+        converted, err = normalize(market(
+            slug="lo-mercap-100551-venerdi",
+            aggiornato_il="2026-10-06",
+            aggiornamento_ambito="dataset",
+            id_fonte="100551",
+            verificato_il="",
+        ), self.today)
+        self.assertIsNone(err)
+        self.assertEqual(converted["aggiornamento_ambito"], "dataset")
+        self.assertEqual(converted["id_fonte"], "100551")
+        self.assertEqual(converted["verificato_il"], "")
+        self.assertNotIn("aggiornamento_ambito", INDEX_FIELDS)
+        self.assertNotIn("id_fonte", INDEX_FIELDS)
+
     def test_keeps_only_future_valid_dates(self):
         result, error = normalize(market(), self.today)
         self.assertIsNone(error)

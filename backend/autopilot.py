@@ -29,12 +29,16 @@ from merge_catalog import combine, load_existing
 from recurrence_refresh import refresh_records
 import source_milano
 import source_firenze
+import source_lombardia
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "merge", "forecast", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
+    # Integration is registered, but not enabled by daily policy until its
+    # full dry-run source/quality/mobile audit succeeds.
+    "lombardia": (source_lombardia.download, source_lombardia.convert),
 }
 
 
