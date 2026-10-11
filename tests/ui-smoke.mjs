@@ -28,6 +28,10 @@ page.on('request', request => {
 })
 
 async function assertCards() {
+  await page.waitForFunction(() => {
+    const text = document.querySelector('.results-count')?.textContent || ''
+    return /trovati|trovato/.test(text) && !text.includes('Caricamento')
+  }, null, { timeout: 45000 })
   await page.locator('.market-card').first().waitFor({ timeout: 45000 })
 }
 
@@ -43,12 +47,16 @@ try {
   // Real navigation: home → market detail → back.
   await page.locator('.market-card').first().click()
   await page.locator('.detail-page').waitFor()
+  await page.getByText('Caricamento dettagli completi…').waitFor({ state: 'hidden', timeout: 20000 })
   await page.screenshot({ path: 'ux-detail.png', animations: 'disabled' })
   assert.equal(await page.getByRole('button', { name: 'Condividi questo mercato' }).count(), 1)
   const displayedAddress = (await page.locator('.detail-address').innerText()).trim().toLowerCase()
   if (['centro', 'centro storico', 'zona centro'].includes(displayedAddress)) {
-    assert.equal(await page.getByRole('button', { name: /Indicazioni/ }).isDisabled(), true,
+    const directions = page.getByRole('button', { name: /Indicazioni/ })
+    assert.equal(await directions.isDisabled(), true,
       'Vague city-centre text must not create a fake navigation destination')
+    const opacity = await directions.evaluate(el => Number(getComputedStyle(el).opacity))
+    assert.ok(opacity < 0.7, 'Disabled directions must look disabled to a visitor')
   }
   await page.locator('.detail-back').click()
 
@@ -75,6 +83,7 @@ try {
     'No location status after GPS permission')
   assert.equal(await page.locator('.market-card .card-distance').filter({ hasText: 'circa 0 km' }).count(), 0,
     'Unverified coordinates must not be presented as zero kilometers')
+  await page.locator('.toast').waitFor({ state: 'hidden', timeout: 10000 })
   await page.screenshot({ path: 'ux-nearby.png', animations: 'disabled' })
 
   // Existing favorites are local-only; Agenda never promises background push.
