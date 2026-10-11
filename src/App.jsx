@@ -1508,6 +1508,7 @@ export default function App() {
     setLocationMode('auto');
     setFilterCity('');
     setFilterDistance(100);
+    setActiveFilterCount(Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
     setSortBy('distanza');
     requestPosition();
   };
@@ -1533,7 +1534,9 @@ export default function App() {
   const disableLocation = () => {
     clearPosition();
     setLocationMode('none');
+    setFilterCity('');
     setFilterDistance(100);
+    setActiveFilterCount(Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
     setSortBy('data');
   };
 
@@ -1598,7 +1601,7 @@ export default function App() {
     // Sort
     if (sortBy === "distanza" && canUseDistance) {
       result.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
-    } else if (sortBy === "data") {
+    } else {
       result.sort((a, b) => {
         const aDate = getNextDate(a.dates);
         const bDate = getNextDate(b.dates);
@@ -1987,6 +1990,9 @@ export default function App() {
                     width: `${m.dataCompleteness}%`,
                     background: m.dataCompleteness > 80 ? '#5B7A5E' : m.dataCompleteness > 55 ? '#B8860B' : '#C75146'
                   }} />
+                </div>
+                <div style={{ fontSize: 10, maxWidth: 135, marginTop: 5 }}>
+                  Campi compilati, non verifica delle informazioni
                 </div>
               </div>
             </div>
