@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from export_static import export, normalize, prepare, parse_location, parse_dates, small_index
+from export_static import export, normalize, prepare, parse_location, parse_dates, small_index, INDEX_FIELDS
 from source_milano import convert
 from source_firenze import convert as convert_firenze
 
@@ -181,11 +181,12 @@ class ExportTests(unittest.TestCase):
         raw = market(date=dates, descrizione="Large description " * 100)
         record, _ = normalize(raw, self.today)
         indexed = small_index([record])[0]
-        self.assertEqual(len(indexed["date"]), 8)
-        self.assertNotIn("descrizione", indexed)
-        self.assertNotIn("indirizzo", indexed)
-        self.assertNotIn("fonti", indexed)
-        self.assertIn("orario_testo", indexed)
+        self.assertEqual(len(indexed[INDEX_FIELDS.index("date")]), 8)
+        self.assertNotIn("descrizione", INDEX_FIELDS)
+        self.assertNotIn("indirizzo", INDEX_FIELDS)
+        self.assertNotIn("fonti", INDEX_FIELDS)
+        self.assertIn("orario_testo", INDEX_FIELDS)
+        self.assertEqual(len(indexed), len(INDEX_FIELDS))
 
     def test_export_manifest_and_immutability(self):
         with tempfile.TemporaryDirectory() as temp:
