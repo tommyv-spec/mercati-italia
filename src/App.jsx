@@ -1354,6 +1354,7 @@ export default function App() {
     seedStatus,
     favorites,
     toggleFav: hookToggleFav,
+    getMarketDetails,
     categories: hookCategories,
     regions: hookRegions,
     cities: hookCities,
@@ -1371,6 +1372,9 @@ export default function App() {
   const [showSort, setShowSort] = useState(false);
   const [sortBy, setSortBy] = useState("data");
   const [selectedMarket, setSelectedMarket] = useState(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState('');
+
   const [toast, setToast] = useState(null);
 
   // Filter states
@@ -1412,6 +1416,20 @@ export default function App() {
     if (e) e.stopPropagation();
     hookToggleFav(id);
   }, [hookToggleFav]);
+
+  const openMarket = useCallback(async (market) => {
+    setSelectedMarket(market);
+    setDetailError('');
+    setDetailLoading(true);
+    try {
+      const detailed = await getMarketDetails(market.id);
+      setSelectedMarket(current => current?.id === market.id ? (detailed || market) : current);
+    } catch (error) {
+      setDetailError(error.message || 'Impossibile caricare i dettagli');
+    } finally {
+      setDetailLoading(false);
+    }
+  }, [getMarketDetails]);
 
   const showToast = useCallback((msg) => {
     setToast(msg);
@@ -1550,7 +1568,7 @@ export default function App() {
         key={market.id}
         className="market-card"
         style={{ animationDelay: `${Math.min(index, 12) * 50}ms`, '--cat-color': catColor }}
-        onClick={() => setSelectedMarket(market)}
+        onClick={() => openMarket(market)}
       >
         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: catColor, borderRadius: '4px 0 0 4px' }} />
         <div className="card-top">
@@ -1635,7 +1653,7 @@ export default function App() {
             return (
               <g key={market.id} className="map-pin"
                 transform={`translate(${x}, ${y})`}
-                onClick={() => setSelectedMarket(market)}
+                onClick={() => openMarket(market)}
                 onMouseEnter={() => setHoveredPin(market.id)}
                 onMouseLeave={() => setHoveredPin(null)}
               >
@@ -1677,7 +1695,7 @@ export default function App() {
                 <span>{market.hours} · a {Number.isFinite(market.distance) ? Math.round(market.distance) : '–'} km</span>
               </div>
               <div className="tooltip-actions">
-                <button className="primary" onClick={() => setSelectedMarket(market)}>Dettagli</button>
+                <button className="primary" onClick={() => openMarket(market)}>Dettagli</button>
                 <button onClick={(e) => { e.stopPropagation(); toggleFav(market.id); }}>
                   {favorites.has(market.id) ? "Salvato" : "Salva"}
                 </button>
@@ -1734,6 +1752,11 @@ export default function App() {
             {CAT_ICONS[m.category]} {m.category}
           </span>
           <div className="detail-name">{m.name}</div>
+          {detailLoading && <div style={{ fontSize: 12, marginTop: 8 }}>Caricamento dettagli completi…</div>}
+          {detailError && <div role="alert" style={{ fontSize: 12, marginTop: 8 }}>
+            {detailError}. Sono visibili i dati sintetici.
+          </div>}
+
           <div className="detail-city">
             <Icon name="mapPin" size={14} color={catColor} strokeWidth={2} /> {m.city}, {m.region}
           </div>
