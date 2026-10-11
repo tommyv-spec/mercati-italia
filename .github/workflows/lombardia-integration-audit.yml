@@ -11,6 +11,8 @@ on:
       - .github/workflows/lombardia-integration-audit.yml
       - backend/source_lombardia.py
       - backend/tests/test_source_lombardia.py
+      - backend/lombardia_overlap.py
+      - backend/tests/test_lombardia_overlap.py
 
 permissions:
   contents: read
@@ -57,6 +59,14 @@ jobs:
           python backend/autopilot.py \
             --policy /tmp/mercati-lombardia-policy.json \
             --output lombardia-audit-output
+      - name: Classify exact same-location overlaps without removing source records
+        run: |
+          python backend/lombardia_overlap.py \
+            --manifest public/data/v1/manifest.json \
+            --official lombardia-audit-output/sources/lombardia.json \
+            --out lombardia-audit-output/overlap-summary.json \
+            --report lombardia-audit-output/overlap-summary.md \
+            --accepted lombardia-audit-output/accepted-source-records.json
       - name: Quantify candidate sources, duplicate-like rows and monthly schedule gaps
         run: |
           python - <<'PY'
@@ -92,7 +102,11 @@ jobs:
           overlap = [x for x in lo if (key(x.get('citta')),key(x.get('indirizzo'))) in seen]
           snapshot = audit(candidate)
           decision = json.loads(Path('lombardia-audit-output/release-decision.json').read_text())
+          overlap = json.loads(Path('lombardia-audit-output/overlap-summary.json').read_text())
           report = {
+              'overlap_triage': overlap['counts'],
+              'source_after_quarantine': overlap['accepted'],
+              'source_quarantined': overlap['quarantined'],
               'approved': decision['approved'],
               'base_records': len(base),
               'candidate_records': len(merged),
@@ -165,6 +179,8 @@ jobs:
             lombardia-audit-output/release-decision.json
             lombardia-audit-output/integration-summary.json
             lombardia-audit-output/integration-summary.md
+            lombardia-audit-output/overlap-summary.json
+            lombardia-audit-output/overlap-summary.md
             ux-smoke-result.json
             ux-*.png
           retention-days: 30
