@@ -1,0 +1,62 @@
+name: Publish separate static DEV preview (free)
+on:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/publish-dev-static.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify curated snapshot integrity
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build portable static assets with RELATIVE base
+        run: |
+          npm ci --no-audit --no-fund
+          node --test tests/marketGrouping.test.mjs
+          npm run build -- --base=./
+      - name: Verify static manifest, no secret credentials, relative JS and assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          d=Path("dist")
+          m=json.loads((d/"data/v1/manifest.json").read_text())
+          assert m["total"] > 10000 and m["index_schema"] == 4
+          assert (d/m["index"]).is_file()
+          html=(d/"index.html").read_text()
+          assert 'src="./assets/' in html
+          assert not list(d.rglob("*serviceAccount*"))
+          print("Static-only development bundle validated:",m["total"],"market sources")
+          PY
+      - name: Commit built preview to isolated dev-static-preview branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          snapshot="$(mktemp -d)"
+          cp -a dist/. "$snapshot/"
+          touch "$snapshot/.nojekyll"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --orphan dev-static-preview
+          git rm -rf . >/dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -a "$snapshot"/. .
+          git add -A
+          git commit -m "dev preview: mobile city/venue/day grouping - verified static bundle"
+          git push --force origin HEAD:refs/heads/dev-static-preview
+          echo "DEV_URL=https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/index.html" >> "$GITHUB_STEP_SUMMARY"
