@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect, lazy, Suspense } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense } from "react";
 import { useMarkets } from "./hooks/useMarkets";
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
