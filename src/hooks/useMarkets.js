@@ -23,8 +23,8 @@ const CATEGORY_ICONS = {
 }
 
 const CATEGORY_COLORS = {
-  Alimentare: '#5B7A5E', Antiquariato: '#C75146', 'Vintage e abbigliamento': '#8B6F8E',
-  Usato: '#B8860B', Artigianato: '#2E86AB', Misto: '#E07A5F',
+  Alimentare: '#446E47', Antiquariato: '#B94439', 'Vintage e abbigliamento': '#705073',
+  Usato: '#805B08', Artigianato: '#216886', Misto: '#9C4B36',
 }
 
 function adaptMarket(m, userLat, userLng) {
