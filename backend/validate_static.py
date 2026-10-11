@@ -72,7 +72,7 @@ def validate(manifest_path: Path) -> dict:
         raise ValueError("Global index content hash mismatch")
     index_obj = json.loads(index_blob)
     if (index_obj.get("schema") != 1 or
-        manifest.get("index_schema") != 4 or
+        manifest.get("index_schema") not in (4, 5) or
         len(index_obj.get("markets", [])) != len(all_markets)):
         raise ValueError("Index count/schema mismatch")
     from export_static import small_index
