@@ -2,132 +2,10 @@ import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useMarkets } from "./hooks/useMarkets";
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
-const MARKETS = [
-  {
-    id: 1, name: "Mercato di Sant'Ambrogio", city: "Firenze", region: "Toscana",
-    address: "Piazza Lorenzo Ghiberti, 50122 Firenze FI",
-    lat: 43.7696, lng: 11.2644, category: "Alimentare",
-    tags: ["all'aperto", "produttori locali"],
-    dates: ["2026-02-06", "2026-02-07", "2026-02-13", "2026-02-14"],
-    hours: "7:00–14:00", recurrence: "Ogni giorno tranne domenica",
-    description: "Storico mercato coperto nel cuore di Firenze. Frutta, verdura, carne, pesce e specialità toscane. Atmosfera autentica lontana dai circuiti turistici.",
-    source: "Mercatini d'Italia", confidence: 95, lastVerified: "2026-02-04"
-  },
-  {
-    id: 2, name: "Porta Portese", city: "Roma", region: "Lazio",
-    address: "Via Portuense, 00153 Roma RM",
-    lat: 41.8782, lng: 12.4738, category: "Usato",
-    tags: ["all'aperto", "collezionismo", "modernariato"],
-    dates: ["2026-02-08", "2026-02-15", "2026-02-22"],
-    hours: "6:30–14:00", recurrence: "Ogni domenica",
-    description: "Il più grande mercato delle pulci di Roma, attivo dal 1945. Chilometri di bancarelle con tutto l'immaginabile: vestiti, libri, vinili, mobili, elettronica.",
-    source: "IlTurista", confidence: 98, lastVerified: "2026-02-05"
-  },
-  {
-    id: 3, name: "Mercato Antiquario", city: "Arezzo", region: "Toscana",
-    address: "Piazza Grande, 52100 Arezzo AR",
-    lat: 43.4633, lng: 11.8825, category: "Antiquariato",
-    tags: ["all'aperto", "collezionismo"],
-    dates: ["2026-02-07", "2026-02-08", "2026-03-07", "2026-03-08"],
-    hours: "9:00–19:00", recurrence: "Primo weekend del mese",
-    description: "Fiera antiquaria di fama internazionale nella magnifica Piazza Grande. Oltre 500 espositori di antiquariato, modernariato e oggetti da collezione.",
-    source: "Mercatini d'Italia", confidence: 97, lastVerified: "2026-02-03"
-  },
-  {
-    id: 4, name: "Mercato di Modena Antiquaria", city: "Modena", region: "Emilia-Romagna",
-    address: "Parco Novi Sad, 41121 Modena MO",
-    lat: 44.6471, lng: 10.9252, category: "Antiquariato",
-    tags: ["all'aperto", "modernariato"],
-    dates: ["2026-02-08", "2026-03-08"],
-    hours: "8:00–18:00", recurrence: "Quarto weekend del mese",
-    description: "Grande mostra mercato di antiquariato e modernariato nel parco più grande di Modena. Mobili, stampe, ceramiche e curiosità.",
-    source: "CalendarioMercatini", confidence: 85, lastVerified: "2026-01-28"
-  },
-  {
-    id: 5, name: "East Market", city: "Milano", region: "Lombardia",
-    address: "Via Mecenate 88/A, 20138 Milano MI",
-    lat: 45.4451, lng: 9.2305, category: "Vintage e abbigliamento",
-    tags: ["al chiuso", "dischi", "modernariato"],
-    dates: ["2026-02-08", "2026-03-08"],
-    hours: "10:00–21:00", recurrence: "Una domenica al mese",
-    description: "Mercato vintage indoor in un ex capannone industriale. Abbigliamento, vinili, design, arte e street food. L'appuntamento milanese per il vintage.",
-    source: "IlTurista", confidence: 92, lastVerified: "2026-02-01"
-  },
-  {
-    id: 6, name: "Mercato del Capo", city: "Palermo", region: "Sicilia",
-    address: "Via Porta Carini, 90134 Palermo PA",
-    lat: 38.1157, lng: 13.3561, category: "Alimentare",
-    tags: ["all'aperto", "produttori locali"],
-    dates: ["2026-02-06", "2026-02-07", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13"],
-    hours: "7:00–20:00", recurrence: "Tutti i giorni tranne domenica",
-    description: "Mercato storico nel cuore di Palermo. Profumi, colori e sapori della Sicilia: pesce freschissimo, spezie, frutta, panelle e street food.",
-    source: "Mercatini d'Italia", confidence: 90, lastVerified: "2026-02-02"
-  },
-  {
-    id: 7, name: "Mercato delle Erbe", city: "Bologna", region: "Emilia-Romagna",
-    address: "Via Ugo Bassi 25, 40121 Bologna BO",
-    lat: 44.4963, lng: 11.3388, category: "Alimentare",
-    tags: ["al chiuso", "produttori locali"],
-    dates: ["2026-02-06", "2026-02-07", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13"],
-    hours: "7:00–24:00", recurrence: "Ogni giorno tranne domenica",
-    description: "Mercato coperto storico di Bologna, dal 1910. Di giorno prodotti freschi e gastronomia, di sera si trasforma con aperitivi e cena.",
-    source: "IlTurista", confidence: 93, lastVerified: "2026-02-04"
-  },
-  {
-    id: 8, name: "Mercatino dell'Antiquariato", city: "Venezia", region: "Veneto",
-    address: "Campo San Maurizio, 30124 Venezia VE",
-    lat: 45.4327, lng: 12.3328, category: "Antiquariato",
-    tags: ["all'aperto", "collezionismo"],
-    dates: ["2026-02-07", "2026-02-08", "2026-02-09"],
-    hours: "9:00–19:00", recurrence: "Cinque volte l'anno",
-    description: "Elegante mercato antiquario in uno dei campi più belli di Venezia, tra San Marco e l'Accademia. Vetri, argenti, stampe e gioielli d'epoca.",
-    source: "Eventiesagre", confidence: 88, lastVerified: "2026-01-30"
-  },
-  {
-    id: 9, name: "Balon e Gran Balon", city: "Torino", region: "Piemonte",
-    address: "Via Borgo Dora, 10152 Torino TO",
-    lat: 45.0792, lng: 7.6848, category: "Usato",
-    tags: ["all'aperto", "collezionismo", "modernariato"],
-    dates: ["2026-02-07", "2026-02-14", "2026-02-21"],
-    hours: "8:00–18:00", recurrence: "Ogni sabato (Gran Balon: 2ª domenica del mese)",
-    description: "Il mercato delle pulci più antico d'Italia, nel quartiere di Borgo Dora. Oggetti curiosi, mobili, abiti vintage e modernariato piemontese.",
-    source: "Mercatini d'Italia", confidence: 94, lastVerified: "2026-02-03"
-  },
-  {
-    id: 10, name: "Fiera di Santa Lucia", city: "Lecce", region: "Puglia",
-    address: "Piazza Sant'Oronzo, 73100 Lecce LE",
-    lat: 40.3524, lng: 18.1714, category: "Artigianato",
-    tags: ["all'aperto", "serale"],
-    dates: ["2026-02-06", "2026-02-07", "2026-02-08"],
-    hours: "10:00–22:00", recurrence: "Evento periodico",
-    description: "Mercato di artigianato locale nel barocco centro di Lecce. Ceramiche, cartapesta, tessuti, gioielli artigianali e prodotti tipici salentini.",
-    source: "CalendarioMercatini", confidence: 82, lastVerified: "2026-01-25"
-  },
-  {
-    id: 11, name: "Fiera dell'Antiquariato", city: "Napoli", region: "Campania",
-    address: "Via Francesco Caracciolo, 80122 Napoli NA",
-    lat: 40.8303, lng: 14.2268, category: "Antiquariato",
-    tags: ["all'aperto", "collezionismo"],
-    dates: ["2026-02-07", "2026-02-08", "2026-03-07", "2026-03-08"],
-    hours: "8:30–14:00", recurrence: "Primo e terzo weekend del mese",
-    description: "Mercato antiquario sul lungomare di Napoli con vista sul Vesuvio. Ceramiche vietresi, stampe antiche, libri rari e argenteria.",
-    source: "IlTurista", confidence: 87, lastVerified: "2026-02-01"
-  },
-  {
-    id: 12, name: "Mercato Albinelli", city: "Modena", region: "Emilia-Romagna",
-    address: "Via Luigi Albinelli, 41121 Modena MO",
-    lat: 44.6462, lng: 10.9237, category: "Alimentare",
-    tags: ["al chiuso", "produttori locali"],
-    dates: ["2026-02-06", "2026-02-07", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13"],
-    hours: "6:30–14:30", recurrence: "Ogni giorno tranne domenica",
-    description: "Lo storico mercato coperto di Modena, dal 1931. Parmigiano Reggiano, aceto balsamico tradizionale, tortellini e specialità emiliane.",
-    source: "Mercatini d'Italia", confidence: 96, lastVerified: "2026-02-05"
-  }
-];
-
+// Market records come from the versioned static catalog, not bundled fixtures.
 const CATEGORIES = ["Alimentare", "Antiquariato", "Vintage e abbigliamento", "Usato", "Artigianato", "Misto"];
-const REGIONS = [...new Set(MARKETS.map(m => m.region))].sort();
-const CITIES = [...new Set(MARKETS.map(m => m.city))].sort();
+const REGIONS = [];
+const CITIES = [];
 
 const CATEGORY_ICONS = {
   "Alimentare": "🍅", "Antiquariato": "🏺", "Vintage e abbigliamento": "👗",
@@ -140,32 +18,36 @@ const CATEGORY_COLORS = {
 };
 
 // ─── Utility Functions ──────────────────────────────────────
-const TODAY = new Date("2026-02-06");
-const todayStr = "2026-02-06";
+function localISO(d = new Date()) {
+  return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-');
+}
+const TODAY = new Date();
+const todayStr = localISO(TODAY);
 
 function formatDateIT(dateStr) {
-  const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "short" });
+  if (!dateStr) return 'Data da verificare';
+  const d = new Date(dateStr + 'T00:00:00');
+  return Number.isNaN(d.getTime())
+    ? 'Data da verificare'
+    : d.toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' });
 }
 
-function getDateBadge(dates) {
-  const today = todayStr;
-  const tomorrow = "2026-02-07";
-  const dayOfWeek = TODAY.getDay();
-  const satOffset = 6 - dayOfWeek;
-  const satDate = new Date(TODAY); satDate.setDate(satDate.getDate() + satOffset);
+function getDateBadge(dates = []) {
+  const now = new Date();
+  const today = localISO(now);
+  const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
+  const satDate = new Date(now); satDate.setDate(satDate.getDate() + ((6 - now.getDay() + 7) % 7));
   const sunDate = new Date(satDate); sunDate.setDate(sunDate.getDate() + 1);
-  const sat = satDate.toISOString().slice(0, 10);
-  const sun = sunDate.toISOString().slice(0, 10);
-
-  if (dates.includes(today)) return { label: "Oggi", color: "#C75146" };
-  if (dates.includes(tomorrow)) return { label: "Domani", color: "#E07A5F" };
-  if (dates.includes(sat) || dates.includes(sun)) return { label: "Questo weekend", color: "#5B7A5E" };
+  if (dates.includes(today)) return { label: 'Oggi (previsto)', color: '#C75146' };
+  if (dates.includes(localISO(tomorrow))) return { label: 'Domani (previsto)', color: '#E07A5F' };
+  if (dates.includes(localISO(satDate)) || dates.includes(localISO(sunDate))) {
+    return { label: 'Weekend (previsto)', color: '#5B7A5E' };
+  }
   return null;
 }
 
-function getNextDate(dates) {
-  return dates.filter(d => d >= todayStr).sort()[0] || dates[dates.length - 1];
+function getNextDate(dates = []) {
+  return dates.filter(d => d >= localISO()).sort()[0] || null;
 }
 
 function haversine(lat1, lng1, lat2, lng2) {
@@ -1557,15 +1439,15 @@ export default function App() {
       result = result.filter(m => m.dates.includes(todayStr));
     } else if (dateFilter === "weekend") {
       const dayOfWeek = TODAY.getDay();
-      const satOffset = 6 - dayOfWeek;
+      const satOffset = (6 - dayOfWeek + 7) % 7;
       const sat = new Date(TODAY); sat.setDate(sat.getDate() + satOffset);
       const sun = new Date(sat); sun.setDate(sun.getDate() + 1);
-      const satStr = sat.toISOString().slice(0, 10);
-      const sunStr = sun.toISOString().slice(0, 10);
+      const satStr = localISO(sat);
+      const sunStr = localISO(sun);
       result = result.filter(m => m.dates.includes(satStr) || m.dates.includes(sunStr));
     } else if (dateFilter === "7giorni") {
       const end = new Date(TODAY); end.setDate(end.getDate() + 7);
-      const endStr = end.toISOString().slice(0, 10);
+      const endStr = localISO(end);
       result = result.filter(m => m.dates.some(d => d >= todayStr && d <= endStr));
     }
 
@@ -1596,7 +1478,7 @@ export default function App() {
       result.sort((a, b) => {
         const aDate = getNextDate(a.dates);
         const bDate = getNextDate(b.dates);
-        return aDate.localeCompare(bDate);
+        return (aDate || '9999').localeCompare(bDate || '9999');
       });
     }
 
@@ -1702,7 +1584,7 @@ export default function App() {
             {market.city}
           </span>
           <span className="card-info-item card-distance">
-            a {Math.round(market.distance)} km
+            a {Number.isFinite(market.distance) ? Math.round(market.distance) : '–'} km
           </span>
         </div>
       </div>
@@ -1739,7 +1621,7 @@ export default function App() {
           />
 
           {/* Market pins */}
-          {filteredMarkets.map(market => {
+          {filteredMarkets.filter(m => Number.isFinite(m.lat) && Number.isFinite(m.lng)).map(market => {
             const { x, y } = mapProject(market.lat, market.lng, w, h);
             const catColor = CAT_COLORS[market.category] || "#888";
             const isFav = favorites.has(market.id);
@@ -1787,7 +1669,7 @@ export default function App() {
               <div className="tooltip-name">{market.name}</div>
               <div className="tooltip-meta">
                 <span>{CAT_ICONS[market.category]} {market.category} · {market.city}</span>
-                <span>{market.hours} · a {Math.round(market.distance)} km</span>
+                <span>{market.hours} · a {Number.isFinite(market.distance) ? Math.round(market.distance) : '–'} km</span>
               </div>
               <div className="tooltip-actions">
                 <button className="primary" onClick={() => setSelectedMarket(market)}>Dettagli</button>
@@ -2121,7 +2003,7 @@ export default function App() {
       <div className="results-count" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span>
           {marketsLoading
-            ? (seedStatus === 'seeding' ? 'Primo avvio — popolo il database...' : 'Caricamento...')
+            ? 'Caricamento mercati statici...'
             : `${filteredMarkets.length} mercat${filteredMarkets.length === 1 ? 'o' : 'i'} trovat${filteredMarkets.length === 1 ? 'o' : 'i'}`
           }
         </span>
