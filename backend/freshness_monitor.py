@@ -51,6 +51,9 @@ def analyze(records, today, publisher_evidence=None, max_source_age_days=540):
             raise ValueError("Duplicate source identity in market catalog")
         unique.add(slug)
         counts["total"] += 1
+        dataset_only = row.get("aggiornamento_ambito") == "dataset"
+        if dataset_only:
+            counts["dataset_updated_not_specific_market"] += 1
 
         age = days_since(row.get("aggiornato_il"), today)
         if age is None:
@@ -63,6 +66,8 @@ def analyze(records, today, publisher_evidence=None, max_source_age_days=540):
                 examples["future_source_timestamp"].append(slug)
         elif age <= 30:
             counts["source_date_within_30d"] += 1
+            if dataset_only:
+                counts["recent_dataset_only_update"] += 1
         elif age <= 90:
             counts["source_date_31_to_90d"] += 1
         elif age <= 365:
@@ -164,6 +169,8 @@ def markdown(result):
         f"- Data della misura: **{result['reference_date']}**.",
         f"- Schede totali: **{m.get('total', 0):,}**.",
         f"- Fonte datata entro 30 giorni: **{m.get('source_date_within_30d', 0):,}**.",
+        f"- Di cui solo aggiornamento dataset, non del singolo mercato: **{m.get('recent_dataset_only_update', 0):,}**.",
+        f"- Schede con aggiornamento soltanto del dataset: **{m.get('dataset_updated_not_specific_market', 0):,}**.",
         f"- Fonte datata tra 31 e 365 giorni: **{m.get('source_date_31_to_90d', 0) + m.get('source_date_91_to_365d', 0):,}**.",
         f"- Fonte più vecchia del limite di {result['max_source_age_days']} giorni: **{m.get('source_date_outside_limit', 0):,}**.",
         f"- Fonti senza data: **{m.get('source_date_unknown', 0):,}**.",

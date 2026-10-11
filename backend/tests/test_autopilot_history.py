@@ -70,6 +70,18 @@ class AutopilotHistoryTests(unittest.TestCase):
         self.assertIn("oltre soglia", __import__("autopilot_history").markdown(value))
         self.assertNotIn("verified_event_count", value)
 
+    def test_dataset_scoped_freshness_count_is_not_record_verification(self):
+        freshness = {"metrics": {
+            "source_date_within_30d": 1300,
+            "recent_dataset_only_update": 1127,
+            "dataset_updated_not_specific_market": 1127,
+        }}
+        row = summary(decision(), None, None, "test-scope",
+                      None, freshness)
+        self.assertEqual(row["source_dataset_level_records"], 1127)
+        self.assertEqual(row["source_recent_dataset_only"], 1127)
+        self.assertEqual(row["documented_verification_count"], 0)
+
     def test_lombardia_screening_stats_remain_review_only(self):
         screened = {
             "schema": 1, "source_total": 1360, "accepted": 1127,

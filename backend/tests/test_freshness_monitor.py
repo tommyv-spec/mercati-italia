@@ -31,6 +31,14 @@ class FreshnessTests(unittest.TestCase):
         self.assertTrue(result["safe_for_automatic_quality_promotion"])
         self.assertFalse(result["catalog_was_modified"])
 
+    def test_recent_dataset_timestamp_is_not_an_individual_market_verification(self):
+        result = analyze([row(aggiornato_il="2026-10-06",
+                              aggiornamento_ambito="dataset")], TODAY)
+        self.assertEqual(result["metrics"]["source_date_within_30d"], 1)
+        self.assertEqual(result["metrics"]["recent_dataset_only_update"], 1)
+        self.assertEqual(result["metrics"]["dataset_updated_not_specific_market"], 1)
+        self.assertEqual(result["metrics"]["without_documented_verification"], 1)
+
     def test_stale_or_unknown_source_predictions_are_reported(self):
         result = analyze([
             row("old", aggiornato_il="2023-03-03"),
