@@ -1,0 +1,52 @@
+name: Quality checks
+on:
+  push:
+    branches:
+      - main
+      - 'improve/**'
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate static exporter and market normalization
+        run: python -m unittest discover -s backend/tests -v
+      - name: Validate a prebuilt static market catalog (if present)
+        run: |
+          if [ -f public/data/v1/manifest.json ]; then
+            python backend/validate_static.py --manifest public/data/v1/manifest.json
+          else
+            echo 'No production catalog exported yet; bootstrap required before switching deployment.'
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install frontend dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build Vite static site
+        run: npm run build
+      - name: Assert Cloudflare has no billed function route for static pages
+        run: |
+          node - <<'NODE'
+          const fs = require('fs')
+          const routes = JSON.parse(fs.readFileSync('dist/_routes.json', 'utf8'))
+          if (routes.include.some(route => route === '/*' || route === '/')) {
+            throw new Error('Cloudflare runtime request route covers normal pages')
+          }
+          if (!routes.exclude.includes('/data/*')) {
+            throw new Error('Market data is not explicitly excluded from functions')
+          }
+          console.log('Cloudflare static routes verified')
+          NODE
