@@ -219,6 +219,22 @@ jobs:
                   raise ValueError('Empty schema was accepted')
           print('Market identity and coordinate inference remained conservative.')
           PY
+      - name: Block unreviewed Lombardia overlap promotions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          report = json.loads(Path('autopilot-output/lombardia-overlaps.json').read_text())
+          if (report.get('schema') != 1 or report.get('market_confirmations') != 0
+                  or report.get('deleted_existing_records') != 0):
+              raise ValueError('Lombardia dedup attempted to delete or verify records')
+          if (report['accepted'] + report['quarantined'] != report['source_total']):
+              raise ValueError('Overlap quarantine report omits official rows')
+          if report['quarantined'] > 500:
+              raise ValueError('Too many overlaps for unattended import')
+          print('Lombardia reviewed:', report['accepted'],
+                'quarantined:', report['quarantined'])
+          PY
       - name: Block false freshness or official-source approvals
         run: |
           python - <<'PY'
@@ -391,6 +407,10 @@ jobs:
             test -s "autopilot-output/$item"
             cp "autopilot-output/$item" "reports/automation/$item"
           done
+          test -s autopilot-output/lombardia-overlaps.json
+          test -s autopilot-output/LOMBARDIA_OVERLAPS.md
+          cp autopilot-output/lombardia-overlaps.json reports/automation/lombardia-overlaps.json
+          cp autopilot-output/LOMBARDIA_OVERLAPS.md reports/automation/LOMBARDIA_OVERLAPS.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -416,6 +436,7 @@ jobs:
             --source-registry autopilot-output/source-registry.json \
             --freshness autopilot-output/freshness.json \
             --source-evidence autopilot-output/source-evidence.json \
+            --lombardia-overlap autopilot-output/lombardia-overlaps.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
