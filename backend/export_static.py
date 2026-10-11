@@ -116,6 +116,21 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     tags = sorted({safe_string(tag, 60) for tag in raw_tags if isinstance(tag, str)}) if isinstance(raw_tags, list) else []
     source = safe_string(raw.get("fonte") or raw.get("fonte_nome"), 100)
     source_url = safe_string(raw.get("url_fonte"), 650)
+    evidence = raw.get("fonti")
+    evidence = evidence if isinstance(evidence, list) else []
+    clean_sources = []
+    for source_record in evidence:
+        if not isinstance(source_record, dict):
+            continue
+        clean_sources.append({
+            "nome": safe_string(source_record.get("nome"), 100),
+            "url": safe_string(source_record.get("url"), 650),
+        })
+    if source or source_url:
+        primary = {"nome": source, "url": source_url}
+        if primary not in clean_sources:
+            clean_sources.append(primary)
+    clean_sources = sorted(clean_sources, key=lambda record: (record["nome"], record["url"]))
 
     result = {
         "slug": slug, "nome": nome, "citta": citta, "provincia": safe_string(raw.get("provincia"), 2),
@@ -129,6 +144,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "date_quality": quality,
         "confidence": confidence,
         "fonte": source, "url_fonte": source_url,
+        "fonti": clean_sources,
         "verificato_il": safe_string(raw.get("verificato_il"), 35),
         "aggiornato_il": safe_string(raw.get("aggiornato_il"), 35),
     }
