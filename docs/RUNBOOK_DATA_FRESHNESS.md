@@ -85,3 +85,15 @@ Per aggiornare con fonti vere usare **Run workflow** del job GitHub, opzione off
 - [Issue persistente sui dati](https://github.com/tommyv-spec/mercati-italia/issues/2)
 
 **Obiettivo permanente: aggiornare i dati quando cambiano le prove, non aggiornare solo il numero della data.**
+
+
+## Lombardia MERCap — adapter giornaliero e controllo sovrapposizioni
+
+- Fonte ufficiale: https://www.dati.lombardia.it/d/68zx-njaw
+- Adapter: `backend/source_lombardia.py`, con paginazione stabile per `:id`, controllo del conteggio e verifica che `rowsUpdatedAt` non cambi durante il download.
+- Le identità usano `lo-mercap-{codice_id}-{giorno}`. Giorni diversi non sono duplicati. Milano città usa ancora il connettore specifico, evitando import doppio.
+- Solo periodi settimanali/giornalieri con giorno e mesi dichiarati generano `date_quality=prevista`. Date quindicinali o mensili senza settimana precisa restano sconosciute. Un orario `00:00-00:00` non è considerato apertura valida.
+- `aggiornamento_ambito=dataset` separa l'ultima revisione dell'intero dataset dalla verifica del singolo mercato. Il frontend spiega questa differenza.
+- `backend/lombardia_overlap.py` fa una seconda verifica su Comune/indirizzo/giorno; casi di stessa sede senza prova sufficiente vengono esclusi dalla nuova importazione e segnalati, senza cancellare le vecchie schede. Risultati ricorrenti: `reports/automation/lombardia-overlaps.json` e `LOMBARDIA_OVERLAPS.md`.
+- `backend/autopilot.py` può mettere in quarantena date non più supportate quando un'identità MERCap sparisce dall'ultimo feed valido; cali anomali di righe bloccano il rilascio.
+- La prova completa, solo di lettura e senza pubblicazione, si riesegue da GitHub Actions → `Lombardia MERCap full integration audit (no publish)`. Prima dell'attivazione giornaliera si eseguono gli stessi controlli, senza eccezioni manuali.

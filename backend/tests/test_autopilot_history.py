@@ -70,6 +70,17 @@ class AutopilotHistoryTests(unittest.TestCase):
         self.assertIn("oltre soglia", __import__("autopilot_history").markdown(value))
         self.assertNotIn("verified_event_count", value)
 
+    def test_lombardia_screening_stats_remain_review_only(self):
+        screened = {
+            "schema": 1, "source_total": 1360, "accepted": 1127,
+            "quarantined": 233, "market_confirmations": 0,
+            "deleted_existing_records": 0,
+        }
+        result = summary(decision(), None, None, "extra", None, None, None, screened)
+        self.assertEqual(result["lombardia_source_total"], 1360)
+        self.assertEqual(result["lombardia_source_accepted"], 1127)
+        self.assertEqual(result["lombardia_source_quarantined"], 233)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)

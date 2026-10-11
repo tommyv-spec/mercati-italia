@@ -18,7 +18,8 @@ HISTORY_LIMIT = 104  # roughly 1 year at two checks per week
 
 def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None,
             run_id: str, source_registry: dict | None = None,
-            freshness: dict | None = None, rights: dict | None = None) -> dict:
+            freshness: dict | None = None, rights: dict | None = None,
+            lombardia_overlap: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -28,6 +29,11 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
                       for item in registry.get("sources", []))
     freshness_metrics = (freshness or {}).get("metrics", {})
     publisher_checks = (rights or {}).get("source_evidence", [])
+    overlaps = lombardia_overlap or {}
+    if overlaps and (overlaps.get("schema") != 1
+                     or overlaps.get("market_confirmations", 0) != 0
+                     or overlaps.get("deleted_existing_records", 0) != 0):
+        raise ValueError("Untrusted Lombardia overlap report")
     if "records" not in metric or "future_60" not in metric:
         raise ValueError("Incomplete quality report")
     return {
@@ -49,6 +55,9 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "source_registry_changed": int(intake.get("delta", {}).get("changed", 0)),
         "source_location_candidates": int(classes.get("market_location_candidate", 0)),
         "source_historical_statistics": int(classes.get("aggregated_statistics", 0)),
+        "lombardia_source_total": int(overlaps.get("source_total", 0)),
+        "lombardia_source_accepted": int(overlaps.get("accepted", 0)),
+        "lombardia_source_quarantined": int(overlaps.get("quarantined", 0)),
         "source_age_within_30_days": int(freshness_metrics.get("source_date_within_30d", 0)),
         "source_age_over_limit": int(freshness_metrics.get("source_date_outside_limit", 0)),
         "source_date_unknown": int(freshness_metrics.get("source_date_unknown", 0)),
@@ -88,6 +97,7 @@ def markdown(latest: dict) -> str:
         f"- Dataset pubblici candidati individuati: **{latest['source_candidates_scored']}** (licenze da verificare)",
         f"- Fonti conservate nello storico: **{latest['source_registry_known']}**; nuove: **{latest['source_registry_new']}**; aggiornate: **{latest['source_registry_changed']}**.",
         f"- Possibili elenchi/sedi: **{latest['source_location_candidates']}**; statistiche storiche aggregate: **{latest['source_historical_statistics']}**.",
+        f"- Lombardia MERCap: **{latest['lombardia_source_accepted']}** record non ambigui su **{latest['lombardia_source_total']}**, in revisione **{latest['lombardia_source_quarantined']}**.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
         f"- Date previste con origine vecchia/sconosciuta: **{latest['forecast_from_stale_sources']}**.",
         f"- Metadati degli enti leggibili: **{latest['publisher_metadata_readable']}/{latest['publisher_metadata_checked']}**.",
@@ -134,6 +144,7 @@ def main():
     p.add_argument("--source-registry", type=Path)
     p.add_argument("--freshness", type=Path)
     p.add_argument("--source-evidence", type=Path)
+    p.add_argument("--lombardia-overlap", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -148,6 +159,8 @@ def main():
         if args.freshness and args.freshness.is_file() else None,
         json.loads(args.source_evidence.read_text("utf-8"))
         if args.source_evidence and args.source_evidence.is_file() else None,
+        json.loads(args.lombardia_overlap.read_text("utf-8"))
+        if args.lombardia_overlap and args.lombardia_overlap.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
