@@ -250,6 +250,25 @@ def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
     return cleaned, stats
 
 
+# Small index contains all fields used by list/search/map, but not full
+# descriptions, long date schedules, source evidence or street addresses.
+# Clicking a card fetches just one cached region's full detail JSON.
+INDEX_FIELDS = (
+    "slug", "nome", "citta", "regione", "categoria", "tags", "lat", "lng",
+    "position_quality", "date_quality", "status", "orario_testo", "ricorrenza_testo",
+    "confidence", "completezza", "fonte", "aggiornato_il", "verificato_il",
+)
+
+
+def small_index(markets: list[dict]) -> list[dict]:
+    output = []
+    for market in markets:
+        row = {key: market[key] for key in INDEX_FIELDS if key in market}
+        row["date"] = market["date"][:14]
+        output.append(row)
+    return output
+
+
 def _write_asset(output: Path, relative: str, markets: list[dict]):
     body = compact_json({"schema": 1, "markets": markets})
     if len(body) > MAX_MARKET_BYTES:
@@ -279,7 +298,9 @@ def export(records: list, out: Path, today: date | None = None,
             raise ValueError("Quality gate: too many markets disappeared since last export")
 
     signature = hashlib.sha256(compact_json(markets)).hexdigest()
-    if previous and previous.get("content_signature") == signature:
+    if (previous and previous.get("content_signature") == signature
+            and previous.get("index")
+            and (out.parent.parent / previous["index"]).is_file()):
         return {"unchanged": True, "stats": stats, "manifest": previous}
     if dry_run:
         return {"unchanged": False, "stats": stats, "manifest": None}
@@ -300,8 +321,13 @@ def export(records: list, out: Path, today: date | None = None,
             path = _write_asset(out, file_name, region_markets)
             part_entries["regions"].append({"name": name, "count": len(region_markets), "path": path})
 
+    # One lightweight global index fetch on page load; full regional datasets
+    # are immutable and fetched only when a market detail is opened.
+    index_path = _write_asset(out, "index-{hash}.json", small_index(markets))
+
     manifest = {
         "schema": 1, "layout": layout, "total": len(markets),
+        "index": index_path,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "content_signature": signature,
         "regions_summary": stats["by_region"],
