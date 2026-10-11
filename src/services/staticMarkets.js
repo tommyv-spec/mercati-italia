@@ -118,6 +118,7 @@ function normalize(m, userLat, userLng) {
     date: m.date || [],
     prossima_data: getNextDate(m.date),
     confidence: m.confidence ?? 0,
+    completezza: m.completezza ?? 0,
     verificato_il: m.verificato_il || '',
     aggiornato_il: m.aggiornato_il || '',
     date_quality: m.date_quality || 'prevista',
