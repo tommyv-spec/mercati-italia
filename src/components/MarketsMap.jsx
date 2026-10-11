@@ -26,7 +26,10 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
   const onSelectRef = useRef(onSelect)
   const marketsRef = useRef(new Map())
   const popupRef = useRef(null)
-  const [showEstimated, setShowEstimated] = useState(false)
+  // At national scale, hiding all indicative positions leaves one
+  // cluster near Milan and makes the map appear empty. Show these by
+  // default with visible warnings and allow a precise-only toggle.
+  const [showEstimated, setShowEstimated] = useState(true)
   const [ready, setReady] = useState(false)
   const [error, setError] = useState('')
   const hasUserPosition = Number.isFinite(userLat) && Number.isFinite(userLng)
@@ -184,6 +187,16 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
     }
   }, [ready, hasUserPosition, userLat, userLng])
 
+  // When a city/region filter is applied, zoom to that place rather
+  // than leaving the map centered on the whole country.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!ready || !map || hasUserPosition || shown.length === 0 || shown.length > 1200) return
+    const bounds = new maplibregl.LngLatBounds()
+    shown.forEach(m => bounds.extend([m.lng, m.lat]))
+    map.fitBounds(bounds, { padding: 46, maxZoom: 12, duration: 400 })
+  }, [shown, ready, hasUserPosition])
+
   return (
     <section aria-label="Mappa interattiva dei mercati" style={{ margin: '0 16px 110px' }}>
       <div style={{ background: 'var(--white)', borderRadius: 12, padding: '12px 14px', marginBottom: 10, fontSize: 13 }}>
@@ -197,7 +210,7 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
             style={{ border: '1px solid var(--beige-dark)', borderRadius: 20, padding: '8px 12px', marginTop: 8,
               background: showEstimated ? 'var(--ink)' : 'var(--white)',
               color: showEstimated ? '#fff' : 'var(--ink)', cursor: 'pointer', fontSize: 12 }}>
-            {showEstimated ? 'Nascondi le posizioni indicative' : 'Mostra anche le posizioni indicative'}
+            {showEstimated ? 'Mostra solo posizioni precise' : 'Includi posizioni indicative'}
           </button>
         )}
         {shown.length === 0 && (
