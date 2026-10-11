@@ -124,7 +124,7 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
       map.addLayer({
         id: 'cluster-counts', type: 'symbol', source: 'markets',
         filter: ['has', 'point_count'],
-        layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12 },
+        layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12, 'text-font': ['Noto Sans Regular'] },
         paint: { 'text-color': '#ffffff' },
       })
       map.addLayer({
