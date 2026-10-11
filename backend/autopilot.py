@@ -142,7 +142,7 @@ def quarantine_absent_official_lombardia(merged, base, fresh, source_status):
     No market identities are deleted. One isolated removal is quarantined;
     a large shrink blocks the run rather than implying municipal closures.
     """
-    if source_status.get("lombardia", {}).get("status") != "retrieved":
+    if source_status.get("lombardia", {}).get("status") not in ("retrieved", "resumed_checkpoint"):
         return merged, {"lombardia_absent": 0, "lombardia_quarantined": 0}
     old = {x["slug"]: x for x in base
            if str(x.get("slug", "")).startswith("lo-mercap-")}
@@ -375,7 +375,7 @@ def run(args):
         "quarantined_examples": [], "market_confirmations": 0,
         "deleted_existing_records": 0,
     }
-    if source_status.get("lombardia", {}).get("status") == "retrieved":
+    if source_status.get("lombardia", {}).get("status") in ("retrieved", "resumed_checkpoint"):
         candidates = [x for x in feeds if str(x["slug"]).startswith("lo-mercap-")]
         reviewed, report = review_lombardia_overlaps(old_rows, candidates)
         if len(reviewed) < 950:
