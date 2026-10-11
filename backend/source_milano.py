@@ -76,6 +76,9 @@ def convert(records: list[dict], today: date | None = None) -> list[dict]:
     today = today or date.today()
     markets = []
     seen = set()
+    # A 2024 municipal schedule is not confirmation of a 2026 occurrence.
+    source_age = (today - date.fromisoformat(SOURCE_DATE)).days
+    source_schedule_current = 0 <= source_age <= 540
     for row in records:
         if not isinstance(row, dict):
             continue
@@ -100,6 +103,8 @@ def convert(records: list[dict], today: date | None = None) -> list[dict]:
         details = "Mercato settimanale scoperto nel Comune di Milano."
         if area:
             details += " Zona: " + area + "."
+        if not source_schedule_current:
+            details += " Fonte comunale del 2024: calendario, sede e orari da verificare."
         markets.append({
             "slug": "mi-mss-" + ident,
             "nome": "Mercato di " + name.strip().title(),
@@ -110,8 +115,8 @@ def convert(records: list[dict], today: date | None = None) -> list[dict]:
             "categoria": "misto",
             "tags": ["mercato settimanale", "all'aperto"],
             "status": "non_confermato",
-            "date": _future_dates(days, today),
-            "date_quality": "prevista",
+            "date": _future_dates(days, today) if source_schedule_current else [],
+            "date_quality": "prevista" if source_schedule_current and days else "sconosciuta",
             "ricorrenza_testo": "Ogni " + day_names if days else "Da verificare",
             "orario_testo": str(_value(row, "orari", "ORARI") or "").strip(),
             "descrizione": details,
