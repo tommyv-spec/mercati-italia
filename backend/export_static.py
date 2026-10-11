@@ -212,6 +212,110 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     return result, None
 
 
+def comparable_market_name(value: str) -> str:
+    """Normalize harmless article/preposition variants without fuzzy guessing."""
+    canonical = slugify(value).replace("-", " ")
+    words = [
+        word for word in canonical.split()
+        if word not in {"a", "ad", "di", "da", "del", "della", "dello", "dell",
+                        "dei", "degli", "delle", "al", "alla", "nel", "in"}
+    ]
+    return " ".join(words)
+
+
+def specific_market_address(value: str) -> str:
+    raw = (value or "").strip().lower()
+    if not raw or len(raw) < 8:
+        return ""
+    if raw in {"centro", "centro storico", "centro città", "ce", "ce..."}:
+        return ""
+    return slugify(raw)
+
+
+def source_duplicate_group(market: dict) -> tuple | None:
+    url = market.get("url_fonte") or ""
+    name = comparable_market_name(market.get("nome", ""))
+    if not url or len(name) < 12:
+        return None
+    return (
+        market.get("regione", "").casefold(),
+        market.get("citta", "").casefold(),
+        market.get("categoria", ""),
+        url,
+        name,
+    )
+
+
+def safe_same_market(a: dict, b: dict) -> bool:
+    address_a = specific_market_address(a.get("indirizzo", ""))
+    address_b = specific_market_address(b.get("indirizzo", ""))
+    if address_a and address_b and address_a != address_b:
+        return False
+    if a.get("position_quality") == "precisa" and b.get("position_quality") == "precisa":
+        if a.get("lat") is not None and b.get("lat") is not None:
+            if abs(a["lat"] - b["lat"]) > 0.002 or abs(a["lng"] - b["lng"]) > 0.002:
+                return False
+    return True
+
+
+def data_value_score(market: dict) -> int:
+    return (
+        50 * bool(market.get("verificato_il"))
+        + 30 * bool(market.get("date"))
+        + 20 * bool(specific_market_address(market.get("indirizzo", "")))
+        + 20 * (market.get("position_quality") == "precisa")
+        + 10 * bool(market.get("orario_testo"))
+        + min(10, len(market.get("descrizione", "")) // 100)
+    )
+
+
+def combine_safe_source_duplicates(records: list[dict]) -> tuple[list[dict], int]:
+    """Merge only near-exact names from the SAME source and city.
+
+    A shared source list URL is not enough: title and city must agree,
+    and distinct specific addresses never merge automatically.
+    """
+    unique = []
+    groups = {}
+    merges = 0
+    for item in records:
+        group = source_duplicate_group(item)
+        found = None
+        for index in groups.get(group, []) if group else []:
+            if safe_same_market(unique[index], item):
+                found = index
+                break
+        if found is None:
+            index = len(unique)
+            unique.append(item)
+            if group:
+                groups.setdefault(group, []).append(index)
+            continue
+
+        old = unique[found]
+        better = item if data_value_score(item) > data_value_score(old) else old
+        merged = {**old, **better}
+        merged["slug"] = old["slug"]  # stable bookmark identifier
+        merged["date"] = sorted(set(old.get("date", []) + item.get("date", [])))
+        merged["tags"] = sorted(set(old.get("tags", []) + item.get("tags", [])))
+        links = old.get("fonti", []) + item.get("fonti", [])
+        merged["fonti"] = sorted(
+            { (src.get("nome",""), src.get("url","")) for src in links if isinstance(src, dict) }
+        )
+        merged["fonti"] = [{"nome": n, "url": u} for n, u in merged["fonti"]]
+        # Never upgrade a date from estimated to confirmed by merging estimates.
+        order = {"sconosciuta": 0, "prevista": 1, "riportata": 2, "confermata": 3}
+        merged["date_quality"] = min(
+            (old.get("date_quality", "sconosciuta"),
+             item.get("date_quality", "sconosciuta")),
+            key=lambda quality: order.get(quality, 0),
+        )
+        merged["completezza"] = max(old.get("completezza", 0), item.get("completezza", 0))
+        unique[found] = merged
+        merges += 1
+    return unique, merges
+
+
 def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
     cleaned = []
     skipped = Counter()
@@ -244,8 +348,10 @@ def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
         by_slug[slug] = result
         cleaned.append(result)
 
+    cleaned, safe_merged = combine_safe_source_duplicates(cleaned)
     cleaned.sort(key=lambda m: (m["regione"], m["citta"], m["nome"], m["slug"]))
     stats = {
+        "same_source_duplicates_merged": safe_merged,
         "input": len(raw_records), "accepted": len(cleaned), "skipped": dict(skipped),
         "id_collisions_kept_separate": collisions,
         "with_coordinates": sum(m["lat"] is not None for m in cleaned),
@@ -262,7 +368,7 @@ def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
 # Clicking a card fetches just one cached region's full detail JSON.
 INDEX_FIELDS = (
     "slug", "nome", "citta", "regione", "categoria", "tags",
-    "lat", "lng", "orario_testo", "date_quality",
+    "lat", "lng", "position_quality", "orario_testo", "date_quality",
 )
 
 
@@ -308,7 +414,7 @@ def export(records: list, out: Path, today: date | None = None,
 
     signature = hashlib.sha256(compact_json(markets)).hexdigest()
     if (previous and previous.get("content_signature") == signature
-            and previous.get("index_schema") == 2
+            and previous.get("index_schema") == 3
             and previous.get("index")
             and (out.parent.parent / previous["index"]).is_file()):
         return {"unchanged": True, "stats": stats, "manifest": previous}
@@ -338,7 +444,7 @@ def export(records: list, out: Path, today: date | None = None,
     manifest = {
         "schema": 1, "layout": layout, "total": len(markets),
         "index": index_path,
-        "index_schema": 2,
+        "index_schema": 3,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "content_signature": signature,
         "regions_summary": stats["by_region"],
