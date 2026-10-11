@@ -60,6 +60,17 @@ try {
   }
   await page.locator('.detail-back').click()
 
+  // The map must be a real interactive map, not the old decorative SVG.
+  await page.getByRole('button', { name: 'Mappa', exact: true }).first().click()
+  await page.locator('.maplibregl-map').waitFor({ timeout: 20000 })
+  assert.equal(await page.locator('.maplibregl-canvas').count(), 1)
+  assert.equal(await page.getByText('Schema indicativo dell’Italia', { exact: false }).count(), 0)
+  await page.getByText('Mostra anche le posizioni indicative', { exact: false }).first().click()
+  await page.getByText('Nascondi le posizioni indicative', { exact: false }).first().waitFor()
+  await page.screenshot({ path: 'ux-map.png', animations: 'disabled' })
+  await page.getByRole('button', { name: 'Lista', exact: true }).first().click()
+  await assertCards()
+
   // Manual city selection filters actual results, not a cosmetic toast.
   await page.locator('.bottom-tabs').getByRole('button', { name: 'Impostazioni' }).click()
   await page.getByRole('button', { name: /Scegli una città/ }).click()
