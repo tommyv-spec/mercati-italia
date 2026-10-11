@@ -1,17 +1,12 @@
 /**
- * useMarkets — Data hook with auto-seed.
- *
- * On first load:
- *   1. Check if Firestore has data
- *   2. If empty → seed 30 markets from SEED_MARKETS
- *   3. Fetch markets from Firestore
- *   4. Adapt field names for the UI
+ * useMarkets — read-only static market catalog hook.
+ * No Firebase or Cloudflare runtime invocation on visits.
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import {
   fetchMarkets, getFavorites,
   toggleFavorite as apiToggleFavorite, getDataMode, haversine,
-} from '../services/api'
+} from '../services/staticMarkets'
 
 const DEFAULT_LAT = 43.7696
 const DEFAULT_LNG = 11.2558
@@ -54,6 +49,10 @@ function adaptMarket(m, userLat, userLng) {
     confidence: m.confidence || 50,
     // Last scrape is not a human confirmation.
     lastVerified: m.verificato_il ? m.verificato_il.slice(0, 10) : '',
+    dateQuality: m.date_quality || 'prevista',
+    positionQuality: m.position_quality || 'sconosciuta',
+    status: m.status || 'non_confermato',
+    sourceUrl: m.url_fonte || '',
     distance: m.distance != null
       ? m.distance
       : (userLat && m.lat ? haversine(userLat, userLng, m.lat, m.lng) : 999),
@@ -63,7 +62,7 @@ function adaptMarket(m, userLat, userLng) {
 export function useMarkets() {
   const [markets, setMarkets] = useState([])
   const [loading, setLoading] = useState(true)
-  const seedStatus = null // demo data must never be written by a browser
+  const seedStatus = null // Retained for compatibility; no browser-side seed
   const [error, setError] = useState(null)
   const [favorites, setFavorites] = useState(new Set())
   const [filterOptions, setFilterOptions] = useState({ regioni: [], citta: [] })
