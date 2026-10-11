@@ -37,3 +37,13 @@ Macchina autorizzata: BOOK-V1KQL7L6GB.
 ## Limiti
 
 Questo è un ambiente DEV da provare sul telefono, non hosting production o URL stabile. Il laptop deve restare acceso e online. Una verifica su iPhone/Android fisici e dei dati locali rimane da completare; la revisione UX e del contenuto è ancora nella PR bozza.
+
+## Aggiornamento: correzioni DEV e controllo pubblico (11 ottobre 2026, sessione QA)
+
+- URL stabile finché resta attivo lo stesso processo del Quick Tunnel: **https://share-thats-battery-fax.trycloudflare.com/**
+- Frontend **aggiornato** (solo DEV) da build GitHub Actions **38171786850**; commit sorgente **f6f934a39fb4b36a8d16a3de898fed38de36b620**; non è stato unito su main e la produzione non è stata modificata.
+- Nuova cartella servita sul PC: `site-v2/`; servizio statico Python `dev_server.py` PID **16608** su localhost:4173, Cloudflare tunnel PID **17432** invariato. Vecchia cartella `site/` conservata come rollback; `site-ready/` build intermedia funzionante.
+- Correzioni principali: errore React bloccante `useRef`, fonte dati schema v4, sostituzione SVG con MapLibre e clustering, caricamento lazy mappa, font OpenFreeMap Noto Sans per evitare glyph 404, reset città/regione, GPS negato non cancella i filtri, date previste etichettate, introduzione ricerca contestuale per città.
+- Browser Chrome con emulazione iPhone13/timezone Europe/Rome, contro URL **pubblico**: **11 test di percorso PASS, 0 errori runtime JS, 0 errori console, 0 risposte HTTP fallite e 0 richieste di rete fallite**; rete esterna HTTP200, GZIP attivo sull'indice, cache per file immutabili. Primo caricamento nel test ~4,33 secondi; da rete mobile reale può variare.
+- Solo anteprima gratuita e temporanea; dev server non è un Cloudflare Pages deployment persistente. Mantieni PC acceso e online. Se pagina ancora vecchia, ricarica o apri in una finestra privata, dato che il browser può aver memorizzato asset statici.
+- Limiti aperti: numerosi record **previsti, non confermati**; geocoordinate indicative (circa 89 precise sul totale), orari/sedi spesso incompleti; alcune città duplicate per maiuscole/minuscole o provincia erroneamente inserita. Il catalogo **non** è certificato.
