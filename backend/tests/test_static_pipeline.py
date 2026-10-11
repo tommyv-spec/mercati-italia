@@ -61,6 +61,22 @@ class ExportTests(unittest.TestCase):
         self.assertIsNone(row)
         self.assertEqual(reason, "generic_without_market_evidence")
 
+    def test_region_name_is_normalized(self):
+        result, _ = normalize(market(regione="Emilia romagna"), self.today)
+        self.assertEqual(result["regione"], "Emilia-Romagna")
+        result, _ = normalize(market(regione="Val D'Aosta"), self.today)
+        self.assertEqual(result["regione"], "Valle d'Aosta")
+
+    def test_excludes_non_italian_regions(self):
+        result, reason = normalize(market(regione="Galicia"), self.today)
+        self.assertIsNone(result)
+        self.assertEqual(reason, "not_italian_region")
+
+    def test_link_sanitization(self):
+        result, _ = normalize(market(url_fonte="javascript:alert(1)"), self.today)
+        self.assertEqual(result["url_fonte"], "")
+        self.assertEqual(result["completezza"], 45)  # base + future date + approximate coordinates
+
     def test_skips_cancelled(self):
         result, reason = normalize(market(status="annullato"), self.today)
         self.assertIsNone(result)
