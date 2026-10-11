@@ -755,6 +755,15 @@ body {
   transition: all 0.2s;
 }
 
+.detail-address-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--beige);
+  color: var(--ink-lighter);
+  border: 1px solid var(--beige-dark);
+}
+
+
 .btn-primary {
   background: var(--terracotta);
   color: white;
@@ -1947,6 +1956,11 @@ export default function App() {
             <div className="detail-address">{m.address || 'Indirizzo non verificato'}</div>
             {m.positionQuality !== 'precisa' && (
               <div style={{ fontSize: 12, color: '#8C8272', marginTop: 6 }}>Posizione indicativa o da verificare</div>
+            )}
+            {!destinationForMarket(m) && (
+              <div role="note" style={{ fontSize: 12, color: '#8C8272', margin: '10px 0' }}>
+                Indicazioni non disponibili: manca un indirizzo sufficientemente preciso.
+              </div>
             )}
             <div className="detail-address-actions">
               <button className="btn-primary" onClick={() => openDirections(m)}
