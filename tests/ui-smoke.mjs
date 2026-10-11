@@ -109,7 +109,11 @@ try {
   }).first()
   await saturdayGroup.waitFor()
   await saturdayGroup.getByText('Piazza i maggio', { exact: true }).waitFor({ timeout: 25000 })
-  assert.equal(await saturdayGroup.getByText('Largo Monzani', { exact: true }).count(), 0)
+  // The city group keeps a stable React key across weekday filter changes.
+  // Wait until the previous weekday venues have actually been removed.
+  await saturdayGroup.getByText('Largo Monzani', { exact: true })
+    .waitFor({ state: 'hidden', timeout: 25000 })
+  assert.equal(await saturdayGroup.locator('.weekly-venue[data-known="true"]').count(), 1)
   await page.screenshot({ path: 'ux-weekly-saturday.png', animations: 'disabled' })
   await page.getByRole('button', { name: 'Togli filtro giorno' }).click()
   await assertCards()
