@@ -6,6 +6,8 @@ on:
       - improve/data-quality-security-performance-2026-10-11
     paths:
       - .github/workflows/rebuild-static.yml
+      - backend/export_static.py
+      - backend/tests/test_static_pipeline.py
 
 permissions:
   contents: write
