@@ -43,13 +43,19 @@ def audit(manifest_path: Path, today: date | None = None) -> dict:
     records = []
     compressed_regions = 0
     raw_regions = 0
-    for part in manifest["regions"]:
+    if manifest.get("layout") == "single":
+        parts = [{"path": manifest["catalog"], "count": manifest["total"], "name": "catalog"}]
+    elif manifest.get("layout") == "regional":
+        parts = manifest["regions"]
+    else:
+        raise ValueError("Unsupported catalog layout")
+    for part in parts:
         shard = (public_root / part["path"]).read_bytes()
         raw_regions += len(shard)
         compressed_regions += len(gzip.compress(shard, compresslevel=6))
         chunk = json.loads(shard)["markets"]
         if len(chunk) != part["count"]:
-            raise ValueError("Region size mismatch: " + part["name"])
+            raise ValueError("Part size mismatch: " + part["name"])
         records.extend(chunk)
 
     assert manifest["total"] == len(records), "Snapshot total differs from published manifest"
@@ -179,7 +185,7 @@ def audit(manifest_path: Path, today: date | None = None) -> dict:
         "today": today.isoformat(),
         "manifest_generated_at": manifest["generated_at"],
         "snapshot_total": len(records),
-        "regions_count": len(manifest["regions"]),
+        "regions_count": len({m.get("regione") for m in records}),
         "sizes": {
             "national_index_bytes": len(index_blob),
             "national_index_gzip_bytes": len(gzip.compress(index_blob, compresslevel=6)),
