@@ -1,3 +1,4 @@
+# Run separately after preview publishing to ensure the served branch is current.
 name: Verify public static mobile preview
 on:
   push:
