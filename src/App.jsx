@@ -1432,6 +1432,78 @@ export default function App() {
     setTimeout(() => setToast(null), 2000);
   }, []);
 
+  // Details are shareable by URL hash: no server-side route required.
+  useEffect(() => {
+    const openHash = () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      const id = new URLSearchParams(hash).get('mercato');
+      const item = id && allMarkets.find(market => market.id === id);
+      if (item) openMarket(item);
+    };
+    openHash();
+    window.addEventListener('hashchange', openHash);
+    return () => window.removeEventListener('hashchange', openHash);
+  }, [allMarkets, openMarket]);
+
+  const closeMarket = () => {
+    setSelectedMarket(null);
+    if (window.location.hash.startsWith('#mercato=')) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  };
+
+  const shareMarket = async (market) => {
+    const url = new URL(window.location.href);
+    url.hash = 'mercato=' + encodeURIComponent(market.id);
+    const payload = { title: market.name, text: market.city, url: url.toString() };
+    try {
+      if (navigator.share) {
+        await navigator.share(payload);
+      } else if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(payload.url);
+        showToast('Link del mercato copiato.');
+      } else {
+        window.prompt('Copia questo link per condividerlo:', payload.url);
+      }
+    } catch (error) {
+      if (error?.name !== 'AbortError') showToast('Condivisione non riuscita.');
+    }
+  };
+
+  const destinationForMarket = (market) => {
+    if (market.address?.trim()) {
+      return [market.name, market.address, market.city, 'Italia'].filter(Boolean).join(', ');
+    }
+    if (market.positionQuality === 'precisa' && Number.isFinite(market.lat) && Number.isFinite(market.lng)) {
+      return market.lat + ',' + market.lng;
+    }
+    return null;
+  };
+
+  const openDirections = (market) => {
+    const destination = destinationForMarket(market);
+    if (!destination) {
+      showToast('Indirizzo non abbastanza preciso per navigare.');
+      return;
+    }
+    const url = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(destination);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const copyMarketAddress = async (market) => {
+    if (!market.address?.trim()) {
+      showToast('Indirizzo non disponibile.');
+      return;
+    }
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard not supported');
+      await navigator.clipboard.writeText(market.address);
+      showToast('Indirizzo copiato.');
+    } catch {
+      showToast('Seleziona il testo dell’indirizzo per copiarlo.');
+    }
+  };
+
   const activateNearby = () => {
     setLocationMode('auto');
     setFilterCity('');
@@ -1780,11 +1852,11 @@ export default function App() {
       <div className="detail-page">
         <div className="detail-hero" style={{ background: `linear-gradient(135deg, ${catColor}08 0%, ${catColor}14 100%)` }}>
           <div style={{ position: 'absolute', top: -40, right: -40, width: 180, height: 180, borderRadius: '50%', background: catColor, opacity: 0.04 }} />
-          <button className="detail-back" onClick={() => setSelectedMarket(null)}>
+          <button className="detail-back" onClick={closeMarket}>
             <Icon name="chevronLeft" size={20} />
           </button>
           <div className="detail-actions-top">
-            <button className="detail-icon-btn" onClick={() => showToast("Condiviso!")}>
+            <button className="detail-icon-btn" onClick={() => shareMarket(m)} aria-label="Condividi questo mercato">
               <Icon name="share" size={18} />
             </button>
             <button
@@ -1877,13 +1949,13 @@ export default function App() {
               <div style={{ fontSize: 12, color: '#8C8272', marginTop: 6 }}>Posizione indicativa o da verificare</div>
             )}
             <div className="detail-address-actions">
-              <button className="btn-primary" onClick={() => showToast("Apertura navigatore...")}>
+              <button className="btn-primary" onClick={() => openDirections(m)}
+                disabled={!destinationForMarket(m)}
+                title={!destinationForMarket(m) ? 'Indirizzo non sufficiente per navigare' : 'Apri indicazioni stradali'}>
                 <Icon name="navigation" size={16} color="white" /> Indicazioni
               </button>
-              <button className="btn-secondary" onClick={() => {
-                navigator.clipboard?.writeText(m.address);
-                showToast("Indirizzo copiato!");
-              }}>
+              <button className="btn-secondary" onClick={() => copyMarketAddress(m)}
+                disabled={!m.address?.trim()}>
                 <Icon name="copy" size={16} /> Copia
               </button>
             </div>
