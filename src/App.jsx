@@ -16,8 +16,8 @@ const CATEGORY_ICONS = {
 };
 
 const CATEGORY_COLORS = {
-  "Alimentare": "#5B7A5E", "Antiquariato": "#C75146", "Vintage e abbigliamento": "#8B6F8E",
-  "Usato": "#B8860B", "Artigianato": "#2E86AB", "Misto": "#E07A5F"
+  "Alimentare": "#446E47", "Antiquariato": "#B94439", "Vintage e abbigliamento": "#705073",
+  "Usato": "#805B08", "Artigianato": "#216886", "Misto": "#9C4B36"
 };
 
 // ─── Utility Functions ──────────────────────────────────────
@@ -43,10 +43,10 @@ function getDateBadge(dates = [], quality = 'prevista') {
   const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
   const satDate = new Date(now); satDate.setDate(satDate.getDate() + ((6 - now.getDay() + 7) % 7));
   const sunDate = new Date(satDate); sunDate.setDate(sunDate.getDate() + 1);
-  if (dates.includes(today)) return { label: 'Oggi' + suffix, color: confirmed ? '#C75146' : '#81796D' };
-  if (dates.includes(localISO(tomorrow))) return { label: 'Domani' + suffix, color: confirmed ? '#C75146' : '#81796D' };
+  if (dates.includes(today)) return { label: 'Oggi' + suffix, color: confirmed ? '#B94439' : '#81796D' };
+  if (dates.includes(localISO(tomorrow))) return { label: 'Domani' + suffix, color: confirmed ? '#B94439' : '#81796D' };
   if (dates.includes(localISO(satDate)) || dates.includes(localISO(sunDate))) {
-    return { label: 'Weekend' + suffix, color: confirmed ? '#5B7A5E' : '#81796D' };
+    return { label: 'Weekend' + suffix, color: confirmed ? '#446E47' : '#81796D' };
   }
   return null;
 }
@@ -109,9 +109,9 @@ const styles = `
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-  --terracotta: #C75146;
+  --terracotta: #B94439;
   --terracotta-light: #E8857D;
-  --olive: #5B7A5E;
+  --olive: #446E47;
   --olive-light: #7FA882;
   --olive-pale: #E8F0E9;
   --beige: #F5F0E8;
@@ -119,7 +119,7 @@ const styles = `
   --sand: #D4C5A9;
   --ink: #2C2416;
   --ink-light: #5C513F;
-  --ink-lighter: #8C8272;
+  --ink-lighter: #6C6255;
   --cream: #FDFBF7;
   --white: #FFFFFF;
   --shadow-sm: 0 1px 3px rgba(44,36,22,0.06);
@@ -402,6 +402,22 @@ body {
   box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
+.market-card-open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+}
+.market-card-open:focus-visible {
+  outline: 3px solid var(--olive);
+  outline-offset: -3px;
+}
+
 
 .market-card::before {
   content: '';
@@ -450,6 +466,8 @@ body {
 }
 
 .fav-btn {
+  position: relative;
+  z-index: 2;
   background: none;
   border: none;
   cursor: pointer;
@@ -1744,17 +1762,10 @@ export default function App() {
         key={market.id}
         className="market-card"
         style={{ animationDelay: `${Math.min(index, 12) * 50}ms`, '--cat-color': catColor }}
-        onClick={() => openMarket(market)}
-        tabIndex={0}
-        role="button"
-        aria-label={'Apri i dettagli di ' + market.name}
-        onKeyDown={(e) => {
-          if (e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) {
-            e.preventDefault();
-            openMarket(market);
-          }
-        }}
       >
+        <button type="button" className="market-card-open"
+          aria-label={'Apri i dettagli di ' + market.name + ', ' + market.city}
+          onClick={() => openMarket(market)} />
         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: catColor, borderRadius: '4px 0 0 4px' }} />
         <div className="card-top">
           <div className="card-badges">
@@ -1780,15 +1791,15 @@ export default function App() {
 
         <div className="card-info">
           <span className="card-info-item">
-            <Icon name="calendar" size={14} color="#8C8272" />
+            <Icon name="calendar" size={14} color="#6C6255" />
             {formatDateIT(nextDate)}
           </span>
           <span className="card-info-item">
-            <Icon name="clock" size={14} color="#8C8272" />
+            <Icon name="clock" size={14} color="#6C6255" />
             {market.hours || 'Orari da verificare'}
           </span>
           <span className="card-info-item">
-            <Icon name="mapPin" size={14} color="#8C8272" />
+            <Icon name="mapPin" size={14} color="#6C6255" />
             {market.city}
           </span>
           {canUseDistance && (
@@ -1877,7 +1888,7 @@ export default function App() {
               <div className="detail-recurrence">{m.recurrence}</div>
             )}
             {m.dateQuality !== 'confermata' && (
-              <div style={{ fontSize: 12, color: '#8C8272', marginTop: 8 }}>
+              <div style={{ fontSize: 12, color: '#6C6255', marginTop: 8 }}>
                 Date previste, non confermate per ogni singola edizione. Controlla la fonte prima di partire.
               </div>
             )}
@@ -1898,10 +1909,10 @@ export default function App() {
             </div>
             <div className="detail-address">{m.address || 'Indirizzo non verificato'}</div>
             {m.positionQuality !== 'precisa' && (
-              <div style={{ fontSize: 12, color: '#8C8272', marginTop: 6 }}>Posizione indicativa o da verificare</div>
+              <div style={{ fontSize: 12, color: '#6C6255', marginTop: 6 }}>Posizione indicativa o da verificare</div>
             )}
             {!destinationForMarket(m) && (
-              <div role="note" style={{ fontSize: 12, color: '#8C8272', margin: '10px 0' }}>
+              <div role="note" style={{ fontSize: 12, color: '#6C6255', margin: '10px 0' }}>
                 Indicazioni non disponibili: manca un indirizzo sufficientemente preciso.
               </div>
             )}
@@ -1963,7 +1974,7 @@ export default function App() {
                 <div className="confidence-bar">
                   <div className="confidence-fill" style={{
                     width: `${m.dataCompleteness}%`,
-                    background: m.dataCompleteness > 80 ? '#5B7A5E' : m.dataCompleteness > 55 ? '#B8860B' : '#C75146'
+                    background: m.dataCompleteness > 80 ? '#446E47' : m.dataCompleteness > 55 ? '#805B08' : '#B94439'
                   }} />
                 </div>
                 <div style={{ fontSize: 10, maxWidth: 135, marginTop: 5 }}>
@@ -2212,7 +2223,7 @@ export default function App() {
                     onClick={() => { setSortBy(key); setShowSort(false); }}
                   >
                     <Icon name={icon} size={16} /> {label}
-                    {sortBy === key && <Icon name="check" size={16} color="#C75146" />}
+                    {sortBy === key && <Icon name="check" size={16} color="#B94439" />}
                   </button>
                 ))}
               </div>
@@ -2418,7 +2429,7 @@ export default function App() {
               <div className="icon-circle"><Icon name="compass" size={18} /></div>
               <div>
                 <div style={{ fontWeight: 600 }}>Usa la mia posizione</div>
-                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>
+                <div style={{ fontSize: 12, color: '#6C6255', marginTop: 1 }}>
                   {positionStatus === 'ready' ? 'Posizione attiva' :
                    positionStatus === 'requesting' ? 'Richiesta in corso…' : 'Richiede il tuo consenso'}
                 </div>
@@ -2431,7 +2442,7 @@ export default function App() {
               <div className="icon-circle"><Icon name="mapPin" size={18} /></div>
               <div>
                 <div style={{ fontWeight: 600 }}>Scegli una città</div>
-                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>Inserisci manualmente</div>
+                <div style={{ fontSize: 12, color: '#6C6255', marginTop: 1 }}>Inserisci manualmente</div>
               </div>
             </button>
             <button
@@ -2441,7 +2452,7 @@ export default function App() {
               <div className="icon-circle"><Icon name="x" size={18} /></div>
               <div>
                 <div style={{ fontWeight: 600 }}>Non ora</div>
-                <div style={{ fontSize: 12, color: '#8C8272', marginTop: 1 }}>Naviga senza posizione</div>
+                <div style={{ fontSize: 12, color: '#6C6255', marginTop: 1 }}>Naviga senza posizione</div>
               </div>
             </button>
           </div>
