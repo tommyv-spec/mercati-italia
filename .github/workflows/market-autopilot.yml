@@ -1,3 +1,5 @@
+# Re-runnable methodology: docs/RUNBOOK_DATA_FRESHNESS.md
+# Source data freshness is measured separately from workflow completion time.
 # Only trusted SCHEDULER lives on main. All implementation, data snapshots and
 # publication remain isolated in the DEV branch. No Cloudflare Worker/KV/D1
 # or Firebase call occurs when a visitor browses the static preview.
