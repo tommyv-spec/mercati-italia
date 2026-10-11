@@ -51,6 +51,11 @@ class ExportTests(unittest.TestCase):
         self.assertIsNone(result["lat"])
         self.assertEqual(result["position_quality"], "sconosciuta")
 
+    def test_does_not_misclassify_sagre_as_markets(self):
+        result, reason = normalize(market(categoria="sagra"), self.today)
+        self.assertIsNone(result)
+        self.assertEqual(reason, "excluded_non_market_category")
+
     def test_skips_cancelled(self):
         result, reason = normalize(market(status="annullato"), self.today)
         self.assertIsNone(result)
