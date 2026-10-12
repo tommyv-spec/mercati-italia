@@ -8,6 +8,6 @@ Questo controllo serve a individuare dove testare un importer già autorizzato.
 | Comune di Bologna | unchanged | 2025-04-02 | 2025-04-02 |
 | Regione Lombardia | unchanged | 2026-10-06 | 2026-10-06 |
 | Roma Capitale | publisher_unavailable | - | - |
-| Comune di Corciano | municipal_csv_first_observation | - | - |
+| Comune di Corciano | unchanged | - | - |
 
 Nessuna licenza, evento o import viene approvato automaticamente.

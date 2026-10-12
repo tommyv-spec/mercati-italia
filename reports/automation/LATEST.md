@@ -2,9 +2,9 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38188711597](https://github.com/tommyv-spec/mercati-italia/actions/runs/38188711597) — UTC 2026-10-12T00:39:25.259112+00:00
+- Ultimo run: [38188917566](https://github.com/tommyv-spec/mercati-italia/actions/runs/38188917566) — UTC 2026-10-12T00:42:48.231222+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: sì
+- Nuova versione di dati: no (contenuto invariato)
 - Schede nel catalogo: **13,779**
 - Schede con date previste a +60 giorni: **11,795**
 - Schede con date previste a +90 giorni: **11,774**
