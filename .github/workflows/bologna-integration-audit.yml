@@ -1,0 +1,184 @@
+# Real-source Bologna QA: after manual inspection, before any scheduled import.
+# READ-ONLY: never changes production, main, DEV catalog or dev-static-preview.
+name: Bologna official market inventory — full dry-run (no publish)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/bologna-integration-audit.yml
+      - backend/source_bologna.py
+      - backend/tests/test_source_bologna.py
+      - backend/lombardia_overlap.py
+      - backend/autopilot.py
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bologna-inventory-source-audit
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run repeatable schema, schedules, provenance and regression tests
+        run: python -m unittest discover -s backend/tests -v
+      - name: Construct ephemeral official-source policy without touching defaults
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('backend/autopilot_policy.json').read_text())
+          if any(item['id'] == 'bologna' and item.get('enabled') for item in p['sources']):
+              raise ValueError('Bologna already enabled in daily policy; audit needs separate rollout')
+          if not any(item['id'] == 'bologna' for item in p['sources']):
+              p['sources'].append({
+                  'id': 'bologna', 'enabled': True, 'official': True,
+                  'min_records': 40, 'max_records': 65,
+                  'license': 'CC BY 4.0 claimed by Comune di Bologna; attribution required',
+                  'stale_source_dates_not_confirmed': True
+              })
+          else:
+              next(item for item in p['sources'] if item['id'] == 'bologna')['enabled'] = True
+          Path('/tmp/mercati-bologna-audit-policy.json').write_text(
+              json.dumps(p), encoding='utf-8')
+          PY
+      - name: Fetch real official inventory, screen duplicates and build guarded candidate
+        run: |
+          set -euo pipefail
+          python backend/autopilot.py \
+            --policy /tmp/mercati-bologna-audit-policy.json \
+            --output bologna-audit-output
+      - name: Validate Bologna data age, ID completeness and quarantined venues
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from datetime import date
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from audit_dataset import audit
+          from validate_static import validate
+
+          out = Path('bologna-audit-output')
+          candidate = out/'candidate/public/data/v1/manifest.json'
+          validate(candidate)
+          old = load_existing(Path('public/data/v1/manifest.json'))
+          next_items = load_existing(candidate)
+          by_slug = {m['slug']:m for m in next_items}
+          sources = json.loads((out/'sources/bologna.json').read_text())
+          overlaps = json.loads((out/'bologna-overlaps.json').read_text())
+          decision = json.loads((out/'release-decision.json').read_text())
+          actual = [x for x in next_items if x['slug'].startswith('bo-open-')]
+          baseline_ids = {x['slug'] for x in old}
+          accepted_ids = {x['slug'] for x in sources} - {
+              x['official_slug'] for x in overlaps['quarantined_examples']
+          }
+          if overlaps['quarantined'] > len(overlaps['quarantined_examples']):
+              # If a report exceeds its example cap, use the counts, not the
+              # incomplete example list, to validate the final candidate.
+              accepted_ids = None
+          added = [x for x in actual if x['slug'] not in baseline_ids]
+          report = {
+              'approved': bool(decision['approved']),
+              'source_rows_expected': 249,
+              'curated_source_rows': len(sources),
+              'accepted_after_overlap': overlaps['accepted'],
+              'quarantined_for_possible_duplicates': overlaps['quarantined'],
+              'existing_catalog': len(old),
+              'candidate_catalog': len(next_items),
+              'new_bologna_rows': len(added),
+              'bologna_total_in_candidate': len(actual),
+              'new_bologna_with_future_dates': sum(bool(x.get('date')) for x in added),
+              'bologna_individual_verifications': sum(bool(x.get('verificato_il')) for x in actual),
+              'bologna_precise_coordinates_claimed': sum(x.get('position_quality')=='precisa' for x in actual),
+              'bologna_dataset_provenance': sum(x.get('aggiornamento_ambito')=='dataset' for x in actual),
+              'publisher_data_processed_at': sorted({x['aggiornato_il'] for x in actual}),
+              'index_gzip_bytes': audit(candidate)['sizes']['national_index_gzip_bytes'],
+              'gates': decision['gates'],
+              'overlap_examples': overlaps['quarantined_examples'][:25],
+          }
+          assert decision['approved']
+          assert len(sources)==48, 'Curated source distribution changed'
+          assert overlaps['accepted']+overlaps['quarantined']==48
+          assert len(actual)==overlaps['accepted'], 'Missing official IDs after export'
+          assert accepted_ids is None or {x['slug'] for x in actual}==accepted_ids, (
+              'Official Bologna stable IDs were lost or unexpectedly merged'
+          )
+          assert report['bologna_individual_verifications']==0
+          assert report['bologna_precise_coordinates_claimed']==0
+          assert report['bologna_dataset_provenance']==len(actual)
+          assert report['publisher_data_processed_at']==['2025-04-02'], (
+              'Current metadata changed; manually re-review source and forecast policy'
+          )
+          assert report['new_bologna_with_future_dates']==0, (
+              'Old Bologna ingestion date must never generate 2026 appointments'
+          )
+          (out/'integration-summary.json').write_text(json.dumps(
+              report,indent=2,ensure_ascii=False)+'\n')
+          with (out/'integration-summary.md').open('w') as f:
+              f.write('# Bologna publisher audit — no publication\n\n')
+              for key,val in report.items():
+                  if key not in ('gates','overlap_examples'):
+                      f.write(f'- {key}: **{val}**\n')
+              f.write('\nDataset-level timestamps never confirm individual market events.\n')
+          print('BOLOGNA_INTEGRATION_SUMMARY',json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Install approved candidate in temporary CI workspace only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import shutil
+          dst=Path('public/data/v1')
+          src=Path('bologna-audit-output/candidate/public/data/v1')
+          shutil.rmtree(dst)
+          shutil.copytree(src,dst)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate static site, security and dedicated regression tests
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+      - name: Test actual phone browsing without billed dynamic backend calls
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/mercati-bologna-preview.log 2>&1 &
+          for i in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/ui-smoke.mjs
+      - name: Save replayable summaries/checkpoints (NOT public)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bologna-official-market-audit
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            bologna-audit-output/checkpoints/
+            bologna-audit-output/release-decision.json
+            bologna-audit-output/bologna-overlaps.json
+            bologna-audit-output/BOLOGNA_OVERLAPS.md
+            bologna-audit-output/integration-summary.json
+            bologna-audit-output/integration-summary.md
+            ux-smoke-result.json
+            ux-*.png
