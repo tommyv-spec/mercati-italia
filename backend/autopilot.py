@@ -428,7 +428,8 @@ def run(args):
                 milano_policy.get("document_date") != MILAN_PDF_DATE.isoformat()
                 or milano_policy.get("pdf_blob_sha1") != "87ac8ce87140d34ca7c399a1e32f30d587488571"
                 or milano_policy.get("gis_blob_sha1") != "523643489c0a27b8fabd2272e4b1e5205249d2e7"
-                or policy["sources"][0]["id"] != "milano"
+                or not any(item.get("id") == "milano" and item.get("enabled") is True
+                           for item in policy["sources"])
             ))):
         raise ValueError("Unreviewed 2026 Milan publisher-source evidence policy")
 
@@ -705,7 +706,7 @@ def run(args):
         gis_path = Path(__file__).resolve().parent / "data" / "milano-mss-gis-reviewed.json"
         def pinned_git_blob_sha(path):
             data = path.read_bytes()
-            return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+            return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
         if (pinned_git_blob_sha(pdf_path) != milano_policy["pdf_blob_sha1"]
                 or pinned_git_blob_sha(gis_path) != milano_policy["gis_blob_sha1"]):
             raise ValueError("Pinned Milan publisher files changed without source review")
