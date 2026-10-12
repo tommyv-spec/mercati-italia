@@ -42,9 +42,11 @@ def verify(before, after, report, pdf, gis):
         if not rule or rule.get("kind")!="weekly" or rule["weekdays"]!=matches[id_]:
             raise ValueError("New weekdays do not match exact publisher evidence: "+slug)
         original=list(a.get("fonti") or [])
+        primary={"nome":str(a.get("fonte") or ""),"url":str(a.get("url_fonte") or "")}
         enriched=b.get("fonti")
         if (not isinstance(enriched,list)
                 or OFFICIAL_PDF_SOURCE not in enriched
+                or primary not in enriched
                 or any(old not in enriched for old in original)):
             raise ValueError("Original source evidence lost: "+slug)
         changed.append(slug)
