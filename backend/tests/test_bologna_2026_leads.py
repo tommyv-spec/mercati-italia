@@ -96,7 +96,7 @@ class Bologna2026LeadTests(unittest.TestCase):
         res=audit(rows,EVIDENCE,TODAY)
         self.assertEqual(res["catalog_ids_preserved"],len(rows))
         self.assertEqual(len(res["observations"]),4)
-        self.assertIn("Nessuna",markdown(res) if "Nessuna" in markdown(res) else "Nessuna")
+        self.assertIn("Nuove aperture confermate o mercati importati: **0**", markdown(res))
 
 
 if __name__=="__main__":
