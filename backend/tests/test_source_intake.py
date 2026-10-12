@@ -142,6 +142,50 @@ class IntakeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "read-only"):
             evaluate({"candidates": [row()]})
 
+    def test_real_schemas_deprioritize_concessions_and_historical_statistics(self):
+        conces = row("soave",data_modified="")
+        conces["title"]="Fiere e mercati - Comune di Soave"
+        conces["score"]=13
+        census = row("lazio",data_modified="")
+        census["title"]="Censimento dei mercati mensili"
+        census["score"]=9
+        schema={
+            "schema":1,"imports":0,"verified_event_count":0,
+            "probe_history":{
+                "soave":{"checked_date":"2026-10-12",
+                         "viability":"concession_registry_without_visit_schedule"},
+                "lazio":{"checked_date":"2026-10-12",
+                         "viability":"historical_aggregate_not_venues"},
+            }
+        }
+        result=evaluate(scout([conces,census]),schema_evidence=schema)
+        matches={x["id"]:x for x in result["sources"]}
+        self.assertEqual(matches["soave"]["triage_class"],"concession_registry")
+        self.assertEqual(matches["lazio"]["triage_class"],"aggregated_statistics")
+        self.assertIn("source_schema_observed_read_only_no_auto_import",
+                      matches["soave"]["triage_reasons"])
+        self.assertFalse(matches["soave"]["automatic_import_allowed"])
+        self.assertEqual(result["record_imports"],0)
+
+    def test_good_candidate_schema_becomes_discoverable_without_import_permission(self):
+        venue=row("community",data_modified="2026-09-30")
+        venue["title"]="Mercati su aree pubbliche"
+        schema={"schema":1,"imports":0,"verified_event_count":0,
+                "probe_history":{"community":{
+                    "viability":"market_venue_schedule_candidate",
+                    "checked_date":"2026-10-12"}}}
+        before=evaluate(scout([venue]))["sources"][0]
+        after=evaluate(scout([venue]),schema_evidence=schema)["sources"][0]
+        self.assertGreater(after["triage_score"],before["triage_score"])
+        self.assertFalse(after["automatic_import_allowed"])
+        self.assertEqual(after["schema_viability"],"market_venue_schedule_candidate")
+
+    def test_invalid_schema_approval_is_refused(self):
+        with self.assertRaisesRegex(ValueError,"Untrusted municipal schema"):
+            evaluate(scout([row()]),schema_evidence={
+                "schema":1,"imports":1,"verified_event_count":0,
+                "probe_history":{}})
+
     def test_unknown_prior_schema_must_not_overwrite(self):
         with self.assertRaisesRegex(ValueError, "Unknown source registry schema"):
             evaluate(scout([row()]), {"schema": 999, "sources": []})

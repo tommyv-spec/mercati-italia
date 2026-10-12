@@ -174,7 +174,7 @@ def fingerprint(row):
     ).encode("utf-8")).hexdigest()
 
 
-def evaluate(scout, previous=None, publisher_evidence=None):
+def evaluate(scout, previous=None, publisher_evidence=None, schema_evidence=None):
     if publisher_evidence and (
         not isinstance(publisher_evidence, dict)
         or publisher_evidence.get("schema") != 1
@@ -182,6 +182,16 @@ def evaluate(scout, previous=None, publisher_evidence=None):
         or not isinstance(publisher_evidence.get("source_evidence"), list)
     ):
         raise ValueError("Untrusted publisher evidence; no auto import")
+    if schema_evidence is not None and (
+        not isinstance(schema_evidence, dict)
+        or schema_evidence.get("schema") != 1
+        or schema_evidence.get("imports") != 0
+        or schema_evidence.get("verified_event_count") != 0
+        or not isinstance(schema_evidence.get("probe_history"), dict)
+        or len(schema_evidence["probe_history"]) > MAX_SOURCES
+    ):
+        raise ValueError("Untrusted municipal schema evidence")
+    schemas = (schema_evidence or {}).get("probe_history", {})
     audited = {
         item.get("source_id"): item
         for item in (publisher_evidence or {}).get("source_evidence", [])
@@ -267,6 +277,32 @@ def evaluate(scout, previous=None, publisher_evidence=None):
             score, category, reasons = triage(item, scan_date)
             item.pop("publisher_data_updated_at", None)
             item.pop("publisher_timestamp_type", None)
+        observed = schemas.get(item["id"]) or {}
+        kind = observed.get("viability")
+        if kind == "historical_aggregate_not_venues":
+            category = "aggregated_statistics"
+            score -= 24
+            reasons.append("real_csv_schema_contains_only_annual_counts")
+        elif kind == "concession_registry_without_visit_schedule":
+            category = "concession_registry"
+            score -= 18
+            reasons.append("real_csv_schema_tracks_concessions_not_market_openings")
+        elif kind == "market_venue_schedule_candidate":
+            score += 6
+            reasons.append("bounded_csv_schema_has_venue_address_and_weekday")
+        if kind in (
+            "historical_aggregate_not_venues",
+            "concession_registry_without_visit_schedule",
+            "market_venue_schedule_candidate",
+            "venue_inventory_missing_visit_days",
+            "manual_schema_review_required",
+        ):
+            item["schema_viability"] = kind
+            item["schema_observed_at"] = clean(observed.get("checked_date"), 15)
+            reasons.append("source_schema_observed_read_only_no_auto_import")
+        else:
+            item.pop("schema_viability", None)
+            item.pop("schema_observed_at", None)
         item["triage_score"], item["triage_class"], item["triage_reasons"] = (
             score, category, reasons
         )
@@ -304,13 +340,13 @@ def markdown(result):
         "- Il punteggio indica solo la priorità della verifica. NON è una misura di affidabilità.",
         "- La ricerca restituisce solo i primi risultati. Una fonte non vista non è stata cancellata.",
         "- Una modifica ai metadati NON dimostra che siano cambiati mercati o orari.", "",
-        "| Priorità | Punti | Dataset | Tipo | Editore dichiarato | Data ufficiale analizzata (se disponibile) |",
-        "|---:|---:|---|---|---|---|",
+        "| Priorità | Punti | Dataset | Tipo | Schema osservato | Editore dichiarato | Data ufficiale analizzata (se disponibile) |",
+        "|---:|---:|---|---|---|---|---|",
     ]
     for i, source in enumerate(result["sources"][:20], 1):
         lines.append(
             f"| {i} | {source['triage_score']} | {escape(source['title'])} | "
-            f"{escape(source['triage_class'])} | {escape(source['organization'])} | "
+            f"{escape(source['triage_class'])} | {escape(source.get('schema_viability') or 'non esplorato')} | {escape(source['organization'])} | "
             f"{escape(source.get('publisher_data_updated_at') or source['data_modified']) or 'sconosciuta'} |"
         )
     lines.extend(["", "## Risorse candidate prioritarie (URL non verificati)", ""])
@@ -339,6 +375,7 @@ def main():
                         default=Path("reports/automation/source-registry.json"))
     parser.add_argument("--publisher-evidence", type=Path,
                         default=Path("reports/automation/source-evidence.json"))
+    parser.add_argument("--schema-evidence", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     args = parser.parse_args()
@@ -346,7 +383,9 @@ def main():
     prior = json.loads(args.previous.read_text(encoding="utf-8")) if args.previous.is_file() else None
     evidence = json.loads(args.publisher_evidence.read_text(encoding="utf-8")) if (
         args.publisher_evidence and args.publisher_evidence.is_file()) else None
-    result = evaluate(scout, prior, evidence)
+    schema = json.loads(args.schema_evidence.read_text("utf-8")) if (
+        args.schema_evidence and args.schema_evidence.is_file()) else None
+    result = evaluate(scout, prior, evidence, schema)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
