@@ -794,6 +794,7 @@ jobs:
             --visitor-display-audit autopilot-output/reversible-display-duplicates.json \
             --municipality-report autopilot-output/municipality-reconciliation.json \
             --reviewed-cities-report autopilot-output/reviewed-cities.json \
+            --reviewed-city-static-guard autopilot-output/reviewed-city-static-safety.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
