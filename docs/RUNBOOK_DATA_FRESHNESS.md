@@ -141,3 +141,7 @@ Le esecuzioni avvengono ogni giorno, quindi `backend/autopilot_history.py` conse
 ## Metodologia permanente per aumentare le fonti
 
 [Ispezione manuale, selezione incrementale e classificazione fonti](SOURCE_DISCOVERY_METHOD.md): sei ricerche di metadati nazionali, massimo tre piccole richieste ufficiali di schema al giorno, distribuite tra editori quando possibile; ogni nuova fonte richiede licenza, struttura, dati attuali e test prima dell'import. Dati storici e registri di concessioni non diventano automaticamente nuovi mercati.
+
+## Qualità delle schede e correzione sicura delle date
+
+Vedi [metodo di audit reale e gate di qualità](CATALOG_QUALITY_METHOD.md): 1.455 schede senza una data futura erano classificate come previste/confermate; la normalizzazione le demuove a data sconosciuta. I possibili doppioni e le città anomale restano in revisione senza cambiare identità.
