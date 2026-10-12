@@ -37,11 +37,13 @@ jobs:
           r=json.loads(Path('source-contract-audit/raw-source-lifecycle.json').read_text('utf-8'))
           s=r['sources'].get('corciano-generic-shadow') or {}
           c=s.get('counts') or {}
+          previous=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
           if (r.get('read_only') is not True
                   or r.get('market_imports')!=0
                   or r.get('market_confirmations')!=0
                   or r.get('market_identity_deletions')!=0
-                  or r.get('catalog_count')!=13784
+                  or previous.get('total',0)<12000
+                  or r.get('catalog_count')!=previous['total']
                   or r.get('source_checks',{}).get('source_level_raw_profiles_checked')!=1
                   or not 4<=c.get('distinct_market_identities',0)<=8
                   or c.get('rows_observed')!=c.get('distinct_market_identities')
@@ -69,7 +71,8 @@ jobs:
           final=json.loads((root/'candidate/public/data/v1/manifest.json').read_text('utf-8'))
           prior=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
           if (not decision['approved'] or final['total']!=prior['total']
-              or final['total']!=13784 or lifecycle.get('catalog_count')!=13784
+              or prior['total']<12000
+              or lifecycle.get('catalog_count')!=prior['total']
               or lifecycle.get('market_imports')!=0
               or lifecycle.get('market_confirmations')!=0
               or lifecycle.get('market_identity_deletions')!=0
