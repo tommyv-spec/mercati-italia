@@ -128,7 +128,7 @@ def validate_manifest(evidence):
                     raise ValueError("Fogaccia Tuesday temporary one-stall move not quarantined")
             candidates[sid]=x
         elif status=="already_published":
-            if x.get("existing_slug") not in EXPECT_EXISTING:
+            if x.get("existing_slug") not in EXPECTED_EXISTING:
                 raise ValueError("Unrecognized already-published Roman market")
         elif status=="quarantine_only":
             if key!="pineta-sacchetti-urbano-ii" or not x.get("reason"):
