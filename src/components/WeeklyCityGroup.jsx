@@ -1,5 +1,5 @@
 import { useEffect, useId, useMemo, useState } from 'react'
-import { distinctWeekdays, groupVenues, nextMatchingDate, WEEKDAY_LABELS } from '../lib/marketGrouping'
+import { distinctWeekdays, groupVenues, groupVenueAppointments, nextMatchingDate, WEEKDAY_LABELS } from '../lib/marketGrouping'
 import { marketDateDisclosure } from '../lib/dateDisclosure'
 import './WeeklyCityGroup.css'
 
@@ -19,6 +19,7 @@ export default function WeeklyCityGroup({
   const [loading, setLoading] = useState(false)
   const [loadError, setLoadError] = useState('')
   const [showUnknownVenues, setShowUnknownVenues] = useState(false)
+  const [expandedSourceRecords, setExpandedSourceRecords] = useState({})
 
   const idsKey = group.markets.map(m => m.id).join('|')
   useEffect(() => {
@@ -85,7 +86,7 @@ export default function WeeklyCityGroup({
       aria-label={`Mercati settimanali a ${group.city}`}>
       <div className="weekly-city-top">
         <span className="weekly-city-overline">Mercati settimanali · {group.city}</span>
-        <span className="weekly-city-counter">{next ? `${group.markets.length} appuntamenti` : `${group.markets.length} schede da verificare`}</span>
+        <span className="weekly-city-counter">{group.markets.length} schede</span>
       </div>
       <h2 className="weekly-city-heading">Mercati settimanali a {group.city}</h2>
       <div className="weekly-city-subtitle">
@@ -116,7 +117,7 @@ export default function WeeklyCityGroup({
               <p className="weekly-venue-total">
                 {knownVenues.length} {knownVenues.length === 1 ? 'sede riportata' : 'sedi riportate'}
                 {unknownVenues.length > 0 && ` · ${unknownVenues.length} ${unknownVenues.length === 1 ? 'scheda' : 'schede'} senza indirizzo`}.
-                Ogni appuntamento conserva la propria scheda e fonte.
+                Ogni scheda e fonte resta accessibile. Le segnalazioni identiche sono raggruppate solo nella visualizzazione.
               </p>
               {unknownVenues.length > 0 && knownVenues.length > 0 && (
                 <button type="button" className="weekly-unknown-toggle"
@@ -140,19 +141,46 @@ export default function WeeklyCityGroup({
                     </div>
                   </div>
                   <div className="weekly-appointment-list">
-                    {venue.markets.map(market => {
+                    {groupVenueAppointments(venue.markets).map(visit => {
+                      const market = visit.market
                       const date = nextMatchingDate(market.dates || [], selectedWeekday)
+                      const expandedCopies = Boolean(expandedSourceRecords[visit.key])
                       return (
-                        <button type="button" key={market.id} className="weekly-appointment"
-                          onClick={() => onOpenMarket(market)}
-                          aria-label={`Apri ${dateLabel(date)}, ${venue.address || group.city}`}>
-                          <span className="weekly-appointment-date">{dateLabel(date)}</span>
-                          <span className="weekly-appointment-meta">
-                            {market.hours || 'Orario da verificare'}
-                            {market.dateQuality !== 'confermata' && <small> · Previsto</small>}
-                          </span>
-                          <span aria-hidden="true" className="weekly-appointment-arrow">›</span>
-                        </button>
+                        <div key={visit.key} className="weekly-appointment-group">
+                          <button type="button" className="weekly-appointment"
+                            onClick={() => onOpenMarket(market)}
+                            aria-label={'Apri ' + dateLabel(date) + ', ' + (venue.address || group.city)}>
+                            <span className="weekly-appointment-date">{dateLabel(date)}</span>
+                            <span className="weekly-appointment-meta">
+                              {market.hours || 'Orario da verificare'}
+                              {market.dateQuality !== 'confermata' && <small> · Previsto</small>}
+                            </span>
+                            <span aria-hidden="true" className="weekly-appointment-arrow">›</span>
+                          </button>
+                          {visit.records.length > 1 && (
+                            <>
+                              <button type="button" className="weekly-duplicate-toggle"
+                                aria-expanded={expandedCopies}
+                                onClick={() => setExpandedSourceRecords(prev => ({
+                                  ...prev, [visit.key]: !prev[visit.key],
+                                }))}>
+                                {visit.records.length} schede della stessa fonte
+                                {' · '}{expandedCopies ? 'Nascondi originali' : 'Mostra originali'}
+                              </button>
+                              {expandedCopies && (
+                                <div className="weekly-duplicate-records">
+                                  {visit.records.map(record => (
+                                    <button type="button" className="weekly-original-record"
+                                      key={record.id} onClick={() => onOpenMarket(record)}>
+                                      {record.name}{' · '}{record.hours || 'Orario da verificare'}
+                                      <span aria-hidden="true">›</span>
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
                       )
                     })}
                   </div>

@@ -47,3 +47,12 @@
 .weekly-unknown-toggle:hover { border-color: var(--olive); }
 .weekly-unknown-toggle:focus-visible { outline: 3px solid var(--olive); outline-offset: 2px; }
 .weekly-venue[data-known="false"] { background: #f4f1eb; border-style: dashed; }
+
+/* Same-source weekly repeats only affect visual density. Every original
+   record is still available in the expandable evidence list. */
+.weekly-duplicate-toggle { display:block; width:100%; min-height:40px; border:0; background:transparent; text-align:left; padding:6px 2px 10px; color:var(--olive); font:600 12px/1.5 var(--font-body); cursor:pointer; }
+.weekly-duplicate-toggle:hover { text-decoration:underline; }
+.weekly-duplicate-toggle:focus-visible, .weekly-original-record:focus-visible { outline:3px solid var(--olive); outline-offset:2px; }
+.weekly-duplicate-records { margin:2px 0 12px 12px; padding-left:12px; border-left:2px solid var(--beige-dark); }
+.weekly-original-record { display:flex; gap:7px; justify-content:space-between; align-items:center; width:100%; min-height:42px; background:transparent; border:0; border-top:1px solid var(--beige-dark); text-align:left; padding:8px 3px; color:var(--ink-light); font:500 12px/1.45 var(--font-body); cursor:pointer; }
+.weekly-original-record:hover { color:var(--terracotta); }

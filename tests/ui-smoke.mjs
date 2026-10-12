@@ -149,7 +149,7 @@ try {
     hasText: 'Mercati settimanali a Firenze',
   }).first()
   await cityGroup.waitFor({ timeout: 20000 })
-  assert.equal(await cityGroup.getByText('7 appuntamenti').count(), 1)
+  assert.equal(await cityGroup.getByText('7 schede').count(), 1)
   await cityGroup.getByRole('button', { name: 'Visualizza sedi e giornate' }).click()
   await cityGroup.getByText('Caricamento sedi…').waitFor({ state: 'hidden', timeout: 25000 })
   await cityGroup.getByText('Largo Monzani', { exact: true }).waitFor()
@@ -182,6 +182,35 @@ try {
   // Restore nationwide results before exercising GPS. A real city filter
   // legitimately collapses to one weekly-city group (zero market-card
   // elements), so GPS must not inherit that unrelated city restriction.
+  await page.getByRole('button', { name: 'Azzera filtri' }).click()
+  await assertCards()
+
+  // Albizzate: two source records for exactly one Tuesday at Piazzale Sefro
+  // must show one visit but retain two original links and their source IDs.
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Impostazioni' }).click()
+  await page.getByRole('button', { name: /Scegli una città/ }).click()
+  await page.locator('.manual-city-input input').fill('Albizzate')
+  await page.getByRole('button', { name: 'Filtra città' }).click()
+  await assertCards({ allowGroupedVenue: true })
+  const albizzateGroup = page.getByTestId('weekly-city-group').filter({
+    hasText: 'Mercati settimanali a Albizzate',
+  }).first()
+  await albizzateGroup.waitFor({ timeout: 20000 })
+  await albizzateGroup.getByRole('button', { name: 'Visualizza sedi e giornate' }).click()
+  await albizzateGroup.getByText('Caricamento sedi…').waitFor({ state: 'hidden', timeout: 25000 })
+  const piazzale = albizzateGroup.locator('.weekly-venue[data-known="true"]').filter({
+    hasText: 'Piazzale Sefro',
+  }).first()
+  await piazzale.waitFor()
+  assert.equal(await piazzale.locator('.weekly-appointment').count(), 1,
+    'Duplicate original listings must show one visible weekly visit')
+  const duplicateButton = piazzale.getByRole('button', { name: /2 schede della stessa fonte/ })
+  assert.equal(await duplicateButton.count(), 1)
+  await duplicateButton.click()
+  assert.equal(await piazzale.locator('.weekly-original-record').count(), 2,
+    'The two original source records must remain accessible to visitors')
+  await page.screenshot({ path: 'ux-weekly-duplicate-detail.png', animations: 'disabled' })
+  await duplicateButton.click()
   await page.getByRole('button', { name: 'Azzera filtri' }).click()
   await assertCards()
 
