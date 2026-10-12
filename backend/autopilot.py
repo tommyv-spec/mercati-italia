@@ -47,7 +47,7 @@ from municipality_reconciliation import (
 )
 
 SCHEMA = 1
-PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities", "forecast", "export", "quality")
+PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities", "reviewed_cities", "forecast", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
