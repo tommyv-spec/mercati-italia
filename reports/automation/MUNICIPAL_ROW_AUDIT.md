@@ -8,8 +8,8 @@ Nessuna fonte viene abilitata all'importazione.
 - Dataset con campione storico: **12**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - COGOLLO DEL CENGIO
-- Editore dichiarato: Comune di Cogollo del Cengio
+## Posteggi mercati e fiere - POVEGLIANO VERONESE
+- Editore dichiarato: Comune di Povegliano Veronese
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: historic_stall_capacity_not_market_visits
@@ -17,32 +17,32 @@ Nessuna fonte viene abilitata all'importazione.
 - Nomi distinti (NON mercato nuovo): 1
 - Concessioni scadute: 0
 - Righe di posteggi storici: 6
+- Giorni settimanali espliciti: 6
+- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+
+## Posteggi mercati e fiere - GRUMOLO DELLE ABBADESSE
+- Editore dichiarato: Comune di Grumolo delle Abbadesse
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: historic_stall_capacity_not_market_visits
+- Righe amministrative lette: 1
+- Nomi distinti (NON mercato nuovo): 1
+- Concessioni scadute: 0
+- Righe di posteggi storici: 1
 - Giorni settimanali espliciti: 0
 - Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
 
-## Posteggi mercati e fiere - SAN STINO DI LIVENZA
-- Editore dichiarato: Comune di San Stino di Livenza
+## Fiere e mercati - SAN ZENONE DEGLI EZZELINI
+- Editore dichiarato: Comune di San Zenone degli Ezzelini
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 120
-- Nomi distinti (NON mercato nuovo): 8
-- Concessioni scadute: 0
-- Righe di posteggi storici: 111
-- Giorni settimanali espliciti: 54
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
-
-## Posteggi mercati e fiere - VILLAFRANCA PADOVANA
-- Editore dichiarato: Comune di Villafranca Padovana
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 2
-- Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 12
+- Nomi distinti (NON mercato nuovo): 4
+- Concessioni scadute: 11
 - Righe di posteggi storici: 0
-- Giorni settimanali espliciti: 2
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
 
 Le sedi saranno aggiunte solo dopo confronto con catalogo, identità univoche,
