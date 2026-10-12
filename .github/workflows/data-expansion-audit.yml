@@ -106,6 +106,12 @@ jobs:
                      for row in yields.get('all_sources',[]))):
               raise ValueError('Source yield auditor exceeded read-only permissions')
           bologna=yields.get('bologna_observation')
+          if (yields.get('location_conflicts_documented') != 1
+              or not yields.get('location_conflicts_source_sha256')):
+              raise ValueError('Publisher relocation safety evidence is absent')
+          if bologna and (bologna.get('independent_relocation_evidence') != 1
+              or bologna.get('counts',{}).get('documented_location_conflicts_held',0) > 1):
+              raise ValueError('Bologna relocation conflicts were not screened')
           if bologna and (bologna.get('records_imported')!=0
               or bologna.get('events_confirmed')!=0
               or bologna.get('catalog_data_changed') is not False
