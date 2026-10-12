@@ -181,6 +181,42 @@ class AutopilotHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Untrusted national catalog"):
             summary(decision(),None,None,"quality",None,None,None,None,None,None,None,q)
 
+    def test_reversible_ui_quality_metrics_are_versioned_not_database_deletion(self):
+        display = {
+            "schema":1,"review_only":True,"display_grouping_only":True,
+            "market_data_modified":False,
+            "metrics":{
+                "original_records":12650,"ids_retained":12650,
+                "highly_supported_same_source_visit_groups":382,
+                "suppressed_repeat_buttons_only":382,
+                "original_records_in_reversible_groups":764,
+                "malformed_source_city_labels_guarded_in_ui":52,
+                "market_identities_deleted":0,"event_confirmations_created":0,
+                "verification_claims_created":0,
+            },
+        }
+        row=summary(decision(),None,None,"daily-ui",
+                    None,None,None,None,None,None,None,None,display)
+        self.assertEqual(row["visitor_duplicate_visit_groups"],382)
+        self.assertEqual(row["visitor_duplicate_buttons_avoided"],382)
+        self.assertEqual(row["visitor_bad_city_labels_guarded"],52)
+        self.assertEqual(row["visitor_original_market_ids_retained"],12650)
+        self.assertIn("Miglioramento UX reversibile",__import__("autopilot_history").markdown(row))
+
+    def test_bad_display_report_cannot_claim_lost_original_market_ids(self):
+        bad={"schema":1,"review_only":True,"display_grouping_only":True,
+             "market_data_modified":False,
+             "metrics":{
+                "original_records":12650,"ids_retained":12649,
+                "suppressed_repeat_buttons_only":1,
+                "original_records_in_reversible_groups":2,
+                "market_identities_deleted":0,"event_confirmations_created":0,
+                "verification_claims_created":0,
+             }}
+        with self.assertRaisesRegex(ValueError,"Untrusted reversible"):
+            summary(decision(),None,None,"unsafe-ui",
+                    None,None,None,None,None,None,None,None,bad)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)

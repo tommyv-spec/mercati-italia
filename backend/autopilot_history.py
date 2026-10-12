@@ -23,7 +23,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             bologna_overlap: dict | None = None,
             corciano_overlap: dict | None = None,
             official_enrichment: dict | None = None,
-            catalog_quality: dict | None = None) -> dict:
+            catalog_quality: dict | None = None,
+            visitor_display_audit: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -44,6 +45,27 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     ):
         raise ValueError("Untrusted national catalog quality audit")
     observed_metrics=observed_quality.get("metrics",{})
+    display = visitor_display_audit or {}
+    visit_metrics = display.get("metrics", {})
+    if display and (
+        display.get("schema") != 1 or
+        display.get("review_only") is not True or
+        display.get("display_grouping_only") is not True or
+        display.get("market_data_modified") is not False or
+        visit_metrics.get("original_records") != metric.get("records") or
+        visit_metrics.get("ids_retained") != metric.get("records") or
+        any(visit_metrics.get(key) != 0 for key in (
+            "market_identities_deleted", "event_confirmations_created",
+            "verification_claims_created")) or
+        not 0 <= int(visit_metrics.get("suppressed_repeat_buttons_only", -1))
+            <= int(visit_metrics.get("original_records_in_reversible_groups", -1)) or
+        (
+            observed_quality and
+            int(visit_metrics.get("malformed_source_city_labels_guarded_in_ui", -1))
+            != int(observed_metrics.get("suspicious_city", -2))
+        )
+    ):
+        raise ValueError("Untrusted reversible market display quality audit")
     overlaps = lombardia_overlap or {}
     bologna = bologna_overlap or {}
     corciano = corciano_overlap or {}
@@ -109,6 +131,10 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "quality_potential_weekly_duplicate_groups": int(observed_metrics.get("review_only_duplicate_groups",0)),
         "quality_possible_duplicate_extra_rows": int(observed_metrics.get("review_only_potential_extra_rows",0)),
         "quality_future_dates_missing": int(observed_metrics.get("future_dates_missing",0)),
+        "visitor_duplicate_visit_groups": int(visit_metrics.get("highly_supported_same_source_visit_groups",0)),
+        "visitor_duplicate_buttons_avoided": int(visit_metrics.get("suppressed_repeat_buttons_only",0)),
+        "visitor_original_market_ids_retained": int(visit_metrics.get("ids_retained",0)),
+        "visitor_bad_city_labels_guarded": int(visit_metrics.get("malformed_source_city_labels_guarded_in_ui",0)),
         "source_age_within_30_days": int(freshness_metrics.get("source_date_within_30d", 0)),
         "source_recent_dataset_only": int(freshness_metrics.get("recent_dataset_only_update", 0)),
         "source_dataset_level_records": int(freshness_metrics.get("dataset_updated_not_specific_market", 0)),
@@ -155,6 +181,7 @@ def markdown(latest: dict) -> str:
         f"- Corciano: **{latest['corciano_source_accepted']}** record senza conflitti su **{latest['corciano_source_total']}**, in revisione **{latest['corciano_source_quarantined']}**, impronta sorgente **{latest['corciano_source_sha256'] or 'non disponibile'}**.",
         f"- Enrichment ufficiale: {'attivo' if latest['official_enrichment_enabled'] else 'disattivo'}; **{latest['official_enrichment_hours_added']}** orari mancanti recuperati in questo run, **{latest['official_enrichment_attributions_added']}** fonti collegate, **{latest['official_enrichment_exact_matches']}** corrispondenze esatte su **{latest['official_enrichment_held_rows']}** record fonte in revisione.",
         f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
+        f"- Miglioramento UX reversibile: **{latest['visitor_duplicate_visit_groups']}** gruppi provati dalla stessa fonte, **{latest['visitor_duplicate_buttons_avoided']}** pulsanti ripetuti evitati, **{latest['visitor_bad_city_labels_guarded']}** località anomale non mostrate come Comuni; **{latest['visitor_original_market_ids_retained']}** ID originali preservati.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
         f"- Aggiornamenti del solo dataset (non dei singoli mercati): **{latest['source_dataset_level_records']}**, di cui recenti **{latest['source_recent_dataset_only']}**.",
         f"- Date previste con origine vecchia/sconosciuta: **{latest['forecast_from_stale_sources']}**.",
@@ -207,6 +234,7 @@ def main():
     p.add_argument("--corciano-overlap", type=Path)
     p.add_argument("--official-enrichment", type=Path)
     p.add_argument("--catalog-quality", type=Path)
+    p.add_argument("--visitor-display-audit", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -231,6 +259,8 @@ def main():
         if args.official_enrichment and args.official_enrichment.is_file() else None,
         json.loads(args.catalog_quality.read_text("utf-8"))
         if args.catalog_quality and args.catalog_quality.is_file() else None,
+        json.loads(args.visitor_display_audit.read_text("utf-8"))
+        if args.visitor_display_audit and args.visitor_display_audit.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
