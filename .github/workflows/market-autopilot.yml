@@ -144,6 +144,8 @@ jobs:
           python backend/source_change_detector.py \
             --current autopilot-output/source-evidence.json \
             --previous reports/automation/source-evidence.json \
+            --corciano-current autopilot-output/corciano-overlaps.json \
+            --corciano-previous reports/automation/corciano-overlaps.json \
             --out autopilot-output/source-changes.json \
             --report autopilot-output/SOURCE_CHANGES.md
           cat autopilot-output/SOURCE_CHANGES.md >> "$GITHUB_STEP_SUMMARY"
@@ -283,6 +285,32 @@ jobs:
               if not item or item['status'] != 'metadata_checked':
                   raise ValueError('Bologna source not independently checked')
           print('Bologna quarantined source records:', report['quarantined'])
+          PY
+      - name: Prevent unreviewed Corciano identity, coordinate and timestamp promotions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+          overlap=json.loads(Path('autopilot-output/corciano-overlaps.json').read_text())
+          decision=json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if (overlap.get('schema') != 1
+                  or overlap.get('region') != 'Umbria'
+                  or overlap.get('source_prefix') != 'pg-corciano-'
+                  or overlap.get('market_confirmations') != 0
+                  or overlap.get('deleted_existing_records') != 0):
+              raise ValueError('Corciano source review contract violated')
+          if (overlap.get('accepted',0) + overlap.get('quarantined',0)
+                  != overlap.get('source_total',0)):
+              raise ValueError('Incomplete Corciano source reconciliation')
+          if overlap.get('quarantined',0) > 8:
+              raise ValueError('Corciano source overlap count outside bounds')
+          if overlap.get('source_total',0):
+              sha=overlap.get('source_csv_sha256')
+              if not isinstance(sha,str) or not re.fullmatch('[0-9a-f]{64}',sha):
+                  raise ValueError('Corciano source fingerprint missing')
+          print('Corciano: reviewed source', overlap.get('source_total',0),
+                'accepted',overlap.get('accepted',0),
+                'quarantined',overlap.get('quarantined',0))
           PY
       - name: Block false freshness or official-source approvals
         run: |
@@ -464,6 +492,10 @@ jobs:
           test -s autopilot-output/BOLOGNA_OVERLAPS.md
           cp autopilot-output/bologna-overlaps.json reports/automation/bologna-overlaps.json
           cp autopilot-output/BOLOGNA_OVERLAPS.md reports/automation/BOLOGNA_OVERLAPS.md
+          test -s autopilot-output/corciano-overlaps.json
+          test -s autopilot-output/CORCIANO_OVERLAPS.md
+          cp autopilot-output/corciano-overlaps.json reports/automation/corciano-overlaps.json
+          cp autopilot-output/CORCIANO_OVERLAPS.md reports/automation/CORCIANO_OVERLAPS.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -491,6 +523,7 @@ jobs:
             --source-evidence autopilot-output/source-evidence.json \
             --lombardia-overlap autopilot-output/lombardia-overlaps.json \
             --bologna-overlap autopilot-output/bologna-overlaps.json \
+            --corciano-overlap autopilot-output/corciano-overlaps.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
