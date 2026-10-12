@@ -109,6 +109,24 @@
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
     },
+    "e53cf54c-8cab-4284-9619-74d078ae00ac": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "eb032be3-efde-4282-8d8d-3d8a599ecae3": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "ecfe375b-8322-47da-972f-c208649a8b9d": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
     "ede498b0-03e3-48e3-88fa-c3753604ad4f": {
       "checked_date": "2026-10-12",
       "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
@@ -147,62 +165,17 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "d10674af-bf6b-4231-945b-ca112820841c",
+      "id": "e53cf54c-8cab-4284-9619-74d078ae00ac",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 134,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/2560b087-507c-47f6-b0fa-8628d3bd2f7c.csv",
+      "sample_bytes": 8650,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/dc946f5f-ad47-4cfd-b580-5c1480e015a2.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Sarego",
+      "title": "Fiere e mercati - Comune di Nogara",
       "truncated": false
-    },
-    {
-      "adapter_enabled": false,
-      "events_confirmed": 0,
-      "field_hints": {
-        "municipality": [
-          "comune"
-        ],
-        "statistics_count": [
-          "attivazioni",
-          "cessazioni"
-        ],
-        "statistics_year": [
-          "anno"
-        ]
-      },
-      "fields": [
-        "comune",
-        "provincia",
-        "anno",
-        "totale",
-        "attivazioni",
-        "cessazioni",
-        "alimentare_totale",
-        "alimentare_attivazioni",
-        "alimentare_cessazioni",
-        "nonalimentare_totale",
-        "nonalimentare_attivazioni",
-        "nonalimentare_cessazioni",
-        "produttori_totale",
-        "produttori_attivazioni",
-        "produttori_cessazioni"
-      ],
-      "format": "CSV",
-      "id": "f4407fb8-5e36-4311-8422-02d463741780",
-      "review_blockers": [
-        "explicit_market_name_missing"
-      ],
-      "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
-      "schema_viability": "manual_schema_review_required",
-      "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Censimento dei mercati itineranti",
-      "truncated": true
     },
     {
       "adapter_enabled": false,
@@ -227,20 +200,55 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "dbcb4cc6-3a16-46f7-9fae-af21f2578d70",
+      "id": "eb032be3-efde-4282-8d8d-3d8a599ecae3",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 4832,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b9757972-6841-4157-9d80-e023f3f675ae.csv",
+      "sample_bytes": 8404,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99fd13ac-b962-49d0-8d13-b3b5da1e7ca0.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Brendola",
+      "title": "Fiere e mercati - Comune di Sandrigo",
+      "truncated": false
+    },
+    {
+      "adapter_enabled": false,
+      "events_confirmed": 0,
+      "field_hints": {
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
+        ],
+        "market_type": [
+          "FIERA/MERCATO"
+        ],
+        "name": [
+          "NOME"
+        ]
+      },
+      "fields": [
+        "NOME",
+        "FIERA/MERCATO",
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
+      ],
+      "format": "CSV",
+      "id": "ecfe375b-8322-47da-972f-c208649a8b9d",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
+      "sample_bytes": 1595,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
+      "source_license_verified": false,
+      "status": "schema_preview_only",
+      "title": "Fiere e mercati - Comune di Sona",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 10,
+  "unreviewed_sources_remaining": 7,
   "verified_event_count": 0
 }
