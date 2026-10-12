@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "reviewed_on": "2026-10-12",
+  "purpose": "Read-only municipal source leads; not a market opening confirmation or import permission.",
+  "sources": [
+    {
+      "type": "municipal_press_release",
+      "url": "https://www.comune.bologna.it/novita/comunicati-stampa/due-nuovi-mercati-sperimentali-navile-e-borgo-panigale-reno",
+      "published_on": "2026-06-15",
+      "publisher": "Comune di Bologna"
+    },
+    {
+      "type": "municipal_council_act",
+      "url": "https://atti9.comune.bologna.it/atti/wpub_delibere.nsf/$$OpenDominoDocument.xsp?action=openDocument&documentId=994D1751792FC53EC1258E130079A296",
+      "published_on": "2026-06-12",
+      "act": "PG 478716/2026",
+      "publisher": "Comune di Bologna"
+    }
+  ],
+  "catalog_sha": "2ca995d5176de64e0c5b9139224096588c851f34",
+  "catalog_records_total": 13779,
+  "catalog_bologna_city_records": 13,
+  "matching_street_in_existing_bologna_catalog": 0,
+  "city": "Bologna",
+  "region": "Emilia-Romagna",
+  "reuse_licence_review_required": true,
+  "sources_material_not_republished": true,
+  "automatic_import_allowed": false,
+  "market_records_added": 0,
+  "events_confirmed": 0,
+  "coordinates_created": 0,
+  "visits_projected": 0,
+  "leads": [
+    {
+      "lead_id": "bo-municipal-2026-navile-ca-bianca",
+      "street": "Via della Cà Bianca",
+      "description": "Mercato alimentare sperimentale in quartiere Navile",
+      "publisher_statement": "announced June 2026 for early September, exact weekday unknown",
+      "declared_hours": "15:00–19:00",
+      "weekday": null,
+      "category": "alimentare",
+      "source_edition_status": "planned_not_verified_started",
+      "address_overlaps_with_published_bologna": 0,
+      "ready_for_catalog": false
+    },
+    {
+      "lead_id": "bo-municipal-2026-borgo-lorenzetti",
+      "street": "Via Lorenzetti",
+      "description": "Mercato alimentare sperimentale in quartiere Borgo Panigale-Reno",
+      "publisher_statement": "announced June 2026 for early September, exact weekday unknown",
+      "declared_hours": "15:00–19:00",
+      "weekday": null,
+      "category": "alimentare",
+      "source_edition_status": "planned_not_verified_started",
+      "address_overlaps_with_published_bologna": 0,
+      "ready_for_catalog": false
+    },
+    {
+      "lead_id": "bo-municipal-2026-puntoni-carta",
+      "street": "Piazza Puntoni",
+      "description": "Mercato della carta",
+      "publisher_statement": "listed as operating at the time of the June 2026 municipal announcement, individual future editions not confirmed",
+      "declared_hours": "09:00–18:00",
+      "weekday": "mercoledì",
+      "active_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11,
+        12
+      ],
+      "category": "carta",
+      "source_edition_status": "previously_reported_active",
+      "address_overlaps_with_published_bologna": 0,
+      "ready_for_catalog": false
+    },
+    {
+      "lead_id": "bo-municipal-2026-vetulonia-ortofrutta",
+      "street": "Via Vetulonia, Piazzetta",
+      "description": "Mercato ortofrutticolo",
+      "publisher_statement": "listed as operating at the time of the June 2026 municipal announcement, individual future editions not confirmed",
+      "declared_hours": "07:00–14:00",
+      "weekday": [
+        "lunedì",
+        "venerdì"
+      ],
+      "category": "alimentare",
+      "source_edition_status": "previously_reported_active",
+      "address_overlaps_with_published_bologna": 0,
+      "ready_for_catalog": false
+    }
+  ],
+  "pending_checks": [
+    "Verify later municipal notices confirming actual start and weekday for announced markets",
+    "Check the current individual operating status for the two markets reported active as of June 2026",
+    "Check official rights and attribution before commercial data reuse",
+    "Compare against Bologna 2025 open-data adapter market entities; a shared piazza is not necessarily a duplicate market",
+    "Never infer location coordinates from street/city centroid",
+    "Only import with stable source ID, no invented confirmation or recurring dates"
+  ]
+}
