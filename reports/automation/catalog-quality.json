@@ -6,12 +6,12 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 223,
+    "coordinates_missing": 228,
     "future_dates_missing": 1953,
-    "hours_missing": 10840,
+    "hours_missing": 10839,
     "review_only_duplicate_groups": 755,
-    "review_only_potential_extra_rows": 764,
-    "suspicious_city": 4,
+    "review_only_potential_extra_rows": 765,
+    "suspicious_city": 2,
     "total": 13779,
     "without_individual_verification": 13779
   },
@@ -142,10 +142,10 @@
     {
       "region": "Umbria",
       "markets": 176,
-      "hours_missing": 152,
-      "suspicious_city": 1,
+      "hours_missing": 151,
       "address_missing": 74,
-      "future_dates_missing": 36
+      "future_dates_missing": 36,
+      "coordinates_missing": 1
     },
     {
       "region": "Valle d'Aosta",
@@ -160,8 +160,8 @@
       "future_dates_missing": 104,
       "hours_missing": 947,
       "address_missing": 275,
-      "suspicious_city": 3,
-      "coordinates_missing": 1
+      "coordinates_missing": 5,
+      "suspicious_city": 2
     }
   ],
   "top_sources": [
@@ -215,20 +215,6 @@
     }
   ],
   "suspicious_city_examples": [
-    {
-      "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
-      "region": "Umbria",
-      "city": "\"Artigianando",
-      "name": "Todi, “Artigianando, mostra mercato della creatività”, Giardini Oberdan",
-      "source": "cosedicasa.com"
-    },
-    {
-      "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
-      "region": "Veneto",
-      "city": "Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
-      "name": "Mercato settimanale di Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
-      "source": "happings.com"
-    },
     {
       "slug": "mercatini-piazza-del-baratto-na",
       "region": "Veneto",
@@ -361,6 +347,19 @@
         "mercato-settimanale-a-saonara-saonara-sabato",
         "mercato-settimanale-di-saonara-saonara",
         "mercato-settimanale-di-saonara-saonara-sabato"
+      ]
+    },
+    {
+      "region": "Veneto",
+      "city": "Susegana",
+      "address": "Piazza Martiri Della Libertà",
+      "weekday": 2,
+      "records": 3,
+      "source_count": 2,
+      "examples": [
+        "mercato-settimanale-di-centro-storico-di-collalto-collalto-mercoledi",
+        "mercato-settimanale-di-susegana-susegana",
+        "mercato-settimanale-di-susegana-susegana-mercoledi"
       ]
     },
     {
@@ -662,30 +661,18 @@
         "mercato-settimanale-di-massa-fiscaglia-fiscaglia",
         "mercato-settimanale-di-massa-fiscaglia-fiscaglia-lunedi"
       ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Forlimpopoli",
-      "address": "Piazza Garibaldi",
-      "weekday": 3,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-forlimpopoli-forlimpopoli",
-        "mercato-settimanale-di-forlimpopoli-forlimpopoli-giovedi"
-      ]
     }
   ],
   "potential_duplicates_are_not_confirmed": true,
   "baseline_delta": {
     "total": 0,
-    "hours_missing": 0,
+    "hours_missing": -1,
     "address_missing": 0,
-    "coordinates_missing": 1,
+    "coordinates_missing": 5,
     "future_dates_missing": 0,
     "future_date_quality_mismatch": 0,
-    "suspicious_city": -3,
-    "review_only_potential_extra_rows": 0
+    "suspicious_city": -2,
+    "review_only_potential_extra_rows": 1
   },
   "quality_regressions": [],
   "quality_release_safe": true

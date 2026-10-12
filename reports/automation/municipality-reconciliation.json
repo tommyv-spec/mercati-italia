@@ -2,47 +2,11 @@
   "coordinates_changed": 0,
   "counts": {
     "cross_market_scraper_text": 20,
-    "needs_manual_municipality_review": 7,
-    "suspicious_before": 7
+    "needs_manual_municipality_review": 4,
+    "suspicious_before": 4
   },
   "enabled": true,
   "examples": [
-    {
-      "calendar_cross_contaminated": true,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Caste",
-      "province": "NA",
-      "region": "Campania",
-      "slug": "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-napoli.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "RM",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "unique-market-a-industrie-fluviali-industrie-fluviali",
-      "source": "https://www.romatoday.it/eventi/unique-market-industrie-fluviali-7-8-febbraio-2026.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "RM",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "vintage-market-al-san-paolo-district-san-paolo-district",
-      "source": "https://www.romatoday.it/eventi/vintage-market-san-paolo-district-21-22-febbraio-2026.html",
-      "suggested_city": null
-    },
     {
       "calendar_cross_contaminated": false,
       "changed": false,
@@ -101,42 +65,6 @@
   "schema": 1,
   "source_file_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
   "unresolved_examples": [
-    {
-      "calendar_cross_contaminated": true,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Caste",
-      "province": "NA",
-      "region": "Campania",
-      "slug": "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-napoli.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "RM",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "unique-market-a-industrie-fluviali-industrie-fluviali",
-      "source": "https://www.romatoday.it/eventi/unique-market-industrie-fluviali-7-8-febbraio-2026.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "RM",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "vintage-market-al-san-paolo-district-san-paolo-district",
-      "source": "https://www.romatoday.it/eventi/vintage-market-san-paolo-district-21-22-febbraio-2026.html",
-      "suggested_city": null
-    },
     {
       "calendar_cross_contaminated": false,
       "changed": false,

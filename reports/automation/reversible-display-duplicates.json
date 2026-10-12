@@ -7,7 +7,7 @@
     "original_records": 13779,
     "ids_retained": 13779,
     "generic_weekly_with_specific_venue": 4653,
-    "malformed_source_city_labels_guarded_in_ui": 4,
+    "malformed_source_city_labels_guarded_in_ui": 2,
     "venue_groups_examined": 3428,
     "highly_supported_same_source_visit_groups": 382,
     "suppressed_repeat_buttons_only": 382,
@@ -521,16 +521,6 @@
     }
   ],
   "suspicious_city_examples": [
-    {
-      "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
-      "original_city": "\"Artigianando",
-      "region": "Umbria"
-    },
-    {
-      "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
-      "original_city": "Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
-      "region": "Veneto"
-    },
     {
       "slug": "mercatini-piazza-del-baratto-na",
       "original_city": "NA",

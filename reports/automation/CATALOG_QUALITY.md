@@ -5,13 +5,13 @@ Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 - Schede: **13,779**.
-- Orari mancanti: **10,840**.
+- Orari mancanti: **10,839**.
 - Indirizzi mancanti: **3,504**.
-- Coordinate mancanti: **223**.
+- Coordinate mancanti: **228**.
 - Date future mancanti: **1,953**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
-- Località da verificare: **4**.
-- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **755** gruppi, **764** righe in eccesso potenziali.
+- Località da verificare: **2**.
+- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **755** gruppi, **765** righe in eccesso potenziali.
 - Verifiche umane documentate mancanti: **13,779**.
 - Gate qualità: **APPROVATO**.
 
@@ -53,14 +53,12 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Sicilia | 400 | 339 | 141 |
 | Toscana | 945 | 788 | 183 |
 | Trentino-Alto Adige | 216 | 171 | 55 |
-| Umbria | 176 | 152 | 74 |
+| Umbria | 176 | 151 | 74 |
 | Valle d'Aosta | 54 | 52 | 15 |
 | Veneto | 1,203 | 947 | 275 |
 
 ## Località da verificare (campione limitato)
 
-- Umbria · "Artigianando · todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando
-- Veneto · Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto · mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana
 - Veneto · NA · mercatini-piazza-del-baratto-na
 - Veneto · NA · mercatini-stoffaday-na
 
@@ -75,6 +73,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Veneto, Pontelongo · Piazza Del Popolo · giorno=0 · 3 righe
 - Veneto, Sandrigo · Piazza Vittorio Emanuele · giorno=4 · 3 righe
 - Veneto, Saonara · Via Villatora · giorno=5 · 3 righe
+- Veneto, Susegana · Piazza Martiri Della Libertà · giorno=2 · 3 righe
 - Basilicata, Francavilla In Sinni · Piazza Mainieri · giorno=5 · 2 righe
 - Basilicata, Picerno · Viale G. Albini · giorno=3 · 2 righe
 - Calabria, Altomonte · Piazza Cortese · giorno=5 · 2 righe
@@ -85,7 +84,6 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Calabria, Palermiti · Via Francesco Spasari · giorno=1 · 2 righe
 - Calabria, San Gregorio D'ippona · Via Alcide De Gasperi · giorno=1 · 2 righe
 - Calabria, Sant'onofrio · Piazza Europa · giorno=0 · 2 righe
-- Campania, Casalnuovo Di Napoli · Viale Dei Ligustri · giorno=1 · 2 righe
 
 Il report misura completezza e anomalie, NON l'accuratezza
 effettiva degli orari, la reale apertura o la qualità legale
