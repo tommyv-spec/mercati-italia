@@ -109,6 +109,24 @@ class AutopilotHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Untrusted official overlap"):
             summary(decision(),None,None,"bad",None,None,None,None,bad)
 
+    def test_real_municipal_hash_and_quarantine_are_persisted(self):
+        detail = {"schema": 1, "source_total": 4, "accepted": 2,
+                  "quarantined": 2, "source_csv_sha256": "a"*64,
+                  "market_confirmations": 0, "deleted_existing_records": 0}
+        report = summary(decision(),None,None,"corciano",None,None,None,None,None,detail)
+        self.assertEqual(report["corciano_source_total"],4)
+        self.assertEqual(report["corciano_source_accepted"],2)
+        self.assertEqual(report["corciano_source_quarantined"],2)
+        self.assertEqual(report["corciano_source_sha256"],"a"*64)
+        self.assertEqual(report["documented_verification_count"],0)
+        self.assertIn("Corciano:", __import__("autopilot_history").markdown(report))
+
+    def test_corrupted_municipal_report_is_not_treated_as_success(self):
+        detail = {"schema": 1, "source_total": 4, "accepted": 1,
+                  "quarantined": 2, "market_confirmations": 0}
+        with self.assertRaisesRegex(ValueError,"Untrusted official overlap"):
+            summary(decision(),None,None,"corciano",None,None,None,None,None,detail)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)
