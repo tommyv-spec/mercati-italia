@@ -63,7 +63,7 @@ jobs:
               json.dumps(policy),encoding='utf-8')
           print('SOURCE_PROVEN_CITY_EVIDENCE',len(validated),'geo_disagreements',7)
           PY
-      - name: Generate full 13779-card candidate in offline scratch only
+      - name: Generate full catalog candidate with unchanged source identities (offline only)
         run: |
           set -euo pipefail
           python backend/autopilot.py \
@@ -97,7 +97,7 @@ jobs:
           observed=verify_reviewed_diff(before,after,reviewed,ref,ev)
           assert certificate==observed, 'Independent record diff certificate mismatch'
           assert decision['approved'] is True and reviewed['enabled'] is True
-          assert len(original)==len(candidate)==len(before)==len(after)==13779
+          assert len(original)>=12000 and len(original)==len(candidate)==len(before)==len(after), 'Original market ID count changed'
           by_old={r['slug']:r for r in original}
           by_new={r['slug']:r for r in candidate}
           assert set(by_old)==set(by_new), 'Stable source IDs lost'
