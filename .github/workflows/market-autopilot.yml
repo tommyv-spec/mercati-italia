@@ -186,6 +186,16 @@ jobs:
             --source-changes autopilot-output/source-changes.json \
             --out autopilot-output/freshness-alert.json
           cat autopilot-output/FRESHNESS.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Audit nationwide future-date labels, suspect cities and venue/day overlaps
+        if: success()
+        run: |
+          set -euo pipefail
+          python backend/catalog_quality_report.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --previous reports/automation/catalog-quality.json \
+            --out autopilot-output/catalog-quality.json \
+            --report autopilot-output/CATALOG_QUALITY.md
+          cat autopilot-output/CATALOG_QUALITY.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve checkpoints and candidate even after failures
         if: always()
         uses: actions/upload-artifact@v4
@@ -396,6 +406,29 @@ jobs:
               raise ValueError('Freshness alert/report mismatch')
           print('Publisher rights, source age and event verification QA passed.')
           PY
+      - name: Reject false future-date labels and new national quality regressions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          quality = json.loads(Path('autopilot-output/catalog-quality.json').read_text())
+          decision = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          metrics = quality.get('metrics',{})
+          if (quality.get('schema') != 1 or quality.get('review_only') is not True
+                  or quality.get('market_updates_applied') != 0
+                  or quality.get('market_confirmations_created') != 0
+                  or quality.get('market_identities_deleted') != 0):
+              raise ValueError('Quality audit attempted to rewrite markets or claim confirmations')
+          if metrics.get('total') != decision['candidate']['records']:
+              raise ValueError('Quality report/catalog count mismatch')
+          if metrics.get('future_date_quality_mismatch',0) > 0:
+              raise ValueError('A market has no future date but claims a forecast/confirmation')
+          if quality.get('quality_regressions') or quality.get('quality_release_safe') is not True:
+              raise ValueError('Increase in suspect cities or venue/day duplicates; see CATALOG_QUALITY.md')
+          print('National quality verified:', metrics['total'], 'market IDs;',
+                metrics.get('suspicious_city',0),'locations to review;',
+                metrics.get('review_only_duplicate_groups',0),'potential weekly venue/day overlaps')
+          PY
       - name: Verify candidate approved and replace ONLY local static data
         run: |
           python - <<'PY'
@@ -556,6 +589,10 @@ jobs:
           test -s autopilot-output/OFFICIAL_ENRICHMENT.md
           cp autopilot-output/official-enrichment.json reports/automation/official-enrichment.json
           cp autopilot-output/OFFICIAL_ENRICHMENT.md reports/automation/OFFICIAL_ENRICHMENT.md
+          test -s autopilot-output/catalog-quality.json
+          test -s autopilot-output/CATALOG_QUALITY.md
+          cp autopilot-output/catalog-quality.json reports/automation/catalog-quality.json
+          cp autopilot-output/CATALOG_QUALITY.md reports/automation/CATALOG_QUALITY.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -585,6 +622,7 @@ jobs:
             --bologna-overlap autopilot-output/bologna-overlaps.json \
             --corciano-overlap autopilot-output/corciano-overlaps.json \
             --official-enrichment autopilot-output/official-enrichment.json \
+            --catalog-quality autopilot-output/catalog-quality.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
