@@ -252,10 +252,29 @@ def survey(registry, fetch=limited_fetch, offline=False,
             source, url, fmt,
         ))
     # First inspect NEVER-observed official datasets, then oldest probes.
-    # Stable tie breaks guarantee deterministic replay and bounded load.
+    # Within each tier, cover different publishers before taking a second
+    # file from the same host. This avoids spending all three daily reads
+    # on cloned regional concession registries while preserving the strict
+    # per-file examination rule (no inferred approvals or group imports).
     candidates.sort(key=lambda t:t[:4])
+    chosen = []
+    for tier in (0, 1):
+        group = [x for x in candidates if x[0] == tier]
+        covered_hosts = set()
+        for candidate in group:
+            host = urlsplit(candidate[5]).hostname
+            if host not in covered_hosts and len(chosen) < MAX_PROBES:
+                chosen.append(candidate)
+                covered_hosts.add(host)
+        for candidate in group:
+            if len(chosen) >= MAX_PROBES:
+                break
+            if candidate not in chosen:
+                chosen.append(candidate)
+        if len(chosen) >= MAX_PROBES:
+            break
     results = []
-    for _,_,_,_,source,url,fmt in candidates[:MAX_PROBES]:
+    for _,_,_,_,source,url,fmt in chosen:
         report = {
             "id": source["id"], "title": source["title"], "sample_url": url,
             "format": fmt, "status": "offline_skipped" if offline else "not_started",

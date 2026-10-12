@@ -163,6 +163,54 @@ class SchemaProbeTests(unittest.TestCase):
         self.assertEqual(second["probe_history"]["veneto-3"]["checked_date"],"2026-10-13")
         self.assertTrue(all(r["adapter_enabled"] is False for r in second["reports"]))
 
+    def test_diversity_prevents_all_three_probes_from_one_regional_host(self):
+        from datetime import date
+        veneto="https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/"
+        uuids=[
+            "c97582dd-d37d-4f1d-a1c5-b0b90188c651",
+            "4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9",
+            "04bc0bfa-d895-49a9-a603-150234cc4ee9",
+            "d305152b-ec6a-466e-b417-02316d603d0c",
+        ]
+        rows=[source("veneto-"+str(i),veneto+id+".csv") for i,id in enumerate(uuids)]
+        lazio=("https://dati.lazio.it/dataset/"
+               "74600cc1-0adb-4ae3-8255-30556e03e932/resource/"
+               "2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv")
+        rows.append(source("lazio",lazio))
+        for item in rows: item["triage_score"]=15
+        seen=[]
+        def fake(url):
+            seen.append(url)
+            return b"NOME;GIORNO;UBICAZIONE\nExample;VENERDI;VIA ROMA\n",False
+        registry={"schema":1,"record_imports":0,"sources":rows}
+        first=survey(registry,fetch=fake,reference_date=date(2026,10,12))
+        ids=[x["id"] for x in first["reports"]]
+        self.assertIn("lazio",ids)
+        self.assertIn("veneto-0",ids)
+        self.assertEqual(len(ids),3)
+        self.assertEqual(len(seen),3)
+        second=survey(registry,fetch=fake,previous=first,
+                      reference_date=date(2026,10,13))
+        second_ids={x["id"] for x in second["reports"]}
+        self.assertIn("veneto-2",second_ids)
+        self.assertEqual(second["unreviewed_sources_remaining"],0)
+
+    def test_diversity_does_not_prioritize_old_over_new_source(self):
+        from datetime import date
+        veneto="https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/"
+        ids=["c97582dd-d37d-4f1d-a1c5-b0b90188c651",
+             "4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9",
+             "04bc0bfa-d895-49a9-a603-150234cc4ee9",
+             "d305152b-ec6a-466e-b417-02316d603d0c"]
+        rows=[source("v"+str(i),veneto+sid+".csv") for i,sid in enumerate(ids)]
+        registry={"schema":1,"record_imports":0,"sources":rows}
+        fake=lambda _: (b"NOME;UBICAZIONE\nTest;Via Roma\n",False)
+        previous=survey(registry,fetch=fake,reference_date=date(2026,10,12))
+        replay=survey(registry,fetch=fake,previous=previous,
+                      reference_date=date(2026,10,13))
+        self.assertEqual(replay["reports"][0]["id"],"v3")
+        self.assertEqual(replay["unreviewed_sources_remaining"],0)
+
     def test_offline_skip_preserves_bounded_prior_history(self):
         from datetime import date
         u="https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9.csv"
