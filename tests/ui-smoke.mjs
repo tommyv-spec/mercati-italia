@@ -95,6 +95,17 @@ try {
   // The name is intentionally read from a still-reviewable legacy card.
   await page.locator('.search-input').fill('Mercatino delle Curiosità')
   await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
+  // When a visitor *explicitly* selects the 7-day chip while searching,
+  // an undated market should disappear. Toggling it off restores the
+  // existing card: no hidden persistent filter or fabricated schedule.
+  await page.getByRole('button', { name: 'Prossimi 7 giorni', exact: true }).click()
+  await page.waitForFunction(() =>
+    (document.querySelector('.results-count')?.textContent || '').includes('0 appuntamenti previsti'),
+    null, { timeout: 20000 })
+  assert.equal(await page.locator('.market-card-open').count(), 0,
+    'Explicit seven-day filter must exclude markets with unknown dates')
+  await page.getByRole('button', { name: 'Prossimi 7 giorni', exact: true }).click()
+  await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
   await page.locator('.market-card-open').first().click()
   await page.locator('.detail-page').waitFor()
   await page.getByText('Caricamento dettagli completi…').waitFor({ state: 'hidden', timeout: 20000 })
