@@ -92,13 +92,62 @@ jobs:
               'all_navigation_held':True,'no_personal_confirmations':True,
           }))
           PY
+      - name: Verify new source through the EXACT unattended Autopilot, offline only
+        run: |
+          set -euo pipefail
+          python backend/autopilot.py --offline --today 2026-10-13 \
+            --output roma-xiii-true-autopilot
+          python backend/reviewed_city_static_guard.py \
+            --manifest roma-xiii-true-autopilot/candidate/public/data/v1/manifest.json \
+            --evidence backend/data/reviewed-city-evidence-2026-10-12.json \
+            --policy backend/autopilot_policy.json \
+            --daily-report roma-xiii-true-autopilot/reviewed-cities.json \
+            --roma-venue-report roma-xiii-true-autopilot/roma-xiii-2026-venues.json \
+            --out roma-xiii-true-autopilot/reviewed-city-static-safety.json
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from roma_xiii_2026_venues import EXPECTED
+          out=Path('roma-xiii-true-autopilot')
+          decision=json.loads((out/'release-decision.json').read_text('utf-8'))
+          venues=json.loads((out/'roma-xiii-2026-venues.json').read_text('utf-8'))
+          before=load_existing(Path('public/data/v1/manifest.json'))
+          after=load_existing(out/'candidate/public/data/v1/manifest.json')
+          final=json.loads((out/'roma-xiii-2026-venues-static-guard.json').read_text('utf-8'))
+          city=json.loads((out/'reviewed-city-static-safety.json').read_text('utf-8'))
+          rome=json.loads((out/'roma-xiii-static-guard.json').read_text('utf-8'))
+          milano=json.loads((out/'milano-2026-static-guard.json').read_text('utf-8'))
+          original={x['slug'] for x in before}
+          resulting={x['slug'] for x in after}
+          if (decision.get('approved') is not True
+              or set(EXPECTED) != resulting-original
+              or original-resulting
+              or not final.get('release_safe') or final.get('forecast_only_markets')!=4
+              or not city.get('release_safe') or city.get('navigation_routes_still_blocked')!=16
+              or not rome.get('release_safe') or rome.get('current_navigation_holds')!=2
+              or not milano.get('quality_safe') or milano.get('reviewed_milan_ids')!=76
+              or venues.get('records_added')!=5
+              or len(after)!=13784):
+              raise ValueError('Full Autopilot changed previously reviewed market safety or identities')
+          print('SOURCE_BACKED_ROMA_FIVE_FULL_PIPELINE',json.dumps({
+              'before':len(before),'after':len(after),
+              'new_ids':sorted(resulting-original),
+              'rome_old_navigation_holds':2,
+              'historical_city_navigation_holds':16,
+              'milano_forecast_market_ids':76,
+              'predictions_not_opening_verifications':4,
+              'no_publication':True
+          }))
+          PY
       - name: Switch ephemeral static assets to audited candidate
         run: |
           python - <<'PY'
           import shutil
           from pathlib import Path
           shutil.rmtree('public/data/v1')
-          shutil.copytree('roma-2026-candidate/public/data/v1','public/data/v1')
+          shutil.copytree('roma-xiii-true-autopilot/candidate/public/data/v1','public/data/v1')
           PY
       - uses: actions/setup-node@v4
         with:
@@ -137,5 +186,10 @@ jobs:
           if-no-files-found: warn
           path: |
             roma-2026-candidate/summary.json
+            roma-xiii-true-autopilot/roma-xiii-2026-venues.json
+            roma-xiii-true-autopilot/roma-xiii-2026-venues-diff-guard.json
+            roma-xiii-true-autopilot/roma-xiii-2026-venues-static-guard.json
+            roma-xiii-true-autopilot/reviewed-city-static-safety.json
+            roma-xiii-true-autopilot/release-decision.json
             ux-rm13-*.png
             ux-roma-*.png
