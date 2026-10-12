@@ -108,8 +108,12 @@ class BolognaSourceTests(unittest.TestCase):
         self.assertEqual(len(weekly),2)
         self.assertTrue(all(x["date_quality"]=="prevista" for x in weekly))
         self.assertEqual({date.fromisoformat(x["date"][0]).weekday() for x in weekly},{4,5})
-        seasonal=[x for x in converted if "martedi" in x["descrizione"].casefold()]
-        self.assertFalse(seasonal)  # normalized raw source remains in description; never inferred
+        # Real complex seasonal wording is intentionally NOT interpreted
+        # as every Tuesday across the year.
+        seasonal = next(x for x in converted if x["id_fonte"] == f"{12:040x}")
+        self.assertEqual(seasonal["date"], [])
+        self.assertEqual(seasonal["date_quality"], "sconosciuta")
+        self.assertEqual(seasonal["ricorrenza_testo"], "Calendario da verificare presso il Comune")
 
     def test_monthly_complex_exclusions_not_promoted(self):
         self.assertIsNone(schedule_rule(

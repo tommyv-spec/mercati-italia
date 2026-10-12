@@ -131,6 +131,14 @@ class AutopilotTests(unittest.TestCase):
                     retrieve_sources(config, Path(td), TODAY,
                                      offline=False, resume=False)
 
+    def test_importer_type_error_is_not_masked_by_retry(self):
+        from autopilot import source_feed
+        with patch("autopilot.source_bologna.download", return_value={"dataset_id": "invalid"}), \
+             patch("autopilot.source_bologna.convert", side_effect=TypeError("bad publisher field")) as convert:
+            with self.assertRaisesRegex(TypeError, "bad publisher field"):
+                source_feed("bologna", TODAY)
+            self.assertEqual(convert.call_count, 1)
+
     def test_unapproved_source_ids_fail_closed(self):
         bad=policy()
         bad["sources"]=[{"id":"random-internet", "enabled":True,"official":True}]

@@ -31,6 +31,7 @@ from recurrence_refresh import refresh_records
 import source_milano
 import source_firenze
 import source_lombardia
+import source_bologna
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "merge", "forecast", "export", "quality")
@@ -40,6 +41,9 @@ SOURCE_FUNCTIONS = {
     # Integration is registered, but not enabled by daily policy until its
     # full dry-run source/quality/mobile audit succeeds.
     "lombardia": (source_lombardia.download, source_lombardia.convert),
+    # Read-only inventory adapter. Disabled in daily policy until a
+    # separately tested full official-source audit explicitly approves it.
+    "bologna": (source_bologna.download, source_bologna.convert),
 }
 
 
@@ -77,11 +81,9 @@ def source_feed(source_id: str, today: date):
         raise ValueError("Source not on allowlist: " + source_id)
     download, convert = SOURCE_FUNCTIONS[source_id]
     raw = download()
-    try:
-        clean = convert(raw, today=today)
-    except TypeError:
-        clean = convert(raw)
-    return clean
+    # Do not catch TypeError from an importer: a malformed publisher schema
+    # must fail closed, not silently retry another call signature.
+    return convert(raw) if source_id == "firenze" else convert(raw, today=today)
 
 
 def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume: bool) -> tuple[list, dict]:
