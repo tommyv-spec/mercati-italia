@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense } fro
 import { useMarkets } from "./hooks/useMarkets";
 import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup } from './lib/marketGrouping';
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
+import { UNKNOWN_CITY_HELP } from './lib/locationQuality';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
@@ -1511,6 +1512,9 @@ export default function App() {
   };
 
   const destinationForMarket = (market) => {
+    // A malformed municipality field is not a verified place for directions,
+    // even if a scraper attached a plausible point.
+    if (market.locationReviewRequired) return null;
     // Use exact official coordinates first. Guessed city-centre coordinates
     // and vague strings such as "centro" are NOT navigable market addresses.
     if (market.positionQuality === 'precisa' &&
@@ -1915,6 +1919,11 @@ export default function App() {
               <Icon name="mapPin" size={18} color={catColor} /> Indirizzo
             </div>
             <div className="detail-address">{m.address || 'Indirizzo non verificato'}</div>
+            {m.locationReviewRequired && (
+              <p role="note" style={{ color: '#857660', fontSize: 12, lineHeight: 1.5, margin: '9px 0' }}>
+                {UNKNOWN_CITY_HELP} Le indicazioni stradali per questa scheda sono disabilitate.
+              </p>
+            )}
             {m.positionQuality !== 'precisa' && (
               <div style={{ fontSize: 12, color: '#6C6255', marginTop: 6 }}>Posizione indicativa o da verificare</div>
             )}

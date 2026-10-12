@@ -12,6 +12,8 @@ on:
       - scripts/reversible-duplicate-audit.mjs
       - tests/reversible-duplicate-audit.test.mjs
       - src/lib/marketGrouping.js
+      - src/lib/locationQuality.js
+      - tests/location-quality.test.mjs
 
 permissions:
   contents: read

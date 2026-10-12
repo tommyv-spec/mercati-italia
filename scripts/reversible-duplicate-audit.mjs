@@ -13,6 +13,7 @@ import {
   groupVenueAppointments, isGenericCityWeeklyMarket,
   italianKey, reliableVenueAddress,
 } from '../src/lib/marketGrouping.js'
+import { isSuspiciousCityName } from '../src/lib/locationQuality.js'
 
 const MAX_MARKETS = 100000
 const MAX_SHARDS = 30
@@ -40,8 +41,16 @@ export function auditDisplayRows(raw) {
   }
   const stableIds = new Set()
   const grouped = new Map()
-  let eligible = 0
+  let eligible = 0, invalidCity = 0
+  const citySamples = []
   for (const row of raw) {
+    if (isSuspiciousCityName(row.citta)) {
+      invalidCity++
+      if (citySamples.length < 30) citySamples.push({
+        slug:row.slug, original_city:String(row.citta || '').slice(0,145),
+        region:row.regione,
+      })
+    }
     const m = asDisplay(row)
     if (!m.id || stableIds.has(m.id)) throw new Error('Duplicate/missing original ID')
     stableIds.add(m.id)
@@ -86,6 +95,7 @@ export function auditDisplayRows(raw) {
     original_records: raw.length,
     ids_retained: stableIds.size,
     generic_weekly_with_specific_venue: eligible,
+    malformed_source_city_labels_guarded_in_ui: invalidCity,
     venue_groups_examined: grouped.size,
     highly_supported_same_source_visit_groups: exactGroups,
     suppressed_repeat_buttons_only: duplicateDisplayExtras,
@@ -99,7 +109,7 @@ export function auditDisplayRows(raw) {
     display_grouping_only:true,
     criteria:'exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates',
     metrics, per_region:[...perRegion.values()].sort((a,b)=>a.region.localeCompare(b.region,'it')),
-    examples, market_data_modified:false,
+    examples, suspicious_city_examples:citySamples, market_data_modified:false,
   }
 }
 
@@ -143,6 +153,7 @@ export function markdown(report) {
     '- Gruppi supportati da prove forti: **'+m.highly_supported_same_source_visit_groups+'**.',
     '- Pulsanti ripetuti evitati nella vista delle sedi: **'+m.suppressed_repeat_buttons_only+'**.',
     '- Schede originali ancora apribili dietro tali gruppi: **'+m.original_records_in_reversible_groups+'**.',
+    '- Campi città evidentemente malformati protetti nella UI: **'+m.malformed_source_city_labels_guarded_in_ui+'**.',
     '- Eventi o verifiche dichiarati confermati: **0**.',
     '',
     '## Distribuzione',

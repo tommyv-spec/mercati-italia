@@ -3,6 +3,7 @@
  * No Firebase or Cloudflare runtime invocation on visits.
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import { isSuspiciousCityName, safeCityLabel } from '../lib/locationQuality'
 import {
   fetchMarkets, fetchMarketById, getFavorites, revalidateCatalogIfStale,
   toggleFavorite as apiToggleFavorite, getDataMode,
@@ -29,10 +30,13 @@ const CATEGORY_COLORS = {
 
 function adaptMarket(m, userLat, userLng) {
   const categoryLabel = CATEGORY_LABELS[m.categoria] || m.categoria || 'Misto'
+  const locationReviewRequired = isSuspiciousCityName(m.citta)
   return {
     id: m.id,
     name: m.nome,
-    city: m.citta,
+    city: safeCityLabel(m.citta),
+    originalCity: m.citta,
+    locationReviewRequired,
     region: m.regione,
     address: m.indirizzo || '',
     lat: m.lat, lng: m.lng,
@@ -149,14 +153,17 @@ export function useMarkets() {
           fetchMarkets({ userLat, userLng }),
           getFavorites(),
         ])
-        // Reuse local catalog; no additional database calls.
+        // Quarantine corrupt municipality labels in the UI only; original
+        // source rows, title search and all source IDs remain untouched.
+        const adapted = rawMarkets.map(m => adaptMarket(m, userLat, userLng))
         const filters = {
-          regioni: [...new Set(rawMarkets.map(m => m.regione).filter(Boolean))].sort(),
-          citta: [...new Set(rawMarkets.map(m => m.citta).filter(Boolean))].sort(),
+          regioni: [...new Set(adapted.map(m => m.region).filter(Boolean))].sort(),
+          citta: [...new Set(adapted.filter(m => !m.locationReviewRequired)
+            .map(m => m.city).filter(Boolean))].sort(),
         }
         if (cancelled) return
 
-        setMarkets(rawMarkets.map(m => adaptMarket(m, userLat, userLng)))
+        setMarkets(adapted)
         setFavorites(favs)
         setFilterOptions(filters)
         setError(null)

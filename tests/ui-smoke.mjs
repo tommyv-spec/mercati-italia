@@ -94,6 +94,9 @@ try {
   // "planned" event merely because the source once listed the market.
   // The name is intentionally read from a still-reviewable legacy card.
   await page.locator('.search-input').fill('Mercatino delle Curiosità')
+  const suspectCityCard = page.locator('.market-card').filter({ hasText: 'Cernobbio' }).first()
+  await suspectCityCard.waitFor({ timeout: 20000 })
+  await suspectCityCard.getByText('Località da verificare', { exact: true }).waitFor()
   await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
   // When a visitor *explicitly* selects the 7-day chip while searching,
   // an undated market should disappear. Toggling it off restores the
@@ -110,6 +113,10 @@ try {
   await page.locator('.detail-page').waitFor()
   await page.getByText('Caricamento dettagli completi…').waitFor({ state: 'hidden', timeout: 20000 })
   await page.getByText('Nessuna data futura disponibile.', { exact: false }).waitFor({ timeout: 20000 })
+  await page.getByText('La località riportata dalla fonte non identifica con sicurezza un Comune.',
+    { exact: false }).waitFor()
+  assert.equal(await page.getByRole('button', { name: /Indicazioni/ }).isDisabled(), true,
+    'Malformed city fields must never produce navigation directions')
   assert.equal(await page.getByText('Date previste, non confermate per ogni singola edizione.',
     { exact: false }).count(), 0,
     'An unscheduled market must never have a misleading future-date notice')
