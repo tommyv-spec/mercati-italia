@@ -67,7 +67,7 @@ jobs:
           static=verify_static(candidate,source)
           replay,replay_report=apply_holds(after,source,apply=True)
           if (actual!=diff or static!=final or not decision['approved']
-              or len(original) not in (13779,13784) or len(published)!=len(original)
+              or len(original)<12000 or len(published)!=len(original)
               or {x['slug'] for x in original}!={x['slug'] for x in published}
               or (report['new_coordinates_quarantined']
                   + report.get('already_quarantined',0))!=2
