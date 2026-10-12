@@ -30,7 +30,7 @@ TODAY = date(2026, 10, 12)
 
 
 def raw(data=DATA):
-    return data.encode("utf-8")
+    return data if isinstance(data, bytes) else data.encode("utf-8")
 
 
 class CorcianoTests(unittest.TestCase):
