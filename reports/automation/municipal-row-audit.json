@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "review_only": true,
+  "offline": false,
+  "imports": 0,
+  "verified_events": 0,
+  "reference_date": "2026-10-12",
+  "catalog_total": 87,
+  "sample_limit": 3,
+  "history": {
+    "25177cb0-f763-44ca-8c30-dd8111c58cc3": {
+      "checked_on": "2026-10-12",
+      "resource_last_modified": "2026-10-02T07:04:39.250474",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "4354f10c-dae1-4ce9-8162-5757f197a906": {
+      "checked_on": "2026-10-12",
+      "resource_last_modified": "2026-10-06T07:25:15.828419",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "56affe67-f903-4fdf-abda-a1c6f4ae6654": {
+      "checked_on": "2026-10-12",
+      "resource_last_modified": "2026-10-02T08:08:27.042284",
+      "status": "sampled_complete_csv",
+      "kind": "concessions_not_market_visits"
+    }
+  },
+  "sources": [
+    {
+      "id": "25177cb0-f763-44ca-8c30-dd8111c58cc3",
+      "title": "Posteggi mercati e fiere - POVEGLIANO VERONESE",
+      "publisher": "Comune di Povegliano Veronese",
+      "source_modified_claim": "",
+      "resource_id": "4ed762c0-557d-4603-828d-e64d2c680ed1",
+      "resource_last_modified": "2026-10-02T07:04:39.250474",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "84ac4f99d987a8e1294640149325ad8281b4065e3dc7c84e39a921331090fddc",
+      "source_rows_read": 6,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 6,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 6,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    },
+    {
+      "id": "4354f10c-dae1-4ce9-8162-5757f197a906",
+      "title": "Posteggi mercati e fiere - GRUMOLO DELLE ABBADESSE",
+      "publisher": "Comune di Grumolo delle Abbadesse",
+      "source_modified_claim": "",
+      "resource_id": "875ff1bf-704c-4715-80d7-af0fce789df9",
+      "resource_last_modified": "2026-10-06T07:25:15.828419",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "11fe7dcd6df3e722a27ad3f6ab86f73ae1416680e1e03ec1c9e28db4d018bc37",
+      "source_rows_read": 1,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 0,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 1,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    },
+    {
+      "id": "56affe67-f903-4fdf-abda-a1c6f4ae6654",
+      "title": "Fiere e mercati - SAN ZENONE DEGLI EZZELINI",
+      "publisher": "Comune di San Zenone degli Ezzelini",
+      "source_modified_claim": "",
+      "resource_id": "e6671939-d77f-448c-83c5-8a0d535e443f",
+      "resource_last_modified": "2026-10-02T08:08:27.042284",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "b14684d5e935507384ff38602abbc2a5443757515bf6aaa4294bbcd760856f07",
+      "source_rows_read": 12,
+      "distinct_market_names_not_new_markets": 4,
+      "explicit_valid_weekdays": 0,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 11,
+      "historical_stall_rows": 0,
+      "source_kind": "concessions_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "attivita",
+        "data_validita_concessione",
+        "data_scadenza_concessione"
+      ]
+    }
+  ],
+  "errors": []
+}
