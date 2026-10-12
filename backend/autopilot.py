@@ -527,6 +527,9 @@ def run(args):
 
     feeds, source_status = retrieve_sources(policy, out, args.today, args.offline, args.resume)
     raw_fetched = len(feeds)
+    # Exact per-source IDs are kept *only in memory* for reconciliation
+    # with the generic lifecycle. They are never written in public assets.
+    source_dispositions = {}
     report = {
         "schema": 1, "review_only": True, "source_total": 0,
         "accepted": 0, "quarantined": 0, "counts": {},
@@ -539,6 +542,9 @@ def run(args):
         if len(reviewed) < 950:
             raise ValueError("Lombardia: too many records overlap with the baseline; manual QA")
         selected = {x["slug"] for x in reviewed}
+        source_dispositions["lombardia"] = sorted(
+            {x["slug"] for x in candidates} - selected
+        )
         feeds = [x for x in feeds if not str(x["slug"]).startswith("lo-mercap-")
                  or x["slug"] in selected]
         source_status["lombardia"]["accepted_after_overlap_qa"] = len(reviewed)
@@ -561,6 +567,9 @@ def run(args):
         if len(vetted) < 8:
             raise ValueError("Bologna: excessive exact venue overlaps; review before import")
         vetted_ids = {r["slug"] for r in vetted}
+        source_dispositions["bologna"] = sorted(
+            {r["slug"] for r in bologna_rows} - vetted_ids
+        )
         feeds = [r for r in feeds if not str(r["slug"]).startswith("bo-open-")
                  or r["slug"] in vetted_ids]
         source_status["bologna"]["accepted_after_overlap_qa"] = len(vetted)
@@ -578,6 +587,9 @@ def run(args):
         official_rows = [r for r in feeds if str(r["slug"]).startswith("pg-corciano-")]
         screened, corciano_report = review_corciano_overlaps(old_rows, official_rows)
         accepted_ids = {r["slug"] for r in screened}
+        source_dispositions["corciano"] = sorted(
+            {r["slug"] for r in official_rows} - accepted_ids
+        )
         feeds = [r for r in feeds if not str(r["slug"]).startswith("pg-corciano-")
                  or r["slug"] in accepted_ids]
         source_status["corciano"]["accepted_after_overlap_qa"] = len(screened)
@@ -617,7 +629,8 @@ def run(args):
         lifecycle_report=inspect_source_contracts(
             read_json(profile_file),old_rows,
             source_dir=out/"sources",previous=prior,
-            source_status=source_status,today=args.today
+            source_status=source_status,
+            source_dispositions=source_dispositions,today=args.today
         )
     if any(lifecycle_report.get(k)!=0 for k in (
             "market_imports","market_updates","market_confirmations","market_identity_deletions")):
