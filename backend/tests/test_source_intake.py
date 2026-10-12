@@ -84,6 +84,37 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(result["sources"][-1]["triage_class"], "aggregated_statistics")
         self.assertIn("historical_year_in_title", result["sources"][-1]["triage_reasons"])
 
+    def test_official_processing_date_corrects_misleading_catalog_freshness_score(self):
+        bologna = row("bologna",data_modified="2025-12-31")
+        bologna["title"] = "Mercati e fiere"
+        bologna["score"] = 14
+        initial = evaluate(scout([bologna]))
+        evidence = {
+            "schema": 1, "market_imports": 0,
+            "source_evidence": [{
+                "source_id": "bologna", "status": "metadata_checked",
+                "publisher_data_updated_at": "2025-04-02",
+                "provider_data_timestamp_type": "publisher_data_processed",
+            }],
+        }
+        corrected = evaluate(scout([bologna]), publisher_evidence=evidence)
+        old = initial["sources"][0]
+        new = corrected["sources"][0]
+        self.assertEqual(new["publisher_data_updated_at"], "2025-04-02")
+        self.assertEqual(new["publisher_timestamp_type"], "publisher_data_processed")
+        self.assertLess(new["triage_score"],old["triage_score"])
+        self.assertIn("official_publisher_date_preferred_over_catalog_date",
+                      new["triage_reasons"])
+        self.assertFalse(new["automatic_import_allowed"])
+        self.assertEqual(corrected["record_imports"],0)
+        self.assertIn("2025-04-02", markdown(corrected))
+
+    def test_source_evidence_with_import_claim_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Untrusted publisher"):
+            evaluate(scout([row()]),publisher_evidence={
+                "schema":1,"market_imports":1,"source_evidence":[]
+            })
+
     def test_already_onboarded_official_dataset_is_not_first_new_priority(self):
         known = row("milano")
         known["resources"][0]["url"] = (

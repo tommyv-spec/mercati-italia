@@ -174,7 +174,19 @@ def fingerprint(row):
     ).encode("utf-8")).hexdigest()
 
 
-def evaluate(scout, previous=None):
+def evaluate(scout, previous=None, publisher_evidence=None):
+    if publisher_evidence and (
+        not isinstance(publisher_evidence, dict)
+        or publisher_evidence.get("schema") != 1
+        or publisher_evidence.get("market_imports") != 0
+        or not isinstance(publisher_evidence.get("source_evidence"), list)
+    ):
+        raise ValueError("Untrusted publisher evidence; no auto import")
+    audited = {
+        item.get("source_id"): item
+        for item in (publisher_evidence or {}).get("source_evidence", [])
+        if isinstance(item, dict) and item.get("status") == "metadata_checked"
+    }
     if not isinstance(scout, dict) or scout.get("metadata_only") is not True:
         raise ValueError("Only read-only national-catalog metadata is accepted")
     rows = scout.get("candidates")
@@ -240,7 +252,24 @@ def evaluate(scout, previous=None):
     if scan_date is None:
         raise ValueError("Source discovery timestamp is not a valid ISO date")
     for item in stored.values():
-        item["triage_score"], item["triage_class"], item["triage_reasons"] = triage(item, scan_date)
+        official = audited.get(item["id"])
+        declared = published_data_date(official.get("publisher_data_updated_at")) if official else None
+        if declared:
+            # Rank from a more specific official processing/rows timestamp
+            # instead of a national catalog's manually set modified value.
+            screened = {**item, "data_modified": declared.isoformat()}
+            score, category, reasons = triage(screened, scan_date)
+            item["publisher_data_updated_at"] = declared.isoformat()
+            item["publisher_timestamp_type"] = clean(
+                official.get("provider_data_timestamp_type"), 70)
+            reasons.append("official_publisher_date_preferred_over_catalog_date")
+        else:
+            score, category, reasons = triage(item, scan_date)
+            item.pop("publisher_data_updated_at", None)
+            item.pop("publisher_timestamp_type", None)
+        item["triage_score"], item["triage_class"], item["triage_reasons"] = (
+            score, category, reasons
+        )
     ranked = sorted(stored.values(), key=lambda s: (
         s["not_seen_in_latest_sample"], -s["triage_score"], s["id"]
     ))
@@ -275,14 +304,14 @@ def markdown(result):
         "- Il punteggio indica solo la priorità della verifica. NON è una misura di affidabilità.",
         "- La ricerca restituisce solo i primi risultati. Una fonte non vista non è stata cancellata.",
         "- Una modifica ai metadati NON dimostra che siano cambiati mercati o orari.", "",
-        "| Priorità | Punti | Dataset | Tipo | Editore dichiarato | Data dati dichiarata |",
+        "| Priorità | Punti | Dataset | Tipo | Editore dichiarato | Data ufficiale analizzata (se disponibile) |",
         "|---:|---:|---|---|---|---|",
     ]
     for i, source in enumerate(result["sources"][:20], 1):
         lines.append(
             f"| {i} | {source['triage_score']} | {escape(source['title'])} | "
             f"{escape(source['triage_class'])} | {escape(source['organization'])} | "
-            f"{escape(source['data_modified']) or 'sconosciuta'} |"
+            f"{escape(source.get('publisher_data_updated_at') or source['data_modified']) or 'sconosciuta'} |"
         )
     lines.extend(["", "## Risorse candidate prioritarie (URL non verificati)", ""])
     for source in result["sources"][:12]:
@@ -308,12 +337,16 @@ def main():
     parser.add_argument("--scout", type=Path, required=True)
     parser.add_argument("--previous", type=Path,
                         default=Path("reports/automation/source-registry.json"))
+    parser.add_argument("--publisher-evidence", type=Path,
+                        default=Path("reports/automation/source-evidence.json"))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     args = parser.parse_args()
     scout = json.loads(args.scout.read_text(encoding="utf-8"))
     prior = json.loads(args.previous.read_text(encoding="utf-8")) if args.previous.is_file() else None
-    result = evaluate(scout, prior)
+    evidence = json.loads(args.publisher_evidence.read_text(encoding="utf-8")) if (
+        args.publisher_evidence and args.publisher_evidence.is_file()) else None
+    result = evaluate(scout, prior, evidence)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
