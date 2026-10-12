@@ -1,4 +1,4 @@
-# Shared source lifecycle now respects existing publisher overlap quarantines (233 Lombardia, 2 Corciano): do not reopen those IDs as new market leads.
+# Source lifecycle verifies exact in-memory source-ID exclusion partitions, not just coincidental counts. All uncertain additions stay in review; no per-market scripts.
 # Roma Municipio XIII five source-reviewed 2026 market identities: every daily
 # replay must preserve all five IDs, forecast labels, original source URLs,
 # and suspended directions without adding duplicates or verifying openings.
