@@ -2,7 +2,7 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38237950252](https://github.com/tommyv-spec/mercati-italia/actions/runs/38237950252) — UTC 2026-10-12T10:44:21.489990+00:00
+- Ultimo run: [38243731464](https://github.com/tommyv-spec/mercati-italia/actions/runs/38243731464) — UTC 2026-10-12T11:38:47.127332+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: no (contenuto invariato)
 - Schede nel catalogo: **13,779**
@@ -20,13 +20,13 @@
 - Corciano: **2** record senza conflitti su **4**, in revisione **2**, impronta sorgente **1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121**.
 - Enrichment ufficiale: attivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **132** corrispondenze esatte su **233** record fonte in revisione.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **52** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**764** righe candidate, non cancellate).
+- Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **52** località anomale non mostrate come Comuni; **13779** ID originali preservati.
 - Fonti datate negli ultimi 30 giorni: **1127**; oltre soglia: **89**; senza data: **0**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1129**, di cui recenti **1127**.
 - Date previste con origine vecchia/sconosciuta: **0**.
-- Metadati degli enti leggibili: **2/3**.
+- Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
-- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 
 ## Prossimi miglioramenti calcolati
 - verified_source_evidence
