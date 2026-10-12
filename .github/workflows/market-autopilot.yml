@@ -1,3 +1,6 @@
+# Source-pinned ISTAT municipality correction passed read-only national + mobile
+# rehearsal 38257567252; only approved city/title and forecast quarantine
+# edits may reach DEV. Never update production or human verification claims.
 # Search regression 2026-10-12: implicit seven-day default must not hide
 # undated markets found by name; explicit day filter remains authoritative.
 # Verified Playwright mobile run 38237681447; publish only after all CI gates.
@@ -357,6 +360,38 @@ jobs:
                 'accepted',overlap.get('accepted',0),
                 'quarantined',overlap.get('quarantined',0))
           PY
+      - name: Gate ISTAT municipality corrections against the original complete catalog
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,sys
+          sys.path.insert(0,'backend')
+          from municipality_release_guard import check
+          root=Path('autopilot-output')
+          details=json.loads((root/'municipality-reconciliation.json').read_text('utf-8'))
+          earlier=json.loads((root/'municipality-release-guard.json').read_text('utf-8'))
+          if (details.get('schema')!=1 or
+                  details.get('source_file_sha256')!='83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5' or
+                  details.get('market_confirmations_created')!=0 or
+                  details.get('verified_dates_created')!=0 or
+                  details.get('coordinates_changed')!=0 or
+                  details.get('publisher_sources_replaced')!=0 or
+                  details.get('ids_preserved') is not True):
+              raise ValueError('Municipal ISTAT release not properly source-bound')
+          if details.get('enabled'):
+              a=json.loads((root/'intermediate/merged.json').read_text('utf-8'))
+              b=json.loads((root/'intermediate/municipalities.json').read_text('utf-8'))
+              actual=check(a,b,details)
+              if actual!=earlier:
+                  raise ValueError('ISTAT field-level release certificate does not match source changes')
+          else:
+              if earlier.get('changes')!=0:
+                  raise ValueError('Disabled ISTAT cannot change market records')
+          print('ISTAT protected markets:', earlier['checked_ids'],
+                'city fixes:', earlier['city_replacements'],
+                'quarantined calendars:', earlier['calendar_sources_quarantined'],
+                'unverified forecasts removed:', earlier['forecast_dates_removed'])
+          PY
       - name: Reject unsupported official enrichment or invented market verification
         run: |
           python - <<'PY'
@@ -650,6 +685,12 @@ jobs:
           test -s autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
           cp autopilot-output/reversible-display-duplicates.json reports/automation/reversible-display-duplicates.json
           cp autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md reports/automation/REVERSIBLE_DISPLAY_DUPLICATES.md
+          test -s autopilot-output/municipality-reconciliation.json
+          test -s autopilot-output/MUNICIPALITY_RECONCILIATION.md
+          test -s autopilot-output/municipality-release-guard.json
+          cp autopilot-output/municipality-reconciliation.json reports/automation/municipality-reconciliation.json
+          cp autopilot-output/MUNICIPALITY_RECONCILIATION.md reports/automation/MUNICIPALITY_RECONCILIATION.md
+          cp autopilot-output/municipality-release-guard.json reports/automation/municipality-release-guard.json
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -681,6 +722,7 @@ jobs:
             --official-enrichment autopilot-output/official-enrichment.json \
             --catalog-quality autopilot-output/catalog-quality.json \
             --visitor-display-audit autopilot-output/reversible-display-duplicates.json \
+            --municipality-report autopilot-output/municipality-reconciliation.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
