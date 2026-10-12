@@ -155,8 +155,14 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     if status == "attivo" and not raw.get("verificato_il"):
         status = "non_confermato"
     category = raw.get("categoria") if raw.get("categoria") in VALID_CATEGORIES else "misto"
-    quality = raw.get("date_quality", "prevista")
+    future_dates = parse_dates(raw.get("date"), today)
+    quality = raw.get("date_quality", "sconosciuta")
     if quality not in VALID_DATE_QUALITY:
+        quality = "sconosciuta"
+    # A record with no upcoming occurrence cannot advertise a planned or
+    # confirmed future date. Preserve source/verification provenance, but
+    # avoid promising dates that are absent or already in the past.
+    if not future_dates:
         quality = "sconosciuta"
 
     confidence = raw.get("confidence", 0)
@@ -187,7 +193,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     completeness = 25  # name + city + valid Italian region
     completeness += 15 if raw.get("indirizzo") else 0
     completeness += 15 if lat is not None and position_quality == "precisa" else (5 if lat is not None else 0)
-    completeness += 15 if parse_dates(raw.get("date"), today) else 0
+    completeness += 15 if future_dates else 0
     completeness += 10 if raw.get("orario_testo") else 0
     completeness += 15 if source_url else 0
     completeness += 5 if raw.get("verificato_il") else 0
@@ -200,7 +206,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "orario_testo": safe_string(raw.get("orario_testo"), 180),
         "ricorrenza_testo": safe_string(raw.get("ricorrenza_testo"), 180),
         "descrizione": safe_string(raw.get("descrizione"), 900),
-        "date": parse_dates(raw.get("date"), today),
+        "date": future_dates,
         "date_quality": quality,
         "proiezione_regola": raw.get("proiezione_regola") if isinstance(raw.get("proiezione_regola"), dict) else None,
         "proiezione_generata_il": safe_string(raw.get("proiezione_generata_il"), 10),

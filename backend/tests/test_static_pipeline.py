@@ -53,6 +53,36 @@ class ExportTests(unittest.TestCase):
         self.assertIsNone(error)
         self.assertEqual(result["date"], ["2026-10-13"])
 
+    def test_empty_future_dates_never_claim_a_forecast(self):
+        item, reason = normalize(market(
+            date=[], date_quality="prevista",
+            ricorrenza_testo="mensile - da verificare",
+        ), self.today)
+        self.assertIsNone(reason)
+        self.assertEqual(item["date"], [])
+        self.assertEqual(item["date_quality"], "sconosciuta")
+        self.assertEqual(item["status"], "non_confermato")
+
+    def test_past_only_date_is_not_a_confirmed_future_edition(self):
+        item, reason = normalize(market(
+            date=["2026-09-04"], date_quality="confermata",
+            verificato_il="2026-09-04",
+        ), self.today)
+        self.assertIsNone(reason)
+        self.assertEqual(item["date"], [])
+        self.assertEqual(item["date_quality"], "sconosciuta")
+        # Preserve the actual provenance: we demote only the forward-looking
+        # display label, not a previously documented historical check.
+        self.assertEqual(item["verificato_il"], "2026-09-04")
+
+    def test_future_dates_keep_their_original_conservative_quality(self):
+        item, reason = normalize(market(
+            date=["2026-10-13"], date_quality="prevista"
+        ), self.today)
+        self.assertIsNone(reason)
+        self.assertEqual(item["date"], ["2026-10-13"])
+        self.assertEqual(item["date_quality"], "prevista")
+
     def test_never_labels_center_coordinates_precise(self):
         result, _ = normalize(market(), self.today)
         self.assertEqual(result["position_quality"], "non_verificata")
