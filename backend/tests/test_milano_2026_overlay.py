@@ -118,6 +118,22 @@ class MilanoCrossPublisherTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"changed official Milan GIS"):
             verified_pairs(PDF,bad)
 
+    def test_independent_milan_release_guard_rejects_any_unapproved_field(self):
+        from milano_2026_release_guard import verify
+        old=[existing(1)]
+        new,report=reconcile(old,PDF,GIS,today=date(2026,10,12),apply=True)
+        proven=verify(old,new,report,PDF,GIS)
+        self.assertEqual(proven["milan_source_changes"],1)
+        self.assertTrue(proven["release_safe"])
+        bad=copy.deepcopy(new)
+        bad[0]["lat"]=0
+        with self.assertRaisesRegex(ValueError,"Non-source market field"):
+            verify(old,bad,report,PDF,GIS)
+        bad=copy.deepcopy(new)
+        bad[0]["fonti"]=[OFFICIAL_PDF_SOURCE]
+        with self.assertRaisesRegex(ValueError,"Original source evidence"):
+            verify(old,bad,report,PDF,GIS)
+
     def test_dry_run_proposes_but_does_not_modify_any_input(self):
         rows=[existing(1)]
         frozen=copy.deepcopy(rows)
