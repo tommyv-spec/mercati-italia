@@ -157,7 +157,9 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
 
     def test_invalid_and_expanded_csv_fail_before_applying_venue_information(self):
         with self.assertRaisesRegex(ValueError,"changed CSV columns"):
-            parse_rows(RAW,csv_blob(fields=HEADER[:-1]))
+            parse_rows(RAW,csv_blob(rows=[
+                {k:v for k,v in item.items() if k!="geopoint"}
+                for item in raw_rows()],fields=HEADER[:-1]))
         with self.assertRaisesRegex(ValueError,"outside source contract"):
             parse_rows(RAW,csv_blob(rows=raw_rows()[:2]))
         with self.assertRaisesRegex(ValueError,"bounded size"):
