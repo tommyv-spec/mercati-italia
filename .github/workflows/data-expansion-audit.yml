@@ -53,6 +53,16 @@ jobs:
             --previous reports/automation/municipal-row-audit.json \
             --out growth-output/municipal-row-audit.json \
             --report growth-output/MUNICIPAL_ROW_AUDIT.md
+      - name: Measure actual venue yields of vetted sources without importing anything
+        run: |
+          python backend/source_yield_audit.py \
+            --manifest public/data/v1/manifest.json \
+            --registry reports/automation/source-registry.json \
+            --municipalities growth-output/municipality-coverage.json \
+            --probes reports/automation/source-probes.json \
+            --live-bologna \
+            --out growth-output/source-yield.json \
+            --report growth-output/SOURCE_YIELD.md
       - name: Reject any unreviewed market imports or verification claims
         run: |
           python - <<'PY'
@@ -62,6 +72,8 @@ jobs:
           src=json.loads(Path('growth-output/municipal-row-audit.json').read_text('utf-8'))
           manifest=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
           towns=json.loads(Path('growth-output/municipality-coverage.json').read_text('utf-8'))
+          yields=json.loads(Path('growth-output/source-yield.json').read_text('utf-8'))
+          registry=json.loads(Path('reports/automation/source-registry.json').read_text('utf-8'))
           if (coverage.get('schema')!=1 or coverage.get('review_only') is not True
               or coverage.get('market_updates_applied')!=0
               or coverage.get('market_confirmations_created')!=0
@@ -81,6 +93,24 @@ jobs:
               or towns.get('municipalities_with_catalog_listings',0)
                  + towns.get('municipalities_without_catalog_listings',0)!=7894):
               raise ValueError('Untrusted municipality coverage report')
+          if (yields.get('schema')!=1 or yields.get('review_only') is not True
+              or yields.get('catalog_market_ids_retained')!=manifest.get('total')
+              or yields.get('sources_checked')!=len(registry.get('sources',[]))
+              or yields.get('actual_source_samples_checked') not in (0,1)
+              or any(yields.get(field)!=0 for field in (
+                  'sources_imported','markets_added','markets_deleted',
+                  'market_rows_edited','market_events_confirmed',
+                  'official_license_verified_automatically'))
+              or any(row.get('market_entries_added')!=0
+                     or row.get('individual_events_confirmed')!=0
+                     for row in yields.get('all_sources',[]))):
+              raise ValueError('Source yield auditor exceeded read-only permissions')
+          bologna=yields.get('bologna_observation')
+          if bologna and (bologna.get('records_imported')!=0
+              or bologna.get('events_confirmed')!=0
+              or bologna.get('catalog_data_changed') is not False
+              or not 1<=bologna.get('counts',{}).get('observed_source_rows',0)<=65):
+              raise ValueError('Observed source rows promoted without review')
           if any(row.get('market_import_permission') is not False
                  or row.get('markets_confirmed')!=0 for row in src.get('sources',[])):
               raise ValueError('Unreviewed new source promoted a market')
@@ -89,6 +119,7 @@ jobs:
           cat growth-output/DATA_COVERAGE.md >> "$GITHUB_STEP_SUMMARY"
           cat growth-output/MUNICIPALITY_COVERAGE.md >> "$GITHUB_STEP_SUMMARY"
           cat growth-output/MUNICIPAL_ROW_AUDIT.md >> "$GITHUB_STEP_SUMMARY"
+          cat growth-output/SOURCE_YIELD.md >> "$GITHUB_STEP_SUMMARY"
       - name: Save source research and QA reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -122,7 +153,7 @@ jobs:
           set -euo pipefail
           test "$(cat growth-output/dev-source-sha.txt)" = "$(git rev-parse HEAD)"
           mkdir -p reports/automation
-          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md municipality-coverage.json MUNICIPALITY_COVERAGE.md; do
+          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md municipality-coverage.json MUNICIPALITY_COVERAGE.md source-yield.json SOURCE_YIELD.md; do
             test -s "growth-output/$item"
             cp "growth-output/$item" "reports/automation/$item"
           done
@@ -130,7 +161,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- reports/automation/data-coverage.json reports/automation/DATA_COVERAGE.md \
             reports/automation/municipal-row-audit.json reports/automation/MUNICIPAL_ROW_AUDIT.md \
-            reports/automation/municipality-coverage.json reports/automation/MUNICIPALITY_COVERAGE.md
+            reports/automation/municipality-coverage.json reports/automation/MUNICIPALITY_COVERAGE.md \
+            reports/automation/source-yield.json reports/automation/SOURCE_YIELD.md
           if ! git diff --cached --quiet; then
             git commit -m "audit: rank data gaps and real source freshness (DEV only)"
             git push origin HEAD:improve/data-quality-security-performance-2026-10-11
