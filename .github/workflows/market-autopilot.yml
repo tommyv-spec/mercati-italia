@@ -946,6 +946,7 @@ jobs:
             --municipality-report autopilot-output/municipality-reconciliation.json \
             --reviewed-cities-report autopilot-output/reviewed-cities.json \
             --reviewed-city-static-guard autopilot-output/reviewed-city-static-safety.json \
+            --roma-xiii-static-guard autopilot-output/roma-xiii-static-guard.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
