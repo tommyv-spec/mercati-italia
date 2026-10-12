@@ -231,6 +231,13 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["citta_originale"] = safe_string(raw.get("citta_originale"), 160)
     if raw.get("nome_originale"):
         result["nome_originale"] = safe_string(raw.get("nome_originale"), 160)
+    # Publisher-reviewed venue and season evidence is preserved in the lazy
+    # detail only. Never claim the publisher proved an individual event date.
+    if raw.get("indirizzo_originale"):
+        result["indirizzo_originale"] = safe_string(raw.get("indirizzo_originale"), 160)
+    if raw.get("stagionalita_fonte") == "Editore: da marzo a ottobre; novembre-febbraio sospesi":
+        result["stagionalita_fonte"] = raw["stagionalita_fonte"]
+        result["ricorrenza_originale"] = safe_string(raw.get("ricorrenza_originale"), 180)
     if raw.get("navigazione_sospesa_motivo") == "indirizzo_e_punto_sorgente_non_riconciliati":
         result["navigazione_sospesa_motivo"] = raw["navigazione_sospesa_motivo"]
     if raw.get("coordinate_sospese_motivo") == "coordinate_sorgente_incompatibili_con_localita_documentata":
