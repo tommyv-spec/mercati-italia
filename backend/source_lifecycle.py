@@ -25,6 +25,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from merge_catalog import load_existing
+from source_dispositions import reconcile as reconcile_reviewed_source_ids
 from recurrence_refresh import WEEKDAYS, explicit_rule
 from source_probe import limited_fetch, safe_url
 from reviewed_city_evidence import NAVIGATION_HOLD
@@ -382,7 +383,8 @@ def inspect_raw(profile,blob,catalog,previous=None,today=None):
     return report
 
 
-def inspect_normalized(profile, records, catalog, prior=None, review_metrics=None):
+def inspect_normalized(profile, records, catalog, prior=None, review_metrics=None,
+                       reviewed_excluded_ids=None):
     if not isinstance(records,list) or not profile["min_records"]<=len(records)<=profile["max_records"]:
         raise ValueError("Source record counts beyond contract: "+profile["id"])
     by_slug,_=_baseline(catalog)
@@ -433,8 +435,16 @@ def inspect_normalized(profile, records, catalog, prior=None, review_metrics=Non
     if (type(quarantine) is not int or quarantine<0
             or quarantine>profile["max_records"]):
         raise ValueError("Untrusted source overlap quarantine count")
-    outside=counts.get("source_ids_not_yet_in_catalog",0)
-    known=min(outside,quarantine)
+    # Counts alone NEVER prove which source IDs an overlap screen held.
+    # Exact IDs are ephemeral and come from the reviewed source cohort, not
+    # user-provided metadata. Only aggregate counts/digest enter the report.
+    source_screening=reconcile_reviewed_source_ids(
+        seen,by_slug,
+        reviewed_excluded_ids=reviewed_excluded_ids,
+        reviewed_excluded_count=quarantine,
+        reviewed_accepted_count=screened.get("accepted_after_overlap_qa")
+        if reviewed_excluded_ids is not None else None,
+    )
     return {
         "schema":1,"source_id":profile["id"],"publisher":profile["publisher"],
         "source_data_scope":profile["source_timestamp_scope"],
@@ -442,12 +452,7 @@ def inspect_normalized(profile, records, catalog, prior=None, review_metrics=Non
         "profile_fingerprint":digest(profile),
         "catalog_records_compared":len(catalog),
         "counts":dict(sorted(counts.items())),
-        "source_screening":{
-            "outside_catalog_source_ids_not_necessarily_new_markets":outside,
-            "already_quarantined_by_venue_overlap_review":known,
-            "remaining_identities_without_overlap_disposition":outside-known,
-            "source_screening_counts_are_not_market_opening_proofs":True,
-        },
+        "source_screening":source_screening,
         "fingerprints":dict(sorted(current.items())),
         "diff":{
            "first_observation":not bool(prior),
@@ -464,7 +469,7 @@ def inspect_normalized(profile, records, catalog, prior=None, review_metrics=Non
 
 
 def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
-        probe_raw=False,raw_fetch=limited_fetch,today=None):
+        source_dispositions=None,probe_raw=False,raw_fetch=limited_fetch,today=None):
     today=today or date.today()
     validate_contracts(config)
     by_old = (previous or {}).get("sources",{})
@@ -484,7 +489,8 @@ def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
             rec=json.loads(cached.read_text("utf-8"))
             reports[sid]=inspect_normalized(
                 profile,rec,catalog,by_old.get(sid),
-                (source_status or {}).get(sid)
+                (source_status or {}).get(sid),
+                (source_dispositions or {}).get(sid),
             )
             status["existing_adapter_snapshots_inspected"]+=1
     if probe_raw:
