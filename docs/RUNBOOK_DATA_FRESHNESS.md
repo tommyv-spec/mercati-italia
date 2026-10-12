@@ -118,3 +118,18 @@ Per aggiornare con fonti vere usare **Run workflow** del job GitHub, opzione off
 ## Applicazione verificata: Comune di Bologna
 
 Le osservazioni originali del publisher, i conteggi, gli ID e i test si trovano nel [caso manuale Bologna](BOLOGNA_SOURCE_METHOD.md). È vietato abilitare i dati senza il ciclo completo di QA previsto.
+
+## Corciano — primo CSV letto manualmente, testato e ora in DEV
+
+- [Prove manuali e comportamento documentato](CORCIANO_SOURCE_METHOD.md) – quattro mercati, orari, licenza comunale e coordinate con intestazioni invertite.
+- Importer riutilizzabile: `backend/source_corciano.py`; checksum SHA-256 originale conservato nei checkpoint e nella scheda di qualità.
+- Revisione collisioni: `backend/corciano_overlap.py`; due mercati nuovi (Mantignana e San Mariano), due in quarantena (Corciano mercoledì ed Ellera venerdì) per conflitti nell'archivio precedente.
+- Regressione: `backend/tests/test_source_corciano.py` e `test_corciano_overlap.py`.
+- Prima simulazione reale completa approvata: [GitHub Actions 38188219950](https://github.com/tommyv-spec/mercati-italia/actions/runs/38188219950), nessuna pubblicazione in quel test.
+- Policy giornaliera: dopo la simulazione è abilitata solo per DEV, passando per gli stessi checkpoint, QA, browser mobile e controlli di sovrapposizione.
+- Per un CSV successivamente modificato, `backend/source_change_detector.py` confronta l'impronta del file precedente e `backend/freshness_alert.py` segnala una revisione da controllare, senza dichiarare confermati i mercati.
+- Gli appuntamenti sono previsioni derivate dalla periodicità dichiarata: gli aggiornamenti della pagina web non sono prova di nuove edizioni.
+
+## Conservazione storica
+
+Le esecuzioni avvengono ogni giorno, quindi `backend/autopilot_history.py` conserva le ultime **400 scorecard versionate** nel repository (oltre un anno). Gli artefatti GitHub Actions, inclusi i file candidati e gli screenshot, scadono secondo il retention del workflow (tipicamente 7–30 giorni); i metodi, i test golden, gli esiti essenziali e gli SHA-256 sono invece salvati in Git.

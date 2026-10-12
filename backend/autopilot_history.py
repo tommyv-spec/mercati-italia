@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from collections import Counter
 from pathlib import Path
 
-HISTORY_LIMIT = 104  # roughly 1 year at two checks per week
+HISTORY_LIMIT = 400  # more than one year of daily checkpoint scorecards
 
 
 def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None,
