@@ -3,7 +3,7 @@
 **Audit in sola lettura. Nessun ID, mercato o calendario modificato.**
 
 - Fonti catalogate: **43**
-- Schede conservate: **13779**
+- Schede conservate: **13784**
 - Fonti con righe ricontrollate ora: **1**
 - Bologna: **48** schede ufficiali osservate.
 - Nuovi ID Bologna (non mercati certificati nuovi): **48**.

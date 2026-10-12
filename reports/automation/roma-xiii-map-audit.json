@@ -6,16 +6,17 @@
   "source_first_publication": "2024-12-16",
   "source_age_days": 665,
   "municipal_map_markers": 9,
-  "rome_catalog_cards": 125,
-  "original_market_ids_preserved": 13779,
+  "rome_catalog_cards": 130,
+  "original_market_ids_preserved": 13784,
   "source_market_ids_published": 0,
   "market_cards_modified": 0,
   "future_events_confirmed": 0,
   "road_directions_enabled": 0,
   "data_license_cleared_automatically": false,
   "counts": {
-    "location_conflict_needs_review": 2,
-    "not_in_exact_match_sample_not_proof_of_missing_market": 7
+    "ambiguous_overlap_review_only": 3,
+    "not_in_exact_match_sample_not_proof_of_missing_market": 2,
+    "strong_source_match_review_only": 4
   },
   "observations": [
     {
@@ -33,16 +34,16 @@
       ],
       "publisher_marker_lat": 41.8977693,
       "publisher_marker_lon": 12.4246332,
-      "review_bucket": "location_conflict_needs_review",
+      "review_bucket": "strong_source_match_review_only",
       "candidate_catalog_rows": 1,
       "examples": [
         {
           "published_market_id": "irnerio-roma",
-          "match_type": "coordinates_disagree_requires_source_review",
+          "match_type": "same_venue_strong_review_candidate",
           "supports_name": true,
           "supports_street": true,
           "weekday_compatible": null,
-          "distance_km": 6.243
+          "distance_km": null
         }
       ],
       "source_verified_2026": false,
@@ -64,9 +65,18 @@
       ],
       "publisher_marker_lat": 41.8951403,
       "publisher_marker_lon": 12.4487992,
-      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
-      "candidate_catalog_rows": 0,
-      "examples": [],
+      "review_bucket": "strong_source_match_review_only",
+      "candidate_catalog_rows": 1,
+      "examples": [
+        {
+          "published_market_id": "rm13-plateatico-san-silverio",
+          "match_type": "same_venue_strong_review_candidate",
+          "supports_name": true,
+          "supports_street": true,
+          "weekday_compatible": null,
+          "distance_km": null
+        }
+      ],
       "source_verified_2026": false,
       "navigation_supported": false,
       "automatic_enrichment_allowed": false
@@ -86,16 +96,24 @@
       ],
       "publisher_marker_lat": 41.9179062,
       "publisher_marker_lon": 12.3731794,
-      "review_bucket": "location_conflict_needs_review",
-      "candidate_catalog_rows": 1,
+      "review_bucket": "ambiguous_overlap_review_only",
+      "candidate_catalog_rows": 2,
       "examples": [
         {
           "published_market_id": "casalotti-roma",
-          "match_type": "coordinates_disagree_requires_source_review",
+          "match_type": "same_venue_strong_review_candidate",
           "supports_name": true,
           "supports_street": true,
           "weekday_compatible": null,
-          "distance_km": 10.682
+          "distance_km": null
+        },
+        {
+          "published_market_id": "rm13-salt-casalotti-ormea",
+          "match_type": "partial_name_or_street_review_only",
+          "supports_name": true,
+          "supports_street": false,
+          "weekday_compatible": true,
+          "distance_km": null
         }
       ],
       "source_verified_2026": false,
@@ -113,9 +131,18 @@
       ],
       "publisher_marker_lat": 41.9161011,
       "publisher_marker_lon": 12.3695843,
-      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
-      "candidate_catalog_rows": 0,
-      "examples": [],
+      "review_bucket": "strong_source_match_review_only",
+      "candidate_catalog_rows": 1,
+      "examples": [
+        {
+          "published_market_id": "rm13-salt-casalotti-ormea",
+          "match_type": "same_venue_strong_review_candidate",
+          "supports_name": true,
+          "supports_street": true,
+          "weekday_compatible": true,
+          "distance_km": null
+        }
+      ],
       "source_verified_2026": false,
       "navigation_supported": false,
       "automatic_enrichment_allowed": false
@@ -131,9 +158,18 @@
       ],
       "publisher_marker_lat": 41.9178779,
       "publisher_marker_lon": 12.4075447,
-      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
-      "candidate_catalog_rows": 0,
-      "examples": [],
+      "review_bucket": "ambiguous_overlap_review_only",
+      "candidate_catalog_rows": 1,
+      "examples": [
+        {
+          "published_market_id": "rm13-salt-torrevecchia",
+          "match_type": "partial_name_or_street_review_only",
+          "supports_name": true,
+          "supports_street": false,
+          "weekday_compatible": true,
+          "distance_km": null
+        }
+      ],
       "source_verified_2026": false,
       "navigation_supported": false,
       "automatic_enrichment_allowed": false
@@ -165,9 +201,18 @@
       ],
       "publisher_marker_lat": 41.9092357,
       "publisher_marker_lon": 12.398222,
-      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
-      "candidate_catalog_rows": 0,
-      "examples": [],
+      "review_bucket": "ambiguous_overlap_review_only",
+      "candidate_catalog_rows": 1,
+      "examples": [
+        {
+          "published_market_id": "rm13-salt-fogaccia-sabato",
+          "match_type": "same_street_and_weekday_review_candidate",
+          "supports_name": false,
+          "supports_street": true,
+          "weekday_compatible": true,
+          "distance_km": null
+        }
+      ],
       "source_verified_2026": false,
       "navigation_supported": false,
       "automatic_enrichment_allowed": false
@@ -182,9 +227,18 @@
       ],
       "publisher_marker_lat": 41.9028442,
       "publisher_marker_lon": 12.4373391,
-      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
-      "candidate_catalog_rows": 0,
-      "examples": [],
+      "review_bucket": "strong_source_match_review_only",
+      "candidate_catalog_rows": 1,
+      "examples": [
+        {
+          "published_market_id": "rm13-salt-valle-aurelia",
+          "match_type": "same_venue_strong_review_candidate",
+          "supports_name": true,
+          "supports_street": true,
+          "weekday_compatible": true,
+          "distance_km": null
+        }
+      ],
       "source_verified_2026": false,
       "navigation_supported": false,
       "automatic_enrichment_allowed": false
