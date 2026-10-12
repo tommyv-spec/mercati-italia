@@ -29,7 +29,7 @@ from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import refresh_records
 from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
-from milano_2026_release_guard import verify as verify_milano_2026_diff
+from milano_2026_release_guard import verify as verify_milano_2026_diff, verify_exported as verify_milano_2026_exported
 from publisher_exception_review import (
     apply_source_repairs, verify_diff as verify_publisher_diff,
     verify_static as verify_publisher_static, evidence_digest as publisher_digest,
@@ -794,6 +794,13 @@ def run(args):
         save_json(out / "publisher-exception-static-safety.json", publisher_static)
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
+    if milano_enabled:
+        milano_static_guard = verify_milano_2026_exported(
+            old_rows, new_rows, milano_report, pdf_evidence, gis_evidence, args.today
+        )
+        if milano_static_guard.get("quality_safe") is not True:
+            raise ValueError("Reviewed Milano 2026 forecasts lost source/safety in final assets")
+        save_json(out / "milano-2026-static-guard.json", milano_static_guard)
     findings = compare_candidates(old_rows, new_rows, old_report, new_report, policy,
                                   forecast_stats, source_status,
                                   reviewed_city_corrections=reviewed_city_corrections)
