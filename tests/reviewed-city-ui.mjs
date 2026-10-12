@@ -25,6 +25,9 @@ try {
   for (const item of [
     { search: 'Mercatino delle Curiosità', city: 'Cernobbio', image: 'ux-reviewed-city-cernobbio.png' },
     { search: 'Valeggio Contemporanea', city: 'Valeggio sul Mincio', image: 'ux-reviewed-city-valeggio.png' },
+    { search: 'CreativaMente', city: 'Todi', image: 'ux-reviewed-city-todi.png' },
+    { search: 'Centro storico di Collalto', city: 'Susegana', image: 'ux-reviewed-city-collalto.png' },
+    { search: 'Stoffaday', city: 'Località da verificare', image: 'ux-reviewed-city-stoffaday.png' },
   ]) {
     await page.locator('.search-input').fill(item.search)
     const candidate = page.locator('.market-card').filter({ hasText: item.city }).first()

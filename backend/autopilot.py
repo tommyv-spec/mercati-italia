@@ -28,6 +28,10 @@ from export_static import export
 from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import refresh_records
+from publisher_exception_review import (
+    apply_source_repairs, verify_diff as verify_publisher_diff,
+    verify_static as verify_publisher_static, evidence_digest as publisher_digest,
+)
 import source_milano
 import source_firenze
 import source_lombardia
@@ -47,7 +51,8 @@ from municipality_reconciliation import (
 )
 
 SCHEMA = 1
-PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities", "reviewed_cities", "forecast", "export", "quality")
+PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
+          "reviewed_cities", "forecast", "reviewed_publishers", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -398,6 +403,17 @@ def run(args):
                 or len(reviewed_policy["evidence_sha256"]) != 64
             ))):
         raise ValueError("Unapproved reviewed-city evidence policy")
+    publisher_policy = policy.get("reviewed_publisher_exceptions", {})
+    publisher_enabled = isinstance(publisher_policy, dict) and publisher_policy.get("enabled") is True
+    if (not isinstance(publisher_policy, dict)
+            or set(publisher_policy) - {"enabled", "reviewed_on", "evidence_sha256"}
+            or (reviewed_policy.get("enabled") is True and not publisher_enabled)
+            or (publisher_enabled and (
+                publisher_policy.get("reviewed_on") != "2026-10-12"
+                or not isinstance(publisher_policy.get("evidence_sha256"),str)
+                or len(publisher_policy["evidence_sha256"]) != 64
+                or municipal_policy.get("enabled") is not True))):
+        raise ValueError("Five approved publisher exception protections cannot be disabled")
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -658,6 +674,33 @@ def run(args):
     save_json(out / "intermediate" / "forecasted.json", projected)
     checkpoint(out, "forecast", forecast_stats)
 
+    if publisher_enabled:
+        # Independently vetted publisher facts are applied *after* generic rolling
+        # recurrence, so the normal 120-day expansion cannot reanimate Todi's
+        # documented winter closure on a later daily run.
+        pinned_publisher = read_json(
+            Path(__file__).resolve().parent / "data" / "publisher-review-2026-10-12.json"
+        )
+        if publisher_digest(pinned_publisher) != publisher_policy["evidence_sha256"]:
+            raise ValueError("Publisher-reviewed location/calendar evidence digest changed")
+        publisher_istat = read_json(Path(__file__).resolve().parent / "data" / "istat-comuni-2026.json")
+        source_fixed, publisher_report = apply_source_repairs(
+            projected, publisher_istat, pinned_publisher, today=args.today, apply=True
+        )
+        publisher_diff = verify_publisher_diff(projected, source_fixed, publisher_report, pinned_publisher)
+        for left, right in zip(projected, source_fixed):
+            if left.get("citta") != right.get("citta"):
+                if right["slug"] in reviewed_city_corrections:
+                    raise ValueError("Both municipality overlays changed the same original source city")
+                reviewed_city_corrections[right["slug"]] = right["citta"]
+        if len(source_fixed) != len(projected):
+            raise ValueError("Publisher repair removed a market identity")
+        projected = source_fixed
+        save_json(out / "intermediate" / "reviewed-publishers.json", projected)
+        save_json(out / "publisher-exception-review.json", publisher_report)
+        save_json(out / "publisher-exception-diff-guard.json", publisher_diff)
+        checkpoint(out, "reviewed_publishers", publisher_report["counts"])
+
     # Work on a temp copy. Rejected candidates never touch public/data/v1.
     dest = out / "candidate" / "public" / "data" / "v1"
     if dest.exists():
@@ -677,6 +720,13 @@ def run(args):
 
     from validate_static import validate
     validated = validate(dest / "manifest.json")
+    if publisher_enabled:
+        publisher_static = verify_publisher_static(
+            dest / "manifest.json", pinned_publisher, policy
+        )
+        if publisher_static.get("release_safe") is not True:
+            raise ValueError("Reviewed publisher coordinates/dates missing from final DEV files")
+        save_json(out / "publisher-exception-static-safety.json", publisher_static)
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
     findings = compare_candidates(old_rows, new_rows, old_report, new_report, policy,
