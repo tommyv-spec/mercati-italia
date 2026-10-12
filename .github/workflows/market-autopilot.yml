@@ -143,6 +143,19 @@ jobs:
             --report autopilot-output/SOURCE_SCHEMA.md \
             "${args[@]}"
           cat autopilot-output/SOURCE_SCHEMA.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Re-rank candidate publishers with observed bounded schema evidence
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/source_intake.py \
+            --scout autopilot-output/official-candidates.json \
+            --previous reports/automation/source-registry.json \
+            --publisher-evidence autopilot-output/source-evidence.json \
+            --schema-evidence autopilot-output/source-probes.json \
+            --out autopilot-output/source-registry.json \
+            --report autopilot-output/SOURCE_QUEUE.md
+          cat autopilot-output/SOURCE_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
       - name: Compare declared source changes to previous scheduled run
         if: success()
         run: |
@@ -224,6 +237,18 @@ jobs:
               raise ValueError('Source schema probing cannot verify or publish markets')
           if len(probes.get('reports', [])) > 3:
               raise ValueError('Sample rate limit exceeded')
+          if len(probes.get('probe_history', {})) > 400:
+              raise ValueError('Unbounded historical municipal schema probes')
+          if probes.get('max_requests') != 3:
+              raise ValueError('Official source probing request budget changed')
+          registry = json.loads(Path('autopilot-output/source-registry.json').read_text())
+          known = probes.get('probe_history', {})
+          for src in registry['sources']:
+              observed = src.get('schema_viability')
+              if observed is not None and (
+                  src['id'] not in known or known[src['id']].get('viability') != observed
+              ):
+                  raise ValueError('Unsubstantiated schema quality claim in source ranking')
           if any(r.get('adapter_enabled') or r.get('source_license_verified')
                  or r.get('events_confirmed') for r in probes['reports']):
               raise ValueError('Schema preview made an unauthorized approval')
