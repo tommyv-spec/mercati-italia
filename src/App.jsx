@@ -3,6 +3,7 @@ import { useMarkets } from "./hooks/useMarkets";
 import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup } from './lib/marketGrouping';
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
+import { effectiveDateFilter } from './lib/searchDateFilter.js';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
@@ -1402,6 +1403,10 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   // Prioritize visits people can actually plan; deselect to browse undated markets.
   const [dateFilter, setDateFilter] = useState('7giorni');
+  const [dateFilterExplicit, setDateFilterExplicit] = useState(false);
+  // Search should discover every market, including ones without a future
+  // date; manually selected calendar chips always remain authoritative.
+  const activeDateFilter = effectiveDateFilter(dateFilter, searchQuery, dateFilterExplicit);
   const [weekdayFilter, setWeekdayFilter] = useState(null);
   const [visibleCount, setVisibleCount] = useState(60);
   const [showFilters, setShowFilters] = useState(false);
@@ -1596,7 +1601,7 @@ export default function App() {
   const marketsWithDistance = allMarkets;
 
   // Render at most 60 cards initially on slow mobile browsers.
-  useEffect(() => setVisibleCount(60), [searchQuery, dateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekdayFilter]);
+  useEffect(() => setVisibleCount(60), [searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekdayFilter]);
 
   // Apply filters
   const filteredMarkets = useMemo(() => {
@@ -1614,9 +1619,9 @@ export default function App() {
     }
 
     // Date filter
-    if (dateFilter === "oggi") {
+    if (activeDateFilter === "oggi") {
       result = result.filter(m => m.dates.includes(todayStr));
-    } else if (dateFilter === "weekend") {
+    } else if (activeDateFilter === "weekend") {
       const dayOfWeek = TODAY.getDay();
       const satOffset = dayOfWeek === 0 ? -1 : 6 - dayOfWeek;
       const sat = new Date(TODAY); sat.setDate(sat.getDate() + satOffset);
@@ -1624,7 +1629,7 @@ export default function App() {
       const satStr = localISO(sat);
       const sunStr = localISO(sun);
       result = result.filter(m => m.dates.includes(satStr) || m.dates.includes(sunStr));
-    } else if (dateFilter === "7giorni") {
+    } else if (activeDateFilter === "7giorni") {
       const end = new Date(TODAY); end.setDate(end.getDate() + 7);
       const endStr = localISO(end);
       result = result.filter(m => m.dates.some(d => d >= todayStr && d <= endStr));
@@ -1686,7 +1691,7 @@ export default function App() {
     }
 
     return result;
-  }, [marketsWithDistance, searchQuery, dateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
+  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
 
   // Group generic city-wide weekly listings only for presentation. The
   // map and the underlying dataset retain every individually sourced record.
@@ -1738,6 +1743,7 @@ export default function App() {
     setIncludeEstimatedNearby(false);
     setActiveFilterCount(0);
     setDateFilter(null);
+    setDateFilterExplicit(false);
     setWeekdayFilter(null);
     setSearchQuery("");
   };
@@ -2107,8 +2113,11 @@ export default function App() {
             { key: "7giorni", label: "Prossimi 7 giorni" },
           ].map(({ key, label }) => (
             <button key={key}
-              className={`chip ${dateFilter === key ? 'active' : ''}`}
-              onClick={() => setDateFilter(dateFilter === key ? null : key)}
+              className={`chip ${activeDateFilter === key ? 'active' : ''}`}
+              onClick={() => {
+                setDateFilter(activeDateFilter === key ? null : key);
+                setDateFilterExplicit(true);
+              }}
             >{label}</button>
           ))}
         </div>
@@ -2251,7 +2260,7 @@ export default function App() {
         <span>
           {marketsLoading
             ? 'Caricamento mercati statici...'
-            : `${filteredMarkets.length.toLocaleString('it-IT')} appuntament${filteredMarkets.length === 1 ? 'o' : 'i'} ${dateFilter === 'oggi' ? 'previsti oggi' : dateFilter === 'weekend' ? 'previsti nel weekend' : dateFilter === '7giorni' ? 'previsti nei prossimi 7 giorni' : 'nel catalogo'}${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : !canUseDistance ? ' · Italia' : ''}`
+            : `${filteredMarkets.length.toLocaleString('it-IT')} ${activeDateFilter ? 'appuntament' + (filteredMarkets.length === 1 ? 'o' : 'i') + ' ' + (activeDateFilter === 'oggi' ? 'previsti oggi' : activeDateFilter === 'weekend' ? 'previsti nel weekend' : 'previsti nei prossimi 7 giorni') : 'sched' + (filteredMarkets.length === 1 ? 'a' : 'e') + ' nel catalogo'}${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : !canUseDistance ? ' · Italia' : ''}`
           }
           {viewMode === 'lista' && groupedList.length < filteredMarkets.length && !marketsLoading &&
             ` · ${groupedList.length.toLocaleString('it-IT')} schede`}
