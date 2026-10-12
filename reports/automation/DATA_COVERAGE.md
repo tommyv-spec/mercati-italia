@@ -5,7 +5,7 @@
 - Schede: **13,779**
 - Senza orari: **10,839** (78.7%)
 - Senza indirizzo: **3,504** (25.4%)
-- Senza prossime date: **1,953**
+- Senza prossime date: **1,877**
 - Senza coordinate precise verificate: **13,690**
 - Senza verifica singola documentata: **13,779**
 
@@ -13,7 +13,7 @@
 
 | Regione | Schede | Senza orario | Senza indirizzo | Senza prossima data | Gap pesato |
 |---|---:|---:|---:|---:|---:|
-| Lombardia | 3947 | 2766 | 754 | 611 | 23395 |
+| Lombardia | 3947 | 2766 | 754 | 535 | 23167 |
 | Piemonte | 1332 | 1186 | 404 | 155 | 8827 |
 | Veneto | 1203 | 947 | 275 | 104 | 7312 |
 | Lazio | 1074 | 939 | 259 | 197 | 7148 |
@@ -41,7 +41,7 @@ Fino a due per regione. È una coda di approfondimento: **non** prova che gli or
 | Comune | Regione | Schede | Orari mancanti | Indirizzi mancanti | Date mancanti |
 |---|---|---:|---:|---:|---:|
 | Roma | Lazio | 125 | 100 | 6 | 100 |
-| Milano | Lombardia | 127 | 23 | 90 | 103 |
+| Milano | Lombardia | 127 | 23 | 90 | 27 |
 | Firenze | Toscana | 53 | 19 | 4 | 40 |
 | Genova | Liguria | 23 | 21 | 6 | 12 |
 | Torino | Piemonte | 29 | 18 | 3 | 10 |
