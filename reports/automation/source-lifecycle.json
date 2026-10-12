@@ -50,8 +50,11 @@
       "source_id": "corciano",
       "source_screening": {
         "already_quarantined_by_venue_overlap_review": 2,
+        "exact_reviewed_id_partition_verified": true,
         "outside_catalog_source_ids_not_necessarily_new_markets": 2,
+        "quarantine_source_id_set_sha256": "f9acaf10f3e55edf9448b9d4724fd7eb8332f3d67188957491dff8546c250e67",
         "remaining_identities_without_overlap_disposition": 0,
+        "screening_missing_exact_source_id_proof": false,
         "source_screening_counts_are_not_market_opening_proofs": true
       },
       "vanished_source_ids_do_not_imply_market_closed": true
@@ -91,6 +94,7 @@
         "already_quarantined_by_venue_overlap_review": 0,
         "outside_catalog_source_ids_not_necessarily_new_markets": 0,
         "remaining_identities_without_overlap_disposition": 0,
+        "screening_missing_exact_source_id_proof": false,
         "source_screening_counts_are_not_market_opening_proofs": true
       },
       "vanished_source_ids_do_not_imply_market_closed": true
@@ -1486,8 +1490,11 @@
       "source_id": "lombardia",
       "source_screening": {
         "already_quarantined_by_venue_overlap_review": 233,
+        "exact_reviewed_id_partition_verified": true,
         "outside_catalog_source_ids_not_necessarily_new_markets": 233,
+        "quarantine_source_id_set_sha256": "c186604803ce8b0735951f1b42c63a094a9a72f28f0503a33ff1d379375e38e6",
         "remaining_identities_without_overlap_disposition": 0,
+        "screening_missing_exact_source_id_proof": false,
         "source_screening_counts_are_not_market_opening_proofs": true
       },
       "vanished_source_ids_do_not_imply_market_closed": true
@@ -1607,6 +1614,7 @@
         "already_quarantined_by_venue_overlap_review": 0,
         "outside_catalog_source_ids_not_necessarily_new_markets": 0,
         "remaining_identities_without_overlap_disposition": 0,
+        "screening_missing_exact_source_id_proof": false,
         "source_screening_counts_are_not_market_opening_proofs": true
       },
       "vanished_source_ids_do_not_imply_market_closed": true
