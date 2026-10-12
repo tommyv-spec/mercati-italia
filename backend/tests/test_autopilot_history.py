@@ -127,6 +127,31 @@ class AutopilotHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Untrusted official overlap"):
             summary(decision(),None,None,"corciano",None,None,None,None,None,detail)
 
+    def test_source_hour_enrichment_is_measured_without_fabricating_verification(self):
+        official = {
+            "schema":1,"source_id":"lombardia-mercap",
+            "enabled":True,"source_rows_screened":233,
+            "exact_matches":132,"legacy_records_changed":132,
+            "existing_market_hours_added":129,
+            "official_source_attributions_added":132,
+            "record_identity_changes":0,"confirmed_date_changes":0,
+            "individual_market_verifications":0,"coordinates_overwritten":0,
+            "primary_sources_overwritten":0,"old_dataset_dates_overwritten":0,
+        }
+        r=summary(decision(),None,None,"enrich-run",
+                  None,None,None,None,None,None,official)
+        self.assertTrue(r["official_enrichment_enabled"])
+        self.assertEqual(r["official_enrichment_hours_added"],129)
+        self.assertEqual(r["official_enrichment_attributions_added"],132)
+        self.assertEqual(r["official_enrichment_held_rows"],233)
+        self.assertEqual(r["documented_verification_count"],0)
+
+    def test_untrusted_hour_enrichment_mutating_verification_must_fail(self):
+        official={"schema":1,"source_id":"lombardia-mercap",
+                  "individual_market_verifications":1}
+        with self.assertRaisesRegex(ValueError,"Untrusted official enrichment"):
+            summary(decision(),None,None,"bad",None,None,None,None,None,None,official)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)
