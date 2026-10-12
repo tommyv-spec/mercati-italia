@@ -131,6 +131,9 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
             raise ValueError("Official evidence has no valid dataset date") from None
         if age < -1:
             raise ValueError("Official source timestamp is in the future")
+        if age > spec["max_age_days"]:
+            counts["skipped_stale_official_dataset"] += 1
+            continue
         key, days = evidence_key(official, spec["region"])
         if key is not None and len(days) == 1:
             incoming_by_key[(key,days)].append(official)
