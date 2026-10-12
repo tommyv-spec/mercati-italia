@@ -1,0 +1,150 @@
+# Prove catalog quality migration without publication or any network source call.
+name: National catalog integrity — safe date labels + duplicate audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/catalog-integrity-audit.yml
+      - backend/catalog_quality_report.py
+      - backend/tests/test_catalog_quality_report.py
+      - backend/export_static.py
+      - backend/tests/test_static_pipeline.py
+
+permissions:
+  contents: read
+
+concurrency:
+  group: national-catalog-integrity-rehearsal
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run complete deterministic Python regression suite
+        run: python -m unittest discover -s backend/tests -v
+      - name: Observe actual published problems before applying correction
+        run: |
+          python backend/catalog_quality_report.py \
+            --manifest public/data/v1/manifest.json \
+            --out /tmp/before-integrity.json \
+            --report /tmp/before-integrity.md
+          cat /tmp/before-integrity.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Create candidate with trusted existing data; never fetch sources
+        run: |
+          set -euo pipefail
+          python backend/autopilot.py --offline \
+            --output catalog-integrity-audit
+      - name: Compare real before-after metadata, preserve all public identities
+        run: |
+          python backend/catalog_quality_report.py \
+            --manifest catalog-integrity-audit/candidate/public/data/v1/manifest.json \
+            --previous /tmp/before-integrity.json \
+            --out catalog-integrity-audit/quality-delta.json \
+            --report catalog-integrity-audit/QUALITY_DELTA.md
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,"backend")
+          from merge_catalog import load_existing
+          from validate_static import validate
+          old=load_existing(Path('public/data/v1/manifest.json'))
+          manifest=Path('catalog-integrity-audit/candidate/public/data/v1/manifest.json')
+          validate(manifest)
+          new=load_existing(manifest)
+          a={r['slug']:r for r in old}
+          b={r['slug']:r for r in new}
+          before=json.loads(Path('/tmp/before-integrity.json').read_text())
+          after=json.loads(Path('catalog-integrity-audit/quality-delta.json').read_text())
+          decision=json.loads(Path('catalog-integrity-audit/release-decision.json').read_text())
+          assert decision['approved']
+          assert set(a)==set(b),'Normalization may not delete or invent market IDs'
+          assert before['metrics']['future_date_quality_mismatch']>=50, (
+              'Original catalog unexpectedly has no unsupported date labels'
+          )
+          assert after['metrics'].get('future_date_quality_mismatch',0)==0, (
+              'Never claim a future date when none is listed'
+          )
+          for slug in a:
+              earlier,later=a[slug],b[slug]
+              for field in ('url_fonte','fonte','verificato_il','citta',
+                            'regione','lat','lng','indirizzo'):
+                  assert earlier.get(field)==later.get(field), (
+                      'Identity/evidence changed during label-only correction',slug,field)
+              if not later.get('date'):
+                  assert later.get('date_quality')=='sconosciuta',slug
+          summary={
+              'before':before['metrics'],
+              'after':after['metrics'],
+              'total_before':len(a),'total_after':len(b),
+              'same_IDs':True,
+              'quality_gates':decision['gates'],
+              'source_links_or_coordinates_rewritten':0,
+              'human_verified_claims_created':0,
+          }
+          Path('catalog-integrity-audit/integration-summary.json').write_text(
+              json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          print('CATALOG_INTEGRITY_AUDIT',json.dumps({
+              'before_future_mismatch':before['metrics']['future_date_quality_mismatch'],
+              'after_future_mismatch':after['metrics'].get('future_date_quality_mismatch',0),
+              'suspicious_city_review':after['metrics'].get('suspicious_city',0),
+              'weekly_duplicate_review':after['metrics'].get('review_only_duplicate_groups',0),
+              'total_market_IDs':len(b)
+          }))
+          PY
+          cat catalog-integrity-audit/QUALITY_DELTA.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Use candidate only inside ephemeral GitHub runner
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import shutil
+          dst=Path('public/data/v1')
+          shutil.rmtree(dst)
+          shutil.copytree(Path('catalog-integrity-audit/candidate/public/data/v1'),dst)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Compile and test static browser assets without paid backends
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+      - name: Real phone visitor QA against corrected future-date labels
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/integrity-preview.log 2>&1 &
+          for i in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/ui-smoke.mjs
+      - name: Keep inspection evidence but never publish an untested catalog
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: national-catalog-integrity-dryrun
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            catalog-integrity-audit/checkpoints/
+            catalog-integrity-audit/release-decision.json
+            catalog-integrity-audit/quality-delta.json
+            catalog-integrity-audit/QUALITY_DELTA.md
+            catalog-integrity-audit/integration-summary.json
+            ux-smoke-result.json
+            ux-*.png
