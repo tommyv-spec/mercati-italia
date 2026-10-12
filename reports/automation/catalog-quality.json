@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 230,
-    "future_dates_missing": 1877,
-    "hours_missing": 10839,
+    "coordinates_missing": 235,
+    "future_dates_missing": 1878,
+    "hours_missing": 10844,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 765,
     "suspicious_city": 2,
-    "total": 13779,
-    "without_individual_verification": 13779
+    "total": 13784,
+    "without_individual_verification": 13784
   },
   "per_region": [
     {
@@ -61,11 +61,11 @@
     },
     {
       "region": "Lazio",
-      "markets": 1074,
-      "hours_missing": 939,
+      "markets": 1079,
+      "hours_missing": 944,
       "address_missing": 259,
-      "future_dates_missing": 197,
-      "coordinates_missing": 4
+      "future_dates_missing": 198,
+      "coordinates_missing": 9
     },
     {
       "region": "Liguria",
@@ -665,11 +665,11 @@
   ],
   "potential_duplicates_are_not_confirmed": true,
   "baseline_delta": {
-    "total": 0,
-    "hours_missing": 0,
+    "total": 5,
+    "hours_missing": 5,
     "address_missing": 0,
-    "coordinates_missing": 0,
-    "future_dates_missing": 0,
+    "coordinates_missing": 5,
+    "future_dates_missing": 1,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0

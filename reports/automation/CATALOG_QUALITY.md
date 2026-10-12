@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **13,779**.
-- Orari mancanti: **10,839**.
+- Schede: **13,784**.
+- Orari mancanti: **10,844**.
 - Indirizzi mancanti: **3,504**.
-- Coordinate mancanti: **230**.
-- Date future mancanti: **1,877**.
+- Coordinate mancanti: **235**.
+- Date future mancanti: **1,878**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **755** gruppi, **765** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **13,779**.
+- Verifiche umane documentate mancanti: **13,784**.
 - Gate qualità: **APPROVATO**.
 
 ## Fonte di provenienza (primi editori)
@@ -42,7 +42,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Campania | 820 | 711 | 257 |
 | Emilia-Romagna | 863 | 575 | 168 |
 | Friuli Venezia Giulia | 239 | 97 | 16 |
-| Lazio | 1,074 | 939 | 259 |
+| Lazio | 1,079 | 944 | 259 |
 | Liguria | 385 | 314 | 95 |
 | Lombardia | 3,947 | 2,766 | 754 |
 | Marche | 288 | 195 | 83 |
