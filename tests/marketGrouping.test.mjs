@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
-  isGenericCityWeeklyMarket, displayEntries, groupVenues, distinctWeekdays,
+  isGenericCityWeeklyMarket, displayEntries, groupVenues, groupVenueAppointments, distinctWeekdays,
   nextMatchingDate, weekdayFromISO, reliableVenueAddress, shouldAutoExpandWeeklyGroup,
 } from '../src/lib/marketGrouping.js'
 
@@ -121,4 +121,83 @@ test('nationwide weekday filtering does not auto-fetch hundreds of regional venu
   assert.equal(shouldAutoExpandWeeklyGroup(group, 5, 'Firenze'), true)
   assert.equal(shouldAutoExpandWeeklyGroup(group, 5, '', 'Firenze'), true)
   assert.equal(shouldAutoExpandWeeklyGroup(group, null, 'Firenze'), false)
+})
+
+
+const makeReported = (name, city, address, weekday, id, sourceUrl, dates, extra = {}) => ({
+  id, name, city, region: 'Lombardia', address, category: 'Misto',
+  dateQuality: 'prevista', status: 'non_confermato',
+  dates, recurrence: 'settimanale - ' + weekday,
+  sourceUrl, positionQuality: 'non_verificata',
+  lat: 45.724163, lng: 8.797983, hours: '', ...extra,
+})
+
+test('observed Albizzate same page, venue and Tuesday displays one visit with both original IDs', () => {
+  const url = 'https://www.happings.com/it/mercato-settimanale-a-albizzate.html'
+  const dates = ['2026-10-13', '2026-10-20', '2026-10-27']
+  const first = makeReported('Mercato settimanale di Albizzate', 'Albizzate',
+    'Piazzale Sefro', 'martedì', 'mercato-settimanale-di-albizzate-albizzate',
+    url, dates, { sourceUpdated: '2026-03-18' })
+  const second = { ...first,
+    id: 'mercato-settimanale-di-albizzate-albizzate-martedi',
+    hours: '08:00–13:00 (fonte comunale, da verificare)',
+    sourceUpdated: '2026-06-05',
+  }
+  const inputs = [first, second]
+  const visits = groupVenueAppointments(inputs)
+  assert.equal(visits.length, 1)
+  assert.equal(visits[0].market.id, second.id)
+  assert.equal(visits[0].records.length, 2)
+  assert.deepEqual(visits[0].records.map(x => x.id).sort(), inputs.map(x => x.id).sort())
+  assert.equal(inputs[0].hours, '', 'Original input is immutable')
+  assert.equal(groupVenueAppointments(inputs)[0].key, second.id)
+})
+
+test('source, venue, day, future dates, category, hours, status and coordinates must agree', () => {
+  const url = 'https://www.eventiesagre.it/Mercatini_Filiera+Corta/21181315_Mercato+Settimanale+Di+Breganze.html'
+  const a = makeReported('Mercato settimanale di Breganze','Breganze',
+    'Piazza Mazzini','mercoledì','first',url,
+    ['2026-10-14','2026-10-21','2026-10-28'],
+    { region:'Veneto',lat:45.704,lng:11.565,hours:'08:00–13:00' })
+  const b = { ...a, id:'second' }
+  assert.equal(groupVenueAppointments([a,b]).length,1)
+  const conflicts = [
+    { ...b,sourceUrl:'https://different.example/market' },
+    { ...b,city:'Another city' },
+    { ...b,address:'Piazza Roma' },
+    { ...b,dates:['2026-10-21','2026-10-28'] },
+    { ...b,dates:['2026-10-18','2026-10-25'] },
+    { ...b,recurrence:'mensile - secondo mercoledì' },
+    { ...b,hours:'15:00–20:00' },
+    { ...b,lat:45.75 },
+    { ...b,category:'Antiquariato' },
+    { ...b,dateQuality:'confermata' },
+    { ...b,lastVerified:'2026-10-11' },
+    { ...b,id:'lo-mercap-100001-mercoledi' },
+    { ...b,sourceUrl:'' },
+  ]
+  for (const item of conflicts) {
+    assert.equal(groupVenueAppointments([a,item]).length,2,
+      'Conflict must not be silently compressed: '+JSON.stringify(item))
+  }
+})
+
+test('distinct Firenze weekdays and unknown venues preserve each original appointment', () => {
+  const source='https://www.happings.com/it/mercati-settimanali-a-firenze.html'
+  const items=florence.map(x=>({...x,category:'Misto',sourceUrl:source,
+    recurrence:'settimanale - '+x.id.split('-').at(-1)}))
+  const largo=groupVenues(items).find(x=>x.address==='Largo Monzani')
+  assert.equal(groupVenueAppointments(largo.markets).length,3)
+  const unknown=[...items,{...items[0],id:'other',address:'centro storico'}]
+  assert.equal(groupVenues(unknown).filter(v=>!v.verifiedAddress).length,1)
+  assert.deepEqual(groupVenueAppointments(items).map(v=>v.records.length),[1,1,1,1,1,1])
+})
+
+test('monthly series cannot be disguised as a weekly duplicate', () => {
+  const url='https://www.eventiesagre.it/Mercatini/one.html'
+  const a=makeReported('Mercatino settimanale di Breganze','Breganze',
+    'Piazza Mazzini','mercoledì','a',url,
+    ['2026-10-14','2026-11-11'],{region:'Veneto',lat:45.704,lng:11.565})
+  assert.equal(groupVenueAppointments([a,{...a,id:'b'}]).length,2)
+  assert.equal(groupVenueAppointments([a])[0].records.length,1)
 })

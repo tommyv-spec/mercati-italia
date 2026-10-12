@@ -72,6 +72,90 @@ export function shouldAutoExpandWeeklyGroup(group, weekdayFilter, cityFilter = '
     (Boolean(searchQuery.trim()) && city === italianKey(searchQuery.trim()))
 }
 
+
+/**
+ * Group only highly corroborated duplicate *display entries* at a venue.
+ * All source record identities remain accessible and unchanged.
+ *
+ * Manually observed: Albizzate / Piazzale Sefro / Tuesday, two Happings
+ * source records with identical future weeks; Breganze Wednesday in
+ * EventieSagre. Different venue, day, publisher, hours or category must
+ * never be collapsed based on a fuzzy title alone.
+ */
+export function sameWeeklyVisitEvidence(a, b) {
+  if (!a || !b || a.id === b.id) return false
+  if (![a, b].every(isGenericCityWeeklyMarket)) return false
+  if ([a, b].some(m => /^(lo-mercap-|bo-open-|pg-corciano-)/.test(m.id || ''))) return false
+  if (italianKey(a.region) !== italianKey(b.region) ||
+      italianKey(a.city) !== italianKey(b.city) ||
+      italianKey(a.category) !== italianKey(b.category)) return false
+  const addrA = reliableVenueAddress(a.address)
+  const addrB = reliableVenueAddress(b.address)
+  if (!addrA || addrA !== addrB) return false
+  if (!a.sourceUrl || a.sourceUrl !== b.sourceUrl ||
+      !/^https:\/\//i.test(a.sourceUrl)) return false
+  if (a.dateQuality !== 'prevista' || b.dateQuality !== 'prevista' ||
+      a.lastVerified || b.lastVerified ||
+      (a.status || 'non_confermato') !== (b.status || 'non_confermato')) return false
+  const hoursA = italianKey(a.hours)
+  const hoursB = italianKey(b.hours)
+  if (hoursA && hoursB && hoursA !== hoursB) return false
+
+  const datesA = [...new Set(a.dates || [])].sort()
+  const datesB = [...new Set(b.dates || [])].sort()
+  // Two identical successive weeks, not an isolated one-off or monthly
+  // series with a coincidentally shared weekday.
+  if (datesA.length < 2 || datesB.length < 2 ||
+      datesA[0] !== datesB[0] || datesA[1] !== datesB[1]) return false
+  const day = weekdayFromISO(datesA[0])
+  if (day === null || day !== weekdayFromISO(datesA[1])) return false
+  const [year1, month1, day1] = datesA[0].split('-').map(Number)
+  const [year2, month2, day2] = datesA[1].split('-').map(Number)
+  if (Date.UTC(year2, month2 - 1, day2) - Date.UTC(year1, month1 - 1, day1) !== 604800000) return false
+  if (![a, b].every(m => {
+    const rule = italianKey(m.recurrence)
+    return rule.includes('settimanale') && !/mensil|quindicinal|alternat/.test(rule)
+  })) return false
+
+  const bothHaveCoordinates = [a.lat, a.lng, b.lat, b.lng].every(Number.isFinite)
+  if (bothHaveCoordinates) {
+    const latScale = 111.2
+    const lonScale = 111.2 * Math.cos((a.lat + b.lat) / 2 * Math.PI / 180)
+    if (Math.hypot((a.lat - b.lat) * latScale, (a.lng - b.lng) * lonScale) > 0.25) return false
+  }
+  return true
+}
+
+function bestVisitRecord(records) {
+  return [...records].sort((a, b) => {
+    const score = m => Number(Boolean(m.hours)) * 8 +
+      Number(Boolean(m.description)) * 3 +
+      Number(Boolean(m.sourceEvidence?.length)) * 2 +
+      (Number(m.dataCompleteness) || 0) / 100
+    return score(b) - score(a) ||
+      String(b.sourceUpdated || '').localeCompare(String(a.sourceUpdated || '')) ||
+      String(a.id).localeCompare(String(b.id))
+  })[0]
+}
+
+/** One visible appointment and expandable records; no input is mutated. */
+export function groupVenueAppointments(markets = []) {
+  const groups = []
+  for (const market of markets) {
+    const group = groups.find(g => g.records.every(other => sameWeeklyVisitEvidence(other, market)))
+    if (group) group.records.push(market)
+    else groups.push({ records: [market] })
+  }
+  return groups.map(g => {
+    const representative = bestVisitRecord(g.records)
+    return {
+      key: representative.id,
+      market: representative,
+      records: [...g.records].sort((a, b) => String(a.id).localeCompare(String(b.id))),
+    }
+  })
+}
+
 export function distinctWeekdays(markets) {
   const days = new Set()
   for (const market of markets) {
