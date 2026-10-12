@@ -79,6 +79,8 @@ def safe_url(url):
                 p.username or p.password or p.port not in (None,443)
                 or p.fragment):
             return False
+        if p.hostname in {"dati.veneto.it","dati.lazio.it","comune.corciano.pg.it"} and p.query:
+            return False
         if p.hostname == "dati.veneto.it":
             return bool(re.fullmatch(
                 r"/SpodCkanApi/api/2/rest/dataset/[0-9a-f-]{36}\.csv",p.path))
