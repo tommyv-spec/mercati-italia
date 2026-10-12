@@ -2,9 +2,9 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38272692358](https://github.com/tommyv-spec/mercati-italia/actions/runs/38272692358) — UTC 2026-10-12T15:49:33.864731+00:00
+- Ultimo run: [38298216537](https://github.com/tommyv-spec/mercati-italia/actions/runs/38298216537) — UTC 2026-10-12T19:33:43.227835+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: no (contenuto invariato)
+- Nuova versione di dati: sì
 - Schede nel catalogo: **13,779**
 - Schede con date previste a +60 giorni: **11,776**
 - Schede con date previste a +90 giorni: **11,755**
@@ -20,10 +20,10 @@
 - Corciano: **2** record senza conflitti su **4**, in revisione **2**, impronta sorgente **1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121**.
 - Enrichment ufficiale: attivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **132** corrispondenze esatte su **233** record fonte in revisione.
 - Riconciliazione ISTAT (21 febbraio 2026): attiva, **0** Comuni corretti e **0** titoli ripuliti in questo run; **0** calendari sospesi (**0** date previste), **7** casi ancora ambigui. Nessuna conferma di apertura generata.
-- Revisione manuale di pagine originali e Comuni ISTAT: attiva; **0** Comuni sistemati, **0** punti geografici incompatibili sospesi, **0** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.
-- Protezioni ancora attive nel sito statico DEV: **13** navigazioni sospese, **6** coordinate in quarantena, **13** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
-- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **7** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**764** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **7** località anomale non mostrate come Comuni; **13779** ID originali preservati.
+- Revisione manuale di pagine originali e Comuni ISTAT: attiva; **3** Comuni sistemati, **1** punti geografici incompatibili sospesi, **3** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.
+- Protezioni ancora attive nel sito statico DEV: **16** navigazioni sospese, **7** coordinate in quarantena, **16** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
+- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **4** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**764** righe candidate, non cancellate).
+- Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **4** località anomale non mostrate come Comuni; **13779** ID originali preservati.
 - Fonti datate negli ultimi 30 giorni: **1127**; oltre soglia: **89**; senza data: **0**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1129**, di cui recenti **1127**.
 - Date previste con origine vecchia/sconosciuta: **0**.

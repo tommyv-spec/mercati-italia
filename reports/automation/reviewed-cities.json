@@ -1,11 +1,15 @@
 {
-  "changed_ids": [],
+  "changed_ids": [
+    "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
+    "unique-market-a-industrie-fluviali-industrie-fluviali",
+    "vintage-market-al-san-paolo-district-san-paolo-district"
+  ],
   "counts": {
-    "cases": 13,
-    "city_fixed": 0,
-    "coordinates_quarantined": 0,
+    "cases": 16,
+    "city_fixed": 3,
+    "coordinates_quarantined": 1,
     "deleted_market_ids": 0,
-    "navigation_hold_added": 0,
+    "navigation_hold_added": 3,
     "source_dates_modified": 0,
     "unchanged_already_reviewed": 13,
     "verified_market_claims_added": 0
@@ -20,6 +24,6 @@
   "records_total": 13779,
   "review_only": false,
   "reviewed_at": "2026-10-12",
-  "reviewed_evidence_digest": "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f",
+  "reviewed_evidence_digest": "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
   "schema": 1
 }

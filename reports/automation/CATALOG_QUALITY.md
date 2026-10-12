@@ -7,10 +7,10 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Schede: **13,779**.
 - Orari mancanti: **10,840**.
 - Indirizzi mancanti: **3,504**.
-- Coordinate mancanti: **222**.
+- Coordinate mancanti: **223**.
 - Date future mancanti: **1,953**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
-- Località da verificare: **7**.
+- Località da verificare: **4**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **755** gruppi, **764** righe in eccesso potenziali.
 - Verifiche umane documentate mancanti: **13,779**.
 - Gate qualità: **APPROVATO**.
@@ -59,9 +59,6 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 ## Località da verificare (campione limitato)
 
-- Campania · Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Caste · mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima
-- Lazio · RM · unique-market-a-industrie-fluviali-industrie-fluviali
-- Lazio · RM · vintage-market-al-san-paolo-district-san-paolo-district
 - Umbria · "Artigianando · todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando
 - Veneto · Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto · mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana
 - Veneto · NA · mercatini-piazza-del-baratto-na

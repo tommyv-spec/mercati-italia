@@ -6,12 +6,12 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 222,
+    "coordinates_missing": 223,
     "future_dates_missing": 1953,
     "hours_missing": 10840,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 764,
-    "suspicious_city": 7,
+    "suspicious_city": 4,
     "total": 13779,
     "without_individual_verification": 13779
   },
@@ -43,7 +43,7 @@
       "hours_missing": 711,
       "address_missing": 257,
       "future_dates_missing": 71,
-      "suspicious_city": 1
+      "coordinates_missing": 1
     },
     {
       "region": "Emilia-Romagna",
@@ -65,8 +65,7 @@
       "hours_missing": 939,
       "address_missing": 259,
       "future_dates_missing": 197,
-      "coordinates_missing": 2,
-      "suspicious_city": 2
+      "coordinates_missing": 2
     },
     {
       "region": "Liguria",
@@ -216,27 +215,6 @@
     }
   ],
   "suspicious_city_examples": [
-    {
-      "slug": "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
-      "region": "Campania",
-      "city": "Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Caste",
-      "name": "Mercato settimanale di Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Castell",
-      "source": "happings.com"
-    },
-    {
-      "slug": "unique-market-a-industrie-fluviali-industrie-fluviali",
-      "region": "Lazio",
-      "city": "RM",
-      "name": "Unique Market a Industrie Fluviali",
-      "source": "citynews_romatoday.it"
-    },
-    {
-      "slug": "vintage-market-al-san-paolo-district-san-paolo-district",
-      "region": "Lazio",
-      "city": "RM",
-      "name": "Vintage Market al San Paolo District",
-      "source": "citynews_romatoday.it"
-    },
     {
       "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
       "region": "Umbria",
@@ -703,10 +681,10 @@
     "total": 0,
     "hours_missing": 0,
     "address_missing": 0,
-    "coordinates_missing": 0,
+    "coordinates_missing": 1,
     "future_dates_missing": 0,
     "future_date_quality_mismatch": 0,
-    "suspicious_city": 0,
+    "suspicious_city": -3,
     "review_only_potential_extra_rows": 0
   },
   "quality_regressions": [],

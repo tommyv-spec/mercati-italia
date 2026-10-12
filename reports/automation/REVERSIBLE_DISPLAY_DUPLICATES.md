@@ -9,7 +9,7 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 - Gruppi supportati da prove forti: **382**.
 - Pulsanti ripetuti evitati nella vista delle sedi: **382**.
 - Schede originali ancora apribili dietro tali gruppi: **764**.
-- Campi città evidentemente malformati protetti nella UI: **7**.
+- Campi città evidentemente malformati protetti nella UI: **4**.
 - Eventi o verifiche dichiarati confermati: **0**.
 
 ## Distribuzione
