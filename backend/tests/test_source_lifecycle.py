@@ -233,6 +233,22 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
         self.assertNotIn("Secret Name",json.dumps(second))
         self.assertIn("non disponibile",markdown(second))
 
+    def test_schema_change_is_explicit_review_not_a_transport_outage(self):
+        first=run(CFG,catalog(),probe_raw=True,raw_fetch=lambda url:(csv_blob(),False))
+        wrong=csv_blob(rows=[
+            {k:v for k,v in item.items() if k!="geopoint"}
+            for item in raw_rows()],fields=HEADER[:-1])
+        changed=run(CFG,catalog(),previous=first,probe_raw=True,
+                    raw_fetch=lambda url:(wrong,False))
+        self.assertEqual(changed["source_checks"]["raw_schema_or_identity_change_requires_review"],1)
+        self.assertNotIn("raw_source_unavailable_no_market_inference",
+                         changed["source_checks"])
+        self.assertEqual(changed["sources"][RAW["id"]]["last_check_status"],
+                         "contract_change_needs_review")
+        self.assertEqual(changed["market_imports"],0)
+        self.assertEqual(changed["market_identity_deletions"],0)
+        self.assertIn("schema/identità cambiati",markdown(changed))
+
     def test_raw_market_names_or_vendor_sensitive_fields_never_persist(self):
         blob=csv_blob()
         report=inspect_raw(RAW,blob,catalog())
