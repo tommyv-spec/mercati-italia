@@ -96,3 +96,35 @@ https://www.istat.it/classificazione/codici-dei-comuni-delle-province-e-delle-re
 Un dataset rifatto ogni giorno **non** significa 13.779 mercati verificati
 ogni giorno: il monitoraggio rileva la qualità dei dati, non garantisce
 l'apertura del mercato senza una prova dell'organizzatore.
+
+## Ricerca: filtro temporale implicito contro ricerca libera
+
+**Verifica reale il 12 ottobre 2026.** La scheda Cernobbio,
+Mercatino delle Curiosità è presente nell'indice nazionale ma non
+ha future date. La pagina preselezionava i prossimi 7 giorni
+anche durante una ricerca per nome e quindi la rendeva invisibile.
+
+Il test originale mobile ha riprodotto il difetto:
+https://github.com/tommyv-spec/mercati-italia/actions/runs/38236963548
+
+Correzione deterministica:
+- src/lib/searchDateFilter.js: salta il solo filtro 7 giorni
+  implicito quando il visitatore scrive una ricerca; ogni chip
+  selezionato volutamente rimane applicato;
+- src/lib/dateDisclosure.js: messaggi corretti per nessuna data,
+  previsioni non confermate e conferme realmente documentate;
+- src/App.jsx: la ricerca senza data mostra schede, non
+  appuntamenti imminenti; WeeklyCityGroup.jsx usa messaggi coerenti;
+- tests/search-date-filter.test.mjs e tests/date-disclosure.test.mjs:
+  replay offline, deterministico e senza query a database;
+- tests/ui-smoke.mjs: ricerca effettiva della scheda Cernobbio
+  (senza date), apertura dettaglio, messaggio di data non
+  disponibile, prova del filtro 7 giorni scelto esplicitamente
+  e ripristino quando il filtro viene deselezionato.
+
+Replay Playwright con esito riuscito:
+https://github.com/tommyv-spec/mercati-italia/actions/runs/38237681447
+
+Nessuna scheda, data, fonte o verifica umana è stata inventata o
+modificata. Non sono necessarie richieste Cloudflare Workers/KV/D1
+o Firebase durante la consultazione del catalogo.
