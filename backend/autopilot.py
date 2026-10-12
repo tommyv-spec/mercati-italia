@@ -28,6 +28,7 @@ from export_static import export
 from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import refresh_records
+from source_lifecycle import run as inspect_source_contracts, markdown as source_lifecycle_markdown
 from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
 from milano_2026_release_guard import verify as verify_milano_2026_diff, verify_exported as verify_milano_2026_exported
 from roma_xiii_2026_venues import (
@@ -67,7 +68,7 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "reviewed_cities", "milano_2026", "roma_2026_venues", "forecast",
+          "source_lifecycle", "reviewed_cities", "milano_2026", "roma_2026_venues", "forecast",
           "reviewed_publishers", "roma_geo_hold", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
@@ -478,6 +479,17 @@ def run(args):
             ))):
         raise ValueError("Unapproved municipal 2026 Rome venue expansion policy")
 
+    # All source-level contracts use one schema/identity/freshness engine.
+    # Their report is read-only; no new market may enter via this stage.
+    lifecycle_policy = policy.get("source_lifecycle", {})
+    lifecycle_enabled = isinstance(lifecycle_policy,dict) and lifecycle_policy.get("enabled") is True
+    if (not isinstance(lifecycle_policy,dict) or
+            set(lifecycle_policy)-{"enabled","reviewed_contract_blob_sha1"} or
+            lifecycle_policy.get("enabled",False) not in (True,False) or
+            (lifecycle_enabled and lifecycle_policy.get("reviewed_contract_blob_sha1")
+             != "a2e2853bc9467aad5f3c3f3b44c9e7b03c3c2320")):
+        raise ValueError("Unreviewed reusable source contract schema")
+
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -582,6 +594,42 @@ def run(args):
         "lombardia_overlap_quarantined": report["quarantined"],
         "bologna_overlap_quarantined": bologna_report["quarantined"],
         "corciano_overlap_quarantined": corciano_report["quarantined"],
+    })
+    # Source contracts are evaluated from existing fetch-once checkpoints.
+    # Do not issue a second request, invent an event or edit a market here.
+    lifecycle_report = {
+        "schema":1,"source_contract_schema":1,"reference_date":args.today.isoformat(),
+        "read_only":True,"market_imports":0,"market_updates":0,
+        "market_confirmations":0,"market_identity_deletions":0,
+        "catalog_count":len(old_rows),"sources":{},"checked_source_profiles":0,
+        "source_checks":{},
+    }
+    if lifecycle_enabled:
+        profile_file=Path(__file__).resolve().parent / "data" / "market-source-contracts.json"
+        data=profile_file.read_bytes()
+        pinned=hashlib.sha1(
+            b"blob "+str(len(data)).encode()+b"\0"+data
+        ).hexdigest()
+        if pinned!=lifecycle_policy["reviewed_contract_blob_sha1"]:
+            raise ValueError("Publisher contract registry changed without source-level review")
+        prior_path=Path("reports/automation/source-lifecycle.json")
+        prior=read_json(prior_path) if prior_path.is_file() else None
+        lifecycle_report=inspect_source_contracts(
+            read_json(profile_file),old_rows,
+            source_dir=out/"sources",previous=prior,today=args.today
+        )
+    if any(lifecycle_report.get(k)!=0 for k in (
+            "market_imports","market_updates","market_confirmations","market_identity_deletions")):
+        raise ValueError("A source-quality audit may not alter market data")
+    save_json(out/"source-lifecycle.json",lifecycle_report)
+    (out/"SOURCE_LIFECYCLE.md").write_text(
+        source_lifecycle_markdown(lifecycle_report),encoding="utf-8"
+    )
+    checkpoint(out,"source_lifecycle",{
+        "enabled":lifecycle_enabled,
+        "profiles_inspected":lifecycle_report["checked_source_profiles"],
+        "source_checks":lifecycle_report["source_checks"],
+        "new_markets_imported":0,"event_verifications_created":0,
     })
     # Correlate blocked exact venue/day public records with older market
     # cards. Never promote event verification, dates or primary identity.
