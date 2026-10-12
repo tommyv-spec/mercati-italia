@@ -6,12 +6,12 @@ Fonti strutturate ammesse per probing: **26**; mai osservate: **0**.
 Ogni run controlla fino a tre fonti in rotazione, mantenendo uno storico bounded dei soli schemi.
 
 ## Dati sui Mercati Rionali
-- Esito: needs_review
+- Esito: schema_preview_only
 - Formato: CSV
-- Campi: 
-- Possibili mappature: {}
-- Valore dello schema per futuri importatori: da controllare
-- Punti da risolvere: 
+- Campi: Municipio, Nome_Mercato, INDIRIZZO, Civico, Esp_Civico, Altre_indicazioni, CAP, TIPOLOGIA, Note_mercato, POSTEGGI_TOTALI, POSTEGGI_OCCUPATI, NUMERO_OPERATORI, POSTEGGI_ALIMENTARI, POSTEGGI_NON_ALIMENTARI, Apertura_Lunedi, Chiusura_Lunedi, Apertura_Martedi, Chiusura_Martedi, Apertura_Mercoledi, Chiusura_Mercoledi, Apertura_Giovedi, Chiusura_Giovedi, Apertura_Venedi, Chiusura_Venedi
+- Possibili mappature: {"name": ["Nome_Mercato"], "address": ["INDIRIZZO"], "district": ["Municipio"], "hours": ["Apertura_Lunedi", "Chiusura_Lunedi", "Apertura_Martedi", "Chiusura_Martedi", "Apertura_Mercoledi", "Chiusura_Mercoledi"], "market_type": ["TIPOLOGIA"], "notes": ["Altre_indicazioni", "Note_mercato"]}
+- Valore dello schema per futuri importatori: venue_inventory_missing_visit_days
+- Punti da risolvere: municipality_must_be_validated_from_publisher_context
 - Verifiche obbligatorie: licenza, schema completo, ID stabili, date attuali, dedup.
 
 ## Fiere e mercati - Comune di Casalserugo

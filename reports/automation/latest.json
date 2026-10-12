@@ -45,12 +45,15 @@
   "quality_suspicious_cities": 7,
   "quality_unscheduled_false_labels": 0,
   "record_count": 13779,
-  "recorded_utc": "2026-10-12T15:44:23.704903+00:00",
+  "recorded_utc": "2026-10-12T15:49:33.864731+00:00",
+  "reviewed_city_source_coordinates_held_total": 6,
   "reviewed_city_source_coordinates_quarantined": 0,
   "reviewed_city_source_corrected": 0,
   "reviewed_city_source_enabled": true,
+  "reviewed_city_source_final_details_checked": 13,
   "reviewed_city_source_navigation_blocked": 0,
-  "run_id": "38272138477",
+  "reviewed_city_source_navigation_held_total": 13,
+  "run_id": "38272692358",
   "source_age_over_limit": 89,
   "source_age_within_30_days": 1127,
   "source_candidates_scored": 43,
@@ -74,5 +77,5 @@
   "visitor_duplicate_buttons_avoided": 382,
   "visitor_duplicate_visit_groups": 382,
   "visitor_original_market_ids_retained": 13779,
-  "workflow_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/38272138477"
+  "workflow_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/38272692358"
 }
