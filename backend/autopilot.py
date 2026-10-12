@@ -616,7 +616,8 @@ def run(args):
         prior=read_json(prior_path) if prior_path.is_file() else None
         lifecycle_report=inspect_source_contracts(
             read_json(profile_file),old_rows,
-            source_dir=out/"sources",previous=prior,today=args.today
+            source_dir=out/"sources",previous=prior,
+            source_status=source_status,today=args.today
         )
     if any(lifecycle_report.get(k)!=0 for k in (
             "market_imports","market_updates","market_confirmations","market_identity_deletions")):
