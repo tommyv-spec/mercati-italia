@@ -27,6 +27,8 @@ def responder(url):
             "dataset_id": "mercati-e-fiere",
             "metas": {"default": {
                 "license": "CC BY 4.0", "modified": "2025-12-31T12:31:56Z",
+                "data_processed": "2025-04-02T14:33:42Z",
+                "modified_updates_on_data_change": False,
                 "metadata_processed": "2026-10-10T12:00:00Z",
             }},
         }
@@ -70,6 +72,29 @@ class RightsEvidenceTests(unittest.TestCase):
             self.assertFalse(row["record_level_freshness_verified"])
             self.assertEqual(row["license_comparison"],
                              "publisher_and_catalog_agree_review_required")
+
+    def test_bologna_manual_modified_does_not_disguise_old_data(self):
+        result = evaluate(reg(), fetch=responder, today=date(2026, 10, 12))
+        bologna = result["source_evidence"][0]
+        self.assertEqual(bologna["publisher_data_updated_at"], "2025-04-02")
+        self.assertEqual(bologna["publisher_declared_modified_at"], "2025-12-31")
+        self.assertEqual(bologna["publisher_metadata_updated_at"], "2026-10-10")
+        self.assertEqual(bologna["provider_data_timestamp_type"], "publisher_data_processed")
+        self.assertIn("modified_newer_than_data_without_auto_update", bologna["review_required"])
+        self.assertEqual(bologna["source_data_age_label"], "dataset_metadata_over_365d")
+        self.assertFalse(bologna["record_level_freshness_verified"])
+
+    def test_bologna_requires_processing_timestamp_when_no_auto_update_flag(self):
+        def no_processed(url):
+            obj = responder(url)
+            if "bologna.it" in url:
+                obj["metas"]["default"].pop("data_processed")
+            return obj
+        report = evaluate(reg(), fetch=no_processed, today=date(2026,10,12))
+        row = report["source_evidence"][0]
+        self.assertIsNone(row["publisher_data_updated_at"])
+        self.assertIn("publisher_data_processed_unknown", row["review_required"])
+        self.assertEqual(row["source_data_age_label"], "dataset_update_unknown")
 
     def test_roma_is_archival_even_with_new_metadata_harvest(self):
         result = evaluate(reg(), fetch=responder, today=date(2026, 10, 12))

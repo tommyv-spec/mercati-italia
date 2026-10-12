@@ -136,15 +136,28 @@ def bologna_metadata(value, spec):
         dcat = {}
     license_text, license_url = license_fields(
         default.get("license") or dcat.get("license"))
-    updated = (
-        date_value(default.get("modified"))
-        or date_value(default.get("data_processed"))
+    # The Opendatasoft publisher can set 'modified' manually. Bologna
+    # explicitly says modified_updates_on_data_change=false: a later
+    # modified date is NOT evidence of a more recent record ingestion.
+    # The conservative operational timestamp is data_processed. If both
+    # timestamps exist and differ, report them separately.
+    claimed = date_value(default.get("modified"))
+    processed = date_value(default.get("data_processed"))
+    auto_updated = default.get("modified_updates_on_data_change") is True
+    updated = (claimed or processed) if auto_updated else processed
+    timestamp_type = (
+        "publisher_data_processed" if not auto_updated and processed
+        else "publisher_dataset_modified_autoupdate" if auto_updated and claimed
+        else "unknown"
     )
     return {
+        "publisher_declared_modified": claimed,
+        "publisher_data_processed": processed,
+        "publisher_modified_auto_follows_data": auto_updated,
         "publisher_license": license_text,
         "publisher_license_url": license_url,
         "publisher_data_modified": updated,
-        "provider_data_timestamp_type": "publisher_dataset_modified" if updated else "unknown",
+        "provider_data_timestamp_type": timestamp_type,
         "publisher_metadata_modified": date_value(default.get("metadata_processed")),
         "publisher_identifier": value["dataset_id"],
         "distribution_specific_license": None,
@@ -268,6 +281,16 @@ def evaluate(registry, fetch=metadata_fetch, today=None, offline=False):
                     parsed["publisher_metadata_modified"].isoformat()
                     if parsed["publisher_metadata_modified"] else None)
                 out["provider_data_timestamp_type"] = parsed["provider_data_timestamp_type"]
+                if spec["slug"] == "bologna":
+                    declared = parsed.get("publisher_declared_modified")
+                    processed = parsed.get("publisher_data_processed")
+                    out["publisher_declared_modified_at"] = declared.isoformat() if declared else None
+                    out["publisher_data_processed_at"] = processed.isoformat() if processed else None
+                    out["publisher_modified_auto_follows_data"] = parsed.get("publisher_modified_auto_follows_data")
+                    if not processed:
+                        out["review_required"].append("publisher_data_processed_unknown")
+                    if declared and processed and declared > processed and not parsed.get("publisher_modified_auto_follows_data"):
+                        out["review_required"].append("modified_newer_than_data_without_auto_update")
                 if parsed["publisher_data_modified"]:
                     days = (today - parsed["publisher_data_modified"]).days
                     out["source_data_age_days"] = days
