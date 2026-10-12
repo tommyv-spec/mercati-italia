@@ -156,3 +156,15 @@ Vedi [ISTAT 2026 — regole, prova manuale e verifica completa](MUNICIPALITY_IST
 Il file ufficiale versionato ha 7.894 Comuni e 20 Regioni; il sistema
 conserva le prove di modifiche, la quarantena calendari, la sicurezza degli
 ID e i 20 casi non ancora dimostrabili, senza inventare verifiche reali.
+
+## Seconda verifica delle località: pagine originali e navigazione
+
+- Baseline già riconciliata con ISTAT: 13.779 record, località sospette **20** (erano 52).
+- Manifest di prova fonte-per-fonte: `backend/data/reviewed-city-evidence-2026-10-12.json` e `backend/reviewed_city_evidence.py`. **13 correzioni** verificabili con sorgente, Regione, Provincia e Comune ISTAT.
+- **6** coordinate approssimate incompatibili con i luoghi documentati vengono sospese, conservando il punto precedente nel dettaglio per audit.
+- Tutte le **13** schede mantengono `navigazione_sospesa_motivo`: indirizzo e punto non ancora riconciliati, quindi niente indicazioni stradali.
+- La UI preserva il blocco dal JSON regionale fino al rendering (`src/services/staticMarkets.js` → `src/hooks/useMarkets.js` → `src/App.jsx`); non consente navigazione durante caricamento o errore dei dettagli.
+- Test di regressione `tests/source-hold-details.test.mjs` e prova browser `tests/reviewed-city-ui.mjs` del flusso reale.
+- [Dry-run integrale riuscito su GitHub](https://github.com/tommyv-spec/mercati-italia/actions/runs/38269139966): 13 Comuni corretti, 6 coordinate sospese, 13 navigazioni bloccate, località ambigue residue **7**, ID **13.779** intatti.
+- Attivazione solo DEV tramite `backend/autopilot_policy.json`, rapporto nel registro `reports/automation/reviewed-cities.json` e scorecard persistenti.
+- L'aggiornamento di una pagina di mercato non equivale alla conferma di apertura, e una correzione ISTAT del Comune non conferma la sede del mercato.

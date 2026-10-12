@@ -17,6 +17,28 @@ def decision():
     }
 
 class AutopilotHistoryTests(unittest.TestCase):
+    def test_source_bound_istat_municipality_repairs_preserve_caution(self):
+        manual = {
+            "schema":1, "enabled":True, "reviewed_at":"2026-10-12",
+            "reviewed_evidence_digest":
+                "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f",
+            "records_total":12650,
+            "individual_events_confirmed":0,"publisher_links_replaced":0,
+            "opening_dates_added":0,"market_records_deleted":0,
+            "counts":{"city_fixed":13,"coordinates_quarantined":6,
+                      "navigation_hold_added":13}
+        }
+        out=summary(decision(),None,None,"city-publish",reviewed_cities=manual)
+        self.assertEqual(out["reviewed_city_source_corrected"],13)
+        self.assertEqual(out["reviewed_city_source_coordinates_quarantined"],6)
+        self.assertEqual(out["reviewed_city_source_navigation_blocked"],13)
+        self.assertEqual(out["documented_verification_count"],0)
+        self.assertIn("indicazioni stradali disabilitate",
+                      __import__("autopilot_history").markdown(out))
+        manual["individual_events_confirmed"]=1
+        with self.assertRaisesRegex(ValueError,"Untrusted manually reviewed"):
+            summary(decision(),None,None,"bad",reviewed_cities=manual)
+
     def test_metrics_without_pii_and_priority_order(self):
         result=summary(
             decision(),

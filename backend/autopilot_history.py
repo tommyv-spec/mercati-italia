@@ -25,7 +25,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             official_enrichment: dict | None = None,
             catalog_quality: dict | None = None,
             visitor_display_audit: dict | None = None,
-            municipality_report: dict | None = None) -> dict:
+            municipality_report: dict | None = None,
+            reviewed_cities: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -37,6 +38,21 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     publisher_checks = (rights or {}).get("source_evidence", [])
     observed_quality = catalog_quality or {}
     municipalities = municipality_report or {}
+    city_review = reviewed_cities or {}
+    if city_review and (
+        city_review.get("schema") != 1 or
+        city_review.get("reviewed_at") != "2026-10-12" or
+        city_review.get("reviewed_evidence_digest") !=
+            "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f" or
+        city_review.get("records_total") != metric.get("records") or
+        any(city_review.get(k,0) != 0 for k in (
+            "individual_events_confirmed","publisher_links_replaced",
+            "opening_dates_added","market_records_deleted")) or
+        not 0 <= int(city_review.get("counts",{}).get("city_fixed",0)) <= 13 or
+        not 0 <= int(city_review.get("counts",{}).get("coordinates_quarantined",0)) <= 6 or
+        not 0 <= int(city_review.get("counts",{}).get("navigation_hold_added",0)) <= 13
+    ):
+        raise ValueError("Untrusted manually reviewed publisher city quality report")
     if municipalities and (
         municipalities.get("schema") != 1
         or municipalities.get("source_file_sha256") !=
@@ -147,6 +163,10 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "municipality_calendars_quarantined": int(municipalities.get("counts", {}).get("records_calendar_quarantined", 0)),
         "municipality_forecast_dates_removed": int(municipalities.get("counts", {}).get("forecast_days_quarantined", 0)),
         "municipality_needs_manual_review": int(municipalities.get("counts", {}).get("needs_manual_municipality_review", 0)),
+        "reviewed_city_source_enabled": city_review.get("enabled") is True,
+        "reviewed_city_source_corrected": int(city_review.get("counts",{}).get("city_fixed",0)),
+        "reviewed_city_source_coordinates_quarantined": int(city_review.get("counts",{}).get("coordinates_quarantined",0)),
+        "reviewed_city_source_navigation_blocked": int(city_review.get("counts",{}).get("navigation_hold_added",0)),
         "quality_audit_record_total": int(observed_metrics.get("total",0)),
         "quality_unscheduled_false_labels": int(observed_metrics.get("future_date_quality_mismatch",0)),
         "quality_suspicious_cities": int(observed_metrics.get("suspicious_city",0)),
@@ -203,6 +223,7 @@ def markdown(latest: dict) -> str:
         f"- Corciano: **{latest['corciano_source_accepted']}** record senza conflitti su **{latest['corciano_source_total']}**, in revisione **{latest['corciano_source_quarantined']}**, impronta sorgente **{latest['corciano_source_sha256'] or 'non disponibile'}**.",
         f"- Enrichment ufficiale: {'attivo' if latest['official_enrichment_enabled'] else 'disattivo'}; **{latest['official_enrichment_hours_added']}** orari mancanti recuperati in questo run, **{latest['official_enrichment_attributions_added']}** fonti collegate, **{latest['official_enrichment_exact_matches']}** corrispondenze esatte su **{latest['official_enrichment_held_rows']}** record fonte in revisione.",
         f"- Riconciliazione ISTAT (21 febbraio 2026): {'attiva' if latest['municipality_istat_enabled'] else 'disattiva'}, **{latest['municipality_city_fixed']}** Comuni corretti e **{latest['municipality_titles_repaired']}** titoli ripuliti in questo run; **{latest['municipality_calendars_quarantined']}** calendari sospesi (**{latest['municipality_forecast_dates_removed']}** date previste), **{latest['municipality_needs_manual_review']}** casi ancora ambigui. Nessuna conferma di apertura generata.",
+        f"- Revisione manuale di pagine originali e Comuni ISTAT: {'attiva' if latest['reviewed_city_source_enabled'] else 'in attesa'}; **{latest['reviewed_city_source_corrected']}** Comuni sistemati, **{latest['reviewed_city_source_coordinates_quarantined']}** punti geografici incompatibili sospesi, **{latest['reviewed_city_source_navigation_blocked']}** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.",
         f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
         f"- Miglioramento UX reversibile: **{latest['visitor_duplicate_visit_groups']}** gruppi provati dalla stessa fonte, **{latest['visitor_duplicate_buttons_avoided']}** pulsanti ripetuti evitati, **{latest['visitor_bad_city_labels_guarded']}** località anomale non mostrate come Comuni; **{latest['visitor_original_market_ids_retained']}** ID originali preservati.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
@@ -259,6 +280,7 @@ def main():
     p.add_argument("--catalog-quality", type=Path)
     p.add_argument("--visitor-display-audit", type=Path)
     p.add_argument("--municipality-report", type=Path)
+    p.add_argument("--reviewed-cities-report", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -287,6 +309,8 @@ def main():
         if args.visitor_display_audit and args.visitor_display_audit.is_file() else None,
         json.loads(args.municipality_report.read_text("utf-8"))
         if args.municipality_report and args.municipality_report.is_file() else None,
+        json.loads(args.reviewed_cities_report.read_text("utf-8"))
+        if args.reviewed_cities_report and args.reviewed_cities_report.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
