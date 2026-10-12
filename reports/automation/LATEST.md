@@ -2,9 +2,9 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38314691462](https://github.com/tommyv-spec/mercati-italia/actions/runs/38314691462) — UTC 2026-10-12T22:09:03.743505+00:00
+- Ultimo run: [38315295610](https://github.com/tommyv-spec/mercati-italia/actions/runs/38315295610) — UTC 2026-10-12T22:15:28.478328+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: sì
+- Nuova versione di dati: no (contenuto invariato)
 - Schede nel catalogo: **13,779**
 - Schede con date previste a +60 giorni: **11,844**
 - Schede con date previste a +90 giorni: **11,823**
@@ -22,15 +22,15 @@
 - Riconciliazione ISTAT (21 febbraio 2026): attiva, **0** Comuni corretti e **0** titoli ripuliti in questo run; **0** calendari sospesi (**0** date previste), **2** casi ancora ambigui. Nessuna conferma di apertura generata.
 - Revisione manuale di pagine originali e Comuni ISTAT: attiva; **0** Comuni sistemati, **0** punti geografici incompatibili sospesi, **0** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.
 - Protezioni ancora attive nel sito statico DEV: **16** navigazioni sospese, **7** coordinate in quarantena, **16** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
+- Roma Municipio XIII (mappa pubblicata nel 2024): **2** coordinate ancora sospese e **2** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **9** coordinate e **18** navigazioni. Nessuna apertura 2026 confermata dal documento storico.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**765** righe candidate, non cancellate).
 - Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13779** ID originali preservati.
 - Fonti datate negli ultimi 30 giorni: **1203**; oltre soglia: **13**; senza data: **0**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1205**, di cui recenti **1203**.
 - Date previste con origine vecchia/sconosciuta: **0**.
-- Metadati degli enti leggibili: **2/3**.
+- Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
-- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 
 ## Prossimi miglioramenti calcolati
 - verified_source_evidence
