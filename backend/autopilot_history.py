@@ -27,7 +27,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             visitor_display_audit: dict | None = None,
             municipality_report: dict | None = None,
             reviewed_cities: dict | None = None,
-            reviewed_city_static_guard: dict | None = None) -> dict:
+            reviewed_city_static_guard: dict | None = None,
+            roma_xiii_static_guard: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -41,6 +42,19 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     municipalities = municipality_report or {}
     city_review = reviewed_cities or {}
     static_guard = reviewed_city_static_guard or {}
+    rome_guard = roma_xiii_static_guard or {}
+    if rome_guard and (
+        rome_guard.get("schema") != 1 or
+        rome_guard.get("release_safe") is not True or
+        rome_guard.get("market_ids_in_catalog") != metric.get("records") or
+        rome_guard.get("rome_sources_guarded") != 2 or
+        rome_guard.get("current_coordinate_holds") != 2 or
+        rome_guard.get("current_navigation_holds") != 2 or
+        rome_guard.get("original_source_links_preserved") != 2 or
+        rome_guard.get("new_geocodes_added") != 0 or
+        rome_guard.get("market_openings_verified") != 0
+    ):
+        raise ValueError("Untrusted persistent Rome XIII map safety report")
     if static_guard and (
         static_guard.get("schema") != 1 or
         static_guard.get("evidence_sha256") !=
@@ -186,6 +200,16 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "reviewed_city_source_navigation_held_total": int(static_guard.get("navigation_routes_still_blocked",0)),
         "reviewed_city_source_coordinates_held_total": int(static_guard.get("unsafe_coordinates_still_quarantined",0)),
         "reviewed_city_source_final_details_checked": int(static_guard.get("reviewed_cities_in_final_details",0)),
+        "roma_xiii_coordinate_holds_active": int(rome_guard.get("current_coordinate_holds",0)),
+        "roma_xiii_navigation_holds_active": int(rome_guard.get("current_navigation_holds",0)),
+        "all_reviewed_navigation_holds_active": (
+            int(static_guard.get("navigation_routes_still_blocked",0))
+            + int(rome_guard.get("current_navigation_holds",0))
+        ),
+        "all_reviewed_coordinate_holds_active": (
+            int(static_guard.get("unsafe_coordinates_still_quarantined",0))
+            + int(rome_guard.get("current_coordinate_holds",0))
+        ),
         "quality_audit_record_total": int(observed_metrics.get("total",0)),
         "quality_unscheduled_false_labels": int(observed_metrics.get("future_date_quality_mismatch",0)),
         "quality_suspicious_cities": int(observed_metrics.get("suspicious_city",0)),
@@ -244,6 +268,7 @@ def markdown(latest: dict) -> str:
         f"- Riconciliazione ISTAT (21 febbraio 2026): {'attiva' if latest['municipality_istat_enabled'] else 'disattiva'}, **{latest['municipality_city_fixed']}** Comuni corretti e **{latest['municipality_titles_repaired']}** titoli ripuliti in questo run; **{latest['municipality_calendars_quarantined']}** calendari sospesi (**{latest['municipality_forecast_dates_removed']}** date previste), **{latest['municipality_needs_manual_review']}** casi ancora ambigui. Nessuna conferma di apertura generata.",
         f"- Revisione manuale di pagine originali e Comuni ISTAT: {'attiva' if latest['reviewed_city_source_enabled'] else 'in attesa'}; **{latest['reviewed_city_source_corrected']}** Comuni sistemati, **{latest['reviewed_city_source_coordinates_quarantined']}** punti geografici incompatibili sospesi, **{latest['reviewed_city_source_navigation_blocked']}** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.",
         f"- Protezioni ancora attive nel sito statico DEV: **{latest['reviewed_city_source_navigation_held_total']}** navigazioni sospese, **{latest['reviewed_city_source_coordinates_held_total']}** coordinate in quarantena, **{latest['reviewed_city_source_final_details_checked']}** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.",
+        f"- Roma Municipio XIII (mappa pubblicata nel 2024): **{latest['roma_xiii_coordinate_holds_active']}** coordinate ancora sospese e **{latest['roma_xiii_navigation_holds_active']}** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **{latest['all_reviewed_coordinate_holds_active']}** coordinate e **{latest['all_reviewed_navigation_holds_active']}** navigazioni. Nessuna apertura 2026 confermata dal documento storico.",
         f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
         f"- Miglioramento UX reversibile: **{latest['visitor_duplicate_visit_groups']}** gruppi provati dalla stessa fonte, **{latest['visitor_duplicate_buttons_avoided']}** pulsanti ripetuti evitati, **{latest['visitor_bad_city_labels_guarded']}** località anomale non mostrate come Comuni; **{latest['visitor_original_market_ids_retained']}** ID originali preservati.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
@@ -302,6 +327,7 @@ def main():
     p.add_argument("--municipality-report", type=Path)
     p.add_argument("--reviewed-cities-report", type=Path)
     p.add_argument("--reviewed-city-static-guard", type=Path)
+    p.add_argument("--roma-xiii-static-guard", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -334,6 +360,8 @@ def main():
         if args.reviewed_cities_report and args.reviewed_cities_report.is_file() else None,
         json.loads(args.reviewed_city_static_guard.read_text("utf-8"))
         if args.reviewed_city_static_guard and args.reviewed_city_static_guard.is_file() else None,
+        json.loads(args.roma_xiii_static_guard.read_text("utf-8"))
+        if args.roma_xiii_static_guard and args.roma_xiii_static_guard.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
