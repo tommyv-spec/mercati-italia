@@ -300,6 +300,47 @@ jobs:
                   raise ValueError('Empty schema was accepted')
           print('Market identity and coordinate inference remained conservative.')
           PY
+      - name: Verify reusable publisher contracts stay read-only and source-level
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from source_lifecycle import validate_contracts,digest
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          lifecycle=json.loads((root/'source-lifecycle.json').read_text('utf-8'))
+          config=validate_contracts(json.loads(Path('backend/data/market-source-contracts.json').read_text('utf-8')))
+          original=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
+          expected={p['id'] for p in config['normalized_profiles']}
+          if (lifecycle.get('schema')!=1
+              or lifecycle.get('source_contract_schema')!=1
+              or lifecycle.get('read_only') is not True
+              or lifecycle.get('catalog_count')!=original['total']
+              or any(lifecycle.get(field)!=0 for field in (
+                  'market_imports','market_updates','market_confirmations',
+                  'market_identity_deletions'))):
+              raise ValueError('Generic publisher source inspection modified market identities')
+          if policy.get('source_lifecycle',{}).get('enabled') is True:
+              if (lifecycle.get('registry_sha256')!=digest(config)
+                  or not set(lifecycle.get('sources',{})).issubset(expected)
+                  or lifecycle.get('checked_source_profiles') != len(lifecycle['sources'])):
+                  raise ValueError('Unknown source contract or unreviewed publisher identity')
+              for sid,source in lifecycle['sources'].items():
+                  if (source.get('schema')!=1 or
+                      source.get('source_id')!=sid or
+                      source.get('catalog_records_compared')!=original['total'] or
+                      source.get('confirmed_events_created')!=0 or
+                      source.get('market_records_imported')!=0 or
+                      source.get('market_records_edited')!=0 or
+                      source.get('market_ids_deleted')!=0):
+                      raise ValueError('Generic source audit falsely approved a market: '+sid)
+          print('DECLARATIVE_SOURCE_CONTRACTS',json.dumps({
+              'publisher_sources_checked':lifecycle.get('checked_source_profiles',0),
+              'catalog_market_ids_unchanged':original['total'],
+              'new_events_or_markets_claimed':0
+          }))
+          PY
       - name: Block unreviewed Lombardia overlap promotions
         run: |
           python - <<'PY'
@@ -947,7 +988,7 @@ jobs:
           test -s autopilot-output/SOURCE_SCHEMA.md
           cp autopilot-output/source-probes.json reports/automation/source-probes.json
           cp autopilot-output/SOURCE_SCHEMA.md reports/automation/SOURCE_SCHEMA.md
-          for item in source-evidence.json SOURCE_EVIDENCE.md source-changes.json SOURCE_CHANGES.md freshness.json FRESHNESS.md freshness-alert.json; do
+          for item in source-evidence.json SOURCE_EVIDENCE.md source-changes.json SOURCE_CHANGES.md freshness.json FRESHNESS.md freshness-alert.json source-lifecycle.json SOURCE_LIFECYCLE.md; do
             test -s "autopilot-output/$item"
             cp "autopilot-output/$item" "reports/automation/$item"
           done
