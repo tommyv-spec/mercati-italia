@@ -152,6 +152,35 @@ class AutopilotHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Untrusted official enrichment"):
             summary(decision(),None,None,"bad",None,None,None,None,None,None,official)
 
+    def test_review_only_quality_metrics_persist_without_erasing_markets(self):
+        q={"schema":1, "review_only":True,
+           "market_updates_applied":0,
+           "market_confirmations_created":0,
+           "market_identities_deleted":0,
+           "quality_release_safe":True,
+           "metrics":{
+               "total":13779,
+               "future_date_quality_mismatch":0,
+               "suspicious_city":52,
+               "review_only_duplicate_groups":755,
+               "review_only_potential_extra_rows":812,
+               "future_dates_missing":1984,
+           }}
+        r=summary(decision(),None,None,"quality",None,None,None,None,None,None,None,q)
+        self.assertEqual(r["quality_audit_record_total"],13779)
+        self.assertEqual(r["quality_unscheduled_false_labels"],0)
+        self.assertEqual(r["quality_suspicious_cities"],52)
+        self.assertEqual(r["quality_potential_weekly_duplicate_groups"],755)
+        self.assertIn("Audit nazionale", __import__("autopilot_history").markdown(r))
+        self.assertEqual(r["documented_verification_count"],0)
+
+    def test_bad_catalog_quality_claim_cannot_be_reported_as_approved(self):
+        q={"schema":1,"review_only":True,"market_updates_applied":1,
+           "market_confirmations_created":0,
+           "market_identities_deleted":0,"quality_release_safe":True}
+        with self.assertRaisesRegex(ValueError,"Untrusted national catalog"):
+            summary(decision(),None,None,"quality",None,None,None,None,None,None,None,q)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)

@@ -22,7 +22,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             lombardia_overlap: dict | None = None,
             bologna_overlap: dict | None = None,
             corciano_overlap: dict | None = None,
-            official_enrichment: dict | None = None) -> dict:
+            official_enrichment: dict | None = None,
+            catalog_quality: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -32,6 +33,17 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
                       for item in registry.get("sources", []))
     freshness_metrics = (freshness or {}).get("metrics", {})
     publisher_checks = (rights or {}).get("source_evidence", [])
+    observed_quality = catalog_quality or {}
+    if observed_quality and (
+        observed_quality.get("schema") != 1
+        or observed_quality.get("review_only") is not True
+        or observed_quality.get("market_updates_applied") != 0
+        or observed_quality.get("market_confirmations_created") != 0
+        or observed_quality.get("market_identities_deleted") != 0
+        or observed_quality.get("quality_release_safe") is not True
+    ):
+        raise ValueError("Untrusted national catalog quality audit")
+    observed_metrics=observed_quality.get("metrics",{})
     overlaps = lombardia_overlap or {}
     bologna = bologna_overlap or {}
     corciano = corciano_overlap or {}
@@ -91,6 +103,12 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "official_enrichment_exact_matches": int(enrichment.get("exact_matches",0)),
         "official_enrichment_hours_added": int(enrichment.get("existing_market_hours_added",0)),
         "official_enrichment_attributions_added": int(enrichment.get("official_source_attributions_added",0)),
+        "quality_audit_record_total": int(observed_metrics.get("total",0)),
+        "quality_unscheduled_false_labels": int(observed_metrics.get("future_date_quality_mismatch",0)),
+        "quality_suspicious_cities": int(observed_metrics.get("suspicious_city",0)),
+        "quality_potential_weekly_duplicate_groups": int(observed_metrics.get("review_only_duplicate_groups",0)),
+        "quality_possible_duplicate_extra_rows": int(observed_metrics.get("review_only_potential_extra_rows",0)),
+        "quality_future_dates_missing": int(observed_metrics.get("future_dates_missing",0)),
         "source_age_within_30_days": int(freshness_metrics.get("source_date_within_30d", 0)),
         "source_recent_dataset_only": int(freshness_metrics.get("recent_dataset_only_update", 0)),
         "source_dataset_level_records": int(freshness_metrics.get("dataset_updated_not_specific_market", 0)),
@@ -136,6 +154,7 @@ def markdown(latest: dict) -> str:
         f"- Bologna: **{latest['bologna_source_accepted']}** record non ambigui su **{latest['bologna_source_total']}**, in revisione **{latest['bologna_source_quarantined']}** (fonte storica; nessuna verifica singolo evento).",
         f"- Corciano: **{latest['corciano_source_accepted']}** record senza conflitti su **{latest['corciano_source_total']}**, in revisione **{latest['corciano_source_quarantined']}**, impronta sorgente **{latest['corciano_source_sha256'] or 'non disponibile'}**.",
         f"- Enrichment ufficiale: {'attivo' if latest['official_enrichment_enabled'] else 'disattivo'}; **{latest['official_enrichment_hours_added']}** orari mancanti recuperati in questo run, **{latest['official_enrichment_attributions_added']}** fonti collegate, **{latest['official_enrichment_exact_matches']}** corrispondenze esatte su **{latest['official_enrichment_held_rows']}** record fonte in revisione.",
+        f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
         f"- Aggiornamenti del solo dataset (non dei singoli mercati): **{latest['source_dataset_level_records']}**, di cui recenti **{latest['source_recent_dataset_only']}**.",
         f"- Date previste con origine vecchia/sconosciuta: **{latest['forecast_from_stale_sources']}**.",
@@ -187,6 +206,7 @@ def main():
     p.add_argument("--bologna-overlap", type=Path)
     p.add_argument("--corciano-overlap", type=Path)
     p.add_argument("--official-enrichment", type=Path)
+    p.add_argument("--catalog-quality", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -209,6 +229,8 @@ def main():
         if args.corciano_overlap and args.corciano_overlap.is_file() else None,
         json.loads(args.official_enrichment.read_text("utf-8"))
         if args.official_enrichment and args.official_enrichment.is_file() else None,
+        json.loads(args.catalog_quality.read_text("utf-8"))
+        if args.catalog_quality and args.catalog_quality.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
