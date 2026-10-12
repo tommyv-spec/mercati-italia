@@ -26,7 +26,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             catalog_quality: dict | None = None,
             visitor_display_audit: dict | None = None,
             municipality_report: dict | None = None,
-            reviewed_cities: dict | None = None) -> dict:
+            reviewed_cities: dict | None = None,
+            reviewed_city_static_guard: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -39,6 +40,21 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     observed_quality = catalog_quality or {}
     municipalities = municipality_report or {}
     city_review = reviewed_cities or {}
+    static_guard = reviewed_city_static_guard or {}
+    if static_guard and (
+        static_guard.get("schema") != 1 or
+        static_guard.get("evidence_sha256") !=
+            "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f" or
+        static_guard.get("release_safe") is not True or
+        static_guard.get("manifest_records") != metric.get("records") or
+        static_guard.get("reviewed_cities_in_final_details") != 13 or
+        static_guard.get("reviewed_cities_in_search_index") != 13 or
+        static_guard.get("source_urls_preserved") != 13 or
+        static_guard.get("navigation_routes_still_blocked") != 13 or
+        static_guard.get("unsafe_coordinates_still_quarantined") != 6 or
+        static_guard.get("individual_market_confirmations") != 0
+    ):
+        raise ValueError("Untrusted persistent publisher city safety report")
     if city_review and (
         city_review.get("schema") != 1 or
         city_review.get("reviewed_at") != "2026-10-12" or
@@ -167,6 +183,9 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "reviewed_city_source_corrected": int(city_review.get("counts",{}).get("city_fixed",0)),
         "reviewed_city_source_coordinates_quarantined": int(city_review.get("counts",{}).get("coordinates_quarantined",0)),
         "reviewed_city_source_navigation_blocked": int(city_review.get("counts",{}).get("navigation_hold_added",0)),
+        "reviewed_city_source_navigation_held_total": int(static_guard.get("navigation_routes_still_blocked",0)),
+        "reviewed_city_source_coordinates_held_total": int(static_guard.get("unsafe_coordinates_still_quarantined",0)),
+        "reviewed_city_source_final_details_checked": int(static_guard.get("reviewed_cities_in_final_details",0)),
         "quality_audit_record_total": int(observed_metrics.get("total",0)),
         "quality_unscheduled_false_labels": int(observed_metrics.get("future_date_quality_mismatch",0)),
         "quality_suspicious_cities": int(observed_metrics.get("suspicious_city",0)),
@@ -224,6 +243,7 @@ def markdown(latest: dict) -> str:
         f"- Enrichment ufficiale: {'attivo' if latest['official_enrichment_enabled'] else 'disattivo'}; **{latest['official_enrichment_hours_added']}** orari mancanti recuperati in questo run, **{latest['official_enrichment_attributions_added']}** fonti collegate, **{latest['official_enrichment_exact_matches']}** corrispondenze esatte su **{latest['official_enrichment_held_rows']}** record fonte in revisione.",
         f"- Riconciliazione ISTAT (21 febbraio 2026): {'attiva' if latest['municipality_istat_enabled'] else 'disattiva'}, **{latest['municipality_city_fixed']}** Comuni corretti e **{latest['municipality_titles_repaired']}** titoli ripuliti in questo run; **{latest['municipality_calendars_quarantined']}** calendari sospesi (**{latest['municipality_forecast_dates_removed']}** date previste), **{latest['municipality_needs_manual_review']}** casi ancora ambigui. Nessuna conferma di apertura generata.",
         f"- Revisione manuale di pagine originali e Comuni ISTAT: {'attiva' if latest['reviewed_city_source_enabled'] else 'in attesa'}; **{latest['reviewed_city_source_corrected']}** Comuni sistemati, **{latest['reviewed_city_source_coordinates_quarantined']}** punti geografici incompatibili sospesi, **{latest['reviewed_city_source_navigation_blocked']}** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.",
+        f"- Protezioni ancora attive nel sito statico DEV: **{latest['reviewed_city_source_navigation_held_total']}** navigazioni sospese, **{latest['reviewed_city_source_coordinates_held_total']}** coordinate in quarantena, **{latest['reviewed_city_source_final_details_checked']}** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.",
         f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
         f"- Miglioramento UX reversibile: **{latest['visitor_duplicate_visit_groups']}** gruppi provati dalla stessa fonte, **{latest['visitor_duplicate_buttons_avoided']}** pulsanti ripetuti evitati, **{latest['visitor_bad_city_labels_guarded']}** località anomale non mostrate come Comuni; **{latest['visitor_original_market_ids_retained']}** ID originali preservati.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
@@ -281,6 +301,7 @@ def main():
     p.add_argument("--visitor-display-audit", type=Path)
     p.add_argument("--municipality-report", type=Path)
     p.add_argument("--reviewed-cities-report", type=Path)
+    p.add_argument("--reviewed-city-static-guard", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -311,6 +332,8 @@ def main():
         if args.municipality_report and args.municipality_report.is_file() else None,
         json.loads(args.reviewed_cities_report.read_text("utf-8"))
         if args.reviewed_cities_report and args.reviewed_cities_report.is_file() else None,
+        json.loads(args.reviewed_city_static_guard.read_text("utf-8"))
+        if args.reviewed_city_static_guard and args.reviewed_city_static_guard.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
