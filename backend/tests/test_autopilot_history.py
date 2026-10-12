@@ -97,6 +97,79 @@ class AutopilotHistoryTests(unittest.TestCase):
             summary(decision(),None,None,"unsafe-rome",
                     roma_xiii_static_guard=rome)
 
+    def test_five_roma_market_additions_correctly_bridge_prior_city_review_total(self):
+        import json
+        from roma_xiii_2026_venues import EXPECTED,EVIDENCE_FILE,checksum
+        evidence=json.loads(EVIDENCE_FILE.read_text("utf-8"))
+        old=12645
+        venue={
+            "schema":1,"enabled":True,
+            "source_manifest_sha256":checksum(evidence),
+            "source_market_identities":8,
+            "official_preexisting_plateatici":2,
+            "candidate_venue_records":5,
+            "existing_catalog_records":old,
+            "new_market_ids":sorted(EXPECTED),
+            "already_published_curated_ids":[],
+            "new_market_count":5,"records_added":5,
+            "records_removed":0,"existing_records_changed":0,
+            "new_coordinates_added":0,"new_opening_confirmations":0,
+            "new_human_verifications":0,
+            "held_2026_fogaccia_tuesday_single_stall":True,
+            "held_urbano_ii_relocation":True,
+        }
+        proof={
+            "schema":1,"release_safe":True,
+            "reviewed_source_digest":checksum(evidence),
+            "market_count_in_final_manifest":12650,
+            "reviewed_2026_venue_identifiers":5,
+            "forecast_only_markets":4,
+            "route_holds_in_details":5,
+            "route_holds_in_search_index":5,
+            "original_publisher_source_links_retained":5,
+            "geocoordinates_invented":0,
+            "verified_future_markets_created":0,
+            "excluded_fogaccia_tuesday_one_vendor":True,
+            "excluded_pending_pineta_sacchetti_relocation":True,
+        }
+        city={
+            "schema":1,"reviewed_at":"2026-10-12",
+            "reviewed_evidence_digest":
+                "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
+            "records_total":old,
+            "individual_events_confirmed":0,"publisher_links_replaced":0,
+            "opening_dates_added":0,"market_records_deleted":0,
+            "counts":{"city_fixed":0,"coordinates_quarantined":0,"navigation_hold_added":0},
+        }
+        report=summary(decision(),None,None,"source-growth",
+                       reviewed_cities=city,
+                       roma_xiii_2026_report=venue,
+                       roma_xiii_2026_final_guard=proof)
+        self.assertEqual(report["record_count"],12650)
+        self.assertEqual(report["roma_xiii_2026_new_venues_this_run"],5)
+        self.assertEqual(report["roma_xiii_2026_reviewed_venues_active"],5)
+        self.assertEqual(report["roma_xiii_2026_forecast_only_venues"],4)
+        self.assertIn("Roma XIII nuove fonti comunali",
+                      __import__("autopilot_history").markdown(report))
+        stale=venue.copy()
+        stale["new_market_ids"]=[]
+        with self.assertRaisesRegex(ValueError,"Untrusted source-bound"):
+            summary(decision(),None,None,"incorrect-source-growth",
+                    reviewed_cities=city,roma_xiii_2026_report=stale,
+                    roma_xiii_2026_final_guard=proof)
+        replay=venue.copy()
+        replay["existing_catalog_records"]=12650
+        replay["records_added"]=0
+        replay["new_market_count"]=0
+        replay["new_market_ids"]=[]
+        replay["already_published_curated_ids"]=sorted(EXPECTED)
+        city["records_total"]=12650
+        second=summary(decision(),None,None,"replay",reviewed_cities=city,
+                       roma_xiii_2026_report=replay,
+                       roma_xiii_2026_final_guard=proof)
+        self.assertEqual(second["roma_xiii_2026_new_venues_this_run"],0)
+        self.assertEqual(second["roma_xiii_2026_reviewed_venues_active"],5)
+
     def test_metrics_without_pii_and_priority_order(self):
         result=summary(
             decision(),
