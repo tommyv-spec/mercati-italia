@@ -531,6 +531,14 @@ jobs:
           PY
       - name: Verify hashes, index and conservative source integrity
         run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Block release if reviewed city safety is missing in final static JSON
+        run: |
+          python backend/reviewed_city_static_guard.py \
+            --manifest public/data/v1/manifest.json \
+            --evidence backend/data/reviewed-city-evidence-2026-10-12.json \
+            --policy backend/autopilot_policy.json \
+            --daily-report autopilot-output/reviewed-cities.json \
+            --out autopilot-output/reviewed-city-static-safety.json
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -622,6 +630,7 @@ jobs:
           path: |
             autopilot-output/reversible-display-duplicates.json
             autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
+            autopilot-output/reviewed-city-static-safety.json
           retention-days: 30
           if-no-files-found: error
       - name: Save tested static distribution (for separate DEV publication)
@@ -750,6 +759,8 @@ jobs:
           test -s autopilot-output/reviewed-cities-release-guard.json
           cp autopilot-output/reviewed-cities.json reports/automation/reviewed-cities.json
           cp autopilot-output/reviewed-cities-release-guard.json reports/automation/reviewed-cities-release-guard.json
+          test -s autopilot-output/reviewed-city-static-safety.json
+          cp autopilot-output/reviewed-city-static-safety.json reports/automation/reviewed-city-static-safety.json
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
