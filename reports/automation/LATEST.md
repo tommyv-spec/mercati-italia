@@ -2,13 +2,13 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38303550354](https://github.com/tommyv-spec/mercati-italia/actions/runs/38303550354) — UTC 2026-10-12T20:22:57.812517+00:00
+- Ultimo run: [38312515566](https://github.com/tommyv-spec/mercati-italia/actions/runs/38312515566) — UTC 2026-10-12T21:47:25.531174+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
 - Schede nel catalogo: **13,779**
-- Schede con date previste a +60 giorni: **11,775**
-- Schede con date previste a +90 giorni: **11,754**
-- Indice nazionale gzip: **394.0 KiB**
+- Schede con date previste a +60 giorni: **11,844**
+- Schede con date previste a +90 giorni: **11,823**
+- Indice nazionale gzip: **394.4 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
 - Orari mancanti: **10,839**
@@ -19,17 +19,18 @@
 - Bologna: **0** record non ambigui su **0**, in revisione **0** (fonte storica; nessuna verifica singolo evento).
 - Corciano: **2** record senza conflitti su **4**, in revisione **2**, impronta sorgente **1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121**.
 - Enrichment ufficiale: attivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **132** corrispondenze esatte su **233** record fonte in revisione.
-- Riconciliazione ISTAT (21 febbraio 2026): attiva, **0** Comuni corretti e **0** titoli ripuliti in questo run; **0** calendari sospesi (**0** date previste), **4** casi ancora ambigui. Nessuna conferma di apertura generata.
+- Riconciliazione ISTAT (21 febbraio 2026): attiva, **0** Comuni corretti e **0** titoli ripuliti in questo run; **0** calendari sospesi (**0** date previste), **2** casi ancora ambigui. Nessuna conferma di apertura generata.
 - Revisione manuale di pagine originali e Comuni ISTAT: attiva; **0** Comuni sistemati, **0** punti geografici incompatibili sospesi, **0** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.
 - Protezioni ancora attive nel sito statico DEV: **16** navigazioni sospese, **7** coordinate in quarantena, **16** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**765** righe candidate, non cancellate).
 - Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13779** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1127**; oltre soglia: **89**; senza data: **0**.
-- Aggiornamenti del solo dataset (non dei singoli mercati): **1129**, di cui recenti **1127**.
+- Fonti datate negli ultimi 30 giorni: **1203**; oltre soglia: **13**; senza data: **0**.
+- Aggiornamenti del solo dataset (non dei singoli mercati): **1205**, di cui recenti **1203**.
 - Date previste con origine vecchia/sconosciuta: **0**.
-- Metadati degli enti leggibili: **3/3**.
+- Metadati degli enti leggibili: **2/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
+- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 
 ## Prossimi miglioramenti calcolati
 - verified_source_evidence

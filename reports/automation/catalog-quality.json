@@ -7,7 +7,7 @@
   "metrics": {
     "address_missing": 3504,
     "coordinates_missing": 228,
-    "future_dates_missing": 1953,
+    "future_dates_missing": 1877,
     "hours_missing": 10839,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 765,
@@ -79,7 +79,7 @@
       "markets": 3947,
       "hours_missing": 2766,
       "address_missing": 754,
-      "future_dates_missing": 611,
+      "future_dates_missing": 535,
       "coordinates_missing": 218
     },
     {
@@ -666,13 +666,13 @@
   "potential_duplicates_are_not_confirmed": true,
   "baseline_delta": {
     "total": 0,
-    "hours_missing": -1,
+    "hours_missing": 0,
     "address_missing": 0,
-    "coordinates_missing": 5,
-    "future_dates_missing": 0,
+    "coordinates_missing": 0,
+    "future_dates_missing": -76,
     "future_date_quality_mismatch": 0,
-    "suspicious_city": -2,
-    "review_only_potential_extra_rows": 1
+    "suspicious_city": 0,
+    "review_only_potential_extra_rows": 0
   },
   "quality_regressions": [],
   "quality_release_safe": true

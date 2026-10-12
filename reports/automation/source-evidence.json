@@ -65,7 +65,7 @@
       "publisher_license_reference": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
       "publisher_metadata_updated_at": "2026-10-06",
       "publisher_metadata_url": "https://www.dati.lombardia.it/api/views/68zx-njaw.json",
-      "publisher_response_sha256": "a238dfffba1905e03de20cd825fd0852bc4b652d42c4a8e6b3475467e268ffd1",
+      "publisher_response_sha256": "20453c2b3a2dccaf101fbc2771d36d95e270db5164e1afe5112a840b812a257f",
       "record_level_freshness_verified": false,
       "review_required": [
         "license_terms",
@@ -83,37 +83,29 @@
       "catalog_license_claim": "Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)",
       "catalog_license_code": "CC-BY-4.0",
       "catalog_page": "https://www.dati.gov.it/node/view-dataset/dataset?id=2d7352f7-7d9f-4be7-927b-de1b760993c3",
-      "distribution_specific_license": true,
-      "edition_year": 2022,
+      "error": "TimeoutError: The read operation timed out",
       "import_permission_granted": false,
-      "license_comparison": "publisher_claim_missing_review_required",
+      "license_comparison": "not_evaluated",
       "license_legally_reviewed": false,
       "market_events_confirmed": 0,
       "market_record_note": "Selected CSV is explicitly Giugno 2022; historical hours cannot confirm 2026.",
-      "provider_data_timestamp_type": "resource_last_modified",
       "publisher": "Roma Capitale",
       "publisher_claims_are_not_legal_review": true,
-      "publisher_data_updated_at": "2022-07-04",
-      "publisher_identifier": "e2e30174-ba7f-4319-bf4a-c13f80278c0c",
-      "publisher_license_claim": "https://w3id.org/italia/controlled-vocabulary/licences/A21_CCBY40",
+      "publisher_data_updated_at": null,
+      "publisher_license_claim": null,
       "publisher_license_code": null,
-      "publisher_license_reference": "",
-      "publisher_metadata_updated_at": "2023-09-25",
+      "publisher_metadata_updated_at": null,
       "publisher_metadata_url": "https://dati.comune.roma.it/catalog/api/3/action/package_show?id=e2e30174-ba7f-4319-bf4a-c13f80278c0c",
-      "publisher_response_sha256": "2ab85403fe3fcbbc4faa1ad7e0e695d363946beaf0f04e9435e23d71a76e79de",
       "record_level_freshness_verified": false,
       "review_required": [
         "license_terms",
         "attribution",
         "market_identity",
         "operating_dates",
-        "coverage",
-        "historical_resource_edition"
+        "coverage"
       ],
-      "source_data_age_days": 1561,
-      "source_data_age_label": "dataset_metadata_over_365d",
       "source_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
-      "status": "metadata_checked"
+      "status": "needs_review"
     }
   ],
   "source_requests_max": 3

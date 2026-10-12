@@ -2,35 +2,11 @@
   "coordinates_changed": 0,
   "counts": {
     "cross_market_scraper_text": 20,
-    "needs_manual_municipality_review": 4,
-    "suspicious_before": 4
+    "needs_manual_municipality_review": 2,
+    "suspicious_before": 2
   },
   "enabled": true,
   "examples": [
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "\"Artigianando",
-      "province": "",
-      "region": "Umbria",
-      "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
-      "source": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": true,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
-      "province": "TV",
-      "region": "Veneto",
-      "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-treviso.html",
-      "suggested_city": null
-    },
     {
       "calendar_cross_contaminated": false,
       "changed": false,
@@ -65,30 +41,6 @@
   "schema": 1,
   "source_file_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
   "unresolved_examples": [
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "\"Artigianando",
-      "province": "",
-      "region": "Umbria",
-      "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
-      "source": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": true,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
-      "province": "TV",
-      "region": "Veneto",
-      "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-treviso.html",
-      "suggested_city": null
-    },
     {
       "calendar_cross_contaminated": false,
       "changed": false,
