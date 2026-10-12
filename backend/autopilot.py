@@ -390,10 +390,33 @@ def run(args):
     save_json(out / "lombardia-overlaps.json", report)
     (out / "LOMBARDIA_OVERLAPS.md").write_text(
         lombardia_overlap_markdown(report), encoding="utf-8")
+    bologna_report = {
+        "schema": 1, "region": "Emilia-Romagna", "source_prefix": "bo-open-",
+        "review_only": True, "source_total": 0, "accepted": 0,
+        "quarantined": 0, "counts": {}, "quarantined_examples": [],
+        "market_confirmations": 0, "deleted_existing_records": 0,
+    }
+    if source_status.get("bologna", {}).get("status") in ("retrieved", "resumed_checkpoint"):
+        bologna_rows = [r for r in feeds if str(r["slug"]).startswith("bo-open-")]
+        vetted, bologna_report = review_lombardia_overlaps(
+            old_rows, bologna_rows, region="Emilia-Romagna",
+            source_prefix="bo-open-", max_conflicts=48
+        )
+        if len(vetted) < 8:
+            raise ValueError("Bologna: excessive exact venue overlaps; review before import")
+        vetted_ids = {r["slug"] for r in vetted}
+        feeds = [r for r in feeds if not str(r["slug"]).startswith("bo-open-")
+                 or r["slug"] in vetted_ids]
+        source_status["bologna"]["accepted_after_overlap_qa"] = len(vetted)
+        source_status["bologna"]["quarantined_review"] = bologna_report["quarantined"]
+    save_json(out / "bologna-overlaps.json", bologna_report)
+    (out / "BOLOGNA_OVERLAPS.md").write_text(
+        lombardia_overlap_markdown(bologna_report), encoding="utf-8")
     checkpoint(out, "sources", {
         "total_fetched": raw_fetched, "total_after_review": len(feeds),
         "sources": source_status,
         "lombardia_overlap_quarantined": report["quarantined"],
+        "bologna_overlap_quarantined": bologna_report["quarantined"],
     })
     merged, merge_stats = combine(old_rows, feeds)
     merged, absent_stats = quarantine_absent_official_lombardia(
