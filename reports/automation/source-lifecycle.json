@@ -29,7 +29,7 @@
       },
       "diff": {
         "changed_existing_identities_since_last_scan": 0,
-        "first_observation": true,
+        "first_observation": false,
         "missing_source_identities_since_last_scan": 0,
         "new_source_identities_since_last_scan": 0
       },
@@ -48,6 +48,12 @@
       "schema": 1,
       "source_data_scope": "dataset_not_individual_market",
       "source_id": "corciano",
+      "source_screening": {
+        "already_quarantined_by_venue_overlap_review": 2,
+        "outside_catalog_source_ids_not_necessarily_new_markets": 2,
+        "remaining_identities_without_overlap_disposition": 0,
+        "source_screening_counts_are_not_market_opening_proofs": true
+      },
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "firenze": {
@@ -62,7 +68,7 @@
       },
       "diff": {
         "changed_existing_identities_since_last_scan": 0,
-        "first_observation": true,
+        "first_observation": false,
         "missing_source_identities_since_last_scan": 0,
         "new_source_identities_since_last_scan": 0
       },
@@ -81,6 +87,12 @@
       "schema": 1,
       "source_data_scope": "dataset_not_individual_market",
       "source_id": "firenze",
+      "source_screening": {
+        "already_quarantined_by_venue_overlap_review": 0,
+        "outside_catalog_source_ids_not_necessarily_new_markets": 0,
+        "remaining_identities_without_overlap_disposition": 0,
+        "source_screening_counts_are_not_market_opening_proofs": true
+      },
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "lombardia": {
@@ -97,7 +109,7 @@
       },
       "diff": {
         "changed_existing_identities_since_last_scan": 0,
-        "first_observation": true,
+        "first_observation": false,
         "missing_source_identities_since_last_scan": 0,
         "new_source_identities_since_last_scan": 0
       },
@@ -1472,6 +1484,12 @@
       "schema": 1,
       "source_data_scope": "dataset_not_individual_market",
       "source_id": "lombardia",
+      "source_screening": {
+        "already_quarantined_by_venue_overlap_review": 233,
+        "outside_catalog_source_ids_not_necessarily_new_markets": 233,
+        "remaining_identities_without_overlap_disposition": 0,
+        "source_screening_counts_are_not_market_opening_proofs": true
+      },
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "milano": {
@@ -1485,7 +1503,7 @@
       },
       "diff": {
         "changed_existing_identities_since_last_scan": 0,
-        "first_observation": true,
+        "first_observation": false,
         "missing_source_identities_since_last_scan": 0,
         "new_source_identities_since_last_scan": 0
       },
@@ -1585,6 +1603,12 @@
       "schema": 1,
       "source_data_scope": "dataset_not_individual_market",
       "source_id": "milano",
+      "source_screening": {
+        "already_quarantined_by_venue_overlap_review": 0,
+        "outside_catalog_source_ids_not_necessarily_new_markets": 0,
+        "remaining_identities_without_overlap_disposition": 0,
+        "source_screening_counts_are_not_market_opening_proofs": true
+      },
       "vanished_source_ids_do_not_imply_market_closed": true
     }
   }

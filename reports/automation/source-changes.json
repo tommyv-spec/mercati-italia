@@ -6,8 +6,8 @@
     "publisher_data_date_advanced": 0,
     "publisher_data_date_rolled_back": 0,
     "publisher_metadata_changed": 0,
-    "publisher_unavailable": 1,
-    "recovered": 0,
+    "publisher_unavailable": 0,
+    "recovered": 1,
     "timestamp_interpretation_corrected": 0,
     "unchanged": 3
   },
@@ -39,12 +39,12 @@
     },
     {
       "automatic_import_allowed": false,
-      "change_type": "publisher_unavailable",
-      "current_data_date": null,
-      "current_timestamp_kind": null,
+      "change_type": "recovered",
+      "current_data_date": "2022-07-04",
+      "current_timestamp_kind": "resource_last_modified",
       "events_confirmed": 0,
-      "prior_data_date": "2022-07-04",
-      "prior_timestamp_kind": "resource_last_modified",
+      "prior_data_date": null,
+      "prior_timestamp_kind": null,
       "publisher": "Roma Capitale",
       "source_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3"
     },
