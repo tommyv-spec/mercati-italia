@@ -938,8 +938,18 @@ def run(args):
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
     if milano_enabled:
+        # The Milano guard is a *same-ID* source audit. Its source baseline
+        # predates the separately reviewed five Roma venue additions on the
+        # first run only; the independently source-proven new IDs must not be
+        # mistaken for a Milano identity mutation.
+        reviewed_roma_added = set(roma_2026_report["new_market_ids"])
+        if reviewed_roma_added and (
+                len(reviewed_roma_added) != roma_2026_report["records_added"]
+                or any(not x.startswith("rm13-") for x in reviewed_roma_added)):
+            raise ValueError("Untrusted Roma market IDs in Milano source proof")
+        milano_comparable = [x for x in new_rows if x["slug"] not in reviewed_roma_added]
         milano_static_guard = verify_milano_2026_exported(
-            old_rows, new_rows, milano_report, pdf_evidence, gis_evidence, args.today
+            old_rows, milano_comparable, milano_report, pdf_evidence, gis_evidence, args.today
         )
         if milano_static_guard.get("quality_safe") is not True:
             raise ValueError("Reviewed Milano 2026 forecasts lost source/safety in final assets")
