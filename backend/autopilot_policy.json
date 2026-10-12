@@ -70,5 +70,9 @@
     "anomaly_issue_title": "[Mercati autopilot] Verifica richiesta",
     "artifact_retention_days": 30,
     "checkpoint_on_every_phase": true
+  },
+  "enrichment": {
+    "enabled": true,
+    "source": "lombardia-mercap"
   }
 }

@@ -133,3 +133,7 @@ Le osservazioni originali del publisher, i conteggi, gli ID e i test si trovano 
 ## Conservazione storica
 
 Le esecuzioni avvengono ogni giorno, quindi `backend/autopilot_history.py` conserva le ultime **400 scorecard versionate** nel repository (oltre un anno). Gli artefatti GitHub Actions, inclusi i file candidati e gli screenshot, scadono secondo il retention del workflow (tipicamente 7–30 giorni); i metodi, i test golden, gli esiti essenziali e gli SHA-256 sono invece salvati in Git.
+
+## Migliorare le schede già presenti prima di importare duplicati
+
+[Metodo riutilizzabile, casi osservati e prova end-to-end](OFFICIAL_ENRICHMENT_METHOD.md): dati Regione Lombardia, confronto Comune/indirizzo/giorno con geolocalizzazione compatibile, orari incompleti recuperati senza verifiche inventate. Prima della pubblicazione DEV il workflow esegue confronto delle identità, audit, test mobile e checkpoint.
