@@ -114,3 +114,7 @@ Per aggiornare con fonti vere usare **Run workflow** del job GitHub, opzione off
 - `backend/lombardia_overlap.py` fa una seconda verifica su Comune/indirizzo/giorno; casi di stessa sede senza prova sufficiente vengono esclusi dalla nuova importazione e segnalati, senza cancellare le vecchie schede. Risultati ricorrenti: `reports/automation/lombardia-overlaps.json` e `LOMBARDIA_OVERLAPS.md`.
 - `backend/autopilot.py` può mettere in quarantena date non più supportate quando un'identità MERCap sparisce dall'ultimo feed valido; cali anomali di righe bloccano il rilascio.
 - La prova completa, solo di lettura e senza pubblicazione, si riesegue da GitHub Actions → `Lombardia MERCap full integration audit (no publish)`. Prima dell'attivazione giornaliera si eseguono gli stessi controlli, senza eccezioni manuali.
+
+## Applicazione verificata: Comune di Bologna
+
+Le osservazioni originali del publisher, i conteggi, gli ID e i test si trovano nel [caso manuale Bologna](BOLOGNA_SOURCE_METHOD.md). È vietato abilitare i dati senza il ciclo completo di QA previsto.
