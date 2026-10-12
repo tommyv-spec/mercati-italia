@@ -220,6 +220,37 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"source contract"):
             inspect_normalized(OFFICIAL,examples,catalog())
 
+    def test_generic_source_screening_does_not_reopen_known_overlap_quarantine(self):
+        from tempfile import TemporaryDirectory
+        with TemporaryDirectory() as work:
+            source_folder=Path(work)
+            rows=[]
+            for i,name in enumerate(("corciano","ellera","mantignana","san-mariano")):
+                rows.append({
+                    "slug":"pg-corciano-mercato-di-"+name,
+                    "nome":"Mercato di "+name,
+                    "citta":"Corciano","regione":"Umbria","indirizzo":"Piazza Test "+str(i),
+                    "url_fonte":RAW["attribution_url"],
+                    "status":"non_confermato","date_quality":"prevista",
+                    "verificato_il":"","position_quality":"non_verificata",
+                    "orario_testo":"08:00 - 13:00",
+                    "ricorrenza_testo":"settimanale - lunedì",
+                    "aggiornato_il":"2026-01-07",
+                })
+            (source_folder/"corciano.json").write_text(json.dumps(rows),"utf-8")
+            result=run(CFG,catalog(),source_dir=source_folder,
+                       source_status={"corciano":{"status":"retrieved","quarantined_review":2}})
+            scan=result["sources"]["corciano"]["source_screening"]
+            self.assertEqual(scan["outside_catalog_source_ids_not_necessarily_new_markets"],2)
+            self.assertEqual(scan["already_quarantined_by_venue_overlap_review"],2)
+            self.assertEqual(scan["remaining_identities_without_overlap_disposition"],0)
+            self.assertTrue(scan["source_screening_counts_are_not_market_opening_proofs"])
+            self.assertEqual(result["market_imports"],0)
+            self.assertIn("Già trattenuti dal controllo",markdown(result))
+            with self.assertRaisesRegex(ValueError,"overlap quarantine"):
+                run(CFG,catalog(),source_dir=source_folder,
+                    source_status={"corciano":{"quarantined_review":"unbounded"}})
+
     def test_online_errors_leave_prior_checkpoint_not_erase_markets(self):
         first=run(CFG,catalog(),probe_raw=True,raw_fetch=lambda url:(csv_blob(),False))
         self.assertEqual(first["source_checks"]["source_level_raw_profiles_checked"],1)
