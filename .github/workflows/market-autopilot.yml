@@ -460,6 +460,43 @@ jobs:
           npm audit --omit=dev --audit-level=high
           node --test tests/*.test.mjs
           npm run build -- --base=./
+      - name: Validate reversible duplicate display and malformed city labels on real candidate
+        run: |
+          set -euo pipefail
+          node scripts/reversible-duplicate-audit.mjs \
+            --manifest public/data/v1/manifest.json \
+            --out autopilot-output/reversible-display-duplicates.json \
+            --report autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs'
+          const current=JSON.parse(fs.readFileSync('autopilot-output/reversible-display-duplicates.json','utf8'))
+          const catalog=JSON.parse(fs.readFileSync('autopilot-output/catalog-quality.json','utf8'))
+          const oldPath='reports/automation/reversible-display-duplicates.json'
+          const prior=fs.existsSync(oldPath) ? JSON.parse(fs.readFileSync(oldPath,'utf8')) : null
+          const m=current.metrics
+          if (current.schema !== 1 || current.review_only !== true ||
+              current.display_grouping_only !== true || current.market_data_modified !== false ||
+              m.original_records !== catalog.metrics.total ||
+              m.ids_retained !== catalog.metrics.total ||
+              m.malformed_source_city_labels_guarded_in_ui !== catalog.metrics.suspicious_city ||
+              m.market_identities_deleted !== 0 ||
+              m.event_confirmations_created !== 0 ||
+              m.verification_claims_created !== 0 ||
+              m.suppressed_repeat_buttons_only > m.original_records_in_reversible_groups) {
+            throw new Error('Visitor grouping or bad-city protection contradicts the source quality audit')
+          }
+          if (prior?.metrics) {
+            if (m.malformed_source_city_labels_guarded_in_ui >
+                prior.metrics.malformed_source_city_labels_guarded_in_ui + 10) {
+              throw new Error('Sudden rise in malformed city labels; manual source review required')
+            }
+            if (m.suppressed_repeat_buttons_only >
+                Math.max(50,Math.floor(prior.metrics.suppressed_repeat_buttons_only * 1.35))) {
+              throw new Error('Sudden rise in display duplicates; manual source review required')
+            }
+          }
+          console.log('DAILY_VISITOR_QUALITY',JSON.stringify(m))
+          NODE
       - name: Prove ordinary Cloudflare catalog visits avoid Functions
         run: |
           node - <<'NODE'
@@ -488,6 +525,15 @@ jobs:
         env:
           UI_BASE: http://127.0.0.1:4173/
         run: node tests/ui-smoke.mjs
+      - name: Retain tested visitor duplicate and localities report
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercati-visitor-quality-${{ github.run_id }}
+          path: |
+            autopilot-output/reversible-display-duplicates.json
+            autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
+          retention-days: 30
+          if-no-files-found: error
       - name: Save tested static distribution (for separate DEV publication)
         uses: actions/upload-artifact@v4
         with:
@@ -529,6 +575,10 @@ jobs:
         with:
           name: ${{ env.BUILD_NAME }}
           path: autopilot-built-site
+      - uses: actions/download-artifact@v4
+        with:
+          name: mercati-visitor-quality-${{ github.run_id }}
+          path: autopilot-output
       - name: Refuse publication if DEV moved after candidate build
         shell: bash
         run: |
@@ -596,6 +646,10 @@ jobs:
           test -s autopilot-output/CATALOG_QUALITY.md
           cp autopilot-output/catalog-quality.json reports/automation/catalog-quality.json
           cp autopilot-output/CATALOG_QUALITY.md reports/automation/CATALOG_QUALITY.md
+          test -s autopilot-output/reversible-display-duplicates.json
+          test -s autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
+          cp autopilot-output/reversible-display-duplicates.json reports/automation/reversible-display-duplicates.json
+          cp autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md reports/automation/REVERSIBLE_DISPLAY_DUPLICATES.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -626,6 +680,7 @@ jobs:
             --corciano-overlap autopilot-output/corciano-overlaps.json \
             --official-enrichment autopilot-output/official-enrichment.json \
             --catalog-quality autopilot-output/catalog-quality.json \
+            --visitor-display-audit autopilot-output/reversible-display-duplicates.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
