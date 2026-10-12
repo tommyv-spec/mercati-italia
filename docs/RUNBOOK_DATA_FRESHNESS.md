@@ -149,3 +149,10 @@ Vedi [metodo di audit reale e gate di qualità](CATALOG_QUALITY_METHOD.md): 1.45
 ## Eliminare ripetizioni visive senza cancellare i dati
 
 [Protocollo e prove per duplicati e località sospette](REVERSIBLE_DUPLICATES_AND_CITY_QUALITY.md). 382 gruppi di appuntamenti della stessa fonte vengono compressi solo a livello visivo; tutte le 764 schede coinvolte restano apribili. 52 nomi di Comune palesemente corrotti sono mascherati con avviso e indicazioni disabilitate, senza inventare nomi ufficiali. Gli script di QA esaminano sempre tutti i 20 shard e salvano metriche versionate nel ciclo DEV giornaliero.
+
+## Riconciliazione con ISTAT (metodo riutilizzabile)
+
+Vedi [ISTAT 2026 — regole, prova manuale e verifica completa](MUNICIPALITY_ISTAT_METHOD.md).
+Il file ufficiale versionato ha 7.894 Comuni e 20 Regioni; il sistema
+conserva le prove di modifiche, la quarantena calendari, la sicurezza degli
+ID e i 20 casi non ancora dimostrabili, senza inventare verifiche reali.
