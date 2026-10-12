@@ -87,14 +87,15 @@ def validate_contracts(config):
             if not isinstance(sid,str) or not ID_RE.fullmatch(sid) or sid in ids:
                 raise ValueError("Repeated/invalid source contract ID")
             ids.add(sid)
+            minimum=item.get("min_records" if kind=="normalized" else "min_rows")
+            maximum=item.get("max_records" if kind=="normalized" else "max_rows")
             if (item.get("row_kind") not in MARKET_KINDS|OTHER_KINDS
                     or item.get("publication_mode") not in
                        ("shadow_only","existing_adapter_only")
                     or not isinstance(item.get("publisher"),str)
                     or not item["publisher"] or
-                    type(item.get("min_records")) is not int
-                    or type(item.get("max_records")) is not int
-                    or not 0<=item["min_records"]<=item["max_records"]<=MAX_ROWS):
+                    type(minimum) is not int or type(maximum) is not int
+                    or not 0<=minimum<=maximum<=MAX_ROWS):
                 raise ValueError("Untrusted dataset granularity, bounds or publication policy")
             if kind=="normalized":
                 if (item.get("publication_mode")!="existing_adapter_only"
