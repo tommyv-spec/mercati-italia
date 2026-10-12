@@ -238,13 +238,35 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
                     "aggiornato_il":"2026-01-07",
                 })
             (source_folder/"corciano.json").write_text(json.dumps(rows),"utf-8")
+            excluded_ids=[rows[2]["slug"],rows[3]["slug"]]
+            checked_status={"corciano":{"status":"retrieved","quarantined_review":2,
+                                        "accepted_after_overlap_qa":2}}
             result=run(CFG,catalog(),source_dir=source_folder,
-                       source_status={"corciano":{"status":"retrieved","quarantined_review":2}})
+                       source_status=checked_status,
+                       source_dispositions={"corciano":excluded_ids})
             scan=result["sources"]["corciano"]["source_screening"]
             self.assertEqual(scan["outside_catalog_source_ids_not_necessarily_new_markets"],2)
             self.assertEqual(scan["already_quarantined_by_venue_overlap_review"],2)
             self.assertEqual(scan["remaining_identities_without_overlap_disposition"],0)
+            self.assertTrue(scan["exact_reviewed_id_partition_verified"])
+            self.assertEqual(len(scan["quarantine_source_id_set_sha256"]),64)
             self.assertTrue(scan["source_screening_counts_are_not_market_opening_proofs"])
+            # A matching NUMBER alone must not hide unresolved source IDs.
+            unproven=run(CFG,catalog(),source_dir=source_folder,
+                         source_status=checked_status)
+            pending=unproven["sources"]["corciano"]["source_screening"]
+            self.assertEqual(pending["already_quarantined_by_venue_overlap_review"],0)
+            self.assertEqual(pending["remaining_identities_without_overlap_disposition"],2)
+            self.assertTrue(pending["screening_missing_exact_source_id_proof"])
+            with self.assertRaisesRegex(ValueError,"Already published"):
+                run(CFG,catalog(),source_dir=source_folder,
+                    source_status=checked_status,
+                    source_dispositions={"corciano":[rows[0]["slug"],rows[3]["slug"]]})
+            with self.assertRaisesRegex(ValueError,"Count of exact reviewed exclusions"):
+                run(CFG,catalog(),source_dir=source_folder,
+                    source_status={"corciano":{"quarantined_review":1,
+                                              "accepted_after_overlap_qa":3}},
+                    source_dispositions={"corciano":excluded_ids})
             self.assertEqual(result["market_imports"],0)
             self.assertIn("Già trattenuti dal controllo",markdown(result))
             with self.assertRaisesRegex(ValueError,"overlap quarantine"):
