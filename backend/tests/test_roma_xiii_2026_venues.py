@@ -134,7 +134,7 @@ class Rome2026MarketsTests(unittest.TestCase):
         cases=validate_manifest(EVIDENCE)
         sat=make_market(cases["rm13-salt-fogaccia-sabato"])
         self.assertEqual(sat["date"],[])
-        self.assertIn("only the Saturday venue",sat["descrizione"])
+        self.assertIn("only the saturday venue",sat["descrizione"].lower())
         self.assertEqual(cases["rm13-salt-fogaccia-sabato"]["quarantined_other_day"]["evidence_url"],DOC_MOVE)
 
     def test_new_venues_never_override_historic_Casalotti_or_Irnerio(self):
