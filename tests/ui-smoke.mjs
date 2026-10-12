@@ -36,13 +36,32 @@ page.on('request', request => {
   }
 })
 
-async function assertCards() {
-  await page.waitForFunction(() => {
-    const text = document.querySelector('.results-count')?.textContent || ''
-    return !!document.querySelector('.market-card .card-name') &&
-      text.length > 0 && !text.includes('Caricamento')
-  }, null, { timeout: 45000 })
-  await page.locator('.market-card').first().waitFor({ timeout: 45000 })
+async function assertCards({ allowGroupedVenue = false } = {}) {
+  try {
+    await page.waitForFunction((acceptGroups) => {
+      const count = document.querySelector('.results-count')?.textContent || ''
+      const card = document.querySelector('.market-card .card-name')
+      const group = document.querySelector('[data-testid="weekly-city-group"]')
+      return !!(card || (acceptGroups && group)) &&
+        count.length > 0 && !count.includes('Caricamento')
+    }, allowGroupedVenue, { timeout: 45000 })
+    await page.locator(allowGroupedVenue
+      ? '.market-card, [data-testid="weekly-city-group"]' : '.market-card').first()
+      .waitFor({ timeout: 45000 })
+  } catch (error) {
+    const diagnosis = await page.evaluate(() => ({
+      url: window.location.href,
+      resultsCount: document.querySelector('.results-count')?.textContent || '',
+      marketCards: document.querySelectorAll('.market-card').length,
+      weeklyGroups: document.querySelectorAll('[data-testid="weekly-city-group"]').length,
+      bodyText: document.body?.innerText?.slice(0, 2800) || '',
+    }))
+    console.error('MOBILE_RESULTS_DIAGNOSTIC', JSON.stringify({
+      diagnosis, pageErrors, remoteDataRequests,
+    }))
+    await page.screenshot({ path: 'ux-smoke-failed-results.png', animations: 'disabled' })
+    throw error
+  }
 }
 
 try {
@@ -87,9 +106,14 @@ try {
   await page.getByRole('button', { name: /Scegli una città/ }).click()
   await page.locator('.manual-city-input input').fill('Firenze')
   await page.getByRole('button', { name: 'Filtra città' }).click()
-  await assertCards()
-  const firstCity = await page.locator('.market-card').first().innerText()
-  assert.match(firstCity, /Firenze/i, 'Manual city filter did not affect the results')
+  // A group of real weekday markets is a valid Firenze search result,
+  // not an empty result set. The group-specific checks below still
+  // assert the venues and days rather than merely accepting any text.
+  await assertCards({ allowGroupedVenue: true })
+  const citySearchResult = await page.locator(
+    '.market-card, [data-testid="weekly-city-group"]'
+  ).first().innerText()
+  assert.match(citySearchResult, /Firenze/i, 'Manual city filter did not affect the results')
 
   // Firenze's six generic weekday records must appear as one city group,
   // with four physical venue labels after lazy-loading regional details.

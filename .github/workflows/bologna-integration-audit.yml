@@ -13,6 +13,7 @@ on:
       - backend/tests/test_source_bologna.py
       - backend/lombardia_overlap.py
       - backend/autopilot.py
+      - tests/ui-smoke.mjs
 
 permissions:
   contents: read
