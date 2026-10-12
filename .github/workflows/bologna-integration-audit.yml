@@ -4,16 +4,6 @@ name: Bologna official market inventory — full dry-run (no publish)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - improve/data-quality-security-performance-2026-10-11
-    paths:
-      - .github/workflows/bologna-integration-audit.yml
-      - backend/source_bologna.py
-      - backend/tests/test_source_bologna.py
-      - backend/lombardia_overlap.py
-      - backend/autopilot.py
-      - tests/ui-smoke.mjs
 
 permissions:
   contents: read

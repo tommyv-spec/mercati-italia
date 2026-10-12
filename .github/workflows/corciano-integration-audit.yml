@@ -4,17 +4,6 @@ name: Corciano municipal CSV — full integration audit (no publish)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - improve/data-quality-security-performance-2026-10-11
-    paths:
-      - .github/workflows/corciano-integration-audit.yml
-      - backend/source_corciano.py
-      - backend/tests/test_source_corciano.py
-      - backend/corciano_overlap.py
-      - backend/tests/test_corciano_overlap.py
-      - backend/autopilot.py
-      - tests/ui-smoke.mjs
 
 permissions:
   contents: read
@@ -44,14 +33,16 @@ jobs:
           import json
           from pathlib import Path
           base = json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
-          if any(src['id']=='corciano' and src.get('enabled') for src in base['sources']):
-              raise ValueError('Already in daily DEV policy: use scheduled QA')
-          base['sources'].append({
-              'id':'corciano', 'official':True, 'enabled':True,
-              'min_records':4, 'max_records':8,
-              'license':'CC BY 4.0 declared by Comune di Corciano',
-              'stale_source_dates_not_confirmed':True,
-          })
+          prior = next((x for x in base['sources'] if x['id']=='corciano'),None)
+          if prior is None:
+              base['sources'].append({
+                  'id':'corciano', 'official':True, 'enabled':True,
+                  'min_records':4, 'max_records':8,
+                  'license':'CC BY 4.0 declared by Comune di Corciano',
+                  'stale_source_dates_not_confirmed':True,
+              })
+          elif not prior.get('enabled'):
+              raise ValueError('Corciano source explicitly disabled')
           Path('/tmp/corciano-policy.json').write_text(json.dumps(base))
           PY
       - name: Read actual municipality CSV and build only an isolated candidate
