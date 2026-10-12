@@ -93,6 +93,22 @@ class AutopilotHistoryTests(unittest.TestCase):
         self.assertEqual(result["lombardia_source_accepted"], 1127)
         self.assertEqual(result["lombardia_source_quarantined"], 233)
 
+    def test_bologna_quarantine_history_is_explicit_and_not_verification(self):
+        bologna = {"schema": 1,"source_total":48,"accepted":47,
+                   "quarantined":1,"market_confirmations":0,
+                   "deleted_existing_records":0}
+        result = summary(decision(),None,None,"bologna",None,None,None,None,bologna)
+        self.assertEqual(result["bologna_source_total"],48)
+        self.assertEqual(result["bologna_source_accepted"],47)
+        self.assertEqual(result["bologna_source_quarantined"],1)
+        self.assertEqual(result["documented_verification_count"],0)
+
+    def test_bologna_report_cannot_claim_unreviewed_import(self):
+        bad = {"schema":1,"source_total":48,"accepted":47,
+               "quarantined":1,"market_confirmations":1}
+        with self.assertRaisesRegex(ValueError,"Untrusted official overlap"):
+            summary(decision(),None,None,"bad",None,None,None,None,bad)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)
