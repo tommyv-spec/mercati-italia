@@ -217,6 +217,42 @@ class AutopilotHistoryTests(unittest.TestCase):
             summary(decision(),None,None,"unsafe-ui",
                     None,None,None,None,None,None,None,None,bad)
 
+    def test_ISTAT_reconciliation_is_persisted_without_false_openings(self):
+        report={
+            "schema":1,"istat_reference":"2026-02-21",
+            "source_file_sha256":"83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+            "enabled":True,"ids_preserved":True,
+            "market_confirmations_created":0,"verified_dates_created":0,
+            "coordinates_changed":0,"publisher_sources_replaced":0,
+            "counts":{
+                "city_fixed":32,"contaminated_market_titles_fixed":18,
+                "records_calendar_quarantined":19,
+                "forecast_days_quarantined":331,
+                "needs_manual_municipality_review":20,
+            },
+        }
+        item=summary(decision(),None,None,"istat-sample",
+                     municipality_report=report)
+        self.assertTrue(item["municipality_istat_enabled"])
+        self.assertEqual(item["municipality_city_fixed"],32)
+        self.assertEqual(item["municipality_calendars_quarantined"],19)
+        self.assertEqual(item["municipality_forecast_dates_removed"],331)
+        self.assertEqual(item["municipality_needs_manual_review"],20)
+        self.assertEqual(item["documented_verification_count"],0)
+        self.assertIn("Riconciliazione ISTAT",__import__("autopilot_history").markdown(item))
+
+    def test_bad_ISTAT_claim_does_not_pass_daily_history_gate(self):
+        bad={
+            "schema":1,"istat_reference":"2026-02-21",
+            "source_file_sha256":"83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+            "enabled":True,"ids_preserved":True,
+            "market_confirmations_created":1,"verified_dates_created":0,
+            "coordinates_changed":0,"publisher_sources_replaced":0,
+            "counts":{"city_fixed":32},
+        }
+        with self.assertRaisesRegex(ValueError,"Untrusted official ISTAT"):
+            summary(decision(),None,None,"bad",municipality_report=bad)
+
     def test_history_is_idempotent_and_bounded(self):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp)
