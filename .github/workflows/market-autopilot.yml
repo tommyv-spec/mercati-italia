@@ -1,3 +1,5 @@
+# Idempotence replay for ISTAT town corrections after approved DEV release 38258577545.
+# Expected: zero new town corrections and zero repeated calendar suspensions.
 # Source-pinned ISTAT municipality correction passed read-only national + mobile
 # rehearsal 38257567252; only approved city/title and forecast quarantine
 # edits may reach DEV. Never update production or human verification claims.
