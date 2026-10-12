@@ -439,7 +439,7 @@ def inspect_normalized(profile, records, catalog, prior=None, review_metrics=Non
     # Exact IDs are ephemeral and come from the reviewed source cohort, not
     # user-provided metadata. Only aggregate counts/digest enter the report.
     source_screening=reconcile_reviewed_source_ids(
-        seen,by_slug,
+        seen,set(by_slug),
         reviewed_excluded_ids=reviewed_excluded_ids,
         reviewed_excluded_count=quarantine,
         reviewed_accepted_count=screened.get("accepted_after_overlap_qa")
