@@ -41,6 +41,12 @@ jobs:
             --manifest public/data/v1/manifest.json \
             --out growth-output/data-coverage.json \
             --report growth-output/DATA_COVERAGE.md
+      - name: Measure unrepresented official municipalities without inventing markets
+        run: |
+          python backend/municipality_coverage.py \
+            --manifest public/data/v1/manifest.json \
+            --out growth-output/municipality-coverage.json \
+            --report growth-output/MUNICIPALITY_COVERAGE.md
       - name: Audit real rows of up to three municipal CSVs
         run: |
           python backend/municipal_row_audit.py \
@@ -55,6 +61,7 @@ jobs:
           coverage=json.loads(Path('growth-output/data-coverage.json').read_text('utf-8'))
           src=json.loads(Path('growth-output/municipal-row-audit.json').read_text('utf-8'))
           manifest=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
+          towns=json.loads(Path('growth-output/municipality-coverage.json').read_text('utf-8'))
           if (coverage.get('schema')!=1 or coverage.get('review_only') is not True
               or coverage.get('market_updates_applied')!=0
               or coverage.get('market_confirmations_created')!=0
@@ -66,12 +73,21 @@ jobs:
               or src.get('imports')!=0 or src.get('verified_events')!=0
               or src.get('sample_limit')!=3 or len(src.get('sources',[]))>3):
               raise ValueError('Source scanner exceeded read-only permission')
+          if (towns.get('schema')!=1 or towns.get('review_only') is not True
+              or towns.get('municipalities_total')!=7894
+              or towns.get('catalog_entries_added')!=0
+              or towns.get('events_confirmed')!=0
+              or towns.get('catalog_market_ids_preserved')!=manifest.get('total')
+              or towns.get('municipalities_with_catalog_listings',0)
+                 + towns.get('municipalities_without_catalog_listings',0)!=7894):
+              raise ValueError('Untrusted municipality coverage report')
           if any(row.get('market_import_permission') is not False
                  or row.get('markets_confirmed')!=0 for row in src.get('sources',[])):
               raise ValueError('Unreviewed new source promoted a market')
           print('SAFE_GROWTH_REVIEW',manifest['total'],'market IDs preserved')
           PY
           cat growth-output/DATA_COVERAGE.md >> "$GITHUB_STEP_SUMMARY"
+          cat growth-output/MUNICIPALITY_COVERAGE.md >> "$GITHUB_STEP_SUMMARY"
           cat growth-output/MUNICIPAL_ROW_AUDIT.md >> "$GITHUB_STEP_SUMMARY"
       - name: Save source research and QA reports
         if: always()
@@ -106,14 +122,15 @@ jobs:
           set -euo pipefail
           test "$(cat growth-output/dev-source-sha.txt)" = "$(git rev-parse HEAD)"
           mkdir -p reports/automation
-          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md; do
+          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md municipality-coverage.json MUNICIPALITY_COVERAGE.md; do
             test -s "growth-output/$item"
             cp "growth-output/$item" "reports/automation/$item"
           done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- reports/automation/data-coverage.json reports/automation/DATA_COVERAGE.md \
-            reports/automation/municipal-row-audit.json reports/automation/MUNICIPAL_ROW_AUDIT.md
+            reports/automation/municipal-row-audit.json reports/automation/MUNICIPAL_ROW_AUDIT.md \
+            reports/automation/municipality-coverage.json reports/automation/MUNICIPALITY_COVERAGE.md
           if ! git diff --cached --quiet; then
             git commit -m "audit: rank data gaps and real source freshness (DEV only)"
             git push origin HEAD:improve/data-quality-security-performance-2026-10-11
