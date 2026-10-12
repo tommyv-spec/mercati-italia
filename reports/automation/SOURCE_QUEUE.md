@@ -19,10 +19,10 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 | 4 | 18 | Dati sui Mercati Rionali | market_location_candidate | non esplorato | Roma Capitale | 2022-07-04 |
 | 5 | 14 | Attività commerciali: mercati settimanali scoperti | market_location_candidate | non esplorato | Comune di Milano | sconosciuta |
 | 6 | 10 | Anagrafica mercati | general_market_candidate | non esplorato | Regione Piemonte | sconosciuta |
-| 7 | 9 | Posteggi mercati e fiere - Comune di Pianiga | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
+| 7 | 9 | Posteggi mercati e fiere - Comune di Pianiga | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 8 | 9 | Censimento dei mercati giornalieri | market_location_candidate | manual_schema_review_required | Regione Lazio | sconosciuta |
-| 9 | 9 | Posteggi mercati e fiere - Comune di Meolo | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
-| 10 | 9 | Posteggi mercati e fiere - Comune di Sandrigo | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
+| 9 | 9 | Posteggi mercati e fiere - Comune di Meolo | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
+| 10 | 9 | Posteggi mercati e fiere - Comune di Sandrigo | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 11 | 9 | Posteggi mercati e fiere - Comune di Lazise | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
 | 12 | 9 | Posteggi mercati e fiere - Comune di Fontaniva | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
 | 13 | 9 | Posteggi mercati e fiere - Comune di Soave | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |

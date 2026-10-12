@@ -19,6 +19,12 @@
       "status": "schema_preview_only",
       "viability": "legacy_probe"
     },
+    "0cffe11e-1a55-471e-9bc0-3fec3247b7d9": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
+    },
     "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6": {
       "checked_date": "2026-10-12",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
@@ -61,11 +67,23 @@
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
     },
+    "6791a91c-4e34-4ec3-89f3-cdbb8d96b3d8": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
+    },
     "74600cc1-0adb-4ae3-8255-30556e03e932": {
       "checked_date": "2026-10-12",
       "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
       "status": "schema_preview_only",
       "viability": "historical_aggregate_not_venues"
+    },
+    "7d68d3bb-af5b-47bf-964c-92358be4ab51": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
     },
     "871d7381-6eaf-420e-9fb5-2544b351ce8a": {
       "checked_date": "2026-10-12",
@@ -146,109 +164,112 @@
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "e53cf54c-8cab-4284-9619-74d078ae00ac",
+      "id": "0cffe11e-1a55-471e-9bc0-3fec3247b7d9",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 8650,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/dc946f5f-ad47-4cfd-b580-5c1480e015a2.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
+      "sample_bytes": 14546,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/1bb563f3-e2b4-4b93-8974-0165285f5913.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Nogara",
+      "title": "Posteggi mercati e fiere - Comune di Pianiga",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "eb032be3-efde-4282-8d8d-3d8a599ecae3",
+      "id": "6791a91c-4e34-4ec3-89f3-cdbb8d96b3d8",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 8404,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99fd13ac-b962-49d0-8d13-b3b5da1e7ca0.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
+      "sample_bytes": 387,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/fd62e57c-6000-479d-afb9-cd6ff5956c66.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Sandrigo",
+      "title": "Posteggi mercati e fiere - Comune di Meolo",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "ecfe375b-8322-47da-972f-c208649a8b9d",
+      "id": "7d68d3bb-af5b-47bf-964c-92358be4ab51",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 1595,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
+      "sample_bytes": 3995,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/cdba48eb-c0ea-4d1b-98b4-2854151b3f90.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Sona",
+      "title": "Posteggi mercati e fiere - Comune di Sandrigo",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 7,
+  "unreviewed_sources_remaining": 4,
   "verified_event_count": 0
 }

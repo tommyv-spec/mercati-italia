@@ -11,7 +11,7 @@ I dati sono aggiornabili solo quando l'ente pubblica prove nuove. Le ricorrenze 
 - Fonte datata tra 31 e 365 giorni: **12,563**.
 - Fonte più vecchia del limite di 540 giorni: **89**.
 - Fonti senza data: **0**.
-- Schede con date future previste: **11,845**.
+- Schede con date future previste: **11,826**.
 - Previsioni basate su fonti troppo vecchie/sconosciute: **0**.
 - Verifiche documentate: **0**.
 

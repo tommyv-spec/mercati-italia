@@ -7,11 +7,11 @@
   "metrics": {
     "address_missing": 3504,
     "coordinates_missing": 216,
-    "future_dates_missing": 1934,
+    "future_dates_missing": 1953,
     "hours_missing": 10840,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 764,
-    "suspicious_city": 52,
+    "suspicious_city": 20,
     "total": 13779,
     "without_individual_verification": 13779
   },
@@ -19,10 +19,9 @@
     {
       "region": "Abruzzo",
       "markets": 392,
-      "future_dates_missing": 36,
+      "future_dates_missing": 38,
       "hours_missing": 349,
-      "address_missing": 152,
-      "suspicious_city": 2
+      "address_missing": 152
     },
     {
       "region": "Basilicata",
@@ -43,8 +42,8 @@
       "markets": 820,
       "hours_missing": 711,
       "address_missing": 257,
-      "future_dates_missing": 69,
-      "suspicious_city": 4
+      "future_dates_missing": 71,
+      "suspicious_city": 1
     },
     {
       "region": "Emilia-Romagna",
@@ -52,7 +51,7 @@
       "hours_missing": 575,
       "address_missing": 168,
       "future_dates_missing": 204,
-      "suspicious_city": 6
+      "suspicious_city": 3
     },
     {
       "region": "Friuli Venezia Giulia",
@@ -66,24 +65,23 @@
       "region": "Lazio",
       "markets": 1074,
       "hours_missing": 939,
-      "future_dates_missing": 195,
-      "suspicious_city": 7,
+      "future_dates_missing": 197,
+      "suspicious_city": 4,
       "address_missing": 259
     },
     {
       "region": "Liguria",
       "markets": 385,
       "hours_missing": 314,
-      "future_dates_missing": 72,
-      "address_missing": 95,
-      "suspicious_city": 1
+      "future_dates_missing": 73,
+      "address_missing": 95
     },
     {
       "region": "Lombardia",
       "markets": 3947,
       "hours_missing": 2766,
-      "future_dates_missing": 609,
-      "suspicious_city": 7,
+      "future_dates_missing": 611,
+      "suspicious_city": 2,
       "address_missing": 754,
       "coordinates_missing": 216
     },
@@ -99,16 +97,14 @@
       "markets": 214,
       "address_missing": 89,
       "hours_missing": 185,
-      "future_dates_missing": 16,
-      "suspicious_city": 1
+      "future_dates_missing": 17
     },
     {
       "region": "Piemonte",
       "markets": 1332,
-      "future_dates_missing": 154,
-      "suspicious_city": 3,
       "hours_missing": 1186,
-      "address_missing": 404
+      "address_missing": 404,
+      "future_dates_missing": 155
     },
     {
       "region": "Puglia",
@@ -130,24 +126,22 @@
       "markets": 400,
       "hours_missing": 339,
       "address_missing": 141,
-      "future_dates_missing": 52,
-      "suspicious_city": 2
+      "future_dates_missing": 54
     },
     {
       "region": "Toscana",
       "markets": 945,
       "hours_missing": 788,
       "address_missing": 183,
-      "future_dates_missing": 172,
-      "suspicious_city": 6
+      "future_dates_missing": 173,
+      "suspicious_city": 1
     },
     {
       "region": "Trentino-Alto Adige",
       "markets": 216,
       "hours_missing": 171,
       "address_missing": 55,
-      "future_dates_missing": 25,
-      "suspicious_city": 1
+      "future_dates_missing": 26
     },
     {
       "region": "Umbria",
@@ -168,8 +162,8 @@
       "region": "Veneto",
       "markets": 1203,
       "hours_missing": 947,
-      "future_dates_missing": 100,
-      "suspicious_city": 9,
+      "future_dates_missing": 104,
+      "suspicious_city": 6,
       "address_missing": 275
     }
   ],
@@ -225,67 +219,11 @@
   ],
   "suspicious_city_examples": [
     {
-      "slug": "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
-      "region": "Abruzzo",
-      "city": "Castiglione Messer Marino, in provincia di... Mercato settimanale a Celenza Sul Trigno Il mercato settimanale di Celenza",
-      "name": "Mercato settimanale di Castiglione Messer Marino, in provincia di... Mercato settimanale a Celenza Sul Trigno Il mercato settimanale di Celenza S",
-      "source": "happings.com"
-    },
-    {
-      "slug": "mercato-settimanale-di-san-valentino-in-abruzzo-citeriore-mercato-settimanale-a",
-      "region": "Abruzzo",
-      "city": "San Valentino in Abruzzo Citeriore, ... Mercato settimanale a Sant'Eufemia a Maiella Il mercato settimanale di Sant'Eufe",
-      "name": "Mercato settimanale di San Valentino in Abruzzo Citeriore, ... Mercato settimanale a Sant'Eufemia a Maiella Il mercato settimanale di Sant'Eufemi",
-      "source": "happings.com"
-    },
-    {
       "slug": "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
       "region": "Campania",
       "city": "Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Caste",
       "name": "Mercato settimanale di Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Castell",
       "source": "happings.com"
-    },
-    {
-      "slug": "mercato-settimanale-di-castelvetere-in-val-fortore-in-provin-mercato-settimanale",
-      "region": "Campania",
-      "city": "Castelvetere in Val Fortore, in provin... Mercato settimanale a Cautano Il mercato settimanale di Cautano",
-      "name": "Mercato settimanale di Castelvetere in Val Fortore, in provin... Mercato settimanale a Cautano Il mercato settimanale di Cautano",
-      "source": "happings.com"
-    },
-    {
-      "slug": "mercato-dei-contadini-a-somma-vesuviana-somma-vesuviana",
-      "region": "Campania",
-      "city": "NA",
-      "name": "Mercato Dei Contadini A Somma Vesuviana",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "mercato-della-terra-a-piano-di-sorrento-piano-di-sorrento",
-      "region": "Campania",
-      "city": "NA",
-      "name": "Mercato della Terra a Piano Di Sorrento",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "il-mercatino-dei-creativi-hobbisti-a-san-giorgio-di-piano-san-giorgio-di-piano",
-      "region": "Emilia-Romagna",
-      "city": "BO",
-      "name": "Il Mercatino Dei Creativi Hobbisti A San Giorgio Di Piano",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "il-mercatino-dei-prodotti-tipici-e-artigianato-a-sant-agata-bolognese-sant-agata",
-      "region": "Emilia-Romagna",
-      "city": "BO",
-      "name": "Il Mercatino Dei Prodotti Tipici E Artigianato A Sant'agata Bolognese",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "mercatinomamme-a-san-lazzaro-di-savena-san-lazzaro-di-savena",
-      "region": "Emilia-Romagna",
-      "city": "BO",
-      "name": "Mercatinomamme A San Lazzaro Di Savena",
-      "source": "eventiesagre.it"
     },
     {
       "slug": "a-spass-per-zirvia-cervia-ra-fiere-mostre-e-mercati-antiquariato-gastronomia-vin",
@@ -323,13 +261,6 @@
       "source": "cosedicasa.com"
     },
     {
-      "slug": "mercato-settimanale-di-monte-san-giovanni-campano-in-provincia-mercato-settimana",
-      "region": "Lazio",
-      "city": "Monte San Giovanni Campano, in provincia... Mercato settimanale a Morolo Il mercato settimanale di Morolo",
-      "name": "Mercato settimanale di Monte San Giovanni Campano, in provincia... Mercato settimanale a Morolo Il mercato settimanale di Morolo",
-      "source": "happings.com"
-    },
-    {
       "slug": "unique-market-a-industrie-fluviali-industrie-fluviali",
       "region": "Lazio",
       "city": "RM",
@@ -344,32 +275,11 @@
       "source": "citynews_romatoday.it"
     },
     {
-      "slug": "frosinone-tornano-gli-ambulanti-di-forte-dei-marmi-via-tiburtina-frosinone",
-      "region": "Lazio",
-      "city": "Via Tiburtina - FROSINONE",
-      "name": "Frosinone, tornano gli ambulanti di Forte dei Marmi",
-      "source": "citynews_frosinonetoday.it"
-    },
-    {
-      "slug": "mercato-settimanale-di-villa-san-giovanni-in-tuscia-in-pro-mercato-settimanale-a",
-      "region": "Lazio",
-      "city": "Villa San Giovanni in Tuscia, in pro... Mercato settimanale a Viterbo Il mercato settimanale di Viterbo",
-      "name": "Mercato settimanale di Villa San Giovanni in Tuscia, in pro... Mercato settimanale a Viterbo Il mercato settimanale di Viterbo",
-      "source": "happings.com"
-    },
-    {
       "slug": "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
       "region": "Lazio",
       "city": "“Da Vinci – Sessantotto Village”",
       "name": "Fiumicino, Parco da Vinci, Mercatino Artigianale",
       "source": "cosedicasa.com"
-    },
-    {
-      "slug": "mercato-settimanale-di-ricco-del-golfo-di-spezia-in-provincia-mercato-settimanal",
-      "region": "Liguria",
-      "city": "Riccò del Golfo di Spezia, in provincia... Mercato settimanale a Santo Stefano di Magra Il mercato settimanale di Santo",
-      "name": "Mercato settimanale di Riccò del Golfo di Spezia, in provincia... Mercato settimanale a Santo Stefano di Magra Il mercato settimanale di Santo St",
-      "source": "happings.com"
     },
     {
       "slug": "cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita",
@@ -386,69 +296,6 @@
       "source": "cosedicasa.com"
     },
     {
-      "slug": "il-mercatino-serale-a-soiano-del-lago-soiano-del-lago",
-      "region": "Lombardia",
-      "city": "BS",
-      "name": "Il Mercatino Serale A Soiano Del Lago",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "mercatino-da-forte-dei-marmi-a-padenghe-sul-garda-padenghe-sul-garda",
-      "region": "Lombardia",
-      "city": "BS",
-      "name": "Mercatino Da Forte Dei Marmi A Padenghe Sul Garda",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "mercato-settimanale-di-castiglione-delle-stiviere-in-provincia-mercato-settimana",
-      "region": "Lombardia",
-      "city": "Castiglione delle Stiviere, in provincia... Mercato settimanale a Cavriana Il mercato settimanale di Cavriana",
-      "name": "Mercato settimanale di Castiglione delle Stiviere, in provincia... Mercato settimanale a Cavriana Il mercato settimanale di Cavriana",
-      "source": "happings.com"
-    },
-    {
-      "slug": "il-mercatino-dell-antiquariato-e-del-collezionismo-a-cassano-d-adda-cassano-d-ad",
-      "region": "Lombardia",
-      "city": "MI",
-      "name": "Il Mercatino Dell'antiquariato E Del Collezionismo A Cassano D'adda",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "mercato-settimanale-di-sotto-il-monte-giovanni-xxiii-in-mercato-settimanale-a-so",
-      "region": "Lombardia",
-      "city": "Sotto il Monte Giovanni XXIII, in ... Mercato settimanale a Sovere Il mercato settimanale di Sovere",
-      "name": "Mercato settimanale di Sotto il Monte Giovanni XXIII, in ... Mercato settimanale a Sovere Il mercato settimanale di Sovere",
-      "source": "happings.com"
-    },
-    {
-      "slug": "mercato-settimanale-di-filignano-fraz-carasuolo-in-pro-mercato-settimanale-a-for",
-      "region": "Molise",
-      "city": "Filignano - fraz.Carasuolo, in pro... Mercato settimanale a Forlì del Sannio Il mercato settimanale di Forlì del Sannio",
-      "name": "Mercato settimanale di Filignano - fraz.Carasuolo, in pro... Mercato settimanale a Forlì del Sannio Il mercato settimanale di Forlì del Sannio",
-      "source": "happings.com"
-    },
-    {
-      "slug": "il-mercatino-da-forte-dei-marmi-a-castelnuovo-scrivia-castelnuovo-scrivia",
-      "region": "Piemonte",
-      "city": "AL",
-      "name": "Il Mercatino Da Forte Dei Marmi A Castelnuovo Scrivia",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "mercati-settimanali-a-alessandria-alessandria",
-      "region": "Piemonte",
-      "city": "AL",
-      "name": "Mercati Settimanali A Alessandria",
-      "source": "eventiesagre.it"
-    },
-    {
-      "slug": "mercato-settimanale-di-monasterolo-di-savigliano-in-provincia-di-mercato-settima",
-      "region": "Piemonte",
-      "city": "Monasterolo di Savigliano, in provincia di... Mercato settimanale a Mondovi' Il mercato settimanale di Mondovi'",
-      "name": "Mercato settimanale di Monasterolo di Savigliano, in provincia di... Mercato settimanale a Mondovi' Il mercato settimanale di Mondovi'",
-      "source": "happings.com"
-    },
-    {
       "slug": "otranto-antiqua-mercatino-dellantiquariato-e-della-creativita-otranto-antiqua",
       "region": "Puglia",
       "city": "\"Otranto Antiqua\"",
@@ -456,18 +303,60 @@
       "source": "cosedicasa.com"
     },
     {
-      "slug": "mercato-settimanale-di-barcellona-pozzo-di-gotto-in-provincia-di-mercato-settima",
-      "region": "Sicilia",
-      "city": "Barcellona Pozzo di Gotto, in provincia di... Mercato settimanale a Brolo Il mercato settimanale di Brolo",
-      "name": "Mercato settimanale di Barcellona Pozzo di Gotto, in provincia di... Mercato settimanale a Brolo Il mercato settimanale di Brolo",
+      "slug": "lugnano-in-soffitta-vicopisano-pi-fiere-mostre-e-mercati-domenica-15-febbraio-to",
+      "region": "Toscana",
+      "city": "Vicopisano ( pi ) Fiere, Mostre e Mercati Domenica 15 febbraio, torna a Lugnano frazione del comune di Vicopisano",
+      "name": "Lugnano in soffitta",
+      "source": "solosagre.it"
+    },
+    {
+      "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
+      "region": "Umbria",
+      "city": "\"Artigianando",
+      "name": "Todi, “Artigianando, mostra mercato della creatività”, Giardini Oberdan",
+      "source": "cosedicasa.com"
+    },
+    {
+      "slug": "valeggio-sul-mincio-valeggio-contemporanea-valeggio-contemporanea",
+      "region": "Veneto",
+      "city": "\"Valeggio Contemporanea\"",
+      "name": "Valeggio sul Mincio, Valeggio Contemporanea",
+      "source": "cosedicasa.com"
+    },
+    {
+      "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
+      "region": "Veneto",
+      "city": "Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
+      "name": "Mercato settimanale di Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
       "source": "happings.com"
     },
     {
-      "slug": "mercato-settimanale-di-militello-in-val-di-catania-in-provin-mercato-settimanale",
-      "region": "Sicilia",
-      "city": "Militello in Val di Catania, in provin... Mercato settimanale a Mineo Il mercato settimanale di Mineo",
-      "name": "Mercato settimanale di Militello in Val di Catania, in provin... Mercato settimanale a Mineo Il mercato settimanale di Mineo",
-      "source": "happings.com"
+      "slug": "mercatino-dell-antiquariato-e-collezionismo-montagnana-pd-fiere-mostre-e-mercati",
+      "region": "Veneto",
+      "city": "Montagnana ( pd ) Fiere, Mostre e Mercati Antiquariato Vintage Il Mercatino dell'Antiquariato e Collezionismo torna ad a",
+      "name": "Mercatino dell'Antiquariato e Collezionismo",
+      "source": "solosagre.it"
+    },
+    {
+      "slug": "mercatini-piazza-del-baratto-na",
+      "region": "Veneto",
+      "city": "NA",
+      "name": "Mercatini Piazza del baratto",
+      "source": "trevisotoday.it"
+    },
+    {
+      "slug": "mercatini-stoffaday-na",
+      "region": "Veneto",
+      "city": "NA",
+      "name": "Mercatini Stoffaday!",
+      "source": "trevisotoday.it"
+    },
+    {
+      "slug": "mercato-antiquariato-e-modernariato-valeggio-sul-mincio-vr-fiere-mostre-e-mercat",
+      "region": "Veneto",
+      "city": "Valeggio sul Mincio ( vr ) Fiere, Mostre e Mercati Antiquariato Vintage Come ogni quarta domenica del mese, domenica 22",
+      "name": "Mercato Antiquariato e Modernariato",
+      "source": "solosagre.it"
     }
   ],
   "unscheduled_forecast_label_examples": [],
@@ -908,9 +797,9 @@
     "hours_missing": 0,
     "address_missing": 0,
     "coordinates_missing": 0,
-    "future_dates_missing": 0,
+    "future_dates_missing": 19,
     "future_date_quality_mismatch": 0,
-    "suspicious_city": 0,
+    "suspicious_city": -32,
     "review_only_potential_extra_rows": 0
   },
   "quality_regressions": [],

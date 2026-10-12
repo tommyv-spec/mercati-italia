@@ -2,13 +2,13 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38246357040](https://github.com/tommyv-spec/mercati-italia/actions/runs/38246357040) — UTC 2026-10-12T12:03:17.132461+00:00
+- Ultimo run: [38258577545](https://github.com/tommyv-spec/mercati-italia/actions/runs/38258577545) — UTC 2026-10-12T13:53:14.337792+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: no (contenuto invariato)
+- Nuova versione di dati: sì
 - Schede nel catalogo: **13,779**
-- Schede con date previste a +60 giorni: **11,795**
-- Schede con date previste a +90 giorni: **11,774**
-- Indice nazionale gzip: **395.3 KiB**
+- Schede con date previste a +60 giorni: **11,776**
+- Schede con date previste a +90 giorni: **11,755**
+- Indice nazionale gzip: **394.6 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
 - Orari mancanti: **10,840**
@@ -19,8 +19,9 @@
 - Bologna: **0** record non ambigui su **0**, in revisione **0** (fonte storica; nessuna verifica singolo evento).
 - Corciano: **2** record senza conflitti su **4**, in revisione **2**, impronta sorgente **1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121**.
 - Enrichment ufficiale: attivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **132** corrispondenze esatte su **233** record fonte in revisione.
-- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **52** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**764** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **52** località anomale non mostrate come Comuni; **13779** ID originali preservati.
+- Riconciliazione ISTAT (21 febbraio 2026): attiva, **32** Comuni corretti e **18** titoli ripuliti in questo run; **19** calendari sospesi (**331** date previste), **20** casi ancora ambigui. Nessuna conferma di apertura generata.
+- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **20** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**764** righe candidate, non cancellate).
+- Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **20** località anomale non mostrate come Comuni; **13779** ID originali preservati.
 - Fonti datate negli ultimi 30 giorni: **1127**; oltre soglia: **89**; senza data: **0**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1129**, di cui recenti **1127**.
 - Date previste con origine vecchia/sconosciuta: **0**.
