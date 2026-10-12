@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "role": "municipal_map_place_matching_only",
+  "review_only": true,
+  "source_page": "https://www.comune.roma.it/web/it/informazione-di-servizio.page?contentId=IDS1305104",
+  "source_first_publication": "2024-12-16",
+  "source_age_days": 665,
+  "municipal_map_markers": 9,
+  "rome_catalog_cards": 125,
+  "original_market_ids_preserved": 13779,
+  "source_market_ids_published": 0,
+  "market_cards_modified": 0,
+  "future_events_confirmed": 0,
+  "road_directions_enabled": 0,
+  "data_license_cleared_automatically": false,
+  "counts": {
+    "location_conflict_needs_review": 2,
+    "not_in_exact_match_sample_not_proof_of_missing_market": 7
+  },
+  "observations": [
+    {
+      "source_key": "rm13-01",
+      "market_name": "IRNERIO",
+      "source_type": "plateatico",
+      "source_street": "Via Aurelia, 483 00165 Roma RM",
+      "published_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "publisher_marker_lat": 41.8977693,
+      "publisher_marker_lon": 12.4246332,
+      "review_bucket": "location_conflict_needs_review",
+      "candidate_catalog_rows": 1,
+      "examples": [
+        {
+          "published_market_id": "irnerio-roma",
+          "match_type": "coordinates_disagree_requires_source_review",
+          "supports_name": true,
+          "supports_street": true,
+          "weekday_compatible": null,
+          "distance_km": 6.243
+        }
+      ],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-02",
+      "market_name": "SAN SILVERIO",
+      "source_type": "plateatico",
+      "source_street": "Via di San Silverio , 00165 Roma RM",
+      "published_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "publisher_marker_lat": 41.8951403,
+      "publisher_marker_lon": 12.4487992,
+      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
+      "candidate_catalog_rows": 0,
+      "examples": [],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-03",
+      "market_name": "CASALOTTI",
+      "source_type": "plateatico",
+      "source_street": "Via Borgo Ticino,70 00166 Roma RM",
+      "published_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "publisher_marker_lat": 41.9179062,
+      "publisher_marker_lon": 12.3731794,
+      "review_bucket": "location_conflict_needs_review",
+      "candidate_catalog_rows": 1,
+      "examples": [
+        {
+          "published_market_id": "casalotti-roma",
+          "match_type": "coordinates_disagree_requires_source_review",
+          "supports_name": true,
+          "supports_street": true,
+          "weekday_compatible": null,
+          "distance_km": 10.682
+        }
+      ],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-04",
+      "market_name": "ORMEA",
+      "source_type": "saltuario",
+      "source_street": "Piazza Ormea, 00166 Roma RM  - LUNEDI' e VENERDI'",
+      "published_weekdays": [
+        0,
+        4
+      ],
+      "publisher_marker_lat": 41.9161011,
+      "publisher_marker_lon": 12.3695843,
+      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
+      "candidate_catalog_rows": 0,
+      "examples": [],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-05",
+      "market_name": "TORREVECCHIA",
+      "source_type": "saltuario",
+      "source_street": "Via Guido Calcagnini, 00168, Roma RM - LUNEDI' e VENERDI'",
+      "published_weekdays": [
+        0,
+        4
+      ],
+      "publisher_marker_lat": 41.9178779,
+      "publisher_marker_lon": 12.4075447,
+      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
+      "candidate_catalog_rows": 0,
+      "examples": [],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-06",
+      "market_name": "MONTESPACCATO",
+      "source_type": "saltuario",
+      "source_street": "Area parcheggio sita in Via di Montespaccato/Via Gaetano Mazzoni – 00166 Roma RM - MARTEDI'",
+      "published_weekdays": [
+        1
+      ],
+      "publisher_marker_lat": 41.9084936,
+      "publisher_marker_lon": 12.3952618,
+      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
+      "candidate_catalog_rows": 0,
+      "examples": [],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-07",
+      "market_name": "MONTESPACCATO",
+      "source_type": "saltuario",
+      "source_street": "Via Cornelia - Area Parcheggio con accesso fronte civico 24 - 00166 Roma RM - SABATO",
+      "published_weekdays": [
+        5
+      ],
+      "publisher_marker_lat": 41.9092357,
+      "publisher_marker_lon": 12.398222,
+      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
+      "candidate_catalog_rows": 0,
+      "examples": [],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-08",
+      "market_name": "VALLE AURELIA",
+      "source_type": "saltuario",
+      "source_street": "Area parcheggio sita in Viale di Valle Aurelia, 00167 Roma RM - GIOVEDI'",
+      "published_weekdays": [
+        3
+      ],
+      "publisher_marker_lat": 41.9028442,
+      "publisher_marker_lon": 12.4373391,
+      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
+      "candidate_catalog_rows": 0,
+      "examples": [],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    },
+    {
+      "source_key": "rm13-09",
+      "market_name": "URBANO II",
+      "source_type": "sede_impropria",
+      "source_street": "Via Urbano II - Largo Scarampi, 00167 Roma RM",
+      "published_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "publisher_marker_lat": 41.9045472,
+      "publisher_marker_lon": 12.4231849,
+      "review_bucket": "not_in_exact_match_sample_not_proof_of_missing_market",
+      "candidate_catalog_rows": 0,
+      "examples": [],
+      "source_verified_2026": false,
+      "navigation_supported": false,
+      "automatic_enrichment_allowed": false
+    }
+  ]
+}
