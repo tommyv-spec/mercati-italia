@@ -1,12 +1,10 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 13,784\n- Senza verifica documentata: 13,784\n- Fonte vecchia oltre soglia: 13\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: Roma Capitale\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: b3185dcb94e31a6a",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 13,784\n- Senza verifica documentata: 13,784\n- Fonte vecchia oltre soglia: 13\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: eee235cf915b1090",
   "problems": {
     "municipal_csv_changed": [],
     "publisher_new_data_claims": [],
-    "publisher_unavailable": [
-      "Roma Capitale"
-    ],
+    "publisher_unavailable": [],
     "stale_forecast": 0,
     "stale_source": 13,
     "total": 13784,
@@ -14,6 +12,6 @@
     "unsupported_confirmation": 0,
     "without_verification": 13784
   },
-  "signature": "b3185dcb94e31a6a",
+  "signature": "eee235cf915b1090",
   "title": "[Mercati autopilot] Dati da verificare"
 }

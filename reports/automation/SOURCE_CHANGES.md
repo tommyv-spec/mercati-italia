@@ -6,8 +6,8 @@ Questo controllo serve a individuare dove testare un importer già autorizzato.
 | Fonte | Tipo modifica | Data precedente | Data corrente |
 |---|---|---|---|
 | Comune di Bologna | unchanged | 2025-04-02 | 2025-04-02 |
-| Regione Lombardia | publisher_metadata_changed | 2026-10-06 | 2026-10-06 |
-| Roma Capitale | publisher_unavailable | 2022-07-04 | - |
+| Regione Lombardia | unchanged | 2026-10-06 | 2026-10-06 |
+| Roma Capitale | recovered | - | 2022-07-04 |
 | Comune di Corciano | unchanged | - | - |
 
 Nessuna licenza, evento o import viene approvato automaticamente.
