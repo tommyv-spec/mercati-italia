@@ -440,6 +440,39 @@ jobs:
                   raise ValueError('Disabled municipality review modified official records')
           print('PUBLISHER_CITY_RELEASE_GUARD',json.dumps(certificate,ensure_ascii=False))
           PY
+      - name: Independently prove Rome XIII wrong-coordinate quarantine is source-bound
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_geo_hold import verify_diff,git_blob_sha,SOURCE_GIT_BLOB_SHA
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          enabled=policy.get('roma_xiii_coordinate_holds',{}).get('enabled') is True
+          report=json.loads((root/'roma-xiii-geo-holds.json').read_text('utf-8'))
+          certificate=json.loads((root/'roma-xiii-diff-guard.json').read_text('utf-8'))
+          if enabled:
+              source_path=Path('backend/data/roma-municipio-xiii-market-map-reviewed.json')
+              if git_blob_sha(source_path)!=SOURCE_GIT_BLOB_SHA:
+                  raise ValueError('Reviewed Rome municipality source evidence changed')
+              source=json.loads(source_path.read_text('utf-8'))
+              before=json.loads((root/'intermediate/rome-before-geo-holds.json').read_text('utf-8'))
+              after=json.loads((root/'intermediate/rome-after-geo-holds.json').read_text('utf-8'))
+              proof=verify_diff(before,after,report,source)
+              if (proof!=certificate or proof.get('release_safe') is not True
+                  or report.get('enabled') is not True or
+                  report.get('source_cases')!=2
+                  or not 0<=report.get('new_coordinates_quarantined',-1)<=2
+                  or not 0<=report.get('new_directions_blocked',-1)<=2
+                  or proof.get('ids_added')!=0 or proof.get('ids_deleted')!=0):
+                  raise ValueError('Unreviewed Rome coordinates or unrelated fields changed')
+              print('ROME_XIII_SOURCE_DIFF_GUARD',json.dumps(proof,ensure_ascii=False))
+          elif (report.get('changed_ids') or
+                certificate.get('changed_source_market_ids') or
+                certificate.get('new_coordinate_holds',0)!=0):
+              raise ValueError('Disabled Rome location review changed market data')
+          PY
       - name: Independently replay 2026 Milan PDF and GIS weekday changes
         run: |
           python - <<'PY'
@@ -609,6 +642,27 @@ jobs:
                   raise ValueError('Independent post-export Milan source proof failed')
               print('MILAN_STATIC_SAFETY',json.dumps(proof,ensure_ascii=False))
           PY
+      - name: Verify Rome XIII safety in final detail shards AND national search index
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_geo_hold import verify_static
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('roma_xiii_coordinate_holds',{}).get('enabled') is True:
+              source=json.loads(Path('backend/data/roma-municipio-xiii-market-map-reviewed.json').read_text('utf-8'))
+              proof=verify_static(Path('public/data/v1/manifest.json'),source)
+              saved=json.loads((root/'roma-xiii-static-guard.json').read_text('utf-8'))
+              if (proof!=saved or proof.get('release_safe') is not True
+                  or proof.get('current_coordinate_holds')!=2
+                  or proof.get('current_navigation_holds')!=2
+                  or proof.get('original_source_links_preserved')!=2
+                  or proof.get('market_openings_verified')!=0):
+                  raise ValueError('Rome XIII unsafe coordinates returned in static site')
+              print('ROME_XIII_STATIC_SAFETY',json.dumps(proof,ensure_ascii=False))
+          PY
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -693,6 +747,15 @@ jobs:
           else
             echo 'Manual source-city overlay disabled; dedicated mobile route check skipped.'
           fi
+      - name: Check Rome XIII blocked directions in real lazy-loaded mobile details
+        env:
+          UI_BASE: http://127.0.0.1:4173/
+        run: |
+          if python -c 'import json,sys;sys.exit(0 if json.load(open("backend/autopilot_policy.json")).get("roma_xiii_coordinate_holds",{}).get("enabled") else 1)'; then
+            node tests/roma-xiii-geo-hold-ui.mjs
+          else
+            echo 'Roma XIII source hold disabled; no new routes or coordinates permitted.'
+          fi
       - name: Retain tested visitor duplicate and localities report
         uses: actions/upload-artifact@v4
         with:
@@ -704,6 +767,9 @@ jobs:
             autopilot-output/publisher-exception-review.json
             autopilot-output/publisher-exception-diff-guard.json
             autopilot-output/publisher-exception-static-safety.json
+            autopilot-output/roma-xiii-geo-holds.json
+            autopilot-output/roma-xiii-diff-guard.json
+            autopilot-output/roma-xiii-static-guard.json
           retention-days: 30
           if-no-files-found: error
       - name: Save tested static distribution (for separate DEV publication)
@@ -839,6 +905,10 @@ jobs:
             cp "autopilot-output/$item" "reports/automation/$item"
           done
           for item in milano-2026-review.json milano-2026-diff-guard.json milano-2026-static-guard.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          for item in roma-xiii-geo-holds.json roma-xiii-diff-guard.json roma-xiii-static-guard.json; do
             test -s "autopilot-output/$item"
             cp "autopilot-output/$item" "reports/automation/$item"
           done
