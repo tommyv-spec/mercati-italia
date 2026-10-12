@@ -85,22 +85,17 @@ jobs:
               echo "::warning::Source discovery offline; keep last approved source adapters."
             }
           fi
-      - name: Persist a bounded review-only source intake snapshot
+      - name: Build provisional bounded source registry (no publication)
         if: success()
-        run: |
-          python backend/source_intake.py             --scout autopilot-output/official-candidates.json             --previous reports/automation/source-registry.json             --out autopilot-output/source-registry.json             --report autopilot-output/SOURCE_QUEUE.md
-          cat autopilot-output/SOURCE_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
-      - name: Sample up to three official source schemas in a bounded read-only sandbox
-        if: success()
-        env:
-          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
         shell: bash
         run: |
           set -euo pipefail
-          args=()
-          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
-          python backend/source_probe.py --registry autopilot-output/source-registry.json --out autopilot-output/source-probes.json --report autopilot-output/SOURCE_SCHEMA.md "${args[@]}"
-          cat autopilot-output/SOURCE_SCHEMA.md >> "$GITHUB_STEP_SUMMARY"
+          python backend/source_intake.py \
+            --scout autopilot-output/official-candidates.json \
+            --previous reports/automation/source-registry.json \
+            --publisher-evidence autopilot-output/publisher-not-collected-yet.json \
+            --out autopilot-output/source-registry.json \
+            --report autopilot-output/SOURCE_QUEUE.md
       - name: Recheck official publisher metadata and license claims (no import)
         if: success()
         env:
@@ -116,6 +111,33 @@ jobs:
             --report autopilot-output/SOURCE_EVIDENCE.md \
             "${args[@]}"
           cat autopilot-output/SOURCE_EVIDENCE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Rank source intake from official publisher dates in same run
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/source_intake.py \
+            --scout autopilot-output/official-candidates.json \
+            --previous reports/automation/source-registry.json \
+            --publisher-evidence autopilot-output/source-evidence.json \
+            --out autopilot-output/source-registry.json \
+            --report autopilot-output/SOURCE_QUEUE.md
+          cat autopilot-output/SOURCE_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Sample up to three official source schemas in a bounded read-only sandbox
+        if: success()
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          python backend/source_probe.py \
+            --registry autopilot-output/source-registry.json \
+            --out autopilot-output/source-probes.json \
+            --report autopilot-output/SOURCE_SCHEMA.md \
+            "${args[@]}"
+          cat autopilot-output/SOURCE_SCHEMA.md >> "$GITHUB_STEP_SUMMARY"
       - name: Compare declared source changes to previous scheduled run
         if: success()
         run: |
@@ -236,6 +258,31 @@ jobs:
               raise ValueError('Too many overlaps for unattended import')
           print('Lombardia reviewed:', report['accepted'],
                 'quarantined:', report['quarantined'])
+          PY
+      - name: Reject unsafe Bologna source overlaps or unapproved publication
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('autopilot-output/bologna-overlaps.json').read_text())
+          decision = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if report.get('schema') != 1 or report.get('region') not in (None,'Emilia-Romagna'):
+              raise ValueError('Bologna overlap report malformed')
+          if (report.get('accepted',0) + report.get('quarantined',0)
+                  != report.get('source_total',0)
+                  or report.get('market_confirmations',0) != 0
+                  or report.get('deleted_existing_records',0) != 0):
+              raise ValueError('Bologna source review cannot erase or verify records')
+          if report.get('quarantined',0) > 48:
+              raise ValueError('Bologna source conflicts exceed safe limit')
+          bologna = decision.get('sources',{}).get('bologna')
+          if bologna and bologna.get('status') in ('retrieved','resumed_checkpoint'):
+              evidence = json.loads(Path('autopilot-output/source-evidence.json').read_text())
+              item = next((x for x in evidence['source_evidence']
+                           if x['publisher'] == 'Comune di Bologna'), None)
+              if not item or item['status'] != 'metadata_checked':
+                  raise ValueError('Bologna source not independently checked')
+          print('Bologna quarantined source records:', report['quarantined'])
           PY
       - name: Block false freshness or official-source approvals
         run: |
@@ -413,6 +460,10 @@ jobs:
           test -s autopilot-output/LOMBARDIA_OVERLAPS.md
           cp autopilot-output/lombardia-overlaps.json reports/automation/lombardia-overlaps.json
           cp autopilot-output/LOMBARDIA_OVERLAPS.md reports/automation/LOMBARDIA_OVERLAPS.md
+          test -s autopilot-output/bologna-overlaps.json
+          test -s autopilot-output/BOLOGNA_OVERLAPS.md
+          cp autopilot-output/bologna-overlaps.json reports/automation/bologna-overlaps.json
+          cp autopilot-output/BOLOGNA_OVERLAPS.md reports/automation/BOLOGNA_OVERLAPS.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -439,6 +490,7 @@ jobs:
             --freshness autopilot-output/freshness.json \
             --source-evidence autopilot-output/source-evidence.json \
             --lombardia-overlap autopilot-output/lombardia-overlaps.json \
+            --bologna-overlap autopilot-output/bologna-overlaps.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
