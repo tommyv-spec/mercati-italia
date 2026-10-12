@@ -2,13 +2,13 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38185129614](https://github.com/tommyv-spec/mercati-italia/actions/runs/38185129614) — UTC 2026-10-11T23:41:47.548821+00:00
+- Ultimo run: [38187530935](https://github.com/tommyv-spec/mercati-italia/actions/runs/38187530935) — UTC 2026-10-12T00:20:43.919225+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
 - Schede nel catalogo: **13,777**
 - Schede con date previste a +60 giorni: **11,793**
-- Schede con date previste a +90 giorni: **11,785**
-- Indice nazionale gzip: **394.6 KiB**
+- Schede con date previste a +90 giorni: **11,772**
+- Indice nazionale gzip: **394.5 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
 - Orari mancanti: **10,969**
@@ -16,6 +16,7 @@
 - Fonti conservate nello storico: **42**; nuove: **0**; aggiornate: **0**.
 - Possibili elenchi/sedi: **8**; statistiche storiche aggregate: **12**.
 - Lombardia MERCap: **1127** record non ambigui su **1360**, in revisione **233**.
+- Bologna: **0** record non ambigui su **0**, in revisione **0** (fonte storica; nessuna verifica singolo evento).
 - Fonti datate negli ultimi 30 giorni: **1127**; oltre soglia: **89**; senza data: **0**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1127**, di cui recenti **1127**.
 - Date previste con origine vecchia/sconosciuta: **0**.

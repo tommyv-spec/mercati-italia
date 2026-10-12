@@ -3,7 +3,7 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 I dati sono aggiornabili solo quando l'ente pubblica prove nuove. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-11**.
+- Data della misura: **2026-10-12**.
 - Schede totali: **13,777**.
 - Fonte datata entro 30 giorni: **1,127**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,127**.
@@ -11,7 +11,7 @@ I dati sono aggiornabili solo quando l'ente pubblica prove nuove. Le ricorrenze 
 - Fonte datata tra 31 e 365 giorni: **12,561**.
 - Fonte più vecchia del limite di 540 giorni: **89**.
 - Fonti senza data: **0**.
-- Schede con date future previste: **11,845**.
+- Schede con date future previste: **11,843**.
 - Previsioni basate su fonti troppo vecchie/sconosciute: **0**.
 - Verifiche documentate: **0**.
 
@@ -23,7 +23,7 @@ I dati sono aggiornabili solo quando l'ente pubblica prove nuove. Le ricorrenze 
 
 | Ente | Lettura metadati | Aggiornamento dati dichiarato |
 |---|---|---|
-| Comune di Bologna | metadata_checked | 2025-12-31 |
+| Comune di Bologna | metadata_checked | 2025-04-02 |
 | Regione Lombardia | metadata_checked | 2026-10-06 |
 | Roma Capitale | metadata_checked | 2022-07-04 |
 

@@ -14,76 +14,6 @@
       "events_confirmed": 0,
       "field_hints": {
         "address": [
-          "ubicazione"
-        ],
-        "district": [
-          "nome_quartiere",
-          "nome_zona"
-        ],
-        "geometry_requires_crs_review": [
-          "geopoint"
-        ],
-        "hours": [
-          "orario_svolgimento"
-        ],
-        "latitude": [
-          "lat"
-        ],
-        "longitude": [
-          "long"
-        ],
-        "market_type": [
-          "tipologia",
-          "tipologia_mercato"
-        ],
-        "name": [
-          "denominazione"
-        ],
-        "weekday": [
-          "giorni_svolgimento"
-        ]
-      },
-      "fields": [
-        "denominazione",
-        "tipologia",
-        "tipologia_mercato",
-        "ubicazione",
-        "specializzazione",
-        "numero_posteggi",
-        "numero_chioschi_alimentari",
-        "numero_chioschi_non_alimentari",
-        "numero_chioschi_misti",
-        "numero_chioschi_prodotti_agricoli",
-        "giorni_svolgimento",
-        "orario_svolgimento",
-        "nome_quartiere",
-        "nome_zona",
-        "area_statistica",
-        "codice_area_statistica",
-        "codice_quartiere",
-        "codice_zona",
-        "long",
-        "lat",
-        "geopoint",
-        "zona_pross"
-      ],
-      "format": "JSON",
-      "id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
-      "review_blockers": [
-        "municipality_must_be_validated_from_publisher_context"
-      ],
-      "sample_bytes": 3862,
-      "sample_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere/records?limit=5",
-      "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Mercati e fiere",
-      "truncated": false
-    },
-    {
-      "adapter_enabled": false,
-      "events_confirmed": 0,
-      "field_hints": {
-        "address": [
           "ubicazione",
           "indirizzi"
         ],
@@ -152,6 +82,76 @@
       "source_license_verified": false,
       "status": "schema_preview_only",
       "title": "Mercati su aree pubbliche",
+      "truncated": false
+    },
+    {
+      "adapter_enabled": false,
+      "events_confirmed": 0,
+      "field_hints": {
+        "address": [
+          "ubicazione"
+        ],
+        "district": [
+          "nome_quartiere",
+          "nome_zona"
+        ],
+        "geometry_requires_crs_review": [
+          "geopoint"
+        ],
+        "hours": [
+          "orario_svolgimento"
+        ],
+        "latitude": [
+          "lat"
+        ],
+        "longitude": [
+          "long"
+        ],
+        "market_type": [
+          "tipologia",
+          "tipologia_mercato"
+        ],
+        "name": [
+          "denominazione"
+        ],
+        "weekday": [
+          "giorni_svolgimento"
+        ]
+      },
+      "fields": [
+        "denominazione",
+        "tipologia",
+        "tipologia_mercato",
+        "ubicazione",
+        "specializzazione",
+        "numero_posteggi",
+        "numero_chioschi_alimentari",
+        "numero_chioschi_non_alimentari",
+        "numero_chioschi_misti",
+        "numero_chioschi_prodotti_agricoli",
+        "giorni_svolgimento",
+        "orario_svolgimento",
+        "nome_quartiere",
+        "nome_zona",
+        "area_statistica",
+        "codice_area_statistica",
+        "codice_quartiere",
+        "codice_zona",
+        "long",
+        "lat",
+        "geopoint",
+        "zona_pross"
+      ],
+      "format": "JSON",
+      "id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
+      "sample_bytes": 3862,
+      "sample_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere/records?limit=5",
+      "source_license_verified": false,
+      "status": "schema_preview_only",
+      "title": "Mercati e fiere",
       "truncated": false
     },
     {

@@ -6,7 +6,7 @@ Nessuna fonte è autorizzata all'import da questo controllo.
 
 | Fonte | Metadati | Licenza dichiarata | Confronto | Ultimo dato dichiarato |
 |---|---|---|---|---|
-| Comune di Bologna | metadata_checked | CC-BY-4.0 | publisher_and_catalog_agree_review_required | 2025-12-31 |
+| Comune di Bologna | metadata_checked | CC-BY-4.0 | publisher_and_catalog_agree_review_required | 2025-04-02 |
 | Regione Lombardia | metadata_checked | CC0-1.0 | publisher_and_catalog_agree_review_required | 2026-10-06 |
 | Roma Capitale | metadata_checked | non disponibile | publisher_claim_missing_review_required | 2022-07-04 |
 
@@ -17,7 +17,7 @@ Nessuna fonte è autorizzata all'import da questo controllo.
 - [Endpoint ufficiale controllato](https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere)
 - Stato fonte: metadata_checked
 - Note: Dataset includes fairs and farmers markets; confirm types individually.
-- Controlli ancora richiesti: license_terms, attribution, market_identity, operating_dates, coverage
+- Controlli ancora richiesti: license_terms, attribution, market_identity, operating_dates, coverage, modified_newer_than_data_without_auto_update
 
 ### Regione Lombardia
 - [Pagina del catalogo nazionale](https://www.dati.gov.it/node/view-dataset/dataset?id=2e41941b-80fb-4ded-8330-427383f725f8)
