@@ -36,6 +36,10 @@ import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
 from municipality_release_guard import check as check_municipality_changes
+from reviewed_city_evidence import (
+    apply_reviewed_cities, verify_reviewed_diff, manifest_id as reviewed_city_manifest_id,
+    REVIEWED_ON as REVIEWED_CITY_DATE
+)
 from municipality_reconciliation import (
     reconcile as reconcile_official_municipalities,
     markdown as municipality_review_markdown, ISTAT_SHA as TRUSTED_ISTAT_SHA,
@@ -383,6 +387,17 @@ def run(args):
                 or municipal_policy.get("source_sha256") != TRUSTED_ISTAT_SHA
             ))):
         raise ValueError("Unreviewed ISTAT municipal reconciliation policy")
+    reviewed_policy = policy.get("reviewed_source_cities", {})
+    if (not isinstance(reviewed_policy, dict)
+            or set(reviewed_policy) - {"enabled", "reviewed_on", "evidence_sha256"}
+            or reviewed_policy.get("enabled", False) not in (True,False)
+            or (reviewed_policy.get("enabled") and (
+                municipal_policy.get("enabled") is not True
+                or reviewed_policy.get("reviewed_on") != REVIEWED_CITY_DATE
+                or not isinstance(reviewed_policy.get("evidence_sha256"),str)
+                or len(reviewed_policy["evidence_sha256"]) != 64
+            ))):
+        raise ValueError("Unapproved reviewed-city evidence policy")
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -582,8 +597,61 @@ def run(args):
         ),
         "source_istat_sha": TRUSTED_ISTAT_SHA,
     })
+    # Reviewed publisher city headings are not automatically inferred by ISTAT.
+    # This opt-in second proof chain can change only displayed city plus
+    # quarantine demonstrably false map points / unvalidated directions.
+    reviewed_rows = municipality_rows
+    reviewed_report = {
+        "schema":1, "enabled":False, "review_only":True,
+        "records_total":len(municipality_rows), "changed_ids":[],
+        "reviewed_at":REVIEWED_CITY_DATE,
+        "individual_events_confirmed":0, "publisher_links_replaced":0,
+        "opening_dates_added":0, "market_records_deleted":0,
+        "counts":{"cases":0,"city_fixed":0,"coordinates_quarantined":0,
+                  "navigation_hold_added":0},
+    }
+    reviewed_certificate = {
+        "schema":1, "records_checked":len(municipality_rows), "identities_deleted":0,
+        "cities_corrected":0, "unsafe_points_suppressed":0,
+        "navigation_routes_paused":0, "market_verifications_created":0,
+    }
+    if reviewed_policy.get("enabled"):
+        reference_file = Path(__file__).resolve().parent / "data" / "istat-comuni-2026.json"
+        evidence_file = Path(__file__).resolve().parent / "data" / "reviewed-city-evidence-2026-10-12.json"
+        verified_reference = read_json(reference_file)
+        original_evidence = read_json(evidence_file)
+        if reviewed_city_manifest_id(original_evidence) != reviewed_policy["evidence_sha256"]:
+            raise ValueError("Reviewed manual municipality evidence changed without reapproval")
+        reviewed_rows, reviewed_report = apply_reviewed_cities(
+            municipality_rows, verified_reference, original_evidence, apply=True
+        )
+        reviewed_report["enabled"] = True
+        reviewed_certificate = verify_reviewed_diff(
+            municipality_rows, reviewed_rows, reviewed_report,
+            verified_reference, original_evidence
+        )
+        if len(reviewed_rows) != len(municipality_rows):
+            raise ValueError("Manual source city review changed catalog cardinality")
+        for original, current in zip(municipality_rows, reviewed_rows):
+            if original["slug"] != current["slug"]:
+                raise ValueError("Manual source review changed market identity")
+            if original.get("citta") != current.get("citta"):
+                if current["slug"] in reviewed_city_corrections:
+                    raise ValueError("Same source city changed by both ISTAT and manual review")
+                reviewed_city_corrections[current["slug"]] = current["citta"]
+        if reviewed_certificate["cities_corrected"] != reviewed_report["counts"]["city_fixed"]:
+            raise ValueError("Manual source city review proof counts do not match")
+        save_json(out / "intermediate" / "reviewed-cities.json", reviewed_rows)
+    save_json(out / "reviewed-cities.json", reviewed_report)
+    save_json(out / "reviewed-cities-release-guard.json", reviewed_certificate)
+    checkpoint(out, "reviewed_cities", {
+        "enabled":bool(reviewed_report["enabled"]),
+        "cities_corrected":reviewed_certificate["cities_corrected"],
+        "points_quarantined":reviewed_certificate["unsafe_points_suppressed"],
+        "navigation_suspended":reviewed_certificate["navigation_routes_paused"],
+    })
     projected, forecast_stats = refresh_records(
-        municipality_rows, args.today, policy["forecast"]["days"],
+        reviewed_rows, args.today, policy["forecast"]["days"],
         policy["forecast"]["max_source_age_days"])
     if len(projected) != len(merged):
         raise ValueError("Forecast must never remove market identities")

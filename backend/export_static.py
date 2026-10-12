@@ -231,6 +231,18 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["citta_originale"] = safe_string(raw.get("citta_originale"), 160)
     if raw.get("nome_originale"):
         result["nome_originale"] = safe_string(raw.get("nome_originale"), 160)
+    if raw.get("navigazione_sospesa_motivo") == "indirizzo_e_punto_sorgente_non_riconciliati":
+        result["navigazione_sospesa_motivo"] = raw["navigazione_sospesa_motivo"]
+    if raw.get("coordinate_sospese_motivo") == "coordinate_sorgente_incompatibili_con_localita_documentata":
+        original_point = raw.get("coordinate_originali")
+        if (isinstance(original_point, dict) and
+                isinstance(original_point.get("lat"), (int,float)) and
+                isinstance(original_point.get("lng"), (int,float))):
+            result["coordinate_sospese_motivo"] = raw["coordinate_sospese_motivo"]
+            result["coordinate_originali"] = {
+                "lat":float(original_point["lat"]),
+                "lng":float(original_point["lng"]),
+            }
     if raw.get("calendario_sospeso_motivo") == "testo_sorgente_localita_concatenate":
         result["calendario_sospeso_motivo"] = "testo_sorgente_localita_concatenate"
         result["ricorrenza_originale"] = safe_string(raw.get("ricorrenza_originale"), 180)

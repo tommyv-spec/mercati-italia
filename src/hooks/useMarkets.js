@@ -30,7 +30,8 @@ const CATEGORY_COLORS = {
 
 function adaptMarket(m, userLat, userLng) {
   const categoryLabel = CATEGORY_LABELS[m.categoria] || m.categoria || 'Misto'
-  const locationReviewRequired = isSuspiciousCityName(m.citta)
+  const locationReviewRequired = isSuspiciousCityName(m.citta) ||
+    m.navigazione_sospesa_motivo === 'indirizzo_e_punto_sorgente_non_riconciliati'
   return {
     id: m.id,
     name: m.nome,
