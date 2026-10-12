@@ -1,0 +1,100 @@
+# Temporary proof: parser source contracts run without a DEV or PROD market write.
+name: Official source contracts — real CSV and full offline Autopilot dry-run
+
+on:
+  push:
+    branches: [improve/data-quality-security-performance-2026-10-11]
+    paths:
+      - .github/workflows/source-contracts-full-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run all existing regressions and new declarative-contract tests
+        run: python -m unittest discover -s backend/tests -v
+      - name: Independently inspect real Corciano CSV using the generic parser only
+        run: |
+          python backend/source_lifecycle.py \
+            --manifest public/data/v1/manifest.json \
+            --probe-raw --today 2026-10-13 \
+            --out source-contract-audit/raw-source-lifecycle.json \
+            --report source-contract-audit/RAW_SOURCE_LIFECYCLE.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('source-contract-audit/raw-source-lifecycle.json').read_text('utf-8'))
+          s=r['sources'].get('corciano-generic-shadow') or {}
+          c=s.get('counts') or {}
+          if (r.get('read_only') is not True
+                  or r.get('market_imports')!=0
+                  or r.get('market_confirmations')!=0
+                  or r.get('market_identity_deletions')!=0
+                  or r.get('catalog_count')!=13784
+                  or r.get('source_checks',{}).get('source_level_raw_profiles_checked')!=1
+                  or not 4<=c.get('distinct_market_identities',0)<=8
+                  or c.get('rows_observed')!=c.get('distinct_market_identities')
+                  or s.get('license_reviewed_for_automatic_publication') is not False
+                  or s.get('individual_market_openings_verified')!=0):
+              raise ValueError('Generic official source profile did not verify current real CSV safely')
+          print('SOURCE_CONTRACT_ACTUAL_CSV',json.dumps({
+             'publisher_profiles_observed':1,
+             'real_market_venue_identities':c['distinct_market_identities'],
+             'identities_in_catalog':c.get('already_in_catalog_exact_source_id',0),
+             'new_markets_imported':0,'event_openings_verified':0
+          }))
+          PY
+      - name: Run the actual Autopilot completely offline and prove ID preservation
+        run: |
+          python backend/autopilot.py --offline --today 2026-10-13 \
+            --output source-contract-audit/autopilot
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('source-contract-audit/autopilot')
+          decision=json.loads((root/'release-decision.json').read_text('utf-8'))
+          lifecycle=json.loads((root/'source-lifecycle.json').read_text('utf-8'))
+          checkpoint=json.loads((root/'checkpoints/source_lifecycle.json').read_text('utf-8'))
+          final=json.loads((root/'candidate/public/data/v1/manifest.json').read_text('utf-8'))
+          prior=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
+          if (not decision['approved'] or final['total']!=prior['total']
+              or final['total']!=13784 or lifecycle.get('catalog_count')!=13784
+              or lifecycle.get('market_imports')!=0
+              or lifecycle.get('market_confirmations')!=0
+              or lifecycle.get('market_identity_deletions')!=0
+              or checkpoint.get('result',{}).get('enabled') is not True
+              or checkpoint.get('result',{}).get('new_markets_imported')!=0
+              or checkpoint.get('result',{}).get('event_verifications_created')!=0):
+              raise ValueError('Source lifecycle changed public market identities or created false confirmations')
+          print('FULL_AUTOPILOT_SOURCE_CONTRACTS_OFFLINE',json.dumps({
+            'catalog_ids_kept':final['total'],
+            'lifecycle_checkpoint_written':True,
+            'source_records_imported_by_quality_audit':0,
+            'publisher_outage_causes_market_deletions':False
+          }))
+          PY
+      - name: Preserve contracts QA reports and checkpoints, never publish market data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contracts-are-repeatable-no-deployment
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            source-contract-audit/raw-source-lifecycle.json
+            source-contract-audit/RAW_SOURCE_LIFECYCLE.md
+            source-contract-audit/autopilot/source-lifecycle.json
+            source-contract-audit/autopilot/SOURCE_LIFECYCLE.md
+            source-contract-audit/autopilot/release-decision.json
+            source-contract-audit/autopilot/checkpoints/source_lifecycle.json
