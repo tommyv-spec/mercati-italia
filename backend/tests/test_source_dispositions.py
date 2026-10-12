@@ -53,8 +53,9 @@ class SourceDispositionTests(unittest.TestCase):
         rerun=reconcile(next_source,CAT,{"lo-mercap-103-mercoledi"},
                         reviewed_excluded_count=1,reviewed_accepted_count=2)
         self.assertEqual(rerun["remaining_identities_without_overlap_disposition"],0)
-        self.assertNotIn("verified",str(rerun).lower())
-        self.assertNotIn("closed",str(rerun).lower())
+        self.assertTrue(rerun["source_screening_counts_are_not_market_opening_proofs"])
+        self.assertTrue(rerun["exact_reviewed_id_partition_verified"])
+        self.assertNotIn("closed_market_ids",rerun)
 
 
 if __name__=="__main__":
