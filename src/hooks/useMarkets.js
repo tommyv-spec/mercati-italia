@@ -53,6 +53,9 @@ function adaptMarket(m, userLat, userLng) {
     positionQuality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',
     sourceUrl: m.url_fonte || '',
+    // Full source list arrives only with lazy-loaded regional detail JSON.
+    // The nationwide compact index remains unchanged and cheap to fetch.
+    sourceEvidence: Array.isArray(m.fonti) ? m.fonti.filter(s => s && s.url && s.nome) : [],
     distance: Number.isFinite(m.distance) ? m.distance : null,
   }
 }

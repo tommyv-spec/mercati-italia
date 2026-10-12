@@ -1970,6 +1970,12 @@ export default function App() {
                     Controlla la fonte originale
                   </a>
                 )}
+                {(m.sourceEvidence || []).filter(s => s.url !== m.sourceUrl).slice(0, 3).map((s, i) => (
+                  <div key={s.url + i} style={{ fontSize: 12, marginTop: 5, lineHeight: 1.4 }}>
+                    Fonte aggiuntiva:{' '}
+                    <a href={s.url} target="_blank" rel="noopener noreferrer">{s.nome}</a>
+                  </div>
+                ))}
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: 11, marginBottom: 4 }}>Completezza dati</div>
