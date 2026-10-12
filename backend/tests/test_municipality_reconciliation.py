@@ -118,6 +118,10 @@ class OfficialMunicipalityTests(unittest.TestCase):
         again,stats=reconcile([normalized],REFERENCE,apply=True)
         self.assertEqual(again[0]["date"],[])
         self.assertEqual(again[0]["ricorrenza_testo"],PROJECTION_WARNING)
+        self.assertEqual(again[0]["citta_originale"],row["citta"])
+        self.assertEqual(again[0]["calendario_sospeso_motivo"],
+                         "testo_sorgente_localita_concatenate")
+        self.assertEqual(again[0]["ricorrenza_originale"],"settimanale - martedì")
         self.assertEqual(stats["counts"].get("city_fixed",0),0)
         self.assertEqual(once[0]["verificato_il"],"")
 

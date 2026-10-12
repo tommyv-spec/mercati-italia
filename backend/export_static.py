@@ -224,6 +224,16 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["aggiornamento_ambito"] = "dataset"
     if raw.get("id_fonte"):
         result["id_fonte"] = safe_string(raw.get("id_fonte"), 40)
+    # Retain provenance when repairing only the displayed municipality
+    # against the official ISTAT register. Never imply the event was verified.
+    if raw.get("localita_ricostruita_da") == "ISTAT comuni 2026-02-21; nome fonte e provincia":
+        result["localita_ricostruita_da"] = raw["localita_ricostruita_da"]
+        result["citta_originale"] = safe_string(raw.get("citta_originale"), 160)
+    if raw.get("nome_originale"):
+        result["nome_originale"] = safe_string(raw.get("nome_originale"), 160)
+    if raw.get("calendario_sospeso_motivo") == "testo_sorgente_localita_concatenate":
+        result["calendario_sospeso_motivo"] = "testo_sorgente_localita_concatenate"
+        result["ricorrenza_originale"] = safe_string(raw.get("ricorrenza_originale"), 180)
     return result, None
 
 
