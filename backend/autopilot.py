@@ -34,9 +34,10 @@ import source_lombardia
 import source_bologna
 import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
+from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
 
 SCHEMA = 1
-PHASES = ("baseline", "sources", "merge", "forecast", "export", "quality")
+PHASES = ("baseline", "sources", "enrichment", "merge", "forecast", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -339,6 +340,13 @@ def run(args):
         policy["gates"].get("allow_new_human_verified_claims") is not False
     ):
         raise ValueError("Autopilot must never create unreviewed confirmation or human-verification claims")
+    enrichment_policy = policy.get("enrichment", {})
+    if (not isinstance(enrichment_policy, dict)
+            or set(enrichment_policy) - {"enabled","source"}
+            or enrichment_policy.get("enabled", False) not in (True, False)
+            or (enrichment_policy.get("enabled") and
+                enrichment_policy.get("source") != "lombardia-mercap")):
+        raise ValueError("Unreviewed official enrichment policy")
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -444,7 +452,41 @@ def run(args):
         "bologna_overlap_quarantined": bologna_report["quarantined"],
         "corciano_overlap_quarantined": corciano_report["quarantined"],
     })
-    merged, merge_stats = combine(old_rows, feeds)
+    # Correlate blocked exact venue/day public records with older market
+    # cards. Never promote event verification, dates or primary identity.
+    enrichment_report = {
+        "schema":1, "source_id":"lombardia-mercap", "source_rows_screened":0,
+        "review_only":True, "legacy_records_changed":0,
+        "existing_market_hours_added":0, "official_source_attributions_added":0,
+        "exact_matches":0, "counts":{}, "samples":[],
+        "record_identity_changes":0, "confirmed_date_changes":0,
+        "individual_market_verifications":0, "coordinates_overwritten":0,
+        "primary_sources_overwritten":0, "old_dataset_dates_overwritten":0,
+    }
+    enriched_base = old_rows
+    if enrichment_policy.get("enabled") and (
+            source_status.get("lombardia", {}).get("status")
+            in ("retrieved","resumed_checkpoint")):
+        approved_ids = {r["slug"] for r in feeds
+                        if str(r["slug"]).startswith("lo-mercap-")}
+        held = [r for r in read_json(out / "sources" / "lombardia.json")
+                if r["slug"] not in approved_ids]
+        enriched_base, enrichment_report = enrich_official_records(
+            old_rows, held, source_id="lombardia-mercap", today=args.today
+        )
+        enrichment_report["enabled"] = True
+    else:
+        enrichment_report["enabled"] = bool(enrichment_policy.get("enabled"))
+    save_json(out / "official-enrichment.json", enrichment_report)
+    (out / "OFFICIAL_ENRICHMENT.md").write_text(
+        official_enrichment_markdown(enrichment_report), encoding="utf-8")
+    checkpoint(out, "enrichment", {
+        "enabled": enrichment_report["enabled"],
+        "updated_legacy_rows": enrichment_report["legacy_records_changed"],
+        "hours_added": enrichment_report["existing_market_hours_added"],
+        "source_attributions_added": enrichment_report["official_source_attributions_added"],
+    })
+    merged, merge_stats = combine(enriched_base, feeds)
     merged, absent_stats = quarantine_absent_official_lombardia(
         merged, old_rows, feeds, source_status
     )
