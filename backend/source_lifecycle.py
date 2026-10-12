@@ -382,7 +382,7 @@ def inspect_raw(profile,blob,catalog,previous=None,today=None):
     return report
 
 
-def inspect_normalized(profile, records, catalog, prior=None):
+def inspect_normalized(profile, records, catalog, prior=None, review_metrics=None):
     if not isinstance(records,list) or not profile["min_records"]<=len(records)<=profile["max_records"]:
         raise ValueError("Source record counts beyond contract: "+profile["id"])
     by_slug,_=_baseline(catalog)
@@ -426,6 +426,15 @@ def inspect_normalized(profile, records, catalog, prior=None):
     if before and not isinstance(before,dict):
         raise ValueError("Invalid previous normalized market source state")
     missing=set(before)-set(current)
+    screened=review_metrics or {}
+    if not isinstance(screened,dict):
+        raise ValueError("Untrusted official-source overlap status")
+    quarantine=screened.get("quarantined_review",0)
+    if (type(quarantine) is not int or quarantine<0
+            or quarantine>profile["max_records"]):
+        raise ValueError("Untrusted source overlap quarantine count")
+    outside=counts.get("source_ids_not_yet_in_catalog",0)
+    known=min(outside,quarantine)
     return {
         "schema":1,"source_id":profile["id"],"publisher":profile["publisher"],
         "source_data_scope":profile["source_timestamp_scope"],
@@ -433,6 +442,12 @@ def inspect_normalized(profile, records, catalog, prior=None):
         "profile_fingerprint":digest(profile),
         "catalog_records_compared":len(catalog),
         "counts":dict(sorted(counts.items())),
+        "source_screening":{
+            "outside_catalog_source_ids_not_necessarily_new_markets":outside,
+            "already_quarantined_by_venue_overlap_review":known,
+            "remaining_identities_without_overlap_disposition":outside-known,
+            "source_screening_counts_are_not_market_opening_proofs":True,
+        },
         "fingerprints":dict(sorted(current.items())),
         "diff":{
            "first_observation":not bool(prior),
@@ -448,7 +463,7 @@ def inspect_normalized(profile, records, catalog, prior=None):
     }
 
 
-def run(config,catalog,*,source_dir=None,previous=None,
+def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
         probe_raw=False,raw_fetch=limited_fetch,today=None):
     today=today or date.today()
     validate_contracts(config)
@@ -467,7 +482,10 @@ def run(config,catalog,*,source_dir=None,previous=None,
                 status["source_snapshot_absent_not_market_closure"]+=1
                 continue
             rec=json.loads(cached.read_text("utf-8"))
-            reports[sid]=inspect_normalized(profile,rec,catalog,by_old.get(sid))
+            reports[sid]=inspect_normalized(
+                profile,rec,catalog,by_old.get(sid),
+                (source_status or {}).get(sid)
+            )
             status["existing_adapter_snapshots_inspected"]+=1
     if probe_raw:
         enabled=[p for p in config["raw_profiles"] if p.get("enabled") is True]
@@ -532,8 +550,8 @@ def markdown(report):
       f"- Record di mercato importati da questo audit: **{report['market_imports']}**",
       f"- Aperture individuali verificate: **{report['market_confirmations']}**",
       "",
-      "| Fonte | Stato | Sedi da valutare | Identità cambiate | Scomparse dalla fonte (non chiuse) |",
-      "|---|---|---:|---:|---:|",
+      "| Fonte | Stato | ID fonte fuori catalogo (non nuovi mercati) | Già trattenuti dal controllo sovrapposizioni | Residui senza esito del filtro | Fatti cambiati | ID non più visti (non chiusi) |",
+      "|---|---|---:|---:|---:|---:|---:|",
     ]
     for sid,row in sorted(report["sources"].items()):
         counts=row.get("counts",{})
@@ -549,7 +567,13 @@ def markdown(report):
                       d.get("changed_existing_identities_since_last_scan",0))
         new=counts.get("identity_not_in_existing_catalog",
                        counts.get("source_ids_not_yet_in_catalog",0))
-        lines.append(f"| {sid} | {state} | {new} | {changed} | {missing} |")
+        screened=row.get("source_screening") or {}
+        already=screened.get("already_quarantined_by_venue_overlap_review",0)
+        unclassified=screened.get("remaining_identities_without_overlap_disposition",new)
+        lines.append(
+            f"| {sid} | {state} | {new} | {already} | "
+            f"{unclassified} | {changed} | {missing} |"
+        )
     lines.extend(["",
      "## Aggiunta di nuove fonti (senza nuovi script per Comune)",
      "",
