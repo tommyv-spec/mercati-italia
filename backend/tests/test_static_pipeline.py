@@ -142,6 +142,19 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(rows[0]["date"], ["2026-10-11", "2026-10-18"])
         self.assertEqual(rows[0]["date_quality"], "prevista")
 
+    def test_corciano_derived_stable_id_does_not_merge_with_scraped_source(self):
+        from export_static import prepare
+        old = market(slug="scraped",regione="Umbria",citta="Corciano",
+                     nome="Mercato Di Corciano",indirizzo="Piazza Caduti",
+                     url_fonte="https://example.org/markets/corciano")
+        municipal = market(slug="pg-corciano-mercato-di-corciano",
+                           regione="Umbria",citta="Corciano",
+                           nome=old["nome"], indirizzo=old["indirizzo"],
+                           url_fonte=old["url_fonte"])
+        cleaned, stats = prepare([old,municipal], self.today)
+        self.assertEqual(len(cleaned), 2)
+        self.assertEqual(stats["same_source_duplicates_merged"], 0)
+
     def test_distinct_lombardia_publisher_ids_same_street_day_never_merge(self):
         first = market(
             slug="lo-mercap-100551-venerdi",

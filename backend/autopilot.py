@@ -32,6 +32,8 @@ import source_milano
 import source_firenze
 import source_lombardia
 import source_bologna
+import source_corciano
+from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "merge", "forecast", "export", "quality")
@@ -44,6 +46,9 @@ SOURCE_FUNCTIONS = {
     # Read-only inventory adapter. Disabled in daily policy until a
     # separately tested full official-source audit explicitly approves it.
     "bologna": (source_bologna.download, source_bologna.convert),
+    # First observed manually on four official CSV rows; requires full audit
+    # before the daily source policy can enable unattended collection.
+    "corciano": (source_corciano.download, source_corciano.convert),
 }
 
 
@@ -412,11 +417,32 @@ def run(args):
     save_json(out / "bologna-overlaps.json", bologna_report)
     (out / "BOLOGNA_OVERLAPS.md").write_text(
         lombardia_overlap_markdown(bologna_report), encoding="utf-8")
+    corciano_report = {
+        "schema": 1, "region": "Umbria", "source_prefix": "pg-corciano-",
+        "review_only": True, "source_total": 0, "accepted": 0,
+        "quarantined": 0, "counts": {}, "quarantined_examples": [],
+        "market_confirmations": 0, "deleted_existing_records": 0,
+    }
+    if source_status.get("corciano", {}).get("status") in ("retrieved", "resumed_checkpoint"):
+        official_rows = [r for r in feeds if str(r["slug"]).startswith("pg-corciano-")]
+        screened, corciano_report = review_corciano_overlaps(old_rows, official_rows)
+        accepted_ids = {r["slug"] for r in screened}
+        feeds = [r for r in feeds if not str(r["slug"]).startswith("pg-corciano-")
+                 or r["slug"] in accepted_ids]
+        source_status["corciano"]["accepted_after_overlap_qa"] = len(screened)
+        source_status["corciano"]["quarantined_review"] = corciano_report["quarantined"]
+        source_status["corciano"]["source_csv_sha256"] = (
+            official_rows[0].get("source_csv_sha256") if official_rows else None
+        )
+    save_json(out / "corciano-overlaps.json", corciano_report)
+    (out / "CORCIANO_OVERLAPS.md").write_text(
+        corciano_overlap_markdown(corciano_report), encoding="utf-8")
     checkpoint(out, "sources", {
         "total_fetched": raw_fetched, "total_after_review": len(feeds),
         "sources": source_status,
         "lombardia_overlap_quarantined": report["quarantined"],
         "bologna_overlap_quarantined": bologna_report["quarantined"],
+        "corciano_overlap_quarantined": corciano_report["quarantined"],
     })
     merged, merge_stats = combine(old_rows, feeds)
     merged, absent_stats = quarantine_absent_official_lombardia(

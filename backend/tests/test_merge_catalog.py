@@ -54,6 +54,19 @@ class ProvenanceMergeTests(unittest.TestCase):
         self.assertEqual(len(merged), 2)
         self.assertEqual(stats["merged"], 0)
 
+    def test_corciano_market_identity_is_never_absorbed_by_scraped_duplicate(self):
+        original = market(slug="mercato-settimanale-di-corciano-corciano",
+                          regione="Umbria", citta="Corciano",
+                          nome="Mercato Settimanale Di Corciano",
+                          indirizzo="Piazza Caduti")
+        municipal = market(slug="pg-corciano-mercato-di-corciano",
+                           regione="Umbria", citta="Corciano",
+                           nome="Mercato Settimanale Di Corciano",
+                           indirizzo="Piazza Caduti")
+        combined, counts = combine([original],[municipal])
+        self.assertEqual(len(combined),2)
+        self.assertEqual(counts["merged"],0)
+
     def test_official_weekday_identity_never_absorbed_by_generic_city_card(self):
         baseline = market(slug="legacy-venerdi", nome="Mercato di Pogliano Milanese – Via Europa",
                           citta="Pogliano Milanese", indirizzo="Via Europa")
