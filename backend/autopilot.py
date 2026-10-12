@@ -28,6 +28,8 @@ from export_static import export
 from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import refresh_records
+from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
+from milano_2026_release_guard import verify as verify_milano_2026_diff
 from publisher_exception_review import (
     apply_source_repairs, verify_diff as verify_publisher_diff,
     verify_static as verify_publisher_static, evidence_digest as publisher_digest,
@@ -52,7 +54,7 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "reviewed_cities", "forecast", "reviewed_publishers", "export", "quality")
+          "reviewed_cities", "milano_2026", "forecast", "reviewed_publishers", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -414,6 +416,22 @@ def run(args):
                 or len(publisher_policy["evidence_sha256"]) != 64
                 or municipal_policy.get("enabled") is not True))):
         raise ValueError("Five approved publisher exception protections cannot be disabled")
+    # A newly reviewed municipal PDF is permitted to renew only existing
+    # Milano weekly forecasts where the independent official GIS agrees.
+    # The pinned Git-blob IDs make a changed source an explicit code review.
+    milano_policy = policy.get("milano_2026_dual_source", {})
+    milano_enabled = isinstance(milano_policy, dict) and milano_policy.get("enabled") is True
+    if (not isinstance(milano_policy, dict)
+            or set(milano_policy) - {"enabled", "document_date", "pdf_blob_sha1", "gis_blob_sha1"}
+            or milano_policy.get("enabled", False) not in (True, False)
+            or (milano_enabled and (
+                milano_policy.get("document_date") != MILAN_PDF_DATE.isoformat()
+                or milano_policy.get("pdf_blob_sha1") != "87ac8ce87140d34ca7c399a1e32f30d587488571"
+                or milano_policy.get("gis_blob_sha1") != "523643489c0a27b8fabd2272e4b1e5205249d2e7"
+                or policy["sources"][0]["id"] != "milano"
+            ))):
+        raise ValueError("Unreviewed 2026 Milan publisher-source evidence policy")
+
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -666,8 +684,54 @@ def run(args):
         "points_quarantined":reviewed_certificate["unsafe_points_suppressed"],
         "navigation_suspended":reviewed_certificate["navigation_routes_paused"],
     })
+    # Apply the exact two-source proof *before* rolling recurrence dates.
+    # Report data-level source freshness, not individual event confirmation.
+    milano_rows = reviewed_rows
+    milano_report = {
+        "schema":1, "enabled":False, "review_only":True,
+        "records_total":len(reviewed_rows), "records_added":0,"records_deleted":0,
+        "verified_future_events_created":0, "confirmed_dates_created":0,
+        "coordinates_changed":0, "primary_sources_changed":0,
+        "reconciled_id_count":0, "modified_ids":[], "counts":{},
+    }
+    milano_guard = {
+        "schema":1, "stable_ids_checked":len(reviewed_rows), "milan_source_changes":0,
+        "market_ids_added":0, "market_ids_removed":0, "verified_events_added":0,
+        "source_originals_lost":0, "coordinates_edited":0, "release_safe":True,
+        "enabled":False,
+    }
+    if milano_enabled:
+        pdf_path = Path(__file__).resolve().parent / "data" / "milano-mss-oct2026-observations.json"
+        gis_path = Path(__file__).resolve().parent / "data" / "milano-mss-gis-reviewed.json"
+        def pinned_git_blob_sha(path):
+            data = path.read_bytes()
+            return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+        if (pinned_git_blob_sha(pdf_path) != milano_policy["pdf_blob_sha1"]
+                or pinned_git_blob_sha(gis_path) != milano_policy["gis_blob_sha1"]):
+            raise ValueError("Pinned Milan publisher files changed without source review")
+        pdf_evidence = read_json(pdf_path)
+        gis_evidence = read_json(gis_path)
+        milano_rows, milano_report = reconcile_milano_2026(
+            reviewed_rows, pdf_evidence, gis_evidence, today=args.today, apply=True
+        )
+        milano_report["enabled"] = True
+        milano_guard = verify_milano_2026_diff(
+            reviewed_rows, milano_rows, milano_report, pdf_evidence, gis_evidence
+        )
+        if milano_guard.get("release_safe") is not True:
+            raise ValueError("Milan publisher change failed independent field proof")
+        save_json(out / "intermediate" / "milano-2026.json", milano_rows)
+    save_json(out / "milano-2026-review.json", milano_report)
+    save_json(out / "milano-2026-diff-guard.json", milano_guard)
+    checkpoint(out, "milano_2026", {
+        "enabled":milano_enabled,
+        "approved_existing_market_ids":milano_report["reconciled_id_count"],
+        "source_fields_renewed":len(milano_report["modified_ids"]),
+        "verified_openings_created":0,
+    })
+
     projected, forecast_stats = refresh_records(
-        reviewed_rows, args.today, policy["forecast"]["days"],
+        milano_rows, args.today, policy["forecast"]["days"],
         policy["forecast"]["max_source_age_days"])
     if len(projected) != len(merged):
         raise ValueError("Forecast must never remove market identities")
