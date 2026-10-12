@@ -39,6 +39,29 @@ class AutopilotHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Untrusted manually reviewed"):
             summary(decision(),None,None,"bad",reviewed_cities=manual)
 
+    def test_persistent_city_holds_are_distinct_from_new_edits(self):
+        proof = {
+            "schema": 1,
+            "evidence_sha256": "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f",
+            "manifest_records": 12650, "release_safe": True,
+            "reviewed_cities_in_final_details": 13,
+            "reviewed_cities_in_search_index": 13,
+            "source_urls_preserved": 13,
+            "navigation_routes_still_blocked": 13,
+            "unsafe_coordinates_still_quarantined": 6,
+            "individual_market_confirmations": 0,
+        }
+        item = summary(decision(), None, None, "safety-still-active",
+                       reviewed_city_static_guard=proof)
+        self.assertEqual(item["reviewed_city_source_navigation_blocked"], 0)
+        self.assertEqual(item["reviewed_city_source_navigation_held_total"], 13)
+        self.assertEqual(item["reviewed_city_source_coordinates_held_total"], 6)
+        self.assertEqual(item["reviewed_city_source_final_details_checked"], 13)
+        self.assertIn("Protezioni ancora attive", __import__("autopilot_history").markdown(item))
+        proof["navigation_routes_still_blocked"] = 12
+        with self.assertRaisesRegex(ValueError, "Untrusted persistent"):
+            summary(decision(), None, None, "unsafe", reviewed_city_static_guard=proof)
+
     def test_metrics_without_pii_and_priority_order(self):
         result=summary(
             decision(),
