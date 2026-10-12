@@ -47,6 +47,14 @@ def validate_evidence(evidence):
             or len(evidence["leads"]) != 4
             or {x.get("lead_id") for x in evidence["leads"]} != set(EXPECTED)):
         raise ValueError("Unreviewed municipal lead evidence or import rights")
+    valid_source = any(
+        isinstance(source,dict) and source.get("url") == SOURCE
+        and source.get("published_on") == PUBLISHED.isoformat()
+        and source.get("publisher") == "Comune di Bologna"
+        for source in evidence.get("sources", [])
+    )
+    if not valid_source:
+        raise ValueError("Untrusted original municipality publication date")
     for x in evidence["leads"]:
         published_days = x.get("weekday")
         if isinstance(published_days, list):
