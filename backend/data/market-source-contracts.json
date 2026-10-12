@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "contract_version": "market-source-lifecycle-v1",
+  "description": "Declarative source contracts; onboarding is source-level, not one script per event. All actions review-only until rights and publisher identity are reviewed.",
+  "publication_role": "review_only",
+  "parser_security": "only explicitly allowlisted official HTTPS resources, bounded responses, no redirects, no raw PII persistence",
+  "normalized_profiles": [
+    {
+      "id": "milano",
+      "publisher": "Comune di Milano",
+      "identity_prefix": "mi-mss-",
+      "region": "Lombardia",
+      "source_pages": [
+        "https://dati.comune.milano.it/dataset/ds291-economia-mercati-settimanali-scoperti"
+      ],
+      "min_records": 60,
+      "max_records": 1800,
+      "row_kind": "market_venue",
+      "source_timestamp_scope": "dataset_not_individual_market",
+      "expected_precision": [
+        "non_verificata",
+        "sconosciuta"
+      ],
+      "license_claim": "CC BY 4.0; original source adapter requires review",
+      "publication_mode": "existing_adapter_only"
+    },
+    {
+      "id": "firenze",
+      "publisher": "Comune di Firenze",
+      "identity_prefix": "fi-feelflorence-",
+      "region": "Toscana",
+      "source_hosts": [
+        "www.feelflorence.it",
+        "opendata.comune.fi.it"
+      ],
+      "min_records": 3,
+      "max_records": 250,
+      "row_kind": "market_venue",
+      "source_timestamp_scope": "dataset_not_individual_market",
+      "expected_precision": [
+        "precisa",
+        "sconosciuta"
+      ],
+      "license_claim": "CC BY 4.0 (publisher declared)",
+      "publication_mode": "existing_adapter_only"
+    },
+    {
+      "id": "lombardia",
+      "publisher": "Regione Lombardia",
+      "identity_prefix": "lo-mercap-",
+      "region": "Lombardia",
+      "source_pages": [
+        "https://www.dati.lombardia.it/d/68zx-njaw"
+      ],
+      "min_records": 1100,
+      "max_records": 2400,
+      "row_kind": "market_venue_day",
+      "source_timestamp_scope": "dataset_not_individual_market",
+      "expected_precision": [
+        "non_verificata",
+        "sconosciuta"
+      ],
+      "license_claim": "CC0 1.0 claimed in publisher metadata; human rights review required",
+      "publication_mode": "existing_adapter_only"
+    },
+    {
+      "id": "bologna",
+      "publisher": "Comune di Bologna",
+      "identity_prefix": "bo-open-",
+      "region": "Emilia-Romagna",
+      "source_pages": [
+        "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/"
+      ],
+      "min_records": 40,
+      "max_records": 65,
+      "row_kind": "market_venue",
+      "source_timestamp_scope": "dataset_not_individual_market",
+      "expected_precision": [
+        "non_verificata",
+        "sconosciuta"
+      ],
+      "license_claim": "CC BY 4.0 declared; require source-specific reuse review",
+      "publication_mode": "existing_adapter_only"
+    },
+    {
+      "id": "corciano",
+      "publisher": "Comune di Corciano",
+      "identity_prefix": "pg-corciano-",
+      "region": "Umbria",
+      "source_pages": [
+        "https://comune.corciano.pg.it/area_letturaDocumento/29645/pagsistema.html"
+      ],
+      "min_records": 4,
+      "max_records": 8,
+      "row_kind": "market_venue",
+      "source_timestamp_scope": "dataset_not_individual_market",
+      "expected_precision": [
+        "non_verificata",
+        "sconosciuta"
+      ],
+      "license_claim": "CC BY 4.0 declared, original adapter approved",
+      "publication_mode": "existing_adapter_only"
+    }
+  ],
+  "raw_profiles": [
+    {
+      "id": "corciano-generic-shadow",
+      "enabled": true,
+      "publisher": "Comune di Corciano",
+      "source_id": "corciano",
+      "row_kind": "market_venue",
+      "resource_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
+      "attribution_url": "https://comune.corciano.pg.it/area_letturaDocumento/29645/pagsistema.html",
+      "format": "CSV",
+      "delimiter": ";",
+      "max_bytes": 16384,
+      "min_rows": 4,
+      "max_rows": 8,
+      "schema_columns": [
+        "denominazione",
+        "giorni_svolgimento",
+        "tipo_strada",
+        "ubicazione",
+        "numero_tot_posteggi",
+        "numero_posteggi_riservati",
+        "orario_svolgimento_dalle",
+        "orario_svolgimento_alle",
+        "long",
+        "lat",
+        "geopoint"
+      ],
+      "strict_schema": true,
+      "identity_fields": [
+        "denominazione"
+      ],
+      "name_field": "denominazione",
+      "street_fields": [
+        "tipo_strada",
+        "ubicazione"
+      ],
+      "weekday_field": "giorni_svolgimento",
+      "hours_fields": [
+        "orario_svolgimento_dalle",
+        "orario_svolgimento_alle"
+      ],
+      "market_filter": {
+        "field": "denominazione",
+        "starts_with": "MERCATO DI "
+      },
+      "municipality": "Corciano",
+      "region": "Umbria",
+      "province": "PG",
+      "catalog_slug_prefix": "pg-corciano-",
+      "source_dataset_date": "2026-01-07",
+      "source_date_scope": "dataset_not_per_market",
+      "max_source_age_days": 540,
+      "legal_reuse_reviewed": false,
+      "publication_mode": "shadow_only",
+      "max_new_ids_per_run": 0,
+      "coordinates": "ignored_unless_independently_source_verified",
+      "notes": "CSV long/lat headers are inverted; generic extractor MUST NOT use those fields. Existing specialized adapter validates geopoint and preserves legacy slugs."
+    }
+  ]
+}
