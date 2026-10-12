@@ -20,9 +20,9 @@ Campi rilevati e corrispondenze sono suggerimenti, non dati verificati.
 - Verifiche obbligatorie: licenza, schema completo, ID stabili, date attuali, dedup.
 
 ## Dati sui Mercati Rionali
-- Esito: schema_preview_only
+- Esito: needs_review
 - Formato: CSV
-- Campi: Municipio, Nome_Mercato, INDIRIZZO, Civico, Esp_Civico, Altre_indicazioni, CAP, TIPOLOGIA, Note_mercato, POSTEGGI_TOTALI, POSTEGGI_OCCUPATI, NUMERO_OPERATORI, POSTEGGI_ALIMENTARI, POSTEGGI_NON_ALIMENTARI, Apertura_Lunedi, Chiusura_Lunedi, Apertura_Martedi, Chiusura_Martedi, Apertura_Mercoledi, Chiusura_Mercoledi, Apertura_Giovedi, Chiusura_Giovedi, Apertura_Venedi, Chiusura_Venedi
-- Possibili mappature: {"name": ["Nome_Mercato"], "address": ["INDIRIZZO"], "district": ["Municipio"], "hours": ["Apertura_Lunedi", "Chiusura_Lunedi", "Apertura_Martedi", "Chiusura_Martedi", "Apertura_Mercoledi", "Chiusura_Mercoledi"], "market_type": ["TIPOLOGIA"], "notes": ["Altre_indicazioni", "Note_mercato"]}
-- Punti da risolvere: municipality_must_be_validated_from_publisher_context
+- Campi: 
+- Possibili mappature: {}
+- Punti da risolvere: 
 - Verifiche obbligatorie: licenza, schema completo, ID stabili, date attuali, dedup.

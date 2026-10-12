@@ -16,7 +16,7 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 | 1 | 24 | Mercati su aree pubbliche | market_location_candidate | Regione Lombardia | 2026-10-06 |
 | 2 | 23 | Elenco dei mercati settimanali | market_location_candidate | Comune di Corciano | 07-01-2026 |
 | 3 | 19 | Mercati e fiere | mixed_events_candidate | Comune di Bologna | 2025-04-02 |
-| 4 | 18 | Dati sui Mercati Rionali | market_location_candidate | Roma Capitale | 2022-07-04 |
+| 4 | 16 | Dati sui Mercati Rionali | market_location_candidate | Roma Capitale | sconosciuta |
 | 5 | 14 | Attività commerciali: mercati settimanali scoperti | market_location_candidate | Comune di Milano | sconosciuta |
 | 6 | 13 | Fiere e mercati - Comune di Casalserugo | mixed_events_candidate | Regione Veneto | sconosciuta |
 | 7 | 13 | Fiere e mercati - Comune di Soave | mixed_events_candidate | Regione Veneto | sconosciuta |

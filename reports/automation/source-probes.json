@@ -156,74 +156,16 @@
     },
     {
       "adapter_enabled": false,
+      "error": "TimeoutError: The read operation timed out",
       "events_confirmed": 0,
-      "field_hints": {
-        "address": [
-          "INDIRIZZO"
-        ],
-        "district": [
-          "Municipio"
-        ],
-        "hours": [
-          "Apertura_Lunedi",
-          "Chiusura_Lunedi",
-          "Apertura_Martedi",
-          "Chiusura_Martedi",
-          "Apertura_Mercoledi",
-          "Chiusura_Mercoledi"
-        ],
-        "market_type": [
-          "TIPOLOGIA"
-        ],
-        "name": [
-          "Nome_Mercato"
-        ],
-        "notes": [
-          "Altre_indicazioni",
-          "Note_mercato"
-        ]
-      },
-      "fields": [
-        "Municipio",
-        "Nome_Mercato",
-        "INDIRIZZO",
-        "Civico",
-        "Esp_Civico",
-        "Altre_indicazioni",
-        "CAP",
-        "TIPOLOGIA",
-        "Note_mercato",
-        "POSTEGGI_TOTALI",
-        "POSTEGGI_OCCUPATI",
-        "NUMERO_OPERATORI",
-        "POSTEGGI_ALIMENTARI",
-        "POSTEGGI_NON_ALIMENTARI",
-        "Apertura_Lunedi",
-        "Chiusura_Lunedi",
-        "Apertura_Martedi",
-        "Chiusura_Martedi",
-        "Apertura_Mercoledi",
-        "Chiusura_Mercoledi",
-        "Apertura_Giovedi",
-        "Chiusura_Giovedi",
-        "Apertura_Venedi",
-        "Chiusura_Venedi",
-        "Apertura_Sabato",
-        "Chiusura_Sabato",
-        "Note_orari",
-        "AGGIORNATO"
-      ],
+      "field_hints": {},
+      "fields": [],
       "format": "CSV",
       "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
-      "review_blockers": [
-        "municipality_must_be_validated_from_publisher_context"
-      ],
-      "sample_bytes": 38408,
       "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
       "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Dati sui Mercati Rionali",
-      "truncated": false
+      "status": "needs_review",
+      "title": "Dati sui Mercati Rionali"
     }
   ],
   "schema": 1,

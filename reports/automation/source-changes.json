@@ -1,13 +1,15 @@
 {
   "counts": {
     "first_observation": 0,
+    "municipal_csv_bytes_changed": 0,
+    "municipal_csv_first_observation": 0,
     "publisher_data_date_advanced": 0,
     "publisher_data_date_rolled_back": 0,
-    "publisher_metadata_changed": 0,
-    "publisher_unavailable": 0,
+    "publisher_metadata_changed": 1,
+    "publisher_unavailable": 1,
     "recovered": 0,
-    "timestamp_interpretation_corrected": 1,
-    "unchanged": 2
+    "timestamp_interpretation_corrected": 0,
+    "unchanged": 1
   },
   "dataset_timestamp_changes_are_not_record_confirmations": true,
   "imported_markets": 0,
@@ -15,18 +17,18 @@
   "results": [
     {
       "automatic_import_allowed": false,
-      "change_type": "timestamp_interpretation_corrected",
+      "change_type": "unchanged",
       "current_data_date": "2025-04-02",
       "current_timestamp_kind": "publisher_data_processed",
       "events_confirmed": 0,
-      "prior_data_date": "2025-12-31",
-      "prior_timestamp_kind": "publisher_dataset_modified",
+      "prior_data_date": "2025-04-02",
+      "prior_timestamp_kind": "publisher_data_processed",
       "publisher": "Comune di Bologna",
       "source_id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50"
     },
     {
       "automatic_import_allowed": false,
-      "change_type": "unchanged",
+      "change_type": "publisher_metadata_changed",
       "current_data_date": "2026-10-06",
       "current_timestamp_kind": "publisher_rows_updated_at",
       "events_confirmed": 0,
@@ -37,9 +39,9 @@
     },
     {
       "automatic_import_allowed": false,
-      "change_type": "unchanged",
-      "current_data_date": "2022-07-04",
-      "current_timestamp_kind": "resource_last_modified",
+      "change_type": "publisher_unavailable",
+      "current_data_date": null,
+      "current_timestamp_kind": null,
       "events_confirmed": 0,
       "prior_data_date": "2022-07-04",
       "prior_timestamp_kind": "resource_last_modified",
