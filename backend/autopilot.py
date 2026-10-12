@@ -30,6 +30,12 @@ from lombardia_overlap import review as review_lombardia_overlaps, markdown as l
 from recurrence_refresh import refresh_records
 from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
 from milano_2026_release_guard import verify as verify_milano_2026_diff, verify_exported as verify_milano_2026_exported
+from roma_xiii_2026_venues import (
+    integrate as add_curated_roma_2026_venues,
+    validate_added as verify_curated_roma_2026_additions,
+    EVIDENCE_FILE as ROMA_2026_VENUE_EVIDENCE_FILE,
+)
+from roma_xiii_2026_release_guard import check_static as check_curated_roma_2026_static
 from roma_xiii_geo_hold import (
     apply_holds as apply_roma_xiii_holds,
     verify_diff as verify_roma_xiii_diff,
@@ -61,7 +67,8 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "reviewed_cities", "milano_2026", "forecast", "reviewed_publishers", "roma_geo_hold", "export", "quality")
+          "reviewed_cities", "milano_2026", "roma_2026_venues", "forecast",
+          "reviewed_publishers", "roma_geo_hold", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -454,6 +461,23 @@ def run(args):
             ))):
         raise ValueError("Unreviewed Rome XIII coordinate hold policy")
 
+    # Eight official municipality identities: two already published, five
+    # source-supported distinct venues, and one unverified relocation held.
+    # Only the five pinned IDs can enter DEV. A refreshed publisher document
+    # must be approved explicitly; no runtime inference or bulk import.
+    roma_venues_policy = policy.get("roma_xiii_2026_venues", {})
+    roma_venues_enabled = isinstance(roma_venues_policy, dict) and roma_venues_policy.get("enabled") is True
+    if (not isinstance(roma_venues_policy, dict)
+            or set(roma_venues_policy) - {"enabled","reviewed_on","evidence_blob_sha1"}
+            or roma_venues_policy.get("enabled",False) not in (True,False)
+            or (roma_venues_enabled and (
+                roma_venues_policy.get("reviewed_on") != "2026-10-13"
+                or roma_venues_policy.get("evidence_blob_sha1")
+                    != "de49718515825371f97d8968b2d8630c8db0999a"
+                or roma_holds_enabled is not True
+            ))):
+        raise ValueError("Unapproved municipal 2026 Rome venue expansion policy")
+
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -752,10 +776,55 @@ def run(args):
         "verified_openings_created":0,
     })
 
+    # Existing market source records remain untouched. Official 2026 market
+    # venue identities are inserted before forecast regeneration. This is the
+    # only place where these five pinned new IDs may enter the daily catalog.
+    roma_2026_source = None
+    roma_2026_report = {
+        "schema":1,"enabled":False,"review_only":True,
+        "existing_catalog_records":len(milano_rows),
+        "new_market_ids":[],"already_published_curated_ids":[],
+        "candidate_venue_records":0,"new_market_count":0,
+        "records_added":0,"records_removed":0,"existing_records_changed":0,
+        "new_coordinates_added":0,"new_opening_confirmations":0,
+        "new_human_verifications":0,
+    }
+    roma_2026_diff = {
+        "schema":1,"old_market_records_checked":len(milano_rows),
+        "approved_official_market_additions":0,
+        "original_records_modified":0,"source_urls_lost":0,
+        "verified_events_created":0,"precise_geocodes_created":0,
+        "directions_activated":0,"safe":True,"enabled":False,
+    }
+    if roma_venues_enabled:
+        if (roma_source_git_blob_sha(ROMA_2026_VENUE_EVIDENCE_FILE)
+                != roma_venues_policy["evidence_blob_sha1"]):
+            raise ValueError("Reviewed 2026 Roma XIII market identity evidence changed")
+        roma_2026_source = read_json(ROMA_2026_VENUE_EVIDENCE_FILE)
+        before_roma = milano_rows
+        milano_rows,roma_2026_report = add_curated_roma_2026_venues(
+            before_roma,roma_2026_source,apply=True,today=args.today
+        )
+        roma_2026_diff = verify_curated_roma_2026_additions(
+            before_roma,milano_rows,roma_2026_report,roma_2026_source
+        )
+        if roma_2026_diff.get("safe") is not True:
+            raise ValueError("Review-only Roma market imported without exact evidence")
+        save_json(out / "intermediate" / "roma-2026-venues.json", milano_rows)
+    save_json(out / "roma-xiii-2026-venues.json",roma_2026_report)
+    save_json(out / "roma-xiii-2026-venues-diff-guard.json",roma_2026_diff)
+    checkpoint(out,"roma_2026_venues",{
+        "enabled":roma_venues_enabled,
+        "new_market_identifiers":roma_2026_report["new_market_ids"],
+        "source_records_added":roma_2026_report["records_added"],
+        "already_published":len(roma_2026_report["already_published_curated_ids"]),
+        "source_event_confirmations":0,
+    })
+
     projected, forecast_stats = refresh_records(
         milano_rows, args.today, policy["forecast"]["days"],
         policy["forecast"]["max_source_age_days"])
-    if len(projected) != len(merged):
+    if len(projected) != len(merged) + roma_2026_report["records_added"]:
         raise ValueError("Forecast must never remove market identities")
     save_json(out / "intermediate" / "forecasted.json", projected)
     checkpoint(out, "forecast", forecast_stats)
@@ -859,6 +928,13 @@ def run(args):
         if roma_final_proof.get("release_safe") is not True:
             raise ValueError("The exported catalog restored unsafe Rome source coordinates")
         save_json(out / "roma-xiii-static-guard.json", roma_final_proof)
+    if roma_venues_enabled:
+        venue_static_proof = check_curated_roma_2026_static(
+            dest / "manifest.json", roma_2026_source, args.today
+        )
+        if venue_static_proof.get("release_safe") is not True:
+            raise ValueError("Approved Roman municipality identities lost in final static assets")
+        save_json(out / "roma-xiii-2026-venues-static-guard.json", venue_static_proof)
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
     if milano_enabled:
