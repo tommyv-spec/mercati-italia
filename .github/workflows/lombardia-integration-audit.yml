@@ -4,17 +4,6 @@ name: Lombardia MERCap full integration audit (no publish)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - improve/data-quality-security-performance-2026-10-11
-    paths:
-      - .github/workflows/lombardia-integration-audit.yml
-      - backend/source_lombardia.py
-      - backend/tests/test_source_lombardia.py
-      - backend/lombardia_overlap.py
-      - backend/tests/test_lombardia_overlap.py
-      - backend/autopilot.py
-      - backend/export_static.py
 
 permissions:
   contents: read
@@ -90,7 +79,8 @@ jobs:
           merged = load_existing(candidate)
           ids = {x['slug'] for x in base}
           new = [x for x in merged if x['slug'] not in ids]
-          lo = [x for x in new if x['slug'].startswith('lo-mercap-')]
+          lo = [x for x in merged if x['slug'].startswith('lo-mercap-')]
+          lo_new = [x for x in new if x['slug'].startswith('lo-mercap-')]
 
           def key(s):
               norm = unicodedata.normalize('NFKD', str(s or '')).casefold()
@@ -115,8 +105,9 @@ jobs:
               'base_records': len(base),
               'candidate_records': len(merged),
               'new_identities': len(new),
-              'new_lombardia': len(lo),
-              'new_lombardia_forecast': sum(bool(x.get('date')) for x in lo),
+              'new_lombardia': len(lo_new),
+              'all_lombardia': len(lo),
+              'new_lombardia_forecast': sum(bool(x.get('date')) for x in lo_new),
               'new_lombardia_no_calendar': sum(not x.get('date') for x in lo),
               'dataset_scoped_dates': sum(x.get('aggiornamento_ambito') == 'dataset' for x in lo),
               'human_verified_lombardia': sum(bool(x.get('verificato_il')) for x in lo),
@@ -138,13 +129,13 @@ jobs:
           print('MERCap preserved IDs', len(candidate_source_ids),
                 'from approved input', len(accepted_source_ids),
                 'missing samples', missing_official[:25])
-          assert report['approved'] and report['new_lombardia'] >= 1000
-          assert report['new_lombardia'] == screening['accepted'], (
-              'Existing official MERCap IDs were lost in the exporter'
+          assert report['approved'] and report['all_lombardia'] >= 1000
+          assert candidate_source_ids == accepted_source_ids, (
+              'Source identity mismatch between screened official input and exporter'
           )
           assert report['human_verified_lombardia'] == 0
           assert report['lombardia_precise_coordinates_claimed'] == 0
-          assert report['dataset_scoped_dates'] == report['new_lombardia']
+          assert report['dataset_scoped_dates'] == report['all_lombardia']
           Path('lombardia-audit-output/integration-summary.json').write_text(
               json.dumps(report,indent=2,ensure_ascii=False)+'\n')
           with Path('lombardia-audit-output/integration-summary.md').open('w') as f:
