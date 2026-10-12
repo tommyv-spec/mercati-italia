@@ -48,8 +48,11 @@ def validate_evidence(evidence):
             or {x.get("lead_id") for x in evidence["leads"]} != set(EXPECTED)):
         raise ValueError("Unreviewed municipal lead evidence or import rights")
     for x in evidence["leads"]:
+        published_days = x.get("weekday")
+        if isinstance(published_days, list):
+            published_days = tuple(published_days)
         actual = (x.get("street"), x.get("source_edition_status"),
-                  x.get("declared_hours"), x.get("weekday"),
+                  x.get("declared_hours"), published_days,
                   tuple(x.get("active_months", ())))
         if actual != EXPECTED[x["lead_id"]] or x.get("ready_for_catalog") is not False:
             raise ValueError("Municipal street, schedule or publication status changed")
