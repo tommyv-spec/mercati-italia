@@ -482,20 +482,29 @@ def run(config,catalog,*,source_dir=None,previous=None,
                 reports[sid]=inspect_raw(profile,blob,catalog,by_old.get(sid),today)
                 status["source_level_raw_profiles_checked"]+=1
             except (ValueError,OSError,TimeoutError) as exc:
-                # An unreachable official host cannot imply a market closure.
-                # Keep the latest *verified observation* in history, tagged
-                # stale/unavailable. Never turn empty transport response into 0.
+                # Unavailable HTTPS endpoint != vanished market. A parser
+                # ValueError is DISTINCT: the publisher may have changed
+                # schema, granularity or ID meaning. Never treat it as success.
+                is_contract_error=isinstance(exc,ValueError)
+                classification=("contract_change_needs_review" if is_contract_error
+                                else "transport_unavailable")
                 if sid in by_old:
-                    reports[sid]={**by_old[sid],"stale_snapshot_carry_forward":True,
-                                  "transport_error_kind":type(exc).__name__}
+                    reports[sid]={**by_old[sid],
+                                  "stale_snapshot_carry_forward":True,
+                                  "last_check_status":classification,
+                                  "last_check_error_class":type(exc).__name__}
                 else:
                     reports[sid]={"schema":1,"source_id":sid,
                                   "publisher":profile["publisher"],
                                   "source_url":profile["resource_url"],
                                   "unavailable_no_market_inference":True,
-                                  "transport_error_kind":type(exc).__name__,
+                                  "last_check_status":classification,
+                                  "last_check_error_class":type(exc).__name__,
                                   "fingerprints":{}}
-                status["raw_source_unavailable_no_market_inference"]+=1
+                if is_contract_error:
+                    status["raw_schema_or_identity_change_requires_review"]+=1
+                else:
+                    status["raw_source_unavailable_no_market_inference"]+=1
     return {
        "schema":1,"source_contract_schema":1,
        "reference_date":today.isoformat(),
@@ -529,7 +538,9 @@ def markdown(report):
     for sid,row in sorted(report["sources"].items()):
         counts=row.get("counts",{})
         d=row.get("diff",{})
-        state=("non disponibile / vecchio checkpoint" if row.get("stale_snapshot_carry_forward")
+        state=("schema/identità cambiati: revisione della fonte richiesta"
+               if row.get("last_check_status")=="contract_change_needs_review"
+               else "non disponibile / vecchio checkpoint" if row.get("stale_snapshot_carry_forward")
                else "non disponibile" if row.get("unavailable_no_market_inference")
                else "sola verifica, non apertura confermata")
         missing=d.get("missing_source_identities_since_last_scan",
