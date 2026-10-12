@@ -137,5 +137,44 @@ class YieldTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             audit(base,bad,municipalities(0),{"schema":1},TODAY,source)
 
+class MunicipalityRelocationGate(unittest.TestCase):
+    def test_source_market_moved_but_old_venue_is_still_in_dataset(self):
+        from source_yield_audit import (
+            validate_relocations, RELOCATED_ID, RELOCATION_URL,
+        )
+        root=Path(__file__).resolve().parents[2]
+        evidence=json.loads((root/"backend/data/source-yield-location-conflicts-2026-10-12.json").read_text("utf-8"))
+        self.assertEqual(set(validate_relocations(evidence)), {RELOCATED_ID})
+        self.assertIn("atti9.comune.bologna.it",RELOCATION_URL)
+        base,rows=fixture()
+        rows.append(official(RELOCATED_ID,
+            "Mercato dei produttori agricoli – Via Segantini","via Segantini",
+            day="Calendario da verificare presso il Comune"))
+        result=compare_bologna(base,rows,TODAY,evidence)
+        self.assertEqual(result["counts"]["documented_location_conflicts_held"],1)
+        self.assertEqual(result["counts"]["possible_new_venues_unconfirmed"],1)
+        self.assertEqual(result["samples_for_review"]["location_conflict"],[RELOCATED_ID])
+        self.assertEqual(result["events_confirmed"],0)
+        self.assertEqual(result["records_imported"],0)
+
+    def test_unreviewed_relocation_or_changed_old_address_fails_closed(self):
+        from source_yield_audit import validate_relocations, RELOCATED_ID
+        root=Path(__file__).resolve().parents[2]
+        proof=json.loads((root/"backend/data/source-yield-location-conflicts-2026-10-12.json").read_text("utf-8"))
+        evil=copy.deepcopy(proof)
+        evil["cases"][0]["legal_effective_date"]="2026-10-12"
+        with self.assertRaises(ValueError):
+            validate_relocations(evil)
+        evil=copy.deepcopy(proof)
+        evil["cases"][0]["conflicting_legal_source"]="https://example.invalid"
+        with self.assertRaisesRegex(ValueError,"Untrusted official"):
+            validate_relocations(evil)
+        base,rows=fixture()
+        rows.append(official(RELOCATED_ID,
+            "Mercato dei produttori agricoli – Via Segantini","via G. Verdi"))
+        with self.assertRaisesRegex(ValueError,"relocation conflicts"):
+            compare_bologna(base,rows,TODAY,proof)
+
+
 if __name__=="__main__":
     unittest.main()

@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "reviewed_on": "2026-10-12",
+  "role": "Documented location conflicts are review leads; no market is confirmed, moved or imported.",
+  "cases": [
+    {
+      "source_market_id": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f",
+      "expected_publisher_url": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "expected_data_date": "2025-04-02",
+      "expected_city": "Bologna",
+      "expected_old_address": "via Segantini",
+      "name_keywords": [
+        "mercato",
+        "produttori agricoli",
+        "segantini"
+      ],
+      "conflicting_legal_source": "https://atti9.comune.bologna.it/webpub/wpub_ordtraf.nsf/dettaglio.xsp?action=editDocument&documentId=77B931E39816680CC1258B270043B4E3",
+      "legal_act": "PG 351978/2024",
+      "legal_effective_date": "2024-05-30",
+      "recorded_new_location": "Via Battindarno, presso civico 135",
+      "disposition": "quarantine_as_conflicting_historical_venue_until_current_publisher_reconciliation"
+    }
+  ]
+}
