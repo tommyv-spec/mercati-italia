@@ -61,7 +61,7 @@ jobs:
               raise ValueError('Manual city source manifest is not pinned and enabled in DEV')
           Path('/tmp/reviewed-cities-audit-policy.json').write_text(
               json.dumps(policy),encoding='utf-8')
-          print('SOURCE_PROVEN_CITY_EVIDENCE',len(validated),'geo_disagreements',6)
+          print('SOURCE_PROVEN_CITY_EVIDENCE',len(validated),'geo_disagreements',7)
           PY
       - name: Generate full 13779-card candidate in offline scratch only
         run: |
@@ -119,9 +119,16 @@ jobs:
               if e.get('coordinate_reference'):
                   assert now['lat'] is None and now['lng'] is None
                   assert now['position_quality']=='sconosciuta'
+                  pinned=e['coordinate_reference']['observed_old_point']
                   assert now['coordinate_originali']=={
-                      'lat':prior['lat'],'lng':prior['lng']
-                  }
+                      'lat':pinned[0],'lng':pinned[1]
+                  }, 'Quarantined coordinate differs from source-pinned manual evidence: '+sid
+                  if prior.get('lat') is None and prior.get('lng') is None:
+                      assert prior.get('coordinate_originali')==now['coordinate_originali'], ('Previously quarantined location changed: '+sid)
+                  else:
+                      assert now['coordinate_originali']=={
+                          'lat':prior['lat'],'lng':prior['lng']
+                      }, 'Original source coordinate changed: '+sid
               else:
                   assert now['lat']==prior['lat'] and now['lng']==prior['lng']
           old_suspicious=analyze(original)['metrics'].get('suspicious_city',0)
