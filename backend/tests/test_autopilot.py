@@ -133,11 +133,16 @@ class AutopilotTests(unittest.TestCase):
 
     def test_importer_type_error_is_not_masked_by_retry(self):
         from autopilot import source_feed
-        with patch("autopilot.source_bologna.download", return_value={"dataset_id": "invalid"}), \
-             patch("autopilot.source_bologna.convert", side_effect=TypeError("bad publisher field")) as convert:
+        calls = []
+        def bad_schema(raw, today):
+            calls.append(today)
+            raise TypeError("bad publisher field")
+        with patch.dict("autopilot.SOURCE_FUNCTIONS", {
+            "bologna": (lambda: {"dataset_id": "invalid"}, bad_schema)
+        }):
             with self.assertRaisesRegex(TypeError, "bad publisher field"):
                 source_feed("bologna", TODAY)
-            self.assertEqual(convert.call_count, 1)
+        self.assertEqual(calls, [TODAY])
 
     def test_unapproved_source_ids_fail_closed(self):
         bad=policy()
