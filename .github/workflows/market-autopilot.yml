@@ -43,7 +43,9 @@ on:
         description: 'Use existing sources only; no external official feed download'
 
 concurrency:
-  group: mercati-autopilot-dev
+  # Serialize the catalog publish and the read-only research report writer.
+  # Otherwise a new DEV QA snapshot can race an unrelated report commit.
+  group: mercati-all-dev-report-and-catalog-writes
   cancel-in-progress: false
 
 env:
