@@ -20,13 +20,6 @@
 | 3 | Anagrafica mercati | unreachable_candidate_source | n.d. | n.d. | Restore official dataset endpoint or find replacement, then inspect actual municipality rows. |
 | 4 | Censimento dei mercati giornalieri | schema_and_rights_review | n.d. | n.d. | Check live row schema, source date, attribution and calendar before integration. |
 | 5 | Censimento dei mercati itineranti | schema_and_rights_review | n.d. | n.d. | Check live row schema, source date, attribution and calendar before integration. |
-| 6 | Posteggi mercati e fiere - Comune di Brendola | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
-| 7 | Posteggi mercati e fiere - Comune di Fontaniva | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
-| 8 | Posteggi mercati e fiere - Comune di Lazise | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
-| 9 | Posteggi mercati e fiere - Comune di Meolo | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
-| 10 | Posteggi mercati e fiere - Comune di Pianiga | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
-| 11 | Posteggi mercati e fiere - Comune di Sandrigo | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
-| 12 | Posteggi mercati e fiere - Comune di Soave | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
 
 Fonti gia integrate, concessioni e statistiche non contano come nuovi mercati.
 Le fonti con righe non accessibili restano non misurate, non diventano zero.

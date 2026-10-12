@@ -3,7 +3,7 @@
 **Analisi in sola lettura.** Nessun mercato, dato fonte o appuntamento modificato.
 
 - Schede: **13,779**
-- Senza orari: **10,840** (78.7%)
+- Senza orari: **10,839** (78.7%)
 - Senza indirizzo: **3,504** (25.4%)
 - Senza prossime date: **1,953**
 - Senza coordinate precise verificate: **13,690**
@@ -29,7 +29,7 @@
 | Marche | 288 | 195 | 83 | 48 | 1759 |
 | Molise | 214 | 185 | 89 | 17 | 1426 |
 | Trentino-Alto Adige | 216 | 171 | 55 | 26 | 1349 |
-| Umbria | 176 | 152 | 74 | 36 | 1240 |
+| Umbria | 176 | 151 | 74 | 36 | 1237 |
 | Friuli Venezia Giulia | 239 | 97 | 16 | 42 | 1166 |
 | Valle d'Aosta | 54 | 52 | 15 | 6 | 366 |
 | Basilicata | 36 | 22 | 12 | 3 | 207 |
@@ -40,7 +40,7 @@ Fino a due per regione. È una coda di approfondimento: **non** prova che gli or
 
 | Comune | Regione | Schede | Orari mancanti | Indirizzi mancanti | Date mancanti |
 |---|---|---:|---:|---:|---:|
-| Roma | Lazio | 123 | 100 | 6 | 98 |
+| Roma | Lazio | 125 | 100 | 6 | 100 |
 | Milano | Lombardia | 127 | 23 | 90 | 103 |
 | Firenze | Toscana | 53 | 19 | 4 | 40 |
 | Genova | Liguria | 23 | 21 | 6 | 12 |

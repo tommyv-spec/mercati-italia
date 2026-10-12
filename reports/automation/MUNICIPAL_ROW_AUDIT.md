@@ -5,43 +5,43 @@ Sono ispezionati fino a 3 CSV al giorno; nessun record o dato personale viene sa
 Nessuna fonte viene abilitata all'importazione.
 
 - Dataset trovati dalla ricerca CKAN: **87**.
-- Dataset con campione storico: **6**.
+- Dataset con campione storico: **9**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - CASALE SUL SILE
-- Editore dichiarato: Comune di Casale sul Sile
+## Posteggi mercati e fiere - CASTEL D'AZZANO
+- Editore dichiarato: Comune di Castel d'Azzano
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 7
-- Nomi distinti (NON mercato nuovo): 2
+- Righe amministrative lette: 1
+- Nomi distinti (NON mercato nuovo): 1
 - Concessioni scadute: 0
-- Righe di posteggi storici: 7
-- Giorni settimanali espliciti: 7
+- Righe di posteggi storici: 1
+- Giorni settimanali espliciti: 0
 - Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
 
-## Posteggi mercati e fiere - NOVENTA PADOVANA
-- Editore dichiarato: Comune di Noventa Padovana
+## Posteggi mercati e fiere - SELVAZZANO DENTRO
+- Editore dichiarato: Comune di Selvazzano Dentro
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 286
-- Nomi distinti (NON mercato nuovo): 4
+- Righe amministrative lette: 3
+- Nomi distinti (NON mercato nuovo): 1
 - Concessioni scadute: 0
-- Righe di posteggi storici: 262
-- Giorni settimanali espliciti: 109
+- Righe di posteggi storici: 3
+- Giorni settimanali espliciti: 3
 - Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
 
-## Posteggi mercati e fiere - SAN ZENONE DEGLI EZZELINI
-- Editore dichiarato: Comune di San Zenone degli Ezzelini
+## Posteggi mercati e fiere - CASTELNUOVO DEL GARDA
+- Editore dichiarato: Comune di Castelnuovo del Garda
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 6
-- Nomi distinti (NON mercato nuovo): 4
+- Righe amministrative lette: 12
+- Nomi distinti (NON mercato nuovo): 1
 - Concessioni scadute: 0
-- Righe di posteggi storici: 6
-- Giorni settimanali espliciti: 6
+- Righe di posteggi storici: 12
+- Giorni settimanali espliciti: 12
 - Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
 
 
