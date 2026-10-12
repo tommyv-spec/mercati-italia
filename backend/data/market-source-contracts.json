@@ -18,11 +18,12 @@
       "row_kind": "market_venue",
       "source_timestamp_scope": "dataset_not_individual_market",
       "expected_precision": [
-        "non_verificata",
+        "precisa",
         "sconosciuta"
       ],
       "license_claim": "CC BY 4.0; original source adapter requires review",
-      "publication_mode": "existing_adapter_only"
+      "publication_mode": "existing_adapter_only",
+      "position_policy": "Reviewed municipal WGS84 coordinates are accepted by legacy adapter only, never a market-opening confirmation; lifecycle audit does not geocode."
     },
     {
       "id": "firenze",
