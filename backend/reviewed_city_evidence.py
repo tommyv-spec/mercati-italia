@@ -5,7 +5,7 @@ The publisher pages were inspected manually before the evidence manifest was
 written. This module NEVER guesses a city from arbitrary URLs, edits market
 opening dates, assigns geocoded points or confirms market events.
 
-For six grossly mismapped places, the previously displayed *approximate*
+For documented grossly mismapped places, the previously displayed *approximate*
 coordinate is withdrawn, with its source value retained in record details.
 The source still needs an independent street/address reconciliation before
 navigation can be offered. All identities and primary sources stay intact.
@@ -95,6 +95,11 @@ def validate_evidence(evidence, official):
         previous_province = case.get("expected_original_province", "")
         if previous_province and previous_province != approved[1]:
             raise ValueError("Original source province conflicts with ISTAT")
+        cross_check = case.get("independent_location_reference")
+        if cross_check is not None and (
+                not isinstance(cross_check, str) or
+                not cross_check.startswith("https://")):
+            raise ValueError("Untrusted independent municipal reference")
         point = case.get("coordinate_reference")
         if point is not None:
             if (not isinstance(point, dict) or

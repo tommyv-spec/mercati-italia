@@ -25,10 +25,10 @@ class PublishedCitySafetyTests(unittest.TestCase):
         self.manifest_path = self.assets / 'manifest.json'
         self.cases = []
         self.details = []
-        for n in range(13):
+        for n in range(16):
             sid = f'market-{n}'
             url = f'https://publisher.example/market-{n}'
-            geo = n < 6
+            geo = n < 7
             case = {
                 'slug': sid, 'target_city': 'Citta Comune',
                 'region': 'Lombardia', 'expected_original_city': f'Bad label {n}',
@@ -60,7 +60,7 @@ class PublishedCitySafetyTests(unittest.TestCase):
             'enabled':True,'evidence_sha256':digest}}))
         self.report_path.write_text(json.dumps({
             'schema':1,'enabled':True,'review_only':False,'ids_preserved':True,
-            'reviewed_evidence_digest':digest,'records_total':13,
+            'reviewed_evidence_digest':digest,'records_total':16,
             'individual_events_confirmed':0,'publisher_links_replaced':0,
             'opening_dates_added':0,'market_records_deleted':0,
         }))
@@ -74,8 +74,8 @@ class PublishedCitySafetyTests(unittest.TestCase):
         rows = [[m.get(k) for k in INDEX_FIELDS] for m in self.details]
         index.write_text(json.dumps({'schema':1,'markets':rows}))
         self.manifest_path.write_text(json.dumps({
-            'schema':1, 'index_schema':5, 'layout':'regional','total':13,
-            'regions':[{'path':'data/v1/regions/lombardia-test.json','count':13}],
+            'schema':1, 'index_schema':5, 'layout':'regional','total':16,
+            'regions':[{'path':'data/v1/regions/lombardia-test.json','count':16}],
             'index':'data/v1/index-test.json',
         }))
 
@@ -85,13 +85,13 @@ class PublishedCitySafetyTests(unittest.TestCase):
 
     def test_reviewed_routes_and_coordinates_are_blocked_in_exported_assets(self):
         result = self.check()
-        self.assertEqual(result['navigation_routes_still_blocked'], 13)
-        self.assertEqual(result['unsafe_coordinates_still_quarantined'], 6)
-        self.assertEqual(result['reviewed_cities_in_search_index'], 13)
+        self.assertEqual(result['navigation_routes_still_blocked'], 16)
+        self.assertEqual(result['unsafe_coordinates_still_quarantined'], 7)
+        self.assertEqual(result['reviewed_cities_in_search_index'], 16)
         self.assertTrue(result['release_safe'])
 
     def test_any_lost_navigation_hold_fails_closed(self):
-        self.details[12].pop('navigazione_sospesa_motivo')
+        self.details[15].pop('navigazione_sospesa_motivo')
         self.render()
         with self.assertRaisesRegex(ValueError,'directions re-enabled'):
             self.check()

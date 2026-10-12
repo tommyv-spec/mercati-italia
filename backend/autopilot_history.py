@@ -44,14 +44,14 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     if static_guard and (
         static_guard.get("schema") != 1 or
         static_guard.get("evidence_sha256") !=
-            "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f" or
+            "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a" or
         static_guard.get("release_safe") is not True or
         static_guard.get("manifest_records") != metric.get("records") or
-        static_guard.get("reviewed_cities_in_final_details") != 13 or
-        static_guard.get("reviewed_cities_in_search_index") != 13 or
-        static_guard.get("source_urls_preserved") != 13 or
-        static_guard.get("navigation_routes_still_blocked") != 13 or
-        static_guard.get("unsafe_coordinates_still_quarantined") != 6 or
+        static_guard.get("reviewed_cities_in_final_details") != 16 or
+        static_guard.get("reviewed_cities_in_search_index") != 16 or
+        static_guard.get("source_urls_preserved") != 16 or
+        static_guard.get("navigation_routes_still_blocked") != 16 or
+        static_guard.get("unsafe_coordinates_still_quarantined") != 7 or
         static_guard.get("individual_market_confirmations") != 0
     ):
         raise ValueError("Untrusted persistent publisher city safety report")
@@ -59,14 +59,14 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         city_review.get("schema") != 1 or
         city_review.get("reviewed_at") != "2026-10-12" or
         city_review.get("reviewed_evidence_digest") !=
-            "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f" or
+            "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a" or
         city_review.get("records_total") != metric.get("records") or
         any(city_review.get(k,0) != 0 for k in (
             "individual_events_confirmed","publisher_links_replaced",
             "opening_dates_added","market_records_deleted")) or
-        not 0 <= int(city_review.get("counts",{}).get("city_fixed",0)) <= 13 or
-        not 0 <= int(city_review.get("counts",{}).get("coordinates_quarantined",0)) <= 6 or
-        not 0 <= int(city_review.get("counts",{}).get("navigation_hold_added",0)) <= 13
+        not 0 <= int(city_review.get("counts",{}).get("city_fixed",0)) <= 16 or
+        not 0 <= int(city_review.get("counts",{}).get("coordinates_quarantined",0)) <= 7 or
+        not 0 <= int(city_review.get("counts",{}).get("navigation_hold_added",0)) <= 16
     ):
         raise ValueError("Untrusted manually reviewed publisher city quality report")
     if municipalities and (

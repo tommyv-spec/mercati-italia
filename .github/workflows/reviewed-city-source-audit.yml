@@ -51,16 +51,14 @@ jobs:
           evidence=json.loads(p.read_text('utf-8'))
           official=json.loads(Path('backend/data/istat-comuni-2026.json').read_text('utf-8'))
           validated=validate_evidence(evidence, official)
-          assert len(validated)==13
-          assert sum(bool(x.get('coordinate_reference')) for x in validated.values())==6
+          assert len(validated)==16
+          assert sum(bool(x.get('coordinate_reference')) for x in validated.values())==7
           digest=manifest_id(evidence)
-          assert digest=='5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f'
+          assert digest=='4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a'
           policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
-          if policy.get('reviewed_source_cities',{}).get('enabled'):
-              raise ValueError('Manual city correction is already in daily policy')
-          policy['reviewed_source_cities']={
-              'enabled':True,'reviewed_on':'2026-10-12','evidence_sha256':digest,
-          }
+          active = policy.get('reviewed_source_cities', {})
+          if active.get('enabled') is not True or active.get('evidence_sha256') != digest:
+              raise ValueError('Manual city source manifest is not pinned and enabled in DEV')
           Path('/tmp/reviewed-cities-audit-policy.json').write_text(
               json.dumps(policy),encoding='utf-8')
           print('SOURCE_PROVEN_CITY_EVIDENCE',len(validated),'geo_disagreements',6)
@@ -129,9 +127,9 @@ jobs:
           old_suspicious=analyze(original)['metrics'].get('suspicious_city',0)
           new_suspicious=analyze(candidate)['metrics'].get('suspicious_city',0)
           assert new_suspicious <= old_suspicious
-          assert certificate['cities_corrected'] in (0,13)
-          assert certificate['unsafe_points_suppressed'] in (0,6)
-          assert certificate['navigation_routes_paused'] in (0,13)
+          assert certificate['cities_corrected'] in (0,3,16)
+          assert certificate['unsafe_points_suppressed'] in (0,1,7)
+          assert certificate['navigation_routes_paused'] in (0,3,16)
           summary={
               'source_bound_cities_corrected':certificate['cities_corrected'],
               'wrong_coordinates_quarantined':certificate['unsafe_points_suppressed'],

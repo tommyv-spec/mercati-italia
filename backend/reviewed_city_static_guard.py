@@ -2,7 +2,7 @@
 """Fail closed if a vetted city/navigation hold disappears from final DEV assets.
 
 This checks the *exported* regional JSON and compact search index, not just the
-intermediate Python catalog. It verifies the 13 publisher-reviewed cases already
+intermediate Python catalog. It verifies the 16 publisher-reviewed cases already
 approved by the independent ISTAT/source release guard. No source data is edited.
 """
 from __future__ import annotations
@@ -19,8 +19,8 @@ INDEX_FIELDS = (
     "slug", "nome", "citta", "regione", "categoria", "tags",
     "lat", "lng", "position_quality", "orario_testo", "date_quality", "date",
 )
-REVIEWED_CASES = 13
-COORDINATE_CASES = 6
+REVIEWED_CASES = 16
+COORDINATE_CASES = 7
 
 
 def read_json(path: Path):
