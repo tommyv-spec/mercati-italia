@@ -98,6 +98,24 @@ class CatalogQualityTests(unittest.TestCase):
         self.assertEqual(original,before)
         self.assertEqual(result["market_identities_deleted"],0)
 
+    def test_sudden_invalid_city_growth_blocks_future_quality_promotion(self):
+        base=analyze([mk("first")])
+        additions=[mk("bad-"+str(i), city='"Mercatino delle Curiosità"')
+                   for i in range(7)]
+        candidate=analyze([mk("first")]+additions,base)
+        self.assertFalse(candidate["quality_release_safe"])
+        self.assertEqual(candidate["quality_regressions"][0]["code"],"suspicious_city")
+        self.assertGreater(candidate["baseline_delta"]["suspicious_city"],5)
+        self.assertEqual(candidate["market_updates_applied"],0)
+
+    def test_small_intentional_source_growth_can_be_review_only(self):
+        base=analyze([mk("first")])
+        candidate=analyze([mk("first"),
+                           mk("suspicious",city='"Street Market"')],base)
+        self.assertTrue(candidate["quality_release_safe"])
+        self.assertEqual(candidate["metrics"]["suspicious_city"],1)
+        self.assertEqual(candidate["market_confirmations_created"],0)
+
     def test_repeated_input_is_deterministic(self):
         market=mk("duplicate-input")
         a=analyze([market])

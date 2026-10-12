@@ -177,6 +177,19 @@ def analyze(rows, previous=None):
     ), key=lambda x:(-x["records"],x["source"]))[:12]
     prior_counts=(previous or {}).get("metrics",{})
     metrics=dict(sorted(count.items()))
+    regressions=[]
+    if previous is not None:
+        for code, margin in (("suspicious_city",5),
+                             ("review_only_potential_extra_rows",25)):
+            old_value=int(prior_counts.get(code,0))
+            new_value=int(metrics.get(code,0))
+            # Flag genuinely large increases, not tiny day-to-day noise.
+            allowance=max(margin,(old_value+9)//10)
+            if new_value-old_value>allowance:
+                regressions.append({
+                    "code":code,"before":old_value,"after":new_value,
+                    "maximum_permitted_increase":allowance,
+                })
     return {
         "schema": VERSION,
         "review_only": True,
@@ -196,7 +209,10 @@ def analyze(rows, previous=None):
                                         "future_date_quality_mismatch",
                                         "suspicious_city","review_only_potential_extra_rows")}
             if previous is not None else {},
-        "quality_release_safe": count["future_date_quality_mismatch"] == 0,
+        "quality_regressions":regressions,
+        "quality_release_safe": (
+            count["future_date_quality_mismatch"] == 0 and not regressions
+        ),
     }
 
 
@@ -218,6 +234,9 @@ def markdown(report):
         f"- Località da verificare: **{m.get('suspicious_city',0):,}**.",
         f"- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **{m.get('review_only_duplicate_groups',0):,}** gruppi, **{m.get('review_only_potential_extra_rows',0):,}** righe in eccesso potenziali.",
         f"- Verifiche umane documentate mancanti: **{m.get('without_individual_verification',0):,}**.",
+        f"- Gate qualità: **{'APPROVATO' if report['quality_release_safe'] else 'BLOCCATO'}**.",
+        *[f"- REGRESSIONE: {r['code']} {r['before']} → {r['after']} (soglia +{r['maximum_permitted_increase']})"
+          for r in report.get('quality_regressions',[])],
         "",
         "## Fonte di provenienza (primi editori)",
         "",
