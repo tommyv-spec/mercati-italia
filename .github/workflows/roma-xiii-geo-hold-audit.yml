@@ -50,7 +50,7 @@ jobs:
           sys.path.insert(0,'backend')
           from merge_catalog import load_existing
           from roma_xiii_geo_hold import (
-              verify_diff, verify_static, validate_map,
+              verify_diff, verify_static, validate_map, apply_holds,
           )
           out=Path('roma-xiii-hold-review')
           before=json.loads((out/'intermediate/rome-before-geo-holds.json').read_text('utf-8'))
@@ -65,19 +65,28 @@ jobs:
           decision=json.loads((out/'release-decision.json').read_text('utf-8'))
           actual=verify_diff(before,after,report,source)
           static=verify_static(candidate,source)
+          replay,replay_report=apply_holds(after,source,apply=True)
           if (actual!=diff or static!=final or not decision['approved']
               or len(original)!=13779 or len(published)!=13779
               or {x['slug'] for x in original}!={x['slug'] for x in published}
-              or report['new_coordinates_quarantined']!=2
-              or report['new_directions_blocked']!=2
+              or (report['new_coordinates_quarantined']
+                  + report.get('already_quarantined',0))!=2
+              or report['new_directions_blocked']!=report['new_coordinates_quarantined']
               or final['current_coordinate_holds']!=2
-              or final['current_navigation_holds']!=2):
-              raise ValueError('Rome source safety or catalog integrity mismatched')
+              or final['current_navigation_holds']!=2
+              or after!=replay
+              or replay_report['new_coordinates_quarantined']!=0
+              or replay_report['new_directions_blocked']!=0
+              or replay_report['already_quarantined']!=2):
+              raise ValueError('Rome source safety, idempotence or catalog integrity mismatch')
           summary={
               'original_records':len(original),
               'candidate_records':len(published),
-              'coordinate_points_quarantined':2,
-              'navigation_routes_blocked':2,
+              'new_coordinate_points_quarantined_this_run':report['new_coordinates_quarantined'],
+              'coordinate_points_still_quarantined':final['current_coordinate_holds'],
+              'new_directions_blocked_this_run':report['new_directions_blocked'],
+              'navigation_routes_still_blocked':final['current_navigation_holds'],
+              'idempotent_replay_passed':True,
               'new_market_ids':0,
               'source_urls_overwritten':0,
               'individual_openings_verified':0,
