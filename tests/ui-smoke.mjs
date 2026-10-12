@@ -150,6 +150,11 @@ try {
   assert.equal(await saturdayGroup.locator('.weekly-venue[data-known="true"]').count(), 1)
   await page.screenshot({ path: 'ux-weekly-saturday.png', animations: 'disabled' })
   await page.getByRole('button', { name: 'Togli filtro giorno' }).click()
+  await assertCards({ allowGroupedVenue: true })
+  // Restore nationwide results before exercising GPS. A real city filter
+  // legitimately collapses to one weekly-city group (zero market-card
+  // elements), so GPS must not inherit that unrelated city restriction.
+  await page.getByRole('button', { name: 'Azzera filtri' }).click()
   await assertCards()
 
   // Location opt-in: only now is browser GPS permission used.
