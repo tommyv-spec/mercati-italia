@@ -137,3 +137,7 @@ Le esecuzioni avvengono ogni giorno, quindi `backend/autopilot_history.py` conse
 ## Migliorare le schede già presenti prima di importare duplicati
 
 [Metodo riutilizzabile, casi osservati e prova end-to-end](OFFICIAL_ENRICHMENT_METHOD.md): dati Regione Lombardia, confronto Comune/indirizzo/giorno con geolocalizzazione compatibile, orari incompleti recuperati senza verifiche inventate. Prima della pubblicazione DEV il workflow esegue confronto delle identità, audit, test mobile e checkpoint.
+
+## Metodologia permanente per aumentare le fonti
+
+[Ispezione manuale, selezione incrementale e classificazione fonti](SOURCE_DISCOVERY_METHOD.md): sei ricerche di metadati nazionali, massimo tre piccole richieste ufficiali di schema al giorno, distribuite tra editori quando possibile; ogni nuova fonte richiede licenza, struttura, dati attuali e test prima dell'import. Dati storici e registri di concessioni non diventano automaticamente nuovi mercati.
