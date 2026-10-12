@@ -16,7 +16,7 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 | 1 | 24 | Mercati su aree pubbliche | market_location_candidate | non esplorato | Regione Lombardia | 2026-10-06 |
 | 2 | 23 | Elenco dei mercati settimanali | market_location_candidate | non esplorato | Comune di Corciano | 07-01-2026 |
 | 3 | 19 | Mercati e fiere | mixed_events_candidate | non esplorato | Comune di Bologna | 2025-04-02 |
-| 4 | 18 | Dati sui Mercati Rionali | market_location_candidate | non esplorato | Roma Capitale | 2022-07-04 |
+| 4 | 18 | Dati sui Mercati Rionali | market_location_candidate | venue_inventory_missing_visit_days | Roma Capitale | 2022-07-04 |
 | 5 | 14 | Attività commerciali: mercati settimanali scoperti | market_location_candidate | non esplorato | Comune di Milano | sconosciuta |
 | 6 | 10 | Anagrafica mercati | general_market_candidate | non esplorato | Regione Piemonte | sconosciuta |
 | 7 | 9 | Posteggi mercati e fiere - Comune di Pianiga | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
@@ -26,7 +26,7 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 | 11 | 9 | Posteggi mercati e fiere - Comune di Lazise | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 12 | 9 | Posteggi mercati e fiere - Comune di Fontaniva | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 13 | 9 | Posteggi mercati e fiere - Comune di Soave | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
-| 14 | 9 | Posteggi mercati e fiere - Comune di Brendola | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
+| 14 | 9 | Posteggi mercati e fiere - Comune di Brendola | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 15 | 9 | Censimento dei mercati itineranti | market_location_candidate | manual_schema_review_required | Regione Lazio | sconosciuta |
 | 16 | -5 | Fiere e mercati - Comune di Casalserugo | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
 | 17 | -5 | Fiere e mercati - Comune di Soave | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |

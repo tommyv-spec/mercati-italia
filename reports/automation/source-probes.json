@@ -33,9 +33,9 @@
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
       "checked_date": "2026-10-12",
-      "column_fingerprint": null,
-      "status": "needs_review",
-      "viability": "legacy_probe"
+      "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
+      "status": "schema_preview_only",
+      "viability": "venue_inventory_missing_visit_days"
     },
     "2e41941b-80fb-4ded-8330-427383f725f8": {
       "checked_date": "2026-10-12",
@@ -151,6 +151,12 @@
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
     },
+    "ea311e6c-f02a-429d-b5f2-164859ee9445": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
+    },
     "eb032be3-efde-4282-8d8d-3d8a599ecae3": {
       "checked_date": "2026-10-12",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
@@ -202,92 +208,127 @@
         "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "810f4078-4bb1-47c4-8546-29f3f36994ab",
+      "id": "ea311e6c-f02a-429d-b5f2-164859ee9445",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 775,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/8cb030d8-16fe-4661-994b-bb37a16ba7da.csv",
+      "sample_bytes": 806,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/58de71b1-7c2c-4c2c-97fa-78b2c9686078.csv",
       "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Lazise",
+      "title": "Posteggi mercati e fiere - Comune di Brendola",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
+        "address": [
+          "INDIRIZZO"
+        ],
+        "district": [
+          "Municipio"
+        ],
+        "hours": [
+          "Apertura_Lunedi",
+          "Chiusura_Lunedi",
+          "Apertura_Martedi",
+          "Chiusura_Martedi",
+          "Apertura_Mercoledi",
+          "Chiusura_Mercoledi"
+        ],
         "market_type": [
-          "FIERA/MERCATO"
+          "TIPOLOGIA"
         ],
         "name": [
-          "NOME"
+          "Nome_Mercato"
         ],
-        "weekday": [
-          "GIORNO"
+        "notes": [
+          "Altre_indicazioni",
+          "Note_mercato"
         ]
       },
       "fields": [
-        "NOME",
-        "FIERA/MERCATO",
-        "GIORNO",
-        "INIZIO PERIODO",
-        "FINE PERIODO",
-        "TIPO POSTEGGIO",
-        "TOTALE POSTEGGI"
+        "Municipio",
+        "Nome_Mercato",
+        "INDIRIZZO",
+        "Civico",
+        "Esp_Civico",
+        "Altre_indicazioni",
+        "CAP",
+        "TIPOLOGIA",
+        "Note_mercato",
+        "POSTEGGI_TOTALI",
+        "POSTEGGI_OCCUPATI",
+        "NUMERO_OPERATORI",
+        "POSTEGGI_ALIMENTARI",
+        "POSTEGGI_NON_ALIMENTARI",
+        "Apertura_Lunedi",
+        "Chiusura_Lunedi",
+        "Apertura_Martedi",
+        "Chiusura_Martedi",
+        "Apertura_Mercoledi",
+        "Chiusura_Mercoledi",
+        "Apertura_Giovedi",
+        "Chiusura_Giovedi",
+        "Apertura_Venedi",
+        "Chiusura_Venedi",
+        "Apertura_Sabato",
+        "Chiusura_Sabato",
+        "Note_orari",
+        "AGGIORNATO"
       ],
       "format": "CSV",
-      "id": "a7035a08-15c1-4dff-896b-abecf8c1de87",
+      "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3541,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/42ec076f-d7e9-4fa2-99ef-c5497a7e2ebd.csv",
-      "schema_viability": "manual_schema_review_required",
+      "sample_bytes": 38408,
+      "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
+      "schema_viability": "venue_inventory_missing_visit_days",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Fontaniva",
+      "title": "Dati sui Mercati Rionali",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
+        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
-        ],
-        "weekday": [
-          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "GIORNO",
-        "INIZIO PERIODO",
-        "FINE PERIODO",
-        "TIPO POSTEGGIO",
-        "TOTALE POSTEGGI"
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "cd73e997-4838-4724-8863-5595fe96417b",
+      "id": "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 199,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/706b9aac-6eae-402d-84c4-653f970e2157.csv",
-      "schema_viability": "manual_schema_review_required",
+      "sample_bytes": 179,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/c97582dd-d37d-4f1d-a1c5-b0b90188c651.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Soave",
+      "title": "Fiere e mercati - Comune di Casalserugo",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 1,
+  "unreviewed_sources_remaining": 0,
   "verified_event_count": 0
 }

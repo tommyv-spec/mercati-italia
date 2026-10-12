@@ -6,12 +6,12 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 216,
+    "coordinates_missing": 222,
     "future_dates_missing": 1953,
     "hours_missing": 10840,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 764,
-    "suspicious_city": 20,
+    "suspicious_city": 7,
     "total": 13779,
     "without_individual_verification": 13779
   },
@@ -50,24 +50,23 @@
       "markets": 863,
       "hours_missing": 575,
       "address_missing": 168,
-      "future_dates_missing": 204,
-      "suspicious_city": 3
+      "future_dates_missing": 204
     },
     {
       "region": "Friuli Venezia Giulia",
       "markets": 239,
       "hours_missing": 97,
       "address_missing": 16,
-      "future_dates_missing": 42,
-      "suspicious_city": 1
+      "future_dates_missing": 42
     },
     {
       "region": "Lazio",
       "markets": 1074,
       "hours_missing": 939,
+      "address_missing": 259,
       "future_dates_missing": 197,
-      "suspicious_city": 4,
-      "address_missing": 259
+      "coordinates_missing": 2,
+      "suspicious_city": 2
     },
     {
       "region": "Liguria",
@@ -80,10 +79,9 @@
       "region": "Lombardia",
       "markets": 3947,
       "hours_missing": 2766,
-      "future_dates_missing": 611,
-      "suspicious_city": 2,
       "address_missing": 754,
-      "coordinates_missing": 216
+      "future_dates_missing": 611,
+      "coordinates_missing": 218
     },
     {
       "region": "Marche",
@@ -110,9 +108,9 @@
       "region": "Puglia",
       "markets": 483,
       "hours_missing": 444,
-      "suspicious_city": 1,
       "address_missing": 214,
-      "future_dates_missing": 42
+      "future_dates_missing": 42,
+      "coordinates_missing": 1
     },
     {
       "region": "Sardegna",
@@ -133,8 +131,7 @@
       "markets": 945,
       "hours_missing": 788,
       "address_missing": 183,
-      "future_dates_missing": 173,
-      "suspicious_city": 1
+      "future_dates_missing": 173
     },
     {
       "region": "Trentino-Alto Adige",
@@ -161,10 +158,11 @@
     {
       "region": "Veneto",
       "markets": 1203,
-      "hours_missing": 947,
       "future_dates_missing": 104,
-      "suspicious_city": 6,
-      "address_missing": 275
+      "hours_missing": 947,
+      "address_missing": 275,
+      "suspicious_city": 3,
+      "coordinates_missing": 1
     }
   ],
   "top_sources": [
@@ -226,41 +224,6 @@
       "source": "happings.com"
     },
     {
-      "slug": "a-spass-per-zirvia-cervia-ra-fiere-mostre-e-mercati-antiquariato-gastronomia-vin",
-      "region": "Emilia-Romagna",
-      "city": "Cervia ( ra ) Fiere, Mostre e Mercati Antiquariato Gastronomia Vintage Come ogni ultima domenica del mese, torna il 22 f",
-      "name": "A Spass Per Zirvia",
-      "source": "solosagre.it"
-    },
-    {
-      "slug": "ieri-l-altro-mostra-mercato-di-modernariato-collezionismo-antichita-e-vintage-fa",
-      "region": "Emilia-Romagna",
-      "city": "Faenza ( ra ) Fiere, Mostre e Mercati Antiquariato Vintage Domenica 8 marzo a Faenza",
-      "name": "Ieri l'Altro - Mostra mercato di modernariato, collezionismo, antichità e vintage",
-      "source": "solosagre.it"
-    },
-    {
-      "slug": "la-casa-del-tempo-santarcangelo-di-romagna-rn-fiere-mostre-e-mercati-antiquariat",
-      "region": "Emilia-Romagna",
-      "city": "Santarcangelo di Romagna ( rn ) Fiere, Mostre e Mercati Antiquariato Vintage La Casa del Tempo a Santarcangelo di Romagn",
-      "name": "La Casa del Tempo",
-      "source": "solosagre.it"
-    },
-    {
-      "slug": "pordenone-la-soffitta-in-piazza-e-langolo-del-libro-usato-piazza-risorgimento-la",
-      "region": "Friuli Venezia Giulia",
-      "city": "“La Soffitta in Piazza e l’Angolo del Libro Usato”",
-      "name": "Pordenone, “La Soffitta in Piazza e l’Angolo del Libro Usato”, piazza Risorgimento",
-      "source": "cosedicasa.com"
-    },
-    {
-      "slug": "fiumicino-parco-da-vinci-music-day-roma-fiera-del-disco-fiera-del-disco",
-      "region": "Lazio",
-      "city": "\"Fiera del Disco\"",
-      "name": "Fiumicino, Parco da Vinci, Music Day Roma – Fiera del Disco",
-      "source": "cosedicasa.com"
-    },
-    {
       "slug": "unique-market-a-industrie-fluviali-industrie-fluviali",
       "region": "Lazio",
       "city": "RM",
@@ -275,52 +238,10 @@
       "source": "citynews_romatoday.it"
     },
     {
-      "slug": "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
-      "region": "Lazio",
-      "city": "“Da Vinci – Sessantotto Village”",
-      "name": "Fiumicino, Parco da Vinci, Mercatino Artigianale",
-      "source": "cosedicasa.com"
-    },
-    {
-      "slug": "cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita",
-      "region": "Lombardia",
-      "city": "\"Mercatino delle Curiosità\"",
-      "name": "Cernobbio, Mercatino delle Curiosità",
-      "source": "cosedicasa.com"
-    },
-    {
-      "slug": "milano-mercatino-artigianato-e-vintage-street-market-piazza-san-nazaro-in-brolo",
-      "region": "Lombardia",
-      "city": "\"Street Market\"",
-      "name": "Milano, Mercatino Artigianato e Vintage “Street Market”, piazza San Nazaro in Brolo",
-      "source": "cosedicasa.com"
-    },
-    {
-      "slug": "otranto-antiqua-mercatino-dellantiquariato-e-della-creativita-otranto-antiqua",
-      "region": "Puglia",
-      "city": "\"Otranto Antiqua\"",
-      "name": "Otranto Antiqua, Mercatino dell’Antiquariato e della Creatività",
-      "source": "cosedicasa.com"
-    },
-    {
-      "slug": "lugnano-in-soffitta-vicopisano-pi-fiere-mostre-e-mercati-domenica-15-febbraio-to",
-      "region": "Toscana",
-      "city": "Vicopisano ( pi ) Fiere, Mostre e Mercati Domenica 15 febbraio, torna a Lugnano frazione del comune di Vicopisano",
-      "name": "Lugnano in soffitta",
-      "source": "solosagre.it"
-    },
-    {
       "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
       "region": "Umbria",
       "city": "\"Artigianando",
       "name": "Todi, “Artigianando, mostra mercato della creatività”, Giardini Oberdan",
-      "source": "cosedicasa.com"
-    },
-    {
-      "slug": "valeggio-sul-mincio-valeggio-contemporanea-valeggio-contemporanea",
-      "region": "Veneto",
-      "city": "\"Valeggio Contemporanea\"",
-      "name": "Valeggio sul Mincio, Valeggio Contemporanea",
       "source": "cosedicasa.com"
     },
     {
@@ -329,13 +250,6 @@
       "city": "Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
       "name": "Mercato settimanale di Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
       "source": "happings.com"
-    },
-    {
-      "slug": "mercatino-dell-antiquariato-e-collezionismo-montagnana-pd-fiere-mostre-e-mercati",
-      "region": "Veneto",
-      "city": "Montagnana ( pd ) Fiere, Mostre e Mercati Antiquariato Vintage Il Mercatino dell'Antiquariato e Collezionismo torna ad a",
-      "name": "Mercatino dell'Antiquariato e Collezionismo",
-      "source": "solosagre.it"
     },
     {
       "slug": "mercatini-piazza-del-baratto-na",
@@ -350,13 +264,6 @@
       "city": "NA",
       "name": "Mercatini Stoffaday!",
       "source": "trevisotoday.it"
-    },
-    {
-      "slug": "mercato-antiquariato-e-modernariato-valeggio-sul-mincio-vr-fiere-mostre-e-mercat",
-      "region": "Veneto",
-      "city": "Valeggio sul Mincio ( vr ) Fiere, Mostre e Mercati Antiquariato Vintage Come ogni quarta domenica del mese, domenica 22",
-      "name": "Mercato Antiquariato e Modernariato",
-      "source": "solosagre.it"
     }
   ],
   "unscheduled_forecast_label_examples": [],
@@ -796,10 +703,10 @@
     "total": 0,
     "hours_missing": 0,
     "address_missing": 0,
-    "coordinates_missing": 0,
+    "coordinates_missing": 6,
     "future_dates_missing": 0,
     "future_date_quality_mismatch": 0,
-    "suspicious_city": 0,
+    "suspicious_city": -13,
     "review_only_potential_extra_rows": 0
   },
   "quality_regressions": [],
