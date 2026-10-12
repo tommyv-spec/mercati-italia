@@ -63,6 +63,13 @@ jobs:
             --live-bologna \
             --out growth-output/source-yield.json \
             --report growth-output/SOURCE_YIELD.md
+      - name: Reconcile four recent Bologna municipal leads without importing
+        run: |
+          python backend/bologna_2026_leads.py \
+            --manifest public/data/v1/manifest.json \
+            --evidence backend/data/bologna-municipal-leads-2026.json \
+            --out growth-output/bologna-2026-leads.json \
+            --report growth-output/BOLOGNA_2026_LEADS.md
       - name: Reject any unreviewed market imports or verification claims
         run: |
           python - <<'PY'
@@ -73,6 +80,7 @@ jobs:
           manifest=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
           towns=json.loads(Path('growth-output/municipality-coverage.json').read_text('utf-8'))
           yields=json.loads(Path('growth-output/source-yield.json').read_text('utf-8'))
+          recent=json.loads(Path('growth-output/bologna-2026-leads.json').read_text('utf-8'))
           registry=json.loads(Path('reports/automation/source-registry.json').read_text('utf-8'))
           if (coverage.get('schema')!=1 or coverage.get('review_only') is not True
               or coverage.get('market_updates_applied')!=0
@@ -105,6 +113,23 @@ jobs:
                      or row.get('individual_events_confirmed')!=0
                      for row in yields.get('all_sources',[]))):
               raise ValueError('Source yield auditor exceeded read-only permissions')
+          if (recent.get('schema') != 1
+              or recent.get('review_only') is not True
+              or recent.get('catalog_ids_preserved') != manifest.get('total')
+              or recent.get('pinned_municipal_leads') != 4
+              or recent.get('planned_market_starts_not_verified') != 2
+              or recent.get('historically_reported_open_in_june') != 2
+              or not 0 <= recent.get('without_same_street_record',-1) <= 4
+              or recent.get('needs_current_opening_and_rights_review') is not True
+              or len(recent.get('observations',[])) != 4
+              or any(recent.get(field) != 0 for field in (
+                  'market_rows_imported','verified_openings_created',
+                  'calendar_dates_created','coordinate_points_invented'))):
+              raise ValueError('Unreviewed Bologna 2026 press lead promoted to market')
+          if any(row.get('catalog_publication_approved') is not False
+                 or row.get('market_opening_individually_verified') is not False
+                 for row in recent.get('observations', [])):
+              raise ValueError('Source press release cannot confirm an individual market opening')
           bologna=yields.get('bologna_observation')
           if (yields.get('location_conflicts_documented') != 1
               or not yields.get('location_conflicts_source_sha256')):
@@ -126,6 +151,7 @@ jobs:
           cat growth-output/MUNICIPALITY_COVERAGE.md >> "$GITHUB_STEP_SUMMARY"
           cat growth-output/MUNICIPAL_ROW_AUDIT.md >> "$GITHUB_STEP_SUMMARY"
           cat growth-output/SOURCE_YIELD.md >> "$GITHUB_STEP_SUMMARY"
+          cat growth-output/BOLOGNA_2026_LEADS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Save source research and QA reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -159,7 +185,7 @@ jobs:
           set -euo pipefail
           test "$(cat growth-output/dev-source-sha.txt)" = "$(git rev-parse HEAD)"
           mkdir -p reports/automation
-          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md municipality-coverage.json MUNICIPALITY_COVERAGE.md source-yield.json SOURCE_YIELD.md; do
+          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md municipality-coverage.json MUNICIPALITY_COVERAGE.md source-yield.json SOURCE_YIELD.md bologna-2026-leads.json BOLOGNA_2026_LEADS.md; do
             test -s "growth-output/$item"
             cp "growth-output/$item" "reports/automation/$item"
           done
@@ -168,7 +194,8 @@ jobs:
           git add -- reports/automation/data-coverage.json reports/automation/DATA_COVERAGE.md \
             reports/automation/municipal-row-audit.json reports/automation/MUNICIPAL_ROW_AUDIT.md \
             reports/automation/municipality-coverage.json reports/automation/MUNICIPALITY_COVERAGE.md \
-            reports/automation/source-yield.json reports/automation/SOURCE_YIELD.md
+            reports/automation/source-yield.json reports/automation/SOURCE_YIELD.md \
+            reports/automation/bologna-2026-leads.json reports/automation/BOLOGNA_2026_LEADS.md
           if ! git diff --cached --quiet; then
             git commit -m "audit: rank data gaps and real source freshness (DEV only)"
             git push origin HEAD:improve/data-quality-security-performance-2026-10-11
