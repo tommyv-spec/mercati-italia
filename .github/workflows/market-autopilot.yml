@@ -440,6 +440,43 @@ jobs:
                   raise ValueError('Disabled municipality review modified official records')
           print('PUBLISHER_CITY_RELEASE_GUARD',json.dumps(certificate,ensure_ascii=False))
           PY
+      - name: Verify only five Roma XIII source-reviewed 2026 venue IDs are added
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_2026_venues import validate_added,EXPECTED,validate_manifest
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          enabled=policy.get('roma_xiii_2026_venues',{}).get('enabled') is True
+          report=json.loads((root/'roma-xiii-2026-venues.json').read_text('utf-8'))
+          cert=json.loads((root/'roma-xiii-2026-venues-diff-guard.json').read_text('utf-8'))
+          if enabled:
+              source=json.loads(Path('backend/data/roma-xiii-verified-venue-evidence-2026-10-13.json').read_text('utf-8'))
+              if set(validate_manifest(source))!=set(EXPECTED):
+                  raise ValueError('Roma XIII evidence has unapproved venue IDs')
+              old=json.loads((root/'intermediate/milano-2026.json').read_text('utf-8'))
+              new=json.loads((root/'intermediate/roma-2026-venues.json').read_text('utf-8'))
+              actual=validate_added(old,new,report,source)
+              if (actual!=cert or actual.get('safe') is not True
+                  or report.get('source_market_identities')!=8
+                  or report.get('candidate_venue_records')!=5
+                  or report.get('held_2026_fogaccia_tuesday_single_stall') is not True
+                  or report.get('held_urbano_ii_relocation') is not True
+                  or not 0<=report.get('records_added',-1)<=5
+                  or not set(report.get('new_market_ids',[])).issubset(EXPECTED)
+                  or not set(report.get('already_published_curated_ids',[])).issubset(EXPECTED)
+                  or report.get('records_added',0)+len(report.get('already_published_curated_ids',[]))!=5):
+                  raise ValueError('Unreviewed Roma XIII municipal market identity promotion')
+              print('ROMA_XIII_EXACT_SOURCE_ADDITIONS',json.dumps({
+                  'new_market_ids':report['new_market_ids'],
+                  'already_published':len(report['already_published_curated_ids']),
+                  'all_previous_records_intact':len(old),
+              }))
+          elif report.get('records_added') or cert.get('approved_official_market_additions'):
+              raise ValueError('Disabled Roma publisher introduced market entries')
+          PY
       - name: Independently prove Rome XIII wrong-coordinate quarantine is source-bound
         run: |
           python - <<'PY'
@@ -600,7 +637,34 @@ jobs:
             --evidence backend/data/reviewed-city-evidence-2026-10-12.json \
             --policy backend/autopilot_policy.json \
             --daily-report autopilot-output/reviewed-cities.json \
+            --roma-venue-report autopilot-output/roma-xiii-2026-venues.json \
             --out autopilot-output/reviewed-city-static-safety.json
+      - name: Prove all five Roma 2026 venue details stay sourced and non-navigable
+        run: |
+          python - <<'PY'
+          import json,sys
+          from datetime import date
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_2026_release_guard import check_static
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('roma_xiii_2026_venues',{}).get('enabled') is True:
+              source=json.loads(Path('backend/data/roma-xiii-verified-venue-evidence-2026-10-13.json').read_text('utf-8'))
+              day=date.fromisoformat(json.loads((root/'release-decision.json').read_text('utf-8'))['today'])
+              proof=check_static(Path('public/data/v1/manifest.json'),source,day)
+              saved=json.loads((root/'roma-xiii-2026-venues-static-guard.json').read_text('utf-8'))
+              if (proof!=saved or proof.get('release_safe') is not True
+                  or proof.get('reviewed_2026_venue_identifiers')!=5
+                  or proof.get('route_holds_in_details')!=5
+                  or proof.get('route_holds_in_search_index')!=5
+                  or proof.get('geocoordinates_invented')!=0
+                  or proof.get('verified_future_markets_created')!=0
+                  or proof.get('excluded_fogaccia_tuesday_one_vendor') is not True
+                  or proof.get('excluded_pending_pineta_sacchetti_relocation') is not True):
+                  raise ValueError('Roman municipal source places or forecast dates not safe in the final JSON')
+              print('ROMA_XIII_NEW_VENUE_STATIC_QA',json.dumps(proof,ensure_ascii=False))
+          PY
       - name: Prove Milan forecasts survive full static export and retain original source
         run: |
           python - <<'PY'
@@ -634,6 +698,14 @@ jobs:
               baseline=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
               before=[original_milano.get(x['slug'],x) for x in baseline]
               after=load_existing(Path('public/data/v1/manifest.json'))
+              # Only the independently vetted five new Roma venue IDs may be
+              # excluded from the same-identity Milano historical comparison.
+              new_roma=json.loads((root/'roma-xiii-2026-venues.json').read_text('utf-8'))
+              new_ids=set(new_roma.get('new_market_ids',[]))
+              from roma_xiii_2026_venues import EXPECTED as ROMA_APPROVED_IDS
+              if not new_ids.issubset(ROMA_APPROVED_IDS):
+                  raise ValueError('Unknown municipal source IDs in Milano static proof')
+              after=[item for item in after if item['slug'] not in new_ids]
               report=json.loads((root/'milano-2026-review.json').read_text('utf-8'))
               day=json.loads((root/'release-decision.json').read_text('utf-8'))['today']
               proof=verify_exported(before,after,report,pdf,gis,date.fromisoformat(day))
@@ -756,6 +828,15 @@ jobs:
           else
             echo 'Roma XIII source hold disabled; no new routes or coordinates permitted.'
           fi
+      - name: Verify all five Roma 2026 source-backed market cards on mobile
+        env:
+          UI_BASE: http://127.0.0.1:4173/
+        run: |
+          if python -c 'import json,sys;sys.exit(0 if json.load(open("backend/autopilot_policy.json")).get("roma_xiii_2026_venues",{}).get("enabled") else 1)'; then
+            node tests/roma-xiii-2026-venues-ui.mjs
+          else
+            echo 'Roma XIII new official markets disabled, leaving DEV catalog unchanged.'
+          fi
       - name: Retain tested visitor duplicate and localities report
         uses: actions/upload-artifact@v4
         with:
@@ -770,6 +851,9 @@ jobs:
             autopilot-output/roma-xiii-geo-holds.json
             autopilot-output/roma-xiii-diff-guard.json
             autopilot-output/roma-xiii-static-guard.json
+            autopilot-output/roma-xiii-2026-venues.json
+            autopilot-output/roma-xiii-2026-venues-diff-guard.json
+            autopilot-output/roma-xiii-2026-venues-static-guard.json
           retention-days: 30
           if-no-files-found: error
       - name: Save tested static distribution (for separate DEV publication)
@@ -909,6 +993,10 @@ jobs:
             cp "autopilot-output/$item" "reports/automation/$item"
           done
           for item in roma-xiii-geo-holds.json roma-xiii-diff-guard.json roma-xiii-static-guard.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          for item in roma-xiii-2026-venues.json roma-xiii-2026-venues-diff-guard.json roma-xiii-2026-venues-static-guard.json; do
             test -s "autopilot-output/$item"
             cp "autopilot-output/$item" "reports/automation/$item"
           done
