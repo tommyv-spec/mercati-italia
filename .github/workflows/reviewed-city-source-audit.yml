@@ -1,0 +1,191 @@
+# Manual evidence -> tests -> full DEV candidate QA. NEVER publishes anything.
+name: Reviewed publisher cities and unsafe geolocation — full dry-run (no publish)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/reviewed-city-source-audit.yml
+      - backend/reviewed_city_evidence.py
+      - backend/tests/test_reviewed_city_evidence.py
+      - backend/data/reviewed-city-evidence-2026-10-12.json
+      - backend/autopilot.py
+      - backend/export_static.py
+      - src/hooks/useMarkets.js
+      - tests/ui-smoke.mjs
+      - tests/reviewed-city-ui.mjs
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reviewed-city-source-audit
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Re-run every offline import and city regression test
+        run: python -m unittest discover -s backend/tests -q
+      - name: Create temporary review policy and confirm evidence immutable
+        run: |
+          python - <<'PY'
+          import sys, json
+          from pathlib import Path
+          sys.path.insert(0, 'backend')
+          from reviewed_city_evidence import manifest_id, validate_evidence
+          p=Path('backend/data/reviewed-city-evidence-2026-10-12.json')
+          evidence=json.loads(p.read_text('utf-8'))
+          official=json.loads(Path('backend/data/istat-comuni-2026.json').read_text('utf-8'))
+          validated=validate_evidence(evidence, official)
+          assert len(validated)==13
+          assert sum(bool(x.get('coordinate_reference')) for x in validated.values())==6
+          digest=manifest_id(evidence)
+          assert digest=='5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f'
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('reviewed_source_cities',{}).get('enabled'):
+              raise ValueError('Manual city correction is already in daily policy')
+          policy['reviewed_source_cities']={
+              'enabled':True,'reviewed_on':'2026-10-12','evidence_sha256':digest,
+          }
+          Path('/tmp/reviewed-cities-audit-policy.json').write_text(
+              json.dumps(policy),encoding='utf-8')
+          print('SOURCE_PROVEN_CITY_EVIDENCE',len(validated),'geo_disagreements',6)
+          PY
+      - name: Generate full 13779-card candidate in offline scratch only
+        run: |
+          set -euo pipefail
+          python backend/autopilot.py \
+            --offline \
+            --policy /tmp/reviewed-cities-audit-policy.json \
+            --output reviewed-city-audit
+      - name: Independently validate every changed source identity, map point and outcome
+        run: |
+          python - <<'PY'
+          import sys, json
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from reviewed_city_evidence import verify_reviewed_diff
+          from merge_catalog import load_existing
+          from validate_static import validate
+          from catalog_quality_report import analyze
+
+          root=Path('reviewed-city-audit')
+          original=load_existing(Path('public/data/v1/manifest.json'))
+          manifest=root/'candidate/public/data/v1/manifest.json'
+          validate(manifest)
+          candidate=load_existing(manifest)
+          source=json.loads((root/'municipality-reconciliation.json').read_text('utf-8'))
+          before=json.loads((root/'intermediate/municipalities.json').read_text('utf-8'))
+          after=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
+          reviewed=json.loads((root/'reviewed-cities.json').read_text('utf-8'))
+          certificate=json.loads((root/'reviewed-cities-release-guard.json').read_text('utf-8'))
+          decision=json.loads((root/'release-decision.json').read_text('utf-8'))
+          ref=json.loads(Path('backend/data/istat-comuni-2026.json').read_text('utf-8'))
+          ev=json.loads(Path('backend/data/reviewed-city-evidence-2026-10-12.json').read_text('utf-8'))
+          observed=verify_reviewed_diff(before,after,reviewed,ref,ev)
+          assert certificate==observed, 'Independent record diff certificate mismatch'
+          assert decision['approved'] is True and reviewed['enabled'] is True
+          assert len(original)==len(candidate)==len(before)==len(after)==13779
+          by_old={r['slug']:r for r in original}
+          by_new={r['slug']:r for r in candidate}
+          assert set(by_old)==set(by_new), 'Stable source IDs lost'
+          markers={x['slug'] for x in ev['cases']}
+          assert markers.issubset(by_new)
+          for sid in markers:
+              now=by_new[sid]
+              prior=by_old[sid]
+              e=next(x for x in ev['cases'] if x['slug']==sid)
+              assert now['citta']==e['target_city']
+              assert now['citta_originale']==e['expected_original_city'][:160]
+              assert now['navigazione_sospesa_motivo']=='indirizzo_e_punto_sorgente_non_riconciliati'
+              assert now['url_fonte']==prior['url_fonte']
+              assert now['verificato_il']==prior['verificato_il']
+              assert now['date']==prior['date']
+              assert now['date_quality']==prior['date_quality']
+              assert now['status']==prior['status']
+              assert now['aggiornato_il']==prior['aggiornato_il']
+              if e.get('coordinate_reference'):
+                  assert now['lat'] is None and now['lng'] is None
+                  assert now['position_quality']=='sconosciuta'
+                  assert now['coordinate_originali']=={
+                      'lat':prior['lat'],'lng':prior['lng']
+                  }
+              else:
+                  assert now['lat']==prior['lat'] and now['lng']==prior['lng']
+          old_suspicious=analyze(original)['metrics'].get('suspicious_city',0)
+          new_suspicious=analyze(candidate)['metrics'].get('suspicious_city',0)
+          assert new_suspicious <= old_suspicious
+          assert certificate['cities_corrected'] in (0,13)
+          assert certificate['unsafe_points_suppressed'] in (0,6)
+          assert certificate['navigation_routes_paused'] in (0,13)
+          summary={
+              'source_bound_cities_corrected':certificate['cities_corrected'],
+              'wrong_coordinates_quarantined':certificate['unsafe_points_suppressed'],
+              'unsafe_navigation_prevented':certificate['navigation_routes_paused'],
+              'remaining_suspicious_cities':new_suspicious,
+              'all_catalog_ids':len(candidate),
+              'all_IDs_preserved':True,'source_urls_preserved':True,
+              'new_event_confirmation_count':0,
+              'QA_approved':True,
+          }
+          (root/'integration-summary.json').write_text(
+              json.dumps(summary,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          print('REVIEWED_CITY_SOURCE_AUDIT',json.dumps(summary,ensure_ascii=False))
+          PY
+      - name: Replace only temporary runner static shards with reviewed candidate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import shutil
+          dst=Path('public/data/v1')
+          shutil.rmtree(dst)
+          shutil.copytree(Path('reviewed-city-audit/candidate/public/data/v1'),dst)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build local site, verify static costs and all JS regressions
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+      - name: Exercise real visitor safety on mobile Cernobbio and Valeggio
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/reviewed-city-mobile.log 2>&1 &
+          for attempt in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/reviewed-city-ui.mjs
+          UI_BASE=http://127.0.0.1:4173/ node tests/ui-smoke.mjs
+      - name: Keep audit and screenshot evidence; NEVER publish source data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-source-cities-dryrun
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            reviewed-city-audit/checkpoints/
+            reviewed-city-audit/reviewed-cities.json
+            reviewed-city-audit/reviewed-cities-release-guard.json
+            reviewed-city-audit/integration-summary.json
+            reviewed-city-audit/release-decision.json
+            ux-reviewed-city-*.png
+            ux-smoke-result.json
+            ux-*.png
