@@ -90,6 +90,92 @@ class SchemaProbeTests(unittest.TestCase):
         self.assertNotIn("municipality", hints)
         self.assertIn("hours", hints)
 
+    def test_real_veneto_soave_concession_file_is_not_market_schedule(self):
+        # Observed original CSV 2026-10-12:
+        # NOME;FIERA/MERCATO;ATTIVITA';DATA VALIDITA CONCESSIONE;DATA SCADENZA CONCESSIONE
+        from source_probe import schema_viability
+        fields = ["NOME","FIERA/MERCATO","ATTIVITA'",
+                  "DATA VALIDITA CONCESSIONE","DATA SCADENZA CONCESSIONE"]
+        hints = infer_columns(fields)
+        self.assertEqual(
+            schema_viability(fields,hints),
+            "concession_registry_without_visit_schedule"
+        )
+        self.assertNotIn("weekday",hints)
+        self.assertNotIn("address",hints)
+
+    def test_real_lazio_2007_yearly_census_is_not_visit_calendar(self):
+        from source_probe import schema_viability
+        fields = ["comune","provincia","anno","mercati","totale",
+                  "attivazioni","cessazioni","posteggi",
+                  "alimentare_totale","produttori_totale"]
+        self.assertEqual(schema_viability(fields,infer_columns(fields)),
+                         "historical_aggregate_not_venues")
+
+    def test_allowed_new_hosts_have_strict_official_paths(self):
+        soave = ("https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/"
+                 "4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9.csv")
+        lazio = ("https://dati.lazio.it/dataset/"
+                 "74600cc1-0adb-4ae3-8255-30556e03e932/resource/"
+                 "2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv")
+        self.assertTrue(safe_url(soave))
+        self.assertTrue(safe_url(lazio))
+        self.assertFalse(safe_url("https://dati.veneto.it/admin/users"))
+        self.assertFalse(safe_url("https://dati.lazio.it/private/review.csv"))
+        self.assertFalse(safe_url(soave + "?url=http://localhost"))
+        self.assertFalse(safe_url(lazio.replace(".csv",".exe")))
+        self.assertEqual(sample_target(source("v",soave))[1],"CSV")
+
+    def test_source_history_rotates_new_unreviewed_sources_instead_of_same_top_three(self):
+        from datetime import date
+        older = "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/"
+        dataset_ids = [
+            "c97582dd-d37d-4f1d-a1c5-b0b90188c651",
+            "4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9",
+            "04bc0bfa-d895-49a9-a603-150234cc4ee9",
+            "d305152b-ec6a-466e-b417-02316d603d0c",
+            "5e0e619c-eb69-4a82-b2a4-532a01118c4c"
+        ]
+        sources = [source(f"veneto-{i}",older+d+".csv") for i,d in enumerate(dataset_ids)]
+        registry = {"schema":1,"record_imports":0,"sources":sources}
+        sample = (b"NOME;FIERA/MERCATO;DATA VALIDITA CONCESSIONE;"
+                  b"DATA SCADENZA CONCESSIONE\n"
+                  b"Mercato settimanale;MERCATO;01/01/2015;31/12/2030\n")
+        seen=[]
+        def fixture(url):
+            seen.append(url)
+            return sample,False
+        first=survey(registry,fetch=fixture,reference_date=date(2026,10,12))
+        self.assertEqual([x["id"] for x in first["reports"]],
+                         ["veneto-0","veneto-1","veneto-2"])
+        self.assertEqual(first["unreviewed_sources_remaining"],2)
+        self.assertEqual(first["reports"][0]["schema_viability"],
+                         "concession_registry_without_visit_schedule")
+        self.assertEqual(first["imports"],0)
+        second=survey(registry,fetch=fixture,previous=first,
+                      reference_date=date(2026,10,13))
+        self.assertEqual([x["id"] for x in second["reports"]][:2],
+                         ["veneto-3","veneto-4"])
+        self.assertEqual(second["unreviewed_sources_remaining"],0)
+        self.assertEqual(len(second["reports"]),3)
+        self.assertEqual(len(seen),6)
+        self.assertEqual(second["probe_history"]["veneto-1"]["checked_date"],"2026-10-12")
+        self.assertEqual(second["probe_history"]["veneto-3"]["checked_date"],"2026-10-13")
+        self.assertTrue(all(r["adapter_enabled"] is False for r in second["reports"]))
+
+    def test_offline_skip_preserves_bounded_prior_history(self):
+        from datetime import date
+        u="https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9.csv"
+        source_entry=source("test",u)
+        rg={"schema":1,"record_imports":0,"sources":[source_entry]}
+        first=survey(rg,offline=True,reference_date=date(2026,10,12))
+        self.assertEqual(first["reports"][0]["status"],"offline_skipped")
+        second=survey(rg,offline=True,previous=first,
+                      reference_date=date(2026,10,13))
+        self.assertEqual(second["imports"],0)
+        self.assertEqual(second["verified_event_count"],0)
+        self.assertEqual(second["probe_history"]["test"]["checked_date"],"2026-10-13")
+
     def test_failed_link_is_recorded_not_promoted(self):
         registry = {"schema": 1, "record_imports": 0,
                     "sources": [source("b", "https://dati.comune.roma.it/file.csv")]}
