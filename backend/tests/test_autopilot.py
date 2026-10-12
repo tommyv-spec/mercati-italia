@@ -77,9 +77,48 @@ class AutopilotTests(unittest.TestCase):
             self.assertTrue((out/"candidate"/"public"/"data"/"v1"/"manifest.json").exists())
             self.assertEqual(findings["added_source_ids"],0)
             self.assertEqual(findings["removed_source_ids"],0)
-            for phase in ("baseline","sources","merge","forecast","export","quality"):
+            for phase in ("baseline","sources","merge","municipalities","forecast","export","quality"):
                 self.assertTrue((out/"checkpoints"/(phase+".json")).is_file())
             self.assertFalse(findings["published"])
+
+    def test_released_ISTAT_corrections_only_allow_exact_reviewed_city_change(self):
+        before=market("city-old")
+        before["citta"]="Roma"
+        after={**before,"citta":"Firenze",
+               "citta_originale":"Roma",
+               "localita_ricostruita_da":"ISTAT comuni 2026-02-21; nome fonte e provincia"}
+        report={
+            "snapshot_total":1, "compact_index_future_coverage":{"60":4,"90":4},
+            "sizes":{"national_index_gzip_bytes":300},
+            "fields_missing":{"source_url":0},
+            "documented_verified_records":0, "position_quality":{},
+        }
+        verdict=compare_candidates([before],[after],report,report,policy(),
+                                   {"all_dates_marked_forecast":True},{},
+                                   reviewed_city_corrections={"city-old":"Firenze"})
+        self.assertTrue(verdict["gates"]["source_identities_immutable"])
+        self.assertEqual(verdict["municipalities_reconciled"],1)
+        wrong=compare_candidates([before],[after],report,report,policy(),
+                                 {"all_dates_marked_forecast":True},{},
+                                 reviewed_city_corrections={"city-old":"Pisa"})
+        self.assertFalse(wrong["gates"]["source_identities_immutable"])
+        url_changed=compare_candidates([before],[{**after,"regione":"Lazio"}],report,report,
+                    policy(),{"all_dates_marked_forecast":True},{},
+                    reviewed_city_corrections={"city-old":"Firenze"})
+        self.assertFalse(url_changed["gates"]["source_identities_immutable"])
+
+    def test_bad_ISTAT_policy_hash_refuses_unreviewed_corrections(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            cfg=policy()
+            cfg["municipalities"]={"enabled":True,"reference_date":"2026-02-21",
+                                   "source_sha256":"0"*64}
+            config=root/"policy.json"
+            config.write_text(json.dumps(cfg))
+            with self.assertRaisesRegex(ValueError,"Unreviewed ISTAT"):
+                run(Namespace(manifest=root/"not-used.json",
+                              policy=config,output=root/"job",
+                              today=TODAY,offline=True,resume=False))
 
     def test_resume_reuses_checkpoint_without_touching_network(self):
         with tempfile.TemporaryDirectory() as td:

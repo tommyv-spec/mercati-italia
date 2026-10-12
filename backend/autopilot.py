@@ -35,9 +35,14 @@ import source_bologna
 import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
+from municipality_reconciliation import (
+    reconcile as reconcile_official_municipalities,
+    markdown as municipality_review_markdown, ISTAT_SHA as TRUSTED_ISTAT_SHA,
+    SOURCE_DATE as TRUSTED_ISTAT_DATE,
+)
 
 SCHEMA = 1
-PHASES = ("baseline", "sources", "enrichment", "merge", "forecast", "export", "quality")
+PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities", "forecast", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -205,7 +210,8 @@ def compact_quality(report: dict):
 
 
 def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_report: dict,
-                       policy: dict, forecast_stats: dict, sources_status: dict) -> dict:
+                       policy: dict, forecast_stats: dict, sources_status: dict,
+                       reviewed_city_corrections: dict | None = None) -> dict:
     gate = policy["gates"]
     fgate = policy["forecast"]
     old_by_id = {item["slug"]: item for item in old_rows}
@@ -223,6 +229,10 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
     verified_fabricated = []
     source_lost = []
     identity_changed = []
+    reviewed_city_corrections = reviewed_city_corrections or {}
+    if len(reviewed_city_corrections) > 60:
+        raise ValueError("Unbounded ISTAT-approved municipality changes")
+    approved_city_updates = []
     # A new official feed cannot silently create a human verification or turn
     # a projected date into a confirmed calendar occurrence.
     new_confirmed = sorted(sid for sid in added
@@ -237,7 +247,21 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
     for sid in retained:
         before, after = old_by_id[sid], new_by_id[sid]
         if place_identity(before) != place_identity(after):
-            identity_changed.append(sid)
+            proposed = reviewed_city_corrections.get(sid)
+            approved = (
+                isinstance(proposed, str)
+                and proposed == after.get("citta")
+                and before.get("regione") == after.get("regione")
+                and before.get("citta") != after.get("citta")
+                and after.get("citta_originale") == str(before.get("citta") or "")[:160]
+                and after.get("localita_ricostruita_da") ==
+                    "ISTAT comuni 2026-02-21; nome fonte e provincia"
+                and after.get("provincia") == before.get("provincia")
+            )
+            if approved:
+                approved_city_updates.append(sid)
+            else:
+                identity_changed.append(sid)
         if before.get("date_quality") != "confermata" and after.get("date_quality") == "confermata":
             dates_marked_confirmed.append(sid)
         if not before.get("verificato_il") and after.get("verificato_il"):
@@ -294,6 +318,8 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
         "new_unreviewed_confirmations": new_confirmed[:15],
         "new_unreviewed_verifications": new_verified[:15],
         "changed_market_identities": sorted(identity_changed)[:15],
+        "municipalities_reconciled": len(approved_city_updates),
+        "municipality_update_ids": sorted(approved_city_updates)[:25],
         "unknown_source_share_before": round(old_unknown_share, 6),
         "unknown_source_share_after": round(new_unknown_share, 6),
         "sources": sources_status,
@@ -347,6 +373,15 @@ def run(args):
             or (enrichment_policy.get("enabled") and
                 enrichment_policy.get("source") != "lombardia-mercap")):
         raise ValueError("Unreviewed official enrichment policy")
+    municipal_policy = policy.get("municipalities", {})
+    if (not isinstance(municipal_policy, dict)
+            or set(municipal_policy) - {"enabled", "reference_date", "source_sha256"}
+            or municipal_policy.get("enabled", False) not in (True, False)
+            or (municipal_policy.get("enabled") and (
+                municipal_policy.get("reference_date") != TRUSTED_ISTAT_DATE
+                or municipal_policy.get("source_sha256") != TRUSTED_ISTAT_SHA
+            ))):
+        raise ValueError("Unreviewed ISTAT municipal reconciliation policy")
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -495,8 +530,53 @@ def run(args):
         raise ValueError("Merge produced implausible record count")
     save_json(out / "intermediate" / "merged.json", merged)
     checkpoint(out, "merge", merge_stats)
+    municipality_report = {
+        "schema": 1, "istat_reference": TRUSTED_ISTAT_DATE,
+        "source_file_sha256": TRUSTED_ISTAT_SHA,
+        "review_only": True, "enabled": False,
+        "records_total": len(merged), "ids_preserved": True,
+        "market_confirmations_created": 0, "verified_dates_created": 0,
+        "coordinates_changed": 0, "publisher_sources_replaced": 0,
+        "counts": {}, "examples": [], "unresolved_examples": [],
+    }
+    reviewed_city_corrections = {}
+    municipality_rows = merged
+    if municipal_policy.get("enabled"):
+        ref_path = Path(__file__).resolve().parent / "data" / "istat-comuni-2026.json"
+        reference = read_json(ref_path)
+        municipality_rows, municipality_report = reconcile_official_municipalities(
+            merged, reference, apply=True
+        )
+        municipality_report["enabled"] = True
+        if [r["slug"] for r in merged] != [r["slug"] for r in municipality_rows]:
+            raise ValueError("Municipality reconciliation modified stable record IDs")
+        for original, current in zip(merged, municipality_rows):
+            if original.get("citta") != current.get("citta"):
+                reviewed_city_corrections[current["slug"]] = current["citta"]
+        if (len(reviewed_city_corrections) !=
+                municipality_report["counts"].get("city_fixed", 0)):
+            raise ValueError("ISTAT city corrections do not match the review report")
+        if (len(reviewed_city_corrections) > 60
+                or municipality_report["counts"].get("records_calendar_quarantined", 0) > 80):
+            raise ValueError("Municipality repair exceeds bounded safety thresholds")
+        save_json(out / "intermediate" / "municipalities.json", municipality_rows)
+    save_json(out / "municipality-reconciliation.json", municipality_report)
+    (out / "MUNICIPALITY_RECONCILIATION.md").write_text(
+        municipality_review_markdown(municipality_report), encoding="utf-8"
+    )
+    checkpoint(out, "municipalities", {
+        "enabled": bool(municipality_report["enabled"]),
+        "city_fixed": municipality_report["counts"].get("city_fixed", 0),
+        "calendar_quarantined": municipality_report["counts"].get(
+            "records_calendar_quarantined", 0
+        ),
+        "manual_review": municipality_report["counts"].get(
+            "needs_manual_municipality_review", 0
+        ),
+        "source_istat_sha": TRUSTED_ISTAT_SHA,
+    })
     projected, forecast_stats = refresh_records(
-        merged, args.today, policy["forecast"]["days"],
+        municipality_rows, args.today, policy["forecast"]["days"],
         policy["forecast"]["max_source_age_days"])
     if len(projected) != len(merged):
         raise ValueError("Forecast must never remove market identities")
@@ -525,7 +605,8 @@ def run(args):
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
     findings = compare_candidates(old_rows, new_rows, old_report, new_report, policy,
-                                  forecast_stats, source_status)
+                                  forecast_stats, source_status,
+                                  reviewed_city_corrections=reviewed_city_corrections)
     findings["validated"] = validated
     findings["base_signature"] = baseline_id
     findings["new_signature"] = result_manifest["content_signature"]

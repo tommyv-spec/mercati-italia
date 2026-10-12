@@ -158,6 +158,12 @@ def reconcile(rows, official_reference, *, apply=False):
         dangerous=source_city_cross_contamination(original_bad_city)
         proposals=municipality_proposals(record,official) if suspect else []
         preferred=proposals[0] if proposals else None
+        # Never rewrite a human-verified, explicitly confirmed source.
+        # Such collisions require a source review, not our normalization.
+        if preferred and (record.get("verificato_il") or
+                          record.get("date_quality") == "confermata"):
+            preferred=None
+            counts["protected_verified_municipalities"]+=1
         if suspect:
             counts["suspicious_before"]+=1
             if preferred:counts["city_candidates_istat_province_title"]+=1
@@ -184,7 +190,11 @@ def reconcile(rows, official_reference, *, apply=False):
                     changed["nome_originale"]=str(record.get("nome") or "")[:160]
                     changed["nome"]="Mercato settimanale di "+preferred["city"]
                     counts["contaminated_market_titles_fixed"]+=1
-        if apply and dangerous:
+        if apply and dangerous and (
+                record.get("verificato_il") or
+                record.get("date_quality") == "confermata"):
+            counts["protected_verified_calendars"]+=1
+        elif apply and dangerous:
             if record.get("date"):
                 counts["forecast_days_quarantined"]+=len(record["date"])
                 counts["records_calendar_quarantined"]+=1

@@ -150,6 +150,19 @@ class OfficialMunicipalityTests(unittest.TestCase):
         self.assertEqual(report["market_confirmations_created"],0)
         self.assertEqual(report["publisher_sources_replaced"],0)
 
+    def test_no_automatic_changes_to_human_verified_market_claims(self):
+        row=market("verified-text-city",
+                   "Castiglione Messer Marino, in provincia di... Mercato settimanale a Celenza",
+                   "CH","Abruzzo",
+                   "Mercato settimanale di Castiglione Messer Marino, in provincia di...")
+        row["verificato_il"]="2026-10-11"
+        row["date_quality"]="confermata"
+        original=copy.deepcopy(row)
+        rows,report=reconcile([row],REFERENCE,apply=True)
+        self.assertEqual(rows[0],original)
+        self.assertEqual(report["counts"]["protected_verified_calendars"],1)
+        self.assertEqual(report["market_confirmations_created"],0)
+
     def test_wrong_istat_metadata_blocks_wholesale_corrections(self):
         other={**REFERENCE,"source_file_sha256":"0"*64}
         with self.assertRaisesRegex(ValueError,"Unrecognized official ISTAT"):
