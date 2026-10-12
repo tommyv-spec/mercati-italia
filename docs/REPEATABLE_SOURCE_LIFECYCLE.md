@@ -77,6 +77,7 @@ La modalità attuale di ogni nuovo profilo è shadow_only, senza importazioni, a
 
 - GitHub Actions esegue il pull bounded delle fonti autorizzate; i visitatori leggono JSON statici, non interrogano Cloudflare Functions per cercare mercati.
 - Confronta la firma degli ID e degli attributi del dataset con il precedente run. I nomi e gli indirizzi grezzi non vengono duplicati nello storico dell'audit; le anomalie sono aggregate e ricostruibili per hash.
+- **Prova puntuale del filtro sovrapposizioni:** i 233 ID Lombardia e i 2 ID Corciano esclusi dal feed non sono automaticamente "235 nuovi mercati". Lo stesso run confronta, *solo in RAM*, tutti gli ID della fonte con gli ID esatti restituiti dagli screen di sovrapposizione. Pubblica soltanto conteggi e hash del set degli esclusi. Coincidenze numeriche non bastano: se manca il set reale, i record sono classificati "senza esito", non "già verificati". Un risultato da controllare non conferma un'apertura.
 - Se i record scompaiono, salva una coda di eccezioni senza rimuovere i vecchi dati. Il primo run non considera come 'nuove aperture' tutte le identità incontrate.
 - I controlli distinguono età del dataset, età del singolo record, data dello scraper e data di verifica effettiva. Nessuna IA trasforma un titolo o una data metadata in apertura verificata.
 - La policy permette al massimo i campioni approvati. Errore fonte, schema o rete = diagnosi/hold, non perdita di mercati.
