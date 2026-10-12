@@ -4,14 +4,14 @@
 I dati sono aggiornabili solo quando l'ente pubblica prove nuove. Le ricorrenze previste rimangono stime.
 
 - Data della misura: **2026-10-12**.
-- Schede totali: **13,777**.
+- Schede totali: **13,779**.
 - Fonte datata entro 30 giorni: **1,127**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,127**.
-- Schede con aggiornamento soltanto del dataset: **1,127**.
-- Fonte datata tra 31 e 365 giorni: **12,561**.
+- Schede con aggiornamento soltanto del dataset: **1,129**.
+- Fonte datata tra 31 e 365 giorni: **12,563**.
 - Fonte più vecchia del limite di 540 giorni: **89**.
 - Fonti senza data: **0**.
-- Schede con date future previste: **11,843**.
+- Schede con date future previste: **11,845**.
 - Previsioni basate su fonti troppo vecchie/sconosciute: **0**.
 - Verifiche documentate: **0**.
 
