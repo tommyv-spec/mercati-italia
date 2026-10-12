@@ -1,3 +1,5 @@
+# Source-pinned Todi seasonal forecast, Collalto/Susegana and Veneto point holds:
+# persist full independent publisher evidence after mobile QA; DEV only.
 # Idempotence replay for ISTAT town corrections after approved DEV release 38258577545.
 # Expected: zero new town corrections and zero repeated calendar suspensions.
 # Source-pinned ISTAT municipality correction passed read-only national + mobile
@@ -631,6 +633,9 @@ jobs:
             autopilot-output/reversible-display-duplicates.json
             autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
             autopilot-output/reviewed-city-static-safety.json
+            autopilot-output/publisher-exception-review.json
+            autopilot-output/publisher-exception-diff-guard.json
+            autopilot-output/publisher-exception-static-safety.json
           retention-days: 30
           if-no-files-found: error
       - name: Save tested static distribution (for separate DEV publication)
@@ -761,6 +766,10 @@ jobs:
           cp autopilot-output/reviewed-cities-release-guard.json reports/automation/reviewed-cities-release-guard.json
           test -s autopilot-output/reviewed-city-static-safety.json
           cp autopilot-output/reviewed-city-static-safety.json reports/automation/reviewed-city-static-safety.json
+          for item in publisher-exception-review.json publisher-exception-diff-guard.json publisher-exception-static-safety.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
