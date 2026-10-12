@@ -1,3 +1,5 @@
+# Corciano idempotence replay: after first DEV import 38188711597,
+# require the second audited run to preserve exactly the same official IDs.
 # Corciano 4-row official CSV passed complete source+browser dry-run
 # (run 38188219950); only reviewed, non-overlapping IDs may enter DEV.
 # CSV SHA-256 is persisted and monitored for future changes; no false confirmations.
