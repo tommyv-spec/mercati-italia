@@ -16,6 +16,24 @@ def market(slug, city="Pogliano Milanese", address="VIA EUROPA",
 
 
 class OverlapSafetyTests(unittest.TestCase):
+    def test_bologna_uses_same_conservative_replayable_overlap_rules(self):
+        old = market("legacy-bo-sabato", city="Bologna", address="piazza VIII Agosto",
+                     daytext="Ogni sabato")
+        old["regione"] = "Emilia-Romagna"
+        incoming = market("bo-open-fcc9f1", city="Bologna", address="piazza VIII Agosto",
+                          daytext="settimanale - sabato")
+        incoming["regione"] = "Emilia-Romagna"
+        kept, result = review([old], [incoming], region="Emilia-Romagna",
+                              source_prefix="bo-open-", max_conflicts=30)
+        self.assertEqual(kept, [])
+        self.assertEqual(result["quarantined"], 1)
+        self.assertEqual(result["region"], "Emilia-Romagna")
+        incoming["indirizzo"] = "via Bentini"
+        kept, result = review([old], [incoming], region="Emilia-Romagna",
+                              source_prefix="bo-open-", max_conflicts=30)
+        self.assertEqual(kept, [incoming])
+        self.assertEqual(result["quarantined"], 0)
+
     def test_same_location_same_weekday_quarantines_new_identity(self):
         old = market("mercato-settimanale-di-pogliano-milanese-venerdi")
         new = market("lo-mercap-100551-venerdi")

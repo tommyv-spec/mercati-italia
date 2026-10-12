@@ -265,8 +265,8 @@ def safe_same_market(a: dict, b: dict) -> bool:
     # MERCap assigns an official stable code to each market. Two different
     # codes are distinct source identities even at one street/day; grouping
     # is a UI choice, not a reason to delete a publisher record.
-    if (str(a.get("slug", "")).startswith("lo-mercap-")
-            or str(b.get("slug", "")).startswith("lo-mercap-")):
+    if (str(a.get("slug", "")).startswith(("lo-mercap-", "bo-open-"))
+            or str(b.get("slug", "")).startswith(("lo-mercap-", "bo-open-"))):
         return False
     suffix_a = market_weekday_suffix(a.get("slug", ""))
     suffix_b = market_weekday_suffix(b.get("slug", ""))

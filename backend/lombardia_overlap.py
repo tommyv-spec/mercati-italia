@@ -29,9 +29,9 @@ def norm(text):
     return re.sub(r"\s+", " ", s).strip()
 
 
-def location_key(record):
+def location_key(record, region="Lombardia"):
     city, street = norm(record.get("citta")), norm(record.get("indirizzo"))
-    if (record.get("regione") != "Lombardia" or not city
+    if (record.get("regione") != region or not city
             or len(street) < 8
             or street in {"centro storico", "centro", "piazza", "mercato", "da verificare"}
             or "da verificare" in street):
@@ -63,7 +63,12 @@ def weekday_evidence(record):
     return weekdays if len(weekdays) == 1 else None
 
 
-def review(base, official):
+def review(base, official, *, region="Lombardia", source_prefix="lo-mercap-", max_conflicts=500):
+    """Generic allowlist-style official source review; default keeps MERCap behavior."""
+    if (region not in ("Lombardia", "Emilia-Romagna")
+            or source_prefix not in ("lo-mercap-", "bo-open-")
+            or not 0 <= max_conflicts <= 500):
+        raise ValueError("Unapproved source overlap configuration")
     if not isinstance(base, list) or not isinstance(official, list):
         raise ValueError("Expected record arrays")
     old_by_slug = {x["slug"]: x for x in base}
@@ -71,7 +76,7 @@ def review(base, official):
         raise ValueError("Repeated baseline market identifier")
     indexed = defaultdict(list)
     for record in base:
-        key = location_key(record)
+        key = location_key(record, region)
         if key:
             indexed[key].append(record)
     accepted = []
@@ -79,14 +84,14 @@ def review(base, official):
     counters = Counter()
     for row in official:
         slug = str(row.get("slug") or "")
-        if not slug.startswith("lo-mercap-"):
+        if not slug.startswith(source_prefix):
             accepted.append(row)
             continue
         if slug in old_by_slug:
             accepted.append(row)
             counters["existing_lombardia_identity"] += 1
             continue
-        key = location_key(row)
+        key = location_key(row, region)
         same_place = indexed.get(key, []) if key else []
         if not same_place:
             accepted.append(row)
@@ -116,10 +121,12 @@ def review(base, official):
                                      for d in old_days[:8]],
             "reason": reason,
         })
-    if len(quarantine) > 500:
-        raise ValueError("Too many Lombardia conflicts; stop large automated update")
+    if len(quarantine) > max_conflicts:
+        raise ValueError("Too many official source conflicts; stop automated update")
     return accepted, {
-        "schema": 1, "review_only": True, "source_total": len(official),
+        "schema": 1, "review_only": True,
+        "region": region, "source_prefix": source_prefix,
+        "source_total": len(official),
         "accepted": len(accepted), "quarantined": len(quarantine),
         "counts": dict(sorted(counters.items())),
         "quarantined_examples": quarantine[:80],
@@ -129,7 +136,7 @@ def review(base, official):
 
 def markdown(report):
     lines = [
-        "# Revisione sovrapposizioni Lombardia",
+        "# Revisione sovrapposizioni " + str(report.get("region") or "Lombardia"),
         "",
         "Uno stesso indirizzo non dimostra che due schede sono lo stesso mercato.",
         "Le nuove schede con giorno uguale o ignoto vengono messe in revisione.",

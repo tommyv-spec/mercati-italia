@@ -42,17 +42,19 @@ jobs:
           import json
           from pathlib import Path
           policy = json.loads(Path('backend/autopilot_policy.json').read_text())
-          if any(x['id'] == 'lombardia' for x in policy['sources']):
-              raise ValueError('Daily policy already enabled: remove duplicate trial')
-          policy['sources'].append({
-              'id': 'lombardia',
-              'enabled': True,
-              'official': True,
-              'min_records': 1100,
-              'max_records': 2400,
-              'license': 'CC0 1.0 declared by Regione Lombardia',
-              'stale_source_dates_not_confirmed': True,
-          })
+          prior = next((x for x in policy['sources'] if x['id'] == 'lombardia'), None)
+          if prior is None:
+              policy['sources'].append({
+                  'id': 'lombardia',
+                  'enabled': True,
+                  'official': True,
+                  'min_records': 1100,
+                  'max_records': 2400,
+                  'license': 'CC0 1.0 declared by Regione Lombardia',
+                  'stale_source_dates_not_confirmed': True,
+              })
+          elif not prior.get('enabled'):
+              raise ValueError('Existing Lombardia policy source is intentionally disabled')
           Path('/tmp/mercati-lombardia-policy.json').write_text(json.dumps(policy))
           PY
       - name: Retrieve full official rows once, normalize, merge and run existing release policy
