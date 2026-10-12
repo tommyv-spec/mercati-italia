@@ -19,7 +19,8 @@ from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
 
 CATALOG = "https://www.dati.gov.it/opendata/api/3/action/package_search"
-QUERIES = ("mercati settimanali", "mercati ambulanti", "mercati rionali", "fiere mercati")
+QUERIES = ("mercati settimanali", "mercati ambulanti", "mercati rionali",
+           "fiere mercati", "anagrafica mercati", "mercati su aree pubbliche")
 FORMAT_SCORE = {"GEOJSON": 9, "JSON": 8, "CSV": 8, "XLSX": 5, "XLS": 3, "KML": 4}
 BAD_TOPICS = ("borsa", "finanziar", "immobil", "lavoro", "credito", "azioni", "prezzi",
               "supermercati", "analisi del mercato", "marketing")
