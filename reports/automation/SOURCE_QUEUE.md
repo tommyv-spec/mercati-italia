@@ -23,9 +23,9 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 | 8 | 9 | Censimento dei mercati giornalieri | market_location_candidate | manual_schema_review_required | Regione Lazio | sconosciuta |
 | 9 | 9 | Posteggi mercati e fiere - Comune di Meolo | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 10 | 9 | Posteggi mercati e fiere - Comune di Sandrigo | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
-| 11 | 9 | Posteggi mercati e fiere - Comune di Lazise | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
-| 12 | 9 | Posteggi mercati e fiere - Comune di Fontaniva | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
-| 13 | 9 | Posteggi mercati e fiere - Comune di Soave | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
+| 11 | 9 | Posteggi mercati e fiere - Comune di Lazise | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
+| 12 | 9 | Posteggi mercati e fiere - Comune di Fontaniva | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
+| 13 | 9 | Posteggi mercati e fiere - Comune di Soave | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 14 | 9 | Posteggi mercati e fiere - Comune di Brendola | mixed_events_candidate | non esplorato | Regione Veneto | sconosciuta |
 | 15 | 9 | Censimento dei mercati itineranti | market_location_candidate | manual_schema_review_required | Regione Lazio | sconosciuta |
 | 16 | -5 | Fiere e mercati - Comune di Casalserugo | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |

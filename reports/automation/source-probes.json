@@ -85,11 +85,23 @@
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
     },
+    "810f4078-4bb1-47c4-8546-29f3f36994ab": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
+    },
     "871d7381-6eaf-420e-9fb5-2544b351ce8a": {
       "checked_date": "2026-10-12",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
+    },
+    "a7035a08-15c1-4dff-896b-abecf8c1de87": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
     },
     "ad7a6b83-48a0-48e0-951a-a5f222d80fec": {
       "checked_date": "2026-10-12",
@@ -114,6 +126,12 @@
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
+    },
+    "cd73e997-4838-4724-8863-5595fe96417b": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
     },
     "d10674af-bf6b-4231-945b-ca112820841c": {
       "checked_date": "2026-10-12",
@@ -184,16 +202,16 @@
         "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "0cffe11e-1a55-471e-9bc0-3fec3247b7d9",
+      "id": "810f4078-4bb1-47c4-8546-29f3f36994ab",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 14546,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/1bb563f3-e2b4-4b93-8974-0165285f5913.csv",
+      "sample_bytes": 775,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/8cb030d8-16fe-4661-994b-bb37a16ba7da.csv",
       "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Pianiga",
+      "title": "Posteggi mercati e fiere - Comune di Lazise",
       "truncated": false
     },
     {
@@ -220,16 +238,16 @@
         "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "6791a91c-4e34-4ec3-89f3-cdbb8d96b3d8",
+      "id": "a7035a08-15c1-4dff-896b-abecf8c1de87",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 387,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/fd62e57c-6000-479d-afb9-cd6ff5956c66.csv",
+      "sample_bytes": 3541,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/42ec076f-d7e9-4fa2-99ef-c5497a7e2ebd.csv",
       "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Meolo",
+      "title": "Posteggi mercati e fiere - Comune di Fontaniva",
       "truncated": false
     },
     {
@@ -256,20 +274,20 @@
         "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "7d68d3bb-af5b-47bf-964c-92358be4ab51",
+      "id": "cd73e997-4838-4724-8863-5595fe96417b",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3995,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/cdba48eb-c0ea-4d1b-98b4-2854151b3f90.csv",
+      "sample_bytes": 199,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/706b9aac-6eae-402d-84c4-653f970e2157.csv",
       "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Sandrigo",
+      "title": "Posteggi mercati e fiere - Comune di Soave",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 4,
+  "unreviewed_sources_remaining": 1,
   "verified_event_count": 0
 }

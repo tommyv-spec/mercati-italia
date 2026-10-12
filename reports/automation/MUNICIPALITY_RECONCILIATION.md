@@ -5,12 +5,12 @@ File originale ISTAT aggiornato al 21 febbraio 2026, licenza CC BY 4.0.
 Questo controllo non dimostra che un mercato sia aperto.
 
 - Record analizzati: 13779
-- Località già sospette: 52
-- Proposte supportate da Comune/provincia ISTAT e titolo: 32
+- Località già sospette: 20
+- Proposte supportate da Comune/provincia ISTAT e titolo: 0
 - Da verificare manualmente: 20
-- Calendari potenzialmente confusi fra mercati diversi: 19
-- Comuni corretti in DEV: 32
-- Record con date previste sospese: 19
+- Calendari potenzialmente confusi fra mercati diversi: 0
+- Comuni corretti in DEV: 0
+- Record con date previste sospese: 0
 
 Nessun ID, fonte principale, coordinata o verifica umana viene cambiato.
 Le date sospese richiedono nuova prova della fonte, non un altro giorno indovinato.
