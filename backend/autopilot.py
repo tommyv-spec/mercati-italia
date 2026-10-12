@@ -35,6 +35,7 @@ import source_bologna
 import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
+from municipality_release_guard import check as check_municipality_changes
 from municipality_reconciliation import (
     reconcile as reconcile_official_municipalities,
     markdown as municipality_review_markdown, ISTAT_SHA as TRUSTED_ISTAT_SHA,
@@ -564,7 +565,13 @@ def run(args):
     (out / "MUNICIPALITY_RECONCILIATION.md").write_text(
         municipality_review_markdown(municipality_report), encoding="utf-8"
     )
+    municipality_guard = check_municipality_changes(
+        merged, municipality_rows, municipality_report
+    )
+    save_json(out / "municipality-release-guard.json", municipality_guard)
     checkpoint(out, "municipalities", {
+        "allowed_source_changes": municipality_guard["changes"],
+        "safeguarded_IDs": municipality_guard["checked_ids"],
         "enabled": bool(municipality_report["enabled"]),
         "city_fixed": municipality_report["counts"].get("city_fixed", 0),
         "calendar_quarantined": municipality_report["counts"].get(
