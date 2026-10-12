@@ -21,17 +21,17 @@ class AutopilotHistoryTests(unittest.TestCase):
         manual = {
             "schema":1, "enabled":True, "reviewed_at":"2026-10-12",
             "reviewed_evidence_digest":
-                "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f",
+                "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
             "records_total":12650,
             "individual_events_confirmed":0,"publisher_links_replaced":0,
             "opening_dates_added":0,"market_records_deleted":0,
-            "counts":{"city_fixed":13,"coordinates_quarantined":6,
-                      "navigation_hold_added":13}
+            "counts":{"city_fixed":16,"coordinates_quarantined":7,
+                      "navigation_hold_added":16}
         }
         out=summary(decision(),None,None,"city-publish",reviewed_cities=manual)
-        self.assertEqual(out["reviewed_city_source_corrected"],13)
-        self.assertEqual(out["reviewed_city_source_coordinates_quarantined"],6)
-        self.assertEqual(out["reviewed_city_source_navigation_blocked"],13)
+        self.assertEqual(out["reviewed_city_source_corrected"],16)
+        self.assertEqual(out["reviewed_city_source_coordinates_quarantined"],7)
+        self.assertEqual(out["reviewed_city_source_navigation_blocked"],16)
         self.assertEqual(out["documented_verification_count"],0)
         self.assertIn("indicazioni stradali disabilitate",
                       __import__("autopilot_history").markdown(out))
@@ -42,21 +42,21 @@ class AutopilotHistoryTests(unittest.TestCase):
     def test_persistent_city_holds_are_distinct_from_new_edits(self):
         proof = {
             "schema": 1,
-            "evidence_sha256": "5ffc7094fb421701e1c4bb1f36cc94f09827d6d01dcf87314defa67a961a737f",
+            "evidence_sha256": "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
             "manifest_records": 12650, "release_safe": True,
-            "reviewed_cities_in_final_details": 13,
-            "reviewed_cities_in_search_index": 13,
-            "source_urls_preserved": 13,
-            "navigation_routes_still_blocked": 13,
-            "unsafe_coordinates_still_quarantined": 6,
+            "reviewed_cities_in_final_details": 16,
+            "reviewed_cities_in_search_index": 16,
+            "source_urls_preserved": 16,
+            "navigation_routes_still_blocked": 16,
+            "unsafe_coordinates_still_quarantined": 7,
             "individual_market_confirmations": 0,
         }
         item = summary(decision(), None, None, "safety-still-active",
                        reviewed_city_static_guard=proof)
         self.assertEqual(item["reviewed_city_source_navigation_blocked"], 0)
-        self.assertEqual(item["reviewed_city_source_navigation_held_total"], 13)
-        self.assertEqual(item["reviewed_city_source_coordinates_held_total"], 6)
-        self.assertEqual(item["reviewed_city_source_final_details_checked"], 13)
+        self.assertEqual(item["reviewed_city_source_navigation_held_total"], 16)
+        self.assertEqual(item["reviewed_city_source_coordinates_held_total"], 7)
+        self.assertEqual(item["reviewed_city_source_final_details_checked"], 16)
         self.assertIn("Protezioni ancora attive", __import__("autopilot_history").markdown(item))
         proof["navigation_routes_still_blocked"] = 12
         with self.assertRaisesRegex(ValueError, "Untrusted persistent"):

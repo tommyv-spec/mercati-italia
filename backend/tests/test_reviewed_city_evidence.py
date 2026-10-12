@@ -39,9 +39,9 @@ def sample_data():
 class ReviewedCityEvidenceTests(unittest.TestCase):
     def test_manually_reviewed_source_pages_and_istat_province_complete(self):
         verified=validate_evidence(EVIDENCE,ISTAT)
-        self.assertEqual(len(verified),13)
+        self.assertEqual(len(verified),16)
         self.assertEqual(sum(bool(x.get("coordinate_reference"))
-                             for x in verified.values()),6)
+                             for x in verified.values()),7)
         self.assertEqual({x["target_city"] for x in verified.values()
                           if x["region"]=="Lombardia"},{"Milano","Cernobbio"})
 
@@ -50,13 +50,13 @@ class ReviewedCityEvidenceTests(unittest.TestCase):
         frozen=copy.deepcopy(rows)
         corrected,report=apply_reviewed_cities(rows,ISTAT,EVIDENCE,apply=True)
         self.assertEqual(len(corrected),len(rows))
-        self.assertEqual(report["counts"]["city_fixed"],13)
-        self.assertEqual(report["counts"]["coordinates_quarantined"],6)
-        self.assertEqual(report["counts"]["navigation_hold_added"],13)
+        self.assertEqual(report["counts"]["city_fixed"],16)
+        self.assertEqual(report["counts"]["coordinates_quarantined"],7)
+        self.assertEqual(report["counts"]["navigation_hold_added"],16)
         self.assertEqual({r["slug"] for r in corrected},{r["slug"] for r in rows})
         approved=verify_reviewed_diff(rows,corrected,report,ISTAT,EVIDENCE)
-        self.assertEqual(approved["cities_corrected"],13)
-        self.assertEqual(approved["unsafe_points_suppressed"],6)
+        self.assertEqual(approved["cities_corrected"],16)
+        self.assertEqual(approved["unsafe_points_suppressed"],7)
         for before,after in zip(rows,corrected):
             self.assertEqual(after["date"],before["date"])
             self.assertEqual(after["ricorrenza_testo"],before["ricorrenza_testo"])
@@ -84,7 +84,7 @@ class ReviewedCityEvidenceTests(unittest.TestCase):
         self.assertEqual(report["counts"]["city_fixed"],0)
         self.assertEqual(report["counts"]["coordinates_quarantined"],0)
         self.assertEqual(report["counts"]["navigation_hold_added"],0)
-        self.assertEqual(report["counts"]["unchanged_already_reviewed"],13)
+        self.assertEqual(report["counts"]["unchanged_already_reviewed"],16)
         self.assertEqual(verify_reviewed_diff(initial,again,report,ISTAT,EVIDENCE)["cities_corrected"],0)
 
     def test_read_only_mode_never_changes_market(self):
@@ -154,6 +154,35 @@ class ReviewedCityEvidenceTests(unittest.TestCase):
     def test_vetted_geolocation_outliers_are_not_slight_rounding_errors(self):
         self.assertGreater(point_distance_km((45.44,12.32),(45.3539721,10.7364908)),100)
         self.assertGreater(point_distance_km((41.13,16.87),(40.14789,18.48682)),100)
+
+    def test_three_extra_source_bound_locations_and_castellammare_geo(self):
+        by_slug = {c["slug"]: c for c in EVIDENCE["cases"]}
+        new = [
+            "unique-market-a-industrie-fluviali-industrie-fluviali",
+            "vintage-market-al-san-paolo-district-san-paolo-district",
+            "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
+        ]
+        self.assertEqual([by_slug[s]["target_city"] for s in new],
+                         ["Roma", "Roma", "Castellammare di Stabia"])
+        self.assertEqual([by_slug[s]["expected_original_province"] for s in new],
+                         ["RM", "RM", "NA"])
+        case = by_slug[new[2]]
+        ref = case["coordinate_reference"]
+        self.assertGreater(point_distance_km(
+            ref["observed_old_point"], (ref["latitude"],ref["longitude"])), 20)
+        corrected, report = apply_reviewed_cities(sample_data(), ISTAT, EVIDENCE, apply=True)
+        index = {r["slug"]: r for r in corrected}
+        self.assertIsNone(index[new[2]]["lat"])
+        self.assertEqual(report["counts"]["coordinates_quarantined"], 7)
+        for sid in new:
+            self.assertEqual(index[sid]["url_fonte"],by_slug[sid]["expected_source_url"])
+            self.assertEqual(index[sid]["date_quality"], "prevista")
+
+    def test_reject_insecure_secondary_location_proof(self):
+        wrong = copy.deepcopy(EVIDENCE)
+        wrong["cases"][-1]["independent_location_reference"] = "http://example.net"
+        with self.assertRaisesRegex(ValueError, "Untrusted independent"):
+            validate_evidence(wrong, ISTAT)
 
 
 if __name__=="__main__":

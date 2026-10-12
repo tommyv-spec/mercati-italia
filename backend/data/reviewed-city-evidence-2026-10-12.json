@@ -207,6 +207,52 @@
           12.32
         ]
       }
+    },
+    {
+      "slug": "unique-market-a-industrie-fluviali-industrie-fluviali",
+      "target_city": "Roma",
+      "target_istat_province": "RM",
+      "region": "Lazio",
+      "expected_original_city": "RM",
+      "expected_original_province": "RM",
+      "expected_source_url": "https://www.romatoday.it/eventi/unique-market-industrie-fluviali-7-8-febbraio-2026.html",
+      "publisher_page_reviewed_on": "2026-10-12",
+      "evidence_type": "original publisher page explicitly identifies municipal location; not an event-opening verification",
+      "independent_location_reference": "https://www.turismoroma.it/it/eventi/unique-market-0"
+    },
+    {
+      "slug": "vintage-market-al-san-paolo-district-san-paolo-district",
+      "target_city": "Roma",
+      "target_istat_province": "RM",
+      "region": "Lazio",
+      "expected_original_city": "RM",
+      "expected_original_province": "RM",
+      "expected_source_url": "https://www.romatoday.it/eventi/vintage-market-san-paolo-district-21-22-febbraio-2026.html",
+      "publisher_page_reviewed_on": "2026-10-12",
+      "evidence_type": "original publisher page explicitly identifies municipal location; not an event-opening verification",
+      "independent_location_reference": "https://www.oggiroma.it/eventi/fiere/vintage-market-roma/89383/"
+    },
+    {
+      "slug": "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
+      "target_city": "Castellammare di Stabia",
+      "target_istat_province": "NA",
+      "region": "Campania",
+      "expected_original_city": "Castellammare di Stabia 1, in provincia di... Mercato settimanale a Castello di Cisterna Il mercato settimanale di Caste",
+      "expected_original_province": "NA",
+      "expected_source_url": "https://www.happings.com/it/mercati-settimanali-a-napoli.html",
+      "publisher_page_reviewed_on": "2026-10-12",
+      "evidence_type": "original publisher page explicitly identifies municipal location; not an event-opening verification",
+      "independent_location_reference": "https://www.happings.com/it/mercati-settimanali-a-napoli-e-provincia/",
+      "coordinate_reference": {
+        "latitude": 40.71551,
+        "longitude": 14.48914,
+        "maximum_acceptable_km": 10,
+        "source_url": "https://www.geonames.org/6541903/castellammare-di-stabia.html",
+        "observed_old_point": [
+          40.85,
+          14.27
+        ]
+      }
     }
   ]
 }
