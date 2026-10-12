@@ -582,7 +582,24 @@ jobs:
           if policy.get('milano_2026_dual_source',{}).get('enabled') is True:
               pdf=json.loads(Path('backend/data/milano-mss-oct2026-observations.json').read_text('utf-8'))
               gis=json.loads(Path('backend/data/milano-mss-gis-reviewed.json').read_text('utf-8'))
-              before=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
+              # Check the immutable ORIGINAL Milano records from the exact
+              # Git checkout. Reconstructed merge rows may legitimately have
+              # another official-source field update in the same pipeline.
+              import subprocess
+              source_manifest=json.loads(subprocess.check_output(
+                  ['git','show','HEAD:public/data/v1/manifest.json'],text=True))
+              parts=source_manifest.get('regions') or []
+              lombardia=next((p for p in parts if p.get('name')=='Lombardia'),None)
+              if not lombardia or not str(lombardia.get('path','')).startswith('data/v1/regions/'):
+                  raise ValueError('No original Lombardia regional shard for source proof')
+              published=json.loads(subprocess.check_output(
+                  ['git','show','HEAD:public/'+lombardia['path']],text=True))
+              original_milano={x['slug']:x for x in published['markets']
+                               if x.get('slug','').startswith('mi-mss-')}
+              if len(original_milano)<76:
+                  raise ValueError('Existing Milan market IDs disappeared in original checkout')
+              baseline=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
+              before=[original_milano.get(x['slug'],x) for x in baseline]
               after=load_existing(Path('public/data/v1/manifest.json'))
               report=json.loads((root/'milano-2026-review.json').read_text('utf-8'))
               day=json.loads((root/'release-decision.json').read_text('utf-8'))['today']
