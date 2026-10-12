@@ -145,3 +145,7 @@ Le esecuzioni avvengono ogni giorno, quindi `backend/autopilot_history.py` conse
 ## Qualità delle schede e correzione sicura delle date
 
 Vedi [metodo di audit reale e gate di qualità](CATALOG_QUALITY_METHOD.md): 1.455 schede senza una data futura erano classificate come previste/confermate; la normalizzazione le demuove a data sconosciuta. I possibili doppioni e le città anomale restano in revisione senza cambiare identità.
+
+## Eliminare ripetizioni visive senza cancellare i dati
+
+[Protocollo e prove per duplicati e località sospette](REVERSIBLE_DUPLICATES_AND_CITY_QUALITY.md). 382 gruppi di appuntamenti della stessa fonte vengono compressi solo a livello visivo; tutte le 764 schede coinvolte restano apribili. 52 nomi di Comune palesemente corrotti sono mascherati con avviso e indicazioni disabilitate, senza inventare nomi ufficiali. Gli script di QA esaminano sempre tutti i 20 shard e salvano metriche versionate nel ciclo DEV giornaliero.
