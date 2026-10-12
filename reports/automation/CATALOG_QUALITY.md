@@ -7,7 +7,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Schede: **13,779**.
 - Orari mancanti: **10,839**.
 - Indirizzi mancanti: **3,504**.
-- Coordinate mancanti: **228**.
+- Coordinate mancanti: **230**.
 - Date future mancanti: **1,877**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.

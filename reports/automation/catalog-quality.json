@@ -6,7 +6,7 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 228,
+    "coordinates_missing": 230,
     "future_dates_missing": 1877,
     "hours_missing": 10839,
     "review_only_duplicate_groups": 755,
@@ -65,7 +65,7 @@
       "hours_missing": 939,
       "address_missing": 259,
       "future_dates_missing": 197,
-      "coordinates_missing": 2
+      "coordinates_missing": 4
     },
     {
       "region": "Liguria",
@@ -668,8 +668,8 @@
     "total": 0,
     "hours_missing": 0,
     "address_missing": 0,
-    "coordinates_missing": 0,
-    "future_dates_missing": -76,
+    "coordinates_missing": 2,
+    "future_dates_missing": 0,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0
