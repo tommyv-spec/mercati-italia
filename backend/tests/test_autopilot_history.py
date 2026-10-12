@@ -62,6 +62,41 @@ class AutopilotHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Untrusted persistent"):
             summary(decision(), None, None, "unsafe", reviewed_city_static_guard=proof)
 
+    def test_roma_xiii_active_holds_are_counted_on_repeated_daily_runs(self):
+        city = {
+            "schema":1, "evidence_sha256":
+                "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
+            "manifest_records":12650, "release_safe":True,
+            "reviewed_cities_in_final_details":16,
+            "reviewed_cities_in_search_index":16,
+            "source_urls_preserved":16,
+            "navigation_routes_still_blocked":16,
+            "unsafe_coordinates_still_quarantined":7,
+            "individual_market_confirmations":0,
+        }
+        rome = {
+            "schema":1, "market_ids_in_catalog":12650,
+            "rome_sources_guarded":2,"current_coordinate_holds":2,
+            "current_navigation_holds":2,
+            "original_source_links_preserved":2,"new_geocodes_added":0,
+            "market_openings_verified":0,"release_safe":True,
+        }
+        result=summary(decision(),None,None,"roma-after-replay",
+                       reviewed_city_static_guard=city,
+                       roma_xiii_static_guard=rome)
+        self.assertEqual(result["roma_xiii_coordinate_holds_active"],2)
+        self.assertEqual(result["roma_xiii_navigation_holds_active"],2)
+        self.assertEqual(result["all_reviewed_coordinate_holds_active"],9)
+        self.assertEqual(result["all_reviewed_navigation_holds_active"],18)
+        self.assertEqual(result["documented_verification_count"],0)
+        display=__import__("autopilot_history").markdown(result)
+        self.assertIn("Roma Municipio XIII",display)
+        self.assertIn("**18** navigazioni",display)
+        rome["current_coordinate_holds"]=1
+        with self.assertRaisesRegex(ValueError,"Untrusted persistent Rome"):
+            summary(decision(),None,None,"unsafe-rome",
+                    roma_xiii_static_guard=rome)
+
     def test_metrics_without_pii_and_priority_order(self):
         result=summary(
             decision(),
