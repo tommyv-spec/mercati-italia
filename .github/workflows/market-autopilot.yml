@@ -338,6 +338,30 @@ jobs:
                       source.get('market_records_edited')!=0 or
                       source.get('market_ids_deleted')!=0):
                       raise ValueError('Generic source audit falsely approved a market: '+sid)
+          # Reuse the SAME exact source identities vetted by the source
+          # overlap gate. Two matching numerical counts are not evidence that
+          # the same records were excluded; only the complete partition is.
+          source_status=json.loads((root/'release-decision.json').read_text('utf-8')).get('sources',{})
+          for sid in ('lombardia','corciano','bologna'):
+              upstream=source_status.get(sid) or {}
+              if upstream.get('status') not in ('retrieved','resumed_checkpoint'):
+                  continue
+              entry=(lifecycle.get('sources') or {}).get(sid)
+              if not entry:
+                  raise ValueError('Reviewed source cohort lacks lifecycle proof: '+sid)
+              counts=entry.get('counts') or {}
+              screened=entry.get('source_screening') or {}
+              outside=counts.get('source_ids_not_yet_in_catalog',0)
+              reviewed=upstream.get('quarantined_review',0)
+              accepted=upstream.get('accepted_after_overlap_qa')
+              if (screened.get('exact_reviewed_id_partition_verified') is not True
+                  or screened.get('already_quarantined_by_venue_overlap_review')!=reviewed
+                  or screened.get('outside_catalog_source_ids_not_necessarily_new_markets')!=outside
+                  or screened.get('remaining_identities_without_overlap_disposition')!=outside-reviewed
+                  or accepted+reviewed!=counts.get('source_records_scanned')
+                  or len(screened.get('quarantine_source_id_set_sha256',''))!=64
+                  or screened.get('screening_missing_exact_source_id_proof') is not False):
+                  raise ValueError('Publisher venue hold only matched count, not exact source IDs: '+sid)
           print('DECLARATIVE_SOURCE_CONTRACTS',json.dumps({
               'publisher_sources_checked':lifecycle.get('checked_source_profiles',0),
               'catalog_market_ids_unchanged':original['total'],
