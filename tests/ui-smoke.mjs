@@ -89,6 +89,23 @@ try {
   }
   await page.locator('.detail-back').click()
 
+  // Source-bound real regression: Cernobbio's Mercatino delle Curiosità
+  // has no upcoming date. An empty forecast must not be advertised as a
+  // "planned" event merely because the source once listed the market.
+  // The name is intentionally read from a still-reviewable legacy card.
+  await page.locator('.search-input').fill('Mercatino delle Curiosità')
+  await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
+  await page.locator('.market-card-open').first().click()
+  await page.locator('.detail-page').waitFor()
+  await page.getByText('Caricamento dettagli completi…').waitFor({ state: 'hidden', timeout: 20000 })
+  await page.getByText('Nessuna data futura disponibile.', { exact: false }).waitFor({ timeout: 20000 })
+  assert.equal(await page.getByText('Date previste, non confermate per ogni singola edizione.',
+    { exact: false }).count(), 0,
+    'An unscheduled market must never have a misleading future-date notice')
+  await page.locator('.detail-back').click()
+  await page.locator('.search-input').fill('')
+  await assertCards()
+
   // The map must be a real interactive map, not the old decorative SVG.
   await page.getByRole('button', { name: 'Mappa', exact: true }).first().click()
   await page.locator('.maplibregl-map').waitFor({ timeout: 20000 })
