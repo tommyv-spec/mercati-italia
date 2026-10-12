@@ -24,6 +24,8 @@ jobs:
           python-version: '3.13'
       - name: Source-bound schedule tests and all offline regressions
         run: python -m unittest discover -s backend/tests -v
+      # The independent proof now also rejects loss of the ORIGINAL Milano
+      # municipal source when a newly reviewed PDF link is attached.
       - name: Build entire true Autopilot candidate, offline and no publishing
         run: python backend/autopilot.py --offline --today 2026-10-12 --output milano-pipeline-check
       - name: Independently verify 76 source-backed forecasts and all other market IDs
