@@ -84,6 +84,24 @@
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
+    },
+    "af3c0b6f-c409-45d7-b7a8-40b77cebad4f": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "c7b2c854-4d99-41ed-8b8f-38929fbbc54f": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "ede498b0-03e3-48e3-88fa-c3753604ad4f": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
+      "status": "schema_preview_only",
+      "viability": "historical_aggregate_not_venues"
     }
   },
   "reference_date": "2026-10-12",
@@ -111,16 +129,16 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "ad7a6b83-48a0-48e0-951a-a5f222d80fec",
+      "id": "af3c0b6f-c409-45d7-b7a8-40b77cebad4f",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3247,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/f49044ef-b659-4290-bd85-1d5c1a8b427d.csv",
+      "sample_bytes": 6607,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/55199dd5-e68c-43fb-b602-abfa7c1febbd.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Meolo",
+      "title": "Fiere e mercati - Comune di Marcon",
       "truncated": false
     },
     {
@@ -159,16 +177,16 @@
         "produttori_cessazioni"
       ],
       "format": "CSV",
-      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
+      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
       "review_blockers": [
         "explicit_market_name_missing"
       ],
       "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
+      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
       "schema_viability": "historical_aggregate_not_venues",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati mensili",
+      "title": "Censimento dei mercati quindicinali",
       "truncated": true
     },
     {
@@ -194,20 +212,20 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "ad990da5-1c55-4394-a0b1-a5b27913f857",
+      "id": "c7b2c854-4d99-41ed-8b8f-38929fbbc54f",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3457,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/aef03b7d-d4bc-4554-ad58-3585109e965e.csv",
+      "sample_bytes": 1257,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/c2d7e122-62b4-40ce-87f2-0108f6f1f7b6.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Pianiga",
+      "title": "Fiere e mercati - Comune di Povegliano Veronese",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 16,
+  "unreviewed_sources_remaining": 13,
   "verified_event_count": 0
 }
