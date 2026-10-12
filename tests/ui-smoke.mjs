@@ -96,7 +96,13 @@ try {
   await page.locator('.search-input').fill('Mercatino delle Curiosità')
   const suspectCityCard = page.locator('.market-card').filter({ hasText: 'Cernobbio' }).first()
   await suspectCityCard.waitFor({ timeout: 20000 })
-  await suspectCityCard.getByText('Località da verificare', { exact: true }).waitFor()
+  // Before the publisher+ISTAT review the source field is malformed.
+  // After an approved source-bound correction the city is Cernobbio, but
+  // navigation MUST stay disabled until the venue address is reconciled.
+  const reviewedMunicipality = await suspectCityCard.getByText('Cernobbio', { exact: true }).count() > 0
+  if (!reviewedMunicipality) {
+    await suspectCityCard.getByText('Località da verificare', { exact: true }).waitFor()
+  }
   await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
   // When a visitor *explicitly* selects the 7-day chip while searching,
   // an undated market should disappear. Toggling it off restores the
@@ -116,7 +122,11 @@ try {
   await page.getByText('La località riportata dalla fonte non identifica con sicurezza un Comune.',
     { exact: false }).waitFor()
   assert.equal(await page.getByRole('button', { name: /Indicazioni/ }).isDisabled(), true,
-    'Malformed city fields must never produce navigation directions')
+    'Unreconciled market addresses must never produce navigation directions, even after ISTAT city repair')
+  if (reviewedMunicipality) {
+    await page.getByText('La località riportata dalla fonte non identifica con sicurezza un Comune.',
+      { exact: false }).waitFor()
+  }
   assert.equal(await page.getByText('Date previste, non confermate per ogni singola edizione.',
     { exact: false }).count(), 0,
     'An unscheduled market must never have a misleading future-date notice')
