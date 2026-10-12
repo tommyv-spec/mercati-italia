@@ -194,6 +194,13 @@ function normalize(m, userLat, userLng) {
     status: m.status || 'non_confermato',
     fonte: m.fonte || '',
     url_fonte: m.url_fonte || '',
+    // Full regional details carry publisher-side safety holds and source
+    // evidence. The compact national index intentionally omits them.
+    navigazione_sospesa_motivo: m.navigazione_sospesa_motivo || '',
+    coordinate_sospese_motivo: m.coordinate_sospese_motivo || '',
+    fonti: Array.isArray(m.fonti)
+      ? m.fonti.filter(s => s && typeof s.nome === 'string' && typeof s.url === 'string')
+      : [],
     distance: Number.isFinite(userLat) && Number.isFinite(userLng)
       && Number.isFinite(lat) && Number.isFinite(lng)
       ? haversine(userLat, userLng, lat, lng) : null,

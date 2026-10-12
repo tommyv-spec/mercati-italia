@@ -1530,6 +1530,12 @@ export default function App() {
   };
 
   const openDirections = (market) => {
+    // The search-index preview does not contain municipality source holds.
+    // Directions must never be possible before full regional details arrive.
+    if (detailLoading || detailError) {
+      showToast('Indicazioni non disponibili finché i dettagli non sono verificati.');
+      return;
+    }
     const destination = destinationForMarket(market);
     if (!destination) {
       showToast('Indirizzo non abbastanza preciso per navigare.');
@@ -1842,6 +1848,7 @@ export default function App() {
     const catColor = CAT_COLORS[m.category] || "#888";
     const isFav = favorites.has(m.id);
     const futureDates = m.dates.filter(d => d >= todayStr).sort();
+    const canNavigate = !detailLoading && !detailError && Boolean(destinationForMarket(m));
 
     return (
       <div className="detail-page">
@@ -1927,15 +1934,15 @@ export default function App() {
             {m.positionQuality !== 'precisa' && (
               <div style={{ fontSize: 12, color: '#6C6255', marginTop: 6 }}>Posizione indicativa o da verificare</div>
             )}
-            {!destinationForMarket(m) && (
+            {!canNavigate && !detailLoading && (
               <div role="note" style={{ fontSize: 12, color: '#6C6255', margin: '10px 0' }}>
-                Indicazioni non disponibili: manca un indirizzo sufficientemente preciso.
+                Indicazioni non disponibili: manca una sede riconciliata e verificabile.
               </div>
             )}
             <div className="detail-address-actions">
               <button className="btn-primary" onClick={() => openDirections(m)}
-                disabled={!destinationForMarket(m)}
-                title={!destinationForMarket(m) ? 'Indirizzo non sufficiente per navigare' : 'Apri indicazioni stradali'}>
+                disabled={!canNavigate}
+                title={!canNavigate ? 'Dettagli o sede non sufficienti per navigare' : 'Apri indicazioni stradali'}>
                 <Icon name="navigation" size={16} color="white" /> Indicazioni
               </button>
               <button className="btn-secondary" onClick={() => copyMarketAddress(m)}

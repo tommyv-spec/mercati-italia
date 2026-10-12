@@ -14,6 +14,9 @@ on:
       - backend/autopilot.py
       - backend/export_static.py
       - src/hooks/useMarkets.js
+      - src/services/staticMarkets.js
+      - src/App.jsx
+      - tests/source-hold-details.test.mjs
       - tests/ui-smoke.mjs
       - tests/reviewed-city-ui.mjs
 
