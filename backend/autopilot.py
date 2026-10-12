@@ -30,6 +30,13 @@ from lombardia_overlap import review as review_lombardia_overlaps, markdown as l
 from recurrence_refresh import refresh_records
 from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
 from milano_2026_release_guard import verify as verify_milano_2026_diff, verify_exported as verify_milano_2026_exported
+from roma_xiii_geo_hold import (
+    apply_holds as apply_roma_xiii_holds,
+    verify_diff as verify_roma_xiii_diff,
+    verify_static as verify_roma_xiii_static,
+    git_blob_sha as roma_source_git_blob_sha,
+    SOURCE_GIT_BLOB_SHA as ROMA_XIII_SOURCE_BLOB,
+)
 from publisher_exception_review import (
     apply_source_repairs, verify_diff as verify_publisher_diff,
     verify_static as verify_publisher_static, evidence_digest as publisher_digest,
@@ -54,7 +61,7 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "reviewed_cities", "milano_2026", "forecast", "reviewed_publishers", "export", "quality")
+          "reviewed_cities", "milano_2026", "forecast", "reviewed_publishers", "roma_geo_hold", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -433,6 +440,20 @@ def run(args):
             ))):
         raise ValueError("Unreviewed 2026 Milan publisher-source evidence policy")
 
+    # A referenced 2024 municipal map disproves two approximate Rome city
+    # points. It may only remove those points and stop unsafe directions;
+    # never auto-geocode or confirm a 2026 market.
+    roma_hold_policy = policy.get("roma_xiii_coordinate_holds", {})
+    roma_holds_enabled = isinstance(roma_hold_policy, dict) and roma_hold_policy.get("enabled") is True
+    if (not isinstance(roma_hold_policy, dict)
+            or set(roma_hold_policy) - {"enabled", "reviewed_on", "source_blob_sha1"}
+            or roma_hold_policy.get("enabled", False) not in (True, False)
+            or (roma_holds_enabled and (
+                roma_hold_policy.get("reviewed_on") != "2026-10-12"
+                or roma_hold_policy.get("source_blob_sha1") != ROMA_XIII_SOURCE_BLOB
+            ))):
+        raise ValueError("Unreviewed Rome XIII coordinate hold policy")
+
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -766,6 +787,47 @@ def run(args):
         save_json(out / "publisher-exception-diff-guard.json", publisher_diff)
         checkpoint(out, "reviewed_publishers", publisher_report["counts"])
 
+    # Two specific source contradictions: generic centre-of-Rome map point is
+    # 6–11 km from the explicitly named 2024 municipal venues. Old points
+    # are retained for audit; never substitute old map markers as new geocodes.
+    rome_source=None
+    rome_report={
+        "schema":1,"enabled":False,"review_only":True,"record_count":len(projected),
+        "source_cases":0,"record_ids_added":0,"record_ids_removed":0,
+        "market_openings_confirmed":0,"source_links_replaced":0,
+        "market_calendar_dates_changed":0,"changed_ids":[],
+        "new_coordinates_quarantined":0,"new_directions_blocked":0,
+    }
+    rome_certificate={
+        "schema":1,"records_checked":len(projected),"changed_source_market_ids":[],
+        "new_coordinate_holds":0,"new_navigation_holds":0,"ids_added":0,
+        "ids_deleted":0,"original_source_urls_lost":0,
+        "event_verifications_created":0,"release_safe":True,"enabled":False,
+    }
+    if roma_holds_enabled:
+        source_file=Path(__file__).resolve().parent / "data" / "roma-municipio-xiii-market-map-reviewed.json"
+        if roma_source_git_blob_sha(source_file)!=roma_hold_policy["source_blob_sha1"]:
+            raise ValueError("Pinned public Municipio XIII reference changed")
+        rome_source=read_json(source_file)
+        before_rome=projected
+        projected,rome_report=apply_roma_xiii_holds(projected,rome_source,apply=True)
+        rome_certificate=verify_roma_xiii_diff(
+            before_rome,projected,rome_report,rome_source
+        )
+        if rome_certificate.get("release_safe") is not True:
+            raise ValueError("Rome coordinate-only quarantine changed an unreviewed field")
+        save_json(out / "intermediate" / "rome-before-geo-holds.json", before_rome)
+        save_json(out / "intermediate" / "rome-after-geo-holds.json", projected)
+    save_json(out / "roma-xiii-geo-holds.json", rome_report)
+    save_json(out / "roma-xiii-diff-guard.json", rome_certificate)
+    checkpoint(out, "roma_geo_hold", {
+        "enabled":roma_holds_enabled,
+        "source_markets":2 if roma_holds_enabled else 0,
+        "new_points_quarantined":rome_report["new_coordinates_quarantined"],
+        "new_navigation_holds":rome_report["new_directions_blocked"],
+        "opening_verifications_created":0,
+    })
+
     # Work on a temp copy. Rejected candidates never touch public/data/v1.
     dest = out / "candidate" / "public" / "data" / "v1"
     if dest.exists():
@@ -792,6 +854,11 @@ def run(args):
         if publisher_static.get("release_safe") is not True:
             raise ValueError("Reviewed publisher coordinates/dates missing from final DEV files")
         save_json(out / "publisher-exception-static-safety.json", publisher_static)
+    if roma_holds_enabled:
+        roma_final_proof=verify_roma_xiii_static(dest / "manifest.json",rome_source)
+        if roma_final_proof.get("release_safe") is not True:
+            raise ValueError("The exported catalog restored unsafe Rome source coordinates")
+        save_json(out / "roma-xiii-static-guard.json", roma_final_proof)
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
     if milano_enabled:
