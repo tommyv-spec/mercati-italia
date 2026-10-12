@@ -1,173 +1,164 @@
 {
   "checked_hosts": [
+    "comune.corciano.pg.it",
     "dati.comune.roma.it",
+    "dati.lazio.it",
+    "dati.veneto.it",
     "opendata.comune.bologna.it",
     "www.dati.lombardia.it"
   ],
+  "eligible_sources": 26,
   "imports": 0,
   "max_read_bytes_per_request": 65536,
   "max_requests": 3,
   "metadata_only": true,
+  "probe_history": {
+    "0bb2a3cb-a3d0-44ef-9053-061006c8cd50": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": null,
+      "status": "schema_preview_only",
+      "viability": "legacy_probe"
+    },
+    "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": null,
+      "status": "needs_review",
+      "viability": "legacy_probe"
+    },
+    "2e41941b-80fb-4ded-8330-427383f725f8": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": null,
+      "status": "schema_preview_only",
+      "viability": "legacy_probe"
+    },
+    "3d6e405a-32f6-46ed-93be-854144c08a06": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "4a3c6272-1163-449f-93ae-cb1fd97a4952": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    }
+  },
+  "reference_date": "2026-10-12",
   "reports": [
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "address": [
-          "ubicazione",
-          "indirizzi"
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
         ],
-        "geometry_requires_crs_review": [
-          "geo_x",
-          "geo_y",
-          "location"
+        "market_type": [
+          "FIERA/MERCATO"
         ],
-        "hours": [
-          "dalle_ore_invernale",
-          "alle_ore_invernale",
-          "dalle_ore_estivo",
-          "alle_ore_estivo"
-        ],
-        "municipality": [
-          "descom"
-        ],
-        "stable_id_candidate": [
-          "codice_id"
-        ],
-        "weekday": [
-          "periodicita_tipo",
-          "giorno"
+        "name": [
+          "NOME"
         ]
       },
       "fields": [
-        "codice_id",
-        "istat_provincia",
-        "despro",
-        "istat",
-        "descom",
-        "ubicazione",
-        "indirizzi",
-        "periodicita_tipo",
-        "giorno",
-        "mesi_svolgimento",
-        "dalle_ore_invernale",
-        "alle_ore_invernale",
-        "dalle_ore_estivo",
-        "alle_ore_estivo",
-        "anno_istituzione_mercato",
-        "n_post_alim",
-        "n_post_non_alim",
-        "n_post_tot",
-        "sup_post_non_alim",
-        "sup_post_alim",
-        "sup_post_tot",
-        "postdestprodtiplomb",
-        "postdestprodagric",
-        "postdestbattitori",
-        "postdestprodflorov",
-        "geo_x",
-        "geo_y",
-        "location",
-        ":@computed_region_ttgh_9sm5",
-        ":@computed_region_af5v_nc64"
+        "NOME",
+        "FIERA/MERCATO",
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
       ],
-      "format": "JSON",
-      "id": "2e41941b-80fb-4ded-8330-427383f725f8",
+      "format": "CSV",
+      "id": "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6",
       "review_blockers": [
-        "explicit_market_name_missing",
-        "geometry_crs_and_coordinate_units_unknown"
+        "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 2562,
-      "sample_url": "https://www.dati.lombardia.it/resource/68zx-njaw.json?%24limit=5",
+      "sample_bytes": 179,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/c97582dd-d37d-4f1d-a1c5-b0b90188c651.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Mercati su aree pubbliche",
+      "title": "Fiere e mercati - Comune di Casalserugo",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "address": [
-          "ubicazione"
-        ],
-        "district": [
-          "nome_quartiere",
-          "nome_zona"
-        ],
-        "geometry_requires_crs_review": [
-          "geopoint"
-        ],
-        "hours": [
-          "orario_svolgimento"
-        ],
-        "latitude": [
-          "lat"
-        ],
-        "longitude": [
-          "long"
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
         ],
         "market_type": [
-          "tipologia",
-          "tipologia_mercato"
+          "FIERA/MERCATO"
         ],
         "name": [
-          "denominazione"
-        ],
-        "weekday": [
-          "giorni_svolgimento"
+          "NOME"
         ]
       },
       "fields": [
-        "denominazione",
-        "tipologia",
-        "tipologia_mercato",
-        "ubicazione",
-        "specializzazione",
-        "numero_posteggi",
-        "numero_chioschi_alimentari",
-        "numero_chioschi_non_alimentari",
-        "numero_chioschi_misti",
-        "numero_chioschi_prodotti_agricoli",
-        "giorni_svolgimento",
-        "orario_svolgimento",
-        "nome_quartiere",
-        "nome_zona",
-        "area_statistica",
-        "codice_area_statistica",
-        "codice_quartiere",
-        "codice_zona",
-        "long",
-        "lat",
-        "geopoint",
-        "zona_pross"
+        "NOME",
+        "FIERA/MERCATO",
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
       ],
-      "format": "JSON",
-      "id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
+      "format": "CSV",
+      "id": "3d6e405a-32f6-46ed-93be-854144c08a06",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3825,
-      "sample_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere/records?limit=5",
+      "sample_bytes": 315,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Mercati e fiere",
+      "title": "Fiere e mercati - Comune di Soave",
       "truncated": false
     },
     {
       "adapter_enabled": false,
-      "error": "HTTPError: HTTP Error 403: Forbidden",
       "events_confirmed": 0,
-      "field_hints": {},
-      "fields": [],
+      "field_hints": {
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
+        ],
+        "market_type": [
+          "FIERA/MERCATO"
+        ],
+        "name": [
+          "NOME"
+        ]
+      },
+      "fields": [
+        "NOME",
+        "FIERA/MERCATO",
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
+      ],
       "format": "CSV",
-      "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
-      "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
+      "id": "4a3c6272-1163-449f-93ae-cb1fd97a4952",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
+      "sample_bytes": 1715,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/04bc0bfa-d895-49a9-a603-150234cc4ee9.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
-      "status": "needs_review",
-      "title": "Dati sui Mercati Rionali"
+      "status": "schema_preview_only",
+      "title": "Fiere e mercati - Comune di Fontaniva",
+      "truncated": false
     }
   ],
   "schema": 1,
+  "unreviewed_sources_remaining": 22,
   "verified_event_count": 0
 }

@@ -2,23 +2,23 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38190145965](https://github.com/tommyv-spec/mercati-italia/actions/runs/38190145965) — UTC 2026-10-12T01:02:04.993807+00:00
+- Ultimo run: [38190747046](https://github.com/tommyv-spec/mercati-italia/actions/runs/38190747046) — UTC 2026-10-12T01:11:18.307857+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: no (contenuto invariato)
+- Nuova versione di dati: sì
 - Schede nel catalogo: **13,779**
 - Schede con date previste a +60 giorni: **11,795**
 - Schede con date previste a +90 giorni: **11,774**
-- Indice nazionale gzip: **394.6 KiB**
+- Indice nazionale gzip: **394.9 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **10,969**
-- Dataset pubblici candidati individuati: **42** (licenze da verificare)
-- Fonti conservate nello storico: **42**; nuove: **0**; aggiornate: **0**.
+- Orari mancanti: **10,840**
+- Dataset pubblici candidati individuati: **43** (licenze da verificare)
+- Fonti conservate nello storico: **43**; nuove: **1**; aggiornate: **0**.
 - Possibili elenchi/sedi: **8**; statistiche storiche aggregate: **12**.
 - Lombardia MERCap: **1127** record non ambigui su **1360**, in revisione **233**.
 - Bologna: **0** record non ambigui su **0**, in revisione **0** (fonte storica; nessuna verifica singolo evento).
 - Corciano: **2** record senza conflitti su **4**, in revisione **2**, impronta sorgente **1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121**.
-- Enrichment ufficiale: disattivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **0** corrispondenze esatte su **0** record fonte in revisione.
+- Enrichment ufficiale: attivo; **129** orari mancanti recuperati in questo run, **132** fonti collegate, **132** corrispondenze esatte su **233** record fonte in revisione.
 - Fonti datate negli ultimi 30 giorni: **1127**; oltre soglia: **89**; senza data: **0**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1129**, di cui recenti **1127**.
 - Date previste con origine vecchia/sconosciuta: **0**.
