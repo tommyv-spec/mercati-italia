@@ -26,7 +26,7 @@ def row(slug):
         "lat":41.9,"lng":12.5,"position_quality":"non_verificata",
         "verificato_il":"","status":"non_confermato",
         "date_quality":"sconosciuta","date":[],
-        "categoria":"misto","orario_testo":"","ricorrenza_testo":"",
+        "categoria":"alimentare","orario_testo":"","ricorrenza_testo":"",
     }
 
 
