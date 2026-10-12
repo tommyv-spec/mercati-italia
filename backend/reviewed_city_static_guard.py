@@ -44,7 +44,7 @@ def _asset(public: Path, relative: str) -> Path:
 
 
 def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
-                  daily_report_path: Path) -> dict:
+                  daily_report_path: Path, roma_venue_report_path: Path | None = None) -> dict:
     policy = read_json(policy_path).get("reviewed_source_cities", {})
     if policy.get("enabled") is not True:
         raise ValueError("Previously approved navigation safety gate is disabled")
@@ -78,9 +78,37 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         raise ValueError("Publisher review release report does not match pinned evidence")
 
     manifest = read_json(manifest_path)
+    approved_additions = 0
+    if roma_venue_report_path:
+        from roma_xiii_2026_venues import EXPECTED as APPROVED_ROMA_MARKETS
+        roma = read_json(roma_venue_report_path)
+        if roma.get("enabled") is True:
+            new_ids = roma.get("new_market_ids")
+            approved_additions = roma.get("records_added", -1)
+            if (roma.get("schema") != 1
+                    or roma.get("existing_catalog_records") != report.get("records_total")
+                    or roma.get("source_market_identities") != 8
+                    or roma.get("official_preexisting_plateatici") != 2
+                    or roma.get("candidate_venue_records") != 5
+                    or not isinstance(approved_additions,int)
+                    or not 0 <= approved_additions <= 5
+                    or not isinstance(new_ids,list)
+                    or len(new_ids) != approved_additions
+                    or len(set(new_ids)) != len(new_ids)
+                    or not set(new_ids).issubset(APPROVED_ROMA_MARKETS)
+                    or any(roma.get(key) != 0 for key in (
+                        "records_removed","existing_records_changed",
+                        "new_coordinates_added","new_opening_confirmations",
+                        "new_human_verifications"))):
+                raise ValueError("Unapproved new Roma venue IDs in reviewed-city static proof")
+        elif (roma.get("enabled") is False and roma.get("records_added") == 0
+              and not roma.get("new_market_ids")):
+            approved_additions = 0
+        else:
+            raise ValueError("Unexpected disabled Roma venue source report")
     if (manifest.get("schema") != 1 or manifest.get("index_schema") != 5
             or not isinstance(manifest.get("total"), int)
-            or report.get("records_total") != manifest["total"]):
+            or report.get("records_total") + approved_additions != manifest["total"]):
         raise ValueError("Static manifest and reviewed source counts disagree")
     if manifest.get("layout") == "regional":
         parts = manifest.get("regions")
@@ -186,9 +214,11 @@ def main():
     parser.add_argument("--evidence", type=Path, required=True)
     parser.add_argument("--policy", type=Path, required=True)
     parser.add_argument("--daily-report", type=Path, required=True)
+    parser.add_argument("--roma-venue-report", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
-    report = verify_static(args.manifest, args.evidence, args.policy, args.daily_report)
+    report = verify_static(args.manifest, args.evidence, args.policy, args.daily_report,
+                           args.roma_venue_report)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2)+"\n", "utf-8")
     print("REVIEWED_CITY_STATIC_GUARD", json.dumps(report, ensure_ascii=False))
