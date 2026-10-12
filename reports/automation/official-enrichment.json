@@ -3,9 +3,7 @@
   "coordinates_overwritten": 0,
   "counts": {
     "exact_matches": 132,
-    "existing_hours_preserved": 3,
-    "hours_added": 129,
-    "official_source_attributions_added": 132,
+    "existing_hours_preserved": 132,
     "skipped_coordinates_conflict": 13,
     "skipped_multiple_official_markets_same_venue_day": 2,
     "skipped_no_exact_legacy_market": 4,
@@ -13,17 +11,17 @@
   },
   "enabled": true,
   "exact_matches": 132,
-  "existing_market_hours_added": 129,
+  "existing_market_hours_added": 0,
   "individual_market_verifications": 0,
-  "legacy_records_changed": 132,
-  "official_source_attributions_added": 132,
+  "legacy_records_changed": 0,
+  "official_source_attributions_added": 0,
   "old_dataset_dates_overwritten": 0,
   "primary_sources_overwritten": 0,
   "record_identity_changes": 0,
   "review_only": true,
   "samples": [
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.04,
       "official_id": "101240",
       "published_id": "mercato-settimanale-di-calusco-d-adda-calusco-d-adda",
@@ -33,7 +31,7 @@
       "street": "Via Leone XIII"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.04,
       "official_id": "101240",
       "published_id": "mercato-settimanale-di-calusco-d-adda-calusco-d-adda-sabato",
@@ -43,7 +41,7 @@
       "street": "Via Leone XIII"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.209,
       "official_id": "100641",
       "published_id": "mercato-settimanale-di-castel-d-ario-castel-d-ario",
@@ -53,7 +51,7 @@
       "street": "Viale Rimembranze"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.209,
       "official_id": "100641",
       "published_id": "mercato-settimanale-di-castel-d-ario-castel-d-ario-domenica",
@@ -63,7 +61,7 @@
       "street": "Viale Rimembranze"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.05,
       "official_id": "100755",
       "published_id": "mercato-settimanale-di-castiglione-d-adda-castiglione-d-adda",
@@ -73,7 +71,7 @@
       "street": "Piazza Assunzione"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.05,
       "official_id": "100755",
       "published_id": "mercato-settimanale-di-castiglione-d-adda-castiglione-d-adda-giovedi",
@@ -83,7 +81,7 @@
       "street": "Piazza Assunzione"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.176,
       "official_id": "100843",
       "published_id": "mercato-settimanale-di-paderno-d-adda-paderno-d-adda",
@@ -93,7 +91,7 @@
       "street": "Piazza Nino Colnaghi"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.176,
       "official_id": "100843",
       "published_id": "mercato-settimanale-di-paderno-d-adda-paderno-d-adda-giovedi",
@@ -103,7 +101,7 @@
       "street": "Piazza Nino Colnaghi"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.022,
       "official_id": "101187",
       "published_id": "mercato-settimanale-di-vezza-d-oglio-vezza-d-oglio",
@@ -113,7 +111,7 @@
       "street": "Piazza IV Luglio 1866"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.022,
       "official_id": "101187",
       "published_id": "mercato-settimanale-di-vezza-d-oglio-vezza-d-oglio-giovedi",
@@ -123,7 +121,7 @@
       "street": "Piazza IV Luglio 1866"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.392,
       "official_id": "100331",
       "published_id": "mercato-settimanale-di-abbiategrasso-abbiategrasso-sabato",
@@ -133,7 +131,7 @@
       "street": "Piazza L. Samek"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.077,
       "official_id": "100001",
       "published_id": "mercato-settimanale-di-albizzate-albizzate",
@@ -143,7 +141,7 @@
       "street": "Piazzale Sefro"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.077,
       "official_id": "100001",
       "published_id": "mercato-settimanale-di-albizzate-albizzate-martedi",
@@ -153,7 +151,7 @@
       "street": "Piazzale Sefro"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.107,
       "official_id": "101200",
       "published_id": "mercato-settimanale-di-almenno-san-salvatore-almenno-san-salvatore",
@@ -163,7 +161,7 @@
       "street": "Via Postico"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.107,
       "official_id": "101200",
       "published_id": "mercato-settimanale-di-almenno-san-salvatore-almenno-san-salvatore-sabato",
@@ -173,7 +171,7 @@
       "street": "Via Postico"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.035,
       "official_id": "101002",
       "published_id": "mercato-settimanale-di-angolo-terme-angolo-terme",
@@ -183,7 +181,7 @@
       "street": "Piazza Alpini"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.035,
       "official_id": "101002",
       "published_id": "mercato-settimanale-di-angolo-terme-angolo-terme-martedi",
@@ -193,7 +191,7 @@
       "street": "Piazza Alpini"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.097,
       "official_id": "100004",
       "published_id": "mercato-settimanale-di-arsago-seprio-arsago-seprio",
@@ -203,7 +201,7 @@
       "street": "Via Monici"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.097,
       "official_id": "100004",
       "published_id": "mercato-settimanale-di-arsago-seprio-arsago-seprio-mercoledi",
@@ -213,7 +211,7 @@
       "street": "Via Monici"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.061,
       "official_id": "101003",
       "published_id": "mercato-settimanale-di-artogne-artogne-venerdi",
@@ -223,7 +221,7 @@
       "street": "Piazza Caduti del Lavoro"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.339,
       "official_id": "530031",
       "published_id": "mercato-settimanale-di-azzano-mella-azzano-mella",
@@ -233,7 +231,7 @@
       "street": "Viale Paolo VI"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.339,
       "official_id": "530031",
       "published_id": "mercato-settimanale-di-azzano-mella-azzano-mella-venerdi",
@@ -243,7 +241,7 @@
       "street": "Viale Paolo VI"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": null,
       "official_id": "101005",
       "published_id": "mercato-settimanale-di-bagnolo-mella-bagnolo-mella",
@@ -253,7 +251,7 @@
       "street": "Piazza della Resistenza"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": null,
       "official_id": "101005",
       "published_id": "mercato-settimanale-di-bagnolo-mella-bagnolo-mella-sabato",
@@ -263,7 +261,7 @@
       "street": "Piazza della Resistenza"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.022,
       "official_id": "101008",
       "published_id": "mercato-settimanale-di-barbariga-barbariga",
@@ -273,7 +271,7 @@
       "street": "Piazza Aldo Moro"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.022,
       "official_id": "101008",
       "published_id": "mercato-settimanale-di-barbariga-barbariga-martedi",
@@ -283,7 +281,7 @@
       "street": "Piazza Aldo Moro"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.139,
       "official_id": "100337",
       "published_id": "mercato-settimanale-di-bareggio-bareggio-giovedi",
@@ -293,7 +291,7 @@
       "street": "Piazza cavour"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.184,
       "official_id": "100111",
       "published_id": "mercato-settimanale-di-berbenno-di-valtellina-berbenno-di-valtellina",
@@ -303,7 +301,7 @@
       "street": "Via Conciliazione"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.184,
       "official_id": "100111",
       "published_id": "mercato-settimanale-di-berbenno-di-valtellina-berbenno-di-valtellina-lunedi",
@@ -313,7 +311,7 @@
       "street": "Via Conciliazione"
     },
     {
-      "changed_hours": true,
+      "changed_hours": false,
       "distance_km": 0.424,
       "official_id": "101225",
       "published_id": "mercato-settimanale-di-berzo-san-fermo-berzo-san-fermo",

@@ -48,6 +48,24 @@
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
+    },
+    "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": null,
+      "status": "needs_review",
+      "viability": "manual_schema_review_required"
+    },
+    "60fab25c-12d7-43f9-b8e7-7ef709d58aa2": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "871d7381-6eaf-420e-9fb5-2544b351ce8a": {
+      "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
     }
   },
   "reference_date": "2026-10-12",
@@ -75,17 +93,30 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6",
+      "id": "60fab25c-12d7-43f9-b8e7-7ef709d58aa2",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 179,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/c97582dd-d37d-4f1d-a1c5-b0b90188c651.csv",
+      "sample_bytes": 608,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/d305152b-ec6a-466e-b417-02316d603d0c.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Casalserugo",
+      "title": "Fiere e mercati - Comune di Badia Polesine",
       "truncated": false
+    },
+    {
+      "adapter_enabled": false,
+      "error": "HTTPError: HTTP Error 500: INTERNAL SERVER ERROR",
+      "events_confirmed": 0,
+      "field_hints": {},
+      "fields": [],
+      "format": "CSV",
+      "id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
+      "sample_url": "https://dati.lazio.it/dataset/5cb467ed-a783-4507-a36a-c0a0f6a7d9a7/resource/97f6ae01-f57f-49e7-a713-349d8fce8160/download/oscomercatigiornalieri.csv",
+      "source_license_verified": false,
+      "status": "needs_review",
+      "title": "Censimento dei mercati giornalieri"
     },
     {
       "adapter_enabled": false,
@@ -110,55 +141,20 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "3d6e405a-32f6-46ed-93be-854144c08a06",
+      "id": "871d7381-6eaf-420e-9fb5-2544b351ce8a",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 315,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9.csv",
+      "sample_bytes": 16096,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/5e0e619c-eb69-4a82-b2a4-532a01118c4c.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Soave",
-      "truncated": false
-    },
-    {
-      "adapter_enabled": false,
-      "events_confirmed": 0,
-      "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
-        "market_type": [
-          "FIERA/MERCATO"
-        ],
-        "name": [
-          "NOME"
-        ]
-      },
-      "fields": [
-        "NOME",
-        "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
-      ],
-      "format": "CSV",
-      "id": "4a3c6272-1163-449f-93ae-cb1fd97a4952",
-      "review_blockers": [
-        "municipality_must_be_validated_from_publisher_context"
-      ],
-      "sample_bytes": 1715,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/04bc0bfa-d895-49a9-a603-150234cc4ee9.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
-      "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Fontaniva",
+      "title": "Fiere e mercati - Comune di Lazise",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 22,
+  "unreviewed_sources_remaining": 19,
   "verified_event_count": 0
 }
