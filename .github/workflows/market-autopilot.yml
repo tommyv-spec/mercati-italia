@@ -317,6 +317,30 @@ jobs:
                 'accepted',overlap.get('accepted',0),
                 'quarantined',overlap.get('quarantined',0))
           PY
+      - name: Reject unsupported official enrichment or invented market verification
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('autopilot-output/official-enrichment.json').read_text())
+          if report.get('schema')!=1 or report.get('source_id')!='lombardia-mercap':
+              raise ValueError('Official enrichment report schema mismatch')
+          for key in ('record_identity_changes', 'confirmed_date_changes',
+                      'individual_market_verifications', 'coordinates_overwritten',
+                      'primary_sources_overwritten','old_dataset_dates_overwritten'):
+              if report.get(key)!=0:
+                  raise ValueError('Official enrichment tried to change '+key)
+          if not (0<=report.get('legacy_records_changed',-1)<=500
+                  and 0<=report.get('existing_market_hours_added',-1)<=500
+                  and 0<=report.get('official_source_attributions_added',-1)<=500
+                  and report['existing_market_hours_added']<=report['legacy_records_changed']
+                  and report['official_source_attributions_added']<=report['legacy_records_changed']):
+              raise ValueError('Implausible source evidence improvement metrics')
+          print('Source evidence quality QA passed:',report['legacy_records_changed'],
+                'market identities enriched,',report['existing_market_hours_added'],
+                'hours supplied,',report['official_source_attributions_added'],
+                'publisher attributions attached')
+          PY
       - name: Block false freshness or official-source approvals
         run: |
           python - <<'PY'
@@ -501,6 +525,10 @@ jobs:
           test -s autopilot-output/CORCIANO_OVERLAPS.md
           cp autopilot-output/corciano-overlaps.json reports/automation/corciano-overlaps.json
           cp autopilot-output/CORCIANO_OVERLAPS.md reports/automation/CORCIANO_OVERLAPS.md
+          test -s autopilot-output/official-enrichment.json
+          test -s autopilot-output/OFFICIAL_ENRICHMENT.md
+          cp autopilot-output/official-enrichment.json reports/automation/official-enrichment.json
+          cp autopilot-output/OFFICIAL_ENRICHMENT.md reports/automation/OFFICIAL_ENRICHMENT.md
       - name: Update ONLY DEV data files if content changed
         shell: bash
         run: |
@@ -529,6 +557,7 @@ jobs:
             --lombardia-overlap autopilot-output/lombardia-overlaps.json \
             --bologna-overlap autopilot-output/bologna-overlaps.json \
             --corciano-overlap autopilot-output/corciano-overlaps.json \
+            --official-enrichment autopilot-output/official-enrichment.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
