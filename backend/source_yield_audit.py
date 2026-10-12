@@ -14,6 +14,10 @@ ROMA_ID = "2d7352f7-7d9f-4be7-927b-de1b760993c3"
 PIEMONTE_ID = "26c619d9-ecf8-4882-910e-925a4fb459ec"
 BOLOGNA_URL = "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/"
 BOLOGNA_DATE = "2025-04-02"
+RELOCATION_FILE = Path("backend/data/source-yield-location-conflicts-2026-10-12.json")
+RELOCATION_URL = ("https://atti9.comune.bologna.it/webpub/wpub_ordtraf.nsf/"
+                  "dettaglio.xsp?action=editDocument&documentId=77B931E39816680CC1258B270043B4E3")
+RELOCATED_ID = "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f"
 EXISTING = {
     "2e41941b-80fb-4ded-8330-427383f725f8": "Lombardia MERCap",
     "62be39fe-adbe-464a-84b1-85bc060b75d2": "Corciano",
@@ -33,10 +37,38 @@ def documented_days(record):
     days = weekday_evidence(record)
     return frozenset(days) if days is not None and len(days) else frozenset()
 
-def compare_bologna(catalog, observations, today):
+def validate_relocations(evidence):
+    """One reviewed municipal relocation. It is NOT proof of current opening."""
+    if evidence is None:
+        return {}
+    if (not isinstance(evidence,dict) or evidence.get("schema")!=1
+            or evidence.get("reviewed_on")!="2026-10-12"
+            or not isinstance(evidence.get("cases"),list)
+            or len(evidence["cases"])!=1):
+        raise ValueError("Unreviewed source location conflict list")
+    c=evidence["cases"][0]
+    if (c.get("source_market_id")!=RELOCATED_ID
+            or c.get("expected_publisher_url")!=BOLOGNA_URL
+            or c.get("expected_data_date")!=BOLOGNA_DATE
+            or c.get("expected_city")!="Bologna"
+            or key(c.get("expected_old_address"))!=key("via Segantini")
+            or c.get("name_keywords")!=["mercato","produttori agricoli","segantini"]
+            or c.get("conflicting_legal_source")!=RELOCATION_URL
+            or c.get("legal_act")!="PG 351978/2024"
+            or c.get("legal_effective_date")!="2024-05-30"
+            or key(c.get("recorded_new_location"))!=key("Via Battindarno, presso civico 135")
+            or c.get("disposition")!="quarantine_as_conflicting_historical_venue_until_current_publisher_reconciliation"):
+        raise ValueError("Untrusted official relocation evidence")
+    if date.fromisoformat(c["legal_effective_date"]) >= date.fromisoformat(BOLOGNA_DATE):
+        raise ValueError("Relocation predates source incorrectly")
+    return {RELOCATED_ID:c}
+
+
+def compare_bologna(catalog, observations, today, conflicts=None):
     """Count concrete source rows, strong overlaps and unresolved new venues."""
     if not isinstance(observations,list) or not 1<=len(observations)<=MAX_SOURCE_ROWS:
         raise ValueError("Source observation outside vetted bounds")
+    source_conflicts=validate_relocations(conflicts)
     catalog_ids=set()
     names=defaultdict(list)
     places=defaultdict(list)
@@ -50,7 +82,7 @@ def compare_bologna(catalog, observations, today):
         if place: places[prefix+(place,)].append(row)
         if row.get("nome"): names[prefix+(key(row["nome"]),)].append(row)
     counts=Counter()
-    samples={"strong":[],"ambiguous":[],"possible_distinct":[]}
+    samples={"strong":[],"ambiguous":[],"possible_distinct":[],"location_conflict":[]}
     fingerprints=[]
     for source in observations:
         if (not isinstance(source,dict)
@@ -69,6 +101,16 @@ def compare_bologna(catalog, observations, today):
             counts["same_id_already_published"]+=1
             continue
         counts["new_ids_not_new_market_proof"]+=1
+        if slug in source_conflicts:
+            case=source_conflicts[slug]
+            if (key(source.get("indirizzo"))!=key(case["expected_old_address"])
+                    or any(word not in key(source.get("nome")) for word in case["name_keywords"])):
+                raise ValueError("Official relocation conflicts with observed source identity")
+            counts["documented_location_conflicts_held"]+=1
+            samples["location_conflict"].append(slug)
+            if not source.get("date"):
+                counts["rows_without_explicit_visit_dates"]+=1
+            continue
         prefix=(key(source["regione"]),key(source["citta"]))
         place=specific_place(source.get("indirizzo"))
         site=places.get(prefix+(place,),[]) if place else []
@@ -92,18 +134,20 @@ def compare_bologna(catalog, observations, today):
             counts["rows_without_explicit_visit_dates"]+=1
     if sum(counts[k] for k in (
             "same_id_already_published","strong_exact_place_day_overlaps",
-            "possible_duplicate_places_or_names","possible_new_venues_unconfirmed")) != len(observations):
+            "possible_duplicate_places_or_names","possible_new_venues_unconfirmed",
+            "documented_location_conflicts_held")) != len(observations):
         raise ValueError("Unaccounted official records")
     return {
         "schema":1,"actual_dataset_date":BOLOGNA_DATE,
         "source_age_days":(today-date.fromisoformat(BOLOGNA_DATE)).days,
         "source_ids_sha256":hashlib.sha256("\n".join(sorted(fingerprints)).encode()).hexdigest(),
         "counts":dict(sorted(counts.items())),
+        "independent_relocation_evidence":len(source_conflicts),
         "samples_for_review":{k:sorted(v)[:MAX_SAMPLES] for k,v in samples.items()},
         "records_imported":0,"events_confirmed":0,"catalog_data_changed":False,
     }
 
-def audit(catalog,registry,municipalities,probes,today,observations=None,error=""):
+def audit(catalog,registry,municipalities,probes,today,observations=None,error="",conflicts=None):
     if (not isinstance(catalog,list) or not 1<=len(catalog)<=MAX_CATALOG
             or registry.get("schema")!=1 or registry.get("record_imports")!=0
             or not isinstance(registry.get("sources"),list)
@@ -119,7 +163,8 @@ def audit(catalog,registry,municipalities,probes,today,observations=None,error="
         raise ValueError("Repeated source ID in registry")
     field_probes=probes.get("probe_history",{})
     if not isinstance(field_probes,dict): raise ValueError("Invalid source probes")
-    bo=compare_bologna(catalog,observations,today) if observations is not None else None
+    validated_relocations=validate_relocations(conflicts)
+    bo=compare_bologna(catalog,observations,today,conflicts) if observations is not None else None
     ranked=[]
     for src in registry["sources"]:
         if not isinstance(src,dict) or not src.get("id") or not src.get("title"):
@@ -172,6 +217,8 @@ def audit(catalog,registry,municipalities,probes,today,observations=None,error="
         "sources_checked":len(registry["sources"]),
         "actual_source_samples_checked":1 if bo else 0,
         "bologna_observation":bo,
+        "location_conflicts_documented":len(validated_relocations),
+        "location_conflicts_source_sha256":(hashlib.sha256(json.dumps(conflicts,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()).hexdigest() if conflicts is not None else None),
         "priority_queue":review_queue,
         "all_sources":ranked,
         "sources_imported":0,"markets_added":0,"markets_deleted":0,
@@ -194,6 +241,8 @@ def markdown(report):
         f"- Nuovi ID Bologna (non mercati certificati nuovi): **{c.get('new_ids_not_new_market_proof','n.d.')}**.",
         f"- Possibili sedi distinte, ancora da verificare: **{c.get('possible_new_venues_unconfirmed','n.d.')}**.",
         f"- Possibili sovrapposizioni tra fonti: **{c.get('possible_duplicate_places_or_names','n.d.')}**.",
+        f"- Conflitti di località documentati: **{c.get('documented_location_conflicts_held','n.d.')}**.",
+        f"- Documento ufficiale: {RELOCATION_URL} (Via Segantini / Via Battindarno).",
         f"- Source data Bologna: **{b['actual_dataset_date'] if b else 'non disponibili'}**; non e' una conferma di apertura.","",
         "## Priorita basate sulla resa, non sul punteggio dei metadati","",
         "| Priorita | Fonte | Stato | Righe viste | Candidati distinti | Azione |",
@@ -219,12 +268,14 @@ def main():
     p.add_argument("--report",type=Path,required=True)
     p.add_argument("--today",type=date.fromisoformat,default=date.today())
     p.add_argument("--live-bologna",action="store_true")
+    p.add_argument("--location-conflicts",type=Path,default=RELOCATION_FILE)
     args=p.parse_args()
     from merge_catalog import load_existing
     base=load_existing(args.manifest)
     reg=json.loads(args.registry.read_text("utf-8"))
     mun=json.loads(args.municipalities.read_text("utf-8"))
     probes=json.loads(args.probes.read_text("utf-8"))
+    conflicts=json.loads(args.location_conflicts.read_text("utf-8"))
     observations=None
     error=""
     if args.live_bologna:
@@ -233,7 +284,7 @@ def main():
             observations=source_bologna.convert(source_bologna.download(),today=args.today)
         except (OSError,ValueError,TimeoutError,TypeError,KeyError) as exc:
             error=type(exc).__name__+": "+str(exc)[:130]
-    report=audit(base,reg,mun,probes,args.today,observations,error)
+    report=audit(base,reg,mun,probes,args.today,observations,error,conflicts)
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+"\n",encoding="utf-8")

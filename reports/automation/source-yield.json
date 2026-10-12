@@ -9,7 +9,7 @@
       "license_needs_review": true,
       "market_entries_added": 0,
       "next_action": "Check 2026 municipality schedule and exact venue identities before allowing import.",
-      "possible_distinct_venues": 47,
+      "possible_distinct_venues": 46,
       "priority": 80,
       "publisher": "Comune di Bologna",
       "schema_type": "legacy_probe",
@@ -737,27 +737,32 @@
     "actual_dataset_date": "2025-04-02",
     "catalog_data_changed": false,
     "counts": {
+      "documented_location_conflicts_held": 1,
       "new_ids_not_new_market_proof": 48,
       "observed_source_rows": 48,
       "possible_duplicate_places_or_names": 1,
-      "possible_new_venues_unconfirmed": 47,
+      "possible_new_venues_unconfirmed": 46,
       "rows_without_explicit_visit_dates": 48
     },
     "events_confirmed": 0,
+    "independent_relocation_evidence": 1,
     "records_imported": 0,
     "samples_for_review": {
       "ambiguous": [
         "bo-open-418bc4fab526dfb293eaa88d97334c86f06aecbc"
       ],
+      "location_conflict": [
+        "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f"
+      ],
       "possible_distinct": [
         "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91",
-        "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f",
         "bo-open-17afa4a1b31405dc911429ed57f2949a95dd3637",
         "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8",
         "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed",
         "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938",
         "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
-        "bo-open-3408414d572217fd69f0d5179a955bb4de99d542"
+        "bo-open-3408414d572217fd69f0d5179a955bb4de99d542",
+        "bo-open-3a150cf453dc8050ee37edfbf006699118c15901"
       ],
       "strong": []
     },
@@ -767,6 +772,8 @@
   },
   "catalog_market_ids_retained": 13779,
   "date": "2026-10-12",
+  "location_conflicts_documented": 1,
+  "location_conflicts_source_sha256": "985b6705ef852f2dbf5ecab4aec8459d1945e7183df299a4d1a6fda198d9d6bc",
   "market_events_confirmed": 0,
   "market_rows_edited": 0,
   "markets_added": 0,
@@ -781,7 +788,7 @@
       "license_needs_review": true,
       "market_entries_added": 0,
       "next_action": "Check 2026 municipality schedule and exact venue identities before allowing import.",
-      "possible_distinct_venues": 47,
+      "possible_distinct_venues": 46,
       "priority": 80,
       "publisher": "Comune di Bologna",
       "schema_type": "legacy_probe",

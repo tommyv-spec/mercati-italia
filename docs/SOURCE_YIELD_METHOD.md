@@ -14,8 +14,16 @@ is an aggregate daily checkpoint and a bounded manual-review queue.
 - Original source IDs are not present in the catalog: 48. This alone
   does not prove distinct places.
 - Exact conservative matching by Comune, normalized street, market name
-  and supported weekday: 47 *possible* distinct venue candidates and
-  1 unresolved overlap. All require fresh confirmation.
+  and supported weekday: **46 possible distinct venue candidates**, one
+  unresolved overlap, and one documented location conflict. All require
+  fresh confirmation before publication.
+- Municipality order PG 351978/2024 moved the farmers' market formerly at
+  Via Segantini to Via Battindarno near number 135, effective 30 May 2024:
+  https://atti9.comune.bologna.it/webpub/wpub_ordtraf.nsf/dettaglio.xsp?action=editDocument&documentId=77B931E39816680CC1258B270043B4E3
+  The Bologna adapter still lists Via Segantini in its 2025 snapshot. Its
+  exact source ID is held as contradictory historical venue evidence.
+  The order alone does not prove that the relocated market is still open
+  in October 2026. No replacement point or calendar is invented.
 - Roma 2022 historical inventory and Piemonte archive endpoint timed
   out on the authorized PC during read-only checks. Treat these as
   unmeasured, never as zero potential candidates.
