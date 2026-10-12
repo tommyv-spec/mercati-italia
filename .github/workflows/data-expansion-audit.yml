@@ -70,6 +70,13 @@ jobs:
             --evidence backend/data/bologna-municipal-leads-2026.json \
             --out growth-output/bologna-2026-leads.json \
             --report growth-output/BOLOGNA_2026_LEADS.md
+      - name: Audit Municipio XIII market map against complete catalog without importing
+        run: |
+          python backend/roma_xiii_map_audit.py \
+            --manifest public/data/v1/manifest.json \
+            --source backend/data/roma-municipio-xiii-market-map-reviewed.json \
+            --out growth-output/roma-xiii-map-audit.json \
+            --report growth-output/ROMA_XIII_MAP_AUDIT.md
       - name: Reject any unreviewed market imports or verification claims
         run: |
           python - <<'PY'
@@ -81,6 +88,7 @@ jobs:
           towns=json.loads(Path('growth-output/municipality-coverage.json').read_text('utf-8'))
           yields=json.loads(Path('growth-output/source-yield.json').read_text('utf-8'))
           recent=json.loads(Path('growth-output/bologna-2026-leads.json').read_text('utf-8'))
+          roma=json.loads(Path('growth-output/roma-xiii-map-audit.json').read_text('utf-8'))
           registry=json.loads(Path('reports/automation/source-registry.json').read_text('utf-8'))
           if (coverage.get('schema')!=1 or coverage.get('review_only') is not True
               or coverage.get('market_updates_applied')!=0
@@ -145,6 +153,19 @@ jobs:
           if any(row.get('market_import_permission') is not False
                  or row.get('markets_confirmed')!=0 for row in src.get('sources',[])):
               raise ValueError('Unreviewed new source promoted a market')
+          if (roma.get('schema') != 1 or roma.get('role') != 'municipal_map_place_matching_only'
+              or roma.get('review_only') is not True
+              or roma.get('municipal_map_markers') != 9
+              or roma.get('original_market_ids_preserved') != manifest.get('total')
+              or roma.get('data_license_cleared_automatically') is not False
+              or len(roma.get('observations',[])) != 9
+              or any(roma.get(field) != 0 for field in (
+                  'source_market_ids_published','market_cards_modified',
+                  'future_events_confirmed','road_directions_enabled'))
+              or any(row.get('automatic_enrichment_allowed') is not False
+                     or row.get('source_verified_2026') is not False
+                     for row in roma['observations'])):
+              raise ValueError('Roma XIII outdated map was promoted to verified current markets')
           print('SAFE_GROWTH_REVIEW',manifest['total'],'market IDs preserved')
           PY
           cat growth-output/DATA_COVERAGE.md >> "$GITHUB_STEP_SUMMARY"
@@ -152,6 +173,7 @@ jobs:
           cat growth-output/MUNICIPAL_ROW_AUDIT.md >> "$GITHUB_STEP_SUMMARY"
           cat growth-output/SOURCE_YIELD.md >> "$GITHUB_STEP_SUMMARY"
           cat growth-output/BOLOGNA_2026_LEADS.md >> "$GITHUB_STEP_SUMMARY"
+          cat growth-output/ROMA_XIII_MAP_AUDIT.md >> "$GITHUB_STEP_SUMMARY"
       - name: Save source research and QA reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -185,7 +207,7 @@ jobs:
           set -euo pipefail
           test "$(cat growth-output/dev-source-sha.txt)" = "$(git rev-parse HEAD)"
           mkdir -p reports/automation
-          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md municipality-coverage.json MUNICIPALITY_COVERAGE.md source-yield.json SOURCE_YIELD.md bologna-2026-leads.json BOLOGNA_2026_LEADS.md; do
+          for item in data-coverage.json DATA_COVERAGE.md municipal-row-audit.json MUNICIPAL_ROW_AUDIT.md municipality-coverage.json MUNICIPALITY_COVERAGE.md source-yield.json SOURCE_YIELD.md bologna-2026-leads.json BOLOGNA_2026_LEADS.md roma-xiii-map-audit.json ROMA_XIII_MAP_AUDIT.md; do
             test -s "growth-output/$item"
             cp "growth-output/$item" "reports/automation/$item"
           done
@@ -195,7 +217,8 @@ jobs:
             reports/automation/municipal-row-audit.json reports/automation/MUNICIPAL_ROW_AUDIT.md \
             reports/automation/municipality-coverage.json reports/automation/MUNICIPALITY_COVERAGE.md \
             reports/automation/source-yield.json reports/automation/SOURCE_YIELD.md \
-            reports/automation/bologna-2026-leads.json reports/automation/BOLOGNA_2026_LEADS.md
+            reports/automation/bologna-2026-leads.json reports/automation/BOLOGNA_2026_LEADS.md \
+            reports/automation/roma-xiii-map-audit.json reports/automation/ROMA_XIII_MAP_AUDIT.md
           if ! git diff --cached --quiet; then
             git commit -m "audit: rank data gaps and real source freshness (DEV only)"
             git push origin HEAD:improve/data-quality-security-performance-2026-10-11
