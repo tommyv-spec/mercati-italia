@@ -1,3 +1,6 @@
+# Search regression 2026-10-12: implicit seven-day default must not hide
+# undated markets found by name; explicit day filter remains authoritative.
+# Verified Playwright mobile run 38237681447; publish only after all CI gates.
 # Real-source enrichment idempotence + diversified source probing approved CI replay.
 # Each previously filled hour and source URL must be preserved without duplicate evidence.
 # Corciano idempotence replay: after first DEV import 38188711597,
