@@ -2,8 +2,8 @@
   "coordinates_changed": 0,
   "counts": {
     "cross_market_scraper_text": 20,
-    "needs_manual_municipality_review": 20,
-    "suspicious_before": 20
+    "needs_manual_municipality_review": 7,
+    "suspicious_before": 7
   },
   "enabled": true,
   "examples": [
@@ -17,66 +17,6 @@
       "region": "Campania",
       "slug": "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
       "source": "https://www.happings.com/it/mercati-settimanali-a-napoli.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Cervia ( ra ) Fiere, Mostre e Mercati Antiquariato Gastronomia Vintage Come ogni ultima domenica del mese, torna il 22 f",
-      "province": "RA",
-      "region": "Emilia-Romagna",
-      "slug": "a-spass-per-zirvia-cervia-ra-fiere-mostre-e-mercati-antiquariato-gastronomia-vin",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/ra/cervia/a-spass-per-zirvia-cervia.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 3,
-      "method": null,
-      "original_city": "Faenza ( ra ) Fiere, Mostre e Mercati Antiquariato Vintage Domenica 8 marzo a Faenza",
-      "province": "RA",
-      "region": "Emilia-Romagna",
-      "slug": "ieri-l-altro-mostra-mercato-di-modernariato-collezionismo-antichita-e-vintage-fa",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/ra/faenza/ieri-l-altro-a-faenza.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Santarcangelo di Romagna ( rn ) Fiere, Mostre e Mercati Antiquariato Vintage La Casa del Tempo a Santarcangelo di Romagn",
-      "province": "RN",
-      "region": "Emilia-Romagna",
-      "slug": "la-casa-del-tempo-santarcangelo-di-romagna-rn-fiere-mostre-e-mercati-antiquariat",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/rn/santarcangelo-di-romagna/la-casa-del-tempo.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "“La Soffitta in Piazza e l’Angolo del Libro Usato”",
-      "province": "",
-      "region": "Friuli Venezia Giulia",
-      "slug": "pordenone-la-soffitta-in-piazza-e-langolo-del-libro-usato-piazza-risorgimento-la",
-      "source": "https://www.cosedicasa.com/mercatini/pordenone-la-soffitta-in-piazza-e-langolo-del-libro-usato-piazza-risorgimento",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Fiera del Disco\"",
-      "province": "",
-      "region": "Lazio",
-      "slug": "fiumicino-parco-da-vinci-music-day-roma-fiera-del-disco-fiera-del-disco",
-      "source": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-grande-fiera-del-disco",
       "suggested_city": null
     },
     {
@@ -106,66 +46,6 @@
     {
       "calendar_cross_contaminated": false,
       "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "“Da Vinci – Sessantotto Village”",
-      "province": "",
-      "region": "Lazio",
-      "slug": "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
-      "source": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-3",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Mercatino delle Curiosità\"",
-      "province": "",
-      "region": "Lombardia",
-      "slug": "cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita",
-      "source": "https://www.cosedicasa.com/mercatini/cernobbio-mercatino-estivo",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Street Market\"",
-      "province": "",
-      "region": "Lombardia",
-      "slug": "milano-mercatino-artigianato-e-vintage-street-market-piazza-san-nazaro-in-brolo",
-      "source": "https://www.cosedicasa.com/mercatini/milano-piazza-san-nazaro-in-brolo",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "\"Otranto Antiqua\"",
-      "province": "",
-      "region": "Puglia",
-      "slug": "otranto-antiqua-mercatino-dellantiquariato-e-della-creativita-otranto-antiqua",
-      "source": "https://www.cosedicasa.com/mercatini/otranto-antiqua",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Vicopisano ( pi ) Fiere, Mostre e Mercati Domenica 15 febbraio, torna a Lugnano frazione del comune di Vicopisano",
-      "province": "PI",
-      "region": "Toscana",
-      "slug": "lugnano-in-soffitta-vicopisano-pi-fiere-mostre-e-mercati-domenica-15-febbraio-to",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/toscana/pi/vicopisano/lugnano-in-soffitta.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
       "future_dates_before": 4,
       "method": null,
       "original_city": "\"Artigianando",
@@ -173,18 +53,6 @@
       "region": "Umbria",
       "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
       "source": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Valeggio Contemporanea\"",
-      "province": "",
-      "region": "Veneto",
-      "slug": "valeggio-sul-mincio-valeggio-contemporanea-valeggio-contemporanea",
-      "source": "https://www.cosedicasa.com/mercatini/valeggio-sul-mincio-valeggio-contemporanea",
       "suggested_city": null
     },
     {
@@ -197,18 +65,6 @@
       "region": "Veneto",
       "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
       "source": "https://www.happings.com/it/mercati-settimanali-a-treviso.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Montagnana ( pd ) Fiere, Mostre e Mercati Antiquariato Vintage Il Mercatino dell'Antiquariato e Collezionismo torna ad a",
-      "province": "PD",
-      "region": "Veneto",
-      "slug": "mercatino-dell-antiquariato-e-collezionismo-montagnana-pd-fiere-mostre-e-mercati",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/veneto/pd/montagnana/mercatino-dell-antiquariato-e-collezionismo.html",
       "suggested_city": null
     },
     {
@@ -233,18 +89,6 @@
       "region": "Veneto",
       "slug": "mercatini-stoffaday-na",
       "source": "https://www.trevisotoday.it/eventi/tipo/fiere~sagre~mercatini/",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Valeggio sul Mincio ( vr ) Fiere, Mostre e Mercati Antiquariato Vintage Come ogni quarta domenica del mese, domenica 22",
-      "province": "VR",
-      "region": "Veneto",
-      "slug": "mercato-antiquariato-e-modernariato-valeggio-sul-mincio-vr-fiere-mostre-e-mercat",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/veneto/vr/valeggio-sul-mincio/mercato-antiquariato-e-modernariato.html",
       "suggested_city": null
     }
   ],
@@ -272,66 +116,6 @@
     {
       "calendar_cross_contaminated": false,
       "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Cervia ( ra ) Fiere, Mostre e Mercati Antiquariato Gastronomia Vintage Come ogni ultima domenica del mese, torna il 22 f",
-      "province": "RA",
-      "region": "Emilia-Romagna",
-      "slug": "a-spass-per-zirvia-cervia-ra-fiere-mostre-e-mercati-antiquariato-gastronomia-vin",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/ra/cervia/a-spass-per-zirvia-cervia.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 3,
-      "method": null,
-      "original_city": "Faenza ( ra ) Fiere, Mostre e Mercati Antiquariato Vintage Domenica 8 marzo a Faenza",
-      "province": "RA",
-      "region": "Emilia-Romagna",
-      "slug": "ieri-l-altro-mostra-mercato-di-modernariato-collezionismo-antichita-e-vintage-fa",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/ra/faenza/ieri-l-altro-a-faenza.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Santarcangelo di Romagna ( rn ) Fiere, Mostre e Mercati Antiquariato Vintage La Casa del Tempo a Santarcangelo di Romagn",
-      "province": "RN",
-      "region": "Emilia-Romagna",
-      "slug": "la-casa-del-tempo-santarcangelo-di-romagna-rn-fiere-mostre-e-mercati-antiquariat",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/rn/santarcangelo-di-romagna/la-casa-del-tempo.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "“La Soffitta in Piazza e l’Angolo del Libro Usato”",
-      "province": "",
-      "region": "Friuli Venezia Giulia",
-      "slug": "pordenone-la-soffitta-in-piazza-e-langolo-del-libro-usato-piazza-risorgimento-la",
-      "source": "https://www.cosedicasa.com/mercatini/pordenone-la-soffitta-in-piazza-e-langolo-del-libro-usato-piazza-risorgimento",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Fiera del Disco\"",
-      "province": "",
-      "region": "Lazio",
-      "slug": "fiumicino-parco-da-vinci-music-day-roma-fiera-del-disco-fiera-del-disco",
-      "source": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-grande-fiera-del-disco",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
       "future_dates_before": 0,
       "method": null,
       "original_city": "RM",
@@ -356,66 +140,6 @@
     {
       "calendar_cross_contaminated": false,
       "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "“Da Vinci – Sessantotto Village”",
-      "province": "",
-      "region": "Lazio",
-      "slug": "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
-      "source": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-3",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Mercatino delle Curiosità\"",
-      "province": "",
-      "region": "Lombardia",
-      "slug": "cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita",
-      "source": "https://www.cosedicasa.com/mercatini/cernobbio-mercatino-estivo",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Street Market\"",
-      "province": "",
-      "region": "Lombardia",
-      "slug": "milano-mercatino-artigianato-e-vintage-street-market-piazza-san-nazaro-in-brolo",
-      "source": "https://www.cosedicasa.com/mercatini/milano-piazza-san-nazaro-in-brolo",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "\"Otranto Antiqua\"",
-      "province": "",
-      "region": "Puglia",
-      "slug": "otranto-antiqua-mercatino-dellantiquariato-e-della-creativita-otranto-antiqua",
-      "source": "https://www.cosedicasa.com/mercatini/otranto-antiqua",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Vicopisano ( pi ) Fiere, Mostre e Mercati Domenica 15 febbraio, torna a Lugnano frazione del comune di Vicopisano",
-      "province": "PI",
-      "region": "Toscana",
-      "slug": "lugnano-in-soffitta-vicopisano-pi-fiere-mostre-e-mercati-domenica-15-febbraio-to",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/toscana/pi/vicopisano/lugnano-in-soffitta.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
       "future_dates_before": 4,
       "method": null,
       "original_city": "\"Artigianando",
@@ -423,18 +147,6 @@
       "region": "Umbria",
       "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
       "source": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 0,
-      "method": null,
-      "original_city": "\"Valeggio Contemporanea\"",
-      "province": "",
-      "region": "Veneto",
-      "slug": "valeggio-sul-mincio-valeggio-contemporanea-valeggio-contemporanea",
-      "source": "https://www.cosedicasa.com/mercatini/valeggio-sul-mincio-valeggio-contemporanea",
       "suggested_city": null
     },
     {
@@ -447,18 +159,6 @@
       "region": "Veneto",
       "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
       "source": "https://www.happings.com/it/mercati-settimanali-a-treviso.html",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Montagnana ( pd ) Fiere, Mostre e Mercati Antiquariato Vintage Il Mercatino dell'Antiquariato e Collezionismo torna ad a",
-      "province": "PD",
-      "region": "Veneto",
-      "slug": "mercatino-dell-antiquariato-e-collezionismo-montagnana-pd-fiere-mostre-e-mercati",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/veneto/pd/montagnana/mercatino-dell-antiquariato-e-collezionismo.html",
       "suggested_city": null
     },
     {
@@ -483,18 +183,6 @@
       "region": "Veneto",
       "slug": "mercatini-stoffaday-na",
       "source": "https://www.trevisotoday.it/eventi/tipo/fiere~sagre~mercatini/",
-      "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": false,
-      "future_dates_before": 4,
-      "method": null,
-      "original_city": "Valeggio sul Mincio ( vr ) Fiere, Mostre e Mercati Antiquariato Vintage Come ogni quarta domenica del mese, domenica 22",
-      "province": "VR",
-      "region": "Veneto",
-      "slug": "mercato-antiquariato-e-modernariato-valeggio-sul-mincio-vr-fiere-mostre-e-mercat",
-      "source": "https://www.solosagre.it/mostre-e-mercatini/veneto/vr/valeggio-sul-mincio/mercato-antiquariato-e-modernariato.html",
       "suggested_city": null
     }
   ],

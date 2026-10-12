@@ -33,9 +33,9 @@
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
       "checked_date": "2026-10-12",
-      "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
-      "status": "schema_preview_only",
-      "viability": "venue_inventory_missing_visit_days"
+      "column_fingerprint": null,
+      "status": "needs_review",
+      "viability": "manual_schema_review_required"
     },
     "2e41941b-80fb-4ded-8330-427383f725f8": {
       "checked_date": "2026-10-12",
@@ -186,111 +186,16 @@
   "reports": [
     {
       "adapter_enabled": false,
+      "error": "TimeoutError: The read operation timed out",
       "events_confirmed": 0,
-      "field_hints": {
-        "market_type": [
-          "FIERA/MERCATO"
-        ],
-        "name": [
-          "NOME"
-        ],
-        "weekday": [
-          "GIORNO"
-        ]
-      },
-      "fields": [
-        "NOME",
-        "FIERA/MERCATO",
-        "GIORNO",
-        "INIZIO PERIODO",
-        "FINE PERIODO",
-        "TIPO POSTEGGIO",
-        "TOTALE POSTEGGI"
-      ],
-      "format": "CSV",
-      "id": "ea311e6c-f02a-429d-b5f2-164859ee9445",
-      "review_blockers": [
-        "municipality_must_be_validated_from_publisher_context"
-      ],
-      "sample_bytes": 806,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/58de71b1-7c2c-4c2c-97fa-78b2c9686078.csv",
-      "schema_viability": "manual_schema_review_required",
-      "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Brendola",
-      "truncated": false
-    },
-    {
-      "adapter_enabled": false,
-      "events_confirmed": 0,
-      "field_hints": {
-        "address": [
-          "INDIRIZZO"
-        ],
-        "district": [
-          "Municipio"
-        ],
-        "hours": [
-          "Apertura_Lunedi",
-          "Chiusura_Lunedi",
-          "Apertura_Martedi",
-          "Chiusura_Martedi",
-          "Apertura_Mercoledi",
-          "Chiusura_Mercoledi"
-        ],
-        "market_type": [
-          "TIPOLOGIA"
-        ],
-        "name": [
-          "Nome_Mercato"
-        ],
-        "notes": [
-          "Altre_indicazioni",
-          "Note_mercato"
-        ]
-      },
-      "fields": [
-        "Municipio",
-        "Nome_Mercato",
-        "INDIRIZZO",
-        "Civico",
-        "Esp_Civico",
-        "Altre_indicazioni",
-        "CAP",
-        "TIPOLOGIA",
-        "Note_mercato",
-        "POSTEGGI_TOTALI",
-        "POSTEGGI_OCCUPATI",
-        "NUMERO_OPERATORI",
-        "POSTEGGI_ALIMENTARI",
-        "POSTEGGI_NON_ALIMENTARI",
-        "Apertura_Lunedi",
-        "Chiusura_Lunedi",
-        "Apertura_Martedi",
-        "Chiusura_Martedi",
-        "Apertura_Mercoledi",
-        "Chiusura_Mercoledi",
-        "Apertura_Giovedi",
-        "Chiusura_Giovedi",
-        "Apertura_Venedi",
-        "Chiusura_Venedi",
-        "Apertura_Sabato",
-        "Chiusura_Sabato",
-        "Note_orari",
-        "AGGIORNATO"
-      ],
+      "field_hints": {},
+      "fields": [],
       "format": "CSV",
       "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
-      "review_blockers": [
-        "municipality_must_be_validated_from_publisher_context"
-      ],
-      "sample_bytes": 38408,
       "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
-      "schema_viability": "venue_inventory_missing_visit_days",
       "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Dati sui Mercati Rionali",
-      "truncated": false
+      "status": "needs_review",
+      "title": "Dati sui Mercati Rionali"
     },
     {
       "adapter_enabled": false,
@@ -326,6 +231,19 @@
       "status": "schema_preview_only",
       "title": "Fiere e mercati - Comune di Casalserugo",
       "truncated": false
+    },
+    {
+      "adapter_enabled": false,
+      "error": "HTTPError: HTTP Error 500: INTERNAL SERVER ERROR",
+      "events_confirmed": 0,
+      "field_hints": {},
+      "fields": [],
+      "format": "CSV",
+      "id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
+      "sample_url": "https://dati.lazio.it/dataset/5cb467ed-a783-4507-a36a-c0a0f6a7d9a7/resource/97f6ae01-f57f-49e7-a713-349d8fce8160/download/oscomercatigiornalieri.csv",
+      "source_license_verified": false,
+      "status": "needs_review",
+      "title": "Censimento dei mercati giornalieri"
     }
   ],
   "schema": 1,
