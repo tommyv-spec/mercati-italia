@@ -47,6 +47,20 @@ class AlertTests(unittest.TestCase):
         self.assertEqual(result["problems"]["publisher_new_data_claims"], ["Regione Lombardia"])
         self.assertIn("Regione Lombardia", result["body"])
 
+    def test_official_csv_change_requires_recheck_without_fabricating_events(self):
+        changes = {
+            "schema": 1, "imported_markets": 0,
+            "results": [{
+                "publisher": "Comune di Corciano",
+                "change_type": "municipal_csv_bytes_changed",
+                "events_confirmed": 0,
+            }],
+        }
+        value = build(report(), changes)
+        self.assertTrue(value["attention_required"])
+        self.assertEqual(value["problems"]["municipal_csv_changed"], ["Comune di Corciano"])
+        self.assertIn("CSV comunali cambiati", value["body"])
+
     def test_bad_report_rejected(self):
         with self.assertRaises(ValueError):
             build({"schema": 2, "metrics": {}})

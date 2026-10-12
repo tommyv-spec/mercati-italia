@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 
-def compare(now, prior=None):
+def compare(now, prior=None, corciano_current=None, corciano_previous=None):
     if now.get("schema") != 1 or now.get("market_imports") != 0:
         raise ValueError("Invalid publisher-evidence snapshot")
     if prior is not None and (
@@ -32,6 +32,8 @@ def compare(now, prior=None):
         "timestamp_interpretation_corrected": 0,
         "recovered": 0,
         "publisher_unavailable": 0,
+        "municipal_csv_bytes_changed": 0,
+        "municipal_csv_first_observation": 0,
     }
     for row in now.get("source_evidence", []):
         sid = row.get("source_id")
@@ -73,6 +75,44 @@ def compare(now, prior=None):
             "events_confirmed": 0,
             "automatic_import_allowed": False,
         })
+    # Corciano's CSV has no row-level timestamp. A publisher file byte
+    # change is a reviewable signal, not proof of current market hours.
+    if corciano_current is not None:
+        now_csv, old_csv = corciano_current, corciano_previous or {}
+        if (now_csv.get("schema") != 1 or
+                now_csv.get("source_prefix") != "pg-corciano-" or
+                now_csv.get("market_confirmations") != 0 or
+                now_csv.get("deleted_existing_records") != 0):
+            raise ValueError("Untrusted current municipality review")
+        if corciano_previous is not None and (
+            old_csv.get("schema") != 1 or
+            old_csv.get("source_prefix") != "pg-corciano-"
+        ):
+            raise ValueError("Untrusted previous municipality review")
+        new_hash = now_csv.get("source_csv_sha256")
+        old_hash = old_csv.get("source_csv_sha256")
+        if now_csv.get("source_total", 0):
+            if (not isinstance(new_hash, str) or len(new_hash) != 64
+                    or any(c not in "0123456789abcdef" for c in new_hash)):
+                raise ValueError("Municipal CSV source SHA missing")
+            if not old_hash:
+                kind = "municipal_csv_first_observation"
+            elif old_hash != new_hash:
+                kind = "municipal_csv_bytes_changed"
+            else:
+                kind = "unchanged"
+            counts[kind] += 1
+            results.append({
+                "source_id": "corciano-municipal-csv",
+                "publisher": "Comune di Corciano",
+                "change_type": kind,
+                "prior_data_date": None,
+                "current_data_date": None,
+                "publisher_file_sha256": new_hash,
+                "dataset_date_still_requires_review": True,
+                "events_confirmed": 0,
+                "automatic_import_allowed": False,
+            })
     return {
         "schema": 1,
         "reference_date": now.get("reference_date"),
@@ -107,12 +147,19 @@ def main():
     p.add_argument("--current", type=Path, required=True)
     p.add_argument("--previous", type=Path,
                    default=Path("reports/automation/source-evidence.json"))
+    p.add_argument("--corciano-current", type=Path)
+    p.add_argument("--corciano-previous", type=Path,
+                   default=Path("reports/automation/corciano-overlaps.json"))
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--report", type=Path, required=True)
     args = p.parse_args()
     current = json.loads(args.current.read_text("utf-8"))
     previous = json.loads(args.previous.read_text("utf-8")) if args.previous.is_file() else None
-    value = compare(current, previous)
+    now_csv = json.loads(args.corciano_current.read_text("utf-8")) if (
+        args.corciano_current and args.corciano_current.is_file()) else None
+    old_csv = json.loads(args.corciano_previous.read_text("utf-8")) if (
+        args.corciano_previous and args.corciano_previous.is_file()) else None
+    value = compare(current, previous, now_csv, old_csv)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n",

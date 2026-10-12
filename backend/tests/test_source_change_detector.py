@@ -61,6 +61,27 @@ class ChangeDetectorTests(unittest.TestCase):
     def test_markdown_remains_review_only(self):
         self.assertIn("Nessuna licenza",markdown(compare(snapshot())))
 
+    def test_municipal_csv_hash_change_is_visible_without_false_event_confirmation(self):
+        csv = {"schema": 1, "source_prefix": "pg-corciano-",
+               "source_total": 4, "source_csv_sha256": "a"*64,
+               "market_confirmations": 0, "deleted_existing_records": 0}
+        first = compare(snapshot(), snapshot(), csv)
+        self.assertEqual(first["counts"]["municipal_csv_first_observation"], 1)
+        again = compare(snapshot(), snapshot(), csv, csv)
+        self.assertEqual(again["counts"]["unchanged"], 2)
+        changed = {**csv, "source_csv_sha256": "b"*64}
+        out = compare(snapshot(), snapshot(), changed, csv)
+        self.assertEqual(out["counts"]["municipal_csv_bytes_changed"], 1)
+        self.assertEqual(out["results"][-1]["events_confirmed"], 0)
+        self.assertFalse(out["results"][-1]["automatic_import_allowed"])
+
+    def test_invalid_municipal_fingerprint_is_blocked(self):
+        bad = {"schema": 1, "source_prefix": "pg-corciano-",
+               "source_total": 4, "source_csv_sha256": "xx",
+               "market_confirmations": 0, "deleted_existing_records": 0}
+        with self.assertRaisesRegex(ValueError,"SHA missing"):
+            compare(snapshot(), snapshot(), bad)
+
     def test_malformed_previous_snapshot_is_rejected(self):
         with self.assertRaises(ValueError):
             compare(snapshot(),{"schema":1,"market_imports":5})

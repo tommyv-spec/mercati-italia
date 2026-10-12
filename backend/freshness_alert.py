@@ -38,6 +38,10 @@ def build(freshness, source_changes=None):
             str(p.get("publisher", "")) for p in changes.get("results", [])
             if p.get("change_type") == "publisher_data_date_advanced"
         ),
+        "municipal_csv_changed": sorted(
+            str(p.get("publisher", "")) for p in changes.get("results", [])
+            if p.get("change_type") == "municipal_csv_bytes_changed"
+        ),
     }
     if any(not isinstance(n, int) or n < 0 for n in problem.values()
            if isinstance(n, int)):
@@ -50,6 +54,7 @@ def build(freshness, source_changes=None):
         problem["unsupported_confirmation"] > 0,
         bool(problem["publisher_unavailable"]),
         bool(problem["publisher_new_data_claims"]),
+        bool(problem["municipal_csv_changed"]),
     ))
     signature = hashlib.sha256(json.dumps(
         problem, sort_keys=True, ensure_ascii=False, separators=(",", ":")
@@ -66,6 +71,7 @@ def build(freshness, source_changes=None):
         f"- Date confermate senza prova: {problem['unsupported_confirmation']:,}",
         f"- Publisher non raggiungibili / metadati cambiati: {', '.join(problem['publisher_unavailable']) or 'nessuno'}",
         f"- Enti che dichiarano dati aggiornati rispetto al controllo precedente: {', '.join(problem['publisher_new_data_claims']) or 'nessuno'}",
+        f"- CSV comunali cambiati (richiedono nuova verifica): {', '.join(problem['municipal_csv_changed']) or 'nessuno'}",
         "",
         "Correggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.",
         "",
