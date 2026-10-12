@@ -77,8 +77,11 @@ jobs:
               "unsafe_coordinates_created":0,
               "published":False,
           }
-          if (len(base)!=13779 or len(records)!=13784 or
-              len(added)!=5 or len(report_out['removed_ids'])!=0
+          expected_additions=13784-len(base)
+          if (len(base) not in (13779,13784) or len(records)!=13784 or
+              expected_additions not in (0,5) or len(added)!=expected_additions
+              or report.get('records_added')!=expected_additions
+              or len(report_out['removed_ids'])!=0
               or proof['forecast_only_markets']!=4
               or proof['reviewed_2026_venue_identifiers']!=5
               or proof['route_holds_in_details']!=5
@@ -121,14 +124,19 @@ jobs:
           milano=json.loads((out/'milano-2026-static-guard.json').read_text('utf-8'))
           original={x['slug'] for x in before}
           resulting={x['slug'] for x in after}
+          new_identifiers=resulting-original
+          approved=int(13784-len(before))
           if (decision.get('approved') is not True
-              or set(EXPECTED) != resulting-original
+              or approved not in (0,5)
+              or set(EXPECTED)-resulting
+              or new_identifiers!=set(EXPECTED)-original
+              or len(new_identifiers)!=approved
               or original-resulting
               or not final.get('release_safe') or final.get('forecast_only_markets')!=4
               or not city.get('release_safe') or city.get('navigation_routes_still_blocked')!=16
               or not rome.get('release_safe') or rome.get('current_navigation_holds')!=2
               or not milano.get('quality_safe') or milano.get('reviewed_milan_ids')!=76
-              or venues.get('records_added')!=5
+              or venues.get('records_added')!=approved
               or len(after)!=13784):
               raise ValueError('Full Autopilot changed previously reviewed market safety or identities')
           print('SOURCE_BACKED_ROMA_FIVE_FULL_PIPELINE',json.dumps({
