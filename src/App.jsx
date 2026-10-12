@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense } fro
 import { useMarkets } from "./hooks/useMarkets";
 import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup } from './lib/marketGrouping';
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
+import { marketDateDisclosure } from './lib/dateDisclosure.js';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
@@ -1887,9 +1888,9 @@ export default function App() {
             {m.recurrence && (
               <div className="detail-recurrence">{m.recurrence}</div>
             )}
-            {m.dateQuality !== 'confermata' && (
+            {marketDateDisclosure(m.dates, m.dateQuality) && (
               <div style={{ fontSize: 12, color: '#6C6255', marginTop: 8 }}>
-                Date previste, non confermate per ogni singola edizione. Controlla la fonte prima di partire.
+                {marketDateDisclosure(m.dates, m.dateQuality)}
               </div>
             )}
           </div>

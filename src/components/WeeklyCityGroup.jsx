@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import { distinctWeekdays, groupVenues, nextMatchingDate, WEEKDAY_LABELS } from '../lib/marketGrouping'
+import { marketDateDisclosure } from '../lib/dateDisclosure'
 import './WeeklyCityGroup.css'
 
 function dateLabel(iso) {
@@ -74,17 +75,21 @@ export default function WeeklyCityGroup({
   ]
 
   const uncertain = group.markets.some(m => m.dateQuality !== 'confermata')
+  const disclosure = marketDateDisclosure(
+    group.markets.flatMap(m => m.dates || []),
+    uncertain ? 'prevista' : 'confermata'
+  )
 
   return (
     <article className="weekly-city-card" data-testid="weekly-city-group"
       aria-label={`Mercati settimanali a ${group.city}`}>
       <div className="weekly-city-top">
         <span className="weekly-city-overline">Mercati settimanali · {group.city}</span>
-        <span className="weekly-city-counter">{group.markets.length} appuntamenti</span>
+        <span className="weekly-city-counter">{next ? `${group.markets.length} appuntamenti` : `${group.markets.length} schede da verificare`}</span>
       </div>
       <h2 className="weekly-city-heading">Mercati settimanali a {group.city}</h2>
       <div className="weekly-city-subtitle">
-        <span>{weekdays.length} {weekdays.length === 1 ? 'giornata' : 'giornate'} della settimana</span>
+        <span>{weekdays.length ? `${weekdays.length} ${weekdays.length === 1 ? 'giornata' : 'giornate'} della settimana` : 'Calendario da verificare'}</span>
         {next && <span>Prossimo: {dateLabel(next)}</span>}
       </div>
       <div className="weekly-day-chips" aria-label="Giorni registrati">
@@ -93,10 +98,8 @@ export default function WeeklyCityGroup({
           {WEEKDAY_LABELS[day]}
         </span>)}
       </div>
-      {uncertain && (
-        <p className="weekly-city-caution">
-          Date previste: sedi e orari da verificare con l'organizzatore.
-        </p>
+      {disclosure && (
+        <p className="weekly-city-caution">{disclosure}</p>
       )}
       <button type="button" className="weekly-city-toggle"
         aria-controls={panelId} aria-expanded={expanded}
