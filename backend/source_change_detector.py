@@ -29,6 +29,7 @@ def compare(now, prior=None):
         "publisher_metadata_changed": 0,
         "publisher_data_date_advanced": 0,
         "publisher_data_date_rolled_back": 0,
+        "timestamp_interpretation_corrected": 0,
         "recovered": 0,
         "publisher_unavailable": 0,
     }
@@ -46,7 +47,13 @@ def compare(now, prior=None):
         else:
             old_date = old.get("publisher_data_updated_at")
             new_date = row.get("publisher_data_updated_at")
-            if old_date and new_date and new_date > old_date:
+            old_semantics = old.get("provider_data_timestamp_type")
+            new_semantics = row.get("provider_data_timestamp_type")
+            if old_semantics and new_semantics and old_semantics != new_semantics:
+                # A corrected ingestion-vs-manual-modification policy is
+                # our interpretation change, not a supplier data rollback.
+                kind = "timestamp_interpretation_corrected"
+            elif old_date and new_date and new_date > old_date:
                 kind = "publisher_data_date_advanced"
             elif old_date and new_date and new_date < old_date:
                 kind = "publisher_data_date_rolled_back"
@@ -61,6 +68,8 @@ def compare(now, prior=None):
             "change_type": kind,
             "prior_data_date": old.get("publisher_data_updated_at") if old else None,
             "current_data_date": row.get("publisher_data_updated_at"),
+            "prior_timestamp_kind": old.get("provider_data_timestamp_type") if old else None,
+            "current_timestamp_kind": row.get("provider_data_timestamp_type"),
             "events_confirmed": 0,
             "automatic_import_allowed": False,
         })

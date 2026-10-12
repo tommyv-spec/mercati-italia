@@ -43,6 +43,17 @@ class ChangeDetectorTests(unittest.TestCase):
         result=compare(snapshot("2025-10-01"),snapshot())
         self.assertEqual(result["counts"]["publisher_data_date_rolled_back"],1)
 
+    def test_timestamp_methodology_fix_is_not_falsely_reported_as_supplier_rollback(self):
+        old = snapshot("2025-12-31")
+        old["source_evidence"][0]["provider_data_timestamp_type"] = "publisher_dataset_modified"
+        corrected = snapshot("2025-04-02")
+        corrected["source_evidence"][0]["provider_data_timestamp_type"] = "publisher_data_processed"
+        result = compare(corrected, old)
+        self.assertEqual(result["counts"]["timestamp_interpretation_corrected"], 1)
+        self.assertEqual(result["counts"]["publisher_data_date_rolled_back"], 0)
+        self.assertEqual(result["counts"]["publisher_data_date_advanced"], 0)
+        self.assertFalse(result["results"][0]["automatic_import_allowed"])
+
     def test_network_failure_is_distinct_from_source_change(self):
         result=compare(snapshot(status="needs_review"),snapshot())
         self.assertEqual(result["counts"]["publisher_unavailable"],1)
