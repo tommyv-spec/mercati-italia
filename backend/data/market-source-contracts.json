@@ -159,7 +159,12 @@
       "publication_mode": "shadow_only",
       "max_new_ids_per_run": 0,
       "coordinates": "ignored_unless_independently_source_verified",
-      "notes": "CSV long/lat headers are inverted; generic extractor MUST NOT use those fields. Existing specialized adapter validates geopoint and preserves legacy slugs."
+      "notes": "CSV long/lat headers are inverted; generic extractor MUST NOT use those fields. Existing specialized adapter validates geopoint and preserves legacy slugs.",
+      "presentation": {
+        "title_case_name": true,
+        "title_case_address": true,
+        "address_suffix_name_prefix": "MERCATO DI "
+      }
     }
   ]
 }
