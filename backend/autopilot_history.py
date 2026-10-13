@@ -31,7 +31,9 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             reviewed_city_static_guard: dict | None = None,
             roma_xiii_static_guard: dict | None = None,
             roma_xiii_2026_report: dict | None = None,
-            roma_xiii_2026_final_guard: dict | None = None) -> dict:
+            roma_xiii_2026_final_guard: dict | None = None,
+            generic_admission_report: dict | None = None,
+            generic_admission_static_guard: dict | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -48,6 +50,36 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     rome_guard = roma_xiii_static_guard or {}
     market_intake = roma_xiii_2026_report or {}
     new_rome_static = roma_xiii_2026_final_guard or {}
+    generic = generic_admission_report or {}
+    generic_final = generic_admission_static_guard or {}
+    generic_added_ids=generic.get("new_market_ids",[])
+    if not isinstance(generic_added_ids,list) or len(set(generic_added_ids))!=len(generic_added_ids):
+        raise ValueError("Untrusted generic approved source market ID list")
+    generic_count=len(generic_added_ids)
+    if generic and (
+            generic.get("schema")!=1 or generic.get("enabled") is not True
+            or generic.get("publication_channel")!="dev-only"
+            or not 0<=generic_count<=250
+            or generic.get("candidate_market_ids")!=metric.get("records")
+            or generic.get("candidate_market_ids")!=generic.get("original_market_ids",0)+generic_count
+            or any(generic.get(k)!=0 for k in (
+                "record_ids_deleted","old_market_fields_changed",
+                "new_market_openings_confirmed","new_market_coordinates_created",
+                "new_market_directions_enabled"))):
+        raise ValueError("Untrusted source-level generic publisher admission changes")
+    if generic_final and (
+            not generic or generic_final.get("schema")!=1
+            or generic_final.get("release_safe") is not True
+            or generic_final.get("market_records_checked")!=metric.get("records")
+            or generic_final.get("new_source_venue_ids_verified")!=generic_count
+            or generic_final.get("navigation_holds_in_index")!=generic_count
+            or generic_final.get("new_precise_coordinates")!=0
+            or generic_final.get("original_markets_deleted")!=0
+            or generic_final.get("no_individual_market_openings_confirmed") is not True
+            or generic_final.get("source_contracts_active")!=generic.get("source_contracts_active")):
+        raise ValueError("Missing independent final generic publisher static safety guard")
+    if generic and not generic_final:
+        raise ValueError("Generic source approved import lacks its final published data proof")
     newly_added = market_intake.get("records_added",0)
     if market_intake:
         expected_source = roma_venue_digest(json.loads(ROMA_VENUE_EVIDENCE.read_text("utf-8")))
@@ -65,7 +97,7 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
                 or not set(already_ids).issubset(ROMA_XIII_VENUE_IDS)
                 or set(new_ids).intersection(already_ids)
                 or market_intake.get("new_market_count") != newly_added
-                or market_intake.get("existing_catalog_records") + newly_added != metric.get("records")
+                or market_intake.get("existing_catalog_records") + newly_added + generic_count != metric.get("records")
                 or any(market_intake.get(key)!=0 for key in (
                     "records_removed","existing_records_changed",
                     "new_coordinates_added","new_opening_confirmations",
@@ -123,7 +155,7 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         city_review.get("reviewed_at") != "2026-10-12" or
         city_review.get("reviewed_evidence_digest") !=
             "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a" or
-        city_review.get("records_total") + newly_added != metric.get("records") or
+        city_review.get("records_total") + newly_added + generic_count != metric.get("records") or
         any(city_review.get(k,0) != 0 for k in (
             "individual_events_confirmed","publisher_links_replaced",
             "opening_dates_added","market_records_deleted")) or
@@ -252,6 +284,10 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "roma_xiii_coordinate_holds_active": int(rome_guard.get("current_coordinate_holds",0)),
         "roma_xiii_navigation_holds_active": int(rome_guard.get("current_navigation_holds",0)),
         "roma_xiii_2026_new_venues_this_run": newly_added,
+        "generic_approved_publisher_contracts": int(generic.get("source_contracts_active",0)),
+        "generic_approved_publisher_venues_added": generic_count,
+        "generic_approved_publisher_forecasts_only": int(generic_final.get("source_weekly_forecasts_only",0)),
+        "generic_approved_publisher_routes_suspended": int(generic_final.get("navigation_holds_in_index",0)),
         "roma_xiii_2026_reviewed_venues_active": int(new_rome_static.get("reviewed_2026_venue_identifiers",0)),
         "roma_xiii_2026_forecast_only_venues": int(new_rome_static.get("forecast_only_markets",0)),
         "roma_xiii_2026_navigation_suspended": int(new_rome_static.get("route_holds_in_details",0)),
@@ -323,6 +359,7 @@ def markdown(latest: dict) -> str:
         f"- Protezioni ancora attive nel sito statico DEV: **{latest['reviewed_city_source_navigation_held_total']}** navigazioni sospese, **{latest['reviewed_city_source_coordinates_held_total']}** coordinate in quarantena, **{latest['reviewed_city_source_final_details_checked']}** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.",
         f"- Roma Municipio XIII (mappa pubblicata nel 2024): **{latest['roma_xiii_coordinate_holds_active']}** coordinate ancora sospese e **{latest['roma_xiii_navigation_holds_active']}** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **{latest['all_reviewed_coordinate_holds_active']}** coordinate e **{latest['all_reviewed_navigation_holds_active']}** navigazioni. Nessuna apertura 2026 confermata dal documento storico.",
         f"- Roma XIII nuove fonti comunali 2025–2026: **{latest['roma_xiii_2026_new_venues_this_run']}** schede aggiunte in questo run, **{latest['roma_xiii_2026_reviewed_venues_active']}** sedi distinte tutelate nel sito, **{latest['roma_xiii_2026_forecast_only_venues']}** con calendari solo previsti, **{latest['roma_xiii_2026_navigation_suspended']}** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.",
+        f"- Import generico tramite contratti di interi dataset: **{latest['generic_approved_publisher_contracts']}** fonti con licenza e identità approvate, **{latest['generic_approved_publisher_venues_added']}** nuove schede in questo run, **{latest['generic_approved_publisher_forecasts_only']}** calendari solo previsti, **{latest['generic_approved_publisher_routes_suspended']}** indicazioni sospese. Nessuna singola apertura verificata automaticamente.",
         f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
         f"- Miglioramento UX reversibile: **{latest['visitor_duplicate_visit_groups']}** gruppi provati dalla stessa fonte, **{latest['visitor_duplicate_buttons_avoided']}** pulsanti ripetuti evitati, **{latest['visitor_bad_city_labels_guarded']}** località anomale non mostrate come Comuni; **{latest['visitor_original_market_ids_retained']}** ID originali preservati.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
@@ -384,6 +421,8 @@ def main():
     p.add_argument("--roma-xiii-static-guard", type=Path)
     p.add_argument("--roma-xiii-2026-report", type=Path)
     p.add_argument("--roma-xiii-2026-final-guard", type=Path)
+    p.add_argument("--generic-admission-report", type=Path)
+    p.add_argument("--generic-admission-static-guard", type=Path)
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -422,6 +461,10 @@ def main():
         if args.roma_xiii_2026_report and args.roma_xiii_2026_report.is_file() else None,
         json.loads(args.roma_xiii_2026_final_guard.read_text("utf-8"))
         if args.roma_xiii_2026_final_guard and args.roma_xiii_2026_final_guard.is_file() else None,
+        json.loads(args.generic_admission_report.read_text("utf-8"))
+        if args.generic_admission_report and args.generic_admission_report.is_file() else None,
+        json.loads(args.generic_admission_static_guard.read_text("utf-8"))
+        if args.generic_admission_static_guard and args.generic_admission_static_guard.is_file() else None,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,
