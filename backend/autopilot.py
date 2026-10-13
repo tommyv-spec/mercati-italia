@@ -29,6 +29,10 @@ from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import refresh_records
 from source_lifecycle import run as inspect_source_contracts, markdown as source_lifecycle_markdown
+from source_contract_activation import (
+    activate as activate_generic_source_contracts,
+    validate_release as verify_generic_source_admissions,
+)
 from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
 from milano_2026_release_guard import verify as verify_milano_2026_diff, verify_exported as verify_milano_2026_exported
 from roma_xiii_2026_venues import (
@@ -68,7 +72,7 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "source_lifecycle", "reviewed_cities", "milano_2026", "roma_2026_venues", "forecast",
+          "source_lifecycle", "reviewed_cities", "milano_2026", "roma_2026_venues", "generic_admission", "forecast",
           "reviewed_publishers", "roma_geo_hold", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
@@ -490,6 +494,21 @@ def run(args):
              != "a9838dd5a1419076e8b3584a8c77c3588cedbf2f")):
         raise ValueError("Unreviewed reusable source contract schema")
 
+    # A separate pinned source-level certificate, distinct from metadata
+    # discovery and the shadow parser, is required before any future generic
+    # municipal source may insert records. The shipped registry is EMPTY.
+    generic_policy=policy.get("source_contract_admissions", {})
+    generic_enabled=isinstance(generic_policy,dict) and generic_policy.get("enabled") is True
+    if (not isinstance(generic_policy,dict)
+            or set(generic_policy)-{"enabled","approved_registry_blob_sha1"}
+            or generic_policy.get("enabled",False) not in (True,False)
+            or (generic_enabled and (
+                generic_policy.get("approved_registry_blob_sha1")
+                != "f32d32312cf10188fa50322c251f25048f8ad42c"
+                or not lifecycle_enabled
+            ))):
+        raise ValueError("Unapproved generically admitted municipal source policy")
+
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
         raise ValueError("Unknown-source regression budget must be between 0 and 5%")
@@ -883,10 +902,59 @@ def run(args):
         "source_event_confirmations":0,
     })
 
+    # Generic publisher onboarding is opt-in at DATASET level. The checked-in
+    # approval registry is empty; a new publisher requires documented legal
+    # reuse, row identity/schema review, an approved JSON certificate and
+    # separate code SHA pin. All new IDs remain unconfirmed/non-geocoded.
+    generic_admission_report={
+        "schema":1,"enabled":False,"source_contracts_active":0,
+        "original_market_ids":len(milano_rows),
+        "candidate_market_ids":len(milano_rows),"new_market_ids":[],
+        "record_ids_deleted":0,"old_market_fields_changed":0,
+        "new_market_openings_confirmed":0,"new_market_coordinates_created":0,
+        "new_market_directions_enabled":0,
+    }
+    generic_admission_diff={
+        "schema":1,"stable_original_market_ids_checked":len(milano_rows),
+        "source_approved_added_venue_id_count":0,"old_market_records_changed":0,
+        "market_openings_confirmed":0,"new_coordinates_created":0,
+        "new_navigation_enabled":0,"release_safe":True,"enabled":False,
+    }
+    if generic_enabled:
+        admissions_path=Path(__file__).resolve().parent/"data"/"approved-source-admissions.json"
+        if roma_source_git_blob_sha(admissions_path)!=generic_policy["approved_registry_blob_sha1"]:
+            raise ValueError("Publisher admission evidence has changed without source-level approval")
+        if roma_source_git_blob_sha(profile_file)!=lifecycle_policy["reviewed_contract_blob_sha1"]:
+            raise ValueError("Publisher source contract file changed after review")
+        approved_registry=read_json(admissions_path)
+        before_generic=milano_rows
+        milano_rows,generic_admission_report=activate_generic_source_contracts(
+            read_json(profile_file),approved_registry,before_generic,
+            today=args.today,offline=args.offline
+        )
+        generic_admission_report["enabled"]=True
+        generic_admission_diff=verify_generic_source_admissions(
+            before_generic,milano_rows,generic_admission_report,
+            read_json(profile_file),approved_registry
+        )
+        if generic_admission_diff.get("release_safe") is not True:
+            raise ValueError("Generic publisher expanded DEV without independent identity proof")
+        save_json(out/"intermediate"/"generic-approved-source-candidate.json",milano_rows)
+    save_json(out/"generic-source-admissions.json",generic_admission_report)
+    save_json(out/"generic-source-admissions-diff-guard.json",generic_admission_diff)
+    checkpoint(out,"generic_admission",{
+        "enabled":generic_enabled,
+        "approved_source_contracts":generic_admission_report["source_contracts_active"],
+        "new_market_ids":generic_admission_report["new_market_ids"],
+        "market_openings_confirmed":0,
+        "old_market_ids_removed":0,
+    })
+
     projected, forecast_stats = refresh_records(
         milano_rows, args.today, policy["forecast"]["days"],
         policy["forecast"]["max_source_age_days"])
-    if len(projected) != len(merged) + roma_2026_report["records_added"]:
+    if len(projected) != (len(merged) + roma_2026_report["records_added"]
+                          + len(generic_admission_report["new_market_ids"])):
         raise ValueError("Forecast must never remove market identities")
     save_json(out / "intermediate" / "forecasted.json", projected)
     checkpoint(out, "forecast", forecast_stats)
@@ -1005,11 +1073,20 @@ def run(args):
         # first run only; the independently source-proven new IDs must not be
         # mistaken for a Milano identity mutation.
         reviewed_roma_added = set(roma_2026_report["new_market_ids"])
+        reviewed_generic_added = set(generic_admission_report["new_market_ids"])
+        if reviewed_generic_added and (
+                len(reviewed_generic_added)!=len(generic_admission_report["new_market_ids"])
+                or generic_admission_diff.get("release_safe") is not True):
+            raise ValueError("An unapproved generic source ID entered the Milano integrity comparison")
         if reviewed_roma_added and (
                 len(reviewed_roma_added) != roma_2026_report["records_added"]
                 or any(not x.startswith("rm13-") for x in reviewed_roma_added)):
             raise ValueError("Untrusted Roma market IDs in Milano source proof")
-        milano_comparable = [x for x in new_rows if x["slug"] not in reviewed_roma_added]
+        milano_comparable = [
+            x for x in new_rows
+            if x["slug"] not in reviewed_roma_added
+            and x["slug"] not in reviewed_generic_added
+        ]
         milano_static_guard = verify_milano_2026_exported(
             old_rows, milano_comparable, milano_report, pdf_evidence, gis_evidence, args.today
         )
