@@ -80,6 +80,33 @@ class GenericActivationTests(unittest.TestCase):
         self.assertEqual(second["new_market_ids"],[])
         self.assertTrue(validate_release(output,replay,second,cfg,reg)["release_safe"])
 
+    def test_approved_source_replays_remaining_venues_across_scheduled_cycles(self):
+        cfg,reg=enabled_fixture()
+        reg["approvals"][0]["max_new_ids"]=2
+        old=far_baseline()
+        source_fetch=lambda url:(BLOB,False)
+        first,one=activate(cfg,reg,old,today=TODAY,fetch=source_fetch)
+        self.assertEqual(len(first)-len(old),2)
+        self.assertEqual(one["per_source"][RAW["id"]]["deferred_candidate_count"],2)
+        self.assertEqual(one["status_counts"]["eligible_venues_deferred_to_next_run"],2)
+        self.assertTrue(validate_release(old,first,one,cfg,reg)["release_safe"])
+        second,two=activate(cfg,reg,first,today=TODAY,fetch=source_fetch)
+        self.assertEqual(len(second)-len(first),2)
+        self.assertEqual(two["per_source"][RAW["id"]]["deferred_candidate_count"],0)
+        self.assertTrue(validate_release(first,second,two,cfg,reg)["release_safe"])
+        third,three=activate(cfg,reg,second,today=TODAY,fetch=source_fetch)
+        self.assertEqual(third,second)
+        self.assertEqual(three["new_market_ids"],[])
+        self.assertTrue(validate_release(second,third,three,cfg,reg)["release_safe"])
+        bogus=copy.deepcopy(one)
+        bogus["per_source"][RAW["id"]]["deferred_candidate_count"]=10
+        with self.assertRaisesRegex(ValueError,"quota or lost deferred"):
+            validate_release(old,first,bogus,cfg,reg)
+        bogus=copy.deepcopy(one)
+        bogus["per_source"][RAW["id"]]["status"]="offline_no_source_inference"
+        with self.assertRaisesRegex(ValueError,"Unavailable/offline"):
+            validate_release(old,first,bogus,cfg,reg)
+
     def test_offline_or_source_outage_never_closes_historical_market(self):
         cfg,reg=enabled_fixture()
         old=far_baseline()

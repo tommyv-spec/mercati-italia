@@ -298,8 +298,12 @@ def authorize(profile,source_report,admission,*,today):
 def apply_approved(profile,blob,existing,admission,*,today):
     candidates,report=stage(profile,blob,existing,today=today)
     authorize(profile,report,admission,today=today)
-    if len(candidates)>admission["max_new_ids"]:
-        raise ValueError("Source DEV admission exceeds approved per-run identity growth budget")
+    # Enforce the reviewed per-run cap by taking a deterministic batch.
+    # Remaining eligible IDs stay out of the catalog until the next cycle.
+    # Never use mutable publisher row order to select who is admitted.
+    ordered=sorted(candidates,key=lambda row:row["slug"])
+    admitted=ordered[:admission["max_new_ids"]]
+    deferred=ordered[admission["max_new_ids"]:]
     original=_validate_existing(existing)
     if not all(row["slug"] not in original and row["status"]=="non_confermato"
                and not row["verificato_il"] and not row["date"]
@@ -308,11 +312,14 @@ def apply_approved(profile,blob,existing,admission,*,today):
         raise ValueError("Unsafe source candidate surfaced after approval")
     # Return the original list as-is, with additions only. Caller must still
     # pass the standard static export/diff/mobile QA and never write PROD.
-    rows=[*existing,*candidates]
+    rows=[*existing,*admitted]
     certificate={
         "schema":1,"publisher_id":profile["id"],
         "admission_certificate_sha256":digest(admission),
-        "original_market_records":len(existing),"new_venue_ids":sorted(row["slug"] for row in candidates),
+        "original_market_records":len(existing),"new_venue_ids":[row["slug"] for row in admitted],
+        "source_eligible_candidates":len(ordered),
+        "deferred_candidate_count":len(deferred),
+        "deferred_candidate_ids_sha256":digest([row["slug"] for row in deferred]),
         "catalog_records_after":len(rows),
         "old_ids_removed":0,"old_ids_modified":0,
         "verified_events_created":0,
