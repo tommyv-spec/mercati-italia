@@ -283,7 +283,8 @@ def authorize(profile,source_report,admission,*,today):
             or host not in {source_host, urlsplit(profile["attribution_url"]).hostname}
             or admission.get("source_specific_geo_approval") is not False
             or type(admission.get("max_new_ids")) is not int
-            or not 0<admission["max_new_ids"]<=MAX_PROFILE_MAX_NEW):
+            or not 0<admission["max_new_ids"]<=MAX_PROFILE_MAX_NEW
+            or admission["max_new_ids"]>profile.get("max_new_ids_per_run",0)):
         raise ValueError("Source DEV approval lacks independently reviewed rights/identity policy")
     reviewed=date.fromisoformat(admission["reviewed_on"])
     if not date(2025,1,1)<=reviewed<=today:
