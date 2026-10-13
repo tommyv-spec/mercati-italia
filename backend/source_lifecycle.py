@@ -92,7 +92,7 @@ def validate_contracts(config):
             maximum=item.get("max_records" if kind=="normalized" else "max_rows")
             if (item.get("row_kind") not in MARKET_KINDS|OTHER_KINDS
                     or item.get("publication_mode") not in
-                       ("shadow_only","existing_adapter_only")
+                       ("shadow_only","existing_adapter_only","approved_dev_only")
                     or not isinstance(item.get("publisher"),str)
                     or not item["publisher"] or
                     type(minimum) is not int or type(maximum) is not int
@@ -112,9 +112,15 @@ def validate_contracts(config):
                     or not isinstance(item.get("expected_precision"),list)):
                     raise ValueError("Unreviewed normalized-source adapter contract")
             else:
-                if (item.get("publication_mode")!="shadow_only" or
-                        item.get("legal_reuse_reviewed") is not False or
-                        item.get("max_new_ids_per_run")!=0 or
+                mode=item.get("publication_mode")
+                if (mode not in ("shadow_only","approved_dev_only") or
+                        (mode=="shadow_only" and (
+                            item.get("legal_reuse_reviewed") is not False or
+                            item.get("max_new_ids_per_run")!=0)) or
+                        (mode=="approved_dev_only" and (
+                            item.get("legal_reuse_reviewed") is not True or
+                            type(item.get("max_new_ids_per_run")) is not int or
+                            not 1 <= item["max_new_ids_per_run"] <= 250)) or
                         item.get("coordinates")!="ignored_unless_independently_source_verified" or
                         item.get("source_date_scope")!="dataset_not_per_market" or
                         not safe_url(item.get("resource_url")) or
