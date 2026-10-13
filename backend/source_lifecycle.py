@@ -574,8 +574,8 @@ def markdown(report):
       f"- Record di mercato importati da questo audit: **{report['market_imports']}**",
       f"- Aperture individuali verificate: **{report['market_confirmations']}**",
       "",
-      "| Fonte | Stato | ID fonte fuori catalogo (non nuovi mercati) | Già trattenuti dal controllo sovrapposizioni | Residui senza esito del filtro | Fatti cambiati | ID non più visti (non chiusi) |",
-      "|---|---|---:|---:|---:|---:|---:|",
+      "| Fonte | Stato | ID fonte fuori catalogo (non nuovi mercati) | Già trattenuti dal controllo sovrapposizioni | Residui senza esito del filtro | Proposte in staging | Collisioni da valutare | Fatti cambiati | ID non più visti (non chiusi) |",
+      "|---|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for sid,row in sorted(report["sources"].items()):
         counts=row.get("counts",{})
@@ -594,9 +594,12 @@ def markdown(report):
         screened=row.get("source_screening") or {}
         already=screened.get("already_quarantined_by_venue_overlap_review",0)
         unclassified=screened.get("remaining_identities_without_overlap_disposition",new)
+        source_stage=row.get("source_stage") or {}
+        safe_ideas=source_stage.get("safe_candidates_not_published",0)
+        collisions=sum((source_stage.get("review_reason_counts") or {}).values())
         lines.append(
             f"| {sid} | {state} | {new} | {already} | "
-            f"{unclassified} | {changed} | {missing} |"
+            f"{unclassified} | {safe_ideas} | {collisions} | {changed} | {missing} |"
         )
     lines.extend(["",
      "## Aggiunta di nuove fonti (senza nuovi script per Comune)",
@@ -607,6 +610,7 @@ def markdown(report):
      "4. Fonti nuove/modificate, identità collidenti, sedi dubbie o dati storici sono trattenuti in revisione: nessun market/evento inventato.",
      "5. Gli adapter esistenti continuano a gestire gli import già revisionati. La promozione di altri contratti richiede qualità/licenza/gate DEV separati.",
      "",
+     "Le proposte in staging non sono mercati nuovi o aperti: richiedono diritti, identità e QA. Le collisioni segnalano possibili doppioni e sedi non distinguibili.",
      "Questo report non elimina mercati scomparsi da una sorgente e non assegna nuova navigazione GPS.",
      "",
     ])
