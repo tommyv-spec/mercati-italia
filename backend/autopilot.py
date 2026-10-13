@@ -32,6 +32,7 @@ from source_lifecycle import run as inspect_source_contracts, markdown as source
 from source_contract_activation import (
     activate as activate_generic_source_contracts,
     validate_release as verify_generic_source_admissions,
+    verify_static as verify_generic_source_static,
 )
 from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
 from milano_2026_release_guard import verify as verify_milano_2026_diff, verify_exported as verify_milano_2026_exported
@@ -1065,6 +1066,14 @@ def run(args):
         if venue_static_proof.get("release_safe") is not True:
             raise ValueError("Approved Roman municipality identities lost in final static assets")
         save_json(out / "roma-xiii-2026-venues-static-guard.json", venue_static_proof)
+    if generic_enabled:
+        generic_final_proof=verify_generic_source_static(
+            dest / "manifest.json",generic_admission_report,
+            read_json(profile_file),approved_registry,args.today
+        )
+        if generic_final_proof.get("release_safe") is not True:
+            raise ValueError("Source-approved generic markets lost their source and navigation protection")
+        save_json(out / "generic-source-admissions-static-guard.json", generic_final_proof)
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
     if milano_enabled:
