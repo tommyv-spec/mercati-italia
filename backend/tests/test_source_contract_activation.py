@@ -12,7 +12,15 @@ from test_source_corciano import DATA
 
 ROOT=Path(__file__).resolve().parents[1]/"data"
 CONTRACT=json.loads((ROOT/"market-source-contracts.json").read_text("utf-8"))
-EMPTY=json.loads((ROOT/"approved-source-admissions.json").read_text("utf-8"))
+ACTIVE_REGISTRY=json.loads((ROOT/"approved-source-admissions.json").read_text("utf-8"))
+EMPTY=copy.deepcopy(ACTIVE_REGISTRY)
+EMPTY["approvals"]=[]
+NO_ACTIVE_CONTRACT=copy.deepcopy(CONTRACT)
+NO_ACTIVE_CONTRACT["raw_profiles"][0].update({
+    "publication_mode":"shadow_only",
+    "legal_reuse_reviewed":False,
+    "max_new_ids_per_run":0,
+})
 RAW=CONTRACT["raw_profiles"][0]
 TODAY=date(2026,10,13)
 BLOB=DATA.encode("utf-8")
@@ -47,13 +55,34 @@ class GenericActivationTests(unittest.TestCase):
     def test_defaults_to_no_approved_sources_and_no_network_requests(self):
         called=[]
         old=far_baseline()
-        res,report=activate(CONTRACT,EMPTY,old,today=TODAY,
+        res,report=activate(NO_ACTIVE_CONTRACT,EMPTY,old,today=TODAY,
                             fetch=lambda url:called.append(url))
         self.assertEqual(res,old)
         self.assertEqual(called,[])
         self.assertEqual(report["source_contracts_active"],0)
         self.assertEqual(report["new_market_ids"],[])
-        self.assertTrue(validate_release(old,res,report,CONTRACT,EMPTY)["release_safe"])
+        self.assertTrue(validate_release(old,res,report,NO_ACTIVE_CONTRACT,EMPTY)["release_safe"])
+
+    def test_real_publisher_admission_reconciles_existing_catalog_without_duplicate_additions(self):
+        # Municipal bytes are a fixed offline fixture, not fetched by CI.
+        # Approval is source-level; a duplicate under another source stays held.
+        from merge_catalog import load_existing
+        base=load_existing(Path(__file__).resolve().parents[2]/'public/data/v1/manifest.json')
+        self.assertEqual(len(base),13784)
+        self.assertEqual(ACTIVE_REGISTRY['approvals'][0]['max_new_ids'],2)
+        before=copy.deepcopy(base)
+        result,report=activate(CONTRACT,ACTIVE_REGISTRY,base,today=TODAY,
+                               fetch=lambda url:(BLOB,False))
+        self.assertEqual(result,before)
+        self.assertEqual(report['source_contracts_active'],1)
+        self.assertEqual(report['new_market_ids'],[])
+        self.assertEqual(report['status_counts']['approved_sources_reconciled'],1)
+        self.assertEqual(report['per_source'][RAW['id']]['source_eligible_candidates'],0)
+        self.assertTrue(validate_release(base,result,report,CONTRACT,ACTIVE_REGISTRY)['release_safe'])
+        replay,again=activate(CONTRACT,ACTIVE_REGISTRY,result,today=TODAY,
+                              fetch=lambda url:(BLOB,False))
+        self.assertEqual(result,replay)
+        self.assertEqual(again['new_market_ids'],[])
 
     def test_source_level_approval_can_admit_four_distinct_ids_as_one_contract(self):
         cfg,reg=enabled_fixture()

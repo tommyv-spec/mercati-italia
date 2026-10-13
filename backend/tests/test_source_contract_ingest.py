@@ -129,8 +129,12 @@ class GenericMunicipalContractTests(unittest.TestCase):
         self.assertTrue(all(not x["verificato_il"] and x["lat"] is None for x in preview))
         with self.assertRaisesRegex(ValueError,"no reviewed DEV admission"):
             apply_approved(PROFILE,BLOB,old,None,today=TODAY)
+        unapproved=copy.deepcopy(PROFILE)
+        unapproved["publication_mode"]="shadow_only"
+        unapproved["legal_reuse_reviewed"]=False
+        unapproved["max_new_ids_per_run"]=0
         with self.assertRaisesRegex(ValueError,"licensed, pinned DEV"):
-            apply_approved(PROFILE,BLOB,old,_approval(PROFILE),today=TODAY)
+            apply_approved(unapproved,BLOB,old,_approval(unapproved),today=TODAY)
 
     def test_source_level_admission_guard_has_a_valid_synthetic_positive_case(self):
         # This is a fixture only: no real contract/certificate is enabled.

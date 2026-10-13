@@ -32,3 +32,12 @@ Data osservazione: 12 ottobre 2026. Fonte originale letta in sola modalità pubb
 7. Fare dry-run completo in CI prima di inserire \`corciano\` nella allowlist giornaliera. Salvare report sorgente, collisioni, qualità della build e prova browser negli artefatti; solo allora abilitare su DEV.
 
 Nota di corretta attribuzione: \`aggiornato_il\` deve significare la data del dataset dichiarata nel catalogo nazionale, non la data odierna del controllo né l'aggiornamento della pagina web.
+
+## Primo contratto generico approvato — 13 ottobre 2026 (solo DEV)
+
+- Licenza confermata anche da dati.gov.it: https://www.dati.gov.it/node/view-dataset/dataset?id=62be39fe-adbe-464a-84b1-85bc060b75d2 (CC BY 4.0). URL di attribuzione: pagina Comune sopra.
+- CSV integrale verificato via HTTPS: 737 byte, SHA-256 `1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121`. Quattro sedi, header immutato, parità esatta con adapter storico.
+- Baseline DEV: 13.784 ID; 2 ID del CSV già in catalogo, altri 2 trattenuti per sovrapposizione con vecchie schede. **Nessuna nuova scheda ammissibile oggi.**
+- Certificato a livello di fonte, budget di 2 nuove sedi per ciclo, nessun evento verificato o geocodifica; gli aggiornamenti futuri passano solo da parser comune e controlli automatici.
+- Non usare il timestamp pagina del 27 luglio come data di verifica delle quattro sedi: resta la data dataset del 7 gennaio 2026.
+- Il vecchio nome tecnico del contratto (`corciano-generic-shadow`) resta stabile per non invalidare checkpoint e audit; il campo `publication_mode` governa l'effettiva autorizzazione.
