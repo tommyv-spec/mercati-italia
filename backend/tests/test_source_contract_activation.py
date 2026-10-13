@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from source_contract_activation import activate,validate_admissions,validate_release
+from source_contract_activation import activate,validate_admissions,validate_release,verify_static
 from source_lifecycle import digest
 from test_source_corciano import DATA
 
@@ -116,6 +116,24 @@ class GenericActivationTests(unittest.TestCase):
         self.assertEqual(len(result),len(old)+3)
         self.assertNotIn("pg-corciano-mercato-di-corciano",report["new_market_ids"])
         self.assertTrue(validate_release(old,result,report,cfg,reg)["release_safe"])
+
+    def test_publisher_approved_full_static_export_enforces_day_labels_and_no_navigation(self):
+        from tempfile import TemporaryDirectory
+        from export_static import export
+        from recurrence_refresh import refresh_records
+        cfg,reg=enabled_fixture()
+        old=far_baseline()
+        new,report=activate(cfg,reg,old,today=TODAY,fetch=lambda url:(BLOB,False))
+        updated,_=refresh_records(new,TODAY,120,540)
+        with TemporaryDirectory() as td:
+            path=Path(td)/"public/data/v1"
+            export(updated,path,today=TODAY,min_count=1)
+            certificate=verify_static(path/"manifest.json",report,cfg,reg,TODAY)
+            self.assertTrue(certificate["release_safe"])
+            self.assertEqual(certificate["new_source_venue_ids_verified"],4)
+            self.assertEqual(certificate["source_weekly_forecasts_only"],4)
+            self.assertEqual(certificate["navigation_holds_in_index"],4)
+            self.assertEqual(certificate["new_precise_coordinates"],0)
 
     def test_source_admission_registry_strict_and_license_required(self):
         cfg,reg=enabled_fixture()
