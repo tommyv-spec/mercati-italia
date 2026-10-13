@@ -170,6 +170,60 @@ class AutopilotHistoryTests(unittest.TestCase):
         self.assertEqual(second["roma_xiii_2026_new_venues_this_run"],0)
         self.assertEqual(second["roma_xiii_2026_reviewed_venues_active"],5)
 
+    def test_generic_source_level_approved_additions_reconcile_city_history(self):
+        generic={
+            "schema":1,"enabled":True,"publication_channel":"dev-only",
+            "source_contracts_active":1,
+            "original_market_ids":12648,
+            "candidate_market_ids":12650,
+            "new_market_ids":["approved-test-a","approved-test-b"],
+            "record_ids_deleted":0,"old_market_fields_changed":0,
+            "new_market_openings_confirmed":0,
+            "new_market_coordinates_created":0,
+            "new_market_directions_enabled":0,
+        }
+        final={
+            "schema":1,"release_safe":True,
+            "market_records_checked":12650,
+            "source_contracts_active":1,
+            "new_source_venue_ids_verified":2,
+            "navigation_holds_in_index":2,
+            "source_weekly_forecasts_only":2,
+            "new_precise_coordinates":0,"original_markets_deleted":0,
+            "no_individual_market_openings_confirmed":True,
+        }
+        city={
+            "schema":1,"reviewed_at":"2026-10-12",
+            "reviewed_evidence_digest":
+                "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
+            "records_total":12648,
+            "individual_events_confirmed":0,"publisher_links_replaced":0,
+            "opening_dates_added":0,"market_records_deleted":0,
+            "counts":{"city_fixed":0,"coordinates_quarantined":0,
+                      "navigation_hold_added":0},
+        }
+        result=summary(decision(),None,None,"approved-contract",
+                       reviewed_cities=city,
+                       generic_admission_report=generic,
+                       generic_admission_static_guard=final)
+        self.assertEqual(result["generic_approved_publisher_contracts"],1)
+        self.assertEqual(result["generic_approved_publisher_venues_added"],2)
+        self.assertEqual(result["generic_approved_publisher_forecasts_only"],2)
+        self.assertIn("contratti di interi dataset",
+                      __import__("autopilot_history").markdown(result))
+        unsafe=final.copy()
+        unsafe["navigation_holds_in_index"]=1
+        with self.assertRaisesRegex(ValueError,"final generic"):
+            summary(decision(),None,None,"unsafe-generic",
+                    generic_admission_report=generic,
+                    generic_admission_static_guard=unsafe)
+        invalid=generic.copy()
+        invalid["new_market_openings_confirmed"]=1
+        with self.assertRaisesRegex(ValueError,"Untrusted source-level"):
+            summary(decision(),None,None,"invented",
+                    generic_admission_report=invalid,
+                    generic_admission_static_guard=final)
+
     def test_metrics_without_pii_and_priority_order(self):
         result=summary(
             decision(),
