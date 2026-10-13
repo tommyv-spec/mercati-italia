@@ -709,7 +709,44 @@ jobs:
             --policy backend/autopilot_policy.json \
             --daily-report autopilot-output/reviewed-cities.json \
             --roma-venue-report autopilot-output/roma-xiii-2026-venues.json \
+            --generic-admission-report autopilot-output/generic-source-admissions.json \
             --out autopilot-output/reviewed-city-static-safety.json
+      - name: Independently verify publisher-level generic admission and final source-safe assets
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          from datetime import date
+          sys.path.insert(0,'backend')
+          from source_contract_activation import validate_release,verify_static
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('source_contract_admissions',{}).get('enabled') is True:
+              config=json.loads(Path('backend/data/market-source-contracts.json').read_text('utf-8'))
+              rights=json.loads(Path('backend/data/approved-source-admissions.json').read_text('utf-8'))
+              raw=json.loads((root/'generic-source-admissions.json').read_text('utf-8'))
+              before=json.loads((root/'intermediate/roma-2026-venues.json').read_text('utf-8'))
+              after=json.loads((root/'intermediate/generic-approved-source-candidate.json').read_text('utf-8'))
+              certificate=validate_release(before,after,raw,config,rights)
+              saved=json.loads((root/'generic-source-admissions-diff-guard.json').read_text('utf-8'))
+              day=date.fromisoformat(json.loads((root/'release-decision.json').read_text('utf-8'))['today'])
+              proof=verify_static(Path('public/data/v1/manifest.json'),raw,config,rights,day)
+              full=json.loads((root/'generic-source-admissions-static-guard.json').read_text('utf-8'))
+              if (certificate != saved or proof != full
+                  or proof.get('release_safe') is not True
+                  or proof.get('source_contracts_active')!=len(rights['approvals'])
+                  or proof.get('new_source_venue_ids_verified')!=len(raw['new_market_ids'])
+                  or proof.get('navigation_holds_in_index')!=len(raw['new_market_ids'])
+                  or not proof.get('no_individual_market_openings_confirmed')
+                  or proof.get('new_precise_coordinates')!=0):
+                  raise ValueError('Publisher-level source admission failed field and final index audit')
+              print('GENERIC_APPROVED_PUBLISHER_SOURCE_QA',json.dumps({
+                  'publisher_contracts':len(rights['approvals']),
+                  'new_source_venue_ids':len(raw['new_market_ids']),
+                  'original_records_intact':len(before),
+                  'no_individual_market_confirmations':True
+              }))
+          PY
       - name: Prove all five Roma 2026 venue details stay sourced and non-navigable
         run: |
           python - <<'PY'
@@ -773,10 +810,15 @@ jobs:
               # excluded from the same-identity Milano historical comparison.
               new_roma=json.loads((root/'roma-xiii-2026-venues.json').read_text('utf-8'))
               new_ids=set(new_roma.get('new_market_ids',[]))
+              reviewed_generic=json.loads((root/'generic-source-admissions.json').read_text('utf-8'))
+              new_generic=set(reviewed_generic.get('new_market_ids',[]))
+              if new_ids.intersection(new_generic):
+                  raise ValueError('Roma and generic source separately claim the same new market identity')
               from roma_xiii_2026_venues import EXPECTED as ROMA_APPROVED_IDS
               if not new_ids.issubset(ROMA_APPROVED_IDS):
                   raise ValueError('Unknown municipal source IDs in Milano static proof')
-              after=[item for item in after if item['slug'] not in new_ids]
+              after=[item for item in after if item['slug'] not in new_ids
+                     and item['slug'] not in new_generic]
               report=json.loads((root/'milano-2026-review.json').read_text('utf-8'))
               day=json.loads((root/'release-decision.json').read_text('utf-8'))['today']
               proof=verify_exported(before,after,report,pdf,gis,date.fromisoformat(day))
@@ -925,6 +967,9 @@ jobs:
             autopilot-output/roma-xiii-2026-venues.json
             autopilot-output/roma-xiii-2026-venues-diff-guard.json
             autopilot-output/roma-xiii-2026-venues-static-guard.json
+            autopilot-output/generic-source-admissions.json
+            autopilot-output/generic-source-admissions-diff-guard.json
+            autopilot-output/generic-source-admissions-static-guard.json
           retention-days: 30
           if-no-files-found: error
       - name: Save tested static distribution (for separate DEV publication)
@@ -1068,6 +1113,10 @@ jobs:
             cp "autopilot-output/$item" "reports/automation/$item"
           done
           for item in roma-xiii-2026-venues.json roma-xiii-2026-venues-diff-guard.json roma-xiii-2026-venues-static-guard.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          for item in generic-source-admissions.json generic-source-admissions-diff-guard.json generic-source-admissions-static-guard.json; do
             test -s "autopilot-output/$item"
             cp "autopilot-output/$item" "reports/automation/$item"
           done
