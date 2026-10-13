@@ -24,37 +24,64 @@ jobs:
           python-version: '3.13'
       - name: Run all existing regressions and new declarative-contract tests
         run: python -m unittest discover -s backend/tests -v
-      - name: Independently inspect real Corciano CSV using the generic parser only
+      - name: Prove source-level identity, address, hour and weekday parity on SAME official CSV bytes
         run: |
-          python backend/source_lifecycle.py \
-            --manifest public/data/v1/manifest.json \
-            --probe-raw --today 2026-10-13 \
-            --out source-contract-audit/raw-source-lifecycle.json \
-            --report source-contract-audit/RAW_SOURCE_LIFECYCLE.md
           python - <<'PY'
-          import json
+          import sys,json
+          from datetime import date
           from pathlib import Path
-          r=json.loads(Path('source-contract-audit/raw-source-lifecycle.json').read_text('utf-8'))
-          s=r['sources'].get('corciano-generic-shadow') or {}
-          c=s.get('counts') or {}
-          previous=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
-          if (r.get('read_only') is not True
-                  or r.get('market_imports')!=0
-                  or r.get('market_confirmations')!=0
-                  or r.get('market_identity_deletions')!=0
-                  or previous.get('total',0)<12000
-                  or r.get('catalog_count')!=previous['total']
-                  or r.get('source_checks',{}).get('source_level_raw_profiles_checked')!=1
-                  or not 4<=c.get('distinct_market_identities',0)<=8
-                  or c.get('rows_observed')!=c.get('distinct_market_identities')
-                  or s.get('license_reviewed_for_automatic_publication') is not False
-                  or s.get('individual_market_openings_verified')!=0):
-              raise ValueError('Generic official source profile did not verify current real CSV safely')
-          print('SOURCE_CONTRACT_ACTUAL_CSV',json.dumps({
-             'publisher_profiles_observed':1,
-             'real_market_venue_identities':c['distinct_market_identities'],
-             'identities_in_catalog':c.get('already_in_catalog_exact_source_id',0),
-             'new_markets_imported':0,'event_openings_verified':0
+          sys.path.insert(0,'backend')
+          from source_corciano import fetch_csv,parse_csv as legacy_parser,convert as legacy_converter
+          from source_lifecycle import run,markdown
+          from source_contract_ingest import stage
+          from source_contract_parity import compare,verify
+          from merge_catalog import load_existing
+          today=date(2026,10,13)
+          config=json.loads(Path('backend/data/market-source-contracts.json').read_text('utf-8'))
+          profile=next(x for x in config['raw_profiles'] if x['id']=='corciano-generic-shadow')
+          old=load_existing(Path('public/data/v1/manifest.json'))
+          blob=fetch_csv()  # One original bounded, read-only municipal download
+          legacy=legacy_converter(legacy_parser(blob),today)
+          parity=compare(profile,blob,legacy,today=today)
+          verify(parity,expect_identities=4)
+          candidates,stage_report=stage(profile,blob,old,today=today,
+                                        observed_source_sha256=parity['source_snapshot_sha256'])
+          measured=run(config,old,probe_raw=True,raw_fetch=lambda url:(blob,False),
+                       today=today)
+          case=measured['sources'].get(profile['id']) or {}
+          counts=case.get('counts') or {}
+          if (not measured.get('read_only')
+              or measured.get('market_imports')!=0
+              or measured.get('market_confirmations')!=0
+              or measured.get('market_identity_deletions')!=0
+              or len(old)<12000
+              or measured.get('catalog_count')!=len(old)
+              or measured.get('source_checks',{}).get('source_level_raw_profiles_checked')!=1
+              or counts.get('rows_observed')!=4
+              or stage_report.get('counts',{}).get('source_market_identities')!=4
+              or stage_report.get('counts',{}).get('already_in_catalog_exact_source_id')!=2
+              or sum(stage_report.get('review_reason_counts',{}).values())!=2
+              or candidates
+              or stage_report.get('safe_candidates_not_published')!=0
+              or case.get('license_reviewed_for_automatic_publication') is not False
+              or case.get('individual_market_openings_verified')!=0):
+              raise ValueError('Source was not reconciled by stable venue identity and existing overlap evidence')
+          root=Path('source-contract-audit');root.mkdir(parents=True,exist_ok=True)
+          (root/'source-contract-shadow-parity.json').write_text(
+              json.dumps(parity,indent=2,ensure_ascii=False)+'\n','utf-8')
+          (root/'source-contract-stage.json').write_text(
+              json.dumps(stage_report,indent=2,ensure_ascii=False)+'\n','utf-8')
+          (root/'raw-source-lifecycle.json').write_text(
+              json.dumps(measured,indent=2,ensure_ascii=False)+'\n','utf-8')
+          (root/'RAW_SOURCE_LIFECYCLE.md').write_text(markdown(measured),'utf-8')
+          print('SOURCE_CONTRACT_REAL_CSV_PARITY',json.dumps({
+              'original_identities':len(legacy),
+              'generic_identities':parity['generic_adapter_identities'],
+              'safe_source_facts_equal':parity['parity_complete'],
+              'existing_ids':2,'known_cross_source_ambiguities':2,
+              'proposed_new_market_ids':len(candidates),
+              'published_events':0,'new_geocoordinates':0,
+              'additional_source_downloads':0
           }))
           PY
       - name: Run the actual Autopilot completely offline and prove ID preservation
@@ -97,6 +124,8 @@ jobs:
           path: |
             source-contract-audit/raw-source-lifecycle.json
             source-contract-audit/RAW_SOURCE_LIFECYCLE.md
+            source-contract-audit/source-contract-shadow-parity.json
+            source-contract-audit/source-contract-stage.json
             source-contract-audit/autopilot/source-lifecycle.json
             source-contract-audit/autopilot/SOURCE_LIFECYCLE.md
             source-contract-audit/autopilot/release-decision.json
