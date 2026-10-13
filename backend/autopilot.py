@@ -487,7 +487,7 @@ def run(args):
             set(lifecycle_policy)-{"enabled","reviewed_contract_blob_sha1"} or
             lifecycle_policy.get("enabled",False) not in (True,False) or
             (lifecycle_enabled and lifecycle_policy.get("reviewed_contract_blob_sha1")
-             != "a2e2853bc9467aad5f3c3f3b44c9e7b03c3c2320")):
+             != "a9838dd5a1419076e8b3584a8c77c3588cedbf2f")):
         raise ValueError("Unreviewed reusable source contract schema")
 
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
