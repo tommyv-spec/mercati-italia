@@ -38,7 +38,9 @@ def validate_admissions(config, registry):
         sid=row.get("source_id")
         if not isinstance(sid,str) or sid in result or sid not in expected:
             raise ValueError("Missing, duplicate or unapproved source import identity")
-        if row.get("max_new_ids",0)>expected[sid]["max_new_ids_per_run"]:
+        if (type(row.get("max_new_ids")) is not int
+                or row["max_new_ids"]<1
+                or row["max_new_ids"]>expected[sid]["max_new_ids_per_run"]):
             raise ValueError("Source approval could exceed reviewed per-source growth allowance")
         result[sid]=row
     if set(result)!=set(expected):
@@ -100,6 +102,9 @@ def activate(config,registry,existing,*,today=None,offline=False,
             status["publisher_sources_held"]+=1
     if candidate[:len(originals)]!=originals:
         raise ValueError("Source admission mutated a previously published market")
+    # Stable, deterministic order of new official identities, independently
+    # of publisher row order and parallel source registration order.
+    candidate=[*originals,*sorted(candidate[len(originals):],key=lambda row:row["slug"])]
     ids=[x["slug"] for x in candidate]
     if len(ids)!=len(set(ids)) or len(candidate)>len(existing)+MAX_NEW_PER_RUN:
         raise ValueError("A generic source inserted duplicate or excess market identities")
