@@ -1157,6 +1157,8 @@ jobs:
             --roma-xiii-static-guard autopilot-output/roma-xiii-static-guard.json \
             --roma-xiii-2026-report autopilot-output/roma-xiii-2026-venues.json \
             --roma-xiii-2026-final-guard autopilot-output/roma-xiii-2026-venues-static-guard.json \
+            --generic-admission-report autopilot-output/generic-source-admissions.json \
+            --generic-admission-static-guard autopilot-output/generic-source-admissions-static-guard.json \
             --run-id "${{ github.run_id }}" \
             --out reports/automation
           git config user.name "github-actions[bot]"
