@@ -44,7 +44,8 @@ def _asset(public: Path, relative: str) -> Path:
 
 
 def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
-                  daily_report_path: Path, roma_venue_report_path: Path | None = None) -> dict:
+                  daily_report_path: Path, roma_venue_report_path: Path | None = None,
+                  generic_admission_report_path: Path | None = None) -> dict:
     policy = read_json(policy_path).get("reviewed_source_cities", {})
     if policy.get("enabled") is not True:
         raise ValueError("Previously approved navigation safety gate is disabled")
@@ -106,9 +107,43 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
             approved_additions = 0
         else:
             raise ValueError("Unexpected disabled Roma venue source report")
+    generic_additions = 0
+    if generic_admission_report_path:
+        from source_contract_activation import validate_admissions
+        from source_lifecycle import digest
+        from roma_xiii_geo_hold import git_blob_sha
+        publisher_policy=read_json(policy_path)
+        approval_policy=publisher_policy.get("source_contract_admissions",{})
+        source_policy=publisher_policy.get("source_lifecycle",{})
+        generator=read_json(generic_admission_report_path)
+        contracts_file=Path(__file__).resolve().parent / "data" / "market-source-contracts.json"
+        approvals_file=Path(__file__).resolve().parent / "data" / "approved-source-admissions.json"
+        contracts=read_json(contracts_file)
+        admissions=read_json(approvals_file)
+        reviewed=validate_admissions(contracts,admissions)
+        if (approval_policy.get("enabled") is not True
+                or git_blob_sha(approvals_file)!=approval_policy.get("approved_registry_blob_sha1")
+                or git_blob_sha(contracts_file)!=source_policy.get("reviewed_contract_blob_sha1")
+                or generator.get("schema")!=1
+                or generator.get("enabled") is not True
+                or generator.get("source_contracts_active")!=len(reviewed)
+                or generator.get("source_registry_sha256")!=digest(admissions)
+                or generator.get("source_contract_sha256")!=digest(contracts)
+                or generator.get("original_market_ids")!=report.get("records_total")+approved_additions
+                or not isinstance(generator.get("new_market_ids"),list)
+                or len(set(generator["new_market_ids"]))!=len(generator["new_market_ids"])
+                or any(generator.get(key)!=0 for key in (
+                    "record_ids_deleted","old_market_fields_changed",
+                    "new_market_openings_confirmed","new_market_coordinates_created",
+                    "new_market_directions_enabled"))):
+            raise ValueError("Generic publisher source additions are not pinned to a reviewed source identity")
+        generic_additions=len(generator["new_market_ids"])
+        if (generator.get("candidate_market_ids")!=generator["original_market_ids"]+generic_additions
+                or generic_additions>250):
+            raise ValueError("Unapproved number of generic source market identities")
     if (manifest.get("schema") != 1 or manifest.get("index_schema") != 5
             or not isinstance(manifest.get("total"), int)
-            or report.get("records_total") + approved_additions != manifest["total"]):
+            or report.get("records_total") + approved_additions + generic_additions != manifest["total"]):
         raise ValueError("Static manifest and reviewed source counts disagree")
     if manifest.get("layout") == "regional":
         parts = manifest.get("regions")
@@ -215,10 +250,11 @@ def main():
     parser.add_argument("--policy", type=Path, required=True)
     parser.add_argument("--daily-report", type=Path, required=True)
     parser.add_argument("--roma-venue-report", type=Path)
+    parser.add_argument("--generic-admission-report", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     report = verify_static(args.manifest, args.evidence, args.policy, args.daily_report,
-                           args.roma_venue_report)
+                           args.roma_venue_report,args.generic_admission_report)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2)+"\n", "utf-8")
     print("REVIEWED_CITY_STATIC_GUARD", json.dumps(report, ensure_ascii=False))
