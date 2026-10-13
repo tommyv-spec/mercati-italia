@@ -105,8 +105,8 @@ Verifica limitata del CSV ufficiale Corciano (una sola richiesta, solo lettura):
 
 ## Confini tra già disponibile e lavori futuri
 
-**Già implementato:** discovery, registry, campionamento, vari adapters, forecast, DEV statico, conservazione fonti, protezioni geografiche, test browser, contratti condivisi e diff sorgenti read-only.
+**Già implementato:** discovery, registry, campionamento, vari adapters, forecast, DEV statico, conservazione fonti, protezioni geografiche, test browser, contratti condivisi e diff sorgenti read-only. È disponibile anche l'ammissione generica per un intero dataset tramite contratto, certificato di licenza e identità, budget per nuovi ID, quarantena e controllo indipendente dopo l'export. Per impostazione predefinita non ha fonti nuove abilitate.
 
-**NON ancora generalizzato:** ammissione automatica a DEV da qualunque nuovo schema. Per attivarla servono approvazione dei diritti a livello di dataset, una policy firmata, confronto forte di identità ed eventuale promozione di un adapter in shadow alla modalità di import. Un parser che legge 10.000 concessioni non è autorizzato a creare 10.000 mercati.
+**Ancora limitato:** il motore supporta CSV/JSON strutturati entro gli endpoint HTTPS e i budget di download autorizzati. Nuovi host, grandi API paginate, PDF, geoportali, licenze e coordinate complesse richiedono l'estensione e la revisione del TIPO DI FONTE, non singole eccezioni per mercato. Un parser che legge 10.000 concessioni non è autorizzato a creare 10.000 mercati. Seguire la procedura e i test di docs/SOURCE_CONTRACT_ADMISSION.md.
 
 La prossima ottimizzazione di scala è migrarne uno alla volta **come fonte intera**, mantenendo comparazioni automatizzate su tutte le sue righe, non progettare a mano ogni nuovo mercato.
