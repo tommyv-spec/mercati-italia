@@ -161,7 +161,7 @@ class GenericMunicipalContractTests(unittest.TestCase):
         old=[{"slug":"legacy-elsewhere","nome":"Mercato a Firenze",
               "citta":"Firenze","regione":"Toscana","indirizzo":"Via Roma"}]
         shuffled=BLOB.decode("utf-8").splitlines()
-        reversed_source=("\\n".join([shuffled[0],*reversed(shuffled[1:])])+"\\n").encode("utf-8")
+        reversed_source=("\n".join([shuffled[0],*reversed(shuffled[1:])])+"\n").encode("utf-8")
         first,first_proof=apply_approved(profile,BLOB,old,certificate,today=TODAY)
         reverse,reverse_proof=apply_approved(
             profile,reversed_source,old,certificate,today=TODAY)
