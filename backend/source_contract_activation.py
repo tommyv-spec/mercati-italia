@@ -285,7 +285,7 @@ def verify_static(manifest_path,report,config,registry,today):
             if (rule is None or rule.get("kind")!="weekly"
                     or not row.get("date")
                     or (today-date.fromisoformat(source["source_dataset_date"])).days>
-                       source["max_source_age_days"]
+                       source.get("max_forecast_source_age_days",source["max_source_age_days"])
                     or any(item<today.isoformat() or
                            date.fromisoformat(item).weekday() not in rule["weekdays"]
                            for item in row["date"])):

@@ -52,7 +52,7 @@ def validate_format(profile):
         raise ValueError("Missing source profile")
     fmt=profile.get("presentation",{})
     if not isinstance(fmt,dict) or set(fmt)-{"title_case_name","title_case_address",
-                                             "address_suffix_name_prefix"}:
+                                             "address_suffix_name_prefix","name_prefix"}:
         raise ValueError("Unapproved presentation mapping keys")
     if fmt.get("title_case_name",False) not in (True,False):
         raise ValueError("Invalid name presentation policy")
@@ -61,6 +61,11 @@ def validate_format(profile):
     suffix=fmt.get("address_suffix_name_prefix")
     if suffix is not None and (not isinstance(suffix,str) or not 3<=len(suffix)<=100):
         raise ValueError("Missing approved source locality prefix")
+    prefix=fmt.get("name_prefix")
+    if prefix is not None and (not isinstance(prefix,str) or
+                              not 2<=len(prefix.strip())<=30 or
+                              not prefix.endswith(" ")):
+        raise ValueError("Unreviewed presentation name prefix")
     if profile.get("row_kind") not in ("market_venue","market_venue_day"):
         raise ValueError("Administrative concessions/statistics cannot be admitted as markets")
     # The current registry validator accepts only shadow sources. Do not
@@ -83,6 +88,9 @@ def venue_row(profile,raw,today):
         return None,reason,None
     if fmt.get("title_case_name") is True:
         record["nome"]=_title(record["nome"])
+    if fmt.get("name_prefix") and not canonical(record["nome"]).startswith(
+            canonical(fmt["name_prefix"])):
+        record["nome"]=(fmt["name_prefix"]+record["nome"])[:160]
     if fmt.get("title_case_address") is True:
         record["indirizzo"]=_title(record["indirizzo"])
     if fmt.get("address_suffix_name_prefix"):
@@ -116,7 +124,7 @@ def _tokens(value):
                          "di","a","del","della","dei","delle","il","la","al","in"}]
 
 
-def _review_reason(record, prior, candidate_day):
+def _review_reason(record, prior, candidate_day, *, allow_unlocated_city_summary=False):
     # A source with no reliable street/day or a generic city listing cannot
     # automatically disambiguate a new venue from a legacy public calendar.
     if (canonical(prior.get("citta"))!=canonical(record.get("citta"))
@@ -139,6 +147,11 @@ def _review_reason(record, prior, candidate_day):
     # A generic old listing at municipality level with no street can mask an
     # established market on the same day. Flag, do not silently create an ID.
     if not old_place and city and old_name==city:
+        # Publisher-proved distinct physical venues need not be blocked by a
+        # third-party city-wide page with neither street nor usable weekday.
+        # Only contracts pinning a multi-venue threshold can use this exception.
+        if allow_unlocated_city_summary and previous_days is None:
+            return None
         return "generic_city_market_day"
     return None
 
@@ -184,6 +197,19 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
         source_rows.append((record,issue,item))
     candidates=[]
     seen=set()
+    venue_fields=profile.get("venue_identity_fields",[])
+    physical=Counter(tuple(canonical(item.get(field)) for field in venue_fields)
+                     for _,_,item in source_rows) if venue_fields else Counter()
+    # Same displayed market at one address may be several weekday rows or
+    # different market categories. Preserve every source ID, but quarantine
+    # all members until a reviewed source-level venue/day grouping exists.
+    display_places=Counter((canonical(record['nome']),canonical(record['indirizzo']))
+                           for record,_,_ in source_rows) if venue_fields else Counter()
+    address_count=len({canonical(record["indirizzo"]) for record,_,_ in source_rows
+                       if canonical(record["indirizzo"])})
+    floor=profile.get("generic_city_aggregate_min_distinct_addresses",0)
+    allow_city_summary=bool(floor and address_count>=floor)
+    counters["publisher_distinct_address_count"]=address_count
     by_city=defaultdict(list)
     for prior in base:
         by_city[(canonical(prior.get("regione")),canonical(prior.get("citta")))].append(prior)
@@ -194,6 +220,17 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
         seen.add(sid)
         if id_counts[sid]!=1:
             reasons["duplicate_publisher_identity"]+=id_counts[sid]
+            continue
+        if (venue_fields and physical[tuple(canonical(item.get(f)) for f in venue_fields)]>1):
+            reasons["repeated_venue_rows_require_grouping"]+=1
+            continue
+        if (venue_fields and display_places[(canonical(record['nome']),
+                                             canonical(record['indirizzo']))]>1):
+            reasons["same_place_name_multiple_source_rows"]+=1
+            continue
+        if any(canonical(token) in canonical(record["indirizzo"])
+               for token in profile.get("hold_address_contains",[])):
+            reasons["temporary_location_unreconciled"]+=1
             continue
         counters["source_market_identities"]+=1
         if issue:
@@ -211,7 +248,8 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
         day=source_weekday(item.get(profile["weekday_field"]))
         cohort=by_city[(canonical(record.get("regione")),canonical(record.get("citta")))]
         collision=next((reason for r in cohort
-                        if (reason:=_review_reason(record,r,day))),None)
+                        if (reason:=_review_reason(
+                            record,r,day,allow_unlocated_city_summary=allow_city_summary))),None)
         if collision:
             reasons[collision]+=1
             if len(examples)<REPORT_EXAMPLES:

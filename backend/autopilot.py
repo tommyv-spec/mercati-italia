@@ -492,12 +492,13 @@ def run(args):
             set(lifecycle_policy)-{"enabled","reviewed_contract_blob_sha1"} or
             lifecycle_policy.get("enabled",False) not in (True,False) or
             (lifecycle_enabled and lifecycle_policy.get("reviewed_contract_blob_sha1")
-             != "a9838dd5a1419076e8b3584a8c77c3588cedbf2f")):
+             != roma_source_git_blob_sha(Path(__file__).resolve().parent /
+                                         "data/market-source-contracts.json"))):
         raise ValueError("Unreviewed reusable source contract schema")
 
-    # A separate pinned source-level certificate, distinct from metadata
-    # discovery and the shadow parser, is required before any future generic
-    # municipal source may insert records. The shipped registry is EMPTY.
+    # A versioned source-level certificate, separate from metadata discovery,
+    # is required for every approved municipal feed. Policy pins must match
+    # the exact reviewed files; no static code edit per publisher is needed.
     generic_policy=policy.get("source_contract_admissions", {})
     generic_enabled=isinstance(generic_policy,dict) and generic_policy.get("enabled") is True
     if (not isinstance(generic_policy,dict)
@@ -505,7 +506,8 @@ def run(args):
             or generic_policy.get("enabled",False) not in (True,False)
             or (generic_enabled and (
                 generic_policy.get("approved_registry_blob_sha1")
-                != "f32d32312cf10188fa50322c251f25048f8ad42c"
+                != roma_source_git_blob_sha(Path(__file__).resolve().parent /
+                                            "data/approved-source-admissions.json")
                 or not lifecycle_enabled
             ))):
         raise ValueError("Unapproved generically admitted municipal source policy")

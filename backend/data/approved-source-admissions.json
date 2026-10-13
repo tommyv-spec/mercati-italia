@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "publication_channel": "dev-only",
-  "description": "One independently reviewed municipal publisher is enabled for DEV-only generic reconciliation. Two Corciano source identities already exist; the two ambiguous remaining identities stay quarantined. No market opening confirmations.",
+  "description": "DEV-only publisher-level contracts: Corciano weekly markets and Bologna official venue inventory. Historical publisher schedules are NOT current event confirmations. Ambiguous legacy overlaps and multi-day source repeats remain held.",
   "user_event_confirmations_allowed": false,
   "approvals": [
     {
@@ -13,6 +13,18 @@
       "identity_granularity": "market_venue",
       "reviewed_on": "2026-10-13",
       "max_new_ids": 2,
+      "source_record_kind": "market_venue",
+      "source_specific_geo_approval": false
+    },
+    {
+      "schema": 1,
+      "mode": "approved_dev_only",
+      "source_id": "bologna-generic-venues",
+      "reviewed_profile_sha256": "652c17986b46a1d11956edfb6cb00e8ad13f03eb54434c8485d5acf03565691d",
+      "publisher_license_evidence_url": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "identity_granularity": "market_venue",
+      "reviewed_on": "2026-10-13",
+      "max_new_ids": 5,
       "source_record_kind": "market_venue",
       "source_specific_geo_approval": false
     }

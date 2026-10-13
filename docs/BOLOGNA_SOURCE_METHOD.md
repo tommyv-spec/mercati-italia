@@ -53,3 +53,16 @@ Per ripetere la validazione della logica: python -m unittest discover -s backend
 Per ripetere la prova di rete autorizzata e completa: https://github.com/tommyv-spec/mercati-italia/actions/workflows/bologna-integration-audit.yml
 
 Criterio di attivazione automatica: feed reale riuscito, identità preservate, doppioni in quarantena, nessuna data futura non provata, attribuzione visibile e test mobile riuscito. Dati vecchi restano etichettati come tali; la produzione non viene toccata.
+
+## Secondo contratto generico DEV — verifica del 13 ottobre 2026
+
+- Licenza confermata sul portale del Comune e nel catalogo nazionale dati.gov.it: CC BY 4.0 con attribuzione.
+- API v1 usa il suo ID stabile `recordid` (40 hex, identità `bo-open-...`), compatibile con l'importatore storico. Controllo sui dati veri: **48/48 ID identici**.
+- Ricerca ufficiale selettiva, richiesta limitata e senza redirect; snapshot 31.925 byte, SHA-256 `603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa`.
+- Il risultato comprende 79 righe. 48 sono un mercato rionale, periodico o dei produttori agricoli; 31 sono scartate perché non appartengono alle categorie ammesse. Le 48 righe non corrispondono necessariamente a 48 sedi uniche.
+- Controllo completo su 13.784 schede: **39 candidate** con identità distinta, indirizzo e confronto per fonte; **9 righe trattenute** per quattro record a sede/giovedì-venerdì ripetuta, due con stesso nome/luogo ma natura diversa, un trasferimento temporaneo, due possibili sovrapposizioni del catalogo.
+- Primo lotto: 5 schede DEV, 34 in coda con hash degli ID residui. Prova di più cicli: 5,5,5,5,5,5,5,4 e 0; nessun ID perso, duplicato o verificato automaticamente.
+- Non sovrascrivere `source_dataset_date=2025-04-02` con `metadata_processed=2026-09-30`. Le nuove schede non hanno date confermate, date previste o GPS derivato dall'API. Gli orari 2025, se semplici, restano sempre indicati come da verificare.
+- I vecchi record restano intatti. La sorgente già disponibile tramite `backend/source_bologna.py` è tenuta come comparatore indipendente; non attivare anche il vecchio importatore nello stesso ciclo, per evitare doppio inserimento.
+- La generalizzazione è per il **formato Opendatasoft v1**, non uno script per mercato o singolo Comune. Il filtro di tipo e la regola sulle schede cittadine generiche sono dichiarati nel contratto e soggetti a checksum.
+- `main`, produzione, Cloudflare Worker, KV/D1 e conferme individuali non sono coinvolti.
