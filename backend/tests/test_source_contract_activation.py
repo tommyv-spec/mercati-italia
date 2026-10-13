@@ -152,6 +152,16 @@ class GenericActivationTests(unittest.TestCase):
         damaged=copy.deepcopy(summary);damaged["new_market_openings_confirmed"]=1
         with self.assertRaisesRegex(ValueError,"Independent generic"):
             validate_release(old,output,damaged,cfg,reg)
+        # A source-level admission cannot silently change the URL or add GPS
+        # to any new venue after the source was accepted.
+        tampered=copy.deepcopy(output)
+        tampered[1]["url_fonte"]="https://unreviewed.example/"
+        with self.assertRaisesRegex(ValueError,"Unsafe field"):
+            validate_release(old,tampered,summary,cfg,reg)
+        tampered=copy.deepcopy(output)
+        tampered[1]["lat"]=43.12
+        with self.assertRaisesRegex(ValueError,"Unsafe field"):
+            validate_release(old,tampered,summary,cfg,reg)
 
 
 if __name__=="__main__":
