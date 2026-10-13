@@ -15,6 +15,7 @@ from datetime import date
 from source_contract_ingest import apply_approved
 from source_lifecycle import digest, validate_contracts
 from source_probe import limited_fetch
+from reviewed_city_evidence import NAVIGATION_HOLD
 
 MAX_APPROVALS = 8
 MAX_NEW_PER_RUN = 250
@@ -126,6 +127,7 @@ def activate(config,registry,existing,*,today=None,offline=False,
 
 
 def validate_release(before,after,report,config,registry):
+    approved=validate_admissions(config,registry)
     if (not isinstance(before,list) or not isinstance(after,list)
             or report.get("schema")!=1
             or report.get("source_registry_sha256")!=digest(registry)
@@ -140,6 +142,42 @@ def validate_release(before,after,report,config,registry):
                 "new_market_openings_confirmed","new_market_coordinates_created",
                 "new_market_directions_enabled"))):
         raise ValueError("Independent generic source release proof does not match exact original IDs")
+    raw_profiles={p["id"]:p for p in config["raw_profiles"]}
+    if report.get("source_contracts_active")!=len(approved):
+        raise ValueError("Independent source approval count does not match registry")
+    new_by_source={}
+    for sid in approved:
+        source=report.get("per_source",{}).get(sid)
+        if (not isinstance(source,dict)
+                or source.get("status") not in (
+                    "source_contract_approved_staged_only",
+                    "publisher_source_held_for_review",
+                    "offline_no_source_inference"
+                ) or not isinstance(source.get("new_market_ids"),list)):
+            raise ValueError("Missing independent publisher import disposition")
+        new_by_source[sid]=source["new_market_ids"]
+    if sorted(x for values in new_by_source.values() for x in values)!=report["new_market_ids"]:
+        raise ValueError("Individual source additions do not match complete publisher reports")
+    for record in after[len(before):]:
+        sid=record["slug"]
+        matching=[raw_profiles[x] for x in approved
+                  if sid in new_by_source[x]]
+        if len(matching)!=1:
+            raise ValueError("New market ID has no unique approved source")
+        origin=matching[0]
+        if (not sid.startswith(origin["catalog_slug_prefix"])
+                or record.get("url_fonte")!=origin["attribution_url"]
+                or record.get("aggiornato_il")!=origin["source_dataset_date"]
+                or record.get("aggiornamento_ambito")!="dataset"
+                or record.get("status")!="non_confermato"
+                or record.get("date_quality")!="sconosciuta"
+                or record.get("date")
+                or record.get("verificato_il")
+                or record.get("lat") is not None
+                or record.get("lng") is not None
+                or record.get("position_quality")!="sconosciuta"
+                or record.get("navigazione_sospesa_motivo")!=NAVIGATION_HOLD):
+            raise ValueError("Unsafe field in source-approved DEV market candidate: "+sid)
     return {
         "schema":1,"stable_original_market_ids_checked":len(before),
         "source_approved_added_venue_id_count":len(after)-len(before),
