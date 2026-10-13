@@ -95,6 +95,10 @@ jobs:
           decision=json.loads((root/'release-decision.json').read_text('utf-8'))
           lifecycle=json.loads((root/'source-lifecycle.json').read_text('utf-8'))
           checkpoint=json.loads((root/'checkpoints/source_lifecycle.json').read_text('utf-8'))
+          approved=json.loads((root/'generic-source-admissions.json').read_text('utf-8'))
+          approved_diff=json.loads((root/'generic-source-admissions-diff-guard.json').read_text('utf-8'))
+          approved_final=json.loads((root/'generic-source-admissions-static-guard.json').read_text('utf-8'))
+          admission_stage=json.loads((root/'checkpoints/generic_admission.json').read_text('utf-8'))
           final=json.loads((root/'candidate/public/data/v1/manifest.json').read_text('utf-8'))
           prior=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
           if (not decision['approved'] or final['total']!=prior['total']
@@ -105,13 +109,22 @@ jobs:
               or lifecycle.get('market_identity_deletions')!=0
               or checkpoint.get('result',{}).get('enabled') is not True
               or checkpoint.get('result',{}).get('new_markets_imported')!=0
-              or checkpoint.get('result',{}).get('event_verifications_created')!=0):
+              or checkpoint.get('result',{}).get('event_verifications_created')!=0
+              or admission_stage.get('result',{}).get('enabled') is not True
+              or approved.get('source_contracts_active')!=0
+              or approved.get('new_market_ids')!=[]
+              or approved.get('candidate_market_ids')!=prior['total']
+              or approved_diff.get('release_safe') is not True
+              or approved_final.get('release_safe') is not True
+              or approved_final.get('new_source_venue_ids_verified')!=0):
               raise ValueError('Source lifecycle changed public market identities or created false confirmations')
           print('FULL_AUTOPILOT_SOURCE_CONTRACTS_OFFLINE',json.dumps({
             'catalog_ids_kept':final['total'],
             'lifecycle_checkpoint_written':True,
             'source_records_imported_by_quality_audit':0,
-            'publisher_outage_causes_market_deletions':False
+            'publisher_outage_causes_market_deletions':False,
+            'generic_publisher_release_gate_enabled':True,
+            'active_legal_source_admissions':0
           }))
           PY
       - name: Preserve contracts QA reports and checkpoints, never publish market data
@@ -130,3 +143,7 @@ jobs:
             source-contract-audit/autopilot/SOURCE_LIFECYCLE.md
             source-contract-audit/autopilot/release-decision.json
             source-contract-audit/autopilot/checkpoints/source_lifecycle.json
+            source-contract-audit/autopilot/generic-source-admissions.json
+            source-contract-audit/autopilot/generic-source-admissions-diff-guard.json
+            source-contract-audit/autopilot/generic-source-admissions-static-guard.json
+            source-contract-audit/autopilot/checkpoints/generic_admission.json
