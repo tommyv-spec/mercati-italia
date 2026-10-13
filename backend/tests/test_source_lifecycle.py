@@ -302,6 +302,30 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
         self.assertEqual(changed["market_identity_deletions"],0)
         self.assertIn("schema/identità cambiati",markdown(changed))
 
+    def test_daily_generic_staging_reuses_source_fetch_and_never_imports(self):
+        calls=[]
+        blob=csv_blob()
+        def fetch(url):
+            calls.append(url)
+            return blob,False
+        report=run(CFG,catalog(),probe_raw=True,stage_raw=True,
+                   raw_fetch=fetch,today=date(2026,10,13))
+        self.assertEqual(len(calls),1)
+        self.assertEqual(report["source_checks"]["source_only_stage_reviews"],1)
+        source=report["sources"][RAW["id"]]
+        staging=source["source_stage"]
+        self.assertEqual(staging["source_snapshot_sha256"],source["source_snapshot_sha256"])
+        self.assertEqual(staging["counts"]["raw_rows_scanned"],4)
+        self.assertEqual(staging["counts"]["already_in_catalog_exact_source_id"],2)
+        self.assertEqual(staging["safe_candidates_not_published"],2)
+        self.assertEqual(staging["publication_enabled"],False)
+        self.assertEqual(staging["existing_market_identities_deleted"],0)
+        self.assertEqual(staging["precise_coordinates_created"],0)
+        self.assertEqual(report["market_imports"],0)
+        self.assertIn("Proposte in staging",markdown(report))
+        with self.assertRaisesRegex(ValueError,"Staging requires"):
+            run(CFG,catalog(),stage_raw=True)
+
     def test_raw_market_names_or_vendor_sensitive_fields_never_persist(self):
         blob=csv_blob()
         report=inspect_raw(RAW,blob,catalog())
