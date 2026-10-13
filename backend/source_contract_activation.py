@@ -186,3 +186,101 @@ def validate_release(before,after,report,config,registry):
         "source_registry_digest":report["source_registry_sha256"],
         "release_safe":True,
     }
+
+
+def verify_static(manifest_path,report,config,registry,today):
+    """Independently review final lazy-loaded regional JSON AND compact index.
+
+    The approved publisher's data date may authorize *predicted weekly dates*,
+    never confirmed individual opening events. We never invent navigation.
+    """
+    from pathlib import Path
+    from merge_catalog import load_existing
+    from recurrence_refresh import explicit_rule
+    from reviewed_city_static_guard import INDEX_FIELDS
+    if not isinstance(today,date):
+        raise ValueError("Final publisher source check needs a reference date")
+    approved=validate_admissions(config,registry)
+    manifest_path=Path(manifest_path)
+    manifest=json.loads(manifest_path.read_text("utf-8"))
+    source_ids=report.get("new_market_ids",[])
+    if (report.get("schema")!=1
+            or report.get("publication_channel")!="dev-only"
+            or report.get("source_registry_sha256")!=digest(registry)
+            or report.get("source_contract_sha256")!=digest(config)
+            or report.get("source_contracts_active")!=len(approved)
+            or not isinstance(source_ids,list) or len(source_ids)!=len(set(source_ids))
+            or not isinstance(manifest.get("total"),int)
+            or report.get("candidate_market_ids")!=manifest["total"]
+            or manifest["total"]<report.get("original_market_ids",0)
+            or manifest["total"]-report["original_market_ids"]!=len(source_ids)):
+        raise ValueError("Final public catalog does not match generic source admission proof")
+    rows=load_existing(manifest_path)
+    if len(rows)!=manifest["total"]:
+        raise ValueError("Final generic source output has incomplete regional records")
+    catalog={x["slug"]:x for x in rows}
+    indexed_path=manifest_path.parent.parent.parent/manifest["index"]
+    index=json.loads(indexed_path.read_text("utf-8"))
+    by_index={x[0]:x for x in index["markets"] if x and x[0] in source_ids}
+    if len(by_index)!=len(source_ids):
+        raise ValueError("Approved publisher identity absent from compact search index")
+    profiles={p["id"]:p for p in config["raw_profiles"]}
+    scoped={}
+    for sid in approved:
+        detail=report.get("per_source",{}).get(sid)
+        if not isinstance(detail,dict):
+            raise ValueError("Publisher report lacks source-level review outcome")
+        for market_id in detail.get("new_market_ids",[]):
+            if market_id in scoped:
+                raise ValueError("Duplicated publisher source identity")
+            scoped[market_id]=profiles[sid]
+    if set(scoped)!=set(source_ids):
+        raise ValueError("Unattributed publisher markets in static export")
+    dates_predicted=0
+    for sid in source_ids:
+        row=catalog.get(sid)
+        source=scoped[sid]
+        if row is None:
+            raise ValueError("Approved market missing from full regional details")
+        if (row.get("url_fonte")!=source["attribution_url"]
+                or row.get("aggiornato_il")!=source["source_dataset_date"]
+                or row.get("aggiornamento_ambito")!="dataset"
+                or row.get("status")!="non_confermato"
+                or row.get("verificato_il")
+                or row.get("date_quality") not in ("prevista","sconosciuta")
+                or row.get("navigazione_sospesa_motivo")!=NAVIGATION_HOLD
+                or row.get("lat") is not None or row.get("lng") is not None
+                or row.get("position_quality")!="sconosciuta"
+                or not any(isinstance(link,dict) and
+                           link.get("url")==source["attribution_url"]
+                           for link in row.get("fonti",[]))):
+            raise ValueError("Generic source's market metadata, GPS or provenance unsafe: "+sid)
+        compact=dict(zip(INDEX_FIELDS,by_index[sid]))
+        if (compact.get("lat") is not None or compact.get("lng") is not None
+                or compact.get("position_quality")!="sconosciuta"
+                or compact.get("date_quality")!=row.get("date_quality")):
+            raise ValueError("Generic source index restored navigation or unsafe dates")
+        rule=explicit_rule(row.get("ricorrenza_testo"))
+        if row.get("date_quality")=="prevista":
+            if (rule is None or rule.get("kind")!="weekly"
+                    or not row.get("date")
+                    or (today-date.fromisoformat(source["source_dataset_date"])).days>
+                       source["max_source_age_days"]
+                    or any(item<today.isoformat() or
+                           date.fromisoformat(item).weekday() not in rule["weekdays"]
+                           for item in row["date"])):
+                raise ValueError("Invalid publisher-source weekly forecast in static catalog")
+            dates_predicted+=1
+        elif row.get("date"):
+            raise ValueError("Unconfirmed generic source has an unlabelled market date")
+    return {
+        "schema":1,"source_contracts_active":len(approved),
+        "market_records_checked":len(rows),
+        "new_source_venue_ids_verified":len(source_ids),
+        "source_weekly_forecasts_only":dates_predicted,
+        "navigation_holds_in_index":len(source_ids),
+        "no_individual_market_openings_confirmed":True,
+        "new_precise_coordinates":0,
+        "original_markets_deleted":0,
+        "release_safe":True,
+    }
