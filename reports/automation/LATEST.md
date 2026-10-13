@@ -2,9 +2,9 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38332366487](https://github.com/tommyv-spec/mercati-italia/actions/runs/38332366487) — UTC 2026-10-13T01:32:55.094611+00:00
+- Ultimo run: [38392935740](https://github.com/tommyv-spec/mercati-italia/actions/runs/38392935740) — UTC 2026-10-13T11:52:50.629238+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: sì
+- Nuova versione di dati: no (contenuto invariato)
 - Schede nel catalogo: **13,784**
 - Schede con date previste a +60 giorni: **11,846**
 - Schede con date previste a +90 giorni: **11,715**
@@ -30,10 +30,9 @@
 - Fonti datate negli ultimi 30 giorni: **1203**; oltre soglia: **13**; senza data: **0**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1210**, di cui recenti **1203**.
 - Date previste con origine vecchia/sconosciuta: **0**.
-- Metadati degli enti leggibili: **2/3**.
+- Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
-- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 
 ## Prossimi miglioramenti calcolati
 - verified_source_evidence
