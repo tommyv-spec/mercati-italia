@@ -158,7 +158,7 @@ class PublishedCitySafetyTests(unittest.TestCase):
             "approved_registry_blob_sha1":git_blob_sha(approval_file)}
         self.policy_path.write_text(json.dumps(policy))
         proof={
-            "schema":1,"enabled":True,"source_contracts_active":0,
+            "schema":1,"enabled":True,"source_contracts_active":len(admission["approvals"]),
             "source_registry_sha256":contract_digest(admission),
             "source_contract_sha256":contract_digest(source),
             "original_market_ids":16,"candidate_market_ids":16,

@@ -1,7 +1,20 @@
 {
   "schema": 1,
   "publication_channel": "dev-only",
-  "description": "No active source admissions. An official publisher can be approved ONCE by checked source contract + license evidence + identity grain. Never approve individual events.",
+  "description": "One independently reviewed municipal publisher is enabled for DEV-only generic reconciliation. Two Corciano source identities already exist; the two ambiguous remaining identities stay quarantined. No market opening confirmations.",
   "user_event_confirmations_allowed": false,
-  "approvals": []
+  "approvals": [
+    {
+      "schema": 1,
+      "mode": "approved_dev_only",
+      "source_id": "corciano-generic-shadow",
+      "reviewed_profile_sha256": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
+      "publisher_license_evidence_url": "https://comune.corciano.pg.it/area_letturaDocumento/29645/pagsistema.html",
+      "identity_granularity": "market_venue",
+      "reviewed_on": "2026-10-13",
+      "max_new_ids": 2,
+      "source_record_kind": "market_venue",
+      "source_specific_geo_approval": false
+    }
+  ]
 }

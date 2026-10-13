@@ -71,8 +71,8 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
         self.assertEqual(len(c["normalized_profiles"]),5)
         self.assertEqual(len(c["raw_profiles"]),1)
         self.assertEqual(RAW["source_date_scope"],"dataset_not_per_market")
-        self.assertEqual(RAW["publication_mode"],"shadow_only")
-        self.assertEqual(RAW["max_new_ids_per_run"],0)
+        self.assertEqual(RAW["publication_mode"],"approved_dev_only")
+        self.assertEqual(RAW["max_new_ids_per_run"],2)
 
     def test_real_corciano_csv_schema_inferred_without_source_specific_code(self):
         source=catalog()
@@ -178,7 +178,7 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
            ("resource_url","http://localhost/private"),
            ("resource_url","https://comune.corciano.pg.it.attacker.test/sample.csv"),
            ("publication_mode","approved_dev"),
-           ("legal_reuse_reviewed",True),
+           ("legal_reuse_reviewed",False),
            ("max_new_ids_per_run",999),
            ("coordinates","taken_as_precise_without_independent_check"),
            ("source_date_scope","per_market_confirmed"),

@@ -261,7 +261,7 @@ def candidate_record(profile,row,*,today):
           "Data riferita all'intero dataset: "+updated.isoformat()+
           ". Coordinate e percorso stradale non verificati."
         ),
-        "fonte":profile["publisher"]+" — dati ufficiali, licenza da verificare",
+        "fonte":profile["publisher"]+" — dati ufficiali; apertura non confermata",
         "url_fonte":profile["attribution_url"],
         "aggiornato_il":updated.isoformat(),"aggiornamento_ambito":"dataset",
         "verificato_il":"","confidence":0,

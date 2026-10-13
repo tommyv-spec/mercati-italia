@@ -4,7 +4,7 @@ Aggiornato il 13 ottobre 2026. **Lo standard è il dataset, non la singola sched
 
 ## Stato verificabile
 
-Il sistema generico esiste già nel branch DEV. Il registro backend/data/approved-source-admissions.json è volutamente vuoto: per ora **zero nuovi publisher autorizzati e zero aperture individuali confermate**.
+Il sistema generico esiste già nel branch DEV. Dal 13 ottobre 2026 il registro `backend/data/approved-source-admissions.json` contiene **una fonte comunale autorizzata in DEV**: il CSV ufficiale di Corciano. Il file rimane identico allo snapshot 1c426270... e l'audit sul catalogo da 13.784 righe trova due ID ufficiali già presenti e due ID non pubblicabili per possibili doppioni. **Zero nuove schede e zero aperture confermate**. Contratto e certificato pin con SHA; altri dataset non sono autorizzati.
 
 ## Pipeline
 
@@ -73,4 +73,4 @@ Workflow read-only originale e parity:
 
 Il convertitore generico attuale copre file CSV/JSON piccoli e URL che superano i controlli HTTPS/host già ammessi. Per provider di dimensione maggiore, API paginata, geodati complessi, PDF non strutturati o un nuovo dominio ufficiale, bisogna estendere la gestione di quel TIPO DI SORGENTE, non scrivere eccezioni per ogni mercato. Non affermare che tutte le 43 fonti candidate siano già importabili.
 
-Il file delle fonti approvate è vuoto; anche dopo test verdi la presenza di un'opzione tecnica di import NON costituisce da sola approvazione della licenza.
+La prima fonte approvata è Corciano, CC BY 4.0 verificata sul sito del Comune e su dati.gov.it. La licenza è valida per il riuso con attribuzione, ma NON prova aperture, orari aggiornati o localizzazioni precise. Ogni nuova fonte richiede ancora review su editor, licenza, identità e schema. Il numero di record pubblicabili può restare zero dopo un'attivazione valida.

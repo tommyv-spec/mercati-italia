@@ -155,9 +155,9 @@
       "source_dataset_date": "2026-01-07",
       "source_date_scope": "dataset_not_per_market",
       "max_source_age_days": 540,
-      "legal_reuse_reviewed": false,
-      "publication_mode": "shadow_only",
-      "max_new_ids_per_run": 0,
+      "legal_reuse_reviewed": true,
+      "publication_mode": "approved_dev_only",
+      "max_new_ids_per_run": 2,
       "coordinates": "ignored_unless_independently_source_verified",
       "notes": "CSV long/lat headers are inverted; generic extractor MUST NOT use those fields. Existing specialized adapter validates geopoint and preserves legacy slugs.",
       "presentation": {
