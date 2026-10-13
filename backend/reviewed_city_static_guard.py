@@ -110,7 +110,7 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
     generic_additions = 0
     if generic_admission_report_path:
         from source_contract_activation import validate_admissions
-        from source_lifecycle import digest
+        from source_lifecycle import digest as contract_digest
         from roma_xiii_geo_hold import git_blob_sha
         publisher_policy=read_json(policy_path)
         approval_policy=publisher_policy.get("source_contract_admissions",{})
@@ -127,8 +127,8 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
                 or generator.get("schema")!=1
                 or generator.get("enabled") is not True
                 or generator.get("source_contracts_active")!=len(reviewed)
-                or generator.get("source_registry_sha256")!=digest(admissions)
-                or generator.get("source_contract_sha256")!=digest(contracts)
+                or generator.get("source_registry_sha256")!=contract_digest(admissions)
+                or generator.get("source_contract_sha256")!=contract_digest(contracts)
                 or generator.get("original_market_ids")!=report.get("records_total")+approved_additions
                 or not isinstance(generator.get("new_market_ids"),list)
                 or len(set(generator["new_market_ids"]))!=len(generator["new_market_ids"])
