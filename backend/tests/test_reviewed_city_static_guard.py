@@ -142,6 +142,47 @@ class PublishedCitySafetyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'gate is disabled'):
             self.check()
 
+    def test_empty_approved_generic_source_registry_preserves_city_evidence_digest(self):
+        from source_lifecycle import digest as contract_digest
+        from roma_xiii_geo_hold import git_blob_sha
+        root=Path(__file__).resolve().parents[1]/"data"
+        source_file=root/"market-source-contracts.json"
+        approval_file=root/"approved-source-admissions.json"
+        source=json.loads(source_file.read_text("utf-8"))
+        admission=json.loads(approval_file.read_text("utf-8"))
+        policy=json.loads(self.policy_path.read_text("utf-8"))
+        policy["source_lifecycle"]={"enabled":True,
+                                   "reviewed_contract_blob_sha1":git_blob_sha(source_file)}
+        policy["source_contract_admissions"]={
+            "enabled":True,
+            "approved_registry_blob_sha1":git_blob_sha(approval_file)}
+        self.policy_path.write_text(json.dumps(policy))
+        proof={
+            "schema":1,"enabled":True,"source_contracts_active":0,
+            "source_registry_sha256":contract_digest(admission),
+            "source_contract_sha256":contract_digest(source),
+            "original_market_ids":16,"candidate_market_ids":16,
+            "new_market_ids":[],"record_ids_deleted":0,"old_market_fields_changed":0,
+            "new_market_openings_confirmed":0,
+            "new_market_coordinates_created":0,"new_market_directions_enabled":0,
+        }
+        source_report=self.root/"generic-publisher.json"
+        source_report.write_text(json.dumps(proof))
+        result=verify_static(self.manifest_path,self.evidence_path,self.policy_path,
+                             self.report_path,None,source_report)
+        self.assertEqual(result["manifest_records"],16)
+        self.assertIsInstance(result["evidence_sha256"],str)
+        self.assertEqual(result["evidence_sha256"],evidence_digest({
+            "schema":1,"cases":self.cases
+        }))
+        self.assertTrue(result["release_safe"])
+        proof["candidate_market_ids"]=17
+        proof["new_market_ids"]=["unlicensed-market"]
+        source_report.write_text(json.dumps(proof))
+        with self.assertRaises(ValueError):
+            verify_static(self.manifest_path,self.evidence_path,self.policy_path,
+                          self.report_path,None,source_report)
+
     def test_bad_report_fails_closed(self):
         d = json.loads(self.report_path.read_text())
         d['individual_events_confirmed'] = 1
