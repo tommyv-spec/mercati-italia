@@ -12,7 +12,7 @@ import json
 from collections import Counter
 from datetime import date
 
-from source_contract_ingest import apply_approved
+from source_contract_ingest import MAX_STAGING_SOURCE_ROWS, apply_approved
 from source_lifecycle import digest, validate_contracts
 from source_probe import limited_fetch
 from reviewed_city_evidence import NAVIGATION_HOLD
@@ -81,10 +81,14 @@ def activate(config,registry,existing,*,today=None,offline=False,
             candidate=additions
             status["approved_sources_reconciled"]+=1
             status["new_source_venues_staged_for_DEV"]+=len(proof["new_venue_ids"])
+            status["eligible_venues_deferred_to_next_run"]+=proof["deferred_candidate_count"]
             report[sid]={
                 "schema":1,"status":"source_contract_approved_staged_only",
                 "approval_sha256":digest(cert),
                 "new_market_ids":proof["new_venue_ids"],
+                "source_eligible_candidates":proof["source_eligible_candidates"],
+                "deferred_candidate_count":proof["deferred_candidate_count"],
+                "deferred_candidate_ids_sha256":proof["deferred_candidate_ids_sha256"],
                 "old_market_ids_preserved":proof["original_market_records"],
                 "verified_market_openings_created":0,
                 "new_navigation_enabled":0,"new_geocodes_created":0,
@@ -156,6 +160,22 @@ def validate_release(before,after,report,config,registry):
                 ) or not isinstance(source.get("new_market_ids"),list)):
             raise ValueError("Missing independent publisher import disposition")
         new_by_source[sid]=source["new_market_ids"]
+        if source["status"]!="source_contract_approved_staged_only":
+            if source["new_market_ids"]:
+                raise ValueError("Unavailable/offline publisher cannot claim new market IDs")
+        else:
+            count=source.get("source_eligible_candidates")
+            pending=source.get("deferred_candidate_count")
+            pending_hash=source.get("deferred_candidate_ids_sha256")
+            if (source.get("approval_sha256")!=digest(approved[sid])
+                    or len(source["new_market_ids"])>approved[sid]["max_new_ids"]
+                    or type(count) is not int or type(pending) is not int
+                    or not 0<=pending<=count<=MAX_STAGING_SOURCE_ROWS
+                    or count!=len(source["new_market_ids"])+pending
+                    or not isinstance(pending_hash,str)
+                    or len(pending_hash)!=64
+                    or any(ch not in "0123456789abcdef" for ch in pending_hash)):
+                raise ValueError("Approved publisher exceeded quota or lost deferred proof")
     if sorted(x for values in new_by_source.values() for x in values)!=report["new_market_ids"]:
         raise ValueError("Individual source additions do not match complete publisher reports")
     for record in after[len(before):]:

@@ -154,6 +154,32 @@ class GenericMunicipalContractTests(unittest.TestCase):
         self.assertEqual(again,result)
         self.assertEqual(replay["new_venue_ids"],[])
 
+    def test_approved_source_is_admitted_in_ordered_daily_batches_not_blocked(self):
+        profile=_approved_profile()
+        certificate=_approval(profile)
+        certificate["max_new_ids"]=2
+        old=[{"slug":"legacy-elsewhere","nome":"Mercato a Firenze",
+              "citta":"Firenze","regione":"Toscana","indirizzo":"Via Roma"}]
+        shuffled=BLOB.decode("utf-8").splitlines()
+        reversed_source=("\\n".join([shuffled[0],*reversed(shuffled[1:])])+"\\n").encode("utf-8")
+        first,first_proof=apply_approved(profile,BLOB,old,certificate,today=TODAY)
+        reverse,reverse_proof=apply_approved(
+            profile,reversed_source,old,certificate,today=TODAY)
+        self.assertEqual(first,reverse)
+        self.assertEqual(first_proof["new_venue_ids"],reverse_proof["new_venue_ids"])
+        self.assertEqual(len(first_proof["new_venue_ids"]),2)
+        self.assertEqual(first_proof["source_eligible_candidates"],4)
+        self.assertEqual(first_proof["deferred_candidate_count"],2)
+        self.assertEqual(len(first_proof["deferred_candidate_ids_sha256"]),64)
+        second,second_proof=apply_approved(profile,BLOB,first,certificate,today=TODAY)
+        self.assertEqual(len(second),5)
+        self.assertEqual(second_proof["deferred_candidate_count"],0)
+        self.assertEqual(set(first_proof["new_venue_ids"]) &
+                         set(second_proof["new_venue_ids"]),set())
+        third,third_proof=apply_approved(profile,BLOB,second,certificate,today=TODAY)
+        self.assertEqual(third,second)
+        self.assertEqual(third_proof["new_venue_ids"],[])
+
     def test_unknown_venue_with_same_place_weekday_is_quarantined(self):
         src=[{"slug":"old-third-party-market","citta":"Corciano","regione":"Umbria",
               "indirizzo":"Piazza Giovanni Ercolani, Mantignana",

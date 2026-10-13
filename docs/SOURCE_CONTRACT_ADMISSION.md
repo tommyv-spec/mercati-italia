@@ -47,7 +47,7 @@ Il sistema generico esiste già nel branch DEV. Il registro backend/data/approve
 4. Provare in shadow la fonte completa: identità e orari rispetto al vecchio importer (se esiste), collisioni sede/giorno, fonte vecchia, ID rinominati, riuso e indirizzi. Il sistema non dovrebbe richiedere 100 verifiche individuali.
 5. Se le prove di fonte e diritti sono positive, passare il profilo ad approved_dev_only, contrassegnare legal_reuse_reviewed come true e stabilire max_new_ids_per_run basso.
 6. Registrare UNA voce in approved-source-admissions.json. Il certificato vincola source_id, SHA-256 del profilo, data di revisione, URL ufficiale della licenza, tipo di identità e limite delle nuove schede. Aggiornare i fingerprint Git pin della policy sotto revisione.
-7. Il job schedulato applica sempre lo stesso parser e le stesse regole a tutti i record successivi. Se una riga è ambigua, l'ID viene trattenuto. Se la fonte non risponde, restano i dati precedenti. Non vengono creati eventi verificati.
+7. Il job schedulato applica sempre lo stesso parser e le stesse regole a tutti i record successivi. Se una riga è ambigua, l'ID viene trattenuto. Se la fonte non risponde, restano i dati precedenti. Non vengono creati eventi verificati. Se una fonte approvata contiene più candidati non ambigui del limite giornaliero, il parser seleziona un lotto ordinato per ID stabile. Gli altri restano in attesa, con solo conteggio e hash; il ciclo successivo riprende gli ID non ancora pubblicati. Non sono richieste approvazioni per singolo mercato.
 
 ## Regole di sicurezza non negoziabili
 
