@@ -36,14 +36,14 @@
       "status": "metadata_checked"
     },
     {
-      "last_publisher_data_change": "2022-07-04",
-      "license_comparison": "publisher_claim_missing_review_required",
+      "last_publisher_data_change": null,
+      "license_comparison": "not_evaluated",
       "market_records_verified_by_metadata": 0,
       "publisher": "Roma Capitale",
-      "status": "metadata_checked"
+      "status": "needs_review"
     }
   ],
-  "reference_date": "2026-10-12",
+  "reference_date": "2026-10-13",
   "safe_for_automatic_quality_promotion": true,
   "schema": 1,
   "snapshot_measurement_not_event_verification": true,
@@ -99,6 +99,7 @@
   ],
   "warnings": [
     "no_record_has_documented_verification",
-    "source_data_older_than_allowed_forecast_window"
+    "source_data_older_than_allowed_forecast_window",
+    "publisher_metadata_unavailable_or_changed"
   ]
 }
