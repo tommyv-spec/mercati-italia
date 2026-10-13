@@ -15,7 +15,7 @@ import copy
 import hashlib
 import json
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
@@ -24,7 +24,6 @@ from source_lifecycle import (
     parse_rows, candidate_record, canonical, digest, validate_contracts,
     weekday as source_weekday,
 )
-from source_dispositions import reconcile as exact_dispositions
 
 MAX_STAGING_SOURCE_ROWS = 3000
 MAX_PROFILE_MAX_NEW = 250
@@ -170,8 +169,8 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
     observed=hashlib.sha256(raw_blob).hexdigest()
     if observed_source_sha256 is not None and observed!=observed_source_sha256:
         raise ValueError("Source snapshot was modified after it was reviewed")
-    seen=set()
-    candidates=[]
+    source_rows=[]
+    id_counts=Counter()
     counters=Counter()
     examples=[]
     reasons=Counter()
@@ -181,11 +180,21 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
         if record is None:
             reasons[issue or "invalid_source_row"]+=1
             continue
+        id_counts[record["slug"]]+=1
+        source_rows.append((record,issue,item))
+    candidates=[]
+    seen=set()
+    by_city=defaultdict(list)
+    for prior in base:
+        by_city[(canonical(prior.get("regione")),canonical(prior.get("citta")))].append(prior)
+    for record,issue,item in source_rows:
         sid=record["slug"]
         if sid in seen:
-            reasons["duplicate_publisher_identity"]+=1
             continue
         seen.add(sid)
+        if id_counts[sid]!=1:
+            reasons["duplicate_publisher_identity"]+=id_counts[sid]
+            continue
         counters["source_market_identities"]+=1
         if issue:
             counters["informational_"+issue]+=1
@@ -200,8 +209,9 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
                     break
             continue
         day=source_weekday(item.get(profile["weekday_field"]))
-        collision=next((_review_reason(record,r,day) for r in base
-                         if _review_reason(record,r,day)),None)
+        cohort=by_city[(canonical(record.get("regione")),canonical(record.get("citta")))]
+        collision=next((reason for r in cohort
+                        if (reason:=_review_reason(record,r,day))),None)
         if collision:
             reasons[collision]+=1
             if len(examples)<REPORT_EXAMPLES:
@@ -260,6 +270,7 @@ def authorize(profile,source_report,admission,*,today):
     if set(admission)!=expected_keys:
         raise ValueError("A field is missing in the source approval attestation")
     from urllib.parse import urlsplit
+    from source_lifecycle import _public_https
     license_url=admission.get("publisher_license_evidence_url")
     host=urlsplit(str(license_url)).hostname
     source_host=urlsplit(profile["resource_url"]).hostname
@@ -268,7 +279,7 @@ def authorize(profile,source_report,admission,*,today):
             or admission.get("reviewed_profile_sha256")!=digest(profile)
             or admission.get("identity_granularity")!=profile["row_kind"]
             or admission.get("source_record_kind")!=profile["row_kind"]
-            or not isinstance(license_url,str) or not license_url.startswith("https://")
+            or not isinstance(license_url,str) or not _public_https(license_url)
             or host not in {source_host, urlsplit(profile["attribution_url"]).hostname}
             or admission.get("source_specific_geo_approval") is not False
             or type(admission.get("max_new_ids")) is not int
