@@ -306,8 +306,49 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
                 source_lost.append(sid)
     old_unknown_share = old_report["fields_missing"].get("source_url", 0) / max(1, len(old_rows))
     new_unknown_share = new_report["fields_missing"].get("source_url", 0) / max(1, len(new_rows))
-    source_health = all(
-        entry.get("status") in ("retrieved", "resumed_checkpoint", "offline_skipped")
+    # A transport outage is not evidence of market closure. Keep the old
+    # official venue identities and stable source facts when a publisher fails.
+    # This gate is independent of the overall loss budget: even ONE missing
+    # market from the unavailable publisher must fail release.
+    source_prefixes = {
+        "milano":"mi-mss-", "firenze":"fi-feelflorence-",
+        "lombardia":"lo-mercap-", "corciano":"pg-corciano-",
+        "bologna":"bo-open-",
+    }
+    stable_outage_fields = (
+        "nome","citta","provincia","regione","indirizzo",
+        "lat","lng","position_quality","status","verificato_il",
+        "fonte","url_fonte",
+    )
+    carried_forward={}
+    unsafe_outages=[]
+    for publisher,entry in sorted(sources_status.items()):
+        if entry.get("status")!="unavailable":
+            continue
+        prefix=source_prefixes.get(publisher)
+        if (prefix is None or entry.get("official") is not True
+                or type(entry.get("records")) is not int
+                or entry["records"]!=0):
+            unsafe_outages.append(publisher+":untrusted_outage")
+            continue
+        old_official={sid for sid in old_ids if sid.startswith(prefix)}
+        new_official={sid for sid in new_ids if sid.startswith(prefix)}
+        if old_official!=new_official:
+            unsafe_outages.append(publisher+":source_identity_set_changed")
+            continue
+        if any(
+            any(old_by_id[sid].get(k)!=new_by_id[sid].get(k)
+                for k in stable_outage_fields)
+            for sid in old_official
+        ):
+            unsafe_outages.append(publisher+":source_facts_changed")
+            continue
+        carried_forward[publisher]=len(old_official)
+    # An unresponsive publisher can be carried forward, with its outage
+    # visible in sources_status, while unrelated verified sources still run.
+    source_health=not unsafe_outages and all(
+        entry.get("status") in ("retrieved","resumed_checkpoint",
+                                "offline_skipped","unavailable")
         for entry in sources_status.values()
     )
     checks = {
@@ -322,6 +363,7 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
             float(gate["max_unknown_source_share_increase"]) + 1e-12
         ),
         "official_sources_available": source_health,
+        "unavailable_official_sources_preserved": not unsafe_outages,
         "forecast_60d": new_report["compact_index_future_coverage"]["60"] >=
             int(fgate["min_records_with_future_date_at_plus_60_days"]),
         "index_under_absolute_budget": new_index <= int(gate["max_gzip_index_bytes"]),
@@ -355,6 +397,8 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
         "unknown_source_share_before": round(old_unknown_share, 6),
         "unknown_source_share_after": round(new_unknown_share, 6),
         "sources": sources_status,
+        "unavailable_source_records_carried_forward": carried_forward,
+        "unavailable_source_quarantine_failures": unsafe_outages,
         "forecasts": forecast_stats,
         "gates": checks,
     }

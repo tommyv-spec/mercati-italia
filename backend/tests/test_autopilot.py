@@ -81,6 +81,74 @@ class AutopilotTests(unittest.TestCase):
                 self.assertTrue((out/"checkpoints"/(phase+".json")).is_file())
             self.assertFalse(findings["published"])
 
+    def test_source_network_outage_preserves_all_historical_ids_and_accepts_new_official_source(self):
+        old=[market("mi-mss-existing"),market("lo-mercap-existing")]
+        fresh=[*old,market("bo-open-approved-new")]
+        prior={
+            "snapshot_total":len(old),
+            "compact_index_future_coverage":{"60":15,"90":12},
+            "sizes":{"national_index_gzip_bytes":300},
+            "fields_missing":{"source_url":0},
+            "documented_verified_records":0,"position_quality":{},
+        }
+        newer={**prior,"snapshot_total":len(fresh),
+               "sizes":{"national_index_gzip_bytes":360}}
+        statuses={
+            "milano":{"status":"unavailable","official":True,"records":0},
+            "lombardia":{"status":"unavailable","official":True,"records":0},
+            "firenze":{"status":"retrieved","official":True,"records":4},
+        }
+        result=compare_candidates(old,fresh,prior,newer,policy(),
+                                  {"all_dates_marked_forecast":True},statuses)
+        self.assertTrue(result["approved"],result["gates"])
+        self.assertTrue(result["gates"]["official_sources_available"])
+        self.assertTrue(result["gates"]["unavailable_official_sources_preserved"])
+        self.assertEqual(result["unavailable_source_records_carried_forward"],
+                         {"lombardia":1,"milano":1})
+        self.assertEqual(result["added_source_ids"],1)
+        self.assertEqual(result["removed_source_ids"],0)
+
+    def test_source_outage_fails_when_its_id_or_location_is_silently_rewritten(self):
+        old=[market("mi-mss-existing"),market("lo-mercap-existing")]
+        report={
+            "snapshot_total":2,
+            "compact_index_future_coverage":{"60":12,"90":10},
+            "sizes":{"national_index_gzip_bytes":300},
+            "fields_missing":{"source_url":0},
+            "documented_verified_records":0,"position_quality":{},
+        }
+        outages={"milano":{"status":"unavailable","official":True,"records":0}}
+        for scenario,after in (
+            ("removed",old[1:]),
+            ("changed",[{**old[0],"indirizzo":"Via Trasferita"},old[1]]),
+            ("injected",[*old,market("mi-mss-invented")]),
+        ):
+            with self.subTest(scenario=scenario):
+                result=compare_candidates(old,after,report,
+                    {**report,"snapshot_total":len(after)},
+                    policy(),{"all_dates_marked_forecast":True},outages)
+                self.assertFalse(result["approved"])
+                self.assertFalse(result["gates"]["unavailable_official_sources_preserved"])
+                self.assertTrue(result["unavailable_source_quarantine_failures"])
+
+    def test_untrusted_source_failure_cannot_claim_safe_carry_forward(self):
+        old=[market("mi-mss-existing")]
+        quality={"snapshot_total":1,
+                 "compact_index_future_coverage":{"60":12,"90":10},
+                 "sizes":{"national_index_gzip_bytes":300},
+                 "fields_missing":{},"documented_verified_records":0,
+                 "position_quality":{}}
+        for source in (
+            {"status":"unavailable","official":False,"records":0},
+            {"status":"unavailable","official":True,"records":3},
+            {"status":"unavailable","official":True,"records":"0"},
+        ):
+            result=compare_candidates(old,old,quality,quality,policy(),
+                                      {"all_dates_marked_forecast":True},
+                                      {"milano":source})
+            self.assertFalse(result["approved"])
+            self.assertFalse(result["gates"]["official_sources_available"])
+
     def test_released_ISTAT_corrections_only_allow_exact_reviewed_city_change(self):
         before=market("city-old")
         before["citta"]="Roma"
