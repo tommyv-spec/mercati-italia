@@ -83,3 +83,17 @@ Per l'API Opendatasoft v1 di Bologna il parser condiviso:
 - separa il limite di ammissione di un'inventario comunale storico (fino a 730 giorni) dal limite per previsioni di apertura (365 giorni). Bologna è del 2 aprile 2025: niente appuntamenti futuri inferiti.
 
 Restano necessari controlli per API paginate, conflitti trasversali e dati multi-giorno; non affermare che tutte le fonti candidate siano già importabili.
+
+
+## Fonti ufficiali non raggiungibili: conservazione controllata
+
+Un errore di rete non dimostra che un mercato sia chiuso. Il controllo Autopilot può conservare i dati di una fonte temporaneamente irraggiungibile senza bloccare le nuove sedi approvate da altri editori, **soltanto se**:
+
+- l'importer appartiene alla lista ufficiale, lo stato è `unavailable` e contiene zero righe nuove;
+- tutti i precedenti ID ufficiali della fonte rimangono nel catalogo; nessun ID dello stesso prefisso viene creato;
+- nome, città, provincia, indirizzo, GPS, fonte, stato e verifica delle sue schede restano identici;
+- restano validi gli altri controlli su date, conferme, prova dell'origine, indice statico e autorizzazione DEV.
+
+Lo stato della fonte resta visibile come `unavailable` nel report, non come fonte verificata nel giorno corrente. Un ID scomparso o un campo fondamentale cambiato blocca il rilascio. Le previsioni generate da regole storiche già approvate sono consentite solo se marcate come previste, mai confermate.
+
+Test reale (13 ottobre 2026): Milano e Lombardia non raggiungibili dal PC Windows; tutti gli **85 + 1.127 ID ufficiali** sono stati preservati. Il lotto Bologna di **5 schede non confermate** supera il confronto indipendente sulla candidatura da **13.789 schede**, senza deletions o GPS inventato. La pubblicazione effettiva nel sito DEV rimane soggetta ai job GitHub e ai relativi test del browser.
