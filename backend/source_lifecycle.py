@@ -469,8 +469,11 @@ def inspect_normalized(profile, records, catalog, prior=None, review_metrics=Non
 
 
 def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
-        source_dispositions=None,probe_raw=False,raw_fetch=limited_fetch,today=None):
+        source_dispositions=None,probe_raw=False,stage_raw=False,
+        raw_fetch=limited_fetch,today=None):
     today=today or date.today()
+    if stage_raw and not probe_raw:
+        raise ValueError("Staging requires a complete newly sampled source snapshot")
     validate_contracts(config)
     by_old = (previous or {}).get("sources",{})
     if previous is not None and (
@@ -504,6 +507,21 @@ def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
                 if too_large or len(blob)>profile["max_bytes"]:
                     raise ValueError("Publisher file exceeds approved response size")
                 reports[sid]=inspect_raw(profile,blob,catalog,by_old.get(sid),today)
+                if stage_raw and profile["row_kind"] in MARKET_KINDS:
+                    # Reuse the SAME downloaded bytes; never publish candidate
+                    # rows and never re-request the source.
+                    from source_contract_ingest import stage as stage_source_venues
+                    staged,source_stage=stage_source_venues(
+                        profile,blob,catalog,today=today,
+                        observed_source_sha256=reports[sid]["source_snapshot_sha256"],
+                    )
+                    if (source_stage.get("existing_market_identities_deleted")!=0
+                            or source_stage.get("verified_openings_created")!=0
+                            or source_stage.get("precise_coordinates_created")!=0
+                            or source_stage.get("safe_candidates_not_published")!=len(staged)):
+                        raise ValueError("Generic staging falsely published or verified a market")
+                    reports[sid]["source_stage"]=source_stage
+                    status["source_only_stage_reviews"]+=1
                 status["source_level_raw_profiles_checked"]+=1
             except (ValueError,OSError,TimeoutError) as exc:
                 # Unavailable HTTPS endpoint != vanished market. A parser
@@ -602,6 +620,7 @@ def main():
     p.add_argument("--source-dir",type=Path)
     p.add_argument("--previous",type=Path)
     p.add_argument("--probe-raw",action="store_true")
+    p.add_argument("--stage-raw",action="store_true")
     p.add_argument("--today",type=date.fromisoformat,default=date.today())
     p.add_argument("--out",type=Path,required=True)
     p.add_argument("--report",type=Path,required=True)
@@ -611,7 +630,7 @@ def main():
     prior=json.loads(args.previous.read_text("utf-8")) if (
         args.previous and args.previous.is_file()) else None
     result=run(cfg,catalog,source_dir=args.source_dir,previous=prior,
-               probe_raw=args.probe_raw,today=args.today)
+               probe_raw=args.probe_raw,stage_raw=args.stage_raw,today=args.today)
     for path in (args.out,args.report):
         path.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+"\n","utf-8")
