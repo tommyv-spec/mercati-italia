@@ -168,8 +168,10 @@ class GenericMunicipalContractTests(unittest.TestCase):
         # Duplicate only the name/identity; source still has four rows.
         input_[-1]=input_[-1].replace("MERCATO DI ELLERA","MERCATO DI MANTIGNANA")
         csv_="".join(input_).encode()
-        created,report=stage(PROFILE,csv_,[],today=TODAY) if False else stage(
-            PROFILE,csv_,[{"slug":"other","citta":"Firenze","regione":"Toscana"}],today=TODAY
+        created,report=stage(
+            PROFILE,csv_,
+            [{"slug":"other","citta":"Firenze","regione":"Toscana"}],
+            today=TODAY
         )
         self.assertEqual(report["review_reason_counts"]["duplicate_publisher_identity"],2)
         self.assertNotIn("pg-corciano-mercato-di-mantignana",{x["slug"] for x in created})
@@ -218,8 +220,9 @@ class GenericMunicipalContractTests(unittest.TestCase):
     def test_contract_presentation_has_bounded_source_level_mapping(self):
         x=copy.deepcopy(PROFILE)
         x["presentation"]["address_suffix_name_prefix"]="CITY:"
-        with self.assertRaisesRegex(ValueError,"source"):
-            venue_row(x,parse_rows(x,BLOB)[0],TODAY)
+        venue,reason,_=venue_row(x,parse_rows(x,BLOB)[0],TODAY)
+        self.assertIsNone(venue)
+        self.assertEqual(reason,"invalid_source_row")
         for key,value in (("unknown_script","exec"),("title_case_address",[])):
             y=copy.deepcopy(PROFILE)
             y["presentation"][key]=value
