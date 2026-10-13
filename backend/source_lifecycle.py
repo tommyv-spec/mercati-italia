@@ -22,7 +22,7 @@ import unicodedata
 from collections import Counter
 from datetime import date
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 
 from merge_catalog import load_existing
 from source_dispositions import reconcile as reconcile_reviewed_source_ids
@@ -142,6 +142,53 @@ def validate_contracts(config):
                         not 0<=item["max_source_age_days"]<=730):
                     raise ValueError("Raw source cannot be approved without schema/rights review")
                 date.fromisoformat(item["source_dataset_date"])
+                forecast_age=item.get("max_forecast_source_age_days",item["max_source_age_days"])
+                if (type(forecast_age) is not int
+                        or not 0<=forecast_age<=item["max_source_age_days"]):
+                    raise ValueError("Forecast age exceeds reviewed source date quality")
+                if item.get("json_container") is not None:
+                    if (item["format"]!="JSON"
+                            or item["json_container"]!="opendatasoft_v1"
+                            or not re.fullmatch(r"[a-z0-9-]{3,80}",str(item.get("api_dataset_id") or ""))
+                            or parse_qs(urlsplit(item["resource_url"]).query).get("dataset")!=[item["api_dataset_id"]]
+                            or "recordid" not in item["schema_columns"]
+                            or "recordid" not in item["identity_fields"]):
+                        raise ValueError("Unknown publisher JSON envelope or identity")
+                for fields_key in ("venue_identity_fields",):
+                    fields=item.get(fields_key,[])
+                    if (not isinstance(fields,list) or len(fields)>5
+                            or any(f not in item["schema_columns"] for f in fields)
+                            or len(set(fields))!=len(fields)):
+                        raise ValueError("Unreviewed physical venue key")
+                market_rules=item.get("market_filters_any",[])
+                if (not isinstance(market_rules,list) or len(market_rules)>8
+                        or any(not isinstance(r,dict) or not r or len(r)>4 or
+                               any(k not in item["schema_columns"]
+                                   or not isinstance(v,str) or not 1<=len(v)<=80
+                                   for k,v in r.items()) for r in market_rules)):
+                    raise ValueError("Unreviewed explicit market type filter")
+                held=item.get("hold_address_contains",[])
+                if (not isinstance(held,list) or len(held)>6
+                        or any(not isinstance(s,str) or not 3<=len(s)<=80 for s in held)):
+                    raise ValueError("Invalid unsafe address hold rule")
+                city_floor=item.get("generic_city_aggregate_min_distinct_addresses",0)
+                if type(city_floor) is not int or not 0<=city_floor<=100 or (
+                        city_floor and city_floor<10):
+                    raise ValueError("Generic city override requires many official venues")
+                if item.get("hours_text_field") is not None and (
+                        item["hours_text_field"] not in item["schema_columns"]):
+                    raise ValueError("Unreviewed source hour text field")
+                cmap=item.get("category_map")
+                if cmap is not None:
+                    if (not isinstance(cmap,dict)
+                            or cmap.get("field") not in item["schema_columns"]
+                            or not isinstance(cmap.get("values"),dict)
+                            or len(cmap["values"])>12
+                            or any(not isinstance(k,str) or not k
+                                   or v not in {"misto","alimentare","antiquariato",
+                                               "artigianato","usato","vintage_abbigliamento"}
+                                   for k,v in cmap["values"].items())):
+                        raise ValueError("Unreviewed market category mapping")
                 for name in ("name_field","weekday_field"):
                     if item.get(name) not in item["schema_columns"]:
                         raise ValueError("Market source field missing from inspected schema")
@@ -189,11 +236,32 @@ def parse_rows(profile,blob):
             raise ValueError("Truncated or malformed publisher CSV row")
     else:
         raw=json.loads(decoded)
-        if isinstance(raw,dict):
-            raw=raw.get("records")
-        if not isinstance(raw,list) or not all(isinstance(x,dict) for x in raw):
-            raise ValueError("JSON publisher snapshot has no real venue records")
-        rows=raw
+        if profile.get("json_container")=="opendatasoft_v1":
+            if (not isinstance(raw,dict) or type(raw.get("nhits")) is not int
+                    or not isinstance(raw.get("records"),list)
+                    or raw["nhits"]!=len(raw["records"])):
+                raise ValueError("Incomplete Opendatasoft publisher query snapshot")
+            rows=[]
+            for item in raw["records"]:
+                if (not isinstance(item,dict)
+                        or item.get("datasetid")!=profile["api_dataset_id"]
+                        or not isinstance(item.get("fields"),dict)
+                        or not isinstance(item.get("recordid"),str)
+                        or not re.fullmatch(r"[0-9a-f]{40}",item["recordid"])):
+                    raise ValueError("Missing official Opendatasoft stable record identity")
+                fields=item["fields"]
+                if not set(fields).issubset(profile["schema_columns"]):
+                    raise ValueError("Unexpected Opendatasoft source field")
+                row={col:fields.get(col) for col in profile["schema_columns"]
+                     if col!="recordid"}
+                row["recordid"]=item["recordid"]
+                rows.append(row)
+        else:
+            if isinstance(raw,dict):
+                raw=raw.get("records")
+            if not isinstance(raw,list) or not all(isinstance(x,dict) for x in raw):
+                raise ValueError("JSON publisher snapshot has no real venue records")
+            rows=raw
         if any(set(row)!=set(profile["schema_columns"]) for row in rows):
             raise ValueError("Publisher changed JSON object schema")
     if not profile["min_rows"]<=len(rows)<=profile["max_rows"]:
@@ -222,6 +290,11 @@ def candidate_record(profile,row,*,today):
     filter_rule=profile.get("market_filter") or {}
     if filter_rule and not str(row.get(filter_rule["field"]) or "").startswith(filter_rule["starts_with"]):
         return None,"not_a_market_venue",None
+    typed_filters=profile.get("market_filters_any",[])
+    if typed_filters and not any(
+            all(canonical(row.get(key))==canonical(value) for key,value in rule.items())
+            for rule in typed_filters):
+        return None,"not_a_market_venue",None
     identity=[canonical(row.get(col)) for col in profile["identity_fields"]]
     name=str(row.get(profile["name_field"]) or "").strip()
     road=" ".join(str(row.get(col) or "").strip() for col in profile.get("street_fields",[])).strip()
@@ -244,15 +317,24 @@ def candidate_record(profile,row,*,today):
     age=(today-updated).days
     if age < 0:
         return None,"dataset_date_in_future",None
-    forecast_eligible=(d is not None and age<=profile["max_source_age_days"])
+    forecast_eligible=(d is not None and age<=profile.get(
+        "max_forecast_source_age_days",profile["max_source_age_days"]))
     recurrence="settimanale - "+WEEKDAYS[d] if forecast_eligible else "Calendario da verificare"
+    if profile.get("hours_text_field") and not (start and end):
+        raw_hours=str(row.get(profile["hours_text_field"]) or "").strip()
+        match=re.fullmatch(r"((?:[01]\d|2[0-3]):[0-5]\d)\s*[-–]\s*((?:[01]\d|2[0-3]):[0-5]\d)",raw_hours)
+        if match and match.group(1)<match.group(2):
+            start,end=match.groups()
+    c_map=profile.get("category_map") or {}
+    category=next((value for key,value in c_map.get("values",{}).items()
+                   if canonical(row.get(c_map["field"]))==canonical(key)),"misto")
     venue={
         "slug":slug,"nome":name[:160],
         "citta":profile["municipality"],"provincia":profile["province"],
         "regione":profile["region"],"indirizzo":road,
         "lat":None,"lng":None,"position_quality":"sconosciuta",
         "navigazione_sospesa_motivo":NAVIGATION_HOLD,
-        "categoria":"misto","tags":["mercato comunale"],"status":"non_confermato",
+        "categoria":category,"tags":["mercato comunale"],"status":"non_confermato",
         "date":[],"date_quality":"sconosciuta",
         "ricorrenza_testo":recurrence,
         "orario_testo":(start+"–"+end+" (da verificare con il Comune)") if start and end else "",

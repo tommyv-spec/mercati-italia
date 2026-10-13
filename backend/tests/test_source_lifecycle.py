@@ -13,8 +13,11 @@ from source_lifecycle import (
     candidate_record,weekday,run,digest,markdown
 )
 
-CFG=json.loads((Path(__file__).resolve().parents[1]/
-                "data/market-source-contracts.json").read_text("utf-8"))
+FULL_CFG=json.loads((Path(__file__).resolve().parents[1]/
+                     "data/market-source-contracts.json").read_text("utf-8"))
+CFG=copy.deepcopy(FULL_CFG)
+# Existing Corciano fixture is intentionally independent of Bologna.
+CFG["raw_profiles"]=CFG["raw_profiles"][:1]
 RAW=CFG["raw_profiles"][0]
 OFFICIAL=next(x for x in CFG["normalized_profiles"] if x["id"]=="corciano")
 HEADER=RAW["schema_columns"]
@@ -67,9 +70,9 @@ def catalog():
 
 class DeclarativeSourceLifecycleTests(unittest.TestCase):
     def test_contracts_cover_five_existing_adapters_and_one_raw_pilot(self):
-        c=validate_contracts(CFG)
+        c=validate_contracts(FULL_CFG)
         self.assertEqual(len(c["normalized_profiles"]),5)
-        self.assertEqual(len(c["raw_profiles"]),1)
+        self.assertEqual(len(c["raw_profiles"]),2)
         self.assertEqual(RAW["source_date_scope"],"dataset_not_per_market")
         self.assertEqual(RAW["publication_mode"],"approved_dev_only")
         self.assertEqual(RAW["max_new_ids_per_run"],2)

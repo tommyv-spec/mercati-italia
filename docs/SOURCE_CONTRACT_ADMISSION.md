@@ -4,7 +4,7 @@ Aggiornato il 13 ottobre 2026. **Lo standard è il dataset, non la singola sched
 
 ## Stato verificabile
 
-Il sistema generico esiste già nel branch DEV. Dal 13 ottobre 2026 il registro `backend/data/approved-source-admissions.json` contiene **una fonte comunale autorizzata in DEV**: il CSV ufficiale di Corciano. Il file rimane identico allo snapshot 1c426270... e l'audit sul catalogo da 13.784 righe trova due ID ufficiali già presenti e due ID non pubblicabili per possibili doppioni. **Zero nuove schede e zero aperture confermate**. Contratto e certificato pin con SHA; altri dataset non sono autorizzati.
+Il branch DEV ha due contratti generici autorizzati: Corciano (quattro righe, due ID già pubblicati, due sovrapposizioni in quarantena) e Bologna (dataset comunale filtrato, 48 righe di mercato e 39 sedi attualmente ammissibili). Nella prima simulazione del ciclo Bologna sono state aggiunte **5 schede candidate**, con **34 rinviate a cicli successivi**. Ogni fonte ha un certificato e fingerprint Git. Sono schede DEV `non_confermato`, non nuove aperture verificate. Nessuna modifica automatica alla produzione.
 
 ## Pipeline
 
@@ -34,7 +34,7 @@ Il sistema generico esiste già nel branch DEV. Dal 13 ottobre 2026 il registro 
 - backend/source_lifecycle.py: analisi versionata di nuovi ID, scomparsi, cambi di schema, anagrafiche e staging. Riutilizza gli stessi byte scaricati.
 - backend/source_contract_ingest.py: generazione uniforme delle schede candidate da CSV/JSON, senza duplicati. Una fonte non approvata non può diventare pubblica.
 - backend/source_contract_parity.py: confronto con il precedente importer sullo STESSO CSV. Il pilot Corciano ha riprodotto tutti e quattro gli ID, indirizzi, giorni e orari in un test indipendente.
-- backend/data/approved-source-admissions.json: autorizzazione a livello di fonte. È vuoto finché diritti, identità e schema non sono stati esaminati.
+- backend/data/approved-source-admissions.json: autorizzazioni firmate per fonte; al momento sono due e valgono solo su DEV.
 - backend/source_contract_activation.py: ammette in DEV tutti i record non ambigui di una fonte autorizzata, rispetta il limite per fonte e isola sorgenti non disponibili.
 - backend/autopilot.py: orchestrazione, previsione, export statico, controlli, assenza di chiamate a consumo per visita.
 - backend/reviewed_city_static_guard.py e backend/autopilot_history.py: proteggono i vecchi dati e rendicontano separatamente le nuove schede di fonti approvate.
@@ -73,4 +73,13 @@ Workflow read-only originale e parity:
 
 Il convertitore generico attuale copre file CSV/JSON piccoli e URL che superano i controlli HTTPS/host già ammessi. Per provider di dimensione maggiore, API paginata, geodati complessi, PDF non strutturati o un nuovo dominio ufficiale, bisogna estendere la gestione di quel TIPO DI SORGENTE, non scrivere eccezioni per ogni mercato. Non affermare che tutte le 43 fonti candidate siano già importabili.
 
-La prima fonte approvata è Corciano, CC BY 4.0 verificata sul sito del Comune e su dati.gov.it. La licenza è valida per il riuso con attribuzione, ma NON prova aperture, orari aggiornati o localizzazioni precise. Ogni nuova fonte richiede ancora review su editor, licenza, identità e schema. Il numero di record pubblicabili può restare zero dopo un'attivazione valida.
+Corciano e Bologna sono fonti CC BY 4.0 con attribuzione. La licenza NON prova aperture, orari 2026 o localizzazioni precise. Ogni fonte nuova richiede review di editore, licenza, identità e schema; i singoli mercati non richiedono nuova approvazione. Una fonte può produrre zero record aggiuntivi se sono tutti già presenti o ambigui.
+
+Per l'API Opendatasoft v1 di Bologna il parser condiviso:
+- proietta soltanto colonne dichiarate, verifica `datasetid`, `recordid` esadecimale SHA-1 da 40 caratteri e `nhits==len(records)` (niente pagine incomplete);
+- filtra per tipi di mercato esplicitamente autorizzati, escludendo 31 altre righe della query corrente;
+- trattiene sede ripetuta su più giorni, stesso nome/luogo su categorie diverse, traslochi temporanei e collisioni tra fonti;
+- permette di superare la scheda testuale generica di una città senza indirizzo, **solo quando** il dataset contiene almeno dieci indirizzi fisici distinti e il vecchio calendario non è identificabile;
+- separa il limite di ammissione di un'inventario comunale storico (fino a 730 giorni) dal limite per previsioni di apertura (365 giorni). Bologna è del 2 aprile 2025: niente appuntamenti futuri inferiti.
+
+Restano necessari controlli per API paginate, conflitti trasversali e dati multi-giorno; non affermare che tutte le fonti candidate siano già importabili.

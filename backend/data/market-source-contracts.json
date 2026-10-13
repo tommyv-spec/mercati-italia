@@ -165,6 +165,87 @@
         "title_case_address": true,
         "address_suffix_name_prefix": "MERCATO DI "
       }
+    },
+    {
+      "id": "bologna-generic-venues",
+      "enabled": true,
+      "publisher": "Comune di Bologna",
+      "source_id": "bologna",
+      "row_kind": "market_venue",
+      "resource_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+      "attribution_url": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "format": "JSON",
+      "json_container": "opendatasoft_v1",
+      "api_dataset_id": "mercati-e-fiere",
+      "max_bytes": 65536,
+      "min_rows": 70,
+      "max_rows": 100,
+      "schema_columns": [
+        "recordid",
+        "denominazione",
+        "ubicazione",
+        "tipologia",
+        "tipologia_mercato",
+        "giorni_svolgimento",
+        "orario_svolgimento"
+      ],
+      "identity_fields": [
+        "recordid"
+      ],
+      "venue_identity_fields": [
+        "denominazione",
+        "ubicazione",
+        "tipologia",
+        "tipologia_mercato"
+      ],
+      "name_field": "denominazione",
+      "street_fields": [
+        "ubicazione"
+      ],
+      "weekday_field": "giorni_svolgimento",
+      "hours_fields": [],
+      "hours_text_field": "orario_svolgimento",
+      "market_filters_any": [
+        {
+          "tipologia": "mercato",
+          "tipologia_mercato": "rionale"
+        },
+        {
+          "tipologia": "mercato",
+          "tipologia_mercato": "periodico"
+        },
+        {
+          "tipologia": "mercato produttori agricoli"
+        }
+      ],
+      "category_map": {
+        "field": "tipologia",
+        "values": {
+          "mercato produttori agricoli": "alimentare"
+        }
+      },
+      "hold_address_contains": [
+        "trasferimento temporaneo"
+      ],
+      "generic_city_aggregate_min_distinct_addresses": 10,
+      "municipality": "Bologna",
+      "province": "BO",
+      "region": "Emilia-Romagna",
+      "catalog_slug_prefix": "bo-open-",
+      "source_dataset_date": "2025-04-02",
+      "source_date_scope": "dataset_not_per_market",
+      "max_source_age_days": 730,
+      "max_forecast_source_age_days": 365,
+      "legal_reuse_reviewed": true,
+      "publication_mode": "approved_dev_only",
+      "max_new_ids_per_run": 5,
+      "coordinates": "ignored_unless_independently_source_verified",
+      "notes": "Opendatasoft v1 official recordid preserved as bo-open-*; city-level legacy pages without address/calendar are summaries, not proof of all named local venues; one row per same physical venue and separate days held until grouping. Publisher data processed 2025-04-02, no 2026 event confirmations; GPS ignored.",
+      "presentation": {
+        "title_case_name": true,
+        "title_case_address": true,
+        "name_prefix": "Mercato "
+      }
     }
   ]
 }

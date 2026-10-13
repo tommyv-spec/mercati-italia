@@ -16,11 +16,12 @@ ACTIVE_REGISTRY=json.loads((ROOT/"approved-source-admissions.json").read_text("u
 EMPTY=copy.deepcopy(ACTIVE_REGISTRY)
 EMPTY["approvals"]=[]
 NO_ACTIVE_CONTRACT=copy.deepcopy(CONTRACT)
-NO_ACTIVE_CONTRACT["raw_profiles"][0].update({
-    "publication_mode":"shadow_only",
-    "legal_reuse_reviewed":False,
-    "max_new_ids_per_run":0,
-})
+for item in NO_ACTIVE_CONTRACT["raw_profiles"]:
+    item.update({
+        "publication_mode":"shadow_only",
+        "legal_reuse_reviewed":False,
+        "max_new_ids_per_run":0,
+    })
 RAW=CONTRACT["raw_profiles"][0]
 TODAY=date(2026,10,13)
 BLOB=DATA.encode("utf-8")
@@ -28,6 +29,7 @@ BLOB=DATA.encode("utf-8")
 
 def enabled_fixture():
     cfg=copy.deepcopy(CONTRACT)
+    cfg["raw_profiles"]=cfg["raw_profiles"][:1]
     p=cfg["raw_profiles"][0]
     p["publication_mode"]="approved_dev_only"
     p["legal_reuse_reviewed"]=True
@@ -71,15 +73,19 @@ class GenericActivationTests(unittest.TestCase):
         self.assertEqual(len(base),13784)
         self.assertEqual(ACTIVE_REGISTRY['approvals'][0]['max_new_ids'],2)
         before=copy.deepcopy(base)
-        result,report=activate(CONTRACT,ACTIVE_REGISTRY,base,today=TODAY,
+        single=copy.deepcopy(CONTRACT)
+        single["raw_profiles"]=single["raw_profiles"][:1]
+        registry=copy.deepcopy(ACTIVE_REGISTRY)
+        registry["approvals"]=registry["approvals"][:1]
+        result,report=activate(single,registry,base,today=TODAY,
                                fetch=lambda url:(BLOB,False))
         self.assertEqual(result,before)
         self.assertEqual(report['source_contracts_active'],1)
         self.assertEqual(report['new_market_ids'],[])
         self.assertEqual(report['status_counts']['approved_sources_reconciled'],1)
         self.assertEqual(report['per_source'][RAW['id']]['source_eligible_candidates'],0)
-        self.assertTrue(validate_release(base,result,report,CONTRACT,ACTIVE_REGISTRY)['release_safe'])
-        replay,again=activate(CONTRACT,ACTIVE_REGISTRY,result,today=TODAY,
+        self.assertTrue(validate_release(base,result,report,single,registry)['release_safe'])
+        replay,again=activate(single,registry,result,today=TODAY,
                               fetch=lambda url:(BLOB,False))
         self.assertEqual(result,replay)
         self.assertEqual(again['new_market_ids'],[])
