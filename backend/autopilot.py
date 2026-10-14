@@ -1142,8 +1142,15 @@ def run(args):
             if x["slug"] not in reviewed_roma_added
             and x["slug"] not in reviewed_generic_added
         ]
+        # The source-scoped Milan proof starts at the SAME post-merge,
+        # post-municipality cohort that its source report certified. Using
+        # old_rows from the previous publication fails when another approved
+        # official publisher adds a legitimate ID in the current cycle.
+        # The upstream merge/dedup and generic-admission guards independently
+        # authorize those identities; this check still enforces an EXACT ID
+        # match after subtracting only the proven later additions.
         milano_static_guard = verify_milano_2026_exported(
-            old_rows, milano_comparable, milano_report, pdf_evidence, gis_evidence, args.today
+            reviewed_rows, milano_comparable, milano_report, pdf_evidence, gis_evidence, args.today
         )
         if milano_static_guard.get("quality_safe") is not True:
             raise ValueError("Reviewed Milano 2026 forecasts lost source/safety in final assets")
