@@ -32,7 +32,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-10-13",
+      "checked_date": "2026-10-14",
       "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
       "status": "schema_preview_only",
       "viability": "venue_inventory_missing_visit_days"
@@ -50,7 +50,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "4a3c6272-1163-449f-93ae-cb1fd97a4952": {
-      "checked_date": "2026-10-12",
+      "checked_date": "2026-10-14",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -170,7 +170,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "ede498b0-03e3-48e3-88fa-c3753604ad4f": {
-      "checked_date": "2026-10-12",
+      "checked_date": "2026-10-14",
       "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
       "status": "schema_preview_only",
       "viability": "historical_aggregate_not_venues"
@@ -182,7 +182,7 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-13",
+  "reference_date": "2026-10-14",
   "reports": [
     {
       "adapter_enabled": false,
@@ -207,16 +207,16 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "3d6e405a-32f6-46ed-93be-854144c08a06",
+      "id": "4a3c6272-1163-449f-93ae-cb1fd97a4952",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 315,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/4afb27b6-e3a4-4f25-9dae-5c1fa925e4d9.csv",
+      "sample_bytes": 1715,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/04bc0bfa-d895-49a9-a603-150234cc4ee9.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Soave",
+      "title": "Fiere e mercati - Comune di Fontaniva",
       "truncated": false
     },
     {
@@ -255,16 +255,16 @@
         "produttori_cessazioni"
       ],
       "format": "CSV",
-      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
+      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
       "review_blockers": [
         "explicit_market_name_missing"
       ],
       "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
+      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
       "schema_viability": "historical_aggregate_not_venues",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati mensili",
+      "title": "Censimento dei mercati quindicinali",
       "truncated": true
     },
     {

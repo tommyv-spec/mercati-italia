@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 235,
-    "future_dates_missing": 1878,
+    "coordinates_missing": 240,
+    "future_dates_missing": 1883,
     "hours_missing": 10844,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 765,
     "suspicious_city": 2,
-    "total": 13784,
-    "without_individual_verification": 13784
+    "total": 13790,
+    "without_individual_verification": 13790
   },
   "per_region": [
     {
@@ -47,10 +47,11 @@
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 863,
+      "markets": 868,
       "hours_missing": 575,
       "address_missing": 168,
-      "future_dates_missing": 204
+      "future_dates_missing": 209,
+      "coordinates_missing": 5
     },
     {
       "region": "Friuli Venezia Giulia",
@@ -76,7 +77,7 @@
     },
     {
       "region": "Lombardia",
-      "markets": 3947,
+      "markets": 3948,
       "hours_missing": 2766,
       "address_missing": 754,
       "future_dates_missing": 535,
@@ -175,7 +176,7 @@
     },
     {
       "source": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
-      "records": 1127
+      "records": 1128
     },
     {
       "source": "cosedicasa.com",
@@ -665,11 +666,11 @@
   ],
   "potential_duplicates_are_not_confirmed": true,
   "baseline_delta": {
-    "total": 0,
+    "total": 6,
     "hours_missing": 0,
     "address_missing": 0,
-    "coordinates_missing": 0,
-    "future_dates_missing": 0,
+    "coordinates_missing": 5,
+    "future_dates_missing": 5,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0

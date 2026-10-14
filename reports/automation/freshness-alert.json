@@ -1,17 +1,19 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 13,784\n- Senza verifica documentata: 13,784\n- Fonte vecchia oltre soglia: 13\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: eee235cf915b1090",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 13,790\n- Senza verifica documentata: 13,790\n- Fonte vecchia oltre soglia: 18\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: Regione Lombardia\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: ac1e821befb2247c",
   "problems": {
     "municipal_csv_changed": [],
-    "publisher_new_data_claims": [],
+    "publisher_new_data_claims": [
+      "Regione Lombardia"
+    ],
     "publisher_unavailable": [],
     "stale_forecast": 0,
-    "stale_source": 13,
-    "total": 13784,
+    "stale_source": 18,
+    "total": 13790,
     "unknown_source_date": 0,
     "unsupported_confirmation": 0,
-    "without_verification": 13784
+    "without_verification": 13790
   },
-  "signature": "eee235cf915b1090",
+  "signature": "ac1e821befb2247c",
   "title": "[Mercati autopilot] Dati da verificare"
 }
