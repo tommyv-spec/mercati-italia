@@ -62,7 +62,7 @@
       "viability": "manual_schema_review_required"
     },
     "60fab25c-12d7-43f9-b8e7-7ef709d58aa2": {
-      "checked_date": "2026-10-12",
+      "checked_date": "2026-10-14",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -176,7 +176,7 @@
       "viability": "historical_aggregate_not_venues"
     },
     "f4407fb8-5e36-4311-8422-02d463741780": {
-      "checked_date": "2026-10-12",
+      "checked_date": "2026-10-14",
       "column_fingerprint": "e4f54283ac5b9a78b0b91e16f489d17769814f3d53625f14a483545b636de3c8",
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
@@ -207,16 +207,16 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "4a3c6272-1163-449f-93ae-cb1fd97a4952",
+      "id": "60fab25c-12d7-43f9-b8e7-7ef709d58aa2",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 1715,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/04bc0bfa-d895-49a9-a603-150234cc4ee9.csv",
+      "sample_bytes": 608,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/d305152b-ec6a-466e-b417-02316d603d0c.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Fontaniva",
+      "title": "Fiere e mercati - Comune di Badia Polesine",
       "truncated": false
     },
     {
@@ -227,7 +227,6 @@
           "comune"
         ],
         "statistics_count": [
-          "mercati",
           "attivazioni",
           "cessazioni"
         ],
@@ -239,11 +238,9 @@
         "comune",
         "provincia",
         "anno",
-        "mercati",
         "totale",
         "attivazioni",
         "cessazioni",
-        "posteggi",
         "alimentare_totale",
         "alimentare_attivazioni",
         "alimentare_cessazioni",
@@ -255,16 +252,16 @@
         "produttori_cessazioni"
       ],
       "format": "CSV",
-      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
+      "id": "f4407fb8-5e36-4311-8422-02d463741780",
       "review_blockers": [
         "explicit_market_name_missing"
       ],
       "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
-      "schema_viability": "historical_aggregate_not_venues",
+      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati quindicinali",
+      "title": "Censimento dei mercati itineranti",
       "truncated": true
     },
     {

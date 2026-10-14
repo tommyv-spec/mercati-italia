@@ -9,16 +9,16 @@
   },
   "max_source_age_days": 540,
   "metrics": {
-    "dataset_updated_not_specific_market": 1216,
+    "dataset_updated_not_specific_market": 1221,
     "recent_dataset_only_update": 1204,
     "source_date_366_to_limit": 1,
     "source_date_91_to_365d": 12567,
-    "source_date_outside_limit": 18,
+    "source_date_outside_limit": 23,
     "source_date_within_30d": 1204,
-    "total": 13790,
+    "total": 13795,
     "with_any_future_date": 11907,
     "with_forecast_dates": 11907,
-    "without_documented_verification": 13790
+    "without_documented_verification": 13795
   },
   "publisher_evidence": [
     {
@@ -81,6 +81,10 @@
       "domain": "www.romatoday.it"
     },
     {
+      "count": 10,
+      "domain": "opendata.comune.bologna.it"
+    },
+    {
       "count": 9,
       "domain": "www.genovatoday.it"
     },
@@ -91,10 +95,6 @@
     {
       "count": 8,
       "domain": "www.eventi.bergamo.it"
-    },
-    {
-      "count": 8,
-      "domain": "www.trentino.com"
     }
   ],
   "warnings": [

@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 240,
-    "future_dates_missing": 1883,
+    "coordinates_missing": 245,
+    "future_dates_missing": 1888,
     "hours_missing": 10844,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 765,
     "suspicious_city": 2,
-    "total": 13790,
-    "without_individual_verification": 13790
+    "total": 13795,
+    "without_individual_verification": 13795
   },
   "per_region": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 868,
+      "markets": 873,
       "hours_missing": 575,
       "address_missing": 168,
-      "future_dates_missing": 209,
-      "coordinates_missing": 5
+      "future_dates_missing": 214,
+      "coordinates_missing": 10
     },
     {
       "region": "Friuli Venezia Giulia",
@@ -195,6 +195,10 @@
       "records": 22
     },
     {
+      "source": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "records": 10
+    },
+    {
       "source": "trentino.com",
       "records": 9
     },
@@ -209,10 +213,6 @@
     {
       "source": "umbriaeventi.com",
       "records": 8
-    },
-    {
-      "source": "algherohospitality.it",
-      "records": 7
     }
   ],
   "suspicious_city_examples": [
@@ -666,7 +666,7 @@
   ],
   "potential_duplicates_are_not_confirmed": true,
   "baseline_delta": {
-    "total": 6,
+    "total": 5,
     "hours_missing": 0,
     "address_missing": 0,
     "coordinates_missing": 5,
