@@ -134,6 +134,68 @@ class MilanoCrossPublisherTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Original source evidence"):
             verify(old,bad,report,PDF,GIS)
 
+    def test_full_milan_release_reconciles_other_official_and_generic_source_growth(self):
+        """Regression: a different approved source may add market IDs on same day.
+
+        The Milan two-publisher proof compares its own after-merge cohort,
+        not the previous publication's 13,784 IDs. A hypothetical extra
+        source ID still fails if it is not explained by another approval.
+        """
+        from milano_2026_release_guard import verify_exported
+        from milano_2026_overlay import WEEKDAYS as PUBLISHER_DAYS
+        today=date(2026,10,14)
+        matched,_=verified_pairs(PDF,GIS)
+        self.assertEqual(len(matched),76)
+        reviewed=[]
+        for ident,days in sorted(matched.items()):
+            row=existing(ident,"settimanale - "+", ".join(PUBLISHER_DAYS[d] for d in days))
+            row["aggiornato_il"]=PDF_DATE.isoformat()
+            row["aggiornamento_ambito"]="dataset"
+            row["fonti"]=[
+                {"nome":row["fonte"],"url":row["url_fonte"]},
+                OFFICIAL_PDF_SOURCE
+            ]
+            reviewed.append(row)
+        # Another approved official feed is allowed to add its own stable ID
+        # BEFORE the Milan overlay. This row is part of Milan's source-scoped
+        # baseline even though it has nothing to do with the Milan PDF.
+        new_official={
+            "slug":"lo-mercap-424242-mercoledi","nome":"Mercato prova regionale",
+            "citta":"Varese","provincia":"VA","regione":"Lombardia",
+            "url_fonte":"https://www.dati.lombardia.it/d/68zx-njaw",
+            "aggiornato_il":"2026-10-13","date":[],"date_quality":"sconosciuta",
+            "ricorrenza_testo":"settimanale - mercoledì",
+            "status":"non_confermato","verificato_il":"",
+        }
+        source_cohort=[*reviewed,new_official]
+        projected,_=refresh_records(source_cohort,today,120,540)
+        # Generic approved venue imports occur AFTER Milan's source overlay;
+        # these exact IDs are removed from the scope of the Milan-only guard.
+        approved_generic=[
+            {"slug":f"bo-open-verified-test-{i}","citta":"Bologna",
+             "regione":"Emilia-Romagna"} for i in range(5)
+        ]
+        final=[*projected,*approved_generic]
+        later_import_ids={x["slug"] for x in approved_generic}
+        comparable=[x for x in final if x["slug"] not in later_import_ids]
+        report={
+            "schema":1,"enabled":True,"records_total":len(source_cohort),
+            "verified_future_events_created":0,"confirmed_dates_created":0,
+            "records_added":0,"records_deleted":0,"modified_ids":[]
+        }
+        with self.assertRaisesRegex(ValueError,"contract changed"):
+            verify_exported(reviewed,comparable,report,PDF,GIS,today)
+        proof=verify_exported(source_cohort,comparable,report,PDF,GIS,today)
+        self.assertEqual(proof["reviewed_milan_ids"],76)
+        self.assertEqual(proof["unchanged_stable_market_ids"],len(source_cohort))
+        self.assertEqual(proof["confirmed_market_events_created"],0)
+        self.assertTrue(proof["quality_safe"])
+        # A new ID not certified by any downstream source must not disappear
+        # just because the Milan proof is scoped.
+        with self.assertRaisesRegex(ValueError,"contract changed"):
+            verify_exported(source_cohort,[*comparable,
+                            {"slug":"unapproved-extra-market"}],report,PDF,GIS,today)
+
     def test_dry_run_proposes_but_does_not_modify_any_input(self):
         rows=[existing(1)]
         frozen=copy.deepcopy(rows)
