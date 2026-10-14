@@ -12,6 +12,7 @@ from source_corciano import parse_csv as old_csv, convert as old_convert
 from source_lifecycle import parse_rows, digest, canonical
 from source_contract_ingest import (
     validate_format, venue_row, stage, authorize, apply_approved,
+    PublishedSourceDriftError,
 )
 
 PROFILE=json.loads((Path(__file__).resolve().parents[1]/
@@ -206,6 +207,33 @@ class GenericMunicipalContractTests(unittest.TestCase):
         self.assertEqual(report["review_reason_counts"]["duplicate_publisher_identity"],2)
         self.assertNotIn("pg-corciano-mercato-di-mantignana",{x["slug"] for x in created})
         self.assertEqual(len(created),2)
+
+    def test_existing_publisher_fact_changes_block_remaining_batch(self):
+        profile=_approved_profile()
+        cert=_approval(profile)
+        cert["max_new_ids"]=2
+        old=[{"slug":"legacy-elsewhere","nome":"Mercato a Firenze",
+              "citta":"Firenze","regione":"Toscana","indirizzo":"Via Roma"}]
+        first,proof=apply_approved(profile,BLOB,old,cert,today=TODAY)
+        self.assertEqual(proof["deferred_candidate_count"],2)
+        changes=(
+            ("nome","Nome completamente diverso","source_identity_changed"),
+            ("indirizzo","Via inventata 100","source_identity_changed"),
+            ("ricorrenza_testo","settimanale - domenica","source_calendar_changed"),
+            ("orario_testo","22:00 - 23:00","source_hours_changed"),
+        )
+        for field,replacement,reason in changes:
+            with self.subTest(field=field):
+                changed=copy.deepcopy(first)
+                changed[1][field]=replacement
+                frozen=copy.deepcopy(changed)
+                preview,source_report=stage(profile,BLOB,changed,today=TODAY)
+                self.assertEqual(len(preview),2)
+                self.assertEqual(source_report["review_reason_counts"][reason],1)
+                with self.assertRaisesRegex(
+                        PublishedSourceDriftError,"review source"):
+                    apply_approved(profile,BLOB,changed,cert,today=TODAY)
+                self.assertEqual(changed,frozen)
 
     def test_stale_source_and_unverified_licenses_cannot_create_dev_ids(self):
         a=_approved_profile()

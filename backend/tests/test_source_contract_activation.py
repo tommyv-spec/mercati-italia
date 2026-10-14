@@ -70,7 +70,10 @@ class GenericActivationTests(unittest.TestCase):
         # Approval is source-level; a duplicate under another source stays held.
         from merge_catalog import load_existing
         base=load_existing(Path(__file__).resolve().parents[2]/'public/data/v1/manifest.json')
-        self.assertEqual(len(base),13784)
+        # Daily DEV admissions grow this catalog. Test the source identities,
+        # not a one-time national record count.
+        self.assertGreaterEqual(len(base),13784)
+        self.assertEqual(len({row['slug'] for row in base}),len(base))
         self.assertEqual(ACTIVE_REGISTRY['approvals'][0]['max_new_ids'],2)
         before=copy.deepcopy(base)
         single=copy.deepcopy(CONTRACT)
@@ -141,6 +144,22 @@ class GenericActivationTests(unittest.TestCase):
         bogus["per_source"][RAW["id"]]["status"]="offline_no_source_inference"
         with self.assertRaisesRegex(ValueError,"Unavailable/offline"):
             validate_release(old,first,bogus,cfg,reg)
+
+    def test_changed_publisher_weekday_held_without_losing_existing_records(self):
+        cfg,reg=enabled_fixture()
+        reg["approvals"][0]["max_new_ids"]=2
+        fetch=lambda url:(BLOB,False)
+        first,initial=activate(cfg,reg,far_baseline(),today=TODAY,fetch=fetch)
+        self.assertEqual(initial["per_source"][RAW["id"]]["deferred_candidate_count"],2)
+        changed=copy.deepcopy(first)
+        changed[1]["ricorrenza_testo"]="settimanale - domenica"
+        later,report=activate(cfg,reg,changed,today=TODAY,fetch=fetch)
+        self.assertEqual(later,changed)
+        self.assertEqual(report["new_market_ids"],[])
+        self.assertEqual(report["status_counts"]["published_source_drift_held"],1)
+        self.assertEqual(report["per_source"][RAW["id"]]["hold_reason"],
+                         "previously_published_identity_calendar_or_hours_changed")
+        self.assertTrue(validate_release(changed,later,report,cfg,reg)["release_safe"])
 
     def test_offline_or_source_outage_never_closes_historical_market(self):
         cfg,reg=enabled_fixture()

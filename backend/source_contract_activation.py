@@ -12,7 +12,9 @@ import json
 from collections import Counter
 from datetime import date
 
-from source_contract_ingest import MAX_STAGING_SOURCE_ROWS, apply_approved
+from source_contract_ingest import (
+    MAX_STAGING_SOURCE_ROWS, PublishedSourceDriftError, apply_approved,
+)
 from source_lifecycle import digest, validate_contracts
 from source_probe import limited_fetch
 from reviewed_city_evidence import NAVIGATION_HOLD
@@ -97,14 +99,19 @@ def activate(config,registry,existing,*,today=None,offline=False,
         except (ValueError,OSError,TimeoutError,UnicodeError,KeyError) as exc:
             # Treat an unreadable or incomplete SOURCE as deferred, never as
             # no-market or a municipal closure. Other approved sources proceed.
+            is_drift=isinstance(exc,PublishedSourceDriftError)
             report[sid]={
                 "schema":1,"status":"publisher_source_held_for_review",
                 "error_type":type(exc).__name__,
+                "hold_reason":("previously_published_identity_calendar_or_hours_changed"
+                               if is_drift else "unavailable_or_invalid_source"),
                 "new_market_ids":[],
                 "existing_records_removed":0,
                 "individual_market_openings_confirmed":0,
             }
             status["publisher_sources_held"]+=1
+            if is_drift:
+                status["published_source_drift_held"]+=1
     if candidate[:len(originals)]!=originals:
         raise ValueError("Source admission mutated a previously published market")
     # Stable, deterministic order of new official identities, independently

@@ -42,6 +42,10 @@ SAFE_PREVIEW = frozenset({
 })
 
 
+class PublishedSourceDriftError(ValueError):
+    """An already-published source identity, calendar or hour has changed."""
+
+
 def _title(text):
     return str(text or "").strip().title()
 
@@ -238,12 +242,18 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
         prior=old.get(sid)
         if prior is not None:
             counters["already_in_catalog_exact_source_id"]+=1
-            # Changed venue identity under same slug is not automatically
-            # overwritten, even if the source has a newer HTTP timestamp.
-            for field in ("citta","regione","provincia","indirizzo"):
-                if (canonical(prior.get(field))!=canonical(record.get(field))):
-                    reasons["source_identity_changed"]+=1
-                    break
+            # A stable source ID does not authorize silent changes to a venue,
+            # its visiting day or its opening hours. Keep the old record and
+            # hold this publisher's next batch until a source-level review.
+            if any(canonical(prior.get(field))!=canonical(record.get(field))
+                   for field in ("nome","citta","regione","provincia","indirizzo")):
+                reasons["source_identity_changed"]+=1
+            if (canonical(prior.get("ricorrenza_testo"))!=
+                    canonical(record.get("ricorrenza_testo"))):
+                reasons["source_calendar_changed"]+=1
+            if (canonical(prior.get("orario_testo"))!=
+                    canonical(record.get("orario_testo"))):
+                reasons["source_hours_changed"]+=1
             continue
         day=source_weekday(item.get(profile["weekday_field"]))
         cohort=by_city[(canonical(record.get("regione")),canonical(record.get("citta")))]
@@ -330,6 +340,14 @@ def authorize(profile,source_report,admission,*,today):
     date_of_data=date.fromisoformat(profile["source_dataset_date"])
     if (today-date_of_data).days>profile["max_source_age_days"]:
         raise ValueError("Stale publisher source cannot begin unattended DEV admission")
+    # Changes to existing publisher records must be reviewed before new IDs
+    # from that source enter DEV. Never silently rewrite historical records.
+    drift=source_report.get("review_reason_counts",{})
+    if any(drift.get(reason,0) for reason in (
+            "source_identity_changed","source_calendar_changed","source_hours_changed")):
+        raise PublishedSourceDriftError(
+            "Existing publisher venue identity, weekday or hours changed; review source"
+        )
     return True
 
 
