@@ -28,6 +28,7 @@
 # publication remain isolated in the DEV branch. No Cloudflare Worker/KV/D1
 # or Firebase call occurs when a visitor browses the static preview.
 name: Mercati Autopilot — scheduled DEV improvements
+run-name: DEV catalog • ${{ github.event_name }} • #${{ github.run_number }}
 
 on:
   push:
