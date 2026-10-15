@@ -1,36 +1,36 @@
 {
-  "candidate_market_ids": 13795,
+  "candidate_market_ids": 13800,
   "enabled": true,
   "new_market_coordinates_created": 0,
   "new_market_directions_enabled": 0,
   "new_market_ids": [
-    "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
-    "bo-open-3a150cf453dc8050ee37edfbf006699118c15901",
-    "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1",
-    "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2",
-    "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e"
+    "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f",
+    "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2",
+    "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f",
+    "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7",
+    "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d"
   ],
   "new_market_openings_confirmed": 0,
   "old_market_fields_changed": 0,
-  "original_market_ids": 13790,
+  "original_market_ids": 13795,
   "per_source": {
     "bologna-generic-venues": {
       "approval_sha256": "3e03f051871feb364ccb9e74aa4804e56f5f2282df45c97062b5428b7872b1c5",
-      "deferred_candidate_count": 29,
-      "deferred_candidate_ids_sha256": "f7bebd713cfd9ca73c85bc3314c7aa5da6f6b9fb49d4eae33ee4d76f660bdaa4",
+      "deferred_candidate_count": 24,
+      "deferred_candidate_ids_sha256": "40ee1d0389a8c48182de1637c11cd9bd7d4c859f8434be9fd1cb9dd19d5d9f11",
       "independent_static_validation_required": true,
       "new_geocodes_created": 0,
       "new_market_ids": [
-        "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
-        "bo-open-3a150cf453dc8050ee37edfbf006699118c15901",
-        "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1",
-        "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2",
-        "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e"
+        "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f",
+        "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2",
+        "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f",
+        "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7",
+        "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d"
       ],
       "new_navigation_enabled": 0,
-      "old_market_ids_preserved": 13790,
+      "old_market_ids_preserved": 13795,
       "schema": 1,
-      "source_eligible_candidates": 34,
+      "source_eligible_candidates": 29,
       "status": "source_contract_approved_staged_only",
       "verified_market_openings_created": 0
     },
@@ -42,7 +42,7 @@
       "new_geocodes_created": 0,
       "new_market_ids": [],
       "new_navigation_enabled": 0,
-      "old_market_ids_preserved": 13795,
+      "old_market_ids_preserved": 13800,
       "schema": 1,
       "source_eligible_candidates": 0,
       "status": "source_contract_approved_staged_only",
@@ -58,7 +58,7 @@
   "source_registry_sha256": "6e79b56faa2bda2de751e1dc6185ae2f108d2b96fb88aeb75f2234aa68145ea1",
   "status_counts": {
     "approved_sources_reconciled": 2,
-    "eligible_venues_deferred_to_next_run": 29,
+    "eligible_venues_deferred_to_next_run": 24,
     "new_source_venues_staged_for_DEV": 5
   }
 }

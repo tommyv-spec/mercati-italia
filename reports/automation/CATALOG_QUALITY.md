@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **13,795**.
-- Orari mancanti: **10,844**.
+- Schede: **13,800**.
+- Orari mancanti: **10,845**.
 - Indirizzi mancanti: **3,504**.
-- Coordinate mancanti: **245**.
-- Date future mancanti: **1,888**.
+- Coordinate mancanti: **250**.
+- Date future mancanti: **1,893**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **755** gruppi, **765** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **13,795**.
+- Verifiche umane documentate mancanti: **13,800**.
 - Gate qualità: **APPROVATO**.
 
 ## Fonte di provenienza (primi editori)
@@ -26,7 +26,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
 | cosafareafirenze.it | 22 |
-| Comune di Bologna — dati ufficiali; apertura non confermata | 10 |
+| Comune di Bologna — dati ufficiali; apertura non confermata | 15 |
 | trentino.com | 9 |
 | emiliaromagnaturismo.it | 8 |
 | eventi.bergamo.it | 8 |
@@ -40,7 +40,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Basilicata | 36 | 22 | 12 |
 | Calabria | 328 | 284 | 94 |
 | Campania | 820 | 711 | 257 |
-| Emilia-Romagna | 873 | 575 | 168 |
+| Emilia-Romagna | 878 | 576 | 168 |
 | Friuli Venezia Giulia | 239 | 97 | 16 |
 | Lazio | 1,079 | 944 | 259 |
 | Liguria | 385 | 314 | 95 |

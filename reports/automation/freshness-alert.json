@@ -1,17 +1,17 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 13,795\n- Senza verifica documentata: 13,795\n- Fonte vecchia oltre soglia: 23\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 9ca00f655b8d9de0",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 13,800\n- Senza verifica documentata: 13,800\n- Fonte vecchia oltre soglia: 28\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: aea821ecf6000255",
   "problems": {
     "municipal_csv_changed": [],
     "publisher_new_data_claims": [],
     "publisher_unavailable": [],
     "stale_forecast": 0,
-    "stale_source": 23,
-    "total": 13795,
+    "stale_source": 28,
+    "total": 13800,
     "unknown_source_date": 0,
     "unsupported_confirmation": 0,
-    "without_verification": 13795
+    "without_verification": 13800
   },
-  "signature": "9ca00f655b8d9de0",
+  "signature": "aea821ecf6000255",
   "title": "[Mercati autopilot] Dati da verificare"
 }

@@ -4,7 +4,7 @@
   "market_imports": 0,
   "max_response_bytes_per_source": 300000,
   "offline": false,
-  "reference_date": "2026-10-14",
+  "reference_date": "2026-10-15",
   "schema": 1,
   "source_evidence": [
     {
@@ -30,7 +30,7 @@
       "publisher_metadata_updated_at": "2026-09-30",
       "publisher_metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
       "publisher_modified_auto_follows_data": false,
-      "publisher_response_sha256": "92d4c9d3e2f5abcb8d0d8c6cd280aeac41e1047c2dd5f1838d9133b7422c2d11",
+      "publisher_response_sha256": "46298b228c3d5d39c8925bc104b81e331e7fde1962c4f4193ff16f2ee7138e68",
       "record_level_freshness_verified": false,
       "review_required": [
         "license_terms",
@@ -40,7 +40,7 @@
         "coverage",
         "modified_newer_than_data_without_auto_update"
       ],
-      "source_data_age_days": 560,
+      "source_data_age_days": 561,
       "source_data_age_label": "dataset_metadata_over_365d",
       "source_id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
       "status": "metadata_checked"
@@ -65,7 +65,7 @@
       "publisher_license_reference": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
       "publisher_metadata_updated_at": "2026-10-13",
       "publisher_metadata_url": "https://www.dati.lombardia.it/api/views/68zx-njaw.json",
-      "publisher_response_sha256": "7961f0cc6f4fda6e40bc3a947b75e876d2ac67e9e1acd145d017be61b222ad71",
+      "publisher_response_sha256": "cfd164c63b027176e4c9228a550e07366fc9459ccd9f1277c4f5eaa0ac33c812",
       "record_level_freshness_verified": false,
       "review_required": [
         "license_terms",
@@ -74,7 +74,7 @@
         "operating_dates",
         "coverage"
       ],
-      "source_data_age_days": 1,
+      "source_data_age_days": 2,
       "source_data_age_label": "dataset_updated_within_365d",
       "source_id": "2e41941b-80fb-4ded-8330-427383f725f8",
       "status": "metadata_checked"
@@ -110,7 +110,7 @@
         "coverage",
         "historical_resource_edition"
       ],
-      "source_data_age_days": 1563,
+      "source_data_age_days": 1564,
       "source_data_age_label": "dataset_metadata_over_365d",
       "source_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
       "status": "metadata_checked"

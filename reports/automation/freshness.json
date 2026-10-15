@@ -9,16 +9,16 @@
   },
   "max_source_age_days": 540,
   "metrics": {
-    "dataset_updated_not_specific_market": 1221,
+    "dataset_updated_not_specific_market": 1226,
     "recent_dataset_only_update": 1204,
     "source_date_366_to_limit": 1,
     "source_date_91_to_365d": 12567,
-    "source_date_outside_limit": 23,
+    "source_date_outside_limit": 28,
     "source_date_within_30d": 1204,
-    "total": 13795,
+    "total": 13800,
     "with_any_future_date": 11907,
     "with_forecast_dates": 11907,
-    "without_documented_verification": 13795
+    "without_documented_verification": 13800
   },
   "publisher_evidence": [
     {
@@ -43,7 +43,7 @@
       "status": "metadata_checked"
     }
   ],
-  "reference_date": "2026-10-14",
+  "reference_date": "2026-10-15",
   "safe_for_automatic_quality_promotion": true,
   "schema": 1,
   "snapshot_measurement_not_event_verification": true,
@@ -77,12 +77,12 @@
       "domain": "www.cosafareafirenze.it"
     },
     {
-      "count": 13,
-      "domain": "www.romatoday.it"
+      "count": 15,
+      "domain": "opendata.comune.bologna.it"
     },
     {
-      "count": 10,
-      "domain": "opendata.comune.bologna.it"
+      "count": 13,
+      "domain": "www.romatoday.it"
     },
     {
       "count": 9,
