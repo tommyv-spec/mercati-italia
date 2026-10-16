@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3504,
-    "coordinates_missing": 250,
-    "future_dates_missing": 1893,
-    "hours_missing": 10845,
+    "coordinates_missing": 255,
+    "future_dates_missing": 1898,
+    "hours_missing": 10848,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 765,
     "suspicious_city": 2,
-    "total": 13800,
-    "without_individual_verification": 13800
+    "total": 13805,
+    "without_individual_verification": 13805
   },
   "per_region": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 878,
-      "hours_missing": 576,
+      "markets": 883,
+      "hours_missing": 579,
       "address_missing": 168,
-      "future_dates_missing": 219,
-      "coordinates_missing": 15
+      "future_dates_missing": 224,
+      "coordinates_missing": 20
     },
     {
       "region": "Friuli Venezia Giulia",
@@ -196,7 +196,7 @@
     },
     {
       "source": "Comune di Bologna — dati ufficiali; apertura non confermata",
-      "records": 15
+      "records": 20
     },
     {
       "source": "trentino.com",
@@ -667,7 +667,7 @@
   "potential_duplicates_are_not_confirmed": true,
   "baseline_delta": {
     "total": 5,
-    "hours_missing": 1,
+    "hours_missing": 3,
     "address_missing": 0,
     "coordinates_missing": 5,
     "future_dates_missing": 5,
