@@ -124,12 +124,32 @@ def analyze(blob,*,today=None):
         infos=z.infolist()
         if len(infos)>500 or sum(x.file_size for x in infos)>MAX_TOTAL_UNCOMPRESSED:
             raise ValueError("XLSX archive decompression limit exceeded")
-        if any((x.file_size>MAX_SINGLE_XML or
-                x.filename.startswith("/") or ".." in x.filename.split("/") or
-                "externalLinks/" in x.filename or
-                "vbaProject.bin" in x.filename or
-                x.filename.endswith(".bin")) for x in infos):
-            raise ValueError("Unsafe or macro-enabled workbook structure")
+        invalid = []
+        for entry in infos:
+            name = entry.filename
+            # Ordinary Excel print layout may include an opaque
+            # printerSettings*.bin. We never read these settings. Keep
+            # blocking macros, OLE embeddings and all OTHER binary files.
+            is_inert_printer_settings = bool(re.fullmatch(
+                r"xl/printerSettings/printerSettings[0-9]{1,3}\.bin", name))
+            reason = (
+                "unsafe_path" if name.startswith("/") or ".." in name.split("/")
+                else "external_reference" if "externalLinks/" in name
+                else "macro_or_embedded_binary"
+                if ("vbaProject.bin" in name or "embeddings/" in name or
+                    "activeX/" in name or
+                    (name.endswith(".bin") and not is_inert_printer_settings))
+                else "oversize_xml_member" if entry.file_size > MAX_SINGLE_XML
+                else None
+            )
+            if reason:
+                invalid.append({"path":name[:95],
+                                "bytes":entry.file_size,
+                                "reason":reason})
+        if invalid:
+            # Structural metadata only. Never log any event/organizer rows.
+            raise ValueError("Publisher XLSX needs structural review: " +
+                             json.dumps(invalid[:4], sort_keys=True))
         worksheets=sorted((x.filename for x in infos if SHEET_RE.fullmatch(x.filename)))
         if not 1<=len(worksheets)<=MAX_SHEETS:
             raise ValueError("Missing or excessive XLSX worksheets")
