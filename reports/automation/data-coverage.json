@@ -6,26 +6,26 @@
   "market_identities_deleted": 0,
   "source_evidence_replaced": 0,
   "national": {
-    "records": 13784,
-    "missing_hours": 10844,
+    "records": 13810,
+    "missing_hours": 10850,
     "missing_address": 3504,
-    "missing_future_date": 1878,
-    "not_precise": 13695,
-    "not_individually_verified": 13784,
-    "weighted_field_gap": 86437,
-    "missing_hours_pct": 78.7,
+    "missing_future_date": 1903,
+    "not_precise": 13721,
+    "not_individually_verified": 13810,
+    "weighted_field_gap": 86608,
+    "missing_hours_pct": 78.6,
     "missing_address_pct": 25.4
   },
   "by_region": [
     {
       "region": "Lombardia",
-      "records": 3947,
+      "records": 3948,
       "missing_hours": 2766,
       "missing_address": 754,
       "missing_future_date": 535,
-      "not_precise": 3862,
-      "not_individually_verified": 3947,
-      "weighted_field_gap": 23167,
+      "not_precise": 3863,
+      "not_individually_verified": 3948,
+      "weighted_field_gap": 23170,
       "missing_hours_pct": 70.1,
       "missing_address_pct": 19.1
     },
@@ -78,6 +78,18 @@
       "missing_address_pct": 19.4
     },
     {
+      "region": "Emilia-Romagna",
+      "records": 888,
+      "missing_hours": 581,
+      "missing_address": 168,
+      "missing_future_date": 229,
+      "not_precise": 888,
+      "not_individually_verified": 888,
+      "weighted_field_gap": 5430,
+      "missing_hours_pct": 65.4,
+      "missing_address_pct": 18.9
+    },
+    {
       "region": "Campania",
       "records": 820,
       "missing_hours": 711,
@@ -88,18 +100,6 @@
       "weighted_field_gap": 5320,
       "missing_hours_pct": 86.7,
       "missing_address_pct": 31.3
-    },
-    {
-      "region": "Emilia-Romagna",
-      "records": 863,
-      "missing_hours": 575,
-      "missing_address": 168,
-      "missing_future_date": 204,
-      "not_precise": 863,
-      "not_individually_verified": 863,
-      "weighted_field_gap": 5262,
-      "missing_hours_pct": 66.6,
-      "missing_address_pct": 19.5
     },
     {
       "region": "Puglia",
@@ -299,6 +299,19 @@
       "missing_address_pct": 7.5
     },
     {
+      "region": "Emilia-Romagna",
+      "city": "Bologna",
+      "records": 38,
+      "missing_hours": 14,
+      "missing_address": 5,
+      "missing_future_date": 36,
+      "not_precise": 38,
+      "not_individually_verified": 38,
+      "weighted_field_gap": 274,
+      "missing_hours_pct": 36.8,
+      "missing_address_pct": 13.2
+    },
+    {
       "region": "Liguria",
       "city": "Genova",
       "records": 23,
@@ -362,19 +375,6 @@
       "weighted_field_gap": 129,
       "missing_hours_pct": 83.3,
       "missing_address_pct": 0.0
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Modena",
-      "records": 17,
-      "missing_hours": 10,
-      "missing_address": 6,
-      "missing_future_date": 11,
-      "not_precise": 17,
-      "not_individually_verified": 17,
-      "weighted_field_gap": 126,
-      "missing_hours_pct": 58.8,
-      "missing_address_pct": 35.3
     },
     {
       "region": "Sicilia",

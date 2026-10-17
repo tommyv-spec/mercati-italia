@@ -2,14 +2,14 @@
 
 **Audit in sola lettura. Nessun ID, mercato o calendario modificato.**
 
-- Fonti catalogate: **43**
-- Schede conservate: **13784**
+- Fonti catalogate: **49**
+- Schede conservate: **13810**
 - Fonti con righe ricontrollate ora: **1**
 - Bologna: **48** schede ufficiali osservate.
-- Nuovi ID Bologna (non mercati certificati nuovi): **48**.
-- Possibili sedi distinte, ancora da verificare: **46**.
+- Nuovi ID Bologna (non mercati certificati nuovi): **23**.
+- Possibili sedi distinte, ancora da verificare: **22**.
 - Possibili sovrapposizioni tra fonti: **1**.
-- Conflitti di località documentati: **1**.
+- Conflitti di località documentati: **n.d.**.
 - Documento ufficiale: https://atti9.comune.bologna.it/webpub/wpub_ordtraf.nsf/dettaglio.xsp?action=editDocument&documentId=77B931E39816680CC1258B270043B4E3 (Via Segantini / Via Battindarno).
 - Source data Bologna: **2025-04-02**; non e' una conferma di apertura.
 
@@ -17,7 +17,7 @@
 
 | Priorita | Fonte | Stato | Righe viste | Candidati distinti | Azione |
 |---:|---|---|---:|---:|---|
-| 1 | Mercati e fiere | observed_candidate_venues | 48 | 46 | Check 2026 municipality schedule and exact venue identities before allowing import. |
+| 1 | Mercati e fiere | observed_candidate_venues | 48 | 22 | Check 2026 municipality schedule and exact venue identities before allowing import. |
 | 2 | Dati sui Mercati Rionali | historical_hours_lead | n.d. | n.d. | Find a current Roma municipal record to corroborate 2022 addresses and opening hours. |
 | 3 | Anagrafica mercati | unreachable_candidate_source | n.d. | n.d. | Restore official dataset endpoint or find replacement, then inspect actual municipality rows. |
 | 4 | Censimento dei mercati giornalieri | schema_and_rights_review | n.d. | n.d. | Check live row schema, source date, attribution and calendar before integration. |

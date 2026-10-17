@@ -2,24 +2,24 @@
 
 **Analisi in sola lettura.** Nessun mercato, dato fonte o appuntamento modificato.
 
-- Schede: **13,784**
-- Senza orari: **10,844** (78.7%)
+- Schede: **13,810**
+- Senza orari: **10,850** (78.6%)
 - Senza indirizzo: **3,504** (25.4%)
-- Senza prossime date: **1,878**
-- Senza coordinate precise verificate: **13,695**
-- Senza verifica singola documentata: **13,784**
+- Senza prossime date: **1,903**
+- Senza coordinate precise verificate: **13,721**
+- Senza verifica singola documentata: **13,810**
 
 ## Regioni da migliorare (volume di dati mancanti, non punteggio di affidabilità)
 
 | Regione | Schede | Senza orario | Senza indirizzo | Senza prossima data | Gap pesato |
 |---|---:|---:|---:|---:|---:|
-| Lombardia | 3947 | 2766 | 754 | 535 | 23167 |
+| Lombardia | 3948 | 2766 | 754 | 535 | 23170 |
 | Piemonte | 1332 | 1186 | 404 | 155 | 8827 |
 | Veneto | 1203 | 947 | 275 | 104 | 7312 |
 | Lazio | 1079 | 944 | 259 | 198 | 7181 |
 | Toscana | 945 | 788 | 183 | 173 | 6080 |
+| Emilia-Romagna | 888 | 581 | 168 | 229 | 5430 |
 | Campania | 820 | 711 | 257 | 71 | 5320 |
-| Emilia-Romagna | 863 | 575 | 168 | 204 | 5262 |
 | Puglia | 483 | 444 | 214 | 42 | 3335 |
 | Sicilia | 400 | 339 | 141 | 54 | 2661 |
 | Abruzzo | 392 | 349 | 152 | 38 | 2641 |
@@ -43,12 +43,12 @@ Fino a due per regione. È una coda di approfondimento: **non** prova che gli or
 | Roma | Lazio | 130 | 105 | 6 | 101 |
 | Milano | Lombardia | 127 | 23 | 90 | 27 |
 | Firenze | Toscana | 53 | 19 | 4 | 40 |
+| Bologna | Emilia-Romagna | 38 | 14 | 5 | 36 |
 | Genova | Liguria | 23 | 21 | 6 | 12 |
 | Torino | Piemonte | 29 | 18 | 3 | 10 |
 | Ancona | Marche | 22 | 16 | 7 | 4 |
 | Ferrara | Emilia-Romagna | 20 | 12 | 4 | 10 |
 | Como | Lombardia | 18 | 15 | 0 | 10 |
-| Modena | Emilia-Romagna | 17 | 10 | 6 | 11 |
 | Palermo | Sicilia | 15 | 13 | 5 | 8 |
 | Lucca | Toscana | 18 | 11 | 0 | 6 |
 | Venezia | Veneto | 16 | 12 | 3 | 3 |

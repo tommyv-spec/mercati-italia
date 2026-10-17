@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-10-13",
-  "bologna_catalog_entries": 13,
+  "as_of": "2026-10-17",
+  "bologna_catalog_entries": 38,
   "calendar_dates_created": 0,
-  "catalog_ids_preserved": 13784,
+  "catalog_ids_preserved": 13810,
   "coordinate_points_invented": 0,
   "evidence_source": "https://www.comune.bologna.it/novita/comunicati-stampa/due-nuovi-mercati-sperimentali-navile-e-borgo-panigale-reno",
   "historically_reported_open_in_june": 2,
@@ -32,8 +32,10 @@
       "lead_id": "bo-municipal-2026-puntoni-carta",
       "market_opening_individually_verified": false,
       "municipal_status": "previously_reported_active",
-      "overlapping_street_count": 0,
-      "overlapping_street_market_ids": [],
+      "overlapping_street_count": 1,
+      "overlapping_street_market_ids": [
+        "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed"
+      ],
       "street": "Piazza Puntoni"
     },
     {
@@ -52,5 +54,5 @@
   "review_only": true,
   "schema": 1,
   "verified_openings_created": 0,
-  "without_same_street_record": 4
+  "without_same_street_record": 3
 }

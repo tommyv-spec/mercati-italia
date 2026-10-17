@@ -1,22 +1,213 @@
 {
-  "catalog_count": 13784,
-  "checked_source_profiles": 1,
+  "catalog_count": 13810,
+  "checked_source_profiles": 2,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-10-13",
-  "registry_sha256": "c160fac5a48aecd773bf5f7a8ed98ee15bb68a7422d5195f77c22555778431ea",
+  "reference_date": "2026-10-17",
+  "registry_sha256": "b383fc4bf89d37531e54eeb813e9a22ea5da7bea2dad48c6d3ebb9418667f64d",
   "schema": 1,
   "source_checks": {
-    "source_level_raw_profiles_checked": 1,
-    "source_only_stage_reviews": 1
+    "source_level_raw_profiles_checked": 2,
+    "source_only_stage_reviews": 2
   },
   "source_contract_schema": 1,
   "sources": {
+    "bologna-generic-venues": {
+      "catalog_records_compared": 13810,
+      "catalog_records_imported": 0,
+      "catalog_records_modified": 0,
+      "counts": {
+        "already_in_catalog_exact_source_id": 25,
+        "distinct_market_identities": 48,
+        "identity_not_in_existing_catalog": 23,
+        "needs_review_schedule_unknown": 13,
+        "needs_review_source_old_no_future_forecast": 35,
+        "not_a_market_venue": 31,
+        "possible_same_street_other_publisher": 1,
+        "rows_observed": 79
+      },
+      "diff": {
+        "added_source_identities_since_last_scan": 0,
+        "changed_source_identities_since_last_scan": 0,
+        "first_observation": true,
+        "missing_source_identities_since_last_scan": 0,
+        "same_source_identities_since_last_scan": 0
+      },
+      "examples_hashes_only": [
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "91e5130aa0bc6624"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "462053517e2ab5e0"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "a0b8873f6d19bfba"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "928f5e16b6ec6285"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "ad9504d76f9bb7ab"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "0e30fce3216fbd4c"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "1ed2c4b41f12a30c"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "e1c1fbe151e45719"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "da320e3c3b320d24"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "149b75e8759c4f08"
+        }
+      ],
+      "existing_record_ids_deleted": 0,
+      "fingerprints": {
+        "0a4974d069786aaa9aa642f6581dbbbd86f7ffe322feac3dfc9c28a831fe4b48": "1ded692f6abfb27f3e214f77d74cbfcc642b3fb444b7e59307de0942d76d3526",
+        "0e30fce3216fbd4c357106fa7269e22557986ad96ccfc0868a8f58f9c9d5cdec": "06ed991aa19d559c20f2695422baa3acb39ed8fbd5d6a71959c94b0736524ade",
+        "0e4acfcd9b62637ff7cb0b520c34bd028e6d7b2e3f22d12d3d496ccdb947c73d": "147db5751a396bd13cb090867ffcc4482aedabb9f003cb637f6405bfce6e7cd2",
+        "1056371fe5cac64a9084c5b8c9a1ad2c84929aacef89b6405f776512399bc4e6": "855af285930fb653c28316c673ec28f8a857ff6cf16b4ef86502d0d8f7f87837",
+        "149b75e8759c4f08158fe1f38da04c3f53f74c088d2bb84c840db5b67e7d2d28": "e55c38d676ded73a5cdf04bf3d9d270d4a4681be0cd1a3d30a9d031b7548caf6",
+        "14abda158ef95febb995592fae5e38740706aea4b0617a7f276418b5f6b0538e": "2624515d58ecdbd580c9295aec5bf37b991e327ffac7b9af9665c109a0ba662c",
+        "1831f357e62fc0cb2450fcc3d959ca958e19a52e90fb466c88987d4f8b9d5705": "a2fc2ceb75c6d2b45b5af904d037bfaf8fe29b230eb0e31f0fcbf13b89703952",
+        "1ed2c4b41f12a30c3a62ace9cbc977d6f65632f8ff719d3eb0b63a50f744b4fb": "0ac3c5389be67ecd30903c7d3ab573b55f2b18b10a870df5f16ad5a5e742fac0",
+        "27ee7260aa896295b52cb173d22acc2ea891aadeb8aaee2bf02c15663577b40a": "bf46831c165c7f5634de4bb516aee48275af43dada11d18b45527ed47f599237",
+        "2ab6ecc2db0df2ea10c1f53a63258a37dd5765dcdcd9c3ed55ab314b55f54428": "a1f1ef460e8795d0699e6aaf657f538f476db33e516a3882c0a69ecfe701a757",
+        "3ad0a49bc3e782df29ef895c96d56616ccf8469e2dd05f2abbca8215fb27171c": "821cf5cf49082700555e30f8bd78b5eed257d7f8a2dc7c0e690969dfd151d45e",
+        "3b9c9c91cb427605f6f292f80d4e30e7bab277b63605f3c0b46d7fe024229953": "53321788166971e5d29183580fc75a01ef689c691437d0db049efd6df2c11544",
+        "3d711eff4a5e8615c18b9d4775ba11338b4b0945f71bf596cbd4d6686837a473": "1c1f1c999876ff96fe0d96c665043f2f9565831367374c1b6391c7bf7c966fa0",
+        "462053517e2ab5e04012a1c859bc57b4ab86103bd4fd5a2d9f8bf8eadca5e9b3": "84711c8be989f1fdb0098ebc685264298491a96a43a5147ffd3af5639e4a9119",
+        "4bdc79f44a6f998763ecb90e73f4ae14b248f626d752e7efce28ac4c65214391": "545fc81acaacfc1d9a8bc3beaab30f9030a9a7bfcae8f7d7e4f4ea9cdbb280e4",
+        "4f5bb306939706597e51ec8cbb673b3ee2ab39222a513bf063d8d53edf15e58f": "c06736d2aef0990ab9924103eeec7d89f26d1cbd73674294a5a7207d5b270369",
+        "5664cd979b8d232d1e13f16e16158e3e3c49861297f58e2d16d8034d96d0d0fc": "7f487407af704f7a1dd5b15ca15dea0ca21694820583ff7bdaeef329d7c329cc",
+        "5f9ebd6b5b954049b482602a487d3c515f4135b99740dae21af68481feeb73cb": "b9881427bf9d30582f3bf5a4bc051c35d79b38ef3b673a7a599121b75a2beade",
+        "707d3c9d4455806b41a1904dd15a2fd9bc85c843ab958ca740defe11595a86fe": "a9c2f2f6725f058aa3eebda523385fddcaebdbfa7f39ac79f28c73782a13843a",
+        "710dbd775f50d16078b21bc1285bdfa57a3b4d65af675f5de6920b4e2eb2c450": "661e9afafc93018f3555b7608e03446eb413f04f3328fa31fc0f824905cd7cc0",
+        "74d985678657e1375daaac747ea754458a4ea6844b5c2f9ad6c993cc1d621f83": "4c3504d72d00d570b6fbd397005960e076838e7ffb1ebaddf1b70dbcaaae5122",
+        "7a63b3710f66ccb424400401a9bf3f1bcfc6d990a6ca74e6c572329d375bc643": "78775a63b68474ba67f13c8d607d77dc48811eaac2e72fef6f6f6d6b06cd367a",
+        "87f00be936df409e90fc8cf79ee4f475445772cb5fa2612d7f03865e0d91dc3e": "1d334252c209c8066363fc93c2f722bf85894f4777bea6820fb87f50c8b0742c",
+        "89938c4aede6fbe33cce459c3d60962431dcb3824cd7797766223605f2817ce2": "c353a39587c139dec0267955f8c46c812451e46a9d5b0fd8b7549630860fb828",
+        "8e9ff03a8090ee971f90e599d6065fe7ed8308a538f4de966282955f273be881": "ac614b6e9fe8ff02fd4aa2150b0aaec8838c4bb8d8d2f73b2caf0da603181b14",
+        "91e5130aa0bc6624bad745f4c7339809f2ff9b3064fc30097da1b429a4e534eb": "68341ba0697ac08905c80363130bb5089a642e7c26cf16f46e5474ee333088df",
+        "928f5e16b6ec6285fafabca27e55c95f94a85a4aa376b37ed77481b3d3e14e1e": "c7fc6ffb17e52b8e4ac377578f6bc8fab3f6144b1dfe9643a58e289bbe31ee89",
+        "9635100c0975147eb89669673f7429e5e4e865bdf4c78af61f2aee5fb23df775": "f0ed9d0b3cd0b900934cd6a3c92431eabc0d066af4ca7d89c4948cbb48c4bef1",
+        "a0b8873f6d19bfba2419eb732843d760e1f6a1a1d9aa2b2d37d4e02a9441bf53": "304ce7a72abb33bf7ec533e6996f590708d11975863549339e67900e587a8a18",
+        "a2bbbf445e6756b4ce63e31cea4d782202bc27e9234f1ec34f5d786ea9f87a00": "f3931417d47ecbd67994eba48ad563cb426ca39f9f6c3f0b4dae4a8b8682de2a",
+        "a86bc0adfff069d9f90b5ec108aa9d1d49c93ae3dd5151ce02bbdc628d73e637": "d0a6a2bccec7e07096b528b54fd6e9bf38b72d11de16ea4bcfd97071031f00bf",
+        "aaadfe1490e910e88c827c13e0891f10abe057ad2f8a3dfa8a4f3da1139ecba5": "9a97c38624bf88b28b3f4e50f8e95054490cb320f987942f209e1f2e45a7eb6a",
+        "ad9504d76f9bb7ab5cc36d8cad6dedde8d32836111033d1392d0624030eedf4a": "415c5399132041754c5015458fb314d2aed6732470e70ae3be3f49242cb31963",
+        "aef52412ec37cba680ccef0137c5e09600c6c7f4c5d049eb61e2760ef76e0095": "571e69b907e206cc9a9330f16c3b92a4c2d2af26db2c63e590b90261f8276d3b",
+        "b9d74e9ce4514bdca8b51cb1fe0dba15762afcd3b645de8aef689814d52732ca": "212cb00f5cc2f7ca27048f7e796c4aa2a523e1676575ff5f2d4d9826604dd188",
+        "bb72e1c03c8f92756862fac6f57a573e658094343808ccf935ec31037e75a8b1": "b194ded5701e865669c1b96f91e6a75d1c5f98ae70e7041072974e2e0ddd0605",
+        "c2de5edf6e534319f6f1f9809dfb05e1f23d03fe16f046096254443e506f0c4c": "65082bd3b0785334111eea0000f301ebdbbbf8202f657edc0ad03ed50fd8e5a7",
+        "c38cc110f46f0c3f3be0177d9992681c9944ae141872565ec025a8e0d6362f17": "c8e0f7366759e1693f643017be33fbcd90d3d180cf9c687064b98e99fde8a329",
+        "cac7cbf1fa1dcfa209cb75b0682b7eac68eee053c45f714c1b22a534d723ba3c": "512cd5d2b566eb0eeead4895a12570401daa2b3bf402a547926c10d20852bc0c",
+        "cd913b13d0cf74510e243b9e9c02e78610df309a43d885f171a8f2fc19e99d5d": "5d3c0979399f69a5d8b9ae83d941402952cdb4a42b2e49bfc2b4cbf7d014049d",
+        "cd9f963bf6d095524ef6dadea0a109f6a6d188c9dfb4b2b1816e354190028b64": "9bb5b31af06ae7c649024214f3ea17a3d9b90e30bdc9029489e96f97bd3b918a",
+        "da320e3c3b320d242869937884f3b2a8b7209d0f0f81f3783bb56b28f4ba4149": "f92f4430b41d476cfcc19784f8e872c686a57c31db1bd825cc810d0473c44c4a",
+        "de72bb8c6fb7d6f4056584b101e893a5a53a225f8e7cf0d0bad9c6c1b7c814be": "086b78ff0d3e1caf39713078cac751515cd963f155e0d2de670cf2de6c5278e2",
+        "dfd4de7f373e4afb6e1788bec600a380bef77a5ec5298a2bd9f64ea072934c18": "2037ab473bee2fad08eb3ef191b19e72e2ba6f128fe8063bdb7d1ffba27c6e3f",
+        "e1c1fbe151e457196335ad702ed7e7600471837421fc9418fbe646573e01ed0d": "c9445633e3e1a7d226f4cfe5cdf70d155bb552d15508921b25d33f1dd9689d3d",
+        "e5807def1ed50a807a9e6f7b3a28fc34d1ccd29dc806f44d76bbce10681a78fc": "5e6a07f660d24e2c00874cecf1ab6c35464ae06a545963731a7c99964082685f",
+        "e70d9b8f9617bb519f19c2a51fdb611326fec9476467bd2ce28c31932d52d4df": "eabd6d92ce68e292039f250054eab98eba29b05583d429312f7efbc42e3a0de5",
+        "f05f9db348343a739817832bbab367a4f902dcced059b4528d02eada47638484": "080c8ae542fed801da8d6c186e9bb71778b17db3ac5b97fdbaba8177edc2eeb3"
+      },
+      "individual_market_openings_verified": 0,
+      "license_reviewed_for_automatic_publication": false,
+      "market_names_distinct_not_new_events": 44,
+      "new_directions_enabled": 0,
+      "new_precise_coordinates": 0,
+      "profile_fingerprint": "652c17986b46a1d11956edfb6cb00e8ad13f03eb54434c8485d5acf03565691d",
+      "publisher": "Comune di Bologna",
+      "publisher_data_age_days": 563,
+      "publisher_dataset_date": "2025-04-02",
+      "review_required": true,
+      "row_kind": "market_venue",
+      "schema": 1,
+      "source_data_marked_current_by_fetch_time": false,
+      "source_data_scope": "dataset_not_per_market",
+      "source_id": "bologna-generic-venues",
+      "source_schema_columns_sha256": "d9ffe7fa29cd5cf5d3f933b16a8c0ca46f526dcc8958ae55529f61d84675b424",
+      "source_snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
+      "source_stage": {
+        "base_catalog_records": 13810,
+        "counts": {
+          "already_in_catalog_exact_source_id": 25,
+          "informational_schedule_unknown": 12,
+          "informational_source_old_no_future_forecast": 29,
+          "publisher_distinct_address_count": 45,
+          "raw_rows_scanned": 79,
+          "source_market_identities": 41,
+          "source_only_unambiguous_candidate_not_verified_event": 14
+        },
+        "directions_enabled": 0,
+        "examples_hashed": [
+          {
+            "new_market_created": false,
+            "review_reason": "venue_at_same_street_day",
+            "source_identity_sha256": "f12153b1cf116646fd552b53f6a86b649c9f5d2f8ea615307a9eed9594413519"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "venue_at_same_street_day",
+            "source_identity_sha256": "cfbb7b9caa5bc74e96ee04b0fc1fe4320629b3679c5a6bbfecac200c38e298db"
+          }
+        ],
+        "existing_market_identities_deleted": 0,
+        "existing_market_ids_modified": 0,
+        "precise_coordinates_created": 0,
+        "profile_sha256": "652c17986b46a1d11956edfb6cb00e8ad13f03eb54434c8485d5acf03565691d",
+        "publication_enabled": false,
+        "publisher": "Comune di Bologna",
+        "publisher_dataset_date": "2025-04-02",
+        "review_reason_counts": {
+          "not_a_market_venue": 31,
+          "repeated_venue_rows_require_grouping": 4,
+          "same_place_name_multiple_source_rows": 2,
+          "temporary_location_unreconciled": 1,
+          "venue_at_same_street_day": 2
+        },
+        "safe_candidates_not_published": 14,
+        "schema": 1,
+        "source_id": "bologna-generic-venues",
+        "source_kind": "market_venue",
+        "source_license_automatically_verified": false,
+        "source_schema_readonly": true,
+        "source_snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
+        "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+        "verified_openings_created": 0
+      },
+      "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento"
+    },
     "corciano-generic-shadow": {
-      "catalog_records_compared": 13784,
+      "catalog_records_compared": 13810,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -56,9 +247,9 @@
       "market_names_distinct_not_new_events": 4,
       "new_directions_enabled": 0,
       "new_precise_coordinates": 0,
-      "profile_fingerprint": "670d3152fb8bbc96eb9c6ec7da67f33c8defb8b1c82f0caf85b23c725c48e258",
+      "profile_fingerprint": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
       "publisher": "Comune di Corciano",
-      "publisher_data_age_days": 279,
+      "publisher_data_age_days": 283,
       "publisher_dataset_date": "2026-01-07",
       "review_required": true,
       "row_kind": "market_venue",
@@ -69,9 +260,10 @@
       "source_schema_columns_sha256": "2afea7e535523faf2cb891263244e6c9c0d08f728788bb158f320676b9ae5fb7",
       "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
       "source_stage": {
-        "base_catalog_records": 13784,
+        "base_catalog_records": 13810,
         "counts": {
           "already_in_catalog_exact_source_id": 2,
+          "publisher_distinct_address_count": 4,
           "raw_rows_scanned": 4,
           "source_market_identities": 4
         },
@@ -91,7 +283,7 @@
         "existing_market_identities_deleted": 0,
         "existing_market_ids_modified": 0,
         "precise_coordinates_created": 0,
-        "profile_sha256": "670d3152fb8bbc96eb9c6ec7da67f33c8defb8b1c82f0caf85b23c725c48e258",
+        "profile_sha256": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
         "publication_enabled": false,
         "publisher": "Comune di Corciano",
         "publisher_dataset_date": "2026-01-07",
