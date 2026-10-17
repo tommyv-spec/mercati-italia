@@ -2,18 +2,18 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [38877754895](https://github.com/tommyv-spec/mercati-italia/actions/runs/38877754895) — UTC 2026-10-16T09:06:00.343058+00:00
+- Ultimo run: [39017896084](https://github.com/tommyv-spec/mercati-italia/actions/runs/39017896084) — UTC 2026-10-17T08:38:02.787180+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
-- Schede nel catalogo: **13,805**
+- Schede nel catalogo: **13,810**
 - Schede con date previste a +60 giorni: **11,846**
-- Schede con date previste a +90 giorni: **11,729**
-- Indice nazionale gzip: **395.9 KiB**
+- Schede con date previste a +90 giorni: **11,839**
+- Indice nazionale gzip: **396.2 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **10,848**
+- Orari mancanti: **10,850**
 - Dataset pubblici candidati individuati: **43** (licenze da verificare)
-- Fonti conservate nello storico: **43**; nuove: **0**; aggiornate: **0**.
+- Fonti conservate nello storico: **49**; nuove: **6**; aggiornate: **0**.
 - Possibili elenchi/sedi: **6**; statistiche storiche aggregate: **14**.
 - Lombardia MERCap: **1127** record non ambigui su **1360**, in revisione **233**.
 - Bologna: **0** record non ambigui su **0**, in revisione **0** (fonte storica; nessuna verifica singolo evento).
@@ -26,9 +26,9 @@
 - Roma XIII nuove fonti comunali 2025–2026: **0** schede aggiunte in questo run, **5** sedi distinte tutelate nel sito, **4** con calendari solo previsti, **5** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.
 - Import generico tramite contratti di interi dataset: **2** fonti con licenza e identità approvate, **5** nuove schede in questo run, **0** calendari solo previsti, **5** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**765** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13805** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1204**; oltre soglia: **33**; senza data: **0**.
-- Aggiornamenti del solo dataset (non dei singoli mercati): **1231**, di cui recenti **1204**.
+- Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13810** ID originali preservati.
+- Fonti datate negli ultimi 30 giorni: **1204**; oltre soglia: **38**; senza data: **0**.
+- Aggiornamenti del solo dataset (non dei singoli mercati): **1236**, di cui recenti **1204**.
 - Date previste con origine vecchia/sconosciuta: **0**.
 - Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification

@@ -7,7 +7,7 @@
     "opendata.comune.bologna.it",
     "www.dati.lombardia.it"
   ],
-  "eligible_sources": 26,
+  "eligible_sources": 32,
   "imports": 0,
   "max_read_bytes_per_request": 65536,
   "max_requests": 3,
@@ -51,6 +51,12 @@
     },
     "4a3c6272-1163-449f-93ae-cb1fd97a4952": {
       "checked_date": "2026-10-14",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "4c43a70b-81ab-4a65-815a-993f52767166": {
+      "checked_date": "2026-10-17",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -121,6 +127,12 @@
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
     },
+    "bf96174b-98d8-4c43-ae26-b6ba24403f05": {
+      "checked_date": "2026-10-17",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
     "c7b2c854-4d99-41ed-8b8f-38929fbbc54f": {
       "checked_date": "2026-10-12",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
@@ -147,6 +159,12 @@
     },
     "e53cf54c-8cab-4284-9619-74d078ae00ac": {
       "checked_date": "2026-10-12",
+      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
+      "status": "schema_preview_only",
+      "viability": "concession_registry_without_visit_schedule"
+    },
+    "e5e8f03d-6107-49a1-b2c2-c29383abd6dc": {
+      "checked_date": "2026-10-17",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -182,7 +200,7 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-16",
+  "reference_date": "2026-10-17",
   "reports": [
     {
       "adapter_enabled": false,
@@ -207,140 +225,90 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "ad7a6b83-48a0-48e0-951a-a5f222d80fec",
+      "id": "4c43a70b-81ab-4a65-815a-993f52767166",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3247,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/f49044ef-b659-4290-bd85-1d5c1a8b427d.csv",
+      "sample_bytes": 57656,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/db18408f-27c6-40c8-87f9-ab3dcba465df.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Meolo",
+      "title": "Fiere e mercati - Comune di Noventa Padovana",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "municipality": [
-          "comune"
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
         ],
-        "statistics_count": [
-          "mercati",
-          "attivazioni",
-          "cessazioni"
+        "market_type": [
+          "FIERA/MERCATO"
         ],
-        "statistics_year": [
-          "anno"
+        "name": [
+          "NOME"
         ]
       },
       "fields": [
-        "comune",
-        "provincia",
-        "anno",
-        "mercati",
-        "totale",
-        "attivazioni",
-        "cessazioni",
-        "posteggi",
-        "alimentare_totale",
-        "alimentare_attivazioni",
-        "alimentare_cessazioni",
-        "nonalimentare_totale",
-        "nonalimentare_attivazioni",
-        "nonalimentare_cessazioni",
-        "produttori_totale",
-        "produttori_attivazioni",
-        "produttori_cessazioni"
+        "NOME",
+        "FIERA/MERCATO",
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
+      "id": "bf96174b-98d8-4c43-ae26-b6ba24403f05",
       "review_blockers": [
-        "explicit_market_name_missing"
+        "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
-      "schema_viability": "historical_aggregate_not_venues",
+      "sample_bytes": 682,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b5ad98f6-8b75-4c46-8654-eee0512004ac.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati mensili",
-      "truncated": true
+      "title": "Fiere e mercati - Comune di Rovere Veronese",
+      "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "address": [
-          "INDIRIZZO"
-        ],
-        "district": [
-          "Municipio"
-        ],
-        "hours": [
-          "Apertura_Lunedi",
-          "Chiusura_Lunedi",
-          "Apertura_Martedi",
-          "Chiusura_Martedi",
-          "Apertura_Mercoledi",
-          "Chiusura_Mercoledi"
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
         ],
         "market_type": [
-          "TIPOLOGIA"
+          "FIERA/MERCATO"
         ],
         "name": [
-          "Nome_Mercato"
-        ],
-        "notes": [
-          "Altre_indicazioni",
-          "Note_mercato"
+          "NOME"
         ]
       },
       "fields": [
-        "Municipio",
-        "Nome_Mercato",
-        "INDIRIZZO",
-        "Civico",
-        "Esp_Civico",
-        "Altre_indicazioni",
-        "CAP",
-        "TIPOLOGIA",
-        "Note_mercato",
-        "POSTEGGI_TOTALI",
-        "POSTEGGI_OCCUPATI",
-        "NUMERO_OPERATORI",
-        "POSTEGGI_ALIMENTARI",
-        "POSTEGGI_NON_ALIMENTARI",
-        "Apertura_Lunedi",
-        "Chiusura_Lunedi",
-        "Apertura_Martedi",
-        "Chiusura_Martedi",
-        "Apertura_Mercoledi",
-        "Chiusura_Mercoledi",
-        "Apertura_Giovedi",
-        "Chiusura_Giovedi",
-        "Apertura_Venedi",
-        "Chiusura_Venedi",
-        "Apertura_Sabato",
-        "Chiusura_Sabato",
-        "Note_orari",
-        "AGGIORNATO"
+        "NOME",
+        "FIERA/MERCATO",
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
+      "id": "e5e8f03d-6107-49a1-b2c2-c29383abd6dc",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 38408,
-      "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
-      "schema_viability": "venue_inventory_missing_visit_days",
+      "sample_bytes": 188,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b94fa56d-2457-4e64-9290-ba541e675ea3.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Dati sui Mercati Rionali",
+      "title": "Fiere e mercati - Comune di Nogarole Rocca",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 0,
+  "unreviewed_sources_remaining": 3,
   "verified_event_count": 0
 }
