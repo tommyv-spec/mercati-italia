@@ -158,7 +158,7 @@ def analyze(blob,*,today=None):
                     if cols:
                         header=[v for _,v in sorted(cols.items())]
                         concepts=sorted({concept for value in header for concept in _meaning(value)})
-                        candidates.append((len(concepts),len(header),n,header,concepts))
+                        candidates.append((len(concepts),len(header),n,header,concepts,int(row.attrib.get("r",n+1))))
                 # Structural count only; no raw row contents stored.
                 if row.findall(NS+"c"):
                     numeric+=1
@@ -173,7 +173,7 @@ def analyze(blob,*,today=None):
             summaries.append({
                 "sheet":fname.split("/")[-1],
                 "nonempty_rows":numeric,
-                "likely_header_row":best[2]+1 if headers else None,
+                "likely_header_row":best[5] if headers else None,
                 "header_field_names_only":headers,
                 "matched_concepts":best[4] if headers else [],
                 "source_schema_review_required":not bool(headers),
