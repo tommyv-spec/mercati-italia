@@ -48,7 +48,7 @@ RUN_HORIZON_DAYS = 150
 MARKET_TITLES = re.compile(
     r"\b(mercat(?:o|i|ino|ini)|antiquariat[oi]|artigianat[oi]|"
     r"modernariato|vintage|collezionism[oi]|sagr[ae]|"
-    r"mostr[ae]\s+mercat[oi]|fiere?|filiera\s+corta)\b", re.I
+    r"mostr[ae]\s+mercat[oi]|fier[ae]|filiera\s+corta)\b", re.I
 )
 IGNORE_TITLES = re.compile(
     r"\b(mercato\s+(?:nero|sonato|del\s+lavoro|finanziario)|"
@@ -369,8 +369,11 @@ class LinkIndexParser(HTMLParser):
         href = dict(attrs).get("href") or ""
         # No other category, host or URL is stored.
         p = urlsplit(html.unescape(href.strip()))
-        if p.scheme or p.netloc or p.query or p.fragment:
+        if p.query or p.fragment:
             return
+        if p.scheme or p.netloc:
+            if p.scheme != "https" or p.hostname != "www.eventiesagre.it" or p.username or p.password or p.port not in (None, 443):
+                return
         match = re.fullmatch(
             r"/Mercatini_[A-Za-z+ ]{2,40}/(\d{4,12})_([A-Za-z0-9+%._'-]{1,160})\.html",
             p.path,
