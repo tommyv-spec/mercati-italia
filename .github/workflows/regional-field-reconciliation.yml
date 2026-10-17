@@ -151,11 +151,12 @@ jobs:
           done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- reports/automation/regional-field-source-status.json \
-            reports/automation/lombardia-field-audit.json \
-            reports/automation/LOMBARDIA_FIELD_AUDIT.md \
-            reports/automation/veneto-event-schema.json \
-            reports/automation/VENETO_EVENT_SCHEMA.md
+          git add -- reports/automation/regional-field-source-status.json
+          for item in lombardia-field-audit.json LOMBARDIA_FIELD_AUDIT.md veneto-event-schema.json VENETO_EVENT_SCHEMA.md; do
+            if [ -s "regional-output/$item" ]; then
+              git add -- "reports/automation/$item"
+            fi
+          done
           if ! git diff --cached --quiet; then
             git commit -m "audit(dev): measure official Lombardia field joins and Veneto 2026 XLSX schema"
             git push origin HEAD:improve/data-quality-security-performance-2026-10-11
