@@ -21,6 +21,7 @@ from merge_catalog import load_existing
 from source_lombardia import (
     SOURCE_PAGE, convert as convert_lombardia, download as download_lombardia,
 )
+from recurrence_refresh import explicit_rule
 
 SOURCE_PREFIX = "lo-mercap-"
 SOURCE_REGION = "Lombardia"
@@ -33,6 +34,18 @@ def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False,
                                       separators=(",", ":")).encode("utf-8")).hexdigest()
 
+def _unambiguous_day(row):
+    """Reject contradictory evidence (e.g. slug says Friday, rule says Monday)."""
+    days = weekday_evidence(row)
+    if days is None or len(days) != 1:
+        return None
+    parsed = explicit_rule(row.get("ricorrenza_testo"))
+    if parsed and parsed.get("kind") == "weekly":
+        scheduled = set(parsed.get("weekdays", []))
+        if scheduled != set(days):
+            return None
+    return next(iter(days))
+
 def _place_key(row):
     """Town, province and physical street are required for strict comparisons."""
     loc = location_key(row, SOURCE_REGION)
@@ -41,20 +54,20 @@ def _place_key(row):
     province = norm(row.get("provincia"))
     if province and not (len(province) == 2 and province.isalpha()):
         return None
-    days = weekday_evidence(row)
-    if days is None or len(days) != 1:
+    day = _unambiguous_day(row)
+    if day is None:
         return None
-    return (loc[0], province, loc[1], next(iter(days)))
+    return (loc[0], province, loc[1], day)
 
 def _town_day(row):
     if row.get("regione") != SOURCE_REGION:
         return None
     city = norm(row.get("citta"))
     province = norm(row.get("provincia"))
-    days = weekday_evidence(row)
-    if not city or len(province) != 2 or days is None or len(days) != 1:
+    day = _unambiguous_day(row)
+    if not city or len(province) != 2 or day is None:
         return None
-    return (city, province, next(iter(days)))
+    return (city, province, day)
 
 def _valid_official(row, today):
     if (not isinstance(row, dict) or row.get("regione") != SOURCE_REGION or
