@@ -156,6 +156,13 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
             continue
         for old in old_rows:
             slug = old["slug"]
+            old_province = str(old.get("provincia") or "").strip().upper()
+            src_province = str(source.get("provincia") or "").strip().upper()
+            # Homonymous municipalities in different provinces are not
+            # the same physical market, even when street/day strings match.
+            if old_province and src_province and old_province != src_province:
+                counts["skipped_province_conflict"] += 1
+                continue
             gap = distance_km(old,source)
             if gap is not None and gap > MAX_DISTANCE_KM:
                 counts["skipped_coordinates_conflict"] += 1

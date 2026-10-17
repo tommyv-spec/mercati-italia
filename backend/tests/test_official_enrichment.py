@@ -153,6 +153,21 @@ class EnrichmentTests(unittest.TestCase):
         ))
         self.assertIsNone(distance_km({"lat":None},{"lng":8}))
 
+    def test_conflicting_slug_weekday_or_province_cannot_transfer_hours(self):
+        same_source = official(provincia="MI")
+        contradicted = old(
+            slug="mercato-settimanale-di-albizzate-albizzate-martedi",
+            day="venerdì", provincia="MI"
+        )
+        result, report = enrich([contradicted], [same_source], today=TODAY)
+        self.assertEqual(report["existing_market_hours_added"], 0)
+        self.assertEqual(result[0]["orario_testo"], "")
+
+        wrong_province = old(provincia="VA")
+        result, report = enrich([wrong_province], [same_source], today=TODAY)
+        self.assertEqual(report["existing_market_hours_added"], 0)
+        self.assertEqual(report["counts"]["skipped_province_conflict"], 1)
+
     def test_enrichment_keeps_export_identity_and_distinct_weekday(self):
         baseline=[old(),old(slug="legacy-other-day",day="venerdì")]
         updated,stats=enrich(baseline,[official()],today=TODAY)

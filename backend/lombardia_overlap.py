@@ -43,9 +43,15 @@ def weekday_evidence(record):
     """Return known full weekday set, or None if an isolated date is ambiguous."""
     slug = str(record.get("slug") or "")
     suffix = WEEK_SUFFIX.search(slug)
-    if suffix:
-        return {WEEKDAYS.index(suffix.group(1))}
     rule = explicit_rule(record.get("ricorrenza_testo"))
+    if suffix:
+        days = {WEEKDAYS.index(suffix.group(1))}
+        # A source identity label is not proof when an explicit schedule
+        # contradicts it. Never use the wrong weekday to merge venues,
+        # transfer hours or generate a false venue/day overlap.
+        if rule and rule["kind"] == "weekly" and set(rule["weekdays"]) != days:
+            return None
+        return days
     if rule and rule["kind"] == "weekly":
         return set(rule["weekdays"])
     # Only multiple recurring future dates, all from the same weekday,

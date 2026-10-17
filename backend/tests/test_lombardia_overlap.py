@@ -79,6 +79,21 @@ class OverlapSafetyTests(unittest.TestCase):
         self.assertEqual(weekday_evidence(
             market("old", dates=["2026-10-13", "2026-10-20"])), {1})
 
+    def test_weekday_label_conflicting_with_explicit_rule_is_unsafe(self):
+        record = market(
+            "mercato-settimanale-di-pogliano-milanese-venerdi",
+            daytext="Ogni lunedì"
+        )
+        self.assertIsNone(weekday_evidence(record))
+        fixed = market(
+            "mercato-settimanale-di-pogliano-milanese-venerdi",
+            daytext="Ogni venerdì"
+        )
+        self.assertEqual(weekday_evidence(fixed), {4})
+        incoming = market("lo-mercap-100551-venerdi")
+        _, review_report = review([record], [incoming])
+        self.assertEqual(review_report["quarantined"], 1)
+
     def test_never_modifies_source_or_existing_record(self):
         old = market("old")
         new = market("lo-mercap-100551-venerdi")
