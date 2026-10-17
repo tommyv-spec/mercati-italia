@@ -110,6 +110,22 @@ jobs:
                       'market_catalog_imports','market_catalog_updates',
                       'verified_market_openings','event_rows_persisted'))):
                   raise ValueError('Veneto XLSX falsely granted reuse or imported events')
+              for sheet in r.get('worksheets',[]):
+                  if not isinstance(sheet,dict):
+                      raise ValueError('Invalid Veneto workbook structural counters')
+                  counts=sheet.get('aggregate_row_classification_only')
+                  if not isinstance(counts,dict) or any(
+                      type(v) is not int or v<0 for v in counts.values()):
+                      raise ValueError('Missing safe event-classification totals')
+                  named=counts.get('rows_with_named_event_and_town_not_verified',0)
+                  categories=sum(counts.get(n,0) for n in (
+                      'sagra_named_rows_not_verified','fiera_named_rows_not_verified',
+                      'market_like_title_rows_not_verified',
+                      'other_named_manifestation_rows'))
+                  if (named != categories
+                      or named>sheet.get('source_entries_not_new_markets',0)
+                      or counts.get('distinct_municipality_labels_not_canonical_ISTAT',0)>named):
+                      raise ValueError('Veneto source row-classification totals do not reconcile')
               status['veneto']='review_only'
           else:
               source_state=(o/'veneto-status.txt').read_text('utf-8').strip()
