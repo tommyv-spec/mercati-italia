@@ -56,6 +56,26 @@ class VenetoXLSXSourceTests(unittest.TestCase):
         self.assertNotIn("private0@example.net",output)
         self.assertNotIn("Private person 0",output)
 
+    def test_source_row_types_are_counts_only_never_persist_event_text(self):
+        # The real publisher has a single combined period/hours column.
+        xml=make_sheet(["Denominazione della manifestazione e luogo",
+                        "Comune", "Provincia", "Periodo e orario di svolgimento",
+                        "Attività", "Sito web e/o pagina social", "Dati organizzatore"])
+        xml=xml.replace(
+            b"Private person 0 - private0@example.net",
+            b"Sagra delle castagne"
+        )
+        info=analyze(xlsx(custom=xml))
+        count=info["worksheets"][0]["aggregate_row_classification_only"]
+        self.assertEqual(count["rows_with_named_event_and_town_not_verified"],2)
+        self.assertEqual(count["sagra_named_rows_not_verified"],1)
+        self.assertEqual(count["distinct_municipality_labels_not_canonical_ISTAT"],1)
+        self.assertEqual(count.get("rows_with_period_text_not_confirmed",0),0)
+        raw=json.dumps(info)+markdown(info)
+        self.assertNotIn("Sagra delle castagne",raw)
+        self.assertNotIn("private1@example.net",raw)
+        self.assertNotIn("Comune prova",raw)
+
     def test_multi_sheet_reports_only_bounded_aggregate_schema(self):
         info=analyze(xlsx(sheets=2))
         self.assertEqual(info["sheet_count"],2)
