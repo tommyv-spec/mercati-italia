@@ -247,8 +247,19 @@ def main():
     ap.add_argument("--report",required=True,type=Path)
     ap.add_argument("--today",type=date.fromisoformat,default=date.today())
     args=ap.parse_args()
-    blob=args.input.read_bytes() if args.input else guarded_download()
-    info=analyze(blob,today=args.today)
+    try:
+        blob=args.input.read_bytes() if args.input else guarded_download()
+    except OSError as exc:
+        print("VENETO_TRANSPORT_UNAVAILABLE", type(exc).__name__)
+        raise SystemExit(3) from None
+    except ValueError as exc:
+        print("VENETO_SOURCE_SCOPE_REVIEW", str(exc)[:500])
+        raise SystemExit(4) from None
+    try:
+        info=analyze(blob,today=args.today)
+    except ValueError as exc:
+        print("VENETO_XLSX_SCHEMA_REVIEW", str(exc)[:500])
+        raise SystemExit(4) from None
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(info,indent=2,ensure_ascii=False)+"\n","utf-8")
