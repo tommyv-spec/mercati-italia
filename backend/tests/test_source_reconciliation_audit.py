@@ -127,7 +127,7 @@ class RegionalMatchingTests(unittest.TestCase):
             analyze([old()],bad,today=TODAY)
         bad=official()
         bad[0]["url_fonte"]="https://example.net/corrupt"
-        with self.assertRaisesRegex(ValueError, "source"):
+        with self.assertRaisesRegex(ValueError, "reviewed MERCap identity"):
             analyze([old()],bad,today=TODAY)
         with self.assertRaisesRegex(ValueError,"incomplete"):
             analyze([old()],official(100)[:100],today=TODAY)
