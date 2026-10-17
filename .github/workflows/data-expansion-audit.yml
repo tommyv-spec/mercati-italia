@@ -179,39 +179,13 @@ jobs:
                      or row.get('source_verified_2026') is not False
                      for row in roma['observations'])):
               raise ValueError('Roma XIII outdated map was promoted to verified current markets')
-          if (lifecycle.get('schema')!=1
-              or lifecycle.get('source_contract_schema')!=1
-              or lifecycle.get('read_only') is not True
-              or lifecycle.get('catalog_count')!=manifest['total']
-              or not set(lifecycle.get('sources',{})).issubset({'corciano-generic-shadow'})
-              or any(lifecycle.get(field)!=0 for field in (
-                  'market_imports','market_updates','market_confirmations',
-                  'market_identity_deletions'))):
-              raise ValueError('Source-level generic parser exceeded its read-only scope')
-          if lifecycle.get('source_checks',{}).get('raw_schema_or_identity_change_requires_review',0):
-              raise ValueError('Publisher CSV format or identity meaning changed: update source contract after reviewing official distribution')
-          for row in lifecycle.get('sources',{}).values():
-              if row.get('catalog_records_imported',0)!=0 or row.get('individual_market_openings_verified',0)!=0:
-                  raise ValueError('Schema probe falsely confirmed a market opening')
-              if row.get('source_snapshot_sha256'):
-                  staged=row.get('source_stage')
-                  counts=row.get('counts',{})
-                  if (not isinstance(staged,dict)
-                      or staged.get('source_snapshot_sha256')!=row['source_snapshot_sha256']
-                      or staged.get('verified_openings_created')!=0
-                      or staged.get('existing_market_identities_deleted')!=0
-                      or staged.get('precise_coordinates_created')!=0
-                      or staged.get('publication_enabled') is not False):
-                      raise ValueError('Fresh municipal source has no auditable safe generic staging')
-                  categories=staged.get('counts',{})
-                  rejected=sum((staged.get('review_reason_counts') or {}).values())
-                  if (categories.get('raw_rows_scanned')!=counts.get('rows_observed')
-                      or categories.get('source_market_identities',0)+
-                         staged.get('review_reason_counts',{}).get('duplicate_publisher_identity',0)
-                         > counts.get('rows_observed',0)
-                      or staged.get('safe_candidates_not_published',0)
-                         >categories.get('source_market_identities',0)):
-                      raise ValueError('Staging summary does not reconcile with full publisher CSV')
+          # Contracts and approvals are pinned to exact reviewed Git blobs.
+          # Check every enabled municipal publisher without hardcoded city names.
+          import sys
+          sys.path.insert(0, str(Path('backend').resolve()))
+          from source_growth_guard import validate_growth_source_lifecycle
+          source_proof=validate_growth_source_lifecycle(lifecycle,manifest)
+          print('SOURCE_GROWTH_READ_ONLY',source_proof)
           print('SAFE_GROWTH_REVIEW',manifest['total'],'market IDs preserved')
           PY
           cat growth-output/DATA_COVERAGE.md >> "$GITHUB_STEP_SUMMARY"
