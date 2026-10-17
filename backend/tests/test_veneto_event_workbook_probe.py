@@ -83,6 +83,18 @@ class VenetoXLSXSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"unsafe response"):
             analyze(b"J"*2_000_000)
 
+    def test_inert_printer_layout_binary_is_not_a_macro(self):
+        with zipfile.ZipFile(io.BytesIO(xlsx()),"r") as z:
+            files={n:z.read(n) for n in z.namelist()}
+        f=io.BytesIO()
+        with zipfile.ZipFile(f,"w",zipfile.ZIP_DEFLATED) as z:
+            for k,v in files.items():
+                z.writestr(k,v)
+            z.writestr("xl/printerSettings/printerSettings1.bin",b"opaque")
+        result=analyze(f.getvalue())
+        self.assertEqual(result["sheet_count"],1)
+        self.assertEqual(result["event_rows_persisted"],0)
+
     def test_external_download_url_cannot_be_replaced(self):
         with self.assertRaisesRegex(ValueError,"Unreviewed"):
             guarded_download("https://example.org/official.xlsx")

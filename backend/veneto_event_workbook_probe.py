@@ -124,12 +124,32 @@ def analyze(blob,*,today=None):
         infos=z.infolist()
         if len(infos)>500 or sum(x.file_size for x in infos)>MAX_TOTAL_UNCOMPRESSED:
             raise ValueError("XLSX archive decompression limit exceeded")
-        if any((x.file_size>MAX_SINGLE_XML or
-                x.filename.startswith("/") or ".." in x.filename.split("/") or
-                "externalLinks/" in x.filename or
-                "vbaProject.bin" in x.filename or
-                x.filename.endswith(".bin")) for x in infos):
-            raise ValueError("Unsafe or macro-enabled workbook structure")
+        invalid = []
+        for entry in infos:
+            name = entry.filename
+            # Ordinary Excel print layout may include an opaque
+            # printerSettings*.bin. We never read these settings. Keep
+            # blocking macros, OLE embeddings and all OTHER binary files.
+            is_inert_printer_settings = bool(re.fullmatch(
+                r"xl/printerSettings/printerSettings[0-9]{1,3}\.bin", name))
+            reason = (
+                "unsafe_path" if name.startswith("/") or ".." in name.split("/")
+                else "external_reference" if "externalLinks/" in name
+                else "macro_or_embedded_binary"
+                if ("vbaProject.bin" in name or "embeddings/" in name or
+                    "activeX/" in name or
+                    (name.endswith(".bin") and not is_inert_printer_settings))
+                else "oversize_xml_member" if entry.file_size > MAX_SINGLE_XML
+                else None
+            )
+            if reason:
+                invalid.append({"path":name[:95],
+                                "bytes":entry.file_size,
+                                "reason":reason})
+        if invalid:
+            # Structural metadata only. Never log any event/organizer rows.
+            raise ValueError("Publisher XLSX needs structural review: " +
+                             json.dumps(invalid[:4], sort_keys=True))
         worksheets=sorted((x.filename for x in infos if SHEET_RE.fullmatch(x.filename)))
         if not 1<=len(worksheets)<=MAX_SHEETS:
             raise ValueError("Missing or excessive XLSX worksheets")
@@ -227,8 +247,19 @@ def main():
     ap.add_argument("--report",required=True,type=Path)
     ap.add_argument("--today",type=date.fromisoformat,default=date.today())
     args=ap.parse_args()
-    blob=args.input.read_bytes() if args.input else guarded_download()
-    info=analyze(blob,today=args.today)
+    try:
+        blob=args.input.read_bytes() if args.input else guarded_download()
+    except OSError as exc:
+        print("VENETO_TRANSPORT_UNAVAILABLE", type(exc).__name__)
+        raise SystemExit(3) from None
+    except ValueError as exc:
+        print("VENETO_SOURCE_SCOPE_REVIEW", str(exc)[:500])
+        raise SystemExit(4) from None
+    try:
+        info=analyze(blob,today=args.today)
+    except ValueError as exc:
+        print("VENETO_XLSX_SCHEMA_REVIEW", str(exc)[:500])
+        raise SystemExit(4) from None
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(info,indent=2,ensure_ascii=False)+"\n","utf-8")
