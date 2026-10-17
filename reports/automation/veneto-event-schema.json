@@ -28,7 +28,18 @@
         "province"
       ],
       "source_schema_review_required": false,
-      "source_entries_not_new_markets": 1589
+      "source_entries_not_new_markets": 1589,
+      "aggregate_row_classification_only": {
+        "distinct_municipality_labels_not_canonical_ISTAT": 211,
+        "fiera_named_rows_not_verified": 74,
+        "market_like_title_rows_not_verified": 38,
+        "other_named_manifestation_rows": 1103,
+        "rows_with_named_event_and_town_not_verified": 1589,
+        "rows_with_period_text_not_confirmed": 1589,
+        "rows_with_publisher_web_field": 588,
+        "rows_with_year_in_period_text": 2,
+        "sagra_named_rows_not_verified": 374
+      }
     },
     {
       "sheet": "sheet2.xml",
@@ -37,7 +48,10 @@
       "header_field_names_only": [],
       "matched_concepts": [],
       "source_schema_review_required": true,
-      "source_entries_not_new_markets": 0
+      "source_entries_not_new_markets": 0,
+      "aggregate_row_classification_only": {
+        "distinct_municipality_labels_not_canonical_ISTAT": 0
+      }
     }
   ],
   "sheet_count": 2,

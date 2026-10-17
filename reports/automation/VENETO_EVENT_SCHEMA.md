@@ -17,6 +17,7 @@ Nessun dato di evento, contatto, coordinate, giorno o appuntamento è importato.
 Città Metropolitana, Comune, Denominazione della manifestazione 
 e luogo di svolgimento, Periodo e orario di svolgimento, Attività, Sito web e/o pagina social 
 della manifestazione, Dati dell'organizzatore
+- Eventi classificati SOLO per conteggi: {"distinct_municipality_labels_not_canonical_ISTAT": 211, "fiera_named_rows_not_verified": 74, "market_like_title_rows_not_verified": 38, "other_named_manifestation_rows": 1103, "rows_with_named_event_and_town_not_verified": 1589, "rows_with_period_text_not_confirmed": 1589, "rows_with_publisher_web_field": 588, "rows_with_year_in_period_text": 2, "sagra_named_rows_not_verified": 374}
 - **Stato:** revisione struttura/riuso necessaria; nessuna importazione
 
 ## sheet2.xml
@@ -24,5 +25,6 @@ della manifestazione, Dati dell'organizzatore
 - Intestazione rilevata in riga: None
 - Campi rilevati per tipo: 
 - Intestazioni campo, solo schema: 
+- Eventi classificati SOLO per conteggi: {"distinct_municipality_labels_not_canonical_ISTAT": 0}
 - **Stato:** revisione struttura/riuso necessaria; nessuna importazione
 
