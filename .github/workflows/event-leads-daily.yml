@@ -1,0 +1,125 @@
+# Scheduled research only: no production release, no market writes.
+name: Mercati event leads - daily source discovery (DEV only)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/event-leads-daily.yml
+  schedule:
+    - cron: '47 07 * * *'
+  workflow_dispatch:
+
+concurrency:
+  # Do not race DEV catalog releases or source-report writes.
+  group: mercati-all-dev-report-and-catalog-writes
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    name: Inspect reviewed event-source layouts (no import)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: improve/data-quality-security-performance-2026-10-11
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pin exact DEV code revision and run regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p event-output
+          git rev-parse HEAD > event-output/dev-code-sha.txt
+          python -m unittest discover -s backend/tests -v
+      - name: Collect bounded official API leads and external URLs only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/event_lead_discovery.py \
+            --registry backend/data/event-lead-source-contracts.json \
+            --manifest public/data/v1/manifest.json \
+            --previous reports/automation/event-leads.json \
+            --out event-output/event-leads.json \
+            --report event-output/EVENT_LEADS.md
+      - name: Independent read-only and data-integrity checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from event_lead_discovery import validate_report
+          from merge_catalog import load_existing
+          registry=json.loads(Path('backend/data/event-lead-source-contracts.json').read_text('utf-8'))
+          report=json.loads(Path('event-output/event-leads.json').read_text('utf-8'))
+          count=len(load_existing(Path('public/data/v1/manifest.json')))
+          validate_report(report, registry, count)
+          checked=report['checked_sources']
+          if not any(x['state']=='discovery_leads_only' for x in checked):
+              raise ValueError('All sources unavailable; do not publish a fresh-looking report')
+          if len({x['id'] for x in report['leads']})!=len(report['leads']):
+              raise ValueError('Repeated event lead identifiers')
+          for lead in report['leads']:
+              if lead.get('opening_confirmed') is not False:
+                  raise ValueError('Never confirm an event from aggregator discovery')
+              if lead.get('catalog_import_allowed') is not False:
+                  raise ValueError('Never enable imported markets from this audit')
+          print('DEV_EVENT_DISCOVERY_SAFE',count,'market IDs unchanged',
+                report['fresh_official_leads'],'official unverified leads',
+                report['new_external_url_pointers'],'external links only')
+          PY
+          cat event-output/EVENT_LEADS.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep research and QA evidence even if the run is blocked
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercati-event-lead-review
+          path: event-output/
+          retention-days: 30
+          if-no-files-found: warn
+
+  publish_review:
+    name: Save only read-only research reports on DEV
+    needs: collect
+    if: needs.collect.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: improve/data-quality-security-performance-2026-10-11
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: mercati-event-lead-review
+          path: event-output/
+      - name: Refuse stale evidence, publish ONLY DEV report
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s event-output/event-leads.json
+          test -s event-output/EVENT_LEADS.md
+          test "$(cat event-output/dev-code-sha.txt)" = "$(git rev-parse HEAD)"
+          mkdir -p reports/automation
+          cp event-output/event-leads.json reports/automation/event-leads.json
+          cp event-output/EVENT_LEADS.md reports/automation/EVENT_LEADS.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- reports/automation/event-leads.json reports/automation/EVENT_LEADS.md
+          if ! git diff --cached --quiet; then
+            git commit -m "research: refresh official event leads and external pointers (DEV only)"
+            git push origin HEAD:improve/data-quality-security-performance-2026-10-11
+          fi
+          echo 'DEV-only event source discovery: no market records added or modified.' >> "$GITHUB_STEP_SUMMARY"
