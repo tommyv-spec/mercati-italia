@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "publication_channel": "dev-research-only",
+  "market_import_permission": false,
+  "event_confirmation_permission": false,
+  "description": "One reviewed source contract per publisher/layout. Official sources produce unverified event leads; third-party listings can produce only public href+numeric event ID. No direct catalog writes.",
+  "sources": [
+    {
+      "id": "firenze-feelflorence",
+      "enabled": true,
+      "type": "official_geojson",
+      "mode": "official_leads_only",
+      "publisher": "Comune di Firenze / FeelFlorence",
+      "url": "https://datigis.comune.fi.it/resources/open-data/eventi-a-firenze/feelflorence_eventi.geojson",
+      "landing_page": "https://www.dati.toscana.it/dataset/eventi-a-firenze",
+      "license": "CC BY 4.0",
+      "rights_status": "publisher_open_data",
+      "reviewed_on": "2026-10-17",
+      "schema_reviewed": {
+        "envelope": "GeoJSON FeatureCollection",
+        "fields": [
+          "titolo",
+          "comuni",
+          "data_inizio",
+          "data_fine",
+          "feelflorence_link"
+        ],
+        "id": "numeric feature.id",
+        "dates": "dd/mm/yyyy",
+        "temporal_window": "publisher advertises forthcoming 30 days, but the file may have earlier/later event ranges"
+      },
+      "publish_to_catalog": false,
+      "may_confirm_dates": false,
+      "may_create_coordinates": false
+    },
+    {
+      "id": "bologna-agenda",
+      "enabled": true,
+      "type": "official_odsv2",
+      "mode": "official_leads_only",
+      "publisher": "Comune di Bologna – Bologna Agenda Cultura",
+      "url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/eventi-bologna-agenda-cultura/records",
+      "landing_page": "https://opendata.comune.bologna.it/explore/dataset/eventi-bologna-agenda-cultura/",
+      "license": "CC BY 4.0",
+      "rights_status": "publisher_open_data_pending_dataset_specific_license_reconfirmation",
+      "reviewed_on": "2026-10-17",
+      "schema_reviewed": {
+        "envelope": "Opendatasoft API v2.1 total_count + results",
+        "fields": [
+          "id",
+          "title",
+          "start",
+          "end",
+          "url",
+          "address"
+        ],
+        "id": "stable numeric id",
+        "maximum_records_per_day": 150,
+        "query_scope": "future or still-running entries with market-like title"
+      },
+      "publish_to_catalog": false,
+      "may_confirm_dates": false,
+      "may_create_coordinates": false
+    },
+    {
+      "id": "eventiesagre-index",
+      "enabled": true,
+      "type": "links_only_html",
+      "mode": "external_urls_only",
+      "publisher": "EventiESagre.it / Web Up Italia",
+      "url": "https://www.eventiesagre.it",
+      "landing_page": "https://www.eventiesagre.it/cerca/Mercatini/Antiquariato/mesi/Toscana/prov/cit/rilib",
+      "license": "not open licensed",
+      "rights_status": "no_content_reuse_permission",
+      "reviewed_on": "2026-10-17",
+      "fields_saved": [
+        "source_event_id",
+        "detail_url"
+      ],
+      "schema_reviewed": {
+        "index_marker": "Elenco Eventi da X a Y di Z",
+        "link_pattern": "/Mercatini_{section}/{numeric_id}_{slug}.html",
+        "sponsored_records": "excluded by collecting only hrefs after main results heading",
+        "date_source": "none; do not parse or claim current events",
+        "robots": "must be checked live before each request",
+        "per_day_listing_pages": 2
+      },
+      "publish_to_catalog": false,
+      "may_confirm_dates": false,
+      "may_create_coordinates": false
+    }
+  ]
+}
