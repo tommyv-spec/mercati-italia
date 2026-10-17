@@ -46,7 +46,7 @@ class VenetoXLSXSourceTests(unittest.TestCase):
     def test_publisher_headers_found_without_copying_event_rows(self):
         info=analyze(xlsx(), today=date(2026,10,18))
         self.assertEqual(info["sheet_count"],1)
-        self.assertEqual(info["workheets"] if "workheets" in info else info["worksheets"][0]["likely_header_row"],3)
+        self.assertEqual(info["worksheets"][0]["likely_header_row"],3)
         self.assertEqual(info["worksheets"][0]["source_entries_not_new_markets"],2)
         self.assertIn("municipality",info["worksheets"][0]["matched_concepts"])
         self.assertIn("start_date",info["worksheets"][0]["matched_concepts"])
