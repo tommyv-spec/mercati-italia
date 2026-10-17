@@ -1,0 +1,87 @@
+name: Rebuild curated static catalog
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/rebuild-static.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: guarded-static-market-rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Test source, classification, deduplication and catalog gates
+        run: python -m unittest discover -s backend/tests -v
+      - name: Save rollback checkpoint
+        run: |
+          test -s public/data/v1/manifest.json
+          tar -czf /tmp/static-before-rebuild.tgz public/data/v1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalog-before-rebuild
+          path: /tmp/static-before-rebuild.tgz
+          retention-days: 7
+      - name: Report candidate duplicates before allowing removal
+        run: |
+          python - <<'PY'
+          import sys, json
+          from collections import defaultdict
+          from datetime import date
+          from pathlib import Path
+          sys.path.insert(0, 'backend')
+          from merge_catalog import load_existing
+          from export_static import prepare, source_duplicate_group
+          base = load_existing(Path('public/data/v1/manifest.json'))
+          clean, stats = prepare(base, date.today())
+          print('DEDUP QA', json.dumps(stats, ensure_ascii=False, default=str))
+          groups = defaultdict(list)
+          for item in base:
+              key = source_duplicate_group(item)
+              if key:
+                  groups[key].append(item)
+          ranked = sorted((items for items in groups.values() if len(items) > 1), key=len, reverse=True)
+          for items in ranked[:12]:
+              print('GROUP', len(items), 'sample:', json.dumps([
+                  {'name': x.get('nome'), 'city': x.get('citta'),
+                   'address': x.get('indirizzo'), 'slug': x.get('slug')}
+                  for x in items[:5]], ensure_ascii=False))
+          PY
+      - name: Rebuild from current snapshot without network or Firebase
+        run: python backend/reprocess_snapshot.py
+      - name: Verify all hashes and index
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Save rebuilt snapshot to branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/v1
+          if ! git diff --cached --quiet; then
+            git commit -m "data: rebuild versioned static market index"
+            for attempt in 1 2 3; do
+              git fetch origin "${GITHUB_REF_NAME}"
+              git rebase "origin/${GITHUB_REF_NAME}" || {
+                git rebase --abort || true
+                echo "::error::Snapshot changed concurrently; review and rerun, never force-push."
+                exit 1
+              }
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                exit 0
+              fi
+              sleep 3
+            done
+            echo "::error::Could not push updated snapshot after 3 safe retries."
+            exit 1
+          fi

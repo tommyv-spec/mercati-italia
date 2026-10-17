@@ -1,0 +1,53 @@
+# Legacy publisher retired. Only the guarded Autopilot workflow on main
+# may write to dev-static-preview, after source, policy and browser QA pass.
+# Keep this manual workflow as a reproducible read-only emergency audit.
+name: Manual static DEV bundle audit (no publication)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Repeat dataset and importer regression tests
+        run: |
+          python -m unittest discover -s backend/tests -v
+          python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Repeat safe static build and dependency tests
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+      - name: Install browser and smoke-test mobile UI before uploading
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/mercati-dev-audit.log 2>&1 &
+          for i in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/ui-smoke.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manually-audited-dev-build
+          path: |
+            dist/
+            ux-*.png
+            ux-smoke-result.json
+          retention-days: 7
+          if-no-files-found: error

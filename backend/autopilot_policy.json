@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "description": "Fail-closed daily DEV automation with source-level freshness, identity and no dynamic billed reads",
+  "sources": [
+    {
+      "id": "milano",
+      "enabled": true,
+      "official": true,
+      "min_records": 60,
+      "max_records": 1800,
+      "license": "CC BY 4.0",
+      "stale_source_dates_not_confirmed": true
+    },
+    {
+      "id": "firenze",
+      "enabled": true,
+      "official": true,
+      "min_records": 3,
+      "max_records": 250,
+      "license": "CC BY 4.0",
+      "stale_source_dates_not_confirmed": true
+    },
+    {
+      "id": "lombardia",
+      "enabled": true,
+      "official": true,
+      "min_records": 1100,
+      "max_records": 2400,
+      "license": "CC0 1.0 declared by Regione Lombardia (publisher metadata, review still required)",
+      "stale_source_dates_not_confirmed": true
+    },
+    {
+      "id": "corciano",
+      "enabled": true,
+      "official": true,
+      "min_records": 4,
+      "max_records": 8,
+      "license": "CC BY 4.0 declared by Comune di Corciano; municipal attribution",
+      "stale_source_dates_not_confirmed": true
+    }
+  ],
+  "forecast": {
+    "days": 120,
+    "max_source_age_days": 540,
+    "min_records_with_future_date_at_plus_60_days": 8000,
+    "date_quality_label": "prevista"
+  },
+  "gates": {
+    "min_total_records": 12000,
+    "max_record_loss_fraction": 0.02,
+    "min_id_retention_fraction": 0.99,
+    "max_new_ids_per_run": 2000,
+    "max_gzip_index_bytes": 524288,
+    "max_index_growth_fraction": 0.4,
+    "allow_new_confident_date_claims": false,
+    "allow_new_human_verified_claims": false,
+    "max_unknown_source_share_increase": 0.01
+  },
+  "publication": {
+    "channel": "dev-only",
+    "commit_paths": [
+      "public/data/v1"
+    ],
+    "require_security_audit": true,
+    "require_mobile_smoke": true,
+    "production_merge": false,
+    "cloudflare_runtime_requests": false
+  },
+  "monitoring": {
+    "anomaly_issue_title": "[Mercati autopilot] Verifica richiesta",
+    "artifact_retention_days": 30,
+    "checkpoint_on_every_phase": true
+  },
+  "enrichment": {
+    "enabled": true,
+    "source": "lombardia-mercap"
+  },
+  "municipalities": {
+    "enabled": true,
+    "reference_date": "2026-02-21",
+    "source_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5"
+  },
+  "reviewed_source_cities": {
+    "enabled": true,
+    "reviewed_on": "2026-10-12",
+    "evidence_sha256": "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a"
+  },
+  "reviewed_publisher_exceptions": {
+    "enabled": true,
+    "reviewed_on": "2026-10-12",
+    "evidence_sha256": "349d6e3cfc56be35157f30210ff98d1ce1fd4c5b8319ecc4079a502d6a5bbe9f"
+  },
+  "milano_2026_dual_source": {
+    "enabled": true,
+    "document_date": "2026-10-01",
+    "pdf_blob_sha1": "87ac8ce87140d34ca7c399a1e32f30d587488571",
+    "gis_blob_sha1": "523643489c0a27b8fabd2272e4b1e5205249d2e7"
+  },
+  "roma_xiii_coordinate_holds": {
+    "enabled": true,
+    "reviewed_on": "2026-10-12",
+    "source_blob_sha1": "21c5b8e0b9415238f3953021661e79cd85ac7385"
+  },
+  "roma_xiii_2026_venues": {
+    "enabled": true,
+    "reviewed_on": "2026-10-13",
+    "evidence_blob_sha1": "de49718515825371f97d8968b2d8630c8db0999a"
+  },
+  "source_lifecycle": {
+    "enabled": true,
+    "reviewed_contract_blob_sha1": "2dde6a62b2643a77941d80db6305aded86d7be7b"
+  },
+  "source_contract_admissions": {
+    "enabled": true,
+    "approved_registry_blob_sha1": "056454bd4a477c5c174361a541448f7645d9afd3"
+  }
+}

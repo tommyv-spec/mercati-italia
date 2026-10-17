@@ -1,0 +1,146 @@
+name: Refresh static market catalog (source-bound forecasts)
+# Legacy refresh is manual only. Autopilot on main owns daily schedule
+# and guards DEV publication against stale and unsigned releases.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: static-data-publisher
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Assert a vetted static baseline exists
+        run: test -s public/data/v1/manifest.json
+      - name: Test conservative recurrence and data-merging rules
+        run: python -m unittest discover -s backend/tests -v
+      - name: Save complete rollback checkpoint before changing the snapshot
+        run: tar -czf /tmp/market-catalog-rollback.tgz public/data/v1
+      - name: Preserve rollback checkpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-rollback
+          path: /tmp/market-catalog-rollback.tgz
+          retention-days: 30
+          if-no-files-found: error
+
+      # Remote source downloads are best effort. One offline source must
+      # never prevent the verified baseline's explicit recurrences renewing.
+      # Failures are visible warnings, not misrepresented as fresh imports.
+      - name: Fetch Comune di Milano open data (best effort)
+        run: |
+          if ! python backend/source_milano.py --output /tmp/markets-milano.json; then
+            echo "::warning::Milano open data unavailable; preserving existing source records."
+            rm -f /tmp/markets-milano.json
+          fi
+      - name: Fetch Comune di Firenze GeoJSON (best effort)
+        run: |
+          if ! python backend/source_firenze.py --output /tmp/markets-firenze.json; then
+            echo "::warning::Firenze open data unavailable; preserving existing source records."
+            rm -f /tmp/markets-firenze.json
+          fi
+      - name: Merge downloaded sources without losing validated IDs or provenance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, 'backend')
+          from merge_catalog import load_existing, combine
+          baseline = load_existing(Path('public/data/v1/manifest.json'))
+          incoming = []
+          used = []
+          for name in ('milano','firenze'):
+              path=Path('/tmp/markets-' + name + '.json')
+              if path.is_file():
+                  incoming.extend(json.loads(path.read_text('utf-8')))
+                  used.append(name)
+          merged, stats=combine(baseline, incoming)
+          if len(merged) < int(len(baseline)*0.98):
+              raise ValueError('Market merge would lose more than 2%')
+          Path('/tmp/markets-merged.json').write_text(
+              json.dumps(merged, ensure_ascii=False) + '\n', 'utf-8')
+          print(json.dumps({'sources_imported':used, **stats}, ensure_ascii=False))
+          PY
+
+      - name: Project ONLY explicit recurring dates; never mark them confirmed
+        run: |
+          python backend/recurrence_refresh.py \
+            --input /tmp/markets-merged.json \
+            --out /tmp/markets-renewed.json \
+            --report /tmp/recurrence-report.json \
+            --horizon-days 120 --max-stale-days 540
+      - name: Export hashed static regional assets and compact index
+        run: |
+          python backend/export_static.py \
+            --input /tmp/markets-renewed.json --min-count 12000 \
+            --max-drop-ratio 0.02
+      - name: Verify hashes, market identities, and all index projections
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Audit future date coverage and enforce minimum freshness
+        run: |
+          python backend/audit_dataset.py --out /tmp/market-quality-report.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('public/data/v1/manifest.json').read_text())
+          rec=json.loads(Path('/tmp/recurrence-report.json').read_text())
+          qa=json.loads(Path('/tmp/market-quality-report.json').read_text())
+          future=int(qa['compact_index_future_coverage']['60'])
+          if m['index_schema'] != 5 or m['total'] < 12000:
+              raise ValueError('Index schema/count does not meet publish gate')
+          if future < 5000:
+              raise ValueError('Forecast coverage at +60 days below safe 5000-record threshold')
+          if not rec['all_dates_marked_forecast']:
+              raise ValueError('Forecast incorrectly declared as confirmed')
+          print('RELEASE_QUALITY_GATE_OK', json.dumps({
+              'markets': m['total'], 'forecast_60d':future,
+              'forecast_rules': rec['reasons'], 'newly_dated':rec['newly_dated']
+          }, ensure_ascii=False))
+          PY
+      - name: Preserve provenance and QA summary for every release
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-release-qa
+          path: |
+            /tmp/recurrence-report.json
+            /tmp/market-quality-report.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Commit data only; never force-push over other edits
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/v1
+          if git diff --cached --quiet; then
+            echo "Market content unchanged; no deployment required."
+            exit 0
+          fi
+          git commit -m "data: renew source-bound predicted market dates"
+          for attempt in 1 2 3; do
+            git fetch origin "${GITHUB_REF_NAME}"
+            if ! git rebase "origin/${GITHUB_REF_NAME}"; then
+              git rebase --abort || true
+              echo "::error::Conflicting catalog write; manual review required."
+              exit 1
+            fi
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1

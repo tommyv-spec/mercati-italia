@@ -1,0 +1,944 @@
+{
+  "schema": 1,
+  "publisher": "Comune di Milano",
+  "observed_on": "2026-10-12",
+  "publisher_dataset_last_updated": "unknown",
+  "not_a_current_market_verification": true,
+  "source_url": "https://gisportal.comune.milano.it/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0/query?where=1%3D1&outFields=ID%2CMERCATO%2Cnome_MSS%2Cgiorno%2CLUNEDI%2CMARTEDI%2CMERCOLEDI%2CGIOVEDI%2CVENERDI%2CSABATO%2CDOMENICA%2Corari%2Cstatus_mss%2Ccomune%2Cnote&returnGeometry=false&f=json&resultRecordCount=200",
+  "record_count": 84,
+  "records": [
+    {
+      "id": 1,
+      "name": "papiniano",
+      "gis_label": "papiniano",
+      "weekdays": [
+        1,
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00mar/18:00sab",
+      "note": "sab: 82+166+2= 250"
+    },
+    {
+      "id": 2,
+      "name": "ciccotti",
+      "gis_label": "ciccotti",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-18:00",
+      "note": ""
+    },
+    {
+      "id": 3,
+      "name": "gaeta",
+      "gis_label": "gaeta",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 4,
+      "name": "trechi",
+      "gis_label": "bisnati - trechi",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 5,
+      "name": "val di ledro",
+      "gis_label": "val di ledro",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 6,
+      "name": "san miniato",
+      "gis_label": "san miniato",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 7,
+      "name": "carbonia",
+      "gis_label": "carbonia (drago - cittadini arsia - zoagli)",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": "spost 2024"
+    },
+    {
+      "id": 8,
+      "name": "antona traversi",
+      "gis_label": "traversi",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 9,
+      "name": "pascarella",
+      "gis_label": "pascarella",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 10,
+      "name": "val maira",
+      "gis_label": "Val Maira",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 11,
+      "name": "falck",
+      "gis_label": "Falck",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 12,
+      "name": "bonola",
+      "gis_label": "Bonola",
+      "weekdays": [
+        1,
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 13,
+      "name": "pareto",
+      "gis_label": "Pareto",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 15,
+      "name": "de predis",
+      "gis_label": "De Predis",
+      "weekdays": [
+        0,
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": "gio: 50+145+8= 203"
+    },
+    {
+      "id": 16,
+      "name": "ardissone",
+      "gis_label": "Ardissone",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 17,
+      "name": "de capitani",
+      "gis_label": "De Capitani",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 18,
+      "name": "catone",
+      "gis_label": "Catone",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 19,
+      "name": "asmara",
+      "gis_label": "Asmara",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 20,
+      "name": "adriano",
+      "gis_label": "Adriano",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": "ex trasimeno (19.1.2019)"
+    },
+    {
+      "id": 21,
+      "name": "vittorelli",
+      "gis_label": "Vittorelli",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 22,
+      "name": "orbetello",
+      "gis_label": "Orbetello",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 23,
+      "name": "pisani dossi",
+      "gis_label": "Pisani Dossi",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 24,
+      "name": "cambini",
+      "gis_label": "Cambini",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 25,
+      "name": "rancati",
+      "gis_label": "Rancati",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 26,
+      "name": "marco aurelio",
+      "gis_label": "Marco Aurelio",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 27,
+      "name": "ampere",
+      "gis_label": "Ampere",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 28,
+      "name": "v. peroni",
+      "gis_label": "Valvassori Peroni",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-18:00",
+      "note": ""
+    },
+    {
+      "id": 29,
+      "name": "canaletto",
+      "gis_label": "Canaletto",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 30,
+      "name": "m. da brescia",
+      "gis_label": "Moretto da Brescia",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 31,
+      "name": "eustachi",
+      "gis_label": "Eustachi",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 32,
+      "name": "b marcello",
+      "gis_label": "Benedetto marcello",
+      "weekdays": [
+        1,
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00mar/16:00sab",
+      "note": "sab: 92+97+1= 190"
+    },
+    {
+      "id": 33,
+      "name": "zuretti",
+      "gis_label": "Zuretti",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 34,
+      "name": "stresa",
+      "gis_label": "Stresa",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 35,
+      "name": "garigliano",
+      "gis_label": "garigliano segmento 1",
+      "weekdays": [
+        1,
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00mar/18:00sab",
+      "note": ""
+    },
+    {
+      "id": 36,
+      "name": "porta nuova",
+      "gis_label": "Porta Nuova",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 37,
+      "name": "kramer",
+      "gis_label": "Kramer",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 38,
+      "name": "cesariano",
+      "gis_label": "Cesariano",
+      "weekdays": [
+        0,
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 39,
+      "name": "fauche",
+      "gis_label": "Fauchè",
+      "weekdays": [
+        1,
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00mar/18:00sab",
+      "note": ""
+    },
+    {
+      "id": 40,
+      "name": "pagano (V alpini)",
+      "gis_label": "Quinto Alpini - Pagano",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": "sab: 56+94+5= 155"
+    },
+    {
+      "id": 41,
+      "name": "osoppo",
+      "gis_label": "Osoppo",
+      "weekdays": [
+        3,
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00gio/17:00sab",
+      "note": "sab: 109+1+5= 115"
+    },
+    {
+      "id": 42,
+      "name": "zamagna",
+      "gis_label": "Zamagna",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": "sab: 112+1+5= 118"
+    },
+    {
+      "id": 43,
+      "name": "arioli venegoni",
+      "gis_label": "Arioli Venegoni",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 44,
+      "name": "arpino",
+      "gis_label": "Arpino - Ferrieri",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 45,
+      "name": "arcangeli",
+      "gis_label": "Arcangeli",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 46,
+      "name": "pistoia",
+      "gis_label": "Pistoia",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 47,
+      "name": "f.lli di dio",
+      "gis_label": "Via F.lli Di Dio (ex Cabella)",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 48,
+      "name": "delle betulle",
+      "gis_label": "Q.re Olmi (betulle)",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 49,
+      "name": "palmi",
+      "gis_label": "Palmi",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 50,
+      "name": "bentivoglio",
+      "gis_label": "Bentivoglio",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 51,
+      "name": "tonezza",
+      "gis_label": "Tonezza",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 52,
+      "name": "strozzi",
+      "gis_label": "Strozzi",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 53,
+      "name": "della rondine",
+      "gis_label": "della Rondine",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 54,
+      "name": "segneri",
+      "gis_label": "gelsomini (segneri)",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 55,
+      "name": "giussani",
+      "gis_label": "Giussani",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 56,
+      "name": "ponti e.",
+      "gis_label": "Ettore Ponti",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 57,
+      "name": "vespri siciliani",
+      "gis_label": "Vespri Siciliani",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 58,
+      "name": "di rudini",
+      "gis_label": "Di Rudini",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 59,
+      "name": "curiel",
+      "gis_label": "Curiel",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 60,
+      "name": "gratosoglio S",
+      "gis_label": "Gratosoglio Sud",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 61,
+      "name": "gratosoglio N",
+      "gis_label": "Gratosoglio Nord",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 62,
+      "name": "santa teresa",
+      "gis_label": "Santa Teresa",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 63,
+      "name": "neera",
+      "gis_label": "Neera",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 64,
+      "name": "cermenate",
+      "gis_label": "Cermenate",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 65,
+      "name": "borsi",
+      "gis_label": "Borsi",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 66,
+      "name": "calatafimi",
+      "gis_label": "Calatafimi",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 67,
+      "name": "tabacchi",
+      "gis_label": "Tabacchi - Baravalle - Gi",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-15:00",
+      "note": ""
+    },
+    {
+      "id": 68,
+      "name": "ghini",
+      "gis_label": "Ghini",
+      "weekdays": [
+        0
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 69,
+      "name": "dei guarneri",
+      "gis_label": "Dei Guarneri",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 70,
+      "name": "crema piacenza",
+      "gis_label": "Crema - Piacenza",
+      "weekdays": [
+        4
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 71,
+      "name": "vasari",
+      "gis_label": "Vasari",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 73,
+      "name": "oglio",
+      "gis_label": "Oglio",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 74,
+      "name": "mompiani",
+      "gis_label": "Mompiani",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 75,
+      "name": "rogoredo",
+      "gis_label": "Rogoredo",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 76,
+      "name": "ungheria",
+      "gis_label": "Ungheria",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 77,
+      "name": "barigozzi mazz",
+      "gis_label": "Barigozzi",
+      "weekdays": [
+        1
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 78,
+      "name": "san marco",
+      "gis_label": "San Marco",
+      "weekdays": [
+        0,
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 79,
+      "name": "rombon",
+      "gis_label": "Rombon",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 80,
+      "name": "aristotele",
+      "gis_label": "Martesana (aristotele)",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 81,
+      "name": "monza",
+      "gis_label": "Monza",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 83,
+      "name": "ripa pta ticinese",
+      "gis_label": "Darsena (f. senigallia)",
+      "weekdays": [
+        5
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-18:00",
+      "note": ""
+    },
+    {
+      "id": 84,
+      "name": "martini",
+      "gis_label": "Martini",
+      "weekdays": [
+        2
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 85,
+      "name": "calvi",
+      "gis_label": "Calvi",
+      "weekdays": [
+        3
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    },
+    {
+      "id": 86,
+      "name": "mario pagano M1",
+      "gis_label": "Pagano MM1",
+      "weekdays": [
+        6
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-16:00",
+      "note": "sab: 59+135+7= 201"
+    },
+    {
+      "id": 87,
+      "name": "vittorini",
+      "gis_label": "Vittorini",
+      "weekdays": [
+        6
+      ],
+      "status": "attivo",
+      "hours_in_gis": "7:30-14:00",
+      "note": ""
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "catalog_count": 13784,
+  "checked_source_profiles": 1,
+  "market_confirmations": 0,
+  "market_identity_deletions": 0,
+  "market_imports": 0,
+  "market_updates": 0,
+  "read_only": true,
+  "reference_date": "2026-10-13",
+  "registry_sha256": "c160fac5a48aecd773bf5f7a8ed98ee15bb68a7422d5195f77c22555778431ea",
+  "schema": 1,
+  "source_checks": {
+    "source_level_raw_profiles_checked": 1,
+    "source_only_stage_reviews": 1
+  },
+  "source_contract_schema": 1,
+  "sources": {
+    "corciano-generic-shadow": {
+      "catalog_records_compared": 13784,
+      "catalog_records_imported": 0,
+      "catalog_records_modified": 0,
+      "counts": {
+        "already_in_catalog_exact_source_id": 2,
+        "distinct_market_identities": 4,
+        "identity_not_in_existing_catalog": 2,
+        "rows_observed": 4
+      },
+      "diff": {
+        "added_source_identities_since_last_scan": 0,
+        "changed_source_identities_since_last_scan": 0,
+        "first_observation": false,
+        "missing_source_identities_since_last_scan": 0,
+        "same_source_identities_since_last_scan": 4
+      },
+      "examples_hashes_only": [
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "594c220a7398160b"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "dffa8de044be14b2"
+        }
+      ],
+      "existing_record_ids_deleted": 0,
+      "fingerprints": {
+        "594c220a7398160b704d7a2837a18e8ff6d0f37f2fd8df3ed09873cdffe40a06": "414dcfb6a06b12be1ff8951dd4a19be44acafc5968bbde81100833a6f839328a",
+        "76bf673bc978c5077c9f7ebc881f6be87a0cf9f42eaf6aabe1c6b4ab40eeb59b": "1f3cc9c51e0a5434eb7a97f9d9d98d1dae58a2511230e7ffef76853feca810d4",
+        "97b2aacd39cab08cfdcdc521d0966bffb98978411f9b29c90ec076bd3ddea647": "a92d6f4a86ce4d83bd5bc53fd29c4f891dceb9d4c05266d342846178fa66785e",
+        "dffa8de044be14b276ff521bc4983e56d9563cf98a8a50b3f20d4a0b08f9b2af": "4a035b361005deb1fe4f273f6359eb3ee3c4a25ac8e5aaeb6362e874074d1c5e"
+      },
+      "individual_market_openings_verified": 0,
+      "license_reviewed_for_automatic_publication": false,
+      "market_names_distinct_not_new_events": 4,
+      "new_directions_enabled": 0,
+      "new_precise_coordinates": 0,
+      "profile_fingerprint": "670d3152fb8bbc96eb9c6ec7da67f33c8defb8b1c82f0caf85b23c725c48e258",
+      "publisher": "Comune di Corciano",
+      "publisher_data_age_days": 279,
+      "publisher_dataset_date": "2026-01-07",
+      "review_required": true,
+      "row_kind": "market_venue",
+      "schema": 1,
+      "source_data_marked_current_by_fetch_time": false,
+      "source_data_scope": "dataset_not_per_market",
+      "source_id": "corciano-generic-shadow",
+      "source_schema_columns_sha256": "2afea7e535523faf2cb891263244e6c9c0d08f728788bb158f320676b9ae5fb7",
+      "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
+      "source_stage": {
+        "base_catalog_records": 13784,
+        "counts": {
+          "already_in_catalog_exact_source_id": 2,
+          "raw_rows_scanned": 4,
+          "source_market_identities": 4
+        },
+        "directions_enabled": 0,
+        "examples_hashed": [
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "1cba4b1ae9416baaa645da881457c7368d9119e9a8e9ad12d9d7e64bad230266"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "generic_city_market_day",
+            "source_identity_sha256": "25b92e2c710902aa6672fb09c19a559c69de486726b5d633e557dd61b71dc9e5"
+          }
+        ],
+        "existing_market_identities_deleted": 0,
+        "existing_market_ids_modified": 0,
+        "precise_coordinates_created": 0,
+        "profile_sha256": "670d3152fb8bbc96eb9c6ec7da67f33c8defb8b1c82f0caf85b23c725c48e258",
+        "publication_enabled": false,
+        "publisher": "Comune di Corciano",
+        "publisher_dataset_date": "2026-01-07",
+        "review_reason_counts": {
+          "generic_city_market_day": 1,
+          "same_named_market_in_city": 1
+        },
+        "safe_candidates_not_published": 0,
+        "schema": 1,
+        "source_id": "corciano-generic-shadow",
+        "source_kind": "market_venue",
+        "source_license_automatically_verified": false,
+        "source_schema_readonly": true,
+        "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
+        "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
+        "verified_openings_created": 0
+      },
+      "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv"
+    }
+  }
+}

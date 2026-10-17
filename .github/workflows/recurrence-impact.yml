@@ -1,0 +1,33 @@
+name: Forecast coverage impact — no publish
+on:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/recurrence-impact.yml
+
+permissions:
+  contents: read
+
+jobs:
+  impact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run strict recurrence and snapshot tests
+        run: python -m unittest discover -s backend/tests -v
+      - name: Simulate 120-day rolling forecasts without changing published data
+        run: |
+          python backend/simulate_recurrence.py --today 2026-10-11 --out reports/audit/recurrence-impact.json
+      - name: Save full impact and quality gates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rolling-date-impact-dry-run
+          path: reports/audit/recurrence-impact.json
+          retention-days: 30
+          if-no-files-found: error

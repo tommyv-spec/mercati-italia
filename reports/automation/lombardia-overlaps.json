@@ -1,0 +1,1492 @@
+{
+  "accepted": 1127,
+  "counts": {
+    "existing_lombardia_identity": 1127,
+    "quarantined_same_location_same_weekday": 99,
+    "quarantined_same_location_unknown_or_conflicting_schedule": 134
+  },
+  "deleted_existing_records": 0,
+  "market_confirmations": 0,
+  "quarantined": 233,
+  "quarantined_examples": [
+    {
+      "citta": "Albizzate",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-albizzate-albizzate",
+        "mercato-settimanale-di-albizzate-albizzate-martedi"
+      ],
+      "indirizzo": "PIAZZALE SEFRO",
+      "official_slug": "lo-mercap-100001-martedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        1
+      ]
+    },
+    {
+      "citta": "Arsago Seprio",
+      "existing_market_days": [
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-arsago-seprio-arsago-seprio",
+        "mercato-settimanale-di-arsago-seprio-arsago-seprio-mercoledi"
+      ],
+      "indirizzo": "VIA MONICI",
+      "official_slug": "lo-mercap-100004-mercoledi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        2
+      ]
+    },
+    {
+      "citta": "Bisuschio",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-bisuschio-bisuschio",
+        "mercato-settimanale-di-bisuschio-bisuschio-venerdi"
+      ],
+      "indirizzo": "VIA GARIBALDI",
+      "official_slug": "lo-mercap-100012-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Castelseprio",
+      "existing_market_days": [
+        [
+          3
+        ],
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-castelseprio-castelseprio",
+        "mercato-settimanale-di-castelseprio-castelseprio-giovedi"
+      ],
+      "indirizzo": "VIA S. ROCCO",
+      "official_slug": "lo-mercap-100031-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Cunardo",
+      "existing_market_days": [
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-cunardo-cunardo-giovedi"
+      ],
+      "indirizzo": "VIA GARIBALDI",
+      "official_slug": "lo-mercap-100038-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Gallarate",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-gallarate-gallarate-sabato"
+      ],
+      "indirizzo": "AREA MERCATO VIA TORINO",
+      "official_slug": "lo-mercap-100042-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Gorla Maggiore",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-gorla-maggiore-gorla-maggiore",
+        "mercato-settimanale-di-gorla-maggiore-gorla-maggiore-martedi"
+      ],
+      "indirizzo": "VIA MARCONI",
+      "official_slug": "lo-mercap-100053-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Gorla Minore",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-gorla-minore-gorla-minore",
+        "mercato-settimanale-di-gorla-minore-gorla-minore-venerdi"
+      ],
+      "indirizzo": "VIA TERZAGHI",
+      "official_slug": "lo-mercap-100054-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Morazzone",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-morazzone-morazzone",
+        "mercato-settimanale-di-morazzone-morazzone-martedi"
+      ],
+      "indirizzo": "VIA DE GASPERI",
+      "official_slug": "lo-mercap-100075-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Porto Ceresio",
+      "existing_market_days": [
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-porto-ceresio-porto-ceresio-martedi"
+      ],
+      "indirizzo": "VIA MATTEOTTI",
+      "official_slug": "lo-mercap-100081-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Solbiate Olona",
+      "existing_market_days": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-solbiate-olona-solbiate-olona",
+        "mercato-settimanale-di-solbiate-olona-solbiate-olona-lunedi"
+      ],
+      "indirizzo": "VIA S. VITO",
+      "official_slug": "lo-mercap-100090-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Vedano Olona",
+      "existing_market_days": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-vedano-olona-vedano-olona",
+        "mercato-settimanale-di-vedano-olona-vedano-olona-lunedi"
+      ],
+      "indirizzo": "VIA DANTE",
+      "official_slug": "lo-mercap-100103-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Vergiate",
+      "existing_market_days": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-vergiate-vergiate",
+        "mercato-settimanale-di-vergiate-vergiate-lunedi"
+      ],
+      "indirizzo": "VIA PIAVE",
+      "official_slug": "lo-mercap-100106-lunedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        0
+      ]
+    },
+    {
+      "citta": "Berbenno Di Valtellina",
+      "existing_market_days": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-berbenno-di-valtellina-berbenno-di-valtellina",
+        "mercato-settimanale-di-berbenno-di-valtellina-berbenno-di-valtellina-lunedi"
+      ],
+      "indirizzo": "VIA CONCILIAZIONE",
+      "official_slug": "lo-mercap-100111-lunedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        0
+      ]
+    },
+    {
+      "citta": "Chiuro",
+      "existing_market_days": [
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-chiuro-chiuro-giovedi"
+      ],
+      "indirizzo": "VIA GERA",
+      "official_slug": "lo-mercap-100117-giovedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        3
+      ]
+    },
+    {
+      "citta": "Prata Camportaccio",
+      "existing_market_days": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-prata-camportaccio-prata-camportaccio",
+        "mercato-settimanale-di-prata-camportaccio-prata-camportaccio-lunedi"
+      ],
+      "indirizzo": "VIA SPLUGA",
+      "official_slug": "lo-mercap-100134-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Sondrio",
+      "existing_market_days": [
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-sondrio-sondrio-lunedi"
+      ],
+      "indirizzo": "VIA MAFFEI",
+      "official_slug": "lo-mercap-100138-lunedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        0
+      ]
+    },
+    {
+      "citta": "San Fermo Della Battaglia",
+      "existing_market_days": [
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-san-fermo-della-battaglia-san-fermo-della-battaglia"
+      ],
+      "indirizzo": "PIAZZA XXVII MAGGIO",
+      "official_slug": "lo-mercap-1002-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Siziano",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-siziano-siziano-sabato"
+      ],
+      "indirizzo": "VIA FRATELLI CERVI",
+      "official_slug": "lo-mercap-100223-sabato",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "Vigevano",
+      "existing_market_days": [
+        [
+          2
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-vigevano-vigevano-mercoledi",
+        "mercato-settimanale-di-vigevano-vigevano-sabato"
+      ],
+      "indirizzo": "PIAZZA CALZOLAIO D'ITALIA",
+      "official_slug": "lo-mercap-100231-mercoledi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        2
+      ]
+    },
+    {
+      "citta": "Vigevano",
+      "existing_market_days": [
+        [
+          2
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-vigevano-vigevano-mercoledi",
+        "mercato-settimanale-di-vigevano-vigevano-sabato"
+      ],
+      "indirizzo": "PIAZZA CALZOLAIO D'ITALIA",
+      "official_slug": "lo-mercap-100232-sabato",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "Vigevano",
+      "existing_market_days": [
+        [
+          6
+        ],
+        [
+          3
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          5
+        ],
+        [
+          4
+        ],
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "lo-mercap-100234-domenica",
+        "lo-mercap-100234-giovedi",
+        "lo-mercap-100234-martedi",
+        "lo-mercap-100234-mercoledi",
+        "lo-mercap-100234-sabato",
+        "lo-mercap-100234-venerdi",
+        "mercato-settimanale-di-vigevano-vigevano-lunedi"
+      ],
+      "indirizzo": "VIA ROCCA VECCHIA",
+      "official_slug": "lo-mercap-100234-lunedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        0
+      ]
+    },
+    {
+      "citta": "Zinasco",
+      "existing_market_days": [
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-zinasco-zinasco-martedi"
+      ],
+      "indirizzo": "PIAZZA DI VITTORIO",
+      "official_slug": "lo-mercap-100240-martedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        1
+      ]
+    },
+    {
+      "citta": "Aicurzio",
+      "existing_market_days": [
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-aicurzio-aicurzio-martedi"
+      ],
+      "indirizzo": "PIAZZA DELLA CHIESA",
+      "official_slug": "lo-mercap-100243-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Barlassina",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-barlassina-barlassina",
+        "mercato-settimanale-di-barlassina-barlassina-martedi"
+      ],
+      "indirizzo": "VIALE DANTE",
+      "official_slug": "lo-mercap-100246-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Bellusco",
+      "existing_market_days": [
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-bellusco-bellusco",
+        "mercato-settimanale-di-bellusco-bellusco-mercoledi"
+      ],
+      "indirizzo": "PIAZZA LIBERTA",
+      "official_slug": "lo-mercap-100247-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Bernareggio",
+      "existing_market_days": [
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-bernareggio-bernareggio",
+        "mercato-settimanale-di-bernareggio-bernareggio-mercoledi"
+      ],
+      "indirizzo": "VIA LEONI",
+      "official_slug": "lo-mercap-100248-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Busnago",
+      "existing_market_days": [
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-busnago-busnago-giovedi"
+      ],
+      "indirizzo": "VIA PIAVE",
+      "official_slug": "lo-mercap-100256-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Cavenago Di Brianza",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-cavenago-di-brianza-cavenago-di-brianza",
+        "mercato-settimanale-di-cavenago-di-brianza-cavenago-di-brianza-sabato"
+      ],
+      "indirizzo": "PIAZZA MERCATO",
+      "official_slug": "lo-mercap-100261-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Ceriano Laghetto",
+      "existing_market_days": [
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-ceriano-laghetto-ceriano-laghetto",
+        "mercato-settimanale-di-ceriano-laghetto-ceriano-laghetto-mercoledi"
+      ],
+      "indirizzo": "VIA MANZONI",
+      "official_slug": "lo-mercap-100262-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Lesmo",
+      "existing_market_days": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-lesmo-lesmo",
+        "mercato-settimanale-di-lesmo-lesmo-lunedi"
+      ],
+      "indirizzo": "VIA MONTI",
+      "official_slug": "lo-mercap-100284-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Seveso",
+      "existing_market_days": [
+        []
+      ],
+      "existing_market_ids": [
+        "mercatino-dell-usato-seveso"
+      ],
+      "indirizzo": "VIALE REDIPUGLIA",
+      "official_slug": "lo-mercap-100316-sabato",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "Vedano Al Lambro",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-vedano-al-lambro-vedano-al-lambro",
+        "mercato-settimanale-di-vedano-al-lambro-vedano-al-lambro-sabato"
+      ],
+      "indirizzo": "LARGO REPUBBLICA",
+      "official_slug": "lo-mercap-100323-sabato",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "Abbiategrasso",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          5
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-abbiategrasso-abbiategrasso-martedi",
+        "mercato-settimanale-di-abbiategrasso-abbiategrasso-sabato",
+        "mercato-settimanale-di-abbiategrasso-abbiategrasso-venerdi"
+      ],
+      "indirizzo": "PIAZZA L. SAMEK",
+      "official_slug": "lo-mercap-100331-sabato",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "Arconate",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-arconate-arconate-sabato"
+      ],
+      "indirizzo": "VIA PELLICO",
+      "official_slug": "lo-mercap-100333-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Bareggio",
+      "existing_market_days": [
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-bareggio-bareggio-giovedi"
+      ],
+      "indirizzo": "PIAZZA CAVOUR",
+      "official_slug": "lo-mercap-100337-giovedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        3
+      ]
+    },
+    {
+      "citta": "Bollate",
+      "existing_market_days": [
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-bollate-bollate-venerdi"
+      ],
+      "indirizzo": "VIA OSPITALETTO",
+      "official_slug": "lo-mercap-100347-venerdi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        4
+      ]
+    },
+    {
+      "citta": "Bollate",
+      "existing_market_days": [
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-bollate-bollate-mercoledi"
+      ],
+      "indirizzo": "VIA VERBANIA",
+      "official_slug": "lo-mercap-100349-mercoledi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        2
+      ]
+    },
+    {
+      "citta": "Buccinasco",
+      "existing_market_days": [
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-buccinasco-buccinasco-mercoledi"
+      ],
+      "indirizzo": "VIA BOLOGNA",
+      "official_slug": "lo-mercap-100352-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Casarile",
+      "existing_market_days": [
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-casarile-casarile-venerdi"
+      ],
+      "indirizzo": "VIA PUCCINI",
+      "official_slug": "lo-mercap-100362-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Casorezzo",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-casorezzo-casorezzo",
+        "mercato-settimanale-di-casorezzo-casorezzo-sabato"
+      ],
+      "indirizzo": "PIAZZA  I  MAGGIO",
+      "official_slug": "lo-mercap-100363-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Corbetta",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-corbetta-corbetta-sabato"
+      ],
+      "indirizzo": "PIAZZA I MAGGIO",
+      "official_slug": "lo-mercap-100389-sabato",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "Cormano",
+      "existing_market_days": [
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-cormano-cormano-venerdi"
+      ],
+      "indirizzo": "VIA EUROPA",
+      "official_slug": "lo-mercap-100391-venerdi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        4
+      ]
+    },
+    {
+      "citta": "Cusago",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-cusago-cusago-sabato"
+      ],
+      "indirizzo": "VIA CISLIANO",
+      "official_slug": "lo-mercap-100399-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Gaggiano",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-gaggiano-gaggiano-sabato"
+      ],
+      "indirizzo": "VIA DE GASPERI",
+      "official_slug": "lo-mercap-100402-sabato",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "Inzago",
+      "existing_market_days": [
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-inzago-inzago-mercoledi"
+      ],
+      "indirizzo": "VIA DON STURZO",
+      "official_slug": "lo-mercap-100409-mercoledi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        2
+      ]
+    },
+    {
+      "citta": "Locate Di Triulzi",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-locate-di-triulzi-locate-di-triulzi",
+        "mercato-settimanale-di-locate-di-triulzi-locate-di-triulzi-sabato"
+      ],
+      "indirizzo": "PIAZZA CURIEL",
+      "official_slug": "lo-mercap-100417-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Magnago",
+      "existing_market_days": [
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-magnago-magnago-martedi"
+      ],
+      "indirizzo": "PIAZZA S. PERTINI",
+      "official_slug": "lo-mercap-100420-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Masate",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-masate-masate",
+        "mercato-settimanale-di-masate-masate-venerdi"
+      ],
+      "indirizzo": "VIA ROMA",
+      "official_slug": "lo-mercap-100423-venerdi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        4
+      ]
+    },
+    {
+      "citta": "Novate Milanese",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-novate-milanese-novate-milanese",
+        "mercato-settimanale-di-novate-milanese-novate-milanese-sabato"
+      ],
+      "indirizzo": "VIA GRAMSCI",
+      "official_slug": "lo-mercap-100528-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Pantigliate",
+      "existing_market_days": [
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-pantigliate-pantigliate",
+        "mercato-settimanale-di-pantigliate-pantigliate-mercoledi"
+      ],
+      "indirizzo": "VIALE DI VITTORIO",
+      "official_slug": "lo-mercap-100533-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Peschiera Borromeo",
+      "existing_market_days": [
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-peschiera-borromeo-peschiera-borromeo-giovedi"
+      ],
+      "indirizzo": "VIA ARCHIMEDE",
+      "official_slug": "lo-mercap-100539-giovedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        3
+      ]
+    },
+    {
+      "citta": "Peschiera Borromeo",
+      "existing_market_days": [
+        [
+          2
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-peschiera-borromeo-peschiera-borromeo-mercoledi"
+      ],
+      "indirizzo": "VIA TOSCANA",
+      "official_slug": "lo-mercap-100543-mercoledi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        2
+      ]
+    },
+    {
+      "citta": "Pogliano Milanese",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-pogliano-milanese-pogliano-milanese",
+        "mercato-settimanale-di-pogliano-milanese-pogliano-milanese-venerdi"
+      ],
+      "indirizzo": "VIA EUROPA",
+      "official_slug": "lo-mercap-100551-venerdi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        4
+      ]
+    },
+    {
+      "citta": "Pregnana Milanese",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-pregnana-milanese-pregnana-milanese",
+        "mercato-settimanale-di-pregnana-milanese-pregnana-milanese-venerdi"
+      ],
+      "indirizzo": "VIA LEOPARDI",
+      "official_slug": "lo-mercap-100556-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Rescaldina",
+      "existing_market_days": [
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-rescaldina-rescaldina-giovedi"
+      ],
+      "indirizzo": "VIA DE AMICIS",
+      "official_slug": "lo-mercap-100557-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Rho",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "lo-mercap-100560-martedi",
+        "mercato-settimanale-di-rho-rho-giovedi"
+      ],
+      "indirizzo": "PIAZZA MARINAI D'ITALIA",
+      "official_slug": "lo-mercap-100560-giovedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        3
+      ]
+    },
+    {
+      "citta": "Rosate",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-rosate-rosate-sabato"
+      ],
+      "indirizzo": "VIA GARIBALDI",
+      "official_slug": "lo-mercap-100567-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Rozzano",
+      "existing_market_days": [
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-rozzano-rozzano-giovedi"
+      ],
+      "indirizzo": "PIAZZA FONTANA",
+      "official_slug": "lo-mercap-100571-giovedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        3
+      ]
+    },
+    {
+      "citta": "San Donato Milanese",
+      "existing_market_days": [
+        []
+      ],
+      "existing_market_ids": [
+        "mercatino-hobbisti-e-artigianato-a-san-donato-milanese-san-donato-milanese"
+      ],
+      "indirizzo": "PIAZZA SANTA BARBARA",
+      "official_slug": "lo-mercap-100574-martedi",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": [
+        1
+      ]
+    },
+    {
+      "citta": "San Giuliano Milanese",
+      "existing_market_days": [
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-san-giuliano-milanese-san-giuliano-milanese-sabato"
+      ],
+      "indirizzo": "VIA CAMPOVERDE",
+      "official_slug": "lo-mercap-100581-sabato",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        5
+      ]
+    },
+    {
+      "citta": "San Vittore Olona",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-san-vittore-olona-san-vittore-olona",
+        "mercato-settimanale-di-san-vittore-olona-san-vittore-olona-venerdi"
+      ],
+      "indirizzo": "PIAZZA ALDO MORO",
+      "official_slug": "lo-mercap-100582-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Sedriano",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-sedriano-sedriano",
+        "mercato-settimanale-di-sedriano-sedriano-sabato"
+      ],
+      "indirizzo": "PIAZZA MERCATO",
+      "official_slug": "lo-mercap-100584-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Sesto San Giovanni",
+      "existing_market_days": [
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-sesto-san-giovanni-sesto-san-giovanni-venerdi"
+      ],
+      "indirizzo": "PIAZZA FARUFFINI",
+      "official_slug": "lo-mercap-100590-venerdi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        4
+      ]
+    },
+    {
+      "citta": "Settala",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-settala-settala",
+        "mercato-settimanale-di-settala-settala-venerdi"
+      ],
+      "indirizzo": "VIA VERDI",
+      "official_slug": "lo-mercap-100604-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Vanzaghello",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-vanzaghello-vanzaghello",
+        "mercato-settimanale-di-vanzaghello-vanzaghello-martedi"
+      ],
+      "indirizzo": "PIAZZA MERCATO",
+      "official_slug": "lo-mercap-100619-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Castel D'Ario",
+      "existing_market_days": [
+        [
+          6
+        ],
+        [
+          6
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-castel-d-ario-castel-d-ario",
+        "mercato-settimanale-di-castel-d-ario-castel-d-ario-domenica"
+      ],
+      "indirizzo": "VIALE RIMEMBRANZE",
+      "official_slug": "lo-mercap-100641-domenica",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        6
+      ]
+    },
+    {
+      "citta": "Castelbelforte",
+      "existing_market_days": [
+        [
+          6
+        ],
+        [
+          6
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-castelbelforte-castelbelforte",
+        "mercato-settimanale-di-castelbelforte-castelbelforte-domenica"
+      ],
+      "indirizzo": "VIA ROMA",
+      "official_slug": "lo-mercap-100643-domenica",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        6
+      ]
+    },
+    {
+      "citta": "Marcaria",
+      "existing_market_days": [
+        [
+          6
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-marcaria-marcaria-domenica"
+      ],
+      "indirizzo": "FRAZIONE CAMPITELLO",
+      "official_slug": "lo-mercap-100690-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Marcaria",
+      "existing_market_days": [
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-marcaria-marcaria-venerdi"
+      ],
+      "indirizzo": "FRAZIONE CESOLE",
+      "official_slug": "lo-mercap-100692-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Pegognaga",
+      "existing_market_days": [
+        [],
+        [
+          6
+        ]
+      ],
+      "existing_market_ids": [
+        "mercatini-serali-a-pegognaga-pegognaga",
+        "mercatino-riuso-a-pegognaga-pegognaga"
+      ],
+      "indirizzo": "PIAZZA GIACOMO MATTEOTTI",
+      "official_slug": "lo-mercap-100704-lunedi",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": [
+        0
+      ]
+    },
+    {
+      "citta": "Borgo Mantovano",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-pieve-di-coriano-borgo-mantovano",
+        "mercato-settimanale-di-pieve-di-coriano-borgo-mantovano-sabato"
+      ],
+      "indirizzo": "PIAZZA ALDO MORO",
+      "official_slug": "lo-mercap-100705-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Pomponesco",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-pomponesco-pomponesco",
+        "mercato-settimanale-di-pomponesco-pomponesco-martedi"
+      ],
+      "indirizzo": "PIAZZA XXIII APRILE",
+      "official_slug": "lo-mercap-100709-martedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        1
+      ]
+    },
+    {
+      "citta": "Porto Mantovano",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-porto-mantovano-porto-mantovano",
+        "mercato-settimanale-di-porto-mantovano-porto-mantovano-martedi"
+      ],
+      "indirizzo": "PIAZZA DEI MARINAI",
+      "official_slug": "lo-mercap-100711-martedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        1
+      ]
+    },
+    {
+      "citta": "Quingentole",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-quingentole-quingentole",
+        "mercato-settimanale-di-quingentole-quingentole-sabato"
+      ],
+      "indirizzo": "PIAZZA ITALIA",
+      "official_slug": "lo-mercap-100712-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Redondesco",
+      "existing_market_days": [
+        [
+          6
+        ],
+        [
+          6
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-redondesco-redondesco",
+        "mercato-settimanale-di-redondesco-redondesco-domenica"
+      ],
+      "indirizzo": "PIAZZA RISORGIMENTO",
+      "official_slug": "lo-mercap-100714-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Roverbella",
+      "existing_market_days": [
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-roverbella-roverbella-venerdi"
+      ],
+      "indirizzo": "FRAZIONE MALAVICINA",
+      "official_slug": "lo-mercap-100723-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Schivenoglia",
+      "existing_market_days": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-schivenoglia-schivenoglia",
+        "mercato-settimanale-di-schivenoglia-schivenoglia-martedi"
+      ],
+      "indirizzo": "VIA MATTEOTTI",
+      "official_slug": "lo-mercap-100731-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Solferino",
+      "existing_market_days": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-solferino-solferino",
+        "mercato-settimanale-di-solferino-solferino-sabato"
+      ],
+      "indirizzo": "PIAZZA MARCONI",
+      "official_slug": "lo-mercap-100733-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
+    },
+    {
+      "citta": "Castiglione D'Adda",
+      "existing_market_days": [
+        [
+          3
+        ],
+        [
+          3
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-castiglione-d-adda-castiglione-d-adda",
+        "mercato-settimanale-di-castiglione-d-adda-castiglione-d-adda-giovedi"
+      ],
+      "indirizzo": "PIAZZA ASSUNZIONE",
+      "official_slug": "lo-mercap-100755-giovedi",
+      "reason": "same_location_same_weekday",
+      "source_weekdays": [
+        3
+      ]
+    }
+  ],
+  "region": "Lombardia",
+  "review_only": true,
+  "schema": 1,
+  "source_prefix": "lo-mercap-",
+  "source_total": 1360
+}

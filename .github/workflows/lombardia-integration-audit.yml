@@ -1,0 +1,194 @@
+# Read-only full integration trial. Does NOT publish to DEV or production.
+# Normal daily Autopilot is the only approved market catalog writer.
+name: Lombardia MERCap full integration audit (no publish)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lombardia-source-audit
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run entire offline test suite before network
+        run: python -m unittest discover -s backend/tests -v
+      - name: Create ephemeral stricter policy with official Lombardia source
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          policy = json.loads(Path('backend/autopilot_policy.json').read_text())
+          prior = next((x for x in policy['sources'] if x['id'] == 'lombardia'), None)
+          if prior is None:
+              policy['sources'].append({
+                  'id': 'lombardia',
+                  'enabled': True,
+                  'official': True,
+                  'min_records': 1100,
+                  'max_records': 2400,
+                  'license': 'CC0 1.0 declared by Regione Lombardia',
+                  'stale_source_dates_not_confirmed': True,
+              })
+          elif not prior.get('enabled'):
+              raise ValueError('Existing Lombardia policy source is intentionally disabled')
+          Path('/tmp/mercati-lombardia-policy.json').write_text(json.dumps(policy))
+          PY
+      - name: Retrieve full official rows once, normalize, merge and run existing release policy
+        run: |
+          set -euo pipefail
+          python backend/autopilot.py \
+            --policy /tmp/mercati-lombardia-policy.json \
+            --output lombardia-audit-output
+      - name: Classify exact same-location overlaps without removing source records
+        run: |
+          python backend/lombardia_overlap.py \
+            --manifest public/data/v1/manifest.json \
+            --official lombardia-audit-output/sources/lombardia.json \
+            --out lombardia-audit-output/overlap-summary.json \
+            --report lombardia-audit-output/overlap-summary.md \
+            --accepted lombardia-audit-output/accepted-source-records.json
+      - name: Quantify candidate sources, duplicate-like rows and monthly schedule gaps
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from collections import defaultdict, Counter
+          from datetime import date
+          import sys, json, unicodedata, re
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from audit_dataset import audit
+          from validate_static import validate
+
+          candidate = Path('lombardia-audit-output/candidate/public/data/v1/manifest.json')
+          old = Path('public/data/v1/manifest.json')
+          validate(candidate)
+          base = load_existing(old)
+          merged = load_existing(candidate)
+          ids = {x['slug'] for x in base}
+          new = [x for x in merged if x['slug'] not in ids]
+          lo = [x for x in merged if x['slug'].startswith('lo-mercap-')]
+          lo_new = [x for x in new if x['slug'].startswith('lo-mercap-')]
+
+          def key(s):
+              norm = unicodedata.normalize('NFKD', str(s or '')).casefold()
+              norm = ''.join(x for x in norm if not unicodedata.combining(x))
+              return re.sub(r'\s+', ' ', norm).strip()
+
+          seen = defaultdict(set)
+          for x in base:
+              city = key(x.get('citta'))
+              address = key(x.get('indirizzo'))
+              if city and address and len(address) >= 8:
+                  seen[(city,address)].add(x['slug'])
+          overlap = [x for x in lo if (key(x.get('citta')),key(x.get('indirizzo'))) in seen]
+          snapshot = audit(candidate)
+          decision = json.loads(Path('lombardia-audit-output/release-decision.json').read_text())
+          screening = json.loads(Path('lombardia-audit-output/overlap-summary.json').read_text())
+          report = {
+              'overlap_triage': screening['counts'],
+              'source_after_quarantine': screening['accepted'],
+              'source_quarantined': screening['quarantined'],
+              'approved': decision['approved'],
+              'base_records': len(base),
+              'candidate_records': len(merged),
+              'new_identities': len(new),
+              'new_lombardia': len(lo_new),
+              'all_lombardia': len(lo),
+              'new_lombardia_forecast': sum(bool(x.get('date')) for x in lo_new),
+              'new_lombardia_no_calendar': sum(not x.get('date') for x in lo),
+              'dataset_scoped_dates': sum(x.get('aggiornamento_ambito') == 'dataset' for x in lo),
+              'human_verified_lombardia': sum(bool(x.get('verificato_il')) for x in lo),
+              'lombardia_precise_coordinates_claimed': sum(x.get('position_quality')=='precisa' for x in lo),
+              'same_city_and_address_existing_candidates': len(overlap),
+              'overlap_examples': [
+                  {'slug':x['slug'],'city':x['citta'],'address':x.get('indirizzo')}
+                  for x in overlap[:20]
+              ],
+              'index_gzip_bytes': snapshot['sizes']['national_index_gzip_bytes'],
+              'gates': decision['gates'],
+          }
+          accepted_source = json.loads(Path('lombardia-audit-output/accepted-source-records.json').read_text())
+          accepted_source_ids = {m['slug'] for m in accepted_source}
+          candidate_source_ids = {m['slug'] for m in lo}
+          missing_official = sorted(accepted_source_ids - candidate_source_ids)
+          report['missing_official_after_export'] = missing_official[:40]
+          report['missing_official_total'] = len(missing_official)
+          print('MERCap preserved IDs', len(candidate_source_ids),
+                'from approved input', len(accepted_source_ids),
+                'missing samples', missing_official[:25])
+          assert report['approved'] and report['all_lombardia'] >= 1000
+          assert candidate_source_ids == accepted_source_ids, (
+              'Source identity mismatch between screened official input and exporter'
+          )
+          assert report['human_verified_lombardia'] == 0
+          assert report['lombardia_precise_coordinates_claimed'] == 0
+          assert report['dataset_scoped_dates'] == report['all_lombardia']
+          Path('lombardia-audit-output/integration-summary.json').write_text(
+              json.dumps(report,indent=2,ensure_ascii=False)+'\n')
+          with Path('lombardia-audit-output/integration-summary.md').open('w') as f:
+              f.write('# Lombardia official adapter — controlled trial\n\n')
+              for k,v in report.items():
+                  if k not in ('gates','overlap_examples'):
+                      f.write(f'- {k}: **{v}**\n')
+              f.write('\nThis run is audit-only. No catalog or Cloudflare deployment was changed.\n')
+          print('LOMBARDIA_INTEGRATION_SUMMARY',json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Install audited catalog locally for browser test only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import shutil
+          target = Path('public/data/v1')
+          temp = Path('lombardia-audit-output/candidate/public/data/v1')
+          shutil.rmtree(target)
+          shutil.copytree(temp,target)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate security and build against full candidate
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+      - name: Test real mobile visitor paths against candidate
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/lombardia-preview.log 2>&1 &
+          for attempt in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/ui-smoke.mjs
+      - name: Preserve reproducible evidence, not a live publish
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lombardia-integration-audit
+          path: |
+            lombardia-audit-output/checkpoints/
+            lombardia-audit-output/release-decision.json
+            lombardia-audit-output/integration-summary.json
+            lombardia-audit-output/integration-summary.md
+            lombardia-audit-output/overlap-summary.json
+            lombardia-audit-output/overlap-summary.md
+            ux-smoke-result.json
+            ux-*.png
+          retention-days: 30
+          if-no-files-found: warn

@@ -1,0 +1,58 @@
+name: Dev mobile preview build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - improve/data-quality-security-performance-2026-10-11
+    paths:
+      - .github/workflows/dev-mobile-build.yml
+      - src/**
+      - package.json
+      - package-lock.json
+      - public/data/v1/manifest.json
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python static catalog validation
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Build actual static dev site
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+
+      - name: Assert catalog copied into dist
+        run: |
+          test -s dist/index.html
+          test -s dist/data/v1/manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m = json.loads(Path('dist/data/v1/manifest.json').read_text())
+          assert m['total'] > 10000
+          assert m['index_schema'] == 5
+          assert (Path('dist') / m['index']).exists()
+          print('Ready: ' + str(m['total']) + ' candidate markets')
+          PY
+
+      - name: Upload ready-to-serve dev files
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercati-mobile-dev-site
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error

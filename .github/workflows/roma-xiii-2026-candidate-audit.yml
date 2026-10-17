@@ -1,0 +1,204 @@
+# Explicitly no publication: independently check new Rome venue IDs and mobile UI.
+name: Roma XIII 2026 official venues — full candidate QA (no publish)
+
+on:
+  push:
+    branches: [improve/data-quality-security-performance-2026-10-11]
+    paths:
+      - .github/workflows/roma-xiii-2026-candidate-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: roma-xiii-2026-new-venue-evidence
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate source identities, negative tests and every regression
+        run: python -m unittest discover -s backend/tests -v
+      - name: Build reversible venue-only candidate in temporary CI workspace
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,sys,shutil
+          from pathlib import Path
+          from datetime import date
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from roma_xiii_2026_venues import integrate,validate_added
+          from recurrence_refresh import refresh_records
+          from roma_xiii_2026_release_guard import check_static
+          from validate_static import validate
+          from export_static import export
+          from catalog_quality_report import analyze
+          today=date(2026,10,13)
+          source=json.loads(Path('backend/data/roma-xiii-verified-venue-evidence-2026-10-13.json').read_text())
+          original=Path('public/data/v1/manifest.json')
+          base=load_existing(original)
+          new,report=integrate(base,source,apply=True,today=today)
+          cert=validate_added(base,new,report,source)
+          projected,prediction=refresh_records(new,today,120,540)
+          root=Path('roma-2026-candidate')
+          dest=root/'public/data/v1'
+          dest.parent.mkdir(parents=True,exist_ok=True)
+          shutil.copytree(original.parent,dest)
+          export(projected,dest,today=today,min_count=12000,max_drop_ratio=.02)
+          validate(dest/'manifest.json')
+          proof=check_static(dest/'manifest.json',source,today)
+          records=load_existing(dest/'manifest.json')
+          before_ids={x['slug'] for x in base}
+          after_ids={x['slug'] for x in records}
+          data_quality=analyze(records)
+          added=sorted(after_ids-before_ids)
+          report_out={
+              "schema":1,"tested_on":"2026-10-13",
+              "previous_records":len(base),"candidate_records":len(records),
+              "added_market_ids":added,
+              "removed_ids":sorted(before_ids-after_ids),
+              "source_reconciliation":report,
+              "independent_pre_export_proof":cert,
+              "independent_final_source_proof":proof,
+              "after_quality_suspicious_cities":data_quality['metrics']['suspicious_city'],
+              "after_quality_market_duplicates":data_quality['metrics']['review_only_duplicate_groups'],
+              "confirmed_future_events":0,
+              "market_verifications_created":0,
+              "unsafe_coordinates_created":0,
+              "published":False,
+          }
+          from roma_xiii_2026_venues import EXPECTED as ALLOWED_ROMA_VENUES
+          expected_additions=len(set(ALLOWED_ROMA_VENUES)-before_ids)
+          if (len(base)<12000 or len(records)!=len(base)+expected_additions or
+              not 0<=expected_additions<=5 or len(added)!=expected_additions
+              or report.get('records_added')!=expected_additions
+              or len(report_out['removed_ids'])!=0
+              or proof['forecast_only_markets']!=4
+              or proof['reviewed_2026_venue_identifiers']!=5
+              or proof['route_holds_in_details']!=5
+              or data_quality['quality_release_safe'] is not True):
+              raise ValueError('Rejected review candidate: wrong ID count, uncertain source, or quality regression')
+          root.mkdir(parents=True,exist_ok=True)
+          (root/'summary.json').write_text(json.dumps(report_out,ensure_ascii=False,indent=2)+'\n','utf-8')
+          print('ROME_XIII_NEW_VENUES_DRYRUN',json.dumps({
+              'before':len(base),'after':len(records),
+              'new_evidence_backed_ids':len(added),'forecast_only':4,
+              'all_navigation_held':True,'no_personal_confirmations':True,
+          }))
+          PY
+      - name: Verify new source through the EXACT unattended Autopilot, offline only
+        run: |
+          set -euo pipefail
+          python backend/autopilot.py --offline --today 2026-10-13 \
+            --output roma-xiii-true-autopilot
+          python backend/reviewed_city_static_guard.py \
+            --manifest roma-xiii-true-autopilot/candidate/public/data/v1/manifest.json \
+            --evidence backend/data/reviewed-city-evidence-2026-10-12.json \
+            --policy backend/autopilot_policy.json \
+            --daily-report roma-xiii-true-autopilot/reviewed-cities.json \
+            --roma-venue-report roma-xiii-true-autopilot/roma-xiii-2026-venues.json \
+            --out roma-xiii-true-autopilot/reviewed-city-static-safety.json
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from roma_xiii_2026_venues import EXPECTED
+          out=Path('roma-xiii-true-autopilot')
+          decision=json.loads((out/'release-decision.json').read_text('utf-8'))
+          venues=json.loads((out/'roma-xiii-2026-venues.json').read_text('utf-8'))
+          before=load_existing(Path('public/data/v1/manifest.json'))
+          after=load_existing(out/'candidate/public/data/v1/manifest.json')
+          final=json.loads((out/'roma-xiii-2026-venues-static-guard.json').read_text('utf-8'))
+          city=json.loads((out/'reviewed-city-static-safety.json').read_text('utf-8'))
+          rome=json.loads((out/'roma-xiii-static-guard.json').read_text('utf-8'))
+          milano=json.loads((out/'milano-2026-static-guard.json').read_text('utf-8'))
+          original={x['slug'] for x in before}
+          resulting={x['slug'] for x in after}
+          new_identifiers=resulting-original
+          approved=len(set(EXPECTED)-original)
+          if (decision.get('approved') is not True
+              or not 0<=approved<=5
+              or set(EXPECTED)-resulting
+              or new_identifiers!=set(EXPECTED)-original
+              or len(new_identifiers)!=approved
+              or original-resulting
+              or not final.get('release_safe') or final.get('forecast_only_markets')!=4
+              or not city.get('release_safe') or city.get('navigation_routes_still_blocked')!=16
+              or not rome.get('release_safe') or rome.get('current_navigation_holds')!=2
+              or not milano.get('quality_safe') or milano.get('reviewed_milan_ids')!=76
+              or venues.get('records_added')!=approved
+              or len(after)!=len(before)+approved):
+              raise ValueError('Full Autopilot changed previously reviewed market safety or identities')
+          print('SOURCE_BACKED_ROMA_FIVE_FULL_PIPELINE',json.dumps({
+              'before':len(before),'after':len(after),
+              'new_ids':sorted(resulting-original),
+              'rome_old_navigation_holds':2,
+              'historical_city_navigation_holds':16,
+              'milano_forecast_market_ids':76,
+              'predictions_not_opening_verifications':4,
+              'no_publication':True
+          }))
+          PY
+      - name: Switch ephemeral static assets to audited candidate
+        run: |
+          python - <<'PY'
+          import shutil
+          from pathlib import Path
+          shutil.rmtree('public/data/v1')
+          shutil.copytree('roma-xiii-true-autopilot/candidate/public/data/v1','public/data/v1')
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build tested catalog and ensure normal browsing uses only static assets
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+          node - <<'NODE'
+          const routes=require('./dist/_routes.json')
+          if(routes.include.includes('/*') || !routes.exclude.includes('/data/*')){
+            throw new Error('Normal market visits could incur Cloudflare billed function reads')
+          }
+          NODE
+      - name: Real mobile search and disabled navigation for all five source venues
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/roma-xiii-2026-preview.log 2>&1 &
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/roma-xiii-2026-venues-ui.mjs
+          UI_BASE=http://127.0.0.1:4173/ node tests/roma-xiii-geo-hold-ui.mjs
+          UI_BASE=http://127.0.0.1:4173/ node tests/reviewed-city-ui.mjs
+      - name: Save full outcome; never publish from this workflow
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: roma-xiii-2026-source-venues-rehearsal
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            roma-2026-candidate/summary.json
+            roma-xiii-true-autopilot/roma-xiii-2026-venues.json
+            roma-xiii-true-autopilot/roma-xiii-2026-venues-diff-guard.json
+            roma-xiii-true-autopilot/roma-xiii-2026-venues-static-guard.json
+            roma-xiii-true-autopilot/reviewed-city-static-safety.json
+            roma-xiii-true-autopilot/release-decision.json
+            ux-rm13-*.png
+            ux-roma-*.png
