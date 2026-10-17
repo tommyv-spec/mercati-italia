@@ -67,7 +67,7 @@ class RegionalMatchingTests(unittest.TestCase):
         self.assertEqual(result["market_updates_applied"], 0)
         self.assertEqual(result["individual_openings_confirmed"], 0)
         self.assertEqual(result["precise_coordinates_created"], 0)
-        self.assertIn("Pogliano", markdown(result))
+        self.assertIn("legacy-pogliano-venerdi", markdown(result))
 
     def test_already_published_source_venue_is_a_distinct_matching_class(self):
         x = official()
