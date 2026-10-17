@@ -54,13 +54,26 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if python backend/veneto_event_workbook_probe.py \
-              --out regional-output/veneto-event-schema.json \
-              --report regional-output/VENETO_EVENT_SCHEMA.md; then
-            echo 'success' > regional-output/veneto-status.txt
-          else
-            echo 'unavailable_or_source_contract_changed' > regional-output/veneto-status.txt
-            echo "::warning::Veneto XLSX is unavailable or structure changed; keep previous research and do not publish events."
+          set +e
+          python backend/veneto_event_workbook_probe.py \
+            --out regional-output/veneto-event-schema.json \
+            --report regional-output/VENETO_EVENT_SCHEMA.md
+          veneto_exit=$?
+          set -e
+          case "$veneto_exit" in
+            0)
+              echo 'success' > regional-output/veneto-status.txt ;;
+            3)
+              echo 'transport_unavailable' > regional-output/veneto-status.txt
+              echo "::warning::Veneto workbook transport unavailable; previous report remains unchanged." ;;
+            4)
+              echo 'publisher_schema_requires_review' > regional-output/veneto-status.txt
+              echo "::warning::Veneto workbook structure/safety changed; no event import or report overwrite." ;;
+            *)
+              echo "::error::Unexpected Veneto source runner failure ($veneto_exit)."
+              exit 1 ;;
+          esac
+          if [ "$veneto_exit" -ne 0 ]; then
             rm -f regional-output/veneto-event-schema.json regional-output/VENETO_EVENT_SCHEMA.md
           fi
       - name: Independent read-only field and source status gate
@@ -99,13 +112,16 @@ jobs:
                   raise ValueError('Veneto XLSX falsely granted reuse or imported events')
               status['veneto']='review_only'
           else:
-              status['veneto']='unavailable'
+              source_state=(o/'veneto-status.txt').read_text('utf-8').strip()
+              if source_state not in ('transport_unavailable','publisher_schema_requires_review'):
+                  raise ValueError('Untrusted Veneto failure classification')
+              status['veneto']=source_state
           (o/'source-check-status.json').write_text(
               json.dumps({'schema':1,'review_only':True,'sources':status,
                           'catalog_records_modified':0,
                           'events_confirmed':0},sort_keys=True,indent=2)+'\n',
               encoding='utf-8')
-          if all(v=='unavailable' for v in status.values()):
+          if all(v!='review_only' for v in status.values()):
               raise ValueError('Both publishers unavailable: keep previous report, no false freshness')
           print('REGIONAL_DATA_SOURCE_QA',status)
           PY
