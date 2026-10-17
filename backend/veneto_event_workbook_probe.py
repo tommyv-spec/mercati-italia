@@ -178,7 +178,7 @@ def analyze(blob,*,today=None):
                     if cols:
                         header=[v for _,v in sorted(cols.items())]
                         concepts=sorted({concept for value in header for concept in _meaning(value)})
-                        candidates.append((len(concepts),len(header),n,header,concepts,int(row.attrib.get("r",n+1))))
+                        candidates.append((len(concepts),len(header),n,header,concepts,int(row.attrib.get("r",n+1)),cols))
                 # Structural count only; no raw row contents stored.
                 if row.findall(NS+"c"):
                     numeric+=1
@@ -190,6 +190,55 @@ def analyze(blob,*,today=None):
             # mistakenly selected header row, but do not claim a reviewed schema.
             if any("@" in h or len(h)>100 or re.search(r"\d{6,}",h) for h in headers):
                 headers=[]
+            # Find the published field positions ONCE per source layout.
+            # This does not inspect or persist event details outside RAM.
+            role_columns = {}
+            if headers:
+                for index,label in best[6].items():
+                    h = " ".join(str(label).casefold().split())
+                    if "denominazione" in h or h == "manifestazione":
+                        role_columns.setdefault("event",index)
+                    elif h == "comune":
+                        role_columns.setdefault("municipality",index)
+                    elif h.startswith("periodo") or "periodo e orario" in h:
+                        role_columns.setdefault("period",index)
+                    elif h.startswith("sito web") or h.startswith("pagina social"):
+                        role_columns.setdefault("website",index)
+            counters = Counter()
+            distinct_towns = set()
+            if {"event","municipality","period"} <= set(role_columns):
+                for row in rows[best[2]+1:]:
+                    fields = {}
+                    for cell in row.findall(NS+"c"):
+                        number = _col_number(cell.attrib.get("r",""))
+                        if number in role_columns.values():
+                            fields[number]=_cell(cell,shared)
+                    title = str(fields.get(role_columns["event"],"")).strip()
+                    town = str(fields.get(role_columns["municipality"],"")).strip()
+                    period = str(fields.get(role_columns["period"],"")).strip()
+                    if not title or not town:
+                        counters["rows_without_named_event_and_town"] += 1
+                        continue
+                    counters["rows_with_named_event_and_town_not_verified"] += 1
+                    distinct_towns.add(" ".join(town.casefold().split()))
+                    if period:
+                        counters["rows_with_period_text_not_confirmed"] += 1
+                    if re.search(r"\b20(?:25|26|27)\b", period):
+                        counters["rows_with_year_in_period_text"] += 1
+                    if role_columns.get("website") and fields.get(role_columns["website"]):
+                        counters["rows_with_publisher_web_field"] += 1
+                    title_fold = title.casefold()
+                    if re.search(r"\bsagr[ae]\b",title_fold):
+                        counters["sagra_named_rows_not_verified"] += 1
+                    elif re.search(r"\bfier[ae]\b",title_fold):
+                        counters["fiera_named_rows_not_verified"] += 1
+                    elif re.search(r"\bmercat(?:o|i|ino|ini)\b",title_fold):
+                        counters["market_like_title_rows_not_verified"] += 1
+                    else:
+                        counters["other_named_manifestation_rows"] += 1
+            counters["distinct_municipality_labels_not_canonical_ISTAT"] = len(distinct_towns)
+            # No event name, municipality value, personal field, link or
+            # date content is retained in the report: only aggregate counts.
             summaries.append({
                 "sheet":fname.split("/")[-1],
                 "nonempty_rows":numeric,
@@ -198,6 +247,7 @@ def analyze(blob,*,today=None):
                 "matched_concepts":best[4] if headers else [],
                 "source_schema_review_required":not bool(headers),
                 "source_entries_not_new_markets":max(0,numeric-(best[2]+1 if headers else 0)),
+                "aggregate_row_classification_only":dict(sorted(counters.items())),
             })
     return {
         "schema":1, "reference_date":today.isoformat(), "publisher":"Regione Veneto",
@@ -235,6 +285,7 @@ def markdown(info):
             "- Intestazione rilevata in riga: "+str(sheet["likely_header_row"]),
             "- Campi rilevati per tipo: "+", ".join(sheet["matched_concepts"]),
             "- Intestazioni campo, solo schema: "+", ".join(sheet["header_field_names_only"]),
+            "- Eventi classificati SOLO per conteggi: "+json.dumps(sheet["aggregate_row_classification_only"],ensure_ascii=False,sort_keys=True),
             "- **Stato:** revisione struttura/riuso necessaria; nessuna importazione",
             "",
         ])
