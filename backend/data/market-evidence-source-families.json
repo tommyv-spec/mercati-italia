@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "report_only": true,
+  "may_grant_source_reuse_rights": false,
+  "may_apply_field_changes": false,
+  "may_confirm_individual_market_dates": false,
+  "max_sources_with_explicit_layout": 5,
+  "description": "Source families are understood once, then ALL original market records are checked daily. Publisher format descriptions do not create copyright, import or verification permissions.",
+  "families": [
+    {
+      "id": "happings-weekly-or-detail",
+      "label": "happings.com",
+      "layout": "province_weekday_list_or_individual_event",
+      "rights": "no_verified_bulk_reuse_permission",
+      "automation": "cross_match_with_independent_licensed_official_sources",
+      "fields_to_recheck": [
+        "indirizzo",
+        "orario_testo",
+        "ricorrenza_testo",
+        "date"
+      ],
+      "bulk_scrape_allowed": false,
+      "market_confirmation_allowed": false
+    },
+    {
+      "id": "eventiesagre-event-index",
+      "label": "eventiesagre.it",
+      "layout": "regional_market_event_listing_plus_historical_editions",
+      "rights": "link_id_only_no_bulk_content_copy",
+      "automation": "use_existing_event_lead_url_id_pipeline_then_official_cross_match",
+      "fields_to_recheck": [
+        "indirizzo",
+        "orario_testo",
+        "ricorrenza_testo",
+        "date"
+      ],
+      "bulk_scrape_allowed": false,
+      "market_confirmation_allowed": false
+    },
+    {
+      "id": "cosedicasa-editorial-calendar",
+      "label": "cosedicasa.com",
+      "layout": "monthly_editorial_with_exceptions_and_suspensions",
+      "rights": "no_verified_bulk_reuse_permission",
+      "automation": "check_page_schema_read_only_then_find_primary_organizer",
+      "fields_to_recheck": [
+        "indirizzo",
+        "orario_testo",
+        "ricorrenza_testo",
+        "date"
+      ],
+      "bulk_scrape_allowed": false,
+      "market_confirmation_allowed": false
+    },
+    {
+      "id": "lombardia-mercap",
+      "label": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
+      "layout": "official_market_venue_weekday_full_json",
+      "rights": "existing_adapter_publisher_license_metadata_validated",
+      "automation": "reuse_already_approved_source_lombardia_adapter_and_exact_identity_matching",
+      "fields_to_recheck": [
+        "indirizzo",
+        "orario_testo",
+        "ricorrenza_testo",
+        "date"
+      ],
+      "bulk_scrape_allowed": false,
+      "market_confirmation_allowed": false
+    },
+    {
+      "id": "milano-municipal",
+      "label": "Comune di Milano - Open Data (CC BY 4.0)",
+      "layout": "municipal_venue_ids_plus_pinned_2026_street_pdf",
+      "rights": "existing_adapter_and_source_reviewed_field_evidence",
+      "automation": "existing_exact_source_id_pdf_and_gis_proof_only",
+      "fields_to_recheck": [
+        "indirizzo",
+        "orario_testo",
+        "ricorrenza_testo",
+        "date"
+      ],
+      "bulk_scrape_allowed": false,
+      "market_confirmation_allowed": false
+    }
+  ],
+  "unknown_source_policy": "keep_original_record_and_queue_official_publisher_discovery",
+  "required_evidence_for_field_change": [
+    "source_url",
+    "source_venue_id",
+    "publisher_dataset_date",
+    "match_method",
+    "field_name",
+    "confidence_label"
+  ],
+  "confidence_labels": [
+    "same_source_id",
+    "unique_municipality_province_street_weekday",
+    "municipality_weekday_only_review",
+    "no_official_match"
+  ],
+  "source_layout_change_policy": "quarantine_candidate_only_never_delete_or_confirm_market"
+}
