@@ -41,6 +41,8 @@ jobs:
         run: node --test tests/*.test.mjs
       - name: Build Vite static site
         run: npm run build
+      - name: Require self-contained MapLibre worker asset in production bundle
+        run: node scripts/assert-map-worker.mjs
       - name: Assert Cloudflare has no billed function route for static pages
         run: |
           node - <<'NODE'
