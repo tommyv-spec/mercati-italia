@@ -118,6 +118,16 @@ jobs:
           fi
           python backend/market_evidence_worklist.py "${args[@]}"
           cat autopilot-output/MARKET_EVIDENCE_WORKLIST.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Find lost Happings street fields inside existing saved market identities
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/stored_market_sibling_proposals.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --out autopilot-output/happings-sibling-evidence.json \
+            --summary autopilot-output/HAPPINGS_STORED_FIELDS.md
+          cat autopilot-output/HAPPINGS_STORED_FIELDS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Discover new municipal structured sources (read-only, no auto-import)
         if: success()
         env:
@@ -679,6 +689,29 @@ jobs:
                 result['daily_worklist_count'],'rotating detailed tasks;',
                 'no imports and no invented opening verifications')
           PY
+      - name: Ensure every saved-source street lead is read-only and all market IDs survive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from stored_market_sibling_proposals import verify
+          root=Path('autopilot-output')
+          report=json.loads((root/'happings-sibling-evidence.json').read_text('utf-8'))
+          markets=load_existing(root/'candidate/public/data/v1/manifest.json')
+          verify(report,len(markets))
+          if (report['field_sibling_candidates']!=len(report['candidate_records'])
+                  or any(x.get('automatic_fill_authorized') is not False
+                         or x.get('source_html_accessed') is not False
+                         for x in report['candidate_records'])):
+              raise ValueError('Happings audit lost field evidence or invented permissions')
+          print('HAPPINGS_STORED_DATA_QA',report['legacy_publisher_records_examined'],
+                'original Happings cards;',report['field_sibling_candidates'],
+                'recoverable street leads;',len(markets),'original market IDs kept')
+          PY
       - name: Reject unsupported official enrichment or invented market verification
         run: |
           python - <<'PY'
@@ -1174,6 +1207,21 @@ jobs:
           test -s autopilot-output/MARKET_EVIDENCE_WORKLIST.md
           cp autopilot-output/market-evidence-summary.json reports/automation/market-evidence-summary.json
           cp autopilot-output/MARKET_EVIDENCE_WORKLIST.md reports/automation/MARKET_EVIDENCE_WORKLIST.md
+          # Full Happings market-to-market evidence stays in the existing
+          # short-lived QA artifact; store only aggregates in Git.
+          test -s autopilot-output/happings-sibling-evidence.json
+          test -s autopilot-output/HAPPINGS_STORED_FIELDS.md
+          cp autopilot-output/HAPPINGS_STORED_FIELDS.md reports/automation/HAPPINGS_STORED_FIELDS.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original=json.loads(Path('autopilot-output/happings-sibling-evidence.json').read_text('utf-8'))
+          compact={k:v for k,v in original.items()
+                   if k not in ('candidate_records','examples')}
+          compact['full_market_evidence_in_temporary_qa_artifact']=True
+          Path('reports/automation/happings-stored-fields-summary.json').write_text(
+              json.dumps(compact,sort_keys=True,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          PY
           test -s autopilot-output/official-enrichment.json
           test -s autopilot-output/OFFICIAL_ENRICHMENT.md
           cp autopilot-output/official-enrichment.json reports/automation/official-enrichment.json
