@@ -139,6 +139,33 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(why,"renewed")
         self.assertEqual(monthly["date"][:3],["2026-10-11","2026-11-08","2026-12-13"])
 
+    def test_contradictory_source_weekday_holds_only_predicted_dates(self):
+        original=record(ricorrenza_testo="Ogni martedì",
+                        date=["2026-10-17","2026-10-24"])
+        updated,reason=refresh_record(original,self.now)
+        self.assertEqual(reason,"contradictory_weekday_identity_held")
+        self.assertEqual(updated["slug"],original["slug"])
+        self.assertEqual(updated["date"],[])
+        self.assertEqual(updated["date_quality"],"sconosciuta")
+        self.assertEqual(original["date"],["2026-10-17","2026-10-24"])
+
+    def test_contradictory_weekday_does_not_change_reported_or_monthly_dates(self):
+        original=record(ricorrenza_testo="Ogni martedì",date_quality="riportata")
+        updated,reason=refresh_record(original,self.now)
+        self.assertEqual(reason,"non_projected_source_date")
+        self.assertEqual(updated,original)
+        # A monthly nth-weekday event is not a weekly day-label claim:
+        month=record(ricorrenza_testo="mensile - seconda domenica del mese",date=[])
+        result,reason=refresh_record(month,self.now)
+        self.assertEqual(reason,"renewed")
+        self.assertEqual(result["date_quality"],"prevista")
+
+    def test_multi_weekday_rule_may_contain_day_from_slug(self):
+        original=record(ricorrenza_testo="Ogni martedì e sabato",date=[])
+        result,reason=refresh_record(original,self.now)
+        self.assertEqual(reason,"renewed")
+        self.assertEqual(len(result["date"])>20,True)
+
     def test_guard_max_horizon(self):
         with self.assertRaises(ValueError):
             refresh_record(record(),self.now,horizon_days=730)
