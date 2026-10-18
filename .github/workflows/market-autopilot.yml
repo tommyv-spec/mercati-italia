@@ -1,3 +1,4 @@
+# MapLibre v6 production blocker regression: verify bundled worker and browser-ready map before any DEV promotion.
 # Recheck 75 municipality PDF/GIS-backed Milan street labels on DEV; no production release.
 # Replay Oct 18: evaluate approved source-pinned Milan streets on DEV after all release QA.
 # Shared source-level CSV/JSON admission is now registered: approve an official dataset once, not each market. Default-deny empty legal registry, exact identity/rights proofs, offline fallback, no fake GPS/opening claims; DEV only.
