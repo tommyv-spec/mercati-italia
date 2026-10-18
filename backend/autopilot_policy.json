@@ -113,5 +113,15 @@
   "source_contract_admissions": {
     "enabled": true,
     "approved_registry_blob_sha1": "056454bd4a477c5c174361a541448f7645d9afd3"
+  },
+  "milano_2026_reviewed_streets": {
+    "enabled": true,
+    "reviewed_on": "2026-10-18",
+    "pdf_document_date": "2026-10-01",
+    "evidence_blob_sha1": "0a8264bf2e7ceeef1ac2c6b7238b3b279807712c",
+    "exact_existing_gis_ids": 25,
+    "no_new_market_ids": true,
+    "no_verified_openings": true,
+    "no_new_navigation_points": true
   }
 }
