@@ -2,9 +2,9 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [39127984610](https://github.com/tommyv-spec/mercati-italia/actions/runs/39127984610) — UTC 2026-10-18T12:39:25.756367+00:00
+- Ultimo run: [39133069226](https://github.com/tommyv-spec/mercati-italia/actions/runs/39133069226) — UTC 2026-10-18T13:50:27.855309+00:00
 - Qualità DEV: APPROVATA
-- Nuova versione di dati: sì
+- Nuova versione di dati: no (contenuto invariato)
 - Schede nel catalogo: **13,824**
 - Schede con date previste a +60 giorni: **11,846**
 - Schede con date previste a +90 giorni: **11,839**
@@ -24,7 +24,7 @@
 - Protezioni ancora attive nel sito statico DEV: **16** navigazioni sospese, **7** coordinate in quarantena, **16** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
 - Roma Municipio XIII (mappa pubblicata nel 2024): **2** coordinate ancora sospese e **2** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **9** coordinate e **18** navigazioni. Nessuna apertura 2026 confermata dal documento storico.
 - Roma XIII nuove fonti comunali 2025–2026: **0** schede aggiunte in questo run, **5** sedi distinte tutelate nel sito, **4** con calendari solo previsti, **5** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.
-- Import generico tramite contratti di interi dataset: **2** fonti con licenza e identità approvate, **4** nuove schede in questo run, **0** calendari solo previsti, **4** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
+- Import generico tramite contratti di interi dataset: **2** fonti con licenza e identità approvate, **0** nuove schede in questo run, **0** calendari solo previsti, **0** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **755** gruppi settimanali con possibile sovrapposizione (**765** righe candidate, non cancellate).
 - Miglioramento UX reversibile: **382** gruppi provati dalla stessa fonte, **382** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13824** ID originali preservati.
 - Fonti datate negli ultimi 30 giorni: **1204**; oltre soglia: **52**; senza data: **0**.
