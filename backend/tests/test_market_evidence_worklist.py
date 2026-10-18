@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from market_evidence_worklist import analyze, validate, registry_check, fields, family
+from merge_catalog import load_existing
 from source_lombardia import SOURCE_PAGE
 CONTRACTS=json.loads((ROOT/"data/market-evidence-source-families.json").read_text("utf-8"))
 TODAY=date(2026,10,18)
@@ -170,6 +171,22 @@ class PerMarketEvidenceTests(unittest.TestCase):
             self.assertEqual(out["market_records_scanned"],310)
             seen.update(x["market_id"] for x in out["daily_worklist"])
         self.assertEqual(seen,{x["slug"] for x in records})
+
+    def test_real_national_catalog_every_market_is_kept_in_review(self):
+        manifest=ROOT.parent/"public/data/v1/manifest.json"
+        if not manifest.exists():
+            self.skipTest("Catalog only becomes available after source migration")
+        originals=load_existing(manifest)
+        self.assertGreater(len(originals),12_000)
+        before={m["slug"] for m in originals}
+        report=analyze(originals,CONTRACTS,today=TODAY)
+        self.assertTrue(validate(report,len(originals)))
+        self.assertEqual(report["market_identities_preserved"],len(before))
+        self.assertEqual(len(before),len(originals))
+        self.assertGreaterEqual(report["distinct_source_labels"],40)
+        self.assertGreater(len(report["daily_worklist"]),0)
+        self.assertEqual(before,{m["slug"] for m in originals})
+        self.assertEqual(report["market_rows_removed"],0)
 
     def test_invalid_source_signature_and_duplicate_market_ids_fail_closed(self):
         with self.assertRaisesRegex(ValueError,"Duplicate"):
