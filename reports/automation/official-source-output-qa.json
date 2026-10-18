@@ -1,0 +1,167 @@
+{
+  "as_of": "2026-10-18",
+  "catalog_updates": 0,
+  "full_catalog_source_labels_covered_separately": true,
+  "market_openings_confirmed": 0,
+  "market_rows_copied_to_audit": 0,
+  "new_market_IDs_published": 0,
+  "new_precise_market_positions_inferred": 0,
+  "research_only": true,
+  "schema": 1,
+  "source_batches_passed": 5,
+  "source_batches_unavailable_or_changed": 0,
+  "source_dataset_date_is_not_market_verification": true,
+  "sources": [
+    {
+      "current_publisher_gate": {
+        "catalog_updates": 0,
+        "dates_projected_not_confirmed": true,
+        "field_coverage": {
+          "forecasted_records": 838,
+          "nonempty_address": 1359,
+          "nonempty_hours": 889,
+          "source_coordinates_present": 1129
+        },
+        "identity_sha256": "5495bb2a10d82731754322b77f93bb1421f45573591366487a7bc703c3386fa8",
+        "market_confirmations": 0,
+        "new_coordinates_inferred": 0,
+        "new_market_identities_authorized": 0,
+        "official_dataset_timestamp": "2026-10-13",
+        "region": "Lombardia",
+        "rows": 1360,
+        "schema": 1,
+        "source_id": "lombardia",
+        "source_prefix": "lo-mercap-",
+        "source_raw_rows_persisted": false
+      },
+      "last_good_as_of": "2026-10-18",
+      "new_market_coordinates_created": 0,
+      "new_market_openings_confirmed": 0,
+      "rows_loaded_into_catalog": 0,
+      "source_checked_as_of": "2026-10-18",
+      "source_id": "lombardia",
+      "status": "source_output_passed"
+    },
+    {
+      "current_publisher_gate": {
+        "catalog_updates": 0,
+        "dates_projected_not_confirmed": true,
+        "field_coverage": {
+          "forecasted_records": 0,
+          "nonempty_address": 0,
+          "nonempty_hours": 85,
+          "source_coordinates_present": 85
+        },
+        "identity_sha256": "0fbbdbbaf9079dee3fd948b0884c5c84fe2a6ec55d495921da15035c4e9bdf28",
+        "market_confirmations": 0,
+        "new_coordinates_inferred": 0,
+        "new_market_identities_authorized": 0,
+        "official_dataset_timestamp": "2024-05-27",
+        "region": "Lombardia",
+        "rows": 85,
+        "schema": 1,
+        "source_id": "milano",
+        "source_prefix": "mi-mss-",
+        "source_raw_rows_persisted": false
+      },
+      "last_good_as_of": "2026-10-18",
+      "new_market_coordinates_created": 0,
+      "new_market_openings_confirmed": 0,
+      "rows_loaded_into_catalog": 0,
+      "source_checked_as_of": "2026-10-18",
+      "source_id": "milano",
+      "status": "source_output_passed"
+    },
+    {
+      "current_publisher_gate": {
+        "catalog_updates": 0,
+        "dates_projected_not_confirmed": true,
+        "field_coverage": {
+          "forecasted_records": 0,
+          "nonempty_address": 47,
+          "nonempty_hours": 48,
+          "source_coordinates_present": 48
+        },
+        "identity_sha256": "c045561fc022bba002e2cc3252d75550c8d0b0669cbc7ed911e2886d5c788471",
+        "market_confirmations": 0,
+        "new_coordinates_inferred": 0,
+        "new_market_identities_authorized": 0,
+        "official_dataset_timestamp": "2025-04-02",
+        "region": "Emilia-Romagna",
+        "rows": 48,
+        "schema": 1,
+        "source_id": "bologna",
+        "source_prefix": "bo-open-",
+        "source_raw_rows_persisted": false
+      },
+      "last_good_as_of": "2026-10-18",
+      "new_market_coordinates_created": 0,
+      "new_market_openings_confirmed": 0,
+      "rows_loaded_into_catalog": 0,
+      "source_checked_as_of": "2026-10-18",
+      "source_id": "bologna",
+      "status": "source_output_passed"
+    },
+    {
+      "current_publisher_gate": {
+        "catalog_updates": 0,
+        "dates_projected_not_confirmed": true,
+        "field_coverage": {
+          "forecasted_records": 0,
+          "nonempty_address": 4,
+          "nonempty_hours": 4,
+          "source_coordinates_present": 4
+        },
+        "identity_sha256": "1878db81542c114bb9de5f0492f0f78eb0178eeef9ea0d23f095210ff9378292",
+        "market_confirmations": 0,
+        "new_coordinates_inferred": 0,
+        "new_market_identities_authorized": 0,
+        "official_dataset_timestamp": "2023-03-03",
+        "region": "Toscana",
+        "rows": 4,
+        "schema": 1,
+        "source_id": "firenze",
+        "source_prefix": "fi-feelflorence-",
+        "source_raw_rows_persisted": false
+      },
+      "last_good_as_of": "2026-10-18",
+      "new_market_coordinates_created": 0,
+      "new_market_openings_confirmed": 0,
+      "rows_loaded_into_catalog": 0,
+      "source_checked_as_of": "2026-10-18",
+      "source_id": "firenze",
+      "status": "source_output_passed"
+    },
+    {
+      "current_publisher_gate": {
+        "catalog_updates": 0,
+        "dates_projected_not_confirmed": true,
+        "field_coverage": {
+          "forecasted_records": 4,
+          "nonempty_address": 4,
+          "nonempty_hours": 4,
+          "source_coordinates_present": 4
+        },
+        "identity_sha256": "d897300b0fb96aecf7879e4cee084fbf79494e39c110be84a921a269d6d7b3a0",
+        "market_confirmations": 0,
+        "new_coordinates_inferred": 0,
+        "new_market_identities_authorized": 0,
+        "official_dataset_timestamp": "2026-01-07",
+        "region": "Umbria",
+        "rows": 4,
+        "schema": 1,
+        "source_id": "corciano",
+        "source_prefix": "pg-corciano-",
+        "source_raw_rows_persisted": false
+      },
+      "last_good_as_of": "2026-10-18",
+      "new_market_coordinates_created": 0,
+      "new_market_openings_confirmed": 0,
+      "rows_loaded_into_catalog": 0,
+      "source_checked_as_of": "2026-10-18",
+      "source_id": "corciano",
+      "status": "source_output_passed"
+    }
+  ],
+  "sources_scoped_to_existing_official_adapters": 5
+}
