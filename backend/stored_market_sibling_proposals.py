@@ -151,6 +151,9 @@ def analyze(rows,*,today=None):
         "eligible_identity_groups":len(groups),
         "field_sibling_candidates":len(receipts),
         "counts":dict(sorted(counts.items())),
+        # Full per-market review queue is stored only in the short-lived
+        # runner artifact. It is NOT committed to Git every day.
+        "candidate_records":receipts,
         "examples":examples,
         "all_proposals_review_only":True,
         "source_automation_consent_inferred":False,
@@ -170,7 +173,8 @@ def verify(report,original_size):
         or any(report.get(k)!=0 for k in (
             "original_market_records_deleted","catalog_fields_updated",
             "market_openings_confirmed","new_map_coordinates_added"))
-        or report.get("field_sibling_candidates")>MAX_RESULTS):
+        or report.get("field_sibling_candidates")>MAX_RESULTS
+        or report.get("field_sibling_candidates")!=len(report.get("candidate_records",[]))):
         raise ValueError("Unapproved internal publisher sibling transfers")
     for item in report.get("examples",[]):
         if (item.get("automatic_fill_authorized") is not False
