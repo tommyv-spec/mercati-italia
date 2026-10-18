@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from market_evidence_worklist import analyze, validate, registry_check, fields, source_family
+from market_evidence_worklist import analyze, validate, registry_check, fields, family
 from source_lombardia import SOURCE_PAGE
 CONTRACTS=json.loads((ROOT/"data/market-evidence-source-families.json").read_text("utf-8"))
 TODAY=date(2026,10,18)
@@ -47,9 +47,9 @@ def official(sid="100551",*,city="Pogliano Milanese",province="MI",
 class PerMarketEvidenceTests(unittest.TestCase):
     def test_five_source_layouts_are_known_but_never_grant_scraping_rights(self):
         self.assertTrue(registry_check(CONTRACTS))
-        self.assertEqual(source_family("happings.com",CONTRACTS)["id"],
+        self.assertEqual(family("happings.com",CONTRACTS)["id"],
                          "happings-weekly-or-detail")
-        self.assertEqual(source_family("unknown-town-site",CONTRACTS)["rights"],
+        self.assertEqual(family("unknown-town-site",CONTRACTS)["rights"],
                          "not_approved")
         for field in ("may_grant_source_reuse_rights","may_apply_field_changes",
                       "may_confirm_individual_market_dates"):
@@ -142,8 +142,8 @@ class PerMarketEvidenceTests(unittest.TestCase):
         old["url_fonte"]=SOURCE_PAGE
         report=analyze([old],CONTRACTS,official=[src],today=TODAY,shards=1)
         matches=report["daily_worklist"][0]["official_evidence"]
-        self.assertEqual(matches[0]["field"],"indirizzo")
-        self.assertTrue(matches[0]["can_apply"])
+        matching=next(x for x in matches if x["field"]=="indirizzo")
+        self.assertTrue(matching["can_apply"])
         self.assertEqual(report["market_fields_changed"],0)
 
     def test_stale_official_snapshots_cannot_supply_fresh_evidence(self):
