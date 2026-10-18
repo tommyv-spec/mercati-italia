@@ -383,7 +383,10 @@ def main():
         "backend/data/market-evidence-source-families.json"))
     p.add_argument("--official-lombardia",type=Path)
     p.add_argument("--today",type=date.fromisoformat,default=date.today())
-    p.add_argument("--out",type=Path,required=True)
+    p.add_argument("--out",type=Path,required=True,
+                   help="Detailed rotating batch: keep in short-lived CI evidence, not Git history")
+    p.add_argument("--summary",type=Path,
+                   help="Compact, history-safe summary without per-market records")
     p.add_argument("--report",type=Path,required=True)
     args=p.parse_args()
     markets=load_existing(args.manifest)
@@ -395,9 +398,17 @@ def main():
     validate(result,len(markets))
     if [row["slug"] for row in markets]!=original:
         raise ValueError("Worklist modified the original market identities")
-    for dest in (args.out,args.report):
-        dest.parent.mkdir(parents=True,exist_ok=True)
+    for dest in (args.out,args.report,args.summary):
+        if dest is not None:
+            dest.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(result,indent=2,sort_keys=True,ensure_ascii=False)+"\n","utf-8")
+    if args.summary is not None:
+        # Daily Git commits stay bounded; per-market evidence remains
+        # reproducible for any YYYY-MM-DD and available in the CI artifact.
+        compact={k:v for k,v in result.items() if k!="daily_worklist"}
+        compact["daily_detailed_tasks_saved_in_git"]=False
+        args.summary.write_text(json.dumps(compact,indent=2,sort_keys=True,
+                                           ensure_ascii=False)+"\n","utf-8")
     args.report.write_text(markdown(result),"utf-8")
     print(json.dumps({
         "records_scanned":result["market_records_scanned"],
