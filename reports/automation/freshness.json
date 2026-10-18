@@ -9,16 +9,16 @@
   },
   "max_source_age_days": 540,
   "metrics": {
-    "dataset_updated_not_specific_market": 1236,
+    "dataset_updated_not_specific_market": 1241,
     "recent_dataset_only_update": 1204,
     "source_date_366_to_limit": 1,
     "source_date_91_to_365d": 12567,
-    "source_date_outside_limit": 38,
+    "source_date_outside_limit": 43,
     "source_date_within_30d": 1204,
-    "total": 13810,
+    "total": 13815,
     "with_any_future_date": 11907,
     "with_forecast_dates": 11907,
-    "without_documented_verification": 13810
+    "without_documented_verification": 13815
   },
   "publisher_evidence": [
     {
@@ -43,7 +43,7 @@
       "status": "metadata_checked"
     }
   ],
-  "reference_date": "2026-10-17",
+  "reference_date": "2026-10-18",
   "safe_for_automatic_quality_promotion": true,
   "schema": 1,
   "snapshot_measurement_not_event_verification": true,
@@ -73,7 +73,7 @@
       "domain": "dati.comune.roma.it"
     },
     {
-      "count": 25,
+      "count": 30,
       "domain": "opendata.comune.bologna.it"
     },
     {

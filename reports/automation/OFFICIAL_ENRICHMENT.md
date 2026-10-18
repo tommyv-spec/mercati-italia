@@ -9,12 +9,13 @@ No forecast, human verification, original source, or identity changed.
 - Existing market cards with added information: **0**
 - Missing hours supplied from official regional source: **0**
 - Official source attributions attached: **0**
-- exact_matches: 132
-- existing_hours_preserved: 132
+- exact_matches: 129
+- existing_hours_preserved: 129
 - skipped_coordinates_conflict: 13
 - skipped_multiple_official_markets_same_venue_day: 2
 - skipped_no_exact_legacy_market: 4
 - skipped_no_exact_location_or_day: 130
+- skipped_province_conflict: 3
 
 ## Example exact matches
 

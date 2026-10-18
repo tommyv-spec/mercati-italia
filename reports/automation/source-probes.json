@@ -25,6 +25,12 @@
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
     },
+    "23edf989-5a91-47ff-a6b1-fb0a9cce061d": {
+      "checked_date": "2026-10-18",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
+    },
     "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6": {
       "checked_date": "2026-10-13",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
@@ -60,6 +66,12 @@
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
+    },
+    "4f23a0e0-c0c7-4735-a1f9-fbf9a40c52ef": {
+      "checked_date": "2026-10-18",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
     },
     "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7": {
       "checked_date": "2026-10-15",
@@ -198,117 +210,126 @@
       "column_fingerprint": "e4f54283ac5b9a78b0b91e16f489d17769814f3d53625f14a483545b636de3c8",
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
+    },
+    "fcdebbfc-16d5-47fd-908b-8cba7e88be53": {
+      "checked_date": "2026-10-18",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
+      "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-17",
+  "reference_date": "2026-10-18",
   "reports": [
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "4c43a70b-81ab-4a65-815a-993f52767166",
+      "id": "23edf989-5a91-47ff-a6b1-fb0a9cce061d",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 57656,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/db18408f-27c6-40c8-87f9-ab3dcba465df.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
+      "sample_bytes": 464,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b1082935-69d0-4a77-8bbe-022a4a86bfe8.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Noventa Padovana",
+      "title": "Posteggi mercati e fiere - Comune di Sona",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "bf96174b-98d8-4c43-ae26-b6ba24403f05",
+      "id": "4f23a0e0-c0c7-4735-a1f9-fbf9a40c52ef",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 682,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b5ad98f6-8b75-4c46-8654-eee0512004ac.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
+      "sample_bytes": 189,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/ed829a8d-5ad0-4bef-a340-6899bef244f2.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Rovere Veronese",
+      "title": "Posteggi mercati e fiere - Comune di Sarego",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "e5e8f03d-6107-49a1-b2c2-c29383abd6dc",
+      "id": "fcdebbfc-16d5-47fd-908b-8cba7e88be53",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 188,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b94fa56d-2457-4e64-9290-ba541e675ea3.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
+      "sample_bytes": 1055,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/ac3375d7-47f3-447e-a97c-f2e0d30d026e.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Nogarole Rocca",
+      "title": "Posteggi mercati e fiere - Comune di Nogara",
       "truncated": false
     }
   ],
   "schema": 1,
-  "unreviewed_sources_remaining": 3,
+  "unreviewed_sources_remaining": 0,
   "verified_event_count": 0
 }
