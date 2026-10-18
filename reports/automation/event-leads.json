@@ -1,0 +1,159 @@
+{
+  "baseline_market_ids_preserved": 13820,
+  "baseline_market_records": 13820,
+  "catalog_imports": 0,
+  "catalog_updates": 0,
+  "checked_sources": [
+    {
+      "catalog_market_imports": 0,
+      "event_confirmations": 0,
+      "id": "firenze-feelflorence",
+      "leads_found": 1,
+      "not_matching_market_scope": 119,
+      "requests": 1,
+      "rows_examined": 120,
+      "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
+      "state": "discovery_leads_only"
+    },
+    {
+      "catalog_market_imports": 0,
+      "event_confirmations": 0,
+      "id": "bologna-agenda",
+      "leads_found": 0,
+      "not_matching_market_scope": 1,
+      "requests": 1,
+      "rows_examined": 1,
+      "schema_digest": "4fa0da276cf67d67c2ac5eeaa8f4be0e240bd2ffb113aced125ebfd6e4612343",
+      "state": "discovery_leads_only"
+    },
+    {
+      "catalog_market_imports": 0,
+      "event_confirmations": 0,
+      "id": "eventiesagre-index",
+      "reason_class": "ValueError",
+      "requests": 0,
+      "state": "source_unavailable_or_schema_review"
+    }
+  ],
+  "fresh_official_leads": 1,
+  "individual_event_confirmations": 0,
+  "leads": [
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-12-20",
+      "first_seen": "2026-10-18",
+      "id": "firenze-feelflorence:56",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-18",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
+      "start": "2026-11-14",
+      "status": "source_lead_unverified",
+      "title": "Mercato di Natale in Piazza Santa Croce"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-12-20",
+      "first_seen": "2026-10-17",
+      "id": "firenze-feelflorence:57",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
+      "start": "2026-11-14",
+      "status": "not_seen_again_not_a_market_closure",
+      "title": "Mercato di Natale in Piazza Santa Croce"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-17",
+      "id": "eventiesagre-index:21194529",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21194529_Vintage+Market+A+Frosinone+Alta.html",
+      "status": "not_seen_again_not_a_market_closure"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-17",
+      "id": "eventiesagre-index:21194189",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21194189_Mercatino+Artigianato+E+Curiosita+A+Lavinio.html",
+      "status": "not_seen_again_not_a_market_closure"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-17",
+      "id": "eventiesagre-index:21194003",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21194003_La+Magia+Dell+epifania+A+Sant+angelo+Romano.html",
+      "status": "not_seen_again_not_a_market_closure"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-17",
+      "id": "eventiesagre-index:21193917",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21193917_Green+Market+Festival+On+Christmas.html",
+      "status": "not_seen_again_not_a_market_closure"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-17",
+      "id": "eventiesagre-index:21193893",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Natale/21193893_Green+Christmas+A+Casal+Palocco.html",
+      "status": "not_seen_again_not_a_market_closure"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-17",
+      "id": "eventiesagre-index:21190469",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21190469_Il+Mercatino+Dell+artigianato+A+Tarquinia+Lido.html",
+      "status": "not_seen_again_not_a_market_closure"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-17",
+      "id": "eventiesagre-index:21096181",
+      "last_seen": "2026-10-17",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21096181_L+antico+In+Piazza.html",
+      "status": "not_seen_again_not_a_market_closure"
+    }
+  ],
+  "new_external_url_pointers": 0,
+  "new_market_records_created": 0,
+  "precise_coordinates_created": 0,
+  "publisher_rights_inferred": false,
+  "reference_date": "2026-10-18",
+  "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
+  "research_only": true,
+  "schema": 1
+}

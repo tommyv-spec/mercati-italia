@@ -1,0 +1,104 @@
+{
+  "catalog_was_modified": false,
+  "errors": [],
+  "examples": {
+    "confirmation_without_evidence": [],
+    "future_source_timestamp": [],
+    "stale_projected": [],
+    "unknown_origin": []
+  },
+  "max_source_age_days": 540,
+  "metrics": {
+    "dataset_updated_not_specific_market": 1250,
+    "recent_dataset_only_update": 1204,
+    "source_date_366_to_limit": 1,
+    "source_date_91_to_365d": 12567,
+    "source_date_outside_limit": 52,
+    "source_date_within_30d": 1204,
+    "total": 13824,
+    "with_any_future_date": 11907,
+    "with_forecast_dates": 11907,
+    "without_documented_verification": 13824
+  },
+  "publisher_evidence": [
+    {
+      "last_publisher_data_change": "2025-04-02",
+      "license_comparison": "publisher_and_catalog_agree_review_required",
+      "market_records_verified_by_metadata": 0,
+      "publisher": "Comune di Bologna",
+      "status": "metadata_checked"
+    },
+    {
+      "last_publisher_data_change": "2026-10-13",
+      "license_comparison": "publisher_and_catalog_agree_review_required",
+      "market_records_verified_by_metadata": 0,
+      "publisher": "Regione Lombardia",
+      "status": "metadata_checked"
+    },
+    {
+      "last_publisher_data_change": "2022-07-04",
+      "license_comparison": "publisher_claim_missing_review_required",
+      "market_records_verified_by_metadata": 0,
+      "publisher": "Roma Capitale",
+      "status": "metadata_checked"
+    }
+  ],
+  "reference_date": "2026-10-18",
+  "safe_for_automatic_quality_promotion": true,
+  "schema": 1,
+  "snapshot_measurement_not_event_verification": true,
+  "source_domains_top": [
+    {
+      "count": 9647,
+      "domain": "www.happings.com"
+    },
+    {
+      "count": 2197,
+      "domain": "www.eventiesagre.it"
+    },
+    {
+      "count": 1128,
+      "domain": "www.dati.lombardia.it"
+    },
+    {
+      "count": 432,
+      "domain": "www.cosedicasa.com"
+    },
+    {
+      "count": 85,
+      "domain": "dati.comune.milano.it"
+    },
+    {
+      "count": 70,
+      "domain": "dati.comune.roma.it"
+    },
+    {
+      "count": 39,
+      "domain": "opendata.comune.bologna.it"
+    },
+    {
+      "count": 22,
+      "domain": "www.cosafareafirenze.it"
+    },
+    {
+      "count": 13,
+      "domain": "www.romatoday.it"
+    },
+    {
+      "count": 9,
+      "domain": "www.genovatoday.it"
+    },
+    {
+      "count": 8,
+      "domain": "emiliaromagnaturismo.it"
+    },
+    {
+      "count": 8,
+      "domain": "www.eventi.bergamo.it"
+    }
+  ],
+  "warnings": [
+    "no_record_has_documented_verification",
+    "source_data_older_than_allowed_forecast_window"
+  ]
+}

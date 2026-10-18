@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "assessed_on": "2026-10-17",
+  "review_only": true,
+  "automatic_import_allowed": false,
+  "market_imports": 0,
+  "market_confirmations": 0,
+  "description": "High-yield reference publishers for reconciling EXISTING markets first. These leads are not source admission certificates.",
+  "sources": [
+    {
+      "id": "veneto-regional-calendar-2026",
+      "priority": 1,
+      "publisher": "Regione Veneto",
+      "scope": "regional",
+      "region": "Veneto",
+      "source_kind": "annual-official-market-program-pdf",
+      "url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario%2Bregionale%2Bmarcati%2B2026.pdf/be79e5c1-ceae-4e76-8207-3b49630ae080",
+      "landing_url": "https://www.regione.veneto.it/web/attivita-produttive/dalla-a-alla-z-dettaglio?articleId=109333",
+      "as_of_source": "Calendario mercati anno 2026; regional landing page updated 2025-12-24",
+      "claimed_license": "not stated for this PDF on reviewed landing page",
+      "rights_status": "not_reviewed",
+      "existing_connector": false,
+      "field_targets": [
+        "name",
+        "address",
+        "weekday",
+        "hours",
+        "seasonality"
+      ],
+      "cohort": "markets on public areas throughout Veneto; exact market-row count not audited",
+      "risks": [
+        "16-page table has both market venues and isolated vendor pitches",
+        "no stable row ID",
+        "municipality+street+day conflicts",
+        "schedule for 2026 is not confirmation of future individual opening"
+      ],
+      "next_action": "Obtain official PDF fingerprint and parse read-only; reject isolated pitches; reconcile existing Veneto market IDs by ISTAT comune+place+weekday, recording field changes and conflicts without updating the catalog."
+    },
+    {
+      "id": "lombardia-mercap",
+      "priority": 2,
+      "publisher": "Regione Lombardia",
+      "scope": "regional",
+      "region": "Lombardia",
+      "source_kind": "weekly-official-municipal-market-open-data",
+      "url": "https://www.dati.lombardia.it/d/68zx-njaw",
+      "landing_url": "https://www.dati.gov.it/node/view-dataset/dataset?id=2e41941b-80fb-4ded-8330-427383f725f8",
+      "as_of_source": "official frequency weekly; open-data catalog lists last modification 2026-10-06; check dataset rowsUpdatedAt separately",
+      "claimed_license": "CC0_10 claimed and checked by existing dedicated source adapter against metadata",
+      "rights_status": "existing_vetted_adapter",
+      "existing_connector": true,
+      "field_targets": [
+        "address",
+        "weekday",
+        "hours",
+        "seasonality",
+        "coordinates"
+      ],
+      "cohort": "Lombardia markets where existing regional official IDs and legacy market cards may describe the same physical venue",
+      "risks": [
+        "same venue repeated once per weekday",
+        "existing historical records may have generic name or wrong address",
+        "Milan has separate municipal source and must not be duplicated",
+        "official geometry may not describe a surveyed entrance",
+        "publisher last-update does not confirm the opening of every market"
+      ],
+      "next_action": "Run exact-source-ID and municipality+address+weekday shadow overlap against legacy Lombardia records. Propose only source-bound field repairs with independent approval; do not create additional venue IDs for duplicates."
+    },
+    {
+      "id": "campagna-amica-markets",
+      "priority": 3,
+      "publisher": "Fondazione Campagna Amica / Coldiretti",
+      "scope": "network",
+      "region": null,
+      "source_kind": "national-farmers-market-network-directory",
+      "url": "https://www.campagnamica.it/la-nostra-rete/mercati-a-km-0/",
+      "landing_url": "https://www.coldiretti.it/economia/campagna-amica-inaugurato-il-mercato-contadino-a-torino",
+      "as_of_source": "Coldiretti stated approximately 1,200 farmers markets in 2025; this is a network claim, NOT measured active website rows",
+      "claimed_license": "no bulk dataset reuse license established",
+      "rights_status": "permission_required",
+      "existing_connector": false,
+      "field_targets": [
+        "name",
+        "address",
+        "weekday",
+        "hours",
+        "category"
+      ],
+      "cohort": "Farmers markets only; possible overlap with ordinary municipal markets must be examined per physical venue",
+      "risks": [
+        "network-wide number is not a verified CSV size",
+        "website listings may be dynamic or stale",
+        "distinct farmers market can occur within larger town market",
+        "no permission to copy the complete proprietary directory established"
+      ],
+      "next_action": "Ask the organizer for licensed structured venue export or written reuse permission; in the meantime spot-check official local listings such as Coldiretti Milano/Lodi/Monza (24 March 2026) only as review leads."
+    },
+    {
+      "id": "veneto-antiques-2026",
+      "priority": 4,
+      "publisher": "Regione Veneto",
+      "scope": "regional",
+      "region": "Veneto",
+      "source_kind": "annual-official-antiques-and-collectibles-calendar-pdf",
+      "url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario%2Bmercatini%2Busato%2B2026.pdf/7ca1a502-6de9-4e5e-a247-4ec2f3e6cf3d",
+      "landing_url": "https://www.regione.veneto.it/web/attivita-produttive/dalla-a-alla-z-dettaglio?articleId=109333",
+      "as_of_source": "2026 edition, 3-page calendar",
+      "claimed_license": "not stated for this PDF on reviewed landing page",
+      "rights_status": "not_reviewed",
+      "existing_connector": false,
+      "field_targets": [
+        "address",
+        "weekday",
+        "hours",
+        "seasonality",
+        "category"
+      ],
+      "cohort": "Antiques / collectibles market venues throughout Veneto",
+      "risks": [
+        "multiple schedules for same venue or yearly special events",
+        "monthly/festival schedules not simple weekly recurrence",
+        "license review pending"
+      ],
+      "next_action": "Review PDF rights and parse as reference dates only; reconcile against existing antiques/vintage venues without merging different dates or nearby markets."
+    },
+    {
+      "id": "italy-osm-marketplace",
+      "priority": 5,
+      "publisher": "OpenStreetMap contributors (Geofabrik extracts)",
+      "scope": "national",
+      "region": null,
+      "source_kind": "open-map-marketplace-poi-geometry",
+      "url": "https://download.geofabrik.de/europe/italy.html",
+      "landing_url": "https://www.openstreetmap.org/copyright",
+      "as_of_source": "frequently refreshed community mapping, not a guarantee of market operating status",
+      "claimed_license": "ODbL 1.0, attribution and share-alike requirements",
+      "rights_status": "odbl_compatibility_review_required",
+      "existing_connector": false,
+      "field_targets": [
+        "coordinates",
+        "address",
+        "name",
+        "hours"
+      ],
+      "cohort": "OSM objects tagged amenity=marketplace; coverage and accuracy to be measured",
+      "risks": [
+        "ODbL may affect the license of a combined distributed database",
+        "OSM tags are not municipal confirmation of current market days",
+        "node/way geometry not necessarily correct entrance",
+        "mass Overpass API queries must respect service limits; favor region extracts"
+      ],
+      "next_action": "Review ODbL attribution/share-alike implications with the existing public catalog. Run offline read-only spatial matching by exact town/venue before proposing geolocation corrections."
+    },
+    {
+      "id": "veneto-municipal-structured-2026",
+      "priority": 6,
+      "publisher": "Regione Veneto / municipally supplied open-data",
+      "scope": "regional",
+      "region": "Veneto",
+      "source_kind": "many-separate-municipal-structured-csvs",
+      "url": "https://www.dati.gov.it/node/192?tags=fiere",
+      "landing_url": "https://dati.veneto.it/",
+      "as_of_source": "national catalog lists many municipal resources refreshed in 2026; each publisher dataset needs independent review",
+      "claimed_license": "CC BY 4.0 is declared for some municipal distributions; do not generalize to all",
+      "rights_status": "per_dataset_review_required",
+      "existing_connector": false,
+      "field_targets": [
+        "name",
+        "weekday",
+        "seasonality",
+        "category"
+      ],
+      "cohort": "official Veneto municipalities; some resources describe per-stall concessions, not market venues",
+      "risks": [
+        "one market may correspond to many stall/year rows",
+        "some CSV have no address or visiting schedule",
+        "single publisher-level approval cannot be applied to unrelated municipal files"
+      ],
+      "next_action": "Group candidate feeds by compatible SCHEMA family. Filter concession registry and stall rows; admit only explicitly reviewed market_venue or market_venue_day datasets."
+    },
+    {
+      "id": "slowfood-earth-markets",
+      "priority": 7,
+      "publisher": "Fondazione Slow Food",
+      "scope": "network",
+      "region": null,
+      "source_kind": "national-curated-earth-markets-directory",
+      "url": "https://www.fondazioneslowfood.com/it/nazioni-mercati/italia-it/",
+      "landing_url": "https://www.slowfood.it/la-prima-slow-week-di-settembre-rianima-gli-animi-e-gli-eventi/",
+      "as_of_source": "individual pages include venue, dates and hours, but different pages may disagree; 2026 editorial updates exist",
+      "claimed_license": "no bulk data reuse permission established",
+      "rights_status": "permission_required",
+      "existing_connector": false,
+      "field_targets": [
+        "name",
+        "address",
+        "weekday",
+        "hours",
+        "category"
+      ],
+      "cohort": "specialized artisan/local-producer markets, not general market census",
+      "risks": [
+        "directory page contains partial/paginated results",
+        "organizer schedule may be seasonal or superseded",
+        "overlaps with generic town weekly markets",
+        "published website content is not automatically open licensed"
+      ],
+      "next_action": "Spot-check specific existing market cards against current official organizer pages. Request licensed dataset access for systematic reconciliation."
+    },
+    {
+      "id": "piemonte-archive-2019",
+      "priority": 8,
+      "publisher": "Regione Piemonte / CSI Piemonte",
+      "scope": "regional",
+      "region": "Piemonte",
+      "source_kind": "regional-historical-market-register",
+      "url": "https://www.dati.gov.it/node/view-dataset/dataset?id=26c619d9-ecf8-4882-910e-925a4fb459ec",
+      "landing_url": "https://api.smartdatanet.it/metadataapi/api/v02/detail/Mercati_5426",
+      "as_of_source": "market dataset last modified 2019-05-10, newer catalog refresh is NOT current market verification",
+      "claimed_license": "CC BY 4.0 declared in official registry; publisher and distribution must be rechecked",
+      "rights_status": "historical_reference_only",
+      "existing_connector": false,
+      "field_targets": [
+        "name",
+        "address",
+        "weekday",
+        "seasonality"
+      ],
+      "cohort": "regional historical merchant-market entries, including isolated pitches",
+      "risks": [
+        "data too old for 2026 schedules",
+        "mixes market and single-stall identities",
+        "official endpoint may be offline"
+      ],
+      "next_action": "Do not import or refresh current weekdays/hours from this historical dataset; use only for anomaly discovery and locate a newer official publication."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "reference_date": "2026-10-18",
+  "publisher": "Regione Veneto",
+  "publisher_landing_url": "https://elezioni2020.regione.veneto.it/web/attivita-produttive/somministrazione-alimenti-e-bevande-nelle-sagre-e-nelle-fiere",
+  "publisher_source_url": "https://elezioni2020.regione.veneto.it/documents/10713/13530434/Calendario%2BSagre%2Be%2BFiere%2B08.10.2026.xlsx/ebd944f5-d5ec-4826-bbc4-faa0a6edce98",
+  "publisher_page_date_last_checked": "2026-10-08",
+  "source_kind": "temporary_sagre_and_fairs_not_weekly_markets",
+  "source_sha256": "51a79c287f510efec9e525fa5e73b64bb4e5def6775be4b9ee8d205275cf051e",
+  "compressed_source_bytes": 219418,
+  "worksheets": [
+    {
+      "sheet": "sheet1.xml",
+      "nonempty_rows": 1591,
+      "likely_header_row": 2,
+      "header_field_names_only": [
+        "Provincia o \nCittà Metropolitana",
+        "Comune",
+        "Denominazione della manifestazione \ne luogo di svolgimento",
+        "Periodo e orario di svolgimento",
+        "Attività",
+        "Sito web e/o pagina social \ndella manifestazione",
+        "Dati dell'organizzatore"
+      ],
+      "matched_concepts": [
+        "event",
+        "municipality",
+        "province"
+      ],
+      "source_schema_review_required": false,
+      "source_entries_not_new_markets": 1589,
+      "aggregate_row_classification_only": {
+        "distinct_municipality_labels_not_canonical_ISTAT": 211,
+        "fiera_named_rows_not_verified": 74,
+        "market_like_title_rows_not_verified": 38,
+        "other_named_manifestation_rows": 1103,
+        "rows_with_named_event_and_town_not_verified": 1589,
+        "rows_with_period_text_not_confirmed": 1589,
+        "rows_with_publisher_web_field": 588,
+        "rows_with_year_in_period_text": 2,
+        "sagra_named_rows_not_verified": 374
+      }
+    },
+    {
+      "sheet": "sheet2.xml",
+      "nonempty_rows": 0,
+      "likely_header_row": null,
+      "header_field_names_only": [],
+      "matched_concepts": [],
+      "source_schema_review_required": true,
+      "source_entries_not_new_markets": 0,
+      "aggregate_row_classification_only": {
+        "distinct_municipality_labels_not_canonical_ISTAT": 0
+      }
+    }
+  ],
+  "sheet_count": 2,
+  "schema_only": true,
+  "source_rights_to_copy_event_rows_reviewed": false,
+  "market_catalog_imports": 0,
+  "market_catalog_updates": 0,
+  "verified_market_openings": 0,
+  "event_rows_persisted": 0
+}

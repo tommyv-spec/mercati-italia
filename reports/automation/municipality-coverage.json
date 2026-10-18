@@ -1,0 +1,418 @@
+{
+  "schema": 1,
+  "review_only": true,
+  "istat_reference_date": "2026-02-21",
+  "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+  "catalog_market_ids_preserved": 13820,
+  "catalog_entries_added": 0,
+  "events_confirmed": 0,
+  "municipalities_total": 7894,
+  "municipalities_with_catalog_listings": 4906,
+  "municipalities_without_catalog_listings": 2988,
+  "represented_percent": 62.1,
+  "regions": [
+    {
+      "region": "Piemonte",
+      "istat_municipalities": 1180,
+      "with_at_least_one_catalog_market": 526,
+      "without_catalog_market": 654,
+      "represented_percent": 44.6,
+      "unrepresented_examples_for_source_search": [
+        "Crova",
+        "Faule",
+        "Frabosa Soprana",
+        "Fraconalto",
+        "Montechiaro d'Acqui",
+        "Pertengo",
+        "Quargnento",
+        "Villanova Biellese"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "istat_municipalities": 1501,
+      "with_at_least_one_catalog_market": 1075,
+      "without_catalog_market": 426,
+      "represented_percent": 71.6,
+      "unrepresented_examples_for_source_search": [
+        "Carbonate",
+        "Cassiglio",
+        "Ceto",
+        "Merlino",
+        "Orino",
+        "Roè Volciano",
+        "San Damiano al Colle",
+        "Vione"
+      ]
+    },
+    {
+      "region": "Calabria",
+      "istat_municipalities": 404,
+      "with_at_least_one_catalog_market": 176,
+      "without_catalog_market": 228,
+      "represented_percent": 43.6,
+      "unrepresented_examples_for_source_search": [
+        "Brancaleone",
+        "Fiumara",
+        "Laino Castello",
+        "Marcedusa",
+        "Montebello Jonico",
+        "Paterno Calabro",
+        "San Basile",
+        "Tortora"
+      ]
+    },
+    {
+      "region": "Sicilia",
+      "istat_municipalities": 391,
+      "with_at_least_one_catalog_market": 201,
+      "without_catalog_market": 190,
+      "represented_percent": 51.4,
+      "unrepresented_examples_for_source_search": [
+        "Altavilla Milicia",
+        "Castelmola",
+        "Montagnareale",
+        "Porto Empedocle",
+        "San Filippo del Mela",
+        "Sperlinga",
+        "Torretta",
+        "Valderice"
+      ]
+    },
+    {
+      "region": "Trentino-Alto Adige",
+      "istat_municipalities": 282,
+      "with_at_least_one_catalog_market": 98,
+      "without_catalog_market": 184,
+      "represented_percent": 34.8,
+      "unrepresented_examples_for_source_search": [
+        "Castel Ivano",
+        "Croviana",
+        "Falzes",
+        "Luson",
+        "Martello",
+        "Nogaredo",
+        "Sarnonico",
+        "Selva dei Molini"
+      ]
+    },
+    {
+      "region": "Sardegna",
+      "istat_municipalities": 377,
+      "with_at_least_one_catalog_market": 198,
+      "without_catalog_market": 179,
+      "represented_percent": 52.5,
+      "unrepresented_examples_for_source_search": [
+        "Berchidda",
+        "Giba",
+        "Lunamatrona",
+        "Mores",
+        "Oschiri",
+        "Triei",
+        "Turri",
+        "Villamassargia"
+      ]
+    },
+    {
+      "region": "Veneto",
+      "istat_municipalities": 559,
+      "with_at_least_one_catalog_market": 428,
+      "without_catalog_market": 131,
+      "represented_percent": 76.6,
+      "unrepresented_examples_for_source_search": [
+        "Bagnolo di Po",
+        "Gaiba",
+        "Giacciano con Baruchella",
+        "Povegliano",
+        "San Nicolò di Comelico",
+        "Tambre",
+        "Val Liona",
+        "Veggiano"
+      ]
+    },
+    {
+      "region": "Liguria",
+      "istat_municipalities": 234,
+      "with_at_least_one_catalog_market": 107,
+      "without_catalog_market": 127,
+      "represented_percent": 45.7,
+      "unrepresented_examples_for_source_search": [
+        "Costarainera",
+        "Olivetta San Michele",
+        "Ortovero",
+        "Plodio",
+        "Pornassio",
+        "Riomaggiore",
+        "Testico",
+        "Zuccarello"
+      ]
+    },
+    {
+      "region": "Friuli Venezia Giulia",
+      "istat_municipalities": 215,
+      "with_at_least_one_catalog_market": 91,
+      "without_catalog_market": 124,
+      "represented_percent": 42.3,
+      "unrepresented_examples_for_source_search": [
+        "Aiello del Friuli",
+        "Artegna",
+        "Colloredo di Monte Albano",
+        "Remanzacco",
+        "Romans d'Isonzo",
+        "Torreano",
+        "Tramonti di Sotto",
+        "Villesse"
+      ]
+    },
+    {
+      "region": "Abruzzo",
+      "istat_municipalities": 305,
+      "with_at_least_one_catalog_market": 190,
+      "without_catalog_market": 115,
+      "represented_percent": 62.3,
+      "unrepresented_examples_for_source_search": [
+        "Castel Castagna",
+        "Civitella Messer Raimondo",
+        "Crecchio",
+        "Montebello sul Sangro",
+        "Pennadomo",
+        "San Pio delle Camere",
+        "Vicoli",
+        "Villalago"
+      ]
+    },
+    {
+      "region": "Campania",
+      "istat_municipalities": 550,
+      "with_at_least_one_catalog_market": 435,
+      "without_catalog_market": 115,
+      "represented_percent": 79.1,
+      "unrepresented_examples_for_source_search": [
+        "Agerola",
+        "Contrada",
+        "Cuccaro Vetere",
+        "Domicella",
+        "Laureana Cilento",
+        "Letino",
+        "Morigerati",
+        "Prata di Principato Ultra"
+      ]
+    },
+    {
+      "region": "Basilicata",
+      "istat_municipalities": 131,
+      "with_at_least_one_catalog_market": 18,
+      "without_catalog_market": 113,
+      "represented_percent": 13.7,
+      "unrepresented_examples_for_source_search": [
+        "Albano di Lucania",
+        "Episcopia",
+        "Irsina",
+        "Oliveto Lucano",
+        "Rapone",
+        "Rivello",
+        "Venosa",
+        "Vietri di Potenza"
+      ]
+    },
+    {
+      "region": "Marche",
+      "istat_municipalities": 225,
+      "with_at_least_one_catalog_market": 113,
+      "without_catalog_market": 112,
+      "represented_percent": 50.2,
+      "unrepresented_examples_for_source_search": [
+        "Cagli",
+        "Monte Cerignone",
+        "Petritoli",
+        "Pioraco",
+        "Poggio San Marcello",
+        "San Lorenzo in Campo",
+        "Vallefoglia",
+        "Visso"
+      ]
+    },
+    {
+      "region": "Lazio",
+      "istat_municipalities": 378,
+      "with_at_least_one_catalog_market": 306,
+      "without_catalog_market": 72,
+      "represented_percent": 81.0,
+      "unrepresented_examples_for_source_search": [
+        "Frasso Sabino",
+        "Micigliano",
+        "Montenero Sabino",
+        "Poggio San Lorenzo",
+        "Rocca Canterano",
+        "Roccagiovine",
+        "Saracinesco",
+        "Turania"
+      ]
+    },
+    {
+      "region": "Emilia-Romagna",
+      "istat_municipalities": 330,
+      "with_at_least_one_catalog_market": 276,
+      "without_catalog_market": 54,
+      "represented_percent": 83.6,
+      "unrepresented_examples_for_source_search": [
+        "Bertinoro",
+        "Cerignale",
+        "Dovadola",
+        "Longiano",
+        "Montecopiolo",
+        "Pellegrino Parmense",
+        "Prignano sulla Secchia",
+        "Santa Sofia"
+      ]
+    },
+    {
+      "region": "Valle d'Aosta",
+      "istat_municipalities": 74,
+      "with_at_least_one_catalog_market": 27,
+      "without_catalog_market": 47,
+      "represented_percent": 36.5,
+      "unrepresented_examples_for_source_search": [
+        "Antey-Saint-André",
+        "Arnad",
+        "Arvier",
+        "Brusson",
+        "Cogne",
+        "Issime",
+        "Rhêmes-Saint-Georges",
+        "Verrayes"
+      ]
+    },
+    {
+      "region": "Toscana",
+      "istat_municipalities": 273,
+      "with_at_least_one_catalog_market": 227,
+      "without_catalog_market": 46,
+      "represented_percent": 83.2,
+      "unrepresented_examples_for_source_search": [
+        "Abbadia San Salvatore",
+        "Londa",
+        "Molazzana",
+        "Murlo",
+        "Ortignano Raggiolo",
+        "Radicondoli",
+        "Vagli Sotto",
+        "Villa Collemandina"
+      ]
+    },
+    {
+      "region": "Puglia",
+      "istat_municipalities": 257,
+      "with_at_least_one_catalog_market": 227,
+      "without_catalog_market": 30,
+      "represented_percent": 88.3,
+      "unrepresented_examples_for_source_search": [
+        "Celle di San Vito",
+        "Fragagnano",
+        "Panni",
+        "Poggio Imperiale",
+        "San Giorgio Ionico",
+        "San Paolo di Civitate",
+        "Troia",
+        "Vico del Gargano"
+      ]
+    },
+    {
+      "region": "Umbria",
+      "istat_municipalities": 92,
+      "with_at_least_one_catalog_market": 66,
+      "without_catalog_market": 26,
+      "represented_percent": 71.7,
+      "unrepresented_examples_for_source_search": [
+        "Castel Ritaldi",
+        "Fabro",
+        "Ficulle",
+        "Fossato di Vico",
+        "Montegabbione",
+        "Poggiodomo",
+        "Preci",
+        "Stroncone"
+      ]
+    },
+    {
+      "region": "Molise",
+      "istat_municipalities": 136,
+      "with_at_least_one_catalog_market": 121,
+      "without_catalog_market": 15,
+      "represented_percent": 89.0,
+      "unrepresented_examples_for_source_search": [
+        "Castelpizzuto",
+        "Guardialfiera",
+        "Mafalda",
+        "Palata",
+        "Pettoranello del Molise",
+        "San Giacomo degli Schiavoni",
+        "Sant'Agapito",
+        "Tavenna"
+      ]
+    }
+  ],
+  "unmatched_city_examples": [
+    {
+      "region": "Abruzzo",
+      "reported_city": "AQ"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Atelena"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Atelena"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Cassinetta Di Lugagnano"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Lecce dei Marsi"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Popoli"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Popoli"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Scorzè"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Secirano"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "Secirano"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "TE"
+    },
+    {
+      "region": "Abruzzo",
+      "reported_city": "TE"
+    },
+    {
+      "region": "Basilicata",
+      "reported_city": "BRINDISI DI MONTEGNA"
+    },
+    {
+      "region": "Basilicata",
+      "reported_city": "BRINDISI DI MONTEGNA"
+    },
+    {
+      "region": "Basilicata",
+      "reported_city": "Brindisi di Montagna"
+    }
+  ],
+  "interpretation": "absence of a listing is NOT evidence a municipality has any active market"
+}

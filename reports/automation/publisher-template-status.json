@@ -1,0 +1,111 @@
+{
+  "catalog_updates": 0,
+  "event_confirmations": 0,
+  "market_imports": 0,
+  "max_pages_per_publisher": 2,
+  "pages_with_full_text_copied": 0,
+  "publishers_checked": 2,
+  "reference_date": "2026-10-18",
+  "research_only": true,
+  "robots_policies_enforced": true,
+  "schema": 1,
+  "source_data_copied": false,
+  "template_count": 3,
+  "templates": [
+    {
+      "document_structure_counts": {
+        "calendar_list_entries_not_confirmed": 0,
+        "editorial_suspensions_warning_present": false,
+        "h1": 1,
+        "weekday_group_headings": 7,
+        "weekly_list_entries_not_individual_verified_markets": 369
+      },
+      "field_markers_changed_since_previous": false,
+      "importable_market_rows": 0,
+      "individual_markets_verified": 0,
+      "layout_valid_for_template_comparison": true,
+      "market_catalog_updates": 0,
+      "missing_required_markers": [],
+      "observed_markers": [
+        "market_h1_seen",
+        "single_market_h1",
+        "weekday_section_headings",
+        "weekly_venue_list_entries"
+      ],
+      "page_sha256_for_change_alert_only": "2ff28d84f55448554d209fc495505329156ea8f55d37b7cbe79dda89f86fecba",
+      "publisher": "happings.com",
+      "publisher_text_persisted": false,
+      "requests": 2,
+      "sample_url": "https://www.happings.com/it/mercati-settimanali-a-milano-e-provincia/",
+      "source_format": "weekly_area_index",
+      "source_openings_confirmed": 0,
+      "state": "schema_unchanged_or_sufficient",
+      "template_id": "happings-weekly-area",
+      "type": "weekly_area_index"
+    },
+    {
+      "document_structure_counts": {
+        "calendar_list_entries_not_confirmed": 10,
+        "editorial_suspensions_warning_present": false,
+        "h1": 1,
+        "weekday_group_headings": 0,
+        "weekly_list_entries_not_individual_verified_markets": 0
+      },
+      "field_markers_changed_since_previous": false,
+      "importable_market_rows": 0,
+      "individual_markets_verified": 0,
+      "layout_valid_for_template_comparison": true,
+      "market_catalog_updates": 0,
+      "missing_required_markers": [],
+      "observed_markers": [
+        "detail_calendar_heading",
+        "detail_information_heading",
+        "market_h1_seen",
+        "single_market_h1"
+      ],
+      "page_sha256_for_change_alert_only": "5388148cc2058e27d0487df04bc3c04922dcec2c6268463d0dbb6103eef3e322",
+      "publisher": "happings.com",
+      "publisher_text_persisted": false,
+      "requests": 1,
+      "sample_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+      "source_format": "event_detail_calendar",
+      "source_openings_confirmed": 0,
+      "state": "schema_unchanged_or_sufficient",
+      "template_id": "happings-event-detail",
+      "type": "event_detail_calendar"
+    },
+    {
+      "document_structure_counts": {
+        "calendar_list_entries_not_confirmed": 0,
+        "editorial_suspensions_warning_present": true,
+        "h1": 1,
+        "weekday_group_headings": 0,
+        "weekly_list_entries_not_individual_verified_markets": 0
+      },
+      "field_markers_changed_since_previous": false,
+      "importable_market_rows": 0,
+      "individual_markets_verified": 0,
+      "layout_valid_for_template_comparison": true,
+      "market_catalog_updates": 0,
+      "missing_required_markers": [],
+      "observed_markers": [
+        "editorial_location_label",
+        "editorial_next_dates_label",
+        "editorial_organizer_label",
+        "editorial_suspensions_warning",
+        "market_h1_seen",
+        "single_market_h1"
+      ],
+      "page_sha256_for_change_alert_only": "c1fff1e8e2c54d9cb7fa5429fcb0b8f1e3a3f3befbe9c8817a21b8aa57dc4b3a",
+      "publisher": "cosedicasa.com",
+      "publisher_text_persisted": false,
+      "requests": 2,
+      "sample_url": "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano",
+      "source_format": "monthly_editorial_exception",
+      "source_openings_confirmed": 0,
+      "state": "schema_unchanged_or_sufficient",
+      "template_id": "cosedicasa-monthly",
+      "type": "monthly_editorial_exception"
+    }
+  ]
+}

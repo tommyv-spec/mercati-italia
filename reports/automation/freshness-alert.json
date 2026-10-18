@@ -1,0 +1,17 @@
+{
+  "attention_required": true,
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 13,824\n- Senza verifica documentata: 13,824\n- Fonte vecchia oltre soglia: 52\n- Fonte senza data: 0\n- Date previste da fonte vecchia/sconosciuta: 0\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 4439ee4508a6155a",
+  "problems": {
+    "municipal_csv_changed": [],
+    "publisher_new_data_claims": [],
+    "publisher_unavailable": [],
+    "stale_forecast": 0,
+    "stale_source": 52,
+    "total": 13824,
+    "unknown_source_date": 0,
+    "unsupported_confirmation": 0,
+    "without_verification": 13824
+  },
+  "signature": "4439ee4508a6155a",
+  "title": "[Mercati autopilot] Dati da verificare"
+}

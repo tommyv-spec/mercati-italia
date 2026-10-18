@@ -1,0 +1,1005 @@
+{
+  "schema": 1,
+  "publisher": "Comune di Milano",
+  "publisher_document_date": "2026-10-01",
+  "publisher_report_url": "https://www2.comune.milano.it/documents/87339536/190972166/MSS+-+ubicazioni%2Corari%2Corganici+1+Ottobre+2026.pdf/d5b13a87-b9de-7c48-5674-65c4151565c3?t=1790841765683",
+  "publisher_context_url": "https://www2.comune.milano.it/web/fare-impresa/mercati-settimanali-scoperti",
+  "reviewed_on": "2026-10-18",
+  "evidence_type": "manually_reviewed_pdf_table_street_labels_bound_to_existing_gis_source_ids",
+  "source_license_claim": "Publisher municipal map open data CC BY 4.0; document from municipality; preserve attribution",
+  "market_imports": 0,
+  "individual_openings_confirmed": 0,
+  "new_geocodes_authorized": false,
+  "description": "50 additional independently cross-checked exact PDF market/day + GIS ID links added to the initial 25, 2026-10-18. Two conflicting weekday links and incomplete/closed venue descriptions stay on hold. Multi-street labels describe market areas, not entrances.",
+  "entries": [
+    {
+      "gis_id": 44,
+      "pdf_market_name": "ARPINO",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Ferrieri E.",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 68,
+      "pdf_market_name": "GHINI",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Ghini L. (area parcheggio)",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 49,
+      "pdf_market_name": "PALMI",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Palmi",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 23,
+      "pdf_market_name": "PISANI DOSSI",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Pisani Dossi C.A.",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 78,
+      "pdf_market_name": "SAN MARCO",
+      "weekdays": [
+        0,
+        3
+      ],
+      "street_display": "Via S. Marco",
+      "pdf_pages": [
+        1,
+        5
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 62,
+      "pdf_market_name": "SANTA TERESA",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via S. Teresa",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 37,
+      "pdf_market_name": "KRAMER",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Kramer A. / Via Goldoni (area mercatale)",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 24,
+      "pdf_market_name": "CAMBINI",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Cambini L. / Via Petraccone E. (area mercatale)",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 38,
+      "pdf_market_name": "CESARIANO",
+      "weekdays": [
+        0,
+        3
+      ],
+      "street_display": "Viale Elvezia / Via Cesariano C. (area mercatale)",
+      "pdf_pages": [
+        1,
+        5
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 12,
+      "pdf_market_name": "BONOLA",
+      "weekdays": [
+        1,
+        4
+      ],
+      "street_display": "Via Cechov A. (parcheggio Centro Commerciale Bonola)",
+      "pdf_pages": [
+        2,
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 31,
+      "pdf_market_name": "EUSTACHI",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Via Eustachi B.",
+      "pdf_pages": [
+        2
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 39,
+      "pdf_market_name": "FAUCHÈ",
+      "weekdays": [
+        1,
+        5
+      ],
+      "street_display": "Via Fauchè G.B. / Via Losanna / Piazza Caneva (area mercatale)",
+      "pdf_pages": [
+        2,
+        8
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 1,
+      "pdf_market_name": "PAPINIANO",
+      "weekdays": [
+        1,
+        5
+      ],
+      "street_display": "Viale Papiniano / Piazza S. Agostino (area mercatale)",
+      "pdf_pages": [
+        3,
+        9
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 9,
+      "pdf_market_name": "PASCARELLA",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Via Pascarella C.",
+      "pdf_pages": [
+        3
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 6,
+      "pdf_market_name": "SAN MINIATO",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Via S. Miniato",
+      "pdf_pages": [
+        3
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 52,
+      "pdf_market_name": "STROZZI",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Via Strozzi P.",
+      "pdf_pages": [
+        3
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 71,
+      "pdf_market_name": "VASARI",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Via Vasari G.",
+      "pdf_pages": [
+        3
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 50,
+      "pdf_market_name": "BENTIVOGLIO",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Bentivoglio P.",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 65,
+      "pdf_market_name": "BORSI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Borsi",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 13,
+      "pdf_market_name": "PARETO",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Pareto V.",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 25,
+      "pdf_market_name": "RANCATI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Rancati I.",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 21,
+      "pdf_market_name": "VITTORELLI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Paradisi G. / Via Vittorelli J. / Via Padova (area mercatale)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 33,
+      "pdf_market_name": "ZURETTI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Zuretti G.",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 55,
+      "pdf_market_name": "GIUSSANI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Giussani C. (area parcheggio)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 81,
+      "pdf_market_name": "MONZA",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Viale Monza, civ. 325 (area parcheggio)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 42,
+      "pdf_market_name": "ZAMAGNA/PARAVIA",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Paravia",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 30,
+      "pdf_market_name": "MORETTO DA BS",
+      "weekdays": [
+        0
+      ],
+      "street_display": "Via Reni G. / Via Saldini C. / Via Moretto da Brescia / Via Colombo G. (area mercatale)",
+      "pdf_pages": [
+        1
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 43,
+      "pdf_market_name": "ARIOLI VENEGONI",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Piazza della Cooperazione",
+      "pdf_pages": [
+        2
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 60,
+      "pdf_market_name": "GRATOSOGLIO SUD",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Via Saponaro",
+      "pdf_pages": [
+        2
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 35,
+      "pdf_market_name": "GARIGLIANO",
+      "weekdays": [
+        1,
+        5
+      ],
+      "street_display": "Piazza Minniti / Via Garigliano / Via Volturno / Via Sebenico / Piazzale Lagosta (area mercatale)",
+      "pdf_pages": [
+        2,
+        8
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 32,
+      "pdf_market_name": "BENEDETTO MARCELLO",
+      "weekdays": [
+        1,
+        5
+      ],
+      "street_display": "Via Benedetto Marcello / Via Mercadante (area mercatale)",
+      "pdf_pages": [
+        2,
+        8
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 77,
+      "pdf_market_name": "BARIGOZZI",
+      "weekdays": [
+        1
+      ],
+      "street_display": "Via Mazzucotelli A. / Via Barigozzi E. (area mercatale)",
+      "pdf_pages": [
+        2
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 57,
+      "pdf_market_name": "VESPRI SICILIANI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Vespri Siciliani",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 5,
+      "pdf_market_name": "VAL DI LEDRO",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Hermada / Via Val di Ledro (area mercatale)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 84,
+      "pdf_market_name": "MARTINI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Piazza Insubria / Piazzale Martini / Via Ciceri Visconti (area mercatale)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 3,
+      "pdf_market_name": "GAETA",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Sand George A. / Via Gaeta (area mercatale)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 17,
+      "pdf_market_name": "DE CAPITANI",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Via Massara De Capitani / Via Michetti / Piazza Bausan (area mercatale)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 64,
+      "pdf_market_name": "CERMENATE",
+      "weekdays": [
+        2
+      ],
+      "street_display": "Viale Giovanni da Cermenate / Via Brioschi F. (area mercatale)",
+      "pdf_pages": [
+        4
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 27,
+      "pdf_market_name": "AMPERE",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Ampere A.M.",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 66,
+      "pdf_market_name": "CALATAFIMI",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Calatafimi",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 58,
+      "pdf_market_name": "DI RUDINI'",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Di Rudinì A. (parcheggio Ospedale San Paolo)",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 22,
+      "pdf_market_name": "ORBETELLO",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Orbetello",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 79,
+      "pdf_market_name": "ROMBON",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Rombon / Via Tommaso Pini (area mercatale)",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 51,
+      "pdf_market_name": "TONEZZA",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Tonezza",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 8,
+      "pdf_market_name": "TRAVERSI",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via F.lli Antona Traversi",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 85,
+      "pdf_market_name": "CALVI",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Melloni / Via Calvi / Piazza Risorgimento (area mercatale)",
+      "pdf_pages": [
+        5
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 76,
+      "pdf_market_name": "UNGHERIA",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Viale Ungheria",
+      "pdf_pages": [
+        6
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 10,
+      "pdf_market_name": "VAL MAIRA",
+      "weekdays": [
+        3
+      ],
+      "street_display": "Via Val Maira / Via De Martino E. (area mercatale)",
+      "pdf_pages": [
+        6
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 7,
+      "pdf_market_name": "CARBONIA",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Carbonia",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 59,
+      "pdf_market_name": "CURIEL",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Curiel",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 69,
+      "pdf_market_name": "DEI GUARNERI",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Dei Guarneri",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 47,
+      "pdf_market_name": "F.LLI DI DIO",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via F.lli Di Dio",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 61,
+      "pdf_market_name": "GRATOSOGLIO NORD",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Baroni C.",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 63,
+      "pdf_market_name": "NEERA",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Neera",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 46,
+      "pdf_market_name": "PISTOIA",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Pistoia",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 34,
+      "pdf_market_name": "STRESA",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Stresa / Via Melchiorre Gioia (area mercatale)",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 40,
+      "pdf_market_name": "PAGANO",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Largo Quinto Alpini / Via Pagano (area mercatale)",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 26,
+      "pdf_market_name": "MARCO AURELIO",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Marco Aurelio / Via Termopili / Via Roggia Scagna (area mercatale)",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 70,
+      "pdf_market_name": "CREMA",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Crema / Via Piacenza / Via Giulio Romano (area mercatale)",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 18,
+      "pdf_market_name": "CATONE",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Catone / Via Patti (area mercatale)",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 29,
+      "pdf_market_name": "CANALETTO",
+      "weekdays": [
+        4
+      ],
+      "street_display": "Via Canaletto / Via Sangallo / Piazza Guardi / Via Pietro da Cortona (area mercatale)",
+      "pdf_pages": [
+        7
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 20,
+      "pdf_market_name": "ADRIANO",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Adriano",
+      "pdf_pages": [
+        8
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 45,
+      "pdf_market_name": "ARCANGELI",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Arcangeli",
+      "pdf_pages": [
+        8
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 16,
+      "pdf_market_name": "ARDISSONE",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Ardissone",
+      "pdf_pages": [
+        8
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 80,
+      "pdf_market_name": "ARISTOTELE",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Piazzale Martesana (area parcheggio)",
+      "pdf_pages": [
+        8
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 19,
+      "pdf_market_name": "ASMARA",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Asmara",
+      "pdf_pages": [
+        8
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 53,
+      "pdf_market_name": "DELLA RONDINE",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via della Rondine",
+      "pdf_pages": [
+        8
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 73,
+      "pdf_market_name": "OGLIO",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Oglio",
+      "pdf_pages": [
+        8
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 36,
+      "pdf_market_name": "PORTA NUOVA",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Bastioni di Porta Nuova",
+      "pdf_pages": [
+        9
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 83,
+      "pdf_market_name": "RIPA",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Ripa di Porta Ticinese",
+      "pdf_pages": [
+        9
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 75,
+      "pdf_market_name": "ROGOREDO",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Rogoredo",
+      "pdf_pages": [
+        9
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 28,
+      "pdf_market_name": "VALVASSORI PERONI",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Valvassori Peroni / Via Pascal (area mercatale)",
+      "pdf_pages": [
+        9
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 67,
+      "pdf_market_name": "TABACCHI",
+      "weekdays": [
+        5
+      ],
+      "street_display": "Via Tabacchi / Via Baravalle / Piazza Caro Tito Lucrezio (area mercatale)",
+      "pdf_pages": [
+        9
+      ],
+      "multiple_streets": true,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 86,
+      "pdf_market_name": "PAGANO MM1",
+      "weekdays": [
+        6
+      ],
+      "street_display": "Via del Burchiello (area parcheggio MM1 Pagano)",
+      "pdf_pages": [
+        10
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    },
+    {
+      "gis_id": 87,
+      "pdf_market_name": "VITTORINI",
+      "weekdays": [
+        6
+      ],
+      "street_display": "Via Vittorini",
+      "pdf_pages": [
+        10
+      ],
+      "multiple_streets": false,
+      "venue_navigation_precision_upgraded": false
+    }
+  ]
+}

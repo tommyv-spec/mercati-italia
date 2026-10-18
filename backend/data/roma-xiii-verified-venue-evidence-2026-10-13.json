@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-10-13",
+  "region": "Lazio",
+  "municipality": "Roma",
+  "municipality_number": "XIII",
+  "purpose": "Source-fact venue identities for guarded DEV-only candidate import. Not live opening confirmations.",
+  "publisher": "Roma Capitale, Municipio XIII",
+  "expected_physical_market_identities": 8,
+  "reviewed_existing_market_ids": 2,
+  "approved_new_venue_candidates": 5,
+  "quarantine_only_market_identities": 1,
+  "direct_pdf_2026": "https://www.comune.roma.it/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf",
+  "direct_pdf_date": "2026-03-31",
+  "municipal_2025_ormea_return": "https://www.comune.roma.it/web-resources/cms/documents/Determina_17723_24_02_2025_venerd_firm.pdf",
+  "municipal_2025_san_silverio": "https://www.comune.roma.it/web/it/bando-concorso.page?contentId=BEC1343579",
+  "municipal_2026_fogaccia_tuesday_move": "https://www.comune.roma.it/web/it/bando-concorso.page?contentId=BEC1533869",
+  "historical_markets_reference": "https://www.comune.roma.it/web-resources/cms/documents/Contratto_AMA_2024__2025_Allegato_7_Carta_Municipale_Municipio_13.pdf",
+  "municipal_map_reference": "https://www.comune.roma.it/web/it/informazione-di-servizio.page?contentId=IDS1305104",
+  "source_policy": {
+    "new_market_venues_not_2026_opening_verifications": true,
+    "no_geocoded_points": true,
+    "no_navigation_without_new_site_reconciliation": true,
+    "no_claim_of_current_vendor_occupancy": true,
+    "no_public_event_confirmation": true,
+    "no_machine_inferred_market_day_from_2024_map": true
+  },
+  "entities": [
+    {
+      "canonical_id": "irnerio",
+      "official_venue_name": "Irnerio",
+      "official_kind": "plateatico",
+      "display_candidates": [],
+      "record_status": "already_published",
+      "existing_slug": "irnerio-roma",
+      "original_doc_reference": "2025/2026 Municipio XIII market concession"
+    },
+    {
+      "canonical_id": "casalotti-plateatico",
+      "official_venue_name": "Casalotti plateatico",
+      "official_kind": "plateatico",
+      "display_candidates": [],
+      "record_status": "already_published",
+      "existing_slug": "casalotti-roma",
+      "original_doc_reference": "Roma municipal market inventory; distinct from Piazza Ormea saltuario"
+    },
+    {
+      "canonical_id": "aurelio-san-silverio",
+      "official_venue_name": "San Silverio (also Aurelio)",
+      "official_kind": "plateatico",
+      "record_status": "candidate_approved_for_guarded_DEV",
+      "slug": "rm13-plateatico-san-silverio",
+      "name": "Mercato plateatico San Silverio",
+      "street": "Via di San Silverio",
+      "source_day_numbers": [],
+      "source_date": "2025-09-24",
+      "publisher_url": "https://www.comune.roma.it/web/it/bando-concorso.page?contentId=BEC1343579",
+      "notes": "Municipio confirms market plateatico in September 2025; older AMA lists temporary Largo Micara. Exact 2026 entrance and opening calendar require confirmation. Not one individual vendor concession as a market."
+    },
+    {
+      "canonical_id": "pineta-sacchetti-urbano-ii",
+      "official_venue_name": "Pineta Sacchetti (also Urbano II)",
+      "official_kind": "impropria",
+      "record_status": "quarantine_only",
+      "reason": "2025 city announced future relocation near Forte Boccea, but actual 2026 location/status needs a new publication. Never assign old map point or promote a new ID automatically.",
+      "evidence_urls": [
+        "https://www.comune.roma.it/web/it/notizia/municipio13-forte-boccea-roma-capitale-acquisisce-aree-esterne-agenzia-demanio.page",
+        "https://www.comune.roma.it/web-resources/cms/documents/Contratto_AMA_2024__2025_Allegato_7_Carta_Municipale_Municipio_13.pdf"
+      ]
+    },
+    {
+      "canonical_id": "casalotti-ormea-saltuario",
+      "official_venue_name": "Casalotti saltuario (Piazza Ormea)",
+      "official_kind": "saltuario",
+      "record_status": "candidate_approved_for_guarded_DEV",
+      "slug": "rm13-salt-casalotti-ormea",
+      "name": "Mercato saltuario Casalotti – Piazza Ormea",
+      "street": "Piazza Ormea",
+      "source_day_numbers": [
+        0,
+        4
+      ],
+      "source_date": "2026-03-31",
+      "publisher_url": "https://www.comune.roma.it/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf",
+      "additional_source_url": "https://www.comune.roma.it/web-resources/cms/documents/Determina_17723_24_02_2025_venerd_firm.pdf",
+      "notes": "DD CS/647/2026 calls this market Casalotti in Piazza Ormea Mondays and Fridays. DD CS/367/2025 restored Friday site there after temporary displacement. Separate from plateatico Casalotti (Via Borgo Ticino)."
+    },
+    {
+      "canonical_id": "fogaccia",
+      "official_venue_name": "Fogaccia (older map labels Montespaccato)",
+      "official_kind": "saltuario",
+      "record_status": "candidate_approved_for_guarded_DEV",
+      "slug": "rm13-salt-fogaccia-sabato",
+      "name": "Mercato saltuario Fogaccia – sabato",
+      "street": "Via Cornelia (parcheggio con accesso adiacente alla scuola Anna Frank)",
+      "source_day_numbers": [
+        5
+      ],
+      "source_date": "2026-03-31",
+      "publisher_url": "https://www.comune.roma.it/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf",
+      "notes": "Only the Saturday venue is eligible for a separate public listing. Tuesday Fogaccia (one documented vendor) was temporarily relocated to Piazza Cornelia under order 421/2026 and remains review-only. Saturday market entrance and exact geolocation still need review.",
+      "quarantined_other_day": {
+        "weekday": 1,
+        "reason": "One-person stall documented by Feb 2026 municipal act; temporarily relocated, no confirmed restoration date.",
+        "evidence_url": "https://www.comune.roma.it/web/it/bando-concorso.page?contentId=BEC1533869"
+      }
+    },
+    {
+      "canonical_id": "torrevecchia-saltuario",
+      "official_venue_name": "Torrevecchia",
+      "official_kind": "saltuario",
+      "record_status": "candidate_approved_for_guarded_DEV",
+      "slug": "rm13-salt-torrevecchia",
+      "name": "Mercato saltuario Torrevecchia",
+      "street": "Via di Torrevecchia",
+      "source_day_numbers": [
+        0,
+        4
+      ],
+      "source_date": "2026-03-31",
+      "publisher_url": "https://www.comune.roma.it/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf",
+      "notes": "2026 city act lists Via di Torrevecchia on Monday/Friday. 2024 city map labels Guido Calcagnini; old AMA gives both street labels. Entry/point is unverified."
+    },
+    {
+      "canonical_id": "valle-aurelia-saltuario",
+      "official_venue_name": "Valle Aurelia",
+      "official_kind": "saltuario",
+      "record_status": "candidate_approved_for_guarded_DEV",
+      "slug": "rm13-salt-valle-aurelia",
+      "name": "Mercato saltuario Valle Aurelia",
+      "street": "Viale di Valle Aurelia",
+      "source_day_numbers": [
+        3
+      ],
+      "source_date": "2026-03-31",
+      "publisher_url": "https://www.comune.roma.it/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf",
+      "notes": "2026 DD lists Thursday at Viale di Valle Aurelia. 2024 municipality map has approximate marker; exact 2026 market boundary and point not confirmed."
+    }
+  ]
+}

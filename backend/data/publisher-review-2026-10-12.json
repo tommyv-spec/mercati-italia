@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "reviewed_on": "2026-10-12",
+  "istat_reference": "2026-02-21",
+  "role": "Source-bound municipality identity, calendar season and geospatial quarantine only; no event confirmations",
+  "cases": [
+    {
+      "slug": "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
+      "target_city": "Todi",
+      "target_province": "PG",
+      "target_title": "Todi, CreativaMente, Mostra Mercato della Creatività, Giardini Oberdan",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "publisher_update": "2026-08-20",
+      "proof": [
+        "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
+        "https://comune.todi.pg.it/it/news/2017921",
+        "https://www.comune.todi.pg.it/it/news/118527/eventi-nel-mese-di-agosto-2026-a-todi"
+      ],
+      "anchor": {
+        "lat": 42.77881,
+        "lng": 12.41202,
+        "max_km": 18,
+        "url": "https://www.geonames.org/3165612/todi.html"
+      },
+      "expected": {
+        "name": "Todi, “Artigianando, mostra mercato della creatività”, Giardini Oberdan",
+        "city": "\"Artigianando",
+        "province": "",
+        "address": "\"Artigianando, Mostra Mercato della Creatività\", Giardini Oberdan (all'arrivo dell'ascensore del parcheggio)",
+        "lat": 43.11,
+        "lng": 12.39,
+        "region": "Umbria",
+        "source_url": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan"
+      },
+      "target_address": "Giardini Oberdan (all'arrivo dell'ascensore del parcheggio)",
+      "target_hours": "09:00–tramonto"
+    },
+    {
+      "slug": "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana",
+      "target_city": "Susegana",
+      "target_province": "TV",
+      "target_title": "Mercato settimanale di Centro storico di Collalto",
+      "proof": [
+        "https://www.happings.com/it/mercati-settimanali-a-treviso-e-provincia/",
+        "https://gestioneterritorio.comune.susegana.tv.it/wp-content/uploads/2021/05/PI_Var4_elab_1b.pdf"
+      ],
+      "anchor": {
+        "lat": 45.873251,
+        "lng": 12.196411,
+        "max_km": 15,
+        "url": "https://www.outdooractive.com/it/event/provincia-di-treviso/visita-guidata-a-collalto/810679481/"
+      },
+      "expected": {
+        "name": "Mercato settimanale di Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
+        "city": "Centro storico di Collalto, in provincia... Mercato settimanale a Cessalto Il mercato settimanale di Cessalto",
+        "province": "TV",
+        "address": "",
+        "lat": 45.67,
+        "lng": 12.24,
+        "region": "Veneto",
+        "source_url": "https://www.happings.com/it/mercati-settimanali-a-treviso.html"
+      }
+    },
+    {
+      "slug": "mercato-settimanale-di-centro-storico-di-collalto-collalto-mercoledi",
+      "target_city": "Susegana",
+      "target_province": "TV",
+      "proof": [
+        "https://www.happings.com/it/mercati-settimanali-a-treviso-e-provincia/",
+        "https://gestioneterritorio.comune.susegana.tv.it/wp-content/uploads/2021/05/PI_Var4_elab_1b.pdf"
+      ],
+      "anchor": {
+        "lat": 45.873251,
+        "lng": 12.196411,
+        "max_km": 15,
+        "url": "https://www.outdooractive.com/it/event/provincia-di-treviso/visita-guidata-a-collalto/810679481/"
+      },
+      "expected": {
+        "name": "Mercato settimanale di Centro storico di Collalto",
+        "city": "Collalto",
+        "province": "TV",
+        "address": "Piazza Martiri della Libertà",
+        "lat": 46.111259,
+        "lng": 12.523944,
+        "region": "Veneto",
+        "source_url": "https://www.happings.com/it/mercato-settimanale-a-centro-storico-di-collalto.html"
+      }
+    },
+    {
+      "slug": "mercatini-piazza-del-baratto-na",
+      "proof": [
+        "https://www.dati.gov.it/node/view-dataset/dataset?id=6408768c-62ff-43b7-99c3-cc3f362cf5a1"
+      ],
+      "region_extent": {
+        "min_lat": 44.65,
+        "max_lat": 46.85,
+        "min_lng": 10.5,
+        "max_lng": 13.32
+      },
+      "expected": {
+        "name": "Mercatini Piazza del baratto",
+        "city": "NA",
+        "province": "TV",
+        "address": "piazza G. Verdi",
+        "lat": 44.405991,
+        "lng": 8.946072,
+        "region": "Veneto",
+        "source_url": "https://www.trevisotoday.it/eventi/tipo/fiere~sagre~mercatini/"
+      }
+    },
+    {
+      "slug": "mercatini-stoffaday-na",
+      "proof": [
+        "https://www.dati.gov.it/node/view-dataset/dataset?id=6408768c-62ff-43b7-99c3-cc3f362cf5a1"
+      ],
+      "region_extent": {
+        "min_lat": 44.65,
+        "max_lat": 46.85,
+        "min_lng": 10.5,
+        "max_lng": 13.32
+      },
+      "expected": {
+        "name": "Mercatini Stoffaday!",
+        "city": "NA",
+        "province": "TV",
+        "address": "inOFFICINA",
+        "lat": 40.794443,
+        "lng": 14.463539,
+        "region": "Veneto",
+        "source_url": "https://www.trevisotoday.it/eventi/tipo/fiere~sagre~mercatini/"
+      }
+    }
+  ]
+}

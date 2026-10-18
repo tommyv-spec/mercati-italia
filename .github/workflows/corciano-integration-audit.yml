@@ -1,0 +1,165 @@
+# Read-only real-source CI from manually observed Corciano municipal CSV.
+# Never publishes to DEV or production; manual -> script -> tests -> dry-run.
+name: Corciano municipal CSV — full integration audit (no publish)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corciano-source-dryrun
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Re-run all offline source normalization and dedup regression tests
+        run: python -m unittest discover -s backend/tests -v
+      - name: Construct ephemeral Corciano source policy, never alter defaults
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          base = json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          prior = next((x for x in base['sources'] if x['id']=='corciano'),None)
+          if prior is None:
+              base['sources'].append({
+                  'id':'corciano', 'official':True, 'enabled':True,
+                  'min_records':4, 'max_records':8,
+                  'license':'CC BY 4.0 declared by Comune di Corciano',
+                  'stale_source_dates_not_confirmed':True,
+              })
+          elif not prior.get('enabled'):
+              raise ValueError('Corciano source explicitly disabled')
+          Path('/tmp/corciano-policy.json').write_text(json.dumps(base))
+          PY
+      - name: Read actual municipality CSV and build only an isolated candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/autopilot.py \
+            --policy /tmp/corciano-policy.json \
+            --output corciano-audit-output
+      - name: Verify municipal file identity and all four source records
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          from datetime import date
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from audit_dataset import audit
+          from validate_static import validate
+
+          output=Path('corciano-audit-output')
+          target=output/'candidate/public/data/v1/manifest.json'
+          validate(target)
+          baseline=load_existing(Path('public/data/v1/manifest.json'))
+          candidate=load_existing(target)
+          source=json.loads((output/'sources/corciano.json').read_text())
+          screened=json.loads((output/'corciano-overlaps.json').read_text())
+          decision=json.loads((output/'release-decision.json').read_text())
+          official=[r for r in candidate if r['slug'].startswith('pg-corciano-')]
+          original_ids={r['slug'] for r in baseline}
+          source_ids={r['slug'] for r in source}
+          accepted_ids=source_ids-{r['official_slug'] for r in screened['quarantined_examples']}
+          observed={r['slug'] for r in official}
+          fingerprint={r.get('source_csv_sha256') for r in source}
+          new=[r for r in official if r['slug'] not in original_ids]
+          report={
+              'full_qa_approved': decision['approved'],
+              'source_records':len(source),
+              'source_sha256':next(iter(fingerprint)) if len(fingerprint)==1 else None,
+              'screened_accepted': screened['accepted'],
+              'review_queue':screened['quarantined'],
+              'new_records':len(new),
+              'new_with_forecasts':sum(bool(r['date']) for r in new),
+              'new_verified':sum(bool(r.get('verificato_il')) for r in new),
+              'dataset_scope':sum(r.get('aggiornamento_ambito')=='dataset' for r in official),
+              'precise_claims':sum(r.get('position_quality')=='precisa' for r in official),
+              'rejected_sample':screened['quarantined_examples'],
+              'current_catalog':len(baseline),
+              'candidate_catalog':len(candidate),
+              'expected_data_date':'2026-01-07',
+              'index_gzip_bytes':audit(target)['sizes']['national_index_gzip_bytes'],
+          }
+          assert report['full_qa_approved'], 'Existing safety gates rejected candidate'
+          assert len(source)==4, 'Official CSV cardinality changed; manual review'
+          assert report['screened_accepted']+report['review_queue']==4
+          assert accepted_ids==observed, 'Lost or unexpectedly merged official IDs'
+          assert report['new_verified']==0 and report['precise_claims']==0
+          assert report['dataset_scope']==len(official)
+          assert len(new)==2 and screened['quarantined']==2, (
+              'Known municipality/weekday conflicts no longer match observed baseline'
+          )
+          assert all(r['aggiornato_il']=='2026-01-07' for r in official)
+          assert all(r['date_quality']=='prevista' for r in official)
+          assert all(43.0<=r['lat']<=43.25 and 12.15<=r['lng']<=12.5 for r in official)
+          (output/'integration-summary.json').write_text(
+              json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          with (output/'integration-summary.md').open('w') as f:
+              f.write('# Corciano municipal source full dry-run — no publish\n\n')
+              for key,value in report.items():
+                  if key!='rejected_sample':
+                      f.write(f'- {key}: **{value}**\n')
+              f.write('\nNo individual markets are marked confirmed; dates are projections.\n')
+          print('CORCIANO_INTEGRATION_SUMMARY',json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Install safe candidate only in ephemeral GitHub runner workspace
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import shutil
+          dest=Path('public/data/v1')
+          shutil.rmtree(dest)
+          shutil.copytree(Path('corciano-audit-output/candidate/public/data/v1'),dest)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build and test static visitor site without paid functions
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+      - name: Run full headless mobile visitor smoke against candidate
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          npm run preview -- --host 127.0.0.1 --port 4173 >/tmp/corciano-preview.log 2>&1 &
+          for i in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 2
+          done
+          UI_BASE=http://127.0.0.1:4173/ node tests/ui-smoke.mjs
+      - name: Retain run proof without changing published catalog
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: corciano-municipal-source-audit
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            corciano-audit-output/checkpoints/
+            corciano-audit-output/release-decision.json
+            corciano-audit-output/corciano-overlaps.json
+            corciano-audit-output/CORCIANO_OVERLAPS.md
+            corciano-audit-output/integration-summary.json
+            corciano-audit-output/integration-summary.md
+            ux-smoke-result.json
+            ux-*.png

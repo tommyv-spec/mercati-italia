@@ -1,21 +1,13 @@
 /**
- * useMarkets — Data hook with auto-seed.
- *
- * On first load:
- *   1. Check if Firestore has data
- *   2. If empty → seed 30 markets from SEED_MARKETS
- *   3. Fetch markets from Firestore
- *   4. Adapt field names for the UI
+ * useMarkets — read-only static market catalog hook.
+ * No Firebase or Cloudflare runtime invocation on visits.
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import { isSuspiciousCityName, safeCityLabel } from '../lib/locationQuality'
 import {
-  fetchMarkets, fetchFilterOptions, getFavorites,
-  toggleFavorite as apiToggleFavorite, getDataMode, haversine,
-} from '../services/api'
-import { autoSeed } from '../services/seed'
-
-const DEFAULT_LAT = 43.7696
-const DEFAULT_LNG = 11.2558
+  fetchMarkets, fetchMarketById, getFavorites, revalidateCatalogIfStale,
+  toggleFavorite as apiToggleFavorite, getDataMode,
+} from '../services/staticMarkets'
 
 const CATEGORY_LABELS = {
   alimentare: 'Alimentare',
@@ -32,16 +24,20 @@ const CATEGORY_ICONS = {
 }
 
 const CATEGORY_COLORS = {
-  Alimentare: '#5B7A5E', Antiquariato: '#C75146', 'Vintage e abbigliamento': '#8B6F8E',
-  Usato: '#B8860B', Artigianato: '#2E86AB', Misto: '#E07A5F',
+  Alimentare: '#446E47', Antiquariato: '#B94439', 'Vintage e abbigliamento': '#705073',
+  Usato: '#805B08', Artigianato: '#216886', Misto: '#9C4B36',
 }
 
 function adaptMarket(m, userLat, userLng) {
   const categoryLabel = CATEGORY_LABELS[m.categoria] || m.categoria || 'Misto'
+  const locationReviewRequired = isSuspiciousCityName(m.citta) ||
+    m.navigazione_sospesa_motivo === 'indirizzo_e_punto_sorgente_non_riconciliati'
   return {
     id: m.id,
     name: m.nome,
-    city: m.citta,
+    city: safeCityLabel(m.citta),
+    originalCity: m.citta,
+    locationReviewRequired,
     region: m.regione,
     address: m.indirizzo || '',
     lat: m.lat, lng: m.lng,
@@ -52,26 +48,100 @@ function adaptMarket(m, userLat, userLng) {
     recurrence: m.ricorrenza_testo || '',
     description: m.descrizione || '',
     source: m.fonte || '',
-    confidence: m.confidence || 50,
-    lastVerified: m.aggiornato_il ? m.aggiornato_il.slice(0, 10) : '',
-    distance: m.distance != null
-      ? m.distance
-      : (userLat && m.lat ? haversine(userLat, userLng, m.lat, m.lng) : 999),
+    confidence: m.confidence ?? 0,
+    dataCompleteness: m.completezza ?? 0,
+    sourceUpdated: m.aggiornato_il ? m.aggiornato_il.slice(0, 10) : '',
+    sourceUpdateScope: m.aggiornamento_ambito || '',
+    // Last scrape is not a human confirmation.
+    lastVerified: m.verificato_il ? m.verificato_il.slice(0, 10) : '',
+    dateQuality: m.date_quality || 'prevista',
+    positionQuality: m.position_quality || 'sconosciuta',
+    status: m.status || 'non_confermato',
+    sourceUrl: m.url_fonte || '',
+    // Full source list arrives only with lazy-loaded regional detail JSON.
+    // The nationwide compact index remains unchanged and cheap to fetch.
+    sourceEvidence: Array.isArray(m.fonti) ? m.fonti.filter(s => s && s.url && s.nome) : [],
+    distance: Number.isFinite(m.distance) ? m.distance : null,
   }
 }
 
 export function useMarkets() {
   const [markets, setMarkets] = useState([])
   const [loading, setLoading] = useState(true)
-  const [seedStatus, setSeedStatus] = useState(null) // null | 'seeding' | 'done'
+  const [catalogRevision, setCatalogRevision] = useState(0)
+  const seedStatus = null // Retained for compatibility; no browser-side seed
   const [error, setError] = useState(null)
   const [favorites, setFavorites] = useState(new Set())
   const [filterOptions, setFilterOptions] = useState({ regioni: [], citta: [] })
-  const [userLat] = useState(DEFAULT_LAT)
-  const [userLng] = useState(DEFAULT_LNG)
+  // Explicit opt-in only. Never pretend the visitor is located in Florence.
+  const [userPosition, setUserPosition] = useState(null)
+  const [positionStatus, setPositionStatus] = useState('idle')
+  const [positionError, setPositionError] = useState('')
+  const userLat = userPosition?.lat ?? null
+  const userLng = userPosition?.lng ?? null
   const dataMode = getDataMode()
 
-  // Load: auto-seed then fetch
+  const requestPosition = useCallback(() => {
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      setPositionStatus('unavailable')
+      setPositionError('La posizione non è disponibile su questo dispositivo.')
+      return
+    }
+    setPositionStatus('requesting')
+    setPositionError('')
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position?.coords?.latitude
+        const lng = position?.coords?.longitude
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+          setPositionStatus('error')
+          setPositionError('Non sono riuscito a leggere la posizione.')
+          return
+        }
+        setUserPosition({ lat, lng })
+        setPositionStatus('ready')
+        setPositionError('')
+      },
+      (error) => {
+        setPositionStatus(error?.code === 1 ? 'denied' : 'error')
+        setPositionError(error?.code === 1
+          ? 'Accesso alla posizione negato. Puoi cercare per città.'
+          : 'Posizione non disponibile. Puoi cercare per città.')
+      },
+      { enableHighAccuracy: false, timeout: 12000, maximumAge: 300000 }
+    )
+  }, [])
+
+  const clearPosition = useCallback(() => {
+    setUserPosition(null)
+    setPositionStatus('idle')
+    setPositionError('')
+  }, [])
+
+  // Keep long-open tabs current without polling while hidden or invoking
+  // Firestore, Workers, Functions or other dynamic backends.
+  useEffect(() => {
+    let mounted = true
+    const check = () => {
+      if (document.visibilityState === 'hidden') return
+      revalidateCatalogIfStale().then(changed => {
+        if (mounted && changed) setCatalogRevision(value => value + 1)
+      }).catch(() => {
+        // Preserve the last tested working catalog; retry at the next check.
+      })
+    }
+    document.addEventListener('visibilitychange', check)
+    window.addEventListener('focus', check)
+    const interval = window.setInterval(check, 30 * 60 * 1000)
+    return () => {
+      mounted = false
+      document.removeEventListener('visibilitychange', check)
+      window.removeEventListener('focus', check)
+      window.clearInterval(interval)
+    }
+  }, [])
+
+  // Load the static catalog; recalculate distances after opt-in positioning.
   useEffect(() => {
     let cancelled = false
 
@@ -79,25 +149,22 @@ export function useMarkets() {
       try {
         setLoading(true)
 
-        // Step 1: Auto-seed if Firestore is empty
-        setSeedStatus('seeding')
-        const seedResult = await autoSeed()
-        if (cancelled) return
-        setSeedStatus('done')
-
-        if (seedResult.seeded) {
-          console.log(`[useMarkets] Seeded ${seedResult.count} markets`)
-        }
-
-        // Step 2: Fetch markets + favorites + filter options
-        const [rawMarkets, favs, filters] = await Promise.all([
+        // Load published static records. Never write data on behalf of a visitor.
+        const [rawMarkets, favs] = await Promise.all([
           fetchMarkets({ userLat, userLng }),
           getFavorites(),
-          fetchFilterOptions(),
         ])
+        // Quarantine corrupt municipality labels in the UI only; original
+        // source rows, title search and all source IDs remain untouched.
+        const adapted = rawMarkets.map(m => adaptMarket(m, userLat, userLng))
+        const filters = {
+          regioni: [...new Set(adapted.map(m => m.region).filter(Boolean))].sort(),
+          citta: [...new Set(adapted.filter(m => !m.locationReviewRequired)
+            .map(m => m.city).filter(Boolean))].sort(),
+        }
         if (cancelled) return
 
-        setMarkets(rawMarkets.map(m => adaptMarket(m, userLat, userLng)))
+        setMarkets(adapted)
         setFavorites(favs)
         setFilterOptions(filters)
         setError(null)
@@ -110,7 +177,7 @@ export function useMarkets() {
 
     init()
     return () => { cancelled = true }
-  }, [userLat, userLng])
+  }, [userLat, userLng, catalogRevision])
 
   const toggleFav = useCallback(async (marketId) => {
     setFavorites(prev => {
@@ -124,6 +191,11 @@ export function useMarkets() {
       setFavorites(updated)
     } catch {}
   }, [])
+
+  const getMarketDetails = useCallback(async marketId => {
+    const raw = await fetchMarketById(marketId)
+    return raw ? adaptMarket(raw, userLat, userLng) : null
+  }, [userLat, userLng])
 
   const categories = useMemo(() =>
     ['Alimentare', 'Antiquariato', 'Vintage e abbigliamento', 'Usato', 'Artigianato', 'Misto'], [])
@@ -142,10 +214,11 @@ export function useMarkets() {
 
   return {
     markets, loading, error, seedStatus,
-    favorites, toggleFav,
+    favorites, toggleFav, getMarketDetails,
     categories, regions, cities,
     categoryIcons: CATEGORY_ICONS,
     categoryColors: CATEGORY_COLORS,
-    dataMode, userLat, userLng,
+    dataMode, userLat, userLng, positionStatus, positionError,
+    requestPosition, clearPosition,
   }
 }
