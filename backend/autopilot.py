@@ -36,6 +36,13 @@ from source_contract_activation import (
 )
 from milano_2026_overlay import reconcile as reconcile_milano_2026, PDF_DATE as MILAN_PDF_DATE
 from milano_2026_release_guard import verify as verify_milano_2026_diff, verify_exported as verify_milano_2026_exported
+from milano_2026_street_overlay import (
+    EVIDENCE_FILE as MILAN_STREET_EVIDENCE_FILE,
+    EXPECTED_BLOB as MILAN_STREET_BLOB,
+    git_blob_sha as milan_street_blob_sha,
+    integrate as integrate_milan_street,
+    verify_diff as verify_milan_street_diff,
+)
 from roma_xiii_2026_venues import (
     integrate as add_curated_roma_2026_venues,
     validate_added as verify_curated_roma_2026_additions,
@@ -74,7 +81,7 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "source_lifecycle", "reviewed_cities", "milano_2026", "roma_2026_venues", "generic_admission", "forecast",
+          "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "forecast",
           "reviewed_publishers", "roma_geo_hold", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
@@ -509,6 +516,23 @@ def run(args):
                            for item in policy["sources"])
             ))):
         raise ValueError("Unreviewed 2026 Milan publisher-source evidence policy")
+
+    street_policy = policy.get("milano_2026_reviewed_streets", {})
+    street_enabled = isinstance(street_policy,dict) and street_policy.get("enabled") is True
+    if (not isinstance(street_policy,dict)
+            or set(street_policy) - {"enabled","reviewed_on","pdf_document_date",
+                                      "evidence_blob_sha1","exact_existing_gis_ids",
+                                      "no_new_market_ids","no_verified_openings",
+                                      "no_new_navigation_points"}
+            or (street_enabled and (
+                not milano_enabled or street_policy.get("reviewed_on")!="2026-10-18"
+                or street_policy.get("pdf_document_date")!=MILAN_PDF_DATE.isoformat()
+                or street_policy.get("evidence_blob_sha1")!=MILAN_STREET_BLOB
+                or street_policy.get("exact_existing_gis_ids")!=25
+                or street_policy.get("no_new_market_ids") is not True
+                or street_policy.get("no_verified_openings") is not True
+                or street_policy.get("no_new_navigation_points") is not True))):
+        raise ValueError("Unapproved 2026 Milan streets source certificate policy")
 
     # A referenced 2024 municipal map disproves two approximate Rome city
     # points. It may only remove those points and stop unsafe directions;
