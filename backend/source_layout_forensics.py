@@ -33,7 +33,7 @@ SOURCE_TYPES={
     "eventiesagre_edition":("www.eventiesagre.it","editorial_content_reuse_not_approved"),
 }
 HOURLY=re.compile(
-    r"\b(?:dalle?\s+ore|ore|orario\s*(?:estivo|invernale)?\s*:?)\s*"
+    r"\b(?:dalle?\s+(?:ore\s+)?|ore\s+|orari?\s*(?:del\s+mercato|estivo|invernale)?\s*:?\s*(?:dalle?\s+)?)"
     r"(?:[01]?\d|2[0-4])(?::[0-5]\d)?\s*(?:alle?|fino\s+alle|[-–])\s*"
     r"(?:[01]?\d|2[0-4])(?::[0-5]\d)?\b",re.I,
 )
