@@ -8,7 +8,7 @@ Una pagina raggiungibile NON conferma apertura, indirizzo o date.
 |---|---|---|---:|
 | happings-weekly-area | schema_unchanged_or_sufficient |  | 2 |
 | happings-event-detail | schema_unchanged_or_sufficient |  | 1 |
-| cosedicasa-monthly | unavailable_or_format_review |  | 1 |
+| cosedicasa-monthly | schema_unchanged_or_sufficient |  | 2 |
 
 Nessun testo originale, evento, contatto o data viene registrato.
 Per nuove fonti: prima conferma dei diritti di riuso e dello

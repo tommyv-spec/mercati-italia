@@ -20,7 +20,7 @@
         "weekday_group_headings": 7,
         "weekly_list_entries_not_individual_verified_markets": 369
       },
-      "field_markers_changed_since_previous": null,
+      "field_markers_changed_since_previous": false,
       "importable_market_rows": 0,
       "individual_markets_verified": 0,
       "layout_valid_for_template_comparison": true,
@@ -32,7 +32,7 @@
         "weekday_section_headings",
         "weekly_venue_list_entries"
       ],
-      "page_sha256_for_change_alert_only": "b71d5081d9447f49f8847721b07893fd481e52fbe133326d458be720c8a0094c",
+      "page_sha256_for_change_alert_only": "2fc96e14675ef1851573bf6d4530b60ecd8c7e3f3b7528ba932df9a6fc135796",
       "publisher": "happings.com",
       "publisher_text_persisted": false,
       "requests": 2,
@@ -51,7 +51,7 @@
         "weekday_group_headings": 0,
         "weekly_list_entries_not_individual_verified_markets": 0
       },
-      "field_markers_changed_since_previous": null,
+      "field_markers_changed_since_previous": false,
       "importable_market_rows": 0,
       "individual_markets_verified": 0,
       "layout_valid_for_template_comparison": true,
@@ -63,7 +63,7 @@
         "market_h1_seen",
         "single_market_h1"
       ],
-      "page_sha256_for_change_alert_only": "9b89244562ac51dfdfc8d7d91f33d9f6252f605d616dea1f94035359903f8fd5",
+      "page_sha256_for_change_alert_only": "f9f4fdd8e951d7773a5897bc72d0e0e97d197b927ec623eb8a03c488e7e6dd06",
       "publisher": "happings.com",
       "publisher_text_persisted": false,
       "requests": 1,
@@ -75,14 +75,35 @@
       "type": "event_detail_calendar"
     },
     {
+      "document_structure_counts": {
+        "calendar_list_entries_not_confirmed": 0,
+        "editorial_suspensions_warning_present": true,
+        "h1": 1,
+        "weekday_group_headings": 0,
+        "weekly_list_entries_not_individual_verified_markets": 0
+      },
+      "field_markers_changed_since_previous": null,
+      "importable_market_rows": 0,
+      "individual_markets_verified": 0,
+      "layout_valid_for_template_comparison": true,
       "market_catalog_updates": 0,
+      "missing_required_markers": [],
+      "observed_markers": [
+        "editorial_location_label",
+        "editorial_next_dates_label",
+        "editorial_organizer_label",
+        "editorial_suspensions_warning",
+        "market_h1_seen",
+        "single_market_h1"
+      ],
+      "page_sha256_for_change_alert_only": "672518e78c6266a1bb207c959775c5fb5d6fa3c85fa193570d8fe4a2642e6cc1",
       "publisher": "cosedicasa.com",
       "publisher_text_persisted": false,
-      "reason_type": "ValueError",
-      "requests": 1,
+      "requests": 2,
       "sample_url": "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano",
+      "source_format": "monthly_editorial_exception",
       "source_openings_confirmed": 0,
-      "state": "unavailable_or_format_review",
+      "state": "schema_unchanged_or_sufficient",
       "template_id": "cosedicasa-monthly",
       "type": "monthly_editorial_exception"
     }
