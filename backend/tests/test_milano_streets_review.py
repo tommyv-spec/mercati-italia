@@ -14,7 +14,7 @@ class MilanoStreetReviewTests(unittest.TestCase):
         root=EVIDENCE_FILE.parent
         self.assertEqual(len(source_rows(json.loads(EVIDENCE_FILE.read_text('utf-8')),
             json.loads((root/'milano-mss-oct2026-observations.json').read_text('utf-8')),
-            json.loads((root/'milano-mss-gis-reviewed.json').read_text('utf-8')))),25)
+            json.loads((root/'milano-mss-gis-reviewed.json').read_text('utf-8')))),75)
 
     def test_certificate_first_official_street(self):
         rows=json.loads(EVIDENCE_FILE.read_text('utf-8'))['entries']

@@ -24,10 +24,10 @@ from milano_2026_overlay import (
 )
 
 EVIDENCE_FILE=Path(__file__).resolve().parent/"data/milano-mss-reviewed-streets-2026-10-18.json"
-SOURCE_COUNT=25
+SOURCE_COUNT=75
 SOURCE_REVIEW_DAY="2026-10-18"
-EXPECTED_BLOB="0a8264bf2e7ceeef1ac2c6b7238b3b279807712c"
-LABEL_RE=re.compile(r"^(?:Via|Viale|Piazza|Piazzale|Largo)\s",re.I)
+EXPECTED_BLOB="33ceda300fe8c1dbb121c34b96ebb26e048ffeb6"
+LABEL_RE=re.compile(r"^(?:Via|Viale|Piazza|Piazzale|Largo|Bastioni|Ripa)\s",re.I)
 
 def git_blob_sha(path):
     value=path.read_bytes()
