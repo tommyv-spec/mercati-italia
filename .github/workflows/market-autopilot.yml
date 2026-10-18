@@ -591,6 +591,7 @@ jobs:
           import json,sys
           sys.path.insert(0,'backend')
           from milano_2026_release_guard import verify
+          from milano_2026_street_overlay import verify_diff as verify_street_diff, EVIDENCE_FILE as street_evidence_file
           root=Path('autopilot-output')
           policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
           enabled=policy.get('milano_2026_dual_source',{}).get('enabled') is True
