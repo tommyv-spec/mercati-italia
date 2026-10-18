@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import * as maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+// MapLibre v6 has a separate ESM worker. When Vite bundles the lazy map
+// component, MapLibre's default relative URL points at a missing asset.
+// ?worker&url makes Vite emit a self-contained versioned worker on the
+// same origin as the app; this also works when deployed under a subpath.
+import mapWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
+maplibregl.setWorkerUrl(mapWorkerUrl)
 
 // Public, keyless vector basemap; no Cloudflare Worker/D1/KV calls.
 // https://openfreemap.org/quick_start/
