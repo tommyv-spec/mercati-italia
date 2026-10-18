@@ -528,7 +528,7 @@ def run(args):
                 not milano_enabled or street_policy.get("reviewed_on")!="2026-10-18"
                 or street_policy.get("pdf_document_date")!=MILAN_PDF_DATE.isoformat()
                 or street_policy.get("evidence_blob_sha1")!=MILAN_STREET_BLOB
-                or street_policy.get("exact_existing_gis_ids")!=25
+                or street_policy.get("exact_existing_gis_ids")!=75
                 or street_policy.get("no_new_market_ids") is not True
                 or street_policy.get("no_verified_openings") is not True
                 or street_policy.get("no_new_navigation_points") is not True))):
