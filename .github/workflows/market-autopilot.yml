@@ -819,6 +819,27 @@ jobs:
                   raise ValueError('Existing Milan market IDs disappeared in original checkout')
               baseline=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
               before=[original_milano.get(x['slug'],x) for x in baseline]
+              street_policy=policy.get('milano_2026_reviewed_streets',{})
+              if street_policy.get('enabled') is True:
+                  from milano_2026_street_overlay import verify_diff as verify_street_diff, EVIDENCE_FILE as street_file, git_blob_sha
+                  if git_blob_sha(street_file)!=street_policy['evidence_blob_sha1']:
+                      raise ValueError('Milan source street certificate changed after review')
+                  street_rows=json.loads((root/'intermediate/milano-street-review.json').read_text('utf-8'))
+                  street_report=json.loads((root/'milano-streets-review.json').read_text('utf-8'))
+                  street_saved=json.loads((root/'milano-streets-diff-guard.json').read_text('utf-8'))
+                  street_source=json.loads(street_file.read_text('utf-8'))
+                  proof_street=verify_street_diff(baseline,street_rows,street_report,street_source,pdf,gis)
+                  if proof_street!=street_saved or proof_street.get('release_safe') is not True:
+                      raise ValueError('Unapproved Milan street fields detected after export')
+                  approved=set(street_report['changed_ids'])
+                  corrected={x['slug']:x for x in street_rows}
+                  for index,row in enumerate(before):
+                      if row['slug'] in approved:
+                          if row.get('indirizzo') or row['slug'] not in corrected:
+                              raise ValueError('A published or unknown Milan street was overwritten')
+                          safe=dict(row)
+                          safe['indirizzo']=corrected[row['slug']]['indirizzo']
+                          before[index]=safe
               after=load_existing(Path('public/data/v1/manifest.json'))
               # Only the independently vetted five new Roma venue IDs may be
               # excluded from the same-identity Milano historical comparison.
