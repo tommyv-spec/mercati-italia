@@ -35,6 +35,9 @@ class StoredPublisherSiblingAuditTests(unittest.TestCase):
         report=analyze(rows,today=TODAY)
         self.assertTrue(verify(report,3))
         self.assertEqual(report["field_sibling_candidates"],2)
+        self.assertEqual(len(report["candidate_records"]),2)
+        self.assertEqual({x["target_market_id"] for x in report["candidate_records"]},
+                         {rows[0]["slug"],rows[1]["slug"]})
         self.assertEqual(report["legacy_publisher_records_examined"],3)
         self.assertEqual(report["market_identities_preserved"],3)
         self.assertEqual(rows,before)
