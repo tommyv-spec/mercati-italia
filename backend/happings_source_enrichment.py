@@ -45,6 +45,7 @@ MAX_MARKETS=100_000
 MAX_UPDATES_PER_RUN=200
 MIN_REQUEST_PAUSE_SECONDS=3
 USER_AGENT="MercatiItaliaMarketFields/1.0 (+https://github.com/tommyv-spec/mercati-italia)"
+RIGHTS_REVIEW_FILE=Path(__file__).resolve().parent/"data/happings-rights-review.json"
 SOURCE_EVIDENCE_NAME="Happings — elenco settimanale (sede indicativa; apertura non verificata)"
 SOURCE_ALLOWED_PATH=re.compile(
     r"/it/mercati-settimanali-a-[a-z0-9-]+(?:\.html|/)$"
@@ -361,6 +362,18 @@ def main():
     ap.add_argument("--summary",type=Path,required=True)
     ap.add_argument("--candidate-markets",type=Path)
     args=ap.parse_args()
+    rights_record=json.loads(RIGHTS_REVIEW_FILE.read_text("utf-8"))
+    if (not isinstance(rights_record,dict) or rights_record.get("schema")!=1
+        or rights_record.get("publisher")!="Girolamo srls (Happings)"
+        or rights_record.get("documents_copied_to_github") is not False):
+        raise ValueError("Publisher rights record is missing or untrusted")
+    # The user's PDFs currently have unsigned/empty signature slots.
+    # A CLI flag is necessary but never sufficient to turn a provisional
+    # document into a verified extraction/republication license.
+    if (args.live or args.apply) and (
+            not args.permission_confirmed or
+            rights_record.get("republication_rights_authenticated") is not True):
+        raise ValueError("Authenticated publisher consent still required for live fetching or field publication")
     if not args.source_url or len(args.source_url)>MAX_REQUESTS_PER_RUN:
         raise ValueError("Select 1-2 reviewed province pages")
     if args.live and args.input_html:
