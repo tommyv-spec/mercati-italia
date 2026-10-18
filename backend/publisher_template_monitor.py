@@ -14,6 +14,7 @@ import ipaddress
 import json
 import re
 import socket
+import unicodedata
 from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
@@ -139,7 +140,8 @@ class TemplateParser(HTMLParser):
         if not text:
             return
         here=self.active[-1] if self.active else ""
-        lowered=text.casefold()
+        lowered="".join(ch for ch in unicodedata.normalize("NFKD", text)
+                        if not unicodedata.combining(ch)).casefold()
         if here=="h1" and ("mercat" in lowered or "antiquariato" in lowered):
             self.bits.add("market_h1_seen")
         if here in ("h2","h3"):
