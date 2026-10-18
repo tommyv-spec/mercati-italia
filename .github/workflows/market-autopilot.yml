@@ -1168,6 +1168,12 @@ jobs:
           test -s autopilot-output/CORCIANO_OVERLAPS.md
           cp autopilot-output/corciano-overlaps.json reports/automation/corciano-overlaps.json
           cp autopilot-output/CORCIANO_OVERLAPS.md reports/automation/CORCIANO_OVERLAPS.md
+          # Detailed per-market tasks stay in existing short-lived QA artifacts;
+          # only the compact publisher summary is versioned in Git.
+          test -s autopilot-output/market-evidence-summary.json
+          test -s autopilot-output/MARKET_EVIDENCE_WORKLIST.md
+          cp autopilot-output/market-evidence-summary.json reports/automation/market-evidence-summary.json
+          cp autopilot-output/MARKET_EVIDENCE_WORKLIST.md reports/automation/MARKET_EVIDENCE_WORKLIST.md
           test -s autopilot-output/official-enrichment.json
           test -s autopilot-output/OFFICIAL_ENRICHMENT.md
           cp autopilot-output/official-enrichment.json reports/automation/official-enrichment.json
