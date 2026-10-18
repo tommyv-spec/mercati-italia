@@ -204,7 +204,8 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
   }, [shown, ready, hasUserPosition])
 
   return (
-    <section aria-label="Mappa interattiva dei mercati" style={{ margin: '0 16px 110px' }}>
+    <section data-map-ready={ready ? 'true' : 'false'} data-visible-points={shown.length}
+      aria-label="Mappa interattiva dei mercati" style={{ margin: '0 16px 110px' }}>
       <div style={{ background: 'var(--white)', borderRadius: 12, padding: '12px 14px', marginBottom: 10, fontSize: 13 }}>
         <strong>Mappa dei mercati</strong>
         <span style={{ display: 'block', color: 'var(--ink-lighter)', marginTop: 4 }}>
