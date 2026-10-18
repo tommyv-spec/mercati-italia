@@ -14,7 +14,6 @@ the old market cohort rather than publishing partial or wrongly-mapped facts.
 from __future__ import annotations
 
 import hashlib
-import ipaddress
 import json
 import math
 import re
@@ -51,11 +50,11 @@ def profile(source_id):
         raise ValueError("Unreviewed normalized source profile list")
     p=next(x for x in entries if x["id"]==source_id)
     if (p.get("publication_mode")!="existing_adapter_only" or
-            p.get("identity_prefix") not in {
+            p.get("identity_prefix") != {
                 "milano":"mi-mss-","firenze":"fi-feelflorence-",
                 "lombardia":"lo-mercap-","bologna":"bo-open-",
                 "corciano":"pg-corciano-",
-            }.values() or
+            }[source_id] or
             not isinstance(p.get("expected_precision"),list) or
             not 1<=int(p.get("min_records",0))<=int(p.get("max_records",0))<=SOURCE_DATES_BOUND):
         raise ValueError("Unapproved source output contract")
@@ -163,7 +162,7 @@ def inspect(source_id,rows,*,today=None,previous=None):
             updated=date.fromisoformat(stamp)
         except ValueError:
             raise ValueError("Invalid publisher dataset timestamp") from None
-        if updated>today.replace(day=today.day):
+        if updated>today:
             raise ValueError("Official source date is in future")
         source_dates.add(stamp)
         if len(source_dates)>1:
