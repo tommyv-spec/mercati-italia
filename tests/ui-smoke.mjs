@@ -28,7 +28,18 @@ if (new URL(BASE).hostname === 'raw.githack.com') {
 const page = await context.newPage()
 const remoteDataRequests = []
 const pageErrors = []
+const brokenMapAssets = []
 page.on('pageerror', error => pageErrors.push(error.message))
+page.on('response', response => {
+  if (/maplibre-gl-worker|maplibre-gl-shared/i.test(response.url()) && response.status() >= 400) {
+    brokenMapAssets.push({ status: response.status(), url: response.url() })
+  }
+})
+page.on('requestfailed', request => {
+  if (/maplibre-gl-worker|maplibre-gl-shared/i.test(request.url())) {
+    brokenMapAssets.push({ failed: true, url: request.url() })
+  }
+})
 page.on('request', request => {
   const url = request.url()
   if (/firestore\.googleapis\.com|firebaseio\.com|workers\.dev/i.test(url)) {
@@ -138,6 +149,12 @@ try {
   await page.getByRole('button', { name: 'Mappa', exact: true }).first().click()
   await page.locator('.maplibregl-map').waitFor({ timeout: 20000 })
   assert.equal(await page.locator('.maplibregl-canvas').count(), 1)
+  // A canvas alone is NOT a functioning map: MapLibre v6 previously
+  // requested an absent worker (.mjs 404), leaving load() frozen forever.
+  await page.locator('[data-map-ready="true"]').waitFor({ timeout: 30000 })
+  const mapPoints = await page.locator('[data-map-ready="true"]').getAttribute('data-visible-points')
+  assert.ok(Number(mapPoints) > 0, 'MapLibre did not receive market points')
+  assert.deepEqual(brokenMapAssets, [], 'MapLibre worker or shared module failed to load')
   assert.equal(await page.getByText('Schema indicativo dell’Italia', { exact: false }).count(), 0)
   await page.getByText('Mostra solo posizioni precise', { exact: false }).first().click()
   await page.getByText('Includi posizioni indicative', { exact: false }).first().waitFor()
