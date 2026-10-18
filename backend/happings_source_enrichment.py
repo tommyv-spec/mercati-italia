@@ -116,10 +116,9 @@ def robots_allowed(fetch=_fetch_one):
 
 def allowed_url(record_url,source_url,final_url):
     """Exact old URL/canonical pair, never unreviewed other publisher pages."""
-    if record_url==source_url:
-        return True
-    if record_url==final_url:
-        return True
+    # Validate all three URLs BEFORE comparing any two. Otherwise a
+    # redirect to another province can be accepted merely because the
+    # saved catalog URL equals the requested URL.
     for p in (record_url,source_url,final_url):
         if not _valid_page_url(p):
             return False
