@@ -6,10 +6,10 @@
     "publisher_data_date_advanced": 0,
     "publisher_data_date_rolled_back": 0,
     "publisher_metadata_changed": 1,
-    "publisher_unavailable": 0,
+    "publisher_unavailable": 1,
     "recovered": 0,
     "timestamp_interpretation_corrected": 0,
-    "unchanged": 3
+    "unchanged": 2
   },
   "dataset_timestamp_changes_are_not_record_confirmations": true,
   "imported_markets": 0,
@@ -39,9 +39,9 @@
     },
     {
       "automatic_import_allowed": false,
-      "change_type": "unchanged",
-      "current_data_date": "2022-07-04",
-      "current_timestamp_kind": "resource_last_modified",
+      "change_type": "publisher_unavailable",
+      "current_data_date": null,
+      "current_timestamp_kind": null,
       "events_confirmed": 0,
       "prior_data_date": "2022-07-04",
       "prior_timestamp_kind": "resource_last_modified",

@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 3479,
-    "coordinates_missing": 265,
-    "future_dates_missing": 1908,
-    "hours_missing": 10852,
+    "coordinates_missing": 270,
+    "future_dates_missing": 1913,
+    "hours_missing": 10853,
     "review_only_duplicate_groups": 755,
     "review_only_potential_extra_rows": 765,
     "suspicious_city": 2,
-    "total": 13815,
-    "without_individual_verification": 13815
+    "total": 13820,
+    "without_individual_verification": 13820
   },
   "per_region": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 893,
-      "hours_missing": 583,
+      "markets": 898,
+      "hours_missing": 584,
       "address_missing": 168,
-      "future_dates_missing": 234,
-      "coordinates_missing": 30
+      "future_dates_missing": 239,
+      "coordinates_missing": 35
     },
     {
       "region": "Friuli Venezia Giulia",
@@ -192,7 +192,7 @@
     },
     {
       "source": "Comune di Bologna — dati ufficiali; apertura non confermata",
-      "records": 30
+      "records": 35
     },
     {
       "source": "cosafareafirenze.it",
@@ -667,8 +667,8 @@
   "potential_duplicates_are_not_confirmed": true,
   "baseline_delta": {
     "total": 5,
-    "hours_missing": 2,
-    "address_missing": -25,
+    "hours_missing": 1,
+    "address_missing": 0,
     "coordinates_missing": 5,
     "future_dates_missing": 5,
     "future_date_quality_mismatch": 0,
