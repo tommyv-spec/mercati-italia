@@ -99,6 +99,25 @@ jobs:
             --manifest autopilot-output/candidate/public/data/v1/manifest.json \
             --out autopilot-output/roadmap.json
           cat autopilot-output/roadmap.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Study every incomplete market and correlate already-reviewed official feeds
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_date="$(python -c 'import json; print(json.load(open("autopilot-output/release-decision.json"))["today"])')"
+          args=(
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json
+            --contracts backend/data/market-evidence-source-families.json
+            --today "$current_date"
+            --out autopilot-output/market-evidence-worklist.json
+            --summary autopilot-output/market-evidence-summary.json
+            --report autopilot-output/MARKET_EVIDENCE_WORKLIST.md
+          )
+          if [[ -s autopilot-output/sources/lombardia.json ]]; then
+            args+=(--official-lombardia autopilot-output/sources/lombardia.json)
+          fi
+          python backend/market_evidence_worklist.py "${args[@]}"
+          cat autopilot-output/MARKET_EVIDENCE_WORKLIST.md >> "$GITHUB_STEP_SUMMARY"
       - name: Discover new municipal structured sources (read-only, no auto-import)
         if: success()
         env:
