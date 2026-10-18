@@ -16,5 +16,11 @@ class MilanoStreetReviewTests(unittest.TestCase):
             json.loads((root/'milano-mss-oct2026-observations.json').read_text('utf-8')),
             json.loads((root/'milano-mss-gis-reviewed.json').read_text('utf-8')))),25)
 
+    def test_certificate_first_official_street(self):
+        rows=json.loads(EVIDENCE_FILE.read_text('utf-8'))['entries']
+        row=next(x for x in rows if x['gis_id']==44)
+        self.assertEqual(row['street_display'],'Via Ferrieri E.')
+        self.assertEqual(row['pdf_pages'],[1])
+
 if __name__=='__main__':
     unittest.main()
