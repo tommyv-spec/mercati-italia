@@ -22,5 +22,16 @@ class MilanoStreetReviewTests(unittest.TestCase):
         self.assertEqual(row['street_display'],'Via Ferrieri E.')
         self.assertEqual(row['pdf_pages'],[1])
 
+    def test_address_integrator_uses_existing_id(self):
+        data=EVIDENCE_FILE.parent
+        ev=json.loads(EVIDENCE_FILE.read_text("utf-8"))
+        pdf=json.loads((data/"milano-mss-oct2026-observations.json").read_text("utf-8"))
+        gis=json.loads((data/"milano-mss-gis-reviewed.json").read_text("utf-8"))
+        old=[{"slug":"mi-mss-44","regione":"Lombardia","citta":"Milano",
+              "url_fonte":OLD_DATASET,"indirizzo":""}]
+        new,report=integrate(old,ev,pdf,gis,today=date(2026,10,18),apply=True)
+        self.assertEqual(new[0]["indirizzo"],"Via Ferrieri E.")
+        self.assertEqual(report["existing_market_addresses_added"],1)
+
 if __name__=='__main__':
     unittest.main()
