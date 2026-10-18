@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from happings_source_enrichment import (
-    preview,fetch_pages,safe_report,summarize,allowed_url,MAX_REQUESTS_PER_RUN,
+    preview,fetch_pages,safe_report,summarize,allowed_url,select_pages,MAX_REQUESTS_PER_RUN,
 )
 from happings_weekly_layout import VENICE_OLD, VENICE_NEW
 
@@ -167,6 +167,40 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(rights["technical_limits"]["max_index_pages_per_run"],2)
         self.assertTrue(all(x["digital_signature_verified"] is False
                             for x in rights["user_supplied_documents"]))
+
+    def test_stable_rotation_selects_pages_with_missing_market_streets(self):
+        urls=[
+            "https://www.happings.com/it/mercati-settimanali-a-venezia.html",
+            "https://www.happings.com/it/mercati-settimanali-a-modena.html",
+            "https://www.happings.com/it/mercati-settimanali-a-padova.html",
+            "https://www.happings.com/it/mercati-settimanali-a-bologna.html",
+            "https://www.happings.com/it/mercati-settimanali-a-rimini.html",
+        ]
+        old=[row("market-"+str(i),url=urls[i%len(urls)]) for i in range(22)]
+        old[0]["indirizzo"]="Piazza Fermi"
+        original=copy.deepcopy(old)
+        visited=set()
+        for i in range(5):
+            day=date.fromordinal(TODAY.toordinal()+i)
+            selected=select_pages(old,today=day)
+            self.assertLessEqual(len(selected),MAX_REQUESTS_PER_RUN)
+            self.assertTrue(all(x in urls for x in selected))
+            visited.update(selected)
+            self.assertEqual(select_pages(old,today=day),selected)
+        self.assertEqual(visited,set(urls))
+        self.assertEqual(old,original)
+
+    def test_never_schedule_publisher_event_details_or_non_empty_streets(self):
+        catalog=[
+            row("source-missing",url=VENICE_OLD),
+            row("detail-link",url="https://www.happings.com/it/mercato-settimanale-a-spinea.html"),
+            row("source-complete",street="Villaggio dei Fiori",url=
+                "https://www.happings.com/it/mercati-settimanali-a-modena.html"),
+        ]
+        self.assertEqual(select_pages(catalog,today=TODAY),[VENICE_OLD])
+        catalog.append(copy.deepcopy(catalog[0]))
+        with self.assertRaisesRegex(ValueError,"Repeated legacy market ID"):
+            select_pages(catalog,today=TODAY)
 
     def test_no_original_market_is_ever_deleted_or_verified(self):
         old=[row("spinea-1"),row("dolo-1",city="Dolo")]
