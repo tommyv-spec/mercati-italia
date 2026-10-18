@@ -126,8 +126,8 @@
       "new_market_imports_authorized_by_this_audit": false,
       "publisher": "Regione Veneto",
       "record_count_measured": null,
-      "review_status": "metadata_candidate_only",
-      "schema_observation": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
       "title": "Posteggi mercati e fiere - Comune di Sona",
       "triage_class": "mixed_events_candidate",
       "triage_score_not_market_yield": 9
@@ -139,8 +139,8 @@
       "new_market_imports_authorized_by_this_audit": false,
       "publisher": "Regione Veneto",
       "record_count_measured": null,
-      "review_status": "metadata_candidate_only",
-      "schema_observation": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
       "title": "Posteggi mercati e fiere - Comune di Sarego",
       "triage_class": "mixed_events_candidate",
       "triage_score_not_market_yield": 9
@@ -230,8 +230,8 @@
       "new_market_imports_authorized_by_this_audit": false,
       "publisher": "Regione Veneto",
       "record_count_measured": null,
-      "review_status": "metadata_candidate_only",
-      "schema_observation": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
       "title": "Posteggi mercati e fiere - Comune di Nogara",
       "triage_class": "mixed_events_candidate",
       "triage_score_not_market_yield": 9
@@ -640,7 +640,7 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 13810,
+  "catalog_record_count": 13824,
   "catalog_source_labels_count": 87,
   "market_confirmations": 0,
   "market_updates": 0,
@@ -861,7 +861,7 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
-        "address_missing": 85,
+        "address_missing": 10,
         "future_dates_missing": 9,
         "records": 85,
         "stored_source_or_import_date_older_than_540d": 9
@@ -869,17 +869,17 @@
       "kind": "municipal_open_data_adapter",
       "layout": "one_venue_with_weekdays",
       "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
-      "priority_workload_score_not_evidence": 367,
+      "priority_workload_score_not_evidence": 142,
       "publisher": "Comune di Milano - Open Data (CC BY 4.0)",
       "records": 85,
       "rights_classification": "existing_adapter_source_scope",
       "sample_id_only": {
         "address_missing": [
-          "mi-mss-20",
-          "mi-mss-27",
-          "mi-mss-8",
-          "mi-mss-45",
-          "mi-mss-16"
+          "mi-mss-72",
+          "mi-mss-2",
+          "mi-mss-15",
+          "mi-mss-48",
+          "mi-mss-11"
         ],
         "future_dates_missing": [
           "mi-mss-72",
@@ -940,49 +940,49 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
+      "count_delta_since_last_audit": 14,
       "fields": {
-        "coordinates_missing": 25,
-        "future_dates_missing": 25,
-        "hours_missing": 6,
-        "records": 25,
-        "stored_source_or_import_date_older_than_540d": 25
+        "coordinates_missing": 39,
+        "future_dates_missing": 39,
+        "hours_missing": 9,
+        "records": 39,
+        "stored_source_or_import_date_older_than_540d": 39
       },
       "kind": "municipal_open_data_adapter",
       "layout": "market_venues_mixed_with_fairs",
       "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
-      "priority_workload_score_not_evidence": 112,
+      "priority_workload_score_not_evidence": 174,
       "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata",
-      "records": 25,
+      "records": 39,
       "rights_classification": "existing_adapter_source_scope",
       "sample_id_only": {
         "coordinates_missing": [
+          "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
           "bo-open-70472450ee8d71167730139b73638b824b822c40",
           "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
           "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
-          "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
-          "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+          "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb"
         ],
         "future_dates_missing": [
+          "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
           "bo-open-70472450ee8d71167730139b73638b824b822c40",
           "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
           "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
-          "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
-          "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+          "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb"
         ],
         "hours_missing": [
           "bo-open-70472450ee8d71167730139b73638b824b822c40",
+          "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
+          "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8",
           "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
-          "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d",
-          "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc",
-          "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d"
+          "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d"
         ],
         "stored_source_or_import_date_older_than_540d": [
+          "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
           "bo-open-70472450ee8d71167730139b73638b824b822c40",
           "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
           "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
-          "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
-          "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+          "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb"
         ]
       }
     },

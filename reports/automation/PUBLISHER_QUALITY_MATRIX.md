@@ -4,7 +4,7 @@
 presenti nel catalogo e, separatamente, le fonti ufficiali candidate.
 Nessun dato viene riletto o ripubblicato dal sito terzo.
 
-- Schede controllate: **13810**
+- Schede controllate: **13824**
 - Fonti distinte nelle schede: **87**
 - Dataset ufficiali candidati: **49**
 - Nuovi eventi certificati: **0**; schede modificate: **0**
@@ -17,9 +17,9 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | eventiesagre.it | 2197 | 369 | 445 | 0 | 0 | 0 | regional_listing_and_details |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 1 | 216 | 0 | 0 | one_market_id_per_weekday |
 | cosedicasa.com | 432 | 431 | 0 | 7 | 0 | 0 | monthly_recurrence_with_exceptions |
-| Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 85 | 0 | 9 | 0 | one_venue_with_weekdays |
+| Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | 0 | 9 | 0 | one_venue_with_weekdays |
 | dati.comune.roma.it | 70 | 70 | 0 | 2 | 0 | 0 | unclassified_source_page |
-| Comune di Bologna — dati ufficiali; apertura non confermata | 25 | 6 | 0 | 25 | 25 | 0 | market_venues_mixed_with_fairs |
+| Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 9 | 0 | 39 | 39 | 0 | market_venues_mixed_with_fairs |
 | cosafareafirenze.it | 22 | 4 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | trentino.com | 9 | 1 | 9 | 0 | 0 | 0 | unclassified_source_page |
 | umbriaeventi.com | 8 | 8 | 8 | 0 | 0 | 0 | unclassified_source_page |
@@ -133,7 +133,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 - Licenze: source_rights_and_structure_require_review
 - Prossimo passo: Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.
 
-### Comune di Bologna — dati ufficiali; apertura non confermata — 25 schede
+### Comune di Bologna — dati ufficiali; apertura non confermata — 39 schede
 - Carenze strutturali: **non** prova che il dato originale sia scorretto.
 - Licenze: existing_adapter_source_scope
 - Prossimo passo: Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.
@@ -161,15 +161,15 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | Censimento dei mercati itineranti | Regione Lazio | 9 | schema_sampled_review_only | market_location_candidate |
 | Anagrafica mercati | Regione Piemonte | 10 | metadata_candidate_only | general_market_candidate |
 | Posteggi mercati e fiere - Comune di Pianiga | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
-| Posteggi mercati e fiere - Comune di Sona | Regione Veneto | 9 | metadata_candidate_only | mixed_events_candidate |
-| Posteggi mercati e fiere - Comune di Sarego | Regione Veneto | 9 | metadata_candidate_only | mixed_events_candidate |
+| Posteggi mercati e fiere - Comune di Sona | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
+| Posteggi mercati e fiere - Comune di Sarego | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
 | Posteggi mercati e fiere - Comune di Meolo | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
 | Posteggi mercati e fiere - Comune di Sandrigo | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
 | Posteggi mercati e fiere - Comune di Lazise | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
 | Posteggi mercati e fiere - Comune di Fontaniva | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
 | Posteggi mercati e fiere - Comune di Soave | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
 | Posteggi mercati e fiere - Comune di Brendola | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
-| Posteggi mercati e fiere - Comune di Nogara | Regione Veneto | 9 | metadata_candidate_only | mixed_events_candidate |
+| Posteggi mercati e fiere - Comune di Nogara | Regione Veneto | 9 | schema_sampled_review_only | mixed_events_candidate |
 | Fiere e mercati - Comune di Casalserugo | Regione Veneto | -5 | concession_registry_not_market_venues | concession_registry |
 | Fiere e mercati - Comune di Soave | Regione Veneto | -5 | concession_registry_not_market_venues | concession_registry |
 | Fiere e mercati - Comune di Fontaniva | Regione Veneto | -5 | concession_registry_not_market_venues | concession_registry |
