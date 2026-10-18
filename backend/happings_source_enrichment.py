@@ -152,6 +152,38 @@ def _blocked_source_cohort(rows,source_city,weekday):
     return stored
 
 
+def select_pages(markets, *, today=None, limit=MAX_REQUESTS_PER_RUN):
+    """Cycle fairly over existing weekly-index URLs ordered by repair impact.
+
+    No network requests.  The exact publisher URL is always read from an
+    existing Happings card, not guessed from a Google result. With N pages
+    and a 2-pages/day budget, every page is visited during a bounded cycle.
+    """
+    today=today or date.today()
+    if (not isinstance(today,date) or not isinstance(markets,list)
+        or not 1<=len(markets)<=MAX_MARKETS or not 1<=limit<=MAX_REQUESTS_PER_RUN):
+        raise ValueError("Unbounded publisher page scheduling")
+    totals=Counter()
+    seen_ids=set()
+    for row in markets:
+        if not isinstance(row,dict) or not isinstance(row.get("slug"),str):
+            raise ValueError("Publisher scheduling requires intact source identities")
+        if row["slug"] in seen_ids:
+            raise ValueError("Repeated legacy market ID in publisher scheduling")
+        seen_ids.add(row["slug"])
+        url=row.get("url_fonte")
+        if (row.get("fonte")==PUBLISHER and _valid_page_url(url)
+            and same_generic_venue(row)
+            and _unambiguous_day(row) is not None
+            and _eligible_field(row)):
+            totals[url]+=1
+    if not totals:
+        return []
+    ranked=[url for url,count in sorted(totals.items(),key=lambda kv:(-kv[1],kv[0]))]
+    start=(today.toordinal()*limit)%len(ranked)
+    return [ranked[(start+i)%len(ranked)] for i in range(min(limit,len(ranked)))]
+
+
 def preview(base, pages, *, today=None, apply=False, rights_verified=False):
     """Preview or apply strictly bounded proven location fields.
 
@@ -353,6 +385,8 @@ def main():
     ap.add_argument("--input-html",action="append",type=Path,
                     help="Approved source HTML fixture, no external requests")
     ap.add_argument("--source-url",action="append",help="Original Happings provincial URL")
+    ap.add_argument("--auto-select",action="store_true",
+                    help="Rotate over the source URLs already in the saved market catalog")
     ap.add_argument("--live",action="store_true",help="Make at most 2 sequential, robots-approved source fetches")
     ap.add_argument("--permission-confirmed",action="store_true",
                     help="Explicitly attest that a valid publisher license was independently verified")
@@ -374,6 +408,11 @@ def main():
             not args.permission_confirmed or
             rights_record.get("republication_rights_authenticated") is not True):
         raise ValueError("Authenticated publisher consent still required for live fetching or field publication")
+    original=load_existing(args.manifest)
+    if args.auto_select:
+        if args.source_url:
+            raise ValueError("Choose manual pages OR reproducible source-level rotation")
+        args.source_url=select_pages(original,today=args.today)
     if not args.source_url or len(args.source_url)>MAX_REQUESTS_PER_RUN:
         raise ValueError("Select 1-2 reviewed province pages")
     if args.live and args.input_html:
@@ -387,7 +426,6 @@ def main():
             {"requested_url":url,"final_url":url,"html":p.read_bytes()}
             for url,p in zip(args.source_url,args.input_html)
         ]
-    original=load_existing(args.manifest)
     result,report=preview(original,pages,today=args.today,apply=args.apply,
                           rights_verified=args.permission_confirmed)
     safe_report(report,original)
