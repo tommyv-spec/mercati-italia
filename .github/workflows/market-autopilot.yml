@@ -648,6 +648,37 @@ jobs:
           elif review.get('modified_ids') or certificate.get('milan_source_changes',0):
               raise ValueError('Disabled Milan source still changed existing records')
           PY
+      - name: Verify all 13k market identities and per-field evidence are retained
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib,json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from market_evidence_worklist import validate,registry_check
+          from merge_catalog import load_existing
+          root=Path('autopilot-output')
+          candidate=root/'candidate/public/data/v1/manifest.json'
+          original=load_existing(candidate)
+          result=json.loads((root/'market-evidence-worklist.json').read_text('utf-8'))
+          summary=json.loads((root/'market-evidence-summary.json').read_text('utf-8'))
+          contract=json.loads(Path('backend/data/market-evidence-source-families.json').read_text('utf-8'))
+          registry_check(contract)
+          validate(result,len(original))
+          proof=hashlib.sha256("\n".join(sorted(x['slug'] for x in original)).encode('utf-8')).hexdigest()
+          if result['original_market_ids_sha256'] != proof:
+              raise ValueError('The source evidence queue lost original market IDs')
+          if ('daily_worklist' in summary or
+              summary.get('daily_detailed_tasks_saved_in_git') is not False or
+              summary.get('original_market_ids_sha256') != proof):
+              raise ValueError('Git summary must be compact and source-bound')
+          print('ALL_MARKET_FIELDS_QUEUED',len(original),
+                'original market IDs retained;',
+                result['distinct_source_labels'],'source labels;',
+                result['daily_worklist_count'],'rotating detailed tasks;',
+                'no imports and no invented opening verifications')
+          PY
       - name: Reject unsupported official enrichment or invented market verification
         run: |
           python - <<'PY'
