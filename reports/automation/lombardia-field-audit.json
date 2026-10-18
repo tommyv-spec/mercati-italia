@@ -1,11 +1,11 @@
 {
-  "baseline_catalog_records": 13810,
+  "baseline_catalog_records": 13824,
   "counts": {
     "legacy_lombardia_records_checked": 2820,
-    "legacy_no_exact_street_day_match": 1663,
+    "legacy_no_exact_street_day_match": 1731,
     "legacy_no_safe_street_or_day": 304,
     "missing_address_multiple_official_venues": 12,
-    "missing_address_no_matching_official_town_day": 422,
+    "missing_address_no_matching_official_town_day": 354,
     "missing_address_without_grounded_venue": 215,
     "official_source_id_absent_from_catalog_not_new_market_proof": 233,
     "same_source_id_already_in_catalog": 1127,
@@ -61,7 +61,7 @@
   "precise_coordinates_created": 0,
   "proposals_require_independent_release_gate": true,
   "read_only": true,
-  "reference_date": "2026-10-17",
+  "reference_date": "2026-10-18",
   "region": "Lombardia",
   "schema": 1,
   "source": "https://www.dati.lombardia.it/d/68zx-njaw"
