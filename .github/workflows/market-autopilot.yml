@@ -591,6 +591,7 @@ jobs:
           import json,sys
           sys.path.insert(0,'backend')
           from milano_2026_release_guard import verify
+          from milano_2026_street_overlay import verify_diff as verify_street_diff, EVIDENCE_FILE as street_evidence_file
           root=Path('autopilot-output')
           policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
           enabled=policy.get('milano_2026_dual_source',{}).get('enabled') is True
@@ -600,6 +601,16 @@ jobs:
               pdf=json.loads(Path('backend/data/milano-mss-oct2026-observations.json').read_text('utf-8'))
               gis=json.loads(Path('backend/data/milano-mss-gis-reviewed.json').read_text('utf-8'))
               original=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
+              street_policy=policy.get('milano_2026_reviewed_streets',{})
+              if street_policy.get('enabled') is True:
+                  ev=json.loads(street_evidence_file.read_text('utf-8'))
+                  street_rows=json.loads((root/'intermediate/milano-street-review.json').read_text('utf-8'))
+                  report=json.loads((root/'milano-streets-review.json').read_text('utf-8'))
+                  certificate_street=json.loads((root/'milano-streets-diff-guard.json').read_text('utf-8'))
+                  proof_street=verify_street_diff(original,street_rows,report,ev,pdf,gis)
+                  if proof_street != certificate_street or proof_street.get('source_reviewed_entries') != 25:
+                      raise ValueError('Municipal street evidence did not pass its separate field-level QA')
+                  original=street_rows
               revised=json.loads((root/'intermediate/milano-2026.json').read_text('utf-8'))
               actual=verify(original,revised,review,pdf,gis)
               if actual!=certificate or review.get('reconciled_id_count')!=76 or review.get('enabled') is not True:
