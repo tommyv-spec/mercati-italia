@@ -124,6 +124,24 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     if not rule:
         return record, "no_explicit_rule"
 
+    # A weekly label in the original stable ID must never silently
+    # override a contradictory explicitly declared source schedule.
+    # This holds ONLY projections: documented/reported editions were
+    # already returned above, and the market identity is never removed.
+    match = re.search(
+        r"-(lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)$",
+        str(record.get("slug") or "").casefold(),
+    )
+    if (match and rule["kind"] == "weekly"
+            and WEEKDAYS.index(match.group(1)) not in rule["weekdays"]):
+        if record.get("date_quality") == "prevista" and record.get("date"):
+            record["date"] = []
+            record["date_quality"] = "sconosciuta"
+            record["proiezione_regola"] = None
+            record["proiezione_generata_il"] = ""
+            record["proiezione_fonte"] = ""
+        return record, "contradictory_weekday_identity_held"
+
     source_url = str(record.get("url_fonte") or "")
     if not source_url.startswith(("https://", "http://")):
         return record, "no_attributable_source"
