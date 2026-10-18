@@ -1207,6 +1207,21 @@ jobs:
           test -s autopilot-output/MARKET_EVIDENCE_WORKLIST.md
           cp autopilot-output/market-evidence-summary.json reports/automation/market-evidence-summary.json
           cp autopilot-output/MARKET_EVIDENCE_WORKLIST.md reports/automation/MARKET_EVIDENCE_WORKLIST.md
+          # Full Happings market-to-market evidence stays in the existing
+          # short-lived QA artifact; store only aggregates in Git.
+          test -s autopilot-output/happings-sibling-evidence.json
+          test -s autopilot-output/HAPPINGS_STORED_FIELDS.md
+          cp autopilot-output/HAPPINGS_STORED_FIELDS.md reports/automation/HAPPINGS_STORED_FIELDS.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original=json.loads(Path('autopilot-output/happings-sibling-evidence.json').read_text('utf-8'))
+          compact={k:v for k,v in original.items()
+                   if k not in ('candidate_records','examples')}
+          compact['full_market_evidence_in_temporary_qa_artifact']=True
+          Path('reports/automation/happings-stored-fields-summary.json').write_text(
+              json.dumps(compact,sort_keys=True,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          PY
           test -s autopilot-output/official-enrichment.json
           test -s autopilot-output/OFFICIAL_ENRICHMENT.md
           cp autopilot-output/official-enrichment.json reports/automation/official-enrichment.json
