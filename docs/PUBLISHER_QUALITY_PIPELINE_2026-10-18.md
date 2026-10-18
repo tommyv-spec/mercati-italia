@@ -123,3 +123,44 @@ Gli output da collegare all'audit giornaliero sono:
 di \`public/data/v1\` da questo audit. Tutte le fonti vengono analizzate,
 ma solamente le fonti con diritti e schema già approvati possono
 alimentare un flusso distinto di arricchimento dati.
+
+
+## Monitor leggero dei layout dei tre formati editoriali
+
+Il file \`backend/publisher_template_monitor.py\` effettua **soltanto
+tre richieste alle pagine campione**, precedute da \`robots.txt\` di due
+publisher: indice Happings per provincia, dettaglio singolo evento
+Happings e scheda mensile Cose di Casa. Le URL sono bloccate da
+una allowlist esatta: non può essere usato per copiare migliaia
+di pagine o inseguire pagine esterne.
+
+Il parser conserva **solo** conteggi di \`h1\`, giornate/sezioni,
+presenza di un calendario dettagliato, avvertenze sulle sospensioni,
+marcatori di sede e organizzatore. Registra digest del documento
+per scoprire cambi di formato e segnala \`schema_changed_review_required\`
+se gli elementi attesi scompaiono. Non scrive testo di eventi,
+indirizzi, orari, date, contatti o URL nuovi nel report.
+
+Le fonti Happings e Cose di Casa sono **fonti editoriali legacy**:
+robots.txt può consentire una piccola lettura di verifica, ma non
+attribuisce diritti per importare tutto il database. EventiESagre
+rimane limitato al collector link/ID già attivo. Le fonti ufficiali
+continuano a essere monitorate dai rispettivi adapter e contratti.
+
+Se una pagina cambia schema o il sito è indisponibile il sistema
+**segnala il problema**: non riutilizza una vecchia informazione
+spacciandola per aggiornata e non cancella un mercato.
+
+Comandi:
+
+\`\`\`bash
+python backend/publisher_template_monitor.py --offline \
+  --out /tmp/templates.json --report /tmp/TEMPLATES.md
+
+python backend/publisher_template_monitor.py \
+  --out /tmp/templates-online.json --report /tmp/TEMPLATES_ONLINE.md
+\`\`\`
+
+Il monitor copre i **formati iniziali a maggiore volume**; per
+verificare altre fonti ci serviranno URL e diritti valutati caso
+per caso, ma il meccanismo di report copre già ogni etichetta presente.
