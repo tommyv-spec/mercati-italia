@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "publisher": "Girolamo srls (Happings)",
+  "official_terms": "https://www.happings.com/it/termini-e-condizioni/",
+  "official_terms_checked": "2026-10-19",
+  "user_supplied_documents": [
+    {
+      "label": "HAP-LIC-2026-01 Girolamo srls",
+      "sha256": "7827500f7e6537e7c92917b05185a6e655781e8790911b8409d8240ae5ccb5a3",
+      "claims": [
+        "automated_extraction",
+        "processing",
+        "republication"
+      ],
+      "digital_signature_verified": false,
+      "handwritten_signature_visible": false
+    },
+    {
+      "label": "HAP-AUT-2026-091 Happings S.r.l.",
+      "sha256": "36cc00cfd6bd39b14fea609b40f30f0126e7f2c22c19bc57d31245a1f3dc3b4d",
+      "claims": [
+        "automated_extraction",
+        "republication"
+      ],
+      "digital_signature_verified": false,
+      "handwritten_signature_visible": false
+    },
+    {
+      "label": "AUT-SCRAP-2026 Happings",
+      "sha256": "7f9e04884cbb29d115b417e7d69cd3f6326fee1eb42cd7e44ae3c191c495fdfc",
+      "claims": [
+        "automated_extraction"
+      ],
+      "digital_signature_verified": false,
+      "handwritten_signature_visible": false
+    }
+  ],
+  "identity_observation": "The official Happings terms currently identify Girolamo srls as website operator. The alternate Happings S.r.l. letter is inconsistent and not independently authenticated.",
+  "claim_scope": "town market weekly indexes, public venue streets and day labels, publisher-original URLs",
+  "republication_rights_authenticated": false,
+  "mass_crawling_enabled": false,
+  "conditional_pilot_requires_separate_attestation": true,
+  "technical_limits": {
+    "max_index_pages_per_run": 2,
+    "min_pause_seconds": 3,
+    "read_robots_each_run": true,
+    "html_bytes_per_page": 2600000,
+    "tracked_fields": [
+      "indirizzo"
+    ],
+    "preserve_market_ids": true,
+    "retain_full_body_in_git": false,
+    "confirm_market_opening": false,
+    "create_navigation_points": false
+  },
+  "documents_copied_to_github": false
+}
