@@ -609,7 +609,12 @@ jobs:
                   report=json.loads((root/'milano-streets-review.json').read_text('utf-8'))
                   certificate_street=json.loads((root/'milano-streets-diff-guard.json').read_text('utf-8'))
                   proof_street=verify_street_diff(original,street_rows,report,ev,pdf,gis)
-                  if proof_street != certificate_street or proof_street.get('source_reviewed_entries') != 25:
+                  expected=street_policy.get('exact_existing_gis_ids')
+                  if (type(expected) is not int or not 25 <= expected <= 85
+                          or proof_street != certificate_street
+                          or proof_street.get('source_reviewed_entries') != expected
+                          or report.get('reviewed_gis_id_count') != expected
+                          or len(ev.get('entries',[])) != expected):
                       raise ValueError('Municipal street evidence did not pass its separate field-level QA')
                   original=street_rows
               revised=json.loads((root/'intermediate/milano-2026.json').read_text('utf-8'))
