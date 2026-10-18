@@ -60,6 +60,7 @@ import source_bologna
 import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
+from official_source_output_gate import inspect as inspect_official_source_output
 from municipality_release_guard import check as check_municipality_changes
 from reviewed_city_evidence import (
     apply_reviewed_cities, verify_reviewed_diff, manifest_id as reviewed_city_manifest_id,
@@ -126,7 +127,12 @@ def source_feed(source_id: str, today: date):
     raw = download()
     # Do not catch TypeError from an importer: a malformed publisher schema
     # must fail closed, not silently retry another call signature.
-    return convert(raw) if source_id == "firenze" else convert(raw, today=today)
+    converted = convert(raw) if source_id == "firenze" else convert(raw, today=today)
+    # A successful HTTP response and a parser-returned row count are NOT
+    # sufficient proof of source quality. Verify every normalized field,
+    # correct publisher, dates, GPS, and stable IDs BEFORE import.
+    inspect_official_source_output(source_id, converted, today=today)
+    return converted
 
 
 def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume: bool) -> tuple[list, dict]:
@@ -171,11 +177,18 @@ def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume
             for rec in fetched:
                 if not isinstance(rec, dict) or not rec.get("slug"):
                     raise ValueError(f"Source {sid} produced a record without a stable ID")
+            # Apply the independent gate to both newly fetched feeds and
+            # resumed checkpoints. Without this, a stale or tampered source
+            # cache could bypass output validation during a resumed run.
+            normalized_proof = inspect_official_source_output(sid, fetched, today=today)
             save_json(cache, fetched)
+        else:
+            normalized_proof = None
         records.extend(fetched)
         status[sid] = {
             **status.get(sid, {}), "status": mode, "records": len(fetched),
             "official": True, "license_claim": source["license"],
+            "normalized_publisher_output_gate": normalized_proof,
         }
     return records, status
 
