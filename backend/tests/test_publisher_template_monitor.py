@@ -147,6 +147,25 @@ class PublisherTemplateMonitorTests(unittest.TestCase):
                             for x in again["templates"]))
         self.assertEqual(again["catalog_updates"],0)
 
+    def test_wordpress_example_larger_than_previous_limit_is_bounded(self):
+        from publisher_template_monitor import MAX_BYTES
+        self.assertGreater(MAX_BYTES, 600000)
+        t = next(x for x in TEMPLATES if x["id"] == "cosedicasa-monthly")
+        markup = html_example(t) + b"<script>" + b"x" * 780000 + b"</script>"
+        signals = inspect(markup, t)
+        self.assertTrue(signals["layout_valid_for_template_comparison"])
+        self.assertEqual(signals["importable_market_rows"], 0)
+
+    def test_safe_failure_codes_do_not_record_untrusted_responses(self):
+        def failing_fetch(url):
+            if url.endswith("robots.txt"):
+                return b"User-agent: *\nAllow: /\n"
+            raise ValueError("publisher_response_exceeds_bounded_limit")
+        result = survey(fetch=failing_fetch, today=TODAY)
+        self.assertTrue(validate(result))
+        self.assertEqual(result["templates"][2]["reason_code"],
+                         "publisher_response_exceeds_bounded_limit")
+
     def test_rejects_false_permissions_or_copied_source(self):
         old=survey(offline=True,today=TODAY)
         bad=copy.deepcopy(old)

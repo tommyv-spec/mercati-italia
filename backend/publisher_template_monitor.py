@@ -22,7 +22,7 @@ from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 from urllib.robotparser import RobotFileParser
 
-MAX_BYTES=600_000
+MAX_BYTES=2_500_000
 MAX_ROBOTS=45_000
 MAX_TEMPLATES=3
 USER_AGENT="MercatiItaliaPublisherSchemaAudit/1.0 (+https://github.com/tommyv-spec/mercati-italia)"
@@ -82,11 +82,11 @@ def protected_fetch(url):
         mime=response.headers.get("Content-Type","").lower()
         if ("text/plain" not in mime if url.endswith("robots.txt")
                 else "text/html" not in mime and "application/xhtml" not in mime):
-            raise ValueError("Publisher returned unexpected content type")
+            raise ValueError("publisher_response_mime_changed")
         limit=MAX_ROBOTS if url.endswith("robots.txt") else MAX_BYTES
         payload=response.read(limit+1)
         if len(payload)>limit:
-            raise ValueError("Publisher response too large")
+            raise ValueError("publisher_response_exceeds_bounded_limit")
         return payload
 
 
@@ -251,6 +251,12 @@ def survey(*,fetch=protected_fetch,offline=False,today=None,previous=None):
             except (OSError,UnicodeError,ValueError,TimeoutError) as exc:
                 row["state"]="unavailable_or_format_review"
                 row["reason_type"]=type(exc).__name__
+                row["reason_code"]=str(exc) if isinstance(exc, ValueError) and str(exc) in (
+                    "publisher_response_mime_changed",
+                    "publisher_response_exceeds_bounded_limit",
+                    "Unreviewed publisher URL",
+                    "Private DNS address blocked",
+                ) else "transport_or_markup_review"
         result.append(row)
     return {
         "schema":1,"reference_date":today.isoformat(),
