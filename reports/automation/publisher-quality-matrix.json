@@ -1,0 +1,3427 @@
+{
+  "aggregate_gaps_are_not_proven_source_errors": true,
+  "as_of": "2026-10-18",
+  "candidate_datasets": [
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "2e41941b-80fb-4ded-8330-427383f725f8",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Lombardia",
+      "record_count_measured": null,
+      "review_status": "already_integrated_adapter",
+      "schema_observation": "legacy_probe",
+      "title": "Mercati su aree pubbliche",
+      "triage_class": "market_location_candidate",
+      "triage_score_not_market_yield": 24
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "62be39fe-adbe-464a-84b1-85bc060b75d2",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Corciano",
+      "record_count_measured": null,
+      "review_status": "already_integrated_adapter",
+      "schema_observation": null,
+      "title": "Elenco dei mercati settimanali",
+      "triage_class": "market_location_candidate",
+      "triage_score_not_market_yield": 23
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Bologna",
+      "record_count_measured": null,
+      "review_status": "already_integrated_adapter",
+      "schema_observation": "legacy_probe",
+      "title": "Mercati e fiere",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 19
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "0b6c9c3c-a6c4-43b6-91f5-9445ee3cb09b",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Milano",
+      "record_count_measured": null,
+      "review_status": "already_integrated_adapter",
+      "schema_observation": null,
+      "title": "Attività commerciali: mercati settimanali scoperti",
+      "triage_class": "market_location_candidate",
+      "triage_score_not_market_yield": 14
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Roma Capitale",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "venue_inventory_missing_visit_days",
+      "title": "Dati sui Mercati Rionali",
+      "triage_class": "market_location_candidate",
+      "triage_score_not_market_yield": 18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Lazio",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Censimento dei mercati giornalieri",
+      "triage_class": "market_location_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "f4407fb8-5e36-4311-8422-02d463741780",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Lazio",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Censimento dei mercati itineranti",
+      "triage_class": "market_location_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "26c619d9-ecf8-4882-910e-925a4fb459ec",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Piemonte",
+      "record_count_measured": null,
+      "review_status": "metadata_candidate_only",
+      "schema_observation": null,
+      "title": "Anagrafica mercati",
+      "triage_class": "general_market_candidate",
+      "triage_score_not_market_yield": 10
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "0cffe11e-1a55-471e-9bc0-3fec3247b7d9",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Pianiga",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "23edf989-5a91-47ff-a6b1-fb0a9cce061d",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "metadata_candidate_only",
+      "schema_observation": null,
+      "title": "Posteggi mercati e fiere - Comune di Sona",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "4f23a0e0-c0c7-4735-a1f9-fbf9a40c52ef",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "metadata_candidate_only",
+      "schema_observation": null,
+      "title": "Posteggi mercati e fiere - Comune di Sarego",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "6791a91c-4e34-4ec3-89f3-cdbb8d96b3d8",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Meolo",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "7d68d3bb-af5b-47bf-964c-92358be4ab51",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Sandrigo",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "810f4078-4bb1-47c4-8546-29f3f36994ab",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Lazise",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "a7035a08-15c1-4dff-896b-abecf8c1de87",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Fontaniva",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "cd73e997-4838-4724-8863-5595fe96417b",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Soave",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "ea311e6c-f02a-429d-b5f2-164859ee9445",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Brendola",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "fcdebbfc-16d5-47fd-908b-8cba7e88be53",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "metadata_candidate_only",
+      "schema_observation": null,
+      "title": "Posteggi mercati e fiere - Comune di Nogara",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Casalserugo",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "3d6e405a-32f6-46ed-93be-854144c08a06",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Soave",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "4a3c6272-1163-449f-93ae-cb1fd97a4952",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Fontaniva",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "4c43a70b-81ab-4a65-815a-993f52767166",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Noventa Padovana",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "60fab25c-12d7-43f9-b8e7-7ef709d58aa2",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Badia Polesine",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "871d7381-6eaf-420e-9fb5-2544b351ce8a",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Lazise",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "ad7a6b83-48a0-48e0-951a-a5f222d80fec",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Meolo",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "ad990da5-1c55-4394-a0b1-a5b27913f857",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Pianiga",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "af3c0b6f-c409-45d7-b7a8-40b77cebad4f",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Marcon",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "bf96174b-98d8-4c43-ae26-b6ba24403f05",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Rovere Veronese",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "c7b2c854-4d99-41ed-8b8f-38929fbbc54f",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Povegliano Veronese",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "d10674af-bf6b-4231-945b-ca112820841c",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Sarego",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "dbcb4cc6-3a16-46f7-9fae-af21f2578d70",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Brendola",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "e53cf54c-8cab-4284-9619-74d078ae00ac",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Nogara",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "e5e8f03d-6107-49a1-b2c2-c29383abd6dc",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Nogarole Rocca",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "eb032be3-efde-4282-8d8d-3d8a599ecae3",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Sandrigo",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "ecfe375b-8322-47da-972f-c208649a8b9d",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "concession_registry_not_market_venues",
+      "schema_observation": "concession_registry_without_visit_schedule",
+      "title": "Fiere e mercati - Comune di Sona",
+      "triage_class": "concession_registry",
+      "triage_score_not_market_yield": -5
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "74600cc1-0adb-4ae3-8255-30556e03e932",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Lazio",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": "historical_aggregate_not_venues",
+      "title": "Censimento dei mercati mensili",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -15
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Lazio",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": "historical_aggregate_not_venues",
+      "title": "Censimento dei mercati quindicinali",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -15
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "06c0e0a8-add0-4823-b323-9ea77dc3534e",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali COPERTI per stand e metri quadri 2018",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "18167c3e-d15b-415a-bf5e-8543e4bf3897",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per numero posti settore 2018",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "57ddb592-e04d-42d6-b7a7-8bb1b8a933e2",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per residenti per posto e per circoscrizione 2019",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "6dac62ff-4a3a-4ed4-b027-9d7cb70f4e3e",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per residenti per posto e per circoscrizione 2018",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "72c6222e-1ac1-4546-8bff-8380b4cf05b2",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per residenti per posto e per circoscrizione 2017",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "7b5bee4e-9520-44bb-9fbe-565233eb7a57",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali COPERTI per stand e metri quadri 2019",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "7dfc9db7-a527-4357-b7ed-ef6e76700dac",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per numero posti settore 2019",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "9ac7fdf6-8ee6-4609-969d-2d742f45b29b",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali COPERTI per stand e metri quadri 2017",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "b720dbed-df0b-4d11-93c9-38c274e16ec0",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per numero posti settore e circoscrizione 2018",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "d8150da4-85d6-4d20-bab1-7b5d792b8f2d",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per numero posti settore e circoscrizione 2017",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "ef08d1b7-058c-41c8-8bae-ccdb65777baf",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per numero posti settore 2017",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "f20f0631-5dac-4d01-8e0f-3e5dfbe98267",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Comune di Torino",
+      "record_count_measured": null,
+      "review_status": "statistics_not_event_venues",
+      "schema_observation": null,
+      "title": "Mercati rionali scoperti per numero posti settore e circoscrizione 2019",
+      "triage_class": "aggregated_statistics",
+      "triage_score_not_market_yield": -18
+    }
+  ],
+  "catalog_record_count": 13810,
+  "catalog_source_labels_count": 87,
+  "market_confirmations": 0,
+  "market_updates": 0,
+  "markets_added": 0,
+  "markets_deleted": 0,
+  "official_candidate_dataset_count": 49,
+  "publishers": [
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_generic_not_navigable": 2443,
+        "address_missing": 2868,
+        "coordinates_missing": 3,
+        "future_dates_missing": 305,
+        "hours_missing": 9483,
+        "records": 9647
+      },
+      "kind": "legacy_aggregator",
+      "layout": "weekly_area_index_and_event_details",
+      "next_action": "Audit catalog rows against publisher's weekly province lists and event detail page formats. Prefer a separate current municipal source for hours, street and seasonal exceptions; do not reimport commercial source content or certify schedules from scraping.",
+      "priority_workload_score_not_evidence": 52180,
+      "publisher": "happings.com",
+      "records": 9647,
+      "rights_classification": "publisher_rights_unreviewed",
+      "sample_id_only": {
+        "address_generic_not_navigable": [
+          "mercato-settimanale-di-acciano-acciano-sabato",
+          "mercato-settimanale-di-alanno-alanno-mercoledi",
+          "mercato-settimanale-di-alba-adriatica-alba-adriatica-lunedi",
+          "mercato-settimanale-di-alfedena-alfedena-martedi",
+          "mercato-settimanale-di-alfedena-alfedena-venerdi"
+        ],
+        "address_missing": [
+          "mercato-settimanale-di-acciano-acciano",
+          "mercato-settimanale-a-aielli-aielli-lunedi",
+          "mercato-settimanale-di-aielli-aielli",
+          "mercato-settimanale-di-alanno-alanno",
+          "mercato-settimanale-a-alfedena-alfedena-martedi"
+        ],
+        "coordinates_missing": [
+          "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
+          "mercato-settimanale-di-centro-storico-di-collalto-collalto-mercoledi",
+          "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana"
+        ],
+        "future_dates_missing": [
+          "mercato-settimanale-di-balsorano-balsorano",
+          "mercato-settimanale-di-bussi-sul-tirino-bussi-sul-tirino",
+          "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
+          "mercato-settimanale-di-cepagatti-cepagatti",
+          "mercato-settimanale-di-crognaleto-crognaleto"
+        ],
+        "hours_missing": [
+          "mercato-settimanale-di-acciano-acciano",
+          "mercato-settimanale-di-acciano-acciano-sabato",
+          "mercato-settimanale-a-aielli-aielli-lunedi",
+          "mercato-settimanale-di-aielli-aielli",
+          "mercato-settimanale-di-alanno-alanno"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_generic_not_navigable": 44,
+        "address_missing": 445,
+        "future_dates_missing": 844,
+        "hours_missing": 369,
+        "records": 2197
+      },
+      "kind": "third_party_event_aggregator",
+      "layout": "regional_listing_and_details",
+      "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
+      "priority_workload_score_not_evidence": 5378,
+      "publisher": "eventiesagre.it",
+      "records": 2197,
+      "rights_classification": "urls_only_no_bulk_content_reuse",
+      "sample_id_only": {
+        "address_generic_not_navigable": [
+          "uso-e-riuso-il-mercatino-dellusato-a-sasso-marconi-bologna",
+          "car-boot-a-brisighella-brisighella",
+          "made-in-blu-nautilus-marzo-fiera-di-faenza-faenza",
+          "il-mercatino-da-forte-dei-marmi-a-noceto-noceto",
+          "il-mercatino-storico-degli-hobbisti-a-pieve-di-cento-pieve-di-cento"
+        ],
+        "address_missing": [
+          "mercato-settimanale-di-ateleta-ateleta",
+          "mercato-settimanale-di-ateleta-ateleta-mercoledi",
+          "antico-mercatino-di-san-pancrazio-a-campli-campli",
+          "mercato-settimanale-di-canosa-sannita-canosa-sannita",
+          "mercato-settimanale-di-castellafiume-castellafiume"
+        ],
+        "future_dates_missing": [
+          "mercatino-di-natale-a-massa-d-albe-massa-d-albe",
+          "curiosando-alba-adriatica",
+          "antico-mercatino-di-san-pancrazio-a-campli-campli",
+          "festa-nel-borgo-a-cassinetta-di-lugagnano-cassinetta-di-lugagnano",
+          "l-antico-in-piazza-chieti"
+        ],
+        "hours_missing": [
+          "curiosando-alba-adriatica",
+          "antico-mercatino-di-san-pancrazio-a-campli-campli",
+          "l-antico-in-piazza-chieti",
+          "mercato-medievale-di-filetto-filetto",
+          "curiosando-il-mercatino-dell-antiquariato-e-collezionismo-giulianova"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_generic_not_navigable": 2,
+        "address_missing": 1,
+        "coordinates_missing": 216,
+        "future_dates_missing": 390,
+        "hours_missing": 342,
+        "records": 1128
+      },
+      "kind": "regional_open_data_adapter",
+      "layout": "one_market_id_per_weekday",
+      "next_action": "Run source-row identity and town+street+weekday checks from the approved official MERCap adapter. Quarantine conflicting venue/day.",
+      "priority_workload_score_not_evidence": 2217,
+      "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
+      "records": 1128,
+      "rights_classification": "existing_adapter_source_scope",
+      "sample_id_only": {
+        "address_generic_not_navigable": [
+          "lo-mercap-101030-sabato",
+          "lo-mercap-101032-giovedi"
+        ],
+        "address_missing": [
+          "lo-mercap-529773-senza-giorno"
+        ],
+        "coordinates_missing": [
+          "lo-mercap-100999-senza-giorno",
+          "lo-mercap-100108-venerdi",
+          "lo-mercap-9991500-venerdi",
+          "lo-mercap-688645-sabato",
+          "lo-mercap-80698-mercoledi"
+        ],
+        "future_dates_missing": [
+          "lo-mercap-529773-senza-giorno",
+          "lo-mercap-101195-senza-giorno",
+          "lo-mercap-100999-senza-giorno",
+          "lo-mercap-529928-giovedi",
+          "lo-mercap-101000-senza-giorno"
+        ],
+        "hours_missing": [
+          "lo-mercap-529773-senza-giorno",
+          "lo-mercap-101195-senza-giorno",
+          "lo-mercap-100999-senza-giorno",
+          "lo-mercap-101000-senza-giorno",
+          "lo-mercap-100928-senza-giorno"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_generic_not_navigable": 6,
+        "coordinates_missing": 7,
+        "future_dates_missing": 70,
+        "hours_missing": 431,
+        "records": 432
+      },
+      "kind": "editorial_event_calendar",
+      "layout": "monthly_recurrence_with_exceptions",
+      "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
+      "priority_workload_score_not_evidence": 1400,
+      "publisher": "cosedicasa.com",
+      "records": 432,
+      "rights_classification": "publisher_rights_unreviewed",
+      "sample_id_only": {
+        "address_generic_not_navigable": [
+          "mercatino-antiquariato-e-usato-di-rieti-centro-storico-rieti",
+          "mercatino-antiquariato-e-usato-di-romano-di-lombardia-centro-storico-romano-di-l",
+          "mercatino-antiquariato-e-usato-di-pontremoli-centro-storico-pontremoli",
+          "mercatino-antiquariato-e-usato-di-verres-centro-storico-verres",
+          "mercatino-antiquariato-e-usato-di-asolo-centro-storico-asolo"
+        ],
+        "coordinates_missing": [
+          "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
+          "fiumicino-parco-da-vinci-music-day-roma-fiera-del-disco-fiera-del-disco",
+          "cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita",
+          "milano-mercatino-artigianato-e-vintage-street-market-piazza-san-nazaro-in-brolo",
+          "otranto-antiqua-mercatino-dellantiquariato-e-della-creativita-otranto-antiqua"
+        ],
+        "future_dates_missing": [
+          "mercatino-antiquariato-e-usato-di-chieti-l-antico-in-piazza-corso-marrucino-chie",
+          "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
+          "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste",
+          "mercatino-antiquariato-e-usato-di-cervia-curiosando-viale-roma-piazza-garibaldi",
+          "mercatino-antiquariato-e-usato-di-cesenatico-curiosando-piazza-andrea-costa-cese"
+        ],
+        "hours_missing": [
+          "mercatino-antiquariato-e-usato-di-chieti-l-antico-in-piazza-corso-marrucino-chie",
+          "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
+          "mercatino-antiquariato-e-usato-di-pescara-mercantico-area-stazione-di-pescara-po",
+          "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
+          "mercatino-antiquariato-e-usato-di-potenza-mercatino-degli-scambi-piazza-mario-pa"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 85,
+        "future_dates_missing": 9,
+        "records": 85,
+        "stored_source_or_import_date_older_than_540d": 9
+      },
+      "kind": "municipal_open_data_adapter",
+      "layout": "one_venue_with_weekdays",
+      "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
+      "priority_workload_score_not_evidence": 367,
+      "publisher": "Comune di Milano - Open Data (CC BY 4.0)",
+      "records": 85,
+      "rights_classification": "existing_adapter_source_scope",
+      "sample_id_only": {
+        "address_missing": [
+          "mi-mss-20",
+          "mi-mss-27",
+          "mi-mss-8",
+          "mi-mss-45",
+          "mi-mss-16"
+        ],
+        "future_dates_missing": [
+          "mi-mss-72",
+          "mi-mss-2",
+          "mi-mss-15",
+          "mi-mss-48",
+          "mi-mss-74"
+        ],
+        "stored_source_or_import_date_older_than_540d": [
+          "mi-mss-72",
+          "mi-mss-2",
+          "mi-mss-15",
+          "mi-mss-48",
+          "mi-mss-74"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "coordinates_missing": 2,
+        "future_dates_missing": 70,
+        "hours_missing": 70,
+        "records": 70
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
+      "priority_workload_score_not_evidence": 280,
+      "publisher": "dati.comune.roma.it",
+      "records": 70,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "coordinates_missing": [
+          "casalotti-roma",
+          "irnerio-roma"
+        ],
+        "future_dates_missing": [
+          "belsito-roma",
+          "bonfante-roma",
+          "campo-marzio-ii-roma",
+          "capo-passero-roma",
+          "casal-bernocchi-roma"
+        ],
+        "hours_missing": [
+          "belsito-roma",
+          "bonfante-roma",
+          "campo-marzio-ii-roma",
+          "capo-passero-roma",
+          "casal-bernocchi-roma"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "coordinates_missing": 25,
+        "future_dates_missing": 25,
+        "hours_missing": 6,
+        "records": 25,
+        "stored_source_or_import_date_older_than_540d": 25
+      },
+      "kind": "municipal_open_data_adapter",
+      "layout": "market_venues_mixed_with_fairs",
+      "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
+      "priority_workload_score_not_evidence": 112,
+      "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "records": 25,
+      "rights_classification": "existing_adapter_source_scope",
+      "sample_id_only": {
+        "coordinates_missing": [
+          "bo-open-70472450ee8d71167730139b73638b824b822c40",
+          "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
+          "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
+          "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
+          "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+        ],
+        "future_dates_missing": [
+          "bo-open-70472450ee8d71167730139b73638b824b822c40",
+          "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
+          "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
+          "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
+          "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+        ],
+        "hours_missing": [
+          "bo-open-70472450ee8d71167730139b73638b824b822c40",
+          "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
+          "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d",
+          "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc",
+          "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d"
+        ],
+        "stored_source_or_import_date_older_than_540d": [
+          "bo-open-70472450ee8d71167730139b73638b824b822c40",
+          "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
+          "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
+          "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
+          "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 20,
+        "hours_missing": 4,
+        "records": 22
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 50,
+      "publisher": "cosafareafirenze.it",
+      "records": 22,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "mercato-a-fiesole-fiesole",
+          "car-bazar-firenze",
+          "collezionare-a-firenze-artigianarte-firenze",
+          "collezionare-in-dalmazia-firenze",
+          "creative-factory-market-firenze"
+        ],
+        "hours_missing": [
+          "mercato-a-fiesole-fiesole",
+          "mercato-in-centro-firenze",
+          "only-usato-market-firenze",
+          "vintage-kilo-sale-firenze"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 9,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 9
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 39,
+      "publisher": "trentino.com",
+      "records": 9,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "mercato-settimanale-a-caldonazzo-caldonazzo-venerdi",
+          "mercato-settimanale-a-capriana-capriana-venerdi",
+          "mercato-settimanale-castello-tesino-castello-tesino-venerdi",
+          "mercato-a-cavalese-cavalese-venerdi",
+          "piccolo-mercato-a-civezzano-civezzano-venerdi"
+        ],
+        "future_dates_missing": [
+          "mercato-contadino-trento-centro-mercato-contadino-trento"
+        ],
+        "hours_missing": [
+          "mercato-contadino-trento-centro-mercato-contadino-trento"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 8,
+        "future_dates_missing": 8,
+        "hours_missing": 8,
+        "records": 8
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 56,
+      "publisher": "umbriaeventi.com",
+      "records": 8,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are",
+          "il-mercato-delle-gaite-bevagna-pg",
+          "calzolarissimo-calzolaro-pg",
+          "artigianando-mostra-mercato-di-artigianato-e-curiositail-28-02-2026foligno-pg-fo",
+          "anticamente-mostra-mercato-di-cose-d-altri-tempi-foligno-pg"
+        ],
+        "future_dates_missing": [
+          "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are",
+          "il-mercato-delle-gaite-bevagna-pg",
+          "calzolarissimo-calzolaro-pg",
+          "artigianando-mostra-mercato-di-artigianato-e-curiositail-28-02-2026foligno-pg-fo",
+          "anticamente-mostra-mercato-di-cose-d-altri-tempi-foligno-pg"
+        ],
+        "hours_missing": [
+          "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are",
+          "il-mercato-delle-gaite-bevagna-pg",
+          "calzolarissimo-calzolaro-pg",
+          "artigianando-mostra-mercato-di-artigianato-e-curiositail-28-02-2026foligno-pg-fo",
+          "anticamente-mostra-mercato-di-cose-d-altri-tempi-foligno-pg"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 4,
+        "future_dates_missing": 7,
+        "hours_missing": 8,
+        "records": 8
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 43,
+      "publisher": "emiliaromagnaturismo.it",
+      "records": 8,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "sagra-dell-uva-e-del-lambrusco-grasparossa-di-castelvetro-castelvetro-di-modena",
+          "un-anno-di-eventi-a-grazzano-visconti-grazzano-visconti",
+          "mercatini-medievali-nel-borgo-savignano-sul-panaro",
+          "fiera-di-san-giovanni-spilamberto"
+        ],
+        "future_dates_missing": [
+          "giardini-terrazzi-bologna",
+          "sagra-dell-uva-e-del-lambrusco-grasparossa-di-castelvetro-castelvetro-di-modena",
+          "fantastika-dozza",
+          "un-anno-di-eventi-a-grazzano-visconti-grazzano-visconti",
+          "vintage-per-un-giorno-lugo"
+        ],
+        "hours_missing": [
+          "giardini-terrazzi-bologna",
+          "sagra-dell-uva-e-del-lambrusco-grasparossa-di-castelvetro-castelvetro-di-modena",
+          "fantastika-dozza",
+          "un-anno-di-eventi-a-grazzano-visconti-grazzano-visconti",
+          "vintage-per-un-giorno-lugo"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 8,
+        "hours_missing": 1,
+        "records": 8
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 18,
+      "publisher": "eventi.bergamo.it",
+      "records": 8,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "mercatino-agricolo-km-0-bergamo-citta",
+          "wine-form-mais-eccellenze-orobiche-casnigo",
+          "mercatino-dellusato-clusone",
+          "mercatino-agricolo-km-0-san-pellegrino-terme",
+          "mercatino-antiquariato-san-pellegrino-terme"
+        ],
+        "hours_missing": [
+          "wine-form-mais-eccellenze-orobiche-casnigo"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 5,
+        "future_dates_missing": 7,
+        "hours_missing": 7,
+        "records": 7
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 43,
+      "publisher": "genovatoday.it",
+      "records": 7,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "appuntamento-a-sant-olcese-con-il-mercatino-da-forte-dei-marmi-dal-cashmere-alla",
+          "edizione-numero-20-per-artegenova-la-grande-mostra-mercato-di-arte-moderna-e-con",
+          "fiera-di-san-sebastiano-2026-appuntamento-a-rapallo-con-prodotti-tipici-artigian",
+          "il-celebre-mercatino-da-forte-dei-marmi-festeggia-san-valentino-a-sori-genova",
+          "prima-del-2026-per-tipicamente-chiavari-il-mercatino-agroalimentare-di-eccellenz"
+        ],
+        "future_dates_missing": [
+          "appuntamento-a-sant-olcese-con-il-mercatino-da-forte-dei-marmi-dal-cashmere-alla",
+          "edizione-numero-20-per-artegenova-la-grande-mostra-mercato-di-arte-moderna-e-con",
+          "fiera-di-san-sebastiano-2026-appuntamento-a-rapallo-con-prodotti-tipici-artigian",
+          "il-celebre-mercatino-da-forte-dei-marmi-festeggia-san-valentino-a-sori-genova",
+          "market-europeo-genova"
+        ],
+        "hours_missing": [
+          "appuntamento-a-sant-olcese-con-il-mercatino-da-forte-dei-marmi-dal-cashmere-alla",
+          "edizione-numero-20-per-artegenova-la-grande-mostra-mercato-di-arte-moderna-e-con",
+          "fiera-di-san-sebastiano-2026-appuntamento-a-rapallo-con-prodotti-tipici-artigian",
+          "il-celebre-mercatino-da-forte-dei-marmi-festeggia-san-valentino-a-sori-genova",
+          "market-europeo-genova"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "hours_missing": 4,
+        "records": 7
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 15,
+      "publisher": "solosagre.it",
+      "records": 7,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "hours_missing": [
+          "a-spass-per-zirvia-cervia-ra-fiere-mostre-e-mercati-antiquariato-gastronomia-vin",
+          "l-angolo-dell-antiquariato-di-carmignano-carmignano-po-fiere-mostre-e-mercati-do",
+          "lugnano-in-soffitta-vicopisano-pi-fiere-mostre-e-mercati-domenica-15-febbraio-to",
+          "mercato-antiquariato-e-modernariato-valeggio-sul-mincio-vr-fiere-mostre-e-mercat"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 7,
+        "records": 7
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "citynews_romatoday.it",
+      "records": 7,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "mercatino-delle-streghe-alla-citta-dellaltra-economia-citta-dell-altra-economia",
+          "mostra-scambio-del-giocattolo-vintage-hotel-mercure-roma-west",
+          "gli-ambulanti-di-forte-dei-marmi-a-santa-maria-delle-mole-marino",
+          "remira-market-roma-al-mediterraneo-maxxi-mediterraneo-al-maxxi",
+          "unique-market-a-industrie-fluviali-industrie-fluviali"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 4,
+        "hours_missing": 1,
+        "records": 7
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 13,
+      "publisher": "algherohospitality.it",
+      "records": 7,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "mercato-civico-di-via-amalfi-alghero",
+          "mercato-civico-di-via-cagliari-alghero",
+          "mercato-ittico-di-alghero-alghero",
+          "mercato-artigianale-esotico-di-alghero-alghero"
+        ],
+        "hours_missing": [
+          "mercato-artigianale-esotico-di-alghero-alghero"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 6,
+        "future_dates_missing": 6,
+        "hours_missing": 6,
+        "records": 6
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 42,
+      "publisher": "sagretorino.it",
+      "records": 6,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "passeggiata-enogastronomica-nei-balmetti-borgofranco-di-ivrea",
+          "biciclettata-enogastronomica-cambiano",
+          "passeggiata-enogastronomica-forno-canavese",
+          "passeggiata-enogastronomica-marentino",
+          "passeggiata-enogastronomica-novalesa"
+        ],
+        "future_dates_missing": [
+          "passeggiata-enogastronomica-nei-balmetti-borgofranco-di-ivrea",
+          "biciclettata-enogastronomica-cambiano",
+          "passeggiata-enogastronomica-forno-canavese",
+          "passeggiata-enogastronomica-marentino",
+          "passeggiata-enogastronomica-novalesa"
+        ],
+        "hours_missing": [
+          "passeggiata-enogastronomica-nei-balmetti-borgofranco-di-ivrea",
+          "biciclettata-enogastronomica-cambiano",
+          "passeggiata-enogastronomica-forno-canavese",
+          "passeggiata-enogastronomica-marentino",
+          "passeggiata-enogastronomica-novalesa"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 4,
+        "future_dates_missing": 5,
+        "hours_missing": 6,
+        "records": 6
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 35,
+      "publisher": "romatoday.it",
+      "records": 6,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "bonfire-market-caffarella",
+          "hippie-market-tra-gli-acquedotti-romani-roma",
+          "mercatino-delle-streghe-alla-citta-dellaltra-economia-roma",
+          "vintage-market-al-san-paolo-district-roma"
+        ],
+        "future_dates_missing": [
+          "bonfire-market-caffarella",
+          "hippie-market-tra-gli-acquedotti-romani-roma",
+          "mercatino-delle-streghe-alla-citta-dellaltra-economia-roma",
+          "vintage-market-al-san-paolo-district-roma",
+          "mercatino-vintage-ail-roma-roma"
+        ],
+        "hours_missing": [
+          "bonfire-market-caffarella",
+          "la-domenica-vintage-mediterraneo-domenica",
+          "hippie-market-tra-gli-acquedotti-romani-roma",
+          "mercatino-delle-streghe-alla-citta-dellaltra-economia-roma",
+          "vintage-market-al-san-paolo-district-roma"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 4,
+        "future_dates_missing": 5,
+        "hours_missing": 5,
+        "records": 5
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 32,
+      "publisher": "milanopocket.it",
+      "records": 5,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "artigiano-in-fiera-milano",
+          "il-mercatino-da-forte-dei-marmi-padenghe-sul-garda",
+          "il-mercatino-da-forte-dei-marmi-rozzano",
+          "cibo-street-food-music-festival-solbiate-con-cagno"
+        ],
+        "future_dates_missing": [
+          "artigiano-in-fiera-milano",
+          "il-mercatino-da-forte-dei-marmi-padenghe-sul-garda",
+          "il-mercatino-da-forte-dei-marmi-rozzano",
+          "cibo-street-food-music-festival-solbiate-con-cagno",
+          "creanza-market-gin-fest-varese"
+        ],
+        "hours_missing": [
+          "artigiano-in-fiera-milano",
+          "il-mercatino-da-forte-dei-marmi-padenghe-sul-garda",
+          "il-mercatino-da-forte-dei-marmi-rozzano",
+          "cibo-street-food-music-festival-solbiate-con-cagno",
+          "creanza-market-gin-fest-varese"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 5,
+        "hours_missing": 5,
+        "records": 5
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 20,
+      "publisher": "sagreumbre.it",
+      "records": 5,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "artigianando-a-foligno-foligno",
+          "anticamente-a-orvieto-orvieto",
+          "mercato-agricolo-biologico-artigianale-umbria-terra-viva-perugia",
+          "anticamente-a-todi-todi",
+          "artigianando-a-todi-todi"
+        ],
+        "hours_missing": [
+          "artigianando-a-foligno-foligno",
+          "anticamente-a-orvieto-orvieto",
+          "mercato-agricolo-biologico-artigianale-umbria-terra-viva-perugia",
+          "anticamente-a-todi-todi",
+          "artigianando-a-todi-todi"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "coordinates_missing": 5,
+        "future_dates_missing": 1,
+        "hours_missing": 5,
+        "records": 5
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 16,
+      "publisher": "Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata)",
+      "records": 5,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "coordinates_missing": [
+          "rm13-plateatico-san-silverio",
+          "rm13-salt-casalotti-ormea",
+          "rm13-salt-fogaccia-sabato",
+          "rm13-salt-torrevecchia",
+          "rm13-salt-valle-aurelia"
+        ],
+        "future_dates_missing": [
+          "rm13-plateatico-san-silverio"
+        ],
+        "hours_missing": [
+          "rm13-plateatico-san-silverio",
+          "rm13-salt-casalotti-ormea",
+          "rm13-salt-fogaccia-sabato",
+          "rm13-salt-torrevecchia",
+          "rm13-salt-valle-aurelia"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 4,
+        "future_dates_missing": 3,
+        "hours_missing": 4,
+        "records": 4
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 27,
+      "publisher": "firenzetoday.it",
+      "records": 4,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "un-giorno-da-rigattiere-calenzano",
+          "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+          "festa-del-tortello-e-delle-specialita-di-carne-alla-brace-firenze",
+          "pop-up-store-artigianale-a-firenze-firenze"
+        ],
+        "future_dates_missing": [
+          "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+          "festa-del-tortello-e-delle-specialita-di-carne-alla-brace-firenze",
+          "pop-up-store-artigianale-a-firenze-firenze"
+        ],
+        "hours_missing": [
+          "un-giorno-da-rigattiere-calenzano",
+          "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+          "festa-del-tortello-e-delle-specialita-di-carne-alla-brace-firenze",
+          "pop-up-store-artigianale-a-firenze-firenze"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 3,
+        "future_dates_missing": 4,
+        "hours_missing": 4,
+        "records": 4
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 25,
+      "publisher": "modenatoday.it",
+      "records": 4,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "alla-rotonda-tornano-i-mercatopolini-il-mercatino-fatto-dai-bambini-insieme-alla",
+          "modenantiquaria-a-febbraio-l-appuntamento-d-eccellenza-con-l-antico-modena",
+          "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena"
+        ],
+        "future_dates_missing": [
+          "alla-rotonda-tornano-i-mercatopolini-il-mercatino-fatto-dai-bambini-insieme-alla",
+          "modenantiquaria-a-febbraio-l-appuntamento-d-eccellenza-con-l-antico-modena",
+          "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena",
+          "mercatini-vignola-vignola"
+        ],
+        "hours_missing": [
+          "alla-rotonda-tornano-i-mercatopolini-il-mercatino-fatto-dai-bambini-insieme-alla",
+          "modenantiquaria-a-febbraio-l-appuntamento-d-eccellenza-con-l-antico-modena",
+          "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena",
+          "mercatini-vignola-vignola"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 4,
+        "records": 4,
+        "stored_source_or_import_date_older_than_540d": 4
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
+      "priority_workload_score_not_evidence": 16,
+      "publisher": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+      "records": 4,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "fi-feelflorence-4",
+          "fi-feelflorence-3",
+          "fi-feelflorence-2",
+          "fi-feelflorence-1"
+        ],
+        "stored_source_or_import_date_older_than_540d": [
+          "fi-feelflorence-4",
+          "fi-feelflorence-3",
+          "fi-feelflorence-2",
+          "fi-feelflorence-1"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 4,
+        "hours_missing": 1,
+        "records": 4
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 10,
+      "publisher": "sagrefvg.it",
+      "records": 4,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "il-mercato-del-borgo-pinzano-al-tagliamento",
+          "17a-magnalonga-2026-savorgnano-del-torre",
+          "i-cjarsons-2026-sutrio",
+          "festa-dello-sport-2026-treppo-grande"
+        ],
+        "hours_missing": [
+          "il-mercato-del-borgo-pinzano-al-tagliamento"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 3,
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 21,
+      "publisher": "enjoysicilia.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "little-sicily-capo-d-orlando",
+          "festa-del-catarratto-santa-cristina-gela",
+          "aspettando-eno-etna-santa-venerina"
+        ],
+        "future_dates_missing": [
+          "little-sicily-capo-d-orlando",
+          "festa-del-catarratto-santa-cristina-gela",
+          "aspettando-eno-etna-santa-venerina"
+        ],
+        "hours_missing": [
+          "little-sicily-capo-d-orlando",
+          "festa-del-catarratto-santa-cristina-gela",
+          "aspettando-eno-etna-santa-venerina"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 3,
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 21,
+      "publisher": "suedtirol.info",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "mercato-contadino-a-merano-via-galilei-merano",
+          "mercato-settimanale-a-naturno-naturno-naturno",
+          "mercato-settimanale-a-terlano-terlano-terlano"
+        ],
+        "future_dates_missing": [
+          "mercato-contadino-a-merano-via-galilei-merano",
+          "mercato-settimanale-a-naturno-naturno-naturno",
+          "mercato-settimanale-a-terlano-terlano-terlano"
+        ],
+        "hours_missing": [
+          "mercato-contadino-a-merano-via-galilei-merano",
+          "mercato-settimanale-a-naturno-naturno-naturno",
+          "mercato-settimanale-a-terlano-terlano-terlano"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 18,
+      "publisher": "bolognatoday.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+          "sana-food-il-cibo-fuori-casa-fra-business-e-valori-bologna"
+        ],
+        "future_dates_missing": [
+          "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+          "sana-food-il-cibo-fuori-casa-fra-business-e-valori-bologna",
+          "mercatini-casalecchio-di-reno"
+        ],
+        "hours_missing": [
+          "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+          "sana-food-il-cibo-fuori-casa-fra-business-e-valori-bologna",
+          "mercatini-casalecchio-di-reno"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 18,
+      "publisher": "palermotoday.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
+          "mostra-orchidee-e-bonsai-a-mondello-laboratori-creativi-per-bambini-workshop-e-a"
+        ],
+        "future_dates_missing": [
+          "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
+          "mercatini-palermo",
+          "mostra-orchidee-e-bonsai-a-mondello-laboratori-creativi-per-bambini-workshop-e-a"
+        ],
+        "hours_missing": [
+          "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
+          "mercatini-palermo",
+          "mostra-orchidee-e-bonsai-a-mondello-laboratori-creativi-per-bambini-workshop-e-a"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 18,
+      "publisher": "ravennatoday.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "mercatini-la-pulce-dacqua-darsena",
+          "maccheronata-mercatini-luna-park-dj-set-e-spettacoli-per-la-festa-della-patrona"
+        ],
+        "future_dates_missing": [
+          "mercatini-la-pulce-dacqua-darsena",
+          "maccheronata-mercatini-luna-park-dj-set-e-spettacoli-per-la-festa-della-patrona",
+          "festa-di-inizio-estate-santo-stefano"
+        ],
+        "hours_missing": [
+          "mercatini-la-pulce-dacqua-darsena",
+          "maccheronata-mercatini-luna-park-dj-set-e-spettacoli-per-la-festa-della-patrona",
+          "festa-di-inizio-estate-santo-stefano"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 18,
+      "publisher": "veneziatoday.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "festa-dei-bisi-peseggia",
+          "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-venezia"
+        ],
+        "future_dates_missing": [
+          "festa-dei-bisi-peseggia",
+          "quarto-d-altino-in-festa-quarto-d-altino",
+          "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-venezia"
+        ],
+        "hours_missing": [
+          "festa-dei-bisi-peseggia",
+          "quarto-d-altino-in-festa-quarto-d-altino",
+          "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-venezia"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 15,
+      "publisher": "novaratoday.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "novara-a-marzo-torna-fiorissimo-la-mostra-mercato-di-fiori-piante-e-artigianato"
+        ],
+        "future_dates_missing": [
+          "mercatino-dell-antiquariato-arona",
+          "mercati-boutique-novara",
+          "novara-a-marzo-torna-fiorissimo-la-mostra-mercato-di-fiori-piante-e-artigianato"
+        ],
+        "hours_missing": [
+          "mercatino-dell-antiquariato-arona",
+          "mercati-boutique-novara",
+          "novara-a-marzo-torna-fiorissimo-la-mostra-mercato-di-fiori-piante-e-artigianato"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 3,
+        "hours_missing": 1,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "citynews_riminitoday.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "la-casa-del-tempo-porta-in-piazza-vintage-e-antiquariato-poi-bookcrossing-al-mus",
+          "bancarelle-idee-e-piccoli-tesori-tornano-piazzetta-delle-idee-e-chi-cerca-trova"
+        ],
+        "future_dates_missing": [
+          "anticatt-torna-in-citta-il-mercato-di-antiquariato-modernariato-e-vintage-cattol",
+          "la-casa-del-tempo-porta-in-piazza-vintage-e-antiquariato-poi-bookcrossing-al-mus",
+          "bancarelle-idee-e-piccoli-tesori-tornano-piazzetta-delle-idee-e-chi-cerca-trova"
+        ],
+        "hours_missing": [
+          "bancarelle-idee-e-piccoli-tesori-tornano-piazzetta-delle-idee-e-chi-cerca-trova"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 3,
+        "hours_missing": 3,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 12,
+      "publisher": "vicenzatoday.it",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "festa-dea-siaresa-castegnero",
+          "non-ho-leta-marostica",
+          "festa-della-santissima-trinita-montecchio"
+        ],
+        "hours_missing": [
+          "festa-dea-siaresa-castegnero",
+          "non-ho-leta-marostica",
+          "festa-della-santissima-trinita-montecchio"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "hours_missing": 2,
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "sagretoscane.com",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "hours_missing": [
+          "l-angolo-del-collezionista-gaiole-in-chianti-domenica",
+          "l-angolo-del-collezionista-san-gimignano-domenica"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "coordinates_missing": 2,
+        "future_dates_missing": 2,
+        "records": 2,
+        "suspicious_city": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 24,
+      "publisher": "trevisotoday.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "coordinates_missing": [
+          "mercatini-piazza-del-baratto-na",
+          "mercatini-stoffaday-na"
+        ],
+        "future_dates_missing": [
+          "mercatini-piazza-del-baratto-na",
+          "mercatini-stoffaday-na"
+        ],
+        "suspicious_city": [
+          "mercatini-piazza-del-baratto-na",
+          "mercatini-stoffaday-na"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "brindisireport.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "festa-di-san-giustino-bozzano",
+          "la-girandola-carovigno"
+        ],
+        "future_dates_missing": [
+          "festa-di-san-giustino-bozzano",
+          "la-girandola-carovigno"
+        ],
+        "hours_missing": [
+          "festa-di-san-giustino-bozzano",
+          "la-girandola-carovigno"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "cittadellaspezia.com",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "cantamaggio-varese-ligure",
+          "festa-della-madonna-dellolmo-vezzano-ligure"
+        ],
+        "future_dates_missing": [
+          "cantamaggio-varese-ligure",
+          "festa-della-madonna-dellolmo-vezzano-ligure"
+        ],
+        "hours_missing": [
+          "cantamaggio-varese-ligure",
+          "festa-della-madonna-dellolmo-vezzano-ligure"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "eventiintoscana.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "fiera-antiquaria-arezzo",
+          "mercatini-san-quirico-dorcia"
+        ],
+        "future_dates_missing": [
+          "fiera-antiquaria-arezzo",
+          "mercatini-san-quirico-dorcia"
+        ],
+        "hours_missing": [
+          "fiera-antiquaria-arezzo",
+          "mercatini-san-quirico-dorcia"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "lazioinfesta.com",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "bonfire-market-roma",
+          "i-sapori-del-parco-sabaudia"
+        ],
+        "future_dates_missing": [
+          "bonfire-market-roma",
+          "i-sapori-del-parco-sabaudia"
+        ],
+        "hours_missing": [
+          "bonfire-market-roma",
+          "i-sapori-del-parco-sabaudia"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "paradisola.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "il-sulcis-iglesiente-espone-carbonia",
+          "festival-della-birra-serramanna"
+        ],
+        "future_dates_missing": [
+          "il-sulcis-iglesiente-espone-carbonia",
+          "festival-della-birra-serramanna"
+        ],
+        "hours_missing": [
+          "il-sulcis-iglesiente-espone-carbonia",
+          "festival-della-birra-serramanna"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "pugliainfesta.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "la-tua-pausa-gourmet-nella-citta-bianca-brindisi",
+          "parcheggio-gratuito-dentro-ostuni-e-cibo-prelibato-ostuni"
+        ],
+        "future_dates_missing": [
+          "la-tua-pausa-gourmet-nella-citta-bianca-brindisi",
+          "parcheggio-gratuito-dentro-ostuni-e-cibo-prelibato-ostuni"
+        ],
+        "hours_missing": [
+          "la-tua-pausa-gourmet-nella-citta-bianca-brindisi",
+          "parcheggio-gratuito-dentro-ostuni-e-cibo-prelibato-ostuni"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 14,
+      "publisher": "sagreinromagna.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "mercatini-di-primavera-ravenna",
+          "portobello-beach-mercatino-dell-usato-ravenna"
+        ],
+        "future_dates_missing": [
+          "mercatini-di-primavera-ravenna",
+          "portobello-beach-mercatino-dell-usato-ravenna"
+        ],
+        "hours_missing": [
+          "mercatini-di-primavera-ravenna",
+          "portobello-beach-mercatino-dell-usato-ravenna"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 12,
+      "publisher": "ferrarainfo.com",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "l-agrimercato-di-grisu-ferrara-mercoledi",
+          "mercato-contadino-del-venerdi-ferrara-venerdi"
+        ],
+        "hours_missing": [
+          "l-agrimercato-di-grisu-ferrara-mercoledi",
+          "mercato-contadino-del-venerdi-ferrara-venerdi"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 11,
+      "publisher": "bresciatoday.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "chiari-mercatini-di-san-faustino-brescia"
+        ],
+        "future_dates_missing": [
+          "chiari-mercatini-di-san-faustino-brescia",
+          "mercatini-degli-hobbisti-palazzolo-sull-oglio"
+        ],
+        "hours_missing": [
+          "chiari-mercatini-di-san-faustino-brescia",
+          "mercatini-degli-hobbisti-palazzolo-sull-oglio"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 11,
+      "publisher": "citynews_genovatoday.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "il-celebre-mercatino-da-forte-dei-marmi-festeggia-san-valentino-a-sori-sori"
+        ],
+        "future_dates_missing": [
+          "nuovo-appuntamento-con-peglingusto-i-mercatini-di-gastronomia-e-artigianato-a-pe",
+          "il-celebre-mercatino-da-forte-dei-marmi-festeggia-san-valentino-a-sori-sori"
+        ],
+        "hours_missing": [
+          "nuovo-appuntamento-con-peglingusto-i-mercatini-di-gastronomia-e-artigianato-a-pe",
+          "il-celebre-mercatino-da-forte-dei-marmi-festeggia-san-valentino-a-sori-sori"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 2,
+        "future_dates_missing": 1,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 9,
+      "publisher": "terredipisa.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "mercatino-del-piccolo-antiquariato-e-artigianato-san-miniato",
+          "mercatino-del-collezionismo-antiquariato-e-hobbismo-vicopisano"
+        ],
+        "future_dates_missing": [
+          "mercatino-del-collezionismo-antiquariato-e-hobbismo-vicopisano"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 8,
+      "publisher": "citynews_firenzetoday.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "il-fascino-del-passato-torna-a-empoli-con-la-sesta-edizione-del-vintage-fest-emp",
+          "galluzzo-in-fiera-galluzzo"
+        ],
+        "hours_missing": [
+          "il-fascino-del-passato-torna-a-empoli-con-la-sesta-edizione-del-vintage-fest-emp",
+          "galluzzo-in-fiera-galluzzo"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 8,
+      "publisher": "citynews_veneziatoday.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-mirano",
+          "tornano-i-mercatini-di-noale-con-150-espositori-in-centro-storico-noale"
+        ],
+        "hours_missing": [
+          "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-mirano",
+          "tornano-i-mercatini-di-noale-con-150-espositori-in-centro-storico-noale"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 2,
+        "hours_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 8,
+      "publisher": "varesenews.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "fashion-day-lavena-ponte-tresa",
+          "calici-sapori-e-motori-venegono-inferiore"
+        ],
+        "hours_missing": [
+          "fashion-day-lavena-ponte-tresa",
+          "calici-sapori-e-motori-venegono-inferiore"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "assosagre.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "sagra-d-la-fuiada-sagra-d-la-fuiadatramuschio-di-mirandola",
+          "festa-dei-sapori-e-delle-tradizioni-festa-dei-sapori-e-delle-tradizioniterrassa"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 2,
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "citynews_frosinonetoday.it",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "ceccano-mercatino-degli-artigiani-del-borgo-odv-ceccano",
+          "frosinone-tornano-gli-ambulanti-di-forte-dei-marmi-via-tiburtina-frosinone"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "records": 2
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
+      "priority_workload_score_not_evidence": 2,
+      "publisher": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
+      "records": 2,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {}
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "arezzonotizie.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo"
+        ],
+        "future_dates_missing": [
+          "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo"
+        ],
+        "hours_missing": [
+          "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "baritoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "fiera-del-fischietto-in-terracotta-a-rutigliano-artigianato-visite-guidate-intra"
+        ],
+        "future_dates_missing": [
+          "fiera-del-fischietto-in-terracotta-a-rutigliano-artigianato-visite-guidate-intra"
+        ],
+        "hours_missing": [
+          "fiera-del-fischietto-in-terracotta-a-rutigliano-artigianato-visite-guidate-intra"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "casertanews.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "ritorna-la-fiera-del-vintage-due-giorni-di-stile-musica-e-cultura-pop-al-polo-a1"
+        ],
+        "future_dates_missing": [
+          "ritorna-la-fiera-del-vintage-due-giorni-di-stile-musica-e-cultura-pop-al-polo-a1"
+        ],
+        "hours_missing": [
+          "ritorna-la-fiera-del-vintage-due-giorni-di-stile-musica-e-cultura-pop-al-polo-a1"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "cesenatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "cicciolata-mercatini-e-stand-gastronomici-aprono-le-porte-alla-festa-del-maiale"
+        ],
+        "future_dates_missing": [
+          "cicciolata-mercatini-e-stand-gastronomici-aprono-le-porte-alla-festa-del-maiale"
+        ],
+        "hours_missing": [
+          "cicciolata-mercatini-e-stand-gastronomici-aprono-le-porte-alla-festa-del-maiale"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "chietitoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "un-mercatino-al-mese-per-tutto-il-2026-nel-centro-di-chieti-per-valorizzare-la-c"
+        ],
+        "future_dates_missing": [
+          "un-mercatino-al-mese-per-tutto-il-2026-nel-centro-di-chieti-per-valorizzare-la-c"
+        ],
+        "hours_missing": [
+          "un-mercatino-al-mese-per-tutto-il-2026-nel-centro-di-chieti-per-valorizzare-la-c"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "citynews_monzatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "a-monza-il-mercatino-con-i-sapori-dell-inverno-piazza-centemero-e-paleari"
+        ],
+        "future_dates_missing": [
+          "a-monza-il-mercatino-con-i-sapori-dell-inverno-piazza-centemero-e-paleari"
+        ],
+        "hours_missing": [
+          "a-monza-il-mercatino-con-i-sapori-dell-inverno-piazza-centemero-e-paleari"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "citynews_vicenzatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "art-ciocc-il-tour-dei-cioccolatieri-ad-asiago-tensostruttura-riscaldata-in-piazz"
+        ],
+        "future_dates_missing": [
+          "art-ciocc-il-tour-dei-cioccolatieri-ad-asiago-tensostruttura-riscaldata-in-piazz"
+        ],
+        "hours_missing": [
+          "art-ciocc-il-tour-dei-cioccolatieri-ad-asiago-tensostruttura-riscaldata-in-piazz"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "ferraratoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "massa-in-fiera-centro-massa-fiscaglia"
+        ],
+        "future_dates_missing": [
+          "massa-in-fiera-centro-massa-fiscaglia"
+        ],
+        "hours_missing": [
+          "massa-in-fiera-centro-massa-fiscaglia"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "forlitoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "sapori-stagionali-e-supporto-alle-filiere-locali-al-mercato-di-campagna-amica-un"
+        ],
+        "future_dates_missing": [
+          "sapori-stagionali-e-supporto-alle-filiere-locali-al-mercato-di-campagna-amica-un"
+        ],
+        "hours_missing": [
+          "sapori-stagionali-e-supporto-alle-filiere-locali-al-mercato-di-campagna-amica-un"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "frosinonetoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "mercatino-gallinaro-gallinaro"
+        ],
+        "future_dates_missing": [
+          "mercatino-gallinaro-gallinaro"
+        ],
+        "hours_missing": [
+          "mercatino-gallinaro-gallinaro"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "leccotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "con-i-fuoriclasse-un-mercatino-dell-usato-con-oltre-2-000-libri-lecco"
+        ],
+        "future_dates_missing": [
+          "con-i-fuoriclasse-un-mercatino-dell-usato-con-oltre-2-000-libri-lecco"
+        ],
+        "hours_missing": [
+          "con-i-fuoriclasse-un-mercatino-dell-usato-con-oltre-2-000-libri-lecco"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "lombardiainfesta.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "crema-wine-festival-crema"
+        ],
+        "future_dates_missing": [
+          "crema-wine-festival-crema"
+        ],
+        "hours_missing": [
+          "crema-wine-festival-crema"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "monzatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "il-mercatino-delle-pulci-al-parco-acquatico-monza"
+        ],
+        "future_dates_missing": [
+          "il-mercatino-delle-pulci-al-parco-acquatico-monza"
+        ],
+        "hours_missing": [
+          "il-mercatino-delle-pulci-al-parco-acquatico-monza"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "padovatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "festa-del-baccala-e-del-pesce-fritto-a-taggi-di-sopra-padova"
+        ],
+        "future_dates_missing": [
+          "festa-del-baccala-e-del-pesce-fritto-a-taggi-di-sopra-padova"
+        ],
+        "hours_missing": [
+          "festa-del-baccala-e-del-pesce-fritto-a-taggi-di-sopra-padova"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "romapop.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "fuori-mercato-roma"
+        ],
+        "future_dates_missing": [
+          "fuori-mercato-roma"
+        ],
+        "hours_missing": [
+          "fuori-mercato-roma"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "torinotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "il-fascino-delle-pagine-vissute-a-nichelino-torna-l-8deg-salone-del-libro-usato"
+        ],
+        "future_dates_missing": [
+          "il-fascino-delle-pagine-vissute-a-nichelino-torna-l-8deg-salone-del-libro-usato"
+        ],
+        "hours_missing": [
+          "il-fascino-delle-pagine-vissute-a-nichelino-torna-l-8deg-salone-del-libro-usato"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "viterbotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "a-vetriolo-tre-serate-dedicate-al-cibo-fritto-vetriolo"
+        ],
+        "future_dates_missing": [
+          "a-vetriolo-tre-serate-dedicate-al-cibo-fritto-vetriolo"
+        ],
+        "hours_missing": [
+          "a-vetriolo-tre-serate-dedicate-al-cibo-fritto-vetriolo"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 7,
+      "publisher": "wwwservizi.regione.emilia-romagna.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "settimana-calderarese-mercato-dei-cento-mercato-dei-cento"
+        ],
+        "future_dates_missing": [
+          "settimana-calderarese-mercato-dei-cento-mercato-dei-cento"
+        ],
+        "hours_missing": [
+          "settimana-calderarese-mercato-dei-cento-mercato-dei-cento"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 5,
+      "publisher": "citynews_bresciatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "chiari-mercatini-di-san-faustino-centro-storico"
+        ],
+        "future_dates_missing": [
+          "chiari-mercatini-di-san-faustino-centro-storico"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "future_dates_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 5,
+      "publisher": "citynews_modenatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-parco-novi-sad"
+        ],
+        "future_dates_missing": [
+          "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-parco-novi-sad"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "citynews_cagliaritoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "hermaearket-torna-a-pirri-il-14-e-15-marzo-con-artigianato-creativita-e-handmade"
+        ],
+        "hours_missing": [
+          "hermaearket-torna-a-pirri-il-14-e-15-marzo-con-artigianato-creativita-e-handmade"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "citynews_cataniatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "mercatino-a-fera-bio-parco-madre-teresa-di-calcutta"
+        ],
+        "hours_missing": [
+          "mercatino-a-fera-bio-parco-madre-teresa-di-calcutta"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "citynews_forlitoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "torna-il-mercatissimo-l-appuntamento-dedicato-al-second-hand-del-gruppo-di-pregh"
+        ],
+        "hours_missing": [
+          "torna-il-mercatissimo-l-appuntamento-dedicato-al-second-hand-del-gruppo-di-pregh"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "citynews_torinotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "san-salvario-riparte-con-il-cuore-torna-l-emporium-tra-artigianato-e-solidarieta"
+        ],
+        "hours_missing": [
+          "san-salvario-riparte-con-il-cuore-torna-l-emporium-tra-artigianato-e-solidarieta"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "citynews_trevisotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "1deg-mostra-mercato-del-disco-di-silea-silea"
+        ],
+        "hours_missing": [
+          "1deg-mostra-mercato-del-disco-di-silea-silea"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "milanotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "red-bazar-navigli"
+        ],
+        "hours_missing": [
+          "red-bazar-navigli"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "napolidavivere.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "festa-del-pescato-di-paranza-santa-maria-di-castellabate"
+        ],
+        "hours_missing": [
+          "festa-del-pescato-di-paranza-santa-maria-di-castellabate"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "address_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "riminitoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "l-estate-live-allalba-giardini-dell-alba"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
+      "publisher": "salernotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "la-notte-del-rosso-castel-san-giorgio"
+        ],
+        "hours_missing": [
+          "la-notte-del-rosso-castel-san-giorgio"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 2,
+      "publisher": "citynews_baritoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "il-riciclo-dei-ricordi-torna-il-mercatino-dantiquariato-e-vintage-nellarea-ester"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 2,
+      "publisher": "citynews_ferraratoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "dallartigianato-indipendente-alle-produzioni-creative-torna-l-appuntamento-con-m"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 2,
+      "publisher": "citynews_parmatoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "librokilo-torna-a-parma-il-1deg-febbraio-colonne-ventotto"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 2,
+      "publisher": "citynews_viterbotoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "mercatino-dell-antico-a-viterbo-centro-storico"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "future_dates_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 2,
+      "publisher": "eventiinsardegna.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "primavera-nel-cuore-della-sardegna-baunei"
+        ]
+      }
+    }
+  ],
+  "research_only": true,
+  "schema": 1,
+  "source_count_is_not_number_of_independent_venues": true,
+  "source_dates_are_not_per_market_confirmation": true,
+  "source_labels_added_since_previous": [],
+  "source_labels_missing_since_previous": [],
+  "source_permissions_inferred": false,
+  "source_snapshot_rows_reused": 0
+}
