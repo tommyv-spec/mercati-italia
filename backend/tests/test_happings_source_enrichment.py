@@ -159,6 +159,15 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(len(result),1)
         self.assertEqual(fetched,[VENICE_OLD])
 
+    def test_default_publisher_rights_record_is_not_authentication(self):
+        from happings_source_enrichment import RIGHTS_REVIEW_FILE
+        rights=json.loads(RIGHTS_REVIEW_FILE.read_text("utf-8"))
+        self.assertFalse(rights["republication_rights_authenticated"])
+        self.assertFalse(rights["mass_crawling_enabled"])
+        self.assertEqual(rights["technical_limits"]["max_index_pages_per_run"],2)
+        self.assertTrue(all(x["digital_signature_verified"] is False
+                            for x in rights["user_supplied_documents"]))
+
     def test_no_original_market_is_ever_deleted_or_verified(self):
         old=[row("spinea-1"),row("dolo-1",city="Dolo")]
         updated,report=preview(old,feed(),today=TODAY,apply=True,rights_verified=True)
