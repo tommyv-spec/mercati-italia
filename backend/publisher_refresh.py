@@ -122,10 +122,74 @@ def rotate_sources(profiles, today, limit=MAX_PAGES):
     raise ValueError("Publisher profiles cannot fit within bounded daily batches")
 
 
-def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False):
-    """Every source URL has an explicit disposition; unsupported is not checked."""
+def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
+                      source_contracts=None, source_admissions=None, source_policy=(),
+                      source_status=None, admissions_enabled=False, admission_report=None,
+                      today=None):
+    """Describe configured readers separately from this run's source availability.
+
+    Admission comes from the existing exact source certificate, never from a
+    discovery/license claim or a successful HTTP response. This report grants
+    no permissions and says nothing about individual market verification.
+    """
+    from source_contract_activation import validate_admissions
+    from source_contract_ingest import authorize
+    from source_lifecycle import digest, validate_contracts as validate_source_contracts
+
+    today = today or date.today()
     known = {canonical_url(p["url"]): p for p in config["sources"]}
     official = {canonical_url(u) for u in official_urls}
+    policies = {p["id"]: p for p in source_policy if isinstance(p, dict) and "id" in p}
+    source_status = source_status or {}
+    normalized, raw = [], []
+    contract_state = "missing" if source_contracts is None else "invalid"
+    registry_state = "missing" if source_admissions is None else "invalid"
+    approvals = None
+    if source_contracts is not None:
+        try:
+            validate_source_contracts(source_contracts)
+            normalized = source_contracts["normalized_profiles"]
+            raw = source_contracts["raw_profiles"]
+            contract_state = "valid"
+            if source_admissions is not None:
+                approvals = validate_admissions(source_contracts, source_admissions)
+                registry_state = "valid"
+        except (ValueError, TypeError, KeyError):
+            pass
+    observed_contracts = {}
+    if (approvals is not None and isinstance(admission_report, dict)
+            and admission_report.get("source_contract_sha256") == digest(source_contracts)
+            and admission_report.get("source_registry_sha256") == digest(source_admissions)
+            and admission_report.get("reference_date") == today.isoformat()
+            and isinstance(admission_report.get("per_source"), dict)):
+        observed_contracts = admission_report["per_source"]
+    generic_routes = {}
+    for profile in raw:
+        sid = profile["id"]
+        mode, layout = "source_contract_registry_missing", "approval_required"
+        if registry_state == "invalid":
+            mode = "source_contract_registry_invalid"
+        elif approvals is not None:
+            if sid not in approvals:
+                mode = "source_contract_not_approved"
+            elif admissions_enabled is not True or profile.get("enabled") is not True:
+                mode, layout = "source_contract_disabled", "disabled"
+            else:
+                try:
+                    authorize(profile, {"profile_sha256": digest(profile)}, approvals[sid], today=today)
+                    mode, layout = "source_contract_active", "supported"
+                except (ValueError, TypeError, KeyError):
+                    mode = "source_contract_review_required"
+        detail = observed_contracts.get(sid, {})
+        read_status = (detail.get("source_read_mode") or detail.get("status") or "not_observed")
+        if layout == "disabled":
+            read_status = "disabled"
+        elif layout != "supported":
+            read_status = "not_observed"
+        route = {"source_id": sid, "reader": "source_contract", "mode": mode,
+                 "source_layout_status": layout, "source_read_status": read_status}
+        for value in (profile["attribution_url"], profile["resource_url"]):
+            generic_routes.setdefault(canonical_url(value), []).append(route)
     groups = defaultdict(list)
     for row in rows:
         url = canonical_url(row.get("url_fonte"))
@@ -133,21 +197,68 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False)
     resources = []
     for url, group in sorted(groups.items()):
         host = urlsplit(url).hostname or ""
+        readers = list(generic_routes.get(url, []))
+        for profile in normalized:
+            if (url not in {canonical_url(u) for u in profile.get("source_pages", [])}
+                    and not (host in profile.get("source_hosts", []) and
+                             any(str(r.get("slug", "")).startswith(profile["identity_prefix"])
+                                 for r in group))):
+                continue
+            sid = profile["id"]
+            enabled = (policies.get(sid, {}).get("enabled") is True
+                       and policies.get(sid, {}).get("official") is True)
+            readers.append({
+                "source_id": sid, "reader": "official_adapter",
+                "mode": "official_adapter" if enabled else "official_adapter_disabled",
+                "source_layout_status": "supported" if enabled else "disabled",
+                "source_read_status": source_status.get(sid, {}).get("status", "not_observed")
+                    if enabled else "disabled",
+            })
+        layout, read_status = "unsupported", "not_read"
         if url in known:
             mode = "publisher_layout_active" if known[url]["enabled"] else "publisher_layout_disabled"
-        elif url in official:
-            mode = "official_adapter"
+            layout = "supported" if known[url]["enabled"] else "disabled"
+            read_status = "not_observed" if known[url]["enabled"] else "disabled"
         elif host.removeprefix("www.") == "happings.com":
             mode = "dedicated_happings_phase" if happings_enabled else "happings_gate_not_active"
+            layout = "supported" if happings_enabled else "disabled"
+            read_status = "not_observed" if happings_enabled else "disabled"
+            readers = []
+        elif readers:
+            # A failed read cannot erase the known layout. If two approved
+            # paths cover one URL, show a successful read before an unavailable
+            # one, while retaining both exact reader dispositions below.
+            selected = min(readers, key=lambda r: (
+                {"supported": 0, "approval_required": 1, "disabled": 2}[r["source_layout_status"]],
+                r["source_read_status"] not in {"retrieved", "cached_snapshot", "resumed_checkpoint",
+                                                "source_contract_approved_staged_only"},
+                r["reader"] != ("official_adapter" if r["source_layout_status"] == "supported"
+                                 else "source_contract"), r["source_id"],
+            ))
+            mode, layout = selected["mode"], selected["source_layout_status"]
+            read_status = selected["source_read_status"]
+        elif source_contracts is None and url in official:
+            # Compatibility for callers without a declarative registry.
+            mode, layout, read_status = "official_adapter", "supported", "not_observed"
         else:
             mode = "source_layout_needed" if url else "source_url_missing"
-        resources.append({
+        resource = {
             "url": url, "host": host, "markets": len(group), "mode": mode,
+            "source_layout_status": layout, "source_read_status": read_status,
             "missing_address": sum(not str(r.get("indirizzo") or "").strip() for r in group),
             "missing_hours": sum(not str(r.get("orario_testo") or "").strip() for r in group),
-        })
+        }
+        if readers:
+            resource["readers"] = sorted(readers, key=lambda r: (r["reader"], r["source_id"]))
+        resources.append(resource)
     return {"schema": 1, "markets": len(rows), "unique_primary_urls": len(groups),
             "hosts": len({x["host"] for x in resources if x["host"]}),
+            "source_contract_configuration": contract_state,
+            "source_admission_registry": registry_state,
+            "market_layout_statuses": dict(Counter({state: sum(x["markets"] for x in resources
+                if x["source_layout_status"] == state) for state in {x["source_layout_status"] for x in resources}})),
+            "market_read_statuses": dict(Counter({state: sum(x["markets"] for x in resources
+                if x["source_read_status"] == state) for state in {x["source_read_status"] for x in resources}})),
             "market_dispositions": dict(Counter({mode: sum(x["markets"] for x in resources if x["mode"] == mode)
                                                 for mode in {x["mode"] for x in resources}})),
             "resources": resources}

@@ -131,6 +131,7 @@ class _Line:
     index: int
     block_tag: str
     block_key: int
+    table_key: int | None
 
 
 def _lines(scope):
@@ -141,10 +142,10 @@ def _lines(scope):
         if value:
             emphasized = all(bold for text, bold, *_ in parts if text.strip())
             first = next(part for part in parts if part[0].strip())
-            result.append(_Line(value, emphasized, len(result), first[2], first[3]))
+            result.append(_Line(value, emphasized, len(result), first[2], first[3], first[4]))
         parts.clear()
 
-    def visit(node, bold=False, container=None):
+    def visit(node, bold=False, container=None, table=None):
         if node.tag in IGNORE:
             return
         if node.tag == "br":
@@ -153,13 +154,16 @@ def _lines(scope):
         if node.tag in BLOCK_TAGS:
             flush()
             container = node
+        if node.tag == "table":
+            table = node
         container = container or scope
         bold = bold or node.tag in EMPHASIS
         for child in node.children:
             if isinstance(child, str):
-                parts.append((child, bold, container.tag, id(container)))
+                parts.append((child, bold, container.tag, id(container),
+                              id(table) if table is not None else None))
             else:
-                visit(child, bold, container)
+                visit(child, bold, container, table)
         if node.tag in BLOCK_TAGS:
             flush()
 
@@ -577,6 +581,15 @@ def parse_page(html: str | bytes, *, source_url: str, contract: dict) -> dict:
         _issue(issues, "empty_or_reversed_section")
         result["metrics"] = {"content_scopes": 1, "city_blocks": 0, "rows": 0}
         return result
+    # Flattening table cells loses their row/column relationship. A table added
+    # beside known key/value blocks must not silently disappear while the old
+    # blocks still satisfy the cardinality bounds. Only inspect the contracted
+    # section; navigation and tables outside its delimiters are not its data.
+    tables = set()
+    for line in all_lines[low:high]:
+        if line.table_key is not None and line.table_key not in tables:
+            tables.add(line.table_key)
+            _issue(issues, "unsupported_table_layout", line=line.index)
     blocks, current, orphan_heading, orphan_reported = [], None, None, False
     for line in all_lines[low:high]:
         if UPDATED_RE.search(line.text):

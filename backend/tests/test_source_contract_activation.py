@@ -60,6 +60,82 @@ def far_baseline():
 
 
 class GenericActivationTests(unittest.TestCase):
+    def test_disabled_profile_never_reads_source_or_checkpoint_and_preserves_records(self):
+        from unittest.mock import Mock, patch
+        from tempfile import TemporaryDirectory
+        from export_static import export
+        cfg, reg = enabled_fixture()
+        cfg["raw_profiles"][0]["enabled"] = False
+        reg["approvals"][0]["reviewed_profile_sha256"] = digest(cfg["raw_profiles"][0])
+        old = far_baseline()
+        fetch = Mock(side_effect=AssertionError("disabled source must not be read"))
+        with patch("source_contract_activation._source_snapshot",
+                   side_effect=AssertionError("disabled checkpoint must not be read")):
+            for resume, offline in ((False, False), (True, False), (True, True)):
+                with self.subTest(resume=resume, offline=offline):
+                    result, report = fixture_activate(cfg, reg, old, today=TODAY,
+                        fetch=fetch, resume=resume, offline=offline)
+                    self.assertEqual(result, old)
+                    self.assertEqual(report["source_contracts_active"], 0)
+                    self.assertEqual(report["source_contracts_approved"], 1)
+                    self.assertEqual(report["per_source"][RAW["id"]]["status"], "source_contract_disabled")
+                    self.assertEqual(report["evidence_updated_market_ids"], [])
+                    self.assertTrue(validate_release(old, result, report, cfg, reg)["release_safe"])
+        fetch.assert_not_called()
+        with TemporaryDirectory() as td:
+            path = Path(td) / "public/data/v1"
+            export(result, path, today=TODAY, min_count=1)
+            self.assertEqual(verify_static(path / "manifest.json", report, cfg, reg, TODAY)
+                             ["source_contracts_active"], 0)
+            fabricated = copy.deepcopy(report)
+            fabricated["per_source"][RAW["id"]]["source_read_on"] = TODAY.isoformat()
+            with self.assertRaisesRegex(ValueError, "Disabled publisher"):
+                verify_static(path / "manifest.json", fabricated, cfg, reg, TODAY)
+
+    def test_disabled_profile_cannot_hide_mismatched_approval_or_claim_live_disposition(self):
+        from unittest.mock import Mock
+        cfg, reg = enabled_fixture()
+        cfg["raw_profiles"][0]["enabled"] = False
+        fetch = Mock(side_effect=AssertionError("invalid contract must not be read"))
+        with self.assertRaisesRegex(ValueError, "exact enabled/disabled profile"):
+            fixture_activate(cfg, reg, far_baseline(), today=TODAY, fetch=fetch)
+        fetch.assert_not_called()
+        reg["approvals"][0]["reviewed_profile_sha256"] = digest(cfg["raw_profiles"][0])
+        for key, value in (("mode", "shadow_only"), ("source_specific_geo_approval", True),
+                           ("reviewed_on", "not-a-date")):
+            with self.subTest(certificate_field=key):
+                invalid = copy.deepcopy(reg)
+                invalid["approvals"][0][key] = value
+                with self.assertRaisesRegex(ValueError, "inconsistent rights or identity"):
+                    fixture_activate(cfg, invalid, far_baseline(), today=TODAY, fetch=fetch)
+        result, report = fixture_activate(cfg, reg, far_baseline(), today=TODAY, fetch=fetch)
+        damaged = copy.deepcopy(report)
+        damaged["per_source"][RAW["id"]]["status"] = "offline_no_source_inference"
+        with self.assertRaisesRegex(ValueError, "reviewed enabled switch"):
+            validate_release(far_baseline(), result, damaged, cfg, reg)
+
+    def test_disabled_profile_does_not_stop_another_approved_source(self):
+        cfg, reg = enabled_fixture()
+        other = copy.deepcopy(cfg["raw_profiles"][0])
+        other["id"] = "corciano-second-profile"
+        certificate = copy.deepcopy(reg["approvals"][0])
+        certificate["source_id"] = other["id"]
+        certificate["reviewed_profile_sha256"] = digest(other)
+        cfg["raw_profiles"][0]["enabled"] = False
+        reg["approvals"][0]["reviewed_profile_sha256"] = digest(cfg["raw_profiles"][0])
+        cfg["raw_profiles"].append(other)
+        reg["approvals"].append(certificate)
+        calls = []
+        def fetch(url):
+            calls.append(url)
+            return BLOB, False
+        result, report = fixture_activate(cfg, reg, far_baseline(), today=TODAY, fetch=fetch)
+        self.assertEqual(calls, [other["resource_url"]])
+        self.assertEqual(report["source_contracts_active"], 1)
+        self.assertEqual(len(result) - len(far_baseline()), 4)
+        self.assertEqual(report["per_source"][RAW["id"]]["status"], "source_contract_disabled")
+        self.assertEqual(report["per_source"][other["id"]]["status"], "source_contract_approved_staged_only")
+
     def test_defaults_to_no_approved_sources_and_no_network_requests(self):
         called=[]
         old=far_baseline()
