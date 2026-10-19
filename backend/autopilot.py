@@ -67,6 +67,10 @@ import source_bologna
 import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
+from happings_autopilot import (
+    run as enrich_happings_records, validate_policy as validate_happings_policy,
+    verify_exported as verify_happings_exported,
+)
 from official_source_output_gate import inspect as inspect_official_source_output
 from municipality_release_guard import check as check_municipality_changes
 from reviewed_city_evidence import (
@@ -82,7 +86,7 @@ from municipality_reconciliation import (
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
           "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "forecast",
-          "reviewed_publishers", "roma_geo_hold", "export", "quality")
+          "reviewed_publishers", "roma_geo_hold", "happings_enrichment", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -463,6 +467,7 @@ def run(args):
     ):
         raise ValueError("Autopilot must never create unreviewed confirmation or human-verification claims")
     enrichment_policy = policy.get("enrichment", {})
+    happings_policy = validate_happings_policy(policy.get("happings_enrichment", {"enabled": False}))
     if (not isinstance(enrichment_policy, dict)
             or set(enrichment_policy) - {"enabled","source"}
             or enrichment_policy.get("enabled", False) not in (True, False)
@@ -1152,6 +1157,24 @@ def run(args):
         "opening_verifications_created":0,
     })
 
+    # Field-only publisher enrichment belongs before export and every final
+    # release gate. It must never be added as an official-source importer.
+    # Default policy and the independent rights registry keep live access off.
+    before_happings = projected
+    projected, happings_report, happings_preserve_ids = enrich_happings_records(
+        before_happings, policy=happings_policy, out=out, today=args.today,
+        baseline_signature=baseline_id, pipeline_policy_digest=policy_id,
+        offline=args.offline, resume=args.resume,
+    )
+    checkpoint(out, "happings_enrichment", {
+        "status": happings_report["status"],
+        "rights_state": happings_report["rights_state"],
+        "protected_existing_market_ids": len(happings_preserve_ids),
+        "pages_evaluated": happings_report["evidence"]["pages_evaluated"],
+        "field_changes": happings_report["evidence"]["field_changes"],
+        "source_evidence_reused": happings_report["source_evidence_reused"],
+    })
+
     # Work on a temp copy. Rejected candidates never touch public/data/v1.
     dest = out / "candidate" / "public" / "data" / "v1"
     if dest.exists():
@@ -1159,7 +1182,8 @@ def run(args):
     shutil.copytree(manifest_path.parent, dest)
     exported = export(projected, dest, today=args.today,
                       min_count=int(policy["gates"]["min_total_records"]),
-                      max_drop_ratio=float(policy["gates"]["max_record_loss_fraction"]))
+                      max_drop_ratio=float(policy["gates"]["max_record_loss_fraction"]),
+                      preserve_ids=happings_preserve_ids)
     result_manifest = read_json(dest / "manifest.json")
     checkpoint(out, "export", {
         "records": result_manifest["total"],
@@ -1200,6 +1224,10 @@ def run(args):
         save_json(out / "generic-source-admissions-static-guard.json", generic_final_proof)
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
+    happings_static_guard = verify_happings_exported(
+        before_happings, projected, new_rows, happings_report, today=args.today
+    )
+    save_json(out / "happings-enrichment-static-guard.json", happings_static_guard)
     if milano_enabled:
         # The Milano guard is a *same-ID* source audit. Its source baseline
         # predates the separately reviewed five Roma venue additions on the
@@ -1243,6 +1271,13 @@ def run(args):
     findings["has_changes"] = baseline_id != result_manifest["content_signature"]
     findings["job_id"] = status["job_id"]
     findings["today"] = args.today.isoformat()
+    findings["happings_enrichment"] = {
+        "status": happings_report["status"], "rights_state": happings_report["rights_state"],
+        "pages_evaluated": happings_report["evidence"]["pages_evaluated"],
+        "field_changes": happings_report["evidence"]["field_changes"],
+        "protected_existing_market_ids": len(happings_preserve_ids),
+        "release_safe": happings_static_guard["release_safe"],
+    }
     findings["published"] = False
     if findings["approved"]:
         findings["pruned_obsolete_assets"] = prune_old_assets(dest, old_manifest, result_manifest)

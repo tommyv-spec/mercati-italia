@@ -10,7 +10,7 @@ Default mode is a no-write read-only field audit. Live HTTP is opt-in,
 budgeted, robots-aware, and denied unless rights verification is explicitly
 enabled. User-provided PDFs aren't stored in this repository. The uploaded
 examples have no cryptographic PDF signature, so they aren't themselves a
-machine-verifiable authorization token; see docs/HAPPINGS_RIGHTS_REVIEW.md.
+machine-verifiable authorization token; see the versioned rights review.
 """
 from __future__ import annotations
 
@@ -25,16 +25,19 @@ import unicodedata
 from collections import Counter, defaultdict
 from copy import deepcopy
 from datetime import date
+from functools import lru_cache
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.robotparser import RobotFileParser
 
-from happings_weekly_layout import parse, fold, _valid_page_url
+from happings_weekly_layout import parse, fold, _valid_page_url, province_page_key
 from stored_market_sibling_proposals import same_generic_venue, safe_stored_street
 from source_reconciliation_audit import _unambiguous_day
+from recurrence_refresh import explicit_rule
 from merge_catalog import load_existing
+from municipality_reconciliation import trusted_municipalities
 
 SCHEMA=1
 PUBLISHER="happings.com"
@@ -46,16 +49,58 @@ MAX_UPDATES_PER_RUN=200
 MIN_REQUEST_PAUSE_SECONDS=3
 USER_AGENT="MercatiItaliaMarketFields/1.0 (+https://github.com/tommyv-spec/mercati-italia)"
 RIGHTS_REVIEW_FILE=Path(__file__).resolve().parent/"data/happings-rights-review.json"
+MUNICIPALITIES_FILE=Path(__file__).resolve().parent/"data/istat-comuni-2026.json"
 SOURCE_EVIDENCE_NAME="Happings — elenco settimanale (sede indicativa; apertura non verificata)"
-SOURCE_ALLOWED_PATH=re.compile(
-    r"/it/mercati-settimanali-a-[a-z0-9-]+(?:\.html|/)$"
-)
+
+@lru_cache(maxsize=1)
+def _official_geography():
+    """Reuse the reviewed local ISTAT reference; never infer a province by majority."""
+    reference=trusted_municipalities(json.loads(MUNICIPALITIES_FILE.read_text("utf-8")))
+    municipalities={}
+    page_areas=defaultdict(set)
+    for region, cities in reference.items():
+        for name, province in cities.values():
+            municipalities[(fold(region),fold(name))]=province
+            page_areas[fold(name).replace(" ","-")].add((fold(region),province))
+    # These three historic publisher province labels differ from the ISTAT
+    # municipality name. They identify a scope, not an observed redirect.
+    for source_name, municipal_name in {
+        "reggio-calabria":"reggio-di-calabria",
+        "reggio-emilia":"reggio-nell-emilia",
+        "massa-carrara":"massa",
+    }.items():
+        page_areas[source_name]=set(page_areas[municipal_name])
+    return municipalities,page_areas
+
+
+def _catalog_geography_matches(row, source_url):
+    municipalities,page_areas=_official_geography()
+    region=fold(row.get("regione"))
+    province=str(row.get("provincia") or "").strip().upper()
+    city=fold(row.get("citta"))
+    expected=page_areas.get(province_page_key(source_url),set())
+    return (len(expected)==1 and (region,province) in expected
+            and municipalities.get((region,city))==province)
+
+
+def _request_pause(robots):
+    delay=MIN_REQUEST_PAUSE_SECONDS
+    if robots is not None:
+        delay=max(delay,robots.crawl_delay(USER_AGENT) or 0)
+        rate=robots.request_rate(USER_AGENT)
+        if rate and rate.requests>0:
+            delay=max(delay,rate.seconds/rate.requests)
+    if delay>60:
+        raise ValueError("Publisher crawl delay exceeds this bounded run")
+    return delay
 
 class GuardedRedirects(HTTPRedirectHandler):
-    def __init__(self, expected):
+    def __init__(self, expected, robots=None, sleep=time.sleep):
         super().__init__()
         self.expected=expected
         self.hops=0
+        self.robots=robots
+        self.sleep=sleep
 
     def redirect_request(self, request, fp, code, msg, headers, newurl):
         self.hops+=1
@@ -63,10 +108,11 @@ class GuardedRedirects(HTTPRedirectHandler):
             raise ValueError("Source redirect left reviewed Happings province layout")
         # Only province-specific old .html --> canonical -e-provincia/
         # changes from the same company. Never read an arbitrary path.
-        if self.expected.split(".html")[0].split("-e-provincia/")[0] not in (
-            newurl.split(".html")[0].split("-e-provincia/")[0],
-        ):
+        if province_page_key(self.expected)!=province_page_key(newurl):
             raise ValueError("Publisher redirect crossed province")
+        if self.robots is not None and not self.robots.can_fetch(USER_AGENT,newurl):
+            raise ValueError("Publisher robots policy denied redirected weekly index")
+        self.sleep(_request_pause(self.robots))
         return super().redirect_request(request,fp,code,msg,headers,newurl)
 
 
@@ -76,7 +122,7 @@ def _public_dns(host):
             raise ValueError("Publisher hostname resolved to private address")
 
 
-def _fetch_one(url, *, opener=None, limit=MAX_RESPONSE_BYTES):
+def _fetch_one(url, *, opener=None, limit=MAX_RESPONSE_BYTES, robots=None):
     if not _valid_page_url(url) and url!=ROBOTS:
         raise ValueError("Unapproved publisher URL")
     _public_dns("www.happings.com")
@@ -85,7 +131,7 @@ def _fetch_one(url, *, opener=None, limit=MAX_RESPONSE_BYTES):
         "Accept":"text/plain" if url==ROBOTS else "text/html",
         "Accept-Encoding":"identity",
     })
-    opener=opener or build_opener(GuardedRedirects(url))
+    opener=opener or build_opener(GuardedRedirects(url,robots))
     with opener.open(request,timeout=18) as resp:
         mime=str(resp.headers.get("Content-Type","")).casefold()
         wanted="text/plain" if url==ROBOTS else "text/html"
@@ -125,10 +171,7 @@ def allowed_url(record_url,source_url,final_url):
             return False
     # Convert old .../mercati-settimanali-a-{province}.html to
     # current .../mercati-settimanali-a-{province}-e-provincia/.
-    def base(s):
-        path=urlsplit(s).path
-        return re.sub(r"(?:-e-provincia/|\.html)$","",path)
-    return base(record_url)==base(source_url)==base(final_url)
+    return province_page_key(record_url)==province_page_key(source_url)==province_page_key(final_url)
 
 
 def _same_place(a,b):
@@ -141,12 +184,21 @@ def _eligible_field(row):
     return not str(row.get("indirizzo") or "").strip()
 
 
+def _weekly_day(row):
+    """A weekday suffix or repeated isolated date cannot prove weekly cadence."""
+    rule=explicit_rule(row.get("ricorrenza_testo"))
+    if not rule or rule.get("kind")!="weekly" or len(rule.get("weekdays",[]))!=1:
+        return None
+    day=_unambiguous_day(row)
+    return day if day==rule["weekdays"][0] else None
+
+
 def _blocked_source_cohort(rows,source_city,weekday):
     """Any conflicting saved nonempty street makes source mapping ambiguous."""
     stored={
         fold(r.get("indirizzo"))
         for r in rows
-        if fold(r.get("citta"))==source_city and _unambiguous_day(r)==weekday
+        if fold(r.get("citta"))==source_city and _weekly_day(r)==weekday
         and safe_stored_street(r.get("indirizzo"))
     }
     return stored
@@ -174,12 +226,20 @@ def select_pages(markets, *, today=None, limit=MAX_REQUESTS_PER_RUN):
         url=row.get("url_fonte")
         if (row.get("fonte")==PUBLISHER and _valid_page_url(url)
             and same_generic_venue(row)
-            and _unambiguous_day(row) is not None
-            and _eligible_field(row)):
+            and _weekly_day(row) is not None
+            and _eligible_field(row) and _catalog_geography_matches(row,url)):
             totals[url]+=1
     if not totals:
         return []
-    ranked=[url for url,count in sorted(totals.items(),key=lambda kv:(-kv[1],kv[0]))]
+    # Do not spend two slots on old/canonical aliases of the same province.
+    by_province=defaultdict(list)
+    for url,count in totals.items():
+        by_province[province_page_key(url)].append((url,count))
+    ranked=[]
+    for aliases in by_province.values():
+        representative=min(aliases,key=lambda pair:(-pair[1],pair[0]))[0]
+        ranked.append((representative,sum(count for _,count in aliases)))
+    ranked=[url for url,count in sorted(ranked,key=lambda kv:(-kv[1],kv[0]))]
     start=(today.toordinal()*limit)%len(ranked)
     return [ranked[(start+i)%len(ranked)] for i in range(min(limit,len(ranked)))]
 
@@ -194,7 +254,8 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
     today=today or date.today()
     if (not isinstance(today,date) or not isinstance(base,list)
         or not 1<=len(base)<=MAX_MARKETS or not isinstance(pages,list)
-        or len(pages)>MAX_REQUESTS_PER_RUN or type(apply) is not bool):
+        or len(pages)>MAX_REQUESTS_PER_RUN or type(apply) is not bool
+        or type(rights_verified) is not bool):
         raise ValueError("Invalid publisher source batch")
     if apply and rights_verified is not True:
         raise ValueError("Cannot write publisher fields without reviewed rights")
@@ -209,15 +270,31 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
     proposals=[]
     counters=Counter()
     seen_page=set()
+    page_results=[]
     for page in pages:
+        if not isinstance(page,dict):
+            raise ValueError("Invalid publisher page evidence")
         requested=page.get("requested_url")
         final=page.get("final_url")
         blob=page.get("html")
         if (not _valid_page_url(requested) or not _valid_page_url(final)
-            or requested in seen_page or not allowed_url(requested,requested,final)):
+            or province_page_key(requested) in seen_page
+            or not allowed_url(requested,requested,final)):
             raise ValueError("Out-of-scope or repeated source page")
-        seen_page.add(requested)
-        parser=parse(blob,source_url=final)
+        seen_page.add(province_page_key(requested))
+        if not isinstance(blob,bytes) or not 300<=len(blob)<=MAX_RESPONSE_BYTES:
+            raise ValueError("Missing or unbounded reviewed weekly-index HTML")
+        page_receipt={"requested_url":requested,"final_url":final,
+                      "source_html_sha256":hashlib.sha256(blob).hexdigest()}
+        try:
+            parser=parse(blob,source_url=final)
+        except ValueError:
+            # A changed template cannot make one remaining parsed venue
+            # appear unique. Quarantine this page, preserving other pages.
+            counters["source_pages_layout_changed"]+=1
+            page_results.append({**page_receipt,"status":"layout_changed"})
+            continue
+        page_results.append({**page_receipt,"status":"parsed","source_rows":len(parser.rows)})
         source=defaultdict(list)
         for entry in parser.rows:
             source[(entry["city_key"],entry["weekday"])].append(entry)
@@ -227,9 +304,18 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
             same_generic_venue(r) and
             allowed_url(r.get("url_fonte"),requested,final)
         ]
+        # Town-detail URLs can contain a conflicting saved street even when
+        # the empty target points to a provincial index. Do not hide that
+        # contradiction by considering only the target URL's cohort.
+        geographic_cohort=[r for r in base if r.get("fonte")==PUBLISHER
+                           and same_generic_venue(r)
+                           and _catalog_geography_matches(r,final)]
         groups=defaultdict(list)
         for record in matched:
-            day=_unambiguous_day(record)
+            if not _catalog_geography_matches(record,final):
+                counters["identity_geography_unproven"]+=1
+                continue
+            day=_weekly_day(record)
             if day is None:
                 counters["identity_weekday_unproven"]+=1
                 continue
@@ -243,7 +329,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
             if not safe_stored_street(street):
                 counters["publisher_only_vague_or_area_location"]+=len(matching_rows)
                 continue
-            known=_blocked_source_cohort(matching_rows,*pair)
+            known=_blocked_source_cohort(geographic_cohort,*pair)
             if known and known!={fold(street)}:
                 counters["conflicting_previously_saved_location"]+=len(matching_rows)
                 continue
@@ -258,6 +344,10 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                     "candidate_value":street,
                     "source_url":final,
                     "source_requested_url":requested,
+                    "source_html_sha256":page_receipt["source_html_sha256"],
+                    "source_city":row["citta"],
+                    "source_province":row["provincia"],
+                    "source_region":row["regione"],
                     "evidence_method":"publisher_weekday_index_unique_city_and_day_no_conflicting_street",
                     "source_day":pair[1],
                     "observed_at":today.isoformat(),
@@ -310,6 +400,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
     report={
         "schema":SCHEMA,"date":today.isoformat(),
         "publisher":PUBLISHER,"pages_evaluated":len(pages),
+        "source_pages":page_results,
         "market_ids_before":len(base),"market_ids_after":len(updated),
         "parser_counts":dict(sorted(counters.items())),
         "field_candidates":len(proposals),"field_changes":len(changes),
@@ -329,17 +420,22 @@ def fetch_pages(urls, *, permission_confirmed=False,
         raise ValueError("No automated fetch without explicit publisher-rights approval")
     if not isinstance(urls,list) or not 1<=len(urls)<=MAX_REQUESTS_PER_RUN:
         raise ValueError("Publisher requests exceed max pages per run")
-    if len(set(urls))!=len(urls) or any(not _valid_page_url(u) for u in urls):
+    if (any(not _valid_page_url(u) for u in urls)
+            or len({province_page_key(u) for u in urls})!=len(urls)):
         raise ValueError("Publisher URL not from an approved weekly-index family")
     robots=robots_allowed(robots_fetch)
+    delay=_request_pause(robots)
     result=[]
     for i,url in enumerate(urls):
         if not robots.can_fetch(USER_AGENT,url):
             raise ValueError("Publisher robots policy denied requested weekly index")
-        if i:sleep(MIN_REQUEST_PAUSE_SECONDS)
-        raw,canonical=page_fetch(url)
+        # Respect spacing from robots.txt too, including redirects.
+        sleep(delay)
+        raw,canonical=page_fetch(url,robots=robots)
         if not allowed_url(url,url,canonical):
             raise ValueError("Publisher redirected to a different market region")
+        if not robots.can_fetch(USER_AGENT,canonical):
+            raise ValueError("Publisher robots policy denied redirected weekly index")
         result.append({"requested_url":url,"final_url":canonical,"html":raw})
     return result
 
@@ -354,12 +450,49 @@ def safe_report(report,base):
             "market_openings_verified","new_geographic_points",
             "source_primary_links_replaced"))):
         raise ValueError("Publisher data release exceeded allowed source fields")
+    by_id={row["slug"]:row for row in base}
+    proposals=report.get("proposals",[])
+    page_receipts=report.get("source_pages",[])
+    if (len(by_id)!=len(base)
+            or len(page_receipts)!=report.get("pages_evaluated")
+            or len({p.get("market_id") for p in proposals})!=len(proposals)
+            or len(set(report.get("changed_ids",[])))!=report.get("field_changes")):
+        raise ValueError("Publisher report has repeated or missing evidence identities")
+    observed={}
+    for page in page_receipts:
+        key=(page.get("requested_url"),page.get("final_url"))
+        digest=page.get("source_html_sha256")
+        if (not allowed_url(key[0],key[0],key[1]) or key in observed
+                or not isinstance(digest,str) or not re.fullmatch(r"[0-9a-f]{64}",digest)
+                or page.get("status") not in {"parsed","layout_changed"}):
+            raise ValueError("Publisher report has invalid source page evidence")
+        observed[key]=page
     for p in report["proposals"]:
         if (p.get("field")!="indirizzo"
             or p.get("individually_confirmed") is not False
             or p.get("published_opening_verified") is not False
             or p.get("coordinate_added") is not False):
             raise ValueError("Publisher proposal falsely claims a checked opening")
+        target=by_id.get(p.get("market_id"))
+        source=observed.get((p.get("source_requested_url"),p.get("source_url")))
+        if (not target or not _eligible_field(target)
+                or not allowed_url(target.get("url_fonte"),p.get("source_requested_url"),p.get("source_url"))
+                or not _catalog_geography_matches(target,p.get("source_url"))
+                or not source or source["status"]!="parsed"
+                or p.get("source_html_sha256")!=source["source_html_sha256"]
+                or not safe_stored_street(p.get("candidate_value"))
+                or p.get("old_value")!=""
+                or p.get("source_city")!=target.get("citta")
+                or p.get("source_province")!=target.get("provincia")
+                or p.get("source_region")!=target.get("regione")
+                or p.get("source_day")!=_weekly_day(target)
+                or type(p.get("rights_gate_passed")) is not bool
+                or type(p.get("apply_authorized")) is not bool
+                or (p["apply_authorized"] and not p["rights_gate_passed"])):
+            raise ValueError("Publisher proposal lost its exact source and target evidence")
+    authorized={p["market_id"] for p in proposals if p["apply_authorized"]}
+    if authorized!=set(report["changed_ids"]):
+        raise ValueError("Publisher changes do not match explicitly authorized proposals")
     return True
 
 
@@ -372,6 +505,7 @@ def summarize(report):
         "field_candidates":report["field_candidates"],
         "field_changes":report["field_changes"],
         "parser_counts":report["parser_counts"],
+        "source_pages":report.get("source_pages",[]),
         "verified_market_openings_created":0,
         "geocoded_market_locations_created":0,
         "unapproved_publisher_field_overwrites":0,

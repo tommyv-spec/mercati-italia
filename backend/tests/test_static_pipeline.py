@@ -185,6 +185,45 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(len(cleaned), 2)
         self.assertEqual(stats["same_source_duplicates_merged"], 0)
 
+    def test_address_enrichment_preserves_both_bookmarks_through_static_export(self):
+        from merge_catalog import load_existing
+        source = "https://www.happings.com/it/mercati-settimanali-a-venezia.html"
+        first = market(
+            slug="mercato-settimanale-a-spinea-spinea-mercoledi",
+            nome="Mercato settimanale a Spinea", citta="Spinea",
+            regione="Veneto", provincia="VE", fonte="happings.com",
+            indirizzo="Villaggio dei Fiori", url_fonte=source,
+            ricorrenza_testo="settimanale - mercoledì", date=["2026-10-14"],
+        )
+        second = {**first, "slug":"mercato-settimanale-di-spinea-spinea-mercoledi",
+                  "nome":"Mercato settimanale di Spinea"}
+        # A filled address makes the two legacy names mergeable. Either ID
+        # can be the protected enrichment target, in either input order.
+        self.assertEqual(len(prepare([first, second], self.today)[0]), 1)
+        for protected in ({first["slug"]}, {second["slug"]}):
+            for records in ([first, second], [second, first]):
+                with self.subTest(protected=protected, first=records[0]["slug"]):
+                    with tempfile.TemporaryDirectory() as folder:
+                        out = Path(folder)/"public/data/v1"
+                        result = export(records, out, self.today, preserve_ids=protected)
+                        saved = load_existing(out/"manifest.json")
+                    self.assertEqual({row["slug"] for row in saved},
+                                     {first["slug"], second["slug"]})
+                    self.assertEqual(result["stats"]["same_source_duplicates_merged"], 0)
+                    self.assertTrue(all(row["indirizzo"] == "Villaggio dei Fiori" for row in saved))
+
+    def test_protected_ids_cannot_be_filtered_renamed_or_repeated(self):
+        for records, protected in (
+            ([market(status="annullato")], {"mercato-centro-roma"}),
+            ([market(slug="Bad ID")], {"Bad ID"}),
+            ([market(), market()], {"mercato-centro-roma"}),
+            ([market()], {"missing-id"}),
+        ):
+            with self.subTest(protected=protected), self.assertRaisesRegex(ValueError, "protected"):
+                prepare(records, self.today, preserve_ids=protected)
+        with self.assertRaisesRegex(ValueError, "set of nonempty"):
+            prepare([market()], self.today, preserve_ids="mercato-centro-roma")
+
     def test_distinct_lombardia_publisher_ids_same_street_day_never_merge(self):
         first = market(
             slug="lo-mercap-100551-venerdi",

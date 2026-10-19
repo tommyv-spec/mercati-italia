@@ -35,15 +35,22 @@ MAX_PUBLISHER_ITEMS=2200
 MAX_CATALOG=100_000
 MAX_EXAMPLES=40
 WEEKDAYS=("lunedi","martedi","mercoledi","giovedi","venerdi","sabato","domenica")
-RAW_ITEM=re.compile(r"^\s*a\s+(.{2,120}?),\s+in\s+(.{3,240})\s*$",re.I)
+RAW_ITEM=re.compile(r"^\s*ad?\s+(.{2,120}?),\s+in\s+(.{3,240})\s*$",re.I)
 DAY_PARTS={
     "mattina":"morning_not_clock_hours",
+    "mattino":"morning_not_clock_hours",
     "pomeriggio":"afternoon_not_clock_hours",
     "sera":"evening_not_clock_hours",
 }
 SOURCE_ORIGIN="www.happings.com"
 VENICE_OLD="https://www.happings.com/it/mercati-settimanali-a-venezia.html"
 VENICE_NEW="https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/"
+PROVINCE_PAGE_PATH=re.compile(
+    r"/it/mercati-settimanali-(?:a|ad)-"
+    r"(?P<province>[a-z0-9]+(?:-[a-z0-9]+)*?)(?:\.html|-e-provincia/)$"
+)
+VOID_TAGS=frozenset(("area","base","br","col","embed","hr","img",
+                     "input","link","meta","param","source","track","wbr"))
 
 
 def fold(text):
@@ -52,15 +59,27 @@ def fold(text):
         c for c in n if not unicodedata.combining(c)).lower()))
 
 
-def _valid_page_url(url):
+def province_page_key(url):
+    """Return a syntactic province key, not proof a redirect actually occurred.
+
+    Only historic a-/ad- .html listings and the reviewed -e-provincia/
+    layout are in scope. Callers retain both observed URLs; this function
+    neither creates a canonical URL nor admits individual town details.
+    """
     try:
         p=urlsplit(str(url or ""))
-        return (p.scheme=="https" and p.hostname==SOURCE_ORIGIN
-                and not p.username and not p.password and p.port in (None,443)
-                and not p.query and not p.fragment
-                and bool(re.fullmatch(r"/it/mercati-settimanali-a-[a-z0-9-]+(?:\.html|/)",p.path)))
+        if (p.scheme!="https" or p.hostname!=SOURCE_ORIGIN
+                or p.username or p.password or p.port not in (None,443)
+                or p.query or p.fragment):
+            return None
+        match=PROVINCE_PAGE_PATH.fullmatch(p.path)
+        return match.group("province") if match else None
     except ValueError:
-        return False
+        return None
+
+
+def _valid_page_url(url):
+    return province_page_key(url) is not None
 
 
 def _weekday_heading(value):
@@ -75,14 +94,17 @@ def _weekday_heading(value):
 class WeeklyIndexParser(HTMLParser):
     """Only one reviewed HTML structure: .happings-seo-content h3 + ul>li."""
 
-    def __init__(self):
+    def __init__(self,source_province=None):
         super().__init__(convert_charrefs=True)
         self.stack=[]
         self.current_weekday=None
+        self.source_province=fold(source_province)
         self.rows=[]
         self.weekday_headings=[]
         self.seo_blocks=0
         self.total_li=0
+        self.unparsed_listing_items=0
+        self.unknown_weekday_headings=0
 
     def _in_listing(self):
         return any("happings-seo-content" in frame["classes"] for frame in self.stack)
@@ -91,19 +113,41 @@ class WeeklyIndexParser(HTMLParser):
         klass=frozenset(str(dict(attrs).get("class") or "").split())
         if "happings-seo-content" in klass:
             self.seo_blocks+=1
+            self.current_weekday=None
+        in_listing=self._in_listing()
+        if in_listing and tag in ("h1","h2","h3","h4","h5","h6"):
+            self.current_weekday=None
         if tag=="li" and self._in_listing():
             self.total_li+=1
+            if self.total_li>MAX_PUBLISHER_ITEMS:
+                raise ValueError("Weekly HTML contains an excessive number of source rows")
+        if tag in ("ul","ol","li","h1","h2","h3","h4","h5","h6"):
+            for frame in self.stack:
+                if frame["listing_row"]:
+                    frame["unreviewed_children"]=True
+        if tag in VOID_TAGS:
+            return
+        listing_row=(tag=="li" and in_listing and bool(self.stack)
+                     and self.stack[-1]["tag"]=="ul"
+                     and not any(frame["tag"]=="li" for frame in self.stack))
         self.stack.append({"tag":tag,"classes":klass,
                            "text":[] if tag in ("h3","li") else None,
-                           "in_listing":self._in_listing()})
+                           "text_truncated":False,
+                           "unreviewed_children":False,
+                           "listing_row":listing_row,
+                           "weekday":self.current_weekday,
+                           "in_listing":in_listing})
 
     def handle_data(self,data):
         text=" ".join(data.split())
         if not text:
             return
         for frame in self.stack:
-            if frame["text"] is not None and len(frame["text"])<70:
-                frame["text"].append(text[:370])
+            if frame["text"] is not None:
+                if len(frame["text"])>=70 or len(text)>370:
+                    frame["text_truncated"]=True
+                if len(frame["text"])<70:
+                    frame["text"].append(text[:370])
 
     def handle_endtag(self,tag):
         idx=next((i for i in range(len(self.stack)-1,-1,-1)
@@ -112,20 +156,33 @@ class WeeklyIndexParser(HTMLParser):
             return
         while len(self.stack)>idx:
             frame=self.stack.pop()
+            if "happings-seo-content" in frame["classes"]:
+                self.current_weekday=None
             if not frame["in_listing"]:
                 continue
             data=" ".join(frame["text"] or []).strip()
             if frame["tag"]=="h3":
-                day=_weekday_heading(data)
+                day=None if frame["text_truncated"] else _weekday_heading(data)
                 # A changed/unrecognized weekday heading is not inherited
                 # from the previous section; fail closed to prevent assigning
                 # Thursday's items to Wednesday.
                 self.current_weekday=day
                 if day is not None:
+                    # An explicit province in the reviewed heading is also
+                    # evidence: a URL alone must not mask a wrong HTML file.
+                    scope=re.search(r"\bnei comuni di (.+)$",fold(data))
+                    if (scope and self.source_province
+                            and scope.group(1)!=self.source_province):
+                        raise ValueError("Publisher weekday heading crossed province")
                     self.weekday_headings.append(day)
-            elif frame["tag"]=="li" and self.current_weekday is not None:
-                match=RAW_ITEM.fullmatch(data)
+                elif re.match(r"mercati (?:del|della)\b",fold(data)):
+                    self.unknown_weekday_headings+=1
+            elif frame["tag"]=="li" and frame["weekday"] is not None:
+                match=(None if not frame["listing_row"] or frame["text_truncated"]
+                       or frame["unreviewed_children"]
+                       else RAW_ITEM.fullmatch(data))
                 if not match:
+                    self.unparsed_listing_items+=1
                     continue
                 city,place=match.groups()
                 suffix=re.search(r"\s*\((la mattina|il mattino|al mattino|il pomeriggio|la sera)\)\s*$",
@@ -136,11 +193,12 @@ class WeeklyIndexParser(HTMLParser):
                     daypart=next((v for token,v in DAY_PARTS.items() if token in folded),None)
                     place=place[:suffix.start()].strip()
                 if not 2<=len(city.strip())<=120 or not 3<=len(place)<=240:
+                    self.unparsed_listing_items+=1
                     continue
                 self.rows.append({
                     "city":city.strip(),
                     "city_key":fold(city),
-                    "weekday":self.current_weekday,
+                    "weekday":frame["weekday"],
                     "place":place,
                     "location_indicated":True,
                     "daypart":daypart,
@@ -156,9 +214,16 @@ def parse(html_bytes,*,source_url):
     if (not isinstance(html_bytes,bytes) or
             not 300<=len(html_bytes)<=MAX_HTML_BYTES):
         raise ValueError("Missing or unbounded reviewed weekly-index HTML")
-    parser=WeeklyIndexParser()
+    parser=WeeklyIndexParser(source_province=province_page_key(source_url))
     parser.feed(html_bytes.decode("utf-8-sig",errors="replace"))
     parser.close()
+    incomplete_listing=any("happings-seo-content" in frame["classes"]
+                           for frame in parser.stack)
+    if (parser.unparsed_listing_items or parser.unknown_weekday_headings
+            or incomplete_listing):
+        # Silently dropping a second venue makes the first falsely unique.
+        # Quarantine this page until its changed layout has been reviewed.
+        raise ValueError("Publisher weekday layout has unparsed listing items or headings, or is incomplete")
     if not parser.seo_blocks or not parser.weekday_headings or not parser.rows:
         raise ValueError("Publisher HTML no longer matches the reviewed day/venue layout")
     return parser
@@ -173,14 +238,8 @@ def _origins_equivalent(record_url,source_url):
     Both URLs must be valid HTTPS weekly INDEX pages of this exact host;
     city-level detail URLs are not admitted as equivalent by guessing.
     """
-    if not _valid_page_url(record_url) or not _valid_page_url(source_url):
-        return False
-
-    def base(url):
-        path=urlsplit(url).path
-        return re.sub(r"(?:-e-provincia/|\.html)$","",path)
-
-    return base(record_url)==base(source_url)
+    record_key=province_page_key(record_url)
+    return record_key is not None and record_key==province_page_key(source_url)
 
 
 def compare_saved_markets(original_rows,html_bytes,*,source_url,today=None):

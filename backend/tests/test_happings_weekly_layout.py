@@ -8,7 +8,8 @@ from datetime import date
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from happings_weekly_layout import (
-    VENICE_NEW, VENICE_OLD, MAX_HTML_BYTES, parse, compare_saved_markets, verify
+    VENICE_NEW, VENICE_OLD, MAX_HTML_BYTES, parse, compare_saved_markets, verify,
+    province_page_key, _origins_equivalent,
 )
 
 TODAY=date(2026,10,19)
@@ -88,7 +89,6 @@ class HappingsOfflineLayoutTests(unittest.TestCase):
         self.assertFalse(result["source_scraping_permitted_by_this_audit"])
 
     def test_all_province_redirects_resolve_old_source_urls_not_just_venice(self):
-        from happings_weekly_layout import _origins_equivalent
         modena_old="https://www.happings.com/it/mercati-settimanali-a-modena.html"
         modena_new="https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/"
         padova_new="https://www.happings.com/it/mercati-settimanali-a-padova-e-provincia/"
@@ -109,6 +109,111 @@ class HappingsOfflineLayoutTests(unittest.TestCase):
         self.assertEqual(record["counts"]["same_publisher_page_catalog_rows"],1)
         self.assertEqual(record["counts"]["saved_market_missing_source_location"],1)
         self.assertEqual(record["catalog_fields_modified"],0)
+
+    def test_old_ad_province_family_has_a_syntactic_key_without_inventing_redirects(self):
+        # These ten old ad- URLs are present in the stored catalog. Pairing
+        # synthetic URLs here proves normalization, never a live redirect.
+        for province in ("agrigento","ancona","aosta","arezzo","asti",
+                         "avellino","enna","imperia","isernia","oristano"):
+            old=f"https://www.happings.com/it/mercati-settimanali-ad-{province}.html"
+            canonical=f"https://www.happings.com/it/mercati-settimanali-a-{province}-e-provincia/"
+            with self.subTest(province=province):
+                self.assertEqual(province_page_key(old),province)
+                self.assertEqual(province_page_key(canonical),province)
+                self.assertTrue(_origins_equivalent(old,canonical))
+                self.assertFalse(_origins_equivalent(old,VENICE_NEW))
+        old="https://www.happings.com/it/mercati-settimanali-ad-ancona.html"
+        fixture=HTML.replace(b"Venezia",b"Ancona").replace(b"Spinea",b"Agugliano")
+        original=[market("agugliano-mercoledi",city="Agugliano",url=old)]
+        report=compare_saved_markets(original,fixture,source_url=old,today=TODAY)
+        self.assertEqual(report["matching_legacy_market_records"],1)
+        self.assertEqual(report["counts"]["saved_market_missing_source_location"],1)
+
+    def test_scope_key_rejects_unreviewed_paths_and_foreign_origins(self):
+        for url in (
+            "https://www.happings.com/it/mercati-settimanali-ad-ancona/",
+            "https://www.happings.com/it/mercato-settimanale-a-ancona.html",
+            "https://www.happings.com/it/mercati-settimanali-a-.html",
+            "https://www.happings.com/it/mercati-settimanali-a--ancona.html",
+            "https://www.happings.com/it/mercati-settimanali-ad-ancona.html?x=1",
+            "https://www.happings.com/it/mercati-settimanali-ad-ancona.html#section",
+            "https://www.happings.com:444/it/mercati-settimanali-ad-ancona.html",
+            "http://www.happings.com/it/mercati-settimanali-ad-ancona.html",
+            "https://evil.example/it/mercati-settimanali-ad-ancona.html",
+        ):
+            with self.subTest(url=url):
+                self.assertIsNone(province_page_key(url))
+                self.assertFalse(_origins_equivalent(url,url))
+
+    def test_changed_block_or_heading_never_inherits_previous_weekday(self):
+        first=(b'<div class="happings-seo-content">'
+               b'<h3>Mercati del mercoledi nei comuni di Venezia</h3>'
+               b'<ul><li>a Dolo, in Piazza San Valentino (la mattina)</li></ul>')
+        for boundary in (
+            b'</div><div class="happings-seo-content">',
+            b'<h2>Mercati straordinari</h2>',
+            b'<h3>Altre informazioni per visitatori</h3>',
+        ):
+            with self.subTest(boundary=boundary):
+                fixture=(b'<html><body>'+first+boundary+
+                         b'<ul><li>a Spinea, in Via Roma (la mattina)</li></ul>'
+                         b'</div></body></html>')
+                fixture=fixture.ljust(300,b' ')
+                parsed=parse(fixture,source_url=VENICE_NEW)
+                self.assertEqual([(r["city"],r["weekday"]) for r in parsed.rows],[("Dolo",2)])
+                report=compare_saved_markets([market("spinea-mercoledi")],fixture,
+                                            source_url=VENICE_NEW,today=TODAY)
+                self.assertEqual(report["counts"]["no_matching_city_day_on_page"],1)
+
+    def test_changed_ordered_list_cannot_be_skipped_or_joined_to_weekday(self):
+        fixture=HTML.replace(
+            b'<li>a Dolo, in Piazza San Valentino (la mattina)</li>',
+            b'</ul><ol><li>a Dolo, in Piazza San Valentino (la mattina)</li></ol><ul>',
+        )
+        with self.assertRaisesRegex(ValueError,"unparsed listing items"):
+            parse(fixture,source_url=VENICE_NEW)
+
+    def test_ad_town_item_keeps_a_second_venue_ambiguous(self):
+        fixture=HTML.replace(
+            b'<li>a Dolo, in Piazza San Valentino (la mattina)</li>',
+            b'<li>ad Agugliano, in Via Roma (il mattino)</li>',
+        ).replace(b'Spinea',b'Agugliano')
+        parsed=parse(fixture,source_url=VENICE_NEW)
+        venues=[r for r in parsed.rows if r["city"]=="Agugliano" and r["weekday"]==2]
+        self.assertEqual(len(venues),2)
+        self.assertTrue(all(r["daypart"]=="morning_not_clock_hours" for r in venues))
+        report=compare_saved_markets([market("agugliano-mercoledi",city="Agugliano")],
+                                    fixture,source_url=VENICE_NEW,today=TODAY)
+        self.assertEqual(report["counts"]["more_than_one_source_venue_on_city_day"],1)
+        self.assertEqual(report["counts"].get("saved_market_missing_source_location",0),0)
+
+    def test_unparsed_second_venue_cannot_make_first_venue_falsely_unique(self):
+        for changed_item in (
+            b'<li>a Spinea, Piazza Roma (la mattina)</li>',
+            b'<li>a Spinea, in Piazza Roma<ul><li>Seconda sede</li></ul></li>',
+        ):
+            with self.subTest(item=changed_item):
+                fixture=HTML.replace(
+                    b'<li>a Dolo, in Piazza San Valentino (la mattina)</li>',changed_item)
+                with self.assertRaisesRegex(ValueError,"unparsed listing items"):
+                    compare_saved_markets([market("spinea-mercoledi")],fixture,
+                                          source_url=VENICE_NEW,today=TODAY)
+
+    def test_ambiguous_heading_or_incomplete_listing_is_quarantined(self):
+        changed=HTML.replace(b'Mercati del sabato',b'Mercati del sabato e della domenica')
+        with self.assertRaisesRegex(ValueError,"unparsed listing items or headings"):
+            parse(changed,source_url=VENICE_NEW)
+        incomplete=HTML[:HTML.index(b'  <h3>Mercati del sabato')]
+        with self.assertRaisesRegex(ValueError,"incomplete"):
+            parse(incomplete,source_url=VENICE_NEW)
+
+    def test_explicit_heading_province_must_match_observed_source_url(self):
+        with self.assertRaisesRegex(ValueError,"heading crossed province"):
+            parse(HTML,source_url="https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/")
+        # Apostrophes and hyphens normalize without guessing a different town.
+        aquila=HTML.replace(b'Venezia',b"L'Aquila")
+        self.assertEqual(len(parse(aquila,source_url=
+            "https://www.happings.com/it/mercati-settimanali-a-l-aquila.html").rows),5)
 
     def test_multiple_venues_same_city_day_cannot_assign_address(self):
         extra=HTML.replace(
