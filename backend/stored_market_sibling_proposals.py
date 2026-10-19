@@ -54,13 +54,13 @@ def publisher_url_family(url):
             return "unreviewed_origin_or_query"
     except ValueError:
         return "unreviewed_origin_or_query"
-    if re.fullmatch(r"/it/mercati-settimanali-a-[a-z0-9-]+\\.html",p.path):
+    if re.fullmatch(r"/it/mercati-settimanali-a-[a-z0-9-]+\.html",p.path):
         return "province_index_old_a"
-    if re.fullmatch(r"/it/mercati-settimanali-ad-[a-z0-9-]+\\.html",p.path):
+    if re.fullmatch(r"/it/mercati-settimanali-ad-[a-z0-9-]+\.html",p.path):
         return "province_index_old_ad"
     if re.fullmatch(r"/it/mercati-settimanali-a-[a-z0-9-]+-e-provincia/",p.path):
         return "province_index_canonical"
-    if re.fullmatch(r"/it/mercato-settimanale-a-[a-z0-9-]+\\.html",p.path):
+    if re.fullmatch(r"/it/mercato-settimanale-a-[a-z0-9-]+\.html",p.path):
         return "town_detail_legacy"
     return "other_historical_layout"
 
