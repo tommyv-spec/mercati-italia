@@ -165,9 +165,22 @@ def parse(html_bytes,*,source_url):
 
 
 def _origins_equivalent(record_url,source_url):
-    if record_url==source_url:
-        return True
-    return ({record_url,source_url}=={VENICE_OLD,VENICE_NEW})
+    """Scope-normalized Happings old .html vs current province listing URL.
+
+    Happings moved multiple historic ...a-{province}.html indexes to the
+    canonical ...a-{province}-e-provincia/ format. Earlier QA recognized
+    ONLY Venezia, wrongly reporting other provinces as zero matching rows.
+    Both URLs must be valid HTTPS weekly INDEX pages of this exact host;
+    city-level detail URLs are not admitted as equivalent by guessing.
+    """
+    if not _valid_page_url(record_url) or not _valid_page_url(source_url):
+        return False
+
+    def base(url):
+        path=urlsplit(url).path
+        return re.sub(r"(?:-e-provincia/|\\.html)$","",path)
+
+    return base(record_url)==base(source_url)
 
 
 def compare_saved_markets(original_rows,html_bytes,*,source_url,today=None):
