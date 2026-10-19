@@ -1,16 +1,10 @@
-# Read-only, manually observed official-source enrichment candidate audit.
+# Historical, read-only audit before enabling official-source enrichment.
+# Manual only; inapplicable when enrichment is already enabled in the policy.
 # Do not publish to DEV/main or live. Only exact venue/day and compatible geo.
 name: Official source enrichment — full dry-run (no publish)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - improve/data-quality-security-performance-2026-10-11
-    paths:
-      - .github/workflows/official-enrichment-audit.yml
-      - backend/official_enrichment.py
-      - backend/tests/test_official_enrichment.py
 
 permissions:
   contents: read

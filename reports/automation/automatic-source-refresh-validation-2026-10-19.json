@@ -13,6 +13,32 @@
   "checks": {
     "bundled_map_worker_passed": true,
     "final_city_guard_passed": true,
+    "github": {
+      "dev_preview_build": {
+        "conclusion": "success",
+        "url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39276308725"
+      },
+      "historical_pre_activation_audit": {
+        "conclusion": "failure",
+        "reason": "Audit requires enrichment.enabled=false before first activation; policy was already enabled before PR #59.",
+        "resolution": "Retain historical workflow and its guards as manual-only; current Quality and Autopilot gates are unchanged.",
+        "url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39276308686"
+      },
+      "mobile_smoke": {
+        "conclusion": "success",
+        "url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39276308731"
+      },
+      "pr": "https://github.com/tommyv-spec/mercati-italia/pull/59",
+      "quality": {
+        "conclusion": "success",
+        "url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39276308738"
+      },
+      "reviewed_city_guard": {
+        "conclusion": "success",
+        "url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39276308737"
+      },
+      "tested_merge_commit": "807c539832d057048a67e3d56694e26302e6fca0"
+    },
     "history_guard_passed": true,
     "live_page_fetch_in_this_runtime": "held on DNS failure; original saved page bytes used for replay",
     "mobile_local": "unavailable: browser archive download incomplete; existing CI mobile workflow retained",
