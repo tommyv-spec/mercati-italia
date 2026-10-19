@@ -1,12 +1,12 @@
 {
-  "catalog_count": 13820,
+  "catalog_count": 13824,
   "checked_source_profiles": 2,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-10-18",
+  "reference_date": "2026-10-19",
   "registry_sha256": "b383fc4bf89d37531e54eeb813e9a22ea5da7bea2dad48c6d3ebb9418667f64d",
   "schema": 1,
   "source_checks": {
@@ -16,13 +16,13 @@
   "source_contract_schema": 1,
   "sources": {
     "bologna-generic-venues": {
-      "catalog_records_compared": 13820,
+      "catalog_records_compared": 13824,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
-        "already_in_catalog_exact_source_id": 35,
+        "already_in_catalog_exact_source_id": 39,
         "distinct_market_identities": 48,
-        "identity_not_in_existing_catalog": 13,
+        "identity_not_in_existing_catalog": 9,
         "needs_review_schedule_unknown": 13,
         "needs_review_source_old_no_future_forecast": 35,
         "not_a_market_venue": 31,
@@ -50,22 +50,7 @@
         {
           "publication_permission": "none",
           "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "0e30fce3216fbd4c"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "1ed2c4b41f12a30c"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
           "stable_identity_hash": "da320e3c3b320d24"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "de72bb8c6fb7d6f4"
         },
         {
           "publication_permission": "none",
@@ -86,6 +71,16 @@
           "publication_permission": "none",
           "review_state": "source_level_new_candidate",
           "stable_identity_hash": "b9d74e9ce4514bdc"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "87f00be936df409e"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "4bdc79f44a6f9987"
         }
       ],
       "existing_record_ids_deleted": 0,
@@ -146,7 +141,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "652c17986b46a1d11956edfb6cb00e8ad13f03eb54434c8485d5acf03565691d",
       "publisher": "Comune di Bologna",
-      "publisher_data_age_days": 564,
+      "publisher_data_age_days": 565,
       "publisher_dataset_date": "2025-04-02",
       "review_required": true,
       "row_kind": "market_venue",
@@ -157,15 +152,14 @@
       "source_schema_columns_sha256": "d9ffe7fa29cd5cf5d3f933b16a8c0ca46f526dcc8958ae55529f61d84675b424",
       "source_snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
       "source_stage": {
-        "base_catalog_records": 13820,
+        "base_catalog_records": 13824,
         "counts": {
-          "already_in_catalog_exact_source_id": 35,
+          "already_in_catalog_exact_source_id": 39,
           "informational_schedule_unknown": 12,
           "informational_source_old_no_future_forecast": 29,
           "publisher_distinct_address_count": 45,
           "raw_rows_scanned": 79,
-          "source_market_identities": 41,
-          "source_only_unambiguous_candidate_not_verified_event": 4
+          "source_market_identities": 41
         },
         "directions_enabled": 0,
         "examples_hashed": [
@@ -194,7 +188,7 @@
           "temporary_location_unreconciled": 1,
           "venue_at_same_street_day": 2
         },
-        "safe_candidates_not_published": 4,
+        "safe_candidates_not_published": 0,
         "schema": 1,
         "source_id": "bologna-generic-venues",
         "source_kind": "market_venue",
@@ -207,7 +201,7 @@
       "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento"
     },
     "corciano-generic-shadow": {
-      "catalog_records_compared": 13820,
+      "catalog_records_compared": 13824,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -249,7 +243,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
       "publisher": "Comune di Corciano",
-      "publisher_data_age_days": 284,
+      "publisher_data_age_days": 285,
       "publisher_dataset_date": "2026-01-07",
       "review_required": true,
       "row_kind": "market_venue",
@@ -260,7 +254,7 @@
       "source_schema_columns_sha256": "2afea7e535523faf2cb891263244e6c9c0d08f728788bb158f320676b9ae5fb7",
       "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
       "source_stage": {
-        "base_catalog_records": 13820,
+        "base_catalog_records": 13824,
         "counts": {
           "already_in_catalog_exact_source_id": 2,
           "publisher_distinct_address_count": 4,
