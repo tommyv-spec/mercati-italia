@@ -4,6 +4,7 @@
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { isSuspiciousCityName, safeCityLabel } from '../lib/locationQuality'
+import { fieldEvidenceSummary } from '../lib/fieldEvidence'
 import {
   fetchMarkets, fetchMarketById, getFavorites, revalidateCatalogIfStale,
   toggleFavorite as apiToggleFavorite, getDataMode,
@@ -50,7 +51,7 @@ function adaptMarket(m, userLat, userLng) {
     source: m.fonte || '',
     confidence: m.confidence ?? 0,
     dataCompleteness: m.completezza ?? 0,
-    sourceUpdated: m.aggiornato_il ? m.aggiornato_il.slice(0, 10) : '',
+    sourceUpdated: m.fonte_aggiornata_il ? m.fonte_aggiornata_il.slice(0, 10) : '',
     sourceUpdateScope: m.aggiornamento_ambito || '',
     // Last scrape is not a human confirmation.
     lastVerified: m.verificato_il ? m.verificato_il.slice(0, 10) : '',
@@ -61,6 +62,8 @@ function adaptMarket(m, userLat, userLng) {
     // Full source list arrives only with lazy-loaded regional detail JSON.
     // The nationwide compact index remains unchanged and cheap to fetch.
     sourceEvidence: Array.isArray(m.fonti) ? m.fonti.filter(s => s && s.url && s.nome) : [],
+    fieldEvidence: fieldEvidenceSummary(m),
+    calendarExceptions: Array.isArray(m.eccezioni_calendario) ? m.eccezioni_calendario : [],
     distance: Number.isFinite(m.distance) ? m.distance : null,
   }
 }

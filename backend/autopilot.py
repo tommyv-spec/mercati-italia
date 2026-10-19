@@ -25,6 +25,11 @@ from pathlib import Path
 
 from audit_dataset import audit
 from export_static import export
+from field_evidence import attach_feed_observations, audit as audit_field_evidence
+from publisher_refresh import (run as refresh_publisher_pages,
+                               validate_contracts as validate_publisher_contracts,
+                               verify_exported as verify_publisher_page_export,
+                               catalog_resources as catalog_source_resources)
 from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import refresh_records
@@ -85,7 +90,7 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "forecast",
+          "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "publisher_pages", "forecast",
           "reviewed_publishers", "roma_geo_hold", "happings_enrichment", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
@@ -143,7 +148,8 @@ def source_feed(source_id: str, today: date):
     # sufficient proof of source quality. Verify every normalized field,
     # correct publisher, dates, GPS, and stable IDs BEFORE import.
     inspect_official_source_output(source_id, converted, today=today)
-    return converted
+    return attach_feed_observations(source_id, raw, converted,
+                                    read_on=datetime.now(timezone.utc).date().isoformat())
 
 
 def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume: bool) -> tuple[list, dict]:
@@ -614,7 +620,9 @@ def run(args):
     }
     save_json(out / "status.json", status)
     old_manifest = read_json(manifest_path)
-    policy_id = digest(policy)
+    publisher_contracts = validate_publisher_contracts(read_json(
+        Path(__file__).resolve().parent / "data/publisher-refresh-contracts.json"))
+    policy_id = digest({"policy": policy, "publisher_contracts": publisher_contracts})
     baseline_id = old_manifest.get("content_signature")
     if not baseline_id:
         raise ValueError("Baseline must have a content signature")
@@ -768,10 +776,9 @@ def run(args):
     if enrichment_policy.get("enabled") and (
             source_status.get("lombardia", {}).get("status")
             in ("retrieved","resumed_checkpoint")):
-        approved_ids = {r["slug"] for r in feeds
-                        if str(r["slug"]).startswith("lo-mercap-")}
-        held = [r for r in read_json(out / "sources" / "lombardia.json")
-                if r["slug"] not in approved_ids]
+        # Compare the full validated source: harmless punctuation variants
+        # need not have been held by the stricter overlap-import screen.
+        held = read_json(out / "sources" / "lombardia.json")
         enriched_base, enrichment_report = enrich_official_records(
             old_rows, held, source_id="lombardia-mercap", today=args.today
         )
@@ -1032,14 +1039,14 @@ def run(args):
         "source_event_confirmations":0,
     })
 
-    # Generic publisher onboarding is opt-in at DATASET level. The checked-in
-    # approval registry is empty; a new publisher requires documented legal
-    # reuse, row identity/schema review, an approved JSON certificate and
-    # separate code SHA pin. All new IDs remain unconfirmed/non-geocoded.
+    # Generic publisher contracts are approved at DATASET level. Once admitted,
+    # a stable source row can also refresh the fields assigned by this engine.
+    # The same schema, publisher and release checks apply on every later run.
     generic_admission_report={
         "schema":1,"enabled":False,"source_contracts_active":0,
         "original_market_ids":len(milano_rows),
         "candidate_market_ids":len(milano_rows),"new_market_ids":[],
+        "updated_market_ids":[],"evidence_updated_market_ids":[],
         "record_ids_deleted":0,"old_market_fields_changed":0,
         "new_market_openings_confirmed":0,"new_market_coordinates_created":0,
         "new_market_directions_enabled":0,
@@ -1060,7 +1067,8 @@ def run(args):
         before_generic=milano_rows
         milano_rows,generic_admission_report=activate_generic_source_contracts(
             read_json(profile_file),approved_registry,before_generic,
-            today=args.today,offline=args.offline
+            today=args.today,offline=args.offline,
+            source_cache=out / "sources/generic-contracts",resume=args.resume
         )
         generic_admission_report["enabled"]=True
         generic_admission_diff=verify_generic_source_admissions(
@@ -1076,12 +1084,27 @@ def run(args):
         "enabled":generic_enabled,
         "approved_source_contracts":generic_admission_report["source_contracts_active"],
         "new_market_ids":generic_admission_report["new_market_ids"],
+        "updated_market_ids":generic_admission_report.get("updated_market_ids", []),
         "market_openings_confirmed":0,
         "old_market_ids_removed":0,
     })
 
+    page_rows, page_report, page_preserve_ids = refresh_publisher_pages(
+        milano_rows, publisher_contracts, out=out, today=args.today,
+        baseline_signature=baseline_id, policy_digest=policy_id,
+        offline=args.offline, resume=args.resume,
+    )
+    save_json(out / "intermediate/publisher-page-refreshed.json", page_rows)
+    checkpoint(out, "publisher_pages", {
+        "pages_selected": len(page_report["selected_pages"]),
+        "pages_read": sum("read_on" in p for p in page_report["selected_pages"]),
+        "fields_changed": page_report["field_changes"],
+        "markets_changed": page_report["markets_with_field_changes"],
+        "conflicts": len(page_report["conflicts"]),
+    })
+
     projected, forecast_stats = refresh_records(
-        milano_rows, args.today, policy["forecast"]["days"],
+        page_rows, args.today, policy["forecast"]["days"],
         policy["forecast"]["max_source_age_days"])
     if len(projected) != (len(merged) + roma_2026_report["records_added"]
                           + len(generic_admission_report["new_market_ids"])):
@@ -1183,7 +1206,9 @@ def run(args):
     exported = export(projected, dest, today=args.today,
                       min_count=int(policy["gates"]["min_total_records"]),
                       max_drop_ratio=float(policy["gates"]["max_record_loss_fraction"]),
-                      preserve_ids=happings_preserve_ids)
+                      preserve_ids=happings_preserve_ids | page_preserve_ids |
+                          set(generic_admission_report["new_market_ids"]) |
+                          set(generic_admission_report.get("evidence_updated_market_ids", [])))
     result_manifest = read_json(dest / "manifest.json")
     checkpoint(out, "export", {
         "records": result_manifest["total"],
@@ -1224,6 +1249,16 @@ def run(args):
         save_json(out / "generic-source-admissions-static-guard.json", generic_final_proof)
     new_report = audit(dest / "manifest.json", args.today)
     new_rows = load_existing(dest / "manifest.json")
+    page_guard = verify_publisher_page_export(new_rows, page_report, today=args.today)
+    save_json(out / "publisher-refresh-static-guard.json", page_guard)
+    field_quality = audit_field_evidence(new_rows, today=args.today)
+    save_json(out / "market-field-quality.json", field_quality)
+    resources = catalog_source_resources(
+        new_rows, publisher_contracts,
+        official_urls={r.get("url_fonte", "") for r in feeds},
+        happings_enabled=happings_report["status"] not in {"disabled", "rights_blocked"},
+    )
+    save_json(out / "source-refresh-coverage.json", resources)
     happings_static_guard = verify_happings_exported(
         before_happings, projected, new_rows, happings_report, today=args.today
     )
@@ -1277,6 +1312,18 @@ def run(args):
         "field_changes": happings_report["evidence"]["field_changes"],
         "protected_existing_market_ids": len(happings_preserve_ids),
         "release_safe": happings_static_guard["release_safe"],
+    }
+    findings["field_evidence"] = {
+        "metrics": field_quality["metrics"],
+        "release_safe": page_guard["release_safe"],
+    }
+    findings["publisher_refresh"] = {
+        "selected_pages": page_report["selected_pages"],
+        "field_changes": page_report["field_changes"],
+        "markets_with_field_changes": page_report["markets_with_field_changes"],
+        "conflicts": len(page_report["conflicts"]),
+        "source_url_coverage": {k: v for k, v in resources.items() if k != "resources"},
+        "release_safe": page_guard["release_safe"],
     }
     findings["published"] = False
     if findings["approved"]:

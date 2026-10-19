@@ -24,10 +24,22 @@ from source_lifecycle import (
     parse_rows, candidate_record, canonical, digest, validate_contracts,
     weekday as source_weekday,
 )
+from field_evidence import (
+    FIELDS, as_day, clean_receipts, fingerprint as evidence_fingerprint,
+    make_receipt, managed_update_allowed, mark_managed_fields, valid_receipt,
+    retire_superseded_receipts,
+)
 
 MAX_STAGING_SOURCE_ROWS = 3000
 MAX_PROFILE_MAX_NEW = 250
 REPORT_EXAMPLES = 12
+FIELD_MANAGER = "source_contract_ingest"
+IDENTITY_FIELDS = ("nome", "citta", "regione", "provincia")
+FIELD_REVIEW_REASONS = {
+    "indirizzo": "source_address_changed",
+    "ricorrenza_testo": "source_calendar_changed",
+    "orario_testo": "source_hours_changed",
+}
 REVIEW_REASON = frozenset({
     "venue_at_same_street_day", "same_named_market_in_city",
     "generic_city_market_day", "source_identity_changed",
@@ -43,7 +55,12 @@ SAFE_PREVIEW = frozenset({
 
 
 class PublishedSourceDriftError(ValueError):
-    """An already-published source identity, calendar or hour has changed."""
+    """A source identity or a field without managed provenance has changed."""
+
+    def __init__(self, message, *, source_report=None):
+        super().__init__(message)
+        self.source_report = source_report or {}
+        self.retirements = []
 
 
 def _title(text):
@@ -72,8 +89,7 @@ def validate_format(profile):
         raise ValueError("Unreviewed presentation name prefix")
     if profile.get("row_kind") not in ("market_venue","market_venue_day"):
         raise ValueError("Administrative concessions/statistics cannot be admitted as markets")
-    # The current registry validator accepts only shadow sources. Do not
-    # broaden its release permissions via a mapping flag.
+    # Validate extraction separately from the reviewed release certificate.
     shadow=copy.deepcopy(profile)
     shadow["publication_mode"]="shadow_only"
     shadow["legal_reuse_reviewed"]=False
@@ -174,7 +190,117 @@ def _validate_existing(base):
     return {r["slug"]:r for r in base}
 
 
-def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
+def _source_values(record):
+    values = {field: record[field] for field, limit in FIELDS.items()
+              if isinstance(record.get(field), str) and record[field].strip()
+              and len(record[field]) <= limit}
+    # A parser fallback describes uncertainty, not a publisher weekday.
+    if not values.get("ricorrenza_testo", "").startswith("settimanale - "):
+        values.pop("ricorrenza_testo", None)
+    return values
+
+
+def _source_receipt(profile, record, *, read_on, parsed_sha256, values=None):
+    return make_receipt(
+        record, values=_source_values(record) if values is None else values,
+        source_url=profile["resource_url"],
+        source_name=profile["publisher"], source_id=profile["id"],
+        source_row=record["slug"], read_on=read_on,
+        source_updated_on=profile["source_dataset_date"], source_sha256=parsed_sha256,
+    )
+
+
+def _observed_row(prior, receipt, changes, *, today):
+    result = copy.deepcopy(prior)
+    for field, change in changes.items():
+        result[field] = change["after"]
+    result["riscontri_campi"] = clean_receipts(
+        [*(prior.get("riscontri_campi") or []), receipt], result, today=today)
+    for key, value in (("fonte_letta_il", receipt["letto_il"]),
+                       ("fonte_aggiornata_il", receipt["fonte_aggiornata_il"])):
+        if not as_day(result.get(key)) or (as_day(value) and as_day(value) >= as_day(result[key])):
+            result[key] = value
+    return result
+
+
+def _retired_row(prior, receipt, *, today):
+    result=copy.deepcopy(prior)
+    result["riscontri_campi"]=retire_superseded_receipts(prior,receipt,today=today)
+    if not as_day(result.get("fonte_letta_il")) or as_day(receipt["letto_il"]) >= as_day(result["fonte_letta_il"]):
+        result["fonte_letta_il"]=receipt["letto_il"]
+    return result
+
+
+def _update_proof(prior, receipt, changes, *, today, retire=False):
+    result = (_retired_row(prior,receipt,today=today) if retire
+              else _observed_row(prior, receipt, changes, today=today))
+    return result, {
+        "slug": prior["slug"], "changed_fields": changes, "action":"retire" if retire else "observe",
+        "before_sha256": evidence_fingerprint(prior),
+        "after_sha256": evidence_fingerprint(result), "receipt": receipt,
+        "identity_after": {key:result.get(key) for key in ("slug", *IDENTITY_FIELDS)},
+        "public_fields_after": {key:result.get(key) for key in FIELDS},
+        "observations_after": result["riscontri_campi"],
+        "retired_observations": ([r for r in clean_receipts(prior.get("riscontri_campi"),prior,today=today)
+                                  if r not in result["riscontri_campi"]] if retire else []),
+    }
+
+
+def verify_update(profile, prior, result, proof, *, today):
+    """Rebuild the exact permitted field/observation diff from prior evidence."""
+    if (not isinstance(proof, dict) or set(proof) != {
+            "slug", "changed_fields", "before_sha256", "after_sha256", "receipt",
+            "identity_after", "observations_after", "action", "retired_observations", "public_fields_after"}
+            or proof.get("slug") != prior.get("slug")
+            or proof.get("before_sha256") != evidence_fingerprint(prior)
+            or proof.get("after_sha256") != evidence_fingerprint(result)
+            or prior.get("url_fonte") != profile["attribution_url"]):
+        raise ValueError("Independent generic source field proof differs from original record")
+    changes, receipt = proof["changed_fields"], proof["receipt"]
+    retire=proof.get("action")=="retire"
+    target = ({**prior, **receipt.get("valori",{})} if retire and isinstance(receipt,dict) else result)
+    if (not isinstance(changes, dict) or set(changes) - set(FIELDS)
+            or proof.get("action") not in {"retire","observe"}
+            or (retire and changes)
+            or not isinstance(receipt, dict) or not valid_receipt(receipt, target, today=today)
+            or receipt.get("fonte_id") != profile["id"]
+            or receipt.get("fonte") != profile["publisher"]
+            or receipt.get("url") != profile["resource_url"]
+            or receipt.get("riga_fonte") != prior["slug"]
+            or receipt.get("fonte_aggiornata_il") != profile["source_dataset_date"]
+            or receipt.get("ambito") != "dataset" or receipt.get("metodo") != "id_fonte"
+            or receipt.get("impronta_tipo") != "publisher_parsed_json"):
+        raise ValueError("Independent generic source receipt is not source-bound")
+    plain = {k: copy.deepcopy(v) for k, v in receipt.items()
+             if k not in {"campi_gestiti", "gestore_campi", "versioni_precedenti"}}
+    for field, change in changes.items():
+        if (not isinstance(change, dict) or set(change) != {"before", "after"}
+                or change["before"] != prior.get(field)
+                or change["after"] != receipt["valori"].get(field)
+                or not managed_update_allowed(prior, plain, field,
+                                              manager=FIELD_MANAGER, today=today)
+                or (field == "indirizzo" and
+                    (prior.get("lat") is not None or prior.get("lng") is not None))):
+            raise ValueError("Independent generic source update lacks previous field ownership")
+    expected_receipt = (mark_managed_fields(plain, changes, manager=FIELD_MANAGER, previous=prior)
+                        if changes else plain)
+    if receipt != expected_receipt:
+        raise ValueError("Independent generic source receipt claims unassigned field ownership")
+    expected = (_retired_row(prior,expected_receipt,today=today) if retire
+                else _observed_row(prior, expected_receipt, changes, today=today))
+    retired = ([r for r in clean_receipts(prior.get("riscontri_campi"),prior,today=today)
+                if r not in expected.get("riscontri_campi",[])] if retire else [])
+    if (expected != result
+            or (retire and not retired)
+            or proof["retired_observations"]!=retired
+            or proof["identity_after"] != {key:result.get(key) for key in ("slug", *IDENTITY_FIELDS)}
+            or proof["public_fields_after"] != {key:result.get(key) for key in FIELDS}
+            or proof["observations_after"] != result.get("riscontri_campi")):
+        raise ValueError("Independent generic source import changed an unapproved field")
+    return len(changes)
+
+
+def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=None):
     """Create a complete ephemeral candidate set, but never modify baseline."""
     if not isinstance(today,date):
         raise ValueError("Need publisher-local reference date")
@@ -186,11 +312,18 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
     observed=hashlib.sha256(raw_blob).hexdigest()
     if observed_source_sha256 is not None and observed!=observed_source_sha256:
         raise ValueError("Source snapshot was modified after it was reviewed")
+    read_on = str(read_on or today)
+    if not as_day(read_on) or as_day(read_on) > today:
+        raise ValueError("Source read date is invalid or later than the reference date")
+    parsed_sha256 = evidence_fingerprint(sorted(source, key=digest))
     source_rows=[]
     id_counts=Counter()
     counters=Counter()
     examples=[]
     reasons=Counter()
+    updates=[]
+    retirements=[]
+    field_audit=Counter()
     for item in source:
         counters["raw_rows_scanned"]+=1
         record,issue,fingerprint=venue_row(profile,item,today)
@@ -242,18 +375,51 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
         prior=old.get(sid)
         if prior is not None:
             counters["already_in_catalog_exact_source_id"]+=1
-            # A stable source ID does not authorize silent changes to a venue,
-            # its visiting day or its opening hours. Keep the old record and
-            # hold this publisher's next batch until a source-level review.
             if any(canonical(prior.get(field))!=canonical(record.get(field))
-                   for field in ("nome","citta","regione","provincia","indirizzo")):
+                   for field in IDENTITY_FIELDS) or prior.get("url_fonte") != profile["attribution_url"]:
                 reasons["source_identity_changed"]+=1
-            if (canonical(prior.get("ricorrenza_testo"))!=
-                    canonical(record.get("ricorrenza_testo"))):
-                reasons["source_calendar_changed"]+=1
-            if (canonical(prior.get("orario_testo"))!=
-                    canonical(record.get("orario_testo"))):
-                reasons["source_hours_changed"]+=1
+                continue
+            # Matching identity permits observations. Replacing an existing
+            # value additionally requires its exact previous owned receipt.
+            values = _source_values(record)
+            # Preserve the existing display spelling when the contracted
+            # normalization agrees (for example lunedì / lunedi).
+            values = {field: prior[field] if isinstance(prior.get(field), str)
+                      and canonical(prior[field]) == canonical(value) else value
+                      for field, value in values.items()}
+            target = {**prior, **values}
+            receipt = _source_receipt(profile, target, read_on=read_on,
+                                      parsed_sha256=parsed_sha256, values=values)
+            changes = {}
+            held = False
+            for field in FIELDS:
+                incoming = receipt["valori"].get(field)
+                if incoming is None:
+                    field_audit[field + ":source_value_unavailable"] += 1
+                elif prior.get(field) == incoming:
+                    field_audit[field + ":observed_identical"] += 1
+                elif (managed_update_allowed(prior, receipt, field,
+                                              manager=FIELD_MANAGER, today=today)
+                      and not (field == "indirizzo" and
+                               (prior.get("lat") is not None or prior.get("lng") is not None))):
+                    changes[field] = {"before": prior.get(field), "after": incoming}
+                    field_audit[field + ":managed_update_proposed"] += 1
+                else:
+                    reasons[FIELD_REVIEW_REASONS[field]] += 1
+                    field_audit[field + ":review_needed"] += 1
+                    held = True
+            if held:
+                if (retire_superseded_receipts(prior,receipt,today=today) !=
+                        clean_receipts(prior.get("riscontri_campi"),prior,today=today)):
+                    retired,proof=_update_proof(prior,receipt,{},today=today,retire=True)
+                    retirements.append((retired,proof))
+                continue
+            if changes:
+                receipt = mark_managed_fields(receipt, changes,
+                                               manager=FIELD_MANAGER, previous=prior)
+            result, proof = _update_proof(prior, receipt, changes, today=today)
+            if result != prior:
+                updates.append((result, proof))
             continue
         day=source_weekday(item.get(profile["weekday_field"]))
         cohort=by_city[(canonical(record.get("regione")),canonical(record.get("citta")))]
@@ -269,18 +435,37 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
                 })
             continue
         counters["source_only_unambiguous_candidate_not_verified_event"]+=1
+        receipt = _source_receipt(profile, record, read_on=read_on,
+                                  parsed_sha256=parsed_sha256)
+        record["riscontri_campi"] = [mark_managed_fields(
+            receipt, receipt["valori"], manager=FIELD_MANAGER)]
+        record["importato_il"] = read_on
+        record["fonte_letta_il"] = read_on
+        record["fonte_aggiornata_il"] = profile["source_dataset_date"]
+        for field in FIELDS:
+            field_audit[field + (":new_source_value" if field in receipt["valori"]
+                                else ":source_value_unavailable")] += 1
         candidates.append(record)
+    for prior in base:
+        if (prior["slug"].startswith(profile["catalog_slug_prefix"])
+                and prior.get("url_fonte") == profile["attribution_url"]
+                and prior["slug"] not in id_counts):
+            reasons["source_identity_missing_or_changed"] += 1
     # A secondary consumer cannot confuse a partial source response with a
     # market closure; the complete original ID set is always kept.
     source_facts={
         "schema":1,"source_id":profile["id"],"publisher":profile["publisher"],
         "source_url":profile["resource_url"],"publisher_dataset_date":profile["source_dataset_date"],
         "source_snapshot_sha256":observed,
+        "source_parsed_sha256":parsed_sha256,"source_read_on":read_on,
         "profile_sha256":digest(profile),
         "base_catalog_records":len(base),
         "source_kind":profile["row_kind"],
         "counts":dict(sorted(counters.items())),
         "review_reason_counts":dict(sorted(reasons.items())),
+        "field_audit_counts":dict(sorted(field_audit.items())),
+        "managed_fields_proposed":sum(len(proof["changed_fields"]) for _,proof in updates),
+        "evidence_refreshes_proposed":len(updates),
         "safe_candidates_not_published":len(candidates),
         "examples_hashed":examples,
         "existing_market_identities_deleted":0,
@@ -292,7 +477,13 @@ def stage(profile,raw_blob,base,*,today,observed_source_sha256=None):
         "source_license_automatically_verified":False,
         "source_schema_readonly":True,
     }
-    return candidates,source_facts
+    return candidates,source_facts,updates,retirements
+
+
+def stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=None):
+    candidates, report, _, _ = _stage(profile, raw_blob, base, today=today,
+                                   observed_source_sha256=observed_source_sha256, read_on=read_on)
+    return candidates, report
 
 
 def authorize(profile,source_report,admission,*,today):
@@ -300,8 +491,8 @@ def authorize(profile,source_report,admission,*,today):
 
     Admission must be recorded after independent rights and source ID review.
     A boolean 'licensed' alone is NOT sufficient; a reviewed attestation
-    digests the exact approved source contract. There are no active licenses
-    or publisher authorizations in the default repository.
+    digests the exact approved source contract. Active sources are only those
+    present in the versioned contract AND admission registry.
     """
     if not isinstance(admission,dict) or admission.get("mode")!="approved_dev_only":
         raise ValueError("Source has no reviewed DEV admission certificate")
@@ -340,20 +531,29 @@ def authorize(profile,source_report,admission,*,today):
     date_of_data=date.fromisoformat(profile["source_dataset_date"])
     if (today-date_of_data).days>profile["max_source_age_days"]:
         raise ValueError("Stale publisher source cannot begin unattended DEV admission")
-    # Changes to existing publisher records must be reviewed before new IDs
-    # from that source enter DEV. Never silently rewrite historical records.
+    # Unresolved identity or unmanaged-field changes hold this source. Other
+    # independently approved sources remain eligible in the activation loop.
     drift=source_report.get("review_reason_counts",{})
     if any(drift.get(reason,0) for reason in (
-            "source_identity_changed","source_calendar_changed","source_hours_changed")):
+            "source_identity_changed", "source_identity_missing_or_changed",
+            "source_address_changed", "source_calendar_changed", "source_hours_changed")):
         raise PublishedSourceDriftError(
-            "Existing publisher venue identity, weekday or hours changed; review source"
+            "Existing publisher identity or unmanaged field changed; review source",
+            source_report=source_report,
         )
     return True
 
 
-def apply_approved(profile,blob,existing,admission,*,today):
-    candidates,report=stage(profile,blob,existing,today=today)
-    authorize(profile,report,admission,today=today)
+def apply_approved(profile,blob,existing,admission,*,today,read_on=None):
+    candidates,report,updates,retirements=_stage(profile,blob,existing,today=today,read_on=read_on)
+    try:
+        authorize(profile,report,admission,today=today)
+    except PublishedSourceDriftError as exc:
+        originals=_validate_existing(existing)
+        for row,proof in retirements:
+            verify_update(profile,originals[row["slug"]],row,proof,today=today)
+        exc.retirements=retirements
+        raise
     # Enforce the reviewed per-run cap by taking a deterministic batch.
     # Remaining eligible IDs stay out of the catalog until the next cycle.
     # Never use mutable publisher row order to select who is admitted.
@@ -366,18 +566,27 @@ def apply_approved(profile,blob,existing,admission,*,today):
                and row["date_quality"]=="sconosciuta"
                and row["lat"] is None and row["lng"] is None for row in candidates):
         raise ValueError("Unsafe source candidate surfaced after approval")
-    # Return the original list as-is, with additions only. Caller must still
-    # pass the standard static export/diff/mobile QA and never write PROD.
-    rows=[*existing,*admitted]
+    updated = {row["slug"]:row for row,_ in updates}
+    for row, proof in updates:
+        verify_update(profile, original[row["slug"]], row, proof, today=today)
+    rows=[*(updated.get(row["slug"],row) for row in existing),*admitted]
     certificate={
         "schema":1,"publisher_id":profile["id"],
         "admission_certificate_sha256":digest(admission),
         "original_market_records":len(existing),"new_venue_ids":[row["slug"] for row in admitted],
+        "new_venue_evidence":{row["slug"]:{
+            "identity":{key:row.get(key) for key in ("slug",*IDENTITY_FIELDS)},
+            "fields":{field:row.get(field) for field in FIELDS},
+            "receipt":copy.deepcopy(row["riscontri_campi"][0]),
+        } for row in admitted},
         "source_eligible_candidates":len(ordered),
         "deferred_candidate_count":len(deferred),
         "deferred_candidate_ids_sha256":digest([row["slug"] for row in deferred]),
         "catalog_records_after":len(rows),
-        "old_ids_removed":0,"old_ids_modified":0,
+        "old_ids_removed":0,"old_ids_modified":len(updates),
+        "old_fields_modified":sum(len(proof["changed_fields"]) for _,proof in updates),
+        "updates":[proof for _,proof in updates],
+        "source_observations":report,
         "verified_events_created":0,
         "geocoordinates_created":0,"new_directions_enabled":0,
         "required_release_checks":["source_diff","static_export","duplicate_review",

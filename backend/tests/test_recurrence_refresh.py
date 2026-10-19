@@ -1,10 +1,12 @@
 import unittest
+from copy import deepcopy
 from datetime import date, timedelta
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from recurrence_refresh import explicit_rule, project_dates, refresh_record, refresh_records
+from field_evidence import make_receipt
 
 
 class ExplicitRules(unittest.TestCase):
@@ -48,9 +50,10 @@ def record(**kw):
         "slug":"mercato-settimanale-di-firenze-firenze-sabato",
         "ricorrenza_testo":"settimanale - sabato",
         "aggiornato_il":"2026-02-09T09:00:00",
+        "fonte_aggiornata_il":"2026-02-09",
         "date":["2026-10-17","2026-10-24"],
         "date_quality":"prevista",
-        "fonte":"happings.com",
+        "fonte":"Fonte fixture con data dichiarata",
         "url_fonte":"https://example.com/weekly-firenze",
         "status":"non_confermato",
         **kw,
@@ -85,7 +88,8 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(old,renewed)
 
     def test_stale_official_2024_predictions_expire_without_deleting_market(self):
-        old=record(aggiornato_il="2024-05-27",fonte="Comune di Milano - CC BY",
+        old=record(aggiornato_il="2024-05-27",fonte_aggiornata_il="2024-05-27",
+                   fonte="Comune di Milano - CC BY",
                    proiezione_fonte="ricorrenza_testo", proiezione_generata_il="2026-10-01")
         renewed,reason=refresh_record(old,self.now)
         self.assertEqual(reason,"expired_stale_forecast")
@@ -96,13 +100,14 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(old["date"],["2026-10-17","2026-10-24"])
 
     def test_stale_source_without_forecast_is_idempotent(self):
-        old=record(aggiornato_il="2024-05-27",date=[],date_quality="sconosciuta")
+        old=record(aggiornato_il="2024-05-27",fonte_aggiornata_il="2024-05-27",
+                   date=[],date_quality="sconosciuta")
         newer,reason=refresh_record(old,self.now)
         self.assertEqual(reason,"stale_source")
         self.assertEqual(newer,old)
 
     def test_expired_forecast_cannot_renew_without_updated_source(self):
-        old=record(aggiornato_il="2024-05-27",
+        old=record(aggiornato_il="2024-05-27",fonte_aggiornata_il="2024-05-27",
                    date=["2026-10-17"],date_quality="prevista")
         expired,reason=refresh_record(old,self.now)
         self.assertEqual(reason,"expired_stale_forecast")
@@ -169,6 +174,96 @@ class RefreshTests(unittest.TestCase):
     def test_guard_max_horizon(self):
         with self.assertRaises(ValueError):
             refresh_record(record(),self.now,horizon_days=730)
+
+    def test_recent_import_timestamp_does_not_renew_existing_forecasts(self):
+        original = record(fonte_aggiornata_il="", aggiornato_il="2026-10-11T09:00:00",
+                          importato_il="2026-10-11T09:00:00+00:00",
+                          proiezione_fonte="ricorrenza_testo", proiezione_generata_il="2026-10-01",
+                          proiezione_regola={"kind": "weekly", "weekdays": [5]}, verificato_il="")
+        before = deepcopy(original)
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "unknown_source_age")
+        self.assertEqual(updated, before)
+        self.assertEqual(original, before)
+        again, report = refresh_records([updated], self.now + timedelta(days=1))
+        self.assertEqual(again, [before])
+        self.assertEqual(report["unknown_source_dates_preserved_without_renewal"], 1)
+        self.assertEqual(report["date_ranges_changed"], 0)
+        self.assertEqual(report["newly_dated"], 0)
+
+    def test_recent_source_read_without_content_date_cannot_create_dates(self):
+        original = record(fonte_aggiornata_il="", fonte_letta_il="2026-10-11", date=[],
+                          date_quality="sconosciuta", aggiornato_il="2026-10-11T09:00:00")
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "unknown_source_age")
+        self.assertEqual(updated, original)
+        self.assertNotIn("proiezione_generata_il", updated)
+
+    def test_reading_an_old_source_today_does_not_renew_its_forecast(self):
+        original = record(fonte_aggiornata_il="2020-01-01", fonte_letta_il="2026-10-11",
+                          importato_il="2026-10-11T09:00:00+00:00", aggiornato_il="2026-10-11T09:00:00")
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "expired_stale_forecast")
+        self.assertEqual(updated["date"], [])
+        self.assertEqual(updated["slug"], original["slug"])
+        self.assertEqual(updated["fonte_aggiornata_il"], "2020-01-01")
+        self.assertNotIn("verificato_il", updated)
+
+    def test_generic_dataset_marker_does_not_prove_content_age(self):
+        original = record(fonte_aggiornata_il="", aggiornamento_ambito="dataset",
+                          aggiornato_il="2026-10-10")
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "unknown_source_age")
+        self.assertEqual(updated, original)
+
+    def test_reviewed_legacy_dataset_date_still_supports_explicit_forecasts(self):
+        original = record(slug="lo-mercap-fixture-sabato", fonte_aggiornata_il="",
+                          aggiornamento_ambito="dataset", aggiornato_il="2026-10-06",
+                          url_fonte="https://www.dati.lombardia.it/d/68zx-njaw")
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "renewed")
+        self.assertGreaterEqual(len(updated["date"]), 16)
+        self.assertEqual(updated["aggiornato_il"], "2026-10-06")
+        self.assertEqual(updated["fonte_aggiornata_il"], "")
+        self.assertNotIn("verificato_il", updated)
+
+    def test_invalid_or_future_content_date_cannot_hide_behind_recent_import(self):
+        for content, expected in (("2026-10-10Tinvalid", "unknown_source_age"),
+                                  ("2027-01-01", "source_from_future")):
+            with self.subTest(content=content):
+                original = record(fonte_aggiornata_il=content, aggiornato_il="2026-10-10T09:00:00")
+                updated, reason = refresh_record(original, self.now)
+                self.assertEqual(reason, expected)
+                self.assertEqual(updated, original)
+
+    def test_declared_content_date_still_requires_a_valid_source_url(self):
+        for url in ("https://", "https://[invalid", "https://example.org:bad"):
+            with self.subTest(url=url):
+                original = record(url_fonte=url)
+                updated, reason = refresh_record(original, self.now)
+                self.assertEqual(reason, "no_attributable_source")
+                self.assertEqual(updated, original)
+
+    def test_exact_recent_recurrence_receipt_can_support_rolling_forecast(self):
+        original = record(fonte_aggiornata_il="", aggiornato_il="2026-10-10")
+        receipt = make_receipt(original, values={"ricorrenza_testo": original["ricorrenza_testo"]},
+            source_url="https://comune.example/mercati", source_name="Comune", source_id="primary-page",
+            source_row="stable-weekly-identity", read_on=self.now.isoformat(),
+            source_updated_on="2026-10-01", source_sha256="a" * 64,
+            method="pagina_primaria_revisionata", scope="pagina", fingerprint_kind="html_bytes")
+        original["riscontri_campi"] = [receipt]
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(updated["date_quality"], "prevista")
+        self.assertEqual(updated["fonte_aggiornata_il"], "")
+        self.assertEqual(updated["aggiornato_il"], original["aggiornato_il"])
+        self.assertEqual(updated["proiezione_fonte"], "riscontri_campi:ricorrenza_testo")
+        for field, value in (("fonte_aggiornata_il", ""), ("fonte_aggiornata_il", "2025-10-01"),
+                             ("letto_il", "2026-07-01")):
+            with self.subTest(field=field, value=value):
+                unproved = deepcopy(original)
+                unproved["riscontri_campi"][0][field] = value
+                self.assertEqual(refresh_record(unproved, self.now)[1], "unknown_source_age")
 
 
 if __name__=="__main__":

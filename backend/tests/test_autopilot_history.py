@@ -1,9 +1,34 @@
 import tempfile
 import unittest
+import copy
+import json
 from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from autopilot_history import summary, save_history, HISTORY_LIMIT
+
+
+def managed_generic_cycle():
+    """Approved fixture source changed on a later day, through real export QA."""
+    from datetime import timedelta
+    from test_source_contract_activation import enabled_fixture,fixture_activate,far_baseline,BLOB,TODAY
+    from source_contract_activation import verify_static
+    from export_static import export
+    cfg,registry=enabled_fixture()
+    first,_=fixture_activate(cfg,registry,far_baseline(),today=TODAY,fetch=lambda url:(BLOB,False))
+    later=TODAY+timedelta(days=1)
+    changed=BLOB.replace(b";CADUTI;",b";NUOVA SEDE;")
+    updated,report=fixture_activate(cfg,registry,first,today=later,fetch=lambda url:(changed,False))
+    report["enabled"]=True
+    with tempfile.TemporaryDirectory() as td:
+        path=Path(td)/"public/data/v1"
+        export(updated,path,today=later,min_count=1,
+               preserve_ids=set(report["evidence_updated_market_ids"]))
+        final=verify_static(path/"manifest.json",report,cfg,registry,later)
+        approved=decision()
+        approved["candidate"]["records"]=len(updated)
+        approved["new_signature"]=json.loads((path/"manifest.json").read_text())["content_signature"]
+    return approved,report,final
 
 def decision():
     return {
@@ -17,6 +42,32 @@ def decision():
     }
 
 class AutopilotHistoryTests(unittest.TestCase):
+    def test_managed_source_updates_persist_only_with_exact_final_catalog_proof(self):
+        approved,generic,final=managed_generic_cycle()
+        result=summary(approved,None,None,"source-updated",generic_admission_report=generic,
+                       generic_admission_static_guard=final)
+        self.assertEqual(result["generic_approved_publisher_fields_updated"],1)
+        self.assertEqual(result["generic_approved_publisher_evidence_refreshed"],4)
+        self.assertEqual(result["generic_approved_publisher_venues_added"],0)
+        self.assertEqual(result["documented_verification_count"],0)
+
+    def test_managed_field_count_without_matching_report_or_catalog_signature_is_rejected(self):
+        approved,generic,final=managed_generic_cycle()
+        for field,value in (("source_admission_report_sha256","0"*64),
+                            ("catalog_content_signature","0"*64),
+                            ("existing_source_fields_updated",2),
+                            ("existing_source_evidence_ids_checked",3),
+                            ("existing_source_evidence_ids_sha256","0"*64)):
+            broken=copy.deepcopy(final);broken[field]=value
+            with self.subTest(field=field),self.assertRaisesRegex(ValueError,"exact final static"):
+                summary(approved,None,None,"forged",generic_admission_report=generic,
+                        generic_admission_static_guard=broken)
+        generic=copy.deepcopy(generic)
+        generic["per_source"][next(iter(generic["per_source"]))]["source_read_on"]="2026-10-01"
+        with self.assertRaisesRegex(ValueError,"exact final static"):
+            summary(approved,None,None,"changed-report",generic_admission_report=generic,
+                    generic_admission_static_guard=final)
+
     def test_source_bound_istat_municipality_repairs_preserve_caution(self):
         manual = {
             "schema":1, "enabled":True, "reviewed_at":"2026-10-12",

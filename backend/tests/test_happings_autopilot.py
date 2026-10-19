@@ -354,6 +354,9 @@ class HappingsAutopilotTests(unittest.TestCase):
 
     def test_existing_autopilot_runs_phase_before_export_and_all_release_gates(self):
         base_path = self.root / "public/data/v1"
+        # This fixture explicitly supplies publisher content age. Import time
+        # alone no longer authorizes extending a market's forecast.
+        self.base[0]["fonte_aggiornata_il"] = "2026-10-13"
         export(self.base, base_path, today=TODAY)
         original_manifest = (base_path / "manifest.json").read_bytes()
         policy_path = self.root / "policy.json"
@@ -361,7 +364,8 @@ class HappingsAutopilotTests(unittest.TestCase):
         args = Namespace(manifest=base_path / "manifest.json", policy=policy_path,
                          output=self.root / "autopilot-output", today=TODAY, offline=False, resume=False)
         with patch.object(phase.source, "RIGHTS_REVIEW_FILE", self.rights), \
-                patch.object(phase.source, "fetch_pages", return_value=pages()):
+                patch.object(phase.source, "fetch_pages", return_value=pages()), \
+                patch("publisher_refresh.fetch_page", side_effect=OSError("fixture has no live pages")):
             result = run_autopilot(args)
         self.assertTrue(result["approved"])
         self.assertEqual(result["removed_source_ids"], 0)

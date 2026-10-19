@@ -12,6 +12,11 @@ import re
 import unicodedata
 from collections import Counter
 from pathlib import Path
+from source_freshness import source_date_evidence, as_day, source_url_domain
+
+_WEEKDAY_NAMES = "lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica"
+_WEEKLY_RECURRENCE = re.compile(r"(?:ogni\s+|settimanale\s*[-:]\s*)(" + _WEEKDAY_NAMES + r")")
+_WEEKDAY_SUFFIX = re.compile(r"-(" + _WEEKDAY_NAMES + r")$")
 
 def _read_file(path):
     value = json.loads(Path(path).read_text("utf-8"))
@@ -55,6 +60,42 @@ def _location_key(record):
             _name(record.get("nome", "")), addr)
 
 
+def _explicit_weekday(record):
+    """Require a complete weekly rule; a slug or sample date cannot supply it."""
+    value = record.get("ricorrenza_testo")
+    if not isinstance(value, str):
+        return None
+    text = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode().lower().strip()
+    match = _WEEKLY_RECURRENCE.fullmatch(text)
+    if not match:
+        return None
+    day = match.group(1)
+    suffix = _WEEKDAY_SUFFIX.search(str(record.get("slug") or ""))
+    return day if not suffix or suffix.group(1) == day else None
+
+
+def _compatible_location_identity(existing, incoming):
+    """Additional proof required before joining two different stable IDs."""
+    for row in (existing, incoming):
+        if (row.get("riscontri_campi") or row.get("eccezioni_calendario")
+                or str(row.get("slug") or "").startswith(("lo-mercap-", "bo-open-", "pg-corciano-"))):
+            return False
+    province = str(existing.get("provincia") or "").strip().upper()
+    source = str(existing.get("fonte") or "").strip().casefold()
+    source_url = existing.get("url_fonte")
+    day = _explicit_weekday(existing)
+    return bool(
+        _location_key(existing) == _location_key(incoming)
+        and re.fullmatch(r"[A-Z]{2}", province)
+        and province == str(incoming.get("provincia") or "").strip().upper()
+        and existing.get("categoria")
+        and existing.get("categoria") == incoming.get("categoria")
+        and source and source == str(incoming.get("fonte") or "").strip().casefold()
+        and source_url_domain(source_url) and source_url == incoming.get("url_fonte")
+        and day is not None and day == _explicit_weekday(incoming)
+    )
+
+
 def _source_evidence(record) -> list:
     evidence = record.get("fonti")
     if isinstance(evidence, list):
@@ -78,12 +119,26 @@ def _merge(existing, incoming):
     elif new_verified and not old_verified:
         best, other = incoming, existing
     else:
-        # For equal verification, prefer the more recently updated source.
-        if str(incoming.get("aggiornato_il", "")) >= str(existing.get("aggiornato_il", "")):
+        # A later import is not a newer publisher fact. Compare documented
+        # content dates first. Unknown dates cannot outrank known evidence.
+        old_date = source_date_evidence(existing)["value"]
+        new_date = source_date_evidence(incoming)["value"]
+        same_source = existing.get("url_fonte") == incoming.get("url_fonte")
+        old_read = as_day(existing.get("fonte_letta_il"))
+        new_read = as_day(incoming.get("fonte_letta_il"))
+        prefer_new = bool(new_date and (not old_date or new_date >= old_date))
+        if not old_date and not new_date and same_source and new_read:
+            prefer_new = old_read is None or new_read >= old_read
+        if prefer_new:
             best, other = incoming, existing
         else:
             best, other = existing, incoming
     merged = {**other, **best}
+    # A timestamp belongs to the winning primary source. The dictionary
+    # overlay must not inherit a different publisher's missing date/read.
+    for timestamp in ("importato_il", "fonte_letta_il", "fonte_aggiornata_il"):
+        if not best.get(timestamp):
+            merged.pop(timestamp, None)
     merged["slug"] = existing["slug"]  # never break bookmarked stable IDs
     # Fill blanks, but never turn an estimated date into a confirmed date.
     # Blank in a newer authoritative feed can mean the old dates are no
@@ -93,6 +148,7 @@ def _merge(existing, incoming):
         "date", "date_quality", "aggiornato_il", "verificato_il", "status",
         "proiezione_regola", "proiezione_generata_il", "proiezione_fonte",
         "confidence", "completezza",
+        "importato_il", "fonte_letta_il", "fonte_aggiornata_il", "riscontri_campi",
     }
     for name, value in other.items():
         if name in evidence_fields:
@@ -102,6 +158,14 @@ def _merge(existing, incoming):
     merged["fonti"] = _source_evidence(existing) + [
         f for f in _source_evidence(incoming) if f not in _source_evidence(existing)
     ]
+    # Keep independently sourced field receipts. Export rebinds them to the
+    # final exact values and keeps only the latest observation per source row.
+    field_receipts = []
+    for evidence_row in (existing, incoming):
+        if isinstance(evidence_row.get("riscontri_campi"), list):
+            field_receipts.extend(evidence_row["riscontri_campi"])
+    if field_receipts:
+        merged["riscontri_campi"] = field_receipts
     return merged
 
 
@@ -129,10 +193,11 @@ def combine(base: list, incoming: list) -> tuple[list, dict]:
             matched += 1
             continue
         key = _location_key(record)
-        # A MERCap row is an independent day-level source identity.
-        # Never absorb it into a generic record via city/address guesswork.
-        matches = (candidate_names.get(key, []) if key[-1]
-                   and not slug.startswith(("lo-mercap-", "bo-open-", "pg-corciano-")) else [])
+        # A street/name candidate is only a lead. Require compatible source,
+        # province, category and explicit recurrence, and keep any identity
+        # carrying field or cancellation evidence independent.
+        matches = [candidate for candidate in candidate_names.get(key, [])
+                   if key[-1] and _compatible_location_identity(output[candidate], record)]
         if len(matches) == 1:
             chosen = matches[0]
             output[chosen] = _merge(output[chosen], record)

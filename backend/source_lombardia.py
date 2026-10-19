@@ -33,6 +33,13 @@ DAY_LABELS = ("lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "saba
 # The city of Milano has a separate municipal adapter. Until same-venue
 # reconciliation is tested, do not introduce an overlapping second catalog.
 EXCLUDED_CITIES = frozenset({"MILANO"})
+# Preserve the source qualifiers needed for safe cross-source joins. The
+# legacy public category remains unchanged; a broad "misto" label alone is
+# not evidence that a market really has both merchandise sectors.
+IDENTITY_FIELDS = (
+    "periodicita_tipo", "giorno", "frequenza_settimanale", "mesi_svolgimento",
+    "n_post_alim", "n_post_non_alim", "n_post_tot",
+)
 
 
 class NoRedirect(HTTPRedirectHandler):
@@ -279,6 +286,9 @@ def convert(payload, today=None):
             "aggiornato_il": source_updated.isoformat(),
             "aggiornamento_ambito": "dataset",
             "id_fonte": ident,
+            "identita_fonte": {"schema": 1, **{
+                key: record.get(key) for key in IDENTITY_FIELDS
+            }},
             "verificato_il": "",
             "confidence": 0,
         })

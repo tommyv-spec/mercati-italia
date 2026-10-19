@@ -1979,13 +1979,13 @@ export default function App() {
             <div className="detail-provenance">
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 13, marginBottom: 2 }}>
-                  {m.lastVerified ? 'Verificato il ' + m.lastVerified : 'Non verificato di recente'}
+                  {m.lastVerified ? 'Verificato il ' + m.lastVerified : 'Verifica individuale non documentata'}
                 </div>
                 <div style={{ fontSize: 12, opacity: 0.7 }}>
                   Fonte: {m.source || 'non disponibile'}
                   {m.sourceUpdated ? (m.sourceUpdateScope === 'dataset'
                     ? ' · dataset aggiornato il ' + m.sourceUpdated + ' (non verifica del singolo mercato)'
-                    : ' · dati del ' + m.sourceUpdated) : ''}
+                    : ' · data dichiarata dalla fonte: ' + m.sourceUpdated) : ''}
                 </div>
                 {m.sourceUrl && (
                   <a href={m.sourceUrl} target="_blank" rel="noopener noreferrer"
@@ -1997,6 +1997,25 @@ export default function App() {
                   <div key={s.url + i} style={{ fontSize: 12, marginTop: 5, lineHeight: 1.4 }}>
                     Fonte aggiuntiva:{' '}
                     <a href={s.url} target="_blank" rel="noopener noreferrer">{s.nome}</a>
+                  </div>
+                ))}
+                {(m.fieldEvidence || []).map((evidence, i) => (
+                  <div key={evidence.sourceUrl + evidence.readOn + i}
+                       style={{ fontSize: 12, marginTop: 10, lineHeight: 1.5 }}>
+                    <strong>{evidence.fields}: riscontro nella fonte</strong><br />
+                    <a href={evidence.sourceUrl} target="_blank" rel="noopener noreferrer">
+                      {evidence.sourceName}
+                    </a>
+                    {' · letta il ' + evidence.readOn}<br />
+                    {evidence.sourceDate ? 'Data dei contenuti: ' + evidence.sourceDate
+                      : 'Data dei contenuti non dichiarata'}
+                  </div>
+                ))}
+                {(m.calendarExceptions || []).filter(e => e.data >= new Date().toISOString().slice(0, 10)).map((exception, i) => (
+                  <div key={exception.data + i} style={{ fontSize: 12, marginTop: 10, lineHeight: 1.5 }}>
+                    <strong>{exception.data}: edizione annullata</strong><br />
+                    {exception.motivo}{' '}
+                    <a href={exception.url} target="_blank" rel="noopener noreferrer">Fonte</a>
                   </div>
                 ))}
               </div>

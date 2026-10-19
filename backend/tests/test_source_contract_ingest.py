@@ -218,7 +218,7 @@ class GenericMunicipalContractTests(unittest.TestCase):
         self.assertEqual(proof["deferred_candidate_count"],2)
         changes=(
             ("nome","Nome completamente diverso","source_identity_changed"),
-            ("indirizzo","Via inventata 100","source_identity_changed"),
+            ("indirizzo","Via inventata 100","source_address_changed"),
             ("ricorrenza_testo","settimanale - domenica","source_calendar_changed"),
             ("orario_testo","22:00 - 23:00","source_hours_changed"),
         )
@@ -234,6 +234,98 @@ class GenericMunicipalContractTests(unittest.TestCase):
                         PublishedSourceDriftError,"review source"):
                     apply_approved(profile,BLOB,changed,cert,today=TODAY)
                 self.assertEqual(changed,frozen)
+
+    def test_two_cycles_update_only_three_previously_managed_source_fields(self):
+        from field_evidence import field_states
+        profile=_approved_profile()
+        old=[{"slug":"elsewhere","citta":"Firenze","regione":"Toscana"}]
+        first,_=apply_approved(profile,BLOB,old,_approval(profile),today=TODAY)
+        frozen=copy.deepcopy(first)
+        changed=BLOB.replace(
+            b"MERCATO DI CORCIANO;MERCOLEDI;PIAZZA;CADUTI;3;1;07:30;14:00;",
+            b"MERCATO DI CORCIANO;GIOVEDI;PIAZZA;NUOVA SEDE;3;1;08:00;13:00;")
+        self.assertNotEqual(changed,BLOB)
+        next_day=TODAY+timedelta(days=1)
+        result,proof=apply_approved(profile,changed,first,_approval(profile),today=next_day)
+        self.assertEqual(first,frozen)
+        self.assertEqual([r["slug"] for r in result],[r["slug"] for r in first])
+        self.assertEqual(proof["old_fields_modified"],3)
+        self.assertEqual(proof["new_venue_ids"],[])
+        updated=next(r for r in result if r["slug"]=="pg-corciano-mercato-di-corciano")
+        self.assertEqual(updated["indirizzo"],"Piazza Nuova Sede, Corciano")
+        self.assertEqual(updated["ricorrenza_testo"],"settimanale - giovedi")
+        self.assertEqual(updated["orario_testo"],"08:00–13:00 (da verificare con il Comune)")
+        self.assertEqual(updated["fonte_letta_il"],next_day.isoformat())
+        self.assertEqual(updated["fonte_aggiornata_il"],"2026-01-07")
+        self.assertFalse(updated["verificato_il"])
+        self.assertEqual(updated["date"],[])
+        self.assertEqual(updated["riscontri_campi"][0]["campi_gestiti"],
+                         ["indirizzo","orario_testo","ricorrenza_testo"])
+        self.assertTrue(updated["riscontri_campi"][0]["versioni_precedenti"])
+        # A newly read old dataset is still old for hours/day freshness.
+        self.assertEqual(field_states(updated,today=next_day)["orario_testo"],"riscontro_da_aggiornare")
+        again,replay=apply_approved(profile,changed,result,_approval(profile),today=next_day)
+        self.assertEqual(again,result)
+        self.assertEqual(replay["old_ids_modified"],0)
+
+    def test_identical_legacy_read_adds_evidence_without_claiming_field_ownership(self):
+        profile=_approved_profile()
+        legacy=old_convert(old_csv(BLOB),TODAY)
+        result,proof=apply_approved(profile,BLOB,legacy,_approval(profile),today=TODAY)
+        self.assertEqual(proof["old_fields_modified"],0)
+        for before,after in zip(legacy,result):
+            self.assertEqual({k:v for k,v in after.items()
+                              if k not in {"riscontri_campi","fonte_letta_il","fonte_aggiornata_il"}},before)
+            self.assertNotIn("campi_gestiti",after["riscontri_campi"][0])
+        changed=BLOB.replace(b";CADUTI;",b";NUOVA SEDE;")
+        with self.assertRaises(PublishedSourceDriftError):
+            apply_approved(profile,changed,result,_approval(profile),today=TODAY+timedelta(days=1))
+
+    def test_source_changed_on_same_day_cannot_establish_receipt_order(self):
+        profile=_approved_profile()
+        first,_=apply_approved(profile,BLOB,[{"slug":"other"}],_approval(profile),today=TODAY)
+        with self.assertRaises(PublishedSourceDriftError):
+            apply_approved(profile,BLOB.replace(b";CADUTI;",b";NUOVA SEDE;"),
+                           first,_approval(profile),today=TODAY)
+
+    def test_name_id_or_geography_drift_keeps_original_catalog(self):
+        profile=_approved_profile()
+        first,_=apply_approved(profile,BLOB,[{"slug":"other"}],_approval(profile),today=TODAY)
+        frozen=copy.deepcopy(first)
+        blob=BLOB.replace(b"MERCATO DI CORCIANO;",b"MERCATO DI NUOVO;",1)
+        _,report=stage(profile,blob,first,today=TODAY+timedelta(days=1))
+        self.assertEqual(report["review_reason_counts"]["source_identity_missing_or_changed"],1)
+        with self.assertRaises(PublishedSourceDriftError):
+            apply_approved(profile,blob,first,_approval(profile),today=TODAY+timedelta(days=1))
+        self.assertEqual(first,frozen)
+        for field,value in (("nome","Altro Mercato"),("citta","Perugia"),("provincia","TR")):
+            changed=copy.deepcopy(first)
+            changed[1][field]=value
+            with self.subTest(field=field),self.assertRaises(PublishedSourceDriftError):
+                apply_approved(profile,BLOB,changed,_approval(profile),today=TODAY+timedelta(days=1))
+
+    def test_owned_address_with_later_coordinates_requires_location_review(self):
+        profile=_approved_profile()
+        first,_=apply_approved(profile,BLOB,[{"slug":"other"}],_approval(profile),today=TODAY)
+        target=next(r for r in first if r["slug"]=="pg-corciano-mercato-di-corciano")
+        target.update({"lat":43.1,"lng":12.2,"position_quality":"precisa"})
+        frozen=copy.deepcopy(first)
+        with self.assertRaises(PublishedSourceDriftError):
+            apply_approved(profile,BLOB.replace(b";CADUTI;",b";NUOVA SEDE;"),
+                           first,_approval(profile),today=TODAY+timedelta(days=1))
+        self.assertEqual(first,frozen)
+
+    def test_unknown_publisher_weekday_is_neither_evidence_nor_a_replacement(self):
+        profile=_approved_profile()
+        first,_=apply_approved(profile,BLOB,[{"slug":"other"}],_approval(profile),today=TODAY)
+        changed=BLOB.replace(b";MERCOLEDI;",b";NON INDICATO;")
+        result,report=apply_approved(profile,changed,first,_approval(profile),today=TODAY+timedelta(days=1))
+        target=next(r for r in result if r["slug"]=="pg-corciano-mercato-di-corciano")
+        self.assertEqual(target["ricorrenza_testo"],"settimanale - mercoledi")
+        current=[r for r in target["riscontri_campi"] if r["letto_il"]==(TODAY+timedelta(days=1)).isoformat()]
+        self.assertTrue(current)
+        self.assertNotIn("ricorrenza_testo",current[0]["valori"])
+        self.assertEqual(report["old_fields_modified"],0)
 
     def test_stale_source_and_unverified_licenses_cannot_create_dev_ids(self):
         a=_approved_profile()

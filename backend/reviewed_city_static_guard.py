@@ -108,8 +108,11 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         else:
             raise ValueError("Unexpected disabled Roma venue source report")
     generic_additions = 0
+    generic_fields_checked = 0
+    generic_evidence_checked = 0
     if generic_admission_report_path:
-        from source_contract_activation import validate_admissions
+        from source_contract_activation import validate_admissions, verify_static as verify_generic_static
+        from field_evidence import as_day
         from source_lifecycle import digest as contract_digest
         from roma_xiii_geo_hold import git_blob_sha
         publisher_policy=read_json(policy_path)
@@ -133,10 +136,27 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
                 or not isinstance(generator.get("new_market_ids"),list)
                 or len(set(generator["new_market_ids"]))!=len(generator["new_market_ids"])
                 or any(generator.get(key)!=0 for key in (
-                    "record_ids_deleted","old_market_fields_changed",
+                    "record_ids_deleted",
                     "new_market_openings_confirmed","new_market_coordinates_created",
                     "new_market_directions_enabled"))):
             raise ValueError("Generic publisher source additions are not pinned to a reviewed source identity")
+        changed_fields=generator.get("old_market_fields_changed")
+        evidence_ids=generator.get("evidence_updated_market_ids",[])
+        if (type(changed_fields) is not int or changed_fields<0
+                or not isinstance(evidence_ids,list)):
+            raise ValueError("Untrusted generic publisher field update counts")
+        if changed_fields or evidence_ids:
+            # Re-run the exact final data/receipt guard on these same assets.
+            # A count alone cannot bypass the existing city or map safeguards.
+            generic_proof=verify_generic_static(manifest_path,generator,contracts,admissions,
+                                                as_day(generator.get("reference_date")))
+            if (generic_proof.get("release_safe") is not True
+                    or generic_proof.get("source_admission_report_sha256")!=contract_digest(generator)
+                    or generic_proof.get("existing_source_fields_updated")!=changed_fields
+                    or generic_proof.get("existing_source_evidence_ids_checked")!=len(evidence_ids)):
+                raise ValueError("Managed publisher changes lack exact final source evidence")
+            generic_fields_checked=changed_fields
+            generic_evidence_checked=len(evidence_ids)
         generic_additions=len(generator["new_market_ids"])
         if (generator.get("candidate_market_ids")!=generator["original_market_ids"]+generic_additions
                 or generic_additions>250):
@@ -239,6 +259,8 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         "navigation_routes_still_blocked": navigation_holds,
         "unsafe_coordinates_still_quarantined": coordinate_holds,
         "individual_market_confirmations": 0,
+        "generic_existing_fields_checked":generic_fields_checked,
+        "generic_existing_evidence_ids_checked":generic_evidence_checked,
         "release_safe": True,
     }
 
