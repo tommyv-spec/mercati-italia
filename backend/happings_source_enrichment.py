@@ -379,12 +379,39 @@ def summarize(report):
     }
 
 
+def offline_pages(source_urls, input_html_paths, final_urls=None):
+    """Replay real source HTML from disk with its observed canonical redirect.
+
+    The crawler writes no HTML to Git. This also makes a one-off, licensed
+    publisher sample reproducible without falsely pretending old .html URLs
+    are still the canonical source page.
+    """
+    if (not isinstance(source_urls,list) or not isinstance(input_html_paths,list)
+        or not 1<=len(source_urls)<=MAX_REQUESTS_PER_RUN
+        or len(source_urls)!=len(input_html_paths)
+        or (final_urls is not None and (
+            not isinstance(final_urls,list) or len(final_urls)!=len(source_urls)))):
+        raise ValueError("Offline publisher sample URLs and files must align")
+    pages=[]
+    for i,(original,filepath) in enumerate(zip(source_urls,input_html_paths)):
+        final=final_urls[i] if final_urls is not None else original
+        if not allowed_url(original,original,final):
+            raise ValueError("Offline publisher sample redirect crossed province or layout")
+        source=Path(filepath).read_bytes()
+        if not 300<=len(source)<=MAX_RESPONSE_BYTES:
+            raise ValueError("Offline publisher sample exceeds bounded page size")
+        pages.append({"requested_url":original,"final_url":final,"html":source})
+    return pages
+
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--manifest",type=Path,default=Path("public/data/v1/manifest.json"))
     ap.add_argument("--input-html",action="append",type=Path,
                     help="Approved source HTML fixture, no external requests")
     ap.add_argument("--source-url",action="append",help="Original Happings provincial URL")
+    ap.add_argument("--source-final-url",action="append",
+                    help="Observed same-province HTTPS canonical URL for an offline HTML sample")
     ap.add_argument("--auto-select",action="store_true",
                     help="Rotate over the source URLs already in the saved market catalog")
     ap.add_argument("--live",action="store_true",help="Make at most 2 sequential, robots-approved source fetches")
@@ -415,17 +442,12 @@ def main():
         args.source_url=select_pages(original,today=args.today)
     if not args.source_url or len(args.source_url)>MAX_REQUESTS_PER_RUN:
         raise ValueError("Select 1-2 reviewed province pages")
-    if args.live and args.input_html:
-        raise ValueError("Cannot mix live and previously reviewed source HTML")
+    if args.live and (args.input_html or args.source_final_url):
+        raise ValueError("Cannot mix live fetching and manually reviewed source HTML/redirects")
     if args.live:
         pages=fetch_pages(args.source_url,permission_confirmed=args.permission_confirmed)
     else:
-        if not args.input_html or len(args.input_html)!=len(args.source_url):
-            raise ValueError("Offline examples must match each exact source URL")
-        pages=[
-            {"requested_url":url,"final_url":url,"html":p.read_bytes()}
-            for url,p in zip(args.source_url,args.input_html)
-        ]
+        pages=offline_pages(args.source_url,args.input_html,args.source_final_url)
     result,report=preview(original,pages,today=args.today,apply=args.apply,
                           rights_verified=args.permission_confirmed)
     safe_report(report,original)

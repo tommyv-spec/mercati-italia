@@ -87,6 +87,29 @@ class HappingsOfflineLayoutTests(unittest.TestCase):
             self.assertNotIn(original,safe)
         self.assertFalse(result["source_scraping_permitted_by_this_audit"])
 
+    def test_all_province_redirects_resolve_old_source_urls_not_just_venice(self):
+        from happings_weekly_layout import _origins_equivalent
+        modena_old="https://www.happings.com/it/mercati-settimanali-a-modena.html"
+        modena_new="https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/"
+        padova_new="https://www.happings.com/it/mercati-settimanali-a-padova-e-provincia/"
+        self.assertTrue(_origins_equivalent(modena_old,modena_new))
+        self.assertTrue(_origins_equivalent(modena_new,modena_old))
+        self.assertTrue(_origins_equivalent(VENICE_OLD,VENICE_NEW))
+        self.assertFalse(_origins_equivalent(modena_old,padova_new))
+        self.assertFalse(_origins_equivalent(
+            "https://www.happings.com/it/mercato-settimanale-a-carpi.html",
+            modena_new))
+        self.assertFalse(_origins_equivalent(
+            "https://evil.example/it/mercati-settimanali-a-modena.html",
+            modena_new))
+        # A prior version of the audit reported zero matches outside Veneto.
+        modena_html=HTML.replace(b"Spinea",b"Carpi").replace(b"Venezia",b"Modena")
+        old=[market("carpi-monday",city="Carpi",url=modena_old)]
+        record=compare_saved_markets(old,modena_html,source_url=modena_new,today=TODAY)
+        self.assertEqual(record["counts"]["same_publisher_page_catalog_rows"],1)
+        self.assertEqual(record["counts"]["saved_market_missing_source_location"],1)
+        self.assertEqual(record["catalog_fields_modified"],0)
+
     def test_multiple_venues_same_city_day_cannot_assign_address(self):
         extra=HTML.replace(
             b'<li>a Dolo, in Piazza San Valentino (la mattina)</li>',
