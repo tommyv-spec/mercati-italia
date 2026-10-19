@@ -5,7 +5,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
 - ID controllati e conservati: **13824**
 - Etichette di fonte: **87**
-- Casi nel lotto di lavoro del giorno: **454**
+- Casi nel lotto di lavoro del giorno: **441**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
@@ -13,7 +13,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 ## Campi ancora incerti o assenti
 
 - coordinates: **13735**
-- date: **1917**
+- date: **1918**
 - indirizzo: **5924**
 - individual_edition_confirmation: **13824**
 - orario_testo: **10853**

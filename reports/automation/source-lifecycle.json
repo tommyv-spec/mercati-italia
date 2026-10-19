@@ -1,17 +1,17 @@
 {
   "catalog_count": 13824,
-  "checked_source_profiles": 3,
+  "checked_source_profiles": 4,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-10-18",
+  "reference_date": "2026-10-19",
   "registry_sha256": "b383fc4bf89d37531e54eeb813e9a22ea5da7bea2dad48c6d3ebb9418667f64d",
   "schema": 1,
   "source_checks": {
-    "existing_adapter_snapshots_inspected": 3,
-    "source_snapshot_absent_not_market_closure": 2
+    "existing_adapter_snapshots_inspected": 4,
+    "source_snapshot_absent_not_market_closure": 1
   },
   "source_contract_schema": 1,
   "sources": {
@@ -53,6 +53,46 @@
         "exact_reviewed_id_partition_verified": true,
         "outside_catalog_source_ids_not_necessarily_new_markets": 2,
         "quarantine_source_id_set_sha256": "f9acaf10f3e55edf9448b9d4724fd7eb8332f3d67188957491dff8546c250e67",
+        "remaining_identities_without_overlap_disposition": 0,
+        "screening_missing_exact_source_id_proof": false,
+        "source_screening_counts_are_not_market_opening_proofs": true
+      },
+      "vanished_source_ids_do_not_imply_market_closed": true
+    },
+    "firenze": {
+      "catalog_records_compared": 13824,
+      "confirmed_events_created": 0,
+      "counts": {
+        "address_present": 4,
+        "coordinates_not_opening_proof": 4,
+        "existing_ids_seen_in_catalog": 4,
+        "hours_present": 4,
+        "source_records_scanned": 4
+      },
+      "diff": {
+        "changed_existing_identities_since_last_scan": 0,
+        "first_observation": true,
+        "missing_source_identities_since_last_scan": 0,
+        "new_source_identities_since_last_scan": 0
+      },
+      "fingerprints": {
+        "6995f8d94b71e1dbf945a583d91f149f6c9dce6715ecf00a8d22d9e4c8eabfae": "00317a0039333e3431fb131810a25ef611f461135fa0c731eedaf6169f221b17",
+        "8834cf577051823757ac860a8790331880b5f6a27f686e4ad7e4d591408cd637": "459fb5597e470e6e15e92e8b6d23860e6562625f29ff2ea44271a0fb6c8e5844",
+        "9aa1aa9d7622dc939de4183819283286773fe6534dfc3ab3afafa3ae5fda9164": "cab146e4b590b2c65be16571c15200b9d4e81b6991c63c66e52ffd0612345899",
+        "f8b59fba470f2c4b1533f1340e569bcdbf43d66def7e77a78a7d7c71c29d27f7": "bff6e5355febe91bb1ab0b0fdaa49981d25797f927ee1c39fa026b759af2cb88"
+      },
+      "market_ids_deleted": 0,
+      "market_records_edited": 0,
+      "market_records_imported": 0,
+      "profile_fingerprint": "b347024f38f0a09ae20349b94af09c7c3952f612fc2b96d7f89a593087d799bf",
+      "publisher": "Comune di Firenze",
+      "row_kind": "market_venue",
+      "schema": 1,
+      "source_data_scope": "dataset_not_individual_market",
+      "source_id": "firenze",
+      "source_screening": {
+        "already_quarantined_by_venue_overlap_review": 0,
+        "outside_catalog_source_ids_not_necessarily_new_markets": 0,
         "remaining_identities_without_overlap_disposition": 0,
         "screening_missing_exact_source_id_proof": false,
         "source_screening_counts_are_not_market_opening_proofs": true

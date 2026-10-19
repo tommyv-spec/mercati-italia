@@ -5,7 +5,7 @@ Campi rilevati e corrispondenze sono suggerimenti, non dati verificati.
 Fonti strutturate ammesse per probing: **32**; mai osservate: **0**.
 Ogni run controlla fino a tre fonti in rotazione, mantenendo uno storico bounded dei soli schemi.
 
-## Fiere e mercati - Comune di Brendola
+## Fiere e mercati - Comune di Nogara
 - Esito: schema_preview_only
 - Formato: CSV
 - Campi: NOME, FIERA/MERCATO, ATTIVITA', DATA VALIDITA CONCESSIONE, DATA SCADENZA CONCESSIONE

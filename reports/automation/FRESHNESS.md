@@ -3,7 +3,7 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 I dati sono aggiornabili solo quando l'ente pubblica prove nuove. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-18**.
+- Data della misura: **2026-10-19**.
 - Schede totali: **13,824**.
 - Fonte datata entro 30 giorni: **1,204**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,204**.
@@ -11,7 +11,7 @@ I dati sono aggiornabili solo quando l'ente pubblica prove nuove. Le ricorrenze 
 - Fonte datata tra 31 e 365 giorni: **12,567**.
 - Fonte più vecchia del limite di 540 giorni: **52**.
 - Fonti senza data: **0**.
-- Schede con date future previste: **11,907**.
+- Schede con date future previste: **11,906**.
 - Previsioni basate su fonti troppo vecchie/sconosciute: **0**.
 - Verifiche documentate: **0**.
 
