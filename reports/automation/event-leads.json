@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 13820,
-  "baseline_market_records": 13820,
+  "baseline_market_ids_preserved": 13824,
+  "baseline_market_records": 13824,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -8,10 +8,10 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
-      "leads_found": 1,
-      "not_matching_market_scope": 119,
+      "leads_found": 2,
+      "not_matching_market_scope": 113,
       "requests": 1,
-      "rows_examined": 120,
+      "rows_examined": 115,
       "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
       "state": "discovery_leads_only"
     },
@@ -28,16 +28,218 @@
     },
     {
       "catalog_market_imports": 0,
+      "descriptions_copied": 0,
       "event_confirmations": 0,
       "id": "eventiesagre-index",
-      "reason_class": "ValueError",
-      "requests": 0,
-      "state": "source_unavailable_or_schema_review"
+      "indexes_read": 2,
+      "links_only": 15,
+      "publisher_events_verified": 0,
+      "requests": 3,
+      "state": "discovery_leads_only"
     }
   ],
-  "fresh_official_leads": 1,
+  "fresh_official_leads": 2,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-12-20",
+      "first_seen": "2026-10-19",
+      "id": "firenze-feelflorence:53",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
+      "start": "2026-11-14",
+      "status": "source_lead_unverified",
+      "title": "Mercato di Natale in Piazza Santa Croce"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-10-25",
+      "first_seen": "2026-10-19",
+      "id": "firenze-feelflorence:112",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [
+        "il-mercatino-da-forte-dei-marmi-a-firenze-firenze"
+      ],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
+      "start": "2026-10-25",
+      "status": "source_lead_unverified",
+      "title": "Mercato del Forte dei Marmi a Firenze"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21193739",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21193739_Artigian+Gusto+A+Santhia.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21193613",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21193613_Il+Mercatino+Dell+artigianato+A+Villa+San+Secondo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21193520",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21193520_Giochiamo+Con+Artigian+Gusto+A+Borgaretto+Di+Beinasco.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21190794",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21190794_Il+Mercatino+Serale+A+Osimo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21190225",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21190225_Mercatino+Nel+Borgo+Di+Neive.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21188341",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21188341_Mercatino+Antiquariato+A+Pesaro.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21188103",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21188103_Un+Bastimento+Carico+Di.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21187849",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21187849_Mercato+il+Barattolo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21154545",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21154545_Mercatini+estivi+a+Montoso.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21068902",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21068902_Mercatini+Estivi+a+Pesaro.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21060536",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21060536_Officina+Delle+Memorie+Mercatino+Dell+antiquariato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21044410",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21044410_Antiquariato+Alla+Vecchia+Filanda.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21044026",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21044026_Mercatino+dell+Antiquariato+e+dell+Artigianato+a+Pino+Torinese.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:21021368",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21021368_San+Giorgio+Antiques.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-19",
+      "id": "eventiesagre-index:20032",
+      "last_seen": "2026-10-19",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/20032_Mercatino+dell+Antiquariato+Valsesiano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
     {
       "catalog_import_allowed": false,
       "city": "Firenze",
@@ -51,7 +253,7 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
       "start": "2026-11-14",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercato di Natale in Piazza Santa Croce"
     },
     {
@@ -148,11 +350,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 0,
+  "new_external_url_pointers": 15,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-18",
+  "reference_date": "2026-10-19",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
