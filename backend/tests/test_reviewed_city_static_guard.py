@@ -190,6 +190,52 @@ class PublishedCitySafetyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'release report'):
             self.check()
 
+    def test_managed_generic_updates_use_final_field_proof_and_preserve_city_holds(self):
+        from datetime import timedelta
+        from test_source_contract_activation import CONTRACT,ACTIVE_REGISTRY,BLOB,TODAY,fixture_activate
+        from roma_xiii_geo_hold import git_blob_sha
+        source_file=Path(__file__).resolve().parents[1]/"data/market-source-contracts.json"
+        approval_file=source_file.with_name("approved-source-admissions.json")
+        def fetch(blob):
+            def read(url):
+                if "bologna" in url:
+                    raise OSError("Fixture source not included")
+                return blob,False
+            return read
+        first,_=fixture_activate(CONTRACT,ACTIVE_REGISTRY,self.details,today=TODAY,fetch=fetch(BLOB))
+        base,_=fixture_activate(CONTRACT,ACTIVE_REGISTRY,first,today=TODAY,fetch=fetch(BLOB))
+        self.assertEqual(len(base),20)
+        later=TODAY+timedelta(days=1)
+        changed=BLOB.replace(b";CADUTI;",b";NUOVA SEDE;")
+        self.details,generic=fixture_activate(CONTRACT,ACTIVE_REGISTRY,base,today=later,fetch=fetch(changed))
+        generic["enabled"]=True
+        self.assertEqual(generic["old_market_fields_changed"],1)
+        self.render()
+        manifest=json.loads(self.manifest_path.read_text())
+        manifest["total"]=20;manifest["regions"][0]["count"]=20
+        self.manifest_path.write_text(json.dumps(manifest))
+        daily=json.loads(self.report_path.read_text());daily["records_total"]=20
+        self.report_path.write_text(json.dumps(daily))
+        policy=json.loads(self.policy_path.read_text())
+        policy["source_lifecycle"]={"enabled":True,"reviewed_contract_blob_sha1":git_blob_sha(source_file)}
+        policy["source_contract_admissions"]={"enabled":True,"approved_registry_blob_sha1":git_blob_sha(approval_file)}
+        self.policy_path.write_text(json.dumps(policy))
+        source_report=self.root/"generic.json"
+        source_report.write_text(json.dumps(generic))
+        result=verify_static(self.manifest_path,self.evidence_path,self.policy_path,
+                             self.report_path,None,source_report)
+        self.assertEqual(result["generic_existing_fields_checked"],1)
+        self.assertEqual(result["navigation_routes_still_blocked"],16)
+        self.assertEqual(result["unsafe_coordinates_still_quarantined"],7)
+        region=self.assets/"regions/lombardia-test.json"
+        payload=json.loads(region.read_text())
+        target=next(row for row in payload["markets"] if row["slug"]=="pg-corciano-mercato-di-corciano")
+        target["indirizzo"]="Sede diversa dalla prova"
+        region.write_text(json.dumps(payload))
+        with self.assertRaisesRegex(ValueError,"Managed publisher fields"):
+            verify_static(self.manifest_path,self.evidence_path,self.policy_path,
+                          self.report_path,None,source_report)
+
 
 if __name__ == '__main__':
     unittest.main()

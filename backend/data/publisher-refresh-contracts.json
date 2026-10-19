@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "publication_channel": "dev-only",
+  "description": "One reviewed layout per publisher page; no market-specific IDs or field values. Each scheduled read extracts all municipalities and compares every eligible catalog record.",
+  "sources": [
+    {
+      "source_id": "bassa-romagna-weekly",
+      "publisher": "Unione dei Comuni della Bassa Romagna",
+      "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/",
+      "parser": "municipal-key-value-v1",
+      "enabled": true,
+      "region": "Emilia-Romagna",
+      "province": "RA",
+      "category": "misto",
+      "market_kind": "ordinary",
+      "cadence": "weekly",
+      "content_scope": {"tag": "div", "class": "entry-content"},
+      "start_heading": "MERCATI SETTIMANALI",
+      "end_heading": "FIERE DOMENICALI",
+      "min_rows": 20,
+      "max_rows": 60,
+      "min_city_blocks": 9,
+      "max_city_blocks": 15,
+      "layout_reviewed_on": "2026-10-19"
+    },
+    {
+      "source_id": "bassa-romagna-farmers",
+      "publisher": "Unione dei Comuni della Bassa Romagna",
+      "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/",
+      "parser": "municipal-key-value-v1",
+      "enabled": true,
+      "region": "Emilia-Romagna",
+      "province": "RA",
+      "category": "alimentare",
+      "market_kind": "farmers",
+      "cadence": "weekly",
+      "content_scope": {"tag": "div", "class": "entry-content"},
+      "min_rows": 6,
+      "max_rows": 30,
+      "min_city_blocks": 6,
+      "max_city_blocks": 15,
+      "layout_reviewed_on": "2026-10-19"
+    }
+  ]
+}

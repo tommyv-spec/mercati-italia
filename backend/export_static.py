@@ -21,6 +21,8 @@ import unicodedata
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from field_evidence import clean_receipts, clean_exceptions
+from source_freshness import source_date_evidence
 from urllib.parse import urlsplit
 
 CANONICAL_REGIONS = [
@@ -156,6 +158,9 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         status = "non_confermato"
     category = raw.get("categoria") if raw.get("categoria") in VALID_CATEGORIES else "misto"
     future_dates = parse_dates(raw.get("date"), today)
+    exceptions = clean_exceptions(raw.get("eccezioni_calendario"), raw, today=today)
+    excluded_dates = {item["data"] for item in exceptions}
+    future_dates = [value for value in future_dates if value not in excluded_dates]
     quality = raw.get("date_quality", "sconosciuta")
     if quality not in VALID_DATE_QUALITY:
         quality = "sconosciuta"
@@ -253,6 +258,18 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     if raw.get("calendario_sospeso_motivo") == "testo_sorgente_localita_concatenate":
         result["calendario_sospeso_motivo"] = "testo_sorgente_localita_concatenate"
         result["ricorrenza_originale"] = safe_string(raw.get("ricorrenza_originale"), 180)
+    for field in ("importato_il", "fonte_letta_il"):
+        value = safe_string(raw.get(field), 35)
+        if value:
+            result[field] = value
+    content_date = source_date_evidence(raw)
+    if content_date["value"]:
+        result["fonte_aggiornata_il"] = content_date["value"]
+    receipts = clean_receipts(raw.get("riscontri_campi"), result, today=today)
+    if receipts:
+        result["riscontri_campi"] = receipts
+    if exceptions:
+        result["eccezioni_calendario"] = clean_exceptions(exceptions, result, today=today)
     return result, None
 
 
@@ -352,12 +369,15 @@ def combine_safe_source_duplicates(records: list[dict], *, preserve_ids=None) ->
     A shared source list URL is not enough: title and city must agree,
     and distinct specific addresses never merge automatically.
     """
-    protected = frozenset(preserve_ids or ())
+    protected = frozenset(preserve_ids or ()) | frozenset(
+        row["slug"] for row in records
+        if row.get("riscontri_campi") or row.get("eccezioni_calendario")
+    )
     unique = []
     groups = {}
     merges = 0
     for item in records:
-        # Field enrichment must never collapse a bookmarked source identity.
+        # Normalized field/cancellation evidence belongs to this exact ID.
         # Keep protected rows out of both sides of duplicate matching.
         if item["slug"] in protected:
             unique.append(item)
@@ -404,7 +424,14 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
             not isinstance(preserve_ids, (set, frozenset))
             or any(not isinstance(sid, str) or not sid for sid in preserve_ids)):
         raise ValueError("Protected market IDs must be a set of nonempty source identifiers")
-    protected = frozenset(preserve_ids or ())
+    protected = set(preserve_ids or ())
+    for raw in raw_records:
+        if isinstance(raw, dict) and (
+                clean_receipts(raw.get("riscontri_campi"), raw, today=today)
+                or clean_exceptions(raw.get("eccezioni_calendario"), raw, today=today)):
+            # Protect before normalization/collision handling: changing the
+            # slug of a valid source claim would silently lose its proof.
+            protected.add(str(raw.get("slug") or ""))
     cleaned = []
     skipped = Counter()
     by_slug = {}
@@ -415,6 +442,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
             skipped[error] += 1
             continue
         slug = result["slug"]
+        if result.get("riscontri_campi") or result.get("eccezioni_calendario"):
+            protected.add(slug)
         if slug in by_slug:
             if slug in protected:
                 raise ValueError("Repeated protected market identifier: " + slug)
@@ -441,6 +470,13 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
     if protected - by_slug.keys():
         raise ValueError("Export normalization removed or changed protected market identifiers")
     cleaned, safe_merged = combine_safe_source_duplicates(cleaned, preserve_ids=protected)
+    for row in cleaned:
+        if (row.get("riscontri_campi") and
+                clean_receipts(row["riscontri_campi"], row, today=today) != row["riscontri_campi"]):
+            raise ValueError("Export changed a field receipt's identity or values")
+        if (row.get("eccezioni_calendario") and
+                clean_exceptions(row["eccezioni_calendario"], row, today=today) != row["eccezioni_calendario"]):
+            raise ValueError("Export changed a cancellation's market identity")
     cleaned.sort(key=lambda m: (m["regione"], m["citta"], m["nome"], m["slug"]))
     stats = {
         "same_source_duplicates_merged": safe_merged,

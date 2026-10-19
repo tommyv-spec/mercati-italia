@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from export_static import export, normalize, prepare, parse_location, parse_dates, small_index, INDEX_FIELDS
 from source_milano import convert
 from source_firenze import convert as convert_firenze
+from field_evidence import identity, make_receipt, mark_managed_fields, valid_receipt
 
 
 def market(slug="mercato-centro-roma", **kwargs):
@@ -32,6 +33,69 @@ def market(slug="mercato-centro-roma", **kwargs):
 class ExportTests(unittest.TestCase):
     def setUp(self):
         self.today = date(2026, 10, 11)
+
+    def evidence(self, row, kind):
+        if kind == "riscontri_campi":
+            receipt = make_receipt(
+                row, values={"orario_testo": row["orario_testo"]},
+                source_url=row["url_fonte"], source_name=row["fonte"],
+                source_id="fixture", source_row="row-1", read_on=self.today,
+                source_updated_on="2026-10-01", source_sha256="a" * 64)
+            return [mark_managed_fields(receipt, ["orario_testo"], manager="fixture_ingest")]
+        return [{"mercato": identity(row), "data": "2026-10-13", "letto_il": str(self.today),
+                 "url": row["url_fonte"], "sha256": "b" * 64,
+                 "fonte_id": "fixture", "motivo": "Edizione annullata dal Comune"}]
+
+    def test_field_and_cancellation_evidence_automatically_protect_ids_from_dedup(self):
+        first = market(slug="first-id", indirizzo="Via Roma 1", orario_testo="08:00-13:00")
+        second = {**first, "slug": "second-id"}
+        for kind in ("riscontri_campi", "eccezioni_calendario"):
+            for observed in (first, second):
+                evidence = self.evidence(observed, kind)
+                inputs = [{**row, **({kind: evidence} if row is observed else {})}
+                          for row in (first, second)]
+                for ordered in (inputs, list(reversed(inputs))):
+                    with self.subTest(kind=kind, observed=observed["slug"], first=ordered[0]["slug"]):
+                        rows, report = prepare(ordered, self.today)
+                        self.assertEqual({r["slug"] for r in rows}, {first["slug"], second["slug"]})
+                        self.assertEqual(report["same_source_duplicates_merged"], 0)
+                        kept = next(r for r in rows if r["slug"] == observed["slug"])
+                        self.assertEqual(kept[kind], evidence)
+                        if kind == "riscontri_campi":
+                            self.assertTrue(valid_receipt(kept[kind][0], kept, today=self.today))
+                            self.assertEqual(kept[kind][0]["campi_gestiti"], ["orario_testo"])
+                        else:
+                            self.assertEqual(kept["date"], [])
+                            other = next(r for r in rows if r["slug"] != observed["slug"])
+                            self.assertEqual(other["date"], ["2026-10-13"])
+
+    def test_valid_evidence_blocks_collision_renaming_and_invalid_slug_replacement(self):
+        first = market(slug="same-id", indirizzo="Via Roma 1", orario_testo="08:00-13:00")
+        second = {**first, "indirizzo": "Piazza Dante 2"}
+        for kind in ("riscontri_campi", "eccezioni_calendario"):
+            for observed in (first, second):
+                inputs = [{**row, **({kind: self.evidence(row, kind)} if row is observed else {})}
+                          for row in (first, second)]
+                for ordered in (inputs, list(reversed(inputs))):
+                    with self.subTest(kind=kind, observed=observed["indirizzo"]):
+                        with self.assertRaisesRegex(ValueError, "protected"):
+                            prepare(ordered, self.today)
+            bad_id = {**first, "slug": "Bad ID"}
+            bad_id[kind] = self.evidence(bad_id, kind)
+            with self.subTest(kind=kind), self.assertRaisesRegex(ValueError, "protected"):
+                prepare([bad_id], self.today)
+
+    def test_invalid_evidence_does_not_acquire_identity_protection(self):
+        first = market(slug="first-id", indirizzo="Via Roma 1", orario_testo="08:00-13:00")
+        second = {**first, "slug": "second-id"}
+        for kind in ("riscontri_campi", "eccezioni_calendario"):
+            evidence = self.evidence(second, kind)
+            evidence[0]["sha256"] = "invalid"
+            rows, report = prepare([first, {**second, kind: evidence}], self.today)
+            with self.subTest(kind=kind):
+                self.assertEqual(len(rows), 1)
+                self.assertEqual(report["same_source_duplicates_merged"], 1)
+                self.assertFalse(rows[0].get(kind))
 
     def test_dataset_timestamp_scope_survives_only_as_detail_provenance(self):
         converted, err = normalize(market(

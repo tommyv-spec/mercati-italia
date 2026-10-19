@@ -86,6 +86,32 @@ class LombardiaTests(unittest.TestCase):
         self.assertEqual(months_of_operation("GENNAIO, MAGGIO"),{1,5})
         self.assertEqual(months_of_operation("GENNAIO, TBD"),set())
 
+    def test_raw_identity_qualifiers_survive_without_public_reclassification(self):
+        items = [row(30000+i) for i in range(1097)]
+        items += [
+            row(38846, day="GIOVEDÌ", freq="QUINDICINALE", city="BRENO",
+                frequenza_settimanale="1^ e 3^", n_post_alim="14",
+                n_post_non_alim="26", n_post_tot="40"),
+            row(76670, day="SABATO", freq="STAGIONALE", city="CORTENO GOLGI",
+                months="LUGLIO, AGOSTO", n_post_alim="8",
+                n_post_non_alim="19", n_post_tot="27"),
+            row(100370, day="SABATO", city="CASTANO PRIMO", n_post_alim="20",
+                n_post_non_alim="0", n_post_tot="20"),
+        ]
+        out = {x["id_fonte"]: x for x in convert(payload(items), today=self.now)}
+        for source in items[-3:]:
+            normalized = out[source["codice_id"]]
+            details = normalized["identita_fonte"]
+            self.assertEqual(details["schema"], 1)
+            for key in ("periodicita_tipo", "giorno", "frequenza_settimanale",
+                        "mesi_svolgimento", "n_post_alim", "n_post_non_alim", "n_post_tot"):
+                self.assertEqual(details[key], source.get(key))
+            self.assertEqual(normalized["categoria"], "misto")
+            self.assertEqual(normalized["verificato_il"], "")
+        self.assertEqual(out["38846"]["date"], [])
+        self.assertEqual(out["76670"]["date"], [])
+        self.assertEqual(out["100370"]["ricorrenza_testo"], "Ogni sabato")
+
     def test_future_schedules_expire_when_publisher_dataset_stale(self):
         items = [row(30000+i) for i in range(1100)]
         out = convert(payload(items, date_str="2023-01-01"), today=self.now)

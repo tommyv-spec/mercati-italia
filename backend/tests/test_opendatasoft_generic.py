@@ -171,7 +171,7 @@ class OpendatasoftReusableSourceTests(unittest.TestCase):
         source=generic_baseline()
         added=[]
         for expected in (5,5,2,0):
-            result,report=activate(cfg,registry,source,today=DAY,fetch=fetch)
+            result,report=activate(cfg,registry,source,today=DAY,fetch=fetch,read_on=DAY)
             self.assertEqual(len(result)-len(source),expected)
             self.assertEqual(len(report["new_market_ids"]),expected)
             self.assertTrue(validate_release(source,result,report,cfg,registry)["release_safe"])
@@ -230,7 +230,7 @@ class OpendatasoftReusableSourceTests(unittest.TestCase):
         # Source-level contract SHA mismatch must hold the source without
         # changing the original catalog or raising a fake closure.
         baseline=generic_baseline()
-        after,report=activate(cfg,registry,baseline,today=DAY,
+        after,report=activate(cfg,registry,baseline,today=DAY,read_on=DAY,
                               fetch=lambda url:(blob(),False))
         self.assertEqual(after,baseline)
         self.assertEqual(report["per_source"][profile["id"]]["status"],

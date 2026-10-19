@@ -11,6 +11,9 @@ NOT sufficient evidence. Do not infer recurrence from page titles or locations.
 The source must be relatively recent and attributable; canceled/archived and
 date-quality "confermata"/"riportata" records are not altered. This transforms
 a snapshot in memory and never contacts or modifies Firebase/Cloudflare.
+An import or source-read timestamp does not date the publisher's content.
+Unknown content age leaves existing predictions untouched and cannot create
+or renew a projection or its provenance timestamp.
 """
 from __future__ import annotations
 
@@ -20,9 +23,12 @@ import json
 import re
 import unicodedata
 from collections import Counter
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
+
+from source_freshness import as_day, source_date_evidence, source_url_domain
+from field_evidence import clean_receipts, MAX_READ_AGE, SOURCE_AGE
 
 WEEKDAYS = ("lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica")
 DAYS_PATTERN = re.compile(r"\b(?:lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)\b")
@@ -43,12 +49,8 @@ def text_key(value: Any) -> str:
 
 
 def parse_source_day(value: Any) -> date | None:
-    if not value:
-        return None
-    try:
-        return date.fromisoformat(str(value)[:10])
-    except (ValueError, TypeError):
-        return None
+    """Parse date syntax only; attribution is checked by source_date_evidence."""
+    return as_day(value)
 
 
 def explicit_rule(value: Any) -> dict | None:
@@ -142,11 +144,27 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
             record["proiezione_fonte"] = ""
         return record, "contradictory_weekday_identity_held"
 
-    source_url = str(record.get("url_fonte") or "")
-    if not source_url.startswith(("https://", "http://")):
+    if source_url_domain(record.get("url_fonte")) is None:
         return record, "no_attributable_source"
-    updated = parse_source_day(record.get("aggiornato_il"))
+    source_evidence = source_date_evidence(record)
+    updated = parse_source_day(source_evidence["value"])
+    projection_basis = "ricorrenza_testo"
+    if updated is None or (today - updated).days > max_stale_days:
+        # A secondary publisher can support this exact recurrence without
+        # relabeling the age of the original source. Only current, matching
+        # field observations qualify; addresses/hours and fresh imports do not.
+        dates = [parse_source_day(r.get("fonte_aggiornata_il")) for r in
+                 clean_receipts(record.get("riscontri_campi"), record, today=today)
+                 if r["valori"].get("ricorrenza_testo") == record.get("ricorrenza_testo")
+                 and (today - parse_source_day(r["letto_il"])).days <= MAX_READ_AGE]
+        dates = [d for d in dates if d and
+                 0 <= (today - d).days <= min(max_stale_days, SOURCE_AGE["ricorrenza_testo"])]
+        if dates:
+            updated = max(dates)
+            projection_basis = "riscontri_campi:ricorrenza_testo"
     if updated is None:
+        # Existing estimates are retained as estimates, with their original
+        # provenance. A recent import/read is never a reason to extend them.
         return record, "unknown_source_age"
     age = (today - updated).days
     if age < 0:
@@ -174,7 +192,7 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     record["date_quality"] = "prevista"
     record["proiezione_regola"] = rule
     record["proiezione_generata_il"] = today.isoformat()
-    record["proiezione_fonte"] = "ricorrenza_testo"
+    record["proiezione_fonte"] = projection_basis
     return record, "renewed"
 
 
@@ -185,9 +203,13 @@ def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LO
     improved = 0
     changed = 0
     monthly = 0
+    preserved_unknown = 0
     for original in records:
         updated, reason = refresh_record(original, today, horizon_days, max_stale_days)
         counts[reason] += 1
+        if (reason == "unknown_source_age" and original.get("date_quality") == "prevista"
+                and original.get("date")):
+            preserved_unknown += 1
         if reason == "renewed":
             if not any(date_value >= today.isoformat() for date_value in original.get("date", [])):
                 improved += 1
@@ -206,6 +228,7 @@ def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LO
         "newly_dated": improved,
         "date_ranges_changed": changed,
         "monthly_rules_applied": monthly,
+        "unknown_source_dates_preserved_without_renewal": preserved_unknown,
         "all_dates_marked_forecast": all(
             m.get("date_quality") == "prevista" for m in output
             if m.get("proiezione_fonte") == "ricorrenza_testo"),

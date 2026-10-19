@@ -66,6 +66,15 @@ def old_catalog():
     return rows
 
 
+def catalog_with_dated_todi_source():
+    # Positive forecast fixture: the publisher explicitly declares this
+    # content date. The separate legacy import timestamp remains unchanged.
+    # This does not assign a new source date to the real catalog or register.
+    rows=old_catalog()
+    next(row for row in rows if row["slug"]==TODI)["fonte_aggiornata_il"]="2026-10-01"
+    return rows
+
+
 class ReviewedPublisherFacts(unittest.TestCase):
     NOW=date(2026,10,12)
 
@@ -122,7 +131,7 @@ class ReviewedPublisherFacts(unittest.TestCase):
         self.assertEqual(report["changed_ids"],[])
 
     def test_idempotent_second_source_pass_after_forecast(self):
-        first,_=apply_source_repairs(old_catalog(),ISTAT,EVIDENCE,today=self.NOW,apply=True)
+        first,_=apply_source_repairs(catalog_with_dated_todi_source(),ISTAT,EVIDENCE,today=self.NOW,apply=True)
         forecasted,_=refresh_records(first,self.NOW)
         again,report=apply_source_repairs(forecasted,ISTAT,EVIDENCE,today=self.NOW,apply=True)
         self.assertEqual(first,again)
@@ -133,7 +142,7 @@ class ReviewedPublisherFacts(unittest.TestCase):
         verify_diff(forecasted,again,report,EVIDENCE)
 
     def test_spring_return_is_predicted_not_confirmed(self):
-        first,_=apply_source_repairs(old_catalog(),ISTAT,EVIDENCE,today=self.NOW,apply=True)
+        first,_=apply_source_repairs(catalog_with_dated_todi_source(),ISTAT,EVIDENCE,today=self.NOW,apply=True)
         jan=date(2027,1,20)
         forecasted,_=refresh_records(first,jan)
         after,_=apply_source_repairs(forecasted,ISTAT,EVIDENCE,today=jan,apply=True)
@@ -141,6 +150,20 @@ class ReviewedPublisherFacts(unittest.TestCase):
         self.assertEqual(todi["date"][:2],["2027-03-21","2027-04-18"])
         self.assertTrue(all(date.fromisoformat(d).month in range(3,11) for d in todi["date"]))
         self.assertEqual(todi["date_quality"],"prevista")
+
+    def test_legacy_import_does_not_date_a_reviewed_seasonal_source(self):
+        first,_=apply_source_repairs(old_catalog(),ISTAT,EVIDENCE,today=self.NOW,apply=True)
+        todi=next(row for row in first if row["slug"]==TODI)
+        todi["aggiornato_il"]="2027-01-20T09:00:00"
+        todi["importato_il"]="2027-01-20T09:00:00+00:00"
+        before=copy.deepcopy(todi)
+        forecasted,report=refresh_records([todi],date(2027,1,20))
+        self.assertEqual(forecasted,[before])
+        self.assertEqual(report["reasons"],{"unknown_source_age":1})
+        self.assertEqual(report["newly_dated"],0)
+        self.assertEqual(report["unknown_source_dates_preserved_without_renewal"],1)
+        self.assertEqual(forecasted[0]["proiezione_generata_il"],"2026-10-12")
+        self.assertEqual(forecasted[0]["verificato_il"],"")
 
     def test_wrong_source_city_status_and_verified_claim_fail(self):
         bad=old_catalog()

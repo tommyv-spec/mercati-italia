@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "fixture_only": true,
+  "sources": {
+    "bassa-romagna-weekly": {
+      "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/",
+      "read_on": "2026-10-19",
+      "updated_on": "2026-03-23",
+      "snapshot_path": "backend/tests/fixtures/primary-market-evidence-2026-10-19/bassa-romagna-weekly.html",
+      "snapshot_kind": "structural_factual_fixture",
+      "sha256": "0a0a2e0a0ecdf6bf5b30bc1a4a6cef603ecf627e240d8226ce19da0e1aaeb71c",
+      "original_source_sha256": "44812412b00fc3ea8fa25d8f1c5adf65d325963bb031a3088a420871ebcd56b2",
+      "original_source_snapshot_kind": "html_bytes",
+      "replayed_source_rows": 20,
+      "replayed_city_blocks": 9
+    },
+    "bassa-romagna-farmers": {
+      "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/",
+      "read_on": "2026-10-19",
+      "updated_on": "2026-01-27",
+      "snapshot_path": "backend/tests/fixtures/primary-market-evidence-2026-10-19/bassa-romagna-farmers.html",
+      "snapshot_kind": "structural_factual_fixture",
+      "sha256": "58b8eead4ea78a86f0d78944f17b2367760d790cef3e1ac3b6d875973098da09",
+      "original_source_sha256": "0c5c57300f399f1c50b421487bea9ac0ca1cb66aa480dbf64bcd41291325e41b",
+      "original_source_snapshot_kind": "html_bytes",
+      "replayed_source_rows": 6,
+      "replayed_city_blocks": 6
+    }
+  }
+}

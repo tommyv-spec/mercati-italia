@@ -9,10 +9,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from collections import Counter
 from pathlib import Path
 from roma_xiii_2026_venues import EXPECTED as ROMA_XIII_VENUE_IDS, EVIDENCE_FILE as ROMA_VENUE_EVIDENCE, checksum as roma_venue_digest
+from source_lifecycle import digest as source_digest
 
 HISTORY_LIMIT = 400  # more than one year of daily checkpoint scorecards
 
@@ -56,6 +58,18 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
     if not isinstance(generic_added_ids,list) or len(set(generic_added_ids))!=len(generic_added_ids):
         raise ValueError("Untrusted generic approved source market ID list")
     generic_count=len(generic_added_ids)
+    generic_fields=generic.get("old_market_fields_changed",0)
+    generic_updated=generic.get("updated_market_ids",[])
+    generic_observed=generic.get("evidence_updated_market_ids",[])
+    if (type(generic_fields) is not int or generic_fields<0
+            or not isinstance(generic_updated,list) or not isinstance(generic_observed,list)
+            or any(not isinstance(mid,str) or not mid for mid in generic_updated+generic_observed)
+            or len(set(generic_updated))!=len(generic_updated)
+            or len(set(generic_observed))!=len(generic_observed)
+            or not set(generic_updated)<=set(generic_observed)
+            or set(generic_observed)&set(generic_added_ids)
+            or not len(generic_updated)<=generic_fields<=3*len(generic_updated)):
+        raise ValueError("Untrusted generic publisher managed field counts")
     if generic and (
             generic.get("schema")!=1 or generic.get("enabled") is not True
             or generic.get("publication_channel")!="dev-only"
@@ -63,7 +77,7 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             or generic.get("candidate_market_ids")!=metric.get("records")
             or generic.get("candidate_market_ids")!=generic.get("original_market_ids",0)+generic_count
             or any(generic.get(k)!=0 for k in (
-                "record_ids_deleted","old_market_fields_changed",
+                "record_ids_deleted",
                 "new_market_openings_confirmed","new_market_coordinates_created",
                 "new_market_directions_enabled"))):
         raise ValueError("Untrusted source-level generic publisher admission changes")
@@ -80,6 +94,15 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         raise ValueError("Missing independent final generic publisher static safety guard")
     if generic and not generic_final:
         raise ValueError("Generic source approved import lacks its final published data proof")
+    if generic_observed or generic_fields:
+        signature=generic_final.get("catalog_content_signature")
+        if (generic_final.get("existing_source_fields_updated")!=generic_fields
+                or generic_final.get("existing_source_evidence_ids_checked")!=len(generic_observed)
+                or generic_final.get("existing_source_evidence_ids_sha256")!=source_digest(sorted(generic_observed))
+                or generic_final.get("source_admission_report_sha256")!=source_digest(generic)
+                or not isinstance(signature,str) or not re.fullmatch(r"[0-9a-f]{64}",signature)
+                or signature!=decision.get("new_signature")):
+            raise ValueError("Managed generic fields lack the exact final static source proof")
     newly_added = market_intake.get("records_added",0)
     if market_intake:
         expected_source = roma_venue_digest(json.loads(ROMA_VENUE_EVIDENCE.read_text("utf-8")))
@@ -286,6 +309,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "roma_xiii_2026_new_venues_this_run": newly_added,
         "generic_approved_publisher_contracts": int(generic.get("source_contracts_active",0)),
         "generic_approved_publisher_venues_added": generic_count,
+        "generic_approved_publisher_fields_updated":generic_fields,
+        "generic_approved_publisher_evidence_refreshed":len(generic_observed),
         "generic_approved_publisher_forecasts_only": int(generic_final.get("source_weekly_forecasts_only",0)),
         "generic_approved_publisher_routes_suspended": int(generic_final.get("navigation_holds_in_index",0)),
         "roma_xiii_2026_reviewed_venues_active": int(new_rome_static.get("reviewed_2026_venue_identifiers",0)),
@@ -360,6 +385,7 @@ def markdown(latest: dict) -> str:
         f"- Roma Municipio XIII (mappa pubblicata nel 2024): **{latest['roma_xiii_coordinate_holds_active']}** coordinate ancora sospese e **{latest['roma_xiii_navigation_holds_active']}** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **{latest['all_reviewed_coordinate_holds_active']}** coordinate e **{latest['all_reviewed_navigation_holds_active']}** navigazioni. Nessuna apertura 2026 confermata dal documento storico.",
         f"- Roma XIII nuove fonti comunali 2025–2026: **{latest['roma_xiii_2026_new_venues_this_run']}** schede aggiunte in questo run, **{latest['roma_xiii_2026_reviewed_venues_active']}** sedi distinte tutelate nel sito, **{latest['roma_xiii_2026_forecast_only_venues']}** con calendari solo previsti, **{latest['roma_xiii_2026_navigation_suspended']}** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.",
         f"- Import generico tramite contratti di interi dataset: **{latest['generic_approved_publisher_contracts']}** fonti con licenza e identità approvate, **{latest['generic_approved_publisher_venues_added']}** nuove schede in questo run, **{latest['generic_approved_publisher_forecasts_only']}** calendari solo previsti, **{latest['generic_approved_publisher_routes_suspended']}** indicazioni sospese. Nessuna singola apertura verificata automaticamente.",
+        f"- Aggiornamenti generici con prove per campo: **{latest.get('generic_approved_publisher_fields_updated',0)}** valori gestiti aggiornati e **{latest.get('generic_approved_publisher_evidence_refreshed',0)}** schede con riscontri aggiornati o ritirati; identità conservate.",
         f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
         f"- Miglioramento UX reversibile: **{latest['visitor_duplicate_visit_groups']}** gruppi provati dalla stessa fonte, **{latest['visitor_duplicate_buttons_avoided']}** pulsanti ripetuti evitati, **{latest['visitor_bad_city_labels_guarded']}** località anomale non mostrate come Comuni; **{latest['visitor_original_market_ids_retained']}** ID originali preservati.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",

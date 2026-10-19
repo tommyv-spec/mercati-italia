@@ -42,6 +42,11 @@ def build(freshness, source_changes=None):
             str(p.get("publisher", "")) for p in changes.get("results", [])
             if p.get("change_type") == "municipal_csv_bytes_changed"
         ),
+        "automatic_page_refresh_held": sorted(
+            str(p.get("source_id", "")) for p in freshness.get("source_refresh", {}).get("selected_pages", [])
+            if p.get("status") in {"source_held", "layout_changed", "resume_missing_evidence"}
+        ),
+        "automatic_field_conflicts": int(freshness.get("source_refresh", {}).get("conflicts", 0)),
     }
     if any(not isinstance(n, int) or n < 0 for n in problem.values()
            if isinstance(n, int)):
@@ -55,6 +60,8 @@ def build(freshness, source_changes=None):
         bool(problem["publisher_unavailable"]),
         bool(problem["publisher_new_data_claims"]),
         bool(problem["municipal_csv_changed"]),
+        bool(problem["automatic_page_refresh_held"]),
+        problem["automatic_field_conflicts"] > 0,
     ))
     signature = hashlib.sha256(json.dumps(
         problem, sort_keys=True, ensure_ascii=False, separators=(",", ":")
@@ -72,6 +79,8 @@ def build(freshness, source_changes=None):
         f"- Publisher non raggiungibili / metadati cambiati: {', '.join(problem['publisher_unavailable']) or 'nessuno'}",
         f"- Enti che dichiarano dati aggiornati rispetto al controllo precedente: {', '.join(problem['publisher_new_data_claims']) or 'nessuno'}",
         f"- CSV comunali cambiati (richiedono nuova verifica): {', '.join(problem['municipal_csv_changed']) or 'nessuno'}",
+        f"- Lettori di pagine da ripristinare: {', '.join(problem['automatic_page_refresh_held']) or 'nessuno'}",
+        f"- Conflitti fra valori esistenti e nuove letture: {problem['automatic_field_conflicts']}",
         "",
         "Correggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.",
         "",

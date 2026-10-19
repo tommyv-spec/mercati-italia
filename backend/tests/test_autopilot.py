@@ -28,6 +28,7 @@ def market(slug, recurrence="settimanale - sabato"):
         "date": ["2026-10-17", "2026-10-24"],
         "date_quality": "prevista", "ricorrenza_testo": recurrence,
         "status": "non_confermato", "aggiornato_il": "2026-02-11",
+        "fonte_aggiornata_il": "2026-02-11",
         "url_fonte": "https://example.org/markets/firenze",
         "fonte": "public fixture",
     }
@@ -201,6 +202,26 @@ class AutopilotTests(unittest.TestCase):
             args.resume=True
             found=run(args)
             self.assertTrue(found["approved"])
+
+    def test_resume_rejects_changed_publisher_layout_contracts(self):
+        from autopilot import read_json as actual_read_json
+        with tempfile.TemporaryDirectory() as td:
+            folder = Path(td)
+            base = folder / "public" / "data" / "v1"
+            export([market("fi-a")], base, today=TODAY)
+            config = folder / "policy.json"
+            config.write_text(json.dumps(policy()))
+            args = Namespace(manifest=base / "manifest.json", policy=config,
+                             output=folder / "job", today=TODAY, offline=True, resume=False)
+            register = {"schema": 1, "publication_channel": "dev-only", "sources": []}
+            def read_with_register(path):
+                return register if Path(path).name == "publisher-refresh-contracts.json" else actual_read_json(path)
+            with patch("autopilot.read_json", side_effect=read_with_register):
+                run(args)
+                register["reviewed_on"] = "2026-10-20"
+                args.resume = True
+                with self.assertRaisesRegex(ValueError, "Cannot resume"):
+                    run(args)
 
     def test_never_promote_unverified_to_confirmed(self):
         previous={"slug":"a", "date_quality":"prevista",

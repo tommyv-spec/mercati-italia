@@ -17,7 +17,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from dataclasses import asdict
 from rich.console import Console
 from rich.table import Table
@@ -98,14 +98,16 @@ def step_dedup(markets: list[CleanMarket]) -> list[CleanMarket]:
 
 
 def step_store_json(markets: list[CleanMarket], output_file: str = "mercati_clean.json"):
-    """Step 4a: Export cleaned markets to JSON file."""
+    """Step 4a: Export cleaned markets, recording catalog import time only."""
     console.print(Panel(f"[bold]Step 4: Salvataggio in {output_file}[/bold]", style="green"))
 
     output = []
+    imported_at = datetime.now(timezone.utc).isoformat()
     for m in markets:
         d = asdict(m)
         d["categoria"] = m.categoria.value
         d["ricorrenza"] = m.ricorrenza.value
+        d["importato_il"] = imported_at
         output.append(d)
 
     with open(output_file, "w", encoding="utf-8") as f:
@@ -115,7 +117,12 @@ def step_store_json(markets: list[CleanMarket], output_file: str = "mercati_clea
 
 
 def step_store_db(markets: list[CleanMarket]):
-    """Step 4b: Write cleaned markets to Firebase Firestore."""
+    """Step 4b: Write markets without inventing publisher or verification dates.
+
+    These cleaned records carry no authenticated source-read timestamp or
+    publisher content date. A database write supplies only ``importato_il``;
+    existing legacy/source/verification timestamps survive an update unchanged.
+    """
     console.print(Panel("[bold]Step 4: Scrittura su Firestore[/bold]", style="green"))
 
     from config import FIREBASE_CREDENTIALS_PATH, FIREBASE_PROJECT_ID
@@ -141,6 +148,7 @@ def step_store_db(markets: list[CleanMarket]):
     inserted = 0
     updated = 0
     errors = 0
+    imported_at = datetime.now(timezone.utc).isoformat()
 
     for market in markets:
         try:
@@ -169,14 +177,14 @@ def step_store_db(markets: list[CleanMarket]):
                 'prossima_data': market.date[0] if market.date else None,
                 'fonte': market.fonte_nome,
                 'url_fonte': market.url_fonte,
-                'aggiornato_il': datetime.utcnow().isoformat(),
+                'importato_il': imported_at,
             }
 
             if doc.exists:
                 doc_ref.update(market_data)
                 updated += 1
             else:
-                market_data['creato_il'] = datetime.utcnow().isoformat()
+                market_data['creato_il'] = imported_at
                 doc_ref.set(market_data)
                 inserted += 1
 
@@ -186,7 +194,7 @@ def step_store_db(markets: list[CleanMarket]):
                 'url_originale': market.url_fonte,
                 'dati_grezzi': market.dati_grezzi,
                 'hash_contenuto': content_hash(market),
-                'ultimo_visto': datetime.utcnow().isoformat(),
+                'importato_il': imported_at,
             }, merge=True)
 
         except Exception as e:

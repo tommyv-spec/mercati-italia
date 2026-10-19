@@ -1,0 +1,159 @@
+{
+  "automation": {
+    "cron_utc": "17 04 * * *",
+    "dev_branch": "improve/data-quality-security-performance-2026-10-11",
+    "existing_workflow": "main:.github/workflows/market-autopilot.yml",
+    "last_observed_successful_scheduled_run": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39233735947",
+    "new_dependencies": 0,
+    "new_workflows": 0
+  },
+  "baseline_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+  "candidate_signature": "94d3907752261f957c5f834cb8fd167d19eadbf85e58155d4bf6cb1a0eed683f",
+  "candidate_was_published": false,
+  "checks": {
+    "bundled_map_worker_passed": true,
+    "final_city_guard_passed": true,
+    "history_guard_passed": true,
+    "live_page_fetch_in_this_runtime": "held on DNS failure; original saved page bytes used for replay",
+    "mobile_local": "unavailable: browser archive download incomplete; existing CI mobile workflow retained",
+    "node_test_files_passed": 8,
+    "python_tests_passed": 739,
+    "vite_build_passed": true
+  },
+  "date": "2026-10-19",
+  "production_changed": false,
+  "real_observation_replay": {
+    "catalog_records": 13824,
+    "csv_json_admission_reads": "not included: original observations absent from this replay",
+    "existing_market_addresses_changed": 12,
+    "existing_market_hours_filled": 22,
+    "field_quality": {
+      "indirizzo:mancante": 3425,
+      "indirizzo:riscontrato_fonte_recente": 1139,
+      "indirizzo:riscontro_da_aggiornare": 4,
+      "indirizzo:senza_riscontro_documentato": 9256,
+      "markets": 13824,
+      "markets_with_all_three_fields_source_supported": 786,
+      "markets_with_recent_field_evidence": 1283,
+      "orario_testo:mancante": 10831,
+      "orario_testo:riscontrato_fonte_recente": 929,
+      "orario_testo:riscontro_da_aggiornare": 88,
+      "orario_testo:senza_riscontro_documentato": 1976,
+      "ricorrenza_testo:mancante": 934,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1127,
+      "ricorrenza_testo:riscontro_da_aggiornare": 26,
+      "ricorrenza_testo:senza_riscontro_documentato": 11737
+    },
+    "future_openings_confirmed": 0,
+    "ids_added": 0,
+    "ids_deleted": 0,
+    "quality_gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "saved_source_read_dates_preserved": true,
+    "source_pages": [
+      {
+        "changed_fields": 4,
+        "content_date": "2026-01-27",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 46,
+          "no_single_explicit_annual_weekday": 27
+        },
+        "layout_complete": true,
+        "matched_markets": 4,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 0,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 6,
+          "content_scopes": 1,
+          "fraction_rows": 0,
+          "rows": 6,
+          "rows_with_numeric_hours": 6,
+          "unique_source_row_ids": 6
+        },
+        "read_on": "2026-10-19",
+        "sha256": "0c5c57300f399f1c50b421487bea9ac0ca1cb66aa480dbf64bcd41291325e41b",
+        "source_id": "bassa-romagna-farmers",
+        "status": "resumed_checkpoint",
+        "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
+      },
+      {
+        "changed_fields": 8,
+        "content_date": "2026-03-23",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 35,
+          "no_single_explicit_annual_weekday": 27,
+          "venue_identity_not_established": 6
+        },
+        "layout_complete": true,
+        "matched_markets": 9,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 2,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 9,
+          "content_scopes": 1,
+          "fraction_rows": 7,
+          "rows": 20,
+          "rows_with_numeric_hours": 0,
+          "unique_source_row_ids": 20
+        },
+        "read_on": "2026-10-19",
+        "sha256": "44812412b00fc3ea8fa25d8f1c5adf65d325963bb031a3088a420871ebcd56b2",
+        "source_id": "bassa-romagna-weekly",
+        "status": "resumed_checkpoint",
+        "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
+      }
+    ],
+    "source_url_coverage": {
+      "hosts": 72,
+      "market_dispositions": {
+        "happings_gate_not_active": 9647,
+        "official_adapter": 1217,
+        "source_layout_needed": 2960
+      },
+      "markets": 13824,
+      "schema": 1,
+      "unique_primary_urls": 5752
+    }
+  },
+  "schema": 1,
+  "scope": "automatic_source_refresh_system_validation",
+  "synthetic_next_source_version": {
+    "all_current_receipts_validate_after_export": true,
+    "calendar_changes": 0,
+    "catalog_after": 13824,
+    "catalog_before": 13824,
+    "export_after": 13824,
+    "held_conflicts_with_prior_and_next_evidence_count": 121,
+    "idempotent_repeat": true,
+    "identity_changes": 0,
+    "managed_values_updated": 22,
+    "preexisting_unowned_values_preserved": 121,
+    "raw_rows_changed_for_test": 97,
+    "retained_prior_version_proofs": 22,
+    "source_date_overwrites": 0,
+    "source_rows": 1360,
+    "superseded_source_claims_retired": 121,
+    "synthetic_source_date": "2026-10-20",
+    "test_only": true,
+    "warning": "Synthetic one-minute shifts of a local snapshot copy. No actual market change asserted or published."
+  }
+}
