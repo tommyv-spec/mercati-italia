@@ -1,0 +1,1187 @@
+{
+  "schema": 1,
+  "date": "2026-10-19",
+  "generated_at": "2026-10-19T20:59:01.070802+00:00",
+  "scope": "Reusable source corroboration, bounded calendars and evidence retirement in DEV",
+  "base_commit": "2ab2c84c0add86ac148bcf9cbe6be013b78d4861",
+  "target_branch": "improve/data-quality-security-performance-2026-10-11",
+  "main_reference_read_only": "1ef738e6c05981e208ffcea5aae483ed0df14969",
+  "mechanism_changes": [
+    "Inspect explicit temporal limits retained in original identity before keeping or creating forecasts, across every publisher.",
+    "Represent complete named-month ranges from the recurrence text; retain source-age requirements and reject inconsistent saved month metadata.",
+    "Protect place names, clock-time ranges, reported dates and human verification; never infer a season from a themed title alone.",
+    "Reuse existing Happings province pages to corroborate exact existing addresses from other origins without changing their values or taking field ownership.",
+    "Check competing venue evidence across every catalog origin, including qualified identities that cannot receive new field receipts.",
+    "Withdraw only contradicted previous support from the same publisher after a later complete unique source observation; protect data and independent receipts.",
+    "Preserve and verify all catalog IDs through export, including cards whose primary publisher is not Happings.",
+    "Report secondary comparison eligibility separately from primary-reader coverage and actual field evidence.",
+    "Derive Happings operational authorization from its existing registry and avoid interpreting an unresolved worklist family as an unapproved source."
+  ],
+  "calendar_validation_on_published_catalog": {
+    "records": 13824,
+    "all_ids_preserved": true,
+    "forecast_metrics": {
+      "date": "2026-10-19",
+      "input_records": 13824,
+      "output_records": 13824,
+      "horizon_days": 120,
+      "max_source_stale_days": 540,
+      "reasons": {
+        "calendar_exception_scope_unrepresented": 1,
+        "date_range_scope_unrepresented": 25,
+        "interval_scope_unrepresented": 21,
+        "no_explicit_rule": 1875,
+        "renewed": 820,
+        "seasonal_scope_unrepresented": 57,
+        "unknown_source_age": 11025
+      },
+      "newly_dated": 0,
+      "date_ranges_changed": 0,
+      "monthly_rules_applied": 0,
+      "unknown_source_dates_preserved_without_renewal": 11015,
+      "temporal_scope_holds": 104,
+      "temporal_scope_forecasts_withdrawn": 15,
+      "temporal_scope_dates_withdrawn": 215,
+      "all_dates_marked_forecast": true
+    },
+    "withdrawals_by_original_publisher": {
+      "cosedicasa.com": {
+        "records": 1,
+        "withdrawn_forecast_dates": 4
+      },
+      "eventiesagre.it": {
+        "records": 6,
+        "withdrawn_forecast_dates": 71
+      },
+      "happings.com": {
+        "records": 8,
+        "withdrawn_forecast_dates": 140
+      }
+    },
+    "fields_changed_by_withdrawals": [
+      "date",
+      "date_quality",
+      "proiezione_fonte",
+      "proiezione_generata_il",
+      "proiezione_regola"
+    ],
+    "no_source_reads_or_catalog_publication": true
+  },
+  "source_rotation_and_secondary_capacity": {
+    "base_commit": "2ab2c84c0add86ac148bcf9cbe6be013b78d4861",
+    "both_catalogs_select_same_first_day_urls": true,
+    "catalog_files_modified": false,
+    "catalogs": {
+      "before_happings_snapshot": {
+        "catalog_market_ids": 13824,
+        "configured_max_pages_per_run": 16,
+        "filling_missing_streets_does_not_change_primary_rotation": true,
+        "first_day_primary_records": 1975,
+        "first_day_secondary_records": 62,
+        "first_day_urls": [
+          "https://www.happings.com/it/mercati-settimanali-a-benevento.html",
+          "https://www.happings.com/it/mercati-settimanali-a-bergamo.html",
+          "https://www.happings.com/it/mercati-settimanali-a-biella.html",
+          "https://www.happings.com/it/mercati-settimanali-a-bologna.html",
+          "https://www.happings.com/it/mercati-settimanali-a-bolzano.html",
+          "https://www.happings.com/it/mercati-settimanali-a-brescia.html",
+          "https://www.happings.com/it/mercati-settimanali-a-brindisi.html",
+          "https://www.happings.com/it/mercati-settimanali-a-cagliari.html",
+          "https://www.happings.com/it/mercati-settimanali-a-campobasso.html",
+          "https://www.happings.com/it/mercati-settimanali-a-caserta.html",
+          "https://www.happings.com/it/mercati-settimanali-a-catania.html",
+          "https://www.happings.com/it/mercati-settimanali-a-catanzaro.html",
+          "https://www.happings.com/it/mercati-settimanali-a-chieti.html",
+          "https://www.happings.com/it/mercati-settimanali-a-como.html",
+          "https://www.happings.com/it/mercati-settimanali-a-cosenza.html",
+          "https://www.happings.com/it/mercati-settimanali-a-cremona.html"
+        ],
+        "happings_market_ids": 9647,
+        "happings_unroutable_markets": 1454,
+        "market_dispositions": {
+          "happings_province_index": 8193,
+          "happings_source_scope_unproven": 1454,
+          "official_adapter": 1219,
+          "source_contract_active": 39,
+          "source_layout_needed": 2919
+        },
+        "newly_held_route_count": 0,
+        "newly_held_route_reasons": {},
+        "primary_market_layout_statuses": {
+          "supported": 9451,
+          "unsupported": 4373
+        },
+        "primary_routable_happings_markets": 8193,
+        "primary_routable_missing_addresses": 2122,
+        "primary_routes_at_base_commit": 8193,
+        "primary_routes_equal_base_commit": true,
+        "primary_source_urls": 95,
+        "secondary_by_original_publisher": {
+          "eventiesagre.it": 563
+        },
+        "secondary_capacity_markets": 563,
+        "secondary_capacity_missing_addresses": 0,
+        "secondary_capacity_source_urls": 81,
+        "secondary_corroboration_coverage": {
+          "counts_describe": "comparison_eligibility",
+          "eligible_markets": 563,
+          "market_read_statuses": {
+            "not_observed": 563
+          },
+          "mode": "existing_address_exact_match",
+          "publisher": "happings.com",
+          "unique_source_urls": 81
+        },
+        "secondary_routes_are_existing_primary_urls": true,
+        "six_day_batch_sizes": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "six_day_coverage_urls": 95,
+        "six_day_selection_equal_base_commit": true,
+        "six_days_cover_all_primary_urls": true
+      },
+      "published": {
+        "catalog_market_ids": 13824,
+        "configured_max_pages_per_run": 16,
+        "filling_missing_streets_does_not_change_primary_rotation": true,
+        "first_day_primary_records": 1975,
+        "first_day_secondary_records": 62,
+        "first_day_urls": [
+          "https://www.happings.com/it/mercati-settimanali-a-benevento.html",
+          "https://www.happings.com/it/mercati-settimanali-a-bergamo.html",
+          "https://www.happings.com/it/mercati-settimanali-a-biella.html",
+          "https://www.happings.com/it/mercati-settimanali-a-bologna.html",
+          "https://www.happings.com/it/mercati-settimanali-a-bolzano.html",
+          "https://www.happings.com/it/mercati-settimanali-a-brescia.html",
+          "https://www.happings.com/it/mercati-settimanali-a-brindisi.html",
+          "https://www.happings.com/it/mercati-settimanali-a-cagliari.html",
+          "https://www.happings.com/it/mercati-settimanali-a-campobasso.html",
+          "https://www.happings.com/it/mercati-settimanali-a-caserta.html",
+          "https://www.happings.com/it/mercati-settimanali-a-catania.html",
+          "https://www.happings.com/it/mercati-settimanali-a-catanzaro.html",
+          "https://www.happings.com/it/mercati-settimanali-a-chieti.html",
+          "https://www.happings.com/it/mercati-settimanali-a-como.html",
+          "https://www.happings.com/it/mercati-settimanali-a-cosenza.html",
+          "https://www.happings.com/it/mercati-settimanali-a-cremona.html"
+        ],
+        "happings_market_ids": 9647,
+        "happings_unroutable_markets": 1454,
+        "market_dispositions": {
+          "happings_province_index": 8193,
+          "happings_source_scope_unproven": 1454,
+          "official_adapter": 1219,
+          "source_contract_active": 39,
+          "source_layout_needed": 2919
+        },
+        "newly_held_route_count": 0,
+        "newly_held_route_reasons": {},
+        "primary_market_layout_statuses": {
+          "supported": 9451,
+          "unsupported": 4373
+        },
+        "primary_routable_happings_markets": 8193,
+        "primary_routable_missing_addresses": 2333,
+        "primary_routes_at_base_commit": 8193,
+        "primary_routes_equal_base_commit": true,
+        "primary_source_urls": 95,
+        "secondary_by_original_publisher": {
+          "eventiesagre.it": 563
+        },
+        "secondary_capacity_markets": 563,
+        "secondary_capacity_missing_addresses": 0,
+        "secondary_capacity_source_urls": 81,
+        "secondary_corroboration_coverage": {
+          "counts_describe": "comparison_eligibility",
+          "eligible_markets": 563,
+          "market_read_statuses": {
+            "not_observed": 563
+          },
+          "mode": "existing_address_exact_match",
+          "publisher": "happings.com",
+          "unique_source_urls": 81
+        },
+        "secondary_routes_are_existing_primary_urls": true,
+        "six_day_batch_sizes": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "six_day_coverage_urls": 95,
+        "six_day_selection_equal_base_commit": true,
+        "six_days_cover_all_primary_urls": true
+      }
+    },
+    "date": "2026-10-19",
+    "final_calendar_version_revalidated": true,
+    "happings_source_code_sha256": "050739dfb08231aaf1b4a83b97fc739618d04209e5f61600203ce41f4f48ea1f",
+    "mode": "read_only_catalog_source_route_measurement",
+    "new_network_requests": 0,
+    "observed_field_matches_claimed": 0,
+    "schema": 1,
+    "temporal_scope_code_sha256": "01888b841aaadaaabe134d949cd012a847688b86effd54fbd5ffcb6a1f00b4fc"
+  },
+  "real_happings_component_replay": {
+    "all_original_ids_preserved": true,
+    "calendar_or_clock_time_or_GPS_changes": 0,
+    "catalog_data_files_changed": false,
+    "complete_evidence_report_unchanged_from_previous_component_run": true,
+    "component_export_stats": {
+      "accepted": 13824,
+      "by_region": {
+        "Abruzzo": 392,
+        "Basilicata": 36,
+        "Calabria": 328,
+        "Campania": 820,
+        "Emilia-Romagna": 902,
+        "Friuli Venezia Giulia": 239,
+        "Lazio": 1079,
+        "Liguria": 385,
+        "Lombardia": 3948,
+        "Marche": 288,
+        "Molise": 214,
+        "Piemonte": 1332,
+        "Puglia": 483,
+        "Sardegna": 384,
+        "Sicilia": 400,
+        "Toscana": 945,
+        "Trentino-Alto Adige": 216,
+        "Umbria": 176,
+        "Valle d'Aosta": 54,
+        "Veneto": 1203
+      },
+      "human_verified": 0,
+      "id_collisions_kept_separate": [],
+      "input": 13824,
+      "same_source_duplicates_merged": 0,
+      "skipped": {},
+      "with_coordinates": 13550,
+      "with_future_date": 11906,
+      "with_source_url": 13824
+    },
+    "content_dates_inferred": 0,
+    "date": "2026-10-19",
+    "exact_normalized_export_all_ids_passed": true,
+    "exported_rows": 13824,
+    "final_calendar_version_revalidated": true,
+    "happings_source_code_sha256": "050739dfb08231aaf1b4a83b97fc739618d04209e5f61600203ce41f4f48ea1f",
+    "html_market_rows": 179,
+    "in_memory_address_changes": 15,
+    "input_market_ids": 13824,
+    "input_sha256": "0b3f5176f46d9e66fbcc688bd1fd82ab5065c74e51dde374eb900ed4eb25dfbc",
+    "mode": "in_memory_component_replay_of_previously_saved_real_HTML",
+    "new_network_requests": 0,
+    "observations_by_province_and_relation": {
+      "MO:primary": 24,
+      "MO:secondary": 1,
+      "VE:primary": 38,
+      "VE:secondary": 5
+    },
+    "observations_by_relation": {
+      "primary": 62,
+      "secondary": 6
+    },
+    "parser_counts": {
+      "already_has_street_or_vague_original": 13,
+      "conflicting_previously_saved_location": 13,
+      "html_market_rows": 179,
+      "identity_weekday_unproven": 8,
+      "no_unique_source_market_city_weekday": 48,
+      "publisher_only_vague_or_area_location": 43
+    },
+    "preview_only_unchanged": true,
+    "primary_address_candidates": 15,
+    "primary_source_URLs_or_labels_replaced": 0,
+    "record_changes_in_memory": 68,
+    "retirement_candidates": 0,
+    "scheduled_batch_executed": false,
+    "scheduled_checkpoint_created": false,
+    "schema": 1,
+    "secondary_actual_field_values_changed": 0,
+    "secondary_corroborations": 6,
+    "secondary_field_ownership_created": 0,
+    "source_provenance": "Complete previously saved connector HTML text; stored UTF-8 hash, not original HTTP wire bytes. Requested canonical URL is not an observed transport redirect.",
+    "source_report_passed": true,
+    "source_snapshots": [
+      {
+        "bytes": 159095,
+        "read_on": "2026-10-19",
+        "requested_canonical_url": "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/",
+        "stored_utf8_sha256": "ade3a0bb9ec8b75614a8968ccf301c29a87d8d1f72c7be96d9d80c5d12d7e44a"
+      },
+      {
+        "bytes": 155514,
+        "read_on": "2026-10-19",
+        "requested_canonical_url": "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/",
+        "stored_utf8_sha256": "17654158359dbdc9211756f28299ec2192efb834140cc464eeea6238510b3486"
+      }
+    ],
+    "temporal_scope_code_sha256": "01888b841aaadaaabe134d949cd012a847688b86effd54fbd5ffcb6a1f00b4fc"
+  },
+  "worklist_validation": {
+    "input": "unchanged published catalog",
+    "records": 13824,
+    "all_identities_preserved": 13824,
+    "source_labels": 87,
+    "daily_tasks": 441,
+    "market_fields_changed": 0,
+    "may_enable_source_crawlers": false,
+    "may_grant_source_reuse_rights": false,
+    "selected_source_dispositions": {
+      "happings.com": {
+        "publisher": "happings.com",
+        "records": 9647,
+        "source_family": "happings-weekly-or-detail",
+        "reuse_status": "project_owner_authorized",
+        "next_automation": "existing_happings_weekly_index_adapter_then_official_cross_match",
+        "bulk_scrape_allowed": true,
+        "authorization": {
+          "authorized": true,
+          "status": "project_owner_authorized",
+          "basis": "explicit_project_owner_instruction",
+          "rights_authenticated": false,
+          "checked_on": "2026-10-19",
+          "record_source": "backend/data/happings-rights-review.json",
+          "record_sha256": "512250e027cd43a3b86a41294b842a896d5bbac6cdc0696e1f3eba0237b01d72",
+          "adapter_scope": "happings_weekly_province_index",
+          "publication_channel": "dev-only",
+          "granted_by_this_report": false
+        },
+        "missing_fields": {
+          "coordinates": 9647,
+          "date": 305,
+          "indirizzo": 5311,
+          "individual_edition_confirmation": 9647,
+          "orario_testo": 9483
+        },
+        "source_rows_removed": 0
+      },
+      "eventiesagre.it": {
+        "publisher": "eventiesagre.it",
+        "records": 2197,
+        "source_family": "eventiesagre-event-index",
+        "reuse_status": "link_id_only_no_bulk_content_copy",
+        "next_automation": "use_existing_event_lead_url_id_pipeline_then_official_cross_match",
+        "bulk_scrape_allowed": false,
+        "authorization": null,
+        "missing_fields": {
+          "coordinates": 2197,
+          "date": 844,
+          "indirizzo": 489,
+          "individual_edition_confirmation": 2197,
+          "orario_testo": 369,
+          "ricorrenza_testo": 712
+        },
+        "source_rows_removed": 0
+      },
+      "cosedicasa.com": {
+        "publisher": "cosedicasa.com",
+        "records": 432,
+        "source_family": "cosedicasa-editorial-calendar",
+        "reuse_status": "no_verified_bulk_reuse_permission",
+        "next_automation": "check_page_schema_read_only_then_find_primary_organizer",
+        "bulk_scrape_allowed": false,
+        "authorization": null,
+        "missing_fields": {
+          "coordinates": 432,
+          "date": 71,
+          "indirizzo": 6,
+          "individual_edition_confirmation": 432,
+          "orario_testo": 431
+        },
+        "source_rows_removed": 0
+      },
+      "Comune di Bologna — dati ufficiali; apertura non confermata": {
+        "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata",
+        "records": 39,
+        "source_family": "source-family-not-resolved-by-this-worklist",
+        "reuse_status": "not_resolved_by_this_worklist",
+        "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
+        "bulk_scrape_allowed": false,
+        "authorization": null,
+        "missing_fields": {
+          "coordinates": 39,
+          "date": 39,
+          "individual_edition_confirmation": 39,
+          "orario_testo": 9
+        },
+        "source_rows_removed": 0
+      }
+    }
+  },
+  "full_catalog_replay": {
+    "mode": "offline revalidation of saved official sources; separate from Happings component samples",
+    "command": "python -B backend/autopilot.py --offline --resume --today 2026-10-19 --output /tmp/mercati-source-corroboration-final-replay-20261019",
+    "source_provenance_manifest_sha256": "2bacc00170d95e0b8ab5dedf75c685780383f979c6f6e148f0de7f324966656b",
+    "new_network_requests": 0,
+    "new_source_reads_claimed": 0,
+    "original_source_contents_and_read_dates_preserved": true,
+    "baseline_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+    "candidate_signature": "b24632e0cfd58abba31a7ebedc23d4a41fc49dded5c6944a26814af4bdf309ed",
+    "approved": true,
+    "gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "elapsed_seconds": 29.1,
+    "candidate_metrics": {
+      "future_60": 11834,
+      "future_90": 11817,
+      "indexed_gzip_bytes": 406308,
+      "missing_hours": 10602,
+      "precise": 89,
+      "records": 13824,
+      "unknown_dates": 1933,
+      "verified": 0
+    },
+    "forecast_metrics": {
+      "all_dates_marked_forecast": true,
+      "date": "2026-10-19",
+      "date_ranges_changed": 0,
+      "horizon_days": 120,
+      "input_records": 13824,
+      "max_source_stale_days": 540,
+      "monthly_rules_applied": 0,
+      "newly_dated": 0,
+      "output_records": 13824,
+      "reasons": {
+        "calendar_exception_scope_unrepresented": 1,
+        "date_range_scope_unrepresented": 25,
+        "interval_scope_unrepresented": 21,
+        "no_explicit_rule": 1875,
+        "renewed": 1049,
+        "seasonal_scope_unrepresented": 57,
+        "stale_source": 9,
+        "unknown_source_age": 10787
+      },
+      "temporal_scope_dates_withdrawn": 215,
+      "temporal_scope_forecasts_withdrawn": 15,
+      "temporal_scope_holds": 104,
+      "unknown_source_dates_preserved_without_renewal": 10786
+    },
+    "happings_enrichment": {
+      "field_changes": 0,
+      "pages_evaluated": 0,
+      "protected_catalog_market_ids": 13824,
+      "protected_existing_market_ids": 9647,
+      "release_safe": true,
+      "rights_state": "project_owner_authorized",
+      "status": "resume_missing_evidence"
+    },
+    "final_export_guard": {
+      "checked_market_ids": 13824,
+      "exported_market_ids": 13824,
+      "happings_ids_added": 0,
+      "happings_ids_deleted": 0,
+      "input_market_ids": 13824,
+      "market_ids_added": 0,
+      "market_ids_deleted": 0,
+      "opening_verifications_created": 0,
+      "protected_catalog_market_ids": 13824,
+      "protected_happings_ids": 9647,
+      "release_safe": true,
+      "retired_source_support_markets": 0,
+      "schema": 1,
+      "secondary_observed_markets": 0,
+      "source_field_changes": 0,
+      "source_observed_markets": 0,
+      "source_record_changes": 0,
+      "unapproved_field_changes": 0
+    },
+    "source_coverage": {
+      "hosts": 72,
+      "market_dispositions": {
+        "happings_province_index": 8193,
+        "happings_source_scope_unproven": 1454,
+        "official_adapter": 1219,
+        "source_contract_active": 39,
+        "source_layout_needed": 2919
+      },
+      "market_layout_statuses": {
+        "supported": 9451,
+        "unsupported": 4373
+      },
+      "market_read_statuses": {
+        "not_read": 4373,
+        "not_selected": 6218,
+        "offline_skipped": 2,
+        "resume_checkpoint_missing": 39,
+        "resume_missing_evidence": 1975,
+        "resumed_checkpoint": 1217
+      },
+      "markets": 13824,
+      "schema": 1,
+      "secondary_corroboration": {
+        "counts_describe": "comparison_eligibility",
+        "eligible_markets": 563,
+        "market_read_statuses": {
+          "not_selected": 501,
+          "resume_missing_evidence": 62
+        },
+        "mode": "existing_address_exact_match",
+        "publisher": "happings.com",
+        "unique_source_urls": 81
+      },
+      "source_admission_registry": "valid",
+      "source_contract_configuration": "valid",
+      "unique_primary_urls": 5752
+    },
+    "catalog_published": false,
+    "scheduled_happings_batch_executed": false,
+    "missing_Happings_checkpoint_is_not_a_successful_live_read": true
+  },
+  "validation": {
+    "python_tests": {
+      "passed": 927,
+      "elapsed_seconds": 34.288,
+      "log_sha256": "4ac7e1e28854e43cb5d5a5ff3878bdac53fe8f6b48b5399cc0f93bcd5a60545a"
+    },
+    "node_test_files": {
+      "passed": 8,
+      "log_sha256": "7e5ccdcd8d50db34d96c3a172dc003f1dfd7bf71a16c7252ed36767d72ef8e05"
+    },
+    "production_build": {
+      "passed": true,
+      "log_sha256": "e32715356cba1a90da2eceac9ec7c5c6395ee921f3634d41165515e7571babe1"
+    },
+    "bundled_map_worker": {
+      "passed": true,
+      "bytes": 508900,
+      "log_sha256": "9031f47c768db857e7f8f85bef1e5c63a2f1b292cf6a71aae4e9ea4ad30065d2"
+    },
+    "release_decision_sha256": "e351c88e8459b227c8ed23ee5c74d3d15c16e6217893c3c5f9e633b5e31f96e5",
+    "full_replay_log_sha256": "22f0484e1a27c3adc456bae3af9b580deeef9157eaa60002ed5c43e60111f518",
+    "independent_semantic_reviews": {
+      "independent-month-rule-review.json": {
+        "sha256": "ac3f5dfe6ed1bd1857f49e943f292d5c09e4be21210dc53290e1ec6f6a097f0d",
+        "result": {
+          "schema": 1,
+          "reviewed_at_utc": "2026-10-19T20:54:51.000399+00:00",
+          "code_file": "backend/recurrence_refresh.py",
+          "code_sha256": "01888b841aaadaaabe134d949cd012a847688b86effd54fbd5ffcb6a1f00b4fc",
+          "review_scope": "Independent complete-month-rule and source-age integration review; no full suite rerun",
+          "read_only": true,
+          "network_requests": 0,
+          "code_or_catalog_files_changed": false,
+          "passed": true,
+          "case_count": 13,
+          "passing_cases": 13,
+          "failing_cases": [],
+          "cases": [
+            {
+              "case": "complete_generic_named_months",
+              "passed": true,
+              "mode": "bounded",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da marzo a ottobre",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3,
+                "active_months": [
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              "actual_hold": null,
+              "refresh_reason": "renewed",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [
+                "2027-03-21",
+                "2027-04-18",
+                "2027-05-16"
+              ],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "2027-01-20",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "unknown_source_recent_import_is_not_renewal",
+              "passed": true,
+              "mode": "unchanged_unknown",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da marzo a ottobre",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3,
+                "active_months": [
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              "actual_hold": null,
+              "refresh_reason": "unknown_source_age",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [
+                "2026-10-18"
+              ],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "2026-10-12",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "unknown_source_can_only_retire_outside_months",
+              "passed": true,
+              "mode": "filter_unknown",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da marzo a ottobre",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3,
+                "active_months": [
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              "actual_hold": null,
+              "refresh_reason": "existing_forecast_month_scope_filtered",
+              "input_dates": [
+                "2026-10-18",
+                "2026-11-15"
+              ],
+              "output_dates": [
+                "2026-10-18"
+              ],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "2026-10-12",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "explicit_year_not_annualized",
+              "passed": true,
+              "mode": "held",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da marzo a ottobre 2026",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3
+              },
+              "actual_hold": "date_range_scope_unrepresented",
+              "refresh_reason": "date_range_scope_unrepresented",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "day_boundaries_not_erased",
+              "passed": true,
+              "mode": "held",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, dal 15 marzo al 15 ottobre",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3
+              },
+              "actual_hold": "date_range_scope_unrepresented",
+              "refresh_reason": "date_range_scope_unrepresented",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "additional_exception_not_covered",
+              "passed": true,
+              "mode": "held",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da marzo a ottobre, eccetto agosto",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3
+              },
+              "actual_hold": "date_range_scope_unrepresented",
+              "refresh_reason": "date_range_scope_unrepresented",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "other_identity_interval_not_covered",
+              "passed": true,
+              "mode": "held",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da marzo a ottobre",
+              "input_name": "Mercatino quindicinale di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3,
+                "active_months": [
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              "actual_hold": "interval_scope_unrepresented",
+              "refresh_reason": "interval_scope_unrepresented",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "self_declared_active_months_not_source_evidence",
+              "passed": true,
+              "mode": "held",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese",
+              "input_name": "Mercatino stagionale di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3
+              },
+              "actual_hold": "date_range_scope_unrepresented",
+              "refresh_reason": "date_range_scope_unrepresented",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "stored_months_conflict_cannot_override_text",
+              "passed": true,
+              "mode": "held",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da marzo a ottobre",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3,
+                "active_months": [
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              "actual_hold": "date_range_scope_unrepresented",
+              "refresh_reason": "date_range_scope_unrepresented",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "hours_not_converted_into_months",
+              "passed": true,
+              "mode": "hours",
+              "scenario_today": "2027-01-20",
+              "input_recurrence": "mensile - terza domenica del mese, da 08:00 a 13:00",
+              "input_name": "Mercatino mensile di Esempio",
+              "derived_rule": {
+                "kind": "monthly_nth_weekday",
+                "weekday": 6,
+                "ordinal": 3
+              },
+              "actual_hold": null,
+              "refresh_reason": "renewed",
+              "input_dates": [
+                "2026-10-18"
+              ],
+              "output_dates": [
+                "2027-02-21",
+                "2027-03-21",
+                "2027-04-18",
+                "2027-05-16"
+              ],
+              "input_projection_stamp": "2026-10-12",
+              "output_projection_stamp": "2027-01-20",
+              "source_content_stamp_unchanged": true,
+              "import_stamp_unchanged": true,
+              "input_unmodified": true
+            },
+            {
+              "case": "existing_todi_spring_integration",
+              "passed": true,
+              "output_dates": [
+                "2027-03-21",
+                "2027-04-18",
+                "2027-05-16"
+              ],
+              "source_content_stamp": "2026-10-01"
+            },
+            {
+              "case": "existing_todi_second_filter_is_idempotent",
+              "passed": true,
+              "winter_dates_filtered_again": 0
+            },
+            {
+              "case": "existing_todi_unknown_keeps_original_projection_provenance",
+              "passed": true,
+              "reason": "unknown_source_age",
+              "output_dates": [
+                "2026-10-18"
+              ],
+              "output_projection_stamp": "2026-10-12"
+            }
+          ]
+        }
+      },
+      "independent-temporal-review.json": {
+        "sha256": "be74fb7a6cdc36dada08d0f089b74a9624c73dd2558c8f0c0ba97cd62d926e25",
+        "result": {
+          "schema": 1,
+          "reviewed_at_utc": "2026-10-19T20:54:51.000009+00:00",
+          "code_file": "backend/recurrence_refresh.py",
+          "code_sha256": "01888b841aaadaaabe134d949cd012a847688b86effd54fbd5ffcb6a1f00b4fc",
+          "review_scope": "Recheck of original 7 semantic regression cases on final month-scope implementation",
+          "read_only": true,
+          "network_requests": 0,
+          "code_or_catalog_files_changed": false,
+          "passed": true,
+          "case_count": 7,
+          "passing_cases": 7,
+          "failing_cases": [],
+          "cases": [
+            {
+              "case": "san_salvo_real",
+              "passed": true,
+              "scenario_today": "2026-10-19",
+              "expected_hold": null,
+              "actual_hold": null,
+              "refresh_reason": "unknown_source_age",
+              "input_market_id": "mercato-settimanale-a-san-salvo-san-salvo-giovedi",
+              "input_recurrence": "settimanale - giovedì",
+              "input_dates": [
+                "2026-10-22",
+                "2026-10-29",
+                "2026-11-05",
+                "2026-11-12",
+                "2026-11-19",
+                "2026-11-26",
+                "2026-12-03",
+                "2026-12-10",
+                "2026-12-17",
+                "2026-12-24",
+                "2026-12-31",
+                "2027-01-07",
+                "2027-01-14",
+                "2027-01-21",
+                "2027-01-28",
+                "2027-02-04",
+                "2027-02-11"
+              ],
+              "output_dates": [
+                "2026-10-22",
+                "2026-10-29",
+                "2026-11-05",
+                "2026-11-12",
+                "2026-11-19",
+                "2026-11-26",
+                "2026-12-03",
+                "2026-12-10",
+                "2026-12-17",
+                "2026-12-24",
+                "2026-12-31",
+                "2027-01-07",
+                "2027-01-14",
+                "2027-01-21",
+                "2027-01-28",
+                "2027-02-04",
+                "2027-02-11"
+              ],
+              "input_unmodified": true
+            },
+            {
+              "case": "passeggiata_inverno_real",
+              "passed": true,
+              "scenario_today": "2026-10-19",
+              "expected_hold": null,
+              "actual_hold": null,
+              "refresh_reason": "unknown_source_age",
+              "input_market_id": "mercatino-antiquariato-e-usato-di-merano-mercatino-delle-pulci-passeggiata-d-inv",
+              "input_recurrence": "mensile - ultimo sabato del mese",
+              "input_dates": [
+                "2026-10-31",
+                "2026-11-28",
+                "2026-12-26",
+                "2027-01-30"
+              ],
+              "output_dates": [
+                "2026-10-31",
+                "2026-11-28",
+                "2026-12-26",
+                "2027-01-30"
+              ],
+              "input_unmodified": true
+            },
+            {
+              "case": "inverno_e_monteleone",
+              "passed": true,
+              "scenario_today": "2026-10-19",
+              "expected_hold": null,
+              "actual_hold": null,
+              "refresh_reason": "renewed",
+              "input_market_id": "review-mercato-sabato",
+              "input_recurrence": "Ogni sabato",
+              "input_dates": [
+                "2026-10-24",
+                "2026-10-31"
+              ],
+              "output_dates": [
+                "2026-10-24",
+                "2026-10-31",
+                "2026-11-07",
+                "2026-11-14",
+                "2026-11-21",
+                "2026-11-28",
+                "2026-12-05",
+                "2026-12-12",
+                "2026-12-19",
+                "2026-12-26",
+                "2027-01-02",
+                "2027-01-09",
+                "2027-01-16",
+                "2027-01-23",
+                "2027-01-30",
+                "2027-02-06",
+                "2027-02-13"
+              ],
+              "input_unmodified": true
+            },
+            {
+              "case": "hours_colon",
+              "passed": true,
+              "scenario_today": "2026-10-19",
+              "expected_hold": null,
+              "actual_hold": null,
+              "refresh_reason": "renewed",
+              "input_market_id": "review-mercato-sabato",
+              "input_recurrence": "Ogni sabato, da 08:00 a 13:00",
+              "input_dates": [
+                "2026-10-24",
+                "2026-10-31"
+              ],
+              "output_dates": [
+                "2026-10-24",
+                "2026-10-31",
+                "2026-11-07",
+                "2026-11-14",
+                "2026-11-21",
+                "2026-11-28",
+                "2026-12-05",
+                "2026-12-12",
+                "2026-12-19",
+                "2026-12-26",
+                "2027-01-02",
+                "2027-01-09",
+                "2027-01-16",
+                "2027-01-23",
+                "2027-01-30",
+                "2027-02-06",
+                "2027-02-13"
+              ],
+              "input_unmodified": true
+            },
+            {
+              "case": "hours_dot",
+              "passed": true,
+              "scenario_today": "2026-10-19",
+              "expected_hold": null,
+              "actual_hold": null,
+              "refresh_reason": "renewed",
+              "input_market_id": "review-mercato-sabato",
+              "input_recurrence": "Ogni sabato, da 8.30 a 13.00",
+              "input_dates": [
+                "2026-10-24",
+                "2026-10-31"
+              ],
+              "output_dates": [
+                "2026-10-24",
+                "2026-10-31",
+                "2026-11-07",
+                "2026-11-14",
+                "2026-11-21",
+                "2026-11-28",
+                "2026-12-05",
+                "2026-12-12",
+                "2026-12-19",
+                "2026-12-26",
+                "2027-01-02",
+                "2027-01-09",
+                "2027-01-16",
+                "2027-01-23",
+                "2027-01-30",
+                "2027-02-06",
+                "2027-02-13"
+              ],
+              "input_unmodified": true
+            },
+            {
+              "case": "closed_in_august",
+              "passed": true,
+              "scenario_today": "2026-07-20",
+              "expected_hold": "calendar_exception_scope_unrepresented",
+              "actual_hold": "calendar_exception_scope_unrepresented",
+              "refresh_reason": "calendar_exception_scope_unrepresented",
+              "input_market_id": "review-mercato-sabato",
+              "input_recurrence": "Ogni sabato, chiuso in agosto",
+              "input_dates": [
+                "2026-07-25",
+                "2026-08-01"
+              ],
+              "output_dates": [],
+              "input_unmodified": true
+            },
+            {
+              "case": "except_christmas",
+              "passed": true,
+              "scenario_today": "2026-10-19",
+              "expected_hold": "calendar_exception_scope_unrepresented",
+              "actual_hold": "calendar_exception_scope_unrepresented",
+              "refresh_reason": "calendar_exception_scope_unrepresented",
+              "input_market_id": "review-mercato-venerdi",
+              "input_recurrence": "Ogni venerdì, eccetto Natale",
+              "input_dates": [
+                "2026-12-18",
+                "2026-12-25"
+              ],
+              "output_dates": [],
+              "input_unmodified": true
+            }
+          ]
+        }
+      }
+    },
+    "previous_failure_resolved_before_integration": "The full suite exposed an interaction with already represented seasonal calendars. Generic named-month support preserves the existing spring-return and unknown-age tests; the second filter now correctly removes zero already-filtered dates."
+  },
+  "remaining_limits": [
+    "Reader capacity and successful HTML acquisition are not proof that every market fact is correct, current or independently verified.",
+    "The primary-reader coverage remains 9,451 supported and 4,373 unsupported identities; secondary eligibility for 563 cards is a separate count.",
+    "Happings does not provide an attributable content-update date in these samples. No fresh opening, exact clock hours or source update date is invented.",
+    "The six real secondary corroborations are source matches, not independent confirmations of current market openings.",
+    "Explicit unmodeled seasons, intervals and exceptions retain their hold; themes such as a Christmas event name alone do not define a calendar.",
+    "The saved Happings samples are UTF-8 text returned by the connector; no original transport byte hash, HTTP header or observed redirect is claimed.",
+    "No complete scheduled 16-page Happings batch was executed in this validation environment."
+  ],
+  "delivery_constraints": {
+    "per_market_runtime_exceptions_added": 0,
+    "individual_market_data_patches": 0,
+    "public_catalog_files_changed": 0,
+    "main_modified": false,
+    "new_workflows_schedulers_services_or_dependencies": 0,
+    "retention_policy_changes": 0,
+    "automatic_channel": "Existing daily DEV Autopilot after its QA gates",
+    "existing_schedule_UTC": "17 04 * * *",
+    "Happings_pages_per_run_unchanged": 16
+  },
+  "validated_code_sha256": {
+    "backend/autopilot.py": "5b5cbf44237278cf3edcd17e1e3f0ee6ec54e680de6f69e4926ca920978741a9",
+    "backend/data/market-evidence-source-families.json": "d2c139f37c698b53cfd0d47e22e19bc5848cd87fbfc56eb2c0436caf2e1d60e9",
+    "backend/happings_autopilot.py": "32989c57ee4b9c8d8d17d5dd8c0c84fbfca8e4f06f45023367f7076913f9f394",
+    "backend/happings_source_enrichment.py": "050739dfb08231aaf1b4a83b97fc739618d04209e5f61600203ce41f4f48ea1f",
+    "backend/market_evidence_worklist.py": "9aca9b53b71f5d350afcd358d0b2196ffa22e2864391e85b2baf56aa5c719750",
+    "backend/publisher_refresh.py": "a773fa831c86e7dd0593ba56d3cc6e57a682ba63d69691df4362a0359e6ff308",
+    "backend/recurrence_refresh.py": "01888b841aaadaaabe134d949cd012a847688b86effd54fbd5ffcb6a1f00b4fc",
+    "backend/tests/test_happings_autopilot.py": "ec716dbd6a87ca7a2c82899e1b2cbd557df5f13870b91de30bdd1da2a2f4d113",
+    "backend/tests/test_happings_source_enrichment.py": "d86f22163349a86f78a7f63c1142ac25bf8050a9308f1e468d773a0ce50c0180",
+    "backend/tests/test_market_evidence_worklist.py": "6646f39a56af7aefe63b04f3fd49e76476a026274afcc679981b4c8392174a37",
+    "backend/tests/test_publisher_exception_review.py": "2433d80cc625b654658b3e8b3416f3f7e7c1977a3b82c7995fbda655c66789e7",
+    "backend/tests/test_recurrence_refresh.py": "e15ad3b9ec33bd6d383dbd2b998c8b3416c2b4bc7f94a5d443f3e22acb5c30ae",
+    "backend/tests/test_source_refresh_coverage.py": "94d09c1178578737aadc222cfae8c979e9f7d0a6f09b01ae66e69910301a26be"
+  }
+}

@@ -132,12 +132,15 @@ def _happings_page_reads(rows, report, today):
     from happings_weekly_layout import province_page_key
 
     protected = sorted(row["slug"] for row in rows if row.get("fonte") == "happings.com")
+    catalog_ids = sorted(row["slug"] for row in rows)
     if (not isinstance(report, dict) or report.get("schema") != 1
             or report.get("publisher") != "happings.com"
             or report.get("date") != today.isoformat()
             or report.get("enabled") is not True or report.get("fetch_authorized") is not True
             or report.get("protected_existing_market_ids") != len(protected)
             or report.get("protected_ids_sha256") != fingerprint(protected)
+            or report.get("protected_catalog_market_ids") != len(catalog_ids)
+            or report.get("protected_catalog_ids_sha256") != fingerprint(catalog_ids)
             or not isinstance(report.get("selected_urls"), list)
             or not isinstance(report.get("source_pages"), list)
             or not isinstance(report.get("page_failures"), list)):
@@ -250,15 +253,19 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
     for row in rows:
         url = canonical_url(row.get("url_fonte"))
         groups[url].append(row)
-    happings_routes, happings_reads, happings_selected = {}, {}, set()
+    happings_routes, secondary_routes, happings_reads, happings_selected = {}, {}, {}, set()
     if happings_enabled:
-        from happings_source_enrichment import catalog_page_routes
+        from happings_source_enrichment import catalog_page_routes, secondary_catalog_page_routes
         from happings_weekly_layout import province_page_key
 
         # Reuse the fetcher's actual source routes. A host match cannot make
         # old town pages, thematic events or ambiguous geography supported.
         happings_routes = catalog_page_routes(rows)
+        secondary_routes = secondary_catalog_page_routes(rows)
         happings_reads, happings_selected = _happings_page_reads(rows, happings_report, today)
+    route_reads = {url: happings_reads.get(province_page_key(url),
+                    "not_selected" if happings_selected else "not_observed")
+                   for url in set(happings_routes.values()) | set(secondary_routes.values())}
     resource_groups = []
     for url, group in sorted(groups.items()):
         if happings_enabled and (urlsplit(url).hostname or "").removeprefix("www.") == "happings.com":
@@ -302,8 +309,7 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
                 mode, layout, read_status = "happings_source_scope_unproven", "unsupported", "not_read"
             else:
                 mode, layout = "happings_province_index", "supported"
-                key = province_page_key(happings_page)
-                read_status = happings_reads.get(key, "not_selected" if happings_selected else "not_observed")
+                read_status = route_reads[happings_page]
             readers = []
         elif readers:
             # A failed read cannot erase the known layout. If two approved
@@ -335,6 +341,15 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
             resource["source_route_url"] = happings_page
             resource["source_route_method"] = ("province_index" if province_page_key(url) is not None
                                                else "province_index_join")
+        secondary = Counter(secondary_routes[row["slug"]] for row in group
+                            if row.get("slug") in secondary_routes)
+        if secondary:
+            # Existing-address eligibility is distinct from a matched field
+            # receipt. It cannot turn the original publisher into a reader.
+            resource["secondary_corroboration_routes"] = [
+                {"publisher": "happings.com", "source_route_url": route,
+                 "eligible_markets": count, "source_read_status": route_reads[route]}
+                for route, count in sorted(secondary.items())]
         resources.append(resource)
     return {"schema": 1, "markets": len(rows), "unique_primary_urls": len(groups),
             "hosts": len({x["host"] for x in resources if x["host"]}),
@@ -346,6 +361,13 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
                 if x["source_read_status"] == state) for state in {x["source_read_status"] for x in resources}})),
             "market_dispositions": dict(Counter({mode: sum(x["markets"] for x in resources if x["mode"] == mode)
                                                 for mode in {x["mode"] for x in resources}})),
+            "secondary_corroboration": {
+                "publisher": "happings.com", "mode": "existing_address_exact_match",
+                "counts_describe": "comparison_eligibility",
+                "eligible_markets": len(secondary_routes),
+                "unique_source_urls": len(set(secondary_routes.values())),
+                "market_read_statuses": dict(Counter(route_reads[url] for url in secondary_routes.values())),
+            },
             "resources": resources}
 
 

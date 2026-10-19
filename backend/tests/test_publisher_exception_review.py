@@ -138,7 +138,9 @@ class ReviewedPublisherFacts(unittest.TestCase):
         self.assertEqual(report["counts"]["cities_corrected"],0)
         self.assertEqual(report["counts"]["unsafe_points_quarantined"],0)
         self.assertEqual(report["counts"]["navigation_held"],0)
-        self.assertEqual(report["counts"]["winter_forecast_dates_filtered"],3)
+        # The generic forecast engine already represents the complete named
+        # month range; the second source pass has no winter dates to remove.
+        self.assertEqual(report["counts"]["winter_forecast_dates_filtered"],0)
         verify_diff(forecasted,again,report,EVIDENCE)
 
     def test_spring_return_is_predicted_not_confirmed(self):

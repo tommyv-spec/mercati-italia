@@ -20,6 +20,7 @@ riuscita in una dichiarazione di correttezza dell'intero catalogo.
 | Arricchimento MERCap | Dataset regionale completo; sede/giorno oppure Comune/provincia/giorno univoci | Recupera sedi mancanti e orari, poi aggiorna i campi assegnati dal motore alla stessa identità fonte |
 | Contratti CSV e JSON approvati | Risorsa e schema dichiarati nel contratto | Nuovi inserimenti e aggiornamenti dei tre campi gestiti dello stesso record fonte |
 | Pagine comunali con blocchi Quando/Dove/Orari | Pagina intera, con limiti di struttura e cardinalità | Aggiorna i campi assegnati dal lettore quando cambia la stessa riga fonte |
+| Elenchi provinciali Happings | Pagina intera nella rotazione già autorizzata | Assegna e aggiorna soltanto sedi gestite; può riscontrare sedi già presenti su schede di altre origini, con identità univoca |
 
 `publisher_page_parser.py` è un parser puro, senza rete o scritture. Il
 contratto descrive struttura della pagina, territorio, tipo di mercato e
@@ -207,6 +208,27 @@ attribuire la data della fonte secondaria a quella primaria. Per questo
 ripiego sono richiesti lettura entro 45 giorni e contenuto entro 180 giorni.
 Le nuove date restano etichettate come previste.
 
+Il controllo del calendario considera anche i limiti temporali conservati
+nell'identità originale: nome, titolo originale, slug e percorso dell'URL.
+Una formula normalizzata come “settimanale - sabato” non rappresenta da sola
+un mercato indicato come estivo o ogni quindici giorni. Se il motore non può
+rappresentare quel limite, impedisce nuove proiezioni e ritira quelle già
+calcolate, anche quando l'età della fonte è ignota. Una lettura recente della
+stessa formula incompleta non rimuove il limite. Scheda e storia restano;
+le date riportate o confermate e le verifiche individuali seguono il percorso
+di protezione esistente. Il controllo cerca espressioni temporali complete,
+senza interpretare indirizzi, query degli URL o frammenti dei nomi geografici
+come regole di calendario.
+
+Un intervallo di mesi espresso integralmente nella ricorrenza, per esempio
+“mensile - terza domenica del mese, da marzo a ottobre”, può invece essere
+rappresentato. Il motore deriva dal testo i mesi ammessi e limita a essi le
+proiezioni. Un elenco `active_months` salvato non può sostituire o contraddire
+quella regola. Con età fonte ignota può soltanto conservare o restringere le
+vecchie previsioni; non ne crea di nuove. Intervalli con anni, giorni precisi
+o altre clausole non rappresentate rimangono trattenuti. Non ricava i mesi
+di una stagione dal solo aggettivo “estivo”.
+
 Se una previsione era stata generata esplicitamente da `riscontri_campi` e
 quella ricorrenza perde ogni prova utilizzabile, il motore ritira anche tali
 previsioni, quando manca una fonte primaria attuale. Rimuove i metadati della
@@ -254,9 +276,32 @@ L'artefatto già esistente comprende:
 - `publisher-refresh.json` e guardia finale: cambi, prove, conflitti ed esiti
   delle pagine lette;
 - `source-refresh-coverage.json`: tutti gli URL primari del catalogo con
-  un esito esplicito di copertura;
+  un esito esplicito di copertura; la capacità di confronto tramite Happings
+  per altre origini è registrata separatamente come `secondary_corroboration`;
 - `market-field-quality.json`: valutazione dei tre campi su tutte le schede;
 - report dei contratti generici con aggiornamenti e ritiri di prove.
+
+### Riscontri fra origini tramite le pagine già lette
+
+La selezione Happings continua a usare soltanto gli URL provinciali già
+instradati dal catalogo. Il medesimo HTML può riscontrare una scheda di altra
+origine se nome ordinario del mercato, Comune, provincia, regione, giorno
+settimanale e sede già specifica coincidono con una sola riga della pagina.
+Il confronto include le sedi concorrenti di tutte le origini. Per queste
+schede il percorso aggiunge soltanto fonti e ricevute: non riempie indirizzi
+vuoti, non riscrive la fonte primaria e non acquisisce la gestione dei valori
+preesistenti. L'export conserva e ricontrolla tutti gli ID del catalogo.
+
+Una successiva versione completa della stessa fonte può contraddire la sede
+precedentemente riscontrata. Se i valori della scheda sono protetti, rimangono
+intatti; viene ritirato soltanto il supporto contraddetto di quella fonte,
+conservando le prove indipendenti. Il ritiro richiede identità fonte univoca,
+lettura successiva e contenuto cambiato. Pagina assente, risposta fallita,
+struttura cambiata o più sedi possibili non equivalgono a una contraddizione.
+
+Il numero di schede ammesse a questo confronto non è una misura di fatti
+verificati. Il report conserva la copertura del lettore primario e l'esito
+della lettura secondaria separati dalle effettive ricevute dei campi.
 
 Il riepilogo delle pagine confluisce in `freshness.json` e `FRESHNESS.md`,
 già pubblicati dal workflow. La firma del catalogo e il giorno devono

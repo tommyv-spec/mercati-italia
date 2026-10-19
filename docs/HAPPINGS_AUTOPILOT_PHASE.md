@@ -85,6 +85,26 @@ La fonte primaria della scheda resta il vecchio URL. La pagina provinciale è
 registrata come fonte del nuovo riscontro. Questa relazione non dichiara che
 sia stato osservato un redirect del vecchio dettaglio.
 
+## Riscontro di schede provenienti da altre fonti
+
+`secondary_catalog_page_routes()` descrive quali schede di altra origine
+possono essere confrontate con le stesse pagine provinciali già nella
+rotazione. Non aggiunge URL o richieste. Richiede identità generica di un
+mercato ordinario, geografia ISTAT esatta, un solo giorno settimanale completo
+e un indirizzo esistente specifico. I limiti temporali dell'identità originale
+restano rilevanti anche quando il nome visualizzato è stato normalizzato.
+
+Per registrare un riscontro, la sede già salvata deve coincidere con la sola
+riga compatibile del publisher; il controllo delle sedi concorrenti comprende
+tutte le origini. Una scheda di altra origine con indirizzo vuoto o vago non
+ottiene un'assegnazione tramite questo percorso.
+
+Vengono aggiunti soltanto `fonti` e `riscontri_campi`. Fonte primaria, URL,
+indirizzo, ricorrenza, orari, date, coordinate e ID restano gli stessi.
+L'osservazione di un valore preesistente non gli attribuisce `campi_gestiti`,
+nemmeno dopo più cicli concordanti. La data del contenuto Happings resta
+sconosciuta e il riscontro non conferma un'apertura futura.
+
 ## Campi osservati e aggiornamenti successivi
 
 La fase può riempire una sede vuota con un indirizzo specifico proveniente
@@ -98,6 +118,13 @@ fonte, una lettura successiva, contenuto cambiato e assenza di prove
 concorrenti. Una rilettura con valore uguale conserva la gestione precedente.
 Una sede già presente e soltanto osservata dalla fonte non acquisisce questa
 gestione. Gli interventi umani e le posizioni precise restano protetti.
+
+Se una lettura successiva, con corpo diverso, mostra una sede specifica
+discordante per la stessa riga fonte univoca, il motore ritira il precedente
+riscontro contraddetto anche quando l'indirizzo non può essere aggiornato.
+Conserva l'indirizzo e le prove delle altre fonti. Il report espone il ritiro
+e la prova che lo giustifica. Indisponibilità, righe mancanti, più sedi,
+contenuti vaghi o struttura cambiata non autorizzano questo ritiro.
 
 La ricorrenza viene riscontrata soltanto quando la formula settimanale è
 integralmente sostenuta dal giorno della riga. Un giorno diverso o una
@@ -149,12 +176,23 @@ Le pagine non selezionate nel ciclo hanno uno stato distinto da quelle lette,
 in errore o con struttura cambiata. Se un URL contiene schede instradabili e
 altre ambigue, i due gruppi hanno conteggi separati.
 
+`secondary_corroboration` espone separatamente il numero di schede di altre
+origini ammesse al confronto di una sede esistente, gli URL secondari e i
+loro esiti di lettura. Ogni risorsa primaria mantiene la propria copertura:
+una scheda Eventi e Sagre confrontabile con Happings non viene conteggiata
+come se disponessimo di un lettore Eventi e Sagre. Un confronto possibile o
+una pagina scaricata non costituiscono una ricevuta di riscontro del campo.
+
 ## Identità e controllo dell'export
 
-L'export conserva tutti i 9.647 ID Happings, compresi quelli incompleti o non
-instradabili. Due schede che acquisiscono la stessa sede conservano i loro
-ID. Il controllo finale confronta le schede normalizzate con i soli campi e
-riscontri autorizzati dalla fase.
+L'export conserva tutti gli ID del catalogo, compresi quelli incompleti o non
+instradabili. Due schede che acquisiscono o riscontrano la stessa sede
+conservano i loro ID. Il controllo finale confronta tutte le schede
+normalizzate con i soli campi e riscontri autorizzati dalla fase. Il report
+mantiene il conteggio storico `protected_existing_market_ids` per Happings e
+aggiunge `protected_catalog_market_ids` e relativa impronta per il catalogo
+completo, così anche le prove secondarie appartengono all'esatto insieme
+conservato.
 
 La promozione del candidato DEV continua a dipendere dai controlli ordinari
 dell'Autopilot, inclusi integrità del catalogo, prove delle fonti, build e
@@ -178,7 +216,36 @@ rapporti sintetici. I test con fixture sintetiche verificano il comportamento
 del motore. I campioni reali, le date delle loro letture e gli errori di rete
 sono rendicontati separatamente e non si deducono dall'esito dei test.
 
-### Verifica della modifica attiva
+### Verifica dei riscontri fra origini e dei calendari
+
+La revisione successiva supera **927 test Python**, gli **otto file di test
+Node**, la build e il controllo del worker della mappa. La prova completa
+dell'Autopilot riusa gli snapshot salvati, conserva tutte le **13.824 schede**
+e supera i **17 controlli di rilascio**.
+
+Sui due HTML reali già disponibili, Venezia e Modena, restano **15 proposte
+di indirizzo** per le schede Happings. Il confronto produce in memoria
+riscontri per **62 schede primarie e sei di altre origini**; due precedenti
+abbinamenti primari sono esclusi dal controllo delle sedi concorrenti. I
+valori delle sei schede secondarie rimangono intatti. Questa prova non è
+una nuova lettura di rete né l'esecuzione della rotazione programmata.
+
+Sul catalogo completo il motore ammette al confronto secondario **563
+schede** attraverso **81 pagine già comprese nella rotazione primaria**.
+Sono conteggi di capacità, non di fatti verificati. La copertura primaria
+rimane di **9.451 schede con lettore e 4.373 senza lettore compatibile**.
+
+Il controllo temporale comune a tutte le origini rileva **104 schede** con
+limiti di calendario non rappresentati e, nella prova, ritira **215 date
+calcolate da 15 schede**. Gli intervalli di mesi integralmente espressi
+nella ricorrenza vengono invece rispettati. Questi risultati riguardano il
+candidato di validazione; il catalogo pubblico segue il ciclo di rilascio
+ordinario.
+
+Conteggi, impronte, regressioni e limiti sono nel
+[report dei riscontri e dei calendari](../reports/automation/source-corroboration-and-calendar-scope-validation-2026-10-19.json).
+
+### Verifica dell'attivazione precedente, PR #63
 
 La suite completa della modifica supera **877 test Python**, oltre agli
 otto file di test Node, alla build e al controllo del worker della mappa.

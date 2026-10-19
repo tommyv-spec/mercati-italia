@@ -3,13 +3,16 @@ from __future__ import annotations
 import copy
 import json
 import sys
+import tempfile
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from market_evidence_worklist import analyze, validate, registry_check, fields, family
+from market_evidence_worklist import analyze, validate, registry_check, fields, family, markdown
+import happings_source_enrichment as happings
 from merge_catalog import load_existing
 from source_lombardia import SOURCE_PAGE
 CONTRACTS=json.loads((ROOT/"data/market-evidence-source-families.json").read_text("utf-8"))
@@ -51,9 +54,9 @@ class PerMarketEvidenceTests(unittest.TestCase):
         self.assertEqual(family("happings.com",CONTRACTS)["id"],
                          "happings-weekly-or-detail")
         self.assertEqual(family("unknown-town-site",CONTRACTS)["rights"],
-                         "not_approved")
+                         "not_resolved_by_this_worklist")
         for field in ("may_grant_source_reuse_rights","may_apply_field_changes",
-                      "may_confirm_individual_market_dates"):
+                      "may_confirm_individual_market_dates","may_enable_source_crawlers"):
             bad=copy.deepcopy(CONTRACTS)
             bad[field]=True
             with self.subTest(field=field),self.assertRaises(ValueError):
@@ -62,6 +65,28 @@ class PerMarketEvidenceTests(unittest.TestCase):
         bad["families"][0]["bulk_scrape_allowed"]=True
         with self.assertRaises(ValueError):
             registry_check(bad)
+
+    def test_unlisted_operational_source_is_unresolved_without_denying_or_granting_rights(self):
+        # Bologna has an approved reader in the operational registry, although
+        # this report's deliberately small source-family registry omits it.
+        label="Comune di Bologna, dati aperti CC BY 4.0 (licenza dichiarata)"
+        row=market("bo-piano-reviewed",publisher=label,city="Bologna",province="BO")
+        before=copy.deepcopy(row)
+        report=analyze([row],CONTRACTS,today=TODAY,shards=1)
+        self.assertTrue(validate(report,1))
+        profile=report["sources_by_volume"][0]
+        task=report["daily_worklist"][0]
+        self.assertEqual(profile["source_family"],"source-family-not-resolved-by-this-worklist")
+        self.assertEqual(profile["reuse_status"],"not_resolved_by_this_worklist")
+        self.assertEqual(task["source_rights"],"not_resolved_by_this_worklist")
+        self.assertEqual(profile["next_automation"],
+                         "consult_existing_operational_source_registries_then_find_primary_publisher")
+        self.assertEqual(task["next_source_action"],profile["next_automation"])
+        self.assertIsNone(profile["authorization"])
+        self.assertFalse(report["may_enable_source_crawlers"])
+        self.assertFalse(report["may_grant_source_reuse_rights"])
+        self.assertEqual(report["market_fields_changed"],0)
+        self.assertEqual(row,before)
 
     def test_all_incomplete_market_rows_and_legacy_sources_are_retained(self):
         rows=[
@@ -203,6 +228,154 @@ class PerMarketEvidenceTests(unittest.TestCase):
         result["market_rows_removed"]=1
         with self.assertRaises(ValueError):
             validate(result,1)
+
+
+class HappingsSourceAuthorizationTests(unittest.TestCase):
+    def setUp(self):
+        self.today=date(2026,10,19)
+        self.record=json.loads(happings.RIGHTS_REVIEW_FILE.read_text("utf-8"))
+        self.temp=tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.path=Path(self.temp.name)/"happings-rights-review.json"
+        self.write_record(self.record)
+        self.override=patch.object(happings,"RIGHTS_REVIEW_FILE",self.path)
+        self.override.start()
+        self.addCleanup(self.override.stop)
+
+    def write_record(self,record):
+        self.path.write_text(json.dumps(record),"utf-8")
+
+    def report(self,*,today=None,rows=None):
+        result=analyze(rows or [market("happings-legacy")],CONTRACTS,
+                       today=today or self.today,shards=1)
+        self.assertTrue(validate(result,len(rows or [None])))
+        return result
+
+    def test_owner_authorization_is_reported_without_publisher_authentication_or_network(self):
+        rows=[market("happings-legacy")]
+        before=copy.deepcopy(rows)
+        contracts_before=copy.deepcopy(CONTRACTS)
+        with patch.object(happings,"fetch_pages",side_effect=AssertionError("No report network")):
+            result=self.report(rows=rows)
+        source=result["sources_by_volume"][0]
+        self.assertEqual(source["reuse_status"],"project_owner_authorized")
+        self.assertTrue(source["bulk_scrape_allowed"])
+        auth=source["authorization"]
+        self.assertEqual(auth["basis"],"explicit_project_owner_instruction")
+        self.assertFalse(auth["rights_authenticated"])
+        self.assertEqual(auth["publication_channel"],"dev-only")
+        self.assertEqual(auth["adapter_scope"],"happings_weekly_province_index")
+        self.assertEqual(len(auth["record_sha256"]),64)
+        self.assertFalse(auth["granted_by_this_report"])
+        task=result["daily_worklist"][0]
+        self.assertEqual(task["source_rights"],"project_owner_authorized")
+        self.assertEqual(task["source_authorization"],auth)
+        self.assertFalse(result["may_enable_source_crawlers"])
+        self.assertFalse(result["may_grant_source_reuse_rights"])
+        self.assertEqual(result["market_fields_changed"],0)
+        self.assertEqual(rows,before)
+        self.assertEqual(CONTRACTS,contracts_before)
+        self.assertIn("Il registro del motore autorizza",markdown(result))
+
+    def test_revoked_instruction_changes_next_report_without_cached_permission(self):
+        first=self.report()["sources_by_volume"][0]
+        self.record["project_authorization"]["revoked"]=True
+        self.write_record(self.record)
+        second=self.report()["sources_by_volume"][0]
+        self.assertTrue(first["bulk_scrape_allowed"])
+        self.assertFalse(second["bulk_scrape_allowed"])
+        self.assertEqual(second["reuse_status"],"blocked_rights")
+        self.assertEqual(second["next_automation"],
+                         "cross_match_with_independent_licensed_official_sources")
+        self.assertNotEqual(first["authorization"]["record_sha256"],
+                            second["authorization"]["record_sha256"])
+
+    def test_historical_report_does_not_backdate_project_authorization(self):
+        before=self.report(today=self.today-timedelta(days=1))["sources_by_volume"][0]
+        after=self.report()["sources_by_volume"][0]
+        self.assertFalse(before["bulk_scrape_allowed"])
+        self.assertEqual(before["reuse_status"],"blocked_rights")
+        self.assertTrue(after["bulk_scrape_allowed"])
+
+    def test_missing_malformed_or_oversized_record_cannot_authorize_extraction(self):
+        for raw in (None,b"not-json",b" "*65_537,b'{"schema":1}',b"\xff"):
+            with self.subTest(raw=raw[:20] if raw else raw):
+                if raw is None:
+                    self.path.unlink()
+                else:
+                    self.path.write_bytes(raw)
+                source=self.report()["sources_by_volume"][0]
+                self.assertFalse(source["bulk_scrape_allowed"])
+                self.assertEqual(source["reuse_status"],"invalid_or_missing_rights_record")
+
+    def test_wrong_scope_or_channel_follows_existing_crawler_authorization_gate(self):
+        for key,value in (("publication_channel","production"),
+                          ("scope",["automated_extraction"]),
+                          ("authorized",False)):
+            with self.subTest(key=key):
+                record=copy.deepcopy(self.record)
+                record["project_authorization"][key]=value
+                self.write_record(record)
+                source=self.report()["sources_by_volume"][0]
+                self.assertFalse(source["bulk_scrape_allowed"])
+                self.assertEqual(source["reuse_status"],"blocked_rights")
+
+    def test_authenticated_grant_remains_distinct_from_owner_instruction(self):
+        self.record["republication_rights_authenticated"]=True
+        self.write_record(self.record)
+        source=self.report()["sources_by_volume"][0]
+        self.assertEqual(source["reuse_status"],"authenticated")
+        self.assertTrue(source["bulk_scrape_allowed"])
+        self.assertTrue(source["authorization"]["rights_authenticated"])
+        self.assertEqual(source["authorization"]["basis"],"authenticated_publisher_grant")
+
+    def test_source_contract_cannot_replace_or_override_the_real_permission_record(self):
+        for key,value in (("bulk_scrape_allowed",True),("bulk_scrape_allowed",False),
+                          ("rights","project_owner_authorized"),
+                          ("authorization_source","/tmp/unchecked-permission.json"),
+                          ("authorization",{"authorized":True})):
+            with self.subTest(key=key,value=value):
+                cfg=copy.deepcopy(CONTRACTS)
+                cfg["families"][0][key]=value
+                with self.assertRaises(ValueError):
+                    analyze([market("happings-legacy")],cfg,today=self.today,shards=1)
+
+    def test_eventiesagre_and_cosedicasa_keep_their_no_bulk_policy(self):
+        rows=[market("happings-legacy"),market("events",publisher="eventiesagre.it"),
+              market("editorial",publisher="cosedicasa.com")]
+        report=self.report(rows=rows)
+        sources={source["publisher"]:source for source in report["sources_by_volume"]}
+        self.assertTrue(sources["happings.com"]["bulk_scrape_allowed"])
+        for label in ("eventiesagre.it","cosedicasa.com"):
+            with self.subTest(label=label):
+                self.assertFalse(sources[label]["bulk_scrape_allowed"])
+                self.assertIsNone(sources[label]["authorization"])
+        self.assertEqual(sources["eventiesagre.it"]["reuse_status"],
+                         "link_id_only_no_bulk_content_copy")
+        self.assertEqual(sources["cosedicasa.com"]["reuse_status"],
+                         "no_verified_bulk_reuse_permission")
+
+    def test_report_validation_rejects_new_authority_and_false_authentication(self):
+        result=self.report()
+        for field in ("may_enable_source_crawlers","may_grant_source_reuse_rights"):
+            bad=copy.deepcopy(result)
+            bad[field]=True
+            with self.subTest(field=field),self.assertRaises(ValueError):
+                validate(bad,1)
+        for key,value in (("rights_authenticated",True),("granted_by_this_report",True),
+                          ("publication_channel","production")):
+            bad=copy.deepcopy(result)
+            bad["sources_by_volume"][0]["authorization"][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):
+                validate(bad,1)
+        bad=copy.deepcopy(result)
+        bad["daily_worklist"][0]["source_authorization"]={"authorized":True}
+        with self.assertRaises(ValueError):
+            validate(bad,1)
+        bad=copy.deepcopy(result)
+        bad["daily_worklist"][0]["source_rights"]="no_verified_bulk_reuse_permission"
+        with self.assertRaises(ValueError):
+            validate(bad,1)
 
 if __name__=="__main__":
     unittest.main()

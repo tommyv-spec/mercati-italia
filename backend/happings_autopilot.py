@@ -179,7 +179,8 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
     # Existing identities remain protected even if the source is disabled,
     # unavailable or its permission changes after an earlier field repair.
     unchanged, empty_evidence = source.preview(base, [], today=today)
-    preserve_ids = frozenset(row["slug"] for row in base if row.get("fonte") == source.PUBLISHER)
+    publisher_ids = frozenset(row["slug"] for row in base if row.get("fonte") == source.PUBLISHER)
+    preserve_ids = frozenset(row["slug"] for row in base)
     authorization, rights_digest = _rights(Path(rights_path or source.RIGHTS_REVIEW_FILE), today=today)
     report = {
         "schema": SCHEMA, "publisher": source.PUBLISHER, "date": today.isoformat(),
@@ -189,8 +190,10 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
         "fetch_authorized": authorization["authorized"],
         "authorization_basis": authorization["basis"],
         "rights_record_sha256": rights_digest, "input_sha256": digest(base),
-        "protected_existing_market_ids": len(preserve_ids),
-        "protected_ids_sha256": digest(sorted(preserve_ids)),
+        "protected_existing_market_ids": len(publisher_ids),
+        "protected_ids_sha256": digest(sorted(publisher_ids)),
+        "protected_catalog_market_ids": len(preserve_ids),
+        "protected_catalog_ids_sha256": digest(sorted(preserve_ids)),
         "selected_urls": [], "source_pages": [], "page_failures": [], "source_evidence_reused": False,
         "max_index_pages_per_run": policy["max_pages"],
         "evidence": empty_evidence,
@@ -258,6 +261,11 @@ def verify_changes(before, after, report):
     """Independent field diff; source receipts cannot authorize other changes."""
     if (report.get("schema") != SCHEMA or report.get("publisher") != source.PUBLISHER
             or report.get("input_sha256") != digest(before)
+            or report.get("protected_catalog_market_ids") != len(before)
+            or report.get("protected_catalog_ids_sha256") != digest(sorted(r["slug"] for r in before))
+            or report.get("protected_existing_market_ids") != sum(r.get("fonte") == source.PUBLISHER for r in before)
+            or report.get("protected_ids_sha256") != digest(sorted(
+                r["slug"] for r in before if r.get("fonte") == source.PUBLISHER))
             or [r["slug"] for r in before] != [r["slug"] for r in after]):
         raise ValueError("Happings field phase changed its baseline or market identities")
     authorization_states = {
@@ -284,8 +292,10 @@ def verify_changes(before, after, report):
         raise ValueError("Happings report changed the selected page or observation date")
     proposals = {p["market_id"]: p for p in evidence["proposals"]}
     observations = {p["market_id"]: p for p in evidence["observations"]}
+    retirements = {p["market_id"]: p for p in evidence["retirements"]}
     if (len(proposals) != len(evidence["proposals"])
-            or len(observations) != len(evidence["observations"])):
+            or len(observations) != len(evidence["observations"])
+            or len(retirements) != len(evidence["retirements"])):
         raise ValueError("Happings repeated a field proposal or observation")
     observed_on = date.fromisoformat(report["date"])
     changed, address_changed = [], []
@@ -293,7 +303,9 @@ def verify_changes(before, after, report):
         sid = old["slug"]
         receipt = proposals.get(sid)
         observation = observations.get(sid)
-        expected = source.expected_record(old, proposal=receipt, observation=observation, today=observed_on)
+        retirement = retirements.get(sid)
+        expected = source.expected_record(old, proposal=receipt, observation=observation,
+                                          retirement=retirement, today=observed_on)
         if expected != current:
             raise ValueError("Unapproved Happings market-field change: " + sid)
         if old == current:
@@ -301,13 +313,16 @@ def verify_changes(before, after, report):
         fields = (set(old) ^ set(current)) | {
             key for key in set(old) | set(current) if old.get(key) != current.get(key)
         }
-        if (fields - {"indirizzo", "fonti", "riscontri_campi"} or old.get("fonte") != source.PUBLISHER
+        proof = observation or retirement
+        allowed = ({"riscontri_campi"} if retirement else {"fonti", "riscontri_campi"}
+                   if old.get("fonte") != source.PUBLISHER else {"indirizzo", "fonti", "riscontri_campi"})
+        if (fields - allowed
                 or report.get("enabled") is not True or report.get("fetch_authorized") is not True
                 or report.get("authorization_basis") not in {
                     "explicit_project_owner_instruction", "authenticated_publisher_grant"}
-                or not observation or observation.get("apply_authorized") is not True
-                or not source.record_matches_page(old, observation.get("source_requested_url"),
-                                                  observation.get("source_url"))):
+                or not proof or proof.get("apply_authorized") is not True
+                or source._record_relation(old, proof.get("source_requested_url"),
+                                           proof.get("source_url")) != proof.get("source_relation")):
             raise ValueError("Unapproved Happings market-field change: " + sid)
         changed.append(sid)
         if old.get("indirizzo") != current.get("indirizzo"):
@@ -331,18 +346,15 @@ def verify_exported(before, revised, exported, report, *, today):
         raise ValueError("Happings export changed its observation reference date")
     verify_changes(before, revised, report)
     original_ids = [row["slug"] for row in before]
-    protected = {row["slug"] for row in before if row.get("fonte") == source.PUBLISHER}
+    protected = set(original_ids)
+    publisher_ids = {row["slug"] for row in before if row.get("fonte") == source.PUBLISHER}
     by_id = {row["slug"]: row for row in exported}
     exported_publisher_ids = {row["slug"] for row in exported
                               if row.get("fonte") == source.PUBLISHER}
     if (len(set(original_ids)) != len(original_ids) or len(by_id) != len(exported)
-            or exported_publisher_ids != protected or not protected <= by_id.keys()):
+            or exported_publisher_ids != publisher_ids or protected != by_id.keys()):
         raise ValueError("Happings export lost, added or duplicated original market IDs")
     for row in revised:
-        if row["slug"] not in protected:
-            # Other sources retain their existing normalization, duplicate
-            # handling and release gates. This phase cannot replace them.
-            continue
         expected, error = normalize(row, today)
         if error or expected != by_id[row["slug"]]:
             raise ValueError("Happings final catalog differs from its proved fields: " + row["slug"])
@@ -350,8 +362,11 @@ def verify_exported(before, revised, exported, report, *, today):
         "schema": SCHEMA, "release_safe": True, "checked_market_ids": len(protected),
         "input_market_ids": len(before), "exported_market_ids": len(exported),
         "protected_happings_ids": report["protected_existing_market_ids"],
+        "protected_catalog_market_ids": report["protected_catalog_market_ids"],
         "source_field_changes": report["evidence"]["field_changes"],
         "source_observed_markets": len(report["evidence"]["observed_ids"]),
+        "secondary_observed_markets": len(report["evidence"]["secondary_observed_ids"]),
+        "retired_source_support_markets": len(report["evidence"]["retired_ids"]),
         "source_record_changes": report["evidence"]["record_changes"],
         "market_ids_deleted": len(set(original_ids) - by_id.keys()),
         "market_ids_added": len(by_id.keys() - set(original_ids)),
@@ -368,10 +383,13 @@ def markdown(report):
         f"- Autorizzazione operativa: `{report['rights_state']}`.\n"
         f"- Concessione del titolare autenticata: {'sì' if report['rights_authenticated'] else 'no'}.\n"
         f"- Identità Happings conservate: {report['protected_existing_market_ids']}.\n"
+        f"- Identità del catalogo conservate: {report['protected_catalog_market_ids']}.\n"
         f"- Pagine valutate: {evidence['pages_evaluated']} (limite: {report['max_index_pages_per_run']}).\n"
         f"- Pagine non disponibili: {len(report['page_failures'])}.\n"
         f"- Indirizzi recuperati o aggiornati: {evidence['field_changes']}.\n"
         f"- Schede con riscontri della fonte: {len(evidence['observed_ids'])}.\n"
+        f"- Riscontri su schede di altre origini: {len(evidence['secondary_observed_ids'])}.\n"
+        f"- Vecchi riscontri della fonte ritirati dopo una nuova prova discordante: {len(evidence['retired_ids'])}.\n"
         "- Nessun orario, data, punto geografico o verifica di apertura aggiunto.\n"
         "- I riscontri essenziali sono conservati con la scheda; HTML e rapporto dettagliato restano nei checkpoint temporanei.\n"
     )

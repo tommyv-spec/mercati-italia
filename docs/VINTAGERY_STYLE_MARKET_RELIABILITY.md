@@ -1,6 +1,6 @@
 # Mercati Italia: qualità dei dati stile Vintagery, senza eliminare schede
 
-Revisione **18 ottobre 2026**. Implementazione iniziale sulla pipeline DEV.
+Revisione **19 ottobre 2026**. Pipeline DEV e aggiornamento dei meccanismi di fonte.
 
 ## Obiettivo operativo
 
@@ -44,7 +44,26 @@ CSV/JSON ufficiale), Milano (GIS+PDF comunale per ID).
 Non concede alcun permesso nuovo di scraping, importazione o
 attribuzione di "verificato". Le 87 etichette di fonte nel catalogo
 vengono comunque scansionate e segnalate, anche se il relativo
-parser non è ancora approvato. Per aggiungere una fonte:
+parser non è ancora approvato.
+
+Per Happings, il report legge lo stesso registro di autorizzazione usato dal
+motore e ne conserva riferimento, impronta e data di controllo. L'istruzione
+esplicita del titolare del progetto autorizza l'adattatore degli elenchi
+settimanali nell'ambito DEV; non viene presentata come autenticazione dei
+documenti del publisher. Il report non abilita crawler e non richiede un
+nuovo consenso a ogni esecuzione. Un registro mancante, revocato o incoerente
+produce lo stesso esito non autorizzato del motore. Eventi e Sagre e Cose di
+Casa conservano il percorso senza raccolta massiva.
+
+Una fonte che non rientra nelle cinque famiglie della worklist ha stato
+`not_resolved_by_this_worklist`: il report indica di consultare anzitutto i
+registri operativi esistenti per il passo successivo. L'assenza da questa descrizione
+limitata non viene presentata come mancanza di autorizzazione; un lettore già
+approvato, come quello generico di Bologna, mantiene il proprio stato nel
+report di copertura delle fonti.
+
+Per aggiungere una fonte:
+
 1. campione originale e diritti d'uso verificati;
 2. studio dei campi e della **granularità** (sede, giorno,
    posteggio, concessione o evento una tantum);
@@ -90,12 +109,14 @@ fonte/carenze, evitando file enormi riscritti ogni giorno:
 `reports/automation/market-evidence-summary.json` e
 `reports/automation/MARKET_EVIDENCE_WORKLIST.md`.
 
-**Questo primo livello è una ricerca di evidenze**, non un
-arricchimento forzato. L'automazione esistente per il completamento
-degli orari Lombardia rimane la sola abilitata a usare
-un abbinamento forte, con test e guard di rilascio indipendenti.
-Non inventiamo indirizzi per migliaia di schede perché
-nome+Comune+giorno coincidono.
+La worklist rimane una ricerca di evidenze e non modifica i dati.
+L'arricchimento è eseguito dai lettori descritti in
+[Recupero e aggiornamento automatico delle fonti](AUTOMATIC_SOURCE_REFRESH.md),
+con prove per campo e controlli indipendenti fino all'export. Le pagine
+Happings già nella rotazione possono anche riscontrare sedi esistenti di
+schede provenienti da altre origini, richiedendo identità e sede coincidenti
+senza aumentare le richieste. Il report distingue la capacità di confronto
+dal riscontro effettivamente ottenuto.
 
 ## Riproduzione senza costi per singola ricerca
 
@@ -127,11 +148,12 @@ massive dei testi editoriali.
 - errori per schema cambiato, fonte non disponibile,
   duplicati e posizioni non precise, senza nasconderli.
 
-### Priorità successiva
+### Percorsi attivi e lacune da misurare
 
-1. **Happings (9.647 schede):** usare nuove fonti pubbliche
-   regionali/comunali compatibili per recuperare i campi,
-   non copiare in massa pagine editoriali.
+1. **Happings (9.647 schede):** leggere gli elenchi provinciali attraverso
+   l'adattatore autorizzato e confrontarli con tutte le identità compatibili.
+   Continuare la ricerca di prove comunali e regionali per campi mancanti,
+   conflitti o date di contenuto ignote.
 2. **EventiESagre (2.197):** link-only come piste,
    verifica della singola edizione su Comune/organizzatore.
 3. **Cose di Casa (432):** calendari mensili con pause,
