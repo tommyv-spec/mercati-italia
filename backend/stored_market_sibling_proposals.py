@@ -39,6 +39,32 @@ BAD_PHRASES=("mercati in ","mercati settimanali","sagra","fiera",
              "su richiesta","consultare","da definire","presso gli stand")
 
 
+def publisher_url_family(url):
+    """Classify historic source URL layouts without issuing any network request.
+
+    The legacy catalog contains `-a-{province}.html`, `-ad-{province}.html`,
+    and individual town pages. Treat unsupported or obsolete URLs as a
+    forensic failure category, not proof the related market is closed.
+    """
+    try:
+        p=urlsplit(str(url or ""))
+        if (p.scheme!="https" or p.hostname!="www.happings.com"
+            or p.username or p.password or p.port not in (None,443)
+            or p.query or p.fragment):
+            return "unreviewed_origin_or_query"
+    except ValueError:
+        return "unreviewed_origin_or_query"
+    if re.fullmatch(r"/it/mercati-settimanali-a-[a-z0-9-]+\.html",p.path):
+        return "province_index_old_a"
+    if re.fullmatch(r"/it/mercati-settimanali-ad-[a-z0-9-]+\.html",p.path):
+        return "province_index_old_ad"
+    if re.fullmatch(r"/it/mercati-settimanali-a-[a-z0-9-]+-e-provincia/",p.path):
+        return "province_index_canonical"
+    if re.fullmatch(r"/it/mercato-settimanale-a-[a-z0-9-]+\.html",p.path):
+        return "town_detail_legacy"
+    return "other_historical_layout"
+
+
 def same_generic_venue(row):
     """Named festivals and differently themed venues must NOT be joined."""
     name=norm(row.get("nome"))
@@ -84,6 +110,7 @@ def analyze(rows,*,today=None):
         raise ValueError("Invalid or incomplete saved market cohort")
     ids=set()
     groups=defaultdict(list)
+    format_counters=defaultdict(Counter)
     checked=0
     for row in rows:
         if not isinstance(row,dict) or not isinstance(row.get("slug"),str):
@@ -92,7 +119,16 @@ def analyze(rows,*,today=None):
         if sid in ids:
             raise ValueError("Duplicated original market ID")
         ids.add(sid)
-        if row.get("fonte")==SOURCE:checked+=1
+        if row.get("fonte")==SOURCE:
+            checked+=1
+            shape=publisher_url_family(row.get("url_fonte"))
+            format_counters[shape]["records"]+=1
+            if not str(row.get("indirizzo") or "").strip():
+                format_counters[shape]["address_missing"]+=1
+            if not safe_stored_street(row.get("indirizzo")):
+                format_counters[shape]["address_not_specific"]+=1
+            if not str(row.get("orario_testo") or "").strip():
+                format_counters[shape]["hours_missing"]+=1
         key=source_group_key(row)
         if key:groups[key].append(row)
     counts=Counter()
@@ -148,6 +184,10 @@ def analyze(rows,*,today=None):
         "source":"happings.com","catalog_markets":len(rows),
         "market_identities_preserved":len(ids),
         "legacy_publisher_records_examined":checked,
+        "source_url_layouts":{
+            category:dict(sorted(stat.items()))
+            for category,stat in sorted(format_counters.items())
+        },
         "eligible_identity_groups":len(groups),
         "field_sibling_candidates":len(receipts),
         "counts":dict(sorted(counts.items())),
@@ -174,7 +214,9 @@ def verify(report,original_size):
             "original_market_records_deleted","catalog_fields_updated",
             "market_openings_confirmed","new_map_coordinates_added"))
         or report.get("field_sibling_candidates")>MAX_RESULTS
-        or report.get("field_sibling_candidates")!=len(report.get("candidate_records",[]))):
+        or report.get("field_sibling_candidates")!=len(report.get("candidate_records",[]))
+        or sum(z.get("records",0) for z in report.get("source_url_layouts",{}).values())
+            !=report.get("legacy_publisher_records_examined")):
         raise ValueError("Unapproved internal publisher sibling transfers")
     for item in report.get("examples",[]):
         if (item.get("automatic_fill_authorized") is not False
@@ -200,6 +242,22 @@ def markdown(report):
         "- Gruppi con più sedi note: **"+
               str(report["counts"].get("more_than_one_known_street_in_same_city_day",0))+"**",
         "- Campi riempiti senza prova indipendente: **0**",
+        "",
+        "## Formati sorgente archiviati e perdite associate","",
+        "| Struttura URL | Schede | Indirizzo assente | Sede non specifica | Orari assenti |",
+        "|---|---:|---:|---:|---:|",
+        *[
+            "| "+name+" | "+str(f.get("records",0))+
+            " | "+str(f.get("address_missing",0))+
+            " | "+str(f.get("address_not_specific",0))+
+            " | "+str(f.get("hours_missing",0))+" |"
+            for name,f in sorted(report["source_url_layouts"].items(),
+                                 key=lambda x:-x[1].get("records",0))
+        ],
+        "",
+        "Le vecchie pagine `ad-...` possono non essere più raggiungibili:",
+        "non cancellare mai le schede; controllare origine e redirect prima",
+        "di abilitare la stessa struttura del parser automatico.",
         "",
         "## Esempi prioritari da confrontare con Comuni o dataset autorizzati", "",
         *[
