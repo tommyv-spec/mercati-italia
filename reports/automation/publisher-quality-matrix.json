@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-18",
+  "as_of": "2026-10-19",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -813,14 +813,14 @@
       "fields": {
         "address_generic_not_navigable": 6,
         "coordinates_missing": 7,
-        "future_dates_missing": 70,
+        "future_dates_missing": 71,
         "hours_missing": 431,
         "records": 432
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1400,
+      "priority_workload_score_not_evidence": 1401,
       "publisher": "cosedicasa.com",
       "records": 432,
       "rights_classification": "publisher_rights_unreviewed",
@@ -940,7 +940,7 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 14,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "coordinates_missing": 39,
         "future_dates_missing": 39,
