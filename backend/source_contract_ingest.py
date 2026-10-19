@@ -29,6 +29,8 @@ from field_evidence import (
     make_receipt, managed_update_allowed, mark_managed_fields, valid_receipt,
     retire_superseded_receipts,
 )
+from publisher_snapshot_date import resolve_source_date
+from source_freshness import source_date_evidence
 
 MAX_STAGING_SOURCE_ROWS = 3000
 MAX_PROFILE_MAX_NEW = 250
@@ -101,9 +103,9 @@ def validate_format(profile):
     return fmt
 
 
-def venue_row(profile,raw,today):
+def venue_row(profile,raw,today,*,source_date=None):
     fmt=validate_format(profile)
-    record,reason,fingerprint=candidate_record(profile,raw,today=today)
+    record,reason,fingerprint=candidate_record(profile,raw,today=today,source_date=source_date)
     if record is None:
         return None,reason,None
     if fmt.get("title_case_name") is True:
@@ -200,13 +202,13 @@ def _source_values(record):
     return values
 
 
-def _source_receipt(profile, record, *, read_on, parsed_sha256, values=None):
+def _source_receipt(profile, record, *, read_on, parsed_sha256, source_date, values=None):
     return make_receipt(
         record, values=_source_values(record) if values is None else values,
         source_url=profile["resource_url"],
         source_name=profile["publisher"], source_id=profile["id"],
         source_row=record["slug"], read_on=read_on,
-        source_updated_on=profile["source_dataset_date"], source_sha256=parsed_sha256,
+        source_updated_on=source_date, source_sha256=parsed_sha256,
     )
 
 
@@ -218,6 +220,12 @@ def _observed_row(prior, receipt, changes, *, today):
         [*(prior.get("riscontri_campi") or []), receipt], result, today=today)
     for key, value in (("fonte_letta_il", receipt["letto_il"]),
                        ("fonte_aggiornata_il", receipt["fonte_aggiornata_il"])):
+        # A newer address/hours observation cannot renew an old calendar.
+        # Its actual dataset date remains visible in that field's receipt.
+        if (key == "fonte_aggiornata_il" and
+                ("ricorrenza_testo" not in receipt["valori"] or
+                 receipt["valori"]["ricorrenza_testo"] != result.get("ricorrenza_testo"))):
+            continue
         if not as_day(result.get(key)) or (as_day(value) and as_day(value) >= as_day(result[key])):
             result[key] = value
     return result
@@ -231,6 +239,15 @@ def _retired_row(prior, receipt, *, today):
     return result
 
 
+def source_metadata(record):
+    """Pin calendar-relevant provenance, including the export's legacy fallback."""
+    result = {key: record.get(key) or "" for key in (
+        "aggiornato_il", "fonte_letta_il", "importato_il", "verificato_il")}
+    result["aggiornamento_ambito"] = "dataset" if record.get("aggiornamento_ambito") == "dataset" else ""
+    result["fonte_aggiornata_il"] = source_date_evidence(record)["value"] or ""
+    return result
+
+
 def _update_proof(prior, receipt, changes, *, today, retire=False):
     result = (_retired_row(prior,receipt,today=today) if retire
               else _observed_row(prior, receipt, changes, today=today))
@@ -240,17 +257,32 @@ def _update_proof(prior, receipt, changes, *, today, retire=False):
         "after_sha256": evidence_fingerprint(result), "receipt": receipt,
         "identity_after": {key:result.get(key) for key in ("slug", *IDENTITY_FIELDS)},
         "public_fields_after": {key:result.get(key) for key in FIELDS},
+        "source_metadata_after": source_metadata(result),
         "observations_after": result["riscontri_campi"],
         "retired_observations": ([r for r in clean_receipts(prior.get("riscontri_campi"),prior,today=today)
                                   if r not in result["riscontri_campi"]] if retire else []),
     }
 
 
-def verify_update(profile, prior, result, proof, *, today):
+def observed_source_date(profile, observations, *, today):
+    """Resolve the publisher date from independently bound source observations."""
+    observations = observations or {}
+    resolved = resolve_source_date(
+        profile, proof=observations.get("source_date_proof"),
+        snapshot_sha256=observations.get("source_snapshot_sha256"),
+        read_on=observations.get("source_read_on"), today=today)
+    if observations.get("publisher_dataset_date", resolved) != resolved:
+        raise ValueError("Publisher dataset date differs from the observed snapshot proof")
+    return resolved
+
+
+def verify_update(profile, prior, result, proof, *, today, source_observations=None):
     """Rebuild the exact permitted field/observation diff from prior evidence."""
+    source_date = observed_source_date(profile, source_observations, today=today)
     if (not isinstance(proof, dict) or set(proof) != {
             "slug", "changed_fields", "before_sha256", "after_sha256", "receipt",
-            "identity_after", "observations_after", "action", "retired_observations", "public_fields_after"}
+            "identity_after", "observations_after", "action", "retired_observations", "public_fields_after",
+            "source_metadata_after"}
             or proof.get("slug") != prior.get("slug")
             or proof.get("before_sha256") != evidence_fingerprint(prior)
             or proof.get("after_sha256") != evidence_fingerprint(result)
@@ -267,7 +299,10 @@ def verify_update(profile, prior, result, proof, *, today):
             or receipt.get("fonte") != profile["publisher"]
             or receipt.get("url") != profile["resource_url"]
             or receipt.get("riga_fonte") != prior["slug"]
-            or receipt.get("fonte_aggiornata_il") != profile["source_dataset_date"]
+            or receipt.get("fonte_aggiornata_il") != source_date
+            or (source_observations is not None and (
+                receipt.get("sha256") != source_observations.get("source_parsed_sha256")
+                or receipt.get("letto_il") != source_observations.get("source_read_on")))
             or receipt.get("ambito") != "dataset" or receipt.get("metodo") != "id_fonte"
             or receipt.get("impronta_tipo") != "publisher_parsed_json"):
         raise ValueError("Independent generic source receipt is not source-bound")
@@ -295,12 +330,14 @@ def verify_update(profile, prior, result, proof, *, today):
             or proof["retired_observations"]!=retired
             or proof["identity_after"] != {key:result.get(key) for key in ("slug", *IDENTITY_FIELDS)}
             or proof["public_fields_after"] != {key:result.get(key) for key in FIELDS}
+            or proof["source_metadata_after"] != source_metadata(result)
             or proof["observations_after"] != result.get("riscontri_campi")):
         raise ValueError("Independent generic source import changed an unapproved field")
     return len(changes)
 
 
-def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=None):
+def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=None,
+           source_date_proof=None):
     """Create a complete ephemeral candidate set, but never modify baseline."""
     if not isinstance(today,date):
         raise ValueError("Need publisher-local reference date")
@@ -315,6 +352,8 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
     read_on = str(read_on or today)
     if not as_day(read_on) or as_day(read_on) > today:
         raise ValueError("Source read date is invalid or later than the reference date")
+    source_date = resolve_source_date(profile, proof=source_date_proof, blob=raw_blob,
+                                      read_on=read_on, today=today)
     parsed_sha256 = evidence_fingerprint(sorted(source, key=digest))
     source_rows=[]
     id_counts=Counter()
@@ -326,7 +365,7 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
     field_audit=Counter()
     for item in source:
         counters["raw_rows_scanned"]+=1
-        record,issue,fingerprint=venue_row(profile,item,today)
+        record,issue,fingerprint=venue_row(profile,item,today,source_date=source_date)
         if record is None:
             reasons[issue or "invalid_source_row"]+=1
             continue
@@ -389,7 +428,7 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
                       for field, value in values.items()}
             target = {**prior, **values}
             receipt = _source_receipt(profile, target, read_on=read_on,
-                                      parsed_sha256=parsed_sha256, values=values)
+                                      parsed_sha256=parsed_sha256, source_date=source_date, values=values)
             changes = {}
             held = False
             for field in FIELDS:
@@ -436,12 +475,12 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
             continue
         counters["source_only_unambiguous_candidate_not_verified_event"]+=1
         receipt = _source_receipt(profile, record, read_on=read_on,
-                                  parsed_sha256=parsed_sha256)
+                                  parsed_sha256=parsed_sha256, source_date=source_date)
         record["riscontri_campi"] = [mark_managed_fields(
             receipt, receipt["valori"], manager=FIELD_MANAGER)]
         record["importato_il"] = read_on
         record["fonte_letta_il"] = read_on
-        record["fonte_aggiornata_il"] = profile["source_dataset_date"]
+        record["fonte_aggiornata_il"] = source_date
         for field in FIELDS:
             field_audit[field + (":new_source_value" if field in receipt["valori"]
                                 else ":source_value_unavailable")] += 1
@@ -455,7 +494,7 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
     # market closure; the complete original ID set is always kept.
     source_facts={
         "schema":1,"source_id":profile["id"],"publisher":profile["publisher"],
-        "source_url":profile["resource_url"],"publisher_dataset_date":profile["source_dataset_date"],
+        "source_url":profile["resource_url"],"publisher_dataset_date":source_date,
         "source_snapshot_sha256":observed,
         "source_parsed_sha256":parsed_sha256,"source_read_on":read_on,
         "profile_sha256":digest(profile),
@@ -477,16 +516,20 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
         "source_license_automatically_verified":False,
         "source_schema_readonly":True,
     }
+    if source_date_proof is not None:
+        source_facts["source_date_proof"] = copy.deepcopy(source_date_proof)
     return candidates,source_facts,updates,retirements
 
 
-def stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=None):
+def stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=None,
+          source_date_proof=None):
     candidates, report, _, _ = _stage(profile, raw_blob, base, today=today,
-                                   observed_source_sha256=observed_source_sha256, read_on=read_on)
+                                   observed_source_sha256=observed_source_sha256, read_on=read_on,
+                                   source_date_proof=source_date_proof)
     return candidates, report
 
 
-def authorize(profile,source_report,admission,*,today):
+def authorize_contract(profile,admission,*,today):
     """Approve *a publisher source contract*, not each row individually.
 
     Admission must be recorded after independent rights and source ID review.
@@ -497,8 +540,7 @@ def authorize(profile,source_report,admission,*,today):
     if not isinstance(admission,dict) or admission.get("mode")!="approved_dev_only":
         raise ValueError("Source has no reviewed DEV admission certificate")
     if (profile.get("publication_mode")!="approved_dev_only"
-            or profile.get("legal_reuse_reviewed") is not True
-            or source_report.get("profile_sha256") != digest(profile)):
+            or profile.get("legal_reuse_reviewed") is not True):
         raise ValueError("Source has no licensed, pinned DEV import contract")
     expected_keys={
        "schema","mode","source_id","reviewed_profile_sha256",
@@ -528,7 +570,15 @@ def authorize(profile,source_report,admission,*,today):
     reviewed=date.fromisoformat(admission["reviewed_on"])
     if not date(2025,1,1)<=reviewed<=today:
         raise ValueError("Source admission attestation has invalid review date")
-    date_of_data=date.fromisoformat(profile["source_dataset_date"])
+    return True
+
+
+def authorize(profile,source_report,admission,*,today):
+    """Authorize this source observation, after the exact contract and date proof."""
+    authorize_contract(profile,admission,today=today)
+    if source_report.get("profile_sha256") != digest(profile):
+        raise ValueError("Source has no licensed, pinned DEV import contract")
+    date_of_data=date.fromisoformat(observed_source_date(profile, source_report, today=today))
     if (today-date_of_data).days>profile["max_source_age_days"]:
         raise ValueError("Stale publisher source cannot begin unattended DEV admission")
     # Unresolved identity or unmanaged-field changes hold this source. Other
@@ -544,14 +594,16 @@ def authorize(profile,source_report,admission,*,today):
     return True
 
 
-def apply_approved(profile,blob,existing,admission,*,today,read_on=None):
-    candidates,report,updates,retirements=_stage(profile,blob,existing,today=today,read_on=read_on)
+def apply_approved(profile,blob,existing,admission,*,today,read_on=None,source_date_proof=None):
+    candidates,report,updates,retirements=_stage(
+        profile,blob,existing,today=today,read_on=read_on,source_date_proof=source_date_proof)
     try:
         authorize(profile,report,admission,today=today)
     except PublishedSourceDriftError as exc:
         originals=_validate_existing(existing)
         for row,proof in retirements:
-            verify_update(profile,originals[row["slug"]],row,proof,today=today)
+            verify_update(profile,originals[row["slug"]],row,proof,today=today,
+                          source_observations=report)
         exc.retirements=retirements
         raise
     # Enforce the reviewed per-run cap by taking a deterministic batch.
@@ -568,7 +620,8 @@ def apply_approved(profile,blob,existing,admission,*,today,read_on=None):
         raise ValueError("Unsafe source candidate surfaced after approval")
     updated = {row["slug"]:row for row,_ in updates}
     for row, proof in updates:
-        verify_update(profile, original[row["slug"]], row, proof, today=today)
+        verify_update(profile, original[row["slug"]], row, proof, today=today,
+                      source_observations=report)
     rows=[*(updated.get(row["slug"],row) for row in existing),*admitted]
     certificate={
         "schema":1,"publisher_id":profile["id"],

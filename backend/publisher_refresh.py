@@ -133,7 +133,7 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
     no permissions and says nothing about individual market verification.
     """
     from source_contract_activation import validate_admissions
-    from source_contract_ingest import authorize
+    from source_contract_ingest import authorize_contract
     from source_lifecycle import digest, validate_contracts as validate_source_contracts
 
     today = today or date.today()
@@ -176,7 +176,9 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
                 mode, layout = "source_contract_disabled", "disabled"
             else:
                 try:
-                    authorize(profile, {"profile_sha256": digest(profile)}, approvals[sid], today=today)
+                    # Reader coverage is configured capability. Runtime date
+                    # proof and source availability belong to the read status.
+                    authorize_contract(profile, approvals[sid], today=today)
                     mode, layout = "source_contract_active", "supported"
                 except (ValueError, TypeError, KeyError):
                     mode = "source_contract_review_required"

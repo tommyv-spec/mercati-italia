@@ -25,6 +25,7 @@ def official(sid,title,address,day="settimanale - sabato"):
         **market(sid,title,address,day=day,hours="08:00-13:00 (fonte da verificare)"),
         "url_fonte":BOLOGNA_URL,
         "aggiornato_il":"2025-04-02",
+        "aggiornamento_ambito":"dataset",
     }
 
 def fixture():
@@ -123,6 +124,66 @@ class YieldTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Catalog ID collision"):
             compare_bologna(base+[base[0]],source,TODAY)
 
+    def test_new_publisher_dataset_date_is_audited_without_editing_catalog(self):
+        base,source=fixture()
+        for row in source:
+            row["aggiornato_il"]="2026-10-01"
+        frozen=copy.deepcopy((base,source))
+        report=compare_bologna(base,source,TODAY)
+        self.assertEqual(report["actual_dataset_date"],"2026-10-01")
+        self.assertEqual(report["source_age_days"],11)
+        self.assertEqual(report["counts"]["observed_source_rows"],4)
+        self.assertEqual(report["counts"]["possible_new_venues_unconfirmed"],1)
+        self.assertEqual(report["records_imported"],0)
+        self.assertEqual(report["events_confirmed"],0)
+        self.assertIs(report["catalog_data_changed"],False)
+        self.assertEqual((base,source),frozen)
+
+    def test_import_or_read_today_does_not_renew_old_dataset(self):
+        base,source=fixture()
+        for row in source:
+            row.update(importato_il=TODAY.isoformat(),fonte_letta_il=TODAY.isoformat())
+        report=compare_bologna(base,source,TODAY)
+        self.assertEqual(report["actual_dataset_date"],"2025-04-02")
+        self.assertEqual(report["source_age_days"],558)
+        for row in source:
+            row.pop("aggiornamento_ambito")
+            row["aggiornato_il"]=TODAY.isoformat()
+        with self.assertRaisesRegex(ValueError,"Unapproved"):
+            compare_bologna(base,source,TODAY)
+
+    def test_explicit_dataset_date_takes_precedence_over_catalog_timestamp(self):
+        base,source=fixture()
+        for row in source:
+            row["aggiornato_il"]=TODAY.isoformat()+"T12:00:00+00:00"
+            row["fonte_aggiornata_il"]="2025-04-02"
+        report=compare_bologna(base,source,TODAY)
+        self.assertEqual(report["actual_dataset_date"],"2025-04-02")
+        self.assertEqual(report["source_age_days"],558)
+
+    def test_future_invalid_or_pre_reviewed_source_date_is_rejected(self):
+        for value in ("2026-10-13","2025-04-01","2026-02-30",None,
+                      "2026-10-12T10:00:00Z"):
+            base,source=fixture()
+            for row in source:
+                row["aggiornato_il"]=value
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError,"Unapproved"):
+                compare_bologna(base,source,TODAY)
+
+    def test_source_report_uses_observed_date_instead_of_old_registry_metadata(self):
+        base,source=fixture()
+        for row in source:
+            row["aggiornato_il"]="2026-10-01"
+        reg=registry()
+        reg["sources"][0]["publisher_data_updated_at"]="2025-04-02"
+        report=audit(base,reg,municipalities(len(base)),
+                     {"schema":1,"probe_history":{}},TODAY,source)
+        bologna=next(s for s in report["all_sources"] if s["source_id"]==BOLOGNA_ID)
+        self.assertEqual(bologna["dataset_date_declared"],"2026-10-01")
+        self.assertEqual(reg["sources"][0]["publisher_data_updated_at"],"2025-04-02")
+        self.assertEqual(report["markets_added"],0)
+        self.assertEqual(report["market_events_confirmed"],0)
+
     def test_registry_count_and_integrity_gates(self):
         base,source=fixture()
         bad=registry()
@@ -156,6 +217,41 @@ class MunicipalityRelocationGate(unittest.TestCase):
         self.assertEqual(result["samples_for_review"]["location_conflict"],[RELOCATED_ID])
         self.assertEqual(result["events_confirmed"],0)
         self.assertEqual(result["records_imported"],0)
+        self.assertEqual(result["relocation_evidence_applicable_to_dataset"],1)
+        self.assertEqual(result["historical_relocation_evidence_not_applicable"],0)
+
+    def test_old_relocation_proof_does_not_apply_to_a_newer_source_version(self):
+        from source_yield_audit import RELOCATED_ID
+        root=Path(__file__).resolve().parents[2]
+        proof=json.loads((root/"backend/data/source-yield-location-conflicts-2026-10-12.json").read_text("utf-8"))
+        base,rows=fixture()
+        rows.append(official(RELOCATED_ID,
+            "Mercato dei produttori agricoli – sede TEST aggiornata","Via TEST Nuova"))
+        for row in rows:
+            row["aggiornato_il"]="2026-10-01"
+        frozen=copy.deepcopy((base,rows,proof))
+        result=compare_bologna(base,rows,TODAY,proof)
+        self.assertEqual(result["actual_dataset_date"],"2026-10-01")
+        self.assertEqual(result["independent_relocation_evidence"],1)
+        self.assertEqual(result["relocation_evidence_applicable_to_dataset"],0)
+        self.assertEqual(result["historical_relocation_evidence_not_applicable"],1)
+        self.assertEqual(result["counts"].get("documented_location_conflicts_held",0),0)
+        self.assertEqual(result["counts"]["historical_location_conflicts_need_reconciliation"],1)
+        self.assertEqual(result["counts"]["possible_new_venues_unconfirmed"],1)
+        self.assertEqual(result["samples_for_review"]["historical_location_review"],[RELOCATED_ID])
+        self.assertEqual(result["records_imported"],0)
+        self.assertEqual(result["events_confirmed"],0)
+        self.assertEqual((base,rows,proof),frozen)
+
+    def test_new_source_version_does_not_bypass_historical_proof_integrity(self):
+        root=Path(__file__).resolve().parents[2]
+        proof=json.loads((root/"backend/data/source-yield-location-conflicts-2026-10-12.json").read_text("utf-8"))
+        proof["cases"][0]["recorded_new_location"]="Via TEST unreviewed"
+        base,rows=fixture()
+        for row in rows:
+            row["aggiornato_il"]="2026-10-01"
+        with self.assertRaisesRegex(ValueError,"Untrusted official"):
+            compare_bologna(base,rows,TODAY,proof)
 
     def test_unreviewed_relocation_or_changed_old_address_fails_closed(self):
         from source_yield_audit import validate_relocations, RELOCATED_ID

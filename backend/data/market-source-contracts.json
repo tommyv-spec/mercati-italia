@@ -240,12 +240,15 @@
       "publication_mode": "approved_dev_only",
       "max_new_ids_per_run": 5,
       "coordinates": "ignored_unless_independently_source_verified",
-      "notes": "Opendatasoft v1 official recordid preserved as bo-open-*; city-level legacy pages without address/calendar are summaries, not proof of all named local venues; one row per same physical venue and separate days held until grouping. Publisher data processed 2025-04-02, no 2026 event confirmations; GPS ignored.",
+      "notes": "Opendatasoft v1 official recordid preserved as bo-open-*; city-level legacy pages without address/calendar are summaries, not proof of all named local venues; one row per same physical venue and separate days held until grouping. Reviewed data minimum 2025-04-02. New dataset dates require stable data_processed metadata before/after the exact complete source snapshot; portal edit dates and read time are not content dates. No individual event confirmations; GPS ignored.",
       "presentation": {
         "title_case_name": true,
         "title_case_address": true,
         "name_prefix": "Mercato "
-      }
+      },
+      "source_date_strategy": "opendatasoft_data_processed_v1",
+      "source_metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
+      "source_metadata_license": "CC BY 4.0"
     }
   ]
 }

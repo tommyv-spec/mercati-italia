@@ -1,11 +1,15 @@
+import json
 import unittest
 from copy import deepcopy
 from datetime import date, timedelta
 from pathlib import Path
+from unittest.mock import patch
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from recurrence_refresh import explicit_rule, project_dates, refresh_record, refresh_records
+from recurrence_refresh import (
+    explicit_rule, forecast_source_limits, project_dates, refresh_record, refresh_records,
+)
 from field_evidence import make_receipt
 
 
@@ -58,6 +62,130 @@ def record(**kw):
         "status":"non_confermato",
         **kw,
     }
+
+
+class SourceContractForecastLimits(unittest.TestCase):
+    now = date(2026, 10, 19)
+
+    def config(self):
+        config = json.loads((Path(__file__).resolve().parents[1] /
+                             "data/market-source-contracts.json").read_text("utf-8"))
+        profile = deepcopy(next(p for p in config["raw_profiles"]
+                                if p["id"] == "bologna-generic-venues"))
+        profile.update(id="fixture-approved-feed", catalog_slug_prefix="fixture-approved-")
+        return {"schema": 1, "publication_role": "review_only",
+                "normalized_profiles": [], "raw_profiles": [profile]}
+
+    def scoped_record(self, config, age=400, **extra):
+        profile = config["raw_profiles"][0]
+        updated = (self.now - timedelta(days=age)).isoformat()
+        return record(slug=profile["catalog_slug_prefix"] + "venue",
+                      url_fonte=profile["attribution_url"],
+                      fonte_aggiornata_il=updated, aggiornato_il=updated,
+                      proiezione_fonte="ricorrenza_testo",
+                      proiezione_generata_il="2026-10-01", **extra)
+
+    def test_validated_contract_limits_include_disabled_reader_and_age_fallback(self):
+        config = self.config()
+        profile = config["raw_profiles"][0]
+        profile["enabled"] = False
+        self.assertEqual(forecast_source_limits(config),
+                         ((profile["catalog_slug_prefix"], profile["attribution_url"], 365),))
+        profile.pop("max_forecast_source_age_days")
+        self.assertEqual(forecast_source_limits(config)[0][2], profile["max_source_age_days"])
+        profile["max_forecast_source_age_days"] = profile["max_source_age_days"] + 1
+        with self.assertRaisesRegex(ValueError, "Forecast age"):
+            forecast_source_limits(config)
+
+    def test_shadow_contract_does_not_claim_an_approved_projection_scope(self):
+        config = self.config()
+        config["raw_profiles"][0].update(publication_mode="shadow_only",
+                                        legal_reuse_reviewed=False, max_new_ids_per_run=0)
+        self.assertEqual(forecast_source_limits(config), ())
+
+    def test_existing_400_day_forecast_expires_and_preserves_market_identity(self):
+        config = self.config()
+        original = self.scoped_record(config)
+        before = deepcopy(original)
+        limits = forecast_source_limits(config)
+        expired, reason = refresh_record(original, self.now, source_limits=limits)
+        self.assertEqual(reason, "expired_stale_forecast")
+        self.assertEqual(expired["date"], [])
+        self.assertEqual(expired["date_quality"], "sconosciuta")
+        self.assertEqual(expired["proiezione_fonte"], "")
+        self.assertEqual(expired["slug"], original["slug"])
+        self.assertEqual(expired["ricorrenza_testo"], original["ricorrenza_testo"])
+        self.assertEqual(expired["fonte_aggiornata_il"], original["fonte_aggiornata_il"])
+        self.assertEqual(original, before)
+        repeated, second_reason = refresh_record(expired, self.now, source_limits=limits)
+        self.assertEqual(second_reason, "stale_source")
+        self.assertEqual(repeated, expired)
+
+    def test_forecast_boundary_and_global_limit_remain_conservative(self):
+        config = self.config()
+        limits = forecast_source_limits(config)
+        self.assertEqual(refresh_record(self.scoped_record(config, 365), self.now,
+                                        source_limits=limits)[1], "renewed")
+        self.assertEqual(refresh_record(self.scoped_record(config, 366), self.now,
+                                        source_limits=limits)[1], "expired_stale_forecast")
+        self.assertEqual(refresh_record(self.scoped_record(config, 350), self.now,
+                                        max_stale_days=300, source_limits=limits)[1],
+                         "expired_stale_forecast")
+        for quality in ("riportata", "confermata"):
+            source = self.scoped_record(config, 400, date_quality=quality)
+            self.assertEqual(refresh_record(source, self.now, source_limits=limits),
+                             (source, "non_projected_source_date"))
+
+    def test_scope_requires_both_stable_prefix_and_exact_source_url(self):
+        config = self.config()
+        limits = forecast_source_limits(config)
+        for change in ({"slug": "unrelated-source-venue"},
+                       {"url_fonte": "https://altro-comune.example/mercati"}):
+            source = self.scoped_record(config)
+            source.update(change)
+            with self.subTest(change=change):
+                self.assertEqual(refresh_record(source, self.now, source_limits=limits)[1],
+                                 "renewed")
+        generic = self.scoped_record(config, age=541)
+        generic["slug"] = "unrelated-source-venue"
+        self.assertEqual(refresh_record(generic, self.now, source_limits=limits)[1],
+                         "expired_stale_forecast")
+
+    def test_current_independent_receipt_can_support_expired_primary_with_own_limit(self):
+        config = self.config()
+        limits = forecast_source_limits(config)
+        for content_age, expected in ((180, "renewed"), (181, "expired_stale_forecast")):
+            source = self.scoped_record(config)
+            source["riscontri_campi"] = [make_receipt(
+                source, values={"ricorrenza_testo": source["ricorrenza_testo"]},
+                source_url="https://organizzatore.example/mercati", source_name="Organizzatore",
+                source_id="independent-calendar", source_row="weekly-venue",
+                read_on=self.now.isoformat(),
+                source_updated_on=(self.now - timedelta(days=content_age)).isoformat(),
+                source_sha256="b" * 64, method="pagina_primaria_revisionata",
+                scope="pagina", fingerprint_kind="html_bytes")]
+            with self.subTest(content_age=content_age):
+                result, reason = refresh_record(source, self.now, source_limits=limits)
+                self.assertEqual(reason, expected)
+                if reason == "renewed":
+                    self.assertEqual(result["proiezione_fonte"], "riscontri_campi:ricorrenza_testo")
+                    self.assertEqual(result["fonte_aggiornata_il"], source["fonte_aggiornata_il"])
+
+    def test_batch_resolves_registry_once_and_default_scopes_apply(self):
+        config = self.config()
+        limits = forecast_source_limits(config)
+        with patch("recurrence_refresh.forecast_source_limits", return_value=limits) as resolve:
+            output, report = refresh_records([self.scoped_record(config) for _ in range(3)], self.now)
+        resolve.assert_called_once_with()
+        self.assertEqual(report["reasons"], {"expired_stale_forecast": 3})
+        self.assertTrue(all(not row["date"] for row in output))
+        defaults = forecast_source_limits()
+        self.assertIs(defaults, forecast_source_limits())
+        prefix, source_url, maximum = next(scope for scope in defaults if scope[0] == "bo-open-")
+        existing = self.scoped_record(config)
+        existing.update(slug=prefix + "fixture", url_fonte=source_url)
+        self.assertEqual(maximum, 365)
+        self.assertEqual(refresh_record(existing, self.now)[1], "expired_stale_forecast")
 
 
 class RefreshTests(unittest.TestCase):

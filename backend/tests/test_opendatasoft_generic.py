@@ -12,6 +12,7 @@ sys.path.insert(0,str(ROOT))
 from source_lifecycle import validate_contracts,parse_rows,candidate_record,digest
 from source_contract_ingest import stage,venue_row
 from source_contract_activation import activate,validate_release
+from publisher_snapshot_date import make_snapshot_date_proof
 
 CONFIG=json.loads((ROOT/"data/market-source-contracts.json").read_text("utf8"))
 REGISTRY=json.loads((ROOT/"data/approved-source-admissions.json").read_text("utf8"))
@@ -73,6 +74,22 @@ def blob(items=None,total=None):
                        "records":items},ensure_ascii=False,separators=(",",":")).encode("utf8")
 
 
+def metadata_blob():
+    # Synthetic publisher metadata; the current portal date cannot replace
+    # the older dataset date used by these parser/identity fixtures.
+    return json.dumps({"dataset_id":"mercati-e-fiere", "metas":{"default":{
+        "license":"CC BY 4.0", "records_count":249,
+        "modified_updates_on_data_change":False,
+        "data_processed":"2025-04-02T06:00:00Z",
+        "metadata_processed":"2026-10-13T06:00:00Z",
+    }}}).encode()
+
+
+def fixture_date_proof(profile,body):
+    return make_snapshot_date_proof(profile,body,before_metadata=metadata_blob(),
+        after_metadata=metadata_blob(),read_on=DAY.isoformat(),today=DAY)
+
+
 def config_and_registry(profile=None,quota=5):
     profile=copy.deepcopy(profile or fixture_profile())
     config=copy.deepcopy(CONFIG)
@@ -81,6 +98,7 @@ def config_and_registry(profile=None,quota=5):
                                if x["source_id"]=="bologna-generic-venues"))
     approval["reviewed_profile_sha256"]=digest(profile)
     approval["max_new_ids"]=quota
+    approval["reviewed_on"]=DAY.isoformat()
     registry=copy.deepcopy(REGISTRY)
     registry["approvals"]=[approval]
     return config,registry
@@ -144,7 +162,7 @@ class OpendatasoftReusableSourceTests(unittest.TestCase):
     def test_declared_filter_keeps_only_real_market_and_quarantines_stalls(self):
         p=fixture_profile()
         baseline=generic_baseline()
-        out,report=stage(p,blob(),baseline,today=DAY)
+        out,report=stage(p,blob(),baseline,today=DAY,source_date_proof=fixture_date_proof(p,blob()))
         self.assertEqual(len(out),12)
         holds=report["review_reason_counts"]
         self.assertEqual(holds["not_a_market_venue"],2)
@@ -161,13 +179,14 @@ class OpendatasoftReusableSourceTests(unittest.TestCase):
         small=fixture()[:10]
         small[9]["fields"]["ubicazione"]="Via Dimostrativa 8"
         p["min_rows"]=1
-        proposed,report=stage(p,blob(small),generic_baseline(),today=DAY)
+        proposed,report=stage(p,blob(small),generic_baseline(),today=DAY,
+                             source_date_proof=fixture_date_proof(p,blob(small)))
         self.assertEqual(proposed,[])
         self.assertEqual(report["review_reason_counts"]["generic_city_market_day"],10)
 
     def test_bounded_deterministic_batches_and_offline_have_no_implicit_claims(self):
         cfg,registry=config_and_registry(quota=5)
-        fetch=lambda url:(blob(),False)
+        fetch=lambda url:(metadata_blob() if "/api/explore/" in url else blob(),False)
         source=generic_baseline()
         added=[]
         for expected in (5,5,2,0):
