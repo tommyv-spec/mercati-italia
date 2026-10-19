@@ -125,6 +125,77 @@ fonte non dichiarano la chiusura del mercato.
   attribuibile; non viene ricavata da un'importazione recente.
 - `verificato_il`: verifica individuale già documentata; i lettori non la inventano.
 
+### Rinnovo della data del dataset senza cambiare il contratto a ogni lettura
+
+I contratti possono dichiarare `source_date_strategy`. Il valore predefinito
+`fixed_reviewed` conserva la data revisionata: è ancora il comportamento del
+CSV di Corciano, perché la data editoriale della sua pagina non dimostra
+quando siano state aggiornate le righe del file.
+
+La strategia `opendatasoft_data_processed_v1` legge i metadati ufficiali,
+scarica la risposta completa prevista dal contratto e rilegge gli stessi
+metadati. È configurata sul lettore generico di Bologna. Il contratto conserva
+il 2 aprile 2025 come minimo revisionato; una data successiva viene recepita
+solo dalla prova relativa ai byte effettivamente letti. Non viene inserita
+nel contratto in memoria e non modifica il certificato di ammissione.
+
+La prova conserva URL esatti, identità del dataset, licenza dichiarata,
+timestamp completo `data_processed`, conteggi, impronte dei metadati e del
+corpo, data di lettura e impronta del contratto approvato. Richiede il medesimo
+timestamp e conteggio prima e dopo il download; una variazione anche nella
+stessa giornata impedisce di combinare versioni diverse. La risposta filtrata
+deve contenere tutti i propri risultati; il conteggio globale del dataset può
+essere maggiore, ma non minore. I tre download restano limitati a 64 KiB ciascuno.
+
+`modified`, `metadata_processed`, l'ora di esecuzione e una nuova importazione
+non sostituiscono `data_processed`. Una data futura, precedente al minimo,
+priva di fuso orario, appartenente a un altro dataset o accompagnata da una
+licenza diversa blocca quella fonte. Non esiste un ripiego automatico sulla
+vecchia data quando la prova dinamica manca o non è valida.
+
+La stessa prova viene ricontrollata dallo staging, dall'ammissione, dal
+controllo dei cambiamenti, dall'audit di crescita e dall'esportazione finale.
+Il riavvio da un checkpoint conserva bytes, data di lettura e prova originali.
+Un checkpoint di un altro contratto o privo della prova necessaria non può
+produrre nuova freschezza. I mercati rimangono nel catalogo e le altre fonti
+possono proseguire. La copertura dei lettori descrive la configurazione
+approvata; lo stato della lettura espone separatamente questi problemi.
+
+Una nuova osservazione di indirizzo o orario conserva la propria data nel
+riscontro di campo. Può avanzare la data globale usata dal calendario solo
+quando osserva anche l'esatta ricorrenza corrente. Se il publisher non espone
+più un giorno interpretabile, il vecchio calendario non viene ringiovanito
+dall'aggiornamento di un altro campo.
+
+L'audit Bologna accetta versioni successive omogenee del dataset, con date
+attribuibili e non future. Le prove storiche di conflitto di sede restano
+consultabili e trattenute per riconciliazione; non vengono applicate come se
+descrivessero automaticamente anche una versione successiva della fonte.
+
+Il limite di età per generare previsioni si applica anche ai record già
+presenti: per Bologna rimane 365 giorni, senza diventare il limite generale
+di 540 giorni al ciclo successivo. Un riscontro indipendente e corrente della
+ricorrenza può fornire il proprio supporto entro i limiti previsti per quel
+campo. Il controllo finale verifica anche le date generali dei record
+aggiornati, per impedire che l'esportazione renda recente un calendario vecchio.
+
+Resta necessario dimostrare la continuità dell'identità. La documentazione
+ufficiale [Opendatasoft/Huwise sullo schema](https://userguide.huwise.com/en/articles/2044866)
+spiega che l'identificatore predefinito deriva dai valori del record; un
+[campo configurato come chiave univoca](https://userguide.huwise.com/en/articles/2045122)
+consente invece di sostituire il record corrispondente. Non abbiamo una prova
+della configurazione della chiave nel dataset Bologna. I test di modifica
+dei campi dimostrano il caso di ID invariati. Se il publisher rigenera gli ID,
+il motore conserva le schede e segnala `source_identity_missing_or_changed`:
+questa modifica non inventa una corrispondenza tra vecchie e nuove identità.
+
+Le regressioni usano due letture sintetiche dichiarate, fino all'esportazione,
+e includono modifiche dei campi gestiti, valori preesistenti senza proprietà,
+cache, metadati discordanti e prove alterate. Il tentativo di acquisire nuovi
+byte Bologna il 19 ottobre 2026 non è riuscito per risoluzione DNS: non è una
+nuova conferma della data o del contenuto del dataset. Il report di verifica è
+`reports/automation/publisher-date-refresh-validation-2026-10-19.json`.
+
 `source_freshness.py` ammette un ripiego sui vecchi timestamp soltanto per
 adapter di dataset già revisionati, con URL e identità riconosciuti. Non
 attribuisce questa semantica ai timestamp legacy generici.

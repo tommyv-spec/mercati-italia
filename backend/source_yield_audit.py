@@ -8,6 +8,7 @@ from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 from catalog_quality_report import key, VAGUE_ADDRESSES
+from source_freshness import source_date_evidence
 
 BOLOGNA_ID = "0bb2a3cb-a3d0-44ef-9053-061006c8cd50"
 ROMA_ID = "2d7352f7-7d9f-4be7-927b-de1b760993c3"
@@ -69,6 +70,28 @@ def compare_bologna(catalog, observations, today, conflicts=None):
     if not isinstance(observations,list) or not 1<=len(observations)<=MAX_SOURCE_ROWS:
         raise ValueError("Source observation outside vetted bounds")
     source_conflicts=validate_relocations(conflicts)
+    # The reviewed date is a historical lower bound, not a permanently current
+    # dataset version. Only an adapter's publisher-content date qualifies;
+    # fetching or importing an unchanged source today cannot renew its age.
+    dataset_dates=set()
+    for source in observations:
+        if (not isinstance(source,dict)
+                or source.get("regione")!="Emilia-Romagna"
+                or source.get("citta")!="Bologna"
+                or source.get("url_fonte")!=BOLOGNA_URL
+                or source.get("verificato_il") or source.get("date_quality")=="confermata"):
+            raise ValueError("Unapproved or unreviewed Bologna source row")
+        evidence=source_date_evidence(source)
+        value=evidence.get("value")
+        if (evidence.get("scope")!="dataset" or not value
+                or not BOLOGNA_DATE<=value<=today.isoformat()):
+            raise ValueError("Unapproved or unreviewed Bologna source row date")
+        dataset_dates.add(value)
+    if len(dataset_dates)!=1:
+        raise ValueError("Unapproved or unreviewed Bologna mixed dataset dates")
+    dataset_date=next(iter(dataset_dates))
+    applicable_conflicts={slug:case for slug,case in source_conflicts.items()
+                          if case["expected_data_date"]==dataset_date}
     catalog_ids=set()
     names=defaultdict(list)
     places=defaultdict(list)
@@ -82,16 +105,10 @@ def compare_bologna(catalog, observations, today, conflicts=None):
         if place: places[prefix+(place,)].append(row)
         if row.get("nome"): names[prefix+(key(row["nome"]),)].append(row)
     counts=Counter()
-    samples={"strong":[],"ambiguous":[],"possible_distinct":[],"location_conflict":[]}
+    samples={"strong":[],"ambiguous":[],"possible_distinct":[],"location_conflict":[],
+             "historical_location_review":[]}
     fingerprints=[]
     for source in observations:
-        if (not isinstance(source,dict)
-                or source.get("regione")!="Emilia-Romagna"
-                or source.get("citta")!="Bologna"
-                or source.get("url_fonte")!=BOLOGNA_URL
-                or source.get("verificato_il") or source.get("date_quality")=="confermata"
-                or str(source.get("aggiornato_il"))[:10]!=BOLOGNA_DATE):
-            raise ValueError("Unapproved or unreviewed Bologna source row")
         slug=source.get("slug")
         if not isinstance(slug,str) or not slug.startswith("bo-open-") or slug in fingerprints:
             raise ValueError("Invalid Bologna identity")
@@ -101,13 +118,22 @@ def compare_bologna(catalog, observations, today, conflicts=None):
             counts["same_id_already_published"]+=1
             continue
         counts["new_ids_not_new_market_proof"]+=1
-        if slug in source_conflicts:
-            case=source_conflicts[slug]
+        if slug in applicable_conflicts:
+            case=applicable_conflicts[slug]
             if (key(source.get("indirizzo"))!=key(case["expected_old_address"])
                     or any(word not in key(source.get("nome")) for word in case["name_keywords"])):
                 raise ValueError("Official relocation conflicts with observed source identity")
             counts["documented_location_conflicts_held"]+=1
             samples["location_conflict"].append(slug)
+            if not source.get("date"):
+                counts["rows_without_explicit_visit_dates"]+=1
+            continue
+        if slug in source_conflicts:
+            # The old document is not an authorization to apply its address to
+            # a newer snapshot. Retain the historical review lead explicitly,
+            # without calling either location a new or currently open market.
+            counts["historical_location_conflicts_need_reconciliation"]+=1
+            samples["historical_location_review"].append(slug)
             if not source.get("date"):
                 counts["rows_without_explicit_visit_dates"]+=1
             continue
@@ -135,14 +161,17 @@ def compare_bologna(catalog, observations, today, conflicts=None):
     if sum(counts[k] for k in (
             "same_id_already_published","strong_exact_place_day_overlaps",
             "possible_duplicate_places_or_names","possible_new_venues_unconfirmed",
-            "documented_location_conflicts_held")) != len(observations):
+            "documented_location_conflicts_held",
+            "historical_location_conflicts_need_reconciliation")) != len(observations):
         raise ValueError("Unaccounted official records")
     return {
-        "schema":1,"actual_dataset_date":BOLOGNA_DATE,
-        "source_age_days":(today-date.fromisoformat(BOLOGNA_DATE)).days,
+        "schema":1,"actual_dataset_date":dataset_date,
+        "source_age_days":(today-date.fromisoformat(dataset_date)).days,
         "source_ids_sha256":hashlib.sha256("\n".join(sorted(fingerprints)).encode()).hexdigest(),
         "counts":dict(sorted(counts.items())),
         "independent_relocation_evidence":len(source_conflicts),
+        "relocation_evidence_applicable_to_dataset":len(applicable_conflicts),
+        "historical_relocation_evidence_not_applicable":len(source_conflicts)-len(applicable_conflicts),
         "samples_for_review":{k:sorted(v)[:MAX_SAMPLES] for k,v in samples.items()},
         "records_imported":0,"events_confirmed":0,"catalog_data_changed":False,
     }
@@ -200,7 +229,8 @@ def audit(catalog,registry,municipalities,probes,today,observations=None,error="
             "publisher":str(src.get("organization") or "")[:160],
             "source_type":group,"schema_type":schema,
             "stage":stage,"priority":priority,
-            "dataset_date_declared":str(src.get("publisher_data_updated_at") or src.get("data_modified") or "")[:35],
+            "dataset_date_declared":(bo["actual_dataset_date"] if sid==BOLOGNA_ID and bo else
+                                     str(src.get("publisher_data_updated_at") or src.get("data_modified") or "")[:35]),
             "license_needs_review":True,
             "actual_rows_examined":bo["counts"]["observed_source_rows"] if sid==BOLOGNA_ID and bo else None,
             "possible_distinct_venues":bo["counts"].get("possible_new_venues_unconfirmed",0) if sid==BOLOGNA_ID and bo else None,
@@ -242,6 +272,7 @@ def markdown(report):
         f"- Possibili sedi distinte, ancora da verificare: **{c.get('possible_new_venues_unconfirmed','n.d.')}**.",
         f"- Possibili sovrapposizioni tra fonti: **{c.get('possible_duplicate_places_or_names','n.d.')}**.",
         f"- Conflitti di località documentati: **{c.get('documented_location_conflicts_held','n.d.')}**.",
+        f"- Prove storiche di località da riconciliare con una nuova versione: **{c.get('historical_location_conflicts_need_reconciliation',0)}**.",
         f"- Documento ufficiale: {RELOCATION_URL} (Via Segantini / Via Battindarno).",
         f"- Source data Bologna: **{b['actual_dataset_date'] if b else 'non disponibili'}**; non e' una conferma di apertura.","",
         "## Priorita basate sulla resa, non sul punteggio dei metadati","",

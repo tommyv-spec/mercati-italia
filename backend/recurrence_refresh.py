@@ -24,6 +24,7 @@ import re
 import unicodedata
 from collections import Counter
 from datetime import date, timedelta
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -40,6 +41,52 @@ ORDINAL_INDEX = {"primo": 1, "prima": 1, "secondo": 2, "seconda": 2,
 MAX_LOOKAHEAD_DAYS = 120
 MAX_SOURCE_STALE_DAYS = 540
 DEFAULT_INDEX_DATES = 16
+
+
+@lru_cache(maxsize=1)
+def _builtin_forecast_source_limits() -> tuple[tuple[str, str, int], ...]:
+    path = Path(__file__).resolve().parent / "data/market-source-contracts.json"
+    return forecast_source_limits(json.loads(path.read_text("utf-8")))
+
+
+def forecast_source_limits(config=None) -> tuple[tuple[str, str, int], ...]:
+    """Return reviewed (ID prefix, exact attribution URL, age limit) scopes.
+
+    The default registry is loaded and validated once per process. Callers
+    already holding an exact reviewed configuration can pass it directly.
+    Disabling a reader does not remove its existing markets' age constraint.
+    This only restricts projections; it cannot authorize source publication.
+    """
+    if config is None:
+        return _builtin_forecast_source_limits()
+    # source_lifecycle imports our pure recurrence parser; defer its import
+    # until both modules are initialized rather than introduce an import cycle.
+    from source_lifecycle import MARKET_KINDS, validate_contracts
+
+    validate_contracts(config)
+    limits = {}
+    for profile in config["raw_profiles"]:
+        if (profile.get("publication_mode") != "approved_dev_only"
+                or profile.get("legal_reuse_reviewed") is not True
+                or profile.get("row_kind") not in MARKET_KINDS):
+            continue
+        prefix, url = profile["catalog_slug_prefix"], profile["attribution_url"]
+        if not isinstance(prefix, str) or not prefix:
+            raise ValueError("Forecast source contract needs a stable ID prefix")
+        maximum = profile.get("max_forecast_source_age_days", profile["max_source_age_days"])
+        scope = (prefix, url)
+        limits[scope] = min(maximum, limits.get(scope, maximum))
+    return tuple((prefix, url, maximum) for (prefix, url), maximum in sorted(limits.items()))
+
+
+def _primary_source_age_limit(record, max_stale_days, source_limits):
+    slug, url = record.get("slug"), record.get("url_fonte")
+    maximum = max_stale_days
+    if isinstance(slug, str):
+        for prefix, source_url, limit in source_limits:
+            if slug.startswith(prefix) and url == source_url:
+                maximum = min(maximum, limit)
+    return maximum
 
 
 def text_key(value: Any) -> str:
@@ -113,7 +160,8 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
 
 
 def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEAD_DAYS,
-                   max_stale_days: int = MAX_SOURCE_STALE_DAYS) -> tuple[dict, str]:
+                   max_stale_days: int = MAX_SOURCE_STALE_DAYS, *,
+                   source_limits=None) -> tuple[dict, str]:
     record = dict(original)
     if record.get("status") in {"archiviato", "annullato"}:
         return record, "inactive"
@@ -146,10 +194,13 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
 
     if source_url_domain(record.get("url_fonte")) is None:
         return record, "no_attributable_source"
+    if source_limits is None:
+        source_limits = forecast_source_limits()
+    source_age_limit = _primary_source_age_limit(record, max_stale_days, source_limits)
     source_evidence = source_date_evidence(record)
     updated = parse_source_day(source_evidence["value"])
     projection_basis = "ricorrenza_testo"
-    if updated is None or not 0 <= (today - updated).days <= max_stale_days:
+    if updated is None or not 0 <= (today - updated).days <= source_age_limit:
         # A secondary publisher can support this exact recurrence without
         # relabeling the age of the original source. Only current, matching
         # field observations qualify; addresses/hours and fresh imports do not.
@@ -162,9 +213,12 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
         if dates:
             updated = max(dates)
             projection_basis = "riscontri_campi:ricorrenza_testo"
+            # Independent current evidence keeps its own stricter age bound;
+            # an expired primary publisher does not invalidate another source.
+            source_age_limit = min(max_stale_days, SOURCE_AGE["ricorrenza_testo"])
     if (record.get("proiezione_fonte") == "riscontri_campi:ricorrenza_testo"
             and projection_basis != "riscontri_campi:ricorrenza_testo"
-            and (updated is None or not 0 <= (today - updated).days <= max_stale_days)
+            and (updated is None or not 0 <= (today - updated).days <= source_age_limit)
             and record.get("date_quality") == "prevista"):
         # These dates were explicitly generated from field receipts. If that
         # support is withdrawn or expires, unknown primary age cannot keep
@@ -183,7 +237,7 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     age = (today - updated).days
     if age < 0:
         return record, "source_from_future"
-    if age > max_stale_days:
+    if age > source_age_limit:
         # Never leave predicted future editions visible after their only
         # supporting source ages out. This is a safety downgrade, NOT a
         # deletion of the underlying market identity or source history.
@@ -211,7 +265,10 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
 
 
 def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LOOKAHEAD_DAYS,
-                    max_stale_days: int = MAX_SOURCE_STALE_DAYS) -> tuple[list[dict], dict]:
+                    max_stale_days: int = MAX_SOURCE_STALE_DAYS, *,
+                    source_limits=None) -> tuple[list[dict], dict]:
+    if source_limits is None:
+        source_limits = forecast_source_limits()
     output = []
     counts = Counter()
     improved = 0
@@ -219,7 +276,8 @@ def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LO
     monthly = 0
     preserved_unknown = 0
     for original in records:
-        updated, reason = refresh_record(original, today, horizon_days, max_stale_days)
+        updated, reason = refresh_record(original, today, horizon_days, max_stale_days,
+                                         source_limits=source_limits)
         counts[reason] += 1
         if (reason == "unknown_source_age" and original.get("date_quality") == "prevista"
                 and original.get("date")):

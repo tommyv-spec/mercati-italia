@@ -312,7 +312,7 @@ class DeclarativeSourceLifecycleTests(unittest.TestCase):
             calls.append(url)
             return blob,False
         report=run(CFG,catalog(),probe_raw=True,stage_raw=True,
-                   raw_fetch=fetch,today=date(2026,10,13))
+                   raw_fetch=fetch,today=date(2026,10,13),raw_read_on="2026-10-13")
         self.assertEqual(len(calls),1)
         self.assertEqual(report["source_checks"]["source_only_stage_reviews"],1)
         source=report["sources"][RAW["id"]]

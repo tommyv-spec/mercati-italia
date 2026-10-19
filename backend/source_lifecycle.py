@@ -20,7 +20,8 @@ import json
 import re
 import unicodedata
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timezone
+from http.client import HTTPException
 from pathlib import Path
 from urllib.parse import urlsplit, parse_qs
 
@@ -29,6 +30,7 @@ from source_dispositions import reconcile as reconcile_reviewed_source_ids
 from recurrence_refresh import WEEKDAYS, explicit_rule
 from source_probe import limited_fetch, safe_url
 from reviewed_city_evidence import NAVIGATION_HOLD
+from publisher_snapshot_date import resolve_source_date, validate_strategy
 
 SCHEMA = 1
 MAX_RAW_PROFILES = 8
@@ -142,6 +144,7 @@ def validate_contracts(config):
                         not 0<=item["max_source_age_days"]<=730):
                     raise ValueError("Raw source cannot be approved without schema/rights review")
                 date.fromisoformat(item["source_dataset_date"])
+                validate_strategy(item)
                 forecast_age=item.get("max_forecast_source_age_days",item["max_source_age_days"])
                 if (type(forecast_age) is not int
                         or not 0<=forecast_age<=item["max_source_age_days"]):
@@ -283,7 +286,7 @@ def parse_hour(value):
     return None
 
 
-def candidate_record(profile,row,*,today):
+def candidate_record(profile,row,*,today,source_date=None):
     """In-memory conservative source candidate; NEVER marks a market verified."""
     if profile["row_kind"] not in MARKET_KINDS:
         return None,None,None
@@ -313,7 +316,9 @@ def candidate_record(profile,row,*,today):
         a,b=profile["hours_fields"]
         start,end=parse_hour(row.get(a)),parse_hour(row.get(b))
         if start and end and start>=end:start=end=None
-    updated=date.fromisoformat(profile["source_dataset_date"])
+    # The caller supplies a resolved snapshot date during ingestion. Pure
+    # parser previews may still inspect the reviewed minimum without fetching.
+    updated=date.fromisoformat(source_date or profile["source_dataset_date"])
     age=(today-updated).days
     if age < 0:
         return None,"dataset_date_in_future",None
@@ -374,8 +379,11 @@ def _baseline(catalog):
     return by_slug,places
 
 
-def inspect_raw(profile,blob,catalog,previous=None,today=None):
+def inspect_raw(profile,blob,catalog,previous=None,today=None,*,source_date_proof=None,read_on=None):
     today=today or date.today()
+    read_on=str(read_on or today)
+    source_date=resolve_source_date(profile, proof=source_date_proof, blob=blob,
+                                    read_on=read_on, today=today)
     rows=parse_rows(profile,blob)
     prior=previous or {}
     if prior and (prior.get("schema")!=1 or
@@ -393,7 +401,7 @@ def inspect_raw(profile,blob,catalog,previous=None,today=None):
         if profile["row_kind"] in OTHER_KINDS:
             counts["non_venue_administrative_rows"]+=1
             continue
-        venue,reason,fingerprint=candidate_record(profile,row,today=today)
+        venue,reason,fingerprint=candidate_record(profile,row,today=today,source_date=source_date)
         if venue is None:
             counts[reason]+=1
             continue
@@ -442,10 +450,11 @@ def inspect_raw(profile,blob,catalog,previous=None,today=None):
            before[key]==hashes[key] for key in current&older
         ) if prior else 0,
     }
-    age=(today-date.fromisoformat(profile["source_dataset_date"])).days
+    age=(today-date.fromisoformat(source_date)).days
     report={
         "schema":1,"source_id":profile["id"],"publisher":profile["publisher"],
-        "source_url":profile["resource_url"],"publisher_dataset_date":profile["source_dataset_date"],
+        "source_url":profile["resource_url"],"publisher_dataset_date":source_date,
+        "source_read_on":read_on,
         "publisher_data_age_days":age,
         "source_data_scope":profile["source_date_scope"],
         "license_reviewed_for_automatic_publication":False,
@@ -468,6 +477,8 @@ def inspect_raw(profile,blob,catalog,previous=None,today=None):
         "review_required":True,
         "source_data_marked_current_by_fetch_time":False,
     }
+    if source_date_proof is not None:
+        report["source_date_proof"]=source_date_proof
     return report
 
 
@@ -558,8 +569,9 @@ def inspect_normalized(profile, records, catalog, prior=None, review_metrics=Non
 
 def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
         source_dispositions=None,probe_raw=False,stage_raw=False,
-        raw_fetch=limited_fetch,today=None):
+        raw_fetch=limited_fetch,today=None,raw_read_on=None):
     today=today or date.today()
+    raw_read_on=str(raw_read_on or datetime.now(timezone.utc).date())
     if stage_raw and not probe_raw:
         raise ValueError("Staging requires a complete newly sampled source snapshot")
     validate_contracts(config)
@@ -591,10 +603,11 @@ def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
         for profile in enabled:
             sid=profile["id"]
             try:
-                blob,too_large=raw_fetch(profile["resource_url"])
-                if too_large or len(blob)>profile["max_bytes"]:
-                    raise ValueError("Publisher file exceeds approved response size")
-                reports[sid]=inspect_raw(profile,blob,catalog,by_old.get(sid),today)
+                from source_contract_activation import read_source_snapshot
+                blob,date_proof=read_source_snapshot(
+                    profile,fetch=raw_fetch,read_on=raw_read_on,today=today)
+                reports[sid]=inspect_raw(profile,blob,catalog,by_old.get(sid),today,
+                                         source_date_proof=date_proof,read_on=raw_read_on)
                 if stage_raw and profile["row_kind"] in MARKET_KINDS:
                     # Reuse the SAME downloaded bytes; never publish candidate
                     # rows and never re-request the source.
@@ -602,6 +615,7 @@ def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
                     staged,source_stage=stage_source_venues(
                         profile,blob,catalog,today=today,
                         observed_source_sha256=reports[sid]["source_snapshot_sha256"],
+                        source_date_proof=date_proof,read_on=raw_read_on,
                     )
                     if (source_stage.get("existing_market_identities_deleted")!=0
                             or source_stage.get("verified_openings_created")!=0
@@ -611,7 +625,7 @@ def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
                     reports[sid]["source_stage"]=source_stage
                     status["source_only_stage_reviews"]+=1
                 status["source_level_raw_profiles_checked"]+=1
-            except (ValueError,OSError,TimeoutError) as exc:
+            except (ValueError,OSError,TimeoutError,HTTPException) as exc:
                 # Unavailable HTTPS endpoint != vanished market. A parser
                 # ValueError is DISTINCT: the publisher may have changed
                 # schema, granularity or ID meaning. Never treat it as success.

@@ -9,9 +9,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+from datetime import date
 from pathlib import Path
 
 from source_contract_activation import validate_admissions
+from source_contract_ingest import observed_source_date
 from source_lifecycle import digest, validate_contracts
 
 
@@ -75,6 +77,13 @@ def validate_growth_source_lifecycle(lifecycle: dict, manifest: dict,
                    for field in ("market_imports", "market_updates",
                                  "market_confirmations", "market_identity_deletions"))):
         raise ValueError("Source lifecycle modified the catalog or lost source evidence")
+    reference_value = lifecycle.get("reference_date")
+    try:
+        reference = date.fromisoformat(reference_value)
+    except (TypeError, ValueError):
+        raise ValueError("Source lifecycle needs an exact reference date") from None
+    if reference.isoformat() != reference_value:
+        raise ValueError("Source lifecycle needs an exact reference date")
 
     reports = lifecycle.get("sources")
     if (not isinstance(reports, dict) or set(reports) != set(raw_profiles)
@@ -126,7 +135,8 @@ def validate_growth_source_lifecycle(lifecycle: dict, manifest: dict,
                 or staged.get("source_id") != sid
                 or staged.get("source_url") != p["resource_url"]
                 or staged.get("profile_sha256") != digest(p)
-                or staged.get("publisher_dataset_date") != p["source_dataset_date"]
+                or staged.get("publisher_dataset_date") != observed_source_date(
+                    p, staged, today=reference)
                 or staged.get("source_kind") != p["row_kind"]
                 or staged.get("publication_enabled") is not False
                 or staged.get("source_license_automatically_verified") is not False

@@ -32,7 +32,7 @@ from publisher_refresh import (run as refresh_publisher_pages,
                                catalog_resources as catalog_source_resources)
 from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
-from recurrence_refresh import refresh_records
+from recurrence_refresh import forecast_source_limits, refresh_records
 from source_lifecycle import run as inspect_source_contracts, markdown as source_lifecycle_markdown
 from source_contract_activation import (
     activate as activate_generic_source_contracts,
@@ -1153,7 +1153,8 @@ def run(args):
 
     projected, forecast_stats = refresh_records(
         page_rows, args.today, policy["forecast"]["days"],
-        policy["forecast"]["max_source_age_days"])
+        policy["forecast"]["max_source_age_days"],
+        source_limits=forecast_source_limits(read_json(profile_file)) if lifecycle_enabled else None)
     if len(projected) != (len(merged) + roma_2026_report["records_added"]
                           + len(generic_admission_report["new_market_ids"])):
         raise ValueError("Forecast must never remove market identities")

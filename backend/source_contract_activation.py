@@ -21,11 +21,14 @@ from urllib.parse import urlsplit
 
 from source_contract_ingest import (
     FIELD_MANAGER, MAX_STAGING_SOURCE_ROWS, PublishedSourceDriftError, apply_approved,
-    authorize, verify_update,
+    authorize, observed_source_date, source_metadata, verify_update,
 )
 from field_evidence import FIELDS, as_day, clean_receipts, fingerprint, valid_receipt
 from source_lifecycle import _public_https, digest, validate_contracts
 from source_probe import limited_fetch
+from publisher_snapshot_date import (
+    MAX_METADATA_BYTES, make_snapshot_date_proof, resolve_source_date, validate_strategy,
+)
 from reviewed_city_evidence import NAVIGATION_HOLD
 
 MAX_APPROVALS = 8
@@ -58,12 +61,42 @@ def _cache_context(source_cache, config, registry, existing, today, resume):
     return directory, digest(context)
 
 
+def read_source_snapshot(profile, *, fetch, read_on, today):
+    """Read one complete source version, bracketing dynamic data with metadata."""
+    validate_strategy(profile)
+    dynamic = profile.get("source_date_strategy", "fixed_reviewed") != "fixed_reviewed"
+    if not as_day(read_on) or as_day(read_on) > today:
+        raise ValueError("Real source read date is later than the requested reference date")
+
+    def bounded(url, limit):
+        body, overflow = fetch(url)
+        if not isinstance(body, bytes) or overflow or not 0 < len(body) <= limit:
+            raise ValueError("Approved publisher full snapshot exceeded authorized byte budget")
+        return body
+
+    before = bounded(profile["source_metadata_url"], MAX_METADATA_BYTES) if dynamic else None
+    blob = bounded(profile["resource_url"], profile["max_bytes"])
+    after = bounded(profile["source_metadata_url"], MAX_METADATA_BYTES) if dynamic else None
+    proof = (make_snapshot_date_proof(profile, blob, before_metadata=before,
+        after_metadata=after, read_on=read_on, today=today) if dynamic else None)
+    resolve_source_date(profile, proof=proof, blob=blob, read_on=read_on, today=today)
+    return blob, proof
+
+
 def _source_snapshot(profile, *, cache, context, memory, resume, offline, fetch, read_on, today):
     url = profile["resource_url"]
-    path = cache / (digest(url) + ".json") if cache is not None else None
-    saved = memory.get(url)
+    # A dynamic proof is bound to the exact reviewed profile digest. Two
+    # profiles pointing to one URL cannot share each other's date assertion.
+    key = (digest({"url": url, "profile": digest(profile)}) if
+           profile.get("source_date_strategy", "fixed_reviewed") != "fixed_reviewed" else digest(url))
+    path = cache / (key + ".json") if cache is not None else None
+    saved = memory.get(key)
     if saved is None and path is not None and path.exists():
+        if path.stat().st_size > (profile["max_bytes"] + 2 * MAX_METADATA_BYTES) * 2 + 8192:
+            raise ValueError("Oversized approved source checkpoint")
         stored = json.loads(path.read_text("utf-8"))
+        if not isinstance(stored, dict):
+            raise ValueError("Invalid source checkpoint object")
         if stored.get("context_sha256") == context:
             saved = stored
         elif resume:
@@ -74,25 +107,29 @@ def _source_snapshot(profile, *, cache, context, memory, resume, offline, fetch,
                 or not as_day(saved.get("source_read_on"))
                 or as_day(saved["source_read_on"]) > today):
             raise ValueError("Invalid source checkpoint provenance")
+        if (not isinstance(saved.get("body_base64"), str) or
+                len(saved["body_base64"]) > 4 * ((profile["max_bytes"] + 2) // 3)):
+            raise ValueError("Invalid or oversized source checkpoint encoding")
         blob = base64.b64decode(saved["body_base64"], validate=True)
         if len(blob) > profile["max_bytes"] or hashlib.sha256(blob).hexdigest() != saved.get("sha256"):
             raise ValueError("Source checkpoint content fingerprint changed")
-        memory[url] = saved
-        return blob, saved["source_read_on"], "resumed_checkpoint" if resume else "cached_snapshot"
+        proof = saved.get("source_date_proof")
+        resolve_source_date(profile, proof=proof, blob=blob,
+                            read_on=saved["source_read_on"], today=today)
+        memory[key] = saved
+        return blob, saved["source_read_on"], "resumed_checkpoint" if resume else "cached_snapshot", proof
     if resume or offline:
-        return None, None, "resume_checkpoint_missing" if resume else "offline_no_source_inference"
-    if not as_day(read_on) or as_day(read_on) > today:
-        raise ValueError("Real source read date is later than the requested reference date")
-    blob, overflow = fetch(url)
-    if (not isinstance(blob, bytes) or overflow or len(blob) > profile["max_bytes"]):
-        raise ValueError("Approved publisher full snapshot exceeded authorized byte budget")
+        return None, None, "resume_checkpoint_missing" if resume else "offline_no_source_inference", None
+    blob, proof = read_source_snapshot(profile, fetch=fetch, read_on=read_on, today=today)
     saved = {"schema": 1, "source_url": url, "context_sha256": context,
              "source_read_on": read_on, "sha256": hashlib.sha256(blob).hexdigest(),
              "body_base64": base64.b64encode(blob).decode("ascii")}
-    memory[url] = saved
+    if proof is not None:
+        saved["source_date_proof"] = proof
+    memory[key] = saved
     if path is not None:
         _atomic_json(path, saved)
-    return blob, read_on, "retrieved"
+    return blob, read_on, "retrieved", proof
 
 
 def validate_admissions(config, registry):
@@ -159,7 +196,8 @@ def _validate_disabled_disposition(profile, source):
         raise ValueError("Publisher disposition differs from its reviewed enabled switch")
     if disabled and any(source.get(key) for key in (
             "new_market_ids", "updates", "updated_fields_count", "source_observations",
-            "source_read_on", "source_read_mode", "source_snapshot_sha256", "new_venue_evidence")):
+            "source_read_on", "source_read_mode", "source_snapshot_sha256", "new_venue_evidence",
+            "source_date_proof")):
         raise ValueError("Disabled publisher cannot claim reads, additions or field changes")
 
 
@@ -189,7 +227,7 @@ def activate(config,registry,existing,*,today=None,offline=False,
             status["source_contracts_disabled"] += 1
             continue
         try:
-            blob, observed_on, mode = _source_snapshot(
+            blob, observed_on, mode, date_proof = _source_snapshot(
                 profile, cache=cache, context=context, memory=snapshots, resume=resume,
                 offline=offline, fetch=fetch, read_on=read_on, today=today)
             if blob is None:
@@ -198,7 +236,8 @@ def activate(config,registry,existing,*,today=None,offline=False,
                              "individual_market_openings_confirmed":0}
                 status["resume_skipped" if resume else "offline_skipped"]+=1
                 continue
-            additions,proof=apply_approved(profile,blob,candidate,cert,today=today,read_on=observed_on)
+            additions,proof=apply_approved(profile,blob,candidate,cert,today=today,read_on=observed_on,
+                                          source_date_proof=date_proof)
             changed = {p["slug"] for p in proof["updates"]}
             if (proof["old_ids_removed"] or proof["verified_events_created"]
                     or changed & claimed_updates
@@ -208,7 +247,7 @@ def activate(config,registry,existing,*,today=None,offline=False,
             source_after = {row["slug"]:row for row in additions}
             for update in proof["updates"]:
                 verify_update(profile, source_before[update["slug"]], source_after[update["slug"]],
-                              update, today=today)
+                              update, today=today, source_observations=proof["source_observations"])
             candidate=additions
             claimed_updates.update(changed)
             status["approved_sources_reconciled"]+=1
@@ -244,7 +283,8 @@ def activate(config,registry,existing,*,today=None,offline=False,
                 mid=row["slug"]
                 if mid in claimed_updates or mid not in original_ids or proof.get("action")!="retire":
                     raise ValueError("Source retirement ambiguously claimed an existing market")
-                verify_update(profile,source_before[mid],row,proof,today=today)
+                verify_update(profile,source_before[mid],row,proof,today=today,
+                              source_observations=getattr(exc,"source_report",{}))
                 retired_rows[mid]=row
             if retired_rows:
                 candidate=[retired_rows.get(row["slug"],row) for row in candidate]
@@ -306,6 +346,12 @@ def _validate_source_observation(profile,certificate,source,*,today,held=False):
     if (not isinstance(observations,dict)
             or observations.get("source_id")!=profile["id"]
             or observations.get("profile_sha256")!=digest(profile)
+            or observations.get("source_url")!=profile["resource_url"]
+            or observations.get("publisher")!=profile["publisher"]
+            or any(not isinstance(observations.get(key),str) or
+                   len(observations[key])!=64 or
+                   any(ch not in "0123456789abcdef" for ch in observations[key])
+                   for key in ("source_snapshot_sha256","source_parsed_sha256"))
             or source.get("approval_sha256")!=digest(certificate)
             or observations.get("source_read_on")!=source.get("source_read_on")
             or not as_day(source.get("source_read_on"))
@@ -396,7 +442,7 @@ def validate_release(before,after,report,config,registry):
                     or proof.get("receipt",{}).get("letto_il") != source["source_read_on"]):
                 raise ValueError("Independent generic source update lost source or original identity")
             source_fields += verify_update(raw_profiles[sid], before_by[mid], after_by[mid],
-                                           proof, today=reference)
+                                           proof, today=reference, source_observations=observations)
             updated[mid] = proof
         if source_fields != source.get("updated_fields_count",0):
             raise ValueError("Independent generic source field update count differs")
@@ -417,10 +463,11 @@ def validate_release(before,after,report,config,registry):
             raise ValueError("New market ID has no unique approved source")
         origin=matching[0]
         source_report = report["per_source"][origin["id"]]
+        source_date = observed_source_date(origin, source_report["source_observations"], today=reference)
         receipts = record.get("riscontri_campi")
         if (not sid.startswith(origin["catalog_slug_prefix"])
                 or record.get("url_fonte")!=origin["attribution_url"]
-                or record.get("aggiornato_il")!=origin["source_dataset_date"]
+                or record.get("aggiornato_il")!=source_date
                 or record.get("aggiornamento_ambito")!="dataset"
                 or record.get("status")!="non_confermato"
                 or record.get("date_quality")!="sconosciuta"
@@ -432,7 +479,7 @@ def validate_release(before,after,report,config,registry):
                 or record.get("navigazione_sospesa_motivo")!=NAVIGATION_HOLD
                 or record.get("importato_il") != source_report["source_read_on"]
                 or record.get("fonte_letta_il") != source_report["source_read_on"]
-                or record.get("fonte_aggiornata_il") != origin["source_dataset_date"]):
+                or record.get("fonte_aggiornata_il") != source_date):
             raise ValueError("Unsafe field in source-approved DEV market candidate: "+sid)
         if (not isinstance(receipts,list) or len(receipts) != 1
                 or not valid_receipt(receipts[0],record,today=reference)
@@ -440,7 +487,7 @@ def validate_release(before,after,report,config,registry):
                 or receipts[0].get("url") != origin["resource_url"]
                 or receipts[0].get("riga_fonte") != sid
                 or receipts[0].get("letto_il") != source_report["source_read_on"]
-                or receipts[0].get("fonte_aggiornata_il") != origin["source_dataset_date"]
+                or receipts[0].get("fonte_aggiornata_il") != source_date
                 or receipts[0].get("sha256") != source_report["source_observations"]["source_parsed_sha256"]
                 or receipts[0].get("gestore_campi") != FIELD_MANAGER
                 or receipts[0].get("campi_gestiti") != sorted(receipts[0]["valori"])):
@@ -468,11 +515,12 @@ def verify_static(manifest_path,report,config,registry,today):
     """
     from pathlib import Path
     from merge_catalog import load_existing
-    from recurrence_refresh import explicit_rule
+    from recurrence_refresh import explicit_rule, forecast_source_limits, refresh_record
     from reviewed_city_static_guard import INDEX_FIELDS
     if not isinstance(today,date):
         raise ValueError("Final publisher source check needs a reference date")
     approved=validate_admissions(config,registry)
+    forecast_limits=forecast_source_limits(config)
     manifest_path=Path(manifest_path)
     manifest=json.loads(manifest_path.read_text("utf-8"))
     source_ids=report.get("new_market_ids",[])
@@ -504,11 +552,25 @@ def verify_static(manifest_path,report,config,registry,today):
     profiles={p["id"]:p for p in config["raw_profiles"]}
     scoped={}
     updated={}
+    observed_dates={}
     for sid in approved:
         detail=report.get("per_source",{}).get(sid)
         if not isinstance(detail,dict):
             raise ValueError("Publisher report lacks source-level review outcome")
         _validate_disabled_disposition(profiles[sid], detail)
+        if detail.get("status") == "source_contract_approved_staged_only":
+            observations = _validate_source_observation(profiles[sid], approved[sid], detail, today=today)
+            observed_dates[sid] = observed_source_date(profiles[sid], observations, today=today)
+        elif detail.get("updates"):
+            if (detail.get("status") != "publisher_source_held_for_review"
+                    or any(proof.get("action") != "retire" for proof in detail["updates"])
+                    or detail.get("new_market_ids")):
+                raise ValueError("Unavailable source cannot claim new static fields or venues")
+            observations = _validate_source_observation(
+                profiles[sid], approved[sid], detail, today=today, held=True)
+            observed_dates[sid] = observed_source_date(profiles[sid], observations, today=today)
+        elif detail.get("new_market_ids"):
+            raise ValueError("New static venues have no approved source observation")
         for market_id in detail.get("new_market_ids",[]):
             if market_id in scoped:
                 raise ValueError("Duplicated publisher source identity")
@@ -528,12 +590,21 @@ def verify_static(manifest_path,report,config,registry,today):
         raise ValueError("Unattributed publisher field updates in static export")
     for mid,(source,proof) in updated.items():
         row=catalog.get(mid)
+        observations=report["per_source"][source["id"]]["source_observations"]
+        receipt=proof.get("receipt",{})
         target=({**row,**proof["receipt"]["valori"]} if row and proof.get("action")=="retire" else row)
         if (row is None or proof.get("identity_after") != {
                 key:row.get(key) for key in ("slug","nome","citta","regione","provincia")}
                 or row.get("url_fonte")!=source["attribution_url"]
                 or proof.get("public_fields_after")!={field:row.get(field) for field in FIELDS}
+                or proof.get("source_metadata_after") != source_metadata(row)
                 or not valid_receipt(proof.get("receipt"),target,today=today)
+                or receipt.get("fonte_aggiornata_il") != observed_dates[source["id"]]
+                or receipt.get("sha256") != observations.get("source_parsed_sha256")
+                or receipt.get("letto_il") != observations.get("source_read_on")
+                or receipt.get("fonte_id") != source["id"]
+                or receipt.get("url") != source["resource_url"]
+                or receipt.get("riga_fonte") != mid
                 or any(row.get(field)!=change.get("after")
                        for field,change in proof["changed_fields"].items())):
             raise ValueError("Managed publisher fields or identity changed during static export")
@@ -542,6 +613,10 @@ def verify_static(manifest_path,report,config,registry,today):
         if (not isinstance(expected,list) or clean_receipts(expected,row,today=today)!=expected
                 or actual!=expected):
             raise ValueError("Managed publisher field evidence lost during static export")
+        if row.get("date_quality") == "prevista":
+            calendar, _ = refresh_record(row, today, source_limits=forecast_limits)
+            if calendar.get("date_quality") != "prevista" or not calendar.get("date"):
+                raise ValueError("Existing publisher calendar exceeds its source freshness contract")
         compact=dict(zip(INDEX_FIELDS,by_index[mid]))
         if compact.get("orario_testo")!=row.get("orario_testo"):
             raise ValueError("Managed publisher hours lost in compact search index")
@@ -549,6 +624,8 @@ def verify_static(manifest_path,report,config,registry,today):
     for sid in source_ids:
         row=catalog.get(sid)
         source=scoped[sid]
+        source_date=observed_dates[source["id"]]
+        observations=report["per_source"][source["id"]]["source_observations"]
         evidence=report["per_source"][source["id"]].get("new_venue_evidence",{}).get(sid)
         if row is None:
             raise ValueError("Approved market missing from full regional details")
@@ -557,10 +634,19 @@ def verify_static(manifest_path,report,config,registry,today):
                     "slug","nome","citta","regione","provincia")}
                 or evidence.get("fields")!={field:row.get(field) for field in FIELDS}
                 or not valid_receipt(evidence.get("receipt"),row,today=today)
+                or evidence["receipt"].get("fonte_aggiornata_il") != source_date
+                or evidence["receipt"].get("sha256") != observations.get("source_parsed_sha256")
+                or evidence["receipt"].get("letto_il") != observations.get("source_read_on")
+                or evidence["receipt"].get("fonte_id") != source["id"]
+                or evidence["receipt"].get("url") != source["resource_url"]
+                or evidence["receipt"].get("riga_fonte") != sid
                 or row.get("riscontri_campi")!=[evidence["receipt"]]):
             raise ValueError("New publisher field evidence lost or changed during static export")
         if (row.get("url_fonte")!=source["attribution_url"]
-                or row.get("aggiornato_il")!=source["source_dataset_date"]
+                or row.get("aggiornato_il")!=source_date
+                or row.get("fonte_aggiornata_il")!=source_date
+                or row.get("fonte_letta_il")!=observations.get("source_read_on")
+                or row.get("importato_il")!=observations.get("source_read_on")
                 or row.get("aggiornamento_ambito")!="dataset"
                 or row.get("status")!="non_confermato"
                 or row.get("verificato_il")
@@ -581,7 +667,7 @@ def verify_static(manifest_path,report,config,registry,today):
         if row.get("date_quality")=="prevista":
             if (rule is None or rule.get("kind")!="weekly"
                     or not row.get("date")
-                    or (today-date.fromisoformat(source["source_dataset_date"])).days>
+                    or (today-date.fromisoformat(source_date)).days>
                        source.get("max_forecast_source_age_days",source["max_source_age_days"])
                     or any(item<today.isoformat() or
                            date.fromisoformat(item).weekday() not in rule["weekdays"]

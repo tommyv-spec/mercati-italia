@@ -1,0 +1,380 @@
+{
+  "schema": 1,
+  "date": "2026-10-19",
+  "generated_at": "2026-10-19T17:35:03.707737+00:00",
+  "scope": "DEV source-level acquisition, publisher dates, field observations, forecast expiry, and independent release validation",
+  "base_commit": "bcdf45c4ba1da75bcd9283f6cb3aa4cd62b9475c",
+  "branch": "fix/source-refresh-expansion-20261019",
+  "target_branch": "improve/data-quality-security-performance-2026-10-11",
+  "main_reference_read_only": "1ef738e6c05981e208ffcea5aae483ed0df14969",
+  "findings_fixed": [
+    "A reviewed literal dataset date could prevent a later publisher version from being admitted even after a successful new download.",
+    "Shadow staging, release checks and the Bologna yield audit also compared the old literal date.",
+    "New address/hour observations without a supported weekday could advance the global source date and renew an old calendar.",
+    "The static guard did not previously pin global source metadata for updated existing IDs.",
+    "Existing records could use the general 540-day forecast threshold after admission under a source contract with a 365-day limit."
+  ],
+  "dynamic_date_contract": {
+    "source_id": "bologna-generic-venues",
+    "strategy": "opendatasoft_data_processed_v1",
+    "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+    "metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
+    "reviewed_minimum_dataset_date": "2025-04-02",
+    "publisher_metadata_license_claim": "CC BY 4.0",
+    "acquisition_order": [
+      "metadata_before",
+      "full_contracted_response",
+      "metadata_after"
+    ],
+    "max_response_bytes_each": 65536,
+    "complete_timestamp_and_global_count_must_match_before_after": true,
+    "filtered_query_nhits_must_equal_received_records": true,
+    "proof_binds_metadata_bytes_body_hash_profile_read_date_and_publisher_date": true,
+    "editorial_modified_metadata_processed_import_and_run_time_not_content_dates": true,
+    "missing_or_invalid_dynamic_proof_has_no_fixed_date_fallback": true,
+    "corciano_strategy": "fixed_reviewed; no publisher content timestamp inferred from page edits",
+    "new_individual_opening_verifications": 0,
+    "source_contract_sha256": "5c40dafb57af389a3eaf392f6c692be4a492d8a79df44c93e63924dd8b238175",
+    "admission_registry_sha256": "84974156e3b90905fdb97ebf037a554575d09a37a97db65901624ef25831af33",
+    "exact_profile_sha256": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b"
+  },
+  "live_acquisition_attempt": {
+    "source": "bologna",
+    "attempted_resource": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
+    "outcome": "DNS resolution failed in this environment, including the elevated attempt",
+    "new_complete_snapshots_observed": 0,
+    "new_content_dates_confirmed": 0,
+    "actual_read_log": {
+      "path": "/tmp/source-refresh-expansion-20261019/bologna-observed-reads.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "last_previously_documented_dataset_date": "2025-04-02",
+    "not_a_live_validation_of_the_new_strategy": true
+  },
+  "synthetic_regressions": {
+    "all_publisher_bodies_dates_certificates_and_test_IDs_in_dynamic_tests_are_synthetic": true,
+    "test_module": "backend/tests/test_dynamic_source_refresh.py",
+    "integration_tests": 11,
+    "covered_behaviors": [
+      "Old content date remains old while editorial metadata changes.",
+      "Stable source IDs acquire managed fields on initial admission; a later version updates them and retains ownership history through export.",
+      "Identical pre-existing values receive observations without acquiring ownership.",
+      "Cached replay retains original proof, bytes and read date with no network.",
+      "Missing or unsupported weekday does not renew an old calendar from new address/hour dates.",
+      "Tampering with a global source date after export is rejected for an existing observed ID.",
+      "An existing market with 400-day-old data cannot use the general 540-day threshold to evade its 365-day contract.",
+      "Regenerated source record IDs hold the source without rebinding, new IDs or removal of existing markets.",
+      "A 100-millisecond metadata change during acquisition holds only that source.",
+      "Missing proof, changed metadata/date/body/profile or an independently mismatched snapshot hash is rejected."
+    ],
+    "publisher_snapshot_date_unit_tests": 21,
+    "recurrence_refresh_tests": 39,
+    "source_yield_tests": 15,
+    "source_growth_guard_tests": 13,
+    "new_regression_tests_since_previous_DEV_merge": 50
+  },
+  "saved_real_catalog_replay": {
+    "command": "python -B backend/autopilot.py --offline --resume --today 2026-10-19 --output /tmp/mercati-dynamic-date-replay-20261019",
+    "source_provenance": {
+      "schema": 1,
+      "mode": "offline_revalidation_of_saved_real_snapshots",
+      "network_requests": 0,
+      "new_source_reads_claimed": 0,
+      "source_origin": "/tmp/mercati-source-family-replay-20261019/sources",
+      "reference_date": "2026-10-19",
+      "original_context": {
+        "baseline": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+        "policy": "a5027c684374e1d4b5b76957a010b6926af8559c4a8c03daa7d39036f366ebbb",
+        "contracts": "6f9e6fc96b9672c4f99f6f3b4e89af309aa0a43f7f966145c14da0a61c202101",
+        "today": "2026-10-19"
+      },
+      "replay_context": {
+        "baseline": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+        "policy": "b9f43d12dfb1e277a7592263a6dc94490f73c98c98c042848e19559210aadadd",
+        "contracts": "6f9e6fc96b9672c4f99f6f3b4e89af309aa0a43f7f966145c14da0a61c202101",
+        "today": "2026-10-19"
+      },
+      "source_contents_and_read_dates_unchanged": true,
+      "original_baseline_checkpoint_copied": false,
+      "absent_sources_preserved": [
+        "bologna",
+        "corciano",
+        "generic-contracts"
+      ],
+      "files": [
+        {
+          "relative_path": "sources/lombardia.json",
+          "origin_path": "/tmp/mercati-source-family-replay-20261019/sources/lombardia.json",
+          "file_sha256": "60fe0f2bd873ccf2cc9791caa20995a45193e6dd99206ba06c5c42a6e8e1b70a",
+          "records": 1360,
+          "normalized_source_gate": {
+            "schema": 1,
+            "source_id": "lombardia",
+            "source_prefix": "lo-mercap-",
+            "region": "Lombardia",
+            "rows": 1360,
+            "official_dataset_timestamp": "2026-10-13",
+            "identity_sha256": "5495bb2a10d82731754322b77f93bb1421f45573591366487a7bc703c3386fa8",
+            "field_coverage": {
+              "nonempty_address": 1359,
+              "nonempty_hours": 889,
+              "source_coordinates_present": 1129,
+              "forecasted_records": 838
+            },
+            "dates_projected_not_confirmed": true,
+            "catalog_updates": 0,
+            "market_confirmations": 0,
+            "new_coordinates_inferred": 0,
+            "new_market_identities_authorized": 0,
+            "source_raw_rows_persisted": false
+          }
+        },
+        {
+          "relative_path": "sources/lombardia-raw.json",
+          "origin_path": "/tmp/mercati-source-family-replay-20261019/sources/lombardia-raw.json",
+          "file_sha256": "832a35050ad88ecefb20cf7e42029bae109b0c11a189a1cda49ca762a5cd3175",
+          "publisher_parsed_json_sha256": "7d5e5b30cffafbc814005db3627a0e90efae3a0344dcbb9975a5841ca3911eaf",
+          "normalized_raw_binding_verified": true
+        },
+        {
+          "relative_path": "sources/milano.json",
+          "origin_path": "/tmp/mercati-source-family-replay-20261019/sources/milano.json",
+          "file_sha256": "c40581d853324dc9135aee3f06bb776d0ed8babbf7537a6604376e6f2cdd788f",
+          "records": 85,
+          "normalized_source_gate": {
+            "schema": 1,
+            "source_id": "milano",
+            "source_prefix": "mi-mss-",
+            "region": "Lombardia",
+            "rows": 85,
+            "official_dataset_timestamp": "2024-05-27",
+            "identity_sha256": "0fbbdbbaf9079dee3fd948b0884c5c84fe2a6ec55d495921da15035c4e9bdf28",
+            "field_coverage": {
+              "nonempty_address": 0,
+              "nonempty_hours": 85,
+              "source_coordinates_present": 85,
+              "forecasted_records": 0
+            },
+            "dates_projected_not_confirmed": true,
+            "catalog_updates": 0,
+            "market_confirmations": 0,
+            "new_coordinates_inferred": 0,
+            "new_market_identities_authorized": 0,
+            "source_raw_rows_persisted": false
+          }
+        },
+        {
+          "relative_path": "sources/firenze.json",
+          "origin_path": "/tmp/mercati-source-family-replay-20261019/sources/firenze.json",
+          "file_sha256": "644b20fa1c21210f201441418d97c51c09c899b727e4f7f52451c3728ece5c4e",
+          "records": 4,
+          "normalized_source_gate": {
+            "schema": 1,
+            "source_id": "firenze",
+            "source_prefix": "fi-feelflorence-",
+            "region": "Toscana",
+            "rows": 4,
+            "official_dataset_timestamp": "2023-03-03",
+            "identity_sha256": "1878db81542c114bb9de5f0492f0f78eb0178eeef9ea0d23f095210ff9378292",
+            "field_coverage": {
+              "nonempty_address": 4,
+              "nonempty_hours": 4,
+              "source_coordinates_present": 4,
+              "forecasted_records": 0
+            },
+            "dates_projected_not_confirmed": true,
+            "catalog_updates": 0,
+            "market_confirmations": 0,
+            "new_coordinates_inferred": 0,
+            "new_market_identities_authorized": 0,
+            "source_raw_rows_persisted": false
+          }
+        },
+        {
+          "relative_path": "sources/publisher-pages/bassa-romagna-farmers.json",
+          "origin_path": "/tmp/mercati-source-family-replay-20261019/sources/publisher-pages/bassa-romagna-farmers.json",
+          "origin_file_sha256": "9ea804e4c19446e1d0912a8bf1daa49cddc5b32f34996446ddea2200526b9d7b",
+          "body_sha256": "0c5c57300f399f1c50b421487bea9ac0ca1cb66aa480dbf64bcd41291325e41b",
+          "source_url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/",
+          "actual_read_on": "2026-10-19",
+          "body_and_observation_unchanged": true,
+          "only_replay_policy_context_reconstructed": true
+        },
+        {
+          "relative_path": "sources/publisher-pages/bassa-romagna-weekly.json",
+          "origin_path": "/tmp/mercati-source-family-replay-20261019/sources/publisher-pages/bassa-romagna-weekly.json",
+          "origin_file_sha256": "fe67c63ca00a8e98d11a02947735d69d535389925157ce20a7445ebd4a0b4e96",
+          "body_sha256": "44812412b00fc3ea8fa25d8f1c5adf65d325963bb031a3088a420871ebcd56b2",
+          "source_url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/",
+          "actual_read_on": "2026-10-19",
+          "body_and_observation_unchanged": true,
+          "only_replay_policy_context_reconstructed": true
+        }
+      ]
+    },
+    "preparation_script_sha256": "e0fc35cdfc681139f07a305cbe2cd9553b2dd1aec7d9eba3680570bbf533d689",
+    "baseline_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+    "candidate_signature": "f7573e34bcc87d7a0fe7448853909e062db6e60d0959ea3d29af759a17652bd4",
+    "same_candidate_as_previous_saved_real_replay": true,
+    "catalog_records": 13824,
+    "original_ID_set_preserved": true,
+    "source_reads_claimed_by_this_replay": 0,
+    "network_requests": 0,
+    "generic_source_dispositions": {
+      "bologna-generic-venues": "resume_checkpoint_missing",
+      "corciano-generic-shadow": "resume_checkpoint_missing"
+    },
+    "gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "all_gates_passed": true,
+    "elapsed_seconds": 21.15,
+    "candidate_metrics": {
+      "future_60": 11846,
+      "future_90": 11829,
+      "indexed_gzip_bytes": 406328,
+      "missing_hours": 10602,
+      "precise": 89,
+      "records": 13824,
+      "unknown_dates": 1918,
+      "verified": 0
+    },
+    "field_quality_metrics": {
+      "indirizzo:mancante": 3214,
+      "indirizzo:riscontrato_fonte_recente": 1368,
+      "indirizzo:riscontro_da_aggiornare": 4,
+      "indirizzo:senza_riscontro_documentato": 9238,
+      "markets": 13824,
+      "markets_with_all_three_fields_source_supported": 1015,
+      "markets_with_recent_field_evidence": 1512,
+      "orario_testo:mancante": 10602,
+      "orario_testo:riscontrato_fonte_recente": 1158,
+      "orario_testo:riscontro_da_aggiornare": 88,
+      "orario_testo:senza_riscontro_documentato": 1976,
+      "ricorrenza_testo:mancante": 934,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1356,
+      "ricorrenza_testo:riscontro_da_aggiornare": 26,
+      "ricorrenza_testo:senza_riscontro_documentato": 11508
+    },
+    "coverage": {
+      "hosts": 72,
+      "market_dispositions": {
+        "happings_gate_not_active": 9647,
+        "official_adapter": 1219,
+        "source_contract_active": 39,
+        "source_layout_needed": 2919
+      },
+      "market_layout_statuses": {
+        "disabled": 9647,
+        "supported": 1258,
+        "unsupported": 2919
+      },
+      "market_read_statuses": {
+        "disabled": 9647,
+        "not_read": 2919,
+        "offline_skipped": 2,
+        "resume_checkpoint_missing": 39,
+        "resumed_checkpoint": 1217
+      },
+      "markets": 13824,
+      "schema": 1,
+      "source_admission_registry": "valid",
+      "source_contract_configuration": "valid",
+      "unique_primary_urls": 5752
+    },
+    "candidate_is_not_a_claim_that_all_market_facts_are_verified": true,
+    "candidate_catalog_published": false
+  },
+  "validation": {
+    "python_tests": {
+      "passed": 834,
+      "elapsed_seconds": 43.654,
+      "log_sha256": "43e9bff218d1a365672f141ab0a11db512f16d04d71c97c625dded8792701bdc"
+    },
+    "node_tests": {
+      "passed": 8,
+      "log_sha256": "3fae6d2d976ffdb94e2b80ad49732a21898de325fae52d820717899e0bb82046"
+    },
+    "production_build": {
+      "passed": true,
+      "log_sha256": "e02521cd51d2192bfdf463bd2cee761e6aa3f9260084dd190c2c345d837fc27d"
+    },
+    "bundled_map_worker": {
+      "passed": true,
+      "bytes": 508900,
+      "log_sha256": "9031f47c768db857e7f8f85bef1e5c63a2f1b292cf6a71aae4e9ea4ad30065d2"
+    },
+    "full_replay_log_sha256": "ca50fe49924a34e405d9d26cbb7b0afc158367647527f259aa09652f6c83fe1e",
+    "release_decision_sha256": "3c9394bd25232585e667038d0ec71aa9e246fdb4af95ba3f7c6a8bed2c79d4d8",
+    "independent_reviews": "The reviewer-reproduced global-date and forecast-age defects are fixed and regression-tested."
+  },
+  "remaining_limits": [
+    "New live Bologna metadata/body/metadata evidence could not be collected; no synthetic fixture is presented as live.",
+    "A publisher dataset processing date is not an individual market opening verification.",
+    "Managed updates require stable source identity. Opendatasoft defaults to identifiers derived from record values unless a unique key is configured; Bologna key configuration is not verified.",
+    "Changed source IDs require source-level identity reconciliation; the current process preserves existing market identities and holds uncertain new matches.",
+    "Primary reader coverage, field evidence coverage and real-world verification are different measures.",
+    "Happings remains disabled and no bulk Eventi e Sagre or Cose di Casa content was acquired.",
+    "Current gaps remain visible: this mechanism fix adds no newly verified live market fields."
+  ],
+  "identity_documentation": [
+    {
+      "url": "https://userguide.huwise.com/en/articles/2044866",
+      "observed_on": "2026-10-19",
+      "section": "Unique ID"
+    },
+    {
+      "url": "https://userguide.huwise.com/en/articles/2045122",
+      "observed_on": "2026-10-19",
+      "section": "Updating data by defining a unique key"
+    }
+  ],
+  "delivery_constraints": {
+    "per_market_data_patches": 0,
+    "public_catalog_files_changed": 0,
+    "main_modified": false,
+    "new_workflows": 0,
+    "new_schedulers": 0,
+    "new_services_or_dependencies": 0,
+    "retention_policy_changes": 0,
+    "automatic_publication_channel": "Existing daily DEV Autopilot and its QA gates"
+  },
+  "validated_file_sha256": {
+    "backend/autopilot.py": "7ccea1e41f584a5d98f1c47c7a0c4c8d8b707cb71d846335ec14a775035a0e39",
+    "backend/autopilot_policy.json": "102f27ab12197005e12a6955b807ef665edca65b8d2104163ffdf181dc2f7119",
+    "backend/data/approved-source-admissions.json": "5d2ce93d2ea8d637266488d5246e45153694dccc70c2b256260c9b23ac97c5ad",
+    "backend/data/market-source-contracts.json": "18c05aa2e95cc9686d496f36751e86e26900073df278eb078537e212632a6bd3",
+    "backend/publisher_refresh.py": "c46ca7981901f9b3f22c056455d8db7230426d6b6e71ba8f11beb77d1e540e78",
+    "backend/publisher_snapshot_date.py": "faa70503235a1b374d087fd61e3ae151a8644da5210f50c6690fc1857326b8aa",
+    "backend/recurrence_refresh.py": "231cde6634dc4fed3826147c6bf44330bf626649be58cdc439add736dac35f00",
+    "backend/source_contract_activation.py": "7ea3d5c1e244d2e7ee82e877bec63d558b87a200739662e86b0b06330ee51d35",
+    "backend/source_contract_ingest.py": "d661199bc87384cd5fb5347912c7ab5d68e552c1cfac53d85e6b2326e5d52249",
+    "backend/source_growth_guard.py": "e55596977159ef39f43e2f26cb2ead0c4ffc8f86f9f219d102df18defc0c03cb",
+    "backend/source_lifecycle.py": "c53a2ef9a3649ee096d79a93b9e90b0496e4cffc487ffb745e1567924a1fa307",
+    "backend/source_yield_audit.py": "ff1e8ce278647ad781902cb96e16be07c18361012acaef37a069488a2e704a60",
+    "backend/tests/test_dynamic_source_refresh.py": "a6aa00acf85246e09c86370f1bd513ad557ee6d7df615a99c7c01f4bb4198d69",
+    "backend/tests/test_opendatasoft_generic.py": "61726a1eab17974ec2609c12009c4bcfc2940f2957b0b368de8e02a4b933545e",
+    "backend/tests/test_publisher_snapshot_date.py": "898085826ee4cd79bbf8e205e0515cf2b1194492c30fd6ec7629b754aa66d476",
+    "backend/tests/test_recurrence_refresh.py": "c52f9ed8af6edc28ed96f53b448d1279ac2de106ba9b3f8c7a620424e9ac802a",
+    "backend/tests/test_source_growth_guard.py": "35901a40355ad9c8ddf7f93dcc27e579ca026820e74cb09f1532a0f25acb1bb8",
+    "backend/tests/test_source_lifecycle.py": "dac372f5f3ef3d2aa2e746792d16755a98ab2acfb633bb02d2da8f687c73cdb0",
+    "backend/tests/test_source_yield_audit.py": "aa1fd653f6d32be0f432c89f6e7b0a4ba7784f633292b4f328b663306c312f21",
+    "docs/AUTOMATIC_SOURCE_REFRESH.md": "204f645926bebf83a6223ba2c2a85431a33e2a9ccf0b0a8cf091405fde2e02ff"
+  }
+}
