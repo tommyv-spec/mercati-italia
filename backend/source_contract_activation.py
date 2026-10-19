@@ -17,13 +17,14 @@ from collections import Counter
 from datetime import date, datetime, timezone
 from http.client import HTTPException
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from source_contract_ingest import (
     FIELD_MANAGER, MAX_STAGING_SOURCE_ROWS, PublishedSourceDriftError, apply_approved,
     authorize, verify_update,
 )
 from field_evidence import FIELDS, as_day, clean_receipts, fingerprint, valid_receipt
-from source_lifecycle import digest, validate_contracts
+from source_lifecycle import _public_https, digest, validate_contracts
 from source_probe import limited_fetch
 from reviewed_city_evidence import NAVIGATION_HOLD
 
@@ -116,12 +117,50 @@ def validate_admissions(config, registry):
                 or row["max_new_ids"]<1
                 or row["max_new_ids"]>expected[sid]["max_new_ids_per_run"]):
             raise ValueError("Source approval could exceed reviewed per-source growth allowance")
+        if (type(expected[sid].get("enabled")) is not bool
+                or row.get("reviewed_profile_sha256") != digest(expected[sid])):
+            raise ValueError("Source approval does not match the exact enabled/disabled profile")
+        # A disabled profile still needs the same structural certificate.
+        # Dataset age and source-row drift are runtime checks in authorize().
+        profile = expected[sid]
+        license_url = row.get("publisher_license_evidence_url")
+        reviewed = as_day(row.get("reviewed_on"))
+        if (set(row) != {"schema", "mode", "source_id", "reviewed_profile_sha256",
+                         "publisher_license_evidence_url", "identity_granularity", "reviewed_on",
+                         "max_new_ids", "source_record_kind", "source_specific_geo_approval"}
+                or row.get("schema") != 1 or row.get("mode") != "approved_dev_only"
+                or row.get("identity_granularity") != profile["row_kind"]
+                or row.get("source_record_kind") != profile["row_kind"]
+                or row.get("source_specific_geo_approval") is not False
+                or not isinstance(license_url, str) or not _public_https(license_url)
+                or urlsplit(license_url).hostname not in {
+                    urlsplit(profile["resource_url"]).hostname,
+                    urlsplit(profile["attribution_url"]).hostname}
+                or not reviewed or reviewed < date(2025, 1, 1)
+                or row["reviewed_on"] != reviewed.isoformat()):
+            raise ValueError("Source approval certificate has inconsistent rights or identity fields")
         result[sid]=row
     if set(result)!=set(expected):
         raise ValueError("DEV-only publisher approval must match every active source contract")
     if sum(x["max_new_ids"] for x in result.values())>MAX_NEW_PER_RUN:
         raise ValueError("Too many new source identities allowed in one scheduled cycle")
     return result
+
+
+def active_profile_count(config, approvals):
+    """Count enabled profiles only after validating the complete registry."""
+    return sum(p["id"] in approvals and p.get("enabled") is True
+               for p in config["raw_profiles"])
+
+
+def _validate_disabled_disposition(profile, source):
+    disabled = profile.get("enabled") is False
+    if disabled != (source.get("status") == "source_contract_disabled"):
+        raise ValueError("Publisher disposition differs from its reviewed enabled switch")
+    if disabled and any(source.get(key) for key in (
+            "new_market_ids", "updates", "updated_fields_count", "source_observations",
+            "source_read_on", "source_read_mode", "source_snapshot_sha256", "new_venue_evidence")):
+        raise ValueError("Disabled publisher cannot claim reads, additions or field changes")
 
 
 def activate(config,registry,existing,*,today=None,offline=False,
@@ -142,6 +181,13 @@ def activate(config,registry,existing,*,today=None,offline=False,
     for sid in sorted(approvals):
         profile=profiles[sid]
         cert=approvals[sid]
+        if profile["enabled"] is False:
+            report[sid] = {"schema": 1, "status": "source_contract_disabled",
+                           "new_market_ids": [], "updates": [], "updated_fields_count": 0,
+                           "existing_records_removed": 0,
+                           "individual_market_openings_confirmed": 0}
+            status["source_contracts_disabled"] += 1
+            continue
         try:
             blob, observed_on, mode = _source_snapshot(
                 profile, cache=cache, context=context, memory=snapshots, resume=resume,
@@ -236,7 +282,8 @@ def activate(config,registry,existing,*,today=None,offline=False,
         "reference_date":today.isoformat(),
         "source_contract_sha256":digest(config),
         "publication_channel":"dev-only",
-        "source_contracts_active":len(approvals),
+        "source_contracts_active":active_profile_count(config, approvals),
+        "source_contracts_approved":len(approvals),
         "original_market_ids":len(existing),"candidate_market_ids":len(candidate),
         "new_market_ids":sorted(ids[len(existing):]),
         "record_ids_deleted":0,"old_market_fields_changed":sum(
@@ -296,7 +343,8 @@ def validate_release(before,after,report,config,registry):
                 "new_market_directions_enabled"))):
         raise ValueError("Independent generic source release proof does not match exact original IDs")
     raw_profiles={p["id"]:p for p in config["raw_profiles"]}
-    if report.get("source_contracts_active")!=len(approved):
+    if (report.get("source_contracts_active")!=active_profile_count(config, approved)
+            or report.get("source_contracts_approved", len(approved)) != len(approved)):
         raise ValueError("Independent source approval count does not match registry")
     before_by = {row["slug"]:row for row in before}
     after_by = {row["slug"]:row for row in after}
@@ -309,9 +357,11 @@ def validate_release(before,after,report,config,registry):
                 or source.get("status") not in (
                     "source_contract_approved_staged_only",
                     "publisher_source_held_for_review",
-                    "offline_no_source_inference", "resume_checkpoint_missing"
+                    "offline_no_source_inference", "resume_checkpoint_missing",
+                    "source_contract_disabled",
                 ) or not isinstance(source.get("new_market_ids"),list)):
             raise ValueError("Missing independent publisher import disposition")
+        _validate_disabled_disposition(raw_profiles[sid], source)
         new_by_source[sid]=source["new_market_ids"]
         observations=None
         if source["status"]!="source_contract_approved_staged_only":
@@ -431,7 +481,8 @@ def verify_static(manifest_path,report,config,registry,today):
             or report.get("publication_channel")!="dev-only"
             or report.get("source_registry_sha256")!=digest(registry)
             or report.get("source_contract_sha256")!=digest(config)
-            or report.get("source_contracts_active")!=len(approved)
+            or report.get("source_contracts_active")!=active_profile_count(config, approved)
+            or report.get("source_contracts_approved", len(approved)) != len(approved)
             or not isinstance(source_ids,list) or len(source_ids)!=len(set(source_ids))
             or not isinstance(evidence_ids,list) or len(evidence_ids)!=len(set(evidence_ids))
             or set(evidence_ids) & set(source_ids)
@@ -457,6 +508,7 @@ def verify_static(manifest_path,report,config,registry,today):
         detail=report.get("per_source",{}).get(sid)
         if not isinstance(detail,dict):
             raise ValueError("Publisher report lacks source-level review outcome")
+        _validate_disabled_disposition(profiles[sid], detail)
         for market_id in detail.get("new_market_ids",[]):
             if market_id in scoped:
                 raise ValueError("Duplicated publisher source identity")
@@ -539,7 +591,8 @@ def verify_static(manifest_path,report,config,registry,today):
         elif row.get("date"):
             raise ValueError("Unconfirmed generic source has an unlabelled market date")
     return {
-        "schema":1,"source_contracts_active":len(approved),
+        "schema":1,"source_contracts_active":active_profile_count(config, approved),
+        "source_contracts_approved":len(approved),
         "market_records_checked":len(rows),
         "new_source_venue_ids_verified":len(source_ids),
         "existing_source_evidence_ids_checked":len(evidence_ids),

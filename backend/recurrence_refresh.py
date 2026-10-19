@@ -149,7 +149,7 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     source_evidence = source_date_evidence(record)
     updated = parse_source_day(source_evidence["value"])
     projection_basis = "ricorrenza_testo"
-    if updated is None or (today - updated).days > max_stale_days:
+    if updated is None or not 0 <= (today - updated).days <= max_stale_days:
         # A secondary publisher can support this exact recurrence without
         # relabeling the age of the original source. Only current, matching
         # field observations qualify; addresses/hours and fresh imports do not.
@@ -162,6 +162,20 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
         if dates:
             updated = max(dates)
             projection_basis = "riscontri_campi:ricorrenza_testo"
+    if (record.get("proiezione_fonte") == "riscontri_campi:ricorrenza_testo"
+            and projection_basis != "riscontri_campi:ricorrenza_testo"
+            and (updated is None or not 0 <= (today - updated).days <= max_stale_days)
+            and record.get("date_quality") == "prevista"):
+        # These dates were explicitly generated from field receipts. If that
+        # support is withdrawn or expires, unknown primary age cannot keep
+        # the old synthetic calendar alive. Legacy estimates with another
+        # provenance, and publisher-reported/confirmed dates, are unaffected.
+        record["date"] = []
+        record["date_quality"] = "sconosciuta"
+        record["proiezione_regola"] = None
+        record["proiezione_generata_il"] = ""
+        record["proiezione_fonte"] = ""
+        return record, "expired_field_evidence_forecast"
     if updated is None:
         # Existing estimates are retained as estimates, with their original
         # provenance. A recent import/read is never a reason to extend them.
@@ -231,7 +245,8 @@ def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LO
         "unknown_source_dates_preserved_without_renewal": preserved_unknown,
         "all_dates_marked_forecast": all(
             m.get("date_quality") == "prevista" for m in output
-            if m.get("proiezione_fonte") == "ricorrenza_testo"),
+            if m.get("proiezione_fonte") in {
+                "ricorrenza_testo", "riscontri_campi:ricorrenza_testo"}),
     }
 
 

@@ -8,7 +8,8 @@ This module is a conservative generic *evidence* transfer, not fuzzy dedup.
 
 Never changes stable IDs, event dates, recurrence, primary source, verified
 status, city, coordinates or date-of-previous-source. Adds missing published
-hours, and follows later versions only for fields explicitly owned by this
+hours and, with complete raw-source uniqueness, missing venues. Follows later
+versions only for fields explicitly owned by this
 engine with the same source identity and an exact previous value receipt.
 If the source cannot be joined confidently, keep the original untouched.
 """
@@ -28,9 +29,12 @@ from lombardia_overlap import location_key, norm
 from merge_catalog import load_existing
 from field_evidence import (transfer_receipts, managed_update_allowed,
                             mark_managed_fields, clean_receipts,
-                            retire_superseded_receipts)
+                            retire_superseded_receipts, fingerprint, identity,
+                            MAX_READ_AGE, SOURCE_AGE)
+from catalog_quality_report import VAGUE_ADDRESSES, key as address_key
 from recurrence_refresh import WEEKDAYS
-from source_lombardia import months_of_operation, weekday
+from source_lombardia import (months_of_operation, weekday, convert as convert_lombardia,
+                              DAY_LABELS)
 
 # New trusted formats must be manually inspected and added to this allowlist,
 # with negative tests before automatic enrichment. No remote user input.
@@ -48,6 +52,14 @@ MAX_SOURCE_ROWS = 3000
 MAX_ENRICHED_RECORDS = 500
 MAX_DISTANCE_KM = 0.6
 FIELD_MANAGER = "official_enrichment"
+UNIQUE_TOWN_METHOD = "comune_provincia_giorno_univoco"
+# Every field used to authorize a join or a transfer must be reproduced from
+# the complete raw payload, independently of its stored normalized checkpoint.
+RAW_BOUND_FIELDS = (
+    "slug", "id_fonte", "citta", "provincia", "regione", "indirizzo",
+    "ricorrenza_testo", "orario_testo", "identita_fonte", "aggiornato_il",
+    "categoria", "nome", "tags", "lat", "lng", "url_fonte",
+)
 
 # Observed in the live MERCap snapshot read on 2026-10-19:
 # 100126 VIA PALU', 101346 VIA CA' ZENUCCHI, 100368 PIAZZA G.ARDIZZONE, SNC,
@@ -222,7 +234,434 @@ def official_identity_issue(source):
     return ""
 
 
-def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
+def _complete_raw_context(raw, normalized, *, today):
+    """Validate the complete publisher snapshot before looking for uniqueness.
+
+    Normalization can exclude rows (Milano or malformed identities). Every raw
+    row still participates in the ambiguity check, including unknown weekdays,
+    seasonal markets, and rows whose source ID or ISTAT code is unusable. A
+    missing municipality/province cannot be safely scoped and closes this path.
+    The established exact-venue path does not depend on this optional context.
+    """
+    if raw is None:
+        return None, {"status": "not_supplied", "raw_rows_screened": 0}
+    try:
+        reproduced = convert_lombardia(raw, today=today)
+    except (KeyError, TypeError, ValueError, OverflowError) as exc:
+        return None, {"status": "invalid_complete_snapshot",
+                      "reason": str(exc)[:160], "raw_rows_screened": 0}
+    expected = {row["slug"]: row for row in reproduced}
+    actual = {row.get("slug"): row for row in normalized if isinstance(row, dict)}
+    report = {"status": "complete", "raw_rows_screened": len(raw["rows"]),
+              "normalized_rows_reproduced": len(reproduced),
+              "non_normalized_rows_still_screened": len(raw["rows"]) - len(reproduced),
+              "sha256": fingerprint(raw),
+              "source_updated_on": raw["publisher_data_updated_at"]}
+    if (len(actual) != len(normalized) or set(expected) != set(actual)
+            or any(any(row.get(field) != expected[slug].get(field)
+                       for field in RAW_BOUND_FIELDS)
+                   for slug, row in actual.items())):
+        report["status"] = "raw_normalized_checkpoint_mismatch"
+        return None, report
+    by_town_day = defaultdict(list)
+    by_source_id = defaultdict(list)
+    for index, row in enumerate(raw["rows"]):
+        town = norm(row.get("descom"))
+        province = str(row.get("despro") or "").strip().upper()
+        if not re.search(r"[a-z]", town) or not re.fullmatch(r"[A-Z]{2}", province):
+            report["status"] = "raw_competitor_municipality_unknown"
+            return None, report
+        by_town_day[(town, province, weekday(row.get("giorno")))].append((index, row))
+        by_source_id[str(row.get("codice_id") or "").strip()].append(row)
+    # The raw checkpoint carries a publisher date, not a read date. Obtain
+    # its actual read only from a valid observation of this entire dataset.
+    reads = {proof["letto_il"] for row in normalized for proof in
+             clean_receipts(row.get("riscontri_campi"), row, today=today)
+             if (proof.get("fonte_id") == "lombardia"
+                 and proof.get("url") == row.get("url_fonte")
+                 and proof.get("riga_fonte") == str(row.get("id_fonte"))
+                 and proof.get("metodo") == "id_fonte"
+                 and proof.get("ambito") == "dataset"
+                 and proof.get("impronta_tipo") == "publisher_parsed_json"
+                 and proof.get("sha256") == report["sha256"]
+                 and proof.get("fonte_aggiornata_il") == report["source_updated_on"]
+                 and (today - date.fromisoformat(proof["letto_il"])).days <= MAX_READ_AGE)}
+    report["read_on"] = max(reads) if reads else ""
+    return {"by_town_day": by_town_day, "sha256": report["sha256"],
+            "by_source_id": by_source_id, "read_on": report["read_on"],
+            "source_updated_on": report["source_updated_on"]}, report
+
+
+def _replaceable_venue(value):
+    """Only absence or enumerated placeholders; short real addresses survive."""
+    return (not str(value or "").strip()
+            or address_key(value) in VAGUE_ADDRESSES)
+
+
+def _town_binding_receipts(row, spec, *, today):
+    return [receipt for receipt in clean_receipts(
+        row.get("riscontri_campi"), row, today=today
+    ) if (receipt.get("metodo") == UNIQUE_TOWN_METHOD
+          and receipt.get("fonte_id") == spec["observation_source_id"]
+          and receipt.get("url") == spec["url"]
+          and receipt.get("ambito") == "dataset"
+          and receipt.get("impronta_tipo") == "publisher_parsed_json")]
+
+
+def _explicit_cadence_contradiction(raw):
+    cadence = norm(raw.get("periodicita_tipo"))
+    months = months_of_operation(raw.get("mesi_svolgimento"))
+    return bool((cadence and cadence != "settimanale")
+                or str(raw.get("frequenza_settimanale") or "").strip()
+                or (months and months != set(range(1, 13))))
+
+
+def _explicit_mixed_type_contradiction(raw):
+    values = [raw.get(field) for field in ("n_post_alim", "n_post_non_alim", "n_post_tot")]
+    if any(isinstance(value, bool) or not re.fullmatch(r"\d{1,6}", str(value)) for value in values):
+        return False
+    food, other, total = map(int, values)
+    return bool(total > 0 and food + other == total and (food == 0 or other == 0))
+
+
+def _retire_identity_contradictions(base, official, updated, context, spec, *, today,
+                                    counts, touched, record_conflict):
+    """Withdraw contradicted claims without rewriting a schedule or closing a market.
+
+    A missing code, unread snapshot or unknown weekday is not a cancellation.
+    Complete, ordered evidence that the same code changed its declared day,
+    season, type or location can invalidate the earlier cross-source join.
+    Accurate unchanged fields keep their original proof and source binding.
+    If every claim is contradicted, ownership disappears with those claims;
+    subsequent coincident observations cannot silently recreate that ownership.
+    """
+    if not context.get("read_on"):
+        return
+    by_source_id = defaultdict(list)
+    for source in official:
+        by_source_id[str(source.get("id_fonte") or "")].append(source)
+    for original in base:
+        old = updated[original["slug"]]
+        if (old.get("regione") != spec["region"]
+                or old["slug"].startswith(spec["source_prefix"])):
+            continue
+        days = explicit_annual_weekday(old)
+        if len(days) != 1:
+            continue
+        day = next(iter(days))
+        prior = clean_receipts(old.get("riscontri_campi"), old, today=today)
+        for proof in prior:
+            if (proof.get("fonte_id") != spec["observation_source_id"]
+                    or proof.get("url") != spec["url"]
+                    or proof.get("metodo") not in {UNIQUE_TOWN_METHOD, "sede_giorno_provincia"}
+                    or proof.get("ambito") != "dataset"
+                    or proof.get("impronta_tipo") != "publisher_parsed_json"
+                    or context["read_on"] <= proof["letto_il"]
+                    or context["sha256"] == proof["sha256"]
+                    or context["source_updated_on"] < proof.get("fonte_aggiornata_il", "")):
+                continue
+            sid = proof["riga_fonte"]
+            raw_rows = context["by_source_id"].get(sid, [])
+            if not raw_rows:
+                continue
+            sources = by_source_id.get(sid, [])
+            local = [raw for raw in raw_rows if norm(raw.get("descom")) == norm(old.get("citta"))
+                     and norm(raw.get("despro")) == norm(old.get("provincia"))]
+            same_day = [raw for raw in local if weekday(raw.get("giorno")) == day]
+            compatible = [row for row in sources if norm(row.get("citta")) == norm(old.get("citta"))
+                          and norm(row.get("provincia")) == norm(old.get("provincia"))
+                          and explicit_annual_weekday(row) == days
+                          and not official_identity_issue(row)
+                          and _ordinary_market_compatible(row, old)]
+            reason, fields = "", set()
+            field_sources = sources
+            if compatible:
+                if (proof["metodo"] == "sede_giorno_provincia"
+                        and all(location_key(row, spec["region"]) is not None
+                                and street_identity(row.get("indirizzo")) != street_identity(old.get("indirizzo"))
+                                for row in compatible)):
+                    reason, fields = "bound_source_venue_changed", set(proof["valori"])
+                else:
+                    # The join can still be blocked by precise/conflicting
+                    # coordinates or another source competitor. A held value
+                    # must not retain an old claim explicitly contradicted by
+                    # this same code. Approved updates already carry this
+                    # version's receipt and fail the older-version test above.
+                    reason = "bound_source_field_values_changed"
+                    field_sources = compatible
+            elif not local:
+                reason, fields = "bound_source_municipality_changed", set(proof["valori"])
+            elif not same_day and all(weekday(raw.get("giorno")) is not None for raw in local):
+                reason, fields = "bound_source_weekday_changed", {"ricorrenza_testo"}
+            elif same_day and all(_explicit_cadence_contradiction(raw) for raw in same_day):
+                reason, fields = "bound_source_annual_recurrence_contradicted", {"ricorrenza_testo"}
+            elif same_day and all(_explicit_mixed_type_contradiction(raw) for raw in same_day):
+                reason, fields = "bound_source_market_type_changed", set(proof["valori"])
+            else:
+                continue
+            if (proof["metodo"] == "sede_giorno_provincia"
+                    and reason != "bound_source_field_values_changed"):
+                fields = set(proof["valori"])
+            # New field values from the same code can also contradict its old
+            # venue/hour claims. Empty or ambiguous replacements are not used.
+            for field in ("indirizzo", "orario_testo"):
+                if field_sources and all(isinstance(row.get(field), str) and row[field].strip()
+                                         and row[field] != old.get(field) for row in field_sources):
+                    fields.add(field)
+            fields &= set(proof["valori"])
+            if not fields:
+                continue
+            revised = updated[old["slug"]]
+            current = clean_receipts(revised.get("riscontri_campi"), revised, today=today)
+            kept = []
+            for receipt in deepcopy(current):
+                if all(receipt.get(key) == proof.get(key) for key in
+                       ("fonte_id", "url", "riga_fonte", "metodo", "ambito", "impronta_tipo")):
+                    receipt["valori"] = {key: value for key, value in receipt["valori"].items()
+                                          if key not in fields}
+                kept.append(receipt)
+            kept = clean_receipts(kept, revised, today=today)
+            if kept == current:
+                continue
+            revised["riscontri_campi"] = kept
+            counts["obsolete_source_claims_retired"] += 1
+            counts["identity_contradiction_receipts_retired"] += 1
+            counts["field_observation_records_updated"] += 1
+            touched.add(old["slug"])
+            evidence_source = sources[0] if sources else {
+                "slug": spec["source_prefix"] + sid, "id_fonte": sid,
+                "aggiornato_il": context["source_updated_on"]}
+            record_conflict(old, evidence_source, reason, {
+                "action": "retired_contradicted_source_claims_values_preserved",
+                "retired_fields": sorted(fields), "previous_evidence": proof,
+                "new_dataset_evidence": {
+                    "url": spec["url"], "source_id": sid,
+                    "read_on": context["read_on"], "source_updated_on": context["source_updated_on"],
+                    "sha256": context["sha256"], "raw_rows_for_bound_code": deepcopy(raw_rows),
+                },
+            })
+
+
+def _town_source_receipt(source, target, context, spec, *, today):
+    """Retarget an actual raw-bound read only after the unique identity join.
+
+    A legacy recurrence may receive evidence without being rewritten only when
+    it equals one of two deterministic adapter renderings of the proved annual
+    weekday. The source's raw cadence/months have already passed the strict
+    identity gate; the target text is never copied as if the source said it.
+    """
+    for original in clean_receipts(source.get("riscontri_campi"), source, today=today):
+        if (original.get("fonte_id") != spec["observation_source_id"]
+                or original.get("url") != spec["url"]
+                or original.get("riga_fonte") != str(source.get("id_fonte"))
+                or original.get("metodo") != "id_fonte"
+                or original.get("ambito") != "dataset"
+                or original.get("impronta_tipo") != "publisher_parsed_json"
+                or original.get("sha256") != context["sha256"]
+                or original.get("fonte_aggiornata_il") != context["source_updated_on"]
+                or (today - date.fromisoformat(original["letto_il"])).days > MAX_READ_AGE):
+            continue
+        age = (today - date.fromisoformat(original["fonte_aggiornata_il"])).days
+        values = {field: value for field, value in original["valori"].items()
+                  if field in {"indirizzo", "orario_testo"}
+                  and age <= SOURCE_AGE[field]}
+        if "orario_testo" in values and not hours_allowed(values["orario_testo"]):
+            values.pop("orario_testo")
+        if ("ricorrenza_testo" in original["valori"]
+                and age <= SOURCE_AGE["ricorrenza_testo"]):
+            day = next(iter(explicit_annual_weekday(source)))
+            for rendering in ("Ogni " + DAY_LABELS[day],
+                              "settimanale - " + DAY_LABELS[day]):
+                if target.get("ricorrenza_testo") == rendering:
+                    values["ricorrenza_testo"] = rendering
+        if "indirizzo" not in values:
+            continue
+        item = deepcopy(original)
+        item["mercato"] = identity(target)
+        item["valori"] = values
+        item["metodo"] = UNIQUE_TOWN_METHOD
+        # Raw feed observations cannot delegate ownership across identities.
+        for field in ("campi_gestiti", "gestore_campi", "versioni_precedenti"):
+            item.pop(field, None)
+        return item
+    return None
+
+
+def _enrich_unique_town(base, official, updated, context, spec, *, today,
+                        counts, touched, field_updates, field_differences,
+                        record_conflict, samples):
+    candidates = defaultdict(list)
+    for source in official:
+        if (not official_identity_issue(source)
+                and location_key(source, spec["region"]) is not None
+                and not _replaceable_venue(source.get("indirizzo"))):
+            day = next(iter(explicit_annual_weekday(source)))
+            candidates[(norm(source.get("citta")),
+                        str(source.get("provincia") or "").strip().upper(), day)].append(source)
+    for old in base:
+        if (old.get("regione") != spec["region"]
+                or old["slug"].startswith(spec["source_prefix"])):
+            continue
+        bindings = _town_binding_receipts(old, spec, today=today)
+        replacing_placeholder = _replaceable_venue(old.get("indirizzo"))
+        if not replacing_placeholder and not bindings:
+            continue
+        counts["unique_town_targets_screened"] += 1
+        days = explicit_annual_weekday(old)
+        province = str(old.get("provincia") or "").strip().upper()
+        if (len(days) != 1 or not _generic_weekly_market(old)
+                or not re.fullmatch(r"[A-Z]{2}", province)):
+            counts["held_unique_town_target_identity_incomplete"] += 1
+            continue
+        if not bindings and (old.get("verificato_il") or any(
+                "indirizzo" in receipt["valori"] for receipt in
+                clean_receipts(old.get("riscontri_campi"), old, today=today))):
+            counts["held_unique_town_existing_venue_evidence"] += 1
+            continue
+        day = next(iter(days))
+        key = (norm(old.get("citta")), province, day)
+        eligible = [source for source in candidates.get(key, [])
+                    if _ordinary_market_compatible(source, old)]
+        if len(eligible) != 1:
+            counts["held_unique_town_multiple_eligible_sources" if eligible
+                   else "held_unique_town_no_eligible_source"] += 1
+            for source in eligible:
+                record_conflict(old, source, "multiple_eligible_markets_same_city_day")
+            continue
+        source = eligible[0]
+        possible = (context["by_town_day"].get(key, [])
+                    + context["by_town_day"].get((*key[:2], None), []))
+        # Count raw rows, not just admitted source IDs. Malformed or duplicate
+        # raw identities cannot disappear from this uniqueness proof.
+        if (len(possible) != 1
+                or str(possible[0][1].get("codice_id") or "").strip() != source["id_fonte"]):
+            reason = ("raw_unknown_weekday_competitor" if any(
+                weekday(raw.get("giorno")) is None for _, raw in possible)
+                      else "raw_same_city_day_competitor")
+            counts["held_unique_town_" + reason] += 1
+            record_conflict(old, source, reason, {
+                "raw_competitor_count": len(possible),
+                "raw_competitors": [{"snapshot_row": index + 1,
+                                    "source_id": str(raw.get("codice_id") or ""),
+                                    "weekday": raw.get("giorno"),
+                                    "periodicity": raw.get("periodicita_tipo"),
+                                    "address": raw.get("indirizzi") or raw.get("ubicazione")}
+                                   for index, raw in possible[:40]],
+            })
+            continue
+        if bindings and {proof["riga_fonte"] for proof in bindings} != {source["id_fonte"]}:
+            counts["held_unique_town_bound_source_identity_changed"] += 1
+            record_conflict(old, source, "bound_source_identity_changed")
+            continue
+        gap = distance_km(old, source)
+        if gap is not None and gap > MAX_DISTANCE_KM:
+            counts["held_unique_town_coordinates_conflict"] += 1
+            record_conflict(old, source, "coordinates_conflict")
+            continue
+        incoming = _town_source_receipt(source, old, context, spec, today=today)
+        if incoming is None:
+            counts["held_unique_town_without_current_raw_bound_receipt"] += 1
+            continue
+        if any((proof["letto_il"] > incoming["letto_il"]
+                or (proof["letto_il"] == incoming["letto_il"]
+                    and proof["sha256"] != incoming["sha256"])
+                or (proof["fonte_aggiornata_il"]
+                    and proof["fonte_aggiornata_il"] > incoming["fonte_aggiornata_il"]))
+               for proof in bindings):
+            counts["held_unique_town_source_version_unordered_or_regressed"] += 1
+            continue
+        revised = updated[old["slug"]]
+        assignments = {}
+        for field in ("indirizzo", "orario_testo"):
+            if field not in incoming["valori"]:
+                continue
+            current, future = str(old.get(field) or ""), incoming["valori"][field]
+            if current == future:
+                continue
+            missing = (not current.strip() or (field == "indirizzo"
+                       and replacing_placeholder and not bindings))
+            managed = managed_update_allowed(old, incoming, field,
+                                             manager=FIELD_MANAGER, today=today)
+            protected = (old.get("verificato_il") or
+                         (field == "indirizzo" and old.get("position_quality") == "precisa"))
+            if not protected and (missing or managed):
+                revised[field] = future
+                action = ("updated_managed_source_version" if managed else
+                          "replaced_vague_placeholder" if current.strip() else "filled_missing")
+                assignments[field] = action
+                counter = ("managed_addresses_updated" if field == "indirizzo" else
+                           "managed_hours_updated") if managed else (
+                           "addresses_added" if field == "indirizzo" else "hours_added")
+                counts[counter] += 1
+                if action == "replaced_vague_placeholder":
+                    counts["vague_addresses_replaced"] += 1
+                field_updates.append({
+                    "published_id": old["slug"], "official_id": source["id_fonte"],
+                    "official_slug": source["slug"], "field": field,
+                    "before": current, "after": future, "match": UNIQUE_TOWN_METHOD,
+                    "action": action, "raw_rows_screened": sum(
+                        len(rows) for rows in context["by_town_day"].values()),
+                    "new_source_evidence": deepcopy(incoming),
+                    "previous_evidence": clean_receipts(old.get("riscontri_campi"), old,
+                                                         today=today) if managed else [],
+                })
+                touched.add(old["slug"])
+            else:
+                counts["held_unique_town_unmanaged_" + field] += 1
+                field_differences.append({
+                    "published_id": old["slug"], "official_id": source["id_fonte"],
+                    "official_slug": source["slug"], "field": field,
+                    "before": current, "after": future,
+                    "reason": ("human_verification_or_precise_location_requires_review"
+                               if protected else "field_not_owned_by_same_source"),
+                    "previous_evidence": clean_receipts(old.get("riscontri_campi"), old, today=today),
+                    "new_source_evidence": incoming,
+                    "action": "held_without_managed_update_authorization",
+                })
+        previous_receipts = clean_receipts(old.get("riscontri_campi"), old, today=today)
+        retired = retire_superseded_receipts(old, incoming, today=today)
+        if retired != previous_receipts:
+            counts["obsolete_source_claims_retired"] += 1
+        initial = {field for field, action in assignments.items()
+                   if action != "updated_managed_source_version"}
+        managed = set(assignments) - initial
+        if initial:
+            # Explicitly reviewed placeholders are the only nonempty values
+            # permitted to take this first-assignment path.
+            incoming = mark_managed_fields(incoming, initial, manager=FIELD_MANAGER)
+        if managed:
+            incoming = mark_managed_fields(incoming, managed, manager=FIELD_MANAGER, previous=old)
+        observations = clean_receipts([incoming, *retired], revised, today=today)
+        if observations != (old.get("riscontri_campi") or []):
+            revised["riscontri_campi"] = observations
+            counts["field_observation_records_updated"] += 1
+            touched.add(old["slug"])
+        if (incoming["valori"].get("ricorrenza_testo") == old.get("ricorrenza_testo")
+                and not any(proof["valori"].get("ricorrenza_testo") == old.get("ricorrenza_testo")
+                            for proof in previous_receipts)):
+            counts["recurrence_observations_added"] += 1
+        primary = {"nome": str(old.get("fonte") or ""), "url": str(old.get("url_fonte") or "")}
+        official_entry = {"nome": spec["name"], "url": spec["url"]}
+        links = [dict(link) for link in (old.get("fonti") or []) if isinstance(link, dict)]
+        if (primary["nome"] or primary["url"]) and primary not in links:
+            links.append(primary)
+        if official_entry not in links:
+            links.append(official_entry)
+            counts["official_source_attributions_added"] += 1
+            touched.add(old["slug"])
+        revised["fonti"] = links
+        counts["municipality_day_unique_matches"] += 1
+        if len(samples) < 30:
+            samples.append({"published_id": old["slug"], "official_id": source["id_fonte"],
+                            "street": source["indirizzo"], "source_day": [day],
+                            "distance_km": round(gap, 3) if gap is not None else None,
+                            "match": UNIQUE_TOWN_METHOD,
+                            "changed_hours": "orario_testo" in assignments,
+                            "changed_address": "indirizzo" in assignments})
+
+
+def enrich(base, held_official, *, source_id="lombardia-mercap", today=None,
+           raw_official=None):
     today = today or date.today()
     if source_id not in TRUSTED_FEEDS:
         raise ValueError("Unreviewed source enrichment is not allowed")
@@ -238,13 +677,15 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
             raise ValueError("Duplicate/missing baseline market identity")
         baseline[slug] = record
     updated = {slug:dict(record) for slug,record in baseline.items()}
+    raw_context, raw_context_report = _complete_raw_context(
+        raw_official, held_official, today=today)
     by_key = defaultdict(list)
     legacy_by_location = defaultdict(list)
     counts = Counter()
     identity_conflicts = []
     seen_conflicts = set()
 
-    def record_conflict(old, source, reason):
+    def record_conflict(old, source, reason, details=None):
         identity = (old["slug"], source["slug"], reason)
         if identity in seen_conflicts:
             return
@@ -267,11 +708,17 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
             "source_updated_on": source.get("aggiornato_il"),
             "source_url": spec["url"],
             "action": "held_without_evidence_transfer",
+            **(details or {}),
         })
 
     for row in base:
         if (row.get("regione") != spec["region"]
                 or row["slug"].startswith(spec["source_prefix"])):
+            continue
+        # A venue first established by town/day uniqueness keeps that method
+        # and source binding in later cycles. Missing raw context must not
+        # silently switch it to the older, differently scoped venue join.
+        if _town_binding_receipts(row, spec, today=today):
             continue
         key, weekdays = evidence_key(row, spec["region"])
         if key is not None:
@@ -338,6 +785,7 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
     samples = []
     field_updates = []
     preserved_hours_differences = []
+    preserved_field_differences = []
     touched = set()
     for key, source_rows in sorted(incoming_by_key.items(), key=str):
         if len(source_rows) != 1:
@@ -512,6 +960,17 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
                     "distance_km":round(gap,3) if gap is not None else None,
                     "changed_hours":not bool(present),
                 })
+    if raw_context is not None:
+        _enrich_unique_town(
+            base, held_official, updated, raw_context, spec, today=today,
+            counts=counts, touched=touched, field_updates=field_updates,
+            field_differences=preserved_field_differences,
+            record_conflict=record_conflict, samples=samples)
+        _retire_identity_contradictions(
+            base, held_official, updated, raw_context, spec, today=today,
+            counts=counts, touched=touched, record_conflict=record_conflict)
+    else:
+        counts["unique_town_path_without_complete_raw_context"] += 1
     if len(touched) > MAX_ENRICHED_RECORDS:
         raise ValueError("Official source enrichment exceeds per-run limit")
     return [updated[x["slug"]] for x in base], {
@@ -520,16 +979,23 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None):
         "source_name":spec["name"],
         "review_only":True,
         "source_rows_screened":len(held_official),
+        "raw_identity_context":raw_context_report,
         "legacy_records_changed":len(touched),
+        "existing_market_addresses_added":int(counts["addresses_added"]),
+        "vague_market_addresses_replaced":int(counts["vague_addresses_replaced"]),
+        "managed_market_addresses_updated":int(counts["managed_addresses_updated"]),
         "existing_market_hours_added":int(counts["hours_added"]),
         "managed_market_hours_updated":int(counts["managed_hours_updated"]),
         "official_source_attributions_added":int(counts["official_source_attributions_added"]),
         "field_observation_records_updated":int(counts["field_observation_records_updated"]),
         "exact_matches":int(counts["exact_matches"]),
+        "municipality_day_unique_matches":int(counts["municipality_day_unique_matches"]),
+        "recurrence_observations_added":int(counts["recurrence_observations_added"]),
         "counts":dict(sorted(counts.items())),
         "samples":samples,
         "field_updates":field_updates,
         "preserved_hours_differences":preserved_hours_differences,
+        "preserved_field_differences":preserved_field_differences,
         "identity_conflicts":identity_conflicts,
         "record_identity_changes":0,
         "confirmed_date_changes":0,
@@ -544,14 +1010,17 @@ def markdown(report):
     text = [
         "# Official source enrichment — legacy cards",
         "",
-        "A previously published venue gets source-backed missing hours only",
-        "after exact municipality, street and weekday matching, and a",
-        "compatible map point when both coordinates are available.",
+        "Existing venues can receive published hours through exact street/day joins.",
+        "Missing venues additionally require a unique municipality/province/weekday",
+        "identity across the complete raw dataset, including nonimported competitors.",
+        "Coordinates can veto a join; they never establish market identity.",
         "No forecast, human verification, original source, or identity changed.",
         "",
         f"- Held official rows screened: **{report['source_rows_screened']}**",
         f"- Existing market cards with added information: **{report['legacy_records_changed']}**",
         f"- Missing hours supplied from official regional source: **{report['existing_market_hours_added']}**",
+        f"- Missing/vague venues supplied from the complete source: **{report.get('existing_market_addresses_added', 0)}**",
+        f"- Managed venues updated from the same source ID: **{report.get('managed_market_addresses_updated', 0)}**",
         f"- Official source attributions attached: **{report['official_source_attributions_added']}**",
     ]
     for key, val in report["counts"].items():
@@ -570,13 +1039,16 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--manifest", type=Path,required=True)
     p.add_argument("--official", type=Path,required=True)
+    p.add_argument("--raw-official", type=Path,
+                   help="Complete raw publisher payload required for unique town/day venue recovery")
     p.add_argument("--updated", type=Path,required=True)
     p.add_argument("--report", type=Path,required=True)
     p.add_argument("--summary", type=Path,required=True)
     args=p.parse_args()
     current=load_existing(args.manifest)
     candidates=json.loads(args.official.read_text("utf-8"))
-    rows, report=enrich(current,candidates)
+    raw = json.loads(args.raw_official.read_text("utf-8")) if args.raw_official else None
+    rows, report=enrich(current,candidates,raw_official=raw)
     for path in (args.updated,args.report,args.summary):
         path.parent.mkdir(parents=True,exist_ok=True)
     args.updated.write_text(json.dumps(rows,indent=2,ensure_ascii=False)+"\n","utf-8")

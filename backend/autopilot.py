@@ -95,14 +95,13 @@ PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
-    # Integration is registered, but not enabled by daily policy until its
-    # full dry-run source/quality/mobile audit succeeds.
+    # The existing approved regional adapter also supplies independent
+    # whole-dataset evidence for legacy market fields.
     "lombardia": (source_lombardia.download, source_lombardia.convert),
-    # Read-only inventory adapter. Disabled in daily policy until a
-    # separately tested full official-source audit explicitly approves it.
+    # Bologna runs through the approved generic contract. Keep this separate
+    # inventory adapter disabled in daily policy to avoid duplicate admission.
     "bologna": (source_bologna.download, source_bologna.convert),
-    # First observed manually on four official CSV rows; requires full audit
-    # before the daily source policy can enable unattended collection.
+    # Existing reviewed municipal CSV adapter; source policy controls reads.
     "corciano": (source_corciano.download, source_corciano.convert),
 }
 
@@ -136,9 +135,11 @@ def checkpoint(out: Path, phase: str, data):
           json.dumps(data, ensure_ascii=False, sort_keys=True)[:2400], flush=True)
 
 
-def source_feed(source_id: str, today: date):
+def source_feed(source_id: str, today: date, *, raw_cache: Path | None = None):
     if source_id not in SOURCE_FUNCTIONS:
         raise ValueError("Source not on allowlist: " + source_id)
+    if raw_cache is not None and source_id != "lombardia":
+        raise ValueError("Raw enrichment checkpoint source is not approved")
     download, convert = SOURCE_FUNCTIONS[source_id]
     raw = download()
     # Do not catch TypeError from an importer: a malformed publisher schema
@@ -148,8 +149,41 @@ def source_feed(source_id: str, today: date):
     # sufficient proof of source quality. Verify every normalized field,
     # correct publisher, dates, GPS, and stable IDs BEFORE import.
     inspect_official_source_output(source_id, converted, today=today)
-    return attach_feed_observations(source_id, raw, converted,
-                                    read_on=datetime.now(timezone.utc).date().isoformat())
+    observed = attach_feed_observations(
+        source_id, raw, converted,
+        read_on=datetime.now(timezone.utc).date().isoformat())
+    if raw_cache is not None:
+        # Venue uniqueness needs the whole MERCap response, including rows
+        # intentionally excluded by normalization. Preserve the SAME read,
+        # never fetch it again or manufacture a new observation on resume.
+        save_json(raw_cache, {
+            "schema": 1, "source_id": source_id,
+            "normalized_sha256": digest(observed),
+            "publisher_parsed_json_sha256": digest(raw), "payload": raw,
+        })
+    return observed
+
+
+def source_raw_checkpoint(source_id: str, cache: Path, normalized: list):
+    """Read a bound source snapshot, or keep old checkpoints compatible.
+
+    Missing raw data disables only the new complete-source join. A present
+    but mixed/tampered checkpoint fails the run before any publication.
+    Semantic reproduction and complete competitor checks happen in enrich.
+    """
+    if source_id != "lombardia":
+        raise ValueError("Raw enrichment checkpoint source is not approved")
+    if not cache.is_file():
+        return None
+    item = read_json(cache)
+    if (not isinstance(item, dict) or type(item.get("schema")) is not int
+            or item.get("schema") != 1 or item.get("source_id") != source_id
+            or set(item) != {"schema", "source_id", "normalized_sha256",
+                             "publisher_parsed_json_sha256", "payload"}
+            or item.get("normalized_sha256") != digest(normalized)
+            or item.get("publisher_parsed_json_sha256") != digest(item.get("payload"))):
+        raise ValueError("Raw official source checkpoint integrity mismatch")
+    return item["payload"]
 
 
 def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume: bool) -> tuple[list, dict]:
@@ -162,6 +196,7 @@ def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume
         if sid not in SOURCE_FUNCTIONS or not source.get("official"):
             raise ValueError("Unapproved source configured: " + sid)
         cache = out / "sources" / (sid + ".json")
+        raw_cache = out / "sources" / (sid + "-raw.json")
         mode = "offline_skipped"
         if resume and cache.is_file():
             fetched = read_json(cache)
@@ -173,7 +208,8 @@ def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume
             errors = []
             for attempt in range(2):
                 try:
-                    fetched = source_feed(sid, today)
+                    fetched = (source_feed(sid, today, raw_cache=raw_cache)
+                               if sid == "lombardia" else source_feed(sid, today))
                     mode = "retrieved"
                     break
                 except Exception as exc:
@@ -198,6 +234,13 @@ def retrieve_sources(policy: dict, out: Path, today: date, offline: bool, resume
             # resumed checkpoints. Without this, a stale or tampered source
             # cache could bypass output validation during a resumed run.
             normalized_proof = inspect_official_source_output(sid, fetched, today=today)
+            if sid == "lombardia":
+                raw = source_raw_checkpoint(sid, raw_cache, fetched)
+                status[sid] = {**status.get(sid, {}), "complete_raw_checkpoint": {
+                    "status": "bound_snapshot" if raw is not None else "not_supplied",
+                    "publisher_parsed_json_sha256": digest(raw) if raw is not None else None,
+                    "new_read_on_resume": False,
+                }}
             save_json(cache, fetched)
         else:
             normalized_proof = None
@@ -761,8 +804,9 @@ def run(args):
         "source_checks":lifecycle_report["source_checks"],
         "new_markets_imported":0,"event_verifications_created":0,
     })
-    # Correlate blocked exact venue/day public records with older market
-    # cards. Never promote event verification, dates or primary identity.
+    # Reconcile older market fields with independently observed official data.
+    # Complete raw-source uniqueness can establish a missing venue; existing
+    # exact venue/day joins remain available. Neither confirms an opening.
     enrichment_report = {
         "schema":1, "source_id":"lombardia-mercap", "source_rows_screened":0,
         "review_only":True, "legacy_records_changed":0,
@@ -780,7 +824,9 @@ def run(args):
         # need not have been held by the stricter overlap-import screen.
         held = read_json(out / "sources" / "lombardia.json")
         enriched_base, enrichment_report = enrich_official_records(
-            old_rows, held, source_id="lombardia-mercap", today=args.today
+            old_rows, held, source_id="lombardia-mercap", today=args.today,
+            raw_official=source_raw_checkpoint(
+                "lombardia", out / "sources" / "lombardia-raw.json", held),
         )
         enrichment_report["enabled"] = True
     else:
@@ -791,7 +837,9 @@ def run(args):
     checkpoint(out, "enrichment", {
         "enabled": enrichment_report["enabled"],
         "updated_legacy_rows": enrichment_report["legacy_records_changed"],
+        "addresses_added": enrichment_report.get("existing_market_addresses_added", 0),
         "hours_added": enrichment_report["existing_market_hours_added"],
+        "recurrence_observations_added": enrichment_report.get("recurrence_observations_added", 0),
         "source_attributions_added": enrichment_report["official_source_attributions_added"],
     })
     merged, merge_stats = combine(enriched_base, feeds)
@@ -1253,10 +1301,21 @@ def run(args):
     save_json(out / "publisher-refresh-static-guard.json", page_guard)
     field_quality = audit_field_evidence(new_rows, today=args.today)
     save_json(out / "market-field-quality.json", field_quality)
+    coverage_configuration = {}
+    for key, filename in (("source_contracts", "market-source-contracts.json"),
+                          ("source_admissions", "approved-source-admissions.json")):
+        path = Path(__file__).resolve().parent / "data" / filename
+        try:
+            coverage_configuration[key] = read_json(path) if path.is_file() else None
+        except (ValueError, OSError):
+            coverage_configuration[key] = {}
     resources = catalog_source_resources(
         new_rows, publisher_contracts,
         official_urls={r.get("url_fonte", "") for r in feeds},
         happings_enabled=happings_report["status"] not in {"disabled", "rights_blocked"},
+        source_policy=policy["sources"], source_status=source_status,
+        admissions_enabled=generic_enabled, admission_report=generic_admission_report,
+        today=args.today, **coverage_configuration,
     )
     save_json(out / "source-refresh-coverage.json", resources)
     happings_static_guard = verify_happings_exported(

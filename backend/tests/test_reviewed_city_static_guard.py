@@ -190,6 +190,54 @@ class PublishedCitySafetyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'release report'):
             self.check()
 
+    def test_disabled_approved_publishers_preserve_city_guards_without_claiming_active_reads(self):
+        import copy
+        from unittest.mock import Mock, patch
+        from test_source_contract_activation import CONTRACT, ACTIVE_REGISTRY, TODAY, fixture_activate
+        from source_lifecycle import digest as contract_digest
+        from roma_xiii_geo_hold import git_blob_sha
+        source, registry = copy.deepcopy(CONTRACT), copy.deepcopy(ACTIVE_REGISTRY)
+        for profile in source["raw_profiles"]:
+            profile["enabled"] = False
+            certificate = next(r for r in registry["approvals"] if r["source_id"] == profile["id"])
+            certificate["reviewed_profile_sha256"] = contract_digest(profile)
+        fetch = Mock(side_effect=AssertionError("disabled publisher must not be read"))
+        result, proof = fixture_activate(source, registry, self.details, today=TODAY, fetch=fetch)
+        fetch.assert_not_called()
+        self.assertEqual(result, self.details)
+        self.assertEqual(proof["source_contracts_active"], 0)
+        proof["enabled"] = True
+        data = self.root / "backend/data"
+        data.mkdir(parents=True)
+        source_file, approval_file = data / "market-source-contracts.json", data / "approved-source-admissions.json"
+        source_file.write_text(json.dumps(source))
+        approval_file.write_text(json.dumps(registry))
+        policy = json.loads(self.policy_path.read_text())
+        policy["source_lifecycle"] = {"enabled": True, "reviewed_contract_blob_sha1": git_blob_sha(source_file)}
+        policy["source_contract_admissions"] = {"enabled": True, "approved_registry_blob_sha1": git_blob_sha(approval_file)}
+        self.policy_path.write_text(json.dumps(policy))
+        source_report = self.root / "generic-disabled.json"
+        source_report.write_text(json.dumps(proof))
+        with patch("reviewed_city_static_guard.__file__", str(self.root / "backend/reviewed_city_static_guard.py")):
+            final = verify_static(self.manifest_path, self.evidence_path, self.policy_path,
+                                  self.report_path, None, source_report)
+            self.assertTrue(final["release_safe"])
+            self.assertEqual(final["navigation_routes_still_blocked"], 16)
+            self.assertEqual(final["unsafe_coordinates_still_quarantined"], 7)
+            damaged = copy.deepcopy(proof)
+            damaged["source_contracts_active"] = 1
+            source_report.write_text(json.dumps(damaged))
+            with self.assertRaisesRegex(ValueError, "pinned to a reviewed source identity"):
+                verify_static(self.manifest_path, self.evidence_path, self.policy_path,
+                              self.report_path, None, source_report)
+            damaged = copy.deepcopy(proof)
+            first = source["raw_profiles"][0]["id"]
+            damaged["per_source"][first]["source_read_on"] = TODAY.isoformat()
+            source_report.write_text(json.dumps(damaged))
+            with self.assertRaisesRegex(ValueError, "Disabled publisher"):
+                verify_static(self.manifest_path, self.evidence_path, self.policy_path,
+                              self.report_path, None, source_report)
+
     def test_managed_generic_updates_use_final_field_proof_and_preserve_city_holds(self):
         from datetime import timedelta
         from test_source_contract_activation import CONTRACT,ACTIVE_REGISTRY,BLOB,TODAY,fixture_activate

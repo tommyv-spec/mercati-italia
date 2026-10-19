@@ -265,6 +265,85 @@ class RefreshTests(unittest.TestCase):
                 unproved["riscontri_campi"][0][field] = value
                 self.assertEqual(refresh_record(unproved, self.now)[1], "unknown_source_age")
 
+    def field_supported_projection(self):
+        original = record(fonte_aggiornata_il="", aggiornato_il="2024-01-01",
+                          indirizzo="Piazza della Repubblica")
+        original["riscontri_campi"] = [make_receipt(
+            original, values={"ricorrenza_testo": original["ricorrenza_testo"],
+                              "indirizzo": original["indirizzo"]},
+            source_url="https://comune.example/mercati", source_name="Comune",
+            source_id="primary-page", source_row="stable-weekly-identity",
+            read_on=self.now.isoformat(), source_updated_on="2026-10-01",
+            source_sha256="a" * 64, method="pagina_primaria_revisionata",
+            scope="pagina", fingerprint_kind="html_bytes")]
+        projected, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(projected["proiezione_fonte"], "riscontri_campi:ricorrenza_testo")
+        return projected
+
+    def test_withdrawn_recurrence_receipt_retires_only_its_generated_calendar(self):
+        before = self.field_supported_projection()
+        # The new source contradicts the day. The evidence layer has removed
+        # that claim while preserving the independently unchanged address.
+        before["riscontri_campi"][0]["valori"].pop("ricorrenza_testo")
+        frozen = deepcopy(before)
+        result, reason = refresh_record(before, self.now + timedelta(days=1))
+        self.assertEqual(reason, "expired_field_evidence_forecast")
+        self.assertEqual(result["date"], [])
+        self.assertEqual(result["date_quality"], "sconosciuta")
+        self.assertEqual(result["proiezione_fonte"], "")
+        self.assertEqual(result["proiezione_generata_il"], "")
+        self.assertIsNone(result["proiezione_regola"])
+        for field in ("slug", "indirizzo", "ricorrenza_testo", "aggiornato_il",
+                      "fonte_aggiornata_il", "riscontri_campi", "status"):
+            self.assertEqual(result[field], before[field])
+        self.assertEqual(before, frozen)
+        repeated, _ = refresh_record(result, self.now + timedelta(days=1))
+        self.assertEqual(repeated, result)
+
+    def test_expired_field_read_cannot_preserve_its_forecast_using_unknown_primary_age(self):
+        before = self.field_supported_projection()
+        result, reason = refresh_record(before, self.now + timedelta(days=46))
+        self.assertEqual(reason, "expired_field_evidence_forecast")
+        self.assertEqual(result["date"], [])
+        self.assertEqual(result["riscontri_campi"], before["riscontri_campi"])
+
+    def test_another_current_recurrence_receipt_or_primary_source_can_keep_forecasting(self):
+        before = self.field_supported_projection()
+        other = deepcopy(before["riscontri_campi"][0])
+        other["fonte_id"] = "independent-other-page"
+        other["url"] = "https://organizzatore.example/calendario"
+        before["riscontri_campi"][0]["valori"].pop("ricorrenza_testo")
+        before["riscontri_campi"].append(other)
+        after, reason = refresh_record(before, self.now + timedelta(days=1))
+        self.assertEqual(reason, "renewed")
+        self.assertTrue(after["date"])
+        # An unusable future date on the primary must not hide an otherwise
+        # current independent receipt or falsely retire its calendar.
+        before["fonte_aggiornata_il"] = (self.now + timedelta(days=3)).isoformat()
+        after, reason = refresh_record(before, self.now + timedelta(days=1))
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(after["proiezione_fonte"], "riscontri_campi:ricorrenza_testo")
+        before["riscontri_campi"] = []
+        before["fonte_aggiornata_il"] = self.now.isoformat()
+        after, reason = refresh_record(before, self.now + timedelta(days=1))
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(after["proiezione_fonte"], "ricorrenza_testo")
+
+    def test_field_withdrawal_preserves_legacy_and_reported_calendars(self):
+        for quality, basis, expected in (
+                ("prevista", "ricorrenza_testo", "unknown_source_age"),
+                ("confermata", "riscontri_campi:ricorrenza_testo", "non_projected_source_date"),
+                ("riportata", "riscontri_campi:ricorrenza_testo", "non_projected_source_date")):
+            with self.subTest(quality=quality, basis=basis):
+                before = self.field_supported_projection()
+                before["riscontri_campi"] = []
+                before["date_quality"] = quality
+                before["proiezione_fonte"] = basis
+                after, reason = refresh_record(before, self.now + timedelta(days=1))
+                self.assertEqual(reason, expected)
+                self.assertEqual(after, before)
+
 
 if __name__=="__main__":
     unittest.main()

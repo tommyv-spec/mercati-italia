@@ -233,6 +233,35 @@ class PublisherPageParserTests(unittest.TestCase):
         self.assertEqual(result["rows"][0]["citta"], "Comune Alfa")
         self.assertIn("unknown_municipality_heading", {i["code"] for i in result["issues"]})
 
+    def test_table_added_to_valid_blocks_cannot_silently_pass_cardinality(self):
+        table = ("<table><thead><tr><th>Comune</th><th>Giorno</th><th>Sede</th>"
+                 "<th>Orario di apertura</th></tr></thead><tbody><tr>"
+                 "<td>Comune Beta</td><td>martedì</td><td>Piazza Due</td>"
+                 "<td>08:00–13:00</td></tr></tbody></table>")
+        result = parse(block() + table, min_rows=1, max_rows=10)
+        self.assertFalse(result["complete"])
+        self.assertEqual(len(result["rows"]), 1)
+        self.assertIn("unsupported_table_layout", {i["code"] for i in result["issues"]})
+
+    def test_nested_blocks_in_table_cells_do_not_hide_unsupported_table(self):
+        table = ("<table><tr><td><section><p>Comune Beta</p>"
+                 "<p>martedì — Piazza Due — 08:00–13:00</p>"
+                 "</section></td></tr></table>")
+        result = parse(block() + "<h2>Altri mercati</h2>" + table)
+        self.assertFalse(result["complete"])
+        self.assertIn("unsupported_table_layout", {i["code"] for i in result["issues"]})
+
+    def test_tables_outside_selected_section_or_in_navigation_are_ignored(self):
+        table = "<table><tr><td>Comune Beta</td><td>martedì — Piazza Due</td></tr></table>"
+        body = (table + "<h2>Mercati settimanali</h2><nav>" + table + "</nav>"
+                + block() + "<h2>Fiere</h2>" + table)
+        raw = page(body, before=table, after=table)
+        result = parse_page(raw, source_url=URL, contract=contract(
+            start_heading="Mercati settimanali", end_heading="Fiere"))
+        self.assertTrue(result["complete"], result["issues"])
+        self.assertEqual(len(result["rows"]), 1)
+        self.assertEqual(result["rows"][0]["indirizzo"], "Piazza Uno")
+
     def test_missing_value_does_not_consume_next_municipality_heading(self):
         result = parse(block(where="") + block("Comune Sconosciuto", "ogni martedì", "Via Estranea"))
         self.assertFalse(result["complete"])

@@ -111,7 +111,9 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
     generic_fields_checked = 0
     generic_evidence_checked = 0
     if generic_admission_report_path:
-        from source_contract_activation import validate_admissions, verify_static as verify_generic_static
+        from source_contract_activation import (
+            active_profile_count, validate_admissions, verify_static as verify_generic_static,
+        )
         from field_evidence import as_day
         from source_lifecycle import digest as contract_digest
         from roma_xiii_geo_hold import git_blob_sha
@@ -129,7 +131,7 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
                 or git_blob_sha(contracts_file)!=source_policy.get("reviewed_contract_blob_sha1")
                 or generator.get("schema")!=1
                 or generator.get("enabled") is not True
-                or generator.get("source_contracts_active")!=len(reviewed)
+                or generator.get("source_contracts_active")!=active_profile_count(contracts, reviewed)
                 or generator.get("source_registry_sha256")!=contract_digest(admissions)
                 or generator.get("source_contract_sha256")!=contract_digest(contracts)
                 or generator.get("original_market_ids")!=report.get("records_total")+approved_additions
@@ -145,7 +147,7 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         if (type(changed_fields) is not int or changed_fields<0
                 or not isinstance(evidence_ids,list)):
             raise ValueError("Untrusted generic publisher field update counts")
-        if changed_fields or evidence_ids:
+        if changed_fields or evidence_ids or active_profile_count(contracts, reviewed) < len(reviewed):
             # Re-run the exact final data/receipt guard on these same assets.
             # A count alone cannot bypass the existing city or map safeguards.
             generic_proof=verify_generic_static(manifest_path,generator,contracts,admissions,

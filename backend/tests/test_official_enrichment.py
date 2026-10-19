@@ -7,10 +7,12 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 
 from official_enrichment import (enrich, hours_allowed, distance_km,
                                  street_identity, explicit_annual_weekday,
-                                 official_identity_issue)
-from field_evidence import attach_feed_observations, valid_receipt
+                                 official_identity_issue, UNIQUE_TOWN_METHOD)
+from field_evidence import (attach_feed_observations, valid_receipt,
+                            make_receipt, fingerprint)
 from export_static import normalize, prepare
-from source_lombardia import MONTHS
+from source_lombardia import MONTHS, convert as convert_lombardia
+from recurrence_refresh import refresh_record
 
 TODAY=date(2026,10,12)
 
@@ -55,6 +57,36 @@ def official(sid="100001",city="Albizzate",street="PIAZZALE SEFRO",
     }
     row.update(kw)
     return row
+
+
+def raw_market(sid="100001", **changes):
+    """Observed MERCap column layout, without hardcoded production recovery."""
+    row = {
+        "codice_id": sid, "descom": "ALBIZZATE", "despro": "VA", "istat": "12002",
+        "ubicazione": "PIAZZALE SEFRO", "indirizzi": "PIAZZALE SEFRO",
+        "periodicita_tipo": "SETTIMANALE", "giorno": "MARTEDÌ",
+        "mesi_svolgimento": ", ".join(m.upper() for m in MONTHS),
+        "n_post_alim": "1", "n_post_non_alim": "1", "n_post_tot": "2",
+        "dalle_ore_invernale": "08:00", "alle_ore_invernale": "13:00",
+        "dalle_ore_estivo": "08:00", "alle_ore_estivo": "13:00",
+        "location": {"type": "Point", "coordinates": [8.79787, 45.72485]},
+        "geo_x": "8.79787", "geo_y": "45.72485",
+    }
+    row.update(changes)
+    return row
+
+
+def complete_snapshot(markets=None, *, read_on=TODAY, updated_on="2026-10-06"):
+    # Keep the real adapter's completeness/size gate in the tests. Unrelated
+    # rows are in another municipality and cannot establish target uniqueness.
+    markets = copy.deepcopy(markets if markets is not None else [raw_market()])
+    rows = markets + [raw_market(str(800000 + i), descom="ALTRO COMUNE")
+                      for i in range(1100 - len(markets))]
+    raw = {"dataset_id": "68zx-njaw", "rows": rows, "expected_rows": len(rows),
+           "publisher_data_updated_at": updated_on,
+           "publisher_update_scope": "entire_dataset_not_each_market"}
+    normalized = convert_lombardia(raw, today=read_on)
+    return raw, attach_feed_observations("lombardia", raw, normalized, read_on=read_on)
 
 
 class EnrichmentTests(unittest.TestCase):
@@ -440,6 +472,397 @@ class EnrichmentTests(unittest.TestCase):
                 result, report = enrich(baseline, [newer], today=tomorrow)
                 self.assertEqual(result[0]["orario_testo"], baseline[0]["orario_testo"])
                 self.assertEqual(report["managed_market_hours_updated"], 0)
+
+
+class CompleteMunicipalityEnrichmentTests(unittest.TestCase):
+    def test_complete_raw_unique_identity_fills_blank_and_explicit_vague_venues(self):
+        raw, source = complete_snapshot()
+        base = [old(street="", provincia="VA"),
+                old(slug="second-stable-identity", street="Centro storico", provincia="VA")]
+        frozen = copy.deepcopy(base)
+        result, report = enrich(base, source, raw_official=raw, today=TODAY)
+        self.assertEqual(report["existing_market_addresses_added"], 2)
+        self.assertEqual(report["vague_market_addresses_replaced"], 1)
+        self.assertEqual(report["existing_market_hours_added"], 2)
+        self.assertEqual(report["municipality_day_unique_matches"], 2)
+        self.assertEqual(report["recurrence_observations_added"], 2)
+        self.assertEqual(report["raw_identity_context"]["raw_rows_screened"], 1100)
+        for before, row in zip(base, result):
+            self.assertEqual(row["indirizzo"], "PIAZZALE SEFRO")
+            proof = row["riscontri_campi"][0]
+            self.assertEqual(proof["campi_gestiti"], ["indirizzo", "orario_testo"])
+            self.assertEqual(proof["metodo"], UNIQUE_TOWN_METHOD)
+            self.assertEqual(proof["riga_fonte"], "100001")
+            self.assertEqual(proof["sha256"], fingerprint(raw))
+            self.assertEqual(proof["valori"]["ricorrenza_testo"], "settimanale - martedì")
+            self.assertTrue(valid_receipt(proof, row, today=TODAY))
+            for field in ("slug", "nome", "citta", "provincia", "lat", "lng", "date",
+                          "date_quality", "aggiornato_il", "fonte", "url_fonte", "verificato_il"):
+                self.assertEqual(row[field], before[field])
+        self.assertEqual(base, frozen)
+        exported, _ = prepare(result, TODAY)
+        self.assertEqual({row["slug"] for row in exported}, {row["slug"] for row in base})
+        self.assertTrue(all(valid_receipt(row["riscontri_campi"][0], row, today=TODAY)
+                            for row in exported))
+        repeated, again = enrich(result, source, raw_official=raw, today=TODAY)
+        self.assertEqual(repeated, result)
+        self.assertEqual(again["legacy_records_changed"], 0)
+
+    def test_second_source_version_updates_both_owned_fields_and_keeps_history(self):
+        raw, source = complete_snapshot()
+        base = [old(street="", provincia="VA")]
+        first, _ = enrich(base, source, raw_official=raw, today=TODAY)
+        tomorrow = date(2026, 10, 13)
+        next_raw, next_source = complete_snapshot([raw_market(
+            indirizzi="VIA NUOVA, 12", ubicazione="VIA NUOVA, 12",
+            dalle_ore_invernale="09:00", dalle_ore_estivo="09:00")],
+            read_on=tomorrow, updated_on="2026-10-13")
+        result, report = enrich(first, next_source, raw_official=next_raw, today=tomorrow)
+        self.assertEqual(report["managed_market_addresses_updated"], 1)
+        self.assertEqual(report["managed_market_hours_updated"], 1)
+        self.assertEqual(report["existing_market_addresses_added"], 0)
+        row = result[0]
+        self.assertEqual(row["indirizzo"], "VIA NUOVA, 12")
+        self.assertEqual(row["orario_testo"], "09:00–13:00 (fonte comunale, da verificare)")
+        self.assertEqual(row["date"], base[0]["date"])
+        self.assertEqual(row["aggiornato_il"], base[0]["aggiornato_il"])
+        proof = row["riscontri_campi"][0]
+        self.assertEqual(proof["campi_gestiti"], ["indirizzo", "orario_testo"])
+        self.assertEqual(proof["metodo"], UNIQUE_TOWN_METHOD)
+        self.assertEqual(proof["versioni_precedenti"][0]["valori"], {
+            "indirizzo": "PIAZZALE SEFRO",
+            "orario_testo": "08:00–13:00 (fonte comunale, da verificare)"})
+        self.assertTrue(all(change["previous_evidence"] for change in report["field_updates"]))
+        repeated, again = enrich(result, next_source, raw_official=next_raw, today=tomorrow)
+        self.assertEqual(repeated, result)
+        self.assertEqual(again["legacy_records_changed"], 0)
+
+    def test_all_raw_competitors_veto_even_unknown_or_excluded_invalid_identity(self):
+        competitors = [
+            raw_market("100002", indirizzi="VIA SECONDA"),
+            raw_market("100002", periodicita_tipo="QUINDICINALE", frequenza_settimanale="1^ e 3^"),
+            raw_market("100002", periodicita_tipo="STAGIONALE", mesi_svolgimento="LUGLIO, AGOSTO"),
+            raw_market("100002", n_post_alim="2", n_post_non_alim="0"),
+            raw_market("100002", giorno=None, periodicita_tipo=None),
+            raw_market("100002", giorno="MARTEDÌ E VENERDÌ"),
+            raw_market("100002", istat=""),  # Normalizer excludes this row.
+            raw_market("invalid-source-id", giorno=None),
+        ]
+        for competitor in competitors:
+            with self.subTest(competitor=competitor):
+                raw, source = complete_snapshot([raw_market(), competitor])
+                base = [old(street="", provincia="VA")]
+                result, report = enrich(base, source, raw_official=raw, today=TODAY)
+                self.assertEqual(result, base)
+                self.assertEqual(report["existing_market_addresses_added"], 0)
+                self.assertEqual(report["raw_identity_context"]["status"], "complete")
+                if competitor.get("istat") == "" or competitor["codice_id"].startswith("invalid"):
+                    self.assertEqual(report["raw_identity_context"]["non_normalized_rows_still_screened"], 1)
+                    self.assertEqual(len(report["identity_conflicts"]), 1)
+
+    def test_different_known_day_is_not_a_competitor_but_partial_weekly_is(self):
+        raw, source = complete_snapshot([raw_market(), raw_market("100002", giorno="VENERDÌ")])
+        result, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        self.assertEqual(result[0]["indirizzo"], "PIAZZALE SEFRO")
+        for change in ({"periodicita_tipo": "QUINDICINALE"},
+                       {"mesi_svolgimento": "LUGLIO, AGOSTO"},
+                       {"n_post_non_alim": "0", "n_post_tot": "1"}):
+            raw, source = complete_snapshot([raw_market(**change)])
+            base = [old(street="", provincia="VA")]
+            self.assertEqual(enrich(base, source, raw_official=raw, today=TODAY)[0], base)
+
+    def test_absent_incomplete_or_mismatched_raw_never_establishes_uniqueness(self):
+        raw, source = complete_snapshot()
+        base = [old(street="", provincia="VA")]
+        self.assertEqual(enrich(base, source, today=TODAY)[0], base)
+        partial = copy.deepcopy(raw)
+        partial["rows"].pop()
+        modified = copy.deepcopy(source)
+        modified[0]["indirizzo"] = "VIA ALTERATA"
+        for incoming_raw, incoming_source in ((partial, source), (raw, modified),
+                                              (raw, source[:-1]), (raw, [])):
+            result, report = enrich(base, incoming_source, raw_official=incoming_raw, today=TODAY)
+            self.assertEqual(result, base)
+            self.assertNotEqual(report["raw_identity_context"]["status"], "complete")
+        raw, source = complete_snapshot([raw_market(), raw_market("100002", descom="")])
+        result, report = enrich(base, source, raw_official=raw, today=TODAY)
+        self.assertEqual(result, base)
+        self.assertEqual(report["raw_identity_context"]["status"], "raw_competitor_municipality_unknown")
+
+    def test_missing_or_different_raw_read_receipt_cannot_authorize_a_fill(self):
+        raw, source = complete_snapshot()
+        base = [old(street="", provincia="VA")]
+        for wrong_proof in (None, {"sha256": fingerprint({"not": "the raw source"})}):
+            changed = copy.deepcopy(source)
+            for row in changed:
+                if wrong_proof is None:
+                    row.pop("riscontri_campi", None)
+                else:
+                    row["riscontri_campi"][0].update(wrong_proof)
+            result, report = enrich(base, changed, raw_official=raw, today=TODAY)
+            self.assertEqual(result, base)
+            self.assertEqual(report["counts"]["held_unique_town_without_current_raw_bound_receipt"], 1)
+
+    def test_specific_short_or_unclassified_venue_and_human_values_survive(self):
+        raw, source = complete_snapshot()
+        for before in (old(street="Via Po", provincia="VA"),
+                       old(street="Mercato di quartiere", provincia="VA"),
+                       old(street="Centro storico", provincia="VA", verificato_il="2026-10-11"),
+                       old(street="", provincia="MI"),
+                       old(street="", provincia="VA", tags=["produttori locali"]),
+                       old(street="", provincia="VA", ricorrenza_testo="Ogni martedì in estate"),
+                       old(street="", provincia="VA", lat=45.8, position_quality="precisa")):
+            with self.subTest(before=before):
+                result, _ = enrich([before], source, raw_official=raw, today=TODAY)
+                self.assertEqual(result, [before])
+
+    def test_bound_source_outage_missing_identity_or_new_competitor_keeps_records(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        self.assertEqual(enrich(first, [], today=TODAY)[0], first)
+        self.assertEqual(enrich(first, source, today=TODAY)[0], first)
+        tomorrow = date(2026, 10, 13)
+        for source_rows in ([raw_market("100002")],
+                            [raw_market(), raw_market("100002", giorno=None)],
+                            [raw_market(giorno=None)]):
+            raw, source = complete_snapshot(source_rows, read_on=tomorrow, updated_on="2026-10-13")
+            result, report = enrich(first, source, raw_official=raw, today=tomorrow)
+            self.assertEqual(result, first)
+            self.assertEqual(report["managed_market_addresses_updated"], 0)
+            self.assertEqual({row["slug"] for row in result}, {row["slug"] for row in first})
+
+    def test_declared_day_or_season_change_retires_recurrence_and_cannot_renew_forecast(self):
+        raw, source = complete_snapshot()
+        before = old(street="", provincia="VA", aggiornato_il="2024-01-01", date=[])
+        first, _ = enrich([before], source, raw_official=raw, today=TODAY)
+        projected, reason = refresh_record(first[0], TODAY)
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(projected["proiezione_fonte"], "riscontri_campi:ricorrenza_testo")
+        tomorrow = date(2026, 10, 13)
+        for change in ({"giorno": "VENERDÌ"}, {"mesi_svolgimento": "LUGLIO, AGOSTO"},
+                       {"periodicita_tipo": "QUINDICINALE"}):
+            with self.subTest(change=change):
+                raw, source = complete_snapshot([raw_market(**change)],
+                                                 read_on=tomorrow, updated_on="2026-10-13")
+                result, report = enrich([projected], source, raw_official=raw, today=tomorrow)
+                self.assertEqual(report["counts"]["identity_contradiction_receipts_retired"], 1)
+                self.assertEqual(report["field_updates"], [])
+                self.assertEqual({key: value for key, value in result[0].items() if key != "riscontri_campi"},
+                                 {key: value for key, value in projected.items() if key != "riscontri_campi"})
+                proof = result[0]["riscontri_campi"][0]
+                self.assertEqual(set(proof["valori"]), {"indirizzo", "orario_testo"})
+                self.assertEqual(proof["letto_il"], "2026-10-12")
+                self.assertEqual(proof["campi_gestiti"], ["indirizzo", "orario_testo"])
+                self.assertEqual(report["identity_conflicts"][0]["retired_fields"], ["ricorrenza_testo"])
+                exported, _ = prepare(result, tomorrow)
+                renewed, next_reason = refresh_record(exported[0], tomorrow)
+                self.assertEqual(next_reason, "expired_field_evidence_forecast")
+                self.assertEqual(renewed["date"], [])
+                self.assertEqual(renewed["proiezione_fonte"], "")
+                older_primary = {**exported[0], "fonte_aggiornata_il": "2024-01-01"}
+                renewed, next_reason = refresh_record(older_primary, tomorrow)
+                self.assertEqual(next_reason, "expired_field_evidence_forecast")
+                self.assertEqual(renewed["date"], [])
+                repeated, _ = enrich(result, source, raw_official=raw, today=tomorrow)
+                self.assertEqual(repeated, result)
+
+    def test_contradiction_requires_a_later_complete_read_and_nonregressed_source_date(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        for read_on, updated_on in ((TODAY, "2026-10-06"),
+                                    (date(2026, 10, 13), "2026-10-05")):
+            raw, source = complete_snapshot([raw_market(giorno="VENERDÌ")],
+                                             read_on=read_on, updated_on=updated_on)
+            result, _ = enrich(first, source, raw_official=raw, today=read_on)
+            self.assertEqual(result, first)
+        raw, source = complete_snapshot([raw_market(giorno="VENERDÌ")],
+                                         read_on=date(2026, 10, 13), updated_on="2026-10-13")
+        self.assertEqual(enrich(first, source, today=date(2026, 10, 13))[0], first)
+        # An old read remains old even if the caller supplies today's date.
+        late = date(2026, 12, 1)
+        self.assertEqual(enrich(first, source, raw_official=raw, today=late)[0], first)
+
+    def test_retirement_preserves_other_sources_and_returned_day_cannot_switch_owner(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        first[0]["riscontri_campi"].append(make_receipt(
+            first[0], values={"ricorrenza_testo": first[0]["ricorrenza_testo"]},
+            source_url="https://comune.example/mercato", source_name="Comune",
+            source_id="comune", source_row="independent-row", read_on=TODAY,
+            source_updated_on=TODAY, source_sha256=fingerprint({"other": 2})))
+        next_day = date(2026, 10, 13)
+        raw, source = complete_snapshot([raw_market(giorno="VENERDÌ")],
+                                         read_on=next_day, updated_on=str(next_day))
+        retired, _ = enrich(first, source, raw_official=raw, today=next_day)
+        self.assertEqual(next(proof for proof in retired[0]["riscontri_campi"]
+                              if proof["fonte_id"] == "comune"), first[0]["riscontri_campi"][1])
+        returned = date(2026, 10, 14)
+        raw, source = complete_snapshot([raw_market("100002")], read_on=returned, updated_on=str(returned))
+        result, _ = enrich(retired, source, raw_official=raw, today=returned)
+        self.assertEqual(result, retired)
+        raw, source = complete_snapshot([raw_market()], read_on=returned, updated_on=str(returned))
+        result, _ = enrich(retired, source, raw_official=raw, today=returned)
+        proof = next(proof for proof in result[0]["riscontri_campi"] if proof["fonte_id"] == "lombardia")
+        self.assertEqual(proof["campi_gestiti"], ["indirizzo", "orario_testo"])
+        self.assertIn("ricorrenza_testo", proof["valori"])
+        self.assertNotIn("ricorrenza_testo", proof["campi_gestiti"])
+
+    def test_additional_declared_day_does_not_retire_still_valid_original_rule(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        tomorrow = date(2026, 10, 13)
+        raw, source = complete_snapshot([raw_market(), raw_market(giorno="VENERDÌ")],
+                                         read_on=tomorrow, updated_on=str(tomorrow))
+        result, report = enrich(first, source, raw_official=raw, today=tomorrow)
+        self.assertNotIn("identity_contradiction_receipts_retired", report["counts"])
+        self.assertIn("ricorrenza_testo", result[0]["riscontri_campi"][0]["valori"])
+
+    def test_old_exact_venue_hours_claim_is_retired_when_its_bound_venue_moves(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(provincia="VA")], source, raw_official=raw, today=TODAY)
+        self.assertEqual(first[0]["riscontri_campi"][0]["metodo"], "sede_giorno_provincia")
+        tomorrow = date(2026, 10, 13)
+        raw, source = complete_snapshot([raw_market(indirizzi="VIA NUOVA, 12")],
+                                         read_on=tomorrow, updated_on=str(tomorrow))
+        result, report = enrich(first, source, raw_official=raw, today=tomorrow)
+        self.assertEqual(result[0]["indirizzo"], first[0]["indirizzo"])
+        self.assertEqual(result[0]["orario_testo"], first[0]["orario_testo"])
+        self.assertEqual(result[0]["riscontri_campi"], [])
+        self.assertEqual(report["identity_conflicts"][0]["reason"], "bound_source_venue_changed")
+        self.assertTrue(report["identity_conflicts"][0]["previous_evidence"])
+
+    def test_coordinate_or_competitor_hold_still_retires_explicitly_changed_field_claims(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        tomorrow = date(2026, 10, 13)
+        moved = raw_market(indirizzi="VIA NUOVA, 12", ubicazione="VIA NUOVA, 12",
+                           dalle_ore_invernale="09:00", dalle_ore_estivo="09:00")
+        for mode in ("coordinates", "competitor"):
+            with self.subTest(mode=mode):
+                changed = copy.deepcopy(moved)
+                rows = [changed]
+                if mode == "coordinates":
+                    changed["location"]["coordinates"][1] = 45.74485
+                    changed["geo_y"] = "45.74485"
+                else:
+                    rows.append(raw_market("100002", giorno=None))
+                raw, source = complete_snapshot(rows, read_on=tomorrow, updated_on=str(tomorrow))
+                result, report = enrich(first, source, raw_official=raw, today=tomorrow)
+                self.assertEqual(result[0]["indirizzo"], first[0]["indirizzo"])
+                self.assertEqual(result[0]["orario_testo"], first[0]["orario_testo"])
+                self.assertEqual(report["managed_market_addresses_updated"], 0)
+                self.assertEqual(report["managed_market_hours_updated"], 0)
+                self.assertEqual(set(result[0]["riscontri_campi"][0]["valori"]), {"ricorrenza_testo"})
+                self.assertEqual(result[0]["riscontri_campi"][0]["letto_il"], "2026-10-12")
+                self.assertTrue(any(item.get("retired_fields") == ["indirizzo", "orario_testo"]
+                                    for item in report["identity_conflicts"]))
+                exported, _ = prepare(result, tomorrow)
+                self.assertEqual(set(exported[0]["riscontri_campi"][0]["valori"]), {"ricorrenza_testo"})
+
+    def test_manual_address_edit_blocks_only_its_ownership_and_keeps_report(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        first[0]["indirizzo"] = "VIA CONFERMATA DALL'UTENTE, 99"
+        tomorrow = date(2026, 10, 13)
+        raw, source = complete_snapshot([raw_market(indirizzi="VIA NUOVA, 12",
+            dalle_ore_invernale="09:00", dalle_ore_estivo="09:00")],
+            read_on=tomorrow, updated_on="2026-10-13")
+        result, report = enrich(first, source, raw_official=raw, today=tomorrow)
+        self.assertEqual(result[0]["indirizzo"], first[0]["indirizzo"])
+        self.assertEqual(report["managed_market_hours_updated"], 1)
+        self.assertEqual(report["managed_market_addresses_updated"], 0)
+        self.assertEqual(report["preserved_field_differences"][0]["field"], "indirizzo")
+        self.assertTrue(all("indirizzo" not in proof["valori"]
+                            for proof in result[0]["riscontri_campi"]))
+
+    def test_precise_nearby_coordinates_block_initial_and_later_address_assignment(self):
+        raw, source = complete_snapshot()
+        base = [old(street="", provincia="VA", position_quality="precisa")]
+        result, report = enrich(base, source, raw_official=raw, today=TODAY)
+        self.assertEqual(result[0]["indirizzo"], "")
+        self.assertEqual(result[0]["lat"], base[0]["lat"])
+        self.assertEqual(result[0]["lng"], base[0]["lng"])
+        self.assertEqual(report["existing_market_addresses_added"], 0)
+        self.assertEqual(report["preserved_field_differences"][0]["reason"],
+                         "human_verification_or_precise_location_requires_review")
+        self.assertTrue(all("indirizzo" not in proof["valori"] for proof in result[0]["riscontri_campi"]))
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        first[0]["position_quality"] = "precisa"
+        tomorrow = date(2026, 10, 13)
+        next_raw, next_source = complete_snapshot([raw_market(indirizzi="VIA NUOVA, 12")],
+                                                  read_on=tomorrow, updated_on="2026-10-13")
+        result, report = enrich(first, next_source, raw_official=next_raw, today=tomorrow)
+        self.assertEqual(result[0]["indirizzo"], first[0]["indirizzo"])
+        self.assertEqual(report["managed_market_addresses_updated"], 0)
+        self.assertTrue(all("indirizzo" not in proof["valori"] for proof in result[0]["riscontri_campi"]))
+
+    def test_other_publisher_or_human_verification_prevents_managed_overwrite(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        tomorrow = date(2026, 10, 13)
+        next_raw, next_source = complete_snapshot([raw_market(indirizzi="VIA NUOVA, 12",
+            dalle_ore_invernale="09:00", dalle_ore_estivo="09:00")],
+            read_on=tomorrow, updated_on="2026-10-13")
+        for guard in ("other_source", "human"):
+            with self.subTest(guard=guard):
+                protected = copy.deepcopy(first)
+                if guard == "human":
+                    protected[0]["verificato_il"] = "2026-10-12"
+                else:
+                    protected[0]["riscontri_campi"].append(make_receipt(
+                        protected[0], values={field: protected[0][field]
+                                              for field in ("indirizzo", "orario_testo")},
+                        source_url="https://comune.example/mercato", source_name="Comune",
+                        source_id="comune", source_row="market-stable-id", read_on=TODAY,
+                        source_updated_on=TODAY, source_sha256=fingerprint({"other": 1})))
+                result, report = enrich(protected, next_source, raw_official=next_raw, today=tomorrow)
+                self.assertEqual(result[0]["indirizzo"], protected[0]["indirizzo"])
+                self.assertEqual(result[0]["orario_testo"], protected[0]["orario_testo"])
+                self.assertEqual(report["managed_market_addresses_updated"], 0)
+                self.assertEqual(report["managed_market_hours_updated"], 0)
+                self.assertEqual(len(report["preserved_field_differences"]), 2)
+                self.assertTrue(all(set(proof["valori"]) == {"ricorrenza_testo"}
+                                    for proof in result[0]["riscontri_campi"]
+                                    if proof["fonte_id"] == "lombardia"))
+
+    def test_coincident_existing_hours_do_not_become_owned_with_new_address(self):
+        raw, source = complete_snapshot()
+        before = old(street="", provincia="VA",
+                     hours="08:00–13:00 (fonte comunale, da verificare)")
+        first, _ = enrich([before], source, raw_official=raw, today=TODAY)
+        self.assertEqual(first[0]["riscontri_campi"][0]["campi_gestiti"], ["indirizzo"])
+        tomorrow = date(2026, 10, 13)
+        raw, source = complete_snapshot([raw_market(indirizzi="VIA NUOVA, 12",
+            dalle_ore_invernale="09:00", dalle_ore_estivo="09:00")],
+            read_on=tomorrow, updated_on="2026-10-13")
+        result, report = enrich(first, source, raw_official=raw, today=tomorrow)
+        self.assertEqual(report["managed_market_addresses_updated"], 1)
+        self.assertEqual(report["managed_market_hours_updated"], 0)
+        self.assertEqual(result[0]["orario_testo"], before["orario_testo"])
+        self.assertTrue(all("orario_testo" not in proof["valori"]
+                            for proof in result[0]["riscontri_campi"]))
+
+    def test_same_day_changed_content_and_regressed_source_date_hold_all_fields(self):
+        raw, source = complete_snapshot()
+        first, _ = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        for read_on, updated_on in ((TODAY, "2026-10-06"), (date(2026, 10, 13), "2026-10-05")):
+            raw, source = complete_snapshot([raw_market(indirizzi="VIA NUOVA, 12")],
+                                             read_on=read_on, updated_on=updated_on)
+            result, report = enrich(first, source, raw_official=raw, today=read_on)
+            self.assertEqual(result, first)
+            self.assertEqual(report["counts"]["held_unique_town_source_version_unordered_or_regressed"], 1)
+
+    def test_recurrence_receipt_is_deterministic_and_does_not_gain_ownership(self):
+        raw, source = complete_snapshot()
+        for recurrence, supported in (("Ogni martedì", True), ("settimanale - martedì", True),
+                                      ("settimanale: martedì", False), ("OGNI MARTEDI", False)):
+            before = old(street="", provincia="VA", ricorrenza_testo=recurrence)
+            result, report = enrich([before], source, raw_official=raw, today=TODAY)
+            self.assertEqual(result[0]["ricorrenza_testo"], recurrence)
+            proof = result[0]["riscontri_campi"][0]
+            self.assertEqual("ricorrenza_testo" in proof["valori"], supported)
+            self.assertNotIn("ricorrenza_testo", proof["campi_gestiti"])
+            self.assertEqual(report["recurrence_observations_added"], int(supported))
 
 
 if __name__ == "__main__":

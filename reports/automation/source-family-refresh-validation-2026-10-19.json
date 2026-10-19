@@ -1,0 +1,631 @@
+{
+  "execution": {
+    "actual_reads_date": "2026-10-19",
+    "catalog_files_published": false,
+    "command": "python -B backend/autopilot.py --offline --resume --today 2026-10-19 --output <validation-directory>",
+    "happings_requests_in_this_validation": 0,
+    "mode": "Complete pipeline replay of actual saved reads; no renewed source timestamps.",
+    "new_workflows_schedulers_services_dependencies": 0,
+    "production_changes": false,
+    "publication_path": "Existing daily DEV market-autopilot workflow with its release QA.",
+    "repository_public_catalog_files_modified": false
+  },
+  "field_evidence_quality": {
+    "date": "2026-10-19",
+    "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
+    "metrics": {
+      "indirizzo:mancante": 3214,
+      "indirizzo:riscontrato_fonte_recente": 1368,
+      "indirizzo:riscontro_da_aggiornare": 4,
+      "indirizzo:senza_riscontro_documentato": 9238,
+      "markets": 13824,
+      "markets_with_all_three_fields_source_supported": 1015,
+      "markets_with_recent_field_evidence": 1512,
+      "orario_testo:mancante": 10602,
+      "orario_testo:riscontrato_fonte_recente": 1158,
+      "orario_testo:riscontro_da_aggiornare": 88,
+      "orario_testo:senza_riscontro_documentato": 1976,
+      "ricorrenza_testo:mancante": 934,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1356,
+      "ricorrenza_testo:riscontro_da_aggiornare": 26,
+      "ricorrenza_testo:senza_riscontro_documentato": 11508
+    },
+    "read_age_limit_days": 45,
+    "schema": 1,
+    "source_age_limit_days": {
+      "indirizzo": 365,
+      "orario_testo": 180,
+      "ricorrenza_testo": 180
+    }
+  },
+  "inputs": {
+    "baseline_content_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+    "lombardia_complete_dataset": {
+      "all_raw_rows_including_normalizer_exclusions_considered": true,
+      "fingerprint_kind": "canonical parsed publisher JSON; distinct from file-byte SHA256",
+      "non_normalized_rows_still_screened": 93,
+      "normalized_rows_reproduced": 1360,
+      "normalizer_excluded_rows_municipality": "Milano",
+      "raw_file_byte_sha256": "7c94405f00531ff2da4a351761d4ec4600edbfc9c342a23260b31059a252106e",
+      "raw_rows_screened": 1453,
+      "read_on": "2026-10-19",
+      "sha256": "7d5e5b30cffafbc814005db3627a0e90efae3a0344dcbb9975a5841ca3911eaf",
+      "source_updated_on": "2026-10-13",
+      "status": "complete"
+    },
+    "official_source_reads": [
+      {
+        "execution_status": "offline_skipped",
+        "normalized_rows": 0,
+        "publisher_content_date": null,
+        "read_date_renewed_by_replay": false,
+        "source_id": "corciano",
+        "source_read_date": null
+      },
+      {
+        "execution_status": "resumed_checkpoint",
+        "normalized_rows": 4,
+        "publisher_content_date": "2023-03-03",
+        "publisher_url": "https://opendata.comune.fi.it/page_dataset_show?id=mercati",
+        "read_date_renewed_by_replay": false,
+        "source_id": "firenze",
+        "source_read_date": "2026-10-19"
+      },
+      {
+        "complete_raw_checkpoint": {
+          "new_read_on_resume": false,
+          "publisher_parsed_json_sha256": "7d5e5b30cffafbc814005db3627a0e90efae3a0344dcbb9975a5841ca3911eaf",
+          "status": "bound_snapshot"
+        },
+        "execution_status": "resumed_checkpoint",
+        "normalized_rows": 1360,
+        "publisher_content_date": "2026-10-13",
+        "publisher_url": "https://www.dati.lombardia.it/d/68zx-njaw",
+        "read_date_renewed_by_replay": false,
+        "source_id": "lombardia",
+        "source_read_date": "2026-10-19"
+      },
+      {
+        "execution_status": "resumed_checkpoint",
+        "normalized_rows": 85,
+        "publisher_content_date": "2024-05-27",
+        "publisher_url": "https://dati.comune.milano.it/dataset/ds291-economia-mercati-settimanali-scoperti",
+        "read_date_renewed_by_replay": false,
+        "source_id": "milano",
+        "source_read_date": "2026-10-19"
+      }
+    ],
+    "supplemental_publisher_page_reads": [
+      {
+        "changed_fields": 4,
+        "content_date": "2026-01-27",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 46,
+          "no_single_explicit_annual_weekday": 27
+        },
+        "layout_complete": true,
+        "matched_markets": 4,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 0,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 6,
+          "content_scopes": 1,
+          "fraction_rows": 0,
+          "rows": 6,
+          "rows_with_numeric_hours": 6,
+          "unique_source_row_ids": 6
+        },
+        "read_on": "2026-10-19",
+        "sha256": "0c5c57300f399f1c50b421487bea9ac0ca1cb66aa480dbf64bcd41291325e41b",
+        "source_id": "bassa-romagna-farmers",
+        "status": "resumed_checkpoint",
+        "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
+      },
+      {
+        "changed_fields": 8,
+        "content_date": "2026-03-23",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 35,
+          "no_single_explicit_annual_weekday": 27,
+          "venue_identity_not_established": 6
+        },
+        "layout_complete": true,
+        "matched_markets": 9,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 2,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 9,
+          "content_scopes": 1,
+          "fraction_rows": 7,
+          "rows": 20,
+          "rows_with_numeric_hours": 0,
+          "unique_source_row_ids": 20
+        },
+        "read_on": "2026-10-19",
+        "sha256": "44812412b00fc3ea8fa25d8f1c5adf65d325963bb031a3088a420871ebcd56b2",
+        "source_id": "bassa-romagna-weekly",
+        "status": "resumed_checkpoint",
+        "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
+      }
+    ],
+    "unavailable_or_missing_inputs": [
+      "Corciano had no usable checkpoint: offline_skipped; existing records retained.",
+      "Generic contracts had no saved response in this replay: resume_checkpoint_missing; no successful live read claimed."
+    ]
+  },
+  "local_checks": {
+    "autopilot": {
+      "log_sha256": "bdbda556ef4628b797499b023b49fa1737719a35b91fa7be2676212b49e7dbfe",
+      "release_gates_passed": 17
+    },
+    "independent_review": "No remaining concrete blockers in final enrichment, checkpoint, export and forecast delta; included four-cycle source-ID replacement and future-primary-date boundary checks.",
+    "maplibre_worker": {
+      "command": "node scripts/assert-map-worker.mjs",
+      "passed": true,
+      "worker_bytes": 508900
+    },
+    "node": {
+      "command": "node --test tests/*.test.mjs",
+      "log_sha256": "2e3666c4bba33d86196e354ea6c2d29d772bbd50fd4cfa0bef5a011e7bf91866",
+      "passed": true,
+      "test_files": 8
+    },
+    "python": {
+      "command": "python -B -m unittest discover -s backend/tests -v",
+      "log_sha256": "a2a040f69dbfed944758060e131903c9f3e97e2dfbdfe5d834df200b10cdd9a5",
+      "passed": true,
+      "tests": 784
+    },
+    "vite_build": {
+      "command": "npm run build",
+      "log_sha256": "d011e8a98e0bc3df31cbfd4560801214b1da67c7d3667850529eb20831ec9676",
+      "passed": true
+    }
+  },
+  "primary_source_reader_coverage": {
+    "hosts": 72,
+    "interpretation": "Configured primary-source readers, distinct from actual read availability, secondary field evidence and individual market verification.",
+    "market_dispositions": {
+      "happings_gate_not_active": 9647,
+      "official_adapter": 1219,
+      "source_contract_active": 39,
+      "source_layout_needed": 2919
+    },
+    "market_layout_statuses": {
+      "disabled": 9647,
+      "supported": 1258,
+      "unsupported": 2919
+    },
+    "market_read_statuses": {
+      "disabled": 9647,
+      "not_read": 2919,
+      "offline_skipped": 2,
+      "resume_checkpoint_missing": 39,
+      "resumed_checkpoint": 1217
+    },
+    "markets": 13824,
+    "schema": 1,
+    "source_admission_registry": "valid",
+    "source_contract_configuration": "valid",
+    "unique_primary_urls": 5752
+  },
+  "real_candidate": {
+    "addresses_changed": {
+      "lombardia": 229,
+      "lombardia_distinct_official_source_rows": 164,
+      "lombardia_previously_empty": 211,
+      "lombardia_previously_vague": 18,
+      "supplemental_html": 12,
+      "supplemental_html_previously_empty": 4,
+      "supplemental_html_previously_vague": 8,
+      "total": 241
+    },
+    "after": {
+      "empty_addresses": 3214,
+      "empty_hours": 10602,
+      "enumerated_vague_addresses": 2469,
+      "records": 13824
+    },
+    "all_original_ids_preserved": true,
+    "before": {
+      "empty_addresses": 3429,
+      "empty_hours": 10853,
+      "enumerated_vague_addresses": 2495,
+      "records": 13824
+    },
+    "calendar_arrays_changed": 0,
+    "changed_fields": {
+      "completezza": 255,
+      "fonte_aggiornata_il": 1263,
+      "fonte_letta_il": 1140,
+      "fonti": 264,
+      "indirizzo": 241,
+      "orario_testo": 251,
+      "proiezione_fonte": 229,
+      "riscontri_campi": 1601
+    },
+    "changed_market_rows_including_evidence_and_source_metadata": 1648,
+    "confirmed_market_openings_added": 0,
+    "content_signature": "f7573e34bcc87d7a0fe7448853909e062db6e60d0959ea3d29af759a17652bd4",
+    "coordinates_changed": 0,
+    "hours_added": 251,
+    "ids_added": 0,
+    "ids_removed": 0,
+    "individual_verifications_added": 0,
+    "lombardia_enrichment": {
+      "confirmed_date_changes": 0,
+      "coordinates_overwritten": 0,
+      "counts": {
+        "addresses_added": 229,
+        "exact_matches": 143,
+        "existing_hours_preserved": 121,
+        "field_observation_records_updated": 372,
+        "held_unique_town_coordinates_conflict": 62,
+        "held_unique_town_multiple_eligible_sources": 10,
+        "held_unique_town_no_eligible_source": 404,
+        "held_unique_town_raw_same_city_day_competitor": 4,
+        "held_unique_town_raw_unknown_weekday_competitor": 11,
+        "held_unique_town_target_identity_incomplete": 60,
+        "hours_added": 251,
+        "municipality_day_unique_matches": 229,
+        "observed_spelling_matches": 22,
+        "official_source_attributions_added": 251,
+        "recurrence_observations_added": 229,
+        "skipped_coordinates_conflict": 18,
+        "skipped_legacy_without_explicit_annual_weekday": 253,
+        "skipped_market_type_unproved_or_conflicting": 2,
+        "skipped_multiple_official_markets_same_venue_day": 1,
+        "skipped_no_exact_legacy_market": 644,
+        "skipped_no_exact_location_or_day": 542,
+        "skipped_official_raw_identity_unproved_or_conflicting": 56,
+        "skipped_official_without_explicit_annual_weekday": 517,
+        "skipped_province_conflict": 5,
+        "unique_town_targets_screened": 780,
+        "vague_addresses_replaced": 18
+      },
+      "enabled": true,
+      "exact_matches": 143,
+      "existing_market_addresses_added": 229,
+      "existing_market_hours_added": 251,
+      "field_observation_records_updated": 372,
+      "individual_market_verifications": 0,
+      "legacy_records_changed": 372,
+      "managed_market_addresses_updated": 0,
+      "managed_market_hours_updated": 0,
+      "municipality_day_unique_matches": 229,
+      "official_source_attributions_added": 251,
+      "old_dataset_dates_overwritten": 0,
+      "primary_sources_overwritten": 0,
+      "raw_identity_context": {
+        "non_normalized_rows_still_screened": 93,
+        "normalized_rows_reproduced": 1360,
+        "raw_rows_screened": 1453,
+        "read_on": "2026-10-19",
+        "sha256": "7d5e5b30cffafbc814005db3627a0e90efae3a0344dcbb9975a5841ca3911eaf",
+        "source_updated_on": "2026-10-13",
+        "status": "complete"
+      },
+      "record_identity_changes": 0,
+      "recurrence_observations_added": 229,
+      "review_only": true,
+      "schema": 1,
+      "source_id": "lombardia-mercap",
+      "source_name": "Regione Lombardia – MERCap (archivio regionale, date da verificare)",
+      "source_rows_screened": 1360,
+      "vague_market_addresses_replaced": 18
+    },
+    "published": false,
+    "publisher_hour_conflicts_held": 4,
+    "quality_after": {
+      "future_60": 11846,
+      "future_90": 11829,
+      "indexed_gzip_bytes": 406328,
+      "missing_hours": 10602,
+      "precise": 89,
+      "records": 13824,
+      "unknown_dates": 1918,
+      "verified": 0
+    },
+    "quality_before": {
+      "future_60": 11846,
+      "future_90": 11829,
+      "indexed_gzip_bytes": 406047,
+      "missing_hours": 10853,
+      "precise": 89,
+      "records": 13824,
+      "unknown_dates": 1918,
+      "verified": 0
+    },
+    "records": 13824,
+    "release_approved": true,
+    "release_gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "release_reason": "all_policies_pass",
+    "source_recurrences_observed_without_rewriting_existing_text": 229
+  },
+  "reference_date": "2026-10-19",
+  "remaining_limits": [
+    "This validates the reusable mechanism and this candidate; it does not establish that all 13,824 markets are correct, current or open on future projected dates.",
+    "Only 1,015 cards have recent source evidence for all three fields; 1,512 have at least one recent field observation.",
+    "The complete dataset joins 229 address targets to 164 distinct official source rows; legacy cards are not automatically deduplicated.",
+    "9,647 Happings primary-source cards remain gated; independent evidence can support their fields without reading Happings.",
+    "2,919 primary-source cards still need a supported source or independent primary source. This report grants no reuse permissions.",
+    "Bologna and Corciano generic contracts retain reviewed fixed content dates; a fresh read or catalog metadata timestamp cannot renew them.",
+    "Read order is recorded by day. Different payloads read on the same day do not authorize an ordered managed update.",
+    "Missing or unreachable source rows do not establish market closure. Ambiguous identities and coordinate conflicts hold application.",
+    "The synthetic 2026-10-20 cases are regression evidence only and were not published; their clock-only calendar pruning is separate from enrichment changes."
+  ],
+  "schema": 1,
+  "scope": {
+    "base_commit_at_packaging": "cb4a604ff5e9b59dbe72a25dc13485b10aed8cc5",
+    "catalog_count_is_cards_not_distinct_physical_markets": true,
+    "goal": "Reusable source-family acquisition, evidence and subsequent automatic refresh; no per-market correction list.",
+    "target_branch": "improve/data-quality-security-performance-2026-10-11"
+  },
+  "subsequent_cycle_validation": {
+    "candidate_region_file_sha256": {
+      "public/data/v1/regions/abruzzo-ad337f4a57139d.json": "ad337f4a57139dea97c71938f2637308220288d9e666e2ce4293db64dbbe2e7f",
+      "public/data/v1/regions/basilicata-9029316faa881c.json": "9029316faa881c11396ea728a2b9f5d7dc7edeaad16372e934646158a8166099",
+      "public/data/v1/regions/calabria-c517ad4c603826.json": "c517ad4c6038264cb7d99a3e407c630e868e912af15e96ff8f5f8215df24a901",
+      "public/data/v1/regions/campania-92213a0fed0541.json": "92213a0fed05412a16cc227e2a5a4e468a04d405994b9940881da1d5466f593b",
+      "public/data/v1/regions/emilia-romagna-28016dd0cec05c.json": "28016dd0cec05ce0c7a8eca42e9ed5dffc4e2a629d42bc1acb68972aabe5a1f5",
+      "public/data/v1/regions/friuli-venezia-giulia-6cb08971ebd14a.json": "6cb08971ebd14a04fccbed2a0600948ed011dbba3397237f3e68532e422f28d7",
+      "public/data/v1/regions/lazio-83b3a4e39512f5.json": "83b3a4e39512f5488e8f329db89a9e87f1bac19f9179ef9a300a20c400718e5d",
+      "public/data/v1/regions/liguria-7fa7f0348ffeaa.json": "7fa7f0348ffeaae3aa197be60635fc628ca256a5dec5c052dc8e2d66a226d620",
+      "public/data/v1/regions/lombardia-dbe335b4fb118a.json": "dbe335b4fb118a7bb92589625165617a7e354c1dc5c5a2e3684f115d3f8c9fa6",
+      "public/data/v1/regions/marche-71614f56bb6f07.json": "71614f56bb6f072c17764fb8f7edce8092a6b133bb335daecfef5018480d2461",
+      "public/data/v1/regions/molise-af033e96caa56b.json": "af033e96caa56bda2ee62a2643322d3f678cc02ef03111ce7ba57bc78d07084e",
+      "public/data/v1/regions/piemonte-ad58527a827774.json": "ad58527a827774c7e7472d98c1851503c8fe9d4285678f9331c258fe3dda3287",
+      "public/data/v1/regions/puglia-222633538fe212.json": "222633538fe21272242baa57c1379b607612e0595d0bb1254244fbae3b9f9263",
+      "public/data/v1/regions/sardegna-ad947bef7cd688.json": "ad947bef7cd6884200daaf44164c9dd0baa023fa89f51a97497c44fcfbac4557",
+      "public/data/v1/regions/sicilia-1a75f2971b60a2.json": "1a75f2971b60a2cbfc9232947edc0c3b276516c73811a49d76be7fb6db0b97e6",
+      "public/data/v1/regions/toscana-4cf1b7fc7dead2.json": "4cf1b7fc7dead26da9f829ee9500b911ab43ea8dceb75f0ce8e65d667ddb64c6",
+      "public/data/v1/regions/trentino-alto-adige-0d17fa3c120610.json": "0d17fa3c120610e8feb630870f7879ec44e73b914078274755c0091c2067f29b",
+      "public/data/v1/regions/umbria-181f4ac66e430c.json": "181f4ac66e430c2ee5cf7122a3b43dc0fbb1b3e933b9b0f32cc3cff278eeb8db",
+      "public/data/v1/regions/valle-d-aosta-c0917895a912f5.json": "c0917895a912f536a3d208338f6697408cb2ef64f2952942107192b8659146fb",
+      "public/data/v1/regions/veneto-a2883b73966d2d.json": "a2883b73966d2d89bfb3684361e684a4cb80472cff89da1cf5179c743bac52be"
+    },
+    "candidate_region_files_unchanged_after_final_replay": true,
+    "case_A_raw_id_day_pairs": 233,
+    "case_B_additional_owned_hours_held_by_venue_change": 6,
+    "case_B_additional_venue_day_bindings_sharing_mutated_source": 31,
+    "case_B_raw_id_day_pairs": 164,
+    "cases": [
+      {
+        "all_catalog_receipts_after_export": 1480,
+        "case": "A-owned-hours",
+        "catalog_rows": 13824,
+        "enrichment_diff": {
+          "added_ids": [],
+          "changed_market_count": 372,
+          "field_counts": {
+            "orario_testo": 251,
+            "riscontri_campi": 372
+          },
+          "lost_ids": []
+        },
+        "evidence_repeat_idempotent": true,
+        "expected_managed_address_updates": 0,
+        "expected_managed_hour_updates": 251,
+        "expected_retired_hour_claims": 121,
+        "failures": [],
+        "identity_and_coordinates_invariant": true,
+        "invalid_receipts_after_export": 0,
+        "label": "TEST SINTETICO: valori e date fonte/lettura 2026-10-20 non reali",
+        "normalized_rows": 1360,
+        "ordinary_export_normalization_diff": {
+          "added_ids": [],
+          "changed_market_count": 1606,
+          "field_counts": {
+            "date": 1502,
+            "riscontri_campi": 121
+          },
+          "lost_ids": []
+        },
+        "original_calendar_invariant": true,
+        "passed": true,
+        "post_export_repeat_idempotent": true,
+        "raw_rows": 1453,
+        "remaining_contradicted_hour_claims": 0,
+        "report_counts": {
+          "exact_matches": 143,
+          "existing_hours_differ_from_official": 121,
+          "existing_hours_preserved": 121,
+          "field_observation_records_updated": 372,
+          "held_unique_town_coordinates_conflict": 62,
+          "held_unique_town_multiple_eligible_sources": 10,
+          "held_unique_town_no_eligible_source": 404,
+          "held_unique_town_raw_same_city_day_competitor": 4,
+          "held_unique_town_raw_unknown_weekday_competitor": 11,
+          "held_unique_town_target_identity_incomplete": 60,
+          "managed_hours_updated": 251,
+          "municipality_day_unique_matches": 229,
+          "observed_spelling_matches": 22,
+          "obsolete_source_claims_retired": 350,
+          "skipped_coordinates_conflict": 18,
+          "skipped_legacy_without_explicit_annual_weekday": 253,
+          "skipped_market_type_unproved_or_conflicting": 2,
+          "skipped_multiple_official_markets_same_venue_day": 1,
+          "skipped_no_exact_legacy_market": 644,
+          "skipped_no_exact_location_or_day": 542,
+          "skipped_official_raw_identity_unproved_or_conflicting": 56,
+          "skipped_official_without_explicit_annual_weekday": 517,
+          "skipped_province_conflict": 5,
+          "unique_town_targets_screened": 780
+        },
+        "retired_hour_claims": 121,
+        "same_day_post_export_diff": {
+          "added_ids": [],
+          "changed_market_count": 372,
+          "field_counts": {
+            "orario_testo": 251,
+            "riscontri_campi": 372
+          },
+          "lost_ids": []
+        },
+        "static_catalog_rows": 13824,
+        "static_content_signature": "8b2cdad89d7c88dc0373ea0895a812353a2879b36d7c7d7ce3c4cf2c4f5b9a53",
+        "static_repeat_unchanged": true,
+        "synthetic_source_sha256": "3eaaebbebab41a67597c78f4af8b94f290e5f9503bbdca506fa351625cbdb18e",
+        "synthetically_modified_raw_rows": 233,
+        "test_only": true,
+        "unrelated_source_receipts_preserved": true,
+        "updated_field_histories_preserved": 251,
+        "updated_field_proofs_valid": 251
+      },
+      {
+        "all_catalog_receipts_after_export": 1570,
+        "case": "B-owned-addresses-and-hours",
+        "catalog_rows": 13824,
+        "enrichment_diff": {
+          "added_ids": [],
+          "changed_market_count": 372,
+          "field_counts": {
+            "indirizzo": 229,
+            "orario_testo": 229,
+            "riscontri_campi": 372
+          },
+          "lost_ids": []
+        },
+        "evidence_repeat_idempotent": true,
+        "expected_managed_address_updates": 229,
+        "expected_managed_hour_updates": 229,
+        "expected_retired_hour_claims": 31,
+        "failures": [],
+        "identity_and_coordinates_invariant": true,
+        "invalid_receipts_after_export": 0,
+        "label": "TEST SINTETICO: valori e date fonte/lettura 2026-10-20 non reali",
+        "normalized_rows": 1360,
+        "ordinary_export_normalization_diff": {
+          "added_ids": [],
+          "changed_market_count": 1530,
+          "field_counts": {
+            "date": 1502,
+            "riscontri_campi": 31
+          },
+          "lost_ids": []
+        },
+        "original_calendar_invariant": true,
+        "passed": true,
+        "post_export_repeat_idempotent": true,
+        "raw_rows": 1453,
+        "remaining_contradicted_hour_claims": 0,
+        "report_counts": {
+          "exact_matches": 112,
+          "existing_hours_preserved": 112,
+          "field_observation_records_updated": 372,
+          "held_unique_town_coordinates_conflict": 62,
+          "held_unique_town_multiple_eligible_sources": 10,
+          "held_unique_town_no_eligible_source": 404,
+          "held_unique_town_raw_same_city_day_competitor": 4,
+          "held_unique_town_raw_unknown_weekday_competitor": 11,
+          "held_unique_town_target_identity_incomplete": 60,
+          "identity_contradiction_receipts_retired": 31,
+          "managed_addresses_updated": 229,
+          "managed_hours_updated": 229,
+          "municipality_day_unique_matches": 229,
+          "observed_spelling_matches": 16,
+          "obsolete_source_claims_retired": 260,
+          "skipped_coordinates_conflict": 15,
+          "skipped_legacy_without_explicit_annual_weekday": 253,
+          "skipped_market_type_unproved_or_conflicting": 2,
+          "skipped_multiple_official_markets_same_venue_day": 1,
+          "skipped_no_exact_legacy_market": 675,
+          "skipped_no_exact_location_or_day": 542,
+          "skipped_official_raw_identity_unproved_or_conflicting": 56,
+          "skipped_official_without_explicit_annual_weekday": 517,
+          "skipped_province_conflict": 5,
+          "unique_town_targets_screened": 780
+        },
+        "retired_hour_claims": 31,
+        "same_day_post_export_diff": {
+          "added_ids": [],
+          "changed_market_count": 372,
+          "field_counts": {
+            "indirizzo": 229,
+            "orario_testo": 229,
+            "riscontri_campi": 372
+          },
+          "lost_ids": []
+        },
+        "static_catalog_rows": 13824,
+        "static_content_signature": "eec0de4f0bb6bc8ad737473ca0b924995a995aa59b21c54e524b9c32bf14c370",
+        "static_repeat_unchanged": true,
+        "synthetic_source_sha256": "3c9db966c6fb802350d3dfe9307989b7305e7856a0915f28f207d52fec9a2449",
+        "synthetically_modified_raw_rows": 164,
+        "test_only": true,
+        "unrelated_source_receipts_preserved": true,
+        "updated_field_histories_preserved": 458,
+        "updated_field_proofs_valid": 458
+      }
+    ],
+    "clock_only_control_diff": {
+      "added_ids": [],
+      "changed_market_count": 1502,
+      "field_counts": {
+        "date": 1502
+      },
+      "lost_ids": []
+    },
+    "clock_only_control_signature": "636404e8038283bca286dee5acecf3ad91b7bda76cfc374b99eb2d2656016de0",
+    "in_memory_original_catalog_unchanged": true,
+    "input_files_unchanged": true,
+    "label": "TEST SINTETICO: valori e date fonte/lettura 2026-10-20 non reali",
+    "legacy_receipt_rows": 372,
+    "manifest_generated_at_is_not_part_of_content_signature": true,
+    "network_attempt_count": 0,
+    "original_candidate_content_signature": "f7573e34bcc87d7a0fe7448853909e062db6e60d0959ea3d29af759a17652bd4",
+    "original_candidate_rows": 13824,
+    "original_publisher_content_date": "2026-10-13",
+    "original_raw_file_sha256": "7c94405f00531ff2da4a351761d4ec4600edbfc9c342a23260b31059a252106e",
+    "passed": true,
+    "publication_status": "Local synthetic validation only; no publication or real update",
+    "source_code_unchanged_during_validation": true,
+    "synthetic_publisher_content_date": "2026-10-20",
+    "synthetic_read_date": "2026-10-20",
+    "test_only": true,
+    "tested_module_sha256": {
+      "backend/export_static.py": "de0ae3031703269b7e3afd4116304a5be7fb735141adbad3120f2165998f2b70",
+      "backend/field_evidence.py": "13c57fac790e1fb9a8622fec0ae19555b6b200f640d9fe72ee1763aa1ff0d918",
+      "backend/official_enrichment.py": "98afcad5ea53da0846a4b66addcd2d728e460fbf0ff444f42178621950088e9f",
+      "backend/source_lombardia.py": "d96cb135925b9b48c09405bdcbb292107e8caad8ea8ca062dcb266712cd31108"
+    }
+  },
+  "tested_change_file_sha256": {
+    "backend/autopilot.py": "ada2010411641d257c1ec6446e3e5d20fa24d7fb13d9c85434876b6eea4761aa",
+    "backend/field_evidence.py": "13c57fac790e1fb9a8622fec0ae19555b6b200f640d9fe72ee1763aa1ff0d918",
+    "backend/official_enrichment.py": "98afcad5ea53da0846a4b66addcd2d728e460fbf0ff444f42178621950088e9f",
+    "backend/publisher_page_parser.py": "b12bfc21d1e56c8e32d1e375360650656ebf782e9b37e81598b2fb36777900b0",
+    "backend/publisher_refresh.py": "77c8d086942ca23a093f7f997b6e9615f24bb0728e507e2600cc81e7571f867e",
+    "backend/recurrence_refresh.py": "a7f11b8332f8d715260fcaca276e66df39fd4c1c9867ecc66409213b30d72d7c",
+    "backend/reviewed_city_static_guard.py": "9cea3f1ade5ca0860f2013d3379c552d3ee591593525359b2db2568ce43786b6",
+    "backend/source_contract_activation.py": "73bdae39dc9e2e52635514238d6cdbdddb9b2fdf03425d113e4c48b79d32ba87",
+    "backend/tests/test_official_enrichment.py": "687bcf654a960ac6319d678259afd828f1d46ed5f4958c6659c2f4cd1442ccf6",
+    "backend/tests/test_opendatasoft_generic.py": "28025218eef8b542d31507fe49df54f016202e85e70018b937e2c545c90c54f0",
+    "backend/tests/test_publisher_page_parser.py": "1a673626ce9783be4ff13d74431e828d8772a7a6b60ca0927cdd0152271e07f0",
+    "backend/tests/test_recurrence_refresh.py": "cefc83f77c88eeb6353bb6f3b7ec60507c0d46e44fce7acdcf02fdd64928a901",
+    "backend/tests/test_reviewed_city_static_guard.py": "b4a5f8b6f746c5e9f9302e8b7ce831a55aa5149173766b37764a23f2803c144b",
+    "backend/tests/test_source_contract_activation.py": "7a586b13e3ecb67ccee624c9766fda28a63968c3b4b50d51d5ebd62e2cbb7a98",
+    "backend/tests/test_source_raw_checkpoint.py": "f629a1ecaa71b618de136edb14b963fc1db3461399c578d397bd672331b41465",
+    "backend/tests/test_source_refresh_coverage.py": "be6e3aead354adda9ff7b5c3b3bac69de5176b8f4683cd2a8cf953cbf32bd4ca"
+  }
+}

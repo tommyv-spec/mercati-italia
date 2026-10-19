@@ -227,14 +227,22 @@ class OpendatasoftReusableSourceTests(unittest.TestCase):
         cfg,registry=config_and_registry()
         profile=cfg["raw_profiles"][0]
         profile["max_new_ids_per_run"]=250
-        # Source-level contract SHA mismatch must hold the source without
-        # changing the original catalog or raising a fake closure.
+        # An otherwise valid profile rewrite invalidates its certificate and
+        # must fail before any source read or catalog mutation.
+        self.assertTrue(validate_contracts(cfg))
         baseline=generic_baseline()
-        after,report=activate(cfg,registry,baseline,today=DAY,read_on=DAY,
-                              fetch=lambda url:(blob(),False))
-        self.assertEqual(after,baseline)
-        self.assertEqual(report["per_source"][profile["id"]]["status"],
-                         "publisher_source_held_for_review")
+        frozen=copy.deepcopy(baseline)
+        fetch_calls=[]
+
+        def forbidden_fetch(url):
+            fetch_calls.append(url)
+            self.fail("Unapproved profile must be rejected before source fetch")
+
+        with self.assertRaisesRegex(
+                ValueError,"Source approval does not match the exact enabled/disabled profile"):
+            activate(cfg,registry,baseline,today=DAY,read_on=DAY,fetch=forbidden_fetch)
+        self.assertEqual(fetch_calls,[])
+        self.assertEqual(baseline,frozen)
 
 if __name__=="__main__":
     unittest.main()
