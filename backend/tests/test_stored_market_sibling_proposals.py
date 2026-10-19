@@ -7,7 +7,7 @@ from pathlib import Path
 from datetime import date
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from stored_market_sibling_proposals import (
-    analyze,verify,safe_stored_street,source_group_key,
+    analyze,verify,safe_stored_street,source_group_key,publisher_url_family,
 )
 from merge_catalog import load_existing
 
@@ -47,6 +47,31 @@ class StoredPublisherSiblingAuditTests(unittest.TestCase):
             self.assertFalse(x["source_html_accessed"])
             self.assertEqual(x["internal_street_already_stored"],"Villaggio dei Fiori")
         self.assertEqual(report["catalog_fields_updated"],0)
+
+    def test_historical_url_layouts_are_counted_before_source_refresh(self):
+        old="https://www.happings.com/it/mercati-settimanali-a-modena.html"
+        old_ad="https://www.happings.com/it/mercati-settimanali-ad-agrigento.html"
+        new="https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/"
+        detail="https://www.happings.com/it/mercato-settimanale-a-pianiga.html"
+        self.assertEqual(publisher_url_family(old),"province_index_old_a")
+        self.assertEqual(publisher_url_family(old_ad),"province_index_old_ad")
+        self.assertEqual(publisher_url_family(new),"province_index_canonical")
+        self.assertEqual(publisher_url_family(detail),"town_detail_legacy")
+        self.assertEqual(publisher_url_family("https://evil.example/mercati"),
+                         "unreviewed_origin_or_query")
+        entries=[
+            market("modena",url=old),
+            market("agrigento",url=old_ad),
+            market("canonical",url=new),
+            market("pianiga",url=detail),
+        ]
+        audit=analyze(entries,today=TODAY)
+        self.assertTrue(verify(audit,len(entries)))
+        self.assertEqual(audit["source_url_layouts"]["province_index_old_a"]["records"],1)
+        self.assertEqual(audit["source_url_layouts"]["province_index_old_ad"]["records"],1)
+        self.assertEqual(audit["source_url_layouts"]["province_index_canonical"]["records"],1)
+        self.assertEqual(audit["source_url_layouts"]["town_detail_legacy"]["records"],1)
+        self.assertEqual(audit["source_url_layouts"]["province_index_old_a"]["address_missing"],1)
 
     def test_distinct_streets_same_city_and_day_must_not_transfer(self):
         rows=[market("missing"),market("street-a","Via Roma"),
@@ -110,6 +135,12 @@ class StoredPublisherSiblingAuditTests(unittest.TestCase):
         report=analyze(rows,today=TODAY)
         self.assertTrue(verify(report,len(rows)))
         self.assertGreater(report["legacy_publisher_records_examined"],9000)
+        layout=report["source_url_layouts"]
+        self.assertGreater(layout["province_index_old_a"]["records"],4000)
+        self.assertGreater(layout["town_detail_legacy"]["records"],4000)
+        self.assertGreater(layout["province_index_old_ad"]["records"],300)
+        self.assertEqual(sum(x["records"] for x in layout.values()),
+                         report["legacy_publisher_records_examined"])
         self.assertGreater(report["field_sibling_candidates"],200)
         self.assertLess(report["field_sibling_candidates"],1300)
         self.assertEqual([r["slug"] for r in rows],original_ids)
