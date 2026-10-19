@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
 import unittest
@@ -29,10 +30,11 @@ SAMPLE=b"""
 <ul><li>a Spinea, in Piazza Fermi (la mattina)</li></ul>
 </div></body></html>"""
 
-def row(slug,*,city="Spinea",day="mercoledì",street="",url=VENICE_OLD):
+def row(slug,*,city="Spinea",day="mercoledì",street="",url=VENICE_OLD,
+        province="VE",region="Veneto"):
     return {
         "slug":slug,"nome":"Mercato settimanale di "+city,
-        "citta":city,"provincia":"VE","regione":"Veneto",
+        "citta":city,"provincia":province,"regione":region,
         "indirizzo":street,"fonte":"happings.com","url_fonte":url,
         "ricorrenza_testo":"settimanale - "+day,"orario_testo":"",
         "date":["2026-10-21"],"date_quality":"prevista",
@@ -135,6 +137,56 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(report["parser_counts"]["conflicting_previously_saved_location"],2)
         self.assertEqual(report["field_candidates"],0)
 
+    def test_conflicting_town_detail_is_not_hidden_by_province_url_filter(self):
+        base=[row("missing"),row("town-source",street="Via Roma",
+              url="https://www.happings.com/it/mercato-settimanale-a-spinea.html")]
+        after,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+        self.assertEqual(after,base)
+        self.assertEqual(report["field_candidates"],0)
+        self.assertEqual(report["parser_counts"]["conflicting_previously_saved_location"],1)
+
+    def test_province_and_region_must_agree_with_source_and_official_municipality(self):
+        for wrong in (row("x",province="MO"),row("x",region="Lombardia"),
+                      row("x",province=""),row("x",region="")):
+            with self.subTest(wrong=wrong):
+                after,report=preview([wrong],feed(),today=TODAY,apply=True,rights_verified=True)
+                self.assertEqual(after,[wrong])
+                self.assertEqual(report["parser_counts"]["identity_geography_unproven"],1)
+        url="https://www.happings.com/it/mercati-settimanali-a-vibo-valentia.html"
+        sample=SAMPLE.replace(b"Spinea",b"Tropea").replace(b"Venezia",b"Vibo Valentia")
+        pages=[{"requested_url":url,"final_url":url,"html":sample}]
+        base=[row("tropea-vv",city="Tropea",province="VV",region="Calabria",url=url),
+              row("tropea-vb",city="Tropea",province="VB",region="Calabria",url=url)]
+        after,report=preview(base,pages,today=TODAY,apply=True,rights_verified=True)
+        self.assertEqual(report["changed_ids"],["tropea-vv"])
+        self.assertEqual(after[1],base[1])
+
+    def test_changed_template_is_quarantined_without_discarding_valid_other_page(self):
+        bad=SAMPLE.replace(b"<li>a Dolo",b"<li>unknown layout Dolo")
+        modena="https://www.happings.com/it/mercati-settimanali-a-modena.html"
+        pages=feed()+[{"requested_url":modena,"final_url":modena,
+                       "html":bad.replace(b"Spinea",b"Modena").replace(b"Venezia",b"Modena")}]
+        base=[row("spinea"),row("modena",city="Modena",province="MO",
+                               region="Emilia-Romagna",url=modena)]
+        after,report=preview(base,pages,today=TODAY,apply=True,rights_verified=True)
+        self.assertEqual(report["changed_ids"],["spinea"])
+        self.assertEqual(after[1],base[1])
+        self.assertEqual([p["status"] for p in report["source_pages"]],["parsed","layout_changed"])
+        self.assertTrue(safe_report(report,base))
+
+    def test_proposal_receipt_is_bound_to_html_geography_and_original_blank(self):
+        base=[row("spinea")]
+        after,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+        self.assertEqual(report["proposals"][0]["source_html_sha256"],hashlib.sha256(SAMPLE).hexdigest())
+        for field,value in (("source_html_sha256","0"*64),("source_province","MO"),
+                            ("source_day",5),("apply_authorized",False)):
+            forged=copy.deepcopy(report)
+            forged["proposals"][0][field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):
+                safe_report(forged,base)
+        with self.assertRaises(ValueError):
+            safe_report(report,after)
+
     def test_distinct_city_or_day_cannot_copy_other_market_location(self):
         for market in (
             row("x",city="Mirano"),
@@ -146,6 +198,15 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
                 candidate,report=preview([market],feed(),today=TODAY,apply=True,rights_verified=True)
                 self.assertEqual(report["field_candidates"],0)
                 self.assertEqual(candidate,[market])
+
+    def test_monthly_or_duplicate_dates_do_not_prove_a_weekly_market(self):
+        for recurrence,dates in (("mensile - primo mercoledì del mese",["2026-10-21"]),
+                                 ("",["2026-10-21","2026-10-21"])):
+            base=[{**row("spinea-mercoledi"),"ricorrenza_testo":recurrence,"date":dates}]
+            after,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+            self.assertEqual(after,base)
+            self.assertEqual(report["field_candidates"],0)
+            self.assertEqual(select_pages(base,today=TODAY),[])
 
     def test_vague_venue_and_preexisting_nonempty_address_are_never_overwritten(self):
         old=[row("a",street="centro"),row("b",street="Villaggio dei Fiori")]
@@ -159,6 +220,19 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
                                      "https://www.happings.com/it/mercati-settimanali-a-roma-e-provincia/"))
         self.assertFalse(allowed_url(VENICE_OLD,VENICE_OLD,
                                      "https://evil.example/it/mercati-settimanali-a-venezia.html"))
+
+    def test_ad_alias_matches_offline_without_guessing_live_redirect(self):
+        old="https://www.happings.com/it/mercati-settimanali-ad-agrigento.html"
+        new="https://www.happings.com/it/mercati-settimanali-a-agrigento-e-provincia/"
+        self.assertTrue(allowed_url(old,old,new))
+        base=[row("agrigento",city="Agrigento",province="AG",region="Sicilia",url=old)]
+        pages=[{"requested_url":old,"final_url":new,
+                "html":SAMPLE.replace(b"Spinea",b"Agrigento").replace(b"Venezia",b"Agrigento")}]
+        after,report=preview(base,pages,today=TODAY)
+        self.assertEqual(after,base)
+        self.assertEqual(report["field_candidates"],1)
+        self.assertEqual(report["field_changes"],0)
+        self.assertEqual(select_pages(base,today=TODAY),[old])
 
     def test_robots_denial_and_request_budget_prevent_any_unauthorized_crawl(self):
         calls=[]
@@ -182,6 +256,38 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(len(result),1)
         self.assertEqual(fetched,[VENICE_OLD])
 
+    def test_redirect_robots_denial_is_checked_before_redirect_request(self):
+        from happings_source_enrichment import GuardedRedirects,USER_AGENT
+        from urllib.request import Request
+        from urllib.robotparser import RobotFileParser
+        robots=RobotFileParser()
+        robots.parse(["User-agent: *","Disallow: /it/mercati-settimanali-a-venezia-e-provincia/"])
+        self.assertTrue(robots.can_fetch(USER_AGENT,VENICE_OLD))
+        with self.assertRaisesRegex(ValueError,"robots policy denied redirected"):
+            GuardedRedirects(VENICE_OLD,robots).redirect_request(
+                Request(VENICE_OLD),None,301,"Moved",{},VENICE_NEW)
+
+    def test_robot_delay_and_aliases_cannot_bypass_request_budget(self):
+        sleeps=[]
+        def robots(url,**kwargs):
+            return b"User-agent: *\nAllow: /\nCrawl-delay: 8\n",url
+        fetch_pages([VENICE_OLD],permission_confirmed=True,robots_fetch=robots,
+                    page_fetch=lambda url,**kwargs:(SAMPLE,VENICE_NEW),sleep=sleeps.append)
+        self.assertEqual(sleeps,[8])
+        from happings_source_enrichment import GuardedRedirects
+        from urllib.request import Request
+        from urllib.robotparser import RobotFileParser
+        policy=RobotFileParser()
+        policy.parse(["User-agent: *","Allow: /","Crawl-delay: 8"])
+        redirects=[]
+        follow=GuardedRedirects(VENICE_OLD,policy,sleep=redirects.append).redirect_request(
+            Request(VENICE_OLD),None,301,"Moved",{},VENICE_NEW)
+        self.assertEqual(follow.full_url,VENICE_NEW)
+        self.assertEqual(redirects,[8])
+        with self.assertRaisesRegex(ValueError,"URL not from"):
+            fetch_pages([VENICE_OLD,VENICE_NEW],permission_confirmed=True,
+                        robots_fetch=lambda *a,**k:self.fail("No robots request for duplicate aliases"))
+
     def test_default_publisher_rights_record_is_not_authentication(self):
         from happings_source_enrichment import RIGHTS_REVIEW_FILE
         rights=json.loads(RIGHTS_REVIEW_FILE.read_text("utf-8"))
@@ -199,7 +305,12 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
             "https://www.happings.com/it/mercati-settimanali-a-bologna.html",
             "https://www.happings.com/it/mercati-settimanali-a-rimini.html",
         ]
-        old=[row("market-"+str(i),url=urls[i%len(urls)]) for i in range(22)]
+        places=[("Spinea","VE","Veneto"),("Modena","MO","Emilia-Romagna"),
+                ("Padova","PD","Veneto"),("Bologna","BO","Emilia-Romagna"),
+                ("Rimini","RN","Emilia-Romagna")]
+        old=[row("market-"+str(i),url=urls[i%len(urls)],
+                 city=places[i%5][0],province=places[i%5][1],region=places[i%5][2])
+             for i in range(22)]
         old[0]["indirizzo"]="Piazza Fermi"
         original=copy.deepcopy(old)
         visited=set()
@@ -224,6 +335,14 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         catalog.append(copy.deepcopy(catalog[0]))
         with self.assertRaisesRegex(ValueError,"Repeated legacy market ID"):
             select_pages(catalog,today=TODAY)
+
+    def test_rotation_coalesces_aliases_and_rejects_wrong_province(self):
+        base=[row("old"),row("canonical",url=VENICE_NEW),row("wrong",province="MO")]
+        selected=select_pages(base,today=TODAY)
+        self.assertEqual(len(selected),1)
+        self.assertIn(selected[0],(VENICE_OLD,VENICE_NEW))
+        with self.assertRaisesRegex(ValueError,"repeated source page"):
+            preview(base,feed()+[{"requested_url":VENICE_NEW,"final_url":VENICE_NEW,"html":SAMPLE}])
 
     def test_no_original_market_is_ever_deleted_or_verified(self):
         old=[row("spinea-1"),row("dolo-1",city="Dolo")]

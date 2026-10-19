@@ -346,16 +346,22 @@ def data_value_score(market: dict) -> int:
     )
 
 
-def combine_safe_source_duplicates(records: list[dict]) -> tuple[list[dict], int]:
+def combine_safe_source_duplicates(records: list[dict], *, preserve_ids=None) -> tuple[list[dict], int]:
     """Merge only near-exact names from the SAME source and city.
 
     A shared source list URL is not enough: title and city must agree,
     and distinct specific addresses never merge automatically.
     """
+    protected = frozenset(preserve_ids or ())
     unique = []
     groups = {}
     merges = 0
     for item in records:
+        # Field enrichment must never collapse a bookmarked source identity.
+        # Keep protected rows out of both sides of duplicate matching.
+        if item["slug"] in protected:
+            unique.append(item)
+            continue
         group = source_duplicate_group(item)
         found = None
         for index in groups.get(group, []) if group else []:
@@ -393,7 +399,12 @@ def combine_safe_source_duplicates(records: list[dict]) -> tuple[list[dict], int
     return unique, merges
 
 
-def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
+def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[dict], dict]:
+    if preserve_ids is not None and (
+            not isinstance(preserve_ids, (set, frozenset))
+            or any(not isinstance(sid, str) or not sid for sid in preserve_ids)):
+        raise ValueError("Protected market IDs must be a set of nonempty source identifiers")
+    protected = frozenset(preserve_ids or ())
     cleaned = []
     skipped = Counter()
     by_slug = {}
@@ -405,6 +416,8 @@ def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
             continue
         slug = result["slug"]
         if slug in by_slug:
+            if slug in protected:
+                raise ValueError("Repeated protected market identifier: " + slug)
             current = by_slug[slug]
             if result == current:
                 skipped["exact_duplicate"] += 1
@@ -425,7 +438,9 @@ def prepare(raw_records: list, today: date) -> tuple[list[dict], dict]:
         by_slug[slug] = result
         cleaned.append(result)
 
-    cleaned, safe_merged = combine_safe_source_duplicates(cleaned)
+    if protected - by_slug.keys():
+        raise ValueError("Export normalization removed or changed protected market identifiers")
+    cleaned, safe_merged = combine_safe_source_duplicates(cleaned, preserve_ids=protected)
     cleaned.sort(key=lambda m: (m["regione"], m["citta"], m["nome"], m["slug"]))
     stats = {
         "same_source_duplicates_merged": safe_merged,
@@ -476,9 +491,10 @@ def _write_asset(output: Path, relative: str, markets: list[dict]):
 
 
 def export(records: list, out: Path, today: date | None = None,
-           min_count: int = 1, max_drop_ratio: float = 0.20, dry_run: bool = False):
+           min_count: int = 1, max_drop_ratio: float = 0.20, dry_run: bool = False,
+           *, preserve_ids=None):
     now = today or date.today()
-    markets, stats = prepare(records, now)
+    markets, stats = prepare(records, now, preserve_ids=preserve_ids)
     if len(markets) < min_count:
         raise ValueError("Quality gate: too few accepted markets: " + str(stats))
 
