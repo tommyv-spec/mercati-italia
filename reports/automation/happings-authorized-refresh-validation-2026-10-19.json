@@ -1,0 +1,442 @@
+{
+  "schema": 1,
+  "date": "2026-10-19",
+  "generated_at": "2026-10-19T19:02:24.490732+00:00",
+  "scope": "Happings recurring source-level extraction and safe field refresh in DEV",
+  "base_commit": "fd000371c77822fd70dc3faadf369e85389ba8ae",
+  "branch": "fix/happings-authorized-refresh-20261019",
+  "target_branch": "improve/data-quality-security-performance-2026-10-11",
+  "main_reference_read_only": "1ef738e6c05981e208ffcea5aae483ed0df14969",
+  "operational_authorization": {
+    "authorized": true,
+    "status": "project_owner_authorized",
+    "basis": "explicit_project_owner_instruction",
+    "rights_authenticated": false,
+    "record_sha256": "512250e027cd43a3b86a41294b842a896d5bbac6cdc0696e1f3eba0237b01d72",
+    "new_permission_confirmation_required": false
+  },
+  "active_policy": {
+    "enabled": true,
+    "max_pages": 16
+  },
+  "mechanism_changes": [
+    "Enable the recurring DEV phase using the existing explicit project instruction, separately from publisher document authentication.",
+    "Rotate across existing province URLs even when market fields are already populated; never drop completed sources from refresh.",
+    "Join matching legacy town records to an existing province index using exact town, province, ISTAT region and simple weekly recurrence.",
+    "Retain a source receipt for each observed address and wholly supported weekly recurrence, without inventing a source content date.",
+    "Refresh only addresses assigned by this manager, with stable identity, a later read, changed source content and no competing location evidence.",
+    "Protect manual edits, already existing addresses, precise positions, human verification and all primary market identities.",
+    "Keep completed pages when another page fails, and resume original source evidence without a new read or a changed read date.",
+    "Keep qualified weekly records in the conflicting-location cohort while excluding unproven season, time or cancellation claims from field receipts.",
+    "Honor rejected parser locations in the enrichment phase and keep excluded rows in ambiguity checks.",
+    "Separate reader capacity from actual reading success and from field-level source evidence in coverage reports."
+  ],
+  "source_routing_measurement": {
+    "catalog_markets": 13824,
+    "happings_markets": 9647,
+    "routed_happings_records": 8193,
+    "distinct_routed_province_urls": 95,
+    "routed_records_by_family": {
+      "province_index_old_a": 3883,
+      "town_detail_legacy": 3978,
+      "province_index_old_ad": 332
+    },
+    "routed_missing_addresses_by_family": {
+      "province_index_old_a": 2152,
+      "province_index_old_ad": 179,
+      "town_detail_legacy": 2
+    },
+    "after_filling_addresses_scheduler_is_unchanged": true,
+    "six_days_visit_every_routed_province": true,
+    "first_day_urls": [
+      "https://www.happings.com/it/mercati-settimanali-a-benevento.html",
+      "https://www.happings.com/it/mercati-settimanali-a-bergamo.html",
+      "https://www.happings.com/it/mercati-settimanali-a-biella.html",
+      "https://www.happings.com/it/mercati-settimanali-a-bologna.html",
+      "https://www.happings.com/it/mercati-settimanali-a-bolzano.html",
+      "https://www.happings.com/it/mercati-settimanali-a-brescia.html",
+      "https://www.happings.com/it/mercati-settimanali-a-brindisi.html",
+      "https://www.happings.com/it/mercati-settimanali-a-cagliari.html",
+      "https://www.happings.com/it/mercati-settimanali-a-campobasso.html",
+      "https://www.happings.com/it/mercati-settimanali-a-caserta.html",
+      "https://www.happings.com/it/mercati-settimanali-a-catania.html",
+      "https://www.happings.com/it/mercati-settimanali-a-catanzaro.html",
+      "https://www.happings.com/it/mercati-settimanali-a-chieti.html",
+      "https://www.happings.com/it/mercati-settimanali-a-como.html",
+      "https://www.happings.com/it/mercati-settimanali-a-cosenza.html",
+      "https://www.happings.com/it/mercati-settimanali-a-cremona.html"
+    ],
+    "happings_supported_count": 8193,
+    "happings_unproven_count": 1454,
+    "coverage_market_count": 13824,
+    "selected_records_on_2026_10_19": 1975,
+    "selection_unchanged_between_published_and_pre_happings_catalog": true
+  },
+  "synthetic_regressions": {
+    "happings_source_tests": 38,
+    "happings_parser_tests": 24,
+    "happings_autopilot_tests": 31,
+    "source_coverage_tests": 19,
+    "new_tests_since_base_DEV": 43,
+    "independent_cycle_review": {
+      "checks": {
+        "initial_address_assigned": true,
+        "unchanged_later_read_preserves_manager": true,
+        "change_after_unchanged_cycle_is_automatically_applied": true,
+        "manual_change_is_preserved": true,
+        "every_stage_report_passes": true,
+        "source_content_date_remains_unknown": true,
+        "unproven_season_claim_gets_calendar_receipt": false,
+        "qualified_weekly_conflict_blocks_assignment": true
+      },
+      "synthetic_fixtures_only": true,
+      "source_requests": 0,
+      "repository_data_changed": false,
+      "seasonal_text": "settimanale - mercoledì da giugno a settembre",
+      "seasonal_rule": {
+        "kind": "weekly",
+        "weekdays": [
+          2
+        ]
+      }
+    },
+    "independent_release_review": "Twelve targeted cases exercised in-memory change and export guards: manual edit, verification, precise coordinates, independent evidence, qualified recurrence and unknown or expired source dates. No further defect reproduced.",
+    "fixtures_do_not_attest_live_market_facts": true
+  },
+  "real_source_sample_analysis": {
+    "mode": "read-only component preview against the whole existing catalog",
+    "catalog_records": 13824,
+    "samples": [
+      {
+        "source": "venezia",
+        "requested_url": "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/",
+        "canonical_url_in_html": "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/",
+        "final_http_url": null,
+        "headers_observed": false,
+        "acquisition": "RemoteDesktopCommander.read_file URL",
+        "snapshot_representation": "snapshot_utf8_reencoded_from_connector_text",
+        "html_characters_javascript_utf16": 159016,
+        "recorded_at_utc": "2026-10-19 18:58:27 UTC",
+        "content_date_proven": false,
+        "analysis_final_url_is_canonical_identity_not_observed_redirect": true,
+        "bytes": 159095,
+        "sha256": "ade3a0bb9ec8b75614a8968ccf301c29a87d8d1f72c7be96d9d80c5d12d7e44a",
+        "temporary_snapshot_filename": "venezia-connector.html",
+        "request_started_at_utc": "2026-10-19T18:54:37.174647+00:00",
+        "request_completed_at_utc": "2026-10-19T18:54:41.015179+00:00"
+      },
+      {
+        "source": "modena",
+        "requested_url": "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/",
+        "canonical_url_in_html": "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/",
+        "final_http_url": null,
+        "headers_observed": false,
+        "acquisition": "RemoteDesktopCommander.read_file URL",
+        "snapshot_representation": "snapshot_utf8_reencoded_from_connector_text",
+        "html_characters_javascript_utf16": 155409,
+        "recorded_at_utc": "2026-10-19 18:58:27 UTC",
+        "content_date_proven": false,
+        "analysis_final_url_is_canonical_identity_not_observed_redirect": true,
+        "bytes": 155514,
+        "sha256": "17654158359dbdc9211756f28299ec2192efb834140cc464eeea6238510b3486",
+        "temporary_snapshot_filename": "modena-connector.html",
+        "exact_transport_timestamps_exposed": false
+      }
+    ],
+    "result": {
+      "schema": 1,
+      "date": "2026-10-19",
+      "publisher": "happings.com",
+      "pages_evaluated": 2,
+      "market_ids_preserved": 13824,
+      "field_candidates": 15,
+      "field_changes": 0,
+      "parser_counts": {
+        "already_has_street_or_vague_original": 13,
+        "conflicting_previously_saved_location": 9,
+        "html_market_rows": 179,
+        "identity_weekday_unproven": 8,
+        "no_unique_source_market_city_weekday": 41,
+        "publisher_only_vague_or_area_location": 40
+      },
+      "source_pages": [
+        {
+          "requested_url": "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/",
+          "final_url": "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/",
+          "source_html_sha256": "ade3a0bb9ec8b75614a8968ccf301c29a87d8d1f72c7be96d9d80c5d12d7e44a",
+          "status": "parsed",
+          "source_rows": 110
+        },
+        {
+          "requested_url": "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/",
+          "final_url": "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/",
+          "source_html_sha256": "17654158359dbdc9211756f28299ec2192efb834140cc464eeea6238510b3486",
+          "status": "parsed",
+          "source_rows": 69
+        }
+      ],
+      "verified_market_openings_created": 0,
+      "geocoded_market_locations_created": 0,
+      "unapproved_publisher_field_overwrites": 0,
+      "max_pages_per_run": 16,
+      "observed_markets": 0,
+      "record_changes": 0,
+      "calendar_content_dates_inferred": 0,
+      "field_observations_proposed": 64,
+      "all_original_records_unchanged": true,
+      "operational_authorization": {
+        "authorized": true,
+        "status": "project_owner_authorized",
+        "basis": "explicit_project_owner_instruction",
+        "rights_authenticated": false
+      },
+      "snapshot_source": "Complete HTML text from connector, reencoded UTF-8 without changes",
+      "final_url_semantics": "Requested canonical page identity; no HTTP redirect or final-transport-URL observation is claimed",
+      "scheduled_batch_executed": false,
+      "pages": [
+        {
+          "source": "venezia",
+          "schema": 1,
+          "date": "2026-10-19",
+          "publisher": "happings.com",
+          "pages_evaluated": 1,
+          "market_ids_preserved": 13824,
+          "field_candidates": 11,
+          "field_changes": 0,
+          "parser_counts": {
+            "already_has_street_or_vague_original": 13,
+            "conflicting_previously_saved_location": 6,
+            "html_market_rows": 110,
+            "identity_weekday_unproven": 1,
+            "no_unique_source_market_city_weekday": 30,
+            "publisher_only_vague_or_area_location": 10
+          },
+          "source_pages": [
+            {
+              "requested_url": "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/",
+              "final_url": "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/",
+              "source_html_sha256": "ade3a0bb9ec8b75614a8968ccf301c29a87d8d1f72c7be96d9d80c5d12d7e44a",
+              "status": "parsed",
+              "source_rows": 110
+            }
+          ],
+          "verified_market_openings_created": 0,
+          "geocoded_market_locations_created": 0,
+          "unapproved_publisher_field_overwrites": 0,
+          "max_pages_per_run": 16,
+          "observed_markets": 0,
+          "record_changes": 0,
+          "calendar_content_dates_inferred": 0,
+          "field_observations_proposed": 39
+        },
+        {
+          "source": "modena",
+          "schema": 1,
+          "date": "2026-10-19",
+          "publisher": "happings.com",
+          "pages_evaluated": 1,
+          "market_ids_preserved": 13824,
+          "field_candidates": 4,
+          "field_changes": 0,
+          "parser_counts": {
+            "conflicting_previously_saved_location": 3,
+            "html_market_rows": 69,
+            "identity_weekday_unproven": 7,
+            "no_unique_source_market_city_weekday": 11,
+            "publisher_only_vague_or_area_location": 30
+          },
+          "source_pages": [
+            {
+              "requested_url": "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/",
+              "final_url": "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/",
+              "source_html_sha256": "17654158359dbdc9211756f28299ec2192efb834140cc464eeea6238510b3486",
+              "status": "parsed",
+              "source_rows": 69
+            }
+          ],
+          "verified_market_openings_created": 0,
+          "geocoded_market_locations_created": 0,
+          "unapproved_publisher_field_overwrites": 0,
+          "max_pages_per_run": 16,
+          "observed_markets": 0,
+          "record_changes": 0,
+          "calendar_content_dates_inferred": 0,
+          "field_observations_proposed": 25
+        }
+      ]
+    },
+    "happings_source_content_dates_inferred": 0,
+    "all_primary_source_URLs_preserved": true,
+    "candidate_addresses_are_not_a_claim_of_independent_venue_or_opening_verification": true,
+    "raw_HTML_saved_in_repository": false,
+    "scheduled_16_page_batch_executed": false,
+    "samples_added_to_scheduled_batch_checkpoint": false,
+    "provenance_limit": "The connector returned complete HTML text for the requested canonical pages. Stored UTF-8 snapshots preserve that text. HTTP headers and final transport URL were not exposed; no observed redirect or original wire-byte hash is claimed."
+  },
+  "acquisition_environment_limits": {
+    "direct_project_reader_attempts": "Normal and elevated local attempts could not retrieve robots because DNS resolution was unavailable; no HTML source bytes were received through this path.",
+    "remote_runtime_probe": "Runtime inventory tool did not complete. It contained no Happings HTML request and returned no confirmed acquisition process.",
+    "successful_alternative": "Two canonical pages read through the connected URL reader; no browser or scheduled production run was used.",
+    "robots_review": "The connected robots.txt read completed on 2026-10-19 at 18:29:57 UTC, before the two source samples. Its completed tool output was reviewed during the task. A later retrieval of that tool result had expired; no raw robots hash is claimed here.",
+    "future_project_crawler_controls": "The actual recurring reader checks robots in every cycle, uses its declared project User-Agent, waits at least three seconds or the stricter crawl rate, and enforces same-province redirects, 18-second timeout, size and page limits."
+  },
+  "full_catalog_replay": {
+    "command": "python -B backend/autopilot.py --offline --resume --today 2026-10-19 --output /tmp/mercati-happings-authorized-replay-20261019",
+    "mode": "offline revalidation of previously saved official-source snapshots, separate from the two Happings samples",
+    "network_requests": 0,
+    "new_source_reads_claimed": 0,
+    "original_source_contents_and_read_dates_preserved": true,
+    "source_provenance_manifest_sha256": "2bacc00170d95e0b8ab5dedf75c685780383f979c6f6e148f0de7f324966656b",
+    "baseline_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+    "candidate_signature": "f7573e34bcc87d7a0fe7448853909e062db6e60d0959ea3d29af759a17652bd4",
+    "all_original_market_IDs_retained": true,
+    "retained_source_ids": 13824,
+    "removed_source_ids": 0,
+    "gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "all_gates_passed": true,
+    "elapsed_seconds": 24.62,
+    "happings_enrichment": {
+      "field_changes": 0,
+      "pages_evaluated": 0,
+      "protected_existing_market_ids": 9647,
+      "release_safe": true,
+      "rights_state": "project_owner_authorized",
+      "status": "resume_missing_evidence"
+    },
+    "happings_snapshot_missing_is_not_a_live_batch_success": true,
+    "candidate_metrics": {
+      "future_60": 11846,
+      "future_90": 11829,
+      "indexed_gzip_bytes": 406328,
+      "missing_hours": 10602,
+      "precise": 89,
+      "records": 13824,
+      "unknown_dates": 1918,
+      "verified": 0
+    },
+    "field_quality_metrics": {
+      "indirizzo:mancante": 3214,
+      "indirizzo:riscontrato_fonte_recente": 1368,
+      "indirizzo:riscontro_da_aggiornare": 4,
+      "indirizzo:senza_riscontro_documentato": 9238,
+      "markets": 13824,
+      "markets_with_all_three_fields_source_supported": 1015,
+      "markets_with_recent_field_evidence": 1512,
+      "orario_testo:mancante": 10602,
+      "orario_testo:riscontrato_fonte_recente": 1158,
+      "orario_testo:riscontro_da_aggiornare": 88,
+      "orario_testo:senza_riscontro_documentato": 1976,
+      "ricorrenza_testo:mancante": 934,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1356,
+      "ricorrenza_testo:riscontro_da_aggiornare": 26,
+      "ricorrenza_testo:senza_riscontro_documentato": 11508
+    },
+    "source_reader_coverage": {
+      "hosts": 72,
+      "market_dispositions": {
+        "happings_province_index": 8193,
+        "happings_source_scope_unproven": 1454,
+        "official_adapter": 1219,
+        "source_contract_active": 39,
+        "source_layout_needed": 2919
+      },
+      "market_layout_statuses": {
+        "supported": 9451,
+        "unsupported": 4373
+      },
+      "market_read_statuses": {
+        "not_read": 4373,
+        "not_selected": 6218,
+        "offline_skipped": 2,
+        "resume_checkpoint_missing": 39,
+        "resume_missing_evidence": 1975,
+        "resumed_checkpoint": 1217
+      },
+      "markets": 13824,
+      "schema": 1,
+      "source_admission_registry": "valid",
+      "source_contract_configuration": "valid",
+      "unique_primary_urls": 5752
+    },
+    "candidate_catalog_published": false
+  },
+  "validation": {
+    "python_tests": {
+      "passed": 877,
+      "elapsed_seconds": 40.517,
+      "log_sha256": "00dca117dbbb0a6a5bd3afc12db323d670f3dac1b9f11da5cb471cafdd37fb49"
+    },
+    "node_test_files": {
+      "passed": 8,
+      "log_sha256": "dcbe03f620a5249df80391686eb1d15d9133f03f34429090fffdff539b0c3bbe"
+    },
+    "production_build": {
+      "passed": true,
+      "log_sha256": "18ad4d5e92b592fb8d1f0247f97e7c421ab9e2d38f32112c73aab8050a3b14ef"
+    },
+    "bundled_map_worker": {
+      "passed": true,
+      "bytes": 508900,
+      "log_sha256": "9031f47c768db857e7f8f85bef1e5c63a2f1b292cf6a71aae4e9ea4ad30065d2"
+    },
+    "full_replay_log_sha256": "1af7818ac2e455ba3e7bf3fbc3592e2d0885ed8d1e3e806b2322f88dfb9e0b7a",
+    "release_decision_sha256": "8cd66329a150df101d90ef9ebf23138ef2c5f9d90ddcc9accc45763aca272b25",
+    "real_sample_full_preview_sha256": "0add39eb30e0616691590f4b4e3bbf299455f5480f9293be5a7189f0b6c631c6"
+  },
+  "remaining_limits": [
+    "Reader coverage is not proof that every market fact is correct or current.",
+    "Happings source content dates remain unknown; a recent page read does not establish a recent publisher update or a confirmed opening.",
+    "Morning or afternoon labels do not supply numeric opening hours.",
+    "1,454 Happings records have no supported source-page route and remain in the catalog and coverage queue.",
+    "2,333 blank addresses are routable for comparison; this does not mean the source has a unique safe address for every one.",
+    "The current full scheduled 16-page Happings batch has not been run in this validation environment.",
+    "Other source families still requiring a parser remain visible in the coverage report."
+  ],
+  "delivery_constraints": {
+    "per_market_data_patches": 0,
+    "public_catalog_files_changed": 0,
+    "main_modified": false,
+    "new_workflows": 0,
+    "new_schedulers": 0,
+    "new_services_or_dependencies": 0,
+    "retention_policy_changes": 0,
+    "automatic_publication_channel": "Existing daily DEV Autopilot after its QA gates",
+    "existing_schedule_UTC": "17 04 * * *",
+    "scheduled_workflow_verified_at_main_commit": "1ef738e6c05981e208ffcea5aae483ed0df14969"
+  },
+  "validated_file_sha256": {
+    "backend/autopilot.py": "828931d6f3b17957d9f914a5ddefd589b15725d8a963165b24c06849c1765e67",
+    "backend/autopilot_policy.json": "a82f5948572da5a8259e6efe68578ba2cbac2833a3439e99f3ed8d630f6366fd",
+    "backend/data/happings-rights-review.json": "512250e027cd43a3b86a41294b842a896d5bbac6cdc0696e1f3eba0237b01d72",
+    "backend/happings_autopilot.py": "ae1ab1b1eb444e13e473d896bdfe9394bd119c24d1f92d66425d46eaa8cdc7ae",
+    "backend/happings_source_enrichment.py": "f700504bf836753c5cfebedf2697e7111991fa059a0c4fb9e67c196ef00fc3cf",
+    "backend/happings_weekly_layout.py": "9cb3c14483849b77c45cbad60693fbf06295f784339f72c05ecc4b1e788189eb",
+    "backend/publisher_refresh.py": "2a7adadc7c57bfe412c0fb216b5350cf0d96cc3d8750a5e7e68f824ba31d16a9",
+    "backend/tests/test_happings_autopilot.py": "07ba96d0661f10b4074a60400eec3c5650633a4f7306d3fd87a0bf3eb314af8a",
+    "backend/tests/test_happings_source_enrichment.py": "16024397b2422cfdd6a7cb2fd2262c5f6ab5c6cc81e8272963f467e12047bd8e",
+    "backend/tests/test_happings_weekly_layout.py": "3546d9cc94796c1ef1f1257c333e9729b85d137d29c932997412e74556929ed0",
+    "backend/tests/test_source_refresh_coverage.py": "b0436f0f24812c8cee8ab2003c288e335bd9a2bfe1bdee57a6cb5e58b5255f65",
+    "docs/AUTOMATIC_SOURCE_REFRESH.md": "a12275326528091312df654cc6f57b13faf400956944d119e6ffa3114198c50e",
+    "docs/HAPPINGS_AUTOPILOT_PHASE.md": "d6962aaa0f9f1f0f7caf72fdfb973b4da1d10c87454583a7c0bb22f7ae72aade",
+    "docs/HAPPINGS_CONSENT_GATED_ENRICHMENT_2026-10-19.md": "6346729969f5988cffdb60a9da21ed482806137d77ea43904aa5d9d73f76ef3a",
+    "docs/HAPPINGS_SOURCE_PILOT_2026-10-19.md": "1ab9c0f7295ef30c3fea76e00a2c5b88eb91077e34a7875bb1bb5aa3ef5a9a3c"
+  }
+}

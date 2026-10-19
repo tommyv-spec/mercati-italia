@@ -4,13 +4,13 @@
 A Happings index is a town + weekday + market-area directory, NOT an exact
 time schedule or individually confirmed weekly opening. Parse once per
 publisher layout, compare with existing source-URL-scoped identities, and
-fill only blank addresses after a unique source row AND no catalog conflict.
+fill missing addresses or refresh this engine's earlier assignments only
+after a unique source row and no catalog conflict.
 
-Default mode is a no-write read-only field audit. Live HTTP is opt-in,
-budgeted, robots-aware, and denied unless rights verification is explicitly
-enabled. User-provided PDFs aren't stored in this repository. The uploaded
-examples have no cryptographic PDF signature, so they aren't themselves a
-machine-verifiable authorization token; see the versioned rights review.
+Default mode is a no-write field audit. The project owner's explicit
+instruction authorizes the configured, bounded DEV crawler. That instruction
+is recorded separately from authentication of publisher documents. Requests
+remain robots-aware and every changed field must have exact source evidence.
 """
 from __future__ import annotations
 
@@ -25,6 +25,7 @@ import unicodedata
 from collections import Counter, defaultdict
 from copy import deepcopy
 from datetime import date
+from http.client import HTTPException
 from functools import lru_cache
 from pathlib import Path
 from urllib.error import HTTPError
@@ -38,19 +39,57 @@ from source_reconciliation_audit import _unambiguous_day
 from recurrence_refresh import explicit_rule
 from merge_catalog import load_existing
 from municipality_reconciliation import trusted_municipalities
+from field_evidence import (clean_receipts, make_receipt, managed_update_allowed,
+                            mark_managed_fields, retire_superseded_receipts)
 
 SCHEMA=1
 PUBLISHER="happings.com"
 ROBOTS="https://www.happings.com/robots.txt"
-MAX_REQUESTS_PER_RUN=2
+MAX_REQUESTS_PER_RUN=16
 MAX_RESPONSE_BYTES=2_600_000
 MAX_MARKETS=100_000
-MAX_UPDATES_PER_RUN=200
+MAX_UPDATES_PER_RUN=2000
 MIN_REQUEST_PAUSE_SECONDS=3
 USER_AGENT="MercatiItaliaMarketFields/1.0 (+https://github.com/tommyv-spec/mercati-italia)"
 RIGHTS_REVIEW_FILE=Path(__file__).resolve().parent/"data/happings-rights-review.json"
 MUNICIPALITIES_FILE=Path(__file__).resolve().parent/"data/istat-comuni-2026.json"
 SOURCE_EVIDENCE_NAME="Happings — elenco settimanale (sede indicativa; apertura non verificata)"
+FIELD_MANAGER="happings-weekly-index"
+
+
+def authorization_status(record, *, today=None):
+    """Project instructions and publisher authentication are distinct facts."""
+    today=today or date.today()
+    blocked={"authorized":False,"status":"blocked_rights","basis":None,
+             "rights_authenticated":False}
+    if (not isinstance(today,date) or not isinstance(record,dict)
+            or record.get("schema")!=1
+            or record.get("publisher")!="Girolamo srls (Happings)"
+            or record.get("documents_copied_to_github") is not False):
+        return {**blocked,"status":"invalid_or_missing_rights_record"}
+    if record.get("republication_rights_authenticated") is True:
+        return {"authorized":True,"status":"authenticated",
+                "basis":"authenticated_publisher_grant","rights_authenticated":True}
+    instruction=record.get("project_authorization")
+    if not isinstance(instruction,dict):
+        return blocked
+    if not isinstance(instruction.get("recorded_on"),str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}",instruction["recorded_on"]):
+        return blocked
+    try:
+        recorded=date.fromisoformat(instruction.get("recorded_on",""))
+    except (ValueError,TypeError):
+        return blocked
+    if (instruction.get("authorized") is True and instruction.get("revoked") is False
+            and instruction.get("basis")=="explicit_project_owner_instruction"
+            and instruction.get("publication_channel")=="dev-only"
+            and isinstance(instruction.get("scope"),list)
+            and all(isinstance(item,str) for item in instruction["scope"])
+            and sorted(instruction["scope"])==["automated_extraction","processing","republication"]
+            and isinstance(instruction.get("instruction_reference"),str)
+            and 10<=len(instruction["instruction_reference"])<=500 and recorded<=today):
+        return {"authorized":True,"status":"project_owner_authorized",
+                "basis":"explicit_project_owner_instruction","rights_authenticated":False}
+    return blocked
 
 @lru_cache(maxsize=1)
 def _official_geography():
@@ -149,9 +188,9 @@ def _fetch_one(url, *, opener=None, limit=MAX_RESPONSE_BYTES, robots=None):
 def robots_allowed(fetch=_fetch_one):
     try:
         raw,real_url=fetch(ROBOTS,limit=55_000)
-    except (OSError,HTTPError):
+    except (OSError,HTTPError,HTTPException):
         raise ValueError("Publisher robots unavailable: no automatic fetching") from None
-    if len(raw)>55_000 or len(raw)<12:
+    if real_url!=ROBOTS or not isinstance(raw,bytes) or len(raw)>55_000 or len(raw)<12:
         raise ValueError("Untrusted robots response")
     text=raw.decode("utf-8-sig","replace")
     if "user-agent:" not in text.lower():
@@ -179,13 +218,70 @@ def _same_place(a,b):
 
 
 def _eligible_field(row):
-    # Never replace a specific street by scraped text. For the first release
-    # don't even replace "centro" -- it is a currently visible source claim.
+    # Only a blank street qualifies for an initial assignment. Nonempty
+    # values, including vague labels, require separate managed-update proof.
     return not str(row.get("indirizzo") or "").strip()
 
 
-def _weekly_day(row):
-    """A weekday suffix or repeated isolated date cannot prove weekly cadence."""
+def _town_url_matches(row):
+    """Recognize only the existing municipal URL family and its exact town."""
+    url=row.get("url_fonte")
+    if not isinstance(url,str):
+        return False
+    try:
+        parsed=urlsplit(url)
+        if (parsed.scheme!="https" or parsed.netloc!="www.happings.com"
+                or parsed.query or parsed.fragment):
+            return False
+        match=re.fullmatch(r"/it/mercato-settimanale-a-([a-z0-9][a-z0-9-]*)\.html",parsed.path)
+        return bool(match and fold(match[1].replace("-"," "))==fold(row.get("citta")))
+    except ValueError:
+        return False
+
+
+def record_matches_page(row, requested_url, final_url):
+    """A municipal link is a geographic join, never an invented redirect."""
+    if (row.get("fonte")!=PUBLISHER or not same_generic_venue(row)
+            or not allowed_url(requested_url,requested_url,final_url)
+            or not _catalog_geography_matches(row,final_url)
+            or _weekly_day(row) is None):
+        return False
+    return (allowed_url(row.get("url_fonte"),requested_url,final_url)
+            or _town_url_matches(row))
+
+
+def catalog_page_routes(markets):
+    """Route compatible existing identities to existing province URLs."""
+    if not isinstance(markets,list) or not 0<=len(markets)<=MAX_MARKETS:
+        raise ValueError("Unbounded publisher catalog routes")
+    by_area=defaultdict(set)
+    seen=set()
+    for row in markets:
+        if not isinstance(row,dict) or not isinstance(row.get("slug"),str) or not row["slug"]:
+            raise ValueError("Publisher scheduling requires intact source identities")
+        if row["slug"] in seen:
+            raise ValueError("Repeated legacy market ID in publisher scheduling")
+        seen.add(row["slug"])
+        url=row.get("url_fonte")
+        if (row.get("fonte")==PUBLISHER and _valid_page_url(url)
+                and _catalog_geography_matches(row,url)):
+            by_area[(fold(row.get("regione")),str(row.get("provincia") or "").strip().upper())].add(url)
+    representatives={area:min(urls,key=lambda url:(province_page_key(url),url))
+                     for area,urls in by_area.items()}
+    routes={}
+    for row in markets:
+        url=representatives.get((fold(row.get("regione")),str(row.get("provincia") or "").strip().upper()))
+        if url and record_matches_page(row,url,url):
+            routes[row["slug"]]=url
+    return routes
+
+
+def _cohort_weekly_day(row):
+    """A qualified weekly market still supplies a possible venue conflict.
+
+    Recognizing its weekday does not attest season, hours or opening state.
+    Those extra claims keep the record out of automatic source assignments.
+    """
     rule=explicit_rule(row.get("ricorrenza_testo"))
     if not rule or rule.get("kind")!="weekly" or len(rule.get("weekdays",[]))!=1:
         return None
@@ -193,93 +289,144 @@ def _weekly_day(row):
     return day if day==rule["weekdays"][0] else None
 
 
+def _weekly_day(row):
+    """Only a complete simple weekly formula can receive a source claim."""
+    if not re.fullmatch(r"(?:settimanale|ogni|tutti i) (?:lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)",
+                        fold(row.get("ricorrenza_testo"))):
+        return None
+    return _cohort_weekly_day(row)
+
+
 def _blocked_source_cohort(rows,source_city,weekday):
     """Any conflicting saved nonempty street makes source mapping ambiguous."""
     stored={
         fold(r.get("indirizzo"))
         for r in rows
-        if fold(r.get("citta"))==source_city and _weekly_day(r)==weekday
+        if fold(r.get("citta"))==source_city and _cohort_weekly_day(r)==weekday
         and safe_stored_street(r.get("indirizzo"))
     }
     return stored
 
 
 def select_pages(markets, *, today=None, limit=MAX_REQUESTS_PER_RUN):
-    """Cycle fairly over existing weekly-index URLs ordered by repair impact.
-
-    No network requests.  The exact publisher URL is always read from an
-    existing Happings card, not guessed from a Google result. With N pages
-    and a 2-pages/day budget, every page is visited during a bounded cycle.
-    """
+    """Stable source rotation continues after addresses have been filled."""
     today=today or date.today()
     if (not isinstance(today,date) or not isinstance(markets,list)
-        or not 1<=len(markets)<=MAX_MARKETS or not 1<=limit<=MAX_REQUESTS_PER_RUN):
+        or not 1<=len(markets)<=MAX_MARKETS or type(limit) is not int
+        or not 1<=limit<=MAX_REQUESTS_PER_RUN):
         raise ValueError("Unbounded publisher page scheduling")
-    totals=Counter()
-    seen_ids=set()
-    for row in markets:
-        if not isinstance(row,dict) or not isinstance(row.get("slug"),str):
-            raise ValueError("Publisher scheduling requires intact source identities")
-        if row["slug"] in seen_ids:
-            raise ValueError("Repeated legacy market ID in publisher scheduling")
-        seen_ids.add(row["slug"])
-        url=row.get("url_fonte")
-        if (row.get("fonte")==PUBLISHER and _valid_page_url(url)
-            and same_generic_venue(row)
-            and _weekly_day(row) is not None
-            and _eligible_field(row) and _catalog_geography_matches(row,url)):
-            totals[url]+=1
-    if not totals:
+    ranked=sorted(set(catalog_page_routes(markets).values()),key=lambda url:(province_page_key(url),url))
+    if not ranked:
         return []
-    # Do not spend two slots on old/canonical aliases of the same province.
-    by_province=defaultdict(list)
-    for url,count in totals.items():
-        by_province[province_page_key(url)].append((url,count))
-    ranked=[]
-    for aliases in by_province.values():
-        representative=min(aliases,key=lambda pair:(-pair[1],pair[0]))[0]
-        ranked.append((representative,sum(count for _,count in aliases)))
-    ranked=[url for url,count in sorted(ranked,key=lambda kv:(-kv[1],kv[0]))]
     start=(today.toordinal()*limit)%len(ranked)
     return [ranked[(start+i)%len(ranked)] for i in range(min(limit,len(ranked)))]
 
 
-def preview(base, pages, *, today=None, apply=False, rights_verified=False):
-    """Preview or apply strictly bounded proven location fields.
+def _field_receipt(row, values, evidence):
+    return make_receipt(
+        {**row, **values}, values=values, source_url=evidence["source_url"],
+        source_name=SOURCE_EVIDENCE_NAME,
+        source_id="happings-weekly-"+province_page_key(evidence["source_url"]),
+        source_row=province_page_key(evidence["source_url"])+":"+fold(row["citta"])+":"+str(evidence["source_day"]),
+        read_on=evidence["observed_at"], source_updated_on="",
+        source_sha256=evidence["source_html_sha256"], scope="pagina",
+        method="comune_provincia_giorno_univoco", fingerprint_kind="html_bytes")
 
-    pages: list of {"requested_url", "final_url", "html": bytes}.
-    The HTML must come from previously permitted requests. The algorithm
-    never downloads anything itself and never changes IDs/date/GPS/status.
-    """
+
+def _version_is_ordered(row, receipt, today):
+    keys=("fonte_id","url","riga_fonte","metodo","ambito","impronta_tipo")
+    prior=[r for r in clean_receipts(row.get("riscontri_campi"),row,today=today)
+           if all(r.get(k)==receipt.get(k) for k in keys)]
+    return not any(r["letto_il"]>receipt["letto_il"] or
+                   (r["letto_il"]==receipt["letto_il"] and r["sha256"]!=receipt["sha256"]) or
+                   bool(r.get("fonte_aggiornata_il")) for r in prior)
+
+
+def expected_record(before, proposal=None, observation=None, *, today):
+    """Reconstruct exact permitted fields and receipts for the release guard."""
+    result=deepcopy(before)
+    if observation is None:
+        if proposal is not None:
+            raise ValueError("Address proposal has no persistent source observation")
+        return result
+    values=observation.get("values")
+    if (not isinstance(values,dict) or set(values)!={"indirizzo","ricorrenza_testo"}
+            or values["ricorrenza_testo"]!=before.get("ricorrenza_testo")
+            or not safe_stored_street(values.get("indirizzo"))
+            or not _same_place(values["indirizzo"],observation.get("source_value"))
+            or not record_matches_page(before,observation.get("source_requested_url"),observation.get("source_url"))
+            or observation.get("market_id")!=before.get("slug")
+            or observation.get("source_day")!=_weekly_day(before)
+            or observation.get("observed_at")!=today.isoformat()
+            or type(observation.get("apply_authorized")) is not bool
+            or type(observation.get("rights_gate_passed")) is not bool
+            or (observation["apply_authorized"] and not observation["rights_gate_passed"])):
+        raise ValueError("Source observation lost its exact identity or values")
+    plain=_field_receipt(before,values,observation)
+    if not _version_is_ordered(before,plain,today):
+        raise ValueError("Publisher source version ordering is unproven")
+    proof=plain
+    if proposal is None:
+        if values["indirizzo"]!=before.get("indirizzo"):
+            raise ValueError("Observation cannot assign a field without a proposal")
+    else:
+        if (proposal.get("market_id")!=before["slug"] or proposal.get("field")!="indirizzo"
+                or proposal.get("candidate_value")!=values["indirizzo"]
+                or proposal.get("old_value")!=str(before.get("indirizzo") or "")
+                or values["indirizzo"]==before.get("indirizzo")
+                or any(proposal.get(k)!=observation.get(k) for k in (
+                    "source_url","source_requested_url","source_html_sha256","source_city",
+                    "source_province","source_region","source_day","observed_at",
+                    "apply_authorized","rights_gate_passed"))
+                or before.get("verificato_il") or before.get("position_quality")=="precisa"):
+            raise ValueError("Unapproved publisher address assignment")
+        initial=_eligible_field(before)
+        if proposal.get("assignment")!=("initial" if initial else "managed_update"):
+            raise ValueError("Publisher address assignment type changed")
+        if not initial and not managed_update_allowed(before,plain,"indirizzo",manager=FIELD_MANAGER,today=today):
+            raise ValueError("Publisher cannot overwrite an unowned or contradicted address")
+        proof=mark_managed_fields(plain,["indirizzo"],manager=FIELD_MANAGER,previous=before)
+    if observation.get("source_proof")!=proof:
+        raise ValueError("Publisher field receipt differs from its exact observed values")
+    if not observation["apply_authorized"]:
+        return result
+    result["indirizzo"]=values["indirizzo"]
+    kept=retire_superseded_receipts(before,plain,today=today)
+    result["riscontri_campi"]=clean_receipts([*kept,proof],result,today=today)
+    links=deepcopy(before.get("fonti") or [])
+    if not isinstance(links,list) or any(not isinstance(x,dict) for x in links):
+        raise ValueError("Publisher source list is invalid")
+    added={"nome":SOURCE_EVIDENCE_NAME,"url":observation["source_url"]}
+    if added not in links:
+        links.append(added)
+    result["fonti"]=links
+    return result
+
+
+def preview(base, pages, *, today=None, apply=False, rights_verified=False):
+    """Observe compatible fields and refresh only this engine's assignments."""
     today=today or date.today()
     if (not isinstance(today,date) or not isinstance(base,list)
-        or not 1<=len(base)<=MAX_MARKETS or not isinstance(pages,list)
-        or len(pages)>MAX_REQUESTS_PER_RUN or type(apply) is not bool
-        or type(rights_verified) is not bool):
+            or not 1<=len(base)<=MAX_MARKETS or not isinstance(pages,list)
+            or len(pages)>MAX_REQUESTS_PER_RUN or type(apply) is not bool
+            or type(rights_verified) is not bool):
         raise ValueError("Invalid publisher source batch")
     if apply and rights_verified is not True:
-        raise ValueError("Cannot write publisher fields without reviewed rights")
-    frozen=deepcopy(base)
-    ids=set()
-    for row in base:
-        sid=row.get("slug") if isinstance(row,dict) else None
-        if not isinstance(sid,str) or not sid or sid in ids:
-            raise ValueError("Missing or duplicate original market ID")
-        ids.add(sid)
-
+        raise ValueError("Cannot write publisher fields without reviewed rights or project authorization")
+    ids=[r.get("slug") if isinstance(r,dict) else None for r in base]
+    if any(not isinstance(sid,str) or not sid for sid in ids) or len(set(ids))!=len(ids):
+        raise ValueError("Missing or duplicate original market ID")
     proposals=[]
+    observations=[]
     counters=Counter()
     seen_page=set()
     page_results=[]
     for page in pages:
         if not isinstance(page,dict):
             raise ValueError("Invalid publisher page evidence")
-        requested=page.get("requested_url")
-        final=page.get("final_url")
-        blob=page.get("html")
-        if (not _valid_page_url(requested) or not _valid_page_url(final)
-            or province_page_key(requested) in seen_page
-            or not allowed_url(requested,requested,final)):
+        requested,final,blob=(page.get(k) for k in ("requested_url","final_url","html"))
+        if (not allowed_url(requested,requested,final)
+                or province_page_key(requested) in seen_page):
             raise ValueError("Out-of-scope or repeated source page")
         seen_page.add(province_page_key(requested))
         if not isinstance(blob,bytes) or not 300<=len(blob)<=MAX_RESPONSE_BYTES:
@@ -289,8 +436,6 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
         try:
             parser=parse(blob,source_url=final)
         except ValueError:
-            # A changed template cannot make one remaining parsed venue
-            # appear unique. Quarantine this page, preserving other pages.
             counters["source_pages_layout_changed"]+=1
             page_results.append({**page_receipt,"status":"layout_changed"})
             continue
@@ -299,17 +444,11 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
         for entry in parser.rows:
             source[(entry["city_key"],entry["weekday"])].append(entry)
         counters["html_market_rows"]+=len(parser.rows)
-        matched=[
-            r for r in base if r.get("fonte")==PUBLISHER and
-            same_generic_venue(r) and
-            allowed_url(r.get("url_fonte"),requested,final)
-        ]
-        # Town-detail URLs can contain a conflicting saved street even when
-        # the empty target points to a provincial index. Do not hide that
-        # contradiction by considering only the target URL's cohort.
-        geographic_cohort=[r for r in base if r.get("fonte")==PUBLISHER
-                           and same_generic_venue(r)
-                           and _catalog_geography_matches(r,final)]
+        matched=[r for r in base if r.get("fonte")==PUBLISHER and same_generic_venue(r)
+                 and (allowed_url(r.get("url_fonte"),requested,final) or
+                      (_town_url_matches(r) and _catalog_geography_matches(r,final)))]
+        cohort=[r for r in base if r.get("fonte")==PUBLISHER and same_generic_venue(r)
+                and _catalog_geography_matches(r,final)]
         groups=defaultdict(list)
         for record in matched:
             if not _catalog_geography_matches(record,final):
@@ -326,172 +465,189 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                 counters["no_unique_source_market_city_weekday"]+=len(matching_rows)
                 continue
             street=entries[0]["place"].strip()
-            if not safe_stored_street(street):
+            if entries[0].get("has_specific_location") is not True or not safe_stored_street(street):
                 counters["publisher_only_vague_or_area_location"]+=len(matching_rows)
                 continue
-            known=_blocked_source_cohort(geographic_cohort,*pair)
-            if known and known!={fold(street)}:
+            def evidence_for(row):
+                return {
+                    "market_id":row["slug"],"source_url":final,"source_requested_url":requested,
+                    "source_html_sha256":page_receipt["source_html_sha256"],
+                    "source_city":row["citta"],"source_province":row["provincia"],
+                    "source_region":row["regione"],"source_day":pair[1],
+                    "source_value":street,"observed_at":today.isoformat(),
+                    "evidence_method":("publisher_weekday_index_unique_city_and_day_no_conflicting_street"
+                        if allowed_url(row.get("url_fonte"),requested,final)
+                        else "town_link_same_province_city_weekday"),
+                    "individually_confirmed":False,"published_opening_verified":False,
+                    "coordinate_added":False,"rights_gate_passed":bool(rights_verified),
+                    "apply_authorized":bool(apply and rights_verified),
+                }
+            conflicting=False
+            for existing in cohort:
+                if (fold(existing.get("citta"))!=pair[0] or _cohort_weekly_day(existing)!=pair[1]
+                        or not safe_stored_street(existing.get("indirizzo"))
+                        or _same_place(existing["indirizzo"],street)):
+                    continue
+                proof=_field_receipt(existing,{"indirizzo":street},evidence_for(existing))
+                if (not record_matches_page(existing,requested,final)
+                        or existing.get("position_quality")=="precisa"
+                        or not managed_update_allowed(existing,proof,"indirizzo",manager=FIELD_MANAGER,today=today)):
+                    conflicting=True
+                    break
+            if conflicting:
                 counters["conflicting_previously_saved_location"]+=len(matching_rows)
                 continue
             for row in matching_rows:
-                if not _eligible_field(row):
-                    counters["already_has_street_or_vague_original"]+=1
+                common=evidence_for(row)
+                current=str(row.get("indirizzo") or "")
+                value=current if _same_place(current,street) else street
+                values={"indirizzo":value,"ricorrenza_testo":row["ricorrenza_testo"]}
+                plain=_field_receipt(row,values,common)
+                if not _version_is_ordered(row,plain,today):
+                    counters["source_version_ordering_not_proven"]+=1
                     continue
-                receipt={
-                    "market_id":row["slug"],
-                    "field":"indirizzo",
-                    "old_value":"",
-                    "candidate_value":street,
-                    "source_url":final,
-                    "source_requested_url":requested,
-                    "source_html_sha256":page_receipt["source_html_sha256"],
-                    "source_city":row["citta"],
-                    "source_province":row["provincia"],
-                    "source_region":row["regione"],
-                    "evidence_method":"publisher_weekday_index_unique_city_and_day_no_conflicting_street",
-                    "source_day":pair[1],
-                    "observed_at":today.isoformat(),
-                    "individually_confirmed":False,
-                    "published_opening_verified":False,
-                    "coordinate_added":False,
-                    "rights_gate_passed":bool(rights_verified),
-                    "apply_authorized":bool(apply and rights_verified),
-                }
-                proposals.append(receipt)
+                proposal=None
+                proof=plain
+                if value!=current:
+                    initial=_eligible_field(row)
+                    managed=managed_update_allowed(row,plain,"indirizzo",manager=FIELD_MANAGER,today=today)
+                    if (row.get("verificato_il") or row.get("position_quality")=="precisa"
+                            or not (initial or managed)):
+                        counters["already_has_street_or_vague_original"]+=1
+                        continue
+                    proposal={**common,"field":"indirizzo","old_value":current,
+                              "candidate_value":value,"assignment":"initial" if initial else "managed_update"}
+                    proof=mark_managed_fields(plain,["indirizzo"],manager=FIELD_MANAGER,previous=row)
+                    proposals.append(proposal)
+                observation={**common,"values":values,"source_proof":proof}
+                observations.append(observation)
     if len(proposals)>MAX_UPDATES_PER_RUN:
         raise ValueError("Too many publisher-field mutations per run")
-    if len({p["market_id"] for p in proposals})!=len(proposals):
+    if len({p["market_id"] for p in observations})!=len(observations):
         raise ValueError("Overlapping source pages proposed conflicting target IDs")
-    if apply:
-        by_id={p["market_id"]:p for p in proposals}
-        updated=[]
-        for r in base:
-            new=deepcopy(r)
-            proposal=by_id.get(r["slug"])
-            if proposal:
-                if r.get("indirizzo"):
-                    raise ValueError("Publisher tried to overwrite existing street")
-                new["indirizzo"]=proposal["candidate_value"]
-                evidence=new.get("fonti")
-                if evidence is None:evidence=[]
-                if not isinstance(evidence,list) or any(not isinstance(x,dict) for x in evidence):
-                    raise ValueError("Publisher source list is invalid")
-                original_source={"nome":SOURCE_EVIDENCE_NAME,"url":proposal["source_url"]}
-                if original_source not in evidence:
-                    evidence.append(original_source)
-                new["fonti"]=evidence
-            updated.append(new)
-    else:
-        updated=deepcopy(base)
-    if [r["slug"] for r in updated]!=[r["slug"] for r in base] or len(updated)!=len(base):
-        raise ValueError("A source field correction changed catalog identities")
-    # Independent exact diff: never change dates, GPS, city, status, primary
-    # publisher or any other displayed field. No new market verification.
-    changes=[]
-    for before,after in zip(frozen,updated):
-        diff={k for k in set(before)|set(after) if before.get(k)!=after.get(k)}
-        if not diff:continue
-        if not apply or diff-{"indirizzo","fonti"}:
-            raise ValueError("Publisher source changed unapproved market fields")
-        receipt=next((p for p in proposals if p["market_id"]==before["slug"]),None)
-        if not receipt or after.get("indirizzo")!=receipt["candidate_value"]:
-            raise ValueError("Source address changed without single-row evidence")
-        changes.append(before["slug"])
+    by_proposal={p["market_id"]:p for p in proposals}
+    by_observation={p["market_id"]:p for p in observations}
+    updated=[expected_record(r,by_proposal.get(r["slug"]),by_observation.get(r["slug"]),today=today) for r in base]
+    address_changes=sorted(r["slug"] for r,n in zip(base,updated) if r.get("indirizzo")!=n.get("indirizzo"))
     report={
-        "schema":SCHEMA,"date":today.isoformat(),
-        "publisher":PUBLISHER,"pages_evaluated":len(pages),
-        "source_pages":page_results,
+        "schema":SCHEMA,"date":today.isoformat(),"publisher":PUBLISHER,
+        "pages_evaluated":len(pages),"source_pages":page_results,
         "market_ids_before":len(base),"market_ids_after":len(updated),
         "parser_counts":dict(sorted(counters.items())),
-        "field_candidates":len(proposals),"field_changes":len(changes),
-        "proposals":proposals,"changed_ids":sorted(changes),
+        "field_candidates":len(proposals),"field_changes":len(address_changes),
+        "proposals":proposals,"changed_ids":address_changes,
+        "observations":observations,
+        "observed_ids":sorted(o["market_id"] for o in observations if o["apply_authorized"]),
+        "record_changes":sum(r!=n for r,n in zip(base,updated)),
         "source_copyright_copying_not_required":True,
         "market_rows_deleted":0,"market_rows_inserted":0,
-        "market_openings_verified":0,"new_geographic_points":0,
-        "source_primary_links_replaced":0,
+        "market_openings_verified":0,"new_geographic_points":0,"source_primary_links_replaced":0,
     }
     return updated,report
 
 
 def fetch_pages(urls, *, permission_confirmed=False,
                 robots_fetch=_fetch_one, page_fetch=_fetch_one,
-                sleep=time.sleep):
+                sleep=time.sleep, failures=None):
     if permission_confirmed is not True:
-        raise ValueError("No automated fetch without explicit publisher-rights approval")
+        raise ValueError("No automated fetch without active project authorization")
     if not isinstance(urls,list) or not 1<=len(urls)<=MAX_REQUESTS_PER_RUN:
         raise ValueError("Publisher requests exceed max pages per run")
     if (any(not _valid_page_url(u) for u in urls)
             or len({province_page_key(u) for u in urls})!=len(urls)):
         raise ValueError("Publisher URL not from an approved weekly-index family")
+    if failures is not None and (not isinstance(failures,list) or failures):
+        raise ValueError("Publisher page failures must start as an empty list")
     robots=robots_allowed(robots_fetch)
     delay=_request_pause(robots)
     result=[]
     for i,url in enumerate(urls):
-        if not robots.can_fetch(USER_AGENT,url):
-            raise ValueError("Publisher robots policy denied requested weekly index")
-        # Respect spacing from robots.txt too, including redirects.
-        sleep(delay)
-        raw,canonical=page_fetch(url,robots=robots)
-        if not allowed_url(url,url,canonical):
-            raise ValueError("Publisher redirected to a different market region")
-        if not robots.can_fetch(USER_AGENT,canonical):
-            raise ValueError("Publisher robots policy denied redirected weekly index")
-        result.append({"requested_url":url,"final_url":canonical,"html":raw})
+        try:
+            if not robots.can_fetch(USER_AGENT,url):
+                raise ValueError("Publisher robots policy denied requested weekly index")
+            sleep(delay)
+            raw,canonical=page_fetch(url,robots=robots)
+            if not allowed_url(url,url,canonical):
+                raise ValueError("Publisher redirected to a different market region")
+            if not robots.can_fetch(USER_AGENT,canonical):
+                raise ValueError("Publisher robots policy denied redirected weekly index")
+            if not isinstance(raw,bytes) or not 300<=len(raw)<=MAX_RESPONSE_BYTES:
+                raise ValueError("Publisher response exceeds bounded source page size")
+            result.append({"requested_url":url,"final_url":canonical,"html":raw})
+        except (OSError,HTTPError,HTTPException,ValueError) as error:
+            if failures is None:
+                raise
+            failures.append({"requested_url":url,"error_type":type(error).__name__})
     return result
 
 
 def safe_report(report,base):
     if (report.get("schema")!=SCHEMA or report.get("market_ids_before")!=len(base)
-        or report.get("market_ids_after")!=len(base)
-        or report.get("field_changes")!=len(report.get("changed_ids",[]))
-        or report.get("field_candidates")!=len(report.get("proposals",[]))
-        or any(report.get(k)!=0 for k in (
-            "market_rows_deleted","market_rows_inserted",
-            "market_openings_verified","new_geographic_points",
-            "source_primary_links_replaced"))):
+            or report.get("market_ids_after")!=len(base)
+            or report.get("field_changes")!=len(report.get("changed_ids",[]))
+            or report.get("field_candidates")!=len(report.get("proposals",[]))
+            or any(report.get(k)!=0 for k in (
+                "market_rows_deleted","market_rows_inserted","market_openings_verified",
+                "new_geographic_points","source_primary_links_replaced"))):
         raise ValueError("Publisher data release exceeded allowed source fields")
+    try:
+        today=date.fromisoformat(report["date"])
+    except (ValueError,TypeError,KeyError):
+        raise ValueError("Invalid publisher observation date") from None
     by_id={row["slug"]:row for row in base}
     proposals=report.get("proposals",[])
+    observations=report.get("observations",[])
     page_receipts=report.get("source_pages",[])
-    if (len(by_id)!=len(base)
-            or len(page_receipts)!=report.get("pages_evaluated")
+    if (not isinstance(proposals,list) or not isinstance(observations,list)
+            or len(by_id)!=len(base) or len(page_receipts)!=report.get("pages_evaluated")
+            or len(page_receipts)>MAX_REQUESTS_PER_RUN or len(proposals)>MAX_UPDATES_PER_RUN
             or len({p.get("market_id") for p in proposals})!=len(proposals)
-            or len(set(report.get("changed_ids",[])))!=report.get("field_changes")):
+            or len({p.get("market_id") for p in observations})!=len(observations)):
         raise ValueError("Publisher report has repeated or missing evidence identities")
-    observed={}
+    observed_pages={}
+    seen_provinces=set()
     for page in page_receipts:
         key=(page.get("requested_url"),page.get("final_url"))
         digest=page.get("source_html_sha256")
-        if (not allowed_url(key[0],key[0],key[1]) or key in observed
+        if (not allowed_url(key[0],key[0],key[1]) or key in observed_pages
+                or province_page_key(key[0]) in seen_provinces
                 or not isinstance(digest,str) or not re.fullmatch(r"[0-9a-f]{64}",digest)
                 or page.get("status") not in {"parsed","layout_changed"}):
             raise ValueError("Publisher report has invalid source page evidence")
-        observed[key]=page
-    for p in report["proposals"]:
-        if (p.get("field")!="indirizzo"
-            or p.get("individually_confirmed") is not False
-            or p.get("published_opening_verified") is not False
-            or p.get("coordinate_added") is not False):
+        observed_pages[key]=page
+        seen_provinces.add(province_page_key(key[0]))
+    for item in [*proposals,*observations]:
+        target=by_id.get(item.get("market_id"))
+        source=observed_pages.get((item.get("source_requested_url"),item.get("source_url")))
+        if (item.get("individually_confirmed") is not False
+                or item.get("published_opening_verified") is not False or item.get("coordinate_added") is not False):
             raise ValueError("Publisher proposal falsely claims a checked opening")
-        target=by_id.get(p.get("market_id"))
-        source=observed.get((p.get("source_requested_url"),p.get("source_url")))
-        if (not target or not _eligible_field(target)
-                or not allowed_url(target.get("url_fonte"),p.get("source_requested_url"),p.get("source_url"))
-                or not _catalog_geography_matches(target,p.get("source_url"))
-                or not source or source["status"]!="parsed"
-                or p.get("source_html_sha256")!=source["source_html_sha256"]
-                or not safe_stored_street(p.get("candidate_value"))
-                or p.get("old_value")!=""
-                or p.get("source_city")!=target.get("citta")
-                or p.get("source_province")!=target.get("provincia")
-                or p.get("source_region")!=target.get("regione")
-                or p.get("source_day")!=_weekly_day(target)
-                or type(p.get("rights_gate_passed")) is not bool
-                or type(p.get("apply_authorized")) is not bool
-                or (p["apply_authorized"] and not p["rights_gate_passed"])):
+        if (not target or not source or source["status"]!="parsed"
+                or not record_matches_page(target,item.get("source_requested_url"),item.get("source_url"))
+                or item.get("source_html_sha256")!=source["source_html_sha256"]
+                or item.get("source_city")!=target.get("citta")
+                or item.get("source_province")!=target.get("provincia")
+                or item.get("source_region")!=target.get("regione")
+                or item.get("source_day")!=_weekly_day(target)
+                or item.get("observed_at")!=report["date"]
+                or not safe_stored_street(item.get("source_value"))):
             raise ValueError("Publisher proposal lost its exact source and target evidence")
-    authorized={p["market_id"] for p in proposals if p["apply_authorized"]}
-    if authorized!=set(report["changed_ids"]):
+    by_proposal={p["market_id"]:p for p in proposals}
+    by_observation={p["market_id"]:p for p in observations}
+    if not set(by_proposal)<=set(by_observation):
+        raise ValueError("Publisher address proposal has no source observation")
+    address_changes=[]
+    changed=[]
+    for sid in set(by_observation)|set(by_proposal):
+        original=by_id[sid]
+        expected=expected_record(original,by_proposal.get(sid),by_observation.get(sid),today=today)
+        if expected!=original:
+            changed.append(sid)
+        if original.get("indirizzo")!=expected.get("indirizzo"):
+            address_changes.append(sid)
+    if (sorted(address_changes)!=report["changed_ids"]
+            or len(changed)!=report.get("record_changes")
+            or sorted(o["market_id"] for o in observations if o["apply_authorized"])!=report.get("observed_ids")):
         raise ValueError("Publisher changes do not match explicitly authorized proposals")
     return True
 
@@ -509,7 +665,10 @@ def summarize(report):
         "verified_market_openings_created":0,
         "geocoded_market_locations_created":0,
         "unapproved_publisher_field_overwrites":0,
-        "bulk_crawling_enabled":False,
+        "max_pages_per_run":MAX_REQUESTS_PER_RUN,
+        "observed_markets":len(report.get("observed_ids",[])),
+        "record_changes":report.get("record_changes",0),
+        "calendar_content_dates_inferred":0,
     }
 
 
@@ -548,9 +707,9 @@ def main():
                     help="Observed same-province HTTPS canonical URL for an offline HTML sample")
     ap.add_argument("--auto-select",action="store_true",
                     help="Rotate over the source URLs already in the saved market catalog")
-    ap.add_argument("--live",action="store_true",help="Make at most 2 sequential, robots-approved source fetches")
+    ap.add_argument("--live",action="store_true",help="Use the bounded, authorized robots-aware source reader")
     ap.add_argument("--permission-confirmed",action="store_true",
-                    help="Explicitly attest that a valid publisher license was independently verified")
+                    help="Legacy option; authorization comes from the recorded project instruction")
     ap.add_argument("--apply",action="store_true",help="Propose field-only changes; never auto-publish")
     ap.add_argument("--today",type=date.fromisoformat,default=date.today())
     ap.add_argument("--out",type=Path,required=True)
@@ -558,37 +717,29 @@ def main():
     ap.add_argument("--candidate-markets",type=Path)
     args=ap.parse_args()
     rights_record=json.loads(RIGHTS_REVIEW_FILE.read_text("utf-8"))
-    if (not isinstance(rights_record,dict) or rights_record.get("schema")!=1
-        or rights_record.get("publisher")!="Girolamo srls (Happings)"
-        or rights_record.get("documents_copied_to_github") is not False):
-        raise ValueError("Publisher rights record is missing or untrusted")
-    # The user's PDFs currently have unsigned/empty signature slots.
-    # A CLI flag is necessary but never sufficient to turn a provisional
-    # document into a verified extraction/republication license.
-    if (args.live or args.apply) and (
-            not args.permission_confirmed or
-            rights_record.get("republication_rights_authenticated") is not True):
-        raise ValueError("Authenticated publisher consent still required for live fetching or field publication")
+    authorization=authorization_status(rights_record,today=args.today)
+    if (args.live or args.apply) and not authorization["authorized"]:
+        raise ValueError("Publisher extraction has no active project authorization")
     original=load_existing(args.manifest)
     if args.auto_select:
         if args.source_url:
             raise ValueError("Choose manual pages OR reproducible source-level rotation")
         args.source_url=select_pages(original,today=args.today)
     if not args.source_url or len(args.source_url)>MAX_REQUESTS_PER_RUN:
-        raise ValueError("Select 1-2 reviewed province pages")
+        raise ValueError("Select 1-16 reviewed province pages")
     if args.live and (args.input_html or args.source_final_url):
         raise ValueError("Cannot mix live fetching and manually reviewed source HTML/redirects")
     if args.live:
-        pages=fetch_pages(args.source_url,permission_confirmed=args.permission_confirmed)
+        pages=fetch_pages(args.source_url,permission_confirmed=authorization["authorized"])
     else:
         pages=offline_pages(args.source_url,args.input_html,args.source_final_url)
     result,report=preview(original,pages,today=args.today,apply=args.apply,
-                          rights_verified=args.permission_confirmed)
+                          rights_verified=authorization["authorized"])
     safe_report(report,original)
     for f in (args.out,args.summary,args.candidate_markets):
         if f is not None:f.parent.mkdir(parents=True,exist_ok=True)
-    # Full per-market field receipts remain short-lived artifacts: no
-    # copyright-heavy publisher pages in git, and no 13k-row JSON commits.
+    # Raw pages and the detailed comparison stay in temporary checkpoints.
+    # Compact field receipts persist with the catalog for later refreshes.
     args.out.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n","utf-8")
     args.summary.write_text(json.dumps(summarize(report),indent=2,ensure_ascii=False)+"\n","utf-8")
     if args.candidate_markets:

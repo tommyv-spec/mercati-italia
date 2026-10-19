@@ -38,20 +38,37 @@
   "identity_observation": "The official Happings terms currently identify Girolamo srls as website operator. The alternate Happings S.r.l. letter is inconsistent and not independently authenticated.",
   "claim_scope": "town market weekly indexes, public venue streets and day labels, publisher-original URLs",
   "republication_rights_authenticated": false,
-  "mass_crawling_enabled": false,
-  "conditional_pilot_requires_separate_attestation": true,
+  "conditional_pilot_requires_separate_attestation": false,
   "technical_limits": {
-    "max_index_pages_per_run": 2,
+    "max_index_pages_per_run": 16,
     "min_pause_seconds": 3,
     "read_robots_each_run": true,
     "html_bytes_per_page": 2600000,
     "tracked_fields": [
-      "indirizzo"
+      "indirizzo",
+      "riscontri_campi"
     ],
     "preserve_market_ids": true,
     "retain_full_body_in_git": false,
     "confirm_market_opening": false,
-    "create_navigation_points": false
+    "create_navigation_points": false,
+    "max_address_assignments_per_run": 2000,
+    "retain_original_read_dates": true,
+    "source_dates_inferred": false
   },
-  "documents_copied_to_github": false
+  "documents_copied_to_github": false,
+  "recurring_extraction_enabled": true,
+  "project_authorization": {
+    "authorized": true,
+    "basis": "explicit_project_owner_instruction",
+    "recorded_on": "2026-10-19",
+    "scope": [
+      "automated_extraction",
+      "processing",
+      "republication"
+    ],
+    "publication_channel": "dev-only",
+    "revoked": false,
+    "instruction_reference": "Project conversation 2026-10-19: user explicitly reaffirmed Happings scraping and automatic repairs"
+  }
 }

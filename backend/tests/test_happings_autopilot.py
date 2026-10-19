@@ -82,6 +82,19 @@ class HappingsAutopilotTests(unittest.TestCase):
             "fixture_only": True,
         }), "utf-8")
 
+    def write_project_authorization(self, **changes):
+        self.write_rights(False)
+        record = json.loads(self.rights.read_text("utf-8"))
+        record["project_authorization"] = {
+            "authorized": True, "basis": "explicit_project_owner_instruction",
+            "recorded_on": TODAY.isoformat(),
+            "scope": ["automated_extraction", "processing", "republication"],
+            "publication_channel": "dev-only", "revoked": False,
+            "instruction_reference": "Synthetic test: explicit project owner instruction",
+            **changes,
+        }
+        self.rights.write_text(json.dumps(record), "utf-8")
+
     def run_phase(self, **changes):
         arguments = {
             "policy": {"enabled": True}, "out": self.root / "output", "today": TODAY,
@@ -119,6 +132,36 @@ class HappingsAutopilotTests(unittest.TestCase):
         self.assertEqual(self.run_phase()[1]["status"], "blocked_rights")
         self.fetcher.assert_not_called()
 
+    def test_explicit_project_instruction_enables_without_claiming_authenticated_grant(self):
+        self.write_project_authorization()
+        after, report, protected = self.run_phase()
+        self.assertEqual(after[0]["indirizzo"], "Villaggio dei Fiori")
+        self.assertTrue(report["fetch_authorized"])
+        self.assertFalse(report["rights_authenticated"])
+        self.assertEqual(report["rights_state"], "project_owner_authorized")
+        self.assertEqual(report["authorization_basis"], "explicit_project_owner_instruction")
+        exported, _ = prepare(after, TODAY, preserve_ids=protected)
+        self.assertTrue(phase.verify_exported(self.base, after, exported, report, today=TODAY)["release_safe"])
+        for field, value in (("rights_authenticated", True),
+                             ("authorization_basis", "authenticated_publisher_grant")):
+            changed = copy.deepcopy(report)
+            changed[field] = value
+            with self.subTest(field=field):
+                with self.assertRaisesRegex(ValueError, "authorization basis"):
+                    phase.verify_changes(self.base, after, changed)
+
+    def test_revoked_or_future_project_instruction_is_not_used(self):
+        for changes in ({"revoked": True}, {"authorized": False},
+                        {"recorded_on": (TODAY + timedelta(days=1)).isoformat()}):
+            with self.subTest(changes=changes):
+                self.write_project_authorization(**changes)
+                after, report, _ = self.run_phase()
+                self.assertEqual(after, self.base)
+                self.assertFalse(report["fetch_authorized"])
+                self.assertFalse(report["rights_authenticated"])
+                self.assertEqual(report["status"], "blocked_rights")
+        self.fetcher.assert_not_called()
+
     def test_source_failure_keeps_all_market_facts(self):
         self.fetcher.side_effect = OSError("source is offline")
         after, report, _ = self.run_phase()
@@ -126,6 +169,30 @@ class HappingsAutopilotTests(unittest.TestCase):
         self.assertEqual(report["status"], "unavailable")
         self.assertEqual(report["fetch_error_type"], "OSError")
         self.assertEqual(report["evidence"]["field_changes"], 0)
+
+    def test_unselected_or_repeated_request_is_stopped_before_network(self):
+        def unselected(urls, *, permission_confirmed, page_fetch, failures):
+            page_fetch("https://www.happings.com/it/mercati-settimanali-a-modena.html")
+
+        with patch.object(phase.source, "fetch_pages", side_effect=unselected), \
+                patch.object(phase.source, "_fetch_one") as request:
+            after, report, _ = self.run_phase(fetcher=None)
+            self.assertEqual(after, self.base)
+            self.assertEqual(report["status"], "unavailable")
+            request.assert_not_called()
+
+        def repeat_failed(urls, *, permission_confirmed, page_fetch, failures):
+            try:
+                page_fetch(urls[0])
+            except OSError:
+                page_fetch(urls[0])
+
+        with patch.object(phase.source, "fetch_pages", side_effect=repeat_failed), \
+                patch.object(phase.source, "_fetch_one", side_effect=OSError("offline")) as request:
+            after, report, _ = self.run_phase(fetcher=None)
+            self.assertEqual(after, self.base)
+            self.assertEqual(report["status"], "unavailable")
+            self.assertEqual(request.call_count, 1)
 
     def test_truncated_http_response_is_a_source_outage_not_a_pipeline_abort(self):
         self.fetcher.side_effect = IncompleteRead(b"", 100)
@@ -179,6 +246,45 @@ class HappingsAutopilotTests(unittest.TestCase):
         checkpoint = json.loads((self.root / "output/sources/happings-pages.json").read_text())
         self.assertEqual(base64.b64decode(checkpoint["pages"][0]["html_base64"]), SAMPLE)
         self.assertEqual(checkpoint["status"], "retrieved")
+
+    def test_later_cycle_refreshes_only_source_owned_address_and_exact_evidence(self):
+        first, first_report, _ = self.run_phase()
+        next_day = TODAY + timedelta(days=7)
+        self.fetcher.return_value = [{**pages()[0], "html": SAMPLE.replace(
+            b"Villaggio dei Fiori", b"Piazza Nuova") }]
+        revised, report, protected = self.run_phase(base=first, today=next_day)
+        self.assertEqual(revised[0]["indirizzo"], "Piazza Nuova")
+        self.assertEqual(report["evidence"]["field_changes"], 1)
+        self.assertEqual(report["evidence"]["proposals"][0]["old_value"], "Villaggio dei Fiori")
+        self.assertEqual(report["evidence"]["proposals"][0]["assignment"], "managed_update")
+        self.assertNotEqual(report["source_pages"][0]["source_html_sha256"],
+                            first_report["source_pages"][0]["source_html_sha256"])
+        for field in ("slug", "date", "date_quality", "orario_testo", "lat", "lng", "verificato_il"):
+            self.assertEqual(revised[0][field], first[0][field])
+        exported, _ = prepare(revised, next_day, preserve_ids=protected)
+        self.assertTrue(phase.verify_exported(first, revised, exported, report, today=next_day)["release_safe"])
+
+    def test_equal_existing_address_is_observed_without_acquiring_replacement_rights(self):
+        self.base[0]["indirizzo"] = "Villaggio dei Fiori"
+        observed, report, _ = self.run_phase()
+        self.assertEqual(report["evidence"]["field_changes"], 0)
+        self.assertEqual(report["evidence"]["record_changes"], 1)
+        self.assertTrue(observed[0]["riscontri_campi"])
+        self.fetcher.return_value = [{**pages()[0], "html": SAMPLE.replace(
+            b"Villaggio dei Fiori", b"Piazza Nuova") }]
+        held, subsequent, _ = self.run_phase(base=observed, today=TODAY + timedelta(days=7))
+        self.assertEqual(held[0]["indirizzo"], "Villaggio dei Fiori")
+        self.assertEqual(subsequent["evidence"]["field_changes"], 0)
+
+    def test_later_outage_preserves_original_evidence_read_date(self):
+        first, _, _ = self.run_phase()
+        self.fetcher.side_effect = OSError("publisher currently unavailable")
+        unchanged, report, protected = self.run_phase(base=first, today=TODAY + timedelta(days=7))
+        self.assertEqual(unchanged, first)
+        self.assertEqual(report["status"], "unavailable")
+        self.assertEqual(protected, {first[0]["slug"]})
+        self.assertTrue(all(receipt["letto_il"] == TODAY.isoformat()
+                            for receipt in unchanged[0]["riscontri_campi"]))
 
     def test_resume_replays_exact_html_without_network_even_when_offline(self):
         first, original_report, _ = self.run_phase()
@@ -270,30 +376,108 @@ class HappingsAutopilotTests(unittest.TestCase):
             "provincia": "MO", "regione": "Emilia-Romagna",
         })
 
-        def failure_after_one(urls, *, permission_confirmed, page_fetch):
+        def failure_after_one(urls, *, permission_confirmed, page_fetch, failures):
             self.assertTrue(permission_confirmed)
             self.assertEqual(len(urls), 2)
             page_fetch(urls[0])
             raise OSError("second page unavailable")
 
         def completed_page(url, **kwargs):
-            return SAMPLE, url.removesuffix(".html") + "-e-provincia/"
+            blob = (SAMPLE if url == VENICE_OLD else
+                    SAMPLE.replace(b"Venezia", b"Modena").replace(b"Spinea", b"Modena"))
+            return blob, url.removesuffix(".html") + "-e-provincia/"
 
         with patch.object(phase.source, "fetch_pages", side_effect=failure_after_one), \
                 patch.object(phase.source, "_fetch_one", side_effect=completed_page):
             after, report, _ = self.run_phase(fetcher=None)
-        self.assertEqual(after, self.base)
-        self.assertEqual(report["status"], "unavailable")
+        self.assertEqual(sum(bool(row["indirizzo"]) for row in after), 1)
+        self.assertEqual(report["status"], "partial_unavailable")
+        self.assertEqual(len(report["page_failures"]), 1)
         checkpoint_path = self.root / "output/sources/happings-pages.json"
         original_bytes = checkpoint_path.read_bytes()
         saved = json.loads(original_bytes)
         self.assertEqual(len(saved["pages"]), 1)
-        self.assertEqual(saved["status"], "unavailable")
+        self.assertEqual(saved["status"], "partial_unavailable")
         self.fetcher.reset_mock()
         replay, report, _ = self.run_phase(resume=True, offline=True)
-        self.assertEqual(replay, self.base)
+        self.assertEqual(replay, after)
+        self.assertEqual(report["status"], "partial_unavailable")
         self.assertEqual(report["retained_partial_evidence_pages"], 1)
         self.assertEqual(checkpoint_path.read_bytes(), original_bytes)
+        self.fetcher.assert_not_called()
+
+    def test_failed_first_page_does_not_discard_later_page(self):
+        second_url = "https://www.happings.com/it/mercati-settimanali-a-modena.html"
+        self.base.append({**market("modena-mercoledi", url=second_url), "citta": "Modena",
+                          "nome": "Mercato settimanale di Modena", "provincia": "MO",
+                          "regione": "Emilia-Romagna"})
+        selected = phase.source.select_pages(self.base, today=TODAY)
+        self.assertEqual(len(selected), 2)
+
+        def one_failure(urls, *, permission_confirmed, failures):
+            self.assertTrue(permission_confirmed)
+            failures.append({"requested_url": urls[0], "error_type": "HTTPError"})
+            url = urls[1]
+            blob = (SAMPLE if url == VENICE_OLD else
+                    SAMPLE.replace(b"Venezia", b"Modena").replace(b"Spinea", b"Modena"))
+            return [{"requested_url": url, "final_url": url.removesuffix(".html") + "-e-provincia/",
+                     "html": blob}]
+
+        self.fetcher.side_effect = one_failure
+        after, report, protected = self.run_phase()
+        self.assertEqual(report["status"], "partial_unavailable")
+        self.assertEqual(sum(bool(row["indirizzo"]) for row in after), 1)
+        self.assertEqual(report["page_failures"], [{"requested_url": selected[0], "error_type": "HTTPError"}])
+        exported, _ = prepare(after, TODAY, preserve_ids=protected)
+        self.assertTrue(phase.verify_exported(self.base, after, exported, report, today=TODAY)["release_safe"])
+        self.fetcher.reset_mock()
+        self.fetcher.side_effect = AssertionError("Replay must not reread a missing page")
+        replay, reused, _ = self.run_phase(resume=True, offline=True)
+        self.assertEqual(replay, after)
+        self.assertEqual(reused["page_failures"], report["page_failures"])
+        self.fetcher.assert_not_called()
+
+    def test_missing_page_outcome_cannot_be_reported_as_complete_fetch(self):
+        second_url = "https://www.happings.com/it/mercati-settimanali-a-modena.html"
+        self.base.append({**market("modena-mercoledi", url=second_url), "citta": "Modena",
+                          "nome": "Mercato settimanale di Modena", "provincia": "MO",
+                          "regione": "Emilia-Romagna"})
+        # A replacement fetcher must explicitly report every failed page.
+        self.fetcher.return_value = pages()
+        after, report, _ = self.run_phase()
+        self.assertEqual(after, self.base)
+        self.assertEqual(report["status"], "unavailable")
+        self.assertEqual(len(report["page_failures"]), 2)
+        self.assertEqual(report["fetch_error_type"], "ValueError")
+
+    def test_interrupted_checkpoint_reuses_completed_bytes_without_retrying_missing_page(self):
+        second_url = "https://www.happings.com/it/mercati-settimanali-a-modena.html"
+        self.base.append({**market("modena-mercoledi", url=second_url), "citta": "Modena",
+                          "nome": "Mercato settimanale di Modena", "provincia": "MO",
+                          "regione": "Emilia-Romagna"})
+
+        def interrupt(urls, *, permission_confirmed, page_fetch, failures):
+            page_fetch(urls[0])
+            raise KeyboardInterrupt("synthetic interruption before next page")
+
+        def completed_page(url, **kwargs):
+            blob = (SAMPLE if url == VENICE_OLD else
+                    SAMPLE.replace(b"Venezia", b"Modena").replace(b"Spinea", b"Modena"))
+            return blob, url.removesuffix(".html") + "-e-provincia/"
+
+        with patch.object(phase.source, "fetch_pages", side_effect=interrupt), \
+                patch.object(phase.source, "_fetch_one", side_effect=completed_page):
+            with self.assertRaises(KeyboardInterrupt):
+                self.run_phase(fetcher=None)
+        path = self.root / "output/sources/happings-pages.json"
+        original_bytes = path.read_bytes()
+        self.assertEqual(json.loads(original_bytes)["status"], "fetch_started")
+        self.fetcher.side_effect = AssertionError("Interrupted replay made a request")
+        after, report, _ = self.run_phase(resume=True, offline=True)
+        self.assertEqual(sum(bool(row["indirizzo"]) for row in after), 1)
+        self.assertEqual(report["status"], "partial_unavailable")
+        self.assertEqual(report["page_failures"][0]["error_type"], "InterruptedBatch")
+        self.assertEqual(path.read_bytes(), original_bytes)
         self.fetcher.assert_not_called()
 
     def test_export_prevents_newly_equal_addresses_from_deleting_either_id(self):
@@ -325,6 +509,8 @@ class HappingsAutopilotTests(unittest.TestCase):
         altered_candidate[0]["orario_testo"] = "08:00-13:00"
         with self.assertRaisesRegex(ValueError, "Unapproved"):
             phase.verify_changes(self.base, altered_candidate, report)
+        with self.assertRaisesRegex(ValueError, "reference date"):
+            phase.verify_exported(self.base, after, exported, report, today=TODAY + timedelta(days=1))
 
     def test_happings_guard_does_not_replace_other_sources_duplicate_rules(self):
         first = {**market("weekly-a-firenze-mercoledi",street="Via Roma"),
@@ -346,11 +532,34 @@ class HappingsAutopilotTests(unittest.TestCase):
 
     def test_invalid_policy_cannot_turn_on_extra_sources_or_raise_limits(self):
         for policy in ({"enabled": 1}, {"enabled": "true"},
-                       {"enabled": True, "max_pages": 999}, []):
+                       {"enabled": True, "max_pages": 999},
+                       {"enabled": True, "max_pages": 0},
+                       {"enabled": True, "max_pages": True}, []):
             with self.subTest(policy=policy):
                 with self.assertRaisesRegex(ValueError, "policy"):
                     self.run_phase(policy=policy)
         self.fetcher.assert_not_called()
+
+    def test_configured_smaller_budget_limits_actual_page_batch(self):
+        second_url = "https://www.happings.com/it/mercati-settimanali-a-modena.html"
+        self.base.append({**market("modena-mercoledi", url=second_url), "citta": "Modena",
+                          "nome": "Mercato settimanale di Modena", "provincia": "MO",
+                          "regione": "Emilia-Romagna"})
+
+        def single_page(urls, **kwargs):
+            self.assertEqual(len(urls), 1)
+            url = urls[0]
+            blob = (SAMPLE if url == VENICE_OLD else
+                    SAMPLE.replace(b"Venezia", b"Modena").replace(b"Spinea", b"Modena"))
+            return [{"requested_url": url, "final_url": url.removesuffix(".html") + "-e-provincia/",
+                     "html": blob}]
+
+        self.fetcher.side_effect = single_page
+        after, report, _ = self.run_phase(policy={"enabled": True, "max_pages": 1})
+        self.assertEqual(report["max_index_pages_per_run"], 1)
+        self.assertEqual(len(report["selected_urls"]), 1)
+        self.assertEqual(report["evidence"]["field_changes"], 1)
+        self.assertEqual(sum(bool(row["indirizzo"]) for row in after), 1)
 
     def test_existing_autopilot_runs_phase_before_export_and_all_release_gates(self):
         base_path = self.root / "public/data/v1"
