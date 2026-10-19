@@ -2,7 +2,7 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [39153363685](https://github.com/tommyv-spec/mercati-italia/actions/runs/39153363685) — UTC 2026-10-18T18:19:13.313266+00:00
+- Ultimo run: [39178556362](https://github.com/tommyv-spec/mercati-italia/actions/runs/39178556362) — UTC 2026-10-19T00:00:31.489106+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: no (contenuto invariato)
 - Schede nel catalogo: **13,824**
