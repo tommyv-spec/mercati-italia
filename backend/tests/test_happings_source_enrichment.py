@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from happings_source_enrichment import (
     preview,fetch_pages,safe_report,summarize,allowed_url,select_pages,offline_pages,MAX_REQUESTS_PER_RUN,
-    authorization_status, catalog_page_routes, RIGHTS_REVIEW_FILE,
+    authorization_status, catalog_page_routes, secondary_catalog_page_routes, RIGHTS_REVIEW_FILE,
 )
 from happings_weekly_layout import VENICE_OLD, VENICE_NEW
 
@@ -46,6 +46,12 @@ def row(slug,*,city="Spinea",day="mercoledì",street="",url=VENICE_OLD,
 
 def feed():
     return [{"requested_url":VENICE_OLD,"final_url":VENICE_NEW,"html":SAMPLE}]
+
+
+def secondary(slug="other-origin", *, street="Villaggio dei Fiori", **changes):
+    return {**row(slug,street=street),"fonte":"eventiesagre.it",
+            "url_fonte":"https://www.eventiesagre.it/Mercatini_Filiera+Corta/12345_Mercato.html",
+            **changes}
 
 
 class HappingsSourceEnrichmentTests(unittest.TestCase):
@@ -435,8 +441,174 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         mixed=[*first,row("unowned",street="Villaggio dei Fiori")]
         changed=[{**feed()[0],"html":SAMPLE.replace(b"Villaggio dei Fiori",b"Via Nuova")}]
         after,report=preview(mixed,changed,today=TODAY+timedelta(days=7),apply=True,rights_verified=True)
-        self.assertEqual(after,mixed)
+        self.assertEqual(after[0]["indirizzo"],mixed[0]["indirizzo"])
+        self.assertEqual(after[1],mixed[1])
+        self.assertTrue(all("indirizzo" not in proof["valori"] for proof in after[0]["riscontri_campi"]))
+        self.assertEqual(report["retired_ids"],["owned"])
         self.assertEqual(report["field_changes"],0)
+
+    def test_secondary_source_only_observes_identical_existing_values(self):
+        base=[row("primary",street="Villaggio dei Fiori"),secondary()]
+        original=copy.deepcopy(base)
+        after,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+        self.assertEqual(base,original)
+        self.assertEqual(report["field_changes"],0)
+        self.assertEqual(report["secondary_observed_ids"],["other-origin"])
+        self.assertEqual(set(after[1])-set(base[1]),{"riscontri_campi"})
+        self.assertEqual({key for key in base[1] if after[1][key]!=base[1][key]},{"fonti"})
+        receipt=after[1]["riscontri_campi"][0]
+        self.assertEqual(receipt["metodo"],"sede_giorno_provincia")
+        self.assertEqual(receipt["valori"],{"indirizzo":"Villaggio dei Fiori",
+                                          "ricorrenza_testo":base[1]["ricorrenza_testo"]})
+        self.assertEqual(receipt["fonte_aggiornata_il"],"")
+        self.assertNotIn("campi_gestiti",receipt)
+        self.assertNotIn("gestore_campi",receipt)
+        self.assertTrue(safe_report(report,base))
+
+    def test_secondary_capacity_never_introduces_a_source_request(self):
+        external=secondary()
+        self.assertEqual(secondary_catalog_page_routes([external]),{})
+        self.assertEqual(select_pages([external],today=TODAY),[])
+        base=[row("primary",street="Villaggio dei Fiori"),external]
+        self.assertEqual(secondary_catalog_page_routes(base),{external["slug"]:VENICE_OLD})
+        self.assertEqual(select_pages(base,today=TODAY),select_pages(base[:1],today=TODAY))
+        without_street=[base[0],{**external,"indirizzo":""}]
+        self.assertEqual(secondary_catalog_page_routes(without_street),{})
+        self.assertEqual(select_pages(without_street,today=TODAY),select_pages(base,today=TODAY))
+
+    def test_secondary_unknown_identity_or_street_cannot_gain_an_observation(self):
+        cases=(
+            {"indirizzo":""},{"indirizzo":"centro"},{"indirizzo":"Piazza Altrove"},
+            {"ricorrenza_testo":"settimanale - lunedì"},{"provincia":"MO"},
+            {"regione":"Lombardia"},{"nome":"Mercato contadino di Spinea"},
+            {"categoria":"antiquariato"},{"url_fonte":VENICE_OLD},
+            {"url_fonte":"https://name:secret@example.org/market"},
+            {"nome_originale":"Mercato estivo di Spinea"},
+        )
+        for change in cases:
+            with self.subTest(change=change):
+                base=[row("primary",street="Villaggio dei Fiori"),secondary(**change)]
+                after,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+                self.assertEqual(after[1],base[1])
+                self.assertEqual(report["secondary_observed_ids"],[])
+                self.assertFalse(any(p["market_id"]=="other-origin" for p in report["proposals"]))
+                self.assertTrue(safe_report(report,base))
+
+    def test_secondary_address_spelling_is_preserved(self):
+        base=[row("primary",street="Villaggio dei Fiori"),secondary(street="villaggio dei fiori")]
+        after,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+        self.assertEqual(after[1]["indirizzo"],"villaggio dei fiori")
+        self.assertEqual(after[1]["riscontri_campi"][0]["valori"]["indirizzo"],"villaggio dei fiori")
+        self.assertEqual(report["field_changes"],0)
+
+    def test_secondary_source_ambiguity_is_not_resolved_by_matching_one_saved_street(self):
+        ambiguous=SAMPLE.replace(b"<li>a Dolo",b"<li>a Spinea, in Via Alternativa (la mattina)</li><li>a Dolo")
+        base=[row("primary",street="Villaggio dei Fiori"),secondary()]
+        after,report=preview(base,[{**feed()[0],"html":ambiguous}],today=TODAY,apply=True,rights_verified=True)
+        self.assertEqual(after,base)
+        self.assertEqual(report["secondary_observed_ids"],[])
+
+    def test_qualified_other_origin_is_retained_in_the_location_conflict_cohort(self):
+        for qualifier in ({"ricorrenza_testo":"settimanale - mercoledì da giugno a settembre"},
+                          {"nome_originale":"Mercato estivo settimanale di Spinea"}):
+            with self.subTest(qualifier=qualifier):
+                base=[row("primary"),secondary("conflict",street="Via Alternativa",**qualifier)]
+                after,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+                self.assertEqual(after,base)
+                self.assertEqual(report["field_changes"],0)
+                self.assertEqual(report["parser_counts"]["conflicting_previously_saved_location"],1)
+
+    def test_secondary_reread_does_not_acquire_field_ownership(self):
+        base=[row("primary",street="Villaggio dei Fiori"),secondary()]
+        first,_=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+        later=TODAY+timedelta(days=7)
+        second,report=preview(first,feed(),today=later,apply=True,rights_verified=True)
+        proof=second[1]["riscontri_campi"][0]
+        self.assertEqual(proof["letto_il"],later.isoformat())
+        self.assertNotIn("campi_gestiti",proof)
+        self.assertNotIn("gestore_campi",proof)
+        self.assertEqual(report["field_changes"],0)
+        self.assertEqual(second[1]["url_fonte"],base[1]["url_fonte"])
+
+    def test_secondary_receipt_tampering_cannot_assign_values_or_ownership(self):
+        base=[row("primary",street="Villaggio dei Fiori"),secondary()]
+        _,report=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+        for mutation in ("values","ownership","relation"):
+            forged=copy.deepcopy(report)
+            observation=next(x for x in forged["observations"] if x["source_relation"]=="secondary")
+            if mutation=="values":
+                observation["values"]["indirizzo"]="Via Nuova"
+            elif mutation=="ownership":
+                observation["source_proof"].update({"campi_gestiti":["indirizzo"],"gestore_campi":"happings-weekly-index"})
+            else:
+                observation["source_relation"]="primary"
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):
+                safe_report(forged,base)
+
+    def test_new_unique_source_address_retires_only_its_old_address_support(self):
+        from field_evidence import make_receipt
+        base=[row("primary",street="Villaggio dei Fiori"),secondary()]
+        first,_=preview(base,feed(),today=TODAY,apply=True,rights_verified=True)
+        official=make_receipt(first[1],values={"indirizzo":first[1]["indirizzo"]},
+            source_url="https://comune.example/mercati",source_name="Comune",source_id="official-fixture",
+            source_row="market-1",read_on=TODAY.isoformat(),source_updated_on=TODAY.isoformat(),source_sha256="a"*64)
+        first[1]["riscontri_campi"].append(official)
+        changed=[{**feed()[0],"html":SAMPLE.replace(b"Villaggio dei Fiori",b"Via Nuova")}]
+        after,report=preview(first,changed,today=TODAY+timedelta(days=7),apply=True,rights_verified=True)
+        self.assertEqual(report["field_changes"],0)
+        self.assertEqual(report["retired_ids"],["other-origin","primary"])
+        self.assertEqual(report["observed_ids"],[])
+        self.assertEqual(after[1]["indirizzo"],first[1]["indirizzo"])
+        self.assertEqual(after[1]["fonti"],first[1]["fonti"])
+        self.assertIn(official,after[1]["riscontri_campi"])
+        hproof=next(p for p in after[1]["riscontri_campi"] if p["fonte_id"].startswith("happings-weekly"))
+        self.assertEqual(hproof["valori"],{"ricorrenza_testo":first[1]["ricorrenza_testo"]})
+        self.assertEqual(hproof["letto_il"],TODAY.isoformat())
+        self.assertTrue(all(r["retired_fields"]==["indirizzo"] for r in report["retirements"]))
+        self.assertTrue(safe_report(report,first))
+
+    def test_missing_ambiguous_vague_or_failed_new_page_does_not_retire_support(self):
+        first,_=preview([row("primary",street="Villaggio dei Fiori"),secondary()],feed(),
+                        today=TODAY,apply=True,rights_verified=True)
+        variants=(
+            [],
+            [{**feed()[0],"html":SAMPLE.replace(b"a Spinea, in Villaggio dei Fiori",b"a Mirano, in Via Nuova")}],
+            [{**feed()[0],"html":SAMPLE.replace(b"Villaggio dei Fiori",b"centro")}],
+            [{**feed()[0],"html":SAMPLE.replace(b"Villaggio dei Fiori",b"Via Nuova").replace(
+                b"<li>a Dolo",b"<li>a Spinea, in Via Alternativa (la mattina)</li><li>a Dolo")}],
+            [{**feed()[0],"html":b"<html>"+b"changed layout "*30+b"</html>"}],
+        )
+        for pages in variants:
+            with self.subTest(pages=len(pages)):
+                after,report=preview(first,pages,today=TODAY+timedelta(days=7),apply=True,rights_verified=True)
+                self.assertEqual(after,first)
+                self.assertEqual(report["retirements"],[])
+
+    def test_same_day_or_older_contradiction_does_not_retire_source_support(self):
+        first,_=preview([row("primary",street="Villaggio dei Fiori"),secondary()],feed(),
+                        today=TODAY,apply=True,rights_verified=True)
+        changed=[{**feed()[0],"html":SAMPLE.replace(b"Villaggio dei Fiori",b"Via Nuova")}]
+        for today in (TODAY,TODAY-timedelta(days=1)):
+            after,report=preview(first,changed,today=today,apply=True,rights_verified=True)
+            self.assertEqual(after,first)
+            self.assertEqual(report["retirements"],[])
+
+    def test_retirement_evidence_cannot_be_forged_or_apply_when_preview_only(self):
+        first,_=preview([row("primary",street="Villaggio dei Fiori"),secondary()],feed(),
+                        today=TODAY,apply=True,rights_verified=True)
+        changed=[{**feed()[0],"html":SAMPLE.replace(b"Villaggio dei Fiori",b"Via Nuova")}]
+        later=TODAY+timedelta(days=7)
+        after,preview_report=preview(first,changed,today=later)
+        self.assertEqual(after,first)
+        self.assertEqual(len(preview_report["retirements"]),2)
+        self.assertEqual(preview_report["retired_ids"],[])
+        self.assertTrue(safe_report(preview_report,first))
+        _,report=preview(first,changed,today=later,apply=True,rights_verified=True)
+        for key,value in (("retired_receipts",[]),("source_day",1),("source_value","Via Inventata"),
+                          ("source_html_sha256","f"*64),("source_relation","unknown")):
+            forged=copy.deepcopy(report)
+            forged["retirements"][0][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):safe_report(forged,first)
 
     def test_observation_tampering_cannot_change_source_dates_or_weekdays(self):
         before=[row("a")]

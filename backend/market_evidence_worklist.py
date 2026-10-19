@@ -27,12 +27,17 @@ from publisher_quality_matrix import _source
 from source_lombardia import SOURCE_PAGE
 from source_reconciliation_audit import _place_key, _town_day
 from lombardia_overlap import norm
+import happings_source_enrichment as happings
 
 SCHEMA=1
 MAX_MARKETS=100_000
 MAX_OFFICIAL_ROWS=3000
 SHARDS=31
 MAX_DAILY_TASKS=1200
+HAPPINGS_FAMILY="happings-weekly-or-detail"
+HAPPINGS_AUTHORIZATION_SOURCE="backend/data/happings-rights-review.json"
+HAPPINGS_AUTHORIZED_ACTION="existing_happings_weekly_index_adapter_then_official_cross_match"
+HAPPINGS_BLOCKED_ACTION="cross_match_with_independent_licensed_official_sources"
 TRACKED_FIELDS=("indirizzo","orario_testo","ricorrenza_testo","date","coordinates")
 EVIDENCE_TYPES=frozenset((
     "same_source_id","unique_city_province_street_weekday",
@@ -51,6 +56,7 @@ def registry_check(cfg):
     if (not isinstance(cfg,dict) or cfg.get("schema")!=1
         or cfg.get("report_only") is not True
         or cfg.get("may_grant_source_reuse_rights") is not False
+        or cfg.get("may_enable_source_crawlers") is not False
         or cfg.get("may_apply_field_changes") is not False
         or cfg.get("may_confirm_individual_market_dates") is not False
         or not isinstance(cfg.get("families"),list)
@@ -58,20 +64,63 @@ def registry_check(cfg):
         or {(x.get("id"),x.get("label")) for x in cfg["families"]}!=expected):
         raise ValueError("Unreviewed source-family contract or rights permission")
     for source in cfg["families"]:
-        if (source.get("bulk_scrape_allowed") is not False
-            or source.get("market_confirmation_allowed") is not False
+        if (source.get("market_confirmation_allowed") is not False
             or not isinstance(source.get("automation"),str)
             or not set(source.get("fields_to_recheck",[]))<=set(TRACKED_FIELDS)):
+            raise ValueError("Source-family profile attempts unauthorized extraction")
+        if source["id"]==HAPPINGS_FAMILY:
+            # This report may describe existing operational authorization, but
+            # the source-family file must never override the actual gate.
+            if (source.get("rights")!="derive_from_existing_happings_authorization_record"
+                or source.get("authorization_source")!=HAPPINGS_AUTHORIZATION_SOURCE
+                or source.get("authorized_adapter")!="happings_weekly_province_index"
+                or "bulk_scrape_allowed" in source
+                or "authorization" in source):
+                raise ValueError("Happings authorization must come from the existing source gate")
+        elif (source.get("bulk_scrape_allowed") is not False
+              or "authorization_source" in source or "authorization" in source):
             raise ValueError("Source-family profile attempts unauthorized extraction")
     return True
 
 
-def family(label,cfg):
-    return next((x for x in cfg["families"] if x["label"]==label), {
-        "id":"unknown-source-requires-structure-and-rights-review",
-        "rights":"not_approved",
-        "automation":"find_independent_official_publisher_and_review_schema_first",
+def happings_authorization(today):
+    """Read the same authorization record as the crawler without enabling it."""
+    record=None
+    record_sha256=None
+    try:
+        if happings.RIGHTS_REVIEW_FILE.stat().st_size>65_536:
+            raise ValueError("Unbounded Happings authorization record")
+        raw=happings.RIGHTS_REVIEW_FILE.read_bytes()
+        record=json.loads(raw.decode("utf-8"))
+        record_sha256=hashlib.sha256(raw).hexdigest()
+    except (OSError,UnicodeError,ValueError):
+        pass
+    status=happings.authorization_status(record,today=today)
+    return {
+        **status,"checked_on":today.isoformat(),
+        "record_source":HAPPINGS_AUTHORIZATION_SOURCE,
+        "record_sha256":record_sha256,
+        "adapter_scope":"happings_weekly_province_index",
+        "publication_channel":"dev-only",
+        "granted_by_this_report":False,
+    }
+
+
+def family(label,cfg,*,authorization=None,today=None):
+    source=next((x for x in cfg["families"] if x["label"]==label), {
+        "id":"source-family-not-resolved-by-this-worklist",
+        "rights":"not_resolved_by_this_worklist",
+        "automation":"consult_existing_operational_source_registries_then_find_primary_publisher",
+        "bulk_scrape_allowed":False,
     })
+    if source["id"]!=HAPPINGS_FAMILY:
+        return source
+    auth=authorization if authorization is not None else happings_authorization(today or date.today())
+    return {
+        **source,"rights":auth["status"],
+        "automation":HAPPINGS_AUTHORIZED_ACTION if auth["authorized"] else HAPPINGS_BLOCKED_ACTION,
+        "bulk_scrape_allowed":auth["authorized"],"authorization":auth,
+    }
 
 
 def safe_url(u):
@@ -213,6 +262,7 @@ def analyze(markets,cfg,*,official=None,today=None,shards=SHARDS):
     if (not isinstance(markets,list) or not 1<=len(markets)<=MAX_MARKETS
         or not isinstance(today,date) or not 1<=shards<=SHARDS):
         raise ValueError("Invalid retained national market inventory")
+    authorization=happings_authorization(today)
     ids=set()
     source_counts=Counter()
     gaps=Counter()
@@ -253,10 +303,11 @@ def analyze(markets,cfg,*,official=None,today=None,shards=SHARDS):
         slot=int.from_bytes(hashlib.sha256(sid.encode()).digest()[:4],"big")%shards
         if slot!=today.toordinal()%shards:
             continue
-        source=family(label,cfg)
+        source=family(label,cfg,authorization=authorization)
         batch.append({
             "market_id":sid,"original_source":label[:170],
             "source_family":source["id"],"source_rights":source["rights"],
+            "source_authorization":source.get("authorization"),
             "source_url":str(m.get("url_fonte") or "")[:500] if safe_url(m.get("url_fonte")) else "",
             "region":str(m.get("regione") or "")[:80],
             "city":str(m.get("citta") or "")[:120],
@@ -274,15 +325,18 @@ def analyze(markets,cfg,*,official=None,today=None,shards=SHARDS):
         -len(r["search_fields"]),r["market_id"]))
     breakdown=[]
     for label,n in sorted(source_counts.items(),key=lambda x:(-x[1],x[0])):
-        src=family(label,cfg)
+        src=family(label,cfg,authorization=authorization)
         breakdown.append({
             "publisher":label,"records":n,"source_family":src["id"],
             "reuse_status":src["rights"],"next_automation":src["automation"],
+            "bulk_scrape_allowed":src["bulk_scrape_allowed"],
+            "authorization":src.get("authorization"),
             "missing_fields":dict(sorted(per_source[label].items())),
             "source_rows_removed":0,
         })
     return {
         "schema":SCHEMA,"as_of":today.isoformat(),"report_only":True,
+        "may_enable_source_crawlers":False,"may_grant_source_reuse_rights":False,
         "original_market_ids_sha256":hashlib.sha256(
             "\n".join(sorted(ids)).encode()).hexdigest(),
         "market_records_scanned":len(markets),
@@ -308,6 +362,8 @@ def analyze(markets,cfg,*,official=None,today=None,shards=SHARDS):
 def validate(result,total):
     if (not isinstance(result,dict) or result.get("schema")!=SCHEMA
         or result.get("report_only") is not True
+        or result.get("may_enable_source_crawlers") is not False
+        or result.get("may_grant_source_reuse_rights") is not False
         or result.get("market_records_scanned")!=total
         or result.get("market_identities_preserved")!=total
         or result.get("source_refresh_does_not_verify_edition") is not True
@@ -321,6 +377,38 @@ def validate(result,total):
             "market_rows_removed","market_rows_added","market_fields_changed",
             "confirmed_openings_added","coordinates_created"))):
         raise ValueError("Worklist erased markets, invented verification or granted source rights")
+    source_permissions={}
+    for source in result["sources_by_volume"]:
+        auth=source.get("authorization")
+        source_permissions[source["source_family"]]=auth
+        if source["source_family"]!=HAPPINGS_FAMILY:
+            if source.get("bulk_scrape_allowed") is not False or auth is not None:
+                raise ValueError("Worklist granted unreviewed source extraction")
+            continue
+        allowed_states={
+            "project_owner_authorized":(True,"explicit_project_owner_instruction",False),
+            "authenticated":(True,"authenticated_publisher_grant",True),
+            "blocked_rights":(False,None,False),
+            "invalid_or_missing_rights_record":(False,None,False),
+        }
+        if (not isinstance(auth,dict) or auth.get("status") not in allowed_states
+            or auth.get("checked_on")!=result.get("as_of")
+            or auth.get("record_source")!=HAPPINGS_AUTHORIZATION_SOURCE
+            or auth.get("adapter_scope")!="happings_weekly_province_index"
+            or auth.get("publication_channel")!="dev-only"
+            or auth.get("granted_by_this_report") is not False):
+            raise ValueError("Untraceable Happings operational authorization")
+        authorized,basis,authenticated=allowed_states[auth["status"]]
+        expected_action=HAPPINGS_AUTHORIZED_ACTION if authorized else HAPPINGS_BLOCKED_ACTION
+        stamp=auth.get("record_sha256")
+        if (auth.get("authorized") is not authorized or auth.get("basis")!=basis
+            or auth.get("rights_authenticated") is not authenticated
+            or (authorized and (not isinstance(stamp,str) or len(stamp)!=64
+                                or not set(stamp)<=set("0123456789abcdef")))
+            or source.get("bulk_scrape_allowed") is not authorized
+            or source.get("reuse_status")!=auth["status"]
+            or source.get("next_automation")!=expected_action):
+            raise ValueError("Worklist confused operational consent and publisher authentication")
     ids=set()
     for item in result["daily_worklist"]:
         sid=item.get("market_id")
@@ -329,6 +417,13 @@ def validate(result,total):
         ids.add(sid)
         if item.get("any_field_updated") is not False or item.get("edition_verified") is not False:
             raise ValueError("Research worklist claimed market updates")
+        if item.get("source_authorization")!=source_permissions.get(item.get("source_family")):
+            raise ValueError("Worklist task changed the source authorization")
+        auth=item.get("source_authorization")
+        if auth is not None and (item.get("source_rights")!=auth["status"]
+            or item.get("next_source_action")!=(HAPPINGS_AUTHORIZED_ACTION if auth["authorized"]
+                                                 else HAPPINGS_BLOCKED_ACTION)):
+            raise ValueError("Worklist task contradicts the source authorization")
         for lead in item.get("official_evidence",[]):
             if (lead.get("source_url")!=SOURCE_PAGE
                 or lead.get("opening_verified") is not False
@@ -368,6 +463,20 @@ def markdown(result):
     lines.extend(["","## Riscontri ufficiali per singola scheda",""])
     for key,value in result["official_join_results"].items():
         lines.append("- "+key+": "+str(value))
+    profile=next((x for x in result["sources_by_volume"]
+                  if x["source_family"]==HAPPINGS_FAMILY),None)
+    if profile:
+        auth=profile["authorization"]
+        lines.extend(["","## Stato operativo Happings",""])
+        if auth["authorized"]:
+            lines.append("Il registro del motore autorizza il recupero con l'adattatore "
+                         "degli elenchi settimanali, nell'ambito DEV.")
+        else:
+            lines.append("Il registro del motore non autorizza attualmente il recupero Happings.")
+        lines.extend([
+            "Stato letto: `"+auth["status"]+"`; riferimento: `"+auth["record_source"]+"`.",
+            "Questo report descrive l'autorizzazione esistente e non abilita raccolte o modifiche.",
+        ])
     lines.extend(["","La corrispondenza per solo Comune e giorno identifica",
                   "una possibile pista, NON la prova che la sede sia la stessa.",
                   "Le fonti commerciali senza autorizzazione sono trattate come",

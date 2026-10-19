@@ -2,6 +2,7 @@
   "schema": 1,
   "report_only": true,
   "may_grant_source_reuse_rights": false,
+  "may_enable_source_crawlers": false,
   "may_apply_field_changes": false,
   "may_confirm_individual_market_dates": false,
   "max_sources_with_explicit_layout": 5,
@@ -11,15 +12,16 @@
       "id": "happings-weekly-or-detail",
       "label": "happings.com",
       "layout": "province_weekday_list_or_individual_event",
-      "rights": "no_verified_bulk_reuse_permission",
-      "automation": "cross_match_with_independent_licensed_official_sources",
+      "rights": "derive_from_existing_happings_authorization_record",
+      "authorization_source": "backend/data/happings-rights-review.json",
+      "authorized_adapter": "happings_weekly_province_index",
+      "automation": "existing_happings_index_refresh_when_authorized_then_official_cross_match",
       "fields_to_recheck": [
         "indirizzo",
         "orario_testo",
         "ricorrenza_testo",
         "date"
       ],
-      "bulk_scrape_allowed": false,
       "market_confirmation_allowed": false
     },
     {

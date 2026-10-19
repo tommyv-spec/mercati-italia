@@ -37,9 +37,12 @@ def happings_market(slug, url=VENICE, *, city="Spinea", province="VE", **changes
 
 def happings_acquisition_report(rows, selected_urls, *, pages=(), failures=(), **changes):
     protected = sorted(row["slug"] for row in rows if row.get("fonte") == "happings.com")
+    catalog_ids = sorted(row["slug"] for row in rows)
     report = {"schema": 1, "publisher": "happings.com", "date": TODAY.isoformat(),
               "enabled": True, "fetch_authorized": True, "status": "retrieved",
               "protected_existing_market_ids": len(protected), "protected_ids_sha256": digest(protected),
+              "protected_catalog_market_ids": len(catalog_ids),
+              "protected_catalog_ids_sha256": digest(catalog_ids),
               "selected_urls": selected_urls, "source_pages": list(pages),
               "page_failures": list(failures), "source_evidence_reused": False}
     report.update(changes)
@@ -259,6 +262,72 @@ class SourceRefreshCoverageTests(unittest.TestCase):
         result = coverage(rows, happings_enabled=True, happings_report=report)
         self.assertEqual(result["market_layout_statuses"], {"disabled": 1})
         self.assertEqual(result["market_read_statuses"], {"disabled": 1})
+
+    def test_secondary_comparison_does_not_change_primary_reader_coverage(self):
+        origin = "https://www.eventiesagre.it/Mercati-Settimanali/spinea.html"
+        rows = [happings_market("index"),
+                happings_market("other-origin", origin, fonte="eventiesagre.it", indirizzo="Via Roma"),
+                happings_market("empty-address", origin, fonte="eventiesagre.it"),
+                happings_market("vague-address", origin, fonte="eventiesagre.it", indirizzo="centro storico")]
+        before = copy.deepcopy(rows)
+        result = coverage(rows, happings_enabled=True)
+        resource = next(r for r in result["resources"] if r["url"] == origin)
+        self.assertEqual(resource["mode"], "source_layout_needed")
+        self.assertEqual(resource["source_layout_status"], "unsupported")
+        self.assertEqual(resource["source_read_status"], "not_read")
+        self.assertEqual(resource["secondary_corroboration_routes"], [
+            {"publisher": "happings.com", "source_route_url": VENICE,
+             "eligible_markets": 1, "source_read_status": "not_observed"}])
+        self.assertEqual(result["market_layout_statuses"], {"supported": 1, "unsupported": 3})
+        self.assertEqual(result["secondary_corroboration"], {
+            "publisher": "happings.com", "mode": "existing_address_exact_match",
+            "counts_describe": "comparison_eligibility", "eligible_markets": 1,
+            "unique_source_urls": 1, "market_read_statuses": {"not_observed": 1}})
+        self.assertEqual(rows, before)
+
+    def test_secondary_read_status_uses_existing_page_and_all_catalog_ids(self):
+        origin = "https://www.eventiesagre.it/Mercati-Settimanali/spinea.html"
+        rows = [happings_market("index"),
+                happings_market("other-origin", origin, fonte="eventiesagre.it", indirizzo="Via Roma")]
+        page = {"requested_url": VENICE, "final_url": VENICE_FINAL,
+                "source_html_sha256": "a" * 64, "status": "parsed", "source_rows": 1}
+        report = happings_acquisition_report(rows, [VENICE], pages=[page])
+        result = coverage(rows, happings_enabled=True, happings_report=report)
+        self.assertEqual(result["market_read_statuses"], {"retrieved": 1, "not_read": 1})
+        self.assertEqual(result["secondary_corroboration"]["market_read_statuses"], {"retrieved": 1})
+        for changes in ({"protected_catalog_ids_sha256": "0" * 64},
+                        {"protected_catalog_market_ids": 1}):
+            with self.subTest(changes=changes):
+                invalid = coverage(rows, happings_enabled=True, happings_report={**report, **changes})
+                self.assertEqual(invalid["secondary_corroboration"]["market_read_statuses"],
+                                 {"not_observed": 1})
+        changed = copy.deepcopy(rows)
+        changed[1]["slug"] = "different-origin-id"
+        result = coverage(changed, happings_enabled=True, happings_report=report)
+        self.assertEqual(result["secondary_corroboration"]["market_read_statuses"], {"not_observed": 1})
+
+    def test_secondary_comparison_cannot_create_pages_or_bypass_inactive_phase(self):
+        origin = "https://www.eventiesagre.it/Mercati-Settimanali/spinea.html"
+        other = happings_market("other-origin", origin, fonte="eventiesagre.it", indirizzo="Via Roma")
+        self.assertEqual(coverage([other], happings_enabled=True)["secondary_corroboration"]
+                         ["eligible_markets"], 0)
+        rows = [happings_market("index"), other]
+        self.assertEqual(coverage(rows)["secondary_corroboration"]["eligible_markets"], 0)
+        report = happings_acquisition_report(rows, [VENICE], status="blocked_rights", fetch_authorized=False)
+        self.assertEqual(coverage(rows, happings_enabled=True, happings_report=report)
+                         ["secondary_corroboration"]["eligible_markets"], 0)
+
+    def test_secondary_outage_is_separate_from_field_verification(self):
+        origin = "https://www.eventiesagre.it/Mercati-Settimanali/spinea.html"
+        rows = [happings_market("index"),
+                happings_market("other-origin", origin, fonte="eventiesagre.it", indirizzo="Via Roma")]
+        report = happings_acquisition_report(rows, [VENICE], status="unavailable",
+                                            failures=[{"requested_url": VENICE, "error_type": "HTTPError"}])
+        result = coverage(rows, happings_enabled=True, happings_report=report)
+        self.assertEqual(result["secondary_corroboration"]["eligible_markets"], 1)
+        self.assertEqual(result["secondary_corroboration"]["market_read_statuses"], {"unavailable": 1})
+        self.assertEqual(result["market_layout_statuses"], {"supported": 1, "unsupported": 1})
+        self.assertNotIn("verified_markets", result["secondary_corroboration"])
 
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from recurrence_refresh import (
     explicit_rule, forecast_source_limits, project_dates, refresh_record, refresh_records,
+    temporal_scope_hold, forecast_rule,
 )
 from field_evidence import make_receipt
 
@@ -62,6 +63,337 @@ def record(**kw):
         "status":"non_confermato",
         **kw,
     }
+
+
+class TemporalScopeForecastGuards(unittest.TestCase):
+    now = date(2026, 10, 19)
+    forecast_fields = {"date", "date_quality", "proiezione_regola",
+                       "proiezione_generata_il", "proiezione_fonte"}
+
+    def test_qualifier_is_found_in_each_original_identity_field(self):
+        for field, value, expected in (
+            ("nome", "Mercato settimanale estivo", "seasonal_scope_unrepresented"),
+            ("nome_originale", "Mercato di Firenze (stagionale)", "seasonal_scope_unrepresented"),
+            ("slug", "mercato-invernale-firenze-sabato", "seasonal_scope_unrepresented"),
+            ("url_fonte", "https://organizzatore.example/mercato--estivo-.html",
+             "seasonal_scope_unrepresented"),
+            ("url_fonte", "https://organizzatore.example/mercato%20%28ogni%2015gg%29",
+             "interval_scope_unrepresented"),
+            ("ricorrenza_originale", "Ogni sabato alternato", "interval_scope_unrepresented"),
+            ("ricorrenza_testo", "Ogni sabato durante la stagione", "seasonal_scope_unrepresented"),
+        ):
+            with self.subTest(field=field, value=value):
+                original = record(**{field: value})
+                frozen = deepcopy(original)
+                self.assertEqual(temporal_scope_hold(original), expected)
+                self.assertEqual(original, frozen)
+
+    def test_seven_observed_shapes_retire_122_predictions_for_unknown_and_recent_sources(self):
+        # Source identities from the real catalog, with deterministic copies of
+        # its 19 Oct 2026 projection horizon. No production data are loaded or
+        # patched by this test, and the implementation has no market-ID rules.
+        cases = (
+            ("Ramiseto (estivo)", "ramiseto--estivo-", 3),
+            ("Ravenna", "ravenna--estivo-", 6),
+            ("Ravenna", "ravenna--estivo-", 0),
+            ("Riolo Terme", "riolo-terme--estivo-", 0),
+            ("Riolo Terme (estivo)", "riolo-terme--estivo-", 0),
+            ("Poggiorsini", "poggiorsini--ogni-15gg-", 4),
+            ("Poggiorsini (ogni 15gg)", "poggiorsini--ogni-15gg-", 4),
+        )
+        weekdays = ("lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica")
+        for source_date in ("", "2026-10-18"):
+            originals = []
+            for i, (name, page, day) in enumerate(cases):
+                dates = [(self.now + timedelta(days=d)).isoformat() for d in range(121)
+                         if (self.now + timedelta(days=d)).weekday() == day]
+                originals.append(record(
+                    slug="original-stable-id-" + str(i), nome="Mercato settimanale di " + name,
+                    ricorrenza_testo="settimanale - " + weekdays[day],
+                    fonte="happings.com", url_fonte="https://www.happings.com/it/mercato-settimanale-a-" + page + ".html",
+                    fonte_aggiornata_il=source_date, aggiornato_il="2026-10-19T09:00:00",
+                    indirizzo="Piazza della Repubblica", lat=43.77, lon=11.25,
+                    verificato_il="", date=dates,
+                    proiezione_regola={"kind": "weekly", "weekdays": [day]},
+                    proiezione_generata_il="2026-10-19", proiezione_fonte="ricorrenza_testo",
+                    fonti=[{"nome": "Fonte originale", "url": "https://example.com/originale"}],
+                    riscontri_campi=[]))
+            frozen = deepcopy(originals)
+            with self.subTest(source_date=source_date):
+                self.assertEqual(sum(len(row["date"]) for row in originals), 122)
+                updated, report = refresh_records(originals, self.now)
+                self.assertEqual(report["reasons"], {"seasonal_scope_unrepresented": 5,
+                                                      "interval_scope_unrepresented": 2})
+                self.assertEqual(report["temporal_scope_holds"], 7)
+                self.assertEqual(report["temporal_scope_forecasts_withdrawn"], 7)
+                self.assertEqual(report["temporal_scope_dates_withdrawn"], 122)
+                self.assertEqual(report["newly_dated"], 0)
+                self.assertEqual([r["slug"] for r in updated], [r["slug"] for r in originals])
+                for before, after in zip(originals, updated):
+                    self.assertEqual(after["date"], [])
+                    self.assertEqual(after["date_quality"], "sconosciuta")
+                    self.assertIsNone(after["proiezione_regola"])
+                    self.assertEqual(after["proiezione_generata_il"], "")
+                    self.assertEqual(after["proiezione_fonte"], "")
+                    self.assertEqual({k: v for k, v in after.items() if k not in self.forecast_fields},
+                                     {k: v for k, v in before.items() if k not in self.forecast_fields})
+                self.assertEqual(originals, frozen)
+
+    def test_temporal_limits_block_new_dates_without_inventing_a_bounded_rule(self):
+        for title in ("Mercato estivo", "Mercato invernale", "Mercato ogni 15gg",
+                      "Mercato ogni due settimane", "Mercato una volta all'anno"):
+            with self.subTest(title=title):
+                original = record(nome=title, date=[], date_quality="sconosciuta",
+                                  fonte_aggiornata_il="2026-10-18")
+                updated, reason = refresh_record(original, self.now)
+                self.assertTrue(reason.endswith("scope_unrepresented"))
+                self.assertEqual(updated, original)
+                self.assertNotIn("proiezione_generata_il", updated)
+
+    def test_calendar_exception_and_date_range_retire_even_with_unparseable_or_unknown_age(self):
+        for recurrence, expected in (
+            ("quindicinale", "interval_scope_unrepresented"),
+            ("Ogni sabato, esclusi i festivi", "calendar_exception_scope_unrepresented"),
+            ("Ogni sabato tranne agosto", "calendar_exception_scope_unrepresented"),
+            ("Ogni sabato da giugno a settembre 2026", "date_range_scope_unrepresented"),
+            ("Ogni sabato dal 1 giugno al 31 agosto", "date_range_scope_unrepresented"),
+            ("Ogni sabato dal 01/06 al 31/08", "date_range_scope_unrepresented"),
+            ("Ogni sabato soltanto nel mese di luglio", "date_range_scope_unrepresented"),
+            ("Mercato sospeso", "calendar_exception_scope_unrepresented"),
+        ):
+            with self.subTest(recurrence=recurrence):
+                original = record(ricorrenza_testo=recurrence, fonte_aggiornata_il="")
+                updated, reason = refresh_record(original, self.now)
+                self.assertEqual(reason, expected)
+                self.assertEqual(updated["date"], [])
+                self.assertEqual(updated["ricorrenza_testo"], recurrence)
+
+    def test_reported_confirmed_and_human_reviewed_data_are_preserved(self):
+        for patch_fields, expected in (
+            ({"date_quality": "riportata"}, "non_projected_source_date"),
+            ({"date_quality": "confermata"}, "non_projected_source_date"),
+            ({"verificato_il": "2026-10-18"}, "verified_temporal_scope_preserved"),
+            ({"date_quality": "sconosciuta", "date": [], "verificato_il": "2026-10-18"},
+             "verified_temporal_scope_preserved"),
+        ):
+            with self.subTest(patch_fields=patch_fields):
+                original = record(nome="Mercato estivo", **patch_fields)
+                updated, reason = refresh_record(original, self.now)
+                self.assertEqual(reason, expected)
+                self.assertEqual(updated, original)
+
+    def test_explicit_closed_month_cannot_generate_saturdays_during_the_closure(self):
+        for source_date in ("", "2026-07-19"):
+            with self.subTest(source_date=source_date):
+                original = record(ricorrenza_testo="Ogni sabato, chiuso in agosto",
+                                  fonte_aggiornata_il=source_date, date=["2026-08-01"])
+                self.assertEqual(temporal_scope_hold(original), "calendar_exception_scope_unrepresented")
+                updated, reason = refresh_record(original, date(2026, 7, 20))
+                self.assertEqual(reason, "calendar_exception_scope_unrepresented")
+                self.assertEqual(updated["date"], [])
+                self.assertEqual(updated["date_quality"], "sconosciuta")
+                self.assertEqual(updated["ricorrenza_testo"], original["ricorrenza_testo"])
+                self.assertEqual(original["date"], ["2026-08-01"])
+
+    def test_explicit_holiday_exception_cannot_generate_the_excluded_friday(self):
+        for source_date in ("", "2026-10-18"):
+            with self.subTest(source_date=source_date):
+                original = record(slug="source-identity-venerdi",
+                                  ricorrenza_testo="Ogni venerdì, eccetto Natale",
+                                  fonte_aggiornata_il=source_date, date=["2026-12-25"])
+                self.assertEqual(temporal_scope_hold(original), "calendar_exception_scope_unrepresented")
+                updated, reason = refresh_record(original, self.now)
+                self.assertEqual(reason, "calendar_exception_scope_unrepresented")
+                self.assertEqual(updated["date"], [])
+                self.assertEqual(updated["date_quality"], "sconosciuta")
+                self.assertEqual(updated["slug"], original["slug"])
+                self.assertEqual(original["date"], ["2026-12-25"])
+
+    def test_unclassified_dates_are_not_removed_as_if_they_were_computed(self):
+        original = record(nome="Mercato estivo", date_quality="sconosciuta")
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "seasonal_scope_unrepresented")
+        self.assertEqual(updated, original)
+
+    def test_partial_recent_recurrence_receipt_does_not_erase_a_seasonal_identity(self):
+        original = record(nome_originale="Mercato di Firenze (estivo)", fonte_aggiornata_il="")
+        original["riscontri_campi"] = [make_receipt(
+            original, values={"ricorrenza_testo": original["ricorrenza_testo"]},
+            source_url="https://comune.example/mercati", source_name="Comune",
+            source_id="weekly-only", source_row="weekly-venue", read_on=self.now.isoformat(),
+            source_updated_on="2026-10-18", source_sha256="a" * 64,
+            method="pagina_primaria_revisionata", scope="pagina", fingerprint_kind="html_bytes")]
+        updated, reason = refresh_record(original, self.now)
+        self.assertEqual(reason, "seasonal_scope_unrepresented")
+        self.assertEqual(updated["date"], [])
+        self.assertEqual(updated["riscontri_campi"], original["riscontri_campi"])
+        repeated, second_reason = refresh_record(updated, self.now + timedelta(days=1))
+        self.assertEqual(second_reason, reason)
+        self.assertEqual(repeated, updated)
+
+    def test_whole_words_and_temporal_context_avoid_place_and_transport_false_positives(self):
+        for fields in (
+            {"nome": "Mercato di Primavera", "citta": "Primavera"},
+            {"nome": "Festival di Sestino", "url_fonte": "https://example.com/mercato-a-sestino"},
+            {"nome": "Mercato delle Quattro Stagioni"},
+            {"nome": "Natale Di Luci", "url_fonte": "https://example.com/natale-di-luci"},
+            {"nome": "Mercato settimanale annuale", "ricorrenza_testo": "Cadenza settimanale annuale: sabato"},
+            {"nome": "Mercato settimanale di Chiusa di Pesio"},
+            {"nome": "Mercato settimanale in Inverno e Monteleone", "citta": "Inverno e Monteleone"},
+            {"nome": "Mercato settimanale a San Salvo", "citta": "San Salvo",
+             "slug": "mercato-settimanale-a-san-salvo-san-salvo-giovedi",
+             "ricorrenza_testo": "settimanale - giovedì"},
+            {"nome": "Mercatino di Merano, Passeggiata d'Inverno", "citta": "Merano",
+             "indirizzo": '"Mercatino delle Pulci", Passeggiata d\'Inverno',
+             "ricorrenza_testo": "mensile - ultimo sabato del mese"},
+            {"nome": "Mercato in Via del Mercato Estivo", "indirizzo": "Via del Mercato Estivo"},
+            {"url_fonte": "https://mercato-estivo.example/mercati?campagna=estivo#ogni-15gg"},
+            {"url_fonte": "https://example.com/2026/06/15/mercati"},
+            {"nome": "Mercato: dalle 8 alle 13", "orario_testo": "08:00–13:00"},
+            {"ricorrenza_testo": "Ogni sabato, da 08:00 a 13:00"},
+            {"ricorrenza_testo": "Ogni sabato, dal 08:00 al 13:00"},
+            {"ricorrenza_testo": "Ogni sabato, dalle 8.30 alle 13.30"},
+            {"ricorrenza_testo": "Ogni sabato, dal 8.30 al 13.30"},
+        ):
+            with self.subTest(fields=fields):
+                original = record(**fields)
+                self.assertIsNone(temporal_scope_hold(original))
+                self.assertEqual(refresh_record(original, self.now)[1], "renewed")
+
+    def test_declared_place_does_not_hide_a_separate_real_calendar_qualifier(self):
+        original = record(nome="Mercato estivo in Passeggiata d'Inverno",
+                          citta="Merano", indirizzo="Passeggiata d'Inverno")
+        self.assertEqual(temporal_scope_hold(original), "seasonal_scope_unrepresented")
+        original = record(nome="Mercato di San Salvo", citta="San Salvo",
+                          ricorrenza_testo="Ogni sabato, salvo festivi")
+        self.assertEqual(temporal_scope_hold(original), "calendar_exception_scope_unrepresented")
+        original = record(nome="Mercato settimanale di Riolo Terme (estivo)",
+                          citta="Riolo Terme (estivo)")
+        self.assertEqual(temporal_scope_hold(original), "seasonal_scope_unrepresented")
+
+    def test_intervals_already_fully_represented_by_the_rule_remain_supported(self):
+        for title, recurrence in (
+            ("Mercato ogni 7 giorni", "Ogni sabato"),
+            ("Mercato ogni settimana", "Ogni sabato"),
+            ("Mercato ogni 1 settimana", "Ogni martedì e sabato"),
+            ("Mercato ogni 1 mese", "mensile - prima domenica del mese"),
+            ("Mercato ogni giorno", "Ogni lunedì, martedì, mercoledì, giovedì, venerdì, sabato e domenica"),
+        ):
+            with self.subTest(title=title):
+                original = record(nome=title, ricorrenza_testo=recurrence)
+                self.assertIsNone(temporal_scope_hold(original))
+                self.assertEqual(refresh_record(original, self.now)[1], "renewed")
+        contradictory = record(nome="Mercato ogni 7 giorni", ricorrenza_testo="Ogni martedì e sabato")
+        self.assertEqual(temporal_scope_hold(contradictory), "interval_scope_unrepresented")
+
+
+class RepresentedMonthScopes(unittest.TestCase):
+    cadence = "mensile - terza domenica del mese, da marzo a ottobre"
+    rule = {"kind": "monthly_nth_weekday", "weekday": 6, "ordinal": 3,
+            "active_months": list(range(3, 11))}
+
+    def monthly_record(self, **extra):
+        return record(slug="independent-monthly-source", ricorrenza_testo=self.cadence,
+                      proiezione_regola=deepcopy(self.rule), **extra)
+
+    def test_complete_month_scope_is_derived_without_changing_reader_rule_schema(self):
+        original = self.monthly_record()
+        self.assertEqual(explicit_rule(self.cadence),
+                         {"kind": "monthly_nth_weekday", "weekday": 6, "ordinal": 3})
+        self.assertEqual(forecast_rule(original), self.rule)
+        self.assertIsNone(temporal_scope_hold(original))
+        original.pop("proiezione_regola")
+        self.assertEqual(forecast_rule(original), self.rule, "the text supplies the complete month scope")
+
+    def test_recent_generic_monthly_source_returns_in_spring_with_forecast_provenance(self):
+        original = self.monthly_record(fonte_aggiornata_il="2026-10-01", date=[],
+                                       date_quality="sconosciuta")
+        frozen = deepcopy(original)
+        updated, reason = refresh_record(original, date(2027, 1, 20))
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(updated["date"][:2], ["2027-03-21", "2027-04-18"])
+        self.assertTrue(all(date.fromisoformat(day).month in range(3, 11) for day in updated["date"]))
+        self.assertEqual(updated["date_quality"], "prevista")
+        self.assertEqual(updated["proiezione_regola"], self.rule)
+        self.assertEqual(updated["proiezione_fonte"], "ricorrenza_testo")
+        self.assertEqual(original, frozen)
+
+    def test_weekly_and_cross_year_month_ranges_never_generate_inactive_months(self):
+        for text, months, first_day in (
+            ("Ogni sabato, da giugno a settembre", [6, 7, 8, 9], "2026-09-26"),
+            ("Ogni sabato, da novembre a febbraio", [1, 2, 11, 12], "2026-11-07"),
+        ):
+            with self.subTest(text=text):
+                original = record(ricorrenza_testo=text, fonte_aggiornata_il="2026-09-19", date=[])
+                self.assertEqual(forecast_rule(original)["active_months"], months)
+                updated, reason = refresh_record(original, date(2026, 9, 20))
+                self.assertEqual(reason, "renewed")
+                self.assertEqual(updated["date"][0], first_day)
+                self.assertTrue(all(date.fromisoformat(day).month in months for day in updated["date"]))
+
+    def test_year_day_boundary_and_other_clauses_cannot_hide_behind_a_month_range(self):
+        for recurrence in (
+            self.cadence + " 2026", self.cadence + ", eccetto Natale",
+            self.cadence + ", chiuso in agosto", self.cadence + ", ogni 15gg",
+            self.cadence + ", dalle 8 alle 13",
+            "mensile - terza domenica del mese, dal 15 marzo al 31 ottobre",
+        ):
+            with self.subTest(recurrence=recurrence):
+                original = record(ricorrenza_testo=recurrence, fonte_aggiornata_il="2026-10-18")
+                self.assertNotIn("active_months", forecast_rule(original) or {})
+                self.assertIsNotNone(temporal_scope_hold(original))
+                updated, _ = refresh_record(original, date(2026, 10, 19))
+                self.assertEqual(updated["date"], [])
+        original = self.monthly_record(nome_originale="Mercato annuale estivo")
+        self.assertEqual(temporal_scope_hold(original), "seasonal_scope_unrepresented")
+
+    def test_self_declared_or_conflicting_month_mask_cannot_override_the_source_text(self):
+        for saved in (
+            {**self.rule, "active_months": [1, 2]},
+            {**self.rule, "active_months": tuple(range(3, 11))},
+            {**self.rule, "active_months": [3, 3, 4]},
+            {**self.rule, "weekday": 5},
+        ):
+            with self.subTest(saved=saved):
+                original = self.monthly_record(fonte_aggiornata_il="2026-10-18")
+                original["proiezione_regola"] = saved
+                updated, reason = refresh_record(original, date(2026, 10, 19))
+                self.assertEqual(reason, "date_range_scope_unrepresented")
+                self.assertEqual(updated["date"], [])
+        no_text_scope = self.monthly_record()
+        no_text_scope["ricorrenza_testo"] = "mensile - terza domenica del mese"
+        self.assertEqual(temporal_scope_hold(no_text_scope), "date_range_scope_unrepresented")
+
+    def test_unknown_source_preserves_only_existing_compatible_dates_without_renewal(self):
+        original = self.monthly_record(
+            fonte_aggiornata_il="", aggiornato_il="2027-01-20T09:00:00",
+            importato_il="2027-01-20T09:00:00+00:00", date=["2026-10-18"],
+            proiezione_generata_il="2026-10-12", proiezione_fonte="ricorrenza_testo")
+        frozen = deepcopy(original)
+        unchanged, reason = refresh_record(original, date(2027, 1, 20))
+        self.assertEqual(reason, "unknown_source_age")
+        self.assertEqual(unchanged, frozen)
+        original["date"].append("2026-11-15")
+        filtered, reason = refresh_record(original, date(2027, 1, 20))
+        self.assertEqual(reason, "existing_forecast_month_scope_filtered")
+        self.assertEqual(filtered["date"], ["2026-10-18"])
+        self.assertEqual(filtered["proiezione_generata_il"], "2026-10-12")
+        self.assertEqual(filtered["fonte_aggiornata_il"], "")
+        empty = self.monthly_record(fonte_aggiornata_il="", date=[], date_quality="sconosciuta")
+        self.assertEqual(refresh_record(empty, date(2027, 1, 20)), (empty, "unknown_source_age"))
+
+    def test_direct_projection_rejects_malformed_month_scope(self):
+        for months in ([], [True], [0, 13], [3, 3], [10, 3], ["3"], (3, 4)):
+            with self.subTest(months=months):
+                with self.assertRaisesRegex(ValueError, "active month scope"):
+                    project_dates({**self.rule, "active_months": months}, date(2026, 10, 19), 120)
+
+    def test_month_scope_does_not_authorize_changes_to_reported_or_human_reviewed_dates(self):
+        for protection in ({"date_quality": "riportata"}, {"date_quality": "confermata"},
+                           {"verificato_il": "2026-10-18"}):
+            with self.subTest(protection=protection):
+                original = self.monthly_record(**protection)
+                self.assertEqual(refresh_record(original, date(2026, 10, 19))[0], original)
 
 
 class SourceContractForecastLimits(unittest.TestCase):

@@ -13,7 +13,9 @@ date-quality "confermata"/"riportata" records are not altered. This transforms
 a snapshot in memory and never contacts or modifies Firebase/Cloudflare.
 An import or source-read timestamp does not date the publisher's content.
 Unknown content age leaves existing predictions untouched and cannot create
-or renew a projection or its provenance timestamp.
+or renew a projection or its provenance timestamp. Explicit seasonal,
+interval or exception limits in the original identity still retire incompatible
+predictions, even when the publisher's content date is unknown.
 """
 from __future__ import annotations
 
@@ -27,6 +29,7 @@ from datetime import date, timedelta
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote, urlsplit
 
 from source_freshness import as_day, source_date_evidence, source_url_domain
 from field_evidence import clean_receipts, MAX_READ_AGE, SOURCE_AGE
@@ -41,6 +44,72 @@ ORDINAL_INDEX = {"primo": 1, "prima": 1, "secondo": 2, "seconda": 2,
 MAX_LOOKAHEAD_DAYS = 120
 MAX_SOURCE_STALE_DAYS = 540
 DEFAULT_INDEX_DATES = 16
+
+MONTH_NAMES = ("gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|"
+               "settembre|ottobre|novembre|dicembre")
+MONTH_NUMBERS = {name: i for i, name in enumerate(MONTH_NAMES.split("|"), 1)}
+COMPLETE_MONTH_RANGE = re.compile(
+    r"(?P<recurrence>.+?)(?:,\s*|\s+)da (?P<first>" + MONTH_NAMES +
+    r") a (?P<last>" + MONTH_NAMES + r")"
+)
+NAMED_MONTH_RANGE = re.compile(r"da (" + MONTH_NAMES + r") a (" + MONTH_NAMES + r")")
+FULL_WEEKLY_RECURRENCE = re.compile(
+    r"(?:settimanale(?:\s*[-:]\s*|\s+)|ogni\s+)(?:" + "|".join(WEEKDAYS) +
+    r")(?:\s*(?:,|\be\b)\s*(?:" + "|".join(WEEKDAYS) + r"))*"
+)
+FULL_MONTHLY_RECURRENCE = re.compile(
+    r"(?:(?:mensile(?:\s*[-:]\s*|\s+))|ogni\s+)?(?:" +
+    "|".join(ORDINAL_INDEX) + r") (?:" + "|".join(WEEKDAYS) + r") (?:del|al) mese"
+)
+SEASONAL_SCOPE = re.compile(
+    r"\b(?:estiv[oaie]|invernal[ei]|primaveril[ei]|autunnal[ei]|stagional[ei])\b"
+    r"|\b(?:in|d|durante l|durante la) (?:estate|inverno|primavera|autunno)\b"
+    r"|\b(?:durante(?: la)?|nella|per la) stagione\b"
+)
+INTERVAL_SCOPE = re.compile(
+    r"\b(?:quindicinal[ei]|bisettimanal[ei]|bimestral[ei]|trimestral[ei]|"
+    r"semestral[ei]|alternat[oaie])\b|\bsettimane alterne\b"
+    r"|\buna volta (?:l anno|all anno|ogni anno)\b"
+    r"|\b(?:cadenza|frequenza) annuale\b"
+)
+INTERVAL_WORDS = {"uno": 1, "una": 1, "due": 2, "tre": 3, "quattro": 4,
+                  "cinque": 5, "sei": 6, "sette": 7, "otto": 8, "nove": 9,
+                  "dieci": 10, "quattordici": 14, "quindici": 15}
+COUNTED_INTERVAL = re.compile(
+    r"\b(?:ogni|una volta ogni) (\d{1,3}|" + "|".join(INTERVAL_WORDS) +
+    r")\s*(gg|giorni?|settimane?|mesi|mese|anni|anno)\b"
+)
+CALENDAR_EXCEPTION_SCOPE = re.compile(
+    r"\b(?:sospes[oaie]|annullat[oaie])\b|\bnon si svolge\b"
+    r"|\bmercato (?:temporaneamente )?chiuso\b"
+    r"|\b(?:tranne|eccetto|esclus[oaie]|salvo|ad eccezione) "
+    r"(?:(?:i|il|la|le|gli|dei|del|della|giorni|mesi|di) ){0,3}"
+    r"(?:festiv[oi]|festivita|natale|pasqua|capodanno|ferragosto|" +
+    "|".join(WEEKDAYS) + "|" + MONTH_NAMES + r")\b"
+    r"|\bchius[oaie] (?:in|a|nel mese di) (?:" + MONTH_NAMES +
+    r"|natale|pasqua|capodanno|ferragosto)\b"
+)
+DATE_SCOPE_ATOM = (r"(?:\d{1,4}(?: \d{1,4}){0,2}(?: (?:" + MONTH_NAMES +
+                   r")(?: \d{4})?)?|(?:" + MONTH_NAMES + r")(?: \d{4})?)")
+DATE_RANGE_SCOPE = re.compile(
+    r"\b(?:da|dal|dall) " + DATE_SCOPE_ATOM + r" (?:fino )?(?:a|al|all) " +
+    DATE_SCOPE_ATOM + r"\b|\b(?:solo|soltanto|esclusivamente) (?:nel mese di |a |in )?"
+    r"(?:" + MONTH_NAMES + r")\b"
+)
+NUMERIC_DATE_RANGE_SCOPE = re.compile(
+    r"\b(?:da|dal|dall)\s+\d{1,2}\s*/\s*\d{1,2}"
+    r"(?:\s*/\s*\d{2,4})?\s+(?:fino\s+)?(?:a|al|all)\s+"
+    r"\d{1,2}\s*/\s*\d{1,2}(?:\s*/\s*\d{2,4})?\b"
+)
+DATE_RANGE_CONTEXT = re.compile(r"\b(?:" + MONTH_NAMES + r"|(?:19|20)\d{2})\b")
+STREET_PREFIX = re.compile(
+    r"\b(?:via|viale|viali|piazza|piazzale|piazzetta|corso|largo|passeggiata|"
+    r"lungomare|lungolago|giardino|giardini|parco|strada|vicolo)\b"
+)
+TEMPORAL_SCOPE_REASONS = frozenset({
+    "seasonal_scope_unrepresented", "interval_scope_unrepresented",
+    "calendar_exception_scope_unrepresented", "date_range_scope_unrepresented",
+})
 
 
 @lru_cache(maxsize=1)
@@ -127,15 +196,150 @@ def explicit_rule(value: Any) -> dict | None:
     return {"kind": "weekly", "weekdays": sorted(set(days))}
 
 
+def _month_numbers(first: str, last: str) -> list[int]:
+    start, end = MONTH_NUMBERS[first], MONTH_NUMBERS[last]
+    if start <= end:
+        return list(range(start, end + 1))
+    return list(range(1, end + 1)) + list(range(start, 13))
+
+
+def _complete_month_rule(value: Any) -> dict | None:
+    """Represent only an entire recurring rule plus named months, with no year.
+
+    A year, day-of-month boundary, exception or other trailing prose cannot be
+    silently discarded. Keep the general explicit_rule parser unchanged for
+    readers that use its existing schema to recognize possible cohorts.
+    """
+    match = COMPLETE_MONTH_RANGE.fullmatch(text_key(value))
+    if not match:
+        return None
+    body = match["recurrence"]
+    if not (FULL_WEEKLY_RECURRENCE.fullmatch(body)
+            or FULL_MONTHLY_RECURRENCE.fullmatch(body)):
+        return None
+    rule = explicit_rule(body)
+    if not rule:
+        return None
+    return {**rule, "active_months": _month_numbers(match["first"], match["last"])}
+
+
+def forecast_rule(record: dict) -> dict | None:
+    """Derive forecast scope from complete text, never a saved metadata flag."""
+    return (_complete_month_rule(record.get("ricorrenza_testo"))
+            or explicit_rule(record.get("ricorrenza_testo")))
+
+
+def temporal_scope_hold(record: dict) -> str | None:
+    """Explain temporal limits which the current projection rules cannot express.
+
+    The original identity can retain a limit lost from a normalized weekly
+    label. Inspect whole words in those fields and only the URL path: a host,
+    query parameter, address or a place name such as Primavera is not a
+    seasonal claim. No source date or partial recurrence receipt can erase
+    this limit; the engine needs an actually representable bounded rule.
+
+    This pure helper is also used by field readers before attesting a complete
+    recurrence. It does not infer weekdays, seasons or dates from an identity.
+    """
+    if not isinstance(record, dict):
+        return None
+    represented_rule = _complete_month_rule(record.get("ricorrenza_testo"))
+    represented_months = (represented_rule or {}).get("active_months")
+    previous_rule = record.get("proiezione_regola")
+    if (isinstance(previous_rule, dict) and "active_months" in previous_rule
+            and (not represented_rule or previous_rule != represented_rule
+                 or not isinstance(previous_rule["active_months"], list)
+                 or any(type(month) is not int for month in previous_rule["active_months"]))):
+        # An old or self-declared month mask is not source evidence and must
+        # not authorize a different cadence, season or an unbounded forecast.
+        return "date_range_scope_unrepresented"
+    def words(value):
+        return " ".join(re.findall(r"[a-z0-9]+", text_key(value)))
+
+    # A source title/slug can contain a real place: San Salvo + giovedì is
+    # not "except Thursday", and Passeggiata d'Inverno is a street name.
+    # Remove only complete declared place phrases from identity fields.
+    # Calendar prose keeps its meaning, even if it mentions a similar word.
+    city = words(record.get("citta"))
+    # A malformed saved city such as "Riolo Terme (estivo)" is not an
+    # unqualified place phrase: masking it would hide the very lost limit.
+    places = set()
+    if (not re.search(r"[()\[\]]", str(record.get("citta") or ""))
+            and not SEASONAL_SCOPE.search(city) and not INTERVAL_SCOPE.search(city)
+            and not COUNTED_INTERVAL.search(city)):
+        places.add(city)
+    street = words(record.get("indirizzo"))
+    street_match = STREET_PREFIX.search(street)
+    if street_match:
+        places.add(street[street_match.start():])
+    place_patterns = [re.compile(r"\b" + re.escape(place) + r"\b")
+                      for place in sorted(places, key=len, reverse=True) if place]
+    values = [(record.get(field), field in {"ricorrenza_testo", "ricorrenza_originale"})
+              for field in ("ricorrenza_testo", "ricorrenza_originale", "nome", "nome_originale", "slug")]
+    try:
+        values.append((unquote(urlsplit(str(record.get("url_fonte") or "")).path), False))
+    except ValueError:
+        pass
+    for value, calendar_prose in values:
+        if not isinstance(value, str) or not value:
+            continue
+        text = words(value)
+        if not calendar_prose:
+            for pattern in place_patterns:
+                text = pattern.sub(" ", text)
+            text = " ".join(text.split())
+        if SEASONAL_SCOPE.search(text):
+            return "seasonal_scope_unrepresented"
+        if INTERVAL_SCOPE.search(text):
+            return "interval_scope_unrepresented"
+        for match in COUNTED_INTERVAL.finditer(text):
+            number, unit = match.groups()
+            count = int(number) if number.isdigit() else INTERVAL_WORDS[number]
+            rule = explicit_rule(record.get("ricorrenza_testo")) or {}
+            weekly = rule.get("kind") == "weekly"
+            # Only intervals already expressed by the full parsed rule are
+            # compatible. In particular, fourteen/fifteen days is never weekly.
+            compatible = (
+                weekly and unit in {"giorno", "giorni", "gg"} and (
+                    count == 7 and len(rule["weekdays"]) == 1
+                    or count == 1 and rule["weekdays"] == list(range(7)))
+                or weekly and unit in {"settimana", "settimane"} and count == 1
+                or rule.get("kind") == "monthly_nth_weekday"
+                and unit in {"mese", "mesi"} and count == 1
+            )
+            if not compatible:
+                return "interval_scope_unrepresented"
+        if CALENDAR_EXCEPTION_SCOPE.search(text):
+            return "calendar_exception_scope_unrepresented"
+        # Bare number ranges can be opening hours. Require a month/year or
+        # explicit day/month slash notation; 08:00 and 8.30 can be hours.
+        for match in DATE_RANGE_SCOPE.finditer(text):
+            if not DATE_RANGE_CONTEXT.search(match.group(0)):
+                continue
+            months = NAMED_MONTH_RANGE.fullmatch(match.group(0))
+            if not (months and represented_months == _month_numbers(months[1], months[2])):
+                return "date_range_scope_unrepresented"
+        if NUMERIC_DATE_RANGE_SCOPE.search(text_key(value)):
+            return "date_range_scope_unrepresented"
+    return None
+
+
 def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
     if not 7 <= horizon_days <= 365:
         raise ValueError("Horizon must be between 7 and 365 days")
     end = today + timedelta(days=horizon_days)
+    active_months = rule.get("active_months")
+    if active_months is not None and (
+            not isinstance(active_months, list) or not active_months
+            or any(type(month) is not int or not 1 <= month <= 12 for month in active_months)
+            or active_months != sorted(set(active_months))):
+        raise ValueError("Unrecognized active month scope")
     if rule["kind"] == "weekly":
         weekdays = set(rule["weekdays"])
         return [(today + timedelta(days=i)).isoformat()
                 for i in range(horizon_days + 1)
-                if (today + timedelta(days=i)).weekday() in weekdays]
+                if (today + timedelta(days=i)).weekday() in weekdays
+                and (active_months is None or (today + timedelta(days=i)).month in active_months)]
     if rule["kind"] == "monthly_nth_weekday":
         results = []
         year, month = today.year, today.month
@@ -151,7 +355,7 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
                 candidate = candidates[ordinal - 1]
             else:
                 continue
-            if today <= candidate <= end:
+            if today <= candidate <= end and (active_months is None or candidate.month in active_months):
                 results.append(candidate.isoformat())
             if date(y, m, 1) > end:
                 break
@@ -170,7 +374,20 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     if record.get("date_quality") not in {None, "", "prevista", "sconosciuta"}:
         return record, "unrecognized_date_quality"
 
-    rule = explicit_rule(record.get("ricorrenza_testo"))
+    scope_hold = temporal_scope_hold(record)
+    if record.get("verificato_il") and (scope_hold or _complete_month_rule(record.get("ricorrenza_testo"))):
+        # A complete scope still does not authorize changing a human review.
+        return record, "verified_temporal_scope_preserved"
+    if scope_hold:
+        if record.get("date_quality") == "prevista":
+            record["date"] = []
+            record["date_quality"] = "sconosciuta"
+            record["proiezione_regola"] = None
+            record["proiezione_generata_il"] = ""
+            record["proiezione_fonte"] = ""
+        return record, scope_hold
+
+    rule = forecast_rule(record)
     if not rule:
         return record, "no_explicit_rule"
 
@@ -191,6 +408,22 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
             record["proiezione_generata_il"] = ""
             record["proiezione_fonte"] = ""
         return record, "contradictory_weekday_identity_held"
+
+    filtered_existing_month_scope = False
+    if (record.get("date_quality") == "prevista" and record.get("date")
+            and rule.get("active_months")):
+        allowed = rule["active_months"]
+        retained = [day for day in record["date"] if date.fromisoformat(day).month in allowed]
+        if retained != record["date"]:
+            # A complete explicit limit can retire incompatible old estimates
+            # without dating a source, adding appointments or renewing proof.
+            record["date"] = retained
+            filtered_existing_month_scope = True
+            if not retained:
+                record["date_quality"] = "sconosciuta"
+                record["proiezione_regola"] = None
+                record["proiezione_generata_il"] = ""
+                record["proiezione_fonte"] = ""
 
     if source_url_domain(record.get("url_fonte")) is None:
         return record, "no_attributable_source"
@@ -233,7 +466,8 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     if updated is None:
         # Existing estimates are retained as estimates, with their original
         # provenance. A recent import/read is never a reason to extend them.
-        return record, "unknown_source_age"
+        return record, ("existing_forecast_month_scope_filtered" if filtered_existing_month_scope
+                        else "unknown_source_age")
     age = (today - updated).days
     if age < 0:
         return record, "source_from_future"
@@ -275,10 +509,16 @@ def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LO
     changed = 0
     monthly = 0
     preserved_unknown = 0
+    scope_dates_withdrawn = 0
+    scope_forecasts_withdrawn = 0
     for original in records:
         updated, reason = refresh_record(original, today, horizon_days, max_stale_days,
                                          source_limits=source_limits)
         counts[reason] += 1
+        if (reason in TEMPORAL_SCOPE_REASONS and original.get("date_quality") == "prevista"
+                and original.get("date") and not updated.get("date")):
+            scope_forecasts_withdrawn += 1
+            scope_dates_withdrawn += len(original["date"])
         if (reason == "unknown_source_age" and original.get("date_quality") == "prevista"
                 and original.get("date")):
             preserved_unknown += 1
@@ -301,6 +541,9 @@ def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LO
         "date_ranges_changed": changed,
         "monthly_rules_applied": monthly,
         "unknown_source_dates_preserved_without_renewal": preserved_unknown,
+        "temporal_scope_holds": sum(counts.get(reason, 0) for reason in TEMPORAL_SCOPE_REASONS),
+        "temporal_scope_forecasts_withdrawn": scope_forecasts_withdrawn,
+        "temporal_scope_dates_withdrawn": scope_dates_withdrawn,
         "all_dates_marked_forecast": all(
             m.get("date_quality") == "prevista" for m in output
             if m.get("proiezione_fonte") in {

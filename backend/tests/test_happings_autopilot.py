@@ -512,7 +512,7 @@ class HappingsAutopilotTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "reference date"):
             phase.verify_exported(self.base, after, exported, report, today=TODAY + timedelta(days=1))
 
-    def test_happings_guard_does_not_replace_other_sources_duplicate_rules(self):
+    def test_all_original_ids_survive_export_even_when_another_source_has_equal_values(self):
         first = {**market("weekly-a-firenze-mercoledi",street="Via Roma"),
                  "nome":"Mercato settimanale a Firenze","citta":"Firenze",
                  "regione":"Toscana","provincia":"FI","fonte":"Comune",
@@ -522,13 +522,93 @@ class HappingsAutopilotTests(unittest.TestCase):
         base = [first,second]
         after, report, protected = self.run_phase(base=base,policy={"enabled":False})
         exported, stats = prepare(after,TODAY,preserve_ids=protected)
-        self.assertEqual(len(exported),1)
-        self.assertEqual(stats["same_source_duplicates_merged"],1)
+        self.assertEqual(len(exported),2)
+        self.assertEqual(stats["same_source_duplicates_merged"],0)
+        self.assertEqual(protected,{first["slug"],second["slug"]})
         proof=phase.verify_exported(base,after,exported,report,today=TODAY)
         self.assertTrue(proof["release_safe"])
-        self.assertEqual(proof["checked_market_ids"],0)
-        self.assertEqual(proof["market_ids_deleted"],1)
+        self.assertEqual(proof["checked_market_ids"],2)
+        self.assertEqual(proof["market_ids_deleted"],0)
         self.assertEqual(proof["happings_ids_deleted"],0)
+
+    def test_secondary_corroboration_reuses_same_fetch_and_protects_both_origins(self):
+        self.base[0]["indirizzo"]="Villaggio dei Fiori"
+        external={**market("external-origin",street="Villaggio dei Fiori"),"fonte":"eventiesagre.it",
+                  "url_fonte":"https://www.eventiesagre.it/Mercatini_Filiera+Corta/12345_Mercato.html"}
+        self.base.append(external)
+        after,report,protected=self.run_phase()
+        self.assertEqual(self.fetcher.call_count,1)
+        self.assertEqual(self.fetcher.call_args.args[0],[VENICE_OLD])
+        self.assertEqual(report["protected_existing_market_ids"],1)
+        self.assertEqual(report["protected_catalog_market_ids"],2)
+        self.assertEqual(protected,{row["slug"] for row in self.base})
+        self.assertEqual(report["evidence"]["secondary_observed_ids"],["external-origin"])
+        self.assertEqual(report["evidence"]["field_changes"],0)
+        for key,value in external.items():
+            if key!="fonti":self.assertEqual(after[1][key],value)
+        exported,_=prepare(after,TODAY,preserve_ids=protected)
+        proof=phase.verify_exported(self.base,after,exported,report,today=TODAY)
+        self.assertEqual(proof["checked_market_ids"],2)
+        self.assertEqual(proof["secondary_observed_markets"],1)
+        self.assertTrue(proof["release_safe"])
+
+    def test_export_rejects_missing_or_mutated_other_origin_and_forged_full_catalog_identity(self):
+        self.base.append({**market("external-origin",street="Villaggio dei Fiori"),"fonte":"eventiesagre.it",
+                          "url_fonte":"https://www.eventiesagre.it/Mercatini_Filiera+Corta/12345_Mercato.html"})
+        after,report,protected=self.run_phase()
+        exported,_=prepare(after,TODAY,preserve_ids=protected)
+        with self.assertRaisesRegex(ValueError,"market IDs"):
+            phase.verify_exported(self.base,after,[r for r in exported if r["fonte"]=="happings.com"],report,today=TODAY)
+        for key,value in (("orario_testo","07:00-13:00"),("url_fonte",VENICE_OLD),("riscontri_campi",[])):
+            forged=copy.deepcopy(exported)
+            next(r for r in forged if r["slug"]=="external-origin")[key]=value
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,"proved fields"):
+                phase.verify_exported(self.base,after,forged,report,today=TODAY)
+        forged=copy.deepcopy(after)
+        forged[1]["indirizzo"]="Via Nuova"
+        with self.assertRaisesRegex(ValueError,"Unapproved"):
+            phase.verify_changes(self.base,forged,report)
+        for key,value in (("protected_catalog_market_ids",1),("protected_catalog_ids_sha256","0"*64)):
+            forged=copy.deepcopy(report)
+            forged[key]=value
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,"identities"):
+                phase.verify_changes(self.base,after,forged)
+
+    def test_retirement_only_cycle_passes_exact_guard_without_changing_market_values(self):
+        self.base[0]["indirizzo"]="Villaggio dei Fiori"
+        self.base.append({**market("external-origin",street="Villaggio dei Fiori"),"fonte":"eventiesagre.it",
+                          "url_fonte":"https://www.eventiesagre.it/Mercatini_Filiera+Corta/12345_Mercato.html"})
+        first,_,_=self.run_phase()
+        self.fetcher.return_value=[{**pages()[0],"html":SAMPLE.replace(b"Villaggio dei Fiori",b"Piazza Nuova")}]
+        later=TODAY+timedelta(days=7)
+        after,report,protected=self.run_phase(base=first,today=later)
+        self.assertEqual(report["evidence"]["observed_ids"],[])
+        self.assertEqual(report["evidence"]["retired_ids"],["external-origin","spinea-mercoledi"])
+        self.assertEqual(report["evidence"]["record_changes"],2)
+        self.assertEqual(report["evidence"]["field_changes"],0)
+        for old,current in zip(first,after):
+            self.assertEqual({key for key in old if old[key]!=current[key]},{"riscontri_campi"})
+        exported,_=prepare(after,later,preserve_ids=protected)
+        proof=phase.verify_exported(first,after,exported,report,today=later)
+        self.assertTrue(proof["release_safe"])
+        self.assertEqual(proof["retired_source_support_markets"],2)
+        forged=copy.deepcopy(after)
+        forged[1]["riscontri_campi"]=first[1]["riscontri_campi"]
+        with self.assertRaisesRegex(ValueError,"Unapproved"):
+            phase.verify_changes(first,forged,report)
+
+    def test_secondary_reread_and_outage_do_not_renew_read_dates_without_source(self):
+        self.base[0]["indirizzo"]="Villaggio dei Fiori"
+        self.base.append({**market("external-origin",street="Villaggio dei Fiori"),"fonte":"eventiesagre.it",
+                          "url_fonte":"https://www.eventiesagre.it/Mercatini_Filiera+Corta/12345_Mercato.html"})
+        first,_,_=self.run_phase()
+        self.fetcher.side_effect=OSError("publisher unavailable")
+        after,report,protected=self.run_phase(base=first,today=TODAY+timedelta(days=7))
+        self.assertEqual(after,first)
+        self.assertEqual(report["evidence"]["retirements"],[])
+        self.assertEqual(report["evidence"]["secondary_observed_ids"],[])
+        self.assertEqual(protected,{row["slug"] for row in self.base})
+        self.assertEqual(after[1]["riscontri_campi"][0]["letto_il"],TODAY.isoformat())
 
     def test_invalid_policy_cannot_turn_on_extra_sources_or_raise_limits(self):
         for policy in ({"enabled": 1}, {"enabled": "true"},

@@ -1231,7 +1231,7 @@ def run(args):
 
     # Field-only publisher enrichment belongs before export and every final
     # release gate. It must never be added as an official-source importer.
-    # Default policy and the independent rights registry keep live access off.
+    # Live access requires the enabled policy and persisted authorization.
     before_happings = projected
     projected, happings_report, happings_preserve_ids = enrich_happings_records(
         before_happings, policy=happings_policy, out=out, today=args.today,
@@ -1241,7 +1241,8 @@ def run(args):
     checkpoint(out, "happings_enrichment", {
         "status": happings_report["status"],
         "rights_state": happings_report["rights_state"],
-        "protected_existing_market_ids": len(happings_preserve_ids),
+        "protected_existing_market_ids": happings_report["protected_existing_market_ids"],
+        "protected_catalog_market_ids": len(happings_preserve_ids),
         "pages_evaluated": happings_report["evidence"]["pages_evaluated"],
         "field_changes": happings_report["evidence"]["field_changes"],
         "source_evidence_reused": happings_report["source_evidence_reused"],
@@ -1371,7 +1372,8 @@ def run(args):
         "status": happings_report["status"], "rights_state": happings_report["rights_state"],
         "pages_evaluated": happings_report["evidence"]["pages_evaluated"],
         "field_changes": happings_report["evidence"]["field_changes"],
-        "protected_existing_market_ids": len(happings_preserve_ids),
+        "protected_existing_market_ids": happings_report["protected_existing_market_ids"],
+        "protected_catalog_market_ids": len(happings_preserve_ids),
         "release_safe": happings_static_guard["release_safe"],
     }
     findings["field_evidence"] = {
