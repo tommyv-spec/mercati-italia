@@ -178,7 +178,7 @@ def _origins_equivalent(record_url,source_url):
 
     def base(url):
         path=urlsplit(url).path
-        return re.sub(r"(?:-e-provincia/|\\.html)$","",path)
+        return re.sub(r"(?:-e-provincia/|\.html)$","",path)
 
     return base(record_url)==base(source_url)
 
