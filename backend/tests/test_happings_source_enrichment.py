@@ -5,12 +5,13 @@ import copy
 import json
 import sys
 import unittest
+import tempfile
 from datetime import date
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from happings_source_enrichment import (
-    preview,fetch_pages,safe_report,summarize,allowed_url,select_pages,MAX_REQUESTS_PER_RUN,
+    preview,fetch_pages,safe_report,summarize,allowed_url,select_pages,offline_pages,MAX_REQUESTS_PER_RUN,
 )
 from happings_weekly_layout import VENICE_OLD, VENICE_NEW
 
@@ -45,6 +46,28 @@ def feed():
 
 
 class HappingsSourceEnrichmentTests(unittest.TestCase):
+    def test_replay_offline_html_with_real_old_to_canonical_redirect(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source=Path(folder)/"reviewed-venezia.html"
+            source.write_bytes(SAMPLE)
+            pages=offline_pages([VENICE_OLD],[source],[VENICE_NEW])
+            self.assertEqual(pages[0]["requested_url"],VENICE_OLD)
+            self.assertEqual(pages[0]["final_url"],VENICE_NEW)
+            before=[row("mercato-settimanale-a-spinea-spinea-mercoledi")]
+            after,result=preview(before,pages,today=TODAY)
+            self.assertEqual(before,after)
+            self.assertEqual(result["field_candidates"],1)
+            self.assertEqual(result["field_changes"],0)
+            self.assertTrue(safe_report(result,before))
+            with self.assertRaisesRegex(ValueError,"crossed province"):
+                offline_pages([VENICE_OLD],[source],[
+                    "https://www.happings.com/it/mercati-settimanali-a-modena-e-provincia/"
+                ])
+            with self.assertRaisesRegex(ValueError,"align"):
+                offline_pages([VENICE_OLD],[source],[])
+            with self.assertRaisesRegex(ValueError,"align"):
+                offline_pages([VENICE_OLD],[source,source],[VENICE_NEW])
+
     def test_one_unique_city_day_fills_blanks_when_explicitly_permitted(self):
         base=[
             row("mercato-settimanale-a-spinea-spinea-mercoledi"),
