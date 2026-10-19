@@ -163,8 +163,18 @@ guardie di pubblicazione e storico.
 
 Sono stati eseguiti 739 test Python, 8 file di test Node, build Vite e controllo
 del worker MapLibre. Il browser locale non è stato installabile: il download
-ha restituito un archivio incompleto. Il controllo mobile resta affidato al
-workflow mobile già presente e alla QA prima della pubblicazione.
+ha restituito un archivio incompleto. Dopo il merge della PR #59 in DEV,
+il test mobile GitHub è passato insieme a Quality, build di anteprima e
+controllo delle città revisionate. Il report aggregato conserva i link alle
+esecuzioni sul commit `807c539832d057048a67e3d56694e26302e6fca0`.
+
+Il vecchio `official-enrichment-audit.yml` è un audit precedente
+all'attivazione: rifiuta per progetto una policy con arricchimento già
+abilitato, condizione presente anche prima della PR #59. Il suo avvio su
+push ha quindi prodotto un fallimento non applicabile alla fase attuale.
+Il workflow viene mantenuto solo manuale con tutte le sue guardie; Quality
+e il percorso ricorrente Autopilot continuano a eseguire i controlli correnti.
+Il fallimento storico resta tale e non viene contato come test superato.
 
 ## Copertura da completare per famiglie di fonti
 
