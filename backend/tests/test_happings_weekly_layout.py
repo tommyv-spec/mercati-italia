@@ -215,6 +215,114 @@ class HappingsOfflineLayoutTests(unittest.TestCase):
         self.assertEqual(len(parse(aquila,source_url=
             "https://www.happings.com/it/mercati-settimanali-a-l-aquila.html").rows),5)
 
+    def test_non_content_inline_text_never_becomes_a_street(self):
+        for tag in ("script","style","template","noscript"):
+            with self.subTest(tag=tag):
+                hidden=(f'<{tag}>Via Errata</{tag}>').encode()
+                fixture=HTML.replace(b'Villaggio dei Fiori',hidden+b'Villaggio dei Fiori')
+                parsed=parse(fixture,source_url=VENICE_NEW)
+                wed=next(row for row in parsed.rows
+                         if row["city_key"]=="spinea" and row["weekday"]==2)
+                self.assertEqual(wed["place"],"Villaggio dei Fiori")
+                self.assertTrue(wed["has_specific_location"])
+
+    def test_non_content_duplicate_listing_is_never_counted(self):
+        ghost=(b'<div class="happings-seo-content">'
+               b'<h3>Mercati del venerdi nei comuni di Padova</h3>'
+               b'<ul><li>a Spinea, in Via Errata (la mattina)</li></ul></div>')
+        for tag in (b'template',b'noscript'):
+            with self.subTest(tag=tag):
+                fixture=HTML.replace(b'<html><body>',
+                    b'<html><body><'+tag+b'>'+ghost+b'</'+tag+b'>')
+                parsed=parse(fixture,source_url=VENICE_NEW)
+                self.assertEqual(len(parsed.rows),5)
+                self.assertEqual(parsed.seo_blocks,1)
+
+    def test_non_content_nested_heading_does_not_change_listing_weekday(self):
+        fixture=HTML.replace(
+            b'<ul>\n    <li>a Spinea',
+            b'<template><h3>Mercati del venerdi nei comuni di Padova</h3></template>'
+            b'<ul>\n    <li>a Spinea',
+        )
+        parsed=parse(fixture,source_url=VENICE_NEW)
+        self.assertEqual(parsed.weekday_headings,[2,5,6])
+        self.assertEqual(parsed.rows[0]["weekday"],2)
+
+    def test_qualified_weekday_heading_is_not_an_ordinary_weekly_section(self):
+        for heading in (
+            b'Mercati del mercoledi sospesi',
+            b'Mercati del mercoledi straordinari',
+            b'Mercati del mercoledi solo in estate',
+        ):
+            with self.subTest(heading=heading):
+                fixture=HTML.replace(
+                    b'Mercati del mercoled&#236; nei comuni di Venezia',heading)
+                with self.assertRaisesRegex(ValueError,"unparsed listing items or headings"):
+                    parse(fixture,source_url=VENICE_NEW)
+
+    def test_explicit_listing_title_cannot_cross_province(self):
+        fixture=HTML.replace(
+            b'Mercati settimanali nei comuni in provincia di Venezia',
+            b'Mercati settimanali nei comuni in provincia di Padova',
+        )
+        with self.assertRaisesRegex(ValueError,"heading crossed province"):
+            parse(fixture,source_url=VENICE_NEW)
+        generic_weekdays=fixture.replace(b' nei comuni di Venezia',b'')
+        with self.assertRaisesRegex(ValueError,"heading crossed province"):
+            parse(generic_weekdays,source_url=VENICE_NEW)
+
+    def test_clock_hours_must_not_be_imported_as_part_of_an_address(self):
+        for label in (
+            b'Via Roma (dalle 08:00 alle 13:00)',
+            b'Via Roma (ore 8-13)',
+            b'Via Roma dalle 8 alle 13',
+            b'Via Roma (08.00-13.00)',
+        ):
+            with self.subTest(label=label):
+                fixture=HTML.replace(b'Villaggio dei Fiori (la mattina)',label)
+                parsed=parse(fixture,source_url=VENICE_NEW)
+                wed=next(row for row in parsed.rows
+                         if row["city_key"]=="spinea" and row["weekday"]==2)
+                self.assertFalse(wed["has_specific_location"])
+                report=compare_saved_markets([market("spinea-mercoledi")],fixture,
+                                            source_url=VENICE_NEW,today=TODAY)
+                self.assertEqual(report["counts"].get("saved_market_missing_source_location",0),0)
+                self.assertEqual(report["catalog_fields_modified"],0)
+
+    def test_numeric_street_names_and_building_numbers_remain_specific(self):
+        for label in (b'Piazza 8 Marzo',b'Via XX Settembre 13'):
+            with self.subTest(label=label):
+                fixture=HTML.replace(b'Villaggio dei Fiori',label)
+                parsed=parse(fixture,source_url=VENICE_NEW)
+                self.assertTrue(parsed.rows[0]["has_specific_location"])
+
+    def test_conditional_or_retired_locations_are_not_ordinary_addresses(self):
+        for label in (
+            b'Via Roma (mercato sospeso)',
+            b'Via Roma (dal 2025 trasferito in Piazza Italia)',
+            b'Via Roma (solo in estate)',
+            b'Via Roma, mercato annullato',
+            b'Via Roma, esclusi i festivi',
+            b'Via Roma, temporaneamente spostato in Via Milano',
+        ):
+            with self.subTest(label=label):
+                fixture=HTML.replace(b'Villaggio dei Fiori (la mattina)',label)
+                parsed=parse(fixture,source_url=VENICE_NEW)
+                self.assertFalse(parsed.rows[0]["has_specific_location"])
+                report=compare_saved_markets([market("spinea-mercoledi")],fixture,
+                                            source_url=VENICE_NEW,today=TODAY)
+                self.assertEqual(report["counts"].get("saved_market_missing_source_location",0),0)
+
+    def test_conditional_second_venue_still_prevents_a_unique_match(self):
+        fixture=HTML.replace(
+            b'a Dolo, in Piazza San Valentino (la mattina)',
+            b'a Spinea, in Via Roma (solo in estate)',
+        )
+        report=compare_saved_markets([market("spinea-mercoledi")],fixture,
+                                    source_url=VENICE_NEW,today=TODAY)
+        self.assertEqual(report["counts"].get("saved_market_missing_source_location",0),0)
+        self.assertEqual(report["counts"]["more_than_one_source_venue_on_city_day"],1)
+
     def test_multiple_venues_same_city_day_cannot_assign_address(self):
         extra=HTML.replace(
             b'<li>a Dolo, in Piazza San Valentino (la mattina)</li>',

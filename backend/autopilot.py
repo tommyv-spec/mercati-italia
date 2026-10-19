@@ -1313,7 +1313,8 @@ def run(args):
     resources = catalog_source_resources(
         new_rows, publisher_contracts,
         official_urls={r.get("url_fonte", "") for r in feeds},
-        happings_enabled=happings_report["status"] not in {"disabled", "rights_blocked"},
+        happings_enabled=happings_report["enabled"] and happings_report["fetch_authorized"],
+        happings_report=happings_report,
         source_policy=policy["sources"], source_status=source_status,
         admissions_enabled=generic_enabled, admission_report=generic_admission_report,
         today=args.today, **coverage_configuration,

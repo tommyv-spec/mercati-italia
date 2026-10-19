@@ -123,5 +123,9 @@
     "no_new_market_ids": true,
     "no_verified_openings": true,
     "no_new_navigation_points": true
+  },
+  "happings_enrichment": {
+    "enabled": true,
+    "max_pages": 16
   }
 }

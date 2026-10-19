@@ -122,10 +122,61 @@ def rotate_sources(profiles, today, limit=MAX_PAGES):
     raise ValueError("Publisher profiles cannot fit within bounded daily batches")
 
 
+def _happings_page_reads(rows, report, today):
+    """Read dispositions belong to this day and the protected source cohort.
+
+    A fetched province page is not proof that every market on it matched.
+    This helper reports acquisition only; field receipts remain separate.
+    """
+    from happings_source_enrichment import allowed_url
+    from happings_weekly_layout import province_page_key
+
+    protected = sorted(row["slug"] for row in rows if row.get("fonte") == "happings.com")
+    if (not isinstance(report, dict) or report.get("schema") != 1
+            or report.get("publisher") != "happings.com"
+            or report.get("date") != today.isoformat()
+            or report.get("enabled") is not True or report.get("fetch_authorized") is not True
+            or report.get("protected_existing_market_ids") != len(protected)
+            or report.get("protected_ids_sha256") != fingerprint(protected)
+            or not isinstance(report.get("selected_urls"), list)
+            or not isinstance(report.get("source_pages"), list)
+            or not isinstance(report.get("page_failures"), list)):
+        return {}, set()
+    selected = {province_page_key(url) for url in report["selected_urls"]}
+    if None in selected or len(selected) != len(report["selected_urls"]):
+        return {}, set()
+    observed = {}
+    for page in report["source_pages"]:
+        if not isinstance(page, dict):
+            return {}, set()
+        requested, final = page.get("requested_url"), page.get("final_url")
+        key = province_page_key(requested)
+        if (key not in selected or key in observed
+                or not allowed_url(requested, requested, final)
+                or not re.fullmatch(r"[0-9a-f]{64}", str(page.get("source_html_sha256", "")))
+                or page.get("status") not in {"parsed", "layout_changed"}):
+            return {}, set()
+        observed[key] = ("layout_changed" if page["status"] == "layout_changed" else
+                         "resumed_checkpoint" if report.get("source_evidence_reused") is True else "retrieved")
+    for page in report["page_failures"]:
+        if not isinstance(page, dict):
+            return {}, set()
+        key = province_page_key(page.get("requested_url"))
+        if (key not in selected or key in observed or
+                not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,79}", str(page.get("error_type", "")))):
+            return {}, set()
+        observed[key] = "unavailable"
+    default = {"offline_skipped": "offline_skipped", "resume_missing_evidence": "resume_missing_evidence"}.get(
+        report.get("status"), "not_observed")
+    for key in selected:
+        observed.setdefault(key, default)
+    return observed, selected
+
+
 def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
                       source_contracts=None, source_admissions=None, source_policy=(),
                       source_status=None, admissions_enabled=False, admission_report=None,
-                      today=None):
+                      happings_report=None, today=None):
     """Describe configured readers separately from this run's source availability.
 
     Admission comes from the existing exact source certificate, never from a
@@ -137,6 +188,9 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
     from source_lifecycle import digest, validate_contracts as validate_source_contracts
 
     today = today or date.today()
+    happings_enabled = (happings_enabled is True and (
+        happings_report is None or isinstance(happings_report, dict)
+        and happings_report.get("enabled") is True and happings_report.get("fetch_authorized") is True))
     known = {canonical_url(p["url"]): p for p in config["sources"]}
     official = {canonical_url(u) for u in official_urls}
     policies = {p["id"]: p for p in source_policy if isinstance(p, dict) and "id" in p}
@@ -196,8 +250,28 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
     for row in rows:
         url = canonical_url(row.get("url_fonte"))
         groups[url].append(row)
-    resources = []
+    happings_routes, happings_reads, happings_selected = {}, {}, set()
+    if happings_enabled:
+        from happings_source_enrichment import catalog_page_routes
+        from happings_weekly_layout import province_page_key
+
+        # Reuse the fetcher's actual source routes. A host match cannot make
+        # old town pages, thematic events or ambiguous geography supported.
+        happings_routes = catalog_page_routes(rows)
+        happings_reads, happings_selected = _happings_page_reads(rows, happings_report, today)
+    resource_groups = []
     for url, group in sorted(groups.items()):
+        if happings_enabled and (urlsplit(url).hostname or "").removeprefix("www.") == "happings.com":
+            routes = defaultdict(list)
+            for row in group:
+                routes[happings_routes.get(row.get("slug"), "")].append(row)
+            # One saved town URL may identify namesakes in two provinces, or
+            # mix proved and unproved identities. Count each route honestly.
+            resource_groups.extend((url, subset, route) for route, subset in sorted(routes.items()))
+        else:
+            resource_groups.append((url, group, ""))
+    resources = []
+    for url, group, happings_page in resource_groups:
         host = urlsplit(url).hostname or ""
         readers = list(generic_routes.get(url, []))
         for profile in normalized:
@@ -222,9 +296,14 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
             layout = "supported" if known[url]["enabled"] else "disabled"
             read_status = "not_observed" if known[url]["enabled"] else "disabled"
         elif host.removeprefix("www.") == "happings.com":
-            mode = "dedicated_happings_phase" if happings_enabled else "happings_gate_not_active"
-            layout = "supported" if happings_enabled else "disabled"
-            read_status = "not_observed" if happings_enabled else "disabled"
+            if not happings_enabled:
+                mode, layout, read_status = "happings_gate_not_active", "disabled", "disabled"
+            elif not happings_page:
+                mode, layout, read_status = "happings_source_scope_unproven", "unsupported", "not_read"
+            else:
+                mode, layout = "happings_province_index", "supported"
+                key = province_page_key(happings_page)
+                read_status = happings_reads.get(key, "not_selected" if happings_selected else "not_observed")
             readers = []
         elif readers:
             # A failed read cannot erase the known layout. If two approved
@@ -252,6 +331,10 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
         }
         if readers:
             resource["readers"] = sorted(readers, key=lambda r: (r["reader"], r["source_id"]))
+        if happings_page:
+            resource["source_route_url"] = happings_page
+            resource["source_route_method"] = ("province_index" if province_page_key(url) is not None
+                                               else "province_index_join")
         resources.append(resource)
     return {"schema": 1, "markets": len(rows), "unique_primary_urls": len(groups),
             "hosts": len({x["host"] for x in resources if x["host"]}),

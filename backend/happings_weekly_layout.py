@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Happings provincial weekly-index parser, offline and source-consent gated.
+"""Happings provincial weekly-index parser, offline and provenance-scoped.
 
 Separate *parsing the HTML already provided for an authorized review* from
 *finding/fetching that HTML*. This module performs NO HTTP requests.
 
-The October 2025 Happings terms require their written consent for robots
-collecting content. Never use this module as authorization for live crawling,
-bulk extraction, or a publisher content copy.
+The project owner's explicit scraping instruction is recorded by the
+dedicated acquisition path. This parser performs no authorization decision,
+PDF-signature verification, live crawling, or publication by itself.
 
 The source may contain venue locations and a morning/afternoon daypart, but
 these are NOT exact clock hours, independent venue verification, or proof an
@@ -51,6 +51,20 @@ PROVINCE_PAGE_PATH=re.compile(
 )
 VOID_TAGS=frozenset(("area","base","br","col","embed","hr","img",
                      "input","link","meta","param","source","track","wbr"))
+NON_CONTENT_TAGS=frozenset(("script","style","template","noscript"))
+WEEKDAY_HEADING=re.compile(
+    r"^mercati (?:del|della) ("+"|".join(WEEKDAYS)+r")"
+    r"(?: nei comuni di [a-z0-9]+(?: [a-z0-9]+)*)?$"
+)
+EXACT_TIME_CONTEXT=re.compile(
+    r"\b(?:[01]?\d|2[0-4])[:.][0-5]\d\b|"
+    r"\b(?:orari?|ore|dalle?|alle?)\s*\d",re.I,
+)
+UNREVIEWED_LOCATION_CONTEXT=re.compile(
+    r"\b(?:sospes[oaie]|annullat[oaie]|trasferit[oaie]|spostat[oaie]|"
+    r"temporaneamente|provvisori[oaie]|esclus[oaie]|eccetto|tranne|"
+    r"solo|festivi|estate|inverno|estiv[oaie]|invernal[ei])\b"
+)
 
 
 def fold(text):
@@ -84,11 +98,12 @@ def _valid_page_url(url):
 
 def _weekday_heading(value):
     text=fold(value)
-    if not text.startswith("mercati del ") and not text.startswith("mercati della "):
+    match=WEEKDAY_HEADING.fullmatch(text)
+    if not match:
         return None
-    words=set(text.split())
-    present=[i for i,v in enumerate(WEEKDAYS) if v in words]
-    return present[0] if len(present)==1 else None
+    # Extra qualifiers such as "sospesi" or "straordinari" must not be
+    # interpreted as the ordinary recurring market section.
+    return WEEKDAYS.index(match.group(1))
 
 
 class WeeklyIndexParser(HTMLParser):
@@ -107,21 +122,24 @@ class WeeklyIndexParser(HTMLParser):
         self.unknown_weekday_headings=0
 
     def _in_listing(self):
-        return any("happings-seo-content" in frame["classes"] for frame in self.stack)
+        return (not any(frame["non_content"] for frame in self.stack)
+                and any("happings-seo-content" in frame["classes"] for frame in self.stack))
 
     def handle_starttag(self,tag,attrs):
         klass=frozenset(str(dict(attrs).get("class") or "").split())
-        if "happings-seo-content" in klass:
+        non_content=(tag in NON_CONTENT_TAGS
+                     or any(frame["non_content"] for frame in self.stack))
+        if "happings-seo-content" in klass and not non_content:
             self.seo_blocks+=1
             self.current_weekday=None
-        in_listing=self._in_listing()
+        in_listing=self._in_listing() and not non_content
         if in_listing and tag in ("h1","h2","h3","h4","h5","h6"):
             self.current_weekday=None
-        if tag=="li" and self._in_listing():
+        if tag=="li" and in_listing:
             self.total_li+=1
             if self.total_li>MAX_PUBLISHER_ITEMS:
                 raise ValueError("Weekly HTML contains an excessive number of source rows")
-        if tag in ("ul","ol","li","h1","h2","h3","h4","h5","h6"):
+        if not non_content and tag in ("ul","ol","li","h1","h2","h3","h4","h5","h6"):
             for frame in self.stack:
                 if frame["listing_row"]:
                     frame["unreviewed_children"]=True
@@ -131,14 +149,17 @@ class WeeklyIndexParser(HTMLParser):
                      and self.stack[-1]["tag"]=="ul"
                      and not any(frame["tag"]=="li" for frame in self.stack))
         self.stack.append({"tag":tag,"classes":klass,
-                           "text":[] if tag in ("h3","li") else None,
+                           "text":[] if in_listing and tag in ("h1","h2","h3","li") else None,
                            "text_truncated":False,
                            "unreviewed_children":False,
                            "listing_row":listing_row,
                            "weekday":self.current_weekday,
+                           "non_content":non_content,
                            "in_listing":in_listing})
 
     def handle_data(self,data):
+        if any(frame["non_content"] for frame in self.stack):
+            return
         text=" ".join(data.split())
         if not text:
             return
@@ -156,11 +177,19 @@ class WeeklyIndexParser(HTMLParser):
             return
         while len(self.stack)>idx:
             frame=self.stack.pop()
+            if frame["non_content"]:
+                continue
             if "happings-seo-content" in frame["classes"]:
                 self.current_weekday=None
             if not frame["in_listing"]:
                 continue
             data=" ".join(frame["text"] or []).strip()
+            if frame["tag"] in ("h1","h2"):
+                scope=re.fullmatch(
+                    r"mercati settimanali nei comuni in provincia di (.+)",fold(data))
+                if (scope and self.source_province
+                        and scope.group(1)!=self.source_province):
+                    raise ValueError("Publisher heading crossed province")
             if frame["tag"]=="h3":
                 day=None if frame["text_truncated"] else _weekday_heading(data)
                 # A changed/unrecognized weekday heading is not inherited
@@ -202,7 +231,14 @@ class WeeklyIndexParser(HTMLParser):
                     "place":place,
                     "location_indicated":True,
                     "daypart":daypart,
-                    "has_specific_location":safe_stored_street(place),
+                    # An unreviewed exact-time suffix is not part of a street
+                    # and is not an authorization to import clock hours.
+                    # Suspensions, relocations and seasonal conditions also
+                    # need a reviewed representation before they can support
+                    # a current location. Keep these rows in ambiguity checks.
+                    "has_specific_location":(safe_stored_street(place)
+                                             and not EXACT_TIME_CONTEXT.search(place)
+                                             and not UNREVIEWED_LOCATION_CONTEXT.search(fold(place))),
                 })
                 if len(self.rows)>MAX_PUBLISHER_ITEMS:
                     raise ValueError("Weekly HTML contains an excessive number of source rows")

@@ -1,5 +1,15 @@
 # Happings — confronto sorgente reale vs catalogo (19 ottobre 2026)
 
+> **Nota storica — stato operativo superato il 19 ottobre 2026.**
+> Questo documento conserva il test e le decisioni precedenti all'istruzione
+> esplicita dell'utente di attivare il recupero Happings. La procedura corrente
+> è descritta in [Happings nel ciclo DEV](HAPPINGS_AUTOPILOT_PHASE.md):
+> autorizzazione operativa del progetto, 16 pagine per ciclo, rotazione
+> permanente, riscontri dei campi e aggiornamento delle sole sedi gestite
+> dal motore. I conteggi del test qui sotto restano storici. Le osservazioni
+> sull'autenticazione dei documenti restano separate dall'attivazione del
+> recupero e non costituiscono una nuova richiesta di conferma all'utente.
+
 ## Test controllato, non una campagna di scraping
 
 L'operatore è indicato da

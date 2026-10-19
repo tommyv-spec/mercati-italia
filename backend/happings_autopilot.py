@@ -1,14 +1,15 @@
 """Bounded Happings phase for the existing DEV Autopilot.
 
-The policy is disabled by default. A current authenticated rights record is
-also required before fetching or applying fields. Raw responses and per-market
-receipts stay in the existing temporary candidate/checkpoint directory.
+The policy is disabled by default. Fetching and applying fields require an
+explicit project instruction or an authenticated publisher grant. These are
+reported separately. Raw responses stay in the temporary checkpoint directory.
 """
 from __future__ import annotations
 
 import base64
 import hashlib
 import json
+import re
 from copy import deepcopy
 from datetime import date
 from http.client import HTTPException
@@ -30,10 +31,13 @@ def digest(value):
 
 
 def validate_policy(policy):
-    if (not isinstance(policy, dict) or set(policy) - {"enabled"}
-            or type(policy.get("enabled", False)) is not bool):
+    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages"}
+            or type(policy.get("enabled", False)) is not bool
+            or type(policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)) is not int
+            or not 1 <= policy.get("max_pages", source.MAX_REQUESTS_PER_RUN) <= source.MAX_REQUESTS_PER_RUN):
         raise ValueError("Unreviewed Happings Autopilot policy")
-    return {"enabled": policy.get("enabled", False)}
+    return {"enabled": policy.get("enabled", False),
+            "max_pages": policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)}
 
 
 def _write_json(path, value):
@@ -43,17 +47,14 @@ def _write_json(path, value):
     temporary.replace(path)
 
 
-def _rights(path):
+def _rights(path, *, today):
     try:
+        if path.stat().st_size > 65_536:
+            raise ValueError("Unbounded Happings authorization record")
         record = json.loads(path.read_text("utf-8"))
     except (OSError, UnicodeError, ValueError):
-        return False, "invalid_or_missing_rights_record", None
-    if (not isinstance(record, dict) or record.get("schema") != 1
-            or record.get("publisher") != "Girolamo srls (Happings)"
-            or record.get("documents_copied_to_github") is not False):
-        return False, "invalid_or_missing_rights_record", digest(record)
-    authenticated = record.get("republication_rights_authenticated") is True
-    return authenticated, "authenticated" if authenticated else "blocked_rights", digest(record)
+        return source.authorization_status(None, today=today), None
+    return source.authorization_status(record, today=today), digest(record)
 
 
 def _pack_page(page):
@@ -72,7 +73,7 @@ def _unpack_pages(saved, context):
     if (not isinstance(saved, dict) or saved.get("schema") != SCHEMA
             or saved.get("context") != context or not isinstance(saved.get("pages"), list)
             or len(saved["pages"]) > source.MAX_REQUESTS_PER_RUN
-            or saved.get("status") not in ("fetch_started", "retrieved", "unavailable")):
+            or saved.get("status") not in ("fetch_started", "retrieved", "partial_unavailable", "unavailable")):
         raise ValueError("Happings resume context changed or source checkpoint is invalid")
     pages, seen = [], set()
     for entry in saved["pages"]:
@@ -90,42 +91,81 @@ def _unpack_pages(saved, context):
             raise ValueError("Happings checkpoint source or content hash changed")
         seen.add(entry["requested_url"])
         pages.append(page)
+    if [page["requested_url"] for page in pages] != [url for url in context["selected_urls"] if url in seen]:
+        raise ValueError("Happings checkpoint changed selected source order")
+    failures = saved.get("failures", [])
+    if not isinstance(failures, list) or len(failures) > len(context["selected_urls"]):
+        raise ValueError("Happings checkpoint lost failed page outcomes")
+    failed = set()
+    for failure in failures:
+        if (not isinstance(failure, dict) or set(failure) != {"requested_url", "error_type"}
+                or failure.get("requested_url") not in context["selected_urls"]
+                or failure["requested_url"] in seen | failed
+                or not isinstance(failure.get("error_type"), str)
+                or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,79}", failure["error_type"])):
+            raise ValueError("Happings checkpoint lost failed page identity")
+        failed.add(failure["requested_url"])
+    if [item["requested_url"] for item in failures] != [url for url in context["selected_urls"] if url in failed]:
+        raise ValueError("Happings checkpoint changed failed source order")
     if (saved["status"] == "retrieved"
-            and [page["requested_url"] for page in pages] != context["selected_urls"]):
+            and (failures or [page["requested_url"] for page in pages] != context["selected_urls"])):
         raise ValueError("Happings completed checkpoint lost selected source pages")
+    if (saved["status"] in {"partial_unavailable", "unavailable"}
+            and (seen | failed != set(context["selected_urls"])
+                 or (saved["status"] == "partial_unavailable" and (not pages or not failures))
+                 or (saved["status"] == "unavailable" and bool(pages)))):
+        raise ValueError("Happings failed checkpoint lost selected source outcomes")
     return pages
 
 
 def _fetch_and_checkpoint(urls, path, context, fetcher=None):
     """Keep every completed page even if a later request fails or is interrupted."""
-    saved = {"schema": SCHEMA, "context": context, "status": "fetch_started", "pages": []}
+    failures = []
+    saved = {"schema": SCHEMA, "context": context, "status": "fetch_started", "pages": [],
+             "failures": failures}
     _write_json(path, saved)
+    attempted = set()
 
     def capture(url, **kwargs):
+        if url not in urls or url in attempted:
+            raise ValueError("Happings repeated or unselected request")
+        attempted.add(url)
         raw, final = source._fetch_one(url, **kwargs)
         page = _pack_page({"requested_url": url, "final_url": final, "html": raw})
-        if url not in urls or any(item["requested_url"] == url for item in saved["pages"]):
-            raise ValueError("Happings repeated or unselected request")
         saved["pages"].append(page)
         _write_json(path, saved)
         return raw, final
 
     try:
         if fetcher is None:
-            pages = source.fetch_pages(urls, permission_confirmed=True, page_fetch=capture)
+            pages = source.fetch_pages(list(urls), permission_confirmed=True, page_fetch=capture,
+                                       failures=failures)
         else:
-            pages = fetcher(urls, permission_confirmed=True)
-        if not isinstance(pages, list) or [p.get("requested_url") for p in pages] != urls:
+            pages = fetcher(list(urls), permission_confirmed=True, failures=failures)
+        if not isinstance(pages, list) or any(not isinstance(page, dict) for page in pages):
             raise ValueError("Happings fetch did not preserve its selected page batch")
-        saved["pages"] = [_pack_page(page) for page in pages]
-        saved["status"] = "retrieved"
-        _write_json(path, saved)
-        return pages, None
+        proposal = {**saved, "pages": [_pack_page(page) for page in pages]}
+        _unpack_pages(proposal, context)
+        if {page["requested_url"] for page in pages} | {item["requested_url"] for item in failures} != set(urls):
+            raise ValueError("Happings fetch omitted a selected page outcome")
+        saved["pages"] = proposal["pages"]
     except (OSError, HTTPError, HTTPException, ValueError) as error:
-        saved["status"] = "unavailable"
         saved["error_type"] = type(error).__name__
-        _write_json(path, saved)
-        return [], type(error).__name__
+        # Completed, source-bound bytes remain useful if a later request
+        # fails. Missing outcomes are explicit; no date or content is guessed.
+        succeeded = {page["requested_url"] for page in saved["pages"]}
+        known_failures = {item.get("requested_url"): item for item in failures
+                          if isinstance(item, dict) and set(item) == {"requested_url", "error_type"}
+                          and item.get("requested_url") in urls
+                          and isinstance(item.get("error_type"), str)
+                          and re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,79}", item["error_type"])}
+        saved["failures"] = [known_failures.get(url, {"requested_url": url, "error_type": type(error).__name__})
+                             for url in urls if url not in succeeded]
+    saved["status"] = ("partial_unavailable" if saved["pages"] and saved["failures"]
+                       else "unavailable" if saved["failures"] else "retrieved")
+    pages = _unpack_pages(saved, context)
+    _write_json(path, saved)
+    return pages, saved
 
 
 def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
@@ -140,24 +180,27 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
     # unavailable or its permission changes after an earlier field repair.
     unchanged, empty_evidence = source.preview(base, [], today=today)
     preserve_ids = frozenset(row["slug"] for row in base if row.get("fonte") == source.PUBLISHER)
-    authenticated, rights_state, rights_digest = _rights(Path(rights_path or source.RIGHTS_REVIEW_FILE))
+    authorization, rights_digest = _rights(Path(rights_path or source.RIGHTS_REVIEW_FILE), today=today)
     report = {
         "schema": SCHEMA, "publisher": source.PUBLISHER, "date": today.isoformat(),
         "enabled": policy["enabled"], "status": "disabled",
-        "rights_state": rights_state, "rights_authenticated": authenticated,
+        "rights_state": authorization["status"],
+        "rights_authenticated": authorization["rights_authenticated"],
+        "fetch_authorized": authorization["authorized"],
+        "authorization_basis": authorization["basis"],
         "rights_record_sha256": rights_digest, "input_sha256": digest(base),
         "protected_existing_market_ids": len(preserve_ids),
         "protected_ids_sha256": digest(sorted(preserve_ids)),
-        "selected_urls": [], "source_pages": [], "source_evidence_reused": False,
-        "max_index_pages_per_run": source.MAX_REQUESTS_PER_RUN,
+        "selected_urls": [], "source_pages": [], "page_failures": [], "source_evidence_reused": False,
+        "max_index_pages_per_run": policy["max_pages"],
         "evidence": empty_evidence,
     }
     updated = unchanged
     path = Path(out) / "sources" / "happings-pages.json"
-    if policy["enabled"] and not authenticated:
+    if policy["enabled"] and not authorization["authorized"]:
         report["status"] = "blocked_rights"
     elif policy["enabled"]:
-        urls = source.select_pages(base, today=today)
+        urls = source.select_pages(base, today=today, limit=policy["max_pages"])
         report["selected_urls"] = urls
         context = {
             "today": today.isoformat(), "baseline_signature": baseline_signature,
@@ -176,19 +219,25 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
                 saved = json.loads(path.read_text("utf-8"))
                 pages = _unpack_pages(saved, context)
                 report["source_evidence_reused"] = True
-                if saved["status"] == "retrieved":
+                succeeded = {page["requested_url"] for page in pages}
+                failed = {item["requested_url"]: item for item in saved.get("failures", [])}
+                report["page_failures"] = [failed.get(url, {"requested_url": url, "error_type": "InterruptedBatch"})
+                                           for url in urls if url not in succeeded]
+                if not report["page_failures"]:
                     report["status"] = "resumed_checkpoint"
                 else:
-                    report["status"] = "unavailable"
+                    report["status"] = "partial_unavailable" if pages else "unavailable"
                     report["retained_partial_evidence_pages"] = len(pages)
-                    pages = []
         elif offline:
             report["status"] = "offline_skipped"
         else:
-            pages, failure = _fetch_and_checkpoint(urls, path, context, fetcher)
-            report["status"] = "unavailable" if failure else "retrieved"
-            if failure:
-                report["fetch_error_type"] = failure
+            pages, saved = _fetch_and_checkpoint(urls, path, context, fetcher)
+            report["status"] = saved["status"]
+            report["page_failures"] = deepcopy(saved["failures"])
+            if saved.get("error_type"):
+                report["fetch_error_type"] = saved["error_type"]
+            if pages and saved["failures"]:
+                report["retained_partial_evidence_pages"] = len(pages)
         if pages:
             updated, report["evidence"] = source.preview(
                 base, pages, today=today, apply=True, rights_verified=True
@@ -211,45 +260,75 @@ def verify_changes(before, after, report):
             or report.get("input_sha256") != digest(before)
             or [r["slug"] for r in before] != [r["slug"] for r in after]):
         raise ValueError("Happings field phase changed its baseline or market identities")
+    authorization_states = {
+        "authenticated": (True, "authenticated_publisher_grant", True),
+        "project_owner_authorized": (True, "explicit_project_owner_instruction", False),
+        "blocked_rights": (False, None, False),
+        "invalid_or_missing_rights_record": (False, None, False),
+    }
+    authorization = (report.get("fetch_authorized"), report.get("authorization_basis"),
+                     report.get("rights_authenticated"))
+    if (type(report.get("fetch_authorized")) is not bool
+            or type(report.get("rights_authenticated")) is not bool
+            or authorization_states.get(report.get("rights_state")) != authorization
+            or (report["fetch_authorized"] and
+                (not isinstance(report.get("rights_record_sha256"), str)
+                 or not re.fullmatch(r"[0-9a-f]{64}", report["rights_record_sha256"])))):
+        raise ValueError("Happings report misstates its actual authorization basis")
     evidence = report["evidence"]
     source.safe_report(evidence, before)
+    if (evidence.get("date") != report.get("date")
+            or report.get("source_pages") != evidence.get("source_pages")
+            or any(page["requested_url"] not in report.get("selected_urls", [])
+                   for page in evidence.get("source_pages", []))):
+        raise ValueError("Happings report changed the selected page or observation date")
     proposals = {p["market_id"]: p for p in evidence["proposals"]}
-    if len(proposals) != len(evidence["proposals"]):
-        raise ValueError("Happings repeated a field proposal")
-    changed = []
+    observations = {p["market_id"]: p for p in evidence["observations"]}
+    if (len(proposals) != len(evidence["proposals"])
+            or len(observations) != len(evidence["observations"])):
+        raise ValueError("Happings repeated a field proposal or observation")
+    observed_on = date.fromisoformat(report["date"])
+    changed, address_changed = [], []
     for old, current in zip(before, after):
+        sid = old["slug"]
+        receipt = proposals.get(sid)
+        observation = observations.get(sid)
+        expected = source.expected_record(old, proposal=receipt, observation=observation, today=observed_on)
+        if expected != current:
+            raise ValueError("Unapproved Happings market-field change: " + sid)
         if old == current:
             continue
-        sid = old["slug"]
         fields = (set(old) ^ set(current)) | {
             key for key in set(old) | set(current) if old.get(key) != current.get(key)
         }
-        receipt = proposals.get(sid)
-        if (fields - {"indirizzo", "fonti"} or old.get("fonte") != source.PUBLISHER
-                or str(old.get("indirizzo") or "").strip() or not receipt
-                or report.get("enabled") is not True or report.get("rights_authenticated") is not True
-                or receipt.get("apply_authorized") is not True
-                or receipt.get("rights_gate_passed") is not True
-                or receipt.get("field") != "indirizzo"
-                or current.get("indirizzo") != receipt.get("candidate_value")
-                or not source.allowed_url(old.get("url_fonte"), receipt.get("source_requested_url"),
-                                          receipt.get("source_url"))):
+        if (fields - {"indirizzo", "fonti", "riscontri_campi"} or old.get("fonte") != source.PUBLISHER
+                or report.get("enabled") is not True or report.get("fetch_authorized") is not True
+                or report.get("authorization_basis") not in {
+                    "explicit_project_owner_instruction", "authenticated_publisher_grant"}
+                or not observation or observation.get("apply_authorized") is not True
+                or not source.record_matches_page(old, observation.get("source_requested_url"),
+                                                  observation.get("source_url"))):
             raise ValueError("Unapproved Happings market-field change: " + sid)
-        links = deepcopy(old.get("fonti") or [])
-        added = {"nome": source.SOURCE_EVIDENCE_NAME, "url": receipt["source_url"]}
-        if added not in links:
-            links.append(added)
-        if current.get("fonti") != links:
-            raise ValueError("Happings removed or rewrote existing source evidence: " + sid)
         changed.append(sid)
-    if (sorted(changed) != evidence["changed_ids"]
-            or len(changed) != evidence["field_changes"]):
+        if old.get("indirizzo") != current.get("indirizzo"):
+            if (not receipt or receipt.get("apply_authorized") is not True
+                    or receipt.get("rights_gate_passed") is not True
+                    or receipt.get("field") != "indirizzo"
+                    or receipt.get("old_value") != str(old.get("indirizzo") or "")
+                    or current.get("indirizzo") != receipt.get("candidate_value")):
+                raise ValueError("Unapproved Happings address change: " + sid)
+            address_changed.append(sid)
+    if (sorted(address_changed) != evidence["changed_ids"]
+            or len(address_changed) != evidence["field_changes"]
+            or len(changed) != evidence["record_changes"]):
         raise ValueError("Happings source report does not match actual field changes")
     return True
 
 
 def verify_exported(before, revised, exported, report, *, today):
     """Check exact IDs and source-proven values in the actual exported details."""
+    if not isinstance(today, date) or report.get("date") != today.isoformat():
+        raise ValueError("Happings export changed its observation reference date")
     verify_changes(before, revised, report)
     original_ids = [row["slug"] for row in before]
     protected = {row["slug"] for row in before if row.get("fonte") == source.PUBLISHER}
@@ -272,6 +351,8 @@ def verify_exported(before, revised, exported, report, *, today):
         "input_market_ids": len(before), "exported_market_ids": len(exported),
         "protected_happings_ids": report["protected_existing_market_ids"],
         "source_field_changes": report["evidence"]["field_changes"],
+        "source_observed_markets": len(report["evidence"]["observed_ids"]),
+        "source_record_changes": report["evidence"]["record_changes"],
         "market_ids_deleted": len(set(original_ids) - by_id.keys()),
         "market_ids_added": len(by_id.keys() - set(original_ids)),
         "happings_ids_deleted": 0, "happings_ids_added": 0,
@@ -284,10 +365,13 @@ def markdown(report):
     return (
         "# Happings — arricchimento nel ciclo DEV\n\n"
         f"- Stato: `{report['status']}`.\n"
-        f"- Gate diritti: `{report['rights_state']}`.\n"
+        f"- Autorizzazione operativa: `{report['rights_state']}`.\n"
+        f"- Concessione del titolare autenticata: {'sì' if report['rights_authenticated'] else 'no'}.\n"
         f"- Identità Happings conservate: {report['protected_existing_market_ids']}.\n"
-        f"- Pagine valutate: {evidence['pages_evaluated']} (limite: {source.MAX_REQUESTS_PER_RUN}).\n"
-        f"- Indirizzi aggiunti: {evidence['field_changes']}.\n"
+        f"- Pagine valutate: {evidence['pages_evaluated']} (limite: {report['max_index_pages_per_run']}).\n"
+        f"- Pagine non disponibili: {len(report['page_failures'])}.\n"
+        f"- Indirizzi recuperati o aggiornati: {evidence['field_changes']}.\n"
+        f"- Schede con riscontri della fonte: {len(evidence['observed_ids'])}.\n"
         "- Nessun orario, data, punto geografico o verifica di apertura aggiunto.\n"
-        "- HTML e prove per scheda restano nei checkpoint temporanei del ciclo.\n"
+        "- I riscontri essenziali sono conservati con la scheda; HTML e rapporto dettagliato restano nei checkpoint temporanei.\n"
     )

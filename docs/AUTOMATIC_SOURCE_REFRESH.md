@@ -362,10 +362,10 @@ alle proprie letture dopo la QA; non modifica da sola il catalogo pubblicato.
 ## Copertura da completare per famiglie di fonti
 
 Nel catalogo di partenza ci sono 5.752 URL primari, 72 domini e 87 etichette
-di fonte. Il report corretto classifica 1.219 schede per gli adapter ufficiali
-configurati, 39 per il contratto generico Bologna, 9.647 schede Happings con
-arricchimento disabilitato dal proprio gate e 2.919 con formato primario ancora
-da integrare. La prima versione contava solo gli URL restituiti dagli adapter
+di fonte. La misura precedente all'attivazione Happings classificava 1.219
+schede per gli adapter ufficiali configurati, 39 per il contratto generico
+Bologna, 9.647 schede Happings con arricchimento disabilitato e 2.919 con
+formato primario ancora da integrare. La prima versione contava solo gli URL restituiti dagli adapter
 nel ciclo e ometteva i contratti generici. La copertura ora rimane riconosciuta
 anche quando la lettura della fonte non riesce; disponibilità, disabilitazione
 e formato mancante hanno esiti distinti. Dettagli e limiti dei timestamp dei
@@ -378,8 +378,24 @@ Per ampliare la copertura si aggiunge o corregge un contratto per la fonte o
 per il formato, con una pagina/dataset completo e test delle sue variazioni.
 Non si aggiunge una voce di correzione per ogni mercato. Un formato non
 supportato deve rimanere visibile nella coda; non va dichiarato aggiornato.
-Il blocco Happings già presente resta nel suo percorso dedicato e non può
-essere aggirato da un contratto del nuovo lettore.
+Happings usa il proprio percorso dedicato, attivato il 19 ottobre 2026
+sull'istruzione esplicita del titolare del progetto. La policy ammette 16
+pagine per esecuzione e la rotazione continua dopo il riempimento dei campi.
+La capacità misurata è di 8.193 schede instradabili su 9.647, tramite 95 URL
+provinciali già presenti nel catalogo. Le vecchie schede comunali richiedono
+Comune dell'URL, geografia ISTAT e giorno coerenti; la relazione alla pagina
+provinciale è registrata come collegamento, senza dichiarare un redirect
+mai letto. Le altre 1.454 schede rimangono nel catalogo e nella coda di
+copertura.
+
+Il motore aggiunge riscontri per sede e ricorrenza settimanale interamente
+provata, conservando vuota la data del contenuto quando la fonte non la
+fornisce. Può aggiornare in seguito le sedi che ha assegnato, con identità
+stabile e prova successiva; le sedi umane o soltanto osservate conservano la
+propria protezione. Errori e cambi di struttura sono isolati per pagina.
+La copertura del lettore, l'esito della lettura e i riscontri dei campi sono
+misure separate. Il funzionamento corrente e i risultati storici distinti
+sono in [Happings nel ciclo DEV](HAPPINGS_AUTOPILOT_PHASE.md).
 
 Questa è una base operativa verificata per l'aggiornamento automatico. La
 copertura di tutte le fonti e la correttezza attuale di ogni singola apertura

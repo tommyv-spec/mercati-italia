@@ -17,10 +17,33 @@ PAGES = {"schema": 1, "publication_channel": "dev-only", "sources": []}
 TODAY = date(2026, 10, 19)
 BOLOGNA = next(p for p in CONTRACTS["raw_profiles"] if p["source_id"] == "bologna")
 CORCIANO = next(p for p in CONTRACTS["raw_profiles"] if p["source_id"] == "corciano")
+VENICE = "https://www.happings.com/it/mercati-settimanali-a-venezia.html"
+VENICE_FINAL = "https://www.happings.com/it/mercati-settimanali-a-venezia-e-provincia/"
+TREVISO = "https://www.happings.com/it/mercati-settimanali-a-treviso.html"
+SPINEA = "https://www.happings.com/it/mercato-settimanale-a-spinea.html"
 
 
 def market(slug, url):
     return {"slug": slug, "url_fonte": url, "indirizzo": "", "orario_testo": ""}
+
+
+def happings_market(slug, url=VENICE, *, city="Spinea", province="VE", **changes):
+    row = {**market(slug, url), "nome": "Mercato settimanale di " + city,
+           "citta": city, "provincia": province, "regione": "Veneto",
+           "fonte": "happings.com", "ricorrenza_testo": "settimanale - mercoledì"}
+    row.update(changes)
+    return row
+
+
+def happings_acquisition_report(rows, selected_urls, *, pages=(), failures=(), **changes):
+    protected = sorted(row["slug"] for row in rows if row.get("fonte") == "happings.com")
+    report = {"schema": 1, "publisher": "happings.com", "date": TODAY.isoformat(),
+              "enabled": True, "fetch_authorized": True, "status": "retrieved",
+              "protected_existing_market_ids": len(protected), "protected_ids_sha256": digest(protected),
+              "selected_urls": selected_urls, "source_pages": list(pages),
+              "page_failures": list(failures), "source_evidence_reused": False}
+    report.update(changes)
+    return report
 
 
 def coverage(rows, **kwargs):
@@ -131,6 +154,111 @@ class SourceRefreshCoverageTests(unittest.TestCase):
         self.assertEqual(result["market_dispositions"], {
             "happings_gate_not_active": 1, "source_layout_needed": 1,
         })
+
+    def test_happings_flag_does_not_grant_a_reader_to_every_publisher_path(self):
+        rows = [happings_market("index"), happings_market("town", SPINEA),
+                happings_market("festival", "https://www.happings.com/it/sagra-a-spinea.html"),
+                happings_market("other-town", "https://www.happings.com/it/mercato-settimanale-a-dolo.html"),
+                happings_market("wrong-scope", province="PD"),
+                happings_market("tracking-url", VENICE + "?utm_source=legacy")]
+        before = copy.deepcopy(rows)
+        result = coverage(rows, happings_enabled=True)
+        self.assertEqual(result["market_layout_statuses"], {"supported": 2, "unsupported": 4})
+        self.assertEqual(result["market_dispositions"]["happings_province_index"], 2)
+        town = next(item for item in result["resources"] if item["url"] == SPINEA)
+        self.assertEqual(town["source_route_url"], VENICE)
+        self.assertEqual(town["source_route_method"], "province_index_join")
+        self.assertEqual(town["source_read_status"], "not_observed")
+        self.assertEqual(rows, before)
+
+    def test_happings_town_needs_an_existing_coherent_province_source(self):
+        row = happings_market("town", SPINEA)
+        unsupported = coverage([row], happings_enabled=True)
+        self.assertEqual(unsupported["market_layout_statuses"], {"unsupported": 1})
+        other_province = happings_market("other", TREVISO, city="Treviso", province="TV")
+        result = coverage([row, other_province], happings_enabled=True)
+        self.assertEqual(result["market_layout_statuses"], {"unsupported": 1, "supported": 1})
+        self.assertEqual(next(item for item in result["resources"] if item["url"] == SPINEA)["mode"],
+                         "happings_source_scope_unproven")
+
+    def test_happings_town_punctuation_does_not_reconstruct_missing_letters(self):
+        rows = [happings_market("index"),
+                happings_market("punctuation", SPINEA.replace("spinea.html", "spinea--.html")),
+                happings_market("missing-letter", SPINEA.replace("spinea.html", "spine--.html"))]
+        result = coverage(rows, happings_enabled=True)
+        self.assertEqual(result["market_layout_statuses"], {"supported": 2, "unsupported": 1})
+
+    def test_happings_coverage_persists_after_addresses_are_filled(self):
+        rows = [happings_market("index", indirizzo="Via Prova 10"),
+                happings_market("town", SPINEA, indirizzo="Piazza Prova 20")]
+        result = coverage(rows, happings_enabled=True)
+        self.assertEqual(result["market_layout_statuses"], {"supported": 2})
+        self.assertEqual(sum(item["missing_address"] for item in result["resources"]), 0)
+
+    def test_happings_shared_url_preserves_mixed_geographic_dispositions(self):
+        rows = [happings_market("supported"), happings_market("invalid", province="PD")]
+        result = coverage(rows, happings_enabled=True)
+        self.assertEqual(result["markets"], 2)
+        self.assertEqual(result["unique_primary_urls"], 1)
+        self.assertEqual(result["market_layout_statuses"], {"supported": 1, "unsupported": 1})
+        self.assertEqual(sum(item["markets"] for item in result["resources"]), 2)
+        self.assertEqual(len(result["resources"]), 2)
+
+    def test_happings_read_statuses_follow_pages_not_whole_domain(self):
+        rows = [happings_market("index"), happings_market("town", SPINEA),
+                happings_market("failed", TREVISO, city="Treviso", province="TV"),
+                happings_market("unselected", "https://www.happings.com/it/mercati-settimanali-a-padova.html",
+                                city="Padova", province="PD")]
+        page = {"requested_url": VENICE, "final_url": VENICE_FINAL,
+                "source_html_sha256": "a" * 64, "status": "parsed", "source_rows": 1}
+        report = happings_acquisition_report(rows, [VENICE, TREVISO], pages=[page],
+                                            failures=[{"requested_url": TREVISO, "error_type": "HTTPError"}],
+                                            status="partial_unavailable")
+        result = coverage(rows, happings_enabled=True, happings_report=report)
+        self.assertEqual(result["market_layout_statuses"], {"supported": 4})
+        self.assertEqual(result["market_read_statuses"], {"retrieved": 2, "unavailable": 1, "not_selected": 1})
+        report["source_evidence_reused"] = True
+        resumed = coverage(rows, happings_enabled=True, happings_report=report)
+        self.assertEqual(resumed["market_read_statuses"],
+                         {"resumed_checkpoint": 2, "unavailable": 1, "not_selected": 1})
+
+    def test_happings_layout_change_and_absent_checkpoint_are_explicit(self):
+        rows = [happings_market("index")]
+        page = {"requested_url": VENICE, "final_url": VENICE_FINAL,
+                "source_html_sha256": "a" * 64, "status": "layout_changed"}
+        report = happings_acquisition_report(rows, [VENICE], pages=[page], status="layout_changed")
+        result = coverage(rows, happings_enabled=True, happings_report=report)
+        self.assertEqual(result["market_layout_statuses"], {"supported": 1})
+        self.assertEqual(result["market_read_statuses"], {"layout_changed": 1})
+        for status in ("offline_skipped", "resume_missing_evidence"):
+            with self.subTest(status=status):
+                report = happings_acquisition_report(rows, [VENICE], status=status)
+                self.assertEqual(coverage(rows, happings_enabled=True, happings_report=report)
+                                 ["market_read_statuses"], {status: 1})
+
+    def test_happings_read_report_must_match_date_cohort_and_observed_page(self):
+        rows = [happings_market("index")]
+        page = {"requested_url": VENICE, "final_url": VENICE_FINAL,
+                "source_html_sha256": "a" * 64, "status": "parsed", "source_rows": 1}
+        report = happings_acquisition_report(rows, [VENICE], pages=[page])
+        variants = [dict(report, date="2026-10-18"),
+                    dict(report, protected_ids_sha256="0" * 64),
+                    dict(report, selected_urls=[TREVISO]),
+                    dict(report, source_pages=[dict(page, final_url=TREVISO)]),
+                    dict(report, source_pages=[dict(page, source_html_sha256="invalid")]),
+                    dict(report, page_failures=[{"requested_url": VENICE, "error_type": "HTTPError"}])]
+        for invalid in variants:
+            with self.subTest(report=invalid):
+                result = coverage(rows, happings_enabled=True, happings_report=invalid)
+                self.assertEqual(result["market_layout_statuses"], {"supported": 1})
+                self.assertEqual(result["market_read_statuses"], {"not_observed": 1})
+
+    def test_happings_report_cannot_bypass_inactive_authorization(self):
+        rows = [happings_market("index")]
+        report = happings_acquisition_report(rows, [VENICE], status="blocked_rights", fetch_authorized=False)
+        result = coverage(rows, happings_enabled=True, happings_report=report)
+        self.assertEqual(result["market_layout_statuses"], {"disabled": 1})
+        self.assertEqual(result["market_read_statuses"], {"disabled": 1})
 
 
 if __name__ == "__main__":
