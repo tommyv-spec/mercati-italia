@@ -284,6 +284,119 @@ class PublishedCitySafetyTests(unittest.TestCase):
             verify_static(self.manifest_path,self.evidence_path,self.policy_path,
                           self.report_path,None,source_report)
 
+    def happings_admission(self):
+        """Use real page facts and semantic certificates, without mocking guards."""
+        from export_static import normalize
+        from happings_detail_enrichment import preview, cert_from_detail_evidence
+        from test_happings_detail_enrichment import page, TODAY
+        from test_source_contract_activation import CONTRACT, ACTIVE_REGISTRY, fixture_activate
+        from roma_xiii_geo_hold import git_blob_sha
+
+        def unavailable(url):
+            raise OSError("This fixture contains only the observed Happings page")
+
+        baseline, generic = fixture_activate(CONTRACT, ACTIVE_REGISTRY, self.details,
+                                              today=TODAY, fetch=unavailable)
+        self.assertEqual(generic["old_market_fields_changed"], 0)
+        self.assertEqual(generic["evidence_updated_market_ids"], [])
+        self.assertEqual(generic["new_market_ids"], [])
+        final, evidence = preview(baseline, [page()], today=TODAY,
+                                  apply=True, admit_new=True)
+        self.assertEqual(len(final), 17)
+        new_id = evidence["new_market_ids"][0]
+        row, error = normalize(next(row for row in final if row["slug"] == new_id), TODAY)
+        self.assertIsNone(error)
+        self.details = [*baseline, row]
+        self.render()
+        manifest = json.loads(self.manifest_path.read_text())
+        manifest["total"] = manifest["regions"][0]["count"] = len(self.details)
+        self.manifest_path.write_text(json.dumps(manifest))
+
+        source_file = Path(__file__).resolve().parents[1] / "data/market-source-contracts.json"
+        approval_file = source_file.with_name("approved-source-admissions.json")
+        policy = json.loads(self.policy_path.read_text())
+        policy["source_lifecycle"] = {"enabled": True,
+                                      "reviewed_contract_blob_sha1": git_blob_sha(source_file)}
+        policy["source_contract_admissions"] = {
+            "enabled": True, "approved_registry_blob_sha1": git_blob_sha(approval_file)}
+        self.policy_path.write_text(json.dumps(policy))
+        generic["enabled"] = True
+        generic["happings_detail_admission_certificate"] = cert_from_detail_evidence(evidence, today=TODAY)
+        source_report = self.root / "generic-with-happings.json"
+        source_report.write_text(json.dumps(generic))
+        return source_report, generic, new_id
+
+    def check_with_generic(self, source_report):
+        return verify_static(self.manifest_path, self.evidence_path, self.policy_path,
+                             self.report_path, None, source_report)
+
+    def test_source_reconstructed_happings_admission_preserves_every_reviewed_hold(self):
+        source_report, generic, _ = self.happings_admission()
+        result = self.check_with_generic(source_report)
+        self.assertTrue(result["release_safe"])
+        self.assertEqual(result["manifest_records"], 17)
+        self.assertEqual(result["separately_proved_happings_admissions"], 1)
+        self.assertEqual(result["navigation_routes_still_blocked"], 16)
+        self.assertEqual(result["unsafe_coordinates_still_quarantined"], 7)
+        self.assertEqual(result["source_urls_preserved"], 16)
+        # The earlier phase remains an honest historical cohort of 16 rows.
+        self.assertEqual(generic["candidate_market_ids"], 16)
+        self.assertEqual(json.loads(source_report.read_text()), generic)
+
+    def test_happings_added_count_without_source_certificate_still_fails_closed(self):
+        source_report, generic, _ = self.happings_admission()
+        del generic["happings_detail_admission_certificate"]
+        generic["separately_proved_happings_admissions"] = 1
+        source_report.write_text(json.dumps(generic))
+        with self.assertRaisesRegex(ValueError, "counts disagree"):
+            self.check_with_generic(source_report)
+
+    def test_happings_certificate_must_match_source_observation_and_exact_detail(self):
+        import copy
+        source_report, generic, new_id = self.happings_admission()
+        damaged = copy.deepcopy(generic)
+        damaged["happings_detail_admission_certificate"]["admissions"][0]["source_page"]["html_sha256"] = "0" * 64
+        source_report.write_text(json.dumps(damaged))
+        with self.assertRaisesRegex(ValueError, "detached from its observed source page"):
+            self.check_with_generic(source_report)
+        source_report.write_text(json.dumps(generic))
+        region = self.assets / "regions/lombardia-test.json"
+        payload = json.loads(region.read_text())
+        next(row for row in payload["markets"] if row["slug"] == new_id)["indirizzo"] = "Via inventata 100"
+        region.write_text(json.dumps(payload))
+        with self.assertRaisesRegex(ValueError, "differs from parsed source facts"):
+            self.check_with_generic(source_report)
+
+    def test_happings_certificate_does_not_excuse_another_unproved_market(self):
+        source_report, _, _ = self.happings_admission()
+        region = self.assets / "regions/lombardia-test.json"
+        payload = json.loads(region.read_text())
+        payload["markets"].append({**self.details[15], "slug": "unproved-extra-market"})
+        region.write_text(json.dumps(payload))
+        manifest = json.loads(self.manifest_path.read_text())
+        manifest["total"] = manifest["regions"][0]["count"] = 18
+        self.manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, "does not match generic source admission proof"):
+            self.check_with_generic(source_report)
+
+    def test_happings_source_dates_must_survive_in_actual_compact_index(self):
+        source_report, _, new_id = self.happings_admission()
+        index_path = self.assets / "index-test.json"
+        index = json.loads(index_path.read_text())
+        next(row for row in index["markets"] if row[0] == new_id)[-1] = ["2026-10-25"]
+        index_path.write_text(json.dumps(index))
+        with self.assertRaisesRegex(ValueError, "source facts lost in compact search index"):
+            self.check_with_generic(source_report)
+
+    def test_proved_happings_admission_does_not_relax_existing_city_protection(self):
+        source_report, _, _ = self.happings_admission()
+        region = self.assets / "regions/lombardia-test.json"
+        payload = json.loads(region.read_text())
+        payload["markets"][15].pop("navigazione_sospesa_motivo")
+        region.write_text(json.dumps(payload))
+        with self.assertRaisesRegex(ValueError, "directions re-enabled"):
+            self.check_with_generic(source_report)
+
 
 if __name__ == '__main__':
     unittest.main()

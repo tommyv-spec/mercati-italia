@@ -1,0 +1,3141 @@
+{
+  "schema": 1,
+  "as_of": "2026-10-20",
+  "read_only": true,
+  "catalog_mutations": 0,
+  "network_reads": 0,
+  "manifest": {
+    "path": "public/data/v1/manifest.json",
+    "sha256": "cfa988a9a3c35daaa8c028a7958a7e8f95925716554285be543d9263cebc4591",
+    "generated_at": "2026-10-19T09:56:45.752003+00:00",
+    "content_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+    "total": 13824
+  },
+  "metric_definitions": {
+    "base_presence": "audit_dataset.audit, catalog_quality_report.analyze and publisher_quality_matrix._field_problems",
+    "address_specificity": "stored_market_sibling_proposals.safe_stored_street; conservative lexical suitability, not geocoding or independent truth",
+    "clock_intervals": "happings_detail_layout._intervals on retained orario_testo; recognizes explicit HH:MM pair, not source truth or complete daily schedule",
+    "hours_precision_limitation": "There is no single source-independent exact-hours audit in the repo. Nonempty hours and recognizable interval counts must not be called verified exact hours.",
+    "source_freshness": "source_freshness.source_date_evidence; unknown legacy import timestamps excluded; 540-day bound is existing forecast policy",
+    "field_evidence": "field_evidence.audit; recent read <=45days, address source <=365days, hours/recurrence source <=180days",
+    "future_dates": "as_day(date)>=as_of, grouped by saved date_quality; predicted, reported and confirmed remain distinct",
+    "forecast_holds": "recurrence_refresh.refresh_record reason only; computed candidate discarded, no changes applied",
+    "reader_support": "publisher_refresh.catalog_resources configured layout capability; not a new source read",
+    "review_findings": "source-format-review-ledger and existing 2026-10-20 sample reports; sample yield is not source-wide yield"
+  },
+  "summary": {
+    "records": 13824,
+    "address_meets_existing_safe_stored_street": 6326,
+    "address_present_but_not_safe_stored_street": 4069,
+    "hours_present": 2971,
+    "hours_has_recognized_clock_interval": 2921,
+    "hours_present_no_recognized_clock_interval": 50,
+    "has_upcoming_date": 11906,
+    "no_upcoming_date": 1918,
+    "source_url_attributable": 13824,
+    "source_content_date_unknown": 12574,
+    "primary_read_date_present": 0,
+    "any_valid_field_receipt": 0,
+    "any_field_receipt_read_within_45d": 0,
+    "source_detail_proof_present": 0,
+    "source_calendar_proof_valid": 0,
+    "indirizzo:senza_riscontro_documentato": 10395,
+    "orario_testo:senza_riscontro_documentato": 2971,
+    "ricorrenza_testo:mancante": 934,
+    "orario_testo:mancante": 10853,
+    "upcoming_date_quality:prevista": 11906,
+    "ricorrenza_testo:senza_riscontro_documentato": 12890,
+    "future_dates_with_unknown_source_age_not_renewable": 11015,
+    "indirizzo:mancante": 3429,
+    "temporal_scope_hold": 104,
+    "calendario_sospeso_motivo": 20,
+    "navigazione_sospesa_motivo": 67,
+    "coordinate_sospese_motivo": 14,
+    "source_content_date_older_than_540d": 39,
+    "source_content_date_within_540d": 1211,
+    "hours_literal_NA": 37,
+    "address_generic_not_navigable_publisher_audit": 2495,
+    "missing_or_vague_address_publisher_audit": 5924,
+    "all_three_fields_recently_source_supported": 0,
+    "reported_future_date_records": 0,
+    "confirmed_future_date_records": 0,
+    "code_has_run_evidence_not_yet_published_in_catalog": true
+  },
+  "scope_counts": {
+    "market_records": 13824,
+    "source_labels": 87,
+    "unique_primary_urls": 5752,
+    "normalized_hosts": 71,
+    "raw_url_hostnames": 72,
+    "primary_formats": 109
+  },
+  "method_caveats": [
+    "Stored source URL is attribution, not proof that each current field has recently been checked.",
+    "No valid field receipt in exported rows does not erase independently reviewed PDF/dataset evidence elsewhere; it means that field-bound evidence is not yet exported.",
+    "audit_dataset uses a smaller vague-address list (5889 empty/vague); publisher_quality_matrix uses its established broader VAGUE_ADDRESSES list (5924 empty/vague). Do not mix definitions.",
+    "37 saved hour values literally say NA; presence-only metrics count these as filled, so hours-present is an upper bound on usable hours.",
+    "The conservative street rule is a lexical import-safety rule. A descriptive venue failing it is not necessarily an incorrect address.",
+    "Source sample recovery counts describe only sampled documents, not a yield estimate for all catalog rows.",
+    "Reader support is configured capability. This audit performs no network requests; not_observed is not proof a source is unavailable.",
+    "Forecast reason counts are obtained in memory and discarded; current public dates were not modified."
+  ],
+  "actionable_priorities": [
+    {
+      "priority": "P0",
+      "scope": "All 13824 exported records",
+      "gap": "Improved parsers and source proofs have not reached the published catalog: zero exported field receipts/read dates/explicit source calendars.",
+      "action": "Run the authorized complete DEV refresh, publish only the candidate that passes all existing guards, and compare the actual exported fields against this baseline.",
+      "source": "public/data/v1/manifest.json"
+    },
+    {
+      "priority": "P1",
+      "scope": "Happings provincial list formats",
+      "records": 4901,
+      "missing_address": 2852,
+      "missing_hours": 4852,
+      "action": "Complete bounded provincial rereads and exact identity matching; retrieve exact hours only from detail pages that actually state them. Preserve daypart-only rows as dayparts.",
+      "source": "backend/data/source-format-review-ledger.json"
+    },
+    {
+      "priority": "P1",
+      "scope": "Happings old town details",
+      "records": 4746,
+      "missing_address": 16,
+      "missing_hours": 4631,
+      "action": "Resolve observed redirects/current detail URLs and retain distinct venues/seasonality; do not guess migrated slugs or extend calendars from page publication dates.",
+      "source": "backend/data/source-format-review-ledger.json"
+    },
+    {
+      "priority": "P1",
+      "scope": "Cose di Casa",
+      "records": 432,
+      "missing_hours": 431,
+      "demonstrated_sample_recovery": "4 of 5 reviewed pages expose precise source hours absent in catalog; structured reader and source-calendar bridge still absent.",
+      "action": "Implement the structured calendar reader, explicit editions/suspensions, related-event separation and source conflict handling.",
+      "source": "reports/automation/source-format-audit-2026-10-20/editorial.json"
+    },
+    {
+      "priority": "P1",
+      "scope": "Eventi e Sagre",
+      "records": 2197,
+      "missing_address": 445,
+      "missing_hours": 369,
+      "demonstrated_sample_recovery": "17-page replay: hours text1→13, nine clock intervals plus four start-only statements; footer address contamination9→0; all17 edition limits recovered.16 sample editions are archived.",
+      "action": "Connect the repaired parser end-to-end, preserve edition/archive/source metadata and separate multiple venues; expired editions must not become new weekly dates.",
+      "source": "reports/automation/source-format-audit-2026-10-20/editorial.json"
+    },
+    {
+      "priority": "P1",
+      "scope": "Official readers",
+      "demonstrated_sample_recovery": "Roma dataset d88: 70 rows have missing hours in catalog; Bologna9 seasonal hour strings were lost; Milano PDF requires full weekday rows and sale-versus-clearance/seasonal hours; Lombardia50 calendar scope holds require source bounds.",
+      "action": "Complete per-format retention and source-age handling using existing exact official IDs, without inferring current openings from administrative documents.",
+      "source": "reports/automation/source-format-audit-2026-10-20/official.json"
+    },
+    {
+      "priority": "P2",
+      "scope": "Citynews",
+      "formats_reviewed": 48,
+      "sample_catalog_records": 61,
+      "demonstrated_sample_recovery": {
+        "source_address_present_catalog_empty": 11,
+        "source_hours_present_catalog_empty": 14,
+        "dated_source_catalog_calendar_empty": 29
+      },
+      "action": "Event-card detail/discovery/editorial readers and end-to-end provenance. Retain event year and expiry; these29 dates are not all proven upcoming.",
+      "source": "reports/automation/source-format-audit-2026-10-20/citynews.json"
+    },
+    {
+      "priority": "P2",
+      "scope": "Other legacy publishers",
+      "formats": 33,
+      "records": 123,
+      "action": "Reuse documented per-format tasks: scoped DOM vs JSON-LD, source internal conflicts, index discovery, named market eligibility, partial hours and historical editions. Four formats/12 records remain unavailable or malformed in reviewed samples.",
+      "source": "reports/automation/source-format-audit-2026-10-20/other.json"
+    }
+  ],
+  "dev_commit": "05dce2dd00a2192b37da076042090383eef37c65",
+  "code_tree_equivalent_to_audit_commit": "fd7ab83c1fa74c907d253df93a6bf80abde86b00",
+  "state": "baseline_before_live_source_refresh_not_a_completion_claim",
+  "dataset_field_gaps": {
+    "verified_at": 13824,
+    "future_dates": 1918,
+    "hours": 10853,
+    "address": 3429,
+    "missing_or_vague_address": 5889,
+    "no_streetlike_address": 6969,
+    "description": 6744,
+    "coordinates": 274
+  },
+  "date_quality": {
+    "sconosciuta": 1918,
+    "prevista": 11906
+  },
+  "source_metrics": [
+    {
+      "publisher": "happings.com",
+      "records": 9647,
+      "address_meets_existing_safe_stored_street": 3504,
+      "address_present_but_not_safe_stored_street": 3275,
+      "hours_present": 164,
+      "hours_has_recognized_clock_interval": 129,
+      "hours_present_no_recognized_clock_interval": 35,
+      "has_upcoming_date": 9342,
+      "upcoming_date_quality:prevista": 9342,
+      "source_url_attributable": 9647,
+      "source_content_date_unknown": 9647,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2868,
+      "orario_testo:mancante": 9483,
+      "ricorrenza_testo:senza_riscontro_documentato": 9647,
+      "future_dates_with_unknown_source_age_not_renewable": 9334,
+      "indirizzo:senza_riscontro_documentato": 6779,
+      "no_upcoming_date": 305,
+      "calendario_sospeso_motivo": 20,
+      "orario_testo:senza_riscontro_documentato": 164,
+      "navigazione_sospesa_motivo": 3,
+      "coordinate_sospese_motivo": 3,
+      "temporal_scope_hold": 8,
+      "source_date_basis": {
+        "unknown": 9647
+      },
+      "forecast_disposition": {
+        "unknown_source_age": 9334,
+        "no_explicit_rule": 305,
+        "seasonal_scope_unrepresented": 6,
+        "interval_scope_unrepresented": 2
+      }
+    },
+    {
+      "publisher": "eventiesagre.it",
+      "records": 2197,
+      "address_meets_existing_safe_stored_street": 1644,
+      "address_present_but_not_safe_stored_street": 108,
+      "hours_present": 1828,
+      "hours_has_recognized_clock_interval": 1828,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 1353,
+      "no_upcoming_date": 844,
+      "source_url_attributable": 2197,
+      "source_content_date_unknown": 2197,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1752,
+      "orario_testo:senza_riscontro_documentato": 1828,
+      "ricorrenza_testo:mancante": 712,
+      "orario_testo:mancante": 369,
+      "upcoming_date_quality:prevista": 1353,
+      "ricorrenza_testo:senza_riscontro_documentato": 1485,
+      "future_dates_with_unknown_source_age_not_renewable": 1307,
+      "indirizzo:mancante": 445,
+      "temporal_scope_hold": 26,
+      "source_date_basis": {
+        "unknown": 2197
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 864,
+        "unknown_source_age": 1307,
+        "date_range_scope_unrepresented": 10,
+        "seasonal_scope_unrepresented": 15,
+        "calendar_exception_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
+      "records": 1128,
+      "address_meets_existing_safe_stored_street": 842,
+      "address_present_but_not_safe_stored_street": 285,
+      "hours_present": 786,
+      "hours_has_recognized_clock_interval": 786,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 738,
+      "upcoming_date_quality:prevista": 738,
+      "source_url_attributable": 1128,
+      "source_content_date_within_540d": 1128,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1127,
+      "orario_testo:senza_riscontro_documentato": 786,
+      "ricorrenza_testo:senza_riscontro_documentato": 1128,
+      "no_upcoming_date": 390,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 342,
+      "temporal_scope_hold": 50,
+      "source_date_basis": {
+        "reviewed_legacy_dataset": 1128
+      },
+      "forecast_disposition": {
+        "renewed": 738,
+        "no_explicit_rule": 340,
+        "interval_scope_unrepresented": 19,
+        "seasonal_scope_unrepresented": 31
+      }
+    },
+    {
+      "publisher": "cosedicasa.com",
+      "records": 432,
+      "address_meets_existing_safe_stored_street": 65,
+      "address_present_but_not_safe_stored_street": 367,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 1,
+      "has_upcoming_date": 361,
+      "no_upcoming_date": 71,
+      "source_url_attributable": 432,
+      "source_content_date_unknown": 432,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 432,
+      "orario_testo:mancante": 431,
+      "ricorrenza_testo:senza_riscontro_documentato": 432,
+      "upcoming_date_quality:prevista": 361,
+      "future_dates_with_unknown_source_age_not_renewable": 349,
+      "navigazione_sospesa_motivo": 8,
+      "coordinate_sospese_motivo": 7,
+      "temporal_scope_hold": 2,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 432
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 80,
+        "unknown_source_age": 350,
+        "seasonal_scope_unrepresented": 2
+      }
+    },
+    {
+      "publisher": "Comune di Milano - Open Data (CC BY 4.0)",
+      "records": 85,
+      "address_meets_existing_safe_stored_street": 73,
+      "address_present_but_not_safe_stored_street": 2,
+      "hours_present": 85,
+      "hours_has_recognized_clock_interval": 85,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 76,
+      "upcoming_date_quality:prevista": 76,
+      "source_url_attributable": 85,
+      "source_content_date_within_540d": 76,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 75,
+      "orario_testo:senza_riscontro_documentato": 85,
+      "ricorrenza_testo:senza_riscontro_documentato": 85,
+      "no_upcoming_date": 9,
+      "source_content_date_unknown": 9,
+      "indirizzo:mancante": 10,
+      "source_date_basis": {
+        "reviewed_legacy_dataset": 76,
+        "unknown": 9
+      },
+      "forecast_disposition": {
+        "renewed": 76,
+        "unknown_source_age": 9
+      }
+    },
+    {
+      "publisher": "dati.comune.roma.it",
+      "records": 70,
+      "address_meets_existing_safe_stored_street": 70,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 70,
+      "source_url_attributable": 70,
+      "source_content_date_unknown": 70,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 70,
+      "orario_testo:mancante": 70,
+      "ricorrenza_testo:mancante": 70,
+      "navigazione_sospesa_motivo": 2,
+      "coordinate_sospese_motivo": 2,
+      "source_date_basis": {
+        "unknown": 70
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 70
+      }
+    },
+    {
+      "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "records": 39,
+      "address_meets_existing_safe_stored_street": 39,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 30,
+      "hours_has_recognized_clock_interval": 30,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 39,
+      "source_url_attributable": 39,
+      "source_content_date_older_than_540d": 39,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "navigazione_sospesa_motivo": 39,
+      "indirizzo:senza_riscontro_documentato": 39,
+      "orario_testo:senza_riscontro_documentato": 30,
+      "ricorrenza_testo:senza_riscontro_documentato": 39,
+      "orario_testo:mancante": 9,
+      "source_date_basis": {
+        "reviewed_legacy_dataset": 39
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 39
+      }
+    },
+    {
+      "publisher": "cosafareafirenze.it",
+      "records": 22,
+      "address_meets_existing_safe_stored_street": 12,
+      "address_present_but_not_safe_stored_street": 10,
+      "hours_present": 18,
+      "hours_has_recognized_clock_interval": 16,
+      "hours_present_no_recognized_clock_interval": 2,
+      "has_upcoming_date": 2,
+      "no_upcoming_date": 20,
+      "source_url_attributable": 22,
+      "source_content_date_unknown": 22,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 22,
+      "orario_testo:mancante": 4,
+      "ricorrenza_testo:mancante": 19,
+      "orario_testo:senza_riscontro_documentato": 18,
+      "upcoming_date_quality:prevista": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 3,
+      "future_dates_with_unknown_source_age_not_renewable": 2,
+      "source_date_basis": {
+        "unknown": 22
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 20,
+        "unknown_source_age": 2
+      }
+    },
+    {
+      "publisher": "trentino.com",
+      "records": 9,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 8,
+      "hours_has_recognized_clock_interval": 7,
+      "hours_present_no_recognized_clock_interval": 1,
+      "has_upcoming_date": 8,
+      "upcoming_date_quality:prevista": 8,
+      "source_url_attributable": 9,
+      "source_content_date_unknown": 9,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 9,
+      "orario_testo:senza_riscontro_documentato": 8,
+      "ricorrenza_testo:senza_riscontro_documentato": 8,
+      "future_dates_with_unknown_source_age_not_renewable": 8,
+      "no_upcoming_date": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 9
+      },
+      "forecast_disposition": {
+        "unknown_source_age": 8,
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "emiliaromagnaturismo.it",
+      "records": 8,
+      "address_meets_existing_safe_stored_street": 4,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 1,
+      "no_upcoming_date": 7,
+      "source_url_attributable": 8,
+      "source_content_date_unknown": 8,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 4,
+      "orario_testo:mancante": 8,
+      "ricorrenza_testo:mancante": 8,
+      "indirizzo:mancante": 4,
+      "upcoming_date_quality:prevista": 1,
+      "source_date_basis": {
+        "unknown": 8
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 8
+      }
+    },
+    {
+      "publisher": "eventi.bergamo.it",
+      "records": 8,
+      "address_meets_existing_safe_stored_street": 4,
+      "address_present_but_not_safe_stored_street": 4,
+      "hours_present": 7,
+      "hours_has_recognized_clock_interval": 7,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 8,
+      "source_url_attributable": 8,
+      "source_content_date_unknown": 8,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 8,
+      "orario_testo:senza_riscontro_documentato": 7,
+      "ricorrenza_testo:mancante": 8,
+      "orario_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 8
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 8
+      }
+    },
+    {
+      "publisher": "umbriaeventi.com",
+      "records": 8,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 8,
+      "source_url_attributable": 8,
+      "source_content_date_unknown": 8,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 8,
+      "orario_testo:mancante": 8,
+      "ricorrenza_testo:mancante": 8,
+      "source_date_basis": {
+        "unknown": 8
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 8
+      }
+    },
+    {
+      "publisher": "algherohospitality.it",
+      "records": 7,
+      "address_meets_existing_safe_stored_street": 5,
+      "address_present_but_not_safe_stored_street": 2,
+      "hours_present": 6,
+      "hours_has_recognized_clock_interval": 6,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 3,
+      "upcoming_date_quality:prevista": 3,
+      "source_url_attributable": 7,
+      "source_content_date_unknown": 7,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 7,
+      "orario_testo:senza_riscontro_documentato": 6,
+      "ricorrenza_testo:senza_riscontro_documentato": 6,
+      "future_dates_with_unknown_source_age_not_renewable": 2,
+      "no_upcoming_date": 4,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 7
+      },
+      "forecast_disposition": {
+        "unknown_source_age": 2,
+        "no_explicit_rule": 5
+      }
+    },
+    {
+      "publisher": "citynews_romatoday.it",
+      "records": 7,
+      "address_meets_existing_safe_stored_street": 7,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 7,
+      "hours_has_recognized_clock_interval": 6,
+      "hours_present_no_recognized_clock_interval": 1,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 7,
+      "source_url_attributable": 7,
+      "source_content_date_unknown": 7,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 7,
+      "orario_testo:senza_riscontro_documentato": 7,
+      "ricorrenza_testo:senza_riscontro_documentato": 7,
+      "temporal_scope_hold": 5,
+      "navigazione_sospesa_motivo": 2,
+      "source_date_basis": {
+        "unknown": 7
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 5,
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "genovatoday.it",
+      "records": 7,
+      "address_meets_existing_safe_stored_street": 2,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 7,
+      "source_url_attributable": 7,
+      "source_content_date_unknown": 7,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 5,
+      "orario_testo:mancante": 7,
+      "ricorrenza_testo:mancante": 7,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "source_date_basis": {
+        "unknown": 7
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 7
+      }
+    },
+    {
+      "publisher": "solosagre.it",
+      "records": 7,
+      "address_meets_existing_safe_stored_street": 7,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 3,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 3,
+      "has_upcoming_date": 7,
+      "upcoming_date_quality:prevista": 7,
+      "source_url_attributable": 7,
+      "source_content_date_unknown": 7,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "navigazione_sospesa_motivo": 6,
+      "indirizzo:senza_riscontro_documentato": 7,
+      "orario_testo:mancante": 4,
+      "ricorrenza_testo:senza_riscontro_documentato": 7,
+      "future_dates_with_unknown_source_age_not_renewable": 7,
+      "orario_testo:senza_riscontro_documentato": 3,
+      "source_date_basis": {
+        "unknown": 7
+      },
+      "forecast_disposition": {
+        "unknown_source_age": 7
+      }
+    },
+    {
+      "publisher": "romatoday.it",
+      "records": 6,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 2,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 1,
+      "no_upcoming_date": 5,
+      "source_url_attributable": 6,
+      "source_content_date_unknown": 6,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 4,
+      "orario_testo:mancante": 6,
+      "ricorrenza_testo:mancante": 5,
+      "upcoming_date_quality:prevista": 1,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "future_dates_with_unknown_source_age_not_renewable": 1,
+      "source_date_basis": {
+        "unknown": 6
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 5,
+        "unknown_source_age": 1
+      }
+    },
+    {
+      "publisher": "sagretorino.it",
+      "records": 6,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 6,
+      "source_url_attributable": 6,
+      "source_content_date_unknown": 6,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 6,
+      "orario_testo:mancante": 6,
+      "ricorrenza_testo:mancante": 6,
+      "source_date_basis": {
+        "unknown": 6
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 6
+      }
+    },
+    {
+      "publisher": "Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata)",
+      "records": 5,
+      "address_meets_existing_safe_stored_street": 5,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 4,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 5,
+      "source_content_date_within_540d": 5,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "navigazione_sospesa_motivo": 5,
+      "indirizzo:senza_riscontro_documentato": 5,
+      "orario_testo:mancante": 5,
+      "ricorrenza_testo:senza_riscontro_documentato": 5,
+      "upcoming_date_quality:prevista": 4,
+      "source_date_basis": {
+        "reviewed_legacy_dataset": 5
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1,
+        "renewed": 4
+      }
+    },
+    {
+      "publisher": "milanopocket.it",
+      "records": 5,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 5,
+      "source_url_attributable": 5,
+      "source_content_date_unknown": 5,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 4,
+      "orario_testo:mancante": 5,
+      "ricorrenza_testo:mancante": 5,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 5
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 5
+      }
+    },
+    {
+      "publisher": "sagreumbre.it",
+      "records": 5,
+      "address_meets_existing_safe_stored_street": 3,
+      "address_present_but_not_safe_stored_street": 2,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 5,
+      "source_url_attributable": 5,
+      "source_content_date_unknown": 5,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 5,
+      "orario_testo:mancante": 5,
+      "ricorrenza_testo:mancante": 5,
+      "source_date_basis": {
+        "unknown": 5
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 5
+      }
+    },
+    {
+      "publisher": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+      "records": 4,
+      "address_meets_existing_safe_stored_street": 4,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 4,
+      "hours_has_recognized_clock_interval": 4,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 4,
+      "source_url_attributable": 4,
+      "source_content_date_unknown": 4,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 4,
+      "orario_testo:senza_riscontro_documentato": 4,
+      "ricorrenza_testo:senza_riscontro_documentato": 4,
+      "source_date_basis": {
+        "unknown": 4
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 4
+      }
+    },
+    {
+      "publisher": "firenzetoday.it",
+      "records": 4,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 1,
+      "upcoming_date_quality:prevista": 1,
+      "source_url_attributable": 4,
+      "source_content_date_unknown": 4,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 4,
+      "orario_testo:mancante": 4,
+      "ricorrenza_testo:mancante": 4,
+      "no_upcoming_date": 3,
+      "source_date_basis": {
+        "unknown": 4
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 4
+      }
+    },
+    {
+      "publisher": "modenatoday.it",
+      "records": 4,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 4,
+      "source_url_attributable": 4,
+      "source_content_date_unknown": 4,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 3,
+      "orario_testo:mancante": 4,
+      "ricorrenza_testo:mancante": 4,
+      "temporal_scope_hold": 1,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 4
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3,
+        "seasonal_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "sagrefvg.it",
+      "records": 4,
+      "address_meets_existing_safe_stored_street": 3,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 3,
+      "hours_has_recognized_clock_interval": 3,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 4,
+      "source_url_attributable": 4,
+      "source_content_date_unknown": 4,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 4,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 4,
+      "orario_testo:senza_riscontro_documentato": 3,
+      "source_date_basis": {
+        "unknown": 4
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 4
+      }
+    },
+    {
+      "publisher": "bolognatoday.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "citynews_riminitoday.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 2,
+      "hours_has_recognized_clock_interval": 2,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:senza_riscontro_documentato": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 3,
+      "temporal_scope_hold": 2,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 2,
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "enjoysicilia.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 3,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "novaratoday.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "indirizzo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "palermotoday.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "ravennatoday.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "sagretoscane.com",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 3,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 1,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 3,
+      "upcoming_date_quality:prevista": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 3,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 3,
+      "future_dates_with_unknown_source_age_not_renewable": 3,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "unknown_source_age": 3
+      }
+    },
+    {
+      "publisher": "suedtirol.info",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 3,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "veneziatoday.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "vicenzatoday.it",
+      "records": 3,
+      "address_meets_existing_safe_stored_street": 2,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 3,
+      "source_url_attributable": 3,
+      "source_content_date_unknown": 3,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 3,
+      "orario_testo:mancante": 3,
+      "ricorrenza_testo:mancante": 3,
+      "source_date_basis": {
+        "unknown": 3
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 3
+      }
+    },
+    {
+      "publisher": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 2,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 2,
+      "hours_has_recognized_clock_interval": 2,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 2,
+      "upcoming_date_quality:prevista": 2,
+      "source_url_attributable": 2,
+      "source_content_date_within_540d": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:senza_riscontro_documentato": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 2,
+      "source_date_basis": {
+        "reviewed_legacy_dataset": 2
+      },
+      "forecast_disposition": {
+        "renewed": 2
+      }
+    },
+    {
+      "publisher": "assosagre.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 2,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 2,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 2,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:senza_riscontro_documentato": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "bresciatoday.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "brindisireport.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "cittadellaspezia.com",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "citynews_firenzetoday.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 2,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 2,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 1,
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_frosinonetoday.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 2,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 2,
+      "hours_has_recognized_clock_interval": 2,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:senza_riscontro_documentato": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "citynews_genovatoday.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 2,
+      "indirizzo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "citynews_veneziatoday.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 2,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "eventiintoscana.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "ferrarainfo.com",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 2,
+      "upcoming_date_quality:prevista": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 2,
+      "future_dates_with_unknown_source_age_not_renewable": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "unknown_source_age": 2
+      }
+    },
+    {
+      "publisher": "lazioinfesta.com",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "paradisola.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "pugliainfesta.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:senza_riscontro_documentato": 2,
+      "temporal_scope_hold": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 2
+      }
+    },
+    {
+      "publisher": "sagreinromagna.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "terredipisa.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 2,
+      "hours_has_recognized_clock_interval": 2,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 1,
+      "upcoming_date_quality:prevista": 1,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 2,
+      "orario_testo:senza_riscontro_documentato": 2,
+      "ricorrenza_testo:mancante": 2,
+      "no_upcoming_date": 1,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "trevisotoday.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 2,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 2,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "navigazione_sospesa_motivo": 2,
+      "coordinate_sospese_motivo": 2,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:senza_riscontro_documentato": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "varesenews.it",
+      "records": 2,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 2,
+      "source_url_attributable": 2,
+      "source_content_date_unknown": 2,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 2,
+      "orario_testo:mancante": 2,
+      "ricorrenza_testo:mancante": 2,
+      "source_date_basis": {
+        "unknown": 2
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 2
+      }
+    },
+    {
+      "publisher": "arezzonotizie.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "baritoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "casertanews.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "cesenatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "chietitoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_baritoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 1,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_bresciatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 1,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_cagliaritoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "citynews_cataniatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_ferraratoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 1,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_forlitoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "citynews_modenatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 1,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "seasonal_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "citynews_monzatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "citynews_parmatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 1,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_torinotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "citynews_trevisotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "citynews_vicenzatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "date_range_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "citynews_viterbotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 1,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 1,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:senza_riscontro_documentato": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "eventiinsardegna.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 1,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "ferraratoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "forlitoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "temporal_scope_hold": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "seasonal_scope_unrepresented": 1
+      }
+    },
+    {
+      "publisher": "frosinonetoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "leccotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "lombardiainfesta.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "milanotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "monzatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "napolidavivere.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "padovatoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "riminitoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 1,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 1,
+      "has_upcoming_date": 1,
+      "upcoming_date_quality:prevista": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:senza_riscontro_documentato": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "romapop.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "salernotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 1,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:senza_riscontro_documentato": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "torinotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "viterbotoday.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    },
+    {
+      "publisher": "wwwservizi.regione.emilia-romagna.it",
+      "records": 1,
+      "address_meets_existing_safe_stored_street": 0,
+      "address_present_but_not_safe_stored_street": 0,
+      "hours_present": 0,
+      "hours_has_recognized_clock_interval": 0,
+      "hours_present_no_recognized_clock_interval": 0,
+      "has_upcoming_date": 0,
+      "no_upcoming_date": 1,
+      "source_url_attributable": 1,
+      "source_content_date_unknown": 1,
+      "primary_read_date_present": 0,
+      "any_valid_field_receipt": 0,
+      "any_field_receipt_read_within_45d": 0,
+      "source_detail_proof_present": 0,
+      "source_calendar_proof_valid": 0,
+      "indirizzo:mancante": 1,
+      "orario_testo:mancante": 1,
+      "ricorrenza_testo:mancante": 1,
+      "source_date_basis": {
+        "unknown": 1
+      },
+      "forecast_disposition": {
+        "no_explicit_rule": 1
+      }
+    }
+  ],
+  "reader_coverage": {
+    "markets": 13824,
+    "unique_primary_urls": 5752,
+    "hosts": 72,
+    "market_layout_statuses": {
+      "supported": 9451,
+      "unsupported": 4373
+    },
+    "market_read_statuses": {
+      "not_read": 4373,
+      "not_observed": 9451
+    },
+    "market_dispositions": {
+      "source_contract_active": 39,
+      "official_adapter": 1219,
+      "source_layout_needed": 2919,
+      "happings_province_index": 8193,
+      "happings_source_scope_unproven": 1454
+    }
+  },
+  "source_format_summary": {
+    "primary_format_units": 109,
+    "formats_with_sample_attempt": 109,
+    "formats_with_documented_source_read": 103,
+    "reviewed_sample_formats": 19,
+    "partial_review_formats": 85,
+    "unreviewed_formats": 5,
+    "auxiliary_format_units": 27,
+    "formats_with_open_corrections": 109,
+    "formats_requiring_recheck": 90,
+    "open_tasks": 49,
+    "completed_tasks": 6,
+    "network_reads_performed": 0,
+    "catalog_records_modified": 0
+  },
+  "unsupported_reader_hosts": [
+    {
+      "host": "www.eventiesagre.it",
+      "markets": 2197,
+      "resources": 1853,
+      "missing_address": 445,
+      "missing_hours": 369
+    },
+    {
+      "host": "www.happings.com",
+      "markets": 1454,
+      "resources": 532,
+      "missing_address": 535,
+      "missing_hours": 1443
+    },
+    {
+      "host": "www.cosedicasa.com",
+      "markets": 432,
+      "resources": 425,
+      "missing_address": 0,
+      "missing_hours": 431
+    },
+    {
+      "host": "dati.comune.roma.it",
+      "markets": 70,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 70
+    },
+    {
+      "host": "www.cosafareafirenze.it",
+      "markets": 22,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 4
+    },
+    {
+      "host": "www.romatoday.it",
+      "markets": 13,
+      "resources": 10,
+      "missing_address": 4,
+      "missing_hours": 6
+    },
+    {
+      "host": "www.genovatoday.it",
+      "markets": 9,
+      "resources": 7,
+      "missing_address": 6,
+      "missing_hours": 9
+    },
+    {
+      "host": "emiliaromagnaturismo.it",
+      "markets": 8,
+      "resources": 8,
+      "missing_address": 4,
+      "missing_hours": 8
+    },
+    {
+      "host": "www.eventi.bergamo.it",
+      "markets": 8,
+      "resources": 8,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.trentino.com",
+      "markets": 8,
+      "resources": 1,
+      "missing_address": 8,
+      "missing_hours": 0
+    },
+    {
+      "host": "www.umbriaeventi.com",
+      "markets": 8,
+      "resources": 5,
+      "missing_address": 8,
+      "missing_hours": 8
+    },
+    {
+      "host": "www.algherohospitality.it",
+      "markets": 7,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.solosagre.it",
+      "markets": 7,
+      "resources": 7,
+      "missing_address": 0,
+      "missing_hours": 4
+    },
+    {
+      "host": "www.firenzetoday.it",
+      "markets": 6,
+      "resources": 6,
+      "missing_address": 4,
+      "missing_hours": 6
+    },
+    {
+      "host": "www.sagretorino.it",
+      "markets": 6,
+      "resources": 1,
+      "missing_address": 6,
+      "missing_hours": 6
+    },
+    {
+      "host": "www.comune.roma.it",
+      "markets": 5,
+      "resources": 2,
+      "missing_address": 0,
+      "missing_hours": 5
+    },
+    {
+      "host": "www.milanopocket.it",
+      "markets": 5,
+      "resources": 1,
+      "missing_address": 4,
+      "missing_hours": 5
+    },
+    {
+      "host": "www.modenatoday.it",
+      "markets": 5,
+      "resources": 4,
+      "missing_address": 4,
+      "missing_hours": 4
+    },
+    {
+      "host": "www.sagreumbre.it",
+      "markets": 5,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 5
+    },
+    {
+      "host": "www.veneziatoday.it",
+      "markets": 5,
+      "resources": 3,
+      "missing_address": 2,
+      "missing_hours": 5
+    },
+    {
+      "host": "sagrefvg.it",
+      "markets": 4,
+      "resources": 2,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.riminitoday.it",
+      "markets": 4,
+      "resources": 4,
+      "missing_address": 3,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.vicenzatoday.it",
+      "markets": 4,
+      "resources": 2,
+      "missing_address": 1,
+      "missing_hours": 4
+    },
+    {
+      "host": "www.bolognatoday.it",
+      "markets": 3,
+      "resources": 3,
+      "missing_address": 2,
+      "missing_hours": 3
+    },
+    {
+      "host": "www.bresciatoday.it",
+      "markets": 3,
+      "resources": 2,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.enjoysicilia.it",
+      "markets": 3,
+      "resources": 1,
+      "missing_address": 3,
+      "missing_hours": 3
+    },
+    {
+      "host": "www.frosinonetoday.it",
+      "markets": 3,
+      "resources": 3,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.novaratoday.it",
+      "markets": 3,
+      "resources": 2,
+      "missing_address": 1,
+      "missing_hours": 3
+    },
+    {
+      "host": "www.palermotoday.it",
+      "markets": 3,
+      "resources": 3,
+      "missing_address": 2,
+      "missing_hours": 3
+    },
+    {
+      "host": "www.ravennatoday.it",
+      "markets": 3,
+      "resources": 2,
+      "missing_address": 2,
+      "missing_hours": 3
+    },
+    {
+      "host": "www.sagretoscane.com",
+      "markets": 3,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.suedtirol.info",
+      "markets": 3,
+      "resources": 1,
+      "missing_address": 3,
+      "missing_hours": 3
+    },
+    {
+      "host": "www.trevisotoday.it",
+      "markets": 3,
+      "resources": 2,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.assosagre.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 0,
+      "missing_hours": 0
+    },
+    {
+      "host": "www.baritoday.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.brindisireport.it",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.cittadellaspezia.com",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.eventiintoscana.it",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.ferrarainfo.com",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.ferraratoday.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.forlitoday.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 1,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.lazioinfesta.com",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.monzatoday.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.paradisola.it",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.pugliainfesta.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.sagreinromagna.it",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.terredipisa.it",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 2,
+      "missing_hours": 0
+    },
+    {
+      "host": "www.torinotoday.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 1,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.varesenews.it",
+      "markets": 2,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 2
+    },
+    {
+      "host": "www.viterbotoday.it",
+      "markets": 2,
+      "resources": 2,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "trentino.com",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.arezzonotizie.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.cagliaritoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.casertanews.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.cataniatoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.cesenatoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.chietitoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.eventiinsardegna.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 0
+    },
+    {
+      "host": "www.leccotoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.lombardiainfesta.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.milanotoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.napolidavivere.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.padovatoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.parmatoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 0
+    },
+    {
+      "host": "www.romapop.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    },
+    {
+      "host": "www.salernotoday.it",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 0,
+      "missing_hours": 1
+    },
+    {
+      "host": "wwwservizi.regione.emilia-romagna.itnote.asp",
+      "markets": 1,
+      "resources": 1,
+      "missing_address": 1,
+      "missing_hours": 1
+    }
+  ]
+}
