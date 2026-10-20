@@ -1,0 +1,3043 @@
+{
+  "summary": {
+    "schema": 1,
+    "audit_date_local": "2026-10-20",
+    "audit_timezone": "Europe/Rome",
+    "source_document_reads": 22,
+    "eventiesagre_documents": 17,
+    "cosedicasa_documents": 5,
+    "robots_successful_reads_via_connector": 2,
+    "web_robots_attempts_failed": 2,
+    "source_document_fetches_during_replay": 0,
+    "raw_html_committed": false,
+    "catalog_records_changed": 0,
+    "scheduled_crawler_enabled": false,
+    "new_project_dependencies": false,
+    "sample_hash_provenance": "Stored UTF-8 text returned by read_file(isUrl), not the original HTTP bytes; transport status/redirect were not exposed.",
+    "legacy_source_sha256_before": "41794500d3121750188b90c5318f45b29099c505797bb41060df3301418a30cd",
+    "code_sha256": {
+      "backend/eventiesagre_source_layout.py": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+      "backend/scraper_eventiesagre.py": "70616af04a599667dc16eef25e6f34373e1f75e11fecd2217cd7d78d201e78fe",
+      "backend/tests/test_eventiesagre_source_layout.py": "fc5be3f42b007a6bf9e3e5a60cc43ea043d1b4aaf34387d093666425363d7dcf"
+    },
+    "eventiesagre_replay": {
+      "samples_before": 17,
+      "samples_after": 17,
+      "correct_scoped_city_province_before": 0,
+      "correct_scoped_city_province_after": 17,
+      "publisher_footer_address_before": 9,
+      "publisher_footer_address_after": 0,
+      "nonempty_hour_fields_before": 1,
+      "nonempty_hour_fields_after": 13,
+      "source_edition_intervals_after": 17,
+      "source_editorial_dates_after": 17,
+      "source_archive_markers_after": 16,
+      "invalid_jsonld_documents": 12,
+      "source_layout_counts": {
+        "eventiesagre_detail_v1": 16,
+        "eventiesagre_card_only_v1": 1
+      },
+      "multi_location_samples": 1,
+      "distinct_rows_in_multi_location_sample": 4,
+      "legacy_future_dates_before": 6,
+      "legacy_future_dates_after": 0,
+      "whole_cleaner_or_geocoding_run": false,
+      "nonempty_edition_date_lists_before": 0,
+      "precise_hour_ranges_after": 9,
+      "opening_start_only_after": 4,
+      "nonempty_address_fields_after": 9,
+      "cleaner_replay_mode": "Pure field functions loaded unchanged from cleaner.py AST; geopy and geocoding excluded, no full cleaner or import run."
+    },
+    "cosedicasa_replay": {
+      "production_reader_available": false,
+      "samples_with_source_precise_hours_catalog_blank": 4,
+      "http_redirect_claimed_from_canonical": false,
+      "sample_with_clock_start_sunset_close_already_retained": 1
+    },
+    "storage_bridge_status": {
+      "RawMarket_fields": [
+        "nome",
+        "citta",
+        "provincia",
+        "regione",
+        "indirizzo",
+        "categoria_raw",
+        "descrizione",
+        "orario_raw",
+        "ricorrenza_raw",
+        "date_raw",
+        "tags_raw",
+        "url_fonte",
+        "fonte_nome",
+        "lat",
+        "lng"
+      ],
+      "CleanMarket_fields": [
+        "nome",
+        "slug",
+        "citta",
+        "provincia",
+        "regione",
+        "indirizzo",
+        "lat",
+        "lng",
+        "luogo_nome",
+        "categoria",
+        "tags",
+        "orario_testo",
+        "ricorrenza",
+        "ricorrenza_testo",
+        "descrizione",
+        "date",
+        "url_fonte",
+        "fonte_nome",
+        "dati_grezzi"
+      ],
+      "new_source_metadata_end_to_end_saved": false,
+      "missing_bridge_fields": [
+        "source_edition_intervals",
+        "source_archive_state",
+        "source_modified_on",
+        "source_read_time",
+        "calendar_scope_limits",
+        "conflicting_field_evidence"
+      ],
+      "export_support": "export_static.normalize already handles precise hours, recurrence text, future date lists, attributed source dates, receipts and exceptions; RawMarket/CleanMarket still need the bridge. General season data is not retained by the existing one-specific-string legacy exception."
+    },
+    "historical_evidence": [
+      {
+        "path": "docs/PRIMARY_SOURCE_FIELD_FORENSICS_2026-10-18.md",
+        "date": "2026-10-18",
+        "status": "historical_prior_review_not_a_new_read"
+      },
+      {
+        "path": "docs/PUBLISHER_REVIEW_2026-10-12.md",
+        "date": "2026-10-12",
+        "status": "historical_prior_review_not_a_new_read"
+      }
+    ],
+    "limitations": [
+      "Samples establish layout capability and contradictions, not source-wide field availability or market opening verification.",
+      "The current legacy parser replay is not proof of the exact historical import process.",
+      "The old Cose di Casa producer is absent from the current repository; source/catalog differences are proven, the precise historical loss stage is not.",
+      "No catalogs or source authorization policies were modified. No mass crawler was activated."
+    ],
+    "catalog_flags": {
+      "eventiesagre_via_magenta_8_address_candidates": 18,
+      "automatic_address_corrections": 0,
+      "cause_proven_for_all_18": false
+    },
+    "validation": {
+      "new_stdlib_tests_passed": 31,
+      "test_command": "python -m unittest discover -s backend/tests -p test_eventiesagre_source_layout.py -q",
+      "source_urls_compared": 22,
+      "complete_html_documents": 22
+    }
+  },
+  "inventory": {
+    "total_catalog": 13824,
+    "publishers": {
+      "eventiesagre.it": {
+        "records": 2197,
+        "unique_urls": 1853,
+        "host_counts": {
+          "www.eventiesagre.it": 2197
+        },
+        "patterns": [
+          {
+            "pattern": "Mercatini_Filiera+Corta/{id}_{slug}.html",
+            "records": 1150,
+            "unique_urls": 886,
+            "missing_address": 239,
+            "missing_hours": 23,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185843_Mercato+Settimanale+Di+Alba+Adriatica.html",
+              "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185831_Mercato+Settimanale+Di+Ateleta.html",
+              "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185983_Mercato+Settimanale+Di+Bucchianico.html",
+              "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185984_Mercato+Settimanale+Di+Canosa+Sannita.html",
+              "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185840_Mercato+Settimanale+Di+Castel+Di+Sangro.html",
+              "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185841_Mercato+Settimanale+Di+Castellafiume.html"
+            ],
+            "missing_recurrence": 118,
+            "missing_dates": 124
+          },
+          {
+            "pattern": "Mercatini_Vari/{id}_{slug}.html",
+            "records": 267,
+            "unique_urls": 264,
+            "missing_address": 37,
+            "missing_hours": 77,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Vari/21054160_Antico+Mercatino+Di+San+Pancrazio+a+Campli.html",
+              "https://www.eventiesagre.it/Mercatini_Vari/6279_mercato+medievale+di+filetto.html",
+              "https://www.eventiesagre.it/Mercatini_Vari/21182789_Mercati+Settimanali+A+L+aquila.html",
+              "https://www.eventiesagre.it/Mercatini_Vari/8557_Il+Mercatino+Caccia+all+affare.html",
+              "https://www.eventiesagre.it/Mercatini_Vari/21182790_Mercati+Settimanali+A+Pescara.html",
+              "https://www.eventiesagre.it/Mercatini_Vari/8592_Mercatini+di+Roseto+Degli+Abruzzi.html"
+            ],
+            "missing_recurrence": 105,
+            "missing_dates": 192
+          },
+          {
+            "pattern": "Mercatini_Antiquariato/{id}_{slug}.html",
+            "records": 205,
+            "unique_urls": 184,
+            "missing_address": 42,
+            "missing_hours": 92,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Antiquariato/21185932_Curiosando.html",
+              "https://www.eventiesagre.it/Mercatini_Antiquariato/21114775_L+antico+In+Piazza.html",
+              "https://www.eventiesagre.it/Mercatini_Antiquariato/19003_Curiosando+il+Mercatino+Dell+antiquariato+E+Collezionismo.html",
+              "https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html",
+              "https://www.eventiesagre.it/Mercatini_Antiquariato/21165421_Barattiamo.html",
+              "https://www.eventiesagre.it/Mercatini_Antiquariato/21171219_Cose+Di+Altri+Tempi+A+Borgotaro.html"
+            ],
+            "missing_recurrence": 88,
+            "missing_dates": 102
+          },
+          {
+            "pattern": "Mercatini_Artigianato/{id}_{slug}.html",
+            "records": 173,
+            "unique_urls": 161,
+            "missing_address": 34,
+            "missing_hours": 52,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Artigianato/21186452_L+ingegno+In+Piazza+In+Abruzzo.html",
+              "https://www.eventiesagre.it/Mercatini_Artigianato/21176089_Filo+D+amore+Mercatino+Di+Solidarieta.html",
+              "https://www.eventiesagre.it/Mercatini_Artigianato/21123387_Arte+E+Ingegno.html",
+              "https://www.eventiesagre.it/Mercatini_Artigianato/21177701_Castrocaro+Sotto+Le+Stelle+Il+Mercatino+Hand+Made+A+Castrocaro+Terme.html",
+              "https://www.eventiesagre.it/Mercatini_Artigianato/21194700_La+Festa+Dei+Saldi+A+Collecchio.html",
+              "https://www.eventiesagre.it/Mercatini_Artigianato/8673_Mercatini+serali+ai+Lidi+di+Comacchio.html"
+            ],
+            "missing_recurrence": 130,
+            "missing_dates": 138
+          },
+          {
+            "pattern": "Mercatini_Usato/{id}_{slug}.html",
+            "records": 151,
+            "unique_urls": 137,
+            "missing_address": 37,
+            "missing_hours": 52,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Usato/21169155_Svuota+La+Cantina+In+Allegria.html",
+              "https://www.eventiesagre.it/Mercatini_Usato/21105625_Mercatino+Delle+Pulci+E+Degli+Hobbysti.html",
+              "https://www.eventiesagre.it/Mercatini_Usato/21106295_Mercatino+Dell+usato.html",
+              "https://www.eventiesagre.it/Mercatini_Usato/21083433_Mercatino+Del+Riuso.html",
+              "https://www.eventiesagre.it/Mercatini_Usato/21163185_Il+Mercatino+a+Argenta.html",
+              "https://www.eventiesagre.it/Mercatini_Usato/21068547_Mercatino+Dell+usato.html"
+            ],
+            "missing_recurrence": 93,
+            "missing_dates": 97
+          },
+          {
+            "pattern": "Mercatini_Enogastronomici/{id}_{slug}.html",
+            "records": 142,
+            "unique_urls": 119,
+            "missing_address": 30,
+            "missing_hours": 43,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Enogastronomici/21071994_Mercato+Contadino.html",
+              "https://www.eventiesagre.it/Mercatini_Enogastronomici/21032063_Mercato+della+Terra.html",
+              "https://www.eventiesagre.it/Mercatini_Enogastronomici/21187839_Mercato+Contadino+A+Bagnara+Di+Romagna.html",
+              "https://www.eventiesagre.it/Mercatini_Enogastronomici/21188417_Venerdi+Bettolesi.html",
+              "https://www.eventiesagre.it/Mercatini_Enogastronomici/21170763_Mercato+A+Chilometro+Zero+Della+Val+Tidone+E+Val+Luretta.html",
+              "https://www.eventiesagre.it/Mercatini_Enogastronomici/21106598_Mercato+Del+Contadino.html"
+            ],
+            "missing_recurrence": 92,
+            "missing_dates": 98
+          },
+          {
+            "pattern": "Mercatini_hobbisti+creativi/{id}_{slug}.html",
+            "records": 32,
+            "unique_urls": 30,
+            "missing_address": 5,
+            "missing_hours": 6,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21104092_Mercatino+Del+Riuso+a+Bibbiano.html",
+              "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194719_Il+Mercatino+Creativo+Handmade+A+Ferrara.html",
+              "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21157490_Ci+Vediamo+Al+Mercatino.html",
+              "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21190165_Il+Mercatino+Storico+Degli+Hobbisti+A+Pieve+Di+Cento.html",
+              "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21173644_Mercatino+Fatto+Ad+Arte+A+Ravenna.html",
+              "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21141684_Mercatino+Portobello+Arti+e+Creazioni.html"
+            ],
+            "missing_recurrence": 30,
+            "missing_dates": 31
+          },
+          {
+            "pattern": "Eventi_Enogastronomici/{id}_{slug}.html",
+            "records": 17,
+            "unique_urls": 16,
+            "missing_address": 8,
+            "missing_hours": 7,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Eventi_Enogastronomici/21145551_Borgo+DiVino+in+Tour+a+Citta+SantaAngelo.html",
+              "https://www.eventiesagre.it/Eventi_Enogastronomici/21160786_Festa+Del+Cardo+Dolce+A+Cervia.html",
+              "https://www.eventiesagre.it/Eventi_Enogastronomici/21195272_Pasta+Ripiena+E+Cacciagione.html",
+              "https://www.eventiesagre.it/Eventi_Enogastronomici/21193524_Monte+Food+Festival+A+Monticelli+Terme.html",
+              "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+              "https://www.eventiesagre.it/Eventi_Enogastronomici/21177849_Festival+Delle+Regioni+D+italia+A+Falvaterra.html"
+            ],
+            "missing_recurrence": 12,
+            "missing_dates": 14
+          },
+          {
+            "pattern": "Mercatini_Collezionismo/{id}_{slug}.html",
+            "records": 16,
+            "unique_urls": 14,
+            "missing_address": 3,
+            "missing_hours": 8,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Collezionismo/21159014_Fiera+Del+Disco.html",
+              "https://www.eventiesagre.it/Mercatini_Collezionismo/6248_La+Domenica+Del+Collezionista.html",
+              "https://www.eventiesagre.it/Mercatini_Collezionismo/21071481_Mercatino+di+Antiquariato+antichita+e+ricordi+a+Casarsa+della+Delizia.html",
+              "https://www.eventiesagre.it/Mercatini_Collezionismo/21155124_Artigianato+E+Collezionismo+D+a+mare.html",
+              "https://www.eventiesagre.it/Mercatini_Collezionismo/21185566_Mercatino+Antiquariato+A+Savona.html",
+              "https://www.eventiesagre.it/Mercatini_Collezionismo/21108484_Mercatino+Filatelico+E+Numismatico.html"
+            ],
+            "missing_recurrence": 8,
+            "missing_dates": 10
+          },
+          {
+            "pattern": "Mercatini_Natale/{id}_{slug}.html",
+            "records": 13,
+            "unique_urls": 12,
+            "missing_address": 0,
+            "missing_hours": 0,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html",
+              "https://www.eventiesagre.it/Mercatini_Natale/21187115_Mercatini+Di+Natale+A+Trebisacce.html",
+              "https://www.eventiesagre.it/Mercatini_Natale/21157697_Gipsy+Theater.html",
+              "https://www.eventiesagre.it/Mercatini_Natale/21193893_Green+Christmas+A+Casal+Palocco.html",
+              "https://www.eventiesagre.it/Mercatini_Natale/21193895_Il+Giardino+Di+Natale.html",
+              "https://www.eventiesagre.it/Mercatini_Natale/21191971_Vintage+Market+A+Roma.html"
+            ],
+            "missing_recurrence": 11,
+            "missing_dates": 12
+          },
+          {
+            "pattern": "Eventi_Feste/{id}_{slug}.html",
+            "records": 13,
+            "unique_urls": 12,
+            "missing_address": 5,
+            "missing_hours": 5,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html",
+              "https://www.eventiesagre.it/Eventi_Feste/1338_Festa+Dei+Bisi.html",
+              "https://www.eventiesagre.it/Eventi_Feste/21172277_Serate+Agostane+A+Condofuri.html",
+              "https://www.eventiesagre.it/Eventi_Feste/21189469_Natale+Di+Luci.html",
+              "https://www.eventiesagre.it/Eventi_Feste/21170497_Festa+Di+Primavera+A+San+Martino.html",
+              "https://www.eventiesagre.it/Eventi_Feste/21092070_Primavera+In+Piazza.html"
+            ],
+            "missing_recurrence": 11,
+            "missing_dates": 11
+          },
+          {
+            "pattern": "Eventi_Mostra+Mercato/{id}_{slug}.html",
+            "records": 9,
+            "unique_urls": 9,
+            "missing_address": 3,
+            "missing_hours": 3,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html",
+              "https://www.eventiesagre.it/Eventi_Mostra+Mercato/11791_7+8+Novecento.html",
+              "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21177862_Mostra+Scambio+Della+Bambola+E+Del+Giocattolo+D+epoca+E+Non+A+Roma.html",
+              "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21021615_Mostra+Mercato+dell+Vinile+a+Castellanza.html",
+              "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21088580_Mercanti+In+Villa.html",
+              "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21070780_Mercato+Settimanale+A+Cuggiono.html"
+            ],
+            "missing_recurrence": 6,
+            "missing_dates": 7
+          },
+          {
+            "pattern": "Eventi_Festival/{id}_{slug}.html",
+            "records": 6,
+            "unique_urls": 6,
+            "missing_address": 1,
+            "missing_hours": 0,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Eventi_Festival/21195123_Woodstock+A+Tragliata.html",
+              "https://www.eventiesagre.it/Eventi_Festival/21192780_Green+Market+Festival+Giornata+Della+Terra.html",
+              "https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html",
+              "https://www.eventiesagre.it/Eventi_Festival/21173054_Il+Festival+Hippie+A+Roma.html",
+              "https://www.eventiesagre.it/Eventi_Festival/21161723_Gradara+800+A+Vapore.html",
+              "https://www.eventiesagre.it/Eventi_Festival/21194149_Pasqua+Tra+Le+Mura.html"
+            ],
+            "missing_recurrence": 5,
+            "missing_dates": 6
+          },
+          {
+            "pattern": "Eventi_Sagre/{id}_{slug}.html",
+            "records": 1,
+            "unique_urls": 1,
+            "missing_address": 0,
+            "missing_hours": 0,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html"
+            ],
+            "missing_recurrence": 1,
+            "missing_dates": 0
+          },
+          {
+            "pattern": "Eventi_Folklore/{id}_{slug}.html",
+            "records": 1,
+            "unique_urls": 1,
+            "missing_address": 1,
+            "missing_hours": 0,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html"
+            ],
+            "missing_recurrence": 1,
+            "missing_dates": 1
+          },
+          {
+            "pattern": "Eventi_Fiere/{id}_{slug}.html",
+            "records": 1,
+            "unique_urls": 1,
+            "missing_address": 0,
+            "missing_hours": 1,
+            "sample_urls": [
+              "https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html"
+            ],
+            "missing_recurrence": 1,
+            "missing_dates": 1
+          }
+        ]
+      },
+      "cosedicasa.com": {
+        "records": 432,
+        "unique_urls": 425,
+        "host_counts": {
+          "www.cosedicasa.com": 432
+        },
+        "patterns": [
+          {
+            "pattern": "/mercatini/{slug}",
+            "records": 432,
+            "unique_urls": 425,
+            "missing_address": 0,
+            "missing_hours": 431,
+            "sample_urls": [
+              "https://www.cosedicasa.com/mercatini/chieti-corso-marruccino",
+              "https://www.cosedicasa.com/mercatini/pescara-fiera-via-tirino-427",
+              "https://www.cosedicasa.com/mercatini/pescara-piazza-garibaldi-via-dei-bastioni",
+              "https://www.cosedicasa.com/mercatini/matera-piazza-vittorio-veneto",
+              "https://www.cosedicasa.com/mercatini/potenza-centro-storico",
+              "https://www.cosedicasa.com/mercatini/benevento-piazza-castello"
+            ],
+            "missing_recurrence": 0,
+            "missing_dates": 71
+          }
+        ]
+      }
+    }
+  },
+  "samples": [
+    {
+      "id": "es-filiera-corta-alba",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185843_Mercato+Settimanale+Di+Alba+Adriatica.html",
+      "retrieval_started_at_utc": null,
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "2accd13038bd19542ae5d548c9f04d4ac46a6f233096402b2bb044652228695b",
+      "evidence_bytes": 48755,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185843_Mercato+Settimanale+Di+Alba+Adriatica.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 1,
+        "date_list": 1,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "retrieval_completed_no_later_than_utc": "2026-10-19T22:29:31Z",
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185843_Mercato+Settimanale+Di+Alba+Adriatica.html",
+        "source_id": "21185843",
+        "source_sha256": "2accd13038bd19542ae5d548c9f04d4ac46a6f233096402b2bb044652228695b",
+        "source_modified_on": "2021-08-02",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2023-01-02",
+            "end": "2023-01-02"
+          }
+        ],
+        "jsonld_events_matched": 1,
+        "invalid_jsonld_blocks": 0,
+        "recurrence_text": "Lunedì tutto l'anno",
+        "source_rows": [],
+        "issues": [],
+        "legacy_fields": {
+          "nome": "Mercato Settimanale Di Alba Adriatica",
+          "citta": "Alba Adriatica",
+          "provincia": "TE",
+          "regione": "Abruzzo",
+          "indirizzo": "Piazza del Popolo",
+          "orario_raw": "08:00–13:00",
+          "ricorrenza_raw": "",
+          "date_raw": [
+            "2023-01-02"
+          ]
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 1
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Mercato Settimanale Di Alba Adriatica",
+            "citta": "AbruzzoPicciano",
+            "provincia": "PE",
+            "regione": "Abruzzo",
+            "indirizzo": "Piazza del Popolo Orari del Mercato",
+            "categoria_raw": "Filiera Corta",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185843_Mercato+Settimanale+Di+Alba+Adriatica.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Mercato Settimanale Di Alba Adriatica",
+            "citta": "Alba Adriatica",
+            "provincia": "TE",
+            "regione": "Abruzzo",
+            "indirizzo": "Piazza del Popolo",
+            "categoria_raw": "Filiera Corta",
+            "orario_raw": "08:00–13:00",
+            "ricorrenza_raw": "",
+            "date_raw": [
+              "2023-01-02"
+            ],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185843_Mercato+Settimanale+Di+Alba+Adriatica.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "08:00–13:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-vari-campli",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21054160_Antico+Mercatino+Di+San+Pancrazio+a+Campli.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:11.995Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "28dd0eaa0183e35bf897764591c7ae66267c04d0c8b6bad20a0b97b05c8d8b07",
+      "evidence_bytes": 49687,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Vari/21054160_Antico+Mercatino+Di+San+Pancrazio+a+Campli.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 0,
+        "hours": 0,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21054160_Antico+Mercatino+Di+San+Pancrazio+a+Campli.html",
+        "source_id": "21054160",
+        "source_sha256": "28dd0eaa0183e35bf897764591c7ae66267c04d0c8b6bad20a0b97b05c8d8b07",
+        "source_modified_on": "2018-05-10",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2018-05-12",
+            "end": "2018-05-12"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Antico Mercatino Di San Pancrazio A Campli",
+          "citta": "Campli",
+          "provincia": "TE",
+          "regione": "Abruzzo",
+          "indirizzo": "",
+          "orario_raw": "Dalle 10:00",
+          "ricorrenza_raw": "",
+          "date_raw": [
+            "2018-05-12"
+          ]
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Antico Mercatino Di San Pancrazio A Campli",
+            "citta": "AbruzzoPicciano",
+            "provincia": "PE",
+            "regione": "Abruzzo",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Vari",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Vari/21054160_Antico+Mercatino+Di+San+Pancrazio+a+Campli.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Antico Mercatino Di San Pancrazio A Campli",
+            "citta": "Campli",
+            "provincia": "TE",
+            "regione": "Abruzzo",
+            "indirizzo": "",
+            "categoria_raw": "Vari",
+            "orario_raw": "Dalle 10:00",
+            "ricorrenza_raw": "",
+            "date_raw": [
+              "2018-05-12"
+            ],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Vari/21054160_Antico+Mercatino+Di+San+Pancrazio+a+Campli.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "Dalle 10:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-antiquariato-bologna",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:11.996Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "9d9f57d8455e24c002e97a8085f696af0c4ee7a6989915a551ad73e72265baf2",
+      "evidence_bytes": 49242,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 0,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html",
+        "source_id": "21036009",
+        "source_sha256": "9d9f57d8455e24c002e97a8085f696af0c4ee7a6989915a551ad73e72265baf2",
+        "source_modified_on": "2023-02-18",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2023-03-12",
+            "end": "2023-12-10"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "Il secondo sabato e la seconda domenica del mese si tiene il Mercato Antiquario Città di Bologna",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Antiquariato A Bologna",
+          "citta": "Bologna",
+          "provincia": "BO",
+          "regione": "Emilia Romagna",
+          "indirizzo": "",
+          "orario_raw": "08:30–18:30",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 1
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Antiquariato A Bologna",
+            "citta": "Emilia RomagnaCastelvetro Piacentino",
+            "provincia": "PC",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Antiquariato",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Antiquariato A Bologna",
+            "citta": "Bologna",
+            "provincia": "BO",
+            "regione": "Emilia Romagna",
+            "indirizzo": "",
+            "categoria_raw": "Antiquariato",
+            "orario_raw": "08:30–18:30",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "08:30–18:30",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-artigianato-castrocaro",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21177701_Castrocaro+Sotto+Le+Stelle+Il+Mercatino+Hand+Made+A+Castrocaro+Terme.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:11.996Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "a55d2d5cf557b9ec761009abcb275b65db4b43e6a65fc0db53c6b3fd99e17959",
+      "evidence_bytes": 56319,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Artigianato/21177701_Castrocaro+Sotto+Le+Stelle+Il+Mercatino+Hand+Made+A+Castrocaro+Terme.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 1,
+        "date_list": 1,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21177701_Castrocaro+Sotto+Le+Stelle+Il+Mercatino+Hand+Made+A+Castrocaro+Terme.html",
+        "source_id": "21177701",
+        "source_sha256": "a55d2d5cf557b9ec761009abcb275b65db4b43e6a65fc0db53c6b3fd99e17959",
+        "source_modified_on": "2021-08-31",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2021-09-02",
+            "end": "2021-09-30"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "Tutti i giovedì sera aperitivi itineranti ed escursioni “DOC” alla scoperta di Castrocaro Terme e Terra del Sole",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Castrocaro Sotto Le Stelle - Il Mercatino Hand - Made A Castrocaro Terme",
+          "citta": "Castrocaro Terme E Terra Del Sole",
+          "provincia": "FC",
+          "regione": "Emilia Romagna",
+          "indirizzo": "Piazza Mazzini",
+          "orario_raw": "18:00–23:55",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 2,
+        "recurrence_statements_count": 1
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Castrocaro Sotto Le Stelle - Il Mercatino Hand - Made A Castrocaro Terme",
+            "citta": "Emilia RomagnaVoghiera",
+            "provincia": "FE",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Piazza Mazzini",
+            "categoria_raw": "Artigianato",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Artigianato/21177701_Castrocaro+Sotto+Le+Stelle+Il+Mercatino+Hand+Made+A+Castrocaro+Terme.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Castrocaro Sotto Le Stelle - Il Mercatino Hand - Made A Castrocaro Terme",
+            "citta": "Castrocaro Terme E Terra Del Sole",
+            "provincia": "FC",
+            "regione": "Emilia Romagna",
+            "indirizzo": "Piazza Mazzini",
+            "categoria_raw": "Artigianato",
+            "orario_raw": "18:00–23:55",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Artigianato/21177701_Castrocaro+Sotto+Le+Stelle+Il+Mercatino+Hand+Made+A+Castrocaro+Terme.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "18:00–23:55",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-usato-argenta",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21163185_Il+Mercatino+a+Argenta.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:33.914Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "1a1b9060153367c58e5ec4e73206ce9ce58bc82a04ed90dc75f46fcd0c7edcc3",
+      "evidence_bytes": 49022,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Usato/21163185_Il+Mercatino+a+Argenta.html",
+      "catalog_records_linked_to_requested_url": 2,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 2,
+        "date_list": 2,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21163185_Il+Mercatino+a+Argenta.html",
+        "source_id": "21163185",
+        "source_sha256": "1a1b9060153367c58e5ec4e73206ce9ce58bc82a04ed90dc75f46fcd0c7edcc3",
+        "source_modified_on": "2025-03-28",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2025-03-15",
+            "end": "2025-12-20"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "ogni terza Domenica del Mese tranne il mese di Agosto",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Il Mercatino A Argenta",
+          "citta": "Argenta",
+          "provincia": "FE",
+          "regione": "Emilia Romagna",
+          "indirizzo": "via Mazzini",
+          "orario_raw": "",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 1,
+        "recurrence_statements_count": 1
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Il Mercatino A Argenta",
+            "citta": "Emilia RomagnaCastelvetro Piacentino",
+            "provincia": "PC",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Usato",
+            "orario_raw": "",
+            "ricorrenza_raw": "ogni terza Domenica del Mese",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Usato/21163185_Il+Mercatino+a+Argenta.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "mensile_giorno_fisso",
+            "recurrence_text": "ogni terza Domenica del Mese",
+            "upcoming_dates_count": 6,
+            "upcoming_dates_min": "2026-11-15",
+            "upcoming_dates_max": "2027-04-18"
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Il Mercatino A Argenta",
+            "citta": "Argenta",
+            "provincia": "FE",
+            "regione": "Emilia Romagna",
+            "indirizzo": "via Mazzini",
+            "categoria_raw": "Usato",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Usato/21163185_Il+Mercatino+a+Argenta.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-enogastronomici-terra",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Enogastronomici/21032063_Mercato+della+Terra.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:33.914Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "ccb12553c0e89ec087d82dc17ae83edfb42621208fd65230045deac41cc42059",
+      "evidence_bytes": 48718,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Enogastronomici/21032063_Mercato+della+Terra.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_card_only_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_card_only_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Enogastronomici/21032063_Mercato+della+Terra.html",
+        "source_id": "21032063",
+        "source_sha256": "ccb12553c0e89ec087d82dc17ae83edfb42621208fd65230045deac41cc42059",
+        "source_modified_on": "2016-02-21",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2016-02-14",
+            "end": "2016-12-11"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "2^ Domenica di ogni mese",
+        "source_rows": [],
+        "issues": [
+          "article_heading_absent_card_identity_used",
+          "edition_heading_missing_or_ambiguous",
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Mercato Della Terra",
+          "citta": "Piano Di Sorrento",
+          "provincia": "NA",
+          "regione": "Campania",
+          "indirizzo": "",
+          "orario_raw": "",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 1,
+        "recurrence_statements_count": 1
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Mercato della Terra a Piano Di Sorrento",
+            "citta": "CampaniaFaicchio",
+            "provincia": "BN",
+            "regione": "Campania",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Enogastronomici",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Enogastronomici/21032063_Mercato+della+Terra.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Mercato Della Terra",
+            "citta": "Piano Di Sorrento",
+            "provincia": "NA",
+            "regione": "Campania",
+            "indirizzo": "",
+            "categoria_raw": "Enogastronomici",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Enogastronomici/21032063_Mercato+della+Terra.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-hobbisti-ferrara",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194719_Il+Mercatino+Creativo+Handmade+A+Ferrara.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:33.914Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "dba3df4b834c00914b3f51d617a79cdbb4d71c64c30925d7a97c632e9598c463",
+      "evidence_bytes": 49110,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194719_Il+Mercatino+Creativo+Handmade+A+Ferrara.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194719_Il+Mercatino+Creativo+Handmade+A+Ferrara.html",
+        "source_id": "21194719",
+        "source_sha256": "dba3df4b834c00914b3f51d617a79cdbb4d71c64c30925d7a97c632e9598c463",
+        "source_modified_on": "2026-05-12",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2026-06-07",
+            "end": "2026-06-07"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "Ogni 1a Domenica di ogni Mese",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored",
+          "visible_address_conflict"
+        ],
+        "legacy_fields": {
+          "nome": "Il Mercatino Creativo Handmade A Ferrara",
+          "citta": "Ferrara",
+          "provincia": "FE",
+          "regione": "Emilia Romagna",
+          "indirizzo": "",
+          "orario_raw": "08:00–18:00",
+          "ricorrenza_raw": "",
+          "date_raw": [
+            "2026-06-07"
+          ]
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 1
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Il Mercatino Creativo Handmade A Ferrara",
+            "citta": "Emilia RomagnaMontecchio Emilia",
+            "provincia": "RE",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Viale Cavour",
+            "categoria_raw": "hobbisti creativi",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194719_Il+Mercatino+Creativo+Handmade+A+Ferrara.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Il Mercatino Creativo Handmade A Ferrara",
+            "citta": "Ferrara",
+            "provincia": "FE",
+            "regione": "Emilia Romagna",
+            "indirizzo": "",
+            "categoria_raw": "hobbisti creativi",
+            "orario_raw": "08:00–18:00",
+            "ricorrenza_raw": "",
+            "date_raw": [
+              "2026-06-07"
+            ],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194719_Il+Mercatino+Creativo+Handmade+A+Ferrara.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "08:00–18:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-eventi-enogastronomici-ferrara",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:56.161Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "f30e5e35f862dcbb672e5525d6fdd6aa5c21ee339393a87a434e7f8c1f187d5e",
+      "evidence_bytes": 53555,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 0,
+        "hours": 0,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+        "source_id": "3043",
+        "source_sha256": "f30e5e35f862dcbb672e5525d6fdd6aa5c21ee339393a87a434e7f8c1f187d5e",
+        "source_modified_on": "2025-11-10",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2025-11-21",
+            "end": "2025-11-23"
+          }
+        ],
+        "jsonld_events_matched": 1,
+        "invalid_jsonld_blocks": 0,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [],
+        "legacy_fields": {
+          "nome": "November Porc",
+          "citta": "Polesine Zibello",
+          "provincia": "PR",
+          "regione": "Emilia Romagna",
+          "indirizzo": "",
+          "orario_raw": "Dalle 20:00",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "November Porc",
+            "citta": "Emilia RomagnaSant'agata Feltria",
+            "provincia": "RN",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Enogastronomici",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "November Porc",
+            "citta": "Polesine Zibello",
+            "provincia": "PR",
+            "regione": "Emilia Romagna",
+            "indirizzo": "",
+            "categoria_raw": "Enogastronomici",
+            "orario_raw": "Dalle 20:00",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "Dalle 20:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-collezionismo-domenica",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/6248_La+Domenica+Del+Collezionista.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:56.161Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "7415137902b97052d68c8df65af98b8fc5ebdb67966fbf49344a69b70e4f4d46",
+      "evidence_bytes": 51208,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Collezionismo/6248_La+Domenica+Del+Collezionista.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 0,
+        "recurrence_text": 1,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/6248_La+Domenica+Del+Collezionista.html",
+        "source_id": "6248",
+        "source_sha256": "7415137902b97052d68c8df65af98b8fc5ebdb67966fbf49344a69b70e4f4d46",
+        "source_modified_on": "2018-04-30",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2018-05-06",
+            "end": "2018-05-06"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "La Domenica Del Collezionista",
+          "citta": "Santarcangelo Di Romagna",
+          "provincia": "RN",
+          "regione": "Emilia Romagna",
+          "indirizzo": "",
+          "orario_raw": "Dalle 09:00",
+          "ricorrenza_raw": "",
+          "date_raw": [
+            "2018-05-06"
+          ]
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "La Domenica Del Collezionista",
+            "citta": "Emilia RomagnaMontecchio Emilia",
+            "provincia": "RE",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Piazza Ganganelli",
+            "categoria_raw": "Collezionismo",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Collezionismo/6248_La+Domenica+Del+Collezionista.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "La Domenica Del Collezionista",
+            "citta": "Santarcangelo Di Romagna",
+            "provincia": "RN",
+            "regione": "Emilia Romagna",
+            "indirizzo": "",
+            "categoria_raw": "Collezionismo",
+            "orario_raw": "Dalle 09:00",
+            "ricorrenza_raw": "",
+            "date_raw": [
+              "2018-05-06"
+            ],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Collezionismo/6248_La+Domenica+Del+Collezionista.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "Dalle 09:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-natale-massa",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html",
+      "retrieval_started_at_utc": "2026-10-19T22:30:56.161Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "8229fbcfba6a6274eb54b0439f81ba38102d827f927066b2449b9ac3b7ced366",
+      "evidence_bytes": 49088,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html",
+        "source_id": "21193810",
+        "source_sha256": "8229fbcfba6a6274eb54b0439f81ba38102d827f927066b2449b9ac3b7ced366",
+        "source_modified_on": "2023-11-13",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2023-12-09",
+            "end": "2023-12-10"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Mercatino Di Natale A Massa D'albe",
+          "citta": "Massa D'albe",
+          "provincia": "AQ",
+          "regione": "Abruzzo",
+          "indirizzo": "Piazza Della Chiesa Di San Nicola",
+          "orario_raw": "11:00–23:00",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Mercatino Di Natale  A Massa D'albe",
+            "citta": "AbruzzoRocca Di Botte",
+            "provincia": "AQ",
+            "regione": "Abruzzo",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Natale",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Mercatino Di Natale A Massa D'albe",
+            "citta": "Massa D'albe",
+            "provincia": "AQ",
+            "regione": "Abruzzo",
+            "indirizzo": "Piazza Della Chiesa Di San Nicola",
+            "categoria_raw": "Natale",
+            "orario_raw": "11:00–23:00",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "11:00–23:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-feste-cassinetta",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html",
+      "retrieval_started_at_utc": "2026-10-19T22:31:34.736Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "6b178d547da37b30a6477561e5a7dd2c1e35fd9be76d1a8d71ef387a2c0be785",
+      "evidence_bytes": 59624,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html",
+        "source_id": "17309",
+        "source_sha256": "6b178d547da37b30a6477561e5a7dd2c1e35fd9be76d1a8d71ef387a2c0be785",
+        "source_modified_on": "2026-08-27",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2026-09-12",
+            "end": "2026-09-13"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Festa Nel Borgo A Cassinetta Di Lugagnano",
+          "citta": "Cassinetta Di Lugagnano",
+          "provincia": "MI",
+          "regione": "Lombardia",
+          "indirizzo": "",
+          "orario_raw": "",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Festa Nel Borgo A Cassinetta Di Lugagnano",
+            "citta": "LombardiaParabiago",
+            "provincia": "MI",
+            "regione": "Abruzzo",
+            "indirizzo": "",
+            "categoria_raw": "Feste",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Festa Nel Borgo A Cassinetta Di Lugagnano",
+            "citta": "Cassinetta Di Lugagnano",
+            "provincia": "MI",
+            "regione": "Lombardia",
+            "indirizzo": "",
+            "categoria_raw": "Feste",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-mostra-scambio",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html",
+      "retrieval_started_at_utc": "2026-10-19T22:31:38.080Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "b5f2c7da5677d88e2780f74998bef1f81217d1d45de100e9c50a102bc9f25335",
+      "evidence_bytes": 51978,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html",
+        "source_id": "21159660",
+        "source_sha256": "b5f2c7da5677d88e2780f74998bef1f81217d1d45de100e9c50a102bc9f25335",
+        "source_modified_on": "2017-01-06",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2017-02-12",
+            "end": "2017-02-12"
+          }
+        ],
+        "jsonld_events_matched": 1,
+        "invalid_jsonld_blocks": 0,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [],
+        "legacy_fields": {
+          "nome": "Ccr2 - Mostra Scambio Riuso",
+          "citta": "Correggio",
+          "provincia": "RE",
+          "regione": "Emilia Romagna",
+          "indirizzo": "Via Canolo, 37",
+          "orario_raw": "08:00–18:00",
+          "ricorrenza_raw": "",
+          "date_raw": [
+            "2017-02-12"
+          ]
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 1,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Ccr2 - Mostra Scambio Riuso",
+            "citta": "Emilia RomagnaFerrara",
+            "provincia": "FE",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Mostra Mercato",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Ccr2 - Mostra Scambio Riuso",
+            "citta": "Correggio",
+            "provincia": "RE",
+            "regione": "Emilia Romagna",
+            "indirizzo": "Via Canolo, 37",
+            "categoria_raw": "Mostra Mercato",
+            "orario_raw": "08:00–18:00",
+            "ricorrenza_raw": "",
+            "date_raw": [
+              "2017-02-12"
+            ],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "08:00–18:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-festival-green",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html",
+      "retrieval_started_at_utc": "2026-10-19T22:31:40.269Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "33e8636b716bf215a4c385148fac2774b5aeb303185dc75bbd1edccc898e5b19",
+      "evidence_bytes": 57623,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html",
+        "source_id": "21194258",
+        "source_sha256": "33e8636b716bf215a4c385148fac2774b5aeb303185dc75bbd1edccc898e5b19",
+        "source_modified_on": "2025-04-23",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2024-05-18",
+            "end": "2024-05-19"
+          }
+        ],
+        "jsonld_events_matched": 1,
+        "invalid_jsonld_blocks": 0,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [],
+        "legacy_fields": {
+          "nome": "Green Market Festival 18-19 Maggio",
+          "citta": "Roma",
+          "provincia": "RM",
+          "regione": "Lazio",
+          "indirizzo": "Largo Dino Frisullo",
+          "orario_raw": "10:00–20:00",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Green Market Festival 18-19 Maggio",
+            "citta": "LazioRoma",
+            "provincia": "RM",
+            "regione": "Lazio",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Festival",
+            "orario_raw": "14.30-15.30",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "14:30–15:30",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Green Market Festival 18-19 Maggio",
+            "citta": "Roma",
+            "provincia": "RM",
+            "regione": "Lazio",
+            "indirizzo": "Largo Dino Frisullo",
+            "categoria_raw": "Festival",
+            "orario_raw": "10:00–20:00",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "10:00–20:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-sagre-ferrara",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html",
+      "retrieval_started_at_utc": "2026-10-19T22:31:54.326Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "b458ec6a318b0047c2ac86b4128c2c38f73c70d49f2f53cb03345be296a02688",
+      "evidence_bytes": 52666,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 1,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html",
+        "source_id": "21195398",
+        "source_sha256": "b458ec6a318b0047c2ac86b4128c2c38f73c70d49f2f53cb03345be296a02688",
+        "source_modified_on": "2026-04-28",
+        "archive_marker": false,
+        "edition_is_past": false,
+        "edition_intervals": [
+          {
+            "start": "2026-10-30",
+            "end": "2026-11-01"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Ferrara Food Festival",
+          "citta": "Ferrara",
+          "provincia": "FE",
+          "regione": "Emilia Romagna",
+          "indirizzo": "Centro Storico Di Ferrara, Piazza Trento-trieste, Piazza Castello, Piazza Savonarola, Piazza Municipio",
+          "orario_raw": "09:00–20:00",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 1,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Ferrara Food Festival",
+            "citta": "Emilia RomagnaFinale Emilia",
+            "provincia": "MO",
+            "regione": "Emilia-Romagna",
+            "indirizzo": "Via Magenta, 8",
+            "categoria_raw": "Sagre",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Ferrara Food Festival",
+            "citta": "Ferrara",
+            "provincia": "FE",
+            "regione": "Emilia Romagna",
+            "indirizzo": "Centro Storico Di Ferrara, Piazza Trento-trieste, Piazza Castello, Piazza Savonarola, Piazza Municipio",
+            "categoria_raw": "Sagre",
+            "orario_raw": "09:00–20:00",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "09:00–20:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-folklore-collevecchio",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html",
+      "retrieval_started_at_utc": "2026-10-19T22:31:57.906Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "16f37b8c3c1c23e9c7fb04ed7718f7ed1b968fdab3849ebb23a8e22460ea77b7",
+      "evidence_bytes": 52816,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 0,
+        "hours": 1,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html",
+        "source_id": "21072795",
+        "source_sha256": "16f37b8c3c1c23e9c7fb04ed7718f7ed1b968fdab3849ebb23a8e22460ea77b7",
+        "source_modified_on": "2024-04-16",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2024-04-28",
+            "end": "2024-04-28"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "legacy_fields": {
+          "nome": "Profumi Di Primavera A Collevecchio",
+          "citta": "Collevecchio",
+          "provincia": "RI",
+          "regione": "Lazio",
+          "indirizzo": "Parco Giacomo Matteotti",
+          "orario_raw": "10:00–20:00",
+          "ricorrenza_raw": "",
+          "date_raw": [
+            "2024-04-28"
+          ]
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 1,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Profumi Di Primavera A Collevecchio",
+            "citta": "LazioRoma",
+            "provincia": "RM",
+            "regione": "Lazio",
+            "indirizzo": "",
+            "categoria_raw": "Folklore",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Profumi Di Primavera A Collevecchio",
+            "citta": "Collevecchio",
+            "provincia": "RI",
+            "regione": "Lazio",
+            "indirizzo": "Parco Giacomo Matteotti",
+            "categoria_raw": "Folklore",
+            "orario_raw": "10:00–20:00",
+            "ricorrenza_raw": "",
+            "date_raw": [
+              "2024-04-28"
+            ],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "10:00–20:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-fiere-artigianando",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html",
+      "retrieval_started_at_utc": "2026-10-19T22:32:00.549Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "5c9158466e70b82b58735a3928a17612a7f9e5333952bc763c913088857c2f0d",
+      "evidence_bytes": 50358,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 0,
+        "recurrence_text": 0,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html",
+        "source_id": "21087135",
+        "source_sha256": "5c9158466e70b82b58735a3928a17612a7f9e5333952bc763c913088857c2f0d",
+        "source_modified_on": "2016-05-26",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2016-05-28",
+            "end": "2016-05-29"
+          }
+        ],
+        "jsonld_events_matched": 1,
+        "invalid_jsonld_blocks": 0,
+        "recurrence_text": "",
+        "source_rows": [],
+        "issues": [],
+        "legacy_fields": {
+          "nome": "Artigianando",
+          "citta": "Bisceglie",
+          "provincia": "BT",
+          "regione": "Puglia",
+          "indirizzo": "Piazza Castello",
+          "orario_raw": "Dalle 09:00",
+          "ricorrenza_raw": "",
+          "date_raw": []
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 0
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Artigianando",
+            "citta": "",
+            "provincia": "",
+            "regione": "Puglia",
+            "indirizzo": "Piazza Castelloche ospiterà decine di stand di artigianato locale e degustazioni di prodotti tipici del territorio",
+            "categoria_raw": "Fiere",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Artigianando",
+            "citta": "Bisceglie",
+            "provincia": "BT",
+            "regione": "Puglia",
+            "indirizzo": "Piazza Castello",
+            "categoria_raw": "Fiere",
+            "orario_raw": "Dalle 09:00",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "Dalle 09:00",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "es-vari-pescara",
+      "publisher": "eventiesagre.it",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21182790_Mercati+Settimanali+A+Pescara.html",
+      "retrieval_started_at_utc": "2026-10-19T22:32:03.377Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "47232a4a4cf3bdd25b74069ad237103560f6c85a4e1ac9067917efcdfb690c9e",
+      "evidence_bytes": 48375,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.eventiesagre.it/Mercatini_Vari/21182790_Mercati+Settimanali+A+Pescara.html",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 1,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "eventiesagre_detail_v1",
+      "source_evidence": {
+        "schema": 1,
+        "layout": "eventiesagre_detail_v1",
+        "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21182790_Mercati+Settimanali+A+Pescara.html",
+        "source_id": "21182790",
+        "source_sha256": "47232a4a4cf3bdd25b74069ad237103560f6c85a4e1ac9067917efcdfb690c9e",
+        "source_modified_on": "2021-08-15",
+        "archive_marker": true,
+        "edition_is_past": true,
+        "edition_intervals": [
+          {
+            "start": "2022-12-31",
+            "end": "2022-12-31"
+          }
+        ],
+        "jsonld_events_matched": 0,
+        "invalid_jsonld_blocks": 1,
+        "recurrence_text": "",
+        "source_rows": [
+          {
+            "address": "Piazza Sant'Alfonso",
+            "recurrence": "Mercoledì",
+            "hours": "08:00–14:00"
+          },
+          {
+            "address": "Via di Sotto",
+            "recurrence": "Venerdì",
+            "hours": "08:00–14:00"
+          },
+          {
+            "address": "Viale Pepe",
+            "recurrence": "Lunedì",
+            "hours": "08:00–14:00"
+          },
+          {
+            "address": "Piazza Duca",
+            "recurrence": "Mercoledì",
+            "hours": "08:00–14:00"
+          }
+        ],
+        "issues": [
+          "invalid_jsonld_ignored",
+          "multiple_market_rows_require_separate_identity"
+        ],
+        "legacy_fields": {
+          "nome": "Mercati Settimanali A Pescara",
+          "citta": "Pescara",
+          "provincia": "PE",
+          "regione": "Abruzzo",
+          "indirizzo": "",
+          "orario_raw": "",
+          "ricorrenza_raw": "",
+          "date_raw": [
+            "2022-12-31"
+          ]
+        },
+        "market_openings_verified": false,
+        "network_requests": 0,
+        "scope_statements_count": 0,
+        "recurrence_statements_count": 3
+      },
+      "replay": {
+        "legacy_before": {
+          "raw_fields": {
+            "nome": "Mercati Settimanali A Pescara",
+            "citta": "AbruzzoPicciano",
+            "provincia": "PE",
+            "regione": "Abruzzo",
+            "indirizzo": "Piazza Sant'AlfonsoGiorni di svolgimento",
+            "categoria_raw": "Vari",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Vari/21182790_Mercati+Settimanali+A+Pescara.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        },
+        "legacy_after": {
+          "raw_fields": {
+            "nome": "Mercati Settimanali A Pescara",
+            "citta": "Pescara",
+            "provincia": "PE",
+            "regione": "Abruzzo",
+            "indirizzo": "",
+            "categoria_raw": "Vari",
+            "orario_raw": "",
+            "ricorrenza_raw": "",
+            "date_raw": [
+              "2022-12-31"
+            ],
+            "tags_raw": [],
+            "url_fonte": "https://www.eventiesagre.it/Mercatini_Vari/21182790_Mercati+Settimanali+A+Pescara.html",
+            "fonte_nome": "eventiesagre.it",
+            "lat": null,
+            "lng": null
+          },
+          "cleaner_pure_field_transforms": {
+            "hours": "",
+            "recurrence_kind": "sconosciuto",
+            "recurrence_text": "",
+            "upcoming_dates_count": 0,
+            "upcoming_dates_min": null,
+            "upcoming_dates_max": null
+          }
+        }
+      },
+      "historical_import_causation_proven": false,
+      "primary_scopes_present": {
+        "event_card": 1,
+        "article": 1,
+        "legacy_body_selectors": []
+      }
+    },
+    {
+      "id": "cdc-monthly-bologna",
+      "publisher": "cosedicasa.com",
+      "source_url": "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano",
+      "retrieval_started_at_utc": "2026-10-19T22:32:20.264Z",
+      "channel": "remote_desktop_commander.read_file:isUrl; get_tool_result",
+      "evidence_sha256": "f74caed341212287b133ce954ec22b1ec50089722f2296c527be6c58afb88ae2",
+      "evidence_bytes": 613246,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 0,
+        "recurrence_text": 1,
+        "date_list": 1,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "retrieval_completed_at_utc": "2026-10-19T22:32:24.298861+00:00",
+      "source_layout": "cosedicasa_mercatini_structured_editorial",
+      "source_evidence": {
+        "date_big_times": [],
+        "date_big_rule": "Secondi sabato e domenica del mese",
+        "event_jsonld": {
+          "startDate": "2026-10-19",
+          "endDate": "2026-10-19",
+          "url": "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "streetAddress_present": true,
+          "coordinates_present": true
+        },
+        "source_modified_on": "2025-01-07T17:39:30+00:00",
+        "structured_field_presence": {
+          "address": true,
+          "times": true,
+          "suspension": true,
+          "performer": true,
+          "website": true,
+          "contacts": false,
+          "phone": true
+        },
+        "suspension_rows": [
+          "Sospensioni: Dall'1 luglio al 31 agosto",
+          "Prossime date: 7-8 novembre 2026"
+        ]
+      },
+      "legacy_parser_path": null,
+      "legacy_parser_available_in_current_repository": false,
+      "legacy_pipeline_reference": "backend/pipeline.py:step_scrape (Cose di Casa call remains commented)",
+      "historical_import_causation_proven": false,
+      "notes": {
+        "semantic_variant": "monthly_sunday_with_previous_saturday_and_month_exclusions",
+        "source_market_hours": "08:30–18:00",
+        "lost_or_unrepresented": [
+          "precise_hours",
+          "saturday_before_second_sunday",
+          "july_august_suspension",
+          "next_explicit_weekend",
+          "editorial_modification_date"
+        ],
+        "source_internal_conflicts": [
+          "JSON-LD dates are 2026-10-19; visible rule is second Sunday with previous Saturday, and next weekend is 2026-11-07/08.",
+          "Second Saturday is not always the Saturday before the second Sunday."
+        ],
+        "catalog_observation": "Catalog preserves second Sunday only and has no hours or general suspension evidence."
+      }
+    },
+    {
+      "id": "cdc-editions-venezia",
+      "publisher": "cosedicasa.com",
+      "source_url": "https://www.cosedicasa.com/mercatini/venezia-campo-san-maurizio",
+      "retrieval_started_at_utc": "2026-10-19T22:32:24.489Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "21ff8d2a726098d6d832c86b52525f44721b8c9938a0f2eead8bb9c1df81879f",
+      "evidence_bytes": 615397,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.cosedicasa.com/mercatini/venezia-campo-san-maurizio",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 0,
+        "recurrence_text": 1,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "cosedicasa_mercatini_structured_editorial",
+      "source_evidence": {
+        "date_big_times": [
+          "2026-05-07",
+          "2026-05-10",
+          "2026-06-05",
+          "2026-06-07",
+          "2026-09-11",
+          "2026-09-13",
+          "2026-10-16",
+          "2026-10-18",
+          "2026-12-04",
+          "2026-12-06"
+        ],
+        "date_big_rule": null,
+        "event_jsonld": {
+          "startDate": "2026-12-04",
+          "endDate": "2026-12-06",
+          "url": "https://www.cosedicasa.com/mercatini/venezia-campo-san-maurizio",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "streetAddress_present": true,
+          "coordinates_present": true
+        },
+        "source_modified_on": "2026-05-06T09:46:45+00:00",
+        "structured_field_presence": {
+          "address": true,
+          "times": true,
+          "suspension": true,
+          "performer": true,
+          "website": true,
+          "contacts": true,
+          "phone": true
+        },
+        "suspension_rows": [
+          "Sospensioni: Dall'1 gennaio al 30 aprile e dall'1 luglio al 31 dicembre",
+          "Prossime date: 4-6 dicembre 2026"
+        ]
+      },
+      "legacy_parser_path": null,
+      "legacy_parser_available_in_current_repository": false,
+      "legacy_pipeline_reference": "backend/pipeline.py:step_scrape (Cose di Casa call remains commented)",
+      "historical_import_causation_proven": false,
+      "notes": {
+        "semantic_variant": "explicit_separate_multiday_editions",
+        "source_market_hours": "09:00–19:00",
+        "lost_or_unrepresented": [
+          "precise_hours",
+          "five_edition_intervals",
+          "suspension_conflict",
+          "editorial_modification_date"
+        ],
+        "source_internal_conflicts": [
+          "The suspension row includes July–December while the edition list explicitly includes September, October and December."
+        ],
+        "catalog_observation": "Catalog has generic mensile and no dates; the current source lists five 2026 edition ranges."
+      }
+    },
+    {
+      "id": "cdc-range-todi",
+      "publisher": "cosedicasa.com",
+      "source_url": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
+      "retrieval_started_at_utc": "2026-10-19T22:32:28.466Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "463830f33001548da2b85d87921e87ae72ff2be0decfaabdba6871626f73010a",
+      "evidence_bytes": 615135,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 1,
+        "recurrence_text": 1,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "cosedicasa_mercatini_structured_editorial",
+      "source_evidence": {
+        "date_big_times": [],
+        "date_big_rule": "Terza domenica del mese",
+        "event_jsonld": {
+          "startDate": "2026-10-19",
+          "endDate": "2026-10-19",
+          "url": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "streetAddress_present": true,
+          "coordinates_present": true
+        },
+        "source_modified_on": "2026-08-20T15:18:18+00:00",
+        "structured_field_presence": {
+          "address": true,
+          "times": true,
+          "suspension": true,
+          "performer": true,
+          "website": true,
+          "contacts": true,
+          "phone": true
+        },
+        "suspension_rows": [
+          "Sospensioni: Dall'1 gennaio al 28 febbraio e dall'1 novembre al 31 dicembre",
+          "Prossima data: 21 marzo 2027"
+        ]
+      },
+      "legacy_parser_path": null,
+      "legacy_parser_available_in_current_repository": false,
+      "legacy_pipeline_reference": "backend/pipeline.py:step_scrape (Cose di Casa call remains commented)",
+      "historical_import_causation_proven": false,
+      "notes": {
+        "semantic_variant": "monthly_rule_with_month_range_and_unnumbered_extra_edition",
+        "source_market_hours": "09:00–tramonto",
+        "lost_or_unrepresented": [
+          "year_for_november_11_extra_edition",
+          "editorial_modification_date"
+        ],
+        "source_internal_conflicts": [
+          "JSON-LD dates are 2026-10-19, a Monday; visible rule is third Sunday and next date is 2027-03-21."
+        ],
+        "catalog_observation": "Hours and March–October season are already retained by prior reviewed handling. The extra 11 November has no unambiguous year; no date may be invented."
+      }
+    },
+    {
+      "id": "cdc-season-cernobbio",
+      "publisher": "cosedicasa.com",
+      "source_url": "https://www.cosedicasa.com/mercatini/cernobbio-mercatino-estivo",
+      "retrieval_started_at_utc": "2026-10-19T22:32:32.364Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "b673d0194ab787f55d333695f2243fb5d20f5c6df7fd022f9bbfb8e67cece5e8",
+      "evidence_bytes": 615143,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.cosedicasa.com/mercatini/cernobbio-mercatino-delle-curiosita-estivo",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 0,
+        "recurrence_text": 1,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "cosedicasa_mercatini_structured_editorial",
+      "source_evidence": {
+        "date_big_times": [
+          "2026-06-05",
+          "2026-06-12",
+          "2026-06-26",
+          "2026-07-03",
+          "2026-07-10",
+          "2026-07-17",
+          "2026-07-24",
+          "2026-07-31",
+          "2026-08-07",
+          "2026-08-14",
+          "2026-08-21",
+          "2026-08-28",
+          "2026-09-11",
+          "2026-09-25"
+        ],
+        "date_big_rule": null,
+        "event_jsonld": {
+          "startDate": "2026-09-25",
+          "endDate": "2026-09-25",
+          "url": "https://www.cosedicasa.com/mercatini/cernobbio-mercatino-delle-curiosita-estivo",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "streetAddress_present": true,
+          "coordinates_present": true
+        },
+        "source_modified_on": "2026-07-03T14:02:51+00:00",
+        "structured_field_presence": {
+          "address": true,
+          "times": true,
+          "suspension": false,
+          "performer": true,
+          "website": true,
+          "contacts": true,
+          "phone": true
+        },
+        "suspension_rows": []
+      },
+      "legacy_parser_path": null,
+      "legacy_parser_available_in_current_repository": false,
+      "legacy_pipeline_reference": "backend/pipeline.py:step_scrape (Cose di Casa call remains commented)",
+      "historical_import_causation_proven": false,
+      "notes": {
+        "semantic_variant": "explicit_selected_summer_fridays",
+        "source_market_hours": "08:00–19:00",
+        "lost_or_unrepresented": [
+          "precise_hours",
+          "14_explicit_summer_dates",
+          "season_and_missing_fridays",
+          "editorial_modification_date",
+          "canonical_source_url_change"
+        ],
+        "source_internal_conflicts": [],
+        "catalog_observation": "Catalog has generic mensile and no dates. Source lists selected June–September Fridays, not every Friday; 10–18 belongs to an auxiliary activity."
+      }
+    },
+    {
+      "id": "cdc-single-fiumicino",
+      "publisher": "cosedicasa.com",
+      "source_url": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-3",
+      "retrieval_started_at_utc": "2026-10-19T22:32:37.059Z",
+      "channel": "remote_desktop_commander.read_file:isUrl",
+      "evidence_sha256": "6db5f5bbe136aac21c23260236f5be7f1a94e5e4aad495024a9a9c7b12b4bed1",
+      "evidence_bytes": 613821,
+      "hash_scope": "stored_utf8_connector_text_not_original_http_entity_bytes",
+      "http_status": null,
+      "transport_final_url": null,
+      "transport_metadata_available": false,
+      "html_document_complete": true,
+      "canonical_url_in_html": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-3",
+      "catalog_records_linked_to_requested_url": 1,
+      "catalog_field_presence": {
+        "address": 1,
+        "hours": 0,
+        "recurrence_text": 1,
+        "date_list": 0,
+        "source_modified_on": 0,
+        "calendar_exceptions": 0
+      },
+      "read_now_confirms_openings": false,
+      "source_layout": "cosedicasa_mercatini_structured_editorial",
+      "source_evidence": {
+        "date_big_times": [
+          "2026-06-02",
+          "2026-08-10"
+        ],
+        "date_big_rule": null,
+        "event_jsonld": {
+          "startDate": "2026-06-02",
+          "endDate": "2026-08-10",
+          "url": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-3",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "streetAddress_present": true,
+          "coordinates_present": true
+        },
+        "source_modified_on": "2026-06-07T15:59:00+00:00",
+        "structured_field_presence": {
+          "address": true,
+          "times": true,
+          "suspension": false,
+          "performer": true,
+          "website": true,
+          "contacts": false,
+          "phone": true
+        },
+        "suspension_rows": []
+      },
+      "legacy_parser_path": null,
+      "legacy_parser_available_in_current_repository": false,
+      "legacy_pipeline_reference": "backend/pipeline.py:step_scrape (Cose di Casa call remains commented)",
+      "historical_import_causation_proven": false,
+      "notes": {
+        "semantic_variant": "summer_daily_span_with_conflicting_bounds",
+        "source_market_hours": "18:00–24:00",
+        "lost_or_unrepresented": [
+          "precise_hours",
+          "seasonal_daily_cadence",
+          "inconsistent_date_bounds",
+          "weather_cancellation_condition",
+          "editorial_modification_date"
+        ],
+        "source_internal_conflicts": [
+          "Header and JSON-LD show 2026-06-02 through 2026-08-10; the main text says 10 June through 2 August."
+        ],
+        "catalog_observation": "Catalog has generic mensile and no dates. Dates are already past and the conflicting bounds must not be expanded automatically."
+      }
+    }
+  ],
+  "todos": [
+    {
+      "id": "EES-SCOPED-DETAIL",
+      "status": "implemented_tested_not_yet_merged",
+      "scope": "All 16 Eventi e Sagre path prefixes; full heading and older card-only layouts",
+      "problem": "Page-wide selectors read related-event municipalities and publisher footer addresses, skip the actual card dates and most hour syntax.",
+      "implementation": "backend/eventiesagre_source_layout.py, delegated from backend/scraper_eventiesagre.py",
+      "acceptance": "31 stdlib tests pass; replay 17/17 same documents, no footer address and no related-event municipality; card-only legacy page remains readable. Network and activation policy unchanged."
+    },
+    {
+      "id": "EES-METADATA-ROUNDTRIP",
+      "status": "open",
+      "scope": "Eventi e Sagre adapter -> RawMarket -> CleanMarket -> source evidence -> export",
+      "problem": "Source edition intervals, archive state, source modification time, calendar qualifiers and conflicts now exist in the pure parser but have no complete storage bridge.",
+      "implementation": "Extend the adapter models and explicit source evidence mapping; preserve edition archive state separately from the market entity. Keep import/read/content/event dates distinct.",
+      "acceptance": "Round-trip an archived weekly announcement without generating future openings; retain all original calendar bounds and source hashes/read dates; a past edition never deletes the market or claims permanent closure."
+    },
+    {
+      "id": "EES-MULTI-LOCATION-BRIDGE",
+      "status": "open",
+      "scope": "Luogo / Giorni di svolgimento / Orario repeated body blocks",
+      "problem": "The Pescara sample contains five blocks but four distinct address/day/hour rows. A single RawMarket cannot represent them safely.",
+      "implementation": "Consume source_rows through existing market identity, ISTAT geography and cohort collision controls; preserve stable existing market IDs and attach evidence only to the matched row.",
+      "acceptance": "Four distinct rows survive, a duplicate source block does not create a fifth market, and a header address or day cannot be propagated to another venue."
+    },
+    {
+      "id": "EES-NARRATIVE-FIELD-GAPS",
+      "status": "open",
+      "scope": "Addresses and calendars expressed in long narrative paragraphs",
+      "problem": "The bounded parser deliberately does not turn every street/programme reference into the market venue. Examples include a piazza described relative to a basilica and programmes with multiple activities/locations.",
+      "implementation": "Add evidence-backed sentence/label formats only after a second sample establishes attribution to the main market. Separate a venue from a route or accessory activity.",
+      "acceptance": "The additional grammar recovers the intended main-market field without importing a concert/workshop location, related-event date or publisher footer address."
+    },
+    {
+      "id": "EES-URL-DISCOVERY-INVENTORY",
+      "status": "open_no_crawler_activation",
+      "scope": "Legacy listing URL selection and category filters",
+      "problem": "The legacy SECTIONS map targets seven Mercatini categories; 93 catalog records / 88 URLs belong to hobbisti creativi, Natale or Eventi prefixes outside those target categories. Eventi links are rejected by the Mercatini-only listing filter.",
+      "implementation": "Keep these existing URL families in source-format coverage. Decide admission from evidence that the page represents a market, not from its category name. Do not enable a bulk crawler as an audit side effect.",
+      "acceptance": "All 16 present path prefixes are classified; Eventi/Sagre/Festival pages cannot silently become ordinary weekly markets."
+    },
+    {
+      "id": "EES-JSONLD-CONFLICTS",
+      "status": "implemented_tested_not_yet_merged",
+      "scope": "Event JSON-LD bound to the same source event ID",
+      "problem": "12/17 sampled JSON-LD blocks are not valid strict JSON. Midnight / 23:59:59 endpoints describe edition boundaries, not opening hours.",
+      "implementation": "Reject invalid JSON-LD as evidence, use the exact visible event card, compare valid same-ID metadata and flag contradictions.",
+      "acceptance": "Invalid JSON-LD does not break a valid visible card; another event's JSON-LD does not contribute fields; date endpoints never become market hours."
+    },
+    {
+      "id": "CDC-STRUCTURED-ADAPTER",
+      "status": "open",
+      "scope": "All /mercatini/{slug} URLs, with monthly, selected editions, seasonal and bounded-span variants",
+      "problem": "No production Cose di Casa reader exists in the current repository; the legacy pipeline call is commented. Four of five current samples have precise market hours absent from the catalog.",
+      "implementation": "Create a pure scoped field adapter for mercatini-mostre-address, mercatini-mostre-times, mercatini-mostre-date-big and labelled suspension rows. Keep author/organizer links as verification leads, not opening confirmation.",
+      "acceptance": "Fixtures cover all five observed semantic variants, contain no raw publisher HTML, and distinguish field extraction from source reading and verification."
+    },
+    {
+      "id": "CDC-CALENDAR-SEMANTICS",
+      "status": "open",
+      "scope": "Recurrence text, previous-day coupling, edition ranges, selected days and suspensions",
+      "problem": "Generic mensile does not preserve an explicit edition list, the Saturday before the second Sunday, summer selected Fridays or a daily summer span.",
+      "implementation": "Represent the complete calendar rule and explicit edition intervals; preserve month exclusions and exceptions before any forecast. Do not reconstruct missing dates from monthly as a bare label.",
+      "acceptance": "Bologna includes the preceding Saturday, Cernobbio retains only listed Fridays, Venice retains five separate ranges, and unspecified extra-edition years remain unknown."
+    },
+    {
+      "id": "CDC-SOURCE-INTERNAL-CONFLICTS",
+      "status": "open",
+      "scope": "Visible calendar versus Event JSON-LD and suspension labels",
+      "problem": "Bologna/Todi JSON-LD dates equal the reading day and conflict with the visible monthly rule. Venice has edition/suspension conflicts. Fiumicino has different summer bounds in its structured fields and narrative.",
+      "implementation": "Add conflict states and retain field provenance from both source sections. Never prefer JSON-LD merely because it is structured; require source-level resolution before publishing a disputed schedule.",
+      "acceptance": "No 19 October opening is inferred for a Sunday market; no disputed summer span is expanded; suspension rows labelled Prossime date are not interpreted as closures."
+    },
+    {
+      "id": "CDC-HOURS-CONTEXT",
+      "status": "open",
+      "scope": "Market hours embedded in mercatini-mostre-times prose",
+      "problem": "Precise hours occur in prose, with integer, comma-minute and 24:00 notation. The same block may also include hours of an accessory activity.",
+      "implementation": "Extract the main-market hour statement with its context, preserve sunrise/sunset or partial-hour precision, and avoid copying workshop/game/music times into the market field.",
+      "acceptance": "Bologna 08:30–18:00, Venice 09:00–19:00, Cernobbio 08:00–19:00 and Fiumicino 18:00–24:00 are detected; Cernobbio's 10–18 activity is not substituted, and Todi's sunset is not converted into an invented clock time."
+    },
+    {
+      "id": "CDC-PROVENANCE-URLS",
+      "status": "open",
+      "scope": "Requested legacy URL, canonical HTML URL, source modification and transport metadata",
+      "problem": "The Cernobbio saved source URL differs from the current canonical/JSON-LD URL. The read_file channel does not expose an observed HTTP redirect. All five examples expose article:modified_time, absent from catalog source-date fields.",
+      "implementation": "Keep requested, canonical and observed final transport URL as separate evidence and bind canonical changes to the same place/event identity. Carry source-modified time separately from read/import dates.",
+      "acceptance": "No redirect is claimed from a canonical tag; no editorial modification timestamp is stored as a market occurrence or personal verification date."
+    },
+    {
+      "id": "EDITORIAL-FIELD-RETENTION-GATE",
+      "status": "open",
+      "scope": "Per-layout source -> parser -> normalization -> snapshot -> export",
+      "problem": "A non-empty catalog field does not establish correctness, while a missing field can mean source absence, reader omission, ambiguity, policy hold or loss in normalization.",
+      "implementation": "Persist a field-retention checklist with those distinct outcomes and attach sample/version evidence. Include footer-address candidates and ungrounded generic recurrences in the review queue without per-record overwrites.",
+      "acceptance": "Report supported source formats, observed field presence, parser retention and verified data as separate measures. Completion of a parser task never marks the storage bridge or all source records as verified."
+    }
+  ]
+}

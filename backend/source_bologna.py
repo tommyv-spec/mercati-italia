@@ -15,6 +15,8 @@ Publication policy:
 """
 from __future__ import annotations
 
+from source_hours import preserve_hours_text
+
 import argparse
 import hashlib
 import json
@@ -256,8 +258,8 @@ def convert(payload, today=None):
             dates = []
             recurrence = "Calendario da verificare presso il Comune"
         lat, lng = position(fields)
-        origin_hours = str(fields.get("orario_svolgimento") or "").strip()
-        hours = origin_hours[:130] + " (fonte da verificare)" if origin_hours else ""
+        hours = preserve_hours_text(
+            fields.get("orario_svolgimento"), qualification="(fonte da verificare)")
         note = (
             "Scheda di mercato dal piano comunale di Bologna. "
             "Fonte con ultima elaborazione dati del " + processed.isoformat()

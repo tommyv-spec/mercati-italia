@@ -34,6 +34,9 @@ from merge_catalog import combine, load_existing
 from lombardia_overlap import review as review_lombardia_overlaps, markdown as lombardia_overlap_markdown
 from recurrence_refresh import forecast_source_limits, refresh_records
 from source_lifecycle import run as inspect_source_contracts, markdown as source_lifecycle_markdown
+from source_format_audit import (build_report as build_source_format_report,
+                                 render_checklist as source_format_checklist,
+                                 DEFAULT_LEDGER as SOURCE_FORMAT_LEDGER)
 from source_contract_activation import (
     activate as activate_generic_source_contracts,
     validate_release as verify_generic_source_admissions,
@@ -1321,6 +1324,9 @@ def run(args):
         today=args.today, **coverage_configuration,
     )
     save_json(out / "source-refresh-coverage.json", resources)
+    format_review = build_source_format_report(new_rows, read_json(SOURCE_FORMAT_LEDGER), today=args.today)
+    save_json(out / "source-format-audit.json", format_review)
+    (out / "SOURCE_FORMAT_CHECKLIST.md").write_text(source_format_checklist(format_review), "utf-8")
     happings_static_guard = verify_happings_exported(
         before_happings, projected, new_rows, happings_report, today=args.today
     )
@@ -1380,6 +1386,7 @@ def run(args):
         "metrics": field_quality["metrics"],
         "release_safe": page_guard["release_safe"],
     }
+    findings["source_format_review"] = format_review["summary"]
     findings["publisher_refresh"] = {
         "selected_pages": page_report["selected_pages"],
         "field_changes": page_report["field_changes"],

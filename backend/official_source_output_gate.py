@@ -23,6 +23,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from recurrence_refresh import WEEKDAYS, explicit_rule
+from source_hours import MAX_HOURS_TEXT_LENGTH
 
 CONTRACTS_PATH=Path(__file__).resolve().parent/"data/market-source-contracts.json"
 ALLOWLIST=frozenset({"milano","firenze","lombardia","bologna","corciano"})
@@ -150,7 +151,7 @@ def inspect(source_id,rows,*,today=None,previous=None):
             raise ValueError("Publisher address extraction changed type or exceeded bounds")
         if row.get("orario_testo") is not None and (
                 not isinstance(row["orario_testo"],str)
-                or len(row["orario_testo"])>250):
+                or len(row["orario_testo"])>MAX_HOURS_TEXT_LENGTH):
             raise ValueError("Publisher hours extraction changed type or exceeded bounds")
         if row.get("indirizzo"):stats["nonempty_address"]+=1
         if row.get("orario_testo"):stats["nonempty_hours"]+=1

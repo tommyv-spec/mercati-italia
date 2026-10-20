@@ -31,6 +31,7 @@ from recurrence_refresh import WEEKDAYS, explicit_rule
 from source_probe import limited_fetch, safe_url
 from reviewed_city_evidence import NAVIGATION_HOLD
 from publisher_snapshot_date import resolve_source_date, validate_strategy
+from source_hours import preserve_hours_text
 
 SCHEMA = 1
 MAX_RAW_PROFILES = 8
@@ -325,11 +326,21 @@ def candidate_record(profile,row,*,today,source_date=None):
     forecast_eligible=(d is not None and age<=profile.get(
         "max_forecast_source_age_days",profile["max_source_age_days"]))
     recurrence="settimanale - "+WEEKDAYS[d] if forecast_eligible else "Calendario da verificare"
-    if profile.get("hours_text_field") and not (start and end):
-        raw_hours=str(row.get(profile["hours_text_field"]) or "").strip()
+    raw_hours=""
+    if profile.get("hours_text_field"):
+        raw_hours=preserve_hours_text(row.get(profile["hours_text_field"]))
         match=re.fullmatch(r"((?:[01]\d|2[0-3]):[0-5]\d)\s*[-–]\s*((?:[01]\d|2[0-3]):[0-5]\d)",raw_hours)
         if match and match.group(1)<match.group(2):
             start,end=match.groups()
+        elif raw_hours:
+            # A separate numeric range cannot discard qualifications in the
+            # publisher's text field, including seasonal hours or closures.
+            start=end=None
+    if start and end:
+        hours=preserve_hours_text(start+"–"+end, qualification="(da verificare con il Comune)")
+    else:
+        hours=preserve_hours_text(
+            raw_hours, qualification="(indicazioni della fonte; da verificare con il Comune)")
     c_map=profile.get("category_map") or {}
     category=next((value for key,value in c_map.get("values",{}).items()
                    if canonical(row.get(c_map["field"]))==canonical(key)),"misto")
@@ -342,7 +353,7 @@ def candidate_record(profile,row,*,today,source_date=None):
         "categoria":category,"tags":["mercato comunale"],"status":"non_confermato",
         "date":[],"date_quality":"sconosciuta",
         "ricorrenza_testo":recurrence,
-        "orario_testo":(start+"–"+end+" (da verificare con il Comune)") if start and end else "",
+        "orario_testo":hours,
         "descrizione":(
           "Sede in un dataset comunale, non apertura confermata. "
           "Data riferita all'intero dataset: "+updated.isoformat()+
@@ -353,9 +364,12 @@ def candidate_record(profile,row,*,today,source_date=None):
         "aggiornato_il":updated.isoformat(),"aggiornamento_ambito":"dataset",
         "verificato_il":"","confidence":0,
     }
-    facthash=digest({"name":canonical(name),"address":canonical(road),
-                     "day":d,"start":start,"end":end,
-                     "publisher_dataset_date":updated.isoformat()})
+    facts={"name":canonical(name),"address":canonical(road),
+           "day":d,"start":start,"end":end,
+           "publisher_dataset_date":updated.isoformat()}
+    if raw_hours and not (start and end):
+        facts["hours_text"]=raw_hours
+    facthash=digest(facts)
     issue="schedule_unknown" if d is None else (
         "source_old_no_future_forecast" if not forecast_eligible else None)
     if profile.get("hours_fields") and not (start and end):

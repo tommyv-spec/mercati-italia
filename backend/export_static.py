@@ -23,6 +23,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from field_evidence import clean_receipts, clean_exceptions
 from source_freshness import source_date_evidence
+from source_hours import preserve_hours_text
 from urllib.parse import urlsplit
 
 CANONICAL_REGIONS = [
@@ -208,7 +209,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "regione": regione, "indirizzo": safe_string(raw.get("indirizzo"), 300),
         "lat": lat, "lng": lng, "position_quality": position_quality,
         "categoria": category, "tags": tags, "status": status,
-        "orario_testo": safe_string(raw.get("orario_testo"), 180),
+        "orario_testo": preserve_hours_text(raw.get("orario_testo")),
         "ricorrenza_testo": safe_string(raw.get("ricorrenza_testo"), 180),
         "descrizione": safe_string(raw.get("descrizione"), 900),
         "date": future_dates,
