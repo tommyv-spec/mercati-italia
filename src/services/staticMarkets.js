@@ -198,6 +198,8 @@ function normalize(m, userLat, userLng) {
       && !Array.isArray(m.calendario_fonte) ? m.calendario_fonte : null,
     dettaglio_fonte: m.dettaglio_fonte && typeof m.dettaglio_fonte === 'object'
       && !Array.isArray(m.dettaglio_fonte) ? m.dettaglio_fonte : null,
+    evidenza_editoriale: m.evidenza_editoriale && typeof m.evidenza_editoriale === 'object'
+      && !Array.isArray(m.evidenza_editoriale) ? m.evidenza_editoriale : null,
     date_quality: m.date_quality || 'prevista',
     position_quality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',

@@ -1,5 +1,6 @@
 {
   "schema": 1,
+  "existing_source_refresh": {"enabled": true},
   "description": "Fail-closed daily DEV automation with source-level freshness, identity and no dynamic billed reads",
   "sources": [
     {

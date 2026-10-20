@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "enabled": true,
+  "source_id": "roma-d881",
+  "max_requests": 2,
+  "max_metadata_bytes": 300000,
+  "max_csv_bytes": 512000,
+  "max_market_rows": 300,
+  "max_physical_rows": 5000,
+  "admit_new": false,
+  "assign_coordinates": false,
+  "replace_addresses": false,
+  "generate_calendar": false,
+  "managed_hours_updates": true
+}

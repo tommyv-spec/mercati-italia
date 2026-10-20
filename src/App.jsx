@@ -5,6 +5,7 @@ import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 import { UNKNOWN_CITY_HELP } from './lib/locationQuality';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
 import { sourceCalendarView, sourceContacts, sourceHoursForDate } from './lib/sourceCalendar.js';
+import { editorialEvidenceView } from './lib/editorialEvidence.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
@@ -1883,6 +1884,7 @@ export default function App() {
     const futureDates = m.dates.filter(d => d >= todayStr).sort();
     const canNavigate = !detailLoading && !detailError && Boolean(destinationForMarket(m));
     const sourceSchedule = sourceCalendarView(m);
+    const editorial = editorialEvidenceView(m);
     const contacts = sourceContacts(m.sourceDetail);
 
     return (
@@ -1978,6 +1980,44 @@ export default function App() {
               </details>
             )}
           </div>
+
+          {editorial && (
+            <div className="detail-section">
+              <div className="detail-section-title">
+                <Icon name="info" size={18} color={catColor} /> {editorial.title}
+              </div>
+              {editorial.notes.map((note, i) => (
+                <p key={note + i} className="source-calendar-note">{note}</p>
+              ))}
+              {editorial.hours && <p className="detail-description">
+                <strong>{editorial.hoursLabel}:</strong> {editorial.hours}
+              </p>}
+              {editorial.recurrence && <p className="source-calendar-note">
+                Cadenza descritta nella pagina: {editorial.recurrence}
+              </p>}
+              {editorial.rows.length > 0 && (
+                <details className="source-calendar" key={m.id + '/editorial'} open={editorial.rows.length <= 3}>
+                  <summary>Date e periodi descritti nella pagina ({editorial.rows.length})</summary>
+                  <dl>
+                    {editorial.rows.map(row => (
+                      <div key={row.key} className="source-calendar-row" data-period={row.kind === 'interval'}>
+                        <dt>{row.label}</dt>
+                        <dd>
+                          <strong>{row.status}{row.hours ? ' · ' : ''}</strong>{row.hours}
+                          {row.note && <p className="source-calendar-note">{row.note}</p>}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </details>
+              )}
+              <p className="source-calendar-note">
+                <a href={editorial.sourceUrl} target="_blank" rel="noopener noreferrer">{editorial.sourceName}</a>
+                {' · pagina letta il ' + editorial.readOn}<br />
+                {editorial.editorialDate}
+              </p>
+            </div>
+          )}
 
           {/* Address */}
           <div className="detail-section" style={{ animationDelay: '0.15s' }}>

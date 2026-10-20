@@ -29,6 +29,10 @@ test('municipality navigation hold and publisher links survive regional lazy-loa
       name:'Mercatino delle Curiosità',conditions:['Sospeso in caso di maltempo'],
       contacts:[{kind:'telephone',value:'+39 055 123456'}],
     }},
+    evidenza_editoriale:{schema:1,manager:'editorial-detail',publisher:'cosedicasa.com',
+      market:{slug:cityId},primary_url:source,read_on:'2026-10-20',modified_on:'2025-01-07',
+      calendar_mode:'limit_forecasts',facts:{archive_marker:true,
+        edition_intervals:[{start:'2025-06-01',end:'2025-09-30'}]},conflicts:[]},
   }
   globalThis.fetch=async (url)=>{
     const s=String(url)
@@ -64,7 +68,10 @@ test('municipality navigation hold and publisher links survive regional lazy-loa
       'Explicit source dates and per-date hours must survive regional lazy-load')
     assert.deepEqual(reviewed.dettaglio_fonte,detail.dettaglio_fonte,
       'Source conditions and contacts must reach the React detail adapter')
+    assert.deepEqual(reviewed.evidenza_editoriale,detail.evidenza_editoriale,
+      'Editorial edition limits and historical source dates must survive regional lazy-load')
     assert.equal(list[0].calendario_fonte,null,'The national index stays compact')
+    assert.equal(list[0].evidenza_editoriale,null,'Editorial facts belong to the full detail, not the index')
     assert.equal(urls.filter(url=>url.endsWith('/lombardia-proof.json')).length,1)
     assert.equal(urls.length,3,'No dynamic Firestore/Worker calls to read regional details')
   } finally{

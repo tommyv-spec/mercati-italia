@@ -98,6 +98,69 @@ non ricevono un anno o un'interpretazione inventati. Il replay completo conserva
 13.824 identità e rimuove 38 previsioni sicuramente fuori intervallo. Queste
 regole sono verificate anche dai controlli finali del percorso di pubblicazione.
 
+## Seconda acquisizione reale: liste provinciali recuperate
+
+L’esecuzione [39465324614](https://github.com/tommyv-spec/mercati-italia/actions/runs/39465324614)
+usa DEV `60c9c7c`. Legge correttamente 13 elenchi provinciali Happings su 14
+selezionati; Enna risponde 404 e non produce aggiornamenti. Legge inoltre 82
+pagine di dettaglio. Il candidato contiene 13.856 schede, tutte le identità
+precedenti e 32 nuove identità provate, con 158 date future esplicite.
+
+Sulle schede precedenti recupera 363 indirizzi vuoti e precisa 26 sedi generiche;
+recupera 254 orari vuoti e aggiorna un testo orario già presente. Restano 3.066
+indirizzi vuoti e 10.599 orari vuoti. Sono esportate ricevute valide per 2.235
+schede. Il [confronto completo](../reports/automation/dev-live-candidate-39465324614-quality.json)
+conserva le definizioni originali e l’impronta dell’artefatto.
+
+**Anche questo candidato è ancora in attesa di pubblicazione.** I controlli
+sorgenti, dei dati e della build passano; l’allarme sulla crescita dei gruppi
+reversibili confronta 588 pulsanti ripetuti con il vecchio riferimento di 382.
+La [verifica completa](../reports/automation/display-group-growth-review-39465324614.json)
+ricostruisce tutte le 258 nuove coppie: ognuna dipende esclusivamente da campi
+recuperati con ricevute sorgenti valide. Nessun cambiamento di identità, fonte
+primaria, Comune, coordinate o conferma umana; nessuna nuova coppia inspiegata.
+Il riferimento statistico è aggiornato ai valori effettivamente esaminati,
+marcandolo esplicitamente come candidato non pubblicato. Le soglie e i controlli
+MAIN restano identici; le schede originali rimangono tutte apribili.
+
+## Lettori ricorrenti delle fonti già presenti
+
+Il nuovo raccordo legge le URL primarie già associate alle schede Eventi e
+Sagre e Cose di Casa. Conserva una coda pubblicabile con esiti, tentativi,
+letture effettive e pagine ancora da leggere; un errore non vale come lettura
+riuscita. Il limite è 64 dettagli/210 secondi per Eventi e Sagre e 16 dettagli/
+90 secondi per Cose di Casa, con richieste distanziate e budget separati.
+I due domini vengono letti contemporaneamente; il normale Autopilot giornaliero
+rimane il solo percorso di pubblicazione.
+
+Il raccordo conserva indirizzi, orari, condizioni e limiti delle edizioni,
+separando la data effettiva della fonte dalla data in cui viene letta. Gli
+intervalli di una manifestazione non diventano aperture quotidiane. Le edizioni
+storiche restano consultabili e possono sospendere previsioni non sostenute,
+senza cancellare il mercato o dichiararlo definitivamente chiuso. I dettagli
+nell’interfaccia mostrano anche limiti, orari storici e contraddizioni.
+
+Il [rapporto dei lettori editoriali](../reports/automation/editorial-reader-validation-20261020.json)
+distingue cinque acquisizioni HTTP complete Cose di Casa dai 17 snapshot di
+fatti Eventi e Sagre salvati nell’audit precedente, che non conservavano il
+trasporto HTTP originale. I replay Cose di Casa conservano tutte le 13.824 e
+13.856 identità attraverso export, ricaricamento e giorno offline successivo;
+recuperano due orari correnti, conservano due orari storici nelle sole prove
+e ritirano quattro previsioni non sostenute dalla relativa edizione.
+
+Il lettore mantenuto Roma d881 seleziona il CSV più recente dai metadati
+realmente ricevuti. Le 70 righe originali producono 68 raccordi univoci e due
+sospensioni per identità danneggiate. Gli orari espongono le date 2021/2023 del
+CSV: non sono conferme attuali e non aggiornano la freschezza del calendario.
+Le prove dei campi vengono ricostruite dal contenuto originale prima e dopo
+l’export. Nessuna modifica a indirizzi, coordinate o identità da questo lettore.
+
+Sono chiusi nove ulteriori TODO di meccanismo, con prove specifiche, nel registro
+delle fonti. Restano separati i TODO narrativi, discovery e conflitti non
+risolti. La prima acquisizione reale dei nuovi lettori nel candidato, il ciclo
+completo di tutte le URL e la pubblicazione effettiva richiedono ancora i loro
+risultati osservati; non sono dedotti dal passaggio dei test.
+
 ## Check-in e criterio di completamento
 
 - [x] Misurare il catalogo realmente pubblicato, su tutte le fonti.

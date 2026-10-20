@@ -1,4 +1,5 @@
 import { localDateISO } from './dateDisclosure.js'
+import { editorialHoursForDate } from './editorialEvidence.js'
 
 const active = new Set(['source_listed', 'rescheduled'])
 const statusLabels = {
@@ -117,7 +118,10 @@ export function sourceCalendarView(market, now = new Date()) {
 /** Use only the hours attached to the selected date; never fill missing ends. */
 export function sourceHoursForDate(market, day) {
   if (calendarExceptions(market, day).has(day)) return 'Annullato'
-  if (!market?.sourceCalendar) return text(market?.hours) || 'Orario da verificare'
+  if (!market?.sourceCalendar) {
+    const editorial = editorialHoursForDate(market, day)
+    return editorial !== null ? editorial : text(market?.hours) || 'Orario da verificare'
+  }
   if (!validDate(day)) return text(market?.hours) || 'Orario da verificare'
   const occurrences = upcomingOccurrences(market.sourceCalendar, day)
     .filter(item => item.date === day)
