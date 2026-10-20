@@ -25,6 +25,7 @@ from field_evidence import clean_receipts, clean_exceptions
 from source_calendar import clean_source_calendar, clean_source_detail, source_calendar_dates
 from source_freshness import source_date_evidence
 from source_hours import preserve_hours_text
+from province_reconciliation import KEY as PROVINCE_PROOF, retained_proof as retained_province_proof
 from lombardia_calendar_scope import calendar_scope, filter_dates, retained_identity
 from editorial_calendar_scope import (
     KEY as EDITORIAL_EVIDENCE, clean_editorial_evidence,
@@ -269,6 +270,9 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     if raw.get("localita_ricostruita_da") == "ISTAT comuni 2026-02-21; nome fonte e provincia":
         result["localita_ricostruita_da"] = raw["localita_ricostruita_da"]
         result["citta_originale"] = safe_string(raw.get("citta_originale"), 160)
+    province_proof = retained_province_proof(raw, result)
+    if province_proof is not None:
+        result[PROVINCE_PROOF] = province_proof
     if raw.get("nome_originale"):
         result["nome_originale"] = safe_string(raw.get("nome_originale"), 160)
     # Publisher-reviewed venue and season evidence is preserved in the lazy

@@ -1,0 +1,991 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "READ_ONLY",
+  "catalog_writes": 0,
+  "results": {
+    "integration_replay": {
+      "catalog_records": 13826,
+      "candidates": 19,
+      "one_primary_record": 6,
+      "primary_competitor_candidates": 13,
+      "one_generic_record_nationwide": 0,
+      "strict_recovery_eligible": 0,
+      "candidates_with_explicit_other_day": 2,
+      "candidates_with_specific_source_street": 8,
+      "candidates_with_protected_calendars": 0,
+      "candidates_with_independent_calendar_receipts": 0,
+      "candidate_rows": [
+        {
+          "id": "mercato-settimanale-di-orsomarso-orsomarso",
+          "city": "Orsomarso",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-orsomarso-orsomarso-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-cosenza.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-verbicaro-verbicaro",
+          "city": "Verbicaro",
+          "source_weekday": 1,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-di-verbicaro-verbicaro-martedi",
+            "mercato-settimanale-di-verbicaro-verbicaro-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-verbicaro.html",
+            "https://www.happings.com/it/mercati-settimanali-a-cosenza.html"
+          ],
+          "contradicting_day_ids": [
+            "mercato-settimanale-di-verbicaro-verbicaro-mercoledi"
+          ],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-argenta-argenta",
+          "city": "Argenta",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-argenta-argenta-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-argenta.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-bondeno-bondeno",
+          "city": "Bondeno",
+          "source_weekday": 1,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-di-bondeno-bondeno-martedi",
+            "mercato-settimanale-di-bondeno-bondeno-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-bondeno.html",
+            "https://www.happings.com/it/mercati-settimanali-a-ferrara.html"
+          ],
+          "contradicting_day_ids": [
+            "mercato-settimanale-di-bondeno-bondeno-mercoledi"
+          ],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-copparo-copparo",
+          "city": "Copparo",
+          "source_weekday": 4,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-copparo-copparo-venerdi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-ferrara.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-colfelice-colfelice",
+          "city": "Colfelice",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-a-colfelice-colfelice-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-ferentino-ferentino",
+          "city": "Ferentino",
+          "source_weekday": 5,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-a-ferentino-ferentino-sabato"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-filettino-filettino",
+          "city": "Filettino",
+          "source_weekday": 2,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-a-filettino-filettino-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-frosinone-frosinone",
+          "city": "Frosinone",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 3,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-frosinone-frosinone-giovedi",
+            "mercato-settimanale-di-frosinone-frosinone-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-isolabona-isolabona",
+          "city": "Isolabona",
+          "source_weekday": 6,
+          "source_street": "Via Roma piazza S. Lucia",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-isolabona-isolabona-domenica",
+            "mercato-settimanale-di-isolabona-isolabona-domenica"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "https://www.happings.com/it/mercato-settimanale-a-isolabona.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-perinaldo-perinaldo",
+          "city": "Perinaldo",
+          "source_weekday": 2,
+          "source_street": "Piazza Santa Croce",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-perinaldo-perinaldo-mercoledi",
+            "mercato-settimanale-di-perinaldo-perinaldo-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "https://www.happings.com/it/mercato-settimanale-a-perinaldo.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-pompeiana-pompeiana",
+          "city": "Pompeiana",
+          "source_weekday": 1,
+          "source_street": "Piazza Dante",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-pompeiana-pompeiana-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-pompeiana.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-vallebona-vallebona",
+          "city": "Vallebona",
+          "source_weekday": 1,
+          "source_street": "Piazza Libertà",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-vallebona-vallebona-martedi",
+            "mercato-settimanale-di-vallebona-vallebona-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "https://www.happings.com/it/mercato-settimanale-a-vallebona.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-francavilla-d-ete-francavilla-d-ete",
+          "city": "Francavilla d'Ete",
+          "source_weekday": 5,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-francavilla-d-ete-francavilla-d-ete-sabato"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-francavilla-d-ete.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-barbaresco-barbaresco",
+          "city": "Barbaresco",
+          "source_weekday": 6,
+          "source_street": "Via torino",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-barbaresco-barbaresco-domenica"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-barbaresco.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-farigliano-farigliano",
+          "city": "Farigliano",
+          "source_weekday": 6,
+          "source_street": "Piazza san giovanni",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-farigliano-farigliano-domenica"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-farigliano.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-monesiglio-monesiglio",
+          "city": "Monesiglio",
+          "source_weekday": 1,
+          "source_street": "Piazza xx settembre",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-monesiglio-monesiglio-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-monesiglio.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-carlantino-carlantino",
+          "city": "Carlantino",
+          "source_weekday": 1,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-carlantino-carlantino-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-foggia.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-montaione-montaione",
+          "city": "Montaione",
+          "source_weekday": 4,
+          "source_street": "Piazza Gramsci",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-montaione-montaione-venerdi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-firenze.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        }
+      ]
+    },
+    "actual_candidate_39465324614": {
+      "catalog_records": 13856,
+      "candidates": 19,
+      "one_primary_record": 6,
+      "primary_competitor_candidates": 13,
+      "one_generic_record_nationwide": 0,
+      "strict_recovery_eligible": 0,
+      "candidates_with_explicit_other_day": 2,
+      "candidates_with_specific_source_street": 8,
+      "candidates_with_protected_calendars": 0,
+      "candidates_with_independent_calendar_receipts": 0,
+      "candidate_rows": [
+        {
+          "id": "mercato-settimanale-di-orsomarso-orsomarso",
+          "city": "Orsomarso",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-orsomarso-orsomarso-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-cosenza.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-verbicaro-verbicaro",
+          "city": "Verbicaro",
+          "source_weekday": 1,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-di-verbicaro-verbicaro-martedi",
+            "mercato-settimanale-di-verbicaro-verbicaro-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-verbicaro.html",
+            "https://www.happings.com/it/mercati-settimanali-a-cosenza.html"
+          ],
+          "contradicting_day_ids": [
+            "mercato-settimanale-di-verbicaro-verbicaro-mercoledi"
+          ],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-argenta-argenta",
+          "city": "Argenta",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-argenta-argenta-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-argenta.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-bondeno-bondeno",
+          "city": "Bondeno",
+          "source_weekday": 1,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-di-bondeno-bondeno-martedi",
+            "mercato-settimanale-di-bondeno-bondeno-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-bondeno.html",
+            "https://www.happings.com/it/mercati-settimanali-a-ferrara.html"
+          ],
+          "contradicting_day_ids": [
+            "mercato-settimanale-di-bondeno-bondeno-mercoledi"
+          ],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-copparo-copparo",
+          "city": "Copparo",
+          "source_weekday": 4,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-copparo-copparo-venerdi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-ferrara.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-colfelice-colfelice",
+          "city": "Colfelice",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-a-colfelice-colfelice-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-ferentino-ferentino",
+          "city": "Ferentino",
+          "source_weekday": 5,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-a-ferentino-ferentino-sabato"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-filettino-filettino",
+          "city": "Filettino",
+          "source_weekday": 2,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-a-filettino-filettino-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-frosinone-frosinone",
+          "city": "Frosinone",
+          "source_weekday": 3,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 3,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-frosinone-frosinone-giovedi",
+            "mercato-settimanale-di-frosinone-frosinone-giovedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "https://www.happings.com/it/mercati-settimanali-a-frosinone.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-isolabona-isolabona",
+          "city": "Isolabona",
+          "source_weekday": 6,
+          "source_street": "Via Roma piazza S. Lucia",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-isolabona-isolabona-domenica",
+            "mercato-settimanale-di-isolabona-isolabona-domenica"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "https://www.happings.com/it/mercato-settimanale-a-isolabona.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-a-isolabona-isolabona-domenica",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+              "source": "happings-weekly-imperia"
+            },
+            {
+              "id": "mercato-settimanale-di-isolabona-isolabona-domenica",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+              "source": "happings-weekly-imperia"
+            }
+          ],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-perinaldo-perinaldo",
+          "city": "Perinaldo",
+          "source_weekday": 2,
+          "source_street": "Piazza Santa Croce",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-perinaldo-perinaldo-mercoledi",
+            "mercato-settimanale-di-perinaldo-perinaldo-mercoledi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "https://www.happings.com/it/mercato-settimanale-a-perinaldo.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-a-perinaldo-perinaldo-mercoledi",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+              "source": "happings-weekly-imperia"
+            },
+            {
+              "id": "mercato-settimanale-di-perinaldo-perinaldo-mercoledi",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+              "source": "happings-weekly-imperia"
+            }
+          ],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-pompeiana-pompeiana",
+          "city": "Pompeiana",
+          "source_weekday": 1,
+          "source_street": "Piazza Dante",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-pompeiana-pompeiana-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-pompeiana.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-di-pompeiana-pompeiana-martedi",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+              "source": "happings-weekly-imperia"
+            }
+          ],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-vallebona-vallebona",
+          "city": "Vallebona",
+          "source_weekday": 1,
+          "source_street": "Piazza Libertà",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 3,
+          "competitor_ids": [
+            "mercato-settimanale-a-vallebona-vallebona-martedi",
+            "mercato-settimanale-di-vallebona-vallebona-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "https://www.happings.com/it/mercato-settimanale-a-vallebona.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-a-vallebona-vallebona-martedi",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+              "source": "happings-weekly-imperia"
+            },
+            {
+              "id": "mercato-settimanale-di-vallebona-vallebona-martedi",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+              "source": "happings-weekly-imperia"
+            }
+          ],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-francavilla-d-ete-francavilla-d-ete",
+          "city": "Francavilla d'Ete",
+          "source_weekday": 5,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-francavilla-d-ete-francavilla-d-ete-sabato"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-francavilla-d-ete.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-barbaresco-barbaresco",
+          "city": "Barbaresco",
+          "source_weekday": 6,
+          "source_street": "Via torino",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-barbaresco-barbaresco-domenica"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-barbaresco.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-di-barbaresco-barbaresco-domenica",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+              "source": "happings-weekly-cuneo"
+            }
+          ],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-farigliano-farigliano",
+          "city": "Farigliano",
+          "source_weekday": 6,
+          "source_street": "Piazza san giovanni",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-farigliano-farigliano-domenica"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-farigliano.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-di-farigliano-farigliano-domenica",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+              "source": "happings-weekly-cuneo"
+            }
+          ],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-monesiglio-monesiglio",
+          "city": "Monesiglio",
+          "source_weekday": 1,
+          "source_street": "Piazza xx settembre",
+          "source_specific_street": true,
+          "primary_cohort": 1,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-monesiglio-monesiglio-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercato-settimanale-a-monesiglio.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-di-monesiglio-monesiglio-martedi",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+              "source": "happings-weekly-cuneo"
+            }
+          ],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-carlantino-carlantino",
+          "city": "Carlantino",
+          "source_weekday": 1,
+          "source_street": "centro",
+          "source_specific_street": false,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-carlantino-carlantino-martedi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-foggia.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [],
+          "strict_recovery_eligible": false
+        },
+        {
+          "id": "mercato-settimanale-di-montaione-montaione",
+          "city": "Montaione",
+          "source_weekday": 4,
+          "source_street": "Piazza Gramsci",
+          "source_specific_street": true,
+          "primary_cohort": 2,
+          "generic_municipality_cohort": 2,
+          "competitor_ids": [
+            "mercato-settimanale-di-montaione-montaione-venerdi"
+          ],
+          "competitor_urls": [
+            "https://www.happings.com/it/mercati-settimanali-a-firenze.html"
+          ],
+          "contradicting_day_ids": [],
+          "conflicting_street_ids": [],
+          "protected_calendar_ids": [],
+          "independent_calendar_proof_ids": [],
+          "calendar_receipts": [
+            {
+              "id": "mercato-settimanale-di-montaione-montaione-venerdi",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+              "source": "happings-weekly-firenze"
+            }
+          ],
+          "strict_recovery_eligible": false
+        }
+      ]
+    }
+  },
+  "input_hashes": {
+    "candidate_manifest": {
+      "path": "/tmp/vintagery-live-39465324614/candidate/public/data/v1/manifest.json",
+      "sha256": "8fea2953936396b94405bbdf37d7e4ed18f057b66bb39526c9d52491e63c39a4"
+    },
+    "captured_weekly_pages": {
+      "path": "/tmp/vintagery-live-39465324614/sources/happings-pages.json",
+      "sha256": "6a7e086640d3dfd7136e82bee29d68c2550f2f4cd4415f13af701e160752ff6d"
+    },
+    "initial_calendar_review": {
+      "path": "/tmp/vintagery-remaining-source-limits-20261020.json",
+      "sha256": "9fd8a9d6cfa24991c16c21afd503278fc988245587d7714bd7c8c425aa28a617"
+    }
+  },
+  "definitions": {
+    "candidate": "Existing Happings record with unreadable simple weekly recurrence and exactly one city row in a fully parsed captured province page; this is screening, not assignment proof.",
+    "primary_cohort": "All same-generic-market records with exact primary URL, municipality, province and region.",
+    "competitor_cohort": "All same-generic-market records with exact municipality, province and region in the entire national catalog, independent of primary URL.",
+    "noncompeting_theme": "Named specialist events remain separate; merely sharing a city does not make an antiquarian or travelling event the ordinary weekly market.",
+    "strict_recovery": "One original identity across the complete generic municipality cohort, one source row and specific location, no human or independent calendar proof, exact primary scope and ISTAT; never derived from a truncated weekday prefix."
+  },
+  "conclusion": {
+    "eligible_now": 0,
+    "current_reader_should_remain_unchanged": true,
+    "reason": "All 19 have another original ordinary-weekly identity in the complete national cohort. Six appear unique only when the older town source URL is incorrectly excluded.",
+    "source_unknown_age_records": 19,
+    "target_human_verifications": 0,
+    "target_existing_field_receipts": 0,
+    "public_dates_written": 0,
+    "recovery_report_is_not_authorization_to_apply": true,
+    "same_result_in_replay_and_actual_candidate": true
+  },
+  "proposed_separate_interfaces": {
+    "backend/happings_calendar_recovery.py": [
+      "inspect(base, pages, *, today) -> bounded report of candidates and holds",
+      "preview(base, pages, *, today, apply=False) -> unchanged rows or independently certified reconstruction",
+      "verify_changes(before, after, report, pages, *, today) -> exact source and whole-cohort reconstruction",
+      "verify_exported(before, revised, exported, report, pages, *, today) -> source proof plus normalized exported equality"
+    ],
+    "backend/happings_autopilot.py": "Optional separate phase weekly -> recovery -> detail; keep existing _verify_weekly_changes and _weekly_day unchanged. Bind each input/output transition and reparse validated captured pages. No new network phase or catalog IDs.",
+    "backend/field_evidence.py": "Current generic ownership helper rejects replacement of unowned nonempty recurrence. Do not bypass by blanking input or omitting old evidence. Any future one-time repair needs a dedicated verified migration certificate with original raw text and explicit ownership semantics; not a blanket managed-update exception.",
+    "backend/recurrence_refresh.py": "Keep freshness and temporal-scope gates unchanged. Receipt source content date stays unknown when page timestamps do not date the market row. Reported weekday does not create explicit dates or opening confirmation.",
+    "policy": "Disabled apply until positive unique-cohort fixtures and reviewed actual candidates exist; the 19 captured candidates all remain held."
+  },
+  "required_negative_tests": [
+    "Complete single source row plus two original IDs on same primary page is held.",
+    "One record on province page plus another old town URL in same municipality is held.",
+    "Competitor from another source is not excluded by source-url filtering.",
+    "Unknown or ambiguous competitor weekday does not let the competitor disappear.",
+    "Different complete weekday or conflicting specific street in cohort is held.",
+    "A partial day token is never expanded or used to remove competing source rows.",
+    "Two source rows remain ambiguous even if place/day fields happen to repeat.",
+    "Unparsed source list item, source layout change or missing heading holds whole source page.",
+    "Human verification, confirmed or reported calendar, dated exception, or independent recurrence proof blocks replacement.",
+    "Seasonal and fortnightly qualifiers survive; no weekly projections without represented scope.",
+    "Wrong municipality/province/region, changed primary URL or unproved redirect cannot be repaired by the calendar phase.",
+    "Tampered row index, omitted sibling, source hash/body mismatch or recomputed output digest is rejected by independent replay.",
+    "Unknown source row age plus a current read does not create future dates.",
+    "All original IDs, geography, primary links, coordinates, protected fields and original raw calendar text are retained.",
+    "Same-day replay is idempotent; new competing catalog record invalidates an old proposal.",
+    "Interrupted/offline replay cannot renew acquisition or fabricate success."
+  ]
+}

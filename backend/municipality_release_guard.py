@@ -15,8 +15,12 @@ from municipality_reconciliation import (
     ISTAT_SHA, SOURCE_DATE, PROJECTION_WARNING,
     source_city_cross_contamination,
 )
+from province_reconciliation import (
+    KEY as PROVINCE_PROOF, MAX_TOTAL_CHANGES, REGISTRY_SHA256,
+    valid_proof as valid_province_proof, verify_supplement,
+)
 
-MAX_CHANGED = 80
+MAX_CHANGED = MAX_TOTAL_CHANGES
 MAX_CITY_FIXES = 60
 MAX_QUARANTINES = 80
 ALLOWED = frozenset({
@@ -25,6 +29,7 @@ ALLOWED = frozenset({
     "ricorrenza_testo", "ricorrenza_originale", "proiezione_regola",
     "proiezione_fonte", "proiezione_generata_il",
     "calendario_sospeso_motivo",
+    "provincia", PROVINCE_PROOF,
 })
 
 
@@ -52,6 +57,7 @@ def check(original, revised, report):
     }
     touched = 0
     cities = 0
+    provinces = 0
     names = 0
     calendar_quarantined = 0
     calendar_days_cleared = 0
@@ -67,6 +73,13 @@ def check(original, revised, report):
             raise ValueError(f"Unapproved municipality data field modification: {slug}: {sorted(changes-ALLOWED)}")
         if before.get("verificato_il") or before.get("date_quality") == "confermata":
             raise ValueError("Verified or confirmed market must never be rewritten: " + slug)
+        if "provincia" in changes:
+            if (changes != {"provincia", PROVINCE_PROOF}
+                    or not valid_province_proof(after.get(PROVINCE_PROOF), after)):
+                raise ValueError("Unapproved municipality province proof or unrelated field modification: " + slug)
+            provinces += 1
+        elif PROVINCE_PROOF in changes:
+            raise ValueError("Province provenance changed without administrative correction: " + slug)
         city_changed = before.get("citta") != after.get("citta")
         if city_changed:
             case = approved.get(slug)
@@ -113,24 +126,77 @@ def check(original, revised, report):
     counts = report.get("counts") or {}
     for label, observed in (
         ("city_fixed", cities),
+        ("province_fixed", provinces),
         ("contaminated_market_titles_fixed", names),
         ("records_calendar_quarantined", calendar_quarantined),
         ("forecast_days_quarantined", calendar_days_cleared),
     ):
         if counts.get(label, 0) != observed:
             raise ValueError(f"Municipality correction counter mismatch {label}: {observed} vs {counts.get(label)}")
+    province_report = report.get("province_corrections")
+    if province_report is not None:
+        actual_provinces = verify_supplement(
+            original, revised, province_report, apply=report.get("review_only") is False)
+        if (actual_provinces != provinces
+                or counts.get("province_candidates", 0) != province_report["eligible"]
+                or counts.get("province_pending", 0) != province_report["pending"]
+                or counts.get("province_protected", 0) != province_report["protected"]):
+            raise ValueError("Administrative province correction counter mismatch")
+    elif provinces:
+        raise ValueError("Province correction lacks complete pinned registry proof")
     if (touched > MAX_CHANGED or cities > MAX_CITY_FIXES
             or calendar_quarantined > MAX_QUARANTINES):
         raise ValueError("Municipality cleanup exceeds bounded daily modification budget")
     return {
         "schema":1, "checked_ids":len(original), "market_identities_deleted":0,
         "changes":touched,"city_replacements":cities,
+        "province_replacements":provinces,
+        "province_pending":counts.get("province_pending", 0),
+        "province_protected":counts.get("province_protected", 0),
         "contaminated_titles_repaired":names,
         "calendar_sources_quarantined":calendar_quarantined,
         "forecast_dates_removed":calendar_days_cleared,
         "publisher_urls_or_human_verifications_changed":0,
         "source_istat_sha":ISTAT_SHA,
         "samples":samples,
+    }
+
+
+def verify_exported(original, municipal_rows, report, exported):
+    """Tether final province values and proofs to the checked municipality phase.
+
+    Later publisher phases may add their independently verified source facts.
+    They cannot silently replace a province or drop its administrative proof.
+    New publisher-admitted IDs are checked by their separate admission guards.
+    """
+    phase = check(original, municipal_rows, report)
+    if not isinstance(exported, list) or len(exported) > 100_000:
+        raise ValueError("Unbounded final catalog for municipality province guard")
+    by_id = {row["slug"]: row for row in exported}
+    if len(by_id) != len(exported):
+        raise ValueError("Duplicate final market identity in municipality guard")
+    expected_proofs = {row["slug"]: row for row in municipal_rows if PROVINCE_PROOF in row}
+    final_proofs = {row["slug"]: row for row in exported if PROVINCE_PROOF in row}
+    if set(expected_proofs) != set(final_proofs):
+        raise ValueError("Final ISTAT province proof set changed or a corrected ID disappeared")
+    checked = 0
+    for row in municipal_rows:
+        final = by_id.get(row["slug"])
+        if final is not None:
+            if final.get("provincia") != row.get("provincia"):
+                raise ValueError("Final province differs from checked municipality phase: " + row["slug"])
+            checked += 1
+        if row["slug"] in expected_proofs:
+            if (not valid_province_proof(row[PROVINCE_PROOF], row)
+                    or not valid_province_proof(final.get(PROVINCE_PROOF), final)
+                    or final[PROVINCE_PROOF] != row[PROVINCE_PROOF]):
+                raise ValueError("Final administrative province proof lost or altered: " + row["slug"])
+    return {
+        "schema": 1, "release_safe": True, "checked_existing_provinces": checked,
+        "province_corrections_this_run": phase["province_replacements"],
+        "administrative_proofs_preserved": len(expected_proofs),
+        "source_registry_sha256": REGISTRY_SHA256,
+        "source_receipts_rewritten": 0, "market_openings_confirmed": 0,
     }
 
 

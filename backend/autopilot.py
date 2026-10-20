@@ -92,7 +92,10 @@ from existing_source_refresh import (
     STATE_FILENAMES as EXISTING_SOURCE_STATES,
 )
 from official_source_output_gate import inspect as inspect_official_source_output
-from municipality_release_guard import check as check_municipality_changes
+from municipality_release_guard import (
+    check as check_municipality_changes,
+    verify_exported as verify_municipality_export,
+)
 from reviewed_city_evidence import (
     apply_reviewed_cities, verify_reviewed_diff, manifest_id as reviewed_city_manifest_id,
     REVIEWED_ON as REVIEWED_CITY_DATE
@@ -918,6 +921,8 @@ def run(args):
         "safeguarded_IDs": municipality_guard["checked_ids"],
         "enabled": bool(municipality_report["enabled"]),
         "city_fixed": municipality_report["counts"].get("city_fixed", 0),
+        "province_fixed": municipality_report["counts"].get("province_fixed", 0),
+        "province_pending": municipality_report["counts"].get("province_pending", 0),
         "calendar_quarantined": municipality_report["counts"].get(
             "records_calendar_quarantined", 0
         ),
@@ -1349,6 +1354,9 @@ def run(args):
     from validate_static import validate
     validated = validate(dest / "manifest.json")
     new_rows = load_existing(dest / "manifest.json")
+    municipality_static_guard = verify_municipality_export(
+        merged, municipality_rows, municipality_report, new_rows)
+    save_json(out / "municipality-static-guard.json", municipality_static_guard)
     happings_static_guard = verify_happings_exported(
         before_happings, projected, new_rows, happings_report, today=args.today
     )

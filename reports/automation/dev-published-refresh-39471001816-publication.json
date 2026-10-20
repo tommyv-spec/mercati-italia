@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "verified_on": "2026-10-20",
+  "run_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39471001816",
+  "run_id": 39471001816,
+  "candidate_dev_sha": "58604cf2174a54d8315564853e2e4caef8b56b43",
+  "published_dev_sha": "6274e1dd252173597bea539e9d95a1a936f446a3",
+  "published_preview_sha": "4482d1dd63f3e6d5a7f0af9e47982c7806829f6b",
+  "unchanged_main_sha": "1ef738e6c05981e208ffcea5aae483ed0df14969",
+  "checkpoint_artifact": {
+    "id": 12287854137,
+    "name": "mercati-checkpoints-39471001816",
+    "bytes": 31267680,
+    "sha256": "9869f9fbfaa900847d12df9aadec202b465624e02c28ae3578b221f9820dc0bc"
+  },
+  "jobs": [
+    {
+      "id": 118794736298,
+      "name": "Source → merge → recurrence → export → quality gates",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 118803164763,
+      "name": "Security, compiled static site, mobile browser checks",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 118803970969,
+      "name": "Update DEV catalog + separately hosted static preview",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 118804197257,
+      "name": "Failure monitoring and automatic GitHub incident",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "comparison_reports": {
+    "dev-published-refresh-39471001816-quality.json": {
+      "sha256": "9b02c08eee7fd93ac6ef6e5c64528ea6f69a52c8a0f19b9090e65d59d88bf3fa",
+      "bytes": 404003
+    },
+    "dev-published-refresh-39471001816-evidence.json": {
+      "sha256": "5a2a92989509b8dd5e7d220737ffebefaf3c97e0e6cec73020d7295dab493b95",
+      "bytes": 316899
+    },
+    "happings-truncated-calendar-cohort-review-20261020.json": {
+      "sha256": "a1fa6237a313d3ea80fce80267f6497fc78fbdaaf345d7dad5608b6a4522ce00",
+      "bytes": 40898
+    },
+    "remaining-source-mechanisms-20261020.json": {
+      "sha256": "9fd8a9d6cfa24991c16c21afd503278fc988245587d7714bd7c8c425aa28a617",
+      "bytes": 68368
+    }
+  },
+  "public_preview_http": {
+    "url": "https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/data/v1/manifest.json",
+    "final_url": "https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/data/v1/manifest.json",
+    "http_status": 200,
+    "read_on": "2026-10-20",
+    "sha256": "dc5295b06ce85c44b7beba9974af475c1ccfd76a0830c3affd16f1bee0865383",
+    "total": 13856,
+    "generated_at": "2026-10-20T18:16:36.226976+00:00",
+    "content_signature": "caba80be4514927a00e882f434e6783a7cb330bb470824a2ac9c747e2f6d5c71",
+    "matches_candidate_manifest": true
+  },
+  "checked_scope": {
+    "git_branch_catalog_and_queues": "exact candidate/DEV/preview equality",
+    "public_https": "manifest bytes checked; complete CDN asset traversal not claimed",
+    "independent_current_openings_verified": 0,
+    "all_catalog_fields_complete": false
+  }
+}

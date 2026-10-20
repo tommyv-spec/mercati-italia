@@ -64,6 +64,16 @@
       "id": "FULL-CATALOG-READER-COMPATIBILITY-20261020",
       "at": "2026-10-20T17:53:35.590967+00:00",
       "summary": "Replay completo del percorso finale sui byte originali disponibili: 13.824 identità precedenti conservate, due nuove identità Happings, 17/17 controlli di rilascio e tre guard statici passati. Confronto del codice condiviso aggiornato senza ridatare i campioni né inventare letture nuove: EES offline e redirect CDC non documentato sospeso. Zero campi geografici, URL primari, indirizzi non vuoti o verifiche umane alterati."
+    },
+    {
+      "id": "ACTUAL-DEV-PUBLICATION-39471001816",
+      "at": "2026-10-20T18:21:00+00:00",
+      "summary": "Pubblicazione effettiva completata: tutte le 13.824 identità precedenti e 32 nuove schede Happings, 363 indirizzi mancanti e 263 orari mancanti recuperati. Candidato, DEV 6274e1d e preview 4482d1d identici per dati, manifest e code; manifest HTTPS 200 con stesso hash. Prime letture EES 11/19 e CDC 16/16, Happings 13 indici + 90 dettagli. Roma timeout: zero arricchimenti reali. Restano code incomplete e 1.674 schede senza raccordo automatico; nessuna conferma individuale inventata."
+    },
+    {
+      "id": "ISTAT-PROVINCE-MECHANISM-20261020",
+      "at": "2026-10-20T18:22:30+00:00",
+      "summary": "Implementata riconciliazione provincia per tutte le fonti con Comune+regione univoci nel registro ISTAT fissato e riscaricato oggi con hash identico. Sul nuovo catalogo 13.856: 220 eleggibili; replay 80/80/60/0 entro il budget totale esistente, con tutte le 25 evidenze editoriali e 2.264 ricevute conservate. Solo provincia + prova amministrativa cambiano. Codice pronto, correzioni non ancora pubblicate; NC-08 resta aperto per gli altri difetti geografici."
     }
   ],
   "tasks": [
@@ -992,7 +1002,8 @@
         "umbriaeventi.com--f193ae86be90",
         "wwwservizi.regione.emilia-romagna.itnote.asp--08f6dd05bcee"
       ],
-      "acceptance": "Naturno Naturno/Terlano Terlano e città con (PG) non restano geografie duplicate. Provincia MI non viene assegnata automaticamente a ogni voce del portale lombardo. PD/TN come unico campo città e MERCATO DEI CENTO vengono segnalati come geografia non risolta. Ravenna–Marina di Ravenna conserva la frazione."
+      "acceptance": "Naturno Naturno/Terlano Terlano e città con (PG) non restano geografie duplicate. Provincia MI non viene assegnata automaticamente a ogni voce del portale lombardo. PD/TN come unico campo città e MERCATO DEI CENTO vengono segnalati come geografia non risolta. Ravenna–Marina di Ravenna conserva la frazione.",
+      "resolution": "Parziale: implementata provincia da Comune+regione ISTAT esatti, con prova autonoma e budget totale80. Replay220 casi su tutte le fonti, nessuna prova di campo riscritta. Restano città duplicate, frazioni, identità geografiche malformate e altri criteri di questo ticket; non chiuso."
     },
     {
       "id": "NC-09",

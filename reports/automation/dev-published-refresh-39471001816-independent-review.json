@@ -1,0 +1,1829 @@
+{
+  "schema": 1,
+  "run_id": "39471001816",
+  "date": "2026-10-20",
+  "review_basis": "Actual captured HTTP bodies and actual candidate, reconstructed offline with the pinned integration tree; no new network reads.",
+  "artifact": {
+    "zip_sha256": "9869f9fbfaa900847d12df9aadec202b465624e02c28ae3578b221f9820dc0bc",
+    "zip_bytes": 31267680,
+    "candidate_signature": "caba80be4514927a00e882f434e6783a7cb330bb470824a2ac9c747e2f6d5c71",
+    "baseline_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f"
+  },
+  "identities": {
+    "baseline": 13824,
+    "candidate": 13856,
+    "retained": 13824,
+    "removed": 0,
+    "duplicates": 0,
+    "new": 32,
+    "new_ids_independently_reconstructed": true,
+    "existing_primary_url_changes": []
+  },
+  "editorial": {
+    "eventiesagre.it": {
+      "network_requests": 20,
+      "attempted_urls": 19,
+      "read_pages": 11,
+      "parsed_documents": 11,
+      "attempt_statuses": {
+        "retrieved": 11,
+        "unavailable": 8
+      },
+      "stop_reason": "time_budget",
+      "source_bytes": 592914,
+      "raw_parsing_exact": true,
+      "reconciliation_exact": true,
+      "final_export_guard": {
+        "release_safe": true,
+        "editorial_identities_checked": 11
+      },
+      "outcomes": {
+        "changed": 11,
+        "held": 1
+      },
+      "holds": {
+        "source_geography_not_established": 1
+      },
+      "calendar_dispositions": {
+        "archived_edition_forecast_held": 10,
+        "unresolved_editorial_calendar_qualifications": 1
+      },
+      "changed_existing_ids": [
+        "fiera-del-vino-a-polpenazze-del-garda-polpenazze-del-garda",
+        "borgo-divino-in-tour-a-celle-ligure-celle-ligure",
+        "courmayeur-food-market-courmayeur",
+        "courmayeur-food-market-courmayeur-martedi",
+        "le-vie-del-gusto-e-dell-artigianato-san-piero-patti",
+        "legumi-che-passione-a-stra-stra",
+        "la-zena-poreta-lavarone",
+        "ciaspomagna-cimbra-luserna",
+        "fasulin-de-l-oc-cun-le-cudeghe-pizzighettone",
+        "november-porc-polesine-zibello",
+        "mielinumbria-foligno"
+      ],
+      "changed_fields": {
+        "evidenza_editoriale": 11,
+        "date": 2,
+        "date_quality": 2,
+        "proiezione_fonte": 2,
+        "proiezione_regola": 2,
+        "proiezione_generata_il": 2
+      },
+      "actual_field_changes": [],
+      "nonempty_field_overwrites": [],
+      "actual_date_list_changes": [
+        {
+          "id": "courmayeur-food-market-courmayeur",
+          "before": [
+            "2026-10-20",
+            "2026-10-27",
+            "2026-11-03",
+            "2026-11-10",
+            "2026-11-17",
+            "2026-11-24",
+            "2026-12-01",
+            "2026-12-08",
+            "2026-12-15",
+            "2026-12-22",
+            "2026-12-29",
+            "2027-01-05",
+            "2027-01-12",
+            "2027-01-19",
+            "2027-01-26",
+            "2027-02-02",
+            "2027-02-09",
+            "2027-02-16"
+          ],
+          "after": [],
+          "reason": "archived_edition_forecast_held"
+        },
+        {
+          "id": "courmayeur-food-market-courmayeur-martedi",
+          "before": [
+            "2026-10-20",
+            "2026-10-27",
+            "2026-11-03",
+            "2026-11-10",
+            "2026-11-17",
+            "2026-11-24",
+            "2026-12-01",
+            "2026-12-08",
+            "2026-12-15",
+            "2026-12-22",
+            "2026-12-29",
+            "2027-01-05",
+            "2027-01-12",
+            "2027-01-19",
+            "2027-01-26",
+            "2027-02-02",
+            "2027-02-09",
+            "2027-02-16"
+          ],
+          "after": [],
+          "reason": "archived_edition_forecast_held"
+        }
+      ],
+      "proof_only_changed_ids": [
+        "fiera-del-vino-a-polpenazze-del-garda-polpenazze-del-garda",
+        "borgo-divino-in-tour-a-celle-ligure-celle-ligure",
+        "le-vie-del-gusto-e-dell-artigianato-san-piero-patti",
+        "legumi-che-passione-a-stra-stra",
+        "la-zena-poreta-lavarone",
+        "ciaspomagna-cimbra-luserna",
+        "fasulin-de-l-oc-cun-le-cudeghe-pizzighettone",
+        "november-porc-polesine-zibello",
+        "mielinumbria-foligno"
+      ],
+      "human_verification_dates_changed": 0,
+      "identity_geography_coordinates_primary_urls_changed": 0,
+      "historical_outcomes": 10,
+      "source_document_scopes": [
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-05-14",
+          "published_on": null,
+          "sha256": "5ccacf2c328163d3f1905098bd33e3270da9d6d16f7fa52b00f79f211e25e1a2",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2026-05-29",
+              "end": "2026-06-01"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": [
+            "invalid_jsonld_ignored"
+          ]
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21052639_Borgo+DiVino+in+Tour+a+Celle+Ligure.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21052639_Borgo+DiVino+in+Tour+a+Celle+Ligure.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-06-03",
+          "published_on": null,
+          "sha256": "fd83e41b4a1b29c10fa141832e77eeb0c1f88edb7932bf7601cdbba50d0449dc",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2026-06-19",
+              "end": "2026-06-21"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": [
+            "invalid_jsonld_ignored"
+          ]
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21155326_Courmayeur+Food+Market.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21155326_Courmayeur+Food+Market.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2016-07-26",
+          "published_on": null,
+          "sha256": "215646d5e3fbe84147796cc45795c53fb946e90c9f30ee014ea47232254c49c3",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2016-07-26",
+              "end": "2016-08-23"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "multiple_recurrence_statements"
+            }
+          ],
+          "warnings": [
+            "invalid_jsonld_ignored"
+          ]
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21165715_Le+Vie+Del+Gusto+E+Dell+artigianato.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21165715_Le+Vie+Del+Gusto+E+Dell+artigianato.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2017-09-29",
+          "published_on": null,
+          "sha256": "e27c3513749101470c05d8c87a4ad3d36d720c3da15ebbc9d36066e7c2c31711",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2017-09-30",
+              "end": "2017-10-01"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": [
+            "invalid_jsonld_ignored"
+          ]
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21178870_Legumi+Che+Passione+A+Stra.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21178870_Legumi+Che+Passione+A+Stra.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-01-08",
+          "published_on": null,
+          "sha256": "55af3de30e4ed530bdbc6642ad547eefd340c3cd053d1799ea4d17ce80aa908f",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2026-02-07",
+              "end": "2026-02-08"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195228_La+Zena+Poreta.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195228_La+Zena+Poreta.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2025-12-30",
+          "published_on": null,
+          "sha256": "9b1b1ab5621c042365ccb5a8dede5a6aca0ce947d17db13c4fe2ec0a70a68f8f",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2025-12-29",
+              "end": "2025-12-29"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2025-12-29",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "visible event card Dal/Al"
+              ]
+            }
+          ],
+          "conflicts": [],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195255_Ciaspomagna+Cimbra.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195255_Ciaspomagna+Cimbra.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-01-08",
+          "published_on": null,
+          "sha256": "a6636d61bff4ac3b1793d37e6ec63352ca1c8848debf2c59c9bd0c17f6088e38",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2026-01-17",
+              "end": "2026-01-24"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": [
+            "invalid_jsonld_ignored"
+          ]
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/2269_Fasulin+De+L+oc+Cun+Le+Cudeghe.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/2269_Fasulin+De+L+oc+Cun+Le+Cudeghe.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-01-20",
+          "published_on": null,
+          "sha256": "6e36124f50257d653afcdbde389be2c875c039fc3e7e6b2a7ec2b222300067e8",
+          "archive_marker": false,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2026-10-30",
+              "end": "2026-11-09"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2025-11-10",
+          "published_on": null,
+          "sha256": "17a3d75774b2d80397bb445f330710881baee423b1dafbf958242cf882e1d0d0",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2025-11-21",
+              "end": "2025-11-23"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3318_Mielinumbria.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3318_Mielinumbria.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2025-11-14",
+          "published_on": null,
+          "sha256": "1b6191637577056b34df1dfa5af288f4d1ed37e08e6d48099b8b0a3c79464444",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2025-11-21",
+              "end": "2025-11-23"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": [
+            "invalid_jsonld_ignored"
+          ]
+        },
+        {
+          "requested_url": "https://www.eventiesagre.it/Eventi_Feste/1338_Festa+Dei+Bisi.html",
+          "final_url": "https://www.eventiesagre.it/Eventi_Feste/1338_Festa+Dei+Bisi.html",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-05-11",
+          "published_on": null,
+          "sha256": "285bcc1f3480b986ff41b07f8473a8df27bcd46a6f26096b50b0cf114b6a4de9",
+          "archive_marker": true,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2026-05-29",
+              "end": "2026-06-08"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [],
+          "warnings": [
+            "invalid_jsonld_ignored"
+          ]
+        }
+      ],
+      "observed_redirects": [],
+      "failures": [
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21145551_Borgo+DiVino+in+Tour+a+Citta+SantaAngelo.html"
+        },
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21157966_L+Ape+In+Citta.html"
+        },
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21160786_Festa+Del+Cardo+Dolce+A+Cervia.html"
+        },
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21177849_Festival+Delle+Regioni+D+italia+A+Falvaterra.html"
+        },
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21193524_Monte+Food+Festival+A+Monticelli+Terme.html"
+        },
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195272_Pasta+Ripiena+E+Cacciagione.html"
+        },
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Feste/15489_Fiera+della+Pallavicina+a+Izano.html"
+        },
+        {
+          "error_type": "URLError",
+          "network_attempted": true,
+          "status": "unavailable",
+          "url": "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html"
+        }
+      ],
+      "queue": {
+        "resources": 1853,
+        "statuses": {
+          "retrieved": 11,
+          "unavailable": 8,
+          "unread": 1834
+        },
+        "progress": {
+          "attempt_cycle_complete": false,
+          "cycle": 1,
+          "cycle_attempted": 19,
+          "cycle_read": 11,
+          "cycle_remaining": 1834,
+          "cycle_started_on": "2026-10-20",
+          "last_completed_cycle": 0,
+          "market_freshness_guaranteed": false,
+          "never_read": 1842,
+          "overdue_after_days": 45,
+          "resources": 1853,
+          "successful_read_cycle_complete": false
+        },
+        "raw_checkpoint_transition_verified": true,
+        "candidate_state_matches": true
+      },
+      "cross_runtime_gzip_recompression_mismatches": [
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21052639_Borgo+DiVino+in+Tour+a+Celle+Ligure.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21155326_Courmayeur+Food+Market.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21165715_Le+Vie+Del+Gusto+E+Dell+artigianato.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21178870_Legumi+Che+Passione+A+Stra.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195228_La+Zena+Poreta.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195255_Ciaspomagna+Cimbra.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/2269_Fasulin+De+L+oc+Cun+Le+Cudeghe.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3318_Mielinumbria.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.eventiesagre.it/Eventi_Feste/1338_Festa+Dei+Bisi.html",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        }
+      ],
+      "robots_proof": {
+        "bytes": 1075,
+        "pacing_seconds": 2,
+        "read_on": "2026-10-20",
+        "sha256": "d0b6f4b0a6be2e3a0607ff6d488bb0c801d16c9a1eb73393fd75769b6866fac8",
+        "url": "https://www.eventiesagre.it/robots.txt"
+      },
+      "new_field_evidence_states": {}
+    },
+    "cosedicasa.com": {
+      "network_requests": 19,
+      "attempted_urls": 16,
+      "read_pages": 16,
+      "parsed_documents": 16,
+      "attempt_statuses": {
+        "retrieved": 16
+      },
+      "stop_reason": "detail_limit",
+      "source_bytes": 9813756,
+      "raw_parsing_exact": true,
+      "reconciliation_exact": true,
+      "final_export_guard": {
+        "release_safe": true,
+        "editorial_identities_checked": 14
+      },
+      "outcomes": {
+        "changed": 14,
+        "held": 3
+      },
+      "holds": {
+        "missing_province_requires_exact_venue_or_specific_title": 2,
+        "source_geography_not_established": 1
+      },
+      "calendar_dispositions": {
+        "conflicting_editorial_calendar_held": 14
+      },
+      "changed_existing_ids": [
+        "mercatino-antiquariato-e-usato-di-palmanova-palmanova-oggetti-e-cose-di-altri-te",
+        "mercatino-antiquariato-e-usato-di-abbiategrasso-mercatino-artigianato-e-creazion",
+        "mercatino-antiquariato-e-usato-di-acqui-terme-mercatino-degli-sgaiento-corso-bag",
+        "mercatino-antiquariato-e-usato-di-albenga-viale-martiri-della-liberta-albenga",
+        "mercatino-antiquariato-e-usato-di-alessandria-officina-delle-memorie-piazza-gari",
+        "mercatino-antiquariato-e-usato-di-san-benedetto-po-amarcord-mercatino-delle-cose",
+        "mercatino-antiquariato-e-usato-di-ancona-curiosando-piazza-cavour-e-viale-della",
+        "mercatino-antiquariato-e-usato-di-anghiari-memorandia-le-cose-che-raccontano-pia",
+        "mercatino-antiquariato-e-usato-di-san-vito-dei-normanni-antigua-exfadda-centro-c",
+        "mercatino-antiquariato-e-usato-di-torviscosa-la-soffitta-della-strega-bar-bianco",
+        "mercatino-antiquariato-e-usato-di-anzio-via-porto-neroniano-anzio",
+        "mercatino-antiquariato-e-usato-di-arco-mercatino-delle-pulci-di-arco-centro-stor",
+        "mercatino-antiquariato-e-usato-di-arezzo-fiera-antiquaria-piazza-grande-e-dintor",
+        "mercatino-antiquariato-e-usato-di-ariccia-corso-garibaldi-piazza-repubblica-piaz"
+      ],
+      "changed_fields": {
+        "evidenza_editoriale": 14,
+        "orario_testo": 9,
+        "riscontri_campi": 14,
+        "date": 12,
+        "date_quality": 12,
+        "proiezione_fonte": 11,
+        "proiezione_regola": 11,
+        "proiezione_generata_il": 11
+      },
+      "actual_field_changes": [
+        {
+          "id": "mercatino-antiquariato-e-usato-di-palmanova-palmanova-oggetti-e-cose-di-altri-te",
+          "field": "orario_testo",
+          "before": "",
+          "after": "08:00–13:00",
+          "source_url": "https://www.cosedicasa.com/mercatini/254324-2",
+          "evidence_state": "riscontro_da_aggiornare"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-abbiategrasso-mercatino-artigianato-e-creazion",
+          "field": "orario_testo",
+          "before": "",
+          "after": "09:00–18:00",
+          "source_url": "https://www.cosedicasa.com/mercatini/abbiategrasso-piazza-castello",
+          "evidence_state": "riscontro_da_aggiornare"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-acqui-terme-mercatino-degli-sgaiento-corso-bag",
+          "field": "orario_testo",
+          "before": "",
+          "after": "09:00–19:00",
+          "source_url": "https://www.cosedicasa.com/mercatini/acqui-terme-zona-di-corso-bagni",
+          "evidence_state": "riscontro_da_aggiornare"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-san-benedetto-po-amarcord-mercatino-delle-cose",
+          "field": "orario_testo",
+          "before": "",
+          "after": "07:00–19:00; Nel centro storico di San Benedetto Po, la prima domenica di ogni mese, dalle ore 7 alle 19, si tiene \"Amarcord - Mercatino delle cose di un tempo\" che propone pezzi di antiquariato, collezionismo, oggettistica e riuso.",
+          "source_url": "https://www.cosedicasa.com/mercatini/amarcord-mercatino-delle-cose-di-un-tempo",
+          "evidence_state": "riscontro_da_aggiornare"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-ancona-curiosando-piazza-cavour-e-viale-della",
+          "field": "orario_testo",
+          "before": "",
+          "after": "09:00–19:00; Il mercatino del Vintage, Collezionismo e Artigianato \"Curiosando\" si svolge ogni ultima domenica del mese e il sabato antecedente, dalle ore 9 alle 19, esclusi i mesi di giugno, luglio e agosto.",
+          "source_url": "https://www.cosedicasa.com/mercatini/ancona-piazza-cavour-corso-garibaldi",
+          "evidence_state": "riscontrato_fonte_recente"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-anghiari-memorandia-le-cose-che-raccontano-pia",
+          "field": "orario_testo",
+          "before": "",
+          "after": "08:00–19:00",
+          "source_url": "https://www.cosedicasa.com/mercatini/anghiari-centro-storico",
+          "evidence_state": "riscontrato_fonte_recente"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-san-vito-dei-normanni-antigua-exfadda-centro-c",
+          "field": "orario_testo",
+          "before": "",
+          "after": "07:00–17:00",
+          "source_url": "https://www.cosedicasa.com/mercatini/antigua-san-vito-dei-normanni-exfadda-centro-culturale",
+          "evidence_state": "riscontro_da_aggiornare"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-torviscosa-la-soffitta-della-strega-bar-bianco",
+          "field": "orario_testo",
+          "before": "",
+          "after": "15:00–18:30; Il Mercatino dell'Usato e dell'Artigianato artistico \"La Soffitta della Strega\" si svolge la terza domenica del mese, dalle ore 15 alle 18,30, esclusi luglio e agosto.",
+          "source_url": "https://www.cosedicasa.com/mercatini/antiquariato-usato-torviscosa-soffitta-strega",
+          "evidence_state": "riscontrato_fonte_recente"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-arezzo-fiera-antiquaria-piazza-grande-e-dintor",
+          "field": "orario_testo",
+          "before": "",
+          "after": "09:00–19:00",
+          "source_url": "https://www.cosedicasa.com/mercatini/arezzo-piazza-vasari-e-piazza-s-francesco",
+          "evidence_state": "riscontro_da_aggiornare"
+        }
+      ],
+      "nonempty_field_overwrites": [],
+      "actual_date_list_changes": [
+        {
+          "id": "mercatino-antiquariato-e-usato-di-abbiategrasso-mercatino-artigianato-e-creazion",
+          "before": [
+            "2026-11-15",
+            "2026-12-20",
+            "2027-01-17"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-acqui-terme-mercatino-degli-sgaiento-corso-bag",
+          "before": [
+            "2026-10-25",
+            "2026-11-22",
+            "2026-12-27",
+            "2027-01-24"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-albenga-viale-martiri-della-liberta-albenga",
+          "before": [
+            "2026-11-15",
+            "2026-12-20",
+            "2027-01-17"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-alessandria-officina-delle-memorie-piazza-gari",
+          "before": [
+            "2026-11-01",
+            "2026-12-06",
+            "2027-01-03",
+            "2027-02-07"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-san-benedetto-po-amarcord-mercatino-delle-cose",
+          "before": [
+            "2026-11-01",
+            "2026-12-06",
+            "2027-01-03",
+            "2027-02-07"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-ancona-curiosando-piazza-cavour-e-viale-della",
+          "before": [
+            "2026-10-25",
+            "2026-11-29",
+            "2026-12-27",
+            "2027-01-31"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-anghiari-memorandia-le-cose-che-raccontano-pia",
+          "before": [
+            "2026-11-08",
+            "2026-12-13",
+            "2027-01-10",
+            "2027-02-14"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-san-vito-dei-normanni-antigua-exfadda-centro-c",
+          "before": [
+            "2026-11-01",
+            "2026-12-06",
+            "2027-01-03",
+            "2027-02-07"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-torviscosa-la-soffitta-della-strega-bar-bianco",
+          "before": [
+            "2026-11-08",
+            "2026-12-13",
+            "2027-01-10",
+            "2027-02-14"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-arco-mercatino-delle-pulci-di-arco-centro-stor",
+          "before": [
+            "2026-11-21",
+            "2026-12-19",
+            "2027-01-16"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-arezzo-fiera-antiquaria-piazza-grande-e-dintor",
+          "before": [
+            "2026-11-01",
+            "2026-12-06",
+            "2027-01-03",
+            "2027-02-07"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        },
+        {
+          "id": "mercatino-antiquariato-e-usato-di-ariccia-corso-garibaldi-piazza-repubblica-piaz",
+          "before": [
+            "2026-10-24",
+            "2026-10-31",
+            "2026-11-07",
+            "2026-11-14",
+            "2026-11-21",
+            "2026-11-28"
+          ],
+          "after": [],
+          "reason": "conflicting_editorial_calendar_held"
+        }
+      ],
+      "proof_only_changed_ids": [
+        "mercatino-antiquariato-e-usato-di-anzio-via-porto-neroniano-anzio"
+      ],
+      "human_verification_dates_changed": 0,
+      "identity_geography_coordinates_primary_urls_changed": 0,
+      "historical_outcomes": 0,
+      "source_document_scopes": [
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/254324-2",
+          "final_url": "https://www.cosedicasa.com/mercatini/254324-2",
+          "read_on": "2026-10-20",
+          "modified_on": "2024-05-20T13:11:37+00:00",
+          "published_on": null,
+          "sha256": "6bd4ec245cc31c4cb5ab35368a2b0ce7d7d0d575edeb6d0be1bba29a44ad2115",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-09",
+              "end": "2026-11-09"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-09",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-18",
+                "2026-10-18"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-18",
+                0,
+                2
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/abbiategrasso-piazza-castello",
+          "final_url": "https://www.cosedicasa.com/mercatini/abbiategrasso-piazza-castello",
+          "read_on": "2026-10-20",
+          "modified_on": "2024-11-11T16:35:49+00:00",
+          "published_on": null,
+          "sha256": "b9fbc68912ef8e60cf1425d8eceb21b754df981d361a5b0021d3ca89867140d1",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-15",
+              "end": "2026-11-15"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-15",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                6,
+                3
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/acqui-terme-zona-di-corso-bagni",
+          "final_url": "https://www.cosedicasa.com/mercatini/acqui-terme-zona-di-corso-bagni",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-03-18T19:07:19+00:00",
+          "published_on": null,
+          "sha256": "8e5fd645ae3816174ec570f64795e485f2624b9a026bce7ebcb729a921684de6",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-10-25",
+              "end": "2026-10-25"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-10-25",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/albenga-viale-martiri-della-liberta-mercatino-antiquariato-e-usato",
+          "final_url": "https://www.cosedicasa.com/mercatini/albenga-viale-martiri-della-liberta-mercatino-antiquariato-e-usato",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-04-10T13:47:31+00:00",
+          "published_on": null,
+          "sha256": "c0e8b96443ee5f6dd647699ba1e6ea26ea4f86af2f4d998cd7274e144f53c0ef",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-15",
+              "end": "2026-11-15"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-15",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                6,
+                3
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/alessandria-piazza-garibaldi",
+          "final_url": "https://www.cosedicasa.com/mercatini/alessandria-piazza-garibaldi",
+          "read_on": "2026-10-20",
+          "modified_on": "2025-07-02T09:55:03+00:00",
+          "published_on": null,
+          "sha256": "e428bc512e3fd662a46fb6d03e1245d59bb2d03f0a80aa52fa3310df128a9811",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-01",
+              "end": "2026-11-01"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-01",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                6,
+                1
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/alfonsine-mercatino-dellusato-piazza-della-resistenza",
+          "final_url": "https://www.cosedicasa.com/mercatini/alfonsine-mercatino-dellusato-piazza-della-resistenza",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-03-07T15:58:00+00:00",
+          "published_on": null,
+          "sha256": "3682922afa310a607890c7b3b5558505b62d7692e75fe2412b21be7c2b4823c1",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": true,
+          "edition_intervals": [
+            {
+              "start": "2026-01-25",
+              "end": "2026-01-25"
+            },
+            {
+              "start": "2026-02-22",
+              "end": "2026-02-22"
+            },
+            {
+              "start": "2026-03-29",
+              "end": "2026-03-29"
+            },
+            {
+              "start": "2026-04-26",
+              "end": "2026-04-26"
+            },
+            {
+              "start": "2026-05-24",
+              "end": "2026-05-24"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-01-25",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-date-big:row[1]"
+              ]
+            },
+            {
+              "date": "2026-02-22",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-date-big:row[2]"
+              ]
+            },
+            {
+              "date": "2026-03-29",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-date-big:row[3]"
+              ]
+            },
+            {
+              "date": "2026-04-26",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-date-big:row[4]"
+              ]
+            },
+            {
+              "date": "2026-05-24",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-date-big:row[5]"
+              ]
+            }
+          ],
+          "conflicts": [],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/amarcord-mercatino-delle-cose-di-un-tempo",
+          "final_url": "https://www.cosedicasa.com/mercatini/amarcord-mercatino-delle-cose-di-un-tempo",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-02-25T10:35:12+00:00",
+          "published_on": null,
+          "sha256": "899fd7f592d9b10fb2cd8f1337e4fe2190d1a8e5e41984ba2b99fdd3b54f2b52",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-01",
+              "end": "2026-11-01"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-01",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/ancona-piazza-cavour-corso-garibaldi",
+          "final_url": "https://www.cosedicasa.com/mercatini/ancona-piazza-cavour-corso-garibaldi",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-07-28T12:48:44+00:00",
+          "published_on": null,
+          "sha256": "86195e428c0e7336bf903290cd3c873f79f21e164e04f087cb7056d33b6ab372",
+          "archive_marker": false,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-10-24",
+              "end": "2026-10-25"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                6,
+                -1
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/anghiari-centro-storico",
+          "final_url": "https://www.cosedicasa.com/mercatini/mercatino-anghiari-centro-storico",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-06-15T15:56:17+00:00",
+          "published_on": null,
+          "sha256": "73b7c8e7de80acc761f0285a74896044c537e2b8f5aa7d7687fd6a7007938ffa",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-08",
+              "end": "2026-11-08"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-08",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/antigua-san-vito-dei-normanni-exfadda-centro-culturale",
+          "final_url": "https://www.cosedicasa.com/mercatini/antigua-san-vito-dei-normanni-exfadda-centro-culturale",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-03-08T14:23:38+00:00",
+          "published_on": null,
+          "sha256": "d0d52c013126612519abca173851e9e3ec33a3b306fe25576f1d9643e8addae8",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-01",
+              "end": "2026-11-01"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-01",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                6,
+                1
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/antiquariato-usato-torviscosa-soffitta-strega",
+          "final_url": "https://www.cosedicasa.com/mercatini/antiquariato-usato-torviscosa-soffitta-strega",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-09-29T20:38:58+00:00",
+          "published_on": null,
+          "sha256": "13dd741c4b49d83c79d42c605929e6e32d4a16242bf775a9d850528256a99e51",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-15",
+              "end": "2026-11-15"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-15",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                6,
+                3
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/anzio-via-porto-neroniano",
+          "final_url": "https://www.cosedicasa.com/mercatini/anzio-via-porto-neroniano",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-07-10T17:16:12+00:00",
+          "published_on": null,
+          "sha256": "495ca98c2cd5f73dec344d957f542c91721227be71ccbbf6783bfc3c22da043e",
+          "archive_marker": false,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-14",
+              "end": "2026-11-15"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [
+            {
+              "field": "hours",
+              "code": "multiple_market_hour_claims_require_scope",
+              "values": [
+                {
+                  "start": "08:00",
+                  "end": "20:00"
+                },
+                {
+                  "start": "18:00",
+                  "end": "24:00"
+                }
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/aprilia-piazza-roma",
+          "final_url": "https://www.cosedicasa.com/mercatini/aprilia-piazza-roma",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-08-08T16:30:33+00:00",
+          "published_on": null,
+          "sha256": "c3d2d172afba4c847fc3f7543e04f45525a361b3bd7421bf9bc7b1d5ff5015f0",
+          "archive_marker": false,
+          "calendar_scope": "unknown",
+          "calendar_complete": false,
+          "edition_intervals": [],
+          "occurrences": [],
+          "conflicts": [
+            {
+              "field": "identity",
+              "code": "istat_geography_unresolved"
+            }
+          ],
+          "warnings": [
+            "matching_event_schema_absent",
+            "calendar_header_missing_or_ambiguous"
+          ]
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/arco-centro-storico",
+          "final_url": "https://www.cosedicasa.com/mercatini/arco-centro-storico",
+          "read_on": "2026-10-20",
+          "modified_on": "2024-05-15T15:18:25+00:00",
+          "published_on": null,
+          "sha256": "53a5edb88060e902575be2290ffc28d5923fabd59bfa984ea09328838fd16e16",
+          "archive_marker": false,
+          "calendar_scope": "explicit_visible_list",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-11-21",
+              "end": "2026-11-21"
+            }
+          ],
+          "occurrences": [
+            {
+              "date": "2026-11-21",
+              "start_time": null,
+              "end_time": null,
+              "status": "source_listed",
+              "evidence": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ]
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "hours",
+              "code": "multiple_market_hour_claims_require_scope",
+              "values": [
+                {
+                  "start": "08:00",
+                  "end": "19:00"
+                },
+                {
+                  "start": "08:00",
+                  "end": "17:00"
+                }
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                5,
+                3
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/arezzo-piazza-vasari-e-piazza-s-francesco",
+          "final_url": "https://www.cosedicasa.com/mercatini/arezzo-piazza-vasari-e-piazza-s-francesco",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-01-11T17:53:27+00:00",
+          "published_on": null,
+          "sha256": "d60ca9c06eda85fed2c945f89ee58904d1fc62d732bc46c1cfd1ca9494462a51",
+          "archive_marker": false,
+          "calendar_scope": "recurring_statement_only",
+          "calendar_complete": false,
+          "edition_intervals": [],
+          "occurrences": [],
+          "conflicts": [
+            {
+              "field": "calendar",
+              "code": "unparsed_explicit_next_dates",
+              "values": [
+                "31 ottobre 2026 - 1 novembre 2026"
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_date_outside_visible_recurrence",
+              "values": [
+                "2026-10-20",
+                6,
+                1
+              ]
+            }
+          ],
+          "warnings": [
+            "schema_dates_without_visible_date_evidence"
+          ]
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/ariccia-piazza-di-corte-corso-garibaldi-2",
+          "final_url": "https://www.cosedicasa.com/mercatini/ariccia-piazza-di-corte-corso-garibaldi-mercatino-antiquariato",
+          "read_on": "2026-10-20",
+          "modified_on": "2026-08-07T15:14:40+00:00",
+          "published_on": null,
+          "sha256": "d9665710b3e59ff3f13f7ab95bde0a06e596319a73e776c6e6645d13bccd4350",
+          "archive_marker": false,
+          "calendar_scope": "edition_bounds",
+          "calendar_complete": false,
+          "edition_intervals": [
+            {
+              "start": "2026-10-24",
+              "end": "2026-10-25"
+            }
+          ],
+          "occurrences": [],
+          "conflicts": [
+            {
+              "field": "hours",
+              "code": "multiple_market_hour_claims_require_scope",
+              "values": [
+                {
+                  "start": "17:00",
+                  "end": "24:00"
+                },
+                {
+                  "start": "09:00",
+                  "end": "19:00"
+                },
+                {
+                  "start": "09:00",
+                  "end": "18:00"
+                }
+              ]
+            },
+            {
+              "field": "calendar",
+              "code": "schema_dates_not_visible_calendar",
+              "values": [
+                "2026-10-20",
+                "2026-10-20"
+              ]
+            }
+          ],
+          "warnings": []
+        }
+      ],
+      "observed_redirects": [
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/anghiari-centro-storico",
+          "final_url": "https://www.cosedicasa.com/mercatini/mercatino-anghiari-centro-storico",
+          "hops": [
+            {
+              "from": "https://www.cosedicasa.com/mercatini/anghiari-centro-storico",
+              "status": 301,
+              "to": "https://www.cosedicasa.com/mercatini/mercatino-anghiari-centro-storico"
+            }
+          ]
+        },
+        {
+          "requested_url": "https://www.cosedicasa.com/mercatini/ariccia-piazza-di-corte-corso-garibaldi-2",
+          "final_url": "https://www.cosedicasa.com/mercatini/ariccia-piazza-di-corte-corso-garibaldi-mercatino-antiquariato",
+          "hops": [
+            {
+              "from": "https://www.cosedicasa.com/mercatini/ariccia-piazza-di-corte-corso-garibaldi-2",
+              "status": 301,
+              "to": "https://www.cosedicasa.com/mercatini/ariccia-piazza-di-corte-corso-garibaldi-mercatino-antiquariato"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "queue": {
+        "resources": 425,
+        "statuses": {
+          "retrieved": 16,
+          "unread": 409
+        },
+        "progress": {
+          "attempt_cycle_complete": false,
+          "cycle": 1,
+          "cycle_attempted": 16,
+          "cycle_read": 16,
+          "cycle_remaining": 409,
+          "cycle_started_on": "2026-10-20",
+          "last_completed_cycle": 0,
+          "market_freshness_guaranteed": false,
+          "never_read": 409,
+          "overdue_after_days": 45,
+          "resources": 425,
+          "successful_read_cycle_complete": false
+        },
+        "raw_checkpoint_transition_verified": true,
+        "candidate_state_matches": true
+      },
+      "cross_runtime_gzip_recompression_mismatches": [
+        {
+          "url": "https://www.cosedicasa.com/mercatini/254324-2",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/abbiategrasso-piazza-castello",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/acqui-terme-zona-di-corso-bagni",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/albenga-viale-martiri-della-liberta-mercatino-antiquariato-e-usato",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/alessandria-piazza-garibaldi",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/alfonsine-mercatino-dellusato-piazza-della-resistenza",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/amarcord-mercatino-delle-cose-di-un-tempo",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/ancona-piazza-cavour-corso-garibaldi",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/anghiari-centro-storico",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/antigua-san-vito-dei-normanni-exfadda-centro-culturale",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/antiquariato-usato-torviscosa-soffitta-strega",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/anzio-via-porto-neroniano",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/aprilia-piazza-roma",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/arco-centro-storico",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/arezzo-piazza-vasari-e-piazza-s-francesco",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        },
+        {
+          "url": "https://www.cosedicasa.com/mercatini/ariccia-piazza-di-corte-corso-garibaldi-2",
+          "saved_gzip_os_byte": 255,
+          "local_gzip_os_byte": 3,
+          "decompressed_content_equal": true
+        }
+      ],
+      "robots_proof": {
+        "bytes": 475,
+        "pacing_seconds": 2,
+        "read_on": "2026-10-20",
+        "sha256": "771464f1b69085f4fcb603d01921bb112ca28f7f4ce7bd739062e6041a6d3067",
+        "url": "https://www.cosedicasa.com/robots.txt"
+      },
+      "new_field_evidence_states": {
+        "riscontro_da_aggiornare": 6,
+        "riscontrato_fonte_recente": 3
+      }
+    },
+    "combined": {
+      "changed_existing_ids": 25,
+      "same_id_order": true,
+      "merged_output_exact": true,
+      "final_guard": {
+        "schema": 1,
+        "release_safe": true,
+        "publishers": {
+          "cosedicasa.com": {
+            "release_safe": true,
+            "editorial_identities_checked": 14
+          },
+          "eventiesagre.it": {
+            "release_safe": true,
+            "editorial_identities_checked": 11
+          }
+        }
+      }
+    }
+  },
+  "blockers": [],
+  "limitations": [
+    {
+      "code": "cross_runtime_checkpoint_gzip_comparison",
+      "detail": "All raw bodies verified with bounded decompression, byte count, SHA256 and redirect checks. Runtime gzip OS header differs (runner 255, local 3), so current _unpack exact recompression comparison is not portable; this affects cross-runtime resume, not the captured source body or current candidate."
+    },
+    {
+      "code": "no_complete_source_freshness_claim",
+      "detail": "Read dates are transport observations; content modified/published dates remain separate, and historic archived editions remain historic."
+    },
+    {
+      "code": "roma_acquisition_timeout",
+      "detail": "No actual Roma source snapshot or enrichment. Coverage says not_observed, while acquisition report more precisely records source_unavailable/TimeoutError."
+    },
+    {
+      "code": "editorial_partial_inventory",
+      "detail": "Only 11/1853 EES URLs and 16/425 CDC URLs read in this cycle; failed/unattempted resources retain their real queue status."
+    },
+    {
+      "code": "cdc_conflicting_calendar_held",
+      "detail": "All 14 changed CDC identities retain explicit calendar conflicts; no future dates invented from recurrence or JSON-LD disagreement."
+    },
+    {
+      "code": "cdc_cross_month_next_dates_grammar",
+      "url": "https://www.cosedicasa.com/mercatini/arezzo-piazza-vasari-e-piazza-s-francesco",
+      "detail": "Visible 31 October 2026–1 November 2026 is currently reported as unparsed_explicit_next_dates; held, not converted into guessed openings."
+    },
+    {
+      "code": "coverage_is_reader_support_not_truth",
+      "detail": "12182 supported records does not mean 12182 source-confirmed, fresh or complete records. Retrieved route status is not successful per-record reconciliation."
+    },
+    {
+      "code": "robots_body_not_retained",
+      "detail": "Checkpoint includes robots URL, byte count, read date and hash, but no raw robots body for independent reparsing."
+    }
+  ],
+  "roma": {
+    "catalog_rows": 70,
+    "status": "source_unavailable",
+    "error_type": "TimeoutError",
+    "network_requests": 1,
+    "snapshot_present": false,
+    "source_fields_changed": 0,
+    "source_acquisition_proven": false,
+    "hours_present_before": 0,
+    "hours_present_after": 0,
+    "historical_csv_hours_applied": 0,
+    "current_hours_confirmed": 0,
+    "interpretation": "A timeout left all Roma source fields unchanged. Cached replay results are not actual acquisitions in this run."
+  },
+  "coverage": {
+    "markets": 13856,
+    "unique_primary_urls": 5784,
+    "market_dispositions": {
+      "cosedicasa_existing_detail": 432,
+      "eventiesagre_existing_detail": 2197,
+      "happings_event_detail": 32,
+      "happings_province_index": 8193,
+      "happings_source_scope_unproven": 1454,
+      "official_adapter": 1219,
+      "roma_d881_existing_inventory": 70,
+      "source_contract_active": 39,
+      "source_layout_needed": 220
+    },
+    "market_layout_statuses": {
+      "supported": 12182,
+      "unsupported": 1674
+    },
+    "market_read_statuses": {
+      "not_observed": 70,
+      "not_read": 1674,
+      "not_selected": 9601,
+      "retrieved": 2470,
+      "unavailable": 41
+    },
+    "editorial_resources": {
+      "eventiesagre.it": {
+        "resources": 1853,
+        "markets": 2197,
+        "url_read_statuses": {
+          "retrieved": 11,
+          "unavailable": 8,
+          "not_selected": 1834
+        },
+        "market_read_statuses": {
+          "retrieved": 12,
+          "unavailable": 8,
+          "not_selected": 2177
+        }
+      },
+      "cosedicasa.com": {
+        "resources": 425,
+        "markets": 432,
+        "url_read_statuses": {
+          "retrieved": 16,
+          "not_selected": 409
+        },
+        "market_read_statuses": {
+          "retrieved": 17,
+          "not_selected": 415
+        }
+      }
+    }
+  },
+  "release_semantics": "passed_no_unproved_editorial_or_roma_write_found"
+}
