@@ -4,33 +4,38 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 13824,
-    "ids_retained": 13824,
-    "generic_weekly_with_specific_venue": 4653,
+    "original_records": 13856,
+    "ids_retained": 13856,
+    "generic_weekly_with_specific_venue": 5038,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3428,
-    "highly_supported_same_source_visit_groups": 382,
-    "suppressed_repeat_buttons_only": 382,
-    "original_records_in_reversible_groups": 764,
+    "venue_groups_examined": 3568,
+    "highly_supported_same_source_visit_groups": 536,
+    "suppressed_repeat_buttons_only": 588,
+    "original_records_in_reversible_groups": 1124,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
   },
   "per_region": [
     {
+      "region": "Liguria",
+      "groups": 8,
+      "extra_display_entries": 12
+    },
+    {
       "region": "Lombardia",
-      "groups": 375,
-      "extra_display_entries": 375
+      "groups": 477,
+      "extra_display_entries": 496
     },
     {
       "region": "Piemonte",
-      "groups": 2,
-      "extra_display_entries": 2
+      "groups": 36,
+      "extra_display_entries": 61
     },
     {
       "region": "Toscana",
-      "groups": 3,
-      "extra_display_entries": 3
+      "groups": 13,
+      "extra_display_entries": 17
     },
     {
       "region": "Veneto",
@@ -39,6 +44,106 @@
     }
   ],
   "examples": [
+    {
+      "region": "Liguria",
+      "city": "Arenzano",
+      "address": "piazza Allende",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-arenzano-arenzano-venerdi",
+      "original_ids": [
+        "mercato-settimanale-di-arenzano-arenzano",
+        "mercato-settimanale-di-arenzano-arenzano-venerdi"
+      ],
+      "date": "2026-10-23"
+    },
+    {
+      "region": "Liguria",
+      "city": "Bogliasco",
+      "address": "Piazza 26 Aprile",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-bogliasco-bogliasco-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-bogliasco-bogliasco-martedi",
+        "mercato-settimanale-di-bogliasco-bogliasco",
+        "mercato-settimanale-di-bogliasco-bogliasco-martedi"
+      ],
+      "date": "2026-10-20"
+    },
+    {
+      "region": "Liguria",
+      "city": "Camogli",
+      "address": "Via XX Settembre",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-camogli-camogli-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-di-camogli-camogli",
+        "mercato-settimanale-di-camogli-camogli-mercoledi"
+      ],
+      "date": "2026-10-21"
+    },
+    {
+      "region": "Liguria",
+      "city": "Dolcedo",
+      "address": "Piazza don Minzoni",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-di-dolcedo-dolcedo-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-a-dolcedo-dolcedo-mercoledi",
+        "mercato-settimanale-di-dolcedo-dolcedo",
+        "mercato-settimanale-di-dolcedo-dolcedo-mercoledi"
+      ],
+      "date": "2026-10-21"
+    },
+    {
+      "region": "Liguria",
+      "city": "Rapallo",
+      "address": "Lungomare, Rotonda Marconi, Giardini G.Verdi",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-rapallo-rapallo-giovedi",
+      "original_ids": [
+        "mercato-settimanale-di-rapallo-rapallo",
+        "mercato-settimanale-di-rapallo-rapallo-giovedi"
+      ],
+      "date": "2026-10-22"
+    },
+    {
+      "region": "Liguria",
+      "city": "Soldano",
+      "address": "Piazza Vecchia",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-di-soldano-soldano-venerdi",
+      "original_ids": [
+        "mercato-settimanale-a-soldano-soldano-venerdi",
+        "mercato-settimanale-di-soldano-soldano",
+        "mercato-settimanale-di-soldano-soldano-venerdi"
+      ],
+      "date": "2026-10-23"
+    },
+    {
+      "region": "Liguria",
+      "city": "Uscio",
+      "address": "Piazza Resistenza",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-uscio-uscio-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-a-uscio-uscio-mercoledi",
+        "mercato-settimanale-di-uscio-uscio",
+        "mercato-settimanale-di-uscio-uscio-mercoledi"
+      ],
+      "date": "2026-10-21"
+    },
+    {
+      "region": "Liguria",
+      "city": "Zoagli",
+      "address": "Piazza XXVII Dicembre",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-zoagli-zoagli-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-zoagli-zoagli-martedi",
+        "mercato-settimanale-di-zoagli-zoagli-martedi"
+      ],
+      "date": "2026-10-20"
+    },
     {
       "region": "Lombardia",
       "city": "Acquafredda",
@@ -85,7 +190,7 @@
         "mercato-settimanale-di-agrate-brianza-agrate-brianza",
         "mercato-settimanale-di-agrate-brianza-agrate-brianza-lunedi"
       ],
-      "date": "2026-10-19"
+      "date": "2026-10-26"
     },
     {
       "region": "Lombardia",
@@ -125,6 +230,18 @@
     },
     {
       "region": "Lombardia",
+      "city": "Albavilla",
+      "address": "Via XXV Aprile",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
+      "visible_id": "mercato-settimanale-a-albavilla-albavilla-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-albavilla-albavilla-martedi",
+        "mercato-settimanale-di-albavilla-albavilla"
+      ],
+      "date": "2026-10-20"
+    },
+    {
+      "region": "Lombardia",
       "city": "Albese con Cassano",
       "address": "Via Don L. Sturzo",
       "source_url": "https://www.happings.com/it/mercato-settimanale-a-albese-con-cassano.html",
@@ -134,6 +251,18 @@
         "mercato-settimanale-di-albese-con-cassano-albese-con-cassano-venerdi"
       ],
       "date": "2026-10-23"
+    },
+    {
+      "region": "Lombardia",
+      "city": "Albiolo",
+      "address": "Via Indipendenza",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
+      "visible_id": "mercato-settimanale-di-albiolo-albiolo-giovedi",
+      "original_ids": [
+        "mercato-settimanale-a-albiolo-albiolo-giovedi",
+        "mercato-settimanale-di-albiolo-albiolo-giovedi"
+      ],
+      "date": "2026-10-22"
     },
     {
       "region": "Lombardia",
@@ -173,6 +302,18 @@
     },
     {
       "region": "Lombardia",
+      "city": "Angera",
+      "address": "PIAZZA GIUSEPPE GARIBALDI",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-varese.html",
+      "visible_id": "mercato-settimanale-a-angera-angera-giovedi",
+      "original_ids": [
+        "mercato-settimanale-a-angera-angera-giovedi",
+        "mercato-settimanale-di-angera-angera"
+      ],
+      "date": "2026-10-22"
+    },
+    {
+      "region": "Lombardia",
       "city": "Angolo Terme",
       "address": "Piazza Alpini",
       "source_url": "https://www.happings.com/it/mercato-settimanale-a-angolo-terme.html",
@@ -209,6 +350,55 @@
     },
     {
       "region": "Lombardia",
+      "city": "Arcisate",
+      "address": "PIAZZA DELLA REPUBBLICA",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-varese.html",
+      "visible_id": "mercato-settimanale-a-arcisate-arcisate-giovedi",
+      "original_ids": [
+        "mercato-settimanale-a-arcisate-arcisate-giovedi",
+        "mercato-settimanale-di-arcisate-arcisate"
+      ],
+      "date": "2026-10-22"
+    },
+    {
+      "region": "Lombardia",
+      "city": "Argegno",
+      "address": "PIAZZA, 1",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
+      "visible_id": "mercato-settimanale-a-argegno-argegno-lunedi",
+      "original_ids": [
+        "mercato-settimanale-a-argegno-argegno-lunedi",
+        "mercato-settimanale-di-argegno-argegno"
+      ],
+      "date": "2026-10-26"
+    },
+    {
+      "region": "Lombardia",
+      "city": "Arluno",
+      "address": "VIA DEPORTATI DI MATHAUSEN, 0",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
+      "visible_id": "mercato-settimanale-a-arluno-arluno-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-a-arluno-arluno-mercoledi",
+        "mercato-settimanale-di-arluno-arluno"
+      ],
+      "date": "2026-10-21"
+    },
+    {
+      "region": "Lombardia",
+      "city": "Arosio",
+      "address": "Piazza Chiesa",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
+      "visible_id": "mercato-settimanale-di-arosio-arosio-venerdi",
+      "original_ids": [
+        "mercato-settimanale-a-arosio-arosio-venerdi",
+        "mercato-settimanale-di-arosio-arosio",
+        "mercato-settimanale-di-arosio-arosio-venerdi"
+      ],
+      "date": "2026-10-23"
+    },
+    {
+      "region": "Lombardia",
       "city": "Arsago Seprio",
       "address": "Via Monici",
       "source_url": "https://www.happings.com/it/mercato-settimanale-a-arsago-seprio.html",
@@ -221,6 +411,19 @@
     },
     {
       "region": "Lombardia",
+      "city": "Artogne",
+      "address": "Piazza Caduti del Lavoro",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-brescia.html",
+      "visible_id": "mercato-settimanale-di-artogne-artogne-venerdi",
+      "original_ids": [
+        "mercato-settimanale-a-artogne-artogne-venerdi",
+        "mercato-settimanale-di-artogne-artogne",
+        "mercato-settimanale-di-artogne-artogne-venerdi"
+      ],
+      "date": "2026-10-23"
+    },
+    {
+      "region": "Lombardia",
       "city": "Arzago d'Adda",
       "address": "Via Capitani d'Arzago",
       "source_url": "https://www.happings.com/it/mercato-settimanale-a-arzago-d-adda.html",
@@ -230,6 +433,18 @@
         "mercato-settimanale-di-arzago-d-adda-arzago-d-adda-mercoledi"
       ],
       "date": "2026-10-21"
+    },
+    {
+      "region": "Lombardia",
+      "city": "Asso",
+      "address": "PIAZZA MERCATO, 1; PIAZZA MONSIGNORE RATTI",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
+      "visible_id": "mercato-settimanale-a-asso-asso-sabato",
+      "original_ids": [
+        "mercato-settimanale-a-asso-asso-sabato",
+        "mercato-settimanale-di-asso-asso"
+      ],
+      "date": "2026-10-24"
     },
     {
       "region": "Lombardia",
@@ -265,7 +480,7 @@
         "mercato-settimanale-di-bagnatica-bagnatica",
         "mercato-settimanale-di-bagnatica-bagnatica-lunedi"
       ],
-      "date": "2026-10-19"
+      "date": "2026-10-26"
     },
     {
       "region": "Lombardia",
@@ -305,217 +520,13 @@
     },
     {
       "region": "Lombardia",
-      "city": "Bastida Pancarana",
-      "address": "Piazza del Mercato",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bastida-pancarana.html",
-      "visible_id": "mercato-settimanale-di-bastida-pancarana-bastida-pancarana-lunedi",
+      "city": "Basiano",
+      "address": "VIA MICHELANGELO BUONARROTI",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
+      "visible_id": "mercato-settimanale-a-basiano-basiano-sabato",
       "original_ids": [
-        "mercato-settimanale-di-bastida-pancarana-bastida-pancarana",
-        "mercato-settimanale-di-bastida-pancarana-bastida-pancarana-lunedi"
-      ],
-      "date": "2026-10-19"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Bedero Valcuvia",
-      "address": "Piazza V. Veneto",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bedero-valcuvia.html",
-      "visible_id": "mercato-settimanale-di-bedero-valcuvia-bedero-valcuvia-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-bedero-valcuvia-bedero-valcuvia",
-        "mercato-settimanale-di-bedero-valcuvia-bedero-valcuvia-martedi"
-      ],
-      "date": "2026-10-20"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Bedizzole",
-      "address": "Piazza europa",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bedizzole.html",
-      "visible_id": "mercato-settimanale-di-bedizzole-bedizzole-sabato",
-      "original_ids": [
-        "mercato-settimanale-di-bedizzole-bedizzole",
-        "mercato-settimanale-di-bedizzole-bedizzole-sabato"
-      ],
-      "date": "2026-10-24"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Belgioioso",
-      "address": "Viale Donna Anna",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-belgioioso.html",
-      "visible_id": "mercato-settimanale-di-belgioioso-belgioioso-lunedi",
-      "original_ids": [
-        "mercato-settimanale-di-belgioioso-belgioioso",
-        "mercato-settimanale-di-belgioioso-belgioioso-lunedi"
-      ],
-      "date": "2026-10-19"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Bellinzago Lombardo",
-      "address": "Via IV Marie",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bellinzago-lombardo.html",
-      "visible_id": "mercato-settimanale-di-bellinzago-lombardo-bellinzago-lombardo-giovedi",
-      "original_ids": [
-        "mercato-settimanale-di-bellinzago-lombardo-bellinzago-lombardo",
-        "mercato-settimanale-di-bellinzago-lombardo-bellinzago-lombardo-giovedi"
-      ],
-      "date": "2026-10-22"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Berbenno di Valtellina",
-      "address": "Via Conciliazione",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-berbenno-di-valtellina.html",
-      "visible_id": "mercato-settimanale-di-berbenno-di-valtellina-berbenno-di-valtellina-lunedi",
-      "original_ids": [
-        "mercato-settimanale-di-berbenno-di-valtellina-berbenno-di-valtellina",
-        "mercato-settimanale-di-berbenno-di-valtellina-berbenno-di-valtellina-lunedi"
-      ],
-      "date": "2026-10-19"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Bergamo",
-      "address": "Piazzale Malpensata",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bergamo--.html",
-      "visible_id": "mercato-settimanale-di-bergamo-bergamo-lunedi",
-      "original_ids": [
-        "mercato-settimanale-di-bergamo-bergamo",
-        "mercato-settimanale-di-bergamo-bergamo-lunedi"
-      ],
-      "date": "2026-10-19"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Bernareggio",
-      "address": "Via Leoni",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bernareggio.html",
-      "visible_id": "mercato-settimanale-di-bernareggio-bernareggio-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-di-bernareggio-bernareggio",
-        "mercato-settimanale-di-bernareggio-bernareggio-mercoledi"
-      ],
-      "date": "2026-10-21"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Berzo San Fermo",
-      "address": "Via Europa Unita",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-berzo-san-fermo.html",
-      "visible_id": "mercato-settimanale-di-berzo-san-fermo-berzo-san-fermo-venerdi",
-      "original_ids": [
-        "mercato-settimanale-di-berzo-san-fermo-berzo-san-fermo",
-        "mercato-settimanale-di-berzo-san-fermo-berzo-san-fermo-venerdi"
-      ],
-      "date": "2026-10-23"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Besana in Brianza",
-      "address": "Piazza Umberto",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-besana-in-brianza.html",
-      "visible_id": "mercato-settimanale-di-besana-in-brianza-besana-in-brianza-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-di-besana-in-brianza-besana-in-brianza",
-        "mercato-settimanale-di-besana-in-brianza-besana-in-brianza-mercoledi"
-      ],
-      "date": "2026-10-21"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Biandronno",
-      "address": "Piazza cavour",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-biandronno.html",
-      "visible_id": "mercato-settimanale-di-biandronno-biandronno-sabato",
-      "original_ids": [
-        "mercato-settimanale-di-biandronno-biandronno",
-        "mercato-settimanale-di-biandronno-biandronno-sabato"
-      ],
-      "date": "2026-10-24"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Boffalora Sopra Ticino",
-      "address": "Piazza 1° Maggio",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-boffalora-sopra-ticino.html",
-      "visible_id": "mercato-settimanale-di-boffalora-sopra-ticino-boffalora-sopra-ticino-giovedi",
-      "original_ids": [
-        "mercato-settimanale-di-boffalora-sopra-ticino-boffalora-sopra-ticino",
-        "mercato-settimanale-di-boffalora-sopra-ticino-boffalora-sopra-ticino-giovedi"
-      ],
-      "date": "2026-10-22"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Bonate Sopra",
-      "address": "Via garibaldi",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bonate-sopra.html",
-      "visible_id": "mercato-settimanale-di-bonate-sopra-bonate-sopra-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-bonate-sopra-bonate-sopra",
-        "mercato-settimanale-di-bonate-sopra-bonate-sopra-martedi"
-      ],
-      "date": "2026-10-20"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Bonate Sotto",
-      "address": "via Trieste",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-bonate-sotto.html",
-      "visible_id": "mercato-settimanale-di-bonate-sotto-bonate-sotto-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-di-bonate-sotto-bonate-sotto",
-        "mercato-settimanale-di-bonate-sotto-bonate-sotto-mercoledi"
-      ],
-      "date": "2026-10-21"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Borghetto Lodigiano",
-      "address": "Piazza della Chiesa",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-borghetto-lodigiano.html",
-      "visible_id": "mercato-settimanale-di-borghetto-lodigiano-borghetto-lodigiano-venerdi",
-      "original_ids": [
-        "mercato-settimanale-di-borghetto-lodigiano-borghetto-lodigiano",
-        "mercato-settimanale-di-borghetto-lodigiano-borghetto-lodigiano-venerdi"
-      ],
-      "date": "2026-10-23"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Borgo San Giacomo",
-      "address": "Piazza San Giacomo",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-borgo-san-giacomo.html",
-      "visible_id": "mercato-settimanale-di-borgo-san-giacomo-borgo-san-giacomo-lunedi",
-      "original_ids": [
-        "mercato-settimanale-di-borgo-san-giacomo-borgo-san-giacomo",
-        "mercato-settimanale-di-borgo-san-giacomo-borgo-san-giacomo-lunedi"
-      ],
-      "date": "2026-10-19"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Borgo San Siro",
-      "address": "Via Valle",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-borgo-san-siro.html",
-      "visible_id": "mercato-settimanale-di-borgo-san-siro-borgo-san-siro-sabato",
-      "original_ids": [
-        "mercato-settimanale-di-borgo-san-siro-borgo-san-siro",
-        "mercato-settimanale-di-borgo-san-siro-borgo-san-siro-sabato"
-      ],
-      "date": "2026-10-24"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Borgoforte",
-      "address": "Via Parmense",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-borgoforte.html",
-      "visible_id": "mercato-settimanale-di-borgoforte-borgoforte-sabato",
-      "original_ids": [
-        "mercato-settimanale-di-borgoforte-borgoforte",
-        "mercato-settimanale-di-borgoforte-borgoforte-sabato"
+        "mercato-settimanale-a-basiano-basiano-sabato",
+        "mercato-settimanale-di-basiano-basiano"
       ],
       "date": "2026-10-24"
     }
@@ -532,5 +543,15 @@
       "region": "Veneto"
     }
   ],
-  "market_data_modified": false
+  "market_data_modified": false,
+  "reviewed_reference": {
+    "kind": "reviewed_unpublished_source_candidate",
+    "run_id": 39465324614,
+    "candidate_signature": "615093e0b2f8c07b793251b645c01c293161c5eb72966abb44c5d79f1a9bed13",
+    "artifact_sha256": "9167a55dde188bc1c5fd346a5abb9a758bc23d8b70a1cc24ddc9724fe7539647",
+    "review_report": "reports/automation/display-group-growth-review-39465324614.json",
+    "new_pairs_reviewed": 258,
+    "unexplained_new_pairs": 0,
+    "actual_dev_publication": false
+  }
 }

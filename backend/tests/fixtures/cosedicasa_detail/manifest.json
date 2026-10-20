@@ -1,0 +1,470 @@
+{
+  "schema": 1,
+  "captured_robots": {
+    "requested_url": "https://www.cosedicasa.com/robots.txt",
+    "final_url": "https://www.cosedicasa.com/robots.txt",
+    "status": 200,
+    "mime": "text/plain; charset=UTF-8",
+    "started_at": "2026-10-20T17:16:25.894173+00:00",
+    "fetched_at": "2026-10-20T17:16:26.897799+00:00",
+    "bytes": 475,
+    "html_sha256": "771464f1b69085f4fcb603d01921bb112ca28f7f4ce7bd739062e6041a6d3067"
+  },
+  "pause_seconds": 3,
+  "source_transport": "bounded HTTPS reads of five exact reviewed URLs",
+  "scoped_selectors_verified_on_complete_source_pages": true,
+  "samples": [
+    {
+      "requested_url": "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano",
+      "final_url": "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "started_at": "2026-10-20T17:16:29.901909+00:00",
+      "fetched_at": "2026-10-20T17:16:30.869923+00:00",
+      "bytes": 611946,
+      "html_sha256": "4a07e0cc8647fab2459725c9892bd876c97b6e8e57f291a1c19f36eaa6a5b8b1",
+      "sample": "bologna",
+      "file": "bologna.html",
+      "fixture_file": "bologna.html",
+      "fixture_sha256": "76a1a63aedceaa0d4ab859bde3901d3a4eded74b15d34f7dcd644ac98c7042a1",
+      "fixture_kind": "authored semantic HTML; publisher article body and original HTML not retained",
+      "expected": {
+        "status": "held",
+        "location": {
+          "city": "Bologna",
+          "province": "Bologna",
+          "region": "Emilia Romagna",
+          "address": "\"Mercato Antiquario Città di Bologna\", piazza S. Stefano"
+        },
+        "hours_text": "08:30–18:00",
+        "hours_intervals": [
+          {
+            "start": "08:30",
+            "end": "18:00"
+          }
+        ],
+        "edition_intervals": [
+          {
+            "start": "2026-11-07",
+            "end": "2026-11-08"
+          }
+        ],
+        "occurrences": [],
+        "calendar_scope": "edition_bounds",
+        "calendar_complete": false,
+        "calendar_rules": [
+          {
+            "kind": "monthly_ordinal",
+            "ordinal": 2,
+            "weekday": 6,
+            "relative_day_offsets": [
+              -1,
+              0
+            ],
+            "included_months": [],
+            "excluded_months": [
+              7,
+              8
+            ],
+            "evidence": [
+              "#post-content .mercatini-mostre-times"
+            ]
+          }
+        ],
+        "suspensions": [
+          {
+            "start": {
+              "day": 1,
+              "month": 7,
+              "year": null
+            },
+            "end": {
+              "day": 31,
+              "month": 8,
+              "year": null
+            },
+            "evidence": [
+              "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+            ]
+          }
+        ],
+        "conflict_codes": [
+          "ordinal_saturday_differs_preceding_saturday",
+          "schema_date_outside_visible_recurrence",
+          "schema_dates_not_visible_calendar"
+        ],
+        "modified_at": "2025-01-07T17:39:30+00:00"
+      }
+    },
+    {
+      "requested_url": "https://www.cosedicasa.com/mercatini/venezia-campo-san-maurizio",
+      "final_url": "https://www.cosedicasa.com/mercatini/venezia-campo-san-maurizio",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "started_at": "2026-10-20T17:16:33.871524+00:00",
+      "fetched_at": "2026-10-20T17:16:34.835113+00:00",
+      "bytes": 615277,
+      "html_sha256": "7bced8aee6448d533b78e0155c1480ac96cefe451cd1cfbf3ba66aecacb79de2",
+      "sample": "venezia",
+      "file": "venezia.html",
+      "fixture_file": "venezia.html",
+      "fixture_sha256": "16c1fc809ba6b04082be3a19c17c73a8af52de56e3675cc04f5109b8432f5378",
+      "fixture_kind": "authored semantic HTML; publisher article body and original HTML not retained",
+      "expected": {
+        "status": "held",
+        "location": {
+          "city": "Venezia",
+          "province": "Venezia",
+          "region": "Veneto",
+          "address": "\"Il Mercatino di Campo San Maurizio\", campo San Maurizio"
+        },
+        "hours_text": "09:00–19:00",
+        "hours_intervals": [
+          {
+            "start": "09:00",
+            "end": "19:00"
+          }
+        ],
+        "edition_intervals": [
+          {
+            "start": "2026-05-07",
+            "end": "2026-05-10"
+          },
+          {
+            "start": "2026-06-05",
+            "end": "2026-06-07"
+          },
+          {
+            "start": "2026-09-11",
+            "end": "2026-09-13"
+          },
+          {
+            "start": "2026-10-16",
+            "end": "2026-10-18"
+          },
+          {
+            "start": "2026-12-04",
+            "end": "2026-12-06"
+          }
+        ],
+        "occurrences": [],
+        "calendar_scope": "edition_bounds",
+        "calendar_complete": false,
+        "calendar_rules": [],
+        "suspensions": [
+          {
+            "start": {
+              "day": 1,
+              "month": 1,
+              "year": null
+            },
+            "end": {
+              "day": 30,
+              "month": 4,
+              "year": null
+            },
+            "evidence": [
+              "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+            ]
+          },
+          {
+            "start": {
+              "day": 1,
+              "month": 7,
+              "year": null
+            },
+            "end": {
+              "day": 31,
+              "month": 12,
+              "year": null
+            },
+            "evidence": [
+              "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+            ]
+          }
+        ],
+        "conflict_codes": [
+          "listed_date_during_suspension"
+        ],
+        "modified_at": "2026-05-06T09:46:45+00:00"
+      }
+    },
+    {
+      "requested_url": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
+      "final_url": "https://www.cosedicasa.com/mercatini/todi-giardini-oberdan",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "started_at": "2026-10-20T17:16:37.837613+00:00",
+      "fetched_at": "2026-10-20T17:16:38.802880+00:00",
+      "bytes": 614571,
+      "html_sha256": "2819350903328346943d0c1998c03d8fd6680aa9e5aeae94f30bfc583ef52b70",
+      "sample": "todi",
+      "file": "todi.html",
+      "fixture_file": "todi.html",
+      "fixture_sha256": "4837e71c051dfa7727eacbb9ea2e7dfc37ea0504d6050d1daa1f004703b968d4",
+      "fixture_kind": "authored semantic HTML; publisher article body and original HTML not retained",
+      "expected": {
+        "status": "held",
+        "location": {
+          "city": "Todi",
+          "province": "Perugia",
+          "region": "Umbria",
+          "address": "\"CreativaMente, Mostra Mercato della Creatività\", Giardini Oberdan (all'arrivo dell'ascensore del parcheggio)"
+        },
+        "hours_text": "09:00–tramonto",
+        "hours_intervals": [
+          {
+            "start": "09:00",
+            "end": null
+          }
+        ],
+        "edition_intervals": [
+          {
+            "start": "2027-03-21",
+            "end": "2027-03-21"
+          }
+        ],
+        "occurrences": [
+          "2027-03-21"
+        ],
+        "calendar_scope": "explicit_visible_list",
+        "calendar_complete": false,
+        "calendar_rules": [
+          {
+            "kind": "monthly_ordinal",
+            "ordinal": 3,
+            "weekday": 6,
+            "relative_day_offsets": [
+              0
+            ],
+            "included_months": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "excluded_months": [],
+            "evidence": [
+              "#post-content .mercatini-mostre-times"
+            ]
+          }
+        ],
+        "suspensions": [
+          {
+            "start": {
+              "day": 1,
+              "month": 1,
+              "year": null
+            },
+            "end": {
+              "day": 28,
+              "month": 2,
+              "year": null
+            },
+            "evidence": [
+              "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+            ]
+          },
+          {
+            "start": {
+              "day": 1,
+              "month": 11,
+              "year": null
+            },
+            "end": {
+              "day": 31,
+              "month": 12,
+              "year": null
+            },
+            "evidence": [
+              "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+            ]
+          }
+        ],
+        "conflict_codes": [
+          "schema_date_outside_visible_recurrence",
+          "schema_dates_not_visible_calendar"
+        ],
+        "modified_at": "2026-08-20T15:18:18+00:00"
+      }
+    },
+    {
+      "requested_url": "https://www.cosedicasa.com/mercatini/cernobbio-mercatino-estivo",
+      "final_url": "https://www.cosedicasa.com/mercatini/cernobbio-mercatino-delle-curiosita-estivo",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "started_at": "2026-10-20T17:16:41.804458+00:00",
+      "fetched_at": "2026-10-20T17:16:45.961411+00:00",
+      "bytes": 615142,
+      "html_sha256": "8dc439ba31f7b861ee134fb043f59beeaf8f96c56786e1d7376495eda6235cef",
+      "sample": "cernobbio",
+      "file": "cernobbio.html",
+      "fixture_file": "cernobbio.html",
+      "fixture_sha256": "ecb71d72d083c8e9d420880a06ab694b4b5978b21b16ae678e1fb124b6d56264",
+      "fixture_kind": "authored semantic HTML; publisher article body and original HTML not retained",
+      "expected": {
+        "status": "parsed",
+        "location": {
+          "city": "Cernobbio",
+          "province": "Como",
+          "region": "Lombardia",
+          "address": "\"Mercatino delle Curiosità\", piazza Risorgimento, lungo lago di Como"
+        },
+        "hours_text": "08:00–19:00",
+        "hours_intervals": [
+          {
+            "start": "08:00",
+            "end": "19:00"
+          }
+        ],
+        "edition_intervals": [
+          {
+            "start": "2026-06-05",
+            "end": "2026-06-05"
+          },
+          {
+            "start": "2026-06-12",
+            "end": "2026-06-12"
+          },
+          {
+            "start": "2026-06-26",
+            "end": "2026-06-26"
+          },
+          {
+            "start": "2026-07-03",
+            "end": "2026-07-03"
+          },
+          {
+            "start": "2026-07-10",
+            "end": "2026-07-10"
+          },
+          {
+            "start": "2026-07-17",
+            "end": "2026-07-17"
+          },
+          {
+            "start": "2026-07-24",
+            "end": "2026-07-24"
+          },
+          {
+            "start": "2026-07-31",
+            "end": "2026-07-31"
+          },
+          {
+            "start": "2026-08-07",
+            "end": "2026-08-07"
+          },
+          {
+            "start": "2026-08-14",
+            "end": "2026-08-14"
+          },
+          {
+            "start": "2026-08-21",
+            "end": "2026-08-21"
+          },
+          {
+            "start": "2026-08-28",
+            "end": "2026-08-28"
+          },
+          {
+            "start": "2026-09-11",
+            "end": "2026-09-11"
+          },
+          {
+            "start": "2026-09-25",
+            "end": "2026-09-25"
+          }
+        ],
+        "occurrences": [
+          "2026-06-05",
+          "2026-06-12",
+          "2026-06-26",
+          "2026-07-03",
+          "2026-07-10",
+          "2026-07-17",
+          "2026-07-24",
+          "2026-07-31",
+          "2026-08-07",
+          "2026-08-14",
+          "2026-08-21",
+          "2026-08-28",
+          "2026-09-11",
+          "2026-09-25"
+        ],
+        "calendar_scope": "explicit_visible_list",
+        "calendar_complete": true,
+        "calendar_rules": [
+          {
+            "kind": "selected_dates_only",
+            "weekdays": [
+              4
+            ],
+            "evidence": [
+              "#post-content .mercatini-mostre-times"
+            ]
+          }
+        ],
+        "suspensions": [],
+        "conflict_codes": [],
+        "modified_at": "2026-07-03T14:02:51+00:00"
+      }
+    },
+    {
+      "requested_url": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-3",
+      "final_url": "https://www.cosedicasa.com/mercatini/fiumicino-parco-da-vinci-3",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "started_at": "2026-10-20T17:16:49.141767+00:00",
+      "fetched_at": "2026-10-20T17:16:51.810320+00:00",
+      "bytes": 612521,
+      "html_sha256": "5e89eaaf69bceef2ce1714c3dfde3a5f3e527d912fff30a813c40ea348cb3810",
+      "sample": "fiumicino",
+      "file": "fiumicino.html",
+      "fixture_file": "fiumicino.html",
+      "fixture_sha256": "31f50624c035f9ea560e55c70a79ab87daa11a4203f6a4eb92ed943ff526fe44",
+      "fixture_kind": "authored semantic HTML; publisher article body and original HTML not retained",
+      "expected": {
+        "status": "held",
+        "location": {
+          "city": "Fiumicino",
+          "province": "Roma",
+          "region": "Lazio",
+          "address": "“Da Vinci – Sessantotto Village”, Parco da Vinci, via Geminiano Montanari"
+        },
+        "hours_text": "18:00–24:00",
+        "hours_intervals": [
+          {
+            "start": "18:00",
+            "end": "24:00"
+          }
+        ],
+        "edition_intervals": [
+          {
+            "start": "2026-06-02",
+            "end": "2026-08-10"
+          }
+        ],
+        "occurrences": [],
+        "calendar_scope": "edition_bounds",
+        "calendar_complete": false,
+        "calendar_rules": [
+          {
+            "kind": "daily_within_edition",
+            "evidence": [
+              "#post-content .mercatini-mostre-times"
+            ]
+          }
+        ],
+        "suspensions": [],
+        "conflict_codes": [
+          "description_visible_edition_bounds_disagree"
+        ],
+        "modified_at": "2026-06-07T15:59:00+00:00"
+      }
+    }
+  ]
+}

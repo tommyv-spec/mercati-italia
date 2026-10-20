@@ -84,6 +84,13 @@ from happings_detail_discovery import validate_state as validate_happings_discov
 from happings_legacy_resources import (
     STATE_FILENAME as HAPPINGS_LEGACY_STATE, validate_state as validate_happings_legacy_state,
 )
+from existing_source_refresh import (
+    configuration as existing_source_configuration,
+    run_editorial as refresh_existing_editorial_sources,
+    persist_editorial_states, verify_editorial_export,
+    run_roma as refresh_roma_d881, verify_roma_fields,
+    STATE_FILENAMES as EXISTING_SOURCE_STATES,
+)
 from official_source_output_gate import inspect as inspect_official_source_output
 from municipality_release_guard import check as check_municipality_changes
 from reviewed_city_evidence import (
@@ -98,8 +105,8 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "publisher_pages", "forecast",
-          "reviewed_publishers", "roma_geo_hold", "happings_enrichment", "export", "quality")
+          "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "publisher_pages", "editorial_sources", "forecast",
+          "reviewed_publishers", "roma_geo_hold", "roma_d881", "happings_enrichment", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -500,7 +507,9 @@ def prune_old_assets(output: Path, old_manifest: dict, new_manifest: dict):
     root = output.parent.parent
     removed = 0
     for file in output.rglob("*.json"):
-        if file.name == "manifest.json" or file in {output / HAPPINGS_DISCOVERY_STATE, output / HAPPINGS_LEGACY_STATE}:
+        if file.name == "manifest.json" or file in {
+                output / name for name in EXISTING_SOURCE_STATES |
+                {HAPPINGS_DISCOVERY_STATE, HAPPINGS_LEGACY_STATE}}:
             continue
         relative = file.relative_to(root).as_posix()
         if relative not in keep:
@@ -673,7 +682,14 @@ def run(args):
     old_manifest = read_json(manifest_path)
     publisher_contracts = validate_publisher_contracts(read_json(
         Path(__file__).resolve().parent / "data/publisher-refresh-contracts.json"))
-    policy_id = digest({"policy": policy, "publisher_contracts": publisher_contracts})
+    existing_source_policy = policy.get("existing_source_refresh", {"enabled": False})
+    if (not isinstance(existing_source_policy, dict)
+            or set(existing_source_policy) != {"enabled"}
+            or type(existing_source_policy["enabled"]) is not bool):
+        raise ValueError("Invalid existing-source refresh enablement")
+    existing_source_config = existing_source_configuration(enabled=existing_source_policy["enabled"])
+    policy_id = digest({"policy": policy, "publisher_contracts": publisher_contracts,
+                        "existing_source_contracts": existing_source_config})
     baseline_id = old_manifest.get("content_signature")
     if not baseline_id:
         raise ValueError("Baseline must have a content signature")
@@ -1159,8 +1175,20 @@ def run(args):
         "conflicts": len(page_report["conflicts"]),
     })
 
+    editorial_rows, existing_source_report, editorial_preserve_ids = refresh_existing_editorial_sources(
+        page_rows, out=out, state_dir=manifest_path.parent, today=args.today,
+        baseline_signature=baseline_id, policy_digest=policy_id,
+        config=existing_source_config, offline=args.offline, resume=args.resume,
+    )
+    save_json(out / "intermediate/editorial-source-refreshed.json", editorial_rows)
+    checkpoint(out, "editorial_sources", {
+        publisher: {key: phase[key] for key in (
+            "status", "details_attempted", "source_pages_read", "documents_parsed", "progress")}
+        for publisher, phase in existing_source_report["editorial"].items()
+    })
+
     projected, forecast_stats = refresh_records(
-        page_rows, args.today, policy["forecast"]["days"],
+        editorial_rows, args.today, policy["forecast"]["days"],
         policy["forecast"]["max_source_age_days"],
         source_limits=forecast_source_limits(read_json(profile_file)) if lifecycle_enabled else None)
     if len(projected) != (len(merged) + roma_2026_report["records_added"]
@@ -1237,6 +1265,20 @@ def run(args):
         "opening_verifications_created":0,
     })
 
+    projected, existing_source_report["roma"] = refresh_roma_d881(
+        projected, out=out, today=args.today, baseline_signature=baseline_id,
+        policy_digest=policy_id, config=existing_source_config,
+        offline=args.offline, resume=args.resume,
+    )
+    save_json(out / "existing-source-refresh.json", existing_source_report)
+    checkpoint(out, "roma_d881", {
+        "status": existing_source_report["roma"]["status"],
+        "network_requests": existing_source_report["roma"]["network_requests"],
+        "matched_existing_ids": len(existing_source_report["roma"].get("matched_ids", [])),
+        "changed_existing_ids": len(existing_source_report["roma"].get("changed_ids", [])),
+        "new_opening_confirmations": 0,
+    })
+
     # Publisher-specific extraction belongs before export and the final
     # release gates. Details retain listed dates, never human confirmation.
     before_happings = projected
@@ -1265,11 +1307,15 @@ def run(args):
     exported = export(projected, dest, today=args.today,
                       min_count=int(policy["gates"]["min_total_records"]),
                       max_drop_ratio=float(policy["gates"]["max_record_loss_fraction"]),
-                      preserve_ids=happings_preserve_ids | page_preserve_ids |
+                      preserve_ids=happings_preserve_ids | page_preserve_ids | editorial_preserve_ids |
                           set(generic_admission_report["new_market_ids"]) |
                           set(generic_admission_report.get("evidence_updated_market_ids", [])))
     detail_state_changed = False
     legacy_state_changed = False
+    editorial_state_changed = persist_editorial_states(
+        existing_source_report, out=out, source_dir=manifest_path.parent,
+        destination=dest, today=args.today,
+    )
     detail_report = happings_report.get("details")
     if detail_report and detail_report["status"] not in {"disabled", "offline_skipped", "resume_missing_evidence"}:
         # The existing DEV publisher copies this directory after all QA.
@@ -1307,6 +1353,10 @@ def run(args):
         before_happings, projected, new_rows, happings_report, today=args.today
     )
     save_json(out / "happings-enrichment-static-guard.json", happings_static_guard)
+    editorial_static_guard = verify_editorial_export(new_rows, existing_source_report, today=args.today)
+    roma_d881_static_guard = verify_roma_fields(new_rows, existing_source_report["roma"], today=args.today)
+    save_json(out / "editorial-source-static-guard.json", editorial_static_guard)
+    save_json(out / "roma-d881-static-guard.json", roma_d881_static_guard)
     if happings_report.get("details", {}).get("evidence", {}).get("new_market_ids"):
         # Existing external QA imports these shared source guards. Carry
         # reconstructable facts for later admissions into their reports;
@@ -1368,6 +1418,7 @@ def run(args):
         happings_report=happings_report,
         source_policy=policy["sources"], source_status=source_status,
         admissions_enabled=generic_enabled, admission_report=generic_admission_report,
+        existing_source_report=existing_source_report,
         today=args.today, **coverage_configuration,
     )
     save_json(out / "source-refresh-coverage.json", resources)
@@ -1417,7 +1468,8 @@ def run(args):
     findings["base_signature"] = baseline_id
     findings["new_signature"] = result_manifest["content_signature"]
     findings["elapsed_seconds"] = round(time.monotonic() - start, 2)
-    findings["has_changes"] = baseline_id != result_manifest["content_signature"] or detail_state_changed or legacy_state_changed
+    findings["has_changes"] = (baseline_id != result_manifest["content_signature"]
+                               or detail_state_changed or legacy_state_changed or editorial_state_changed)
     findings["happings_discovery_state_changed"] = detail_state_changed
     findings["happings_legacy_state_changed"] = legacy_state_changed
     findings["job_id"] = status["job_id"]
@@ -1441,6 +1493,16 @@ def run(args):
         "release_safe": page_guard["release_safe"],
     }
     findings["source_format_review"] = format_review["summary"]
+    findings["existing_source_refresh"] = {
+        "editorial": {publisher: {key: phase[key] for key in (
+            "status", "details_attempted", "source_pages_read", "documents_parsed", "progress")}
+            for publisher, phase in existing_source_report["editorial"].items()},
+        "roma": {"status": existing_source_report["roma"]["status"],
+                 "matched_existing_ids": len(existing_source_report["roma"].get("matched_ids", [])),
+                 "changed_existing_ids": len(existing_source_report["roma"].get("changed_ids", []))},
+        "editorial_state_changed": editorial_state_changed,
+        "release_safe": editorial_static_guard["release_safe"] and roma_d881_static_guard["release_safe"],
+    }
     findings["publisher_refresh"] = {
         "selected_pages": page_report["selected_pages"],
         "field_changes": page_report["field_changes"],

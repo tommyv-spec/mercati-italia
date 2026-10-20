@@ -1,0 +1,182 @@
+{
+  "baseline_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+  "date": "2026-10-20",
+  "editorial": {
+    "cosedicasa.com": {
+      "captured_pages_read": 4,
+      "changed_existing_ids": [
+        "mercatino-antiquariato-e-usato-di-bologna-mercato-antiquario-citta-di-bologna-pi",
+        "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
+        "mercatino-antiquariato-e-usato-di-venezia-il-mercatino-di-campo-san-maurizio-cam"
+      ],
+      "configured_urls": 425,
+      "documents_parsed": 4,
+      "held_reasons": {
+        "existing_venue_conflict": 1
+      },
+      "market_freshness_guaranteed": false,
+      "market_outcomes": {
+        "changed": 3,
+        "held": 1
+      },
+      "never_read_urls": 421,
+      "queue_attempts_remaining": 409,
+      "queue_read": 4,
+      "simulated_detail_attempts": 16,
+      "status": "completed"
+    },
+    "eventiesagre.it": {
+      "captured_pages_read": 0,
+      "changed_existing_ids": [],
+      "configured_urls": 1853,
+      "documents_parsed": 0,
+      "held_reasons": {},
+      "market_freshness_guaranteed": false,
+      "market_outcomes": {},
+      "never_read_urls": 1853,
+      "queue_attempts_remaining": 1853,
+      "queue_read": 0,
+      "simulated_detail_attempts": 0,
+      "status": "offline_skipped"
+    }
+  },
+  "existing_ids_retained": 13824,
+  "independent_static_guards": {
+    "editorial-source-static-guard.json": {
+      "publishers": {
+        "cosedicasa.com": {
+          "editorial_identities_checked": 3,
+          "release_safe": true
+        },
+        "eventiesagre.it": {
+          "editorial_identities_checked": 0,
+          "release_safe": true
+        }
+      },
+      "release_safe": true,
+      "schema": 1
+    },
+    "happings-enrichment-static-guard.json": {
+      "checked_market_ids": 13824,
+      "detail_pages_evaluated": 9,
+      "exported_market_ids": 13826,
+      "happings_ids_added": 2,
+      "happings_ids_deleted": 0,
+      "input_market_ids": 13824,
+      "market_ids_added": 2,
+      "market_ids_deleted": 0,
+      "opening_verifications_created": 0,
+      "protected_catalog_market_ids": 13824,
+      "protected_happings_ids": 9647,
+      "release_safe": true,
+      "retired_source_support_markets": 0,
+      "schema": 1,
+      "secondary_observed_markets": 0,
+      "source_field_changes": 0,
+      "source_observed_markets": 0,
+      "source_record_changes": 0,
+      "unapproved_field_changes": 0
+    },
+    "roma-d881-static-guard.json": {
+      "release_safe": true,
+      "schema": 1,
+      "source_changed_rows_checked": 68
+    }
+  },
+  "input_records": 13824,
+  "integration_tests": {
+    "file": "backend/tests/test_existing_source_refresh.py",
+    "includes": [
+      "parallel independent publishers with semantic merge proof",
+      "overlap rejection",
+      "per-host deadlines",
+      "global-disabled no network",
+      "persisted queue pruning and offline preservation",
+      "report-bound queue tamper rejection",
+      "historical year identity preservation through export and next offline day",
+      "Roma captured checkpoint resume",
+      "Roma context replacement rejection",
+      "unavailable source preserves all fields"
+    ],
+    "passed": 10
+  },
+  "limitations": [
+    "EES has no original HTML available and remains offline.",
+    "Only four CDC captures have complete operational transport proof; Cernobbio held for missing captured redirect hop.",
+    "Five CDC raw bodies also have a separate parser/matcher replay; this does not replace transport proof.",
+    "Replay selection is explicit; this is not the normal daily first batch or a completed source cycle.",
+    "No new HTTP, publication or guarantee of current openings."
+  ],
+  "live_http_requests": 0,
+  "mode": "CACHED_REPLAY_OF_ORIGINAL_HTTP_BYTES",
+  "new_happings_ids": [
+    "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5",
+    "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5"
+  ],
+  "output_records": 13826,
+  "policy_digest": "6c8c6118e3881946dcc3e5b481ebb030968ee88e22ae07481d760c6b3e641444",
+  "preservation": {
+    "candidate_queue_files": {
+      "cosedicasa-detail-state.json": true,
+      "eventiesagre-detail-state.json": false
+    },
+    "geographic_identity_changes": 0,
+    "new_human_verifications": 0,
+    "nonempty_addresses_overwritten": 0,
+    "primary_source_urls_changed": 0
+  },
+  "public_catalog_writes": 0,
+  "release": {
+    "approved": true,
+    "elapsed_seconds": 87.23,
+    "gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "passed_gates": 17,
+    "reason": "all_policies_pass",
+    "total_gates": 17
+  },
+  "removed_ids": [],
+  "replay_artifacts": {
+    "combined_report_sha256": "846fa707eb0e905fc63970ba1d89e12fc5a87b0601e56c9a2dfa597858a512a8",
+    "coverage_sha256": "2970f1b9d3574618b76cdb2d4f5d77e7a292146f510ba0166608de57fecf7c5a",
+    "directory": "all-source-full-captured-replay-20261020",
+    "summary_sha256": "b1ac75b3c5e87ae23db2bbbc81ea85601f2ade6d42bfc132d1786d699bb06c97"
+  },
+  "replay_selection": "Replay-only ordering prioritizes five saved catalog URLs within the unchanged 16-detail policy; all 425 current URLs remain in the queue. Missing bodies are explicitly unavailable.",
+  "roma": {
+    "counts": {
+      "corrupt_catalog_identity": 2,
+      "enriched": 68,
+      "held": 2
+    },
+    "existing_rows_retained": 70,
+    "final_hours_states": {
+      "mancante": 2,
+      "riscontro_da_aggiornare": 68
+    },
+    "new_ids": [],
+    "primary_source_dates_changed": 0,
+    "source_row_dates": [
+      "2021-12-31",
+      "2023-04-30"
+    ]
+  },
+  "schema": 1
+}

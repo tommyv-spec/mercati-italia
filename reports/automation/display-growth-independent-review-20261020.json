@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "reviewed_on": "2026-10-20",
+  "run_id": 39465324614,
+  "review_only": true,
+  "catalog_written": false,
+  "publication_performed": false,
+  "product_grouping_rules_changed": false,
+  "baseline_signature": "4de17fb44655745c6a941f591c44c9ff682bff511181c4c21ab232934536fd6f",
+  "candidate_signature": "615093e0b2f8c07b793251b645c01c293161c5eb72966abb44c5d79f1a9bed13",
+  "artifact_sha256_verified": "9167a55dde188bc1c5fd346a5abb9a758bc23d8b70a1cc24ddc9724fe7539647",
+  "reviewed_report_sha256": "0b132cac210d577f597d2431eccfdba9552ba32009b747bf9c029b307ac53ec4",
+  "metrics_recomputed": {
+    "baseline_records": 13824,
+    "candidate_records": 13856,
+    "baseline_groups": 382,
+    "candidate_groups": 536,
+    "baseline_repeat_buttons": 382,
+    "candidate_repeat_buttons": 588,
+    "retained_existing_ids": 13824,
+    "new_source_admitted_ids": 32,
+    "new_pairs": 258,
+    "removed_pairs": 0
+  },
+  "pair_review": {
+    "review_report_pair_set_matches_production_grouping": true,
+    "reviewed_reference_equals_full_regenerated_audit": true,
+    "identity_geography_primary_url_coordinates_recurrence_status_unchanged": true,
+    "calendar_rollover_alone_explains_pairs": 0,
+    "source_field_counterfactuals_passed": 258,
+    "unexplained_pairs": 0
+  },
+  "source_reproduction": {
+    "changed_fields_checked": 406,
+    "address_changes": 270,
+    "hours_changes": 136,
+    "happings_html_pages_reparsed": 13,
+    "mercap_raw_rows_screened": 1453,
+    "mercap_normalized_rows_reproduced": 1360,
+    "happings_phase_matches_captured_report": true,
+    "mercap_phase_matches_captured_report": true,
+    "unsupported_receipts": 0,
+    "source_read_date": "2026-10-20"
+  },
+  "main_display_gate": {
+    "exact_main_gate_unmodified": true,
+    "main_workflow_sha256": "d700830c4ca51b5f4f70db975bf574777e373021f878167bd5405ab52567cfec",
+    "gate_sha256": "a7a37650a4255224deeba5320735f4683a40841639231874c3c2c825ca0d1587",
+    "previous_baseline": {
+      "suppressed_buttons": 382,
+      "threshold": 515,
+      "result": "correctly_requires_review"
+    },
+    "reviewed_reference": {
+      "suppressed_buttons": 588,
+      "threshold": 793,
+      "result": "pass"
+    },
+    "actual_candidate_suppressed_buttons": 588
+  },
+  "mobile_390x844": {
+    "known_group_assertions": {
+      "result": "pass",
+      "candidate": 39465324614,
+      "viewport": "390x844",
+      "firenze": {
+        "records": 7,
+        "knownVenues": 4,
+        "unknownVenue": 1,
+        "saturdayVenues": 1
+      },
+      "albizzate": {
+        "duplicateVisitButtons": 1,
+        "originalSourceRecords": 2
+      },
+      "paidBackendRequests": 0,
+      "runtimeErrors": 0
+    },
+    "reviewed_city_navigation_holds": "pass",
+    "roma_xiii_coordinate_holds": "pass",
+    "five_roma_2026_venues": "pass",
+    "entire_ui_smoke_replayed": false,
+    "scope": "Exact Firenze and Albizzate assertions from current ui-smoke plus the three complete dedicated safety scripts; full general map/GPS/favorites flows were not repeated."
+  },
+  "remaining_main_consumers": {
+    "reviewed_city_final_static_guard": "pass",
+    "main_publication_history_cli": "pass",
+    "history_candidate_records": 13856,
+    "static_cloudflare_routing": "pass",
+    "candidate_build": "pass"
+  },
+  "remaining_numeric_gates_reviewed": [
+    {
+      "gate": "display_growth",
+      "bound": "max(50, floor(prior_repeat_buttons * 1.35))",
+      "current_reference": 588,
+      "current_limit": 793,
+      "assessment": "Unchanged source-review trigger; a future larger increase still requires a separately proved review."
+    },
+    {
+      "gate": "reviewed_city_source_cohort",
+      "expected": 16,
+      "assessment": "Exact curated source identities, current final guard passes."
+    },
+    {
+      "gate": "milano_source_cohort",
+      "expected": 76,
+      "assessment": "Exact PDF/GIS cohort rather than national count; actual run already passed this upstream gate."
+    },
+    {
+      "gate": "roma_2026_source_venues",
+      "expected": 5,
+      "assessment": "Exact curated source cohort, dedicated mobile test passes."
+    },
+    {
+      "gate": "roma_coordinate_hold_cohort",
+      "expected": 2,
+      "assessment": "Exact source safety cohort, dedicated mobile test passes."
+    },
+    {
+      "gate": "firenze_mobile_example",
+      "expected": {
+        "cards": 7,
+        "known_venues": 4,
+        "unknown_venues": 1,
+        "saturday_venues": 1
+      },
+      "assessment": "Frozen local regression example; passes actual candidate. A later legitimate source-backed addition or recovered venue would need a case-specific test review."
+    },
+    {
+      "gate": "source_quarantine_caps",
+      "limits": {
+        "lombardia": 500,
+        "bologna": 48,
+        "corciano": 8
+      },
+      "assessment": "Bounded source-change safety limits; no new national catalog total is hard-coded."
+    }
+  ],
+  "blockers": [],
+  "result": "reviewed_display_baseline_supported_by_actual_source_reproduction",
+  "limits": "Reversible display aggregation only. No proof of legal entity equality or independently confirmed market openings. Candidate remains unpublished; existing publication and concurrency gates are unchanged."
+}

@@ -35,6 +35,7 @@ from source_freshness import as_day, source_date_evidence, source_url_domain
 from source_calendar import refresh_source_calendar
 from field_evidence import clean_receipts, MAX_READ_AGE, SOURCE_AGE
 from lombardia_calendar_scope import calendar_scope, filter_dates, within_bounds
+from editorial_calendar_scope import apply_editorial_scope
 
 WEEKDAYS = ("lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica")
 DAYS_PATTERN = re.compile(r"\b(?:lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)\b")
@@ -407,7 +408,7 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
     raise ValueError("Unrecognized recurrence kind")
 
 
-def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEAD_DAYS,
+def _refresh_record_base(original: dict, today: date, horizon_days: int = MAX_LOOKAHEAD_DAYS,
                    max_stale_days: int = MAX_SOURCE_STALE_DAYS, *,
                    source_limits=None) -> tuple[dict, str]:
     record = dict(original)
@@ -567,6 +568,14 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     record["proiezione_generata_il"] = today.isoformat()
     record["proiezione_fonte"] = projection_basis
     return record, "renewed"
+
+
+def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEAD_DAYS,
+                   max_stale_days: int = MAX_SOURCE_STALE_DAYS, *, source_limits=None):
+    updated, reason = _refresh_record_base(original, today, horizon_days, max_stale_days,
+                                           source_limits=source_limits)
+    scoped, editorial_reason = apply_editorial_scope(updated, today=today)
+    return scoped, editorial_reason if scoped != updated else reason
 
 
 def refresh_records(records: list[dict], today: date, horizon_days: int = MAX_LOOKAHEAD_DAYS,

@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "publication_channel": "dev-only",
+  "purpose": "Read factual fields and edition limits for identities whose exact primary source URL is already present in the catalog.",
+  "authorization_basis": "User instruction to automate extraction and updating from all existing sources; this is not a claim of authenticated publisher reuse rights.",
+  "eventiesagre": {
+    "enabled": true,
+    "max_details": 64,
+    "max_seconds": 210,
+    "min_delay_seconds": 2,
+    "overdue_after_days": 45,
+    "new_market_ids_allowed": false,
+    "overwrite_unowned_fields": false
+  },
+  "cosedicasa": {
+    "enabled": true,
+    "max_details": 16,
+    "max_seconds": 90,
+    "min_delay_seconds": 2,
+    "overdue_after_days": 45,
+    "new_market_ids_allowed": false,
+    "overwrite_unowned_fields": false
+  }
+}

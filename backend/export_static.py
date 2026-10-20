@@ -26,6 +26,10 @@ from source_calendar import clean_source_calendar, clean_source_detail, source_c
 from source_freshness import source_date_evidence
 from source_hours import preserve_hours_text
 from lombardia_calendar_scope import calendar_scope, filter_dates, retained_identity
+from editorial_calendar_scope import (
+    KEY as EDITORIAL_EVIDENCE, clean_editorial_evidence,
+    apply_editorial_scope, retain_editorial_evidence,
+)
 from urllib.parse import urlsplit
 
 CANONICAL_REGIONS = [
@@ -120,6 +124,12 @@ def parse_location(raw: dict) -> tuple[float | None, float | None, str]:
 def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     if not isinstance(raw, dict):
         return None, "record_not_object"
+    editorial_evidence = None
+    if raw.get(EDITORIAL_EVIDENCE) is not None:
+        editorial_evidence = clean_editorial_evidence(raw[EDITORIAL_EVIDENCE], raw, today=today)
+        if editorial_evidence is None:
+            return None, "invalid_editorial_source_evidence"
+        raw, _ = apply_editorial_scope(raw, today=today)
     nome = safe_string(raw.get("nome"), 160)
     citta = safe_string(raw.get("citta"), 120)
     regione_raw = safe_string(raw.get("regione"), 80)
@@ -135,7 +145,8 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     # Editions titled with a past year and no future dates are historical,
     # not upcoming markets. Leave raw records intact in the original source.
     editions = [int(year) for year in re.findall(r"\b20[0-3][0-9]\b", nome)]
-    if editions and max(editions) < today.year and not parse_dates(raw.get("date"), today):
+    if (editions and max(editions) < today.year and not parse_dates(raw.get("date"), today)
+            and editorial_evidence is None):
         return None, "historical_edition_without_future_date"
     # Categories outside the product scope (for example "sagra" or
     # "carnevale") must not silently turn into generic market records.
@@ -301,6 +312,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         return None, "invalid_source_detail"
     if source_detail:
         result["dettaglio_fonte"] = source_detail
+    result = retain_editorial_evidence(raw, result, today=today)
     return result, None
 
 
@@ -402,7 +414,7 @@ def combine_safe_source_duplicates(records: list[dict], *, preserve_ids=None) ->
     """
     protected = frozenset(preserve_ids or ()) | frozenset(
         row["slug"] for row in records
-        if row.get("riscontri_campi") or row.get("eccezioni_calendario")
+        if row.get("riscontri_campi") or row.get("eccezioni_calendario") or row.get(EDITORIAL_EVIDENCE)
     )
     unique = []
     groups = {}
@@ -459,7 +471,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
     for raw in raw_records:
         if isinstance(raw, dict) and (
                 clean_receipts(raw.get("riscontri_campi"), raw, today=today)
-                or clean_exceptions(raw.get("eccezioni_calendario"), raw, today=today)):
+                or clean_exceptions(raw.get("eccezioni_calendario"), raw, today=today)
+                or clean_editorial_evidence(raw.get(EDITORIAL_EVIDENCE), raw, today=today)):
             # Protect before normalization/collision handling: changing the
             # slug of a valid source claim would silently lose its proof.
             protected.add(str(raw.get("slug") or ""))
@@ -473,7 +486,7 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
             skipped[error] += 1
             continue
         slug = result["slug"]
-        if result.get("riscontri_campi") or result.get("eccezioni_calendario"):
+        if result.get("riscontri_campi") or result.get("eccezioni_calendario") or result.get(EDITORIAL_EVIDENCE):
             protected.add(slug)
         if slug in by_slug:
             if slug in protected:

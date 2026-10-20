@@ -26,7 +26,7 @@ MAX_MANAGED_HISTORY = 6
 MANAGER_ID = re.compile(r"[a-z][a-z0-9_-]{0,63}")
 FEED_IDS = {"milano", "firenze", "lombardia", "corciano", "bologna"}
 METHODS = {"id_fonte", "sede_giorno_provincia", "pagina_primaria_revisionata",
-           "comune_provincia_giorno_univoco"}
+           "comune_provincia_giorno_univoco", "nome_sede_comune_univoco"}
 FINGERPRINT_KINDS = {"publisher_parsed_json", "reviewed_factual_excerpt", "web_extracted_text",
                      "html_bytes", "pdf_bytes"}
 RECEIPT_KEYS = {"schema", "mercato", "valori", "url", "fonte", "fonte_id", "riga_fonte",

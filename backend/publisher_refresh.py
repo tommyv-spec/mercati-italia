@@ -227,10 +227,197 @@ def _happings_detail_reads(rows, report, today):
     return result
 
 
+def _editorial_reader_coverage(rows, report, publisher, today):
+    """Configured URL support and observed reads are separate evidence."""
+    from editorial_calendar_scope import source_identity
+    from eventiesagre_detail_refresh import validate_redirects
+
+    if (not isinstance(report, dict) or report.get("schema") != 1
+            or report.get("publisher") != publisher or report.get("date") != today.isoformat()
+            or type(report.get("enabled")) is not bool):
+        return None
+    state = {"enabled": report["enabled"], "default": "not_observed", "reads": {},
+             "contents": {}, "proofs": {}, "outcomes": {}}
+    if not state["enabled"]:
+        state["default"] = "disabled"
+        return state
+    status = report.get("status")
+    if status in {"offline_skipped", "resume_missing_evidence", "robots_unavailable"}:
+        state["default"] = status
+        return state
+    if status not in {"completed", "resumed", "running", "time_budget_exhausted"}:
+        return state
+    attempts, pages = report.get("attempts"), report.get("source_pages")
+    holds, evidence = report.get("parse_holds", []), report.get("evidence")
+    limit = 64 if publisher == "eventiesagre.it" else 16
+    if (not isinstance(attempts, list) or len(attempts) > limit or not isinstance(pages, list)
+            or len(pages) > len(attempts) or not isinstance(holds, list)
+            or not isinstance(evidence, dict) or evidence.get("schema") != 1 or evidence.get("publisher") != publisher
+            or evidence.get("date") != today.isoformat()
+            or not isinstance(evidence.get("documents"), list)
+            or not isinstance(evidence.get("outcomes"), list)):
+        return state
+    targets = {row.get("url_fonte") for row in rows
+               if (source_identity(row.get("url_fonte")) or (None,))[0] == publisher}
+    indexed, documents, parse_holds, acquired = {}, {}, set(), {}
+    outcomes = {}
+    catalog = {row["slug"]: row for row in rows}
+    try:
+        for attempt in attempts:
+            url = attempt["url"]
+            if (url not in targets or url in indexed or type(attempt.get("network_attempted")) is not bool
+                    or attempt.get("status") not in {"retrieved", "layout_held", "unavailable", "robots_denied", "inflight"}
+                    or attempt["status"] in {"retrieved", "layout_held"} and not attempt["network_attempted"]):
+                return state
+            indexed[url] = attempt
+        for hold in holds:
+            url = hold["url"]
+            if url in parse_holds or url not in indexed or indexed[url]["status"] != "layout_held":
+                return state
+            parse_holds.add(url)
+        for entry in evidence["documents"]:
+            document = entry["parsed"]
+            source = document["source"]
+            url = source["requested_url"]
+            if (url in documents or url in parse_holds or url not in indexed or document.get("schema") != 1
+                    or as_day(entry.get("read_on")) != today
+                    or source.get("publisher") != publisher or document.get("status") not in {"parsed", "held"}):
+                return state
+            documents[url] = document
+        for page in pages:
+            url, final = page["requested_url"], page["final_url"]
+            expected, actual = source_identity(url), source_identity(final)
+            redirected = validate_redirects(url, final, page.get("redirects", []))
+            if (url not in indexed or url in acquired or not expected or not actual
+                    or expected[0] != publisher or actual[0] != publisher
+                    or publisher == "eventiesagre.it" and actual != expected
+                    or page.get("redirect_observed", False) is not redirected
+                    or indexed[url]["status"] not in {"retrieved", "layout_held"}
+                    or as_day(page.get("read_on")) != today
+                    or type(page.get("bytes")) is not int or not 100 <= page["bytes"] <= 2_500_000
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(page.get("sha256") or ""))):
+                return state
+            document = documents.get(url)
+            if document:
+                source = document["source"]
+                if (source.get("final_url") != final or source.get("html_sha256") != page["sha256"]
+                        or source.get("bytes") != page["bytes"]):
+                    return state
+            elif url not in parse_holds:
+                return state
+            acquired[url] = page
+        if (set(acquired) != {url for url, attempt in indexed.items()
+                             if attempt["status"] in {"retrieved", "layout_held"}}
+                or set(documents) | parse_holds != set(acquired)
+                or report.get("source_pages_read") != len(acquired)
+                or report.get("documents_parsed") != len(documents)
+                or report.get("details_attempted") != len(indexed)):
+            return state
+        for outcome in evidence["outcomes"]:
+            sid, value = outcome.get("slug"), outcome.get("status")
+            row = catalog.get(sid)
+            if (row is None or sid in outcomes or row.get("url_fonte") not in documents
+                    or value not in {"held", "changed", "unchanged", "observed"}):
+                return state
+            outcomes[sid] = value
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return state
+    state["default"] = "not_selected"
+    state["outcomes"] = outcomes
+    for url, attempt in indexed.items():
+        value = attempt["status"]
+        state["reads"][url] = ("resumed_checkpoint" if value == "retrieved" and status == "resumed" else value)
+        if url in acquired:
+            page = acquired[url]
+            state["proofs"][url] = {key: page[key] for key in ("requested_url", "final_url", "read_on", "bytes", "sha256")}
+            if page.get("redirect_observed") is True:
+                state["proofs"][url].update(redirect_observed=True, redirects=deepcopy(page["redirects"]))
+            state["contents"][url] = documents[url]["status"] if url in documents else "layout_held"
+    return state
+
+
+def _roma_reader_coverage(rows, report, today):
+    from source_roma_d881 import DATASET_PAGE, SOURCE_ID, parse_snapshot
+
+    if (not isinstance(report, dict) or report.get("schema") != 1
+            or report.get("source_id") != SOURCE_ID or report.get("date") != today.isoformat()
+            or type(report.get("enabled")) is not bool):
+        return None
+    state = {"enabled": report["enabled"], "default": "not_observed", "reads": {},
+             "contents": {}, "proofs": {}, "outcomes": {}}
+    if not state["enabled"]:
+        state["default"] = "disabled"
+        return state
+    status = report.get("status")
+    if status in {"offline_skipped", "unavailable", "not_selected", "resume_missing_evidence"}:
+        state["default"] = status
+        return state
+    if status not in {"retrieved", "resumed_checkpoint", "cached_snapshot"}:
+        return state
+    try:
+        document = parse_snapshot(report.get("snapshot"), today=today)
+        if document != report.get("document") or not isinstance(report.get("outcomes"), list):
+            return state
+        catalog = {row["slug"]: row for row in rows}
+        outcomes = {}
+        for outcome in report["outcomes"]:
+            sid, value = outcome.get("market_id"), outcome.get("status")
+            if (sid not in catalog or sid in outcomes or catalog[sid].get("url_fonte") != DATASET_PAGE
+                    or value not in {"held", "enriched", "observed", "candidate"}):
+                return state
+            outcomes[sid] = value
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return state
+    state["outcomes"] = outcomes
+    state["reads"][DATASET_PAGE] = "cached_snapshot" if document["read_on"] != today.isoformat() else status
+    state["contents"][DATASET_PAGE] = "parsed_historical_inventory"
+    state["proofs"][DATASET_PAGE] = {"read_on": document["read_on"],
+        "metadata_sha256": document["metadata_sha256"], "csv_sha256": document["csv_sha256"],
+        "resource_url": document["distribution"]["url"], "source_date_scope": "per_row_AGGIORNATO"}
+    return state
+
+
+def _existing_source_coverage(rows, report, today):
+    """Validate the optional orchestrator report without granting new sources."""
+    if (not isinstance(report, dict) or report.get("schema") != 1
+            or report.get("date") != today.isoformat() or not isinstance(report.get("editorial"), dict)):
+        return {}
+    result = {"editorial": {}}
+    for publisher in ("eventiesagre.it", "cosedicasa.com"):
+        if publisher in report["editorial"]:
+            state = _editorial_reader_coverage(rows, report["editorial"][publisher], publisher, today)
+            if state:
+                result["editorial"][publisher] = state
+    if report.get("roma") is not None:
+        state = _roma_reader_coverage(rows, report["roma"], today)
+        if state:
+            result["roma"] = state
+    return result
+
+
+def _existing_reader(row, states):
+    if not states:
+        return None
+    from editorial_calendar_scope import source_identity
+    url = row.get("url_fonte")
+    bound = source_identity(url)
+    if bound and bound[0] in states["editorial"]:
+        publisher = bound[0]
+        label = "eventiesagre" if publisher == "eventiesagre.it" else "cosedicasa"
+        return label + "-detail", label + "_existing_detail", states["editorial"][publisher]
+    if states.get("roma"):
+        from source_roma_d881 import DATASET_PAGE
+        if (url == DATASET_PAGE and text_key(row.get("citta")) == "roma"
+                and row.get("provincia") == "RM" and text_key(row.get("regione")) == "lazio"):
+            return "roma-d881", "roma_d881_existing_inventory", states["roma"]
+    return None
+
+
 def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
                       source_contracts=None, source_admissions=None, source_policy=(),
                       source_status=None, admissions_enabled=False, admission_report=None,
-                      happings_report=None, happings_details_enabled=False, today=None):
+                      happings_report=None, happings_details_enabled=False, today=None,
+                      existing_source_report=None):
     """Describe configured readers separately from this run's source availability.
 
     Admission comes from the existing exact source certificate, never from a
@@ -242,6 +429,7 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
     from source_lifecycle import digest, validate_contracts as validate_source_contracts
 
     today = today or date.today()
+    existing_sources = _existing_source_coverage(rows, existing_source_report, today)
     happings_enabled = (happings_enabled is True and (
         happings_report is None or isinstance(happings_report, dict)
         and happings_report.get("enabled") is True and happings_report.get("fetch_authorized") is True))
@@ -331,11 +519,31 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
             # mix proved and unproved identities. Count each route honestly.
             resource_groups.extend((url, subset, route) for route, subset in sorted(routes.items()))
         else:
-            resource_groups.append((url, group, ""))
+            # Raw source URLs and Roma geography must remain exact even when
+            # the display canonicalizer groups tracking URLs or mixed rows.
+            cohorts = defaultdict(list)
+            for row in group:
+                route = _existing_reader(row, existing_sources)
+                cohorts[route[0] if route else ""].append(row)
+            resource_groups.extend((url, subset, "") for _, subset in sorted(cohorts.items()))
     resources = []
     for url, group, happings_page in resource_groups:
         host = urlsplit(url).hostname or ""
         readers = list(generic_routes.get(url, []))
+        existing_reader = _existing_reader(group[0], existing_sources)
+        if existing_reader:
+            sid, existing_mode, state = existing_reader
+            exact_url = group[0]["url_fonte"]
+            enabled = state["enabled"]
+            reader = {"source_id": sid, "reader": "existing_source_detail", "mode": existing_mode,
+                "source_layout_status": "supported" if enabled else "disabled",
+                "source_read_status": state["reads"].get(exact_url, state["default"]),
+                "market_outcome_statuses": dict(Counter(state["outcomes"].get(row["slug"], "not_evaluated") for row in group))}
+            if exact_url in state["contents"]:
+                reader["source_content_status"] = state["contents"][exact_url]
+            if exact_url in state["proofs"]:
+                reader["source_acquisition"] = state["proofs"][exact_url]
+            readers.append(reader)
         for profile in normalized:
             if (url not in {canonical_url(u) for u in profile.get("source_pages", [])}
                     and not (host in profile.get("source_hosts", []) and
@@ -405,6 +613,9 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
         elif mode == "happings_event_detail":
             resource["source_route_url"] = url
             resource["source_route_method"] = "exact_event_detail"
+        elif existing_reader and mode == existing_reader[1]:
+            resource["source_route_url"] = group[0]["url_fonte"]
+            resource["source_route_method"] = "exact_existing_source"
         secondary = Counter(secondary_routes[row["slug"]] for row in group
                             if row.get("slug") in secondary_routes)
         if secondary:

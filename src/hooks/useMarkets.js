@@ -66,6 +66,7 @@ function adaptMarket(m, userLat, userLng) {
     calendarExceptions: Array.isArray(m.eccezioni_calendario) ? m.eccezioni_calendario : [],
     sourceCalendar: m.calendario_fonte || null,
     sourceDetail: m.dettaglio_fonte || null,
+    editorialEvidence: m.evidenza_editoriale || null,
     distance: Number.isFinite(m.distance) ? m.distance : null,
   }
 }
