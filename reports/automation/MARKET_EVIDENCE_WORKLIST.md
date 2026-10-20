@@ -7,7 +7,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 - Etichette di fonte: **87**
 - Casi nel lotto di lavoro del giorno: **461**
 - Lotti rotanti: **31**
-- Feed Lombardia: fresh_dataset_not_market_confirmation
+- Feed Lombardia: source_not_downloaded
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
@@ -113,15 +113,9 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
 ## Riscontri ufficiali per singola scheda
 
-- city_weekday_only_unconfirmed_venue: 85
-- coordinates_disagree: 13
 - exact_field_evidence_candidates: 0
-- many_market_places_on_same_city_day: 14
-- multiple_official_venues_on_same_street_day: 1
-- no_usable_source_match: 12630
-- review_only_field_candidates: 87
-- same_source_id: 789
-- unique_city_province_street_weekday: 352
+- no_usable_source_match: 13856
+- review_only_field_candidates: 0
 
 ## Stato operativo Happings
 

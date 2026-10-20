@@ -14,7 +14,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **934** gruppi, **1,009** righe in eccesso potenziali.
 - Verifiche umane documentate mancanti: **13,856**.
 - Gate qualità: **APPROVATO**.
-- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **244** righe potenziali in **184** gruppi; restano tutte nel conteggio da rivedere.
+- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
 
 ## Fonte di provenienza (primi editori)

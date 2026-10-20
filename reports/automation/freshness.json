@@ -783,25 +783,25 @@
   },
   "publisher_evidence": [
     {
-      "last_publisher_data_change": "2025-04-02",
-      "license_comparison": "publisher_and_catalog_agree_review_required",
+      "last_publisher_data_change": null,
+      "license_comparison": "not_evaluated",
       "market_records_verified_by_metadata": 0,
       "publisher": "Comune di Bologna",
-      "status": "metadata_checked"
+      "status": "offline"
     },
     {
-      "last_publisher_data_change": "2026-10-20",
-      "license_comparison": "publisher_and_catalog_agree_review_required",
+      "last_publisher_data_change": null,
+      "license_comparison": "not_evaluated",
       "market_records_verified_by_metadata": 0,
       "publisher": "Regione Lombardia",
-      "status": "metadata_checked"
+      "status": "offline"
     },
     {
-      "last_publisher_data_change": "2022-07-04",
-      "license_comparison": "publisher_claim_missing_review_required",
+      "last_publisher_data_change": null,
+      "license_comparison": "not_evaluated",
       "market_records_verified_by_metadata": 0,
       "publisher": "Roma Capitale",
-      "status": "metadata_checked"
+      "status": "offline"
     }
   ],
   "reference_date": "2026-10-20",
@@ -868,62 +868,19 @@
     }
   ],
   "source_refresh": {
-    "conflicts": 4,
-    "field_changes": 12,
-    "markets_with_field_changes": 12,
+    "conflicts": 0,
+    "field_changes": 0,
+    "markets_with_field_changes": 0,
     "release_safe": true,
     "selected_pages": [
       {
-        "changed_fields": 4,
-        "content_date": "2026-01-27",
-        "held_reasons": {
-          "multiple_or_missing_source_venues": 46,
-          "no_single_explicit_annual_weekday": 27
-        },
-        "layout_complete": true,
-        "matched_markets": 4,
-        "parser_issues": [],
-        "parser_metrics": {
-          "ambiguous_municipality_days": 0,
-          "ambiguous_source_identities": 0,
-          "city_blocks": 6,
-          "content_scopes": 1,
-          "fraction_rows": 0,
-          "rows": 6,
-          "rows_with_numeric_hours": 6,
-          "unique_source_row_ids": 6
-        },
-        "read_on": "2026-10-20",
-        "sha256": "c05e5973b044e7ca5195d5b9cefb37134d3aa8169e6dbd6e0cf1780d93b5c85a",
         "source_id": "bassa-romagna-farmers",
-        "status": "retrieved",
+        "status": "offline_skipped",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
       },
       {
-        "changed_fields": 8,
-        "content_date": "2026-10-20",
-        "held_reasons": {
-          "multiple_or_missing_source_venues": 35,
-          "no_single_explicit_annual_weekday": 27,
-          "venue_identity_not_established": 6
-        },
-        "layout_complete": true,
-        "matched_markets": 9,
-        "parser_issues": [],
-        "parser_metrics": {
-          "ambiguous_municipality_days": 2,
-          "ambiguous_source_identities": 0,
-          "city_blocks": 9,
-          "content_scopes": 1,
-          "fraction_rows": 7,
-          "rows": 20,
-          "rows_with_numeric_hours": 0,
-          "unique_source_row_ids": 20
-        },
-        "read_on": "2026-10-20",
-        "sha256": "f533eca2fc0e332df215d4c09f9f800acb7af52cc8a3f78f0aaeaf45aff15884",
         "source_id": "bassa-romagna-weekly",
-        "status": "retrieved",
+        "status": "offline_skipped",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
       }
     ],
@@ -933,23 +890,22 @@
         "cosedicasa_existing_detail": 432,
         "eventiesagre_existing_detail": 2197,
         "happings_event_detail": 32,
-        "happings_province_index": 8193,
-        "happings_source_scope_unproven": 1454,
+        "happings_province_index": 8206,
+        "happings_source_scope_unproven": 1441,
         "official_adapter": 1219,
         "roma_d881_existing_inventory": 70,
         "source_contract_active": 39,
         "source_layout_needed": 220
       },
       "market_layout_statuses": {
-        "supported": 12182,
-        "unsupported": 1674
+        "supported": 12195,
+        "unsupported": 1661
       },
       "market_read_statuses": {
-        "not_observed": 70,
-        "not_read": 1674,
-        "not_selected": 9601,
-        "retrieved": 2470,
-        "unavailable": 41
+        "not_read": 1661,
+        "not_selected": 6940,
+        "offline_no_source_inference": 39,
+        "offline_skipped": 5216
       },
       "markets": 13856,
       "schema": 1,
@@ -957,8 +913,8 @@
         "counts_describe": "comparison_eligibility",
         "eligible_markets": 563,
         "market_read_statuses": {
-          "not_selected": 507,
-          "retrieved": 56
+          "not_selected": 503,
+          "offline_skipped": 60
         },
         "mode": "existing_address_exact_match",
         "publisher": "happings.com",
@@ -2101,7 +2057,6 @@
     "no_record_has_documented_verification",
     "source_content_dates_are_unproven",
     "future_predictions_have_stale_or_missing_source_dates",
-    "source_data_older_than_allowed_forecast_window",
-    "publisher_refresh_conflicting_fields"
+    "source_data_older_than_allowed_forecast_window"
   ]
 }

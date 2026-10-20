@@ -247,18 +247,18 @@
       "type": "new"
     }
   ],
-  "last_scan_utc": "2026-10-20T18:17:03.658197+00:00",
+  "last_scan_utc": "2026-10-20T18:31:46.949444+00:00",
   "record_imports": 0,
-  "sample_reliable_for_missing_match": true,
+  "sample_reliable_for_missing_match": false,
   "scan": {
-    "candidates_seen": 43,
+    "candidates_seen": 0,
     "delta": {
       "changed": 0,
       "new": 0,
-      "not_seen_in_sample": 6,
-      "unchanged": 43
+      "not_seen_in_sample": 0,
+      "unchanged": 0
     },
-    "offline": false,
+    "offline": true,
     "query_failures": 0,
     "total_known": 49,
     "truncated": false
@@ -266,83 +266,6 @@
   "schema": 1,
   "source_licenses_verified_by_automation": 0,
   "sources": [
-    {
-      "automatic_import_allowed": false,
-      "data_modified": "",
-      "fingerprint": "12d0057bd43adf3542416432f91c81dbc4cba636244022ff566c3c26ff389ef6",
-      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
-      "id": "2e41941b-80fb-4ded-8330-427383f725f8",
-      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
-      "license": "Creative Commons CC0 1.0 Universale - Public Domain Dedication (CC0 1.0)",
-      "license_status": "claimed_open_license_review_required",
-      "metadata_modified": "2026-10-17T11:55:06.348758",
-      "not_seen_in_latest_sample": false,
-      "organization": "Regione Lombardia",
-      "publisher_data_updated_at": "2026-10-20",
-      "publisher_timestamp_type": "publisher_rows_updated_at",
-      "resources": [
-        {
-          "format": "CSV",
-          "name": "mercati_su_aree_pubbliche.csv",
-          "url": "https://www.dati.lombardia.it/api/views/68zx-njaw/rows.csv?accessType=DOWNLOAD"
-        },
-        {
-          "format": "JSON",
-          "name": "mercati_su_aree_pubbliche.json",
-          "url": "https://www.dati.lombardia.it/api/views/68zx-njaw/rows.json?accessType=DOWNLOAD"
-        }
-      ],
-      "review_required": [
-        "publisher_authority",
-        "license_terms",
-        "actual_schema",
-        "data_freshness",
-        "record_sample"
-      ],
-      "score": 10,
-      "title": "Mercati su aree pubbliche",
-      "triage_class": "market_location_candidate",
-      "triage_reasons": [
-        "publisher_reports_recent_dataset_date",
-        "official_publisher_date_preferred_over_catalog_date"
-      ],
-      "triage_score": 24
-    },
-    {
-      "automatic_import_allowed": false,
-      "data_modified": "07-01-2026",
-      "fingerprint": "3629467a20c40753e9cf8116731fd3e413d1d049c0b50358b0b4fe4470959606",
-      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
-      "id": "62be39fe-adbe-464a-84b1-85bc060b75d2",
-      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
-      "license": "",
-      "license_status": "manual_license_review_required",
-      "metadata_modified": "2026-07-27T07:35:27.161402",
-      "not_seen_in_latest_sample": false,
-      "organization": "Comune di Corciano",
-      "resources": [
-        {
-          "format": "CSV",
-          "name": "Elenco dei mercati settimanali",
-          "url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv"
-        }
-      ],
-      "review_required": [
-        "publisher_authority",
-        "license_terms",
-        "actual_schema",
-        "data_freshness",
-        "record_sample"
-      ],
-      "score": 13,
-      "title": "Elenco dei mercati settimanali",
-      "triage_class": "market_location_candidate",
-      "triage_reasons": [
-        "publisher_reports_recent_dataset_date",
-        "license_not_identified"
-      ],
-      "triage_score": 23
-    },
     {
       "automatic_import_allowed": false,
       "data_modified": "2025-12-31T12:31:56+00:00",
@@ -355,8 +278,6 @@
       "metadata_modified": "2026-10-17T14:19:56.097678",
       "not_seen_in_latest_sample": false,
       "organization": "Comune di Bologna",
-      "publisher_data_updated_at": "2025-04-02",
-      "publisher_timestamp_type": "publisher_data_processed",
       "resources": [
         {
           "format": "CSV",
@@ -395,9 +316,83 @@
       "title": "Mercati e fiere",
       "triage_class": "mixed_events_candidate",
       "triage_reasons": [
-        "official_publisher_date_preferred_over_catalog_date"
+        "publisher_reports_recent_dataset_date"
       ],
-      "triage_score": 19
+      "triage_score": 23
+    },
+    {
+      "automatic_import_allowed": false,
+      "data_modified": "07-01-2026",
+      "fingerprint": "3629467a20c40753e9cf8116731fd3e413d1d049c0b50358b0b4fe4470959606",
+      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
+      "id": "62be39fe-adbe-464a-84b1-85bc060b75d2",
+      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
+      "license": "",
+      "license_status": "manual_license_review_required",
+      "metadata_modified": "2026-07-27T07:35:27.161402",
+      "not_seen_in_latest_sample": false,
+      "organization": "Comune di Corciano",
+      "resources": [
+        {
+          "format": "CSV",
+          "name": "Elenco dei mercati settimanali",
+          "url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv"
+        }
+      ],
+      "review_required": [
+        "publisher_authority",
+        "license_terms",
+        "actual_schema",
+        "data_freshness",
+        "record_sample"
+      ],
+      "score": 13,
+      "title": "Elenco dei mercati settimanali",
+      "triage_class": "market_location_candidate",
+      "triage_reasons": [
+        "publisher_reports_recent_dataset_date",
+        "license_not_identified"
+      ],
+      "triage_score": 23
+    },
+    {
+      "automatic_import_allowed": false,
+      "data_modified": "",
+      "fingerprint": "12d0057bd43adf3542416432f91c81dbc4cba636244022ff566c3c26ff389ef6",
+      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
+      "id": "2e41941b-80fb-4ded-8330-427383f725f8",
+      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
+      "license": "Creative Commons CC0 1.0 Universale - Public Domain Dedication (CC0 1.0)",
+      "license_status": "claimed_open_license_review_required",
+      "metadata_modified": "2026-10-17T11:55:06.348758",
+      "not_seen_in_latest_sample": false,
+      "organization": "Regione Lombardia",
+      "resources": [
+        {
+          "format": "CSV",
+          "name": "mercati_su_aree_pubbliche.csv",
+          "url": "https://www.dati.lombardia.it/api/views/68zx-njaw/rows.csv?accessType=DOWNLOAD"
+        },
+        {
+          "format": "JSON",
+          "name": "mercati_su_aree_pubbliche.json",
+          "url": "https://www.dati.lombardia.it/api/views/68zx-njaw/rows.json?accessType=DOWNLOAD"
+        }
+      ],
+      "review_required": [
+        "publisher_authority",
+        "license_terms",
+        "actual_schema",
+        "data_freshness",
+        "record_sample"
+      ],
+      "score": 10,
+      "title": "Mercati su aree pubbliche",
+      "triage_class": "market_location_candidate",
+      "triage_reasons": [
+        "source_data_freshness_unknown"
+      ],
+      "triage_score": 18
     },
     {
       "automatic_import_allowed": false,
@@ -411,8 +406,6 @@
       "metadata_modified": "2026-10-17T07:25:21.341734",
       "not_seen_in_latest_sample": false,
       "organization": "Roma Capitale",
-      "publisher_data_updated_at": "2022-07-04",
-      "publisher_timestamp_type": "resource_last_modified",
       "resources": [
         {
           "format": "CSV",
@@ -448,16 +441,16 @@
         "record_sample"
       ],
       "schema_observed_at": "2026-10-20",
-      "schema_viability": "venue_inventory_missing_visit_days",
+      "schema_viability": "manual_schema_review_required",
       "score": 15,
       "title": "Dati sui Mercati Rionali",
       "triage_class": "market_location_candidate",
       "triage_reasons": [
-        "source_data_older_than_two_years",
-        "official_publisher_date_preferred_over_catalog_date",
+        "source_data_freshness_unknown",
+        "historical_year_in_resource_filename",
         "source_schema_observed_read_only_no_auto_import"
       ],
-      "triage_score": 18
+      "triage_score": 16
     },
     {
       "automatic_import_allowed": false,
@@ -503,6 +496,43 @@
         "existing_milano_adapter_covers_dataset"
       ],
       "triage_score": 14
+    },
+    {
+      "automatic_import_allowed": false,
+      "data_modified": "",
+      "fingerprint": "6996127cded32dbfd47bafbaf5b4561855bdce7c6850b9dee26d28c73579f020",
+      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
+      "id": "ecfe375b-8322-47da-972f-c208649a8b9d",
+      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
+      "license": "Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)",
+      "license_status": "claimed_open_license_review_required",
+      "metadata_modified": "2026-10-17T08:31:54.105024",
+      "not_seen_in_latest_sample": false,
+      "organization": "Regione Veneto",
+      "resources": [
+        {
+          "format": "CSV",
+          "name": "Fiere e mercati - Comune di Sona",
+          "url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv"
+        }
+      ],
+      "review_required": [
+        "publisher_authority",
+        "license_terms",
+        "actual_schema",
+        "data_freshness",
+        "record_sample"
+      ],
+      "schema_observed_at": "2026-10-20",
+      "schema_viability": "manual_schema_review_required",
+      "score": 10,
+      "title": "Fiere e mercati - Comune di Sona",
+      "triage_class": "mixed_events_candidate",
+      "triage_reasons": [
+        "source_data_freshness_unknown",
+        "source_schema_observed_read_only_no_auto_import"
+      ],
+      "triage_score": 13
     },
     {
       "automatic_import_allowed": false,
@@ -843,6 +873,49 @@
       "triage_reasons": [
         "stalls_not_necessarily_visitable_markets",
         "source_data_freshness_unknown",
+        "source_schema_observed_read_only_no_auto_import"
+      ],
+      "triage_score": 9
+    },
+    {
+      "automatic_import_allowed": false,
+      "data_modified": "",
+      "fingerprint": "7e38976f926bbf0682f0cd4419af18600a079ccf32e0d5fe413dda3ccc45f86b",
+      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
+      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
+      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
+      "license": "cc-by4",
+      "license_status": "manual_license_review_required",
+      "metadata_modified": "2026-08-04T11:28:20.832068",
+      "not_seen_in_latest_sample": false,
+      "organization": "Regione Lazio",
+      "resources": [
+        {
+          "format": "CSV",
+          "name": "Dati 2007-2013",
+          "url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv"
+        },
+        {
+          "format": "XLSX",
+          "name": "Tracciato record",
+          "url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/f5924333-733e-4446-b5f5-98e207e32532/download/tracciatorecordmercatiquindicinali.xlsx"
+        }
+      ],
+      "review_required": [
+        "publisher_authority",
+        "license_terms",
+        "actual_schema",
+        "data_freshness",
+        "record_sample"
+      ],
+      "schema_observed_at": "2026-10-20",
+      "schema_viability": "manual_schema_review_required",
+      "score": 8,
+      "title": "Censimento dei mercati quindicinali",
+      "triage_class": "market_location_candidate",
+      "triage_reasons": [
+        "source_data_freshness_unknown",
+        "license_not_identified",
         "source_schema_observed_read_only_no_auto_import"
       ],
       "triage_score": 9
@@ -1387,44 +1460,6 @@
     {
       "automatic_import_allowed": false,
       "data_modified": "",
-      "fingerprint": "6996127cded32dbfd47bafbaf5b4561855bdce7c6850b9dee26d28c73579f020",
-      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
-      "id": "ecfe375b-8322-47da-972f-c208649a8b9d",
-      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
-      "license": "Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)",
-      "license_status": "claimed_open_license_review_required",
-      "metadata_modified": "2026-10-17T08:31:54.105024",
-      "not_seen_in_latest_sample": false,
-      "organization": "Regione Veneto",
-      "resources": [
-        {
-          "format": "CSV",
-          "name": "Fiere e mercati - Comune di Sona",
-          "url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv"
-        }
-      ],
-      "review_required": [
-        "publisher_authority",
-        "license_terms",
-        "actual_schema",
-        "data_freshness",
-        "record_sample"
-      ],
-      "schema_observed_at": "2026-10-12",
-      "schema_viability": "concession_registry_without_visit_schedule",
-      "score": 10,
-      "title": "Fiere e mercati - Comune di Sona",
-      "triage_class": "concession_registry",
-      "triage_reasons": [
-        "source_data_freshness_unknown",
-        "real_csv_schema_tracks_concessions_not_market_openings",
-        "source_schema_observed_read_only_no_auto_import"
-      ],
-      "triage_score": -5
-    },
-    {
-      "automatic_import_allowed": false,
-      "data_modified": "",
       "fingerprint": "088a42c3e3d10182d4be8a1b188cee53f16390b94de3e5238bfe39069da01250",
       "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
       "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
@@ -1457,50 +1492,6 @@
       "schema_viability": "historical_aggregate_not_venues",
       "score": 8,
       "title": "Censimento dei mercati mensili",
-      "triage_class": "aggregated_statistics",
-      "triage_reasons": [
-        "source_data_freshness_unknown",
-        "license_not_identified",
-        "real_csv_schema_contains_only_annual_counts",
-        "source_schema_observed_read_only_no_auto_import"
-      ],
-      "triage_score": -15
-    },
-    {
-      "automatic_import_allowed": false,
-      "data_modified": "",
-      "fingerprint": "7e38976f926bbf0682f0cd4419af18600a079ccf32e0d5fe413dda3ccc45f86b",
-      "first_seen_utc": "2026-10-11T22:35:36.184218+00:00",
-      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
-      "last_seen_utc": "2026-10-20T18:17:03.658197+00:00",
-      "license": "cc-by4",
-      "license_status": "manual_license_review_required",
-      "metadata_modified": "2026-08-04T11:28:20.832068",
-      "not_seen_in_latest_sample": false,
-      "organization": "Regione Lazio",
-      "resources": [
-        {
-          "format": "CSV",
-          "name": "Dati 2007-2013",
-          "url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv"
-        },
-        {
-          "format": "XLSX",
-          "name": "Tracciato record",
-          "url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/f5924333-733e-4446-b5f5-98e207e32532/download/tracciatorecordmercatiquindicinali.xlsx"
-        }
-      ],
-      "review_required": [
-        "publisher_authority",
-        "license_terms",
-        "actual_schema",
-        "data_freshness",
-        "record_sample"
-      ],
-      "schema_observed_at": "2026-10-18",
-      "schema_viability": "historical_aggregate_not_venues",
-      "score": 8,
-      "title": "Censimento dei mercati quindicinali",
       "triage_class": "aggregated_statistics",
       "triage_reasons": [
         "source_data_freshness_unknown",

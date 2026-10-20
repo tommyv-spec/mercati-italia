@@ -39,9 +39,9 @@
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
       "checked_date": "2026-10-20",
-      "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
-      "status": "schema_preview_only",
-      "viability": "venue_inventory_missing_visit_days"
+      "column_fingerprint": null,
+      "status": "offline_skipped",
+      "viability": "manual_schema_review_required"
     },
     "2e41941b-80fb-4ded-8330-427383f725f8": {
       "checked_date": "2026-10-12",
@@ -194,16 +194,16 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "ecfe375b-8322-47da-972f-c208649a8b9d": {
-      "checked_date": "2026-10-12",
-      "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
-      "status": "schema_preview_only",
-      "viability": "concession_registry_without_visit_schedule"
+      "checked_date": "2026-10-20",
+      "column_fingerprint": null,
+      "status": "offline_skipped",
+      "viability": "manual_schema_review_required"
     },
     "ede498b0-03e3-48e3-88fa-c3753604ad4f": {
-      "checked_date": "2026-10-18",
-      "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
-      "status": "schema_preview_only",
-      "viability": "historical_aggregate_not_venues"
+      "checked_date": "2026-10-20",
+      "column_fingerprint": null,
+      "status": "offline_skipped",
+      "viability": "manual_schema_review_required"
     },
     "f4407fb8-5e36-4311-8422-02d463741780": {
       "checked_date": "2026-10-18",
@@ -223,157 +223,38 @@
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
-      "field_hints": {
-        "concession_period": [
-          "DATA VALIDITA CONCESSIONE",
-          "DATA SCADENZA CONCESSIONE"
-        ],
-        "market_type": [
-          "FIERA/MERCATO"
-        ],
-        "name": [
-          "NOME"
-        ]
-      },
-      "fields": [
-        "NOME",
-        "FIERA/MERCATO",
-        "ATTIVITA'",
-        "DATA VALIDITA CONCESSIONE",
-        "DATA SCADENZA CONCESSIONE"
-      ],
+      "field_hints": {},
+      "fields": [],
       "format": "CSV",
-      "id": "eb032be3-efde-4282-8d8d-3d8a599ecae3",
-      "review_blockers": [
-        "municipality_must_be_validated_from_publisher_context"
-      ],
-      "sample_bytes": 8404,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99fd13ac-b962-49d0-8d13-b3b5da1e7ca0.csv",
-      "schema_viability": "concession_registry_without_visit_schedule",
+      "id": "ecfe375b-8322-47da-972f-c208649a8b9d",
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv",
       "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Sandrigo",
-      "truncated": false
+      "status": "offline_skipped",
+      "title": "Fiere e mercati - Comune di Sona"
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
-      "field_hints": {
-        "municipality": [
-          "comune"
-        ],
-        "statistics_count": [
-          "mercati",
-          "attivazioni",
-          "cessazioni"
-        ],
-        "statistics_year": [
-          "anno"
-        ]
-      },
-      "fields": [
-        "comune",
-        "provincia",
-        "anno",
-        "mercati",
-        "totale",
-        "attivazioni",
-        "cessazioni",
-        "posteggi",
-        "alimentare_totale",
-        "alimentare_attivazioni",
-        "alimentare_cessazioni",
-        "nonalimentare_totale",
-        "nonalimentare_attivazioni",
-        "nonalimentare_cessazioni",
-        "produttori_totale",
-        "produttori_attivazioni",
-        "produttori_cessazioni"
-      ],
+      "field_hints": {},
+      "fields": [],
       "format": "CSV",
-      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
-      "review_blockers": [
-        "explicit_market_name_missing"
-      ],
-      "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
-      "schema_viability": "historical_aggregate_not_venues",
+      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
+      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
       "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Censimento dei mercati mensili",
-      "truncated": true
+      "status": "offline_skipped",
+      "title": "Censimento dei mercati quindicinali"
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
-      "field_hints": {
-        "address": [
-          "INDIRIZZO"
-        ],
-        "district": [
-          "Municipio"
-        ],
-        "hours": [
-          "Apertura_Lunedi",
-          "Chiusura_Lunedi",
-          "Apertura_Martedi",
-          "Chiusura_Martedi",
-          "Apertura_Mercoledi",
-          "Chiusura_Mercoledi"
-        ],
-        "market_type": [
-          "TIPOLOGIA"
-        ],
-        "name": [
-          "Nome_Mercato"
-        ],
-        "notes": [
-          "Altre_indicazioni",
-          "Note_mercato"
-        ]
-      },
-      "fields": [
-        "Municipio",
-        "Nome_Mercato",
-        "INDIRIZZO",
-        "Civico",
-        "Esp_Civico",
-        "Altre_indicazioni",
-        "CAP",
-        "TIPOLOGIA",
-        "Note_mercato",
-        "POSTEGGI_TOTALI",
-        "POSTEGGI_OCCUPATI",
-        "NUMERO_OPERATORI",
-        "POSTEGGI_ALIMENTARI",
-        "POSTEGGI_NON_ALIMENTARI",
-        "Apertura_Lunedi",
-        "Chiusura_Lunedi",
-        "Apertura_Martedi",
-        "Chiusura_Martedi",
-        "Apertura_Mercoledi",
-        "Chiusura_Mercoledi",
-        "Apertura_Giovedi",
-        "Chiusura_Giovedi",
-        "Apertura_Venedi",
-        "Chiusura_Venedi",
-        "Apertura_Sabato",
-        "Chiusura_Sabato",
-        "Note_orari",
-        "AGGIORNATO"
-      ],
+      "field_hints": {},
+      "fields": [],
       "format": "CSV",
       "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
-      "review_blockers": [
-        "municipality_must_be_validated_from_publisher_context"
-      ],
-      "sample_bytes": 38408,
       "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
-      "schema_viability": "venue_inventory_missing_visit_days",
       "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Dati sui Mercati Rionali",
-      "truncated": false
+      "status": "offline_skipped",
+      "title": "Dati sui Mercati Rionali"
     }
   ],
   "schema": 1,

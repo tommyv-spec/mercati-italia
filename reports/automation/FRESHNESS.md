@@ -25,15 +25,14 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
-- Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
 
 | Ente | Lettura metadati | Aggiornamento dati dichiarato |
 |---|---|---|
-| Comune di Bologna | metadata_checked | 2025-04-02 |
-| Regione Lombardia | metadata_checked | 2026-10-20 |
-| Roma Capitale | metadata_checked | 2022-07-04 |
+| Comune di Bologna | offline | non disponibile |
+| Regione Lombardia | offline | non disponibile |
+| Roma Capitale | offline | non disponibile |
 
 ## Copertura di tutte le fonti del catalogo
 
@@ -146,10 +145,10 @@ URL primari distinti nel catalogo: 5784. Le pagine riconosciute vengono lette un
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 4 | 4 |
-| bassa-romagna-weekly | retrieved | 9 | 8 |
+| bassa-romagna-farmers | offline_skipped | 0 | 0 |
+| bassa-romagna-weekly | offline_skipped | 0 | 0 |
 
-Conflitti mantenuti in revisione: 4.
+Conflitti mantenuti in revisione: 0.
 
 
 ## Limiti del sistema

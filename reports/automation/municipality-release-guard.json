@@ -1,13 +1,287 @@
 {
   "calendar_sources_quarantined": 0,
-  "changes": 0,
-  "checked_ids": 13824,
+  "changes": 80,
+  "checked_ids": 13856,
   "city_replacements": 0,
   "contaminated_titles_repaired": 0,
   "forecast_dates_removed": 0,
   "market_identities_deleted": 0,
+  "province_pending": 140,
+  "province_protected": 0,
+  "province_replacements": 80,
   "publisher_urls_or_human_verifications_changed": 0,
-  "samples": [],
+  "samples": [
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Acquaro",
+      "old_city": "Acquaro",
+      "slug": "mercato-settimanale-di-acquaro-acquaro-giovedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Arena",
+      "old_city": "Arena",
+      "slug": "mercato-settimanale-a-arena-arena-sabato"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Arena",
+      "old_city": "Arena",
+      "slug": "mercato-settimanale-di-arena-arena-sabato"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Briatico",
+      "old_city": "Briatico",
+      "slug": "mercato-settimanale-di-briatico-briatico-giovedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Dasà",
+      "old_city": "Dasà",
+      "slug": "mercato-settimanale-a-dasa-dasa-mercoledi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Dinami",
+      "old_city": "Dinami",
+      "slug": "mercato-settimanale-a-dinami-dinami-sabato"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Mileto",
+      "old_city": "Mileto",
+      "slug": "mercato-settimanale-a-mileto-mileto-mercoledi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Pizzo",
+      "old_city": "Pizzo",
+      "slug": "mercato-settimanale-a-pizzo-pizzo-giovedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Pizzoni",
+      "old_city": "Pizzoni",
+      "slug": "mercato-settimanale-a-pizzoni-pizzoni-martedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Ricadi",
+      "old_city": "Ricadi",
+      "slug": "mercato-settimanale-a-ricadi-ricadi-giovedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Spadola",
+      "old_city": "Spadola",
+      "slug": "mercato-settimanale-a-spadola-spadola-lunedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Tropea",
+      "old_city": "Tropea",
+      "slug": "mercato-settimanale-a-tropea-tropea-sabato"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Vazzano",
+      "old_city": "Vazzano",
+      "slug": "mercato-settimanale-a-vazzano-vazzano-giovedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Agrate Brianza",
+      "old_city": "Agrate Brianza",
+      "slug": "mercato-settimanale-di-agrate-brianza-agrate-brianza"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Agrate Brianza",
+      "old_city": "Agrate Brianza",
+      "slug": "mercato-settimanale-di-agrate-brianza-agrate-brianza-lunedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Aicurzio",
+      "old_city": "Aicurzio",
+      "slug": "mercato-settimanale-a-aicurzio-aicurzio-martedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Aicurzio",
+      "old_city": "Aicurzio",
+      "slug": "mercato-settimanale-di-aicurzio-aicurzio"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Aicurzio",
+      "old_city": "Aicurzio",
+      "slug": "mercato-settimanale-di-aicurzio-aicurzio-martedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Albiate",
+      "old_city": "Albiate",
+      "slug": "mercato-settimanale-a-albiate-albiate-sabato"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Albiate",
+      "old_city": "Albiate",
+      "slug": "mercato-settimanale-di-albiate-albiate"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Albiate",
+      "old_city": "Albiate",
+      "slug": "mercato-settimanale-di-albiate-albiate-sabato"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Arcore",
+      "old_city": "Arcore",
+      "slug": "mercato-settimanale-a-arcore-arcore-mercoledi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Arcore",
+      "old_city": "Arcore",
+      "slug": "mercato-settimanale-di-arcore-arcore"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Arcore",
+      "old_city": "Arcore",
+      "slug": "mercato-settimanale-di-arcore-arcore-mercoledi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Barlassina",
+      "old_city": "Barlassina",
+      "slug": "mercato-settimanale-di-barlassina-barlassina"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Barlassina",
+      "old_city": "Barlassina",
+      "slug": "mercato-settimanale-di-barlassina-barlassina-martedi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Bellusco",
+      "old_city": "Bellusco",
+      "slug": "mercato-settimanale-a-bellusco-bellusco-mercoledi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Bellusco",
+      "old_city": "Bellusco",
+      "slug": "mercato-settimanale-di-bellusco-bellusco"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Bellusco",
+      "old_city": "Bellusco",
+      "slug": "mercato-settimanale-di-bellusco-bellusco-mercoledi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Bernareggio",
+      "old_city": "Bernareggio",
+      "slug": "mercato-settimanale-di-bernareggio-bernareggio"
+    }
+  ],
   "schema": 1,
   "source_istat_sha": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5"
 }
