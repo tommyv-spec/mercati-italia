@@ -1,0 +1,351 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "offline_replay_of_candidate_artifact_bytes",
+  "candidate_workflow_run": "39465324614",
+  "baseline_signature": "615093e0b2f8c07b793251b645c01c293161c5eb72966abb44c5d79f1a9bed13",
+  "initial_records": 13856,
+  "final_records": 13856,
+  "network_requests_in_replay": 0,
+  "reference_revision": "2026-02-21",
+  "independent_current_reference_byte_verification": {
+    "requested_url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+    "final_url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+    "http_status": 200,
+    "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "bytes": 1229843,
+    "sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+    "read_on": "2026-10-20",
+    "reference_date": "2026-02-21",
+    "matches_pinned_original": true
+  },
+  "eligibility": {
+    "records": 220,
+    "by_publisher": {
+      "happings.com": 216,
+      "milanopocket.it": 3,
+      "sagreumbre.it": 1
+    },
+    "existing_identity_bound_receipts_or_calendars": 0,
+    "happings_rows_with_preexisting_generic_identity_and_complete_weekday": 215,
+    "additional_routes_without_router_changes": 44,
+    "happings_rows_still_without_compatible_resource": 171
+  },
+  "full_autopilot": {
+    "approved": true,
+    "reason": "all_policies_pass",
+    "elapsed_seconds": 72.32,
+    "gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "phase_counts": {
+      "cross_market_scraper_text": 20,
+      "needs_manual_municipality_review": 2,
+      "province_candidates": 220,
+      "province_fixed": 80,
+      "province_pending": 140,
+      "province_protected": 0,
+      "suspicious_before": 2
+    },
+    "final_guard": {
+      "administrative_proofs_preserved": 80,
+      "checked_existing_provinces": 13856,
+      "market_openings_confirmed": 0,
+      "province_corrections_this_run": 80,
+      "release_safe": true,
+      "schema": 1,
+      "source_receipts_rewritten": 0,
+      "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+    },
+    "changed_fields_only": {
+      "provincia": 80,
+      "riconciliazione_provincia": 80
+    },
+    "all_other_record_fields_changed": 0
+  },
+  "sequential_catalog_exports": [
+    {
+      "cycle": 1,
+      "records": 13856,
+      "province_corrections": 80,
+      "pending": 140,
+      "by_publisher": {
+        "happings.com": 76,
+        "milanopocket.it": 3,
+        "sagreumbre.it": 1
+      },
+      "existing_ids_preserved": 13856,
+      "other_normalization_changes": 0,
+      "final_guard": {
+        "schema": 1,
+        "release_safe": true,
+        "checked_existing_provinces": 13856,
+        "province_corrections_this_run": 80,
+        "administrative_proofs_preserved": 80,
+        "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+        "source_receipts_rewritten": 0,
+        "market_openings_confirmed": 0
+      }
+    },
+    {
+      "cycle": 2,
+      "records": 13856,
+      "province_corrections": 80,
+      "pending": 60,
+      "by_publisher": {
+        "happings.com": 80
+      },
+      "existing_ids_preserved": 13856,
+      "other_normalization_changes": 0,
+      "final_guard": {
+        "schema": 1,
+        "release_safe": true,
+        "checked_existing_provinces": 13856,
+        "province_corrections_this_run": 80,
+        "administrative_proofs_preserved": 160,
+        "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+        "source_receipts_rewritten": 0,
+        "market_openings_confirmed": 0
+      }
+    },
+    {
+      "cycle": 3,
+      "records": 13856,
+      "province_corrections": 60,
+      "pending": 0,
+      "by_publisher": {
+        "happings.com": 60
+      },
+      "existing_ids_preserved": 13856,
+      "other_normalization_changes": 0,
+      "final_guard": {
+        "schema": 1,
+        "release_safe": true,
+        "checked_existing_provinces": 13856,
+        "province_corrections_this_run": 60,
+        "administrative_proofs_preserved": 220,
+        "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+        "source_receipts_rewritten": 0,
+        "market_openings_confirmed": 0
+      }
+    },
+    {
+      "cycle": 4,
+      "records": 13856,
+      "province_corrections": 0,
+      "pending": 0,
+      "by_publisher": {},
+      "existing_ids_preserved": 13856,
+      "other_normalization_changes": 0,
+      "final_guard": {
+        "schema": 1,
+        "release_safe": true,
+        "checked_existing_provinces": 13856,
+        "province_corrections_this_run": 0,
+        "administrative_proofs_preserved": 220,
+        "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+        "source_receipts_rewritten": 0,
+        "market_openings_confirmed": 0
+      }
+    }
+  ],
+  "final_changed_field_counts": {
+    "provincia": 220,
+    "riconciliazione_provincia": 220
+  },
+  "invariants": {
+    "original_ids_retained": 13856,
+    "new_ids": 0,
+    "deleted_ids": 0,
+    "source_receipts_rewritten": 0,
+    "addresses_changed": 0,
+    "hours_changed": 0,
+    "dates_changed": 0,
+    "names_changed": 0,
+    "cities_changed": 0,
+    "coordinates_changed": 0,
+    "verification_claims_added": 0,
+    "publisher_urls_changed": 0,
+    "budget_total_per_run": 80
+  },
+  "validation": {
+    "targeted_province_tests": 11,
+    "existing_municipality_tests": 22,
+    "autopilot_and_history_tests": 59,
+    "all_targeted_tests_passed": true,
+    "full_backend_tests": 1332,
+    "full_backend_suite_passed": true,
+    "full_backend_elapsed_seconds": 116.753,
+    "additional_final_guard_regression_passed": true,
+    "main_cli_certificate_replay_equal": true
+  },
+  "limits": [
+    "Administrative province correspondence is not evidence that a market is currently open.",
+    "Reference read date 2026-10-20 does not change its publication/reference revision 2026-02-21.",
+    "Routing remains source-scoped; administrative correction does not authorize another province page.",
+    "Records with existing identity-bound source evidence or human verification remain protected.",
+    "Three-cycle completion applies to this observed 220-record backlog and the unchanged shared 80-record budget."
+  ],
+  "published_catalog_writes": 0,
+  "remote_writes": 0,
+  "temporary_roundtrip_exports": 4,
+  "latest_published_candidate_recheck": {
+    "schema": 1,
+    "date": "2026-10-20",
+    "mode": "offline_roundtrip_verification_of_workflow_39471001816",
+    "source_workflow_run": "39471001816",
+    "published_dev_commit": "6274e1dd252173597bea539e9d95a1a936f446a3",
+    "baseline_manifest": "/tmp/vintagery-live-39471001816/candidate/public/data/v1/manifest.json",
+    "baseline_signature": "caba80be4514927a00e882f434e6783a7cb330bb470824a2ac9c747e2f6d5c71",
+    "initial_records": 13856,
+    "final_records": 13856,
+    "network_requests": 0,
+    "remote_writes": 0,
+    "published_catalog_writes": 0,
+    "temporary_roundtrip_exports": 4,
+    "eligible_province_corrections": 220,
+    "same_eligible_id_set_as_39465324614": true,
+    "eligible_ids_added": 0,
+    "eligible_ids_removed": 0,
+    "baseline_receipts": 2264,
+    "baseline_receipt_records": 2249,
+    "baseline_editorial_evidence_records": 25,
+    "baseline_receipts_sha256": "c3758e6943338c02a46bed967fcf9cac2bd02e7e096cbfab7d1b7138d63a7359",
+    "baseline_editorial_sha256": "8c920a9635584cf9529ec95ba53187b93546cc080dbb59e563c5e7421b2107f6",
+    "roma_actual_run_status": "source_unavailable",
+    "roma_real_fields_updated": 0,
+    "cycles": [
+      {
+        "cycle": 1,
+        "records": 13856,
+        "province_corrections": 80,
+        "pending": 140,
+        "protected": 0,
+        "by_publisher": {
+          "happings.com": 76,
+          "milanopocket.it": 3,
+          "sagreumbre.it": 1
+        },
+        "receipts": 2264,
+        "receipt_records": 2249,
+        "editorial_evidence_records": 25,
+        "receipts_sha256": "c3758e6943338c02a46bed967fcf9cac2bd02e7e096cbfab7d1b7138d63a7359",
+        "editorial_sha256": "8c920a9635584cf9529ec95ba53187b93546cc080dbb59e563c5e7421b2107f6",
+        "all_receipt_values_unchanged": true,
+        "all_editorial_values_unchanged": true,
+        "all_other_record_values_unchanged": true,
+        "final_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_existing_provinces": 13856,
+          "province_corrections_this_run": 80,
+          "administrative_proofs_preserved": 80,
+          "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+          "source_receipts_rewritten": 0,
+          "market_openings_confirmed": 0
+        }
+      },
+      {
+        "cycle": 2,
+        "records": 13856,
+        "province_corrections": 80,
+        "pending": 60,
+        "protected": 0,
+        "by_publisher": {
+          "happings.com": 80
+        },
+        "receipts": 2264,
+        "receipt_records": 2249,
+        "editorial_evidence_records": 25,
+        "receipts_sha256": "c3758e6943338c02a46bed967fcf9cac2bd02e7e096cbfab7d1b7138d63a7359",
+        "editorial_sha256": "8c920a9635584cf9529ec95ba53187b93546cc080dbb59e563c5e7421b2107f6",
+        "all_receipt_values_unchanged": true,
+        "all_editorial_values_unchanged": true,
+        "all_other_record_values_unchanged": true,
+        "final_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_existing_provinces": 13856,
+          "province_corrections_this_run": 80,
+          "administrative_proofs_preserved": 160,
+          "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+          "source_receipts_rewritten": 0,
+          "market_openings_confirmed": 0
+        }
+      },
+      {
+        "cycle": 3,
+        "records": 13856,
+        "province_corrections": 60,
+        "pending": 0,
+        "protected": 0,
+        "by_publisher": {
+          "happings.com": 60
+        },
+        "receipts": 2264,
+        "receipt_records": 2249,
+        "editorial_evidence_records": 25,
+        "receipts_sha256": "c3758e6943338c02a46bed967fcf9cac2bd02e7e096cbfab7d1b7138d63a7359",
+        "editorial_sha256": "8c920a9635584cf9529ec95ba53187b93546cc080dbb59e563c5e7421b2107f6",
+        "all_receipt_values_unchanged": true,
+        "all_editorial_values_unchanged": true,
+        "all_other_record_values_unchanged": true,
+        "final_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_existing_provinces": 13856,
+          "province_corrections_this_run": 60,
+          "administrative_proofs_preserved": 220,
+          "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+          "source_receipts_rewritten": 0,
+          "market_openings_confirmed": 0
+        }
+      },
+      {
+        "cycle": 4,
+        "records": 13856,
+        "province_corrections": 0,
+        "pending": 0,
+        "protected": 0,
+        "by_publisher": {},
+        "receipts": 2264,
+        "receipt_records": 2249,
+        "editorial_evidence_records": 25,
+        "receipts_sha256": "c3758e6943338c02a46bed967fcf9cac2bd02e7e096cbfab7d1b7138d63a7359",
+        "editorial_sha256": "8c920a9635584cf9529ec95ba53187b93546cc080dbb59e563c5e7421b2107f6",
+        "all_receipt_values_unchanged": true,
+        "all_editorial_values_unchanged": true,
+        "all_other_record_values_unchanged": true,
+        "final_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_existing_provinces": 13856,
+          "province_corrections_this_run": 0,
+          "administrative_proofs_preserved": 220,
+          "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
+          "source_receipts_rewritten": 0,
+          "market_openings_confirmed": 0
+        }
+      }
+    ],
+    "full_suite_repeated": false,
+    "code_changes": 0,
+    "elapsed_seconds": 29.816
+  }
+}

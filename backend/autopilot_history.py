@@ -253,6 +253,9 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         or municipalities.get("ids_preserved") is not True
         or int(municipalities.get("counts", {}).get("city_fixed", 0)) > 60
         or int(municipalities.get("counts", {}).get("records_calendar_quarantined", 0)) > 80
+        or not 0 <= int(municipalities.get("counts", {}).get("province_fixed", 0)) <= 80
+        or not 0 <= int(municipalities.get("counts", {}).get("province_pending", 0)) <= 100_000
+        or not 0 <= int(municipalities.get("counts", {}).get("province_protected", 0)) <= 100_000
     ):
         raise ValueError("Untrusted official ISTAT municipality repair report")
     if observed_quality and (
@@ -347,6 +350,9 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "official_enrichment_attributions_added": int(enrichment.get("official_source_attributions_added",0)),
         "municipality_istat_enabled": municipalities.get("enabled") is True,
         "municipality_city_fixed": int(municipalities.get("counts", {}).get("city_fixed", 0)),
+        "municipality_province_fixed": int(municipalities.get("counts", {}).get("province_fixed", 0)),
+        "municipality_province_pending": int(municipalities.get("counts", {}).get("province_pending", 0)),
+        "municipality_province_protected": int(municipalities.get("counts", {}).get("province_protected", 0)),
         "municipality_titles_repaired": int(municipalities.get("counts", {}).get("contaminated_market_titles_fixed", 0)),
         "municipality_calendars_quarantined": int(municipalities.get("counts", {}).get("records_calendar_quarantined", 0)),
         "municipality_forecast_dates_removed": int(municipalities.get("counts", {}).get("forecast_days_quarantined", 0)),
@@ -435,6 +441,7 @@ def markdown(latest: dict) -> str:
         f"- Corciano: **{latest['corciano_source_accepted']}** record senza conflitti su **{latest['corciano_source_total']}**, in revisione **{latest['corciano_source_quarantined']}**, impronta sorgente **{latest['corciano_source_sha256'] or 'non disponibile'}**.",
         f"- Enrichment ufficiale: {'attivo' if latest['official_enrichment_enabled'] else 'disattivo'}; **{latest['official_enrichment_hours_added']}** orari mancanti recuperati in questo run, **{latest['official_enrichment_attributions_added']}** fonti collegate, **{latest['official_enrichment_exact_matches']}** corrispondenze esatte su **{latest['official_enrichment_held_rows']}** record fonte in revisione.",
         f"- Riconciliazione ISTAT (21 febbraio 2026): {'attiva' if latest['municipality_istat_enabled'] else 'disattiva'}, **{latest['municipality_city_fixed']}** Comuni corretti e **{latest['municipality_titles_repaired']}** titoli ripuliti in questo run; **{latest['municipality_calendars_quarantined']}** calendari sospesi (**{latest['municipality_forecast_dates_removed']}** date previste), **{latest['municipality_needs_manual_review']}** casi ancora ambigui. Nessuna conferma di apertura generata.",
+        f"- Province amministrative riconciliate: **{latest.get('municipality_province_fixed',0)}**; in attesa del budget dei prossimi cicli **{latest.get('municipality_province_pending',0)}**; protette da prove o verifiche preesistenti **{latest.get('municipality_province_protected',0)}**. Tetto complessivo invariato: 80 schede per ciclo ISTAT.",
         f"- Revisione manuale di pagine originali e Comuni ISTAT: {'attiva' if latest['reviewed_city_source_enabled'] else 'in attesa'}; **{latest['reviewed_city_source_corrected']}** Comuni sistemati, **{latest['reviewed_city_source_coordinates_quarantined']}** punti geografici incompatibili sospesi, **{latest['reviewed_city_source_navigation_blocked']}** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.",
         f"- Protezioni ancora attive nel sito statico DEV: **{latest['reviewed_city_source_navigation_held_total']}** navigazioni sospese, **{latest['reviewed_city_source_coordinates_held_total']}** coordinate in quarantena, **{latest['reviewed_city_source_final_details_checked']}** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.",
         f"- Roma Municipio XIII (mappa pubblicata nel 2024): **{latest['roma_xiii_coordinate_holds_active']}** coordinate ancora sospese e **{latest['roma_xiii_navigation_holds_active']}** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **{latest['all_reviewed_coordinate_holds_active']}** coordinate e **{latest['all_reviewed_navigation_holds_active']}** navigazioni. Nessuna apertura 2026 confermata dal documento storico.",

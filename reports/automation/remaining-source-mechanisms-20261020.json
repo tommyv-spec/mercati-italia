@@ -1,0 +1,1699 @@
+{
+  "schema": 1,
+  "mode": "READ_ONLY_RESIDUAL_AUDIT",
+  "date": "2026-10-20",
+  "repository_commit": "3a4d5c7e8a215c158128c574c3ef5902c2d60ec8",
+  "inputs": {
+    "candidate_manifest": "/tmp/all-source-full-captured-replay-20261020/candidate/public/data/v1/manifest.json",
+    "candidate_manifest_sha256": "f29e7480229348ba0f7e006f87c491dd20d582f5193e31eeeedd9752b42ddadd",
+    "coverage": "/tmp/all-source-full-captured-replay-20261020/source-refresh-coverage.json",
+    "coverage_sha256": "2970f1b9d3574618b76cdb2d4f5d77e7a292146f510ba0166608de57fecf7c5a",
+    "ledger_sha256": "710489f20cf28123cbf77b9830061c69bd62386dc98b74337430d89a5970e1e0",
+    "captured_weekly_pages": "/tmp/vintagery-live-39465324614/sources/happings-pages.json",
+    "captured_weekly_pages_sha256": "6a7e086640d3dfd7136e82bee29d68c2550f2f4cd4415f13af701e160752ff6d"
+  },
+  "definitions": {
+    "record": "Original catalog identity; source copies can be multiple records for one physical market.",
+    "supported": "A configured, enabled reader recognizes this record source URL and required identity/geography; not proof of successful read, all fields extracted or current opening.",
+    "unsupported": "No currently admitted automatic route for this record; not evidence that the source lacks information.",
+    "url": "Distinct primary canonical URL, separate from URL+identity routing cohorts.",
+    "replay": "Cached integration replay, 13826 records, not the published DEV release or a completed crawl.",
+    "happings_reason_order": [
+      "generic_name_city_identity_not_exact",
+      "weekly_day_or_temporal_scope_not_complete",
+      "municipality_province_region_not_exact",
+      "legacy_resource_or_url_identity_unresolved"
+    ],
+    "reason_caution": "Record failures overlap. Counts below are disjoint because this explicit precedence chooses one primary cause."
+  },
+  "coverage": {
+    "records": 13826,
+    "supported_records": 12152,
+    "unsupported_records": 1674,
+    "supported_percent": 87.89,
+    "unique_primary_urls": 5754,
+    "fully_supported_urls": 5086,
+    "fully_unsupported_urls": 572,
+    "mixed_support_urls": 96,
+    "urls_with_any_supported_record": 5182,
+    "urls_with_any_unsupported_record": 668,
+    "resource_cohorts": 5851,
+    "market_dispositions": {
+      "cosedicasa_existing_detail": 432,
+      "eventiesagre_existing_detail": 2197,
+      "happings_event_detail": 2,
+      "happings_province_index": 8193,
+      "happings_source_scope_unproven": 1454,
+      "official_adapter": 1219,
+      "roma_d881_existing_inventory": 70,
+      "source_contract_active": 39,
+      "source_layout_needed": 220
+    },
+    "market_read_statuses": {
+      "not_read": 1674,
+      "not_selected": 7425,
+      "offline_no_source_inference": 39,
+      "offline_skipped": 3416,
+      "retrieved": 76,
+      "unavailable": 1196
+    }
+  },
+  "happings": {
+    "unrouted": {
+      "records": 1454,
+      "urls": 532
+    },
+    "format_breakdown": {
+      "province_index_old_a": {
+        "records": 604,
+        "urls": 76
+      },
+      "province_index_old_ad": {
+        "records": 82,
+        "urls": 9
+      },
+      "town_detail_legacy": {
+        "records": 768,
+        "urls": 447
+      }
+    },
+    "disjoint_causes": {
+      "municipality_province_region_not_exact": {
+        "records": 903,
+        "urls": 321
+      },
+      "weekly_day_or_temporal_scope_not_complete": {
+        "records": 290,
+        "urls": 73
+      },
+      "legacy_resource_or_url_identity_unresolved": {
+        "records": 57,
+        "urls": 43
+      },
+      "generic_name_city_identity_not_exact": {
+        "records": 204,
+        "urls": 159
+      }
+    },
+    "resolver": {
+      "urls": 43,
+      "records": 57,
+      "is_configuration_cap": false,
+      "explanation": "Only original town URLs with already valid generic identity, municipality/province/region and full simple weekday are eligible; missing province resource or non-exact town slug remains to prove. It does not read all unrouted identities."
+    },
+    "mixed_url_count": 96,
+    "wholly_unrouted_url_count": 436
+  },
+  "geography_903": {
+    "records": 903,
+    "empty_province": 0,
+    "empty_city": 0,
+    "exact_municipality_and_region_wrong_province": 215,
+    "province_difference_counts": {
+      "VB->VV": 31,
+      "CR->KR": 1,
+      "MI->MB": 149,
+      "LE->LC": 1,
+      "CU->CN": 1,
+      "BA->BT": 12,
+      "FG->BT": 4,
+      "OR->CA": 2,
+      "CA->NU": 1,
+      "CA->CI": 2,
+      "PT->PO": 3,
+      "PR->PO": 7,
+      "RM->PG": 1
+    },
+    "unknown_exact_municipality_in_record_region": 688,
+    "unknown_Lazio_RM_records": 279,
+    "unknown_Lazio_RM_distinct_labels": 49,
+    "province_only_counterfactual": {
+      "new_routes": 44,
+      "lost_routes": 0,
+      "still_excluded": 171,
+      "not_applied": true
+    },
+    "caution": "A municipality mismatch includes ward/venue labels, historical names, spelling differences and true errors; do not label every mismatch an incorrect municipality or auto-map from lexical similarity."
+  },
+  "calendar_290": {
+    "records": 290,
+    "stored_text_classes": {
+      "ambiguous_weekday_prefix": 28,
+      "unique_weekday_prefix_not_source_proof": 188,
+      "contaminated_old_text": 18,
+      "ellipsis_no_weekday": 51,
+      "complete_day_with_unrepresented_temporal_scope": 5
+    },
+    "records_with_existing_date_list": 0,
+    "records_with_existing_field_receipts": 0,
+    "complete_day_scope_holds": [
+      {
+        "slug": "mercato-settimanale-di-ravenna-ravenna-domenica",
+        "citta": "Ravenna",
+        "url_fonte": "https://www.happings.com/it/mercato-settimanale-a-ravenna--estivo-.html",
+        "ricorrenza_testo": "settimanale - domenica",
+        "hold": "seasonal_scope_unrepresented"
+      },
+      {
+        "slug": "mercato-settimanale-di-ravenna-ravenna-lunedi",
+        "citta": "Ravenna",
+        "url_fonte": "https://www.happings.com/it/mercato-settimanale-a-ravenna--estivo-.html",
+        "ricorrenza_testo": "settimanale - lunedì",
+        "hold": "seasonal_scope_unrepresented"
+      },
+      {
+        "slug": "mercato-settimanale-di-riolo-terme-riolo-terme-lunedi",
+        "citta": "Riolo Terme",
+        "url_fonte": "https://www.happings.com/it/mercato-settimanale-a-riolo-terme--estivo-.html",
+        "ricorrenza_testo": "settimanale - lunedì",
+        "hold": "seasonal_scope_unrepresented"
+      },
+      {
+        "slug": "mercato-settimanale-di-riolo-terme-estivo-riolo-terme-estivo",
+        "citta": "Riolo Terme (estivo)",
+        "url_fonte": "https://www.happings.com/it/mercati-settimanali-a-ravenna.html",
+        "ricorrenza_testo": "settimanale - martedì",
+        "hold": "seasonal_scope_unrepresented"
+      },
+      {
+        "slug": "mercato-settimanale-di-poggiorsini-poggiorsini-venerdi",
+        "citta": "Poggiorsini",
+        "url_fonte": "https://www.happings.com/it/mercato-settimanale-a-poggiorsini--ogni-15gg-.html",
+        "ricorrenza_testo": "settimanale - venerdì",
+        "hold": "interval_scope_unrepresented"
+      }
+    ],
+    "captured_source_review": {
+      "source_pages": 13,
+      "exact_primary_province_city_records": 31,
+      "records_with_empty_stored_address": 31,
+      "strict_exact_existing_venue_unique_day_recoveries": 0,
+      "one_source_row_for_city_candidates": 19,
+      "multiple_source_rows": 12,
+      "multiple_source_rows_only_unique_if_truncated_prefix_assumed": 4,
+      "not_covered_by_this_exact_capture_review": 259,
+      "candidate_not_write_proof": "One source row for a city can motivate a whole-cohort identity recovery rule, but these rows lack an independent exact stored venue. No weekday, date or address was assigned."
+    },
+    "reviewed_rows": [
+      {
+        "market_id": "mercato-settimanale-di-orsomarso-orsomarso",
+        "city": "Orsomarso",
+        "saved_recurrence": "settimanale - g",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          3
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cosenza.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/",
+            "html_sha256": "da2d99998d493195c82325c5a7d2f03176106d10e6d8156a5cf56889e8c7db17",
+            "city": "Orsomarso",
+            "weekday": 3,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-verbicaro-verbicaro",
+        "city": "Verbicaro",
+        "saved_recurrence": "settimanale - m",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          1
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cosenza.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/",
+            "html_sha256": "da2d99998d493195c82325c5a7d2f03176106d10e6d8156a5cf56889e8c7db17",
+            "city": "Verbicaro",
+            "weekday": 1,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-argenta-argenta",
+        "city": "Argenta",
+        "saved_recurrence": "settimanale - g",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          3
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Argenta",
+            "weekday": 3,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-bondeno-bondeno",
+        "city": "Bondeno",
+        "saved_recurrence": "settimanale - m",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          1
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Bondeno",
+            "weekday": 1,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-copparo-copparo",
+        "city": "Copparo",
+        "saved_recurrence": "settimanale - v",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          4
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Copparo",
+            "weekday": 4,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-ferrara-ferrara",
+        "city": "Ferrara",
+        "saved_recurrence": "settimanale - l",
+        "saved_address": "",
+        "source_row_count": 17,
+        "source_weekdays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 2,
+            "place": "Piazzale Giochi",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 2,
+            "place": "Porotto via Giovannini",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 2,
+            "place": "Villa Fulvia",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 2,
+            "place": "largo mercato",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 5,
+            "place": "Piazza Berlinguer",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 5,
+            "place": "San Bartolomeo in Bosco",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 5,
+            "place": "Viale Krasnodar",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 5,
+            "place": "Via Cervella",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 0,
+            "place": "piazza Travaglio via Bologna",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 1,
+            "place": "Barco piazza Emilia",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 1,
+            "place": "Via Barlaam",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 3,
+            "place": "Doro, Viale XVII Novembre",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 3,
+            "place": "mercato di San Giovanni fuori le mura",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 4,
+            "place": "corso Porta Reno",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 4,
+            "place": "Pontelagoscuro,piazza Bruno Buozzi",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 4,
+            "place": "via Amendola",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+            "html_sha256": "1e1d0027d61976b43b949bbda346572e8dfa6f269b0c9a41e087b75269b7b471",
+            "city": "Ferrara",
+            "weekday": 4,
+            "place": "piazza Gramsci",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-colfelice-colfelice",
+        "city": "Colfelice",
+        "saved_recurrence": "settimanale - gi",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          3
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Colfelice",
+            "weekday": 3,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-ferentino-ferentino",
+        "city": "Ferentino",
+        "saved_recurrence": "settimanale - sa",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          5
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Ferentino",
+            "weekday": 5,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-filettino-filettino",
+        "city": "Filettino",
+        "saved_recurrence": "settimanale - me",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          2
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Filettino",
+            "weekday": 2,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-frosinone-frosinone",
+        "city": "Frosinone",
+        "saved_recurrence": "settimanale - gi",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          3
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Frosinone",
+            "weekday": 3,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-gallinaro-gallinaro",
+        "city": "Gallinaro",
+        "saved_recurrence": "settimanale - ma",
+        "saved_address": "",
+        "source_row_count": 2,
+        "source_weekdays": [
+          1,
+          6
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Gallinaro",
+            "weekday": 6,
+            "place": "centro",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Gallinaro",
+            "weekday": 1,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-monte-san-giovanni-campano-in-provincia-mercato-settimana",
+        "city": "Monte San Giovanni Campano",
+        "saved_recurrence": "Calendario da verificare: testo origine con mercati/località concatenati",
+        "saved_address": "",
+        "source_row_count": 2,
+        "source_weekdays": [
+          1,
+          5
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Monte San Giovanni Campano",
+            "weekday": 5,
+            "place": "centro",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+            "html_sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+            "city": "Monte San Giovanni Campano",
+            "weekday": 1,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-isolabona-isolabona",
+        "city": "Isolabona",
+        "saved_recurrence": "settimanale - do",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          6
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+            "html_sha256": "564a78d22ec7f3172c55c89c1af7fa787f20fa3ab3a6571fa485e5dcf67441c6",
+            "city": "Isolabona",
+            "weekday": 6,
+            "place": "Via Roma piazza S. Lucia",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-perinaldo-perinaldo",
+        "city": "Perinaldo",
+        "saved_recurrence": "settimanale - me",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          2
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+            "html_sha256": "564a78d22ec7f3172c55c89c1af7fa787f20fa3ab3a6571fa485e5dcf67441c6",
+            "city": "Perinaldo",
+            "weekday": 2,
+            "place": "Piazza Santa Croce",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-pompeiana-pompeiana",
+        "city": "Pompeiana",
+        "saved_recurrence": "settimanale - ma",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          1
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+            "html_sha256": "564a78d22ec7f3172c55c89c1af7fa787f20fa3ab3a6571fa485e5dcf67441c6",
+            "city": "Pompeiana",
+            "weekday": 1,
+            "place": "Piazza Dante",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-vallebona-vallebona",
+        "city": "Vallebona",
+        "saved_recurrence": "settimanale - ma",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          1
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+            "html_sha256": "564a78d22ec7f3172c55c89c1af7fa787f20fa3ab3a6571fa485e5dcf67441c6",
+            "city": "Vallebona",
+            "weekday": 1,
+            "place": "Piazza Libertà",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-francavilla-d-ete-francavilla-d-ete",
+        "city": "Francavilla d'Ete",
+        "saved_recurrence": "settimanale - sa",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          5
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-fermo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/",
+            "html_sha256": "a8fe38337971256d6e26c62014b1672d71e106099d1aa6f3910312cd429a5a86",
+            "city": "Francavilla d’Ete",
+            "weekday": 5,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-barbaresco-barbaresco",
+        "city": "Barbaresco",
+        "saved_recurrence": "settimanale - ...",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          6
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Barbaresco",
+            "weekday": 6,
+            "place": "Via torino",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-farigliano-farigliano",
+        "city": "Farigliano",
+        "saved_recurrence": "settimanale - ...",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          6
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Farigliano",
+            "weekday": 6,
+            "place": "Piazza san giovanni",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-monasterolo-di-savigliano-in-provincia-di-mercato-settima",
+        "city": "Monasterolo di Savigliano",
+        "saved_recurrence": "Calendario da verificare: testo origine con mercati/località concatenati",
+        "saved_address": "",
+        "source_row_count": 4,
+        "source_weekdays": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Monasterolo di Savigliano",
+            "weekday": 2,
+            "place": "Piazza liberta’",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Monasterolo di Savigliano",
+            "weekday": 5,
+            "place": "Piazza liberta’",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Monasterolo di Savigliano",
+            "weekday": 0,
+            "place": "Piazza liberta’",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Monasterolo di Savigliano",
+            "weekday": 3,
+            "place": "Piazza liberta’",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-monesiglio-monesiglio",
+        "city": "Monesiglio",
+        "saved_recurrence": "settimanale - ...",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          1
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Monesiglio",
+            "weekday": 1,
+            "place": "Piazza xx settembre",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-scarnafigi-scarnafigi",
+        "city": "Scarnafigi",
+        "saved_recurrence": "settimanale - ...",
+        "saved_address": "",
+        "source_row_count": 3,
+        "source_weekdays": [
+          1,
+          2,
+          4
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Scarnafigi",
+            "weekday": 2,
+            "place": "Piazza europa e piazza castello",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Scarnafigi",
+            "weekday": 1,
+            "place": "Piazza europa e piazza castello",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+            "html_sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+            "city": "Scarnafigi",
+            "weekday": 4,
+            "place": "Piazza europa e piazza castello",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-carlantino-carlantino",
+        "city": "Carlantino",
+        "saved_recurrence": "settimanale - m",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          1
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-foggia.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/",
+            "html_sha256": "97977bca26ef8d339c8342740277d8f199aaa7b1beec6eb30ecec687e5385d08",
+            "city": "Carlantino",
+            "weekday": 1,
+            "place": "centro",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-arcidosso-arcidosso",
+        "city": "Arcidosso",
+        "saved_recurrence": "settimanale - l",
+        "saved_address": "",
+        "source_row_count": 3,
+        "source_weekdays": [
+          0,
+          1
+        ],
+        "prefix_compatible_rows": 2,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Arcidosso",
+            "weekday": 0,
+            "place": "Via Provinciale",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Arcidosso",
+            "weekday": 0,
+            "place": "Piazza Madonna",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Arcidosso",
+            "weekday": 1,
+            "place": "Viale D. Lazzaretti",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-castiglione-della-pescaia-in-provincia-di-mercato-settima",
+        "city": "Castiglione della Pescaia",
+        "saved_recurrence": "Calendario da verificare: testo origine con mercati/località concatenati",
+        "saved_address": "",
+        "source_row_count": 4,
+        "source_weekdays": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Castiglione della Pescaia",
+            "weekday": 2,
+            "place": "Piazza del Popolo",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Castiglione della Pescaia",
+            "weekday": 5,
+            "place": "Piazza Ponte Giorgini",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Castiglione della Pescaia",
+            "weekday": 1,
+            "place": "Piazza Indipeindenza",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Castiglione della Pescaia",
+            "weekday": 4,
+            "place": "Vetulonia",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-civitella-paganico-civitella-paganico",
+        "city": "Civitella Paganico",
+        "saved_recurrence": "settimanale - v",
+        "saved_address": "",
+        "source_row_count": 4,
+        "source_weekdays": [
+          1,
+          2,
+          5
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Civitella Paganico",
+            "weekday": 2,
+            "place": "Via I Maggio",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Civitella Paganico",
+            "weekday": 5,
+            "place": "Via dei Mandrioli",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Civitella Paganico",
+            "weekday": 1,
+            "place": "Casale di Pari",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Civitella Paganico",
+            "weekday": 1,
+            "place": "Via dell’Oliviera",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-fucecchio-fucecchio",
+        "city": "Fucecchio",
+        "saved_recurrence": "settimanale - ma",
+        "saved_address": "",
+        "source_row_count": 5,
+        "source_weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Fucecchio",
+            "weekday": 2,
+            "place": "Piazza XX Settembre",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Fucecchio",
+            "weekday": 5,
+            "place": "Via della Chiesa",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Fucecchio",
+            "weekday": 1,
+            "place": "Piazza della Chiesa",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Fucecchio",
+            "weekday": 3,
+            "place": "Piazza Donnini",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Fucecchio",
+            "weekday": 4,
+            "place": "Largo Cellini",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-gavorrano-gavorrano",
+        "city": "Gavorrano",
+        "saved_recurrence": "settimanale - l",
+        "saved_address": "",
+        "source_row_count": 7,
+        "source_weekdays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Gavorrano",
+            "weekday": 2,
+            "place": "Bagno di Gavorrano",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Gavorrano",
+            "weekday": 5,
+            "place": "Piazza de Gasperi",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Gavorrano",
+            "weekday": 0,
+            "place": "Bagno di Gavorrano",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Gavorrano",
+            "weekday": 1,
+            "place": "Bagno di Gavorrano",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Gavorrano",
+            "weekday": 1,
+            "place": "Piazza della Resistenza",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Gavorrano",
+            "weekday": 3,
+            "place": "Bagno di Gavorrano",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Gavorrano",
+            "weekday": 4,
+            "place": "Bagno di Gavorrano",
+            "specific_location": false
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-greve-in-chianti-greve-in-chianti",
+        "city": "Greve in Chianti",
+        "saved_recurrence": "settimanale - me",
+        "saved_address": "",
+        "source_row_count": 5,
+        "source_weekdays": [
+          1,
+          3,
+          4,
+          5,
+          6
+        ],
+        "prefix_compatible_rows": 0,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Greve in Chianti",
+            "weekday": 5,
+            "place": "Piazza Matteotti",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Greve in Chianti",
+            "weekday": 6,
+            "place": "Piazza Bucciarelli",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Greve in Chianti",
+            "weekday": 1,
+            "place": "Piazza del Mercato",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Greve in Chianti",
+            "weekday": 3,
+            "place": "Via Poggio alla Croce",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Greve in Chianti",
+            "weekday": 4,
+            "place": "Via del Lavoro",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-montaione-montaione",
+        "city": "Montaione",
+        "saved_recurrence": "settimanale - ve",
+        "saved_address": "",
+        "source_row_count": 1,
+        "source_weekdays": [
+          4
+        ],
+        "prefix_compatible_rows": 1,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+            "html_sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+            "city": "Montaione",
+            "weekday": 4,
+            "place": "Piazza Gramsci",
+            "specific_location": true
+          }
+        ]
+      },
+      {
+        "market_id": "mercato-settimanale-di-orbetello-orbetello",
+        "city": "Orbetello",
+        "saved_recurrence": "settimanale - l",
+        "saved_address": "",
+        "source_row_count": 12,
+        "source_weekdays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "prefix_compatible_rows": 3,
+        "exact_existing_street_rows": 0,
+        "source_rows": [
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 2,
+            "place": "Via Marsala",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 2,
+            "place": "Piazza dell’Uccellina",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 2,
+            "place": "Pialpetta, corso roma",
+            "specific_location": false
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 5,
+            "place": "Via Caravaggio via Trento",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 0,
+            "place": "Via Marsala",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 0,
+            "place": "Via Cala di Forno",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 0,
+            "place": "Via Gioberti",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 1,
+            "place": "Via Marsala",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 1,
+            "place": "Via Gioberti",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 3,
+            "place": "Via Marsala",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 3,
+            "place": "Via Gioberti",
+            "specific_location": true
+          },
+          {
+            "source_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+            "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+            "html_sha256": "2fcf94577fa266b58e2231394381f36c12cb1747e33e2e91e0e6e2d360fdecb1",
+            "city": "Orbetello",
+            "weekday": 4,
+            "place": "Via Marsala",
+            "specific_location": true
+          }
+        ]
+      }
+    ]
+  },
+  "non_happings_without_reader": {
+    "records": 220,
+    "urls": 136,
+    "hosts": 63,
+    "citynews_records": 92,
+    "citynews_urls": 77,
+    "other_records": 128,
+    "other_urls": 59
+  },
+  "remaining_todos": {
+    "total": 36,
+    "ledger_states": {
+      "open": 35,
+      "in_progress": 1
+    },
+    "primary_classes": {
+      "mechanism_or_validation_gap": 35,
+      "source_acquisition_retry": 1
+    },
+    "solely_inapplicable_ambiguity_tasks": 0,
+    "interpretation": "These are unfinished implementation/validation tickets. Some explicitly require correct holds for genuinely ambiguous or incomplete source data; such negative acceptance cases do not make the whole ticket unimplementable or complete. Source inaccessibility has one dedicated retry ticket. This classification is a review of ledger scope, not 36 newly fetched sources.",
+    "tasks": [
+      {
+        "id": "HAPP-FORMAT-04",
+        "title": "Mantenere distinte le righe con sedi e giorni diversi",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "HAPP-FORMAT-06",
+        "title": "Conservare stagionalità e frequenze separate dal Comune",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "HAPP-FORMAT-07",
+        "title": "Misurare i campi mancanti in base a ciò che il formato pubblica",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "HAPP-FORMAT-08",
+        "title": "Separare la data della pagina dalla verifica del mercato",
+        "status": "in_progress",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "EES-NARRATIVE-FIELD-GAPS",
+        "title": "Leggere sedi e calendari nel testo narrativo delimitato",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "EES-URL-DISCOVERY-INVENTORY",
+        "title": "Verificare discovery e filtri delle categorie Eventi e Sagre",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-MI-01",
+        "title": "Leggere tutte le righe delle tabelle PDF Milano",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-MI-02",
+        "title": "Separare orari di vendita, sgombero e variazioni stagionali Milano",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-MI-03",
+        "title": "Conservare geometrie e note di spostamento Milano come prove di fonte",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-FI-02",
+        "title": "Leggere la data Firenze dai metadati validati, con il giusto ambito",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-FI-03",
+        "title": "Conservare link e contatti distinti dall’attribuzione Firenze",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-BO-02",
+        "title": "Conservare giorni, mesi ed esclusioni completi Bologna",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-BO-03",
+        "title": "Leggere la specializzazione prima della classificazione Bologna",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-CO-01",
+        "title": "Mantenere parità delle colonne e controllo degli assi Corciano",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-RO-02",
+        "title": "Raccordare date AGGIORNATO e distinguere coordinate generiche Roma",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "OFF-RO-03",
+        "title": "Raccordare revisioni, atti e planimetrie Roma senza inventare ingressi/orari",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "CNY-DETAIL",
+        "title": "Leggere il riquadro dell’evento Citynews nel suo ambito",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "CNY-DISCOVERY",
+        "title": "Separare elenchi Citynews e schede evento",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "CNY-EDITORIAL",
+        "title": "Leggere le varianti redazionali Citynews",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "CNY-ROUNDTRIP",
+        "title": "Conservare provenienza ed edizione lungo il raccordo Citynews",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "RETRY-CITYNEWS-PADOVA",
+        "title": "Riprovare il campione Padova dopo errore temporaneo",
+        "status": "open",
+        "primary_residual_class": "source_acquisition_retry"
+      },
+      {
+        "id": "NC-01",
+        "title": "Contratti DOM per confini di evento e campi",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-02",
+        "title": "Discovery dall’indice al dettaglio con identità composta",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-03",
+        "title": "Precisione e provenienza dei calendari",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-04",
+        "title": "Confronto DOM, microdata e JSON-LD",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-05",
+        "title": "Conflitti sorgente e valori salvati senza sovrascritture",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-06",
+        "title": "Orari completi, parziali e limiti di validità",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-07",
+        "title": "Ruoli corretti per organizzatore e contatti",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-08",
+        "title": "Geografia strutturata e validata senza default dal sito",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-09",
+        "title": "Qualità dei valori prima della completezza",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-10",
+        "title": "Coordinate con ambito e precisione dimostrati",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-11",
+        "title": "Esiti HTTP e migrazioni URL verificabili",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-12",
+        "title": "Indice dinamico con copertura misurabile",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-13",
+        "title": "Eleggibilità di manifestazione come mercato",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-14",
+        "title": "Copertura operativa per formato e prove riproducibili",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      },
+      {
+        "id": "NC-15",
+        "title": "Qualificatori temporali completi prima delle proiezioni",
+        "status": "open",
+        "primary_residual_class": "mechanism_or_validation_gap"
+      }
+    ]
+  },
+  "mutations": {
+    "network_requests": 0,
+    "repo_files_changed": 0,
+    "catalog_rows_written": 0,
+    "published": false
+  }
+}

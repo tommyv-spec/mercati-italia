@@ -2,9 +2,9 @@
 
 Generato per il 2026-10-20.
 
-Catalogo: **13,824 schede**, **5,752 URL primari**, **72 hostname** (71 dopo l’unificazione di `www`).
+Catalogo: **13,856 schede**, **5,784 URL primari**, **72 hostname** (71 dopo l’unificazione di `www`).
 
-**109 unità di formato URL**: 102 con confronto del campione completato, 7 parziali, 0 da verificare. Le 27 unità ausiliarie non aumentano il numero delle schede.
+**110 unità di formato URL**: 73 con confronto del campione completato, 37 parziali, 0 da verificare. Le 28 unità ausiliarie non aumentano il numero delle schede.
 
 Le spunte indicano una verifica eseguita sul campione. Non attestano che tutte le schede siano corrette, aggiornate o complete. I TODO indicano separatamente le correzioni e i raccordi ancora da realizzare. Il report quotidiano legge il catalogo e questo registro senza effettuare nuove richieste alle fonti.
 
@@ -21,6 +21,8 @@ Le spunte indicano una verifica eseguita sul campione. Non attestano che tutte l
 - **2026-10-20T17:20:11+00:00 — SOURCE-SCOPE-PIPELINE-20261020**: PR69 integrata in DEV: risoluzione osservata URL Happings, redirect provinciali, limiti temporali Lombardia e controllo mobile corretto. 1.191 test Python e nove file Node passati. Chiusi quattro TODO con prove di meccanismo; la promozione dei nuovi dati resta distinta e viene registrata soltanto dopo verifica degli asset pubblicati.
 - **2026-10-20T17:51:51.701445+00:00 — EXISTING-SOURCE-READERS-20261020**: Implementati lettori ricorrenti delle identità esistenti Eventi e Sagre, Cose di Casa e Roma d881, con code persistenti, provenienza per campo, limiti di edizione e verificatori dopo export. Chiusi nove TODO di meccanismo con prove specifiche. Test locali verdi; prima acquisizione HTTP EES, pubblicazione DEV e ciclo completo di tutte le URL restano misure distinte ancora da completare.
 - **2026-10-20T17:53:35.590967+00:00 — FULL-CATALOG-READER-COMPATIBILITY-20261020**: Replay completo del percorso finale sui byte originali disponibili: 13.824 identità precedenti conservate, due nuove identità Happings, 17/17 controlli di rilascio e tre guard statici passati. Confronto del codice condiviso aggiornato senza ridatare i campioni né inventare letture nuove: EES offline e redirect CDC non documentato sospeso. Zero campi geografici, URL primari, indirizzi non vuoti o verifiche umane alterati.
+- **2026-10-20T18:21:00+00:00 — ACTUAL-DEV-PUBLICATION-39471001816**: Pubblicazione effettiva completata: tutte le13.824 identità precedenti e32 nuove schede Happings,363 indirizzi mancanti e263 orari mancanti recuperati. Candidato, DEV6274e1d e preview4482d1d identici per dati, manifest e code; manifest HTTPS200 con stesso hash. Prime letture EES11/19 e CDC16/16, Happings13 indici+90 dettagli. Roma timeout: zero arricchimenti reali. Restano code incomplete e1.674 schede senza raccordo automatico; nessuna conferma individuale inventata.
+- **2026-10-20T18:22:30+00:00 — ISTAT-PROVINCE-MECHANISM-20261020**: Implementata riconciliazione provincia per tutte le fonti con Comune+regione univoci nel registro ISTAT fissato e riscaricato oggi con hash identico. Sul nuovo catalogo13.856:220 eleggibili; replay80/80/60/0 entro il budget totale esistente, con tutte le25 evidenze editoriali e2.264 ricevute conservate. Solo provincia+prova amministrativa cambiano. Codice pronto, correzioni non ancora pubblicate; NC-08 resta aperto per gli altri difetti geografici.
 
 ## Checklist dei formati primari
 
@@ -28,41 +30,42 @@ Legenda: ✓ completato sul campione; ◐ parziale; ○ da verificare.
 
 | Formato / fonte | Schede | Fonte | Campi | Parser | Catalogo | TODO aperti |
 | --- | ---: | :---: | :---: | :---: | :---: | --- |
-| `happings.com` · `/it/{scheda-comunale}.html` | 4746 | ✓ | ✓ | ✓ | ✓ | HAPP-FORMAT-04, HAPP-FORMAT-06 |
-| `happings.com` · `/it/mercati-settimanali-a-{provincia}.html` | 4487 | ✓ | ✓ | ✓ | ✓ | HAPP-FORMAT-07 |
-| `eventiesagre.it` · `/Mercatini_Filiera+Corta/{id}_{slug}.html` | 1150 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `dati.lombardia.it` · `/d/68zx-njaw` | 1128 | ✓ | ✓ | ✓ | ✓ | — |
-| `cosedicasa.com` · `/mercatini/{slug}` | 432 | ✓ | ✓ | ✓ | ✓ | — |
-| `happings.com` · `/it/mercati-settimanali-ad-{provincia}.html` | 414 | ✓ | ✓ | ✓ | ✓ | HAPP-FORMAT-07 |
-| `eventiesagre.it` · `/Mercatini_Vari/{id}_{slug}.html` | 267 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Mercatini_Antiquariato/{id}_{slug}.html` | 205 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Mercatini_Artigianato/{id}_{slug}.html` | 173 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Mercatini_Usato/{id}_{slug}.html` | 151 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Mercatini_Enogastronomici/{id}_{slug}.html` | 142 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `dati.comune.milano.it` · `/dataset/ds291-economia-mercati-settimanali-scoperti` | 85 | ✓ | ✓ | ✓ | ✓ | OFF-MI-01, OFF-MI-02, OFF-MI-03 |
-| `dati.comune.roma.it` · `/catalog/dataset/d881` | 70 | ✓ | ✓ | ✓ | ✓ | OFF-RO-02 |
-| `opendata.comune.bologna.it` · `/explore/dataset/mercati-e-fiere/` | 39 | ✓ | ✓ | ✓ | ✓ | OFF-BO-02, OFF-BO-03 |
-| `eventiesagre.it` · `/Mercatini_hobbisti+creativi/{id}_{slug}.html` | 32 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `happings.com` · `/it/{scheda-comunale}.html` | 4746 | ✓ | ✓ | ✓ | ○ | HAPP-FORMAT-04, HAPP-FORMAT-06 |
+| `happings.com` · `/it/mercati-settimanali-a-{provincia}.html` | 4487 | ✓ | ✓ | ✓ | ○ | HAPP-FORMAT-07 |
+| `eventiesagre.it` · `/Mercatini_Filiera+Corta/{id}_{slug}.html` | 1150 | ✓ | ✓ | ○ | ○ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `dati.lombardia.it` · `/d/68zx-njaw` | 1128 | ✓ | ✓ | ○ | ○ | Verificare nuovo formato |
+| `cosedicasa.com` · `/mercatini/{slug}` | 432 | ✓ | ✓ | ○ | ✓ | Verificare nuovo formato |
+| `happings.com` · `/it/mercati-settimanali-ad-{provincia}.html` | 414 | ✓ | ✓ | ✓ | ○ | HAPP-FORMAT-07 |
+| `eventiesagre.it` · `/Mercatini_Vari/{id}_{slug}.html` | 267 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Mercatini_Antiquariato/{id}_{slug}.html` | 205 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Mercatini_Artigianato/{id}_{slug}.html` | 173 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Mercatini_Usato/{id}_{slug}.html` | 151 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Mercatini_Enogastronomici/{id}_{slug}.html` | 142 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `dati.comune.milano.it` · `/dataset/ds291-economia-mercati-settimanali-scoperti` | 85 | ✓ | ✓ | ○ | ○ | OFF-MI-01, OFF-MI-02, OFF-MI-03 |
+| `dati.comune.roma.it` · `/catalog/dataset/d881` | 70 | ✓ | ✓ | ○ | ✓ | OFF-RO-02 |
+| `opendata.comune.bologna.it` · `/explore/dataset/mercati-e-fiere/` | 39 | ✓ | ✓ | ○ | ○ | OFF-BO-02, OFF-BO-03 |
+| `eventiesagre.it` · `/Mercatini_hobbisti+creativi/{id}_{slug}.html` | 32 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `happings.com` · `/it/happing/{slug}/` | 32 | ✓ | ✓ | ○ | ○ | HAPP-FORMAT-07, HAPP-FORMAT-08 |
 | `cosafareafirenze.it` · `/mercati-firenze/` | 22 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-05, NC-06, NC-09, NC-15, NC-14 |
-| `eventiesagre.it` · `/Eventi_Enogastronomici/{id}_{slug}.html` | 17 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Mercatini_Collezionismo/{id}_{slug}.html` | 16 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Mercatini_Natale/{id}_{slug}.html` | 13 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Eventi_Feste/{id}_{slug}.html` | 13 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Eventi_Enogastronomici/{id}_{slug}.html` | 17 | ✓ | ✓ | ○ | ○ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Mercatini_Collezionismo/{id}_{slug}.html` | 16 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Mercatini_Natale/{id}_{slug}.html` | 13 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Eventi_Feste/{id}_{slug}.html` | 13 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
 | `romatoday.it` · `/eventi/{percorso-evento}.html` | 10 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
-| `eventiesagre.it` · `/Eventi_Mostra+Mercato/{id}_{slug}.html` | 9 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Eventi_Mostra+Mercato/{id}_{slug}.html` | 9 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
 | `emiliaromagnaturismo.it` · `/it/eventi/{slug}` | 8 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-03, NC-04, NC-06, NC-07, NC-15, NC-14 |
 | `trentino.com` · `/it/calendario/` | 8 | ○ | ○ | ✓ | ○ | NC-08, NC-11, NC-14 |
 | `algherohospitality.it` · `/mercati-rionali-di-alghero/` | 7 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-05, NC-06, NC-10, NC-14 |
 | `eventi.bergamo.it` · `/evento/{slug}/` | 7 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-03, NC-04, NC-05, NC-07, NC-15, NC-14 |
 | `genovatoday.it` · `/eventi/{percorso-evento}.html` | 7 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | `solosagre.it` · `/mostre-e-mercatini/{regione}/{provincia}/{comune}/{slug}.html` | 7 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-03, NC-06, NC-07, NC-09, NC-15, NC-14 |
-| `eventiesagre.it` · `/Eventi_Festival/{id}_{slug}.html` | 6 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Eventi_Festival/{id}_{slug}.html` | 6 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
 | `sagretorino.it` · `/` | 6 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-06, NC-07, NC-13, NC-14 |
 | `firenzetoday.it` · `/eventi/{percorso-evento}.html` | 5 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | `milanopocket.it` · `/sagre-lombardia/` | 5 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-08, NC-14 |
 | `sagreumbre.it` · `/fiere-mercati/` | 5 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-04, NC-08, NC-14 |
-| `comune.roma.it` · `/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf` | 4 | ✓ | ✓ | ✓ | ✓ | OFF-RO-03 |
-| `feelflorence.it` · `/it/punti-di-interesse/{slug}` | 4 | ✓ | ✓ | ✓ | ✓ | OFF-FI-02, OFF-FI-03 |
+| `comune.roma.it` · `/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf` | 4 | ✓ | ✓ | ○ | ○ | OFF-RO-03 |
+| `feelflorence.it` · `/it/punti-di-interesse/{slug}` | 4 | ✓ | ✓ | ○ | ○ | OFF-FI-02, OFF-FI-03 |
 | `modenatoday.it` · `/eventi/{percorso-evento}.html` | 4 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | `umbriaeventi.com` · `/{slug}-{id}.htm` | 4 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-04, NC-05, NC-06, NC-07, NC-08, NC-09, NC-10, NC-11, NC-14 |
 | `umbriaeventi.com` · `/` | 4 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-06, NC-07, NC-08, NC-15, NC-14 |
@@ -80,7 +83,7 @@ Legenda: ✓ completato sul campione; ◐ parziale; ○ da verificare.
 | `bresciatoday.it` · `/eventi/{percorso-evento}.html` | 2 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | `brindisireport.it` · `/tag/{tag}/` | 2 | ✓ | ✓ | ✓ | ✓ | CNY-DISCOVERY, CNY-ROUNDTRIP |
 | `cittadellaspezia.com` · `/tag/sagre/` | 2 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-14 |
-| `comune.corciano.pg.it` · `/area_letturaDocumento/29645/pagsistema.html` | 2 | ✓ | ✓ | ✓ | ✓ | OFF-CO-01 |
+| `comune.corciano.pg.it` · `/area_letturaDocumento/29645/pagsistema.html` | 2 | ✓ | ✓ | ○ | ○ | OFF-CO-01 |
 | `eventiintoscana.it` · `/` | 2 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-07, NC-14 |
 | `ferrarainfo.com` · `/it/eventi/eventi` | 2 | ✓ | ◐ | ✓ | ◐ | NC-02, NC-03, NC-11, NC-12, NC-14 |
 | `forlitoday.it` · `/eventi/{percorso-evento}.html` | 2 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
@@ -107,11 +110,11 @@ Legenda: ✓ completato sul campione; ◐ parziale; ○ da verificare.
 | `cataniatoday.it` · `/eventi/{percorso-evento}.html` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | `cesenatoday.it` · `/eventi/{percorso-evento}.html` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | `chietitoday.it` · `/attualita/{articolo}.html` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-EDITORIAL, CNY-ROUNDTRIP |
-| `comune.roma.it` · `/web/it/bando-concorso.page?contentId={value}` | 1 | ✓ | ✓ | ✓ | ✓ | OFF-RO-03 |
+| `comune.roma.it` · `/web/it/bando-concorso.page?contentId={value}` | 1 | ✓ | ✓ | ○ | ○ | OFF-RO-03 |
 | `eventi.bergamo.it` · `/` | 1 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-04, NC-07, NC-14 |
-| `eventiesagre.it` · `/Eventi_Sagre/{id}_{slug}.html` | 1 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Eventi_Folklore/{id}_{slug}.html` | 1 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
-| `eventiesagre.it` · `/Eventi_Fiere/{id}_{slug}.html` | 1 | ✓ | ✓ | ✓ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Eventi_Sagre/{id}_{slug}.html` | 1 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Eventi_Folklore/{id}_{slug}.html` | 1 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
+| `eventiesagre.it` · `/Eventi_Fiere/{id}_{slug}.html` | 1 | ✓ | ✓ | ○ | ✓ | EES-NARRATIVE-FIELD-GAPS, EES-URL-DISCOVERY-INVENTORY |
 | `eventiinsardegna.it` · `/` | 1 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-04, NC-09, NC-14 |
 | `ferraratoday.it` · `/eventi/tipo/{filtri}/` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DISCOVERY, CNY-ROUNDTRIP |
 | `ferraratoday.it` · `/eventi/{percorso-evento}.html` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
@@ -127,7 +130,7 @@ Legenda: ✓ completato sul campione; ◐ parziale; ○ da verificare.
 | `palermotoday.it` · `/eventi/tipo/{filtri}/` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DISCOVERY, CNY-ROUNDTRIP |
 | `parmatoday.it` · `/eventi/{percorso-evento}.html` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | `ravennatoday.it` · `/eventi/{percorso-evento}.html` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
-| `riminitoday.it` · `/eventi/tipo/{filtri}/` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DISCOVERY, CNY-ROUNDTRIP |
+| `riminitoday.it` · `/eventi/tipo/{filtri}/` | 1 | ✓ | ✓ | ✓ | ○ | CNY-DISCOVERY, CNY-ROUNDTRIP |
 | `romapop.it` · `/eventi/roma/sagre-fiere-mercatini/` | 1 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-07, NC-11, NC-14 |
 | `sagrefvg.it` · `/sagris/` | 1 | ✓ | ✓ | ✓ | ✓ | NC-01, NC-02, NC-03, NC-04, NC-06, NC-07, NC-10, NC-15, NC-14 |
 | `salernotoday.it` · `/eventi/tipo/{filtri}/` | 1 | ✓ | ✓ | ✓ | ✓ | CNY-DISCOVERY, CNY-ROUNDTRIP |
@@ -148,7 +151,7 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 4 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
 - [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 14 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.happings.com/it/mercato-settimanale-a-citt---sant-angelo.html — http_error, lettura 2026-10-19T22:39:48.012688+00:00; SHA-256 `9026b64d6aa06cb533291ec1991e64cd7bd5a1e12ceeeaf17c1cb57e30bbd059`.
 - Campione: https://www.happings.com/it/mercato-settimanale-a-poggiorsini--ogni-15gg-.html — read, lettura 2026-10-19T22:37:23.63424+00:00; SHA-256 `94fb7ce8a36011999e2111b8bed935b2d57485523255e3dd59ed28603aed050c`.
 - Campione: https://www.happings.com/it/mercato-settimanale-a-lana.html — read, lettura 2026-10-19T22:30:14.309439+00:00; SHA-256 `5cf7bd9871a61fd76a1f00210459997d3777d73d897e9e70a34bdeb114bf8012`.
@@ -159,6 +162,7 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - Riscontro: existing_index_reader_with_source_and_routing_limits
 - Riscontro: existing_index_reader_with_source_and_routing_limits
 - Riscontro: existing_index_reader_with_source_and_routing_limits
+- Da riconfrontare: sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/happings.json`.
 
 ### happings.com--04b85587f84c
@@ -169,9 +173,10 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
 - [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 246 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.happings.com/it/mercati-settimanali-a-milano.html — read, lettura 2026-10-19T22:34:55.035315+00:00; SHA-256 `6705b3eaed3523c3f1aaffac4ef30ff630f794743861ccaff7c6fa10bd1b80aa`.
 - Riscontro: existing_index_reader_with_source_and_routing_limits
+- Da riconfrontare: sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/happings.json`.
 
 ### eventiesagre.it--c25111abbd5a
@@ -181,11 +186,12 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
-- [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185843_Mercato+Settimanale+Di+Alba+Adriatica.html — read, lettura 2026-10-19T22:29:31Z; SHA-256 `2accd13038bd19542ae5d548c9f04d4ac46a6f233096402b2bb044652228695b`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### dati.lombardia.it--eb61afdd496f
@@ -195,13 +201,14 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 1128 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.dati.lombardia.it/d/68zx-njaw — read, lettura 2026-10-19T22:36:54.514177+00:00; SHA-256 `798c27ee841f81d71f15024f83634aba4f938da0e36847e045cabae598992e65`.
 - Riscontro: 171 source rows contain dal/al; 14 are non-full-year or ambiguous boundaries. Three exact catalog records contain 38 forecasts outside the explicit single source boundary; one further record has an ambiguous combined al value and 17 forecasts.
 - Riscontro: The source dictionary labels ubicazione as market denomination. Its value is absent from displayed adapter fields for 700 rows with separate indirizzi; this includes seasonal qualifications. This is a preservation count, not 700 confirmed identity errors.
 - Riscontro: identita_fonte is present in all 1360 normalized source rows but omitted from every export_static.normalize output; dal/al are absent even before export.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### cosedicasa.com--e4978a2ff443
@@ -211,7 +218,7 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 5 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 5 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano — read, lettura 2026-10-19T22:32:24.298861+00:00; SHA-256 `f74caed341212287b133ce954ec22b1ec50089722f2296c527be6c58afb88ae2`.
 - Campione: https://www.cosedicasa.com/mercatini/venezia-campo-san-maurizio — read, lettura 2026-10-19T22:32:24.489Z; SHA-256 `21ff8d2a726098d6d832c86b52525f44721b8c9938a0f2eead8bb9c1df81879f`.
@@ -238,6 +245,7 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - Riscontro: weather_cancellation_condition
 - Riscontro: Header and JSON-LD show 2026-06-02 through 2026-08-10; the main text says 10 June through 2 August.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### happings.com--3d81fd9e0a91
@@ -248,9 +256,10 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
 - [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 77 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.happings.com/it/mercati-settimanali-ad-avellino.html — read, lettura 2026-10-19T22:32:52.622758+00:00; SHA-256 `52113c376b20c8ff0450c98a0f870331eba8087372114bbe5d140e8ad4e324e5`.
 - Riscontro: existing_index_reader_with_source_and_routing_limits
+- Da riconfrontare: sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/happings.json`.
 
 ### eventiesagre.it--5130dde4763c
@@ -260,12 +269,13 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 2 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 2 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_Vari/21054160_Antico+Mercatino+Di+San+Pancrazio+a+Campli.html — read, lettura 2026-10-19T22:30:11.995Z; SHA-256 `28dd0eaa0183e35bf897764591c7ae66267c04d0c8b6bad20a0b97b05c8d8b07`.
 - Campione: https://www.eventiesagre.it/Mercatini_Vari/21182790_Mercati+Settimanali+A+Pescara.html — read, lettura 2026-10-19T22:32:03.377Z; SHA-256 `47232a4a4cf3bdd25b74069ad237103560f6c85a4e1ac9067917efcdfb690c9e`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--86b2ab982276
@@ -275,11 +285,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html — read, lettura 2026-10-19T22:30:11.996Z; SHA-256 `9d9f57d8455e24c002e97a8085f696af0c4ee7a6989915a551ad73e72265baf2`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--7b2012e05e04
@@ -289,11 +300,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_Artigianato/21177701_Castrocaro+Sotto+Le+Stelle+Il+Mercatino+Hand+Made+A+Castrocaro+Terme.html — read, lettura 2026-10-19T22:30:11.996Z; SHA-256 `a55d2d5cf557b9ec761009abcb275b65db4b43e6a65fc0db53c6b3fd99e17959`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--85894968edb7
@@ -303,11 +315,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 2 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_Usato/21163185_Il+Mercatino+a+Argenta.html — read, lettura 2026-10-19T22:30:33.914Z; SHA-256 `1a1b9060153367c58e5ec4e73206ce9ce58bc82a04ed90dc75f46fcd0c7edcc3`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--f3b997a2f09a
@@ -317,11 +330,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_Enogastronomici/21032063_Mercato+della+Terra.html — read, lettura 2026-10-19T22:30:33.914Z; SHA-256 `ccb12553c0e89ec087d82dc17ae83edfb42621208fd65230045deac41cc42059`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### dati.comune.milano.it--de1e536ced97
@@ -331,13 +345,14 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 85 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://dati.comune.milano.it/dataset/ds291-economia-mercati-settimanali-scoperti — read, lettura 2026-10-19T22:36:52.908225+00:00; SHA-256 `805841631aaec790c82f306cd6d95d7118acb7872d18633f922c8235f5323851`.
 - Riscontro: Six PDF rows absent from prior partial extraction: De Predis Monday, Trechi Monday, Mompiani Tuesday, Segneri Thursday, Delle Betulle (Olmi) Saturday, Osoppo Saturday. Five match existing name/ID mappings; Olmi needs an explicit alias review. Complete venue/day reconciliation is still required; no direct catalog edits follow from this report.
 - Riscontro: Seasonal, per-street hours and street stretch columns are not consumed by the operational overlays; they only reuse reviewed names/days and a 75-entry street manifest.
 - Riscontro: The JSON and CSV differ in one MERCATO label (ID39: Fauch / Fauchè); stable ID and the other name field are retained. GeoJSON provides additional polygon geometry, not new street text.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.comune.roma.it--eae32c9ad822
@@ -347,13 +362,14 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 70 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://dati.comune.roma.it/catalog/dataset/d881 — read, lettura 2026-10-19T22:36:59.547377+00:00; SHA-256 `7607023529fb6fe37e27b1bd8fdb07e8d2a1571691dba2e744cb831d32465a53`.
 - Riscontro: Source hours absent from at least 68 rigorously name-and-address matched current records; these are historical data and cannot be promoted to fresh 2026 confirmed opening times.
 - Riscontro: Two catalog records have replacement-character damage, while source decoding as cp1252 recovers Cinecittà and Unità.
 - Riscontro: Current repository contains metadata/probe readers and curated XIII overlays but no maintained d881 row adapter; old import cause cannot be attributed to code not present.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### opendata.comune.bologna.it--72028fdb86a6
@@ -363,13 +379,14 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 39 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/ — read, lettura 2026-10-19T22:36:56.675954+00:00; SHA-256 `d1d0757432029e6254c94a4e6bf9c3a76d53bb33c2b1ee5723abe6b912841c23`.
 - Riscontro: Nine source-present/catalog-missing hours proven by recordid and reproduced with current generic candidate; all nine strings have separate seasonal hours.
 - Riscontro: The generic path does not preserve original days text on the 39 matching records, though it conservatively creates no forecasts from this aged source.
 - Riscontro: Twelve matching catalog records have category misto although full source specialization permits a more specific reviewed category; includes one vintage and two antiquarian examples.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### eventiesagre.it--2e3d99867afe
@@ -379,12 +396,40 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194719_Il+Mercatino+Creativo+Handmade+A+Ferrara.html — read, lettura 2026-10-19T22:30:33.914Z; SHA-256 `dba3df4b834c00914b3f51d617a79cdbb4d71c64c30925d7a97c632e9598c463`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
+
+### happings.com--795abb069b70
+
+`/it/happing/{slug}/` — primary_catalog.
+
+Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
+- [x] Fonte letta: Nove nuove risposte HTTP complete analizzate, con URL finale, SHA e timestamp originali.
+- [x] Campi letti: Testo, self Event, elenco date, intervalli, condizioni e sottoeventi confrontati; conflitti mantenuti.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: Manca la fotografia dei campi confrontati.
+- Campione: https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/ — read, lettura 2026-10-19T22:34:48+00:00; SHA-256 `5ba96a9364c3db4e29fea0f4f4603011205df3e658716f79bc8a9746ed9f3e0b`.
+- Campione: https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/ — read, lettura 2026-10-20T15:32:41.308593+00:00; SHA-256 `d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0`.
+- Campione: https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/ — read, lettura 2026-10-20T15:34:40.551888+00:00; SHA-256 `8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58`.
+- Campione: https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/ — read, lettura 2026-10-20T15:36:14.380071+00:00; SHA-256 `913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045`.
+- Campione: https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/ — read, lettura 2026-10-20T15:41:40.544547+00:00; SHA-256 `f3cbddbae2ef0a4c2d4f100110646c661efe7525c5d3c67acc1b1d797b6e7d81`.
+- Campione: https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/ — read, lettura 2026-10-20T15:41:46.295803+00:00; SHA-256 `e5ff56d561d4df2a7e495c71b69d23fe22a2f5729b0ecd0f8ef3d2eed2814fbc`.
+- Campione: https://www.happings.com/it/happing/mercatino-regionale-piemontese/ — read, lettura 2026-10-20T15:42:08.444838+00:00; SHA-256 `fa5aa012531ec6b5be3428d955deb5a6a4ade16a84cbbe4a1a22ef9aebf874e2`.
+- Campione: https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/ — read, lettura 2026-10-20T15:41:52.486746+00:00; SHA-256 `0ea38afb17251db506fe98ff4c7c12d277bdc96faa0a631ec22c6b58af0724e9`.
+- Campione: https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/ — read, lettura 2026-10-20T15:42:01.871964+00:00; SHA-256 `76ce1928a92446d2d7f3dc0c1674268b9976de7d0da529e0f454637e058a5ba5`.
+- Campione: https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/ — read, lettura 2026-10-20T15:41:56.136859+00:00; SHA-256 `9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429`.
+- Riscontro: Lettore operativo del dettaglio e discovery persistente collegati ad Autopilot DEV.
+- Riscontro: Due nuove identità nel replay; quattro confronti ambigui conservati senza fusione.
+- Riscontro: Due conflitti della fonte e un incontro non commerciale esclusi dall’importazione.
+- Riscontro: Date riportate dalla fonte, orari per data, intervalli e condizioni conservati fino all’interfaccia.
+- Riscontro: Data editoriale e lettura della fonte non costituiscono conferma dell’apertura.
+- Da riconfrontare: parser_code_changed.
+- Dettagli: `reports/automation/happings-detail-validation-2026-10-20.json`.
 
 ### cosafareafirenze.it--4aba31ad6df6
 
@@ -410,11 +455,12 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
-- [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html — read, lettura 2026-10-19T22:30:56.161Z; SHA-256 `f30e5e35f862dcbb672e5525d6fdd6aa5c21ee339393a87a434e7f8c1f187d5e`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--91f1a4b8c538
@@ -424,11 +470,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_Collezionismo/6248_La+Domenica+Del+Collezionista.html — read, lettura 2026-10-19T22:30:56.161Z; SHA-256 `7415137902b97052d68c8df65af98b8fc5ebdb67966fbf49344a69b70e4f4d46`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--1e35acf83ff0
@@ -438,11 +485,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html — read, lettura 2026-10-19T22:30:56.161Z; SHA-256 `8229fbcfba6a6274eb54b0439f81ba38102d827f927066b2449b9ac3b7ced366`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--895ca733a723
@@ -452,11 +500,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html — read, lettura 2026-10-19T22:31:34.736Z; SHA-256 `6b178d547da37b30a6477561e5a7dd2c1e35fd9be76d1a8d71ef387a2c0be785`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### romatoday.it--d53004dedb50
@@ -483,11 +532,12 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html — read, lettura 2026-10-19T22:31:38.080Z; SHA-256 `b5f2c7da5677d88e2780f74998bef1f81217d1d45de100e9c50a102bc9f25335`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### emiliaromagnaturismo.it--058519c55f08
@@ -592,11 +642,12 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html — read, lettura 2026-10-19T22:31:40.269Z; SHA-256 `33e8636b716bf215a4c385148fac2774b5aeb303185dc75bbd1edccc898e5b19`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### sagretorino.it--3ad295df7ef3
@@ -669,11 +720,12 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 4 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.comune.roma.it/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf — read, lettura 2026-10-19T22:36:59.804441+00:00; SHA-256 `8d81efa0270003107f96e1daf261e9d6342c54d2f3c7187165668a4197f56a79`.
 - Riscontro: Operational source is a fixed reviewed manifest, not a general recurring reader for new versions of the PDF/KML. Row descriptions/stall counts and hours in KML are richer than the curated identity subset but need chronology and site reconciliation.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### feelflorence.it--01efd5fd9033
@@ -683,8 +735,8 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 4 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 4 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.feelflorence.it/it/punti-di-interesse/mercato-di-san-lorenzo-o-mercato-centrale — read, lettura 2026-10-19T22:36:56.306730+00:00; SHA-256 `fe828ba55b6be915e910786f332b3fc77c6f6597c4b5981f3d83ec51dfe528be`.
 - Campione: https://www.feelflorence.it/it/punti-di-interesse/mercato-delle-pulci — read, lettura 2026-10-19T22:36:57.856917+00:00; SHA-256 `bd4c0199b7028c51969df9e22f22e74ef71a758b3a1fcb4e26a25fd19f7a03da`.
 - Campione: https://www.feelflorence.it/it/punti-di-interesse/mercato-del-porcellino — read, lettura 2026-10-19T22:36:58.337813+00:00; SHA-256 `7e2001db586a6c3add35ba9798af799df66ad6efba61c4f1a2b69c875a9d049d`.
@@ -693,6 +745,7 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - Riscontro: Shapefile DBF truncates three descriptions and one hours field to fixed widths, changes field names to descrizion/feelfloren, and contains character substitutions. GeoJSON/CSV carry the fuller data.
 - Riscontro: Three source operator links are absent from mapped/public source-link fields.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### modenatoday.it--d4f51ae43a3f
@@ -967,10 +1020,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 2 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://comune.corciano.pg.it/area_letturaDocumento/29645/pagsistema.html — read, lettura 2026-10-19T22:36:58.104066+00:00; SHA-256 `218495ec0bcd73c1a3a5d199a65945a4abbd8b8532c4379158f93557b751e925`.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### eventiintoscana.it--641b8123d9f9
@@ -1383,13 +1437,14 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.comune.roma.it/web/it/bando-concorso.page?contentId=BEC1533869 — read, lettura 2026-10-19T22:37:01.765844+00:00; SHA-256 `84364f4ba29e36f5fe65e3952760e183b5005319621bfb268b746a5646ab8636`.
 - Campione: https://www.comune.roma.it/web/it/bando-concorso.page?contentId=BEC1343579 — read, lettura 2026-10-19T22:37:00.919757+00:00; SHA-256 `0a1dd174a2f5648c2c1582bf76764e6c8faa20c4b05a29a486c93618287eea35`.
 - Riscontro: Risorsa HTML collegata alla fonte comune.roma.it; non aumenta le schede conteggiate.
 - Riscontro: No maintained extraction path for future notice revisions. Site plan and underlying notice attachments remain a specific follow-up before deriving an entrance or opening schedule.
 - Riscontro: I difetti misurati nel primo audit conservano il loro ambito storico; il report separato dopo il fix documenta soltanto le correzioni orari Firenze/Bologna e le verifiche di compatibilità. Gli altri TODO restano aperti.
+- Da riconfrontare: parser_code_changed, sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### eventi.bergamo.it--849986cf0982
@@ -1414,11 +1469,12 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html — read, lettura 2026-10-19T22:31:54.326Z; SHA-256 `b458ec6a318b0047c2ac86b4128c2c38f73c70d49f2f53cb03345be296a02688`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--c49b67f8f8bc
@@ -1428,11 +1484,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html — read, lettura 2026-10-19T22:31:57.906Z; SHA-256 `16f37b8c3c1c23e9c7fb04ed7718f7ed1b968fdab3849ebb23a8e22460ea77b7`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiesagre.it--e5298c4f16d6
@@ -1442,11 +1499,12 @@ Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 Ultimo check-in: 2026-10-20T17:51:51.701445+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Ponte verso catalogo ed export verificato con prove semantiche e regressioni; campioni e date originali restano invariati. CDC: cinque acquisizioni reali, replay completo su 13.824 e 13.856 record. EES: 17 snapshot di fatti distinti dai test HTTP, nuova lettura completa ancora da misurare. Report: reports/automation/editorial-reader-validation-20261020.json.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
 - Campione: https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html — read, lettura 2026-10-19T22:32:00.549Z; SHA-256 `5c9158466e70b82b58735a3928a17612a7f9e5333952bc763c913088857c2f0d`.
 - Riscontro: Il replay nuovo preserva il riquadro dell’evento. Metadati di edizione/archivio e casi con più sedi richiedono ancora il ponte di salvataggio.
 - Riscontro: 2026-10-20: lettore ricorrente con coda persistente implementato; completare un tentativo di lettura non certifica attualità o veridicità di tutti i mercati. Le condizioni dell’edizione sopravvivono all’export e alla riapertura offline.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/editorial.json`.
 
 ### eventiinsardegna.it--4f6de7c3abb7
@@ -1682,10 +1740,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
 - [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confrontate 1 schede con gli URL campione; vuoti e incongruenze non sono stati corretti automaticamente.
+- [ ] Catalogo confrontato: I campi del campione nel catalogo sono cambiati: riconfrontare.
 - Campione: https://www.riminitoday.it/eventi/tipo/fiere~sagre~mercatini/ — read, lettura 2026-10-19T22:38:53.326469+00:00; SHA-256 `55cc590d60866c70609fbfed90ccca8c72608a55637652597e8745796def1d40`.
 - Riscontro: Il contenuto attuale di un elenco cambia: la lettura dell’indice non verifica la singola vecchia scheda salvata.
 - Riscontro: Date, luoghi e orari devono essere collegati all’URL del singolo evento; header, sidebar e altri eventi non sono prove.
+- Da riconfrontare: sample_catalog_fields_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/citynews.json`.
 
 ### romapop.it--55f380b91494
@@ -1826,6 +1885,26 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - Riscontro: Una scheda ha titolo SETTIMANA CALDERARESE - MERCATO DEI CENTO e campo citta MERCATO DEI CENTO: il nome non è una geografia confermata.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/other.json`.
 
+### bassaromagnamia.it--3389a37e9a00
+
+`/poitofintrests/mercati-settimanali-6/` — additional_attribution.
+
+- [ ] Fonte letta: Da verificare.
+- [ ] Campi letti: Da verificare.
+- [ ] Parser confrontato: Da verificare.
+- [ ] Catalogo confrontato: Da verificare.
+- Da riconfrontare: new_format.
+
+### bassaromagnamia.it--77f16ec61d3d
+
+`/poitofintrests/mercati-del-contadino/` — additional_attribution.
+
+- [ ] Fonte letta: Da verificare.
+- [ ] Campi letti: Da verificare.
+- [ ] Parser confrontato: Da verificare.
+- [ ] Catalogo confrontato: Da verificare.
+- Da riconfrontare: new_format.
+
 ### comune.corciano.pg.it--742b4c3b5941
 
 `/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv` — attached_resource.
@@ -1833,10 +1912,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv — read, lettura 2026-10-19T22:36:58.738511+00:00; SHA-256 `1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121`.
 - Riscontro: Risorsa CSV collegata alla fonte comune.corciano.pg.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### comune.roma.it--198edc4b9b92
@@ -1846,10 +1926,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www.comune.roma.it/web/it/informazione-di-servizio.page?contentId=IDS1305104 — read, lettura 2026-10-19T22:37:04.771274+00:00; SHA-256 `3ca7e768307040f0f970ce60c29d5990f1ed132b74f8012ea9c7740c73294ccb`.
 - Riscontro: Risorsa HTML collegata alla fonte comune.roma.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### comune.roma.it--289437d31bd8
@@ -1859,10 +1940,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www.comune.roma.it/web-resources/cms/documents/Determina_17723_24_02_2025_venerd_firm.pdf — read, lettura 2026-10-19T22:37:01.247267+00:00; SHA-256 `6d0ce65fb052b30d141f5a80fb33e35eaaca95e01caf4f512bdecefebb159203`.
 - Riscontro: Risorsa PDF collegata alla fonte comune.roma.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### comune.roma.it--62c2acfb1eb4
@@ -1872,10 +1954,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www.comune.roma.it/web-resources/cms/documents/Contratto_AMA_2024__2025_Allegato_7_Carta_Municipale_Municipio_13.pdf — read, lettura 2026-10-19T22:37:03.805302+00:00; SHA-256 `c7c428362059a8795a838d33b26b5ad428b8a3b4b6e86c36f704246753cc2c1f`.
 - Riscontro: Risorsa PDF collegata alla fonte comune.roma.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### data.comune.fi.it--aebe3c51a74f
@@ -1885,10 +1968,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://data.comune.fi.it/datastore/download.php?id=7501&type=1&format=metadata — read, lettura 2026-10-19T22:41:29.044578+00:00; SHA-256 `606cdb1499c978a3fa25a146a54cc4927e05c0b4297d2e01e34365cc29a247ad`.
 - Riscontro: Risorsa XML metadata collegata alla fonte feelflorence.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.comune.milano.it--811e995cd76b
@@ -1898,10 +1982,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://dati.comune.milano.it/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b07ed03a-d198-4a16-9eb5-744cb406f3eb/download/mss-mag24_final.json — read, lettura 2026-10-19T22:38:50.775827+00:00; SHA-256 `800e354085cdc3ac85ae5f2b785f1fe3407f5e0a3de605adc22656dc397b1336`.
 - Riscontro: Risorsa JSON collegata alla fonte dati.comune.milano.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.comune.milano.it--e93fe70b0688
@@ -1911,10 +1996,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://dati.comune.milano.it/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b6c162cb-6e26-4e1c-bba0-3f1f595a19dc/download/mss-mag24.geojson — read, lettura 2026-10-19T22:41:28.961118+00:00; SHA-256 `e91a78745efd0a090dccff6117f127469276bc2970bca919b51e8b8a5d8af2f2`.
 - Riscontro: Risorsa GeoJSON collegata alla fonte dati.comune.milano.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.comune.milano.it--fa20a25c15b9
@@ -1924,10 +2010,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://dati.comune.milano.it/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/5d4a83c3-6ac5-4430-b5a9-d669a933b036/download/mss-mag24_final.csv — read, lettura 2026-10-19T22:41:28.568105+00:00; SHA-256 `944d041207856e13fab53b5e322f67334588f8207df185e2579819bb00d7be20`.
 - Riscontro: Risorsa CSV collegata alla fonte dati.comune.milano.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.comune.roma.it--698a81c590c6
@@ -1937,10 +2024,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv — read, lettura 2026-10-19T22:37:00.973213+00:00; SHA-256 `0802f34534867411134c5e92e25f8d0e89fc1ceae0b81a67b8ef4ad5ad1c40af`.
 - Riscontro: Risorsa CSV collegata alla fonte dati.comune.roma.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.comune.roma.it--e20fd21ce1be
@@ -1950,10 +2038,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/cd515283-3079-42fe-a066-ced11b9a8387/download/mercati_rionali_agosto_2023.csv — read, lettura 2026-10-19T22:38:52.378579+00:00; SHA-256 `71b479a7067cfb66249de0d132b311eb7484daec06a462f513da910efb0bf204`.
 - Riscontro: Risorsa CSV collegata alla fonte dati.comune.roma.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.comune.roma.it--e33b298b8b6e
@@ -1963,10 +2052,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://dati.comune.roma.it/catalog/api/3/action/package_show?id=e2e30174-ba7f-4319-bf4a-c13f80278c0c — read, lettura 2026-10-19T22:37:00.411955+00:00; SHA-256 `2ab85403fe3fcbbc4faa1ad7e0e695d363946beaf0f04e9435e23d71a76e79de`.
 - Riscontro: Risorsa CKAN JSON metadata collegata alla fonte dati.comune.roma.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.lombardia.it--432287cb35fe
@@ -1976,10 +2066,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www.dati.lombardia.it/resource/68zx-njaw.json?$limit=2000&$order=%3Aid — read, lettura 2026-10-19T22:38:52.338719+00:00; SHA-256 `30aa877027b9538f11396d9c1ba0a0ced2482c74a6b46d1c2f372a7cbdb17e46`.
 - Riscontro: Risorsa Socrata JSON collegata alla fonte dati.lombardia.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### dati.lombardia.it--94017c4ffe4c
@@ -1989,10 +2080,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www.dati.lombardia.it/api/views/68zx-njaw.json — read, lettura 2026-10-19T22:36:54.778927+00:00; SHA-256 `1cf3eb672c3e36777c4d361c6fe378c25d92c8d1c064cb8441b0b52d6d9629f0`.
 - Riscontro: Risorsa JSON metadata collegata alla fonte dati.lombardia.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### datigis.comune.fi.it--13155d9f084d
@@ -2002,10 +2094,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://datigis.comune.fi.it/resources/open-data/mercati/feelflorence_mercati.zip — read, lettura 2026-10-19T22:41:29.899755+00:00; SHA-256 `3d91d1e030db2f7f27d20f92b8f2ba2d8f02dad02f9b37a700ea72442b8e01e5`.
 - Riscontro: Risorsa ZIP shapefile collegata alla fonte feelflorence.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### datigis.comune.fi.it--3dffd7636e05
@@ -2015,10 +2108,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://datigis.comune.fi.it/resources/open-data/mercati/feelflorence_mercati.geojson — read, lettura 2026-10-19T22:38:51.356991+00:00; SHA-256 `a37afe2e8bbb6ad43ec30d9b02cb5132c852b25f8a828a207bb1be52d625c257`.
 - Riscontro: Risorsa GeoJSON collegata alla fonte feelflorence.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### datigis.comune.fi.it--d75dc7aad7be
@@ -2028,10 +2122,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://datigis.comune.fi.it/resources/open-data/mercati/feelflorence_mercati.csv — read, lettura 2026-10-19T22:41:28.842772+00:00; SHA-256 `416cd8d295f6d6724ce3bbd39e819a4433d0f19e00e2a815d964b989c5322e1d`.
 - Riscontro: Risorsa CSV collegata alla fonte feelflorence.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### gisportal.comune.milano.it--435c4683d9f2
@@ -2041,10 +2136,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://gisportal.comune.milano.it/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json&resultRecordCount=200 — read, lettura 2026-10-19T22:36:55.472502+00:00; SHA-256 `12982ae068b7e1d513c012126c2bc2555ac36fe542cce61d2c91a744d1997029`.
 - Riscontro: Risorsa ArcGIS JSON collegata alla fonte dati.comune.milano.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### gisportal.comune.milano.it--b80d45a7e660
@@ -2054,10 +2150,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://gisportal.comune.milano.it/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0?f=json — read, lettura 2026-10-19T22:36:53.672038+00:00; SHA-256 `dd88a9dc783baac7d1e028bd323f4bc81ce3825448890a3fa8335aff5c778d08`.
 - Riscontro: Risorsa ArcGIS metadata collegata alla fonte dati.comune.milano.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### google.com--d20b509e76f3
@@ -2067,15 +2164,16 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www.google.com/maps/d/kml?mid=1qazVyQE42cRyzP-gMSxjZz8wX8iowbQ&forcekml=1 — read, lettura 2026-10-19T22:36:59.011868+00:00; SHA-256 `20fe71c60aebe37af1ffca96a8a9663a68fd7198e3f022ffb89c87ef1175f67c`.
 - Riscontro: Risorsa KML collegata alla fonte comune.roma.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### happings.com--311686cb6f8d
 
-`/it/mercati-settimanali-{a\|ad}-{provincia}-e-provincia/` — current_observed_layout.
+`/it/mercati-settimanali-{a\|ad}-{provincia}-e-provincia/` — additional_attribution.
 
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [ ] Fonte letta: Acquisizione non riuscita o formato osservato solo indirettamente; non conteggiato come lettura verificata.
@@ -2085,32 +2183,6 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - Riscontro: Layout provinciale attuale osservato nei corpi restituiti da vecchi URL e nei canonical; nessuna richiesta diretta di questo formato registrata in questo check-in.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/happings.json`.
 
-### happings.com--795abb069b70
-
-`/it/happing/{slug}/` — current_observed_layout.
-
-Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
-- [x] Fonte letta: Nove nuove risposte HTTP complete analizzate, con URL finale, SHA e timestamp originali.
-- [x] Campi letti: Testo, self Event, elenco date, intervalli, condizioni e sottoeventi confrontati; conflitti mantenuti.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
-- [x] Catalogo confrontato: Confronto con tutte le 13.824 schede; 13.826 schede nel candidato esportato, due nuove identità e nessuna riga precedente alterata dal dettaglio. Pubblicazione distinta dal replay.
-- Campione: https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/ — read, lettura 2026-10-19T22:34:48+00:00; SHA-256 `5ba96a9364c3db4e29fea0f4f4603011205df3e658716f79bc8a9746ed9f3e0b`.
-- Campione: https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/ — read, lettura 2026-10-20T15:32:41.308593+00:00; SHA-256 `d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0`.
-- Campione: https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/ — read, lettura 2026-10-20T15:34:40.551888+00:00; SHA-256 `8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58`.
-- Campione: https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/ — read, lettura 2026-10-20T15:36:14.380071+00:00; SHA-256 `913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045`.
-- Campione: https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/ — read, lettura 2026-10-20T15:41:40.544547+00:00; SHA-256 `f3cbddbae2ef0a4c2d4f100110646c661efe7525c5d3c67acc1b1d797b6e7d81`.
-- Campione: https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/ — read, lettura 2026-10-20T15:41:46.295803+00:00; SHA-256 `e5ff56d561d4df2a7e495c71b69d23fe22a2f5729b0ecd0f8ef3d2eed2814fbc`.
-- Campione: https://www.happings.com/it/happing/mercatino-regionale-piemontese/ — read, lettura 2026-10-20T15:42:08.444838+00:00; SHA-256 `fa5aa012531ec6b5be3428d955deb5a6a4ade16a84cbbe4a1a22ef9aebf874e2`.
-- Campione: https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/ — read, lettura 2026-10-20T15:41:52.486746+00:00; SHA-256 `0ea38afb17251db506fe98ff4c7c12d277bdc96faa0a631ec22c6b58af0724e9`.
-- Campione: https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/ — read, lettura 2026-10-20T15:42:01.871964+00:00; SHA-256 `76ce1928a92446d2d7f3dc0c1674268b9976de7d0da529e0f454637e058a5ba5`.
-- Campione: https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/ — read, lettura 2026-10-20T15:41:56.136859+00:00; SHA-256 `9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429`.
-- Riscontro: Lettore operativo del dettaglio e discovery persistente collegati ad Autopilot DEV.
-- Riscontro: Due nuove identità nel replay; quattro confronti ambigui conservati senza fusione.
-- Riscontro: Due conflitti della fonte e un incontro non commerciale esclusi dall’importazione.
-- Riscontro: Date riportate dalla fonte, orari per data, intervalli e condizioni conservati fino all’interfaccia.
-- Riscontro: Data editoriale e lettura della fonte non costituiscono conferma dell’apertura.
-- Dettagli: `reports/automation/happings-detail-validation-2026-10-20.json`.
-
 ### opendata.comune.bologna.it--1cd38e42835b
 
 `/api/records/1.0/search/?dataset={value}&rows={value}` — attached_resource.
@@ -2118,10 +2190,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=350 — read, lettura 2026-10-19T22:36:57.945929+00:00; SHA-256 `ba71aebc426844618607e70feaab12907029e3fffb9e0300cdd4f727492426cc`.
 - Riscontro: Risorsa Opendatasoft JSON collegata alla fonte opendata.comune.bologna.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### opendata.comune.bologna.it--7645d392be0d
@@ -2131,10 +2204,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento — read, lettura 2026-10-19T22:38:51.721355+00:00; SHA-256 `21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a`.
 - Riscontro: Risorsa Opendatasoft JSON configured subset collegata alla fonte opendata.comune.bologna.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### opendata.comune.bologna.it--97ad8bc609d7
@@ -2144,10 +2218,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere — read, lettura 2026-10-19T22:36:56.877571+00:00; SHA-256 `46298b228c3d5d39c8925bc104b81e331e7fde1962c4f4193ff16f2ee7138e68`.
 - Riscontro: Risorsa JSON metadata collegata alla fonte opendata.comune.bologna.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### opendata.comune.fi.it--87db03cd3378
@@ -2157,10 +2232,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://opendata.comune.fi.it/page_dataset_show?id=mercati — read, lettura 2026-10-19T22:36:56.545780+00:00; SHA-256 `968540a56509bf750d734afeae6b1d02c73f2238243708da59af0305decbae62`.
 - Riscontro: Risorsa HTML collegata alla fonte feelflorence.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### www2.comune.milano.it--040bb7e6ca15
@@ -2170,10 +2246,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [ ] Fonte letta: Acquisizione non riuscita o formato osservato solo indirettamente; non conteggiato come lettura verificata.
 - [ ] Campi letti: Il contenuto non è disponibile per un confronto attendibile dei campi.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [ ] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www2.comune.milano.it/web/fare-impresa/mercati-settimanali-scoperti — http_error, lettura 2026-10-19T22:36:51.727767+00:00; SHA-256 `—`.
 - Riscontro: Risorsa HTML collegata alla fonte dati.comune.milano.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ### www2.comune.milano.it--5fe8b3668208
@@ -2183,10 +2260,11 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [x] Fonte letta: Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati.
 - [x] Campi letti: Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali.
-- [x] Parser confrontato: Riconfronto del codice condiviso e dei raccordi modificati sul catalogo completo: 17/17 controlli di rilascio e verificatori semantici passati, tutte le identità precedenti conservate. I parser sorgente non modificati mantengono il precedente confronto sui campioni; le letture originali non vengono ridatate. Prove: existing-source-integrated-replay.json, editorial-reader-validation-20261020.json e candidato reale 39465324614.
+- [ ] Parser confrontato: Il codice confrontato è cambiato: ripetere il confronto.
 - [x] Catalogo confrontato: Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura.
 - Campione: https://www2.comune.milano.it/documents/87339536/190972166/MSS+-+ubicazioni%2Corari%2Corganici+1+Ottobre+2026.pdf/d5b13a87-b9de-7c48-5674-65c4151565c3?t=1790841765683 — read, lettura 2026-10-19T22:36:52.416512+00:00; SHA-256 `7feaa1429e221cec8d2b8bb962ed747f5100e890321d391e3f85e7f161cb6c6c`.
 - Riscontro: Risorsa PDF collegata alla fonte dati.comune.milano.it; non aumenta le schede conteggiate.
+- Da riconfrontare: parser_code_changed.
 - Dettagli: `reports/automation/source-format-audit-2026-10-20/official.json`.
 
 ## TODO del meccanismo
@@ -2238,7 +2316,7 @@ Ultimo check-in: 2026-10-20T17:53:35.590967+00:00.
 - [ ] **NC-05 — Conflitti sorgente e valori salvati senza sovrascritture** (P1; open). Criterio di chiusura: Alghero Fertilia: Via Fiume/Via Zara produce conflitto. PugliainFesta: Brindisi/Ostuni non produce overwrite. Firenze: 9–19 nuovo contro 9–20 salvato ha provenance e conflitto. VareseNews: descrizione due giorni/range un anno è incoerente, non autocorrezione dell’anno.
 - [ ] **NC-06 — Orari completi, parziali e limiti di validità** (P1; open). Criterio di chiusura: Orvieto: 9:00–tramonto conserva tramonto. PugliainFesta: estremi 2025 ore12 / 2026 ore22 non diventano 12–22 tutti i giorni. JSON-LD 00:00/23:59 non crea ore operative. Numero di telefono con 19.30–21.30 non diventa orario mercato.
 - [ ] **NC-07 — Ruoli corretti per organizzatore e contatti** (P2; open). Criterio di chiusura: UmbriaEventi: Associazione InDivenire nel testo non è rimpiazzata dall’editore in schema. SoloSagre: Consorzio Cervia Centro dal blocco Informazioni, mai contatto recruiting. Footer editoriale o performer Organization non produce un organizzatore mercato.
-- [ ] **NC-08 — Geografia strutturata e validata senza default dal sito** (P2; open). Criterio di chiusura: Naturno Naturno/Terlano Terlano e città con (PG) non restano geografie duplicate. Provincia MI non viene assegnata automaticamente a ogni voce del portale lombardo. PD/TN come unico campo città e MERCATO DEI CENTO vengono segnalati come geografia non risolta. Ravenna–Marina di Ravenna conserva la frazione.
+- [ ] **NC-08 — Geografia strutturata e validata senza default dal sito** (P2; open). Criterio di chiusura: Naturno Naturno/Terlano Terlano e città con (PG) non restano geografie duplicate. Provincia MI non viene assegnata automaticamente a ogni voce del portale lombardo. PD/TN come unico campo città e MERCATO DEI CENTO vengono segnalati come geografia non risolta. Ravenna–Marina di Ravenna conserva la frazione. Esito: Parziale: implementata provincia da Comune+regione ISTAT esatti, con prova autonoma e budget totale80. Replay220 casi su tutte le fonti, nessuna prova di campo riscritta. Restano città duplicate, frazioni, identità geografiche malformate e altri criteri di questo ticket; non chiuso.
 - [ ] **NC-09 — Qualità dei valori prima della completezza** (P2; open). Criterio di chiusura: NA in orario/indirizzo non conta come dato completo. via Sagre Lombardia Sagre Lazio non passa plausibilità indirizzo. Nome concatenato data/luogo/descrizione non sostituisce un h1 pulito. Indirizzo G e ora 11 privi di contesto non diventano validi solo perché non vuoti.
 - [ ] **NC-10 — Coordinate con ambito e precisione dimostrati** (P2; open). Criterio di chiusura: Link Maps con viewport e destinazione usa coordinate del luogo solo se coerenti. Orvieto Place generico non garantisce posizione della piazza. Coordinate di altra card non vengono assegnate al target assente.
 - [ ] **NC-11 — Esiti HTTP e migrazioni URL verificabili** (P2; open). Criterio di chiusura: 429/503 mantengono stato non verificato, nessun source_checked_at mercato. Redirect osservato conserva URL originario e finale con hash del contenuto. note.asp concatenato a hostname viene segnalato, non richiesto o riparato per congettura.

@@ -21,6 +21,7 @@ from pathlib import Path
 
 from catalog_quality_report import key, suspicious_city
 from merge_catalog import load_existing
+from province_reconciliation import supplement as reconcile_provinces
 
 SOURCE_DATE = "2026-02-21"
 SOURCE_URL = "https://www.istat.it/classificazione/codici-dei-comuni-delle-province-e-delle-regioni/"
@@ -226,6 +227,14 @@ def reconcile(rows, official_reference, *, apply=False):
     if (counts["city_candidates_istat_province_title"]>MAX_AUTOMATIC_FIXES
             or counts["unsafe_future_calendar_candidates"]>MAX_FORECAST_QUARANTINE):
         raise ValueError("Unexpected municipality anomaly growth; manual source review")
+    result, province_report = reconcile_provinces(
+        rows, result, official_reference, apply=apply)
+    counts.update({
+        "province_candidates": province_report["eligible"],
+        "province_fixed": province_report["applied"],
+        "province_pending": province_report["pending"],
+        "province_protected": province_report["protected"],
+    })
     report={
         "schema":1, "istat_reference":SOURCE_DATE,
         "source_file_sha256":ISTAT_SHA,
@@ -237,6 +246,7 @@ def reconcile(rows, official_reference, *, apply=False):
         "coordinates_changed":0,
         "publisher_sources_replaced":0,
         "counts":dict(sorted(counts.items())),
+        "province_corrections":province_report,
         "examples":cases,
         "unresolved_examples":[case for case in cases
                                if not case["suggested_city"]][:35],
@@ -260,8 +270,12 @@ def markdown(report):
         f"- Calendari potenzialmente confusi fra mercati diversi: {counts.get('unsafe_future_calendar_candidates',0)}",
         f"- Comuni corretti in DEV: {counts.get('city_fixed',0)}",
         f"- Record con date previste sospese: {counts.get('records_calendar_quarantined',0)}",
+        f"- Province riconciliate con Comune e regione ISTAT: {counts.get('province_fixed',0)}",
+        f"- Province in attesa del prossimo ciclo entro il tetto complessivo di 80 modifiche: {counts.get('province_pending',0)}",
+        f"- Conflitti di provincia protetti da prove/verifiche preesistenti: {counts.get('province_protected',0)}",
         "",
         "Nessun ID, fonte principale, coordinata o verifica umana viene cambiato.",
+        "La provincia amministrativa non convalida la pagina fonte né l'apertura del mercato.",
         "Le date sospese richiedono nuova prova della fonte, non un altro giorno indovinato.",
         "",
         "## Casi da rivedere", "",

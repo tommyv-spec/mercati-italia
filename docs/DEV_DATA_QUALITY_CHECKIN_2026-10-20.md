@@ -1,5 +1,73 @@
 # Qualità dei dati DEV: verifica della pubblicazione
 
+## Pubblicazione effettiva verificata il 20 ottobre, ore 18:21 UTC
+
+L’esecuzione [39471001816](https://github.com/tommyv-spec/mercati-italia/actions/runs/39471001816)
+ha completato acquisizione, controlli sui dati, build, test mobile e pubblicazione.
+Il catalogo è stato pubblicato in DEV nel commit `6274e1d`; gli stessi asset
+verificati sono nel ramo di anteprima al commit `4482d1d`. MAIN resta `1ef738e`.
+Il confronto ricostruisce tutte le schede e convalida indice, frammenti, manifest
+e quattro code pubblicate: candidato, DEV e ramo di anteprima coincidono.
+Anche il manifest HTTPS servito da `raw.githack.com` risponde 200 e ha la stessa
+impronta. Questa verifica HTTP riguarda il manifest; non viene dichiarata una
+nuova percorrenza di tutti gli asset attraverso il CDN.
+
+Le prove complete sono nel [certificato di pubblicazione](../reports/automation/dev-published-refresh-39471001816-publication.json),
+nel [confronto con definizioni invariate](../reports/automation/dev-published-refresh-39471001816-quality.json)
+e nel [supplemento per evidenze e code](../reports/automation/dev-published-refresh-39471001816-evidence.json).
+
+| Misura sui dati effettivamente pubblicati | Prima | Dopo |
+| --- | ---: | ---: |
+| Schede sorgenti | 13.824 | 13.856 |
+| Indirizzi vuoti | 3.429 | 3.066 |
+| Indirizzi vuoti o vaghi, `audit_dataset` | 5.889 | 5.507 |
+| Orari vuoti | 10.853 | 10.590 |
+| Schede con almeno una ricevuta di campo valida | 0 | 2.249 |
+| Schede con date future esplicitamente riportate dalla fonte | 0 | 32 |
+| Schede con apertura confermata individualmente | 0 | 0 |
+
+Sulle identità precedenti sono stati recuperati **363 indirizzi mancanti e
+263 orari mancanti**, precisate 26 sedi generiche e aggiornato un testo orario.
+Tutte le 13.824 identità sono conservate; le 32 aggiunte Happings hanno 158
+date future esplicite. Non sono conferme indipendenti dell’apertura.
+
+La lettura reale comprende 13 elenchi provinciali Happings riusciti su 14
+selezionati, 90 dettagli Happings, 11 dettagli Eventi e Sagre su 19 tentati e
+16 dettagli Cose di Casa. Otto tentativi EES non sono riusciti; Enna risponde
+404. Roma d881 non ha risposto entro il timeout: **zero arricchimenti Roma
+in questo rilascio**. I 68 riscontri Roma ottenuti nei replay precedenti non
+vengono conteggiati come risultato di questa acquisizione.
+
+Sono esportate 25 evidenze editoriali valide. Le date previste non sostenute
+da edizioni storiche, contraddittorie o non delimitate vengono sospese, senza
+cancellare la scheda. La coda conserva 2.106 dettagli Happings, 1.842 URL EES
+e 409 URL Cose di Casa ancora senza una lettura riuscita nella storia salvata.
+Il completamento del job non equivale al completamento di queste code.
+
+**Il catalogo non è ancora completo né interamente verificato come attuale.**
+I lettori configurati coprono 12.182 schede su 13.856; restano 1.674 schede
+senza un raccordo automatico ammesso. La [revisione dei meccanismi residui](../reports/automation/remaining-source-mechanisms-20261020.json)
+distingue difetti implementabili da identità ambigue e prove mancanti.
+Le schede con tutti e tre i campi principali riscontrati su fonti considerate
+recenti dalle regole esistenti sono 1.009; questo non verifica singole aperture.
+Per 12.593 schede non è dimostrata la data effettiva del contenuto sorgente.
+
+## Riconciliazione sistematica delle province: pronta per il normale rilascio
+
+La regola generale usa Comune e regione già salvati per cercare una sola
+corrispondenza nel registro ISTAT fissato. Cambia soltanto la provincia e
+aggiunge una prova amministrativa autonoma. Non riscrive ricevute sorgenti,
+calendari, verifiche, indirizzi o coordinate. Il file ISTAT oggi pubblicato
+è stato riscaricato: l’impronta coincide con il riferimento del 21 febbraio.
+
+Sul catalogo appena pubblicato sono eleggibili 220 schede di tre fonti.
+Il tetto esistente resta 80 modifiche complessive per ciclo: i replay con
+esportazione reale applicano 80, 80, 60 e poi zero correzioni, conservando
+integralmente le 25 evidenze editoriali e tutte le 2.264 ricevute.
+La [prova riproducibile](../reports/automation/source-format-audit-2026-10-20/istat-province-replay.json)
+include i controlli finali della pipeline. Queste correzioni amministrative
+non sono ancora conteggiate nella tabella della pubblicazione sopra.
+
 ## Stato misurato prima della nuova esecuzione
 
 Il catalogo DEV al commit `05dce2dd00a2192b37da076042090383eef37c65` contiene
@@ -167,9 +235,11 @@ risultati osservati; non sono dedotti dal passaggio dei test.
 - [x] Riprodurre i blocchi dei controlli finali sul candidato completo.
 - [x] Correggere i consumatori mantenendo la verifica semantica delle fonti.
 - [x] Completare una nuova acquisizione HTTP nel normale Autopilot (`39460884416`).
-- [ ] Superare QA e pubblicazione con lo stesso commit DEV e gli stessi asset.
-- [ ] Confrontare il manifest pubblicato e la preview con il candidato verificato.
-- [ ] Misurare i recuperi effettivi e le lacune rimaste, con le stesse definizioni.
+- [x] Superare QA e pubblicazione con lo stesso commit DEV e gli stessi asset (`39471001816`).
+- [x] Confrontare il manifest pubblicato e la preview con il candidato verificato (`6274e1d` / `4482d1d`).
+- [x] Misurare i recuperi effettivi e le lacune rimaste, con le stesse definizioni.
+- [ ] Pubblicare le 220 riconciliazioni provinciali attraverso i cicli ordinari, entro il tetto esistente.
+- [ ] Completare la prima lettura di tutte le URL e i meccanismi ancora aperti nella checklist.
 
 Le ultime attività si chiudono con l'ID della nuova esecuzione e gli asset
 effettivamente pubblicati. Non si chiudono con un semplice merge del codice.

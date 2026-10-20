@@ -67,3 +67,57 @@ Il primo run abilitato in DEV deve ridurre le 52 località anomale a 20.
 I run seguenti devono essere idempotenti: zero nuove correzioni quando il
 catalogo rimane invariato; nessuna data sospesa deve riapparire in automatico.
 Tutte le previsioni residue sono appuntamenti previsti, non conferme reali.
+
+## Provincia amministrativa da Comune e regione esatti
+
+Il ramo `province_reconciliation.py` riusa lo stesso riferimento ISTAT già
+versionato. Confronta il Comune già salvato con l'unico Comune corrispondente
+nella regione già salvata; non ricostruisce nomi, quartieri o ex Comuni e non
+usa coordinate, indirizzi, vicinanza o inferenze da una pagina editoriale.
+La corrispondenza ammette soltanto la normalizzazione tipografica già usata
+nel catalogo (maiuscole, accenti, spazi e punteggiatura).
+
+Il controllo fissa sia l'hash XLSX originale sia l'hash canonico dell'intero
+JSON estratto (`6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14`).
+Una modifica alla tabella con metadati e hash XLSX copiati non supera il gate.
+La verifica HTTP del 20 ottobre 2026 ha letto nuovamente il file ufficiale:
+risposta 200, 1.229.843 byte e SHA-256 identico al pin. La data di lettura
+rimane distinta dalla revisione ISTAT del 21 febbraio 2026. La prova e i
+risultati dei replay sono in
+`reports/automation/source-format-audit-2026-10-20/istat-province-replay.json`.
+
+La sola sigla non vuota e discordante può cambiare. Il record conserva una
+`riconciliazione_provincia` amministrativa con ID, Comune e regione invariati,
+sigla precedente, sigla ISTAT, Comune canonico, fonte, data del riferimento
+e i due hash. Non si aggiunge una data di lettura recente, una verifica umana
+o una conferma del mercato. Nessun indirizzo, orario, calendario, nome o GPS
+viene modificato da questa operazione.
+
+Le schede con ricevute di campo, calendari o evidenze editoriali, eccezioni,
+identità ufficiali, prove di ricostruzione geografica o verifiche umane
+preesistenti restano in revisione: le prove legate alla vecchia provincia
+non vengono cancellate, ricopiate o rifirmate.
+
+Le correzioni città/calendario esistenti consumano per prime il budget
+complessivo, che rimane **80 record per esecuzione**. Gli eventuali slot
+residui sono assegnati alle province ordinate per ID stabile. Le correzioni
+pubblicate escono dall'insieme pendente; il ciclo successivo prosegue dal
+catalogo pubblicato, senza whitelist di mercati o nuova coda. `province_fixed`,
+`province_pending` e `province_protected` sono registrati nel report e nello
+storico dell'automazione.
+
+Il gate intermedio ricalcola dalla tabella pinned sia tutti i valori sia la
+selezione entro budget. L'export conserva soltanto prove amministrative valide
+per l'esatta identità esportata. `municipality-static-guard.json` verifica sul
+catalogo finale che le province non siano state cambiate da una fase successiva
+e che ogni prova amministrativa sia rimasta integra. I gate MAIN esistenti
+continuano a importare il checker da DEV; non sono modificati.
+
+Questa correzione non autorizza l'uso di una pagina Happings di un'altra
+provincia. Il router conserva tutti i controlli su URL, Comune, giorno e sede.
+Il controllo read-only del candidato 39465324614 (13.856 schede) ha trovato
+220 province discordanti senza prove preesistenti: 216 Happings, 3 Milanopocket,
+1 Sagreumbre. Il sottoinsieme Happings con nome/giorno già ammessi è di 215;
+solo 44 diventano instradabili dal router invariato. Gli altri 171 richiedono
+ancora una risorsa fonte o una prova di affiliazione adeguata. Instradabilità
+non significa che siano stati recuperati nuovi indirizzi o orari.
