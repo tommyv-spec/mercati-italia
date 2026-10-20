@@ -1,0 +1,58 @@
+name: One-time dispatch of existing DEV Autopilot
+
+on:
+  push:
+    branches:
+      - automation/dispatch-dev-refresh-20261020-3
+    paths:
+      - .github/workflows/dispatch-dev-refresh-once.yml
+
+permissions:
+  actions: write
+
+jobs:
+  dispatch:
+    if: >-
+      github.repository == 'tommyv-spec/mercati-italia' &&
+      github.ref == 'refs/heads/automation/dispatch-dev-refresh-20261020-3' &&
+      github.event_name == 'push' &&
+      github.event.before == '58604cf2174a54d8315564853e2e4caef8b56b43' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Dispatch unchanged MAIN workflow once
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          endpoint = 'https://api.github.com/repos/tommyv-spec/mercati-italia/actions/workflows/market-autopilot.yml/dispatches'
+          payload = {'ref': 'main', 'inputs': {'offline': False}}
+          request = urllib.request.Request(
+              endpoint, data=json.dumps(payload).encode('utf-8'), method='POST',
+              headers={
+                  'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                  'Accept': 'application/vnd.github+json',
+                  'Content-Type': 'application/json',
+                  'X-GitHub-Api-Version': '2022-11-28',
+                  'User-Agent': 'mercati-dev-autopilot-one-time-dispatch',
+              },
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              body = response.read(10000)
+              if response.status == 204:
+                  print('Existing MAIN Autopilot accepted the live DEV dispatch (HTTP 204).')
+              elif response.status == 200:
+                  result = json.loads(body)
+                  run_id = result.get('workflow_run_id')
+                  if type(run_id) is not int or run_id <= 0:
+                      raise SystemExit('Dispatch response did not contain a valid run ID.')
+                  print('Existing MAIN Autopilot accepted the live DEV dispatch: run ' + str(run_id))
+                  print('https://github.com/tommyv-spec/mercati-italia/actions/runs/' + str(run_id))
+              else:
+                  raise SystemExit('Unexpected dispatch status: ' + str(response.status))
+          PY
