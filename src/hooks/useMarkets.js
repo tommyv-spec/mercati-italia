@@ -5,6 +5,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { isSuspiciousCityName, safeCityLabel } from '../lib/locationQuality.js'
 import { fieldEvidenceSummary } from '../lib/fieldEvidence.js'
+import { addressConflictView, cleanAddressConflicts } from '../lib/sourceFieldConflicts.js'
 import {
   fetchMarkets, fetchMarketById, getFavorites, revalidateCatalogIfStale,
   toggleFavorite as apiToggleFavorite, getDataMode,
@@ -33,7 +34,7 @@ export function adaptMarket(m, userLat, userLng) {
   const categoryLabel = CATEGORY_LABELS[m.categoria] || m.categoria || 'Misto'
   const locationReviewRequired = isSuspiciousCityName(m.citta) ||
     m.navigazione_sospesa_motivo === 'indirizzo_e_punto_sorgente_non_riconciliati'
-  return {
+  const market = {
     id: m.id,
     name: m.nome,
     city: safeCityLabel(m.citta),
@@ -47,6 +48,7 @@ export function adaptMarket(m, userLat, userLng) {
     tags: m.tags || [],
     dates: m.date || [],
     hours: m.orario_testo || '',
+    indexHoursScope: m.ambito_orari || '',
     recurrence: m.ricorrenza_testo || '',
     description: m.descrizione || '',
     source: m.fonte || '',
@@ -64,12 +66,14 @@ export function adaptMarket(m, userLat, userLng) {
     // The nationwide compact index remains unchanged and cheap to fetch.
     sourceEvidence: Array.isArray(m.fonti) ? m.fonti.filter(s => s && s.url && s.nome) : [],
     fieldEvidence: fieldEvidenceSummary(m),
+    fieldConflicts: cleanAddressConflicts(m.conflitti_campi, m),
     calendarExceptions: Array.isArray(m.eccezioni_calendario) ? m.eccezioni_calendario : [],
     sourceCalendar: m.calendario_fonte || null,
     sourceDetail: m.dettaglio_fonte || null,
     editorialEvidence: m.evidenza_editoriale || null,
     distance: Number.isFinite(m.distance) ? m.distance : null,
   }
+  return {...market, addressReviewRequired: addressConflictView(market).length > 0}
 }
 
 export function useMarkets() {

@@ -21,6 +21,15 @@ CHECK_LABELS = {"source_sample": "Fonte letta", "field_mapping": "Campi letti",
                 "parser_comparison": "Parser confrontato", "storage_comparison": "Catalogo confrontato"}
 DEFAULT_LEDGER = Path(__file__).resolve().parent / "data" / "source-format-review-ledger.json"
 DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
+# These helpers carry output semantics moved out of previously reviewed files.
+# A legacy review of the caller alone must not silently cover a new helper.
+REVIEW_CODE_DEPENDENCIES = {
+    "backend/export_static.py": ("backend/compact_index.py", "backend/field_conflicts.py"),
+    "backend/happings_source_enrichment.py": (
+        "backend/field_conflicts.py", "backend/happings_weekly_conflicts.py"),
+    "backend/happings_autopilot.py": ("backend/happings_weekly_conflicts.py",),
+    "backend/happings_weekly_layout.py": ("backend/happings_editorial_weekly_layout.py",),
+}
 CITYNEWS_EXTRA = {"arezzonotizie.it", "casertanews.it", "brindisireport.it"}
 KNOWN_PATTERNS = {
     "emiliaromagnaturismo.it": [(r"/it/eventi/[^/]+/?", "/it/eventi/{slug}", "tourism_event_detail")],
@@ -150,15 +159,20 @@ def storage_snapshot(rows, sample_urls):
 
 
 def code_fingerprints(paths, repo_root=DEFAULT_REPO_ROOT):
-    """Resolve local repository files only; an absent adapter is recorded as absent."""
+    """Include declared shared helpers; missing code stays explicit, never approved."""
     root = Path(repo_root).resolve()
     result = {}
-    for name in paths:
+    pending = list(paths)
+    while pending:
+        name = pending.pop(0)
+        if name in result:
+            continue
         path = Path(name)
         resolved = (root / path).resolve()
         if path.is_absolute() or ".." in path.parts or not resolved.is_relative_to(root):
             raise ValueError("Audit code paths must remain inside the repository")
         result[name] = hashlib.sha256(resolved.read_bytes()).hexdigest() if resolved.is_file() else None
+        pending.extend(REVIEW_CODE_DEPENDENCIES.get(path.as_posix(), ()))
     return result
 
 

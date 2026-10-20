@@ -56,3 +56,6 @@
 .weekly-duplicate-records { margin:2px 0 12px 12px; padding-left:12px; border-left:2px solid var(--beige-dark); }
 .weekly-original-record { display:flex; gap:7px; justify-content:space-between; align-items:center; width:100%; min-height:42px; background:transparent; border:0; border-top:1px solid var(--beige-dark); text-align:left; padding:8px 3px; color:var(--ink-light); font:500 12px/1.45 var(--font-body); cursor:pointer; }
 .weekly-original-record:hover { color:var(--terracotta); }
+.weekly-address-caution {
+  display: block;
+}

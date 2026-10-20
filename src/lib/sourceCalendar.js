@@ -120,7 +120,10 @@ export function sourceHoursForDate(market, day) {
   if (calendarExceptions(market, day).has(day)) return 'Annullato'
   if (!market?.sourceCalendar) {
     const editorial = editorialHoursForDate(market, day)
-    return editorial !== null ? editorial : text(market?.hours) || 'Orario da verificare'
+    if (editorial !== null) return editorial
+    if (market?.indexHoursScope === 'storico') return 'Orari attuali da verificare'
+    if (market?.indexHoursScope === 'per_data') return 'Vedi gli orari per data'
+    return text(market?.hours) || 'Orario da verificare'
   }
   if (!validDate(day)) return text(market?.hours) || 'Orario da verificare'
   const occurrences = upcomingOccurrences(market.sourceCalendar, day)

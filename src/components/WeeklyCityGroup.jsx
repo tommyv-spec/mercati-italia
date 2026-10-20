@@ -2,6 +2,7 @@ import { useEffect, useId, useMemo, useState } from 'react'
 import { distinctWeekdays, groupVenues, groupVenueAppointments, nextMatchingDate, WEEKDAY_LABELS } from '../lib/marketGrouping'
 import { marketDateDisclosure } from '../lib/dateDisclosure'
 import { sourceHoursForDate } from '../lib/sourceCalendar'
+import { addressConflictView } from '../lib/sourceFieldConflicts.js'
 import './WeeklyCityGroup.css'
 
 function dateLabel(iso) {
@@ -140,6 +141,12 @@ export default function WeeklyCityGroup({
                       {!venue.verifiedAddress && <p className="weekly-venue-note">
                         Indirizzo assente o troppo generico: non unito ad altre sedi
                       </p>}
+                      {venue.markets.some(market => addressConflictView(market).length > 0) && (
+                        <p className="weekly-venue-note" role="note">
+                          Una o più schede riportano un indirizzo salvato discordante con la fonte.
+                          Apri la scheda per confrontare le sedi.
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="weekly-appointment-list">
@@ -147,6 +154,7 @@ export default function WeeklyCityGroup({
                       const market = visit.market
                       const date = nextMatchingDate(market.dates || [], selectedWeekday)
                       const expandedCopies = Boolean(expandedSourceRecords[visit.key])
+                      const addressConflict = addressConflictView(market).length > 0
                       return (
                         <div key={visit.key} className="weekly-appointment-group">
                           <button type="button" className="weekly-appointment"
@@ -157,6 +165,9 @@ export default function WeeklyCityGroup({
                               {sourceHoursForDate(market, date)}
                               {market.dateQuality !== 'confermata' && <small>
                                 {market.dateQuality === 'riportata' ? ' · Riportato dalla fonte' : ' · Previsto'}
+                              </small>}
+                              {addressConflict && <small className="weekly-address-caution">
+                                Indirizzo salvato discordante con la fonte
                               </small>}
                             </span>
                             <span aria-hidden="true" className="weekly-appointment-arrow">›</span>
@@ -177,6 +188,9 @@ export default function WeeklyCityGroup({
                                     <button type="button" className="weekly-original-record"
                                       key={record.id} onClick={() => onOpenMarket(record)}>
                                       {record.name}{' · '}{record.hours || 'Orario da verificare'}
+                                      {addressConflictView(record).length > 0 && <small>
+                                        {' · Indirizzo salvato discordante con la fonte'}
+                                      </small>}
                                       <span aria-hidden="true">›</span>
                                     </button>
                                   ))}

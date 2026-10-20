@@ -1,5 +1,65 @@
 # Qualità dei dati DEV: verifica della pubblicazione
 
+## Acquisizione e pubblicazione verificate, 20 ottobre ore 20:18 UTC
+
+L'esecuzione [39487468359](https://github.com/tommyv-spec/mercati-italia/actions/runs/39487468359)
+ha concluso con successo acquisizione, QA dell'applicazione, pubblicazione e
+monitoraggio. Il DEV effettivo è `6e58d56c`, l'anteprima Git è `214e5877`;
+MAIN rimane `1ef738e`. Il confronto integrale di manifest, indice, tutti i
+frammenti regionali e **tutte e cinque le code** coincide con il candidato.
+Sono conservate tutte le 13.824 identità originarie; il catalogo contiene ora
+13.888 schede, con 64 ammissioni Happings provate nei due cicli pubblicati.
+
+| Misura con definizione invariata | Baseline iniziale | DEV pubblicato |
+| --- | ---: | ---: |
+| Schede | 13.824 | 13.888 |
+| Indirizzi vuoti | 3.429 | 2.978 |
+| Indirizzi vuoti o vaghi, `audit_dataset` | 5.889 | 5.419 |
+| Orari vuoti | 10.853 | 10.494 |
+| Schede con almeno una ricevuta di campo valida | 0 | 2.762 |
+| Schede con date future riportate e prove valide | 0 | 65 |
+| Schede con apertura confermata individualmente | 0 | 0 |
+
+Sulle identità originarie sono stati recuperati **451 indirizzi mancanti e
+359 orari mancanti**. Restano conservate le 220 correzioni provinciali già
+pubblicate. Il nuovo ciclo contribuisce 88 indirizzi e 96 orari su schede
+esistenti, oltre alle 32 nuove schede. I conteggi di presenza non sono conteggi
+di attualità: **68 degli orari recuperati sono riscontri storici Roma d881**,
+61 aggiornati nella fonte al 30 aprile 2023 e sette al 31 dicembre 2021.
+Il testo esportato li qualifica come storici e da verificare; non hanno date
+future, conferme individuali o nuove proiezioni. La lettura del 20 ottobre
+2026 rimane distinta dalla data del contenuto.
+
+Il ciclo ha letto 14 pagine provinciali Happings: 13 interpretate, 949 righe,
+e una nuova struttura Lucca trattenuta come `layout_changed`. Ha letto altri
+64 dettagli Happings, 60 dettagli Eventi e Sagre, 16 Cose di Casa e cinque
+Citynews; Roma d881 questa volta è stato acquisito realmente. Le 93 prove
+editoriali esportate sono valide; 64 descrivono intervalli di edizione tutti
+passati. Una loro lettura riuscita non viene presentata come conferma attuale.
+
+I lettori configurati coprono 12.320 schede; **1.568 restano senza raccordo
+automatico ammesso**, di cui 1.410 per ambiti Happings non dimostrati. Restano
+senza una lettura riuscita nella storia persistente 2.042 dettagli Happings,
+1.782 URL EES, 393 Cose di Casa e 52 Citynews. Le code sono avanzate e vengono
+riprese dal ciclo giornaliero già programmato alle 04:17 UTC. Il limite
+temporale di ogni ciclo non è una promessa di completamento dell'intera coda.
+
+**Il catalogo non è ancora completo né interamente dimostrato come attuale.**
+Sono 1.025 le schede con tutti e tre i campi principali riscontrati su fonti
+considerate recenti dalle regole esistenti. Per 12.625 schede non è dimostrata
+la data del contenuto sorgente; 11.845 conservano date future esplicitamente
+classificate come previsioni. Queste misure non vengono confuse con la buona
+riuscita del processo di pubblicazione.
+
+Il [certificato di pubblicazione](../reports/automation/dev-published-refresh-39487468359-publication.json),
+il [confronto integrale](../reports/automation/dev-published-refresh-39487468359-evidence.json)
+e il [confronto incrementale](../reports/automation/dev-published-refresh-39487468359-incremental.json)
+conservano le prove. Il controllo HTTPS del manifest, invece, è stato respinto
+dal CDN con HTTP 403, codice Cloudflare 1010, sia sull'URL stabile sia su quello
+con chiave di cache e su quello fissato al commit. Quindi è dimostrata la
+coincidenza completa dei contenuti Git pubblicati, **non una nuova verifica
+della loro consegna attraverso il CDN**. Il dettaglio è nel rapporto HTTP.
+
 ## Stato pubblicato verificato il 20 ottobre, ore 19:31 UTC
 
 Il DEV pubblicato più recente è `9766ca21`; il ramo di anteprima è

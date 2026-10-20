@@ -376,12 +376,14 @@ class ExportTests(unittest.TestCase):
             manifest = result["manifest"]
             self.assertEqual(manifest["total"], 1)
             self.assertEqual(manifest["layout"], "single")
-            self.assertEqual(manifest["index_schema"], 5)
+            self.assertEqual(manifest["index_schema"], 6)
+            self.assertEqual(manifest["index_as_of"], self.today.isoformat())
             self.assertTrue((Path(temp) / "public" / manifest["index"]).is_file())
             index = json.loads((Path(temp) / "public" / manifest["index"]).read_text("utf-8"))
             self.assertIsInstance(index["markets"][0], list)
             self.assertEqual(index["markets"][0][0], "mercato-centro-roma")
-            self.assertEqual(index["markets"][0][-1], ["2026-10-13"])
+            self.assertEqual(index["markets"][0][11], ["2026-10-13"])
+            self.assertEqual(index["markets"][0][12], "")
             asset = Path(temp) / "public" / manifest["catalog"]
             self.assertTrue(asset.exists())
             snapshot = json.loads(asset.read_text("utf-8"))

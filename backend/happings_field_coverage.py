@@ -159,6 +159,16 @@ def weekly_page_coverage(html, parsed, *, requested_url, final_url, observations
                          considered_ids=(), holds=None, before=None, after=None):
     """Inspect original listing text independently of extracted field values."""
     page = _page(html, requested_url, final_url, "provincial_weekly_index")
+    from happings_editorial_weekly_layout import source_inventory
+    from happings_weekly_layout import province_page_key
+    try:
+        editorial = source_inventory(html, source_province=province_page_key(final_url))
+    except (ValueError, RecursionError):
+        editorial = None
+    if editorial is not None:
+        return _editorial_weekly_coverage(page, editorial, parsed, observations=observations,
+                                          considered_ids=considered_ids, holds=holds,
+                                          before=before, after=after)
     root = _tree(html)
     blocks = _select(root, "happings-seo-content") if root else []
     if len(blocks) != 1:
@@ -232,6 +242,53 @@ def weekly_page_coverage(html, parsed, *, requested_url, final_url, observations
         page["probe_status"] = "unassessed_layout"
     elif any(item["source_presence"]["unassessed"] for item in page["fields"].values()):
         page["probe_status"] = "partially_assessed"
+    return _finish(page)
+
+
+def _editorial_weekly_coverage(page, inventory, parsed, *, observations=(),
+                              considered_ids=(), holds=None, before=None, after=None):
+    """Probe original editorial units even if the extraction dropped a field."""
+    page["layout"] = "editorial_provincial_weekly_guide"
+    before, after, holds = before or {}, after or {}, holds or {}
+    observations = [item for item in observations if item.get("source_url") == page["final_url"]
+                    and item.get("source_html_sha256") == page["source_html_sha256"]]
+    page["catalog_page_pairs_considered"] = len(set(considered_ids))
+    page["catalog_page_pairs_linked"] = len({item["market_id"] for item in observations})
+    rows = defaultdict(list)
+    for row in getattr(parsed, "rows", []):
+        rows[(_key(row.get("city_label")), row.get("weekday"), _key(row.get("place_label")))].append(row)
+    for ordinal, unit in enumerate(inventory["units"], 1):
+        page["source_units"] += 1
+        place = re.sub(r"\s*\((?:la mattina|il mattino|al mattino|il pomeriggio|la sera)\)\s*$", "",
+                       unit["place"], flags=re.I)
+        key = (_key(unit["city"]), unit["weekday"], _key(place))
+        candidates = rows.get(key, [])
+        source = candidates.pop(0) if candidates else None
+        pair = (_key((source or {}).get("city") or unit["city"]), unit["weekday"])
+        scope_held = unit["editorial_scope"]["status"] != "current" or bool(source and source.get("calendar_scope"))
+        reasons = holds.get(pair, []) or ([unit["editorial_scope"]["reason"]] if scope_held else [])
+        linked = [item for item in observations
+                  if (_key(item.get("source_city")), item.get("source_day")) == pair
+                  and _key(item.get("source_value")) == _key((source or {}).get("place") or place)]
+        presences = {"indirizzo": _address_presence([unit["place"]]),
+                     "orario_testo": _hours_presence(unit["hours_text"] or unit["place"]),
+                     "ricorrenza_testo": "precise", "date": "absent_in_reviewed_scope"}
+        for field in FIELDS:
+            present = bool(source and (field == "indirizzo" and source.get("place")
+                           or field == "ricorrenza_testo" and source.get("weekday") == unit["weekday"]
+                           or field == "orario_testo" and (source.get("clock_hours") or source.get("daypart"))))
+            destinations = []
+            for item in linked:
+                if field not in item.get("values", {}):
+                    continue
+                sid = item["market_id"]
+                if not item.get("apply_authorized"):
+                    destinations.append("available")
+                elif sid in after and after[sid].get(field) == item["values"][field]:
+                    destinations.append("applied" if before.get(sid, {}).get(field) != after[sid].get(field)
+                                        else "supported")
+            _observe(page, ordinal, field, presences[field], "parsed" if present else "missing",
+                     destinations=destinations, held=scope_held or bool(reasons), reasons=reasons)
     return _finish(page)
 
 

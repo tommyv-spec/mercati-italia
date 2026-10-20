@@ -158,6 +158,21 @@ export function editorialEvidenceView(market, now = new Date()) {
   }
 }
 
+/** An archived edition cannot certify the older general catalog fields. */
+export function editorialSummaryView(market, now = new Date()) {
+  const evidence = editorialEvidenceView(market, now)
+  const historical = evidence ? evidence.historical : market?.indexHoursScope === 'storico'
+  return {
+    evidence,
+    hours: historical ? 'Orari attuali da verificare'
+      : !evidence && !market?.sourceCalendar && market?.indexHoursScope === 'per_data'
+        ? 'Vedi gli orari per data' : text(market?.hours),
+    // The exact source recurrence, when available, remains in the edition
+    // section. Do not repeat an older catalog rule under "Prossime date".
+    recurrence: historical ? '' : text(market?.recurrence),
+  }
+}
+
 /** General editorial hours never supply the missing hours of an explicit date. */
 export function editorialHoursForDate(market, day, now = new Date()) {
   const proof = boundEvidence(market, localDateISO(now))

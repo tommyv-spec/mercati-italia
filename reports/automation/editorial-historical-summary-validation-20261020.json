@@ -1,0 +1,431 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "network_requests": 0,
+  "mode": "local immutable JSON loaded through the actual frontend loader and adapter; no HTTP",
+  "baseline_manifest": "/tmp/vintagery-dev-39483325379/public/data/v1/manifest.json",
+  "candidate_manifest": "/tmp/editorial-ui-truth-offline-20261020/candidate/public/data/v1/manifest.json",
+  "baseline_manifest_sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625",
+  "candidate_manifest_sha256": "90854a09b916d896822872af6e2b4116d280158e18bc13527a3a484c4c9cfa3d",
+  "original_index_schema": 5,
+  "index_schema": 6,
+  "index_as_of": "2026-10-20",
+  "content_signature_unchanged": "464ff689399b23cd777d508ef758e35c2ef7a7ef327dec5ff5e5092880597f8c",
+  "records": 13856,
+  "every_original_index_field_unchanged": true,
+  "full_regional_assets": [
+    {
+      "region": "Abruzzo",
+      "rows": 392,
+      "sha256": "587c20a9c989b71a1fbb8c3f769f176054d131d05da3b4bfe2b4094ead0ffae9",
+      "unchanged": true
+    },
+    {
+      "region": "Basilicata",
+      "rows": 36,
+      "sha256": "d47fde77db9bb71775397ed01fc3aeec0177ba0800bea253e4fb5ba5e9e4fc53",
+      "unchanged": true
+    },
+    {
+      "region": "Calabria",
+      "rows": 328,
+      "sha256": "b3adc5af765736be31e0e158f3c10a5ea96232f5fafdf22720fe18d841b76426",
+      "unchanged": true
+    },
+    {
+      "region": "Campania",
+      "rows": 821,
+      "sha256": "e3a53f4857341418fc5a03dca6605dba9981738e49af26c4a1ccddfb12276723",
+      "unchanged": true
+    },
+    {
+      "region": "Emilia-Romagna",
+      "rows": 902,
+      "sha256": "284e7560fe4a607ee903e1211ae33bc4f7ebbe860c5c62b2a01b90d839f2ea44",
+      "unchanged": true
+    },
+    {
+      "region": "Friuli Venezia Giulia",
+      "rows": 242,
+      "sha256": "6cc77386b43a65b1aff5d7471a3150d9df9e8f1efec27659049fb3d7ab04d0e2",
+      "unchanged": true
+    },
+    {
+      "region": "Lazio",
+      "rows": 1079,
+      "sha256": "5b7b6f621ef817b0348f6ea53972ebb9ee8af087c7e741460f90ebf0c4315d51",
+      "unchanged": true
+    },
+    {
+      "region": "Liguria",
+      "rows": 385,
+      "sha256": "b56ac6053f03ba400e0a947cc801fa21033e110a9a3fa78aca6aceceb6b2056a",
+      "unchanged": true
+    },
+    {
+      "region": "Lombardia",
+      "rows": 3965,
+      "sha256": "12d80a839bf79f91a1901eb183799ae301ba45bb2068985712bb074d496b5b76",
+      "unchanged": true
+    },
+    {
+      "region": "Marche",
+      "rows": 288,
+      "sha256": "fa740facb1502f4d48960023c2760d26cdb807541cfd927f391cfdda140e0e21",
+      "unchanged": true
+    },
+    {
+      "region": "Molise",
+      "rows": 214,
+      "sha256": "5542009b65fdb38dcdee29f87e36f23d043a75fd69dcda5590005935c03e186f",
+      "unchanged": true
+    },
+    {
+      "region": "Piemonte",
+      "rows": 1332,
+      "sha256": "3dbe393aded8e2b2fab6ee9eaf4505795dcd74aac10961d2bd7f50de361fe3de",
+      "unchanged": true
+    },
+    {
+      "region": "Puglia",
+      "rows": 483,
+      "sha256": "de4765cdffb55666c879a1636f736c62a2904b6a62e4c16eded7a4495c8eb153",
+      "unchanged": true
+    },
+    {
+      "region": "Sardegna",
+      "rows": 384,
+      "sha256": "1982fd8945074cd0c3dc795de8a23b4c834c8de6564c1ded185fbf90cdebf164",
+      "unchanged": true
+    },
+    {
+      "region": "Sicilia",
+      "rows": 400,
+      "sha256": "a004f40b493435139e6c08eb49b95b090e4e945ff69f9c3ab56e7b4af02f5ca7",
+      "unchanged": true
+    },
+    {
+      "region": "Toscana",
+      "rows": 949,
+      "sha256": "922012ac05bb8c6becfa1d40b203005e9745a0a45f23eff6e720c9125e7bcc62",
+      "unchanged": true
+    },
+    {
+      "region": "Trentino-Alto Adige",
+      "rows": 223,
+      "sha256": "5bae61d50c78d2696ddb234ef48ed3af97cbfc8a04512b90ef3202392a10e5fb",
+      "unchanged": true
+    },
+    {
+      "region": "Umbria",
+      "rows": 176,
+      "sha256": "fa504abeac81f8b7b53fec5876c7f3b0824d31a64b2db2b64079ece99014c237",
+      "unchanged": true
+    },
+    {
+      "region": "Valle d'Aosta",
+      "rows": 54,
+      "sha256": "b34e65cab2ffb43d960aa0e503ba183ddeb5b06b5ee02e658612f8a815c806c5",
+      "unchanged": true
+    },
+    {
+      "region": "Veneto",
+      "rows": 1203,
+      "sha256": "22ce18cb783d0a20b8c2b88e6378d0e00cc2a0c02a876be8dc3fcffb1a4fe05a",
+      "unchanged": true
+    }
+  ],
+  "index_scopes": {
+    "ordinary": 13799,
+    "per_data": 47,
+    "storico": 10
+  },
+  "first_list_static_reads": 2,
+  "initial_regional_reads": 0,
+  "initial_full_evidence_envelopes": 0,
+  "historical_hours_cases": [
+    {
+      "id": "borgo-divino-in-tour-a-celle-ligure-celle-ligure",
+      "name": "Borgo Divino In Tour A Celle Ligure",
+      "source": "https://www.eventiesagre.it/Eventi_Enogastronomici/21052639_Borgo+DiVino+in+Tour+a+Celle+Ligure.html",
+      "stored_hours_unchanged": "18:00–24:00",
+      "first_list_label": "Orari attuali da verificare",
+      "detail_summary": "Orari attuali da verificare",
+      "historical_source_hours": "",
+      "historical_source_hours_label": "Orari riportati per l’edizione passata",
+      "historical_recurrence": "",
+      "legacy_recurrence_not_presented_as_current": "",
+      "read_on_unchanged": "2026-10-20"
+    },
+    {
+      "id": "fiera-del-vino-a-polpenazze-del-garda-polpenazze-del-garda",
+      "name": "Fiera Del Vino A Polpenazze Del Garda",
+      "source": "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html",
+      "stored_hours_unchanged": "18:00–24:00",
+      "first_list_label": "Orari attuali da verificare",
+      "detail_summary": "Orari attuali da verificare",
+      "historical_source_hours": "Dalle 10:00",
+      "historical_source_hours_label": "Orari riportati per l’edizione passata",
+      "historical_recurrence": "",
+      "legacy_recurrence_not_presented_as_current": "",
+      "read_on_unchanged": "2026-10-20"
+    },
+    {
+      "id": "le-vie-del-gusto-e-dell-artigianato-san-piero-patti",
+      "name": "Le Vie Del Gusto E Dell'artigianato",
+      "source": "https://www.eventiesagre.it/Eventi_Enogastronomici/21165715_Le+Vie+Del+Gusto+E+Dell+artigianato.html",
+      "stored_hours_unchanged": "10:00–23:55",
+      "first_list_label": "Orari attuali da verificare",
+      "detail_summary": "Orari attuali da verificare",
+      "historical_source_hours": "10:00–23:55",
+      "historical_source_hours_label": "Orari riportati per l’edizione passata",
+      "historical_recurrence": "",
+      "legacy_recurrence_not_presented_as_current": "",
+      "read_on_unchanged": "2026-10-20"
+    },
+    {
+      "id": "la-zena-poreta-lavarone",
+      "name": "La Zéna Poréta",
+      "source": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195228_La+Zena+Poreta.html",
+      "stored_hours_unchanged": "20:00–20:00",
+      "first_list_label": "Orari attuali da verificare",
+      "detail_summary": "Orari attuali da verificare",
+      "historical_source_hours": "Dalle 20:00",
+      "historical_source_hours_label": "Orari riportati per l’edizione passata",
+      "historical_recurrence": "",
+      "legacy_recurrence_not_presented_as_current": "",
+      "read_on_unchanged": "2026-10-20"
+    },
+    {
+      "id": "ciaspomagna-cimbra-luserna",
+      "name": "Ciaspomagna Cimbra",
+      "source": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195255_Ciaspomagna+Cimbra.html",
+      "stored_hours_unchanged": "17:00–23:00",
+      "first_list_label": "Orari attuali da verificare",
+      "detail_summary": "Orari attuali da verificare",
+      "historical_source_hours": "17:00–23:00",
+      "historical_source_hours_label": "Orari riportati per l’edizione passata",
+      "historical_recurrence": "",
+      "legacy_recurrence_not_presented_as_current": "Mensile",
+      "read_on_unchanged": "2026-10-20"
+    },
+    {
+      "id": "legumi-che-passione-a-stra-stra",
+      "name": "Legumi Che Passione A Stra",
+      "source": "https://www.eventiesagre.it/Eventi_Enogastronomici/21178870_Legumi+Che+Passione+A+Stra.html",
+      "stored_hours_unchanged": "09:30–18:30",
+      "first_list_label": "Orari attuali da verificare",
+      "detail_summary": "Orari attuali da verificare",
+      "historical_source_hours": "09:30–18:30",
+      "historical_source_hours_label": "Orari riportati per l’edizione passata",
+      "historical_recurrence": "",
+      "legacy_recurrence_not_presented_as_current": "",
+      "read_on_unchanged": "2026-10-20"
+    }
+  ],
+  "historical_rows_without_hours": 4,
+  "published_lana": {
+    "id": "happings-mercatino-contadino-di-lana-di-mezzo-6c49a05e72eb",
+    "source": "https://www.happings.com/it/happing/mercatino-contadino-di-lana-di-mezzo/",
+    "date": "2026-12-24",
+    "stored_general_hours": "7:30 - 13:00",
+    "first_list_label": "Vedi gli orari per data",
+    "full_date_hours": "Dalle 07:30; chiusura non indicata per questa data"
+  },
+  "independent_lana_fixture": {
+    "id": "happings-mercato-del-venerdi-mattina-a-lana-1ec027b927cd",
+    "source": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+    "not_in_published_catalog": true,
+    "mode": "Scoped real HTML fixture parsed, matched and exported locally; no live read or catalog admission",
+    "provenance": {
+      "mode": "scoped_real_HTML_fixture_replay_not_published_catalog",
+      "sample": {
+        "name": "lana",
+        "capture": {
+          "requested_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "final_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "bytes": 145113,
+          "sha256": "8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58",
+          "captured_at": "2026-10-20T15:34:40.551888+00:00"
+        },
+        "fixture_path": "lana.html",
+        "fixture_sha256": "a29742abdd3f6a535683e66f02fd5939a18dfdce675baf44c007a943ce3f7129",
+        "retained_editorial_metadata": [
+          {
+            "@type": "WebPage",
+            "@id": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+            "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+            "datePublished": "2026-10-02T10:31:36+00:00"
+          }
+        ]
+      }
+    },
+    "date": "2026-12-24",
+    "stored_general_hours": "7:30 - 12:30\nLe bancarelle sono presenti dalle 07:30 alle 12:30 fino al 18 dicembre; l’appuntamento straordinario del 24 dicembre termina alle 13:00.",
+    "first_list_label": "Vedi gli orari per data",
+    "full_date_hours": "07:30–13:00"
+  },
+  "ordinary_rows_preserved": 13799,
+  "qualification": "An index hint never confirms an opening or updates the date of source facts.",
+  "purpose": "Qualify historical or date-scoped hours at first list load and in detail without changing regional source facts, identities, dates or verification claims.",
+  "base_code_commit": "1f0c624",
+  "implementation": {
+    "index_schema": 6,
+    "added_column": "ambito_orari",
+    "values": [
+      "",
+      "per_data",
+      "storico"
+    ],
+    "manifest_reference_day": "index_as_of",
+    "historical_validation_uses_manifest_day": true,
+    "full_evidence_envelopes_in_index": false,
+    "same_regional_facts_can_change_index_after_last_edition_day": true,
+    "reference_day_alone_with_identical_index_bytes_is_new_content": false,
+    "legacy_versions_read_and_validated": [
+      4,
+      5
+    ],
+    "source_read_day_is_not_opening_confirmation": true,
+    "dev_build_guard": {
+      "file": ".github/workflows/dev-mobile-build.yml",
+      "removed": "assert m['index_schema'] == 5",
+      "added": "python backend/validate_static.py --manifest dist/data/v1/manifest.json",
+      "triggers_permissions_budgets_unchanged": true,
+      "main_and_legacy_workflows_unchanged": true
+    }
+  },
+  "index_payload": {
+    "before_path": "data/v1/index-07c4e67f368c52.json",
+    "after_path": "data/v1/index-595fff5c050de2.json",
+    "before_sha256": "07c4e67f368c524665411ef12b647af60fbf2ac9595e1af60bb5a04a0903bc93",
+    "after_sha256": "595fff5c050de26ef55b0f7573b8f008c4f33d5105b675e9af7524b514bd3644",
+    "before_raw_bytes": 5093545,
+    "after_raw_bytes": 5135559,
+    "before_gzip6_bytes": 409357,
+    "after_gzip6_bytes": 410123
+  },
+  "pipeline": {
+    "mode": "full autopilot offline on the published 13,856-row baseline; all source readers offline",
+    "approved": true,
+    "reason": "all_policies_pass",
+    "has_changes": true,
+    "index_changed": true,
+    "base_signature": "464ff689399b23cd777d508ef758e35c2ef7a7ef327dec5ff5e5092880597f8c",
+    "new_signature": "464ff689399b23cd777d508ef758e35c2ef7a7ef327dec5ff5e5092880597f8c",
+    "gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    },
+    "elapsed_seconds": 64.39,
+    "market_identities_changed": [],
+    "retained_source_ids": 13856,
+    "added_source_ids": 0,
+    "removed_source_ids": 0,
+    "history_cli_passed": true,
+    "history_run_id": "offline-index6-replay-20261020",
+    "history_optional_discovery_reports_not_reacquired": [
+      "roadmap",
+      "official-candidates",
+      "source-registry",
+      "freshness",
+      "source-evidence"
+    ],
+    "reviewed_city_static_guard": {
+      "evidence_sha256": "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
+      "generic_existing_evidence_ids_checked": 0,
+      "generic_existing_fields_checked": 0,
+      "individual_market_confirmations": 0,
+      "manifest_records": 13856,
+      "navigation_routes_still_blocked": 16,
+      "release_safe": true,
+      "reviewed_cities_in_final_details": 16,
+      "reviewed_cities_in_search_index": 16,
+      "schema": 1,
+      "separately_proved_happings_admissions": 0,
+      "source_urls_preserved": 16,
+      "unsafe_coordinates_still_quarantined": 7
+    },
+    "catalog_quality_release_safe": true,
+    "display_audit_metrics": {
+      "original_records": 13856,
+      "ids_retained": 13856,
+      "generic_weekly_with_specific_venue": 5038,
+      "malformed_source_city_labels_guarded_in_ui": 2,
+      "venue_groups_examined": 3568,
+      "highly_supported_same_source_visit_groups": 536,
+      "suppressed_repeat_buttons_only": 588,
+      "original_records_in_reversible_groups": 1124,
+      "market_identities_deleted": 0,
+      "event_confirmations_created": 0,
+      "verification_claims_created": 0
+    }
+  },
+  "verification": {
+    "python_tests": {
+      "count": 142,
+      "passed": true,
+      "modules": [
+        "test_compact_index_scope",
+        "test_static_pipeline",
+        "test_reviewed_city_static_guard",
+        "test_source_contract_activation",
+        "test_publisher_exception_review",
+        "test_source_hours_preservation",
+        "test_autopilot_history"
+      ],
+      "new_compact_scope_cases": 8,
+      "compact_cases_rerun_after_audit_consumer_fix": 8
+    },
+    "node_test_files": {
+      "count": 4,
+      "passed": true,
+      "files": [
+        "tests/editorial-evidence.test.mjs",
+        "tests/compact-index-scope.test.mjs",
+        "tests/source-hold-details.test.mjs",
+        "tests/catalog-refresh.test.mjs"
+      ],
+      "direct_cases_editorial": 17,
+      "direct_cases_compact": 3
+    },
+    "build": {
+      "passed": true,
+      "command": "npm run build -- --outDir /tmp/editorial-ui-truth-build-20261020"
+    },
+    "dist_old_v5_validation_passed": true,
+    "candidate_v6_validation_passed": true,
+    "independent_peer_review": "approved after checking every compact row, all historical detail render models, all20 regional hashes, version contracts, day transition, pipeline decision and DEV build guard",
+    "browser_http_or_publisher_requests_in_this_validation": 0
+  },
+  "reproduction": {
+    "focused_python": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=backend:backend/tests python -m unittest test_compact_index_scope test_static_pipeline test_reviewed_city_static_guard test_source_contract_activation test_publisher_exception_review test_source_hours_preservation test_autopilot_history -q",
+    "focused_ui": "node --test tests/editorial-evidence.test.mjs tests/compact-index-scope.test.mjs tests/source-hold-details.test.mjs tests/catalog-refresh.test.mjs",
+    "full_offline": "python backend/autopilot.py --manifest BASELINE/public/data/v1/manifest.json --output TEMP_OUTPUT --today 2026-10-20 --offline",
+    "baseline_manifest_sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625"
+  },
+  "limits": [
+    "This validates how source scope is presented; it does not certify that every market is complete, current or open.",
+    "13,799 records have no validated editorial/date-scoped envelope used by this new hint; their prior display is preserved.",
+    "The Friday-market Lana24December early-closing example is a separately replayed scoped real HTML fixture, not an admission in the published13,856-row catalog.",
+    "The published Lana farmer-market example is a different exact identity and reports no closing time for24December; the UI preserves that absence.",
+    "No live publisher fetch, remote deployment, market record change or opening confirmation was performed for this UI patch."
+  ]
+}

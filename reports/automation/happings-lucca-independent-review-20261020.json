@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "decision": "approved_for_integration_within_reviewed_scope",
+  "blockers_remaining": [],
+  "code": {
+    "git_head_at_review": "ae289eca17890a12d3d815a9b83beb7c342d7c71",
+    "reviewed_file_sha256": {
+      "backend/happings_editorial_weekly_layout.py": "3ed72b931967bebad6118a00c66f1cfda5d70d73906ec12f3992922c95df9601",
+      "backend/happings_weekly_conflicts.py": "afafa8a54955551d5a4ba6e9b86141f836bc7a0e086f799f2f79261927d1f44f",
+      "backend/happings_source_enrichment.py": "71f73236ca47ba28bf2292ff6ed6eb61e96b7e42a07b106a89c1b773d217a6b5",
+      "backend/happings_autopilot.py": "5c7852f8e92c3d4fc45e70f764c3c2b566e52fcb9a89605f387fb9196f91930a"
+    },
+    "reviewed_content_sha256": "6b281a9c210faf30bc77dfc03117c02f3b9326ef9540a7293e96c5707af524dd",
+    "hash_note": "The per-file hashes bind the exact reviewed working-tree content, including files not committed at review time."
+  },
+  "fixed_findings": [
+    {
+      "case": "Coherent replacement-document and envelope tamper with unchanged original HTML hash",
+      "before": "safe_report and final weekly guard accepted the forged source venue; direct raw reconstruction rejected it.",
+      "after": "Both release guards reject the forged document against the captured HTML; they also reject missing raw evidence.",
+      "reproduced_after_fix": true
+    },
+    {
+      "case": "Unparsed competing current market in ul/ol without preceding weekday heading",
+      "before": "The statement was skipped, current section remained trusted, and a warning could be assigned using false source uniqueness.",
+      "after": "Both ul and ol mark the current section incomplete/unverified; no warning is assigned and catalog is unchanged.",
+      "reproduced_after_fix": true
+    }
+  ],
+  "real_capture_replay": {
+    "artifact_run": "39487468359",
+    "read_on": "2026-10-20",
+    "html_sha256": "7da91da612bba4e282f50c0ea254a804d877c1c81bfbf65eaa1b54abe1e9e1fd",
+    "html_bytes": 146047,
+    "catalog_records": 13888,
+    "all_ids_and_order_preserved": true,
+    "source_rows": 56,
+    "current_source_rows": 3,
+    "historical_source_rows": 53,
+    "historical_assignments_and_forecasts_blocked": true,
+    "new_positive_observations": 0,
+    "changed_ids": [
+      "mercato-settimanale-di-lucca-lucca-mercoledi",
+      "mercato-settimanale-di-lucca-lucca-sabato"
+    ],
+    "only_changed_field": "conflitti_campi",
+    "all_other_record_fields_identical": true,
+    "legitimate_guard_with_original_checkpoint_bytes": "passed"
+  },
+  "integration_note": "Parent confirmed backend/autopilot.py now passes source_checkpoint_dir=out to the final export guard.",
+  "scope_limits": [
+    "Independent review reran the two failing scenarios and original Lucca capture against all 13,888 records.",
+    "Zero HTTP, remote writes or catalog writes. No approval of source truth beyond the captured publisher assertion.",
+    "The separate 14-page export replay and browser review were performed by the other agents; not duplicated here."
+  ]
+}

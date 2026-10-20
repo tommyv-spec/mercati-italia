@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-10-20T20:17:27.875069+00:00",
+  "expected_sha256": "f70dddd6664ba5dc020c2f83c465382a748231175abd2d350d660b8571dae816",
+  "scope": "HTTPS manifest only; full Git assets compared separately",
+  "results": [
+    {
+      "url": "https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/data/v1/manifest.json",
+      "error": "HTTPError",
+      "message": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/data/v1/manifest.json?refresh=995848",
+      "error": "HTTPError",
+      "message": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://raw.githack.com/tommyv-spec/mercati-italia/214e58777f6a0abc78acd7ffc4684abe404e5dce/data/v1/manifest.json",
+      "error": "HTTPError",
+      "message": "HTTP Error 403: Forbidden"
+    }
+  ]
+}

@@ -516,13 +516,15 @@ def verify_static(manifest_path,report,config,registry,today):
     from pathlib import Path
     from merge_catalog import load_existing
     from recurrence_refresh import explicit_rule, forecast_source_limits, refresh_record
-    from reviewed_city_static_guard import INDEX_FIELDS
+    from compact_index import index_fields, index_options, project_index
     if not isinstance(today,date):
         raise ValueError("Final publisher source check needs a reference date")
     approved=validate_admissions(config,registry)
     forecast_limits=forecast_source_limits(config)
     manifest_path=Path(manifest_path)
     manifest=json.loads(manifest_path.read_text("utf-8"))
+    projection_options = index_options(manifest)
+    fields = index_fields(manifest["index_schema"])
     source_ids=report.get("new_market_ids",[])
     evidence_ids=report.get("evidence_updated_market_ids",[])
     rows=load_existing(manifest_path)
@@ -571,11 +573,9 @@ def verify_static(manifest_path,report,config,registry,today):
     by_index={x[0]:x for x in index["markets"] if x and x[0] in checked_ids}
     if len(by_index)!=len(checked_ids):
         raise ValueError("Approved publisher identity absent from compact search index")
-    if later_ids:
-        from export_static import small_index
-        for mid in later_ids:
-            if by_index[mid]!=small_index([catalog[mid]])[0]:
-                raise ValueError("Later publisher source facts lost in compact search index")
+    for mid in checked_ids:
+        if by_index[mid] != project_index([catalog[mid]], **projection_options)[0]:
+            raise ValueError("Publisher source facts lost in compact search index")
     profiles={p["id"]:p for p in config["raw_profiles"]}
     scoped={}
     updated={}
@@ -644,7 +644,7 @@ def verify_static(manifest_path,report,config,registry,today):
             calendar, _ = refresh_record(row, today, source_limits=forecast_limits)
             if calendar.get("date_quality") != "prevista" or not calendar.get("date"):
                 raise ValueError("Existing publisher calendar exceeds its source freshness contract")
-        compact=dict(zip(INDEX_FIELDS,by_index[mid]))
+        compact=dict(zip(fields,by_index[mid]))
         if compact.get("orario_testo")!=row.get("orario_testo"):
             raise ValueError("Managed publisher hours lost in compact search index")
     dates_predicted=0
@@ -685,7 +685,7 @@ def verify_static(manifest_path,report,config,registry,today):
                            link.get("url")==source["attribution_url"]
                            for link in row.get("fonti",[]))):
             raise ValueError("Generic source's market metadata, GPS or provenance unsafe: "+sid)
-        compact=dict(zip(INDEX_FIELDS,by_index[sid]))
+        compact=dict(zip(fields,by_index[sid]))
         if (compact.get("lat") is not None or compact.get("lng") is not None
                 or compact.get("position_quality")!="sconosciuta"
                 or compact.get("date_quality")!=row.get("date_quality")):

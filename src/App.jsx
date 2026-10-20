@@ -5,7 +5,9 @@ import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 import { UNKNOWN_CITY_HELP } from './lib/locationQuality';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
 import { sourceCalendarView, sourceContacts, sourceHoursForDate } from './lib/sourceCalendar.js';
-import { editorialEvidenceView } from './lib/editorialEvidence.js';
+import { editorialSummaryView } from './lib/editorialEvidence.js';
+import { addressConflictView } from './lib/sourceFieldConflicts.js';
+import { destinationForMarket } from './lib/marketDirections.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
@@ -1545,24 +1547,6 @@ export default function App() {
     }
   };
 
-  const destinationForMarket = (market) => {
-    // A malformed municipality field is not a verified place for directions,
-    // even if a scraper attached a plausible point.
-    if (market.locationReviewRequired) return null;
-    // Use exact official coordinates first. Guessed city-centre coordinates
-    // and vague strings such as "centro" are NOT navigable market addresses.
-    if (market.positionQuality === 'precisa' &&
-        Number.isFinite(market.lat) && Number.isFinite(market.lng)) {
-      return market.lat + ',' + market.lng;
-    }
-    const address = market.address?.trim() || '';
-    const specificStreet = /\b(via|viale|piazza|piazzale|piazzetta|corso|largo|vicolo|strada|contrada|lungomare|località|localita|borgo|parco)\b/i;
-    if (address.length >= 9 && specificStreet.test(address)) {
-      return [market.name, address, market.city, 'Italia'].filter(Boolean).join(', ');
-    }
-    return null;
-  };
-
   const openDirections = (market) => {
     // The search-index preview does not contain municipality source holds.
     // Directions must never be possible before full regional details arrive.
@@ -1884,8 +1868,10 @@ export default function App() {
     const futureDates = m.dates.filter(d => d >= todayStr).sort();
     const canNavigate = !detailLoading && !detailError && Boolean(destinationForMarket(m));
     const sourceSchedule = sourceCalendarView(m);
-    const editorial = editorialEvidenceView(m);
+    const summary = editorialSummaryView(m);
+    const editorial = summary.evidence;
     const contacts = sourceContacts(m.sourceDetail);
+    const addressConflicts = addressConflictView(m);
 
     return (
       <div className="detail-page">
@@ -1940,8 +1926,8 @@ export default function App() {
                 );
               })}
             </div>
-            {m.recurrence && (
-              <div className="detail-recurrence">{m.recurrence}</div>
+            {summary.recurrence && (
+              <div className="detail-recurrence">{summary.recurrence}</div>
             )}
             {marketDateDisclosure(m.dates, m.dateQuality) && (
               <div style={{ fontSize: 12, color: '#6C6255', marginTop: 8 }}>
@@ -1955,8 +1941,8 @@ export default function App() {
             <div className="detail-section-title">
               <Icon name="clock" size={18} color={catColor} /> Orari
             </div>
-            <div className="detail-hours" style={m.hours?.length > 100 ? { fontSize: 15 } : undefined}>
-              {m.hours || (sourceSchedule.rows.length ? 'Vedi gli orari delle singole date' : 'Orari non disponibili')}
+            <div className="detail-hours" style={summary.hours.length > 100 ? { fontSize: 15 } : undefined}>
+              {summary.hours || (sourceSchedule.rows.length ? 'Vedi gli orari delle singole date' : 'Orari non disponibili')}
             </div>
             {sourceSchedule.notes.map((note, i) => (
               <p key={note + i} className="source-calendar-note">{note}</p>
@@ -2024,7 +2010,21 @@ export default function App() {
             <div className="detail-section-title">
               <Icon name="mapPin" size={18} color={catColor} /> Indirizzo
             </div>
+            {addressConflicts.length > 0 && <p className="source-calendar-note">
+              Indirizzo salvato, discordante con la fonte
+            </p>}
             <div className="detail-address">{m.address || 'Indirizzo non verificato'}</div>
+            {addressConflicts.map(conflict => (
+              <div className="detail-address-conflict" role="note" key={conflict.key}>
+                <p className="detail-description">
+                  La fonte indica invece: <strong>{conflict.sourceAddress}</strong>.
+                </p>
+                <p className="source-calendar-note">
+                  <a href={conflict.sourceUrl} target="_blank" rel="noopener noreferrer">Happings</a>
+                  {' · pagina letta il ' + conflict.readOnLabel}
+                </p>
+              </div>
+            ))}
             {m.locationReviewRequired && (
               <p role="note" style={{ color: '#857660', fontSize: 12, lineHeight: 1.5, margin: '9px 0' }}>
                 {UNKNOWN_CITY_HELP} Le indicazioni stradali per questa scheda sono disabilitate.
@@ -2035,7 +2035,9 @@ export default function App() {
             )}
             {!canNavigate && !detailLoading && (
               <div role="note" style={{ fontSize: 12, color: '#6C6255', margin: '10px 0' }}>
-                Indicazioni non disponibili: manca una sede riconciliata e verificabile.
+                {addressConflicts.length > 0
+                  ? 'Indicazioni sospese: l’indirizzo salvato è discordante con la fonte.'
+                  : 'Indicazioni non disponibili: manca una sede riconciliata e verificabile.'}
               </div>
             )}
             <div className="detail-address-actions">
@@ -2045,7 +2047,8 @@ export default function App() {
                 <Icon name="navigation" size={16} color="white" /> Indicazioni
               </button>
               <button className="btn-secondary" onClick={() => copyMarketAddress(m)}
-                disabled={!m.address?.trim()}>
+                disabled={!m.address?.trim()}
+                title={addressConflicts.length > 0 ? 'Copia l’indirizzo salvato, segnalato come discordante' : 'Copia indirizzo'}>
                 <Icon name="copy" size={16} /> Copia
               </button>
             </div>

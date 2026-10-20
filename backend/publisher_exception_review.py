@@ -277,7 +277,7 @@ def verify_diff(before, after, report, evidence):
 
 def verify_static(manifest_path:Path, evidence, policy):
     from merge_catalog import load_existing
-    from export_static import small_index
+    from compact_index import index_fields, index_options, project_index
     cases = {c["slug"]:c for c in evidence["cases"]}
     if (policy.get("reviewed_publisher_exceptions",{}).get("enabled") is not True or
             policy["reviewed_publisher_exceptions"].get("evidence_sha256") != evidence_digest(evidence)):
@@ -328,12 +328,17 @@ def verify_static(manifest_path:Path, evidence, policy):
     manifest=json.loads(manifest_path.read_text("utf-8"))
     index_path=manifest_path.parent.parent.parent / manifest["index"]
     index=json.loads(index_path.read_text("utf-8"))
-    from reviewed_city_static_guard import INDEX_FIELDS
-    compact={x[0]:dict(zip(INDEX_FIELDS,x)) for x in index["markets"] if x[0] in cases}
+    fields = index_fields(manifest["index_schema"])
+    projection_options = index_options(manifest)
+    if any(not isinstance(values, list) or len(values) != len(fields) for values in index["markets"]):
+        raise ValueError("Reviewed publisher index has an invalid versioned row")
+    compact={x[0]:dict(zip(fields,x)) for x in index["markets"] if x[0] in cases}
     if set(compact) != set(cases):
         raise ValueError("Reviewed source missing from compact search index")
     for sid,row in matches.items():
         indexed=compact[sid]
+        if list(indexed.values()) != project_index([row], **projection_options)[0]:
+            raise ValueError("Reviewed publisher index differs from its evidence-bound projection: " + sid)
         if (indexed["citta"]!=row["citta"] or indexed["lat"] is not None or
                 indexed["lng"] is not None or indexed["date"]!=(row.get("date") or [])[:16] or
                 indexed["date_quality"]!=row.get("date_quality")):

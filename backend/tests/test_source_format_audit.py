@@ -173,6 +173,36 @@ class SourceFormatAuditTests(unittest.TestCase):
         self.assertEqual(item["checks"]["parser_comparison"]["state"], "pending")
         self.assertEqual(self.ledger["formats"][0]["checks"]["parser_comparison"]["state"], "done")
 
+    def test_legacy_caller_review_does_not_approve_new_shared_helpers(self):
+        backend = self.root / "backend"
+        backend.mkdir()
+        caller = backend / "export_static.py"
+        caller.write_text("VERSION = 1\n")
+        entry = self.ledger["formats"][0]
+        entry["code_sha256"] = {"backend/export_static.py": hashlib.sha256(caller.read_bytes()).hexdigest()}
+        item = self.report()["formats"][0]
+        self.assertEqual(item["checks"]["parser_comparison"]["state"], "pending")
+        self.assertEqual(item["checks"]["source_sample"]["state"], "done")
+        self.assertEqual(entry["checks"]["parser_comparison"]["state"], "done")
+
+    def test_changed_index_or_conflict_helper_reopens_review_without_redating_source(self):
+        backend = self.root / "backend"
+        backend.mkdir()
+        (backend / "export_static.py").write_text("VERSION = 1\n")
+        for helper in ("compact_index.py", "field_conflicts.py"):
+            (backend / helper).write_text("VERSION = 1\n")
+        entry = self.ledger["formats"][0]
+        original_sample = copy.deepcopy(entry["samples"])
+        for helper in ("compact_index.py", "field_conflicts.py"):
+            with self.subTest(helper=helper):
+                entry["code_sha256"] = code_fingerprints(["backend/export_static.py"], self.root)
+                self.assertEqual(self.report()["formats"][0]["checks"]["parser_comparison"]["state"], "done")
+                (backend / helper).write_text("VERSION = 2\n")
+                item = self.report()["formats"][0]
+                self.assertEqual(item["checks"]["parser_comparison"]["state"], "pending")
+                self.assertIn("parser_code_changed", item["recheck_reasons"])
+                self.assertEqual(entry["samples"], original_sample)
+
     def test_changed_sample_fields_reopen_storage_check_only(self):
         changed = [{**self.rows[0], "indirizzo": "Via Nuova"}]
         item = self.report(changed)["formats"][0]
