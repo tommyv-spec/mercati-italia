@@ -28,6 +28,8 @@ Le spunte indicano una verifica eseguita sul campione. Non attestano che tutte l
 - **2026-10-20T19:42:27.887935+00:00 — CITYNEWS-DETAIL-INTEGRATION-20261020**: 27 campioni HTTP Citynews confrontati con il nuovo lettore e tutti i 13.856 record; un tentativo Padova fermo su robots. Coda, verificatori e UI integrati: 17/17 controlli sul replay e 11/11 evidenze storiche visibili, nessun nuovo dato corrente rivendicato. Le varianti non supportate e tre ulteriori TODO narrativi EES restano espliciti.
 - **2026-10-20T19:48:17.731757+00:00 — EDITORIAL-RETRY-CHECK-20261020**: Corretto il giro dei retry EES/CDC: code reali migrate senza falsi nuovi riscontri, otto errori nuovamente selezionabili il giorno successivo, avanzamento dei mai letti preservato. Verificati export, riapertura offline e interruzione del processo HTTP; resta distinta la prossima acquisizione reale.
 
+- **2026-10-20 — HAPPINGS-FIRST-PASS-FAIRNESS-20261020**: Correzione del selettore riutilizzabile: con una coda di prima lettura maggiore delle riletture dovute, sei slot su nove servono dettagli nuovi, mantenendo riletture e sitemap. Test sullo stato DEV effettivo, congelato al 20 ottobre: 216 dettagli già letti, 1.980 mai letti; scenario del 28 ottobre con 128 slot passa da 28 a 84 prime letture selezionate. Zero richieste effettuate o nuovi dati pubblicati durante questa prova; report e test di regressione in repository.
+
 ## Checklist dei formati primari
 
 Legenda: ✓ completato sul campione; ◐ parziale; ○ da verificare.
