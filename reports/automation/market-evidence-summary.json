@@ -1,39 +1,41 @@
 {
-  "as_of": "2026-10-19",
+  "as_of": "2026-10-20",
   "confirmed_openings_added": 0,
   "coordinates_created": 0,
   "daily_detailed_tasks_saved_in_git": false,
-  "daily_shard": 0,
-  "daily_worklist_count": 441,
+  "daily_shard": 1,
+  "daily_worklist_count": 461,
   "distinct_source_labels": 87,
-  "incomplete_market_records_retained": 13824,
+  "incomplete_market_records_retained": 13856,
   "market_fields_changed": 0,
-  "market_identities_preserved": 13824,
-  "market_records_scanned": 13824,
+  "market_identities_preserved": 13856,
+  "market_records_scanned": 13856,
   "market_rows_added": 0,
   "market_rows_removed": 0,
+  "may_enable_source_crawlers": false,
+  "may_grant_source_reuse_rights": false,
   "missing_by_field": {
-    "coordinates": 13735,
-    "date": 1918,
-    "indirizzo": 5924,
-    "individual_edition_confirmation": 13824,
-    "orario_testo": 10853,
-    "ricorrenza_testo": 934
+    "coordinates": 13767,
+    "date": 1949,
+    "indirizzo": 5535,
+    "individual_edition_confirmation": 13856,
+    "orario_testo": 10590,
+    "ricorrenza_testo": 960
   },
   "official_join_results": {
-    "city_weekday_only_unconfirmed_venue": 312,
+    "city_weekday_only_unconfirmed_venue": 85,
     "coordinates_disagree": 13,
     "exact_field_evidence_candidates": 0,
-    "many_market_places_on_same_city_day": 15,
+    "many_market_places_on_same_city_day": 14,
     "multiple_official_venues_on_same_street_day": 1,
-    "no_usable_source_match": 12594,
-    "review_only_field_candidates": 314,
+    "no_usable_source_match": 12630,
+    "review_only_field_candidates": 87,
     "same_source_id": 789,
-    "unique_city_province_street_weekday": 129
+    "unique_city_province_street_weekday": 352
   },
   "official_source_records": 1360,
   "official_source_status": "fresh_dataset_not_market_confirmation",
-  "original_market_ids_sha256": "6f886cfc403ed2859e62eadf5d5c3425e3a33bf42c9cc8800b33a21eb571884a",
+  "original_market_ids_sha256": "0adb167b3d9252600b8ff42653a1fff72178ecc8ea034d5d2545a5b9ea5c6797",
   "publisher_copyright_permissions_inferred": false,
   "report_only": true,
   "schema": 1,
@@ -41,25 +43,41 @@
   "source_rows_reused_from_unapproved_aggregators": 0,
   "sources_by_volume": [
     {
-      "missing_fields": {
-        "coordinates": 9647,
-        "date": 305,
-        "indirizzo": 5311,
-        "individual_edition_confirmation": 9647,
-        "orario_testo": 9483
+      "authorization": {
+        "adapter_scope": "happings_weekly_province_index",
+        "authorized": true,
+        "basis": "explicit_project_owner_instruction",
+        "checked_on": "2026-10-20",
+        "granted_by_this_report": false,
+        "publication_channel": "dev-only",
+        "record_sha256": "512250e027cd43a3b86a41294b842a896d5bbac6cdc0696e1f3eba0237b01d72",
+        "record_source": "backend/data/happings-rights-review.json",
+        "rights_authenticated": false,
+        "status": "project_owner_authorized"
       },
-      "next_automation": "cross_match_with_independent_licensed_official_sources",
+      "bulk_scrape_allowed": true,
+      "missing_fields": {
+        "coordinates": 9679,
+        "date": 313,
+        "indirizzo": 4926,
+        "individual_edition_confirmation": 9679,
+        "orario_testo": 9238,
+        "ricorrenza_testo": 26
+      },
+      "next_automation": "existing_happings_weekly_index_adapter_then_official_cross_match",
       "publisher": "happings.com",
-      "records": 9647,
-      "reuse_status": "no_verified_bulk_reuse_permission",
+      "records": 9679,
+      "reuse_status": "project_owner_authorized",
       "source_family": "happings-weekly-or-detail",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2197,
-        "date": 844,
-        "indirizzo": 489,
+        "date": 852,
+        "indirizzo": 485,
         "individual_edition_confirmation": 2197,
         "orario_testo": 369,
         "ricorrenza_testo": 712
@@ -72,9 +90,11 @@
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1128,
-        "date": 390,
+        "date": 392,
         "indirizzo": 3,
         "individual_edition_confirmation": 1128,
         "orario_testo": 342
@@ -87,12 +107,14 @@
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 432,
-        "date": 71,
+        "date": 84,
         "indirizzo": 6,
         "individual_edition_confirmation": 432,
-        "orario_testo": 431
+        "orario_testo": 422
       },
       "next_automation": "check_page_schema_read_only_then_find_primary_organizer",
       "publisher": "cosedicasa.com",
@@ -102,6 +124,8 @@
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "date": 9,
         "indirizzo": 10,
@@ -115,6 +139,8 @@
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 70,
         "date": 70,
@@ -122,28 +148,31 @@
         "orario_testo": 70,
         "ricorrenza_testo": 70
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "dati.comune.roma.it",
       "records": 70,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 39,
         "date": 39,
-        "individual_edition_confirmation": 39,
-        "orario_testo": 9
+        "individual_edition_confirmation": 39
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata",
       "records": 39,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 22,
         "date": 20,
@@ -151,14 +180,16 @@
         "orario_testo": 4,
         "ricorrenza_testo": 19
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "cosafareafirenze.it",
       "records": 22,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 9,
         "date": 1,
@@ -167,14 +198,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "trentino.com",
       "records": 9,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 8,
         "date": 7,
@@ -183,14 +216,16 @@
         "orario_testo": 8,
         "ricorrenza_testo": 8
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "emiliaromagnaturismo.it",
       "records": 8,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 8,
         "date": 8,
@@ -198,14 +233,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 8
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "eventi.bergamo.it",
       "records": 8,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 8,
         "date": 8,
@@ -214,14 +251,16 @@
         "orario_testo": 8,
         "ricorrenza_testo": 8
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "umbriaeventi.com",
       "records": 8,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 7,
         "date": 4,
@@ -229,27 +268,31 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "algherohospitality.it",
       "records": 7,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 7,
         "date": 7,
         "individual_edition_confirmation": 7
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_romatoday.it",
       "records": 7,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 7,
         "date": 7,
@@ -258,27 +301,31 @@
         "orario_testo": 7,
         "ricorrenza_testo": 7
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "genovatoday.it",
       "records": 7,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 7,
         "individual_edition_confirmation": 7,
         "orario_testo": 4
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "solosagre.it",
       "records": 7,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 6,
         "date": 5,
@@ -287,14 +334,16 @@
         "orario_testo": 6,
         "ricorrenza_testo": 5
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "romatoday.it",
       "records": 6,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 6,
         "date": 6,
@@ -303,28 +352,32 @@
         "orario_testo": 6,
         "ricorrenza_testo": 6
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "sagretorino.it",
       "records": 6,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 5,
         "date": 1,
         "individual_edition_confirmation": 5,
         "orario_testo": 5
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata)",
       "records": 5,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 5,
         "date": 5,
@@ -333,14 +386,16 @@
         "orario_testo": 5,
         "ricorrenza_testo": 5
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "milanopocket.it",
       "records": 5,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 5,
         "date": 5,
@@ -348,26 +403,30 @@
         "orario_testo": 5,
         "ricorrenza_testo": 5
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "sagreumbre.it",
       "records": 5,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "date": 4,
         "individual_edition_confirmation": 4
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
       "records": 4,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 4,
         "date": 3,
@@ -376,14 +435,16 @@
         "orario_testo": 4,
         "ricorrenza_testo": 4
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "firenzetoday.it",
       "records": 4,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 4,
         "date": 4,
@@ -392,14 +453,16 @@
         "orario_testo": 4,
         "ricorrenza_testo": 4
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "modenatoday.it",
       "records": 4,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 4,
         "date": 4,
@@ -407,14 +470,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 4
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "sagrefvg.it",
       "records": 4,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -423,14 +488,16 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "bolognatoday.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -438,14 +505,16 @@
         "individual_edition_confirmation": 3,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_riminitoday.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -454,14 +523,16 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "enjoysicilia.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -470,14 +541,16 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "novaratoday.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -486,14 +559,16 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "palermotoday.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -502,27 +577,31 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "ravennatoday.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "individual_edition_confirmation": 3,
         "orario_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "sagretoscane.com",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -531,14 +610,16 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "suedtirol.info",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -547,14 +628,16 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "veneziatoday.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 3,
         "date": 3,
@@ -562,40 +645,46 @@
         "orario_testo": 3,
         "ricorrenza_testo": 3
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "vicenzatoday.it",
       "records": 3,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "individual_edition_confirmation": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
         "individual_edition_confirmation": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "assosagre.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -604,14 +693,16 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "bresciatoday.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -620,14 +711,16 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "brindisireport.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -636,41 +729,47 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "cittadellaspezia.com",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
         "individual_edition_confirmation": 2,
         "orario_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_firenzetoday.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
         "individual_edition_confirmation": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_frosinonetoday.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -678,28 +777,32 @@
         "individual_edition_confirmation": 2,
         "orario_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_genovatoday.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
         "individual_edition_confirmation": 2,
         "orario_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_veneziatoday.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -708,28 +811,32 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "eventiintoscana.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "indirizzo": 2,
         "individual_edition_confirmation": 2,
         "orario_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "ferrarainfo.com",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -738,14 +845,16 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "lazioinfesta.com",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -754,14 +863,16 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "paradisola.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -769,14 +880,16 @@
         "individual_edition_confirmation": 2,
         "orario_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "pugliainfesta.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -785,14 +898,16 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "sagreinromagna.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 1,
@@ -800,28 +915,32 @@
         "individual_edition_confirmation": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "terredipisa.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
         "individual_edition_confirmation": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "trevisotoday.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2,
         "date": 2,
@@ -829,14 +948,16 @@
         "orario_testo": 2,
         "ricorrenza_testo": 2
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "varesenews.it",
       "records": 2,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -845,14 +966,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "arezzonotizie.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -861,14 +984,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "baritoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -877,14 +1002,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "casertanews.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -893,14 +1020,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "cesenatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -909,110 +1038,126 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "chietitoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_baritoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "indirizzo": 1,
         "individual_edition_confirmation": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_bresciatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_cagliaritoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_cataniatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_ferraratoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_forlitoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "indirizzo": 1,
         "individual_edition_confirmation": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_modenatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1020,55 +1165,63 @@
         "individual_edition_confirmation": 1,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_monzatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_parmatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_torinotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_trevisotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1076,41 +1229,47 @@
         "individual_edition_confirmation": 1,
         "orario_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_vicenzatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "citynews_viterbotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "eventiinsardegna.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1119,14 +1278,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "ferraratoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1135,14 +1296,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "forlitoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1151,14 +1314,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "frosinonetoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1167,14 +1332,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "leccotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1183,14 +1350,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "lombardiainfesta.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1198,14 +1367,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "milanotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1214,14 +1385,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "monzatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1229,14 +1402,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "napolidavivere.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1245,28 +1420,32 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "padovatoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "indirizzo": 1,
         "individual_edition_confirmation": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "riminitoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1275,14 +1454,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "romapop.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1290,14 +1471,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "salernotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1306,14 +1489,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "torinotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1322,14 +1507,16 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "viterbotoday.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 1,
         "date": 1,
@@ -1338,11 +1525,11 @@
         "orario_testo": 1,
         "ricorrenza_testo": 1
       },
-      "next_automation": "find_independent_official_publisher_and_review_schema_first",
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "wwwservizi.regione.emilia-romagna.it",
       "records": 1,
-      "reuse_status": "not_approved",
-      "source_family": "unknown-source-requires-structure-and-rights-review",
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     }
   ],

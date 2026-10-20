@@ -38,7 +38,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-10-19",
+      "checked_date": "2026-10-20",
       "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
       "status": "schema_preview_only",
       "viability": "venue_inventory_missing_visit_days"
@@ -92,7 +92,7 @@
       "viability": "manual_schema_review_required"
     },
     "74600cc1-0adb-4ae3-8255-30556e03e932": {
-      "checked_date": "2026-10-18",
+      "checked_date": "2026-10-20",
       "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
       "status": "schema_preview_only",
       "viability": "historical_aggregate_not_venues"
@@ -188,7 +188,7 @@
       "viability": "manual_schema_review_required"
     },
     "eb032be3-efde-4282-8d8d-3d8a599ecae3": {
-      "checked_date": "2026-10-12",
+      "checked_date": "2026-10-20",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -218,7 +218,7 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-19",
+  "reference_date": "2026-10-20",
   "reports": [
     {
       "adapter_enabled": false,
@@ -243,17 +243,65 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "e53cf54c-8cab-4284-9619-74d078ae00ac",
+      "id": "eb032be3-efde-4282-8d8d-3d8a599ecae3",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 8650,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/dc946f5f-ad47-4cfd-b580-5c1480e015a2.csv",
+      "sample_bytes": 8404,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99fd13ac-b962-49d0-8d13-b3b5da1e7ca0.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Nogara",
+      "title": "Fiere e mercati - Comune di Sandrigo",
       "truncated": false
+    },
+    {
+      "adapter_enabled": false,
+      "events_confirmed": 0,
+      "field_hints": {
+        "municipality": [
+          "comune"
+        ],
+        "statistics_count": [
+          "mercati",
+          "attivazioni",
+          "cessazioni"
+        ],
+        "statistics_year": [
+          "anno"
+        ]
+      },
+      "fields": [
+        "comune",
+        "provincia",
+        "anno",
+        "mercati",
+        "totale",
+        "attivazioni",
+        "cessazioni",
+        "posteggi",
+        "alimentare_totale",
+        "alimentare_attivazioni",
+        "alimentare_cessazioni",
+        "nonalimentare_totale",
+        "nonalimentare_attivazioni",
+        "nonalimentare_cessazioni",
+        "produttori_totale",
+        "produttori_attivazioni",
+        "produttori_cessazioni"
+      ],
+      "format": "CSV",
+      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
+      "review_blockers": [
+        "explicit_market_name_missing"
+      ],
+      "sample_bytes": 65536,
+      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
+      "schema_viability": "historical_aggregate_not_venues",
+      "source_license_verified": false,
+      "status": "schema_preview_only",
+      "title": "Censimento dei mercati mensili",
+      "truncated": true
     },
     {
       "adapter_enabled": false,
@@ -326,19 +374,6 @@
       "status": "schema_preview_only",
       "title": "Dati sui Mercati Rionali",
       "truncated": false
-    },
-    {
-      "adapter_enabled": false,
-      "error": "HTTPError: HTTP Error 502: Bad Gateway",
-      "events_confirmed": 0,
-      "field_hints": {},
-      "fields": [],
-      "format": "CSV",
-      "id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
-      "sample_url": "https://dati.lazio.it/dataset/5cb467ed-a783-4507-a36a-c0a0f6a7d9a7/resource/97f6ae01-f57f-49e7-a713-349d8fce8160/download/oscomercatigiornalieri.csv",
-      "source_license_verified": false,
-      "status": "needs_review",
-      "title": "Censimento dei mercati giornalieri"
     }
   ],
   "schema": 1,

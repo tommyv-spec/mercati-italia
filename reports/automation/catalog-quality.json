@@ -5,15 +5,15 @@
   "market_confirmations_created": 0,
   "market_identities_deleted": 0,
   "metrics": {
-    "address_missing": 3429,
-    "coordinates_missing": 274,
-    "future_dates_missing": 1918,
-    "hours_missing": 10853,
-    "review_only_duplicate_groups": 755,
-    "review_only_potential_extra_rows": 765,
+    "address_missing": 3066,
+    "coordinates_missing": 306,
+    "future_dates_missing": 1949,
+    "hours_missing": 10590,
+    "review_only_duplicate_groups": 934,
+    "review_only_potential_extra_rows": 1009,
     "suspicious_city": 2,
-    "total": 13824,
-    "without_individual_verification": 13824
+    "total": 13856,
+    "without_individual_verification": 13856
   },
   "per_region": [
     {
@@ -39,55 +39,56 @@
     },
     {
       "region": "Campania",
-      "markets": 820,
+      "markets": 821,
       "hours_missing": 711,
       "address_missing": 257,
       "future_dates_missing": 71,
-      "coordinates_missing": 1
+      "coordinates_missing": 2
     },
     {
       "region": "Emilia-Romagna",
       "markets": 902,
-      "hours_missing": 584,
-      "address_missing": 168,
-      "future_dates_missing": 243,
+      "hours_missing": 575,
+      "address_missing": 164,
+      "future_dates_missing": 251,
       "coordinates_missing": 39
     },
     {
       "region": "Friuli Venezia Giulia",
-      "markets": 239,
-      "hours_missing": 97,
+      "markets": 242,
+      "hours_missing": 95,
       "address_missing": 16,
-      "future_dates_missing": 42
+      "future_dates_missing": 44,
+      "coordinates_missing": 3
     },
     {
       "region": "Lazio",
       "markets": 1079,
       "hours_missing": 944,
       "address_missing": 259,
-      "future_dates_missing": 198,
+      "future_dates_missing": 199,
       "coordinates_missing": 9
     },
     {
       "region": "Liguria",
       "markets": 385,
       "hours_missing": 314,
-      "future_dates_missing": 73,
-      "address_missing": 95
+      "future_dates_missing": 74,
+      "address_missing": 79
     },
     {
       "region": "Lombardia",
-      "markets": 3948,
-      "hours_missing": 2766,
-      "address_missing": 679,
-      "future_dates_missing": 535,
-      "coordinates_missing": 218
+      "markets": 3965,
+      "future_dates_missing": 540,
+      "hours_missing": 2519,
+      "address_missing": 421,
+      "coordinates_missing": 235
     },
     {
       "region": "Marche",
       "markets": 288,
-      "future_dates_missing": 48,
-      "hours_missing": 195,
+      "future_dates_missing": 51,
+      "hours_missing": 194,
       "address_missing": 83
     },
     {
@@ -100,16 +101,16 @@
     {
       "region": "Piemonte",
       "markets": 1332,
-      "hours_missing": 1186,
-      "address_missing": 404,
-      "future_dates_missing": 155
+      "hours_missing": 1185,
+      "future_dates_missing": 157,
+      "address_missing": 338
     },
     {
       "region": "Puglia",
       "markets": 483,
-      "hours_missing": 444,
+      "hours_missing": 443,
       "address_missing": 214,
-      "future_dates_missing": 42,
+      "future_dates_missing": 45,
       "coordinates_missing": 1
     },
     {
@@ -128,17 +129,19 @@
     },
     {
       "region": "Toscana",
-      "markets": 945,
-      "hours_missing": 788,
-      "address_missing": 183,
-      "future_dates_missing": 173
+      "markets": 949,
+      "hours_missing": 786,
+      "address_missing": 164,
+      "future_dates_missing": 175,
+      "coordinates_missing": 4
     },
     {
       "region": "Trentino-Alto Adige",
-      "markets": 216,
+      "markets": 223,
       "hours_missing": 171,
       "address_missing": 55,
-      "future_dates_missing": 26
+      "future_dates_missing": 28,
+      "coordinates_missing": 7
     },
     {
       "region": "Umbria",
@@ -153,7 +156,7 @@
       "markets": 54,
       "hours_missing": 52,
       "address_missing": 15,
-      "future_dates_missing": 6
+      "future_dates_missing": 8
     },
     {
       "region": "Veneto",
@@ -168,7 +171,7 @@
   "top_sources": [
     {
       "source": "happings.com",
-      "records": 9647
+      "records": 9679
     },
     {
       "source": "eventiesagre.it",
@@ -247,433 +250,867 @@
       ]
     },
     {
-      "region": "Veneto",
-      "city": "Breganze",
-      "address": "Piazza Mazzini",
+      "region": "Liguria",
+      "city": "Bogliasco",
+      "address": "Piazza 26 Aprile",
+      "weekday": 1,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-bogliasco-bogliasco-martedi",
+        "mercato-settimanale-di-bogliasco-bogliasco",
+        "mercato-settimanale-di-bogliasco-bogliasco-martedi"
+      ]
+    },
+    {
+      "region": "Liguria",
+      "city": "Dolcedo",
+      "address": "Piazza Don Minzoni",
+      "weekday": 2,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-dolcedo-dolcedo-mercoledi",
+        "mercato-settimanale-di-dolcedo-dolcedo",
+        "mercato-settimanale-di-dolcedo-dolcedo-mercoledi"
+      ]
+    },
+    {
+      "region": "Liguria",
+      "city": "Soldano",
+      "address": "Piazza Vecchia",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-soldano-soldano-venerdi",
+        "mercato-settimanale-di-soldano-soldano",
+        "mercato-settimanale-di-soldano-soldano-venerdi"
+      ]
+    },
+    {
+      "region": "Liguria",
+      "city": "Uscio",
+      "address": "Piazza resistenza",
+      "weekday": 2,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-uscio-uscio-mercoledi",
+        "mercato-settimanale-di-uscio-uscio",
+        "mercato-settimanale-di-uscio-uscio-mercoledi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Albavilla",
+      "address": "Via XXV Aprile",
+      "weekday": 1,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-albavilla-albavilla-martedi",
+        "mercato-settimanale-di-albavilla-albavilla",
+        "mercato-settimanale-di-albavilla-albavilla-martedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Albiolo",
+      "address": "Via Indipendenza",
+      "weekday": 3,
+      "records": 3,
+      "source_count": 2,
+      "examples": [
+        "mercato-settimanale-a-albiolo-albiolo-giovedi",
+        "mercato-settimanale-di-albiolo-albiolo",
+        "mercato-settimanale-di-albiolo-albiolo-giovedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Albizzate",
+      "address": "PIAZZALE SEFRO",
+      "weekday": 1,
+      "records": 3,
+      "source_count": 2,
+      "examples": [
+        "mercato-settimanale-a-albizzate-albizzate-martedi",
+        "mercato-settimanale-di-albizzate-albizzate",
+        "mercato-settimanale-di-albizzate-albizzate-martedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Arosio",
+      "address": "Piazza Chiesa",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-arosio-arosio-venerdi",
+        "mercato-settimanale-di-arosio-arosio",
+        "mercato-settimanale-di-arosio-arosio-venerdi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Artogne",
+      "address": "PIAZZA CADUTI DEL LAVORO",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-artogne-artogne-venerdi",
+        "mercato-settimanale-di-artogne-artogne",
+        "mercato-settimanale-di-artogne-artogne-venerdi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Bovezzo",
+      "address": "PIAZZALE DONATORI DI SANGUE",
+      "weekday": 0,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-bovezzo-bovezzo-lunedi",
+        "mercato-settimanale-di-bovezzo-bovezzo",
+        "mercato-settimanale-di-bovezzo-bovezzo-lunedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Bregnano",
+      "address": "Viale Lombardia",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-bregnano-bregnano-venerdi",
+        "mercato-settimanale-di-bregnano-bregnano",
+        "mercato-settimanale-di-bregnano-bregnano-venerdi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Brenna",
+      "address": "Piazza Don A. Macchi",
+      "weekday": 3,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-brenna-brenna-giovedi",
+        "mercato-settimanale-di-brenna-brenna",
+        "mercato-settimanale-di-brenna-brenna-giovedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Brunate",
+      "address": "Via Volta",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-brunate-brunate-venerdi",
+        "mercato-settimanale-di-brunate-brunate",
+        "mercato-settimanale-di-brunate-brunate-venerdi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Cabiate",
+      "address": "Via Fermi",
+      "weekday": 0,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-cabiate-cabiate-lunedi",
+        "mercato-settimanale-di-cabiate-cabiate",
+        "mercato-settimanale-di-cabiate-cabiate-lunedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Cadorago",
+      "address": "Via Papa Giovanni XXIII",
+      "weekday": 2,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-cadorago-cadorago-mercoledi",
+        "mercato-settimanale-di-cadorago-cadorago",
+        "mercato-settimanale-di-cadorago-cadorago-mercoledi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Cermenate",
+      "address": "Piazza Donatori del sangue",
+      "weekday": 1,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-cermenate-cermenate-martedi",
+        "mercato-settimanale-di-cermenate-cermenate",
+        "mercato-settimanale-di-cermenate-cermenate-martedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Corbetta",
+      "address": "PIAZZA I MAGGIO",
+      "weekday": 5,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-corbetta-corbetta-sabato",
+        "mercato-settimanale-di-corbetta-corbetta",
+        "mercato-settimanale-di-corbetta-corbetta-sabato"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Cormano",
+      "address": "VIA EUROPA",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-cormano-cormano-venerdi",
+        "mercato-settimanale-di-cormano-cormano",
+        "mercato-settimanale-di-cormano-cormano-venerdi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Cucciago",
+      "address": "Via XX Settembre",
+      "weekday": 2,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-cucciago-cucciago-mercoledi",
+        "mercato-settimanale-di-cucciago-cucciago",
+        "mercato-settimanale-di-cucciago-cucciago-mercoledi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Faloppio",
+      "address": "Largo Don Maiocchi",
+      "weekday": 1,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-faloppio-faloppio-martedi",
+        "mercato-settimanale-di-faloppio-faloppio",
+        "mercato-settimanale-di-faloppio-faloppio-martedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Fenegrò",
+      "address": "Via XXV Aprile",
+      "weekday": 5,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-fenegro-fenegro-sabato",
+        "mercato-settimanale-di-fenegro-fenegro",
+        "mercato-settimanale-di-fenegro-fenegro-sabato"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Gavardo",
+      "address": "PIAZZA ALDO MORO",
       "weekday": 2,
       "records": 3,
       "source_count": 2,
       "examples": [
-        "mercato-settimanale-a-breganze-breganze-mercoledi",
-        "mercato-settimanale-di-breganze-breganze",
-        "mercato-settimanale-di-breganze-breganze-mercoledi"
+        "mercato-settimanale-a-gavardo-gavardo-mercoledi",
+        "mercato-settimanale-di-gavardo-gavardo",
+        "mercato-settimanale-di-gavardo-gavardo-mercoledi"
       ]
     },
     {
-      "region": "Veneto",
-      "city": "Cartura",
+      "region": "Lombardia",
+      "city": "Grandate",
+      "address": "Via Unione",
+      "weekday": 1,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-grandate-grandate-martedi",
+        "mercato-settimanale-di-grandate-grandate",
+        "mercato-settimanale-di-grandate-grandate-martedi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Guanzate",
+      "address": "Via Marconi",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-guanzate-guanzate-venerdi",
+        "mercato-settimanale-di-guanzate-guanzate",
+        "mercato-settimanale-di-guanzate-guanzate-venerdi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Inverigo",
+      "address": "Via G. Cantore",
+      "weekday": 4,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-inverigo-inverigo-venerdi",
+        "mercato-settimanale-di-inverigo-inverigo",
+        "mercato-settimanale-di-inverigo-inverigo-venerdi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Mazzano",
+      "address": "VIALE DELLA RESISTENZA",
+      "weekday": 2,
+      "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-mazzano-mazzano-mercoledi",
+        "mercato-settimanale-di-mazzano-mazzano",
+        "mercato-settimanale-di-mazzano-mazzano-mercoledi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Moltrasio",
       "address": "Via Roma",
-      "weekday": 1,
+      "weekday": 4,
       "records": 3,
-      "source_count": 2,
+      "source_count": 1,
       "examples": [
-        "mercato-settimanale-a-cartura-cartura-martedi",
-        "mercato-settimanale-di-cartura-cartura",
-        "mercato-settimanale-di-cartura-cartura-martedi"
+        "mercato-settimanale-a-moltrasio-moltrasio-venerdi",
+        "mercato-settimanale-di-moltrasio-moltrasio",
+        "mercato-settimanale-di-moltrasio-moltrasio-venerdi"
       ]
     },
     {
-      "region": "Veneto",
-      "city": "Cittadella",
-      "address": "Via Garibaldi",
-      "weekday": 0,
-      "records": 3,
-      "source_count": 2,
-      "examples": [
-        "mercato-settimanale-a-cittadella-cittadella-lunedi",
-        "mercato-settimanale-di-cittadella-cittadella",
-        "mercato-settimanale-di-cittadella-cittadella-lunedi"
-      ]
-    },
-    {
-      "region": "Veneto",
-      "city": "Merlara",
-      "address": "Piazza Martiri Della Libertà",
-      "weekday": 1,
-      "records": 3,
-      "source_count": 2,
-      "examples": [
-        "mercato-settimanale-a-merlara-merlara-martedi",
-        "mercato-settimanale-di-merlara-merlara",
-        "mercato-settimanale-di-merlara-merlara-martedi"
-      ]
-    },
-    {
-      "region": "Veneto",
-      "city": "Orgiano",
-      "address": "Piazza Dell'alpino",
+      "region": "Lombardia",
+      "city": "Monno",
+      "address": "PIAZZA IV NOVEMBRE",
       "weekday": 3,
       "records": 3,
       "source_count": 2,
       "examples": [
-        "mercato-settimanale-a-orgiano-orgiano-giovedi",
-        "mercato-settimanale-di-orgiano-orgiano",
-        "mercato-settimanale-di-orgiano-orgiano-giovedi"
+        "mercato-settimanale-a-monno-monno-giovedi",
+        "mercato-settimanale-di-monno-monno",
+        "mercato-settimanale-di-monno-monno-giovedi"
       ]
     },
     {
-      "region": "Veneto",
-      "city": "Pontelongo",
-      "address": "Piazza Del Popolo",
+      "region": "Lombardia",
+      "city": "Novedrate",
+      "address": "VIA MARIANO",
       "weekday": 0,
       "records": 3,
-      "source_count": 2,
+      "source_count": 1,
       "examples": [
-        "mercato-settimanale-a-pontelongo-pontelongo-lunedi",
-        "mercato-settimanale-di-pontelongo-pontelongo",
-        "mercato-settimanale-di-pontelongo-pontelongo-lunedi"
+        "mercato-settimanale-a-novedrate-novedrate-lunedi",
+        "mercato-settimanale-di-novedrate-novedrate",
+        "mercato-settimanale-di-novedrate-novedrate-lunedi"
       ]
     },
     {
-      "region": "Veneto",
-      "city": "Sandrigo",
-      "address": "Piazza Vittorio Emanuele",
-      "weekday": 4,
-      "records": 3,
-      "source_count": 2,
-      "examples": [
-        "mercato-settimanale-a-sandrigo-sandrigo-venerdi",
-        "mercato-settimanale-di-sandrigo-sandrigo",
-        "mercato-settimanale-di-sandrigo-sandrigo-venerdi"
-      ]
-    },
-    {
-      "region": "Veneto",
-      "city": "Saonara",
-      "address": "Via Villatora",
-      "weekday": 5,
-      "records": 3,
-      "source_count": 2,
-      "examples": [
-        "mercato-settimanale-a-saonara-saonara-sabato",
-        "mercato-settimanale-di-saonara-saonara",
-        "mercato-settimanale-di-saonara-saonara-sabato"
-      ]
-    },
-    {
-      "region": "Veneto",
-      "city": "Susegana",
-      "address": "Piazza Martiri Della Libertà",
+      "region": "Lombardia",
+      "city": "Nuvolera",
+      "address": "VIALE ITALIA",
       "weekday": 2,
       "records": 3,
+      "source_count": 1,
+      "examples": [
+        "mercato-settimanale-a-nuvolera-nuvolera-mercoledi",
+        "mercato-settimanale-di-nuvolera-nuvolera",
+        "mercato-settimanale-di-nuvolera-nuvolera-mercoledi"
+      ]
+    },
+    {
+      "region": "Lombardia",
+      "city": "Plesio",
+      "address": "Frazione Calveseglio",
+      "weekday": 3,
+      "records": 3,
       "source_count": 2,
       "examples": [
-        "mercato-settimanale-di-centro-storico-di-collalto-collalto-mercoledi",
-        "mercato-settimanale-di-susegana-susegana",
-        "mercato-settimanale-di-susegana-susegana-mercoledi"
+        "mercato-settimanale-a-plesio-plesio-giovedi",
+        "mercato-settimanale-di-plesio-plesio",
+        "mercato-settimanale-di-plesio-plesio-giovedi"
       ]
     },
     {
-      "region": "Basilicata",
-      "city": "Francavilla In Sinni",
-      "address": "Piazza Mainieri",
+      "region": "Lombardia",
+      "city": "Porlezza",
+      "address": "Largo Lario Matteotti",
       "weekday": 5,
-      "records": 2,
+      "records": 3,
       "source_count": 1,
       "examples": [
-        "mercato-settimanale-di-francavilla-in-sinni-francavilla-in-sinni",
-        "mercato-settimanale-di-francavilla-in-sinni-francavilla-in-sinni-sabato"
+        "mercato-settimanale-a-porlezza-porlezza-sabato",
+        "mercato-settimanale-di-porlezza-porlezza",
+        "mercato-settimanale-di-porlezza-porlezza-sabato"
       ]
     },
     {
-      "region": "Basilicata",
-      "city": "Picerno",
-      "address": "Viale G. Albini",
-      "weekday": 3,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-picerno-picerno",
-        "mercato-settimanale-di-picerno-picerno-giovedi"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "Altomonte",
-      "address": "Piazza Cortese",
-      "weekday": 5,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-altomonte-altomonte",
-        "mercato-settimanale-di-altomonte-altomonte-sabato"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "Caraffa Di Catanzaro",
-      "address": "Piazza Maggiore Luigi Comi",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-caraffa-di-catanzaro-caraffa-di-catanzaro",
-        "mercato-settimanale-di-caraffa-di-catanzaro-caraffa-di-catanzaro-martedi"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "Cerva",
-      "address": "Piazza Della Vittoria",
-      "weekday": 4,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-cerva-cerva",
-        "mercato-settimanale-di-cerva-cerva-venerdi"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "Cirò Marina",
-      "address": "Via Petrarca",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-ciro-marina-ciro-marina",
-        "mercato-settimanale-di-ciro-marina-ciro-marina-martedi"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "Monterosso Calabro",
-      "address": "Via Roma",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-monterosso-calabro-monterosso-calabro",
-        "mercato-settimanale-di-monterosso-calabro-monterosso-calabro-martedi"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "Palermiti",
-      "address": "Via Francesco Spasari",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-palermiti-palermiti",
-        "mercato-settimanale-di-palermiti-palermiti-martedi"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "San Gregorio D'ippona",
-      "address": "Via Alcide De Gasperi",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-san-gregorio-d-ippona-san-gregorio-d-ippona",
-        "mercato-settimanale-di-san-gregorio-d-ippona-san-gregorio-d-ippona-martedi"
-      ]
-    },
-    {
-      "region": "Calabria",
-      "city": "Sant'onofrio",
-      "address": "Piazza Europa",
-      "weekday": 0,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-sant-onofrio-sant-onofrio",
-        "mercato-settimanale-di-sant-onofrio-sant-onofrio-lunedi"
-      ]
-    },
-    {
-      "region": "Campania",
-      "city": "Casalnuovo Di Napoli",
-      "address": "Viale Dei Ligustri",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-casalnuovo-di-napoli-casalnuovo-di-napoli",
-        "mercato-settimanale-di-casalnuovo-di-napoli-casalnuovo-di-napoli-martedi"
-      ]
-    },
-    {
-      "region": "Campania",
-      "city": "Castellabate",
-      "address": "Piazza Molo",
+      "region": "Lombardia",
+      "city": "Torno",
+      "address": "Piazza T. Bianchi",
       "weekday": 2,
-      "records": 2,
+      "records": 3,
       "source_count": 1,
       "examples": [
-        "mercato-settimanale-di-castellabate-castellabate",
-        "mercato-settimanale-di-castellabate-castellabate-mercoledi"
+        "mercato-settimanale-a-torno-torno-mercoledi",
+        "mercato-settimanale-di-torno-torno",
+        "mercato-settimanale-di-torno-torno-mercoledi"
       ]
     },
     {
-      "region": "Campania",
-      "city": "Gioi",
-      "address": "Via Luigi Salati",
-      "weekday": 3,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-gioi-gioi",
-        "mercato-settimanale-di-gioi-gioi-giovedi"
-      ]
-    },
-    {
-      "region": "Campania",
-      "city": "Montoro",
-      "address": "Piazza Campo Dei Greci",
-      "weekday": 4,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-montoro-montoro",
-        "mercato-settimanale-di-montoro-montoro-venerdi"
-      ]
-    },
-    {
-      "region": "Campania",
-      "city": "Pompei",
-      "address": "Via Aldo Moro",
-      "weekday": 4,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-pompei-pompei",
-        "mercato-settimanale-di-pompei-pompei-venerdi"
-      ]
-    },
-    {
-      "region": "Campania",
-      "city": "Portici",
-      "address": "Via Farina",
-      "weekday": 5,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-portici-portici",
-        "mercato-settimanale-di-portici-portici-sabato"
-      ]
-    },
-    {
-      "region": "Campania",
-      "city": "San Gregorio Magno",
-      "address": "Via Maria De Grazie",
+      "region": "Lombardia",
+      "city": "Valbrona",
+      "address": "Piazza Caduti",
       "weekday": 1,
-      "records": 2,
+      "records": 3,
       "source_count": 1,
       "examples": [
-        "mercato-settimanale-di-san-gregorio-magno-san-gregorio-magno",
-        "mercato-settimanale-di-san-gregorio-magno-san-gregorio-magno-martedi"
-      ]
-    },
-    {
-      "region": "Campania",
-      "city": "Senerchia",
-      "address": "Corso Garibaldi",
-      "weekday": 5,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-senerchia-senerchia",
-        "mercato-settimanale-di-senerchia-senerchia-sabato"
-      ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Alta Val Tidone",
-      "address": "Piazza Combattenti",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-nibbiano-alta-val-tidone",
-        "mercato-settimanale-di-nibbiano-alta-val-tidone-martedi"
-      ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Alta Val Tidone",
-      "address": "Via Xxv Aprile",
-      "weekday": 5,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-pecorara-alta-val-tidone",
-        "mercato-settimanale-di-pecorara-alta-val-tidone-sabato"
-      ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Alto Reno Terme",
-      "address": "Via Berzantina",
-      "weekday": 1,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-porretta-terme-alto-reno-terme",
-        "mercato-settimanale-di-porretta-terme-alto-reno-terme-martedi"
-      ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Canossa",
-      "address": "Piazza Giacomo Matteotti",
-      "weekday": 5,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-canossa-canossa",
-        "mercato-settimanale-di-canossa-canossa-sabato"
-      ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Castellarano",
-      "address": "Piazza Xx Luglio",
-      "weekday": 5,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-castellarano-castellarano",
-        "mercato-settimanale-di-castellarano-castellarano-sabato"
-      ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Cesenatico",
-      "address": "Via Milano",
-      "weekday": 4,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-cesenatico-cesenatico",
-        "mercato-settimanale-di-cesenatico-cesenatico-venerdi"
-      ]
-    },
-    {
-      "region": "Emilia-Romagna",
-      "city": "Fiscaglia",
-      "address": "Piazza Garibaldi",
-      "weekday": 0,
-      "records": 2,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-di-massa-fiscaglia-fiscaglia",
-        "mercato-settimanale-di-massa-fiscaglia-fiscaglia-lunedi"
+        "mercato-settimanale-a-valbrona-valbrona-martedi",
+        "mercato-settimanale-di-valbrona-valbrona",
+        "mercato-settimanale-di-valbrona-valbrona-martedi"
       ]
     }
   ],
   "potential_duplicates_are_not_confirmed": true,
+  "overlap_growth_review": {
+    "status": "compared_to_baseline_records",
+    "source_supported_revealed_extra_rows": 244,
+    "source_supported_revealed_groups": 184,
+    "examples": [
+      {
+        "region": "Emilia-Romagna",
+        "city": "Alfonsine",
+        "address": "Piazza della Resistenza",
+        "weekday": 0,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-alfonsine-alfonsine",
+          "mercato-settimanale-di-alfonsine-alfonsine-lunedi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Arenzano",
+        "address": "piazza Allende",
+        "weekday": 4,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-arenzano-arenzano",
+          "mercato-settimanale-di-arenzano-arenzano-venerdi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Bogliasco",
+        "address": "Piazza 26 Aprile",
+        "weekday": 1,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-bogliasco-bogliasco-martedi",
+          "mercato-settimanale-di-bogliasco-bogliasco",
+          "mercato-settimanale-di-bogliasco-bogliasco-martedi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Camogli",
+        "address": "Via XX Settembre",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-camogli-camogli",
+          "mercato-settimanale-di-camogli-camogli-mercoledi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Dolcedo",
+        "address": "Piazza Don Minzoni",
+        "weekday": 2,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-dolcedo-dolcedo-mercoledi",
+          "mercato-settimanale-di-dolcedo-dolcedo",
+          "mercato-settimanale-di-dolcedo-dolcedo-mercoledi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Isolabona",
+        "address": "Via Roma piazza S. Lucia",
+        "weekday": 6,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-isolabona-isolabona-domenica",
+          "mercato-settimanale-di-isolabona-isolabona-domenica"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Lavagna",
+        "address": "Piazza Vittorio Veneto",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-lavagna-lavagna-giovedi",
+          "mercato-settimanale-di-lavagna-lavagna-giovedi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Perinaldo",
+        "address": "Piazza Santa Croce",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-perinaldo-perinaldo-mercoledi",
+          "mercato-settimanale-di-perinaldo-perinaldo-mercoledi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Rapallo",
+        "address": "Lungomare, Rotonda Marconi, Giardini G.Verdi",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-rapallo-rapallo",
+          "mercato-settimanale-di-rapallo-rapallo-giovedi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Soldano",
+        "address": "Piazza Vecchia",
+        "weekday": 4,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-soldano-soldano-venerdi",
+          "mercato-settimanale-di-soldano-soldano",
+          "mercato-settimanale-di-soldano-soldano-venerdi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Uscio",
+        "address": "Piazza resistenza",
+        "weekday": 2,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-uscio-uscio-mercoledi",
+          "mercato-settimanale-di-uscio-uscio",
+          "mercato-settimanale-di-uscio-uscio-mercoledi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Vallebona",
+        "address": "Piazza Libertà",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-vallebona-vallebona-martedi",
+          "mercato-settimanale-di-vallebona-vallebona-martedi"
+        ]
+      },
+      {
+        "region": "Liguria",
+        "city": "Zoagli",
+        "address": "Piazza XXVII Dicembre",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-zoagli-zoagli-martedi",
+          "mercato-settimanale-di-zoagli-zoagli-martedi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Albavilla",
+        "address": "Via XXV Aprile",
+        "weekday": 1,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-albavilla-albavilla-martedi",
+          "mercato-settimanale-di-albavilla-albavilla",
+          "mercato-settimanale-di-albavilla-albavilla-martedi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Albiolo",
+        "address": "Via Indipendenza",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-albiolo-albiolo-giovedi",
+          "mercato-settimanale-di-albiolo-albiolo",
+          "mercato-settimanale-di-albiolo-albiolo-giovedi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Albizzate",
+        "address": "PIAZZALE SEFRO",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-albizzate-albizzate-martedi",
+          "mercato-settimanale-di-albizzate-albizzate",
+          "mercato-settimanale-di-albizzate-albizzate-martedi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Angera",
+        "address": "PIAZZA GIUSEPPE GARIBALDI",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-angera-angera-giovedi",
+          "mercato-settimanale-di-angera-angera"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Arcisate",
+        "address": "PIAZZA DELLA REPUBBLICA",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-arcisate-arcisate-giovedi",
+          "mercato-settimanale-di-arcisate-arcisate"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Argegno",
+        "address": "PIAZZA, 1",
+        "weekday": 0,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-argegno-argegno-lunedi",
+          "mercato-settimanale-di-argegno-argegno"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Arluno",
+        "address": "VIA DEPORTATI DI MATHAUSEN, 0",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-arluno-arluno-mercoledi",
+          "mercato-settimanale-di-arluno-arluno"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Arosio",
+        "address": "Piazza Chiesa",
+        "weekday": 4,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-arosio-arosio-venerdi",
+          "mercato-settimanale-di-arosio-arosio",
+          "mercato-settimanale-di-arosio-arosio-venerdi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Artogne",
+        "address": "PIAZZA CADUTI DEL LAVORO",
+        "weekday": 4,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-artogne-artogne-venerdi",
+          "mercato-settimanale-di-artogne-artogne",
+          "mercato-settimanale-di-artogne-artogne-venerdi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Asso",
+        "address": "PIAZZA MERCATO, 1; PIAZZA MONSIGNORE RATTI",
+        "weekday": 5,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-asso-asso-sabato",
+          "mercato-settimanale-di-asso-asso"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Basiano",
+        "address": "VIA MICHELANGELO BUONARROTI",
+        "weekday": 5,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-basiano-basiano-sabato",
+          "mercato-settimanale-di-basiano-basiano"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Bellagio",
+        "address": "Via Valassina",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-bellagio-bellagio",
+          "mercato-settimanale-di-bellagio-bellagio-mercoledi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Besano",
+        "address": "PIAZZALE DELLA LIBERTÀ",
+        "weekday": 4,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-besano-besano-venerdi",
+          "mercato-settimanale-di-besano-besano"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Besnate",
+        "address": "VIA MAURI, SNC",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-besnate-besnate-mercoledi",
+          "mercato-settimanale-di-besnate-besnate"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Besozzo",
+        "address": "VIA DEI MILLE; VIA ROMA; VIA DON FILIPPO MALVESTITI; VIA MICHELINO DA BESOZZO; VIA R.BERTOLOTTI; VIA CESARE BATTISTI",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-besozzo-besozzo-giovedi",
+          "mercato-settimanale-di-besozzo-besozzo"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Binago",
+        "address": "VIA SANTA MARIA, 0",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-binago-binago-giovedi",
+          "mercato-settimanale-di-binago-binago"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Bovezzo",
+        "address": "PIAZZALE DONATORI DI SANGUE",
+        "weekday": 0,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-bovezzo-bovezzo-lunedi",
+          "mercato-settimanale-di-bovezzo-bovezzo",
+          "mercato-settimanale-di-bovezzo-bovezzo-lunedi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Bozzolo",
+        "address": "PIAZZA EUROPA",
+        "weekday": 4,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-bozzolo-bozzolo-venerdi",
+          "mercato-settimanale-di-bozzolo-bozzolo"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Brebbia",
+        "address": "DON GIOVANNI BOSCO",
+        "weekday": 5,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-a-brebbia-brebbia-sabato",
+          "mercato-settimanale-di-brebbia-brebbia"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Bregnano",
+        "address": "Viale Lombardia",
+        "weekday": 4,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-bregnano-bregnano-venerdi",
+          "mercato-settimanale-di-bregnano-bregnano",
+          "mercato-settimanale-di-bregnano-bregnano-venerdi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Brenna",
+        "address": "Piazza Don A. Macchi",
+        "weekday": 3,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-brenna-brenna-giovedi",
+          "mercato-settimanale-di-brenna-brenna",
+          "mercato-settimanale-di-brenna-brenna-giovedi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Brunate",
+        "address": "Via Volta",
+        "weekday": 4,
+        "revealed_extra_rows": 2,
+        "retained_ids": [
+          "mercato-settimanale-a-brunate-brunate-venerdi",
+          "mercato-settimanale-di-brunate-brunate",
+          "mercato-settimanale-di-brunate-brunate-venerdi"
+        ]
+      }
+    ],
+    "baseline_records": 13824,
+    "baseline_potential_extra_rows": 765,
+    "positive_group_growth": 244,
+    "unexplained_group_growth": 0
+  },
   "baseline_delta": {
-    "total": 0,
-    "hours_missing": 0,
-    "address_missing": 0,
-    "coordinates_missing": 0,
-    "future_dates_missing": 1,
+    "total": 32,
+    "hours_missing": -263,
+    "address_missing": -363,
+    "coordinates_missing": 32,
+    "future_dates_missing": 31,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
-    "review_only_potential_extra_rows": 0
+    "review_only_potential_extra_rows": 244
   },
   "quality_regressions": [],
   "quality_release_safe": true

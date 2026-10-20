@@ -3,125 +3,131 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **13824**
+- ID controllati e conservati: **13856**
 - Etichette di fonte: **87**
-- Casi nel lotto di lavoro del giorno: **441**
+- Casi nel lotto di lavoro del giorno: **461**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **13735**
-- date: **1918**
-- indirizzo: **5924**
-- individual_edition_confirmation: **13824**
-- orario_testo: **10853**
-- ricorrenza_testo: **934**
+- coordinates: **13767**
+- date: **1949**
+- indirizzo: **5535**
+- individual_edition_confirmation: **13856**
+- orario_testo: **10590**
+- ricorrenza_testo: **960**
 
 ## Origini ordinate per numero di schede
 
 | Origine | Schede | Orari | Sedi | Trattamento |
 |---|---:|---:|---:|---|
-| happings.com | 9647 | 9483 | 5311 | happings-weekly-or-detail |
-| eventiesagre.it | 2197 | 369 | 489 | eventiesagre-event-index |
+| happings.com | 9679 | 9238 | 4926 | happings-weekly-or-detail |
+| eventiesagre.it | 2197 | 369 | 485 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 3 | lombardia-mercap |
-| cosedicasa.com | 432 | 431 | 6 | cosedicasa-editorial-calendar |
+| cosedicasa.com | 432 | 422 | 6 | cosedicasa-editorial-calendar |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
-| dati.comune.roma.it | 70 | 70 | 0 | unknown-source-requires-structure-and-rights-review |
-| Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 9 | 0 | unknown-source-requires-structure-and-rights-review |
-| cosafareafirenze.it | 22 | 4 | 0 | unknown-source-requires-structure-and-rights-review |
-| trentino.com | 9 | 1 | 9 | unknown-source-requires-structure-and-rights-review |
-| emiliaromagnaturismo.it | 8 | 8 | 4 | unknown-source-requires-structure-and-rights-review |
-| eventi.bergamo.it | 8 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| umbriaeventi.com | 8 | 8 | 8 | unknown-source-requires-structure-and-rights-review |
-| algherohospitality.it | 7 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_romatoday.it | 7 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| genovatoday.it | 7 | 7 | 5 | unknown-source-requires-structure-and-rights-review |
-| solosagre.it | 7 | 4 | 0 | unknown-source-requires-structure-and-rights-review |
-| romatoday.it | 6 | 6 | 4 | unknown-source-requires-structure-and-rights-review |
-| sagretorino.it | 6 | 6 | 6 | unknown-source-requires-structure-and-rights-review |
-| Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata) | 5 | 5 | 0 | unknown-source-requires-structure-and-rights-review |
-| milanopocket.it | 5 | 5 | 4 | unknown-source-requires-structure-and-rights-review |
-| sagreumbre.it | 5 | 5 | 0 | unknown-source-requires-structure-and-rights-review |
-| Comune di Firenze - FeelFlorence (CC BY 4.0) | 4 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| firenzetoday.it | 4 | 4 | 4 | unknown-source-requires-structure-and-rights-review |
-| modenatoday.it | 4 | 4 | 3 | unknown-source-requires-structure-and-rights-review |
-| sagrefvg.it | 4 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| bolognatoday.it | 3 | 3 | 2 | unknown-source-requires-structure-and-rights-review |
-| citynews_riminitoday.it | 3 | 1 | 2 | unknown-source-requires-structure-and-rights-review |
-| enjoysicilia.it | 3 | 3 | 3 | unknown-source-requires-structure-and-rights-review |
-| novaratoday.it | 3 | 3 | 1 | unknown-source-requires-structure-and-rights-review |
-| palermotoday.it | 3 | 3 | 2 | unknown-source-requires-structure-and-rights-review |
-| ravennatoday.it | 3 | 3 | 2 | unknown-source-requires-structure-and-rights-review |
-| sagretoscane.com | 3 | 2 | 0 | unknown-source-requires-structure-and-rights-review |
-| suedtirol.info | 3 | 3 | 3 | unknown-source-requires-structure-and-rights-review |
-| veneziatoday.it | 3 | 3 | 2 | unknown-source-requires-structure-and-rights-review |
-| vicenzatoday.it | 3 | 3 | 0 | unknown-source-requires-structure-and-rights-review |
-| Comune di Corciano, open data CC BY 4.0 (licenza dichiarata) | 2 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| assosagre.it | 2 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| bresciatoday.it | 2 | 2 | 1 | unknown-source-requires-structure-and-rights-review |
-| brindisireport.it | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| cittadellaspezia.com | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| citynews_firenzetoday.it | 2 | 2 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_frosinonetoday.it | 2 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_genovatoday.it | 2 | 2 | 1 | unknown-source-requires-structure-and-rights-review |
-| citynews_veneziatoday.it | 2 | 2 | 0 | unknown-source-requires-structure-and-rights-review |
-| eventiintoscana.it | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| ferrarainfo.com | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| lazioinfesta.com | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| paradisola.it | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| pugliainfesta.it | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| sagreinromagna.it | 2 | 2 | 2 | unknown-source-requires-structure-and-rights-review |
-| terredipisa.it | 2 | 0 | 2 | unknown-source-requires-structure-and-rights-review |
-| trevisotoday.it | 2 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| varesenews.it | 2 | 2 | 0 | unknown-source-requires-structure-and-rights-review |
-| arezzonotizie.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| baritoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| casertanews.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| cesenatoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| chietitoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| citynews_baritoday.it | 1 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_bresciatoday.it | 1 | 0 | 1 | unknown-source-requires-structure-and-rights-review |
-| citynews_cagliaritoday.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_cataniatoday.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_ferraratoday.it | 1 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_forlitoday.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_modenatoday.it | 1 | 0 | 1 | unknown-source-requires-structure-and-rights-review |
-| citynews_monzatoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| citynews_parmatoday.it | 1 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_torinotoday.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_trevisotoday.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| citynews_vicenzatoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| citynews_viterbotoday.it | 1 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| eventiinsardegna.it | 1 | 0 | 0 | unknown-source-requires-structure-and-rights-review |
-| ferraratoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| forlitoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| frosinonetoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| leccotoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| lombardiainfesta.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| milanotoday.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| monzatoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| napolidavivere.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| padovatoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| riminitoday.it | 1 | 0 | 1 | unknown-source-requires-structure-and-rights-review |
-| romapop.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| salernotoday.it | 1 | 1 | 0 | unknown-source-requires-structure-and-rights-review |
-| torinotoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| viterbotoday.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
-| wwwservizi.regione.emilia-romagna.it | 1 | 1 | 1 | unknown-source-requires-structure-and-rights-review |
+| dati.comune.roma.it | 70 | 70 | 0 | source-family-not-resolved-by-this-worklist |
+| Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| cosafareafirenze.it | 22 | 4 | 0 | source-family-not-resolved-by-this-worklist |
+| trentino.com | 9 | 1 | 9 | source-family-not-resolved-by-this-worklist |
+| emiliaromagnaturismo.it | 8 | 8 | 4 | source-family-not-resolved-by-this-worklist |
+| eventi.bergamo.it | 8 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| umbriaeventi.com | 8 | 8 | 8 | source-family-not-resolved-by-this-worklist |
+| algherohospitality.it | 7 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_romatoday.it | 7 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| genovatoday.it | 7 | 7 | 5 | source-family-not-resolved-by-this-worklist |
+| solosagre.it | 7 | 4 | 0 | source-family-not-resolved-by-this-worklist |
+| romatoday.it | 6 | 6 | 4 | source-family-not-resolved-by-this-worklist |
+| sagretorino.it | 6 | 6 | 6 | source-family-not-resolved-by-this-worklist |
+| Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata) | 5 | 5 | 0 | source-family-not-resolved-by-this-worklist |
+| milanopocket.it | 5 | 5 | 4 | source-family-not-resolved-by-this-worklist |
+| sagreumbre.it | 5 | 5 | 0 | source-family-not-resolved-by-this-worklist |
+| Comune di Firenze - FeelFlorence (CC BY 4.0) | 4 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| firenzetoday.it | 4 | 4 | 4 | source-family-not-resolved-by-this-worklist |
+| modenatoday.it | 4 | 4 | 3 | source-family-not-resolved-by-this-worklist |
+| sagrefvg.it | 4 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| bolognatoday.it | 3 | 3 | 2 | source-family-not-resolved-by-this-worklist |
+| citynews_riminitoday.it | 3 | 1 | 2 | source-family-not-resolved-by-this-worklist |
+| enjoysicilia.it | 3 | 3 | 3 | source-family-not-resolved-by-this-worklist |
+| novaratoday.it | 3 | 3 | 1 | source-family-not-resolved-by-this-worklist |
+| palermotoday.it | 3 | 3 | 2 | source-family-not-resolved-by-this-worklist |
+| ravennatoday.it | 3 | 3 | 2 | source-family-not-resolved-by-this-worklist |
+| sagretoscane.com | 3 | 2 | 0 | source-family-not-resolved-by-this-worklist |
+| suedtirol.info | 3 | 3 | 3 | source-family-not-resolved-by-this-worklist |
+| veneziatoday.it | 3 | 3 | 2 | source-family-not-resolved-by-this-worklist |
+| vicenzatoday.it | 3 | 3 | 0 | source-family-not-resolved-by-this-worklist |
+| Comune di Corciano, open data CC BY 4.0 (licenza dichiarata) | 2 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| assosagre.it | 2 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| bresciatoday.it | 2 | 2 | 1 | source-family-not-resolved-by-this-worklist |
+| brindisireport.it | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| cittadellaspezia.com | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| citynews_firenzetoday.it | 2 | 2 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_frosinonetoday.it | 2 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_genovatoday.it | 2 | 2 | 1 | source-family-not-resolved-by-this-worklist |
+| citynews_veneziatoday.it | 2 | 2 | 0 | source-family-not-resolved-by-this-worklist |
+| eventiintoscana.it | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| ferrarainfo.com | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| lazioinfesta.com | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| paradisola.it | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| pugliainfesta.it | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| sagreinromagna.it | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
+| terredipisa.it | 2 | 0 | 2 | source-family-not-resolved-by-this-worklist |
+| trevisotoday.it | 2 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| varesenews.it | 2 | 2 | 0 | source-family-not-resolved-by-this-worklist |
+| arezzonotizie.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| baritoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| casertanews.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| cesenatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| chietitoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| citynews_baritoday.it | 1 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_bresciatoday.it | 1 | 0 | 1 | source-family-not-resolved-by-this-worklist |
+| citynews_cagliaritoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_cataniatoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_ferraratoday.it | 1 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_forlitoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_modenatoday.it | 1 | 0 | 1 | source-family-not-resolved-by-this-worklist |
+| citynews_monzatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| citynews_parmatoday.it | 1 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_torinotoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_trevisotoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| citynews_vicenzatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| citynews_viterbotoday.it | 1 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| eventiinsardegna.it | 1 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| ferraratoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| forlitoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| frosinonetoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| leccotoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| lombardiainfesta.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| milanotoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| monzatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| napolidavivere.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| padovatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| riminitoday.it | 1 | 0 | 1 | source-family-not-resolved-by-this-worklist |
+| romapop.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| salernotoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
+| torinotoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| viterbotoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
+| wwwservizi.regione.emilia-romagna.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 
 ## Riscontri ufficiali per singola scheda
 
-- city_weekday_only_unconfirmed_venue: 312
+- city_weekday_only_unconfirmed_venue: 85
 - coordinates_disagree: 13
 - exact_field_evidence_candidates: 0
-- many_market_places_on_same_city_day: 15
+- many_market_places_on_same_city_day: 14
 - multiple_official_venues_on_same_street_day: 1
-- no_usable_source_match: 12594
-- review_only_field_candidates: 314
+- no_usable_source_match: 12630
+- review_only_field_candidates: 87
 - same_source_id: 789
-- unique_city_province_street_weekday: 129
+- unique_city_province_street_weekday: 352
+
+## Stato operativo Happings
+
+Il registro del motore autorizza il recupero con l'adattatore degli elenchi settimanali, nell'ambito DEV.
+Stato letto: `project_owner_authorized`; riferimento: `backend/data/happings-rights-review.json`.
+Questo report descrive l'autorizzazione esistente e non abilita raccolte o modifiche.
 
 La corrispondenza per solo Comune e giorno identifica
 una possibile pista, NON la prova che la sede sia la stessa.

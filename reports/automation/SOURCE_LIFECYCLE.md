@@ -12,8 +12,8 @@ La data di lettura non prova che un mercato abbia aperto oggi.
 | Fonte | Stato | ID fonte fuori catalogo (non nuovi mercati) | Già trattenuti dal controllo sovrapposizioni | Residui senza esito del filtro | Proposte in staging | Collisioni da valutare | Fatti cambiati | ID non più visti (non chiusi) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | corciano | sola verifica, non apertura confermata | 2 | 2 | 0 | 0 | 0 | 0 | 0 |
-| firenze | sola verifica, non apertura confermata | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| lombardia | sola verifica, non apertura confermata | 233 | 233 | 0 | 0 | 0 | 0 | 0 |
+| firenze | sola verifica, non apertura confermata | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
+| lombardia | sola verifica, non apertura confermata | 233 | 233 | 0 | 0 | 0 | 1360 | 0 |
 | milano | sola verifica, non apertura confermata | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ## Aggiunta di nuove fonti (senza nuovi script per Comune)

@@ -12,8 +12,6 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 - Campi città evidentemente malformati protetti nella UI: **2**.
 - Eventi o verifiche dichiarati confermati: **0**.
 
-Riferimento: candidato reale `39465324614`, ancora non pubblicato. La crescita rispetto al precedente report è stata confrontata integralmente: 258 nuove coppie, tutte spiegate da recuperi con ricevute di campo valide. Prova: [review della crescita](display-group-growth-review-39465324614.json). Nessuna soglia MAIN modificata.
-
 ## Distribuzione
 
 | Regione | Gruppi supportati | Pulsanti ripetuti evitati |

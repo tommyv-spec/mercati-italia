@@ -4,21 +4,782 @@
   "examples": {
     "confirmation_without_evidence": [],
     "future_source_timestamp": [],
-    "stale_projected": [],
-    "unknown_origin": []
+    "stale_projected": [
+      "mercato-settimanale-di-acciano-acciano",
+      "mercato-settimanale-di-acciano-acciano-sabato",
+      "mercato-settimanale-a-aielli-aielli-lunedi",
+      "mercato-settimanale-di-aielli-aielli",
+      "mercato-settimanale-di-alanno-alanno",
+      "mercato-settimanale-di-alanno-alanno-mercoledi",
+      "mercato-settimanale-di-alba-adriatica-alba-adriatica",
+      "mercato-settimanale-di-alba-adriatica-alba-adriatica-lunedi",
+      "mercato-settimanale-a-alfedena-alfedena-martedi",
+      "mercato-settimanale-di-alfedena-alfedena",
+      "mercato-settimanale-di-alfedena-alfedena-martedi",
+      "mercato-settimanale-di-alfedena-alfedena-venerdi",
+      "mercato-settimanale-di-ancarano-ancarano",
+      "mercato-settimanale-di-ancarano-ancarano-domenica",
+      "mercato-settimanale-a-archi-archi-domenica",
+      "mercato-settimanale-di-archi-archi",
+      "mercato-settimanale-di-arsita-arsita",
+      "mercato-settimanale-di-arsita-arsita-giovedi",
+      "mercato-settimanale-a-atelena-atelena-mercoledi",
+      "mercato-settimanale-di-atelena-atelena"
+    ],
+    "unknown_origin": [
+      "mercatino-di-natale-a-massa-d-albe-massa-d-albe",
+      "mercato-settimanale-di-acciano-acciano",
+      "mercato-settimanale-di-acciano-acciano-sabato",
+      "mercato-settimanale-a-aielli-aielli-lunedi",
+      "mercato-settimanale-di-aielli-aielli",
+      "mercato-settimanale-di-alanno-alanno",
+      "mercato-settimanale-di-alanno-alanno-mercoledi",
+      "curiosando-alba-adriatica",
+      "mercato-settimanale-di-alba-adriatica-alba-adriatica",
+      "mercato-settimanale-di-alba-adriatica-alba-adriatica-lunedi",
+      "mercato-settimanale-a-alfedena-alfedena-martedi",
+      "mercato-settimanale-di-alfedena-alfedena",
+      "mercato-settimanale-di-alfedena-alfedena-martedi",
+      "mercato-settimanale-di-alfedena-alfedena-venerdi",
+      "mercato-settimanale-di-ancarano-ancarano",
+      "mercato-settimanale-di-ancarano-ancarano-domenica",
+      "mercato-settimanale-a-archi-archi-domenica",
+      "mercato-settimanale-di-archi-archi",
+      "mercato-settimanale-di-arsita-arsita",
+      "mercato-settimanale-di-arsita-arsita-giovedi"
+    ]
+  },
+  "field_evidence": {
+    "date": "2026-10-20",
+    "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
+    "metrics": {
+      "indirizzo:mancante": 3066,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 609,
+      "indirizzo:riscontrato_fonte_recente": 1374,
+      "indirizzo:riscontro_da_aggiornare": 47,
+      "indirizzo:senza_riscontro_documentato": 8760,
+      "markets": 13856,
+      "markets_with_all_three_fields_source_supported": 1009,
+      "markets_with_recent_field_evidence": 1518,
+      "orario_testo:mancante": 10590,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 32,
+      "orario_testo:riscontrato_fonte_recente": 1155,
+      "orario_testo:riscontro_da_aggiornare": 136,
+      "orario_testo:senza_riscontro_documentato": 1943,
+      "ricorrenza_testo:mancante": 960,
+      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 583,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1359,
+      "ricorrenza_testo:riscontro_da_aggiornare": 19,
+      "ricorrenza_testo:senza_riscontro_documentato": 10935
+    },
+    "publishers": [
+      {
+        "indirizzo:riscontro_da_aggiornare": 39,
+        "markets": 39,
+        "orario_testo:riscontro_da_aggiornare": 39,
+        "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata",
+        "ricorrenza_testo:senza_riscontro_documentato": 39
+      },
+      {
+        "indirizzo:riscontrato_fonte_recente": 2,
+        "markets": 2,
+        "markets_with_recent_field_evidence": 2,
+        "orario_testo:riscontro_da_aggiornare": 2,
+        "publisher": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
+        "ricorrenza_testo:riscontro_da_aggiornare": 2
+      },
+      {
+        "indirizzo:riscontro_da_aggiornare": 4,
+        "markets": 4,
+        "orario_testo:riscontro_da_aggiornare": 4,
+        "publisher": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+        "ricorrenza_testo:riscontro_da_aggiornare": 4
+      },
+      {
+        "indirizzo:mancante": 10,
+        "indirizzo:senza_riscontro_documentato": 75,
+        "markets": 85,
+        "orario_testo:riscontro_da_aggiornare": 85,
+        "publisher": "Comune di Milano - Open Data (CC BY 4.0)",
+        "ricorrenza_testo:riscontro_da_aggiornare": 9,
+        "ricorrenza_testo:senza_riscontro_documentato": 76
+      },
+      {
+        "indirizzo:mancante": 1,
+        "indirizzo:riscontrato_fonte_recente": 1126,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1128,
+        "markets_with_all_three_fields_source_supported": 786,
+        "markets_with_recent_field_evidence": 1127,
+        "orario_testo:mancante": 342,
+        "orario_testo:riscontrato_fonte_recente": 786,
+        "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
+        "ricorrenza_testo:riscontrato_fonte_recente": 1127,
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 5,
+        "markets": 5,
+        "orario_testo:mancante": 5,
+        "publisher": "Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata)",
+        "ricorrenza_testo:senza_riscontro_documentato": 5
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 7,
+        "markets": 7,
+        "orario_testo:mancante": 1,
+        "orario_testo:senza_riscontro_documentato": 6,
+        "publisher": "algherohospitality.it",
+        "ricorrenza_testo:mancante": 1,
+        "ricorrenza_testo:senza_riscontro_documentato": 6
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "arezzonotizie.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 2,
+        "orario_testo:senza_riscontro_documentato": 2,
+        "publisher": "assosagre.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "baritoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 2,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "bolognatoday.it",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:mancante": 1,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "bresciatoday.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "brindisireport.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "casertanews.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "cesenatoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "chietitoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "cittadellaspezia.com",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "citynews_baritoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "citynews_bresciatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "citynews_cagliaritoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "citynews_cataniatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "citynews_ferraratoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "citynews_firenzetoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 2
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "citynews_forlitoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 2,
+        "orario_testo:senza_riscontro_documentato": 2,
+        "publisher": "citynews_frosinonetoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "citynews_genovatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "citynews_modenatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "citynews_monzatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "citynews_parmatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:mancante": 2,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 3,
+        "orario_testo:mancante": 1,
+        "orario_testo:senza_riscontro_documentato": 2,
+        "publisher": "citynews_riminitoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 3
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 7,
+        "markets": 7,
+        "orario_testo:senza_riscontro_documentato": 7,
+        "publisher": "citynews_romatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 7
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "citynews_torinotoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "citynews_trevisotoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "citynews_veneziatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "citynews_vicenzatoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "citynews_viterbotoday.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 22,
+        "markets": 22,
+        "orario_testo:mancante": 4,
+        "orario_testo:senza_riscontro_documentato": 18,
+        "publisher": "cosafareafirenze.it",
+        "ricorrenza_testo:mancante": 19,
+        "ricorrenza_testo:senza_riscontro_documentato": 3
+      },
+      {
+        "indirizzo:riscontrato_fonte_recente": 10,
+        "indirizzo:riscontro_da_aggiornare": 4,
+        "indirizzo:senza_riscontro_documentato": 418,
+        "markets": 432,
+        "markets_with_recent_field_evidence": 10,
+        "orario_testo:mancante": 422,
+        "orario_testo:riscontrato_fonte_recente": 3,
+        "orario_testo:riscontro_da_aggiornare": 6,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "cosedicasa.com",
+        "ricorrenza_testo:senza_riscontro_documentato": 432
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 70,
+        "markets": 70,
+        "orario_testo:mancante": 70,
+        "publisher": "dati.comune.roma.it",
+        "ricorrenza_testo:mancante": 70
+      },
+      {
+        "indirizzo:mancante": 4,
+        "indirizzo:senza_riscontro_documentato": 4,
+        "markets": 8,
+        "orario_testo:mancante": 8,
+        "publisher": "emiliaromagnaturismo.it",
+        "ricorrenza_testo:mancante": 8
+      },
+      {
+        "indirizzo:mancante": 3,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "enjoysicilia.it",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 8,
+        "markets": 8,
+        "orario_testo:mancante": 1,
+        "orario_testo:senza_riscontro_documentato": 7,
+        "publisher": "eventi.bergamo.it",
+        "ricorrenza_testo:mancante": 8
+      },
+      {
+        "indirizzo:mancante": 441,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 14,
+        "indirizzo:riscontrato_fonte_recente": 5,
+        "indirizzo:senza_riscontro_documentato": 1737,
+        "markets": 2197,
+        "markets_with_recent_field_evidence": 5,
+        "orario_testo:mancante": 369,
+        "orario_testo:senza_riscontro_documentato": 1828,
+        "publisher": "eventiesagre.it",
+        "ricorrenza_testo:mancante": 712,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 14,
+        "ricorrenza_testo:riscontrato_fonte_recente": 1,
+        "ricorrenza_testo:riscontro_da_aggiornare": 4,
+        "ricorrenza_testo:senza_riscontro_documentato": 1466
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "eventiinsardegna.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "eventiintoscana.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "ferrarainfo.com",
+        "ricorrenza_testo:senza_riscontro_documentato": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "ferraratoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 4,
+        "markets": 4,
+        "orario_testo:mancante": 4,
+        "publisher": "firenzetoday.it",
+        "ricorrenza_testo:mancante": 4
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "forlitoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "frosinonetoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 5,
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 7,
+        "orario_testo:mancante": 7,
+        "publisher": "genovatoday.it",
+        "ricorrenza_testo:mancante": 7
+      },
+      {
+        "indirizzo:mancante": 2509,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 595,
+        "indirizzo:riscontrato_fonte_recente": 231,
+        "indirizzo:senza_riscontro_documentato": 6344,
+        "markets": 9679,
+        "markets_with_all_three_fields_source_supported": 223,
+        "markets_with_recent_field_evidence": 374,
+        "orario_testo:mancante": 9238,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 32,
+        "orario_testo:riscontrato_fonte_recente": 366,
+        "orario_testo:senza_riscontro_documentato": 43,
+        "publisher": "happings.com",
+        "ricorrenza_testo:mancante": 26,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 569,
+        "ricorrenza_testo:riscontrato_fonte_recente": 231,
+        "ricorrenza_testo:senza_riscontro_documentato": 8853
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "lazioinfesta.com",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "leccotoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "lombardiainfesta.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 4,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 5,
+        "orario_testo:mancante": 5,
+        "publisher": "milanopocket.it",
+        "ricorrenza_testo:mancante": 5
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "milanotoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 3,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 4,
+        "orario_testo:mancante": 4,
+        "publisher": "modenatoday.it",
+        "ricorrenza_testo:mancante": 4
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "monzatoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "napolidavivere.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "novaratoday.it",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "padovatoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 2,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "palermotoday.it",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "paradisola.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "pugliainfesta.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 2
+      },
+      {
+        "indirizzo:mancante": 2,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "ravennatoday.it",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "riminitoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "romapop.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 4,
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 6,
+        "orario_testo:mancante": 6,
+        "publisher": "romatoday.it",
+        "ricorrenza_testo:mancante": 5,
+        "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 4,
+        "markets": 4,
+        "orario_testo:mancante": 1,
+        "orario_testo:senza_riscontro_documentato": 3,
+        "publisher": "sagrefvg.it",
+        "ricorrenza_testo:mancante": 4
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "sagreinromagna.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 6,
+        "markets": 6,
+        "orario_testo:mancante": 6,
+        "publisher": "sagretorino.it",
+        "ricorrenza_testo:mancante": 6
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 3,
+        "markets": 3,
+        "orario_testo:mancante": 2,
+        "orario_testo:senza_riscontro_documentato": 1,
+        "publisher": "sagretoscane.com",
+        "ricorrenza_testo:senza_riscontro_documentato": 3
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 5,
+        "markets": 5,
+        "orario_testo:mancante": 5,
+        "publisher": "sagreumbre.it",
+        "ricorrenza_testo:mancante": 5
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "salernotoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 7,
+        "markets": 7,
+        "orario_testo:mancante": 4,
+        "orario_testo:senza_riscontro_documentato": 3,
+        "publisher": "solosagre.it",
+        "ricorrenza_testo:senza_riscontro_documentato": 7
+      },
+      {
+        "indirizzo:mancante": 3,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "suedtirol.info",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:mancante": 2,
+        "markets": 2,
+        "orario_testo:senza_riscontro_documentato": 2,
+        "publisher": "terredipisa.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "torinotoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 9,
+        "markets": 9,
+        "orario_testo:mancante": 1,
+        "orario_testo:senza_riscontro_documentato": 8,
+        "publisher": "trentino.com",
+        "ricorrenza_testo:mancante": 1,
+        "ricorrenza_testo:senza_riscontro_documentato": 8
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 2,
+        "orario_testo:senza_riscontro_documentato": 2,
+        "publisher": "trevisotoday.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 8,
+        "markets": 8,
+        "orario_testo:mancante": 8,
+        "publisher": "umbriaeventi.com",
+        "ricorrenza_testo:mancante": 8
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 2,
+        "markets": 2,
+        "orario_testo:mancante": 2,
+        "publisher": "varesenews.it",
+        "ricorrenza_testo:mancante": 2
+      },
+      {
+        "indirizzo:mancante": 2,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "veneziatoday.it",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:senza_riscontro_documentato": 3,
+        "markets": 3,
+        "orario_testo:mancante": 3,
+        "publisher": "vicenzatoday.it",
+        "ricorrenza_testo:mancante": 3
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "viterbotoday.it",
+        "ricorrenza_testo:mancante": 1
+      },
+      {
+        "indirizzo:mancante": 1,
+        "markets": 1,
+        "orario_testo:mancante": 1,
+        "publisher": "wwwservizi.regione.emilia-romagna.it",
+        "ricorrenza_testo:mancante": 1
+      }
+    ],
+    "read_age_limit_days": 45,
+    "schema": 1,
+    "source_age_limit_days": {
+      "indirizzo": 365,
+      "orario_testo": 180,
+      "ricorrenza_testo": 180
+    }
   },
   "max_source_age_days": 540,
+  "measurement_semantics": {
+    "historical_source": "known content date more than 30 days old",
+    "recent_source": "known content date within 30 days, including dataset-wide dates",
+    "source_age": "publisher content date; not read/import time or individual event verification",
+    "unknown_source": "content date not supported by a typed date or a reviewed legacy dataset adapter",
+    "verification": "recorded verificato_il values; this report does not authenticate their underlying proof"
+  },
   "metrics": {
     "dataset_updated_not_specific_market": 1250,
+    "forecast_from_stale_or_unknown_source": 11057,
+    "import_within_30d": 32,
+    "legacy_update_timestamp_without_source_date": 12561,
     "recent_dataset_only_update": 1204,
     "source_date_366_to_limit": 1,
-    "source_date_91_to_365d": 12567,
+    "source_date_91_to_365d": 6,
+    "source_date_from_declared_source_content": 1263,
     "source_date_outside_limit": 52,
+    "source_date_unknown": 12593,
     "source_date_within_30d": 1204,
-    "total": 13824,
-    "with_any_future_date": 11906,
-    "with_forecast_dates": 11906,
-    "without_documented_verification": 13824
+    "source_read_within_30d": 1213,
+    "total": 13856,
+    "with_any_future_date": 11907,
+    "with_forecast_dates": 11875,
+    "with_import_timestamp": 32,
+    "with_source_read_timestamp": 1213,
+    "without_documented_verification": 13856,
+    "without_import_timestamp": 13824,
+    "without_source_read_timestamp": 12643
   },
   "publisher_evidence": [
     {
@@ -29,7 +790,7 @@
       "status": "metadata_checked"
     },
     {
-      "last_publisher_data_change": "2026-10-13",
+      "last_publisher_data_change": "2026-10-20",
       "license_comparison": "publisher_and_catalog_agree_review_required",
       "market_records_verified_by_metadata": 0,
       "publisher": "Regione Lombardia",
@@ -43,13 +804,22 @@
       "status": "metadata_checked"
     }
   ],
-  "reference_date": "2026-10-19",
+  "reference_date": "2026-10-20",
   "safe_for_automatic_quality_promotion": true,
   "schema": 1,
   "snapshot_measurement_not_event_verification": true,
+  "source_content_age_states": {
+    "future": 0,
+    "historical": 59,
+    "recent": 1204,
+    "unknown": 12593
+  },
+  "source_date_unknown_reasons": {
+    "source_content_date_unproven": 12593
+  },
   "source_domains_top": [
     {
-      "count": 9647,
+      "count": 9679,
       "domain": "www.happings.com"
     },
     {
@@ -97,8 +867,1241 @@
       "domain": "www.eventi.bergamo.it"
     }
   ],
+  "source_refresh": {
+    "conflicts": 4,
+    "field_changes": 12,
+    "markets_with_field_changes": 12,
+    "release_safe": true,
+    "selected_pages": [
+      {
+        "changed_fields": 4,
+        "content_date": "2026-01-27",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 46,
+          "no_single_explicit_annual_weekday": 27
+        },
+        "layout_complete": true,
+        "matched_markets": 4,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 0,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 6,
+          "content_scopes": 1,
+          "fraction_rows": 0,
+          "rows": 6,
+          "rows_with_numeric_hours": 6,
+          "unique_source_row_ids": 6
+        },
+        "read_on": "2026-10-20",
+        "sha256": "c05e5973b044e7ca5195d5b9cefb37134d3aa8169e6dbd6e0cf1780d93b5c85a",
+        "source_id": "bassa-romagna-farmers",
+        "status": "retrieved",
+        "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
+      },
+      {
+        "changed_fields": 8,
+        "content_date": "2026-10-20",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 35,
+          "no_single_explicit_annual_weekday": 27,
+          "venue_identity_not_established": 6
+        },
+        "layout_complete": true,
+        "matched_markets": 9,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 2,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 9,
+          "content_scopes": 1,
+          "fraction_rows": 7,
+          "rows": 20,
+          "rows_with_numeric_hours": 0,
+          "unique_source_row_ids": 20
+        },
+        "read_on": "2026-10-20",
+        "sha256": "f533eca2fc0e332df215d4c09f9f800acb7af52cc8a3f78f0aaeaf45aff15884",
+        "source_id": "bassa-romagna-weekly",
+        "status": "retrieved",
+        "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
+      }
+    ],
+    "source_url_coverage": {
+      "hosts": 72,
+      "market_dispositions": {
+        "cosedicasa_existing_detail": 432,
+        "eventiesagre_existing_detail": 2197,
+        "happings_event_detail": 32,
+        "happings_province_index": 8193,
+        "happings_source_scope_unproven": 1454,
+        "official_adapter": 1219,
+        "roma_d881_existing_inventory": 70,
+        "source_contract_active": 39,
+        "source_layout_needed": 220
+      },
+      "market_layout_statuses": {
+        "supported": 12182,
+        "unsupported": 1674
+      },
+      "market_read_statuses": {
+        "not_observed": 70,
+        "not_read": 1674,
+        "not_selected": 9601,
+        "retrieved": 2470,
+        "unavailable": 41
+      },
+      "markets": 13856,
+      "schema": 1,
+      "secondary_corroboration": {
+        "counts_describe": "comparison_eligibility",
+        "eligible_markets": 563,
+        "market_read_statuses": {
+          "not_selected": 507,
+          "retrieved": 56
+        },
+        "mode": "existing_address_exact_match",
+        "publisher": "happings.com",
+        "unique_source_urls": 81
+      },
+      "source_admission_registry": "valid",
+      "source_contract_configuration": "valid",
+      "unique_primary_urls": 5784
+    }
+  },
+  "source_summaries": [
+    {
+      "domain": "opendata.comune.bologna.it",
+      "metrics": {
+        "dataset_updated_not_specific_market": 39,
+        "source_date_from_declared_source_content": 39,
+        "source_date_outside_limit": 39,
+        "source_read_within_30d": 39,
+        "total": 39,
+        "with_source_read_timestamp": 39,
+        "without_documented_verification": 39,
+        "without_import_timestamp": 39
+      },
+      "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata"
+    },
+    {
+      "domain": "comune.corciano.pg.it",
+      "metrics": {
+        "dataset_updated_not_specific_market": 2,
+        "source_date_91_to_365d": 2,
+        "source_date_from_declared_source_content": 2,
+        "source_read_within_30d": 2,
+        "total": 2,
+        "with_any_future_date": 2,
+        "with_forecast_dates": 2,
+        "with_source_read_timestamp": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2
+      },
+      "publisher": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)"
+    },
+    {
+      "domain": "www.feelflorence.it",
+      "metrics": {
+        "source_date_from_declared_source_content": 4,
+        "source_date_outside_limit": 4,
+        "source_read_within_30d": 4,
+        "total": 4,
+        "with_source_read_timestamp": 4,
+        "without_documented_verification": 4,
+        "without_import_timestamp": 4
+      },
+      "publisher": "Comune di Firenze - FeelFlorence (CC BY 4.0)"
+    },
+    {
+      "domain": "dati.comune.milano.it",
+      "metrics": {
+        "dataset_updated_not_specific_market": 76,
+        "recent_dataset_only_update": 76,
+        "source_date_from_declared_source_content": 85,
+        "source_date_outside_limit": 9,
+        "source_date_within_30d": 76,
+        "source_read_within_30d": 9,
+        "total": 85,
+        "with_any_future_date": 76,
+        "with_forecast_dates": 76,
+        "with_source_read_timestamp": 9,
+        "without_documented_verification": 85,
+        "without_import_timestamp": 85,
+        "without_source_read_timestamp": 76
+      },
+      "publisher": "Comune di Milano - Open Data (CC BY 4.0)"
+    },
+    {
+      "domain": "www.dati.lombardia.it",
+      "metrics": {
+        "dataset_updated_not_specific_market": 1128,
+        "recent_dataset_only_update": 1128,
+        "source_date_from_declared_source_content": 1128,
+        "source_date_within_30d": 1128,
+        "source_read_within_30d": 1127,
+        "total": 1128,
+        "with_any_future_date": 736,
+        "with_forecast_dates": 736,
+        "with_source_read_timestamp": 1127,
+        "without_documented_verification": 1128,
+        "without_import_timestamp": 1128,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)"
+    },
+    {
+      "domain": "www.comune.roma.it",
+      "metrics": {
+        "dataset_updated_not_specific_market": 5,
+        "source_date_366_to_limit": 1,
+        "source_date_91_to_365d": 4,
+        "source_date_from_declared_source_content": 5,
+        "total": 5,
+        "with_any_future_date": 4,
+        "with_forecast_dates": 4,
+        "without_documented_verification": 5,
+        "without_import_timestamp": 5,
+        "without_source_read_timestamp": 5
+      },
+      "publisher": "Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata)"
+    },
+    {
+      "domain": "www.algherohospitality.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 3,
+        "legacy_update_timestamp_without_source_date": 7,
+        "source_date_unknown": 7,
+        "total": 7,
+        "with_any_future_date": 3,
+        "with_forecast_dates": 3,
+        "without_documented_verification": 7,
+        "without_import_timestamp": 7,
+        "without_source_read_timestamp": 7
+      },
+      "publisher": "algherohospitality.it"
+    },
+    {
+      "domain": "www.arezzonotizie.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "arezzonotizie.it"
+    },
+    {
+      "domain": "www.assosagre.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "assosagre.it"
+    },
+    {
+      "domain": "www.baritoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "baritoday.it"
+    },
+    {
+      "domain": "www.bolognatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "bolognatoday.it"
+    },
+    {
+      "domain": "www.bresciatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "bresciatoday.it"
+    },
+    {
+      "domain": "www.brindisireport.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "brindisireport.it"
+    },
+    {
+      "domain": "www.casertanews.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "casertanews.it"
+    },
+    {
+      "domain": "www.cesenatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "cesenatoday.it"
+    },
+    {
+      "domain": "www.chietitoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "chietitoday.it"
+    },
+    {
+      "domain": "www.cittadellaspezia.com",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "cittadellaspezia.com"
+    },
+    {
+      "domain": "www.baritoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_baritoday.it"
+    },
+    {
+      "domain": "www.bresciatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_bresciatoday.it"
+    },
+    {
+      "domain": "www.cagliaritoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_cagliaritoday.it"
+    },
+    {
+      "domain": "www.cataniatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_cataniatoday.it"
+    },
+    {
+      "domain": "www.ferraratoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_ferraratoday.it"
+    },
+    {
+      "domain": "www.firenzetoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "citynews_firenzetoday.it"
+    },
+    {
+      "domain": "www.forlitoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_forlitoday.it"
+    },
+    {
+      "domain": "www.frosinonetoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "citynews_frosinonetoday.it"
+    },
+    {
+      "domain": "www.genovatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "citynews_genovatoday.it"
+    },
+    {
+      "domain": "www.modenatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_modenatoday.it"
+    },
+    {
+      "domain": "www.monzatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_monzatoday.it"
+    },
+    {
+      "domain": "www.parmatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_parmatoday.it"
+    },
+    {
+      "domain": "www.riminitoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "citynews_riminitoday.it"
+    },
+    {
+      "domain": "www.romatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 7,
+        "source_date_unknown": 7,
+        "total": 7,
+        "without_documented_verification": 7,
+        "without_import_timestamp": 7,
+        "without_source_read_timestamp": 7
+      },
+      "publisher": "citynews_romatoday.it"
+    },
+    {
+      "domain": "www.torinotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_torinotoday.it"
+    },
+    {
+      "domain": "www.trevisotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_trevisotoday.it"
+    },
+    {
+      "domain": "www.veneziatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "citynews_veneziatoday.it"
+    },
+    {
+      "domain": "www.vicenzatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_vicenzatoday.it"
+    },
+    {
+      "domain": "www.viterbotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "citynews_viterbotoday.it"
+    },
+    {
+      "domain": "www.cosafareafirenze.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 2,
+        "legacy_update_timestamp_without_source_date": 22,
+        "source_date_unknown": 22,
+        "total": 22,
+        "with_any_future_date": 2,
+        "with_forecast_dates": 2,
+        "without_documented_verification": 22,
+        "without_import_timestamp": 22,
+        "without_source_read_timestamp": 22
+      },
+      "publisher": "cosafareafirenze.it"
+    },
+    {
+      "domain": "www.cosedicasa.com",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 348,
+        "legacy_update_timestamp_without_source_date": 432,
+        "source_date_unknown": 432,
+        "total": 432,
+        "with_any_future_date": 348,
+        "with_forecast_dates": 348,
+        "without_documented_verification": 432,
+        "without_import_timestamp": 432,
+        "without_source_read_timestamp": 432
+      },
+      "publisher": "cosedicasa.com"
+    },
+    {
+      "domain": "dati.comune.roma.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 70,
+        "source_date_unknown": 70,
+        "total": 70,
+        "without_documented_verification": 70,
+        "without_import_timestamp": 70,
+        "without_source_read_timestamp": 70
+      },
+      "publisher": "dati.comune.roma.it"
+    },
+    {
+      "domain": "emiliaromagnaturismo.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 1,
+        "legacy_update_timestamp_without_source_date": 8,
+        "source_date_unknown": 8,
+        "total": 8,
+        "with_any_future_date": 1,
+        "with_forecast_dates": 1,
+        "without_documented_verification": 8,
+        "without_import_timestamp": 8,
+        "without_source_read_timestamp": 8
+      },
+      "publisher": "emiliaromagnaturismo.it"
+    },
+    {
+      "domain": "www.enjoysicilia.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "enjoysicilia.it"
+    },
+    {
+      "domain": "www.eventi.bergamo.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 8,
+        "source_date_unknown": 8,
+        "total": 8,
+        "without_documented_verification": 8,
+        "without_import_timestamp": 8,
+        "without_source_read_timestamp": 8
+      },
+      "publisher": "eventi.bergamo.it"
+    },
+    {
+      "domain": "www.eventiesagre.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 1345,
+        "legacy_update_timestamp_without_source_date": 2197,
+        "source_date_unknown": 2197,
+        "total": 2197,
+        "with_any_future_date": 1345,
+        "with_forecast_dates": 1345,
+        "without_documented_verification": 2197,
+        "without_import_timestamp": 2197,
+        "without_source_read_timestamp": 2197
+      },
+      "publisher": "eventiesagre.it"
+    },
+    {
+      "domain": "www.eventiinsardegna.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "eventiinsardegna.it"
+    },
+    {
+      "domain": "www.eventiintoscana.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "eventiintoscana.it"
+    },
+    {
+      "domain": "www.ferrarainfo.com",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 2,
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "with_any_future_date": 2,
+        "with_forecast_dates": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "ferrarainfo.com"
+    },
+    {
+      "domain": "www.ferraratoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "ferraratoday.it"
+    },
+    {
+      "domain": "www.firenzetoday.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 1,
+        "legacy_update_timestamp_without_source_date": 4,
+        "source_date_unknown": 4,
+        "total": 4,
+        "with_any_future_date": 1,
+        "with_forecast_dates": 1,
+        "without_documented_verification": 4,
+        "without_import_timestamp": 4,
+        "without_source_read_timestamp": 4
+      },
+      "publisher": "firenzetoday.it"
+    },
+    {
+      "domain": "www.forlitoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "forlitoday.it"
+    },
+    {
+      "domain": "www.frosinonetoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "frosinonetoday.it"
+    },
+    {
+      "domain": "www.genovatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 7,
+        "source_date_unknown": 7,
+        "total": 7,
+        "without_documented_verification": 7,
+        "without_import_timestamp": 7,
+        "without_source_read_timestamp": 7
+      },
+      "publisher": "genovatoday.it"
+    },
+    {
+      "domain": "www.happings.com",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 9334,
+        "import_within_30d": 32,
+        "legacy_update_timestamp_without_source_date": 9647,
+        "source_date_unknown": 9679,
+        "source_read_within_30d": 32,
+        "total": 9679,
+        "with_any_future_date": 9366,
+        "with_forecast_dates": 9334,
+        "with_import_timestamp": 32,
+        "with_source_read_timestamp": 32,
+        "without_documented_verification": 9679,
+        "without_import_timestamp": 9647,
+        "without_source_read_timestamp": 9647
+      },
+      "publisher": "happings.com"
+    },
+    {
+      "domain": "www.lazioinfesta.com",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "lazioinfesta.com"
+    },
+    {
+      "domain": "www.leccotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "leccotoday.it"
+    },
+    {
+      "domain": "www.lombardiainfesta.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "lombardiainfesta.it"
+    },
+    {
+      "domain": "www.milanopocket.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 5,
+        "source_date_unknown": 5,
+        "total": 5,
+        "without_documented_verification": 5,
+        "without_import_timestamp": 5,
+        "without_source_read_timestamp": 5
+      },
+      "publisher": "milanopocket.it"
+    },
+    {
+      "domain": "www.milanotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "milanotoday.it"
+    },
+    {
+      "domain": "www.modenatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 4,
+        "source_date_unknown": 4,
+        "total": 4,
+        "without_documented_verification": 4,
+        "without_import_timestamp": 4,
+        "without_source_read_timestamp": 4
+      },
+      "publisher": "modenatoday.it"
+    },
+    {
+      "domain": "www.monzatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "monzatoday.it"
+    },
+    {
+      "domain": "www.napolidavivere.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "napolidavivere.it"
+    },
+    {
+      "domain": "www.novaratoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "novaratoday.it"
+    },
+    {
+      "domain": "www.padovatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "padovatoday.it"
+    },
+    {
+      "domain": "www.palermotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "palermotoday.it"
+    },
+    {
+      "domain": "www.paradisola.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "paradisola.it"
+    },
+    {
+      "domain": "www.pugliainfesta.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "pugliainfesta.it"
+    },
+    {
+      "domain": "www.ravennatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "ravennatoday.it"
+    },
+    {
+      "domain": "www.riminitoday.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 1,
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "with_any_future_date": 1,
+        "with_forecast_dates": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "riminitoday.it"
+    },
+    {
+      "domain": "www.romapop.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "romapop.it"
+    },
+    {
+      "domain": "www.romatoday.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 1,
+        "legacy_update_timestamp_without_source_date": 6,
+        "source_date_unknown": 6,
+        "total": 6,
+        "with_any_future_date": 1,
+        "with_forecast_dates": 1,
+        "without_documented_verification": 6,
+        "without_import_timestamp": 6,
+        "without_source_read_timestamp": 6
+      },
+      "publisher": "romatoday.it"
+    },
+    {
+      "domain": "sagrefvg.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 4,
+        "source_date_unknown": 4,
+        "total": 4,
+        "without_documented_verification": 4,
+        "without_import_timestamp": 4,
+        "without_source_read_timestamp": 4
+      },
+      "publisher": "sagrefvg.it"
+    },
+    {
+      "domain": "www.sagreinromagna.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "sagreinromagna.it"
+    },
+    {
+      "domain": "www.sagretorino.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 6,
+        "source_date_unknown": 6,
+        "total": 6,
+        "without_documented_verification": 6,
+        "without_import_timestamp": 6,
+        "without_source_read_timestamp": 6
+      },
+      "publisher": "sagretorino.it"
+    },
+    {
+      "domain": "www.sagretoscane.com",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 3,
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "with_any_future_date": 3,
+        "with_forecast_dates": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "sagretoscane.com"
+    },
+    {
+      "domain": "www.sagreumbre.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 5,
+        "source_date_unknown": 5,
+        "total": 5,
+        "without_documented_verification": 5,
+        "without_import_timestamp": 5,
+        "without_source_read_timestamp": 5
+      },
+      "publisher": "sagreumbre.it"
+    },
+    {
+      "domain": "www.salernotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "salernotoday.it"
+    },
+    {
+      "domain": "www.solosagre.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 7,
+        "legacy_update_timestamp_without_source_date": 7,
+        "source_date_unknown": 7,
+        "total": 7,
+        "with_any_future_date": 7,
+        "with_forecast_dates": 7,
+        "without_documented_verification": 7,
+        "without_import_timestamp": 7,
+        "without_source_read_timestamp": 7
+      },
+      "publisher": "solosagre.it"
+    },
+    {
+      "domain": "www.suedtirol.info",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "suedtirol.info"
+    },
+    {
+      "domain": "www.terredipisa.it",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 1,
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "with_any_future_date": 1,
+        "with_forecast_dates": 1,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "terredipisa.it"
+    },
+    {
+      "domain": "www.torinotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "torinotoday.it"
+    },
+    {
+      "domain": "trentino.com",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "trentino.com"
+    },
+    {
+      "domain": "www.trentino.com",
+      "metrics": {
+        "forecast_from_stale_or_unknown_source": 8,
+        "legacy_update_timestamp_without_source_date": 8,
+        "source_date_unknown": 8,
+        "total": 8,
+        "with_any_future_date": 8,
+        "with_forecast_dates": 8,
+        "without_documented_verification": 8,
+        "without_import_timestamp": 8,
+        "without_source_read_timestamp": 8
+      },
+      "publisher": "trentino.com"
+    },
+    {
+      "domain": "www.trevisotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "trevisotoday.it"
+    },
+    {
+      "domain": "www.umbriaeventi.com",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 8,
+        "source_date_unknown": 8,
+        "total": 8,
+        "without_documented_verification": 8,
+        "without_import_timestamp": 8,
+        "without_source_read_timestamp": 8
+      },
+      "publisher": "umbriaeventi.com"
+    },
+    {
+      "domain": "www.varesenews.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 2,
+        "source_date_unknown": 2,
+        "total": 2,
+        "without_documented_verification": 2,
+        "without_import_timestamp": 2,
+        "without_source_read_timestamp": 2
+      },
+      "publisher": "varesenews.it"
+    },
+    {
+      "domain": "www.veneziatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "veneziatoday.it"
+    },
+    {
+      "domain": "www.vicenzatoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 3,
+        "source_date_unknown": 3,
+        "total": 3,
+        "without_documented_verification": 3,
+        "without_import_timestamp": 3,
+        "without_source_read_timestamp": 3
+      },
+      "publisher": "vicenzatoday.it"
+    },
+    {
+      "domain": "www.viterbotoday.it",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "viterbotoday.it"
+    },
+    {
+      "domain": "wwwservizi.regione.emilia-romagna.itnote.asp",
+      "metrics": {
+        "legacy_update_timestamp_without_source_date": 1,
+        "source_date_unknown": 1,
+        "total": 1,
+        "without_documented_verification": 1,
+        "without_import_timestamp": 1,
+        "without_source_read_timestamp": 1
+      },
+      "publisher": "wwwservizi.regione.emilia-romagna.it"
+    }
+  ],
   "warnings": [
     "no_record_has_documented_verification",
-    "source_data_older_than_allowed_forecast_window"
+    "source_content_dates_are_unproven",
+    "future_predictions_have_stale_or_missing_source_dates",
+    "source_data_older_than_allowed_forecast_window",
+    "publisher_refresh_conflicting_fields"
   ]
 }
