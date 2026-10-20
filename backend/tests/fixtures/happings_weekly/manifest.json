@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "fixture": "trieste_52_rows.html",
+  "fixture_sha256": "5e35f864778019e7bf0dc336b9972008db0eb1b7adcbcd749199ecef946986c2",
+  "fixture_bytes": 4208,
+  "scope": "The original .happings-seo-content div is copied byte-for-byte from the complete HTTP capture; only the document wrapper/title is authored. No footer, form, nonce, contact or nearby-card content.",
+  "source_capture": {
+    "requested_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+    "fetched_at": "2026-10-20T17:07:07.884036+00:00",
+    "transport": "fixed_url_fixture_capture_no_redirect_following",
+    "status": 200,
+    "final_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+    "content_type": "text/html; charset=UTF-8",
+    "bytes": 139963,
+    "sha256": "5452a6fbd04d0fdcca6a3cdcc61dc303126edf67e6aff95da77e2576aa686c8a"
+  },
+  "source_rows_expected": 52,
+  "source_distinct_city_day_venue_expected": 52,
+  "admission_status": "Source rows are not admitted or counted as new verified markets; persistent venue identity and cross-source deduplication remain HAPP-FORMAT-04."
+}

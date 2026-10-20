@@ -753,7 +753,9 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
                     self.assertEqual(report["observations"],[])
                     self.assertEqual(report["field_candidates"],0)
                     self.assertEqual(report["source_pages"][0]["source_rows"],4)
-                    self.assertEqual(report["parser_counts"]["publisher_only_vague_or_area_location"],1)
+                    reason=("publisher_calendar_scope_unrepresented" if "estate" in place
+                            else "publisher_only_vague_or_area_location")
+                    self.assertEqual(report["parser_counts"][reason],1)
                     self.assertTrue(safe_report(report,base))
 
     def test_rejected_second_location_still_makes_source_identity_ambiguous(self):

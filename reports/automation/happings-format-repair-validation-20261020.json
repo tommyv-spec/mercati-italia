@@ -1,0 +1,286 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "base_local_commit": "3a4d5c7e8a215c158128c574c3ef5902c2d60ec8",
+  "worktree": "/workspace/scratch/81e91a77b820/mercati-happings-format-repair",
+  "network_requests": 0,
+  "remote_actions": 0,
+  "catalog_files_changed": 0,
+  "files": {
+    "backend/happings_page_metadata.py": "d4e2e9026009007fc742f731eb700e915dce936fa3521cac276858963395f7c2",
+    "backend/happings_weekly_layout.py": "8a1f63d1b39834dd3110b914e38dc30b8b3cfe00bbc1c6a8b1a39d22b3884608",
+    "backend/happings_source_enrichment.py": "59d5898855a6612f401893a1a5ee2e3a64180b8570a2f419bf2d6f196eb2f7ae",
+    "backend/field_evidence.py": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2",
+    "backend/stored_market_sibling_proposals.py": "d76d0db3bb630d7a153791271fde4a780f4f255f90cc5ac1d1c500701704ac81",
+    "backend/tests/test_happings_page_metadata.py": "2eec8b97e285a8c6fff931725811f76afd51bdb407cbf6b1e34e59341e023f33",
+    "backend/tests/test_happings_province_scope.py": "dab8b6810d7e76643d193e25a87c5ac459094b786de22e15defd0be4f81f00b0",
+    "backend/tests/test_happings_source_enrichment.py": "1167b9f14ee0ff86611450121f856fad5506f2eefa4f529184da12028781ac27",
+    "backend/tests/fixtures/happings_weekly/manifest.json": "7490e59aaeea85dc7ed099220ece38586b6ad0e34f5f7d56bc19cffe8d8ee67f",
+    "backend/tests/fixtures/happings_weekly/trieste_52_rows.html": "5e35f864778019e7bf0dc336b9972008db0eb1b7adcbcd749199ecef946986c2"
+  },
+  "tests": {
+    "targeted_suite_passed": 316,
+    "failures": 0,
+    "new_test_methods": 19,
+    "final_additional_footer_negative_case": "11 metadata tests passed after final malformed-footer hardening",
+    "log": "/tmp/happings-format-repair-final-tests-20261020.log"
+  },
+  "full_replay": {
+    "report_path": "/tmp/happings-format-repair-replay-20261020/summary.json",
+    "sha256": "d342c60d9668d9d48cf71e878ce7e3c8d0e7ba05ce7bbd79c2155d10e0d14d3e",
+    "source_pages": 13,
+    "catalogs": [
+      {
+        "label": "baseline",
+        "manifest": "public/data/v1/manifest.json",
+        "input_ids": 13824,
+        "after_ids": 13824,
+        "exported_ids": 13824,
+        "next_day_offline_ids": 13824,
+        "pages_evaluated": 13,
+        "source_observations": 608,
+        "source_records_with_preserved_editorial_metadata": 608,
+        "address_changes": 174,
+        "record_changes": 608,
+        "parser_counts": {
+          "already_has_street_or_vague_original": 24,
+          "conflicting_previously_saved_location": 34,
+          "html_market_rows": 1088,
+          "identity_geography_unproven": 63,
+          "identity_weekday_unproven": 31,
+          "no_unique_source_market_city_weekday": 187,
+          "publisher_only_vague_or_area_location": 354
+        },
+        "first_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_market_ids": 13824,
+          "input_market_ids": 13824,
+          "exported_market_ids": 13824,
+          "protected_happings_ids": 9647,
+          "protected_catalog_market_ids": 13824,
+          "source_field_changes": 174,
+          "source_observed_markets": 608,
+          "secondary_observed_markets": 14,
+          "retired_source_support_markets": 0,
+          "source_record_changes": 608,
+          "market_ids_deleted": 0,
+          "market_ids_added": 0,
+          "happings_ids_deleted": 0,
+          "happings_ids_added": 0,
+          "detail_pages_evaluated": 0,
+          "unapproved_field_changes": 0,
+          "opening_verifications_created": 0
+        },
+        "offline_status": "offline_skipped",
+        "offline_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_market_ids": 13824,
+          "input_market_ids": 13824,
+          "exported_market_ids": 13824,
+          "protected_happings_ids": 9647,
+          "protected_catalog_market_ids": 13824,
+          "source_field_changes": 0,
+          "source_observed_markets": 0,
+          "secondary_observed_markets": 0,
+          "retired_source_support_markets": 0,
+          "source_record_changes": 0,
+          "market_ids_deleted": 0,
+          "market_ids_added": 0,
+          "happings_ids_deleted": 0,
+          "happings_ids_added": 0,
+          "detail_pages_evaluated": 0,
+          "unapproved_field_changes": 0,
+          "opening_verifications_created": 0
+        },
+        "next_day_refresh": {
+          "date": "2026-10-21",
+          "input_records": 13824,
+          "output_records": 13824,
+          "horizon_days": 120,
+          "max_source_stale_days": 540,
+          "reasons": {
+            "calendar_exception_scope_unrepresented": 1,
+            "date_range_scope_unrepresented": 25,
+            "interval_scope_unrepresented": 21,
+            "no_explicit_rule": 1875,
+            "renewed": 820,
+            "seasonal_scope_unrepresented": 57,
+            "unknown_source_age": 11025
+          },
+          "newly_dated": 0,
+          "date_ranges_changed": 413,
+          "monthly_rules_applied": 0,
+          "unknown_source_dates_preserved_without_renewal": 11015,
+          "temporal_scope_holds": 104,
+          "temporal_scope_forecasts_withdrawn": 15,
+          "temporal_scope_dates_withdrawn": 212,
+          "all_dates_marked_forecast": true
+        },
+        "ids_added": 0,
+        "ids_removed": 0,
+        "source_updated_on_created_from_editorial_date": 0,
+        "opening_verifications_created": 0
+      },
+      {
+        "label": "full_candidate",
+        "manifest": "/tmp/vintagery-live-39465324614/candidate/public/data/v1/manifest.json",
+        "input_ids": 13856,
+        "after_ids": 13856,
+        "exported_ids": 13856,
+        "next_day_offline_ids": 13856,
+        "pages_evaluated": 13,
+        "source_observations": 580,
+        "source_records_with_preserved_editorial_metadata": 580,
+        "address_changes": 0,
+        "record_changes": 580,
+        "parser_counts": {
+          "already_has_street_or_vague_original": 22,
+          "conflicting_previously_saved_location": 64,
+          "html_market_rows": 1088,
+          "identity_geography_unproven": 63,
+          "identity_weekday_unproven": 31,
+          "no_unique_source_market_city_weekday": 187,
+          "publisher_only_vague_or_area_location": 354
+        },
+        "first_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_market_ids": 13856,
+          "input_market_ids": 13856,
+          "exported_market_ids": 13856,
+          "protected_happings_ids": 9679,
+          "protected_catalog_market_ids": 13856,
+          "source_field_changes": 0,
+          "source_observed_markets": 580,
+          "secondary_observed_markets": 14,
+          "retired_source_support_markets": 0,
+          "source_record_changes": 580,
+          "market_ids_deleted": 0,
+          "market_ids_added": 0,
+          "happings_ids_deleted": 0,
+          "happings_ids_added": 0,
+          "detail_pages_evaluated": 0,
+          "unapproved_field_changes": 0,
+          "opening_verifications_created": 0
+        },
+        "offline_status": "offline_skipped",
+        "offline_guard": {
+          "schema": 1,
+          "release_safe": true,
+          "checked_market_ids": 13856,
+          "input_market_ids": 13856,
+          "exported_market_ids": 13856,
+          "protected_happings_ids": 9679,
+          "protected_catalog_market_ids": 13856,
+          "source_field_changes": 0,
+          "source_observed_markets": 0,
+          "secondary_observed_markets": 0,
+          "retired_source_support_markets": 0,
+          "source_record_changes": 0,
+          "market_ids_deleted": 0,
+          "market_ids_added": 0,
+          "happings_ids_deleted": 0,
+          "happings_ids_added": 0,
+          "detail_pages_evaluated": 0,
+          "unapproved_field_changes": 0,
+          "opening_verifications_created": 0
+        },
+        "next_day_refresh": {
+          "date": "2026-10-21",
+          "input_records": 13856,
+          "output_records": 13856,
+          "horizon_days": 120,
+          "max_source_stale_days": 540,
+          "reasons": {
+            "calendar_exception_scope_unrepresented": 1,
+            "date_range_scope_unrepresented": 25,
+            "empty_projection": 1,
+            "explicit_source_calendar_preserved": 32,
+            "interval_scope_unrepresented": 21,
+            "no_explicit_rule": 1874,
+            "renewed": 1050,
+            "seasonal_scope_unrepresented": 58,
+            "source_calendar_scope_unrepresented": 1,
+            "stale_source": 9,
+            "unknown_source_age": 10784
+          },
+          "newly_dated": 0,
+          "date_ranges_changed": 350,
+          "monthly_rules_applied": 0,
+          "unknown_source_dates_preserved_without_renewal": 10783,
+          "temporal_scope_holds": 106,
+          "temporal_scope_forecasts_withdrawn": 0,
+          "temporal_scope_dates_withdrawn": 0,
+          "all_dates_marked_forecast": true
+        },
+        "ids_added": 0,
+        "ids_removed": 0,
+        "source_updated_on_created_from_editorial_date": 0,
+        "opening_verifications_created": 0
+      }
+    ],
+    "scope": "Harness selects the 13 captured pages; production rotation is not retested or changed. All runtime parsing, field guards, exporter and offline retention are real.",
+    "source_capture": "GitHub run 39465324614, already captured 2026-10-20 HTML; no new source acquisition"
+  },
+  "criteria": {
+    "HAPP-FORMAT-04": {
+      "status": "partial_keep_open",
+      "satisfied": [
+        "Committed scoped fixture from the actual Trieste HTTP capture proves 52 rows and 52 distinct city/day/venue triples in 7 weekday sections.",
+        "Multiple venue rows retain their full list and never make an arbitrary address assignment.",
+        "52 source rows are not new admissions or opening confirmations."
+      ],
+      "remaining": [
+        "Persistent source row identities and venue-candidate frontier.",
+        "Cross-source duplicate resolution before admitting additional markets."
+      ]
+    },
+    "HAPP-FORMAT-06": {
+      "status": "partial_keep_open",
+      "satisfied": [
+        "Trailing explicit (estivo), (invernale), (ogni 15gg) and (quindicinale) are retained independently from normalized source city/place with original labels.",
+        "Incomplete scopes prohibit ordinary weekly field observations; seasonal competing venues remain in the ambiguity cohort.",
+        "Passeggiata d’Inverno and Inverno e Monteleone no longer trigger seasonal address rejection.",
+        "The existing recurrence guard still retires predictions for qualified catalog identities."
+      ],
+      "remaining": [
+        "Do not infer dates, complete seasons or interval anchors from bare qualifiers.",
+        "A new qualifier seen only in the HTML is not yet persisted as an identity-proven calendar scope on an otherwise unqualified saved market. That requires the missing venue identity/cohort mechanism and a separately guarded calendar transition."
+      ],
+      "prefix_caveat": "Passeggiata is accepted only with a nominal d’/di/del... name; prose per/lungo/verso and bare labels remain rejected."
+    },
+    "HAPP-FORMAT-07": {
+      "status": "keep_open",
+      "satisfied_in_this_patch": [
+        "Calendar-qualified source locations now have a distinct hold counter rather than being counted as vague addresses."
+      ],
+      "remaining": [
+        "General recurring source-present/parsed, present/lost, source-absent and identity-unresolved per-field metrics. Catalog empty fields alone cannot prove that a source lacks the facts."
+      ]
+    },
+    "HAPP-FORMAT-08": {
+      "status": "implementation_and_offline_acceptance_passed_pending_integration",
+      "satisfied": [
+        "Head JSON-LD WebPage publication/modification dates scoped to the exact observed final URL, even without article meta.",
+        "Foreign page/Event/footer metadata and canonical-only URL substitution cannot provide provincial page dates.",
+        "Invalid/future/conflicting dates retain explicit conflicts and null accepted values.",
+        "Metadata persists in source_pages and matched field receipts through export, reload and next-day offline refresh.",
+        "Receipt source_updated_on remains blank; read date, field freshness, projection behavior and opening confirmation do not derive from publication.",
+        "Same-day extraction from already observed identical bytes can add missing metadata without moving the read date or losing field management ownership."
+      ],
+      "remaining": [
+        "Integrate and publish the tested code through the normal DEV gates."
+      ],
+      "conservative_limits": [
+        "Only document-head metadata is supported. Oversized/unsupported JSON-LD is not used to infer a publication date. Page dates are not row verification."
+      ]
+    }
+  },
+  "notes": [
+    "The 174 baseline address recoveries replay already captured source facts on the older 13,824-row catalog; they are not 174 new live fixes. On the already enriched 13,856-row candidate, address changes are zero and 580 receipts gain metadata.",
+    "No original IDs were removed; no new IDs or opening confirmations were created.",
+    "No new HTML was acquired for this review or patch."
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "OFFLINE render-model replay of actual exported captured-source candidate; no HTTP or publication",
+  "catalog_records": 13856,
+  "citynews_evidence_rendered": 11,
+  "historical_editions": 11,
+  "live_network_requests": 0,
+  "static_catalog_files_read": 8,
+  "all_source_urls_bound": true,
+  "no_human_confirmation_added": true,
+  "no_general_hours_used_for_unlisted_future_dates": true,
+  "observations": [
+    {
+      "slug": "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+      "source_sha256": "6c7b5e7b9ffc362cc529fe09b83a57396215d94052c6db35dee66a4115e8fbbe",
+      "read_on": "2026-10-20",
+      "published_on": "2026-02-12",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · bolognatoday.it",
+        "sourceUrl": "https://www.bolognatoday.it/eventi/da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-lucretio-e-idriss-d-13675563.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 12 feb 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "period/2026-05-15/2026-05-17",
+            "sortDate": "2026-05-15",
+            "kind": "interval",
+            "label": "15 mag 2026 – 17 mag 2026",
+            "status": "Periodo passato",
+            "hours": "",
+            "note": "Il periodo non specifica le aperture dei singoli giorni."
+          }
+        ],
+        "hours": "Dalle 10:00 alle 24:00",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "sapori-stagionali-e-supporto-alle-filiere-locali-al-mercato-di-campagna-amica-un",
+      "source_sha256": "fc24df999ed24531ae811f705b564e48091c77770a36049b41d98e7cc2001f21",
+      "read_on": "2026-10-20",
+      "published_on": "2026-02-05",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · forlitoday.it",
+        "sourceUrl": "https://www.forlitoday.it/eventi/mercato-di-campagna-amica-coldiretti-programma-iniziative-febbraio-2026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 5 feb 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "period/2026-02-06/2026-02-27",
+            "sortDate": "2026-02-06",
+            "kind": "interval",
+            "label": "6 feb 2026 – 27 feb 2026",
+            "status": "Periodo passato",
+            "hours": "",
+            "note": "Il periodo non specifica le aperture dei singoli giorni."
+          }
+        ],
+        "hours": "8-13.30",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena",
+      "source_sha256": "27556b6df8b381f3b3543f67a88b5f0b66283146d0a9e034686a5c0fbb02267c",
+      "read_on": "2026-10-20",
+      "published_on": "2026-02-13",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · modenatoday.it",
+        "sourceUrl": "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 13 feb 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "date/2026-02-15/07:00/14:00/source_listed",
+            "sortDate": "2026-02-15",
+            "kind": "date",
+            "label": "15 feb 2026",
+            "status": "Data passata",
+            "hours": "07:00–14:00",
+            "note": ""
+          }
+        ],
+        "hours": "7:00 alle 14:00",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "ceccano-mercatino-degli-artigiani-del-borgo-odv-ceccano",
+      "source_sha256": "57f135d5bbc0313bb527b6aa71566482f4ef41c4805ac9cc4e046fda43aa608f",
+      "read_on": "2026-10-20",
+      "published_on": "2026-01-26",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · frosinonetoday.it",
+        "sourceUrl": "https://www.frosinonetoday.it/eventi/ceccano-mercatino-degli-artigiani-del-borgo-odv.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 26 gen 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "date/2026-02-08/09:30/18:00/source_listed",
+            "sortDate": "2026-02-08",
+            "kind": "date",
+            "label": "8 feb 2026",
+            "status": "Data passata",
+            "hours": "09:30–18:00",
+            "note": ""
+          }
+        ],
+        "hours": "Dalle ore 9.30 alle 18.00",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "hippie-market-tra-gli-acquedotti-romani-roma",
+      "source_sha256": "3dc846480c24cef134cfaab81ad6501f35e2d20646702e6da84b79aa88717778",
+      "read_on": "2026-10-20",
+      "published_on": "2026-02-10",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · romatoday.it",
+        "sourceUrl": "https://www.romatoday.it/eventi/hippie-market-14-15-febbraio-2026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 10 feb 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "period/2026-02-14/2026-02-15",
+            "sortDate": "2026-02-14",
+            "kind": "interval",
+            "label": "14 feb 2026 – 15 feb 2026",
+            "status": "Periodo passato",
+            "hours": "",
+            "note": "Il periodo non specifica le aperture dei singoli giorni."
+          }
+        ],
+        "hours": "Dalle 11,30 alle 20",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "edizione-numero-20-per-artegenova-la-grande-mostra-mercato-di-arte-moderna-e-con",
+      "source_sha256": "0cacf27acad3df2364ddb9afd433ce5a3a9b9028882f209d32e921afe06db7ef",
+      "read_on": "2026-10-20",
+      "published_on": "2026-01-31",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · genovatoday.it",
+        "sourceUrl": "https://www.genovatoday.it/eventi/artegenova-mostra-mercato-arte-moderna-contemporanea-2026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 31 gen 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "period/2026-02-13/2026-02-15",
+            "sortDate": "2026-02-13",
+            "kind": "interval",
+            "label": "13 feb 2026 – 15 feb 2026",
+            "status": "Periodo passato",
+            "hours": "",
+            "note": "Il periodo non specifica le aperture dei singoli giorni."
+          }
+        ],
+        "hours": "10-20",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
+      "source_sha256": "67fcfec24650b0256456687d5cc08ebd6985422d42077b5f64295a116170ce82",
+      "read_on": "2026-10-20",
+      "published_on": "2026-02-11",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · palermotoday.it",
+        "sourceUrl": "https://www.palermotoday.it/eventi/artgarden-14-15-febbraio-2026-vivai-gitto.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 11 feb 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "period/2026-02-14/2026-02-15",
+            "sortDate": "2026-02-14",
+            "kind": "interval",
+            "label": "14 feb 2026 – 15 feb 2026",
+            "status": "Periodo passato",
+            "hours": "",
+            "note": "Il periodo non specifica le aperture dei singoli giorni."
+          }
+        ],
+        "hours": "dalle 10 alle 20",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo",
+      "source_sha256": "7744ff254819a615855708b8801f52d04d183c2f6c149cb22959652bf8da401b",
+      "read_on": "2026-10-20",
+      "published_on": "2026-02-14",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · arezzonotizie.it",
+        "sourceUrl": "https://www.arezzonotizie.it/eventi/mercato-pulci-2026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 14 feb 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare.",
+          "dalle 15 del 21 febbraio"
+        ],
+        "rows": [
+          {
+            "key": "period/2026-02-21/2026-02-22",
+            "sortDate": "2026-02-21",
+            "kind": "interval",
+            "label": "21 feb 2026 – 22 feb 2026",
+            "status": "Periodo passato",
+            "hours": "",
+            "note": "Il periodo non specifica le aperture dei singoli giorni."
+          }
+        ],
+        "hours": "dalle 15 del 21 febbraio",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+      "source_sha256": "b81a41ec0aa0cdeb5539b10b5f26ea5014f08a0e73fcf8c8d1f4f24034b3c20e",
+      "read_on": "2026-10-20",
+      "published_on": "2026-01-22",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · firenzetoday.it",
+        "sourceUrl": "https://www.firenzetoday.it/eventi/emporium-piazza-savonarola-firenze-24-gennaio-2026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 22 gen 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare."
+        ],
+        "rows": [
+          {
+            "key": "date/2026-01-24/09:00/18:00/source_listed",
+            "sortDate": "2026-01-24",
+            "kind": "date",
+            "label": "24 gen 2026",
+            "status": "Data passata",
+            "hours": "09:00–18:00",
+            "note": ""
+          }
+        ],
+        "hours": "9-18",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-mirano",
+      "source_sha256": "11263c5a2ed7686136bc010d9ec5faaa109f97cbeaba3c25c53c8b754a5d6a20",
+      "read_on": "2026-10-20",
+      "published_on": "2026-02-11",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · veneziatoday.it",
+        "sourceUrl": "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 11 feb 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare.",
+          "Tutto il giorno"
+        ],
+        "rows": [
+          {
+            "key": "date/2026-02-15///source_listed",
+            "sortDate": "2026-02-15",
+            "kind": "date",
+            "label": "15 feb 2026",
+            "status": "Data passata",
+            "hours": "Orario del giorno non indicato",
+            "note": ""
+          }
+        ],
+        "hours": "Tutto il giorno",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    },
+    {
+      "slug": "1deg-mostra-mercato-del-disco-di-silea-silea",
+      "source_sha256": "7bc42fd57bc0b26a1f23b0c59ce3a974e2abc6257e8c11db7c29b8c01fe844a9",
+      "read_on": "2026-10-20",
+      "published_on": "2026-01-26",
+      "modified_on": "",
+      "view": {
+        "title": "Edizione passata descritta dalla fonte",
+        "sourceName": "Citynews · trevisotoday.it",
+        "sourceUrl": "https://www.trevisotoday.it/eventi/mostra-mercato-disco-silea-2026.html",
+        "readOn": "20 ott 2026",
+        "editorialDate": "Pubblicazione dichiarata: 26 gen 2026",
+        "historical": true,
+        "calendarConflict": false,
+        "notes": [
+          "La pagina descrive un’edizione passata. Le aperture attuali sono da verificare.",
+          "10/19"
+        ],
+        "rows": [
+          {
+            "key": "period/2026-01-31/2026-02-01",
+            "sortDate": "2026-01-31",
+            "kind": "interval",
+            "label": "31 gen 2026 – 1 feb 2026",
+            "status": "Periodo passato",
+            "hours": "",
+            "note": "Il periodo non specifica le aperture dei singoli giorni."
+          }
+        ],
+        "hours": "10/19",
+        "hoursLabel": "Orari riportati per l’edizione passata",
+        "recurrence": ""
+      }
+    }
+  ]
+}

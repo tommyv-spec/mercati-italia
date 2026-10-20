@@ -1,0 +1,64 @@
+{
+  "scope": "Existing public HTTP observations supplied by root; no new network for implementation",
+  "stable_and_commit_checks": {
+    "observed_at": "2026-10-20T19:31:46.530232+00:00",
+    "expected_sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625",
+    "checks": [
+      {
+        "label": "stable",
+        "url": "https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/data/v1/manifest.json",
+        "http_status": 200,
+        "sha256": "dc5295b06ce85c44b7beba9974af475c1ccfd76a0830c3affd16f1bee0865383",
+        "equal": false,
+        "generated_at": "2026-10-20T18:16:36.226976+00:00",
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "Age": "77",
+          "ETag": "W/\"f9c0365eba8b015a9d5ad6d8805361bc2df3ce527d700eb5a65facf8c9acfeb5\"",
+          "Cache-Control": "max-age=60, public, stale-while-revalidate=60, stale-if-error=604800",
+          "X-Cache": "MISS",
+          "X-GitHub-Request-Id": "9020:142961:178FDA:18324E:6AD7B108"
+        }
+      },
+      {
+        "label": "revalidated",
+        "url": "https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/data/v1/manifest.json",
+        "http_status": 200,
+        "sha256": "dc5295b06ce85c44b7beba9974af475c1ccfd76a0830c3affd16f1bee0865383",
+        "equal": false,
+        "generated_at": "2026-10-20T18:16:36.226976+00:00",
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "Age": "77",
+          "ETag": "W/\"f9c0365eba8b015a9d5ad6d8805361bc2df3ce527d700eb5a65facf8c9acfeb5\"",
+          "Cache-Control": "max-age=60, public, stale-while-revalidate=60, stale-if-error=604800",
+          "X-Cache": "MISS",
+          "X-GitHub-Request-Id": "9020:142961:178FDA:18324E:6AD7B108"
+        }
+      },
+      {
+        "label": "commit",
+        "url": "https://raw.githack.com/tommyv-spec/mercati-italia/0cb717e68570e938b68d91e21d25b3f2f14fe2cc/data/v1/manifest.json",
+        "http_status": 200,
+        "sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625",
+        "equal": true,
+        "generated_at": "2026-10-20T19:27:02.965796+00:00",
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "ETag": "W/\"2bf70ac9d1014bcc4327ef3416f4789f070e0a7f4fdcba11a79d45fc26580cf1\"",
+          "Cache-Control": "max-age=60, public, stale-while-revalidate=60, stale-if-error=604800",
+          "X-Cache": "MISS",
+          "X-GitHub-Request-Id": "87F0:11CF2E:307FC3:31CEAA:6AD7C1A2"
+        }
+      }
+    ]
+  },
+  "shared_bucket_check": {
+    "url": "https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/data/v1/manifest.json?refresh=995847",
+    "status": 200,
+    "sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625",
+    "expected_sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625",
+    "equal": true,
+    "generated_at": "2026-10-20T19:27:02.965796+00:00"
+  }
+}

@@ -12,6 +12,7 @@ import gzip
 import hashlib
 import io
 import json
+import zlib
 from copy import deepcopy
 from datetime import date, datetime, timedelta
 from http.client import HTTPException
@@ -76,7 +77,7 @@ def load_state(path, *, today, bootstrap=BOOTSTRAP):
     return discovery.empty_state(), "empty"
 
 
-def _pack(page, *, today):
+def _page_metadata(page, *, today):
     requested, final = page.get("requested_url"), page.get("final_url")
     raw, fetched = page.get("html"), page.get("fetched_at")
     try:
@@ -88,8 +89,12 @@ def _pack(page, *, today):
             or stamp.tzinfo is None or stamp.utcoffset() != timedelta(0) or stamp.date() != today):
         raise ValueError("Untrusted Happings detail checkpoint page")
     return {"requested_url": requested, "final_url": final, "fetched_at": fetched,
-            "bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest(),
-            "html_gzip_base64": base64.b64encode(gzip.compress(raw, mtime=0)).decode("ascii")}
+            "bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
+
+
+def _pack(page, *, today):
+    return {**_page_metadata(page, today=today),
+            "html_gzip_base64": base64.b64encode(gzip.compress(page["html"], mtime=0)).decode("ascii")}
 
 
 def _unpack(saved, context, *, today, max_requests):
@@ -148,17 +153,22 @@ def _unpack(saved, context, *, today, max_requests):
         raise ValueError("Happings detail checkpoint changed its acquisition counts")
     pages, seen = [], set()
     for entry in saved["pages"]:
-        if not isinstance(entry, dict):
+        if (not isinstance(entry, dict) or set(entry) != {
+                "requested_url", "final_url", "fetched_at", "bytes", "sha256", "html_gzip_base64"}
+                or type(entry["bytes"]) is not int):
             raise ValueError("Invalid Happings detail checkpoint entry")
         try:
             zipped = base64.b64decode(entry["html_gzip_base64"], validate=True)
             with gzip.GzipFile(fileobj=io.BytesIO(zipped)) as stream:
                 raw = stream.read(weekly.MAX_RESPONSE_BYTES + 1)
-        except (KeyError, TypeError, ValueError, OSError, EOFError):
+        except (KeyError, TypeError, ValueError, OSError, EOFError, zlib.error):
             raise ValueError("Invalid compressed Happings detail evidence") from None
         page = {"requested_url": entry.get("requested_url"), "final_url": entry.get("final_url"),
                 "fetched_at": entry.get("fetched_at"), "html": raw}
-        if _pack(page, today=today) != entry or entry["requested_url"] in seen:
+        # Validate the decompressed evidence, irrespective of the gzip OS byte
+        # or compression output chosen by the producing Python/zlib runtime.
+        metadata = {k: v for k, v in entry.items() if k != "html_gzip_base64"}
+        if _page_metadata(page, today=today) != metadata or entry["requested_url"] in seen:
             raise ValueError("Happings detail evidence was repeated or changed")
         resource = state["resources"].get(entry["requested_url"])
         outcome = successful_details.get(entry["requested_url"])

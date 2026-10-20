@@ -1,0 +1,1589 @@
+{
+  "schema": 1,
+  "scope": "Factual DOM excerpts from 27 observed HTTP responses. Full articles, ads and publisher contacts omitted. These are not the raw source bytes and never substitute for raw acquisition hashes.",
+  "raw_fixture_semantics_equal": true,
+  "results": [
+    {
+      "fixture": "arezzonotizie.it--9521d1fd66d9.html",
+      "requested_url": "https://www.arezzonotizie.it/eventi/mercato-pulci-2026.html",
+      "final_url": "https://www.arezzonotizie.it/eventi/mercato-pulci-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:33.460589+00:00",
+      "http_status": 200,
+      "raw_bytes": 915917,
+      "raw_sha256": "7744ff254819a615855708b8801f52d04d183c2f6c149cb22959652bf8da401b",
+      "fixture_bytes": 3658,
+      "fixture_sha256": "bbc54fa7b0ee66557d493936b3962982857966f0cfc7642945ca2ba6cfb7ba43",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Mercato delle Pulci di Arezzo 2026: evento al Centro affari",
+        "location": {
+          "name": "Arezzo Fiere e Congressi",
+          "address": "Via Lazzaro Spallanzani, 23",
+          "city": "Arezzo",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Lazzaro Spallanzani, 23, Arezzo, Pescaiola"
+        },
+        "hours_text": "dalle 15 del 21 febbraio",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "dalle 15 del 21 febbraio"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-21",
+            "end": "2026-02-22"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-14"
+    },
+    {
+      "fixture": "baritoday.it--0c17b5073dc8.html",
+      "requested_url": "https://www.baritoday.it/eventi/fiera-fischietto-rutigliano-24-25-gennaio-2026.html",
+      "final_url": "https://www.baritoday.it/eventi/fiera-fischietto-rutigliano-24-25-gennaio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:32.701620+00:00",
+      "http_status": 200,
+      "raw_bytes": 924868,
+      "raw_sha256": "a98e0530af7c6026997e4c8ec0413f0e28746f323bb9bac08a973189c283e23e",
+      "fixture_bytes": 3838,
+      "fixture_sha256": "c8c25dec1b657a9d8e2b4c5390ad05c80b7e2071f8f82fdcc080e720bc06becc",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Fiera del Fischietto in Terracotta a Rutigliano: artigianato, visite guidate, intrattenimento e gastronomia",
+        "location": {
+          "name": "Centro Storico",
+          "address": null,
+          "city": "Rutigliano",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", Rutigliano,"
+        },
+        "hours_text": null,
+        "hours_intervals": [],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-01-24",
+            "end": "2026-01-25"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "hours_not_published"
+      ],
+      "published_at": "2026-01-20"
+    },
+    {
+      "fixture": "bolognatoday.it--98c9652acb3c.html",
+      "requested_url": "https://www.bolognatoday.it/eventi/da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-lucretio-e-idriss-d-13675563.html",
+      "final_url": "https://www.bolognatoday.it/eventi/da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-lucretio-e-idriss-d-13675563.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:32.696227+00:00",
+      "http_status": 200,
+      "raw_bytes": 937973,
+      "raw_sha256": "6c7b5e7b9ffc362cc529fe09b83a57396215d94052c6db35dee66a4115e8fbbe",
+      "fixture_bytes": 4106,
+      "fixture_sha256": "2d4c6a34c66026ed3842b4b502d66fb603555f16d8d4a1e2fc5aeed813517919",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Da Berlino a Bologna: the vinyl market Berlin arriva a Eufonica",
+        "location": {
+          "name": "BolognaFiere",
+          "address": "Viale Aldo Moro, 22",
+          "city": "Bologna",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Viale Aldo Moro, 22, Bologna, Fiera"
+        },
+        "hours_text": "Dalle 10:00 alle 24:00",
+        "hours_intervals": [
+          {
+            "start": "10:00",
+            "end": "24:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-05-15",
+            "end": "2026-05-17"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "schema_event_url_is_external_not_page_identity"
+      ],
+      "published_at": "2026-02-12"
+    },
+    {
+      "fixture": "bresciatoday.it--323a7ea664ee.html",
+      "requested_url": "https://www.bresciatoday.it/eventi/sagre/chiari-mercatini-san-faustino-2026.html",
+      "final_url": "https://www.bresciatoday.it/eventi/sagre/chiari-mercatini-san-faustino-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:34.413726+00:00",
+      "http_status": 200,
+      "raw_bytes": 900118,
+      "raw_sha256": "da9998f4dc0a39e50b023978942397be7ac8acccf74f68c5b69ab8fe8d5628cc",
+      "fixture_bytes": 3507,
+      "fixture_sha256": "6165541aae67d6ae9372b1f6f23635dd47e65895587fe4c22858dd9dd91f2802",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Chiari: Mercatini di San Faustino",
+        "location": {
+          "name": "Centro storico",
+          "address": null,
+          "city": null,
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", ,"
+        },
+        "hours_text": "Dalle 9 alle 18",
+        "hours_intervals": [
+          {
+            "start": "09:00",
+            "end": "18:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-15",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-02-15",
+            "start_time": "09:00",
+            "end_time": "18:00",
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "source_municipality_not_explicit"
+      ],
+      "published_at": "2026-02-13"
+    },
+    {
+      "fixture": "cagliaritoday.it--e1ef02204e41.html",
+      "requested_url": "https://www.cagliaritoday.it/eventi/Hermaearket-pirri-marzo-handmade-artigianato.html",
+      "final_url": "https://www.cagliaritoday.it/eventi/Hermaearket-pirri-marzo-handmade-artigianato.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:36.978815+00:00",
+      "http_status": 200,
+      "raw_bytes": 921247,
+      "raw_sha256": "17fdaea8e4064eb26907301798a54f286e34fb91740e99d4c73f5293eac33aa0",
+      "fixture_bytes": 4206,
+      "fixture_sha256": "17230730b7789262a2c7f7ad8482ce23261662a66063db2848ad505e79501fb1",
+      "status": "parsed",
+      "expected_event": {
+        "name": "\"Hermaearket\" torna a Pirri il 14 e 15 marzo con artigianato, creatività e handmade",
+        "location": {
+          "name": "Centro Culturale Hermaea di Pirri",
+          "address": "Via Santa Maria Chiara, 24/a",
+          "city": "Cagliari",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Santa Maria Chiara, 24/a, Cagliari, Pirri"
+        },
+        "hours_text": null,
+        "hours_intervals": [],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-03-14",
+            "end": "2026-03-15"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "schema_event_url_is_external_not_page_identity",
+        "hours_not_published"
+      ],
+      "published_at": "2026-01-26"
+    },
+    {
+      "fixture": "casertanews.it--2214b2178409.html",
+      "requested_url": "https://www.casertanews.it/eventi/fiera-vintage-polo-a1-expo-14-15-febbraio.html",
+      "final_url": "https://www.casertanews.it/eventi/fiera-vintage-polo-a1-expo-14-15-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:37.025531+00:00",
+      "http_status": 200,
+      "raw_bytes": 921746,
+      "raw_sha256": "15188f3d695ba26969d691fc17bb0d620815206ef65bff722ebb74e3915a99bd",
+      "fixture_bytes": 3850,
+      "fixture_sha256": "f2999fece7dbac0d36556b5b68af1eaa7af92f17028666541c156ae825702a07",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Ritorna la Fiera del Vintage: due giorni di stile, musica e cultura pop al Polo A1Expò",
+        "location": {
+          "name": "Polo Fieristico A1Expò",
+          "address": null,
+          "city": "San Marco Evangelista",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", San Marco Evangelista,"
+        },
+        "hours_text": "Dalle 10 alle 20",
+        "hours_intervals": [
+          {
+            "start": "10:00",
+            "end": "20:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-14",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-10"
+    },
+    {
+      "fixture": "cataniatoday.it--31ed67739fab.html",
+      "requested_url": "https://www.cataniatoday.it/eventi/mercatino-fera-bio-catania-febbraio-2026.html",
+      "final_url": "https://www.cataniatoday.it/eventi/mercatino-fera-bio-catania-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:38.112225+00:00",
+      "http_status": 200,
+      "raw_bytes": 909949,
+      "raw_sha256": "1db5e0dfe9989c4b4292b39ca31a6fbbe147529d5a0e665c2ba0d8c15674c2d5",
+      "fixture_bytes": 3911,
+      "fixture_sha256": "90624149650a5df64cbdbf4274136c4260a8f14167201d8202076295a779af44",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Mercatino 'A Fera Bio",
+        "location": {
+          "name": "Parco Madre Teresa di Calcutta",
+          "address": "Via Mafalda di Savoia, 9",
+          "city": "Catania",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Mafalda di Savoia, 9, Catania, Borgo"
+        },
+        "hours_text": "8.30",
+        "hours_intervals": [
+          {
+            "start": "08:30",
+            "end": null,
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-08",
+            "end": "2026-02-08"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-02-08",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-05"
+    },
+    {
+      "fixture": "cesenatoday.it--c9fd22db3421.html",
+      "requested_url": "https://www.cesenatoday.it/eventi/festa-del-maiale-quando-montiano-25-gennaio-2026.html",
+      "final_url": "https://www.cesenatoday.it/eventi/festa-del-maiale-quando-montiano-25-gennaio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:38.490409+00:00",
+      "http_status": 200,
+      "raw_bytes": 919592,
+      "raw_sha256": "861078eff4b09defd8ad2bdaf986f1454f5338ce502029f12a54bd96adf2279b",
+      "fixture_bytes": 3868,
+      "fixture_sha256": "d9a31112b0132fba692334f4795c5b141df677d7450cdb4f3b0e3ce89bb115c1",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Cicciolata, mercatini e stand gastronomici aprono le porte alla Festa del maiale di Montiano",
+        "location": {
+          "name": "Centro storico di Montiano",
+          "address": null,
+          "city": "Montiano",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", Montiano,"
+        },
+        "hours_text": "Dalle 9",
+        "hours_intervals": [
+          {
+            "start": "09:00",
+            "end": null,
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-01-25",
+            "end": "2026-01-25"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-01-25",
+            "start_time": "09:00",
+            "end_time": null,
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-01-20"
+    },
+    {
+      "fixture": "ferraratoday.it--2f49a574f3cd.html",
+      "requested_url": "https://www.ferraratoday.it/eventi/markettino-prima-edizione-del-mercato-contemporaneo-atigianato-indipendente-8-febbraio.html",
+      "final_url": "https://www.ferraratoday.it/eventi/markettino-prima-edizione-del-mercato-contemporaneo-atigianato-indipendente-8-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:41.085694+00:00",
+      "http_status": 200,
+      "raw_bytes": 916795,
+      "raw_sha256": "075df4651853e13eb7d06c69c3578073763eb0352b91253102a66d5681798104",
+      "fixture_bytes": 3954,
+      "fixture_sha256": "f92abe557762e18d2b357eaba57ded7dcf20266d5e299db1a32136c8cb75a975",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Dall’artigianato indipendente alle produzioni creative, torna l'appuntamento con 'Markettino'",
+        "location": {
+          "name": "Ex Teatro Verdi",
+          "address": "Via Castelnuovo, 10",
+          "city": "Ferrara",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Castelnuovo, 10, Ferrara, Centro Storico"
+        },
+        "hours_text": "dalle ore 10 alle 19",
+        "hours_intervals": [
+          {
+            "start": "10:00",
+            "end": "19:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-08",
+            "end": "2026-02-08"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-02-08",
+            "start_time": "10:00",
+            "end_time": "19:00",
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-01-26"
+    },
+    {
+      "fixture": "firenzetoday.it--3aaf8d291320.html",
+      "requested_url": "https://www.firenzetoday.it/eventi/emporium-piazza-savonarola-firenze-24-gennaio-2026.html",
+      "final_url": "https://www.firenzetoday.it/eventi/emporium-piazza-savonarola-firenze-24-gennaio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:41.892137+00:00",
+      "http_status": 200,
+      "raw_bytes": 921711,
+      "raw_sha256": "b81a41ec0aa0cdeb5539b10b5f26ea5014f08a0e73fcf8c8d1f4f24034b3c20e",
+      "fixture_bytes": 3814,
+      "fixture_sha256": "0d4e65bf28e075d2e222ef27134db546918be9ef3b967b11fd85c0d8f739ac40",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Emporium: mercatino d'antiquariato in Piazza Savonarola",
+        "location": {
+          "name": "Piazza Savonarola",
+          "address": "Piazza Fra' Girolamo Savonarola",
+          "city": "Firenze",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Piazza Fra' Girolamo Savonarola, Firenze, Savonarola"
+        },
+        "hours_text": "9-18",
+        "hours_intervals": [
+          {
+            "start": "09:00",
+            "end": "18:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-01-24",
+            "end": "2026-01-24"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-01-24",
+            "start_time": "09:00",
+            "end_time": "18:00",
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-01-22"
+    },
+    {
+      "fixture": "forlitoday.it--ebf7741cbe52.html",
+      "requested_url": "https://www.forlitoday.it/eventi/mercato-di-campagna-amica-coldiretti-programma-iniziative-febbraio-2026.html",
+      "final_url": "https://www.forlitoday.it/eventi/mercato-di-campagna-amica-coldiretti-programma-iniziative-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:42.445897+00:00",
+      "http_status": 200,
+      "raw_bytes": 923045,
+      "raw_sha256": "fc24df999ed24531ae811f705b564e48091c77770a36049b41d98e7cc2001f21",
+      "fixture_bytes": 3893,
+      "fixture_sha256": "32887d474139a1e6d3fe0bd939ca3027b8eaf45ae9a408b21a3d92a3fc3715df",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Sapori stagionali e supporto alle filiere locali: al mercato di Campagna Amica un mese di incontri con i produttori del territorio",
+        "location": {
+          "name": "Mercato di Campagna Amica",
+          "address": "Viale dell'Appennino, 16",
+          "city": "Forlì",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Viale dell'Appennino, 16, Forlì, Cà Ossi"
+        },
+        "hours_text": "8-13.30",
+        "hours_intervals": [
+          {
+            "start": "08:00",
+            "end": "13:30",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-06",
+            "end": "2026-02-27"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-05"
+    },
+    {
+      "fixture": "frosinonetoday.it--719a6eee7966.html",
+      "requested_url": "https://www.frosinonetoday.it/eventi/ceccano-mercatino-degli-artigiani-del-borgo-odv.html",
+      "final_url": "https://www.frosinonetoday.it/eventi/ceccano-mercatino-degli-artigiani-del-borgo-odv.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:42.652486+00:00",
+      "http_status": 200,
+      "raw_bytes": 917742,
+      "raw_sha256": "57f135d5bbc0313bb527b6aa71566482f4ef41c4805ac9cc4e046fda43aa608f",
+      "fixture_bytes": 3824,
+      "fixture_sha256": "39de57fdc734c5394668e80beb43b0dd2eb3cc15929a71bd72df422fe1aeb0e7",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Ceccano, mercatino degli Artigiani del borgo ODV",
+        "location": {
+          "name": null,
+          "address": "Piazza 25 Luglio",
+          "city": "Ceccano",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Piazza 25 Luglio, Ceccano,"
+        },
+        "hours_text": "Dalle ore 9.30 alle 18.00",
+        "hours_intervals": [
+          {
+            "start": "09:30",
+            "end": "18:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-08",
+            "end": "2026-02-08"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-02-08",
+            "start_time": "09:30",
+            "end_time": "18:00",
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-01-26"
+    },
+    {
+      "fixture": "genovatoday.it--bd4d23568a60.html",
+      "requested_url": "https://www.genovatoday.it/eventi/artegenova-mostra-mercato-arte-moderna-contemporanea-2026.html",
+      "final_url": "https://www.genovatoday.it/eventi/artegenova-mostra-mercato-arte-moderna-contemporanea-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:45.377826+00:00",
+      "http_status": 200,
+      "raw_bytes": 925463,
+      "raw_sha256": "0cacf27acad3df2364ddb9afd433ce5a3a9b9028882f209d32e921afe06db7ef",
+      "fixture_bytes": 4216,
+      "fixture_sha256": "76792845f0d847320b5ddfe5fcfd31b9229e061ee0be54b9ef68a7a8aeeebe2f",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Edizione numero 20 per ArteGenova, la grande mostra-mercato di arte moderna e contemporanea",
+        "location": {
+          "name": "Padiglione Blu della Fiera di Genova",
+          "address": "Piazzale John Fitzgerald Kennedy",
+          "city": "Genova",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Piazzale John Fitzgerald Kennedy, Genova, Foce"
+        },
+        "hours_text": "10-20",
+        "hours_intervals": [
+          {
+            "start": "10:00",
+            "end": "20:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-13",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "schema_event_url_is_external_not_page_identity"
+      ],
+      "published_at": "2026-01-31"
+    },
+    {
+      "fixture": "leccotoday.it--a1f15b11015f.html",
+      "requested_url": "https://www.leccotoday.it/eventi/mandello-mercatino-2000-libri-fuoriclasse-.html",
+      "final_url": "https://www.leccotoday.it/eventi/mandello-mercatino-2000-libri-fuoriclasse-.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:47.341168+00:00",
+      "http_status": 200,
+      "raw_bytes": 929753,
+      "raw_sha256": "4a7cf16331ca47c91ae1ec64d510620f86a280e38890e2ffdb29f0eb19b67fec",
+      "fixture_bytes": 1259,
+      "fixture_sha256": "6684ac9aea4290c8828f24c3c6272438e2beb3e75d1faf3cb2831e598f0b0925",
+      "status": "unsupported",
+      "expected_event": {
+        "name": "Con \"I Fuoriclasse\" un mercatino dell'usato con oltre 2.000 libri",
+        "location": {
+          "name": null,
+          "address": null,
+          "city": null,
+          "province": null,
+          "region": null,
+          "country": null
+        },
+        "hours_text": null,
+        "hours_intervals": [],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": false,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "event_editorial_variant_without_unique_dove_quando"
+      ],
+      "published_at": null
+    },
+    {
+      "fixture": "modenatoday.it--d4f51ae43a3f.html",
+      "requested_url": "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+      "final_url": "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:46.366095+00:00",
+      "http_status": 200,
+      "raw_bytes": 900360,
+      "raw_sha256": "27556b6df8b381f3b3543f67a88b5f0b66283146d0a9e034686a5c0fbb02267c",
+      "fixture_bytes": 3716,
+      "fixture_sha256": "117900b230312b3821bb1480dcf10b4ae5e493a313f6b95306924c05a78dcb93",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Shopping invernale, il Parco Novi Sad ospita il mercato di Modena",
+        "location": {
+          "name": "Parco Novi Sad",
+          "address": null,
+          "city": "Modena",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", Modena,"
+        },
+        "hours_text": "7:00 alle 14:00",
+        "hours_intervals": [
+          {
+            "start": "07:00",
+            "end": "14:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-15",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-02-15",
+            "start_time": "07:00",
+            "end_time": "14:00",
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-13"
+    },
+    {
+      "fixture": "monzatoday.it--a48c40adcb3f.html",
+      "requested_url": "https://www.monzatoday.it/eventi/monza-mercatino-francese_febbraio-2026.html",
+      "final_url": "https://www.monzatoday.it/eventi/monza-mercatino-francese_febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:47.486862+00:00",
+      "http_status": 200,
+      "raw_bytes": 900670,
+      "raw_sha256": "d252b8d13e700863c52e6246aa5e31c03c2a75987c03d845d6e1f6dc9d35e666",
+      "fixture_bytes": 3475,
+      "fixture_sha256": "ab6f78ec0490bd59d416b2e37ee079ca173c0c814b007b1c29409b800429e510",
+      "status": "parsed",
+      "expected_event": {
+        "name": "A Monza il mercatino francese",
+        "location": {
+          "name": null,
+          "address": "Piazza Trento e Trieste",
+          "city": "Monza",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Piazza Trento e Trieste, Monza, Centro Storico"
+        },
+        "hours_text": "Venerdì dalle 12 alle 20, sabato e domenica dalle 9 alle 20",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "Venerdì dalle 12 alle 20, sabato e domenica dalle 9 alle 20"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-13",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-04"
+    },
+    {
+      "fixture": "novaratoday.it--12e887ae9cfd.html",
+      "requested_url": "https://www.novaratoday.it/eventi/sagra-primavera-cameri-2026.html",
+      "final_url": "https://www.novaratoday.it/eventi/sagra-primavera-cameri-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:50.095651+00:00",
+      "http_status": 200,
+      "raw_bytes": 918356,
+      "raw_sha256": "13dc1395bc8ac01504dc70749a4393662dfa07f254b9e427ada6d073c0376b53",
+      "fixture_bytes": 3833,
+      "fixture_sha256": "f8bf0ea8ebcb5e21a644dd0bbff029fbaa5332ff62ec0fdb04207bd9a885c215",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Tre giorni di sapori tipici: a marzo torna a Cameri la Sagra di Primavera",
+        "location": {
+          "name": "Area Mercato",
+          "address": "Via Giovanni Sabbioncelli",
+          "city": "Cameri",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Giovanni Sabbioncelli, Cameri,"
+        },
+        "hours_text": null,
+        "hours_intervals": [],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-03-20",
+            "end": "2026-03-22"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "hours_not_published"
+      ],
+      "published_at": "2026-02-08"
+    },
+    {
+      "fixture": "palermotoday.it--5b9cabc75906.html",
+      "requested_url": "https://www.palermotoday.it/eventi/artgarden-14-15-febbraio-2026-vivai-gitto.html",
+      "final_url": "https://www.palermotoday.it/eventi/artgarden-14-15-febbraio-2026-vivai-gitto.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:51.675814+00:00",
+      "http_status": 200,
+      "raw_bytes": 925000,
+      "raw_sha256": "67fcfec24650b0256456687d5cc08ebd6985422d42077b5f64295a116170ce82",
+      "fixture_bytes": 3804,
+      "fixture_sha256": "21e73260bdbf6ddabc1e4c7b5a1a1d0102d2e713436bfe6f234dafa59bd382b5",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Creatività, natura, artigianato e vintage si incontrano a Palermo: torna ArtGarden",
+        "location": {
+          "name": "Vivai Gitto",
+          "address": "Via Castelforte",
+          "city": "Palermo",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Castelforte, Palermo, Partanna-Mondello"
+        },
+        "hours_text": "dalle 10 alle 20",
+        "hours_intervals": [
+          {
+            "start": "10:00",
+            "end": "20:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-14",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-11"
+    },
+    {
+      "fixture": "parmatoday.it--4d0ed834ab18.html",
+      "requested_url": "https://www.parmatoday.it/eventi/librokilo-parma-1-febbraio.html",
+      "final_url": "https://www.parmatoday.it/eventi/librokilo-parma-1-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:51.899072+00:00",
+      "http_status": 200,
+      "raw_bytes": 920269,
+      "raw_sha256": "d935beb28f71d23a8fdfb3c850404b34801ebe1cc4593380fc6d5a5e4c3ed7fc",
+      "fixture_bytes": 4158,
+      "fixture_sha256": "431c11a906abb0fff83bbf492bbc258b94831d52bee6994440d1066ce78858d8",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Librokilo torna a Parma il 1° febbraio",
+        "location": {
+          "name": "Colonne Ventotto",
+          "address": "Borgo delle Colonne, 28",
+          "city": "Parma",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Borgo delle Colonne, 28, Parma, Centro"
+        },
+        "hours_text": "Dalle 10 alle 19",
+        "hours_intervals": [
+          {
+            "start": "10:00",
+            "end": "19:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-01",
+            "end": "2026-02-01"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-02-01",
+            "start_time": "10:00",
+            "end_time": "19:00",
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "schema_event_url_is_external_not_page_identity"
+      ],
+      "published_at": "2026-01-16"
+    },
+    {
+      "fixture": "ravennatoday.it--d19463631447.html",
+      "requested_url": "https://www.ravennatoday.it/eventi/festa-della-patrona-sant-agata-sul-santerno-iniziative-2026.html",
+      "final_url": "https://www.ravennatoday.it/eventi/festa-della-patrona-sant-agata-sul-santerno-iniziative-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:52.590315+00:00",
+      "http_status": 200,
+      "raw_bytes": 912745,
+      "raw_sha256": "8a91034884510b791e0aca72f473af05ccaf4c45f3a661a249ac4467359a6aee",
+      "fixture_bytes": 3930,
+      "fixture_sha256": "1af748342144b6b25f7e173d09a233b190c506c8922b307e6d90dd04323996f2",
+      "status": "held",
+      "expected_event": {
+        "name": "Maccheronata, mercatini, luna park, dj set e spettacoli per la festa della Patrona",
+        "location": {
+          "name": "sedi varie - vedi articolo",
+          "address": null,
+          "city": "Sant'Agata sul Santerno",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", Sant'Agata sul Santerno,"
+        },
+        "hours_text": "vari orari - vedi programma",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "vari orari - vedi programma"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-01-31",
+            "end": "2026-02-08"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [
+        {
+          "field": "hours",
+          "code": "programme_hours_scope_unrepresented"
+        }
+      ],
+      "expected_warnings": [],
+      "published_at": "2026-01-26"
+    },
+    {
+      "fixture": "riminitoday.it--3fcce20b0a85.html",
+      "requested_url": "https://www.riminitoday.it/eventi/piazzetta-delle-idee-chi-cerca-trova-artigianato-creativita-tesori-riccione-paese.html",
+      "final_url": "https://www.riminitoday.it/eventi/piazzetta-delle-idee-chi-cerca-trova-artigianato-creativita-tesori-riccione-paese.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:54.807546+00:00",
+      "http_status": 200,
+      "raw_bytes": 920178,
+      "raw_sha256": "8cffb2e91aa0b4b8f77bfc173804c52e01d0a743e2370197ccfa5c33b2b86916",
+      "fixture_bytes": 3890,
+      "fixture_sha256": "335dbe3f5219a61d1ed295d52776a8a037f3af8078f7a5489478ed0d9fc343f0",
+      "status": "held",
+      "expected_event": {
+        "name": "Bancarelle, idee e piccoli tesori: tornano \"Piazzetta delle idee\" e \"Chi cerca trova\"",
+        "location": {
+          "name": "Riccione Paese",
+          "address": null,
+          "city": "Riccione",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", Riccione,"
+        },
+        "hours_text": "vari orari - vedi programma",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "vari orari - vedi programma"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-01-23",
+            "end": "2026-06-14"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [
+        {
+          "field": "hours",
+          "code": "programme_hours_scope_unrepresented"
+        }
+      ],
+      "expected_warnings": [],
+      "published_at": "2026-01-23"
+    },
+    {
+      "fixture": "romatoday.it--d53004dedb50.html",
+      "requested_url": "https://www.romatoday.it/eventi/hippie-market-14-15-febbraio-2026.html",
+      "final_url": "https://www.romatoday.it/eventi/hippie-market-14-15-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:56.106953+00:00",
+      "http_status": 200,
+      "raw_bytes": 922382,
+      "raw_sha256": "3dc846480c24cef134cfaab81ad6501f35e2d20646702e6da84b79aa88717778",
+      "fixture_bytes": 3716,
+      "fixture_sha256": "c46a2199c76f7c977fe2158d559f89945b43bb883d392c072fe985128feff3b8",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Hippie Market tra gli Acquedotti romani",
+        "location": {
+          "name": "692 Secret Garden",
+          "address": "Via Tuscolana, 692",
+          "city": "Roma",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Tuscolana, 692, Roma, Appio Tuscolano"
+        },
+        "hours_text": "Dalle 11,30 alle 20",
+        "hours_intervals": [
+          {
+            "start": "11:30",
+            "end": "20:00",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] .u-label-011"
+            ]
+          }
+        ],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-14",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-10"
+    },
+    {
+      "fixture": "torinotoday.it--9d13c4c3e50b.html",
+      "requested_url": "https://www.torinotoday.it/eventi/salone-libro-usato-nichelino-14-22-febbraio.html",
+      "final_url": "https://www.torinotoday.it/eventi/salone-libro-usato-nichelino-14-22-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:56.545965+00:00",
+      "http_status": 200,
+      "raw_bytes": 923702,
+      "raw_sha256": "494d8a0a8190f03114fc08a8b86a941ffc3278f7ef6d0aacb85d92e49670cebf",
+      "fixture_bytes": 3911,
+      "fixture_sha256": "8382e4ee70544407c65bfdd1cfdefbfa0c9b6b97c5407b82cf419333a30d106f",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Il fascino delle pagine vissute: a Nichelino torna l'8° Salone del Libro Usato",
+        "location": {
+          "name": "Comitato Oltrestazione",
+          "address": "Via Guido Gozzano, 29",
+          "city": "Nichelino",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Guido Gozzano, 29, Nichelino,"
+        },
+        "hours_text": null,
+        "hours_intervals": [],
+        "hours_qualifications": [],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-14",
+            "end": "2026-02-22"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "hours_not_published"
+      ],
+      "published_at": "2026-02-08"
+    },
+    {
+      "fixture": "trevisotoday.it--d14b81554c11.html",
+      "requested_url": "https://www.trevisotoday.it/eventi/mostra-mercato-disco-silea-2026.html",
+      "final_url": "https://www.trevisotoday.it/eventi/mostra-mercato-disco-silea-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:57.434664+00:00",
+      "http_status": 200,
+      "raw_bytes": 920883,
+      "raw_sha256": "7bc42fd57bc0b26a1f23b0c59ce3a974e2abc6257e8c11db7c29b8c01fe844a9",
+      "fixture_bytes": 4145,
+      "fixture_sha256": "dc8ab7310ac4775e6c1a08281c03dd134607787867044da7f62b0936f149aa87",
+      "status": "parsed",
+      "expected_event": {
+        "name": "1° Mostra mercato del disco di Silea",
+        "location": {
+          "name": "Centro Commerciale Emisfero",
+          "address": "Via Eroi di Podrute",
+          "city": "Silea",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Via Eroi di Podrute, Silea,"
+        },
+        "hours_text": "10/19",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "10/19"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-01-31",
+            "end": "2026-02-01"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [
+        "schema_event_url_is_external_not_page_identity"
+      ],
+      "published_at": "2026-01-26"
+    },
+    {
+      "fixture": "veneziatoday.it--98a866420834.html",
+      "requested_url": "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+      "final_url": "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:59.802944+00:00",
+      "http_status": 200,
+      "raw_bytes": 921377,
+      "raw_sha256": "11263c5a2ed7686136bc010d9ec5faaa109f97cbeaba3c25c53c8b754a5d6a20",
+      "fixture_bytes": 3876,
+      "fixture_sha256": "1af15515b8fba87cc2e13a725b44891addc03b724272c31851acad3b236aac15",
+      "status": "parsed",
+      "expected_event": {
+        "name": "Torna il mercatino in centro a Mirano con 150 espositori",
+        "location": {
+          "name": "Centro storico di Mirano",
+          "address": "Piazza Martiri della Libertà",
+          "city": "Mirano",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Piazza Martiri della Libertà, Mirano,"
+        },
+        "hours_text": "Tutto il giorno",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "Tutto il giorno"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-15",
+            "end": "2026-02-15"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-02-15",
+            "start_time": null,
+            "end_time": null,
+            "status": "source_listed",
+            "evidence": [
+              "article.l-entry > header.l-entry__header .l-grid__item[Quando] explicit single date"
+            ]
+          }
+        ],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [],
+      "expected_warnings": [],
+      "published_at": "2026-02-11"
+    },
+    {
+      "fixture": "vicenzatoday.it--711d824754df.html",
+      "requested_url": "https://www.vicenzatoday.it/eventi/art-ciocc-il-tour-dei-cioccolatieri-ad-asiago.html",
+      "final_url": "https://www.vicenzatoday.it/eventi/art-ciocc-il-tour-dei-cioccolatieri-ad-asiago.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:42:01.145199+00:00",
+      "http_status": 200,
+      "raw_bytes": 910271,
+      "raw_sha256": "39802d240119cdd3341e58d81e7f78407f23799c8af33b40a9e90c9c1bf433da",
+      "fixture_bytes": 3841,
+      "fixture_sha256": "3cdd586c2cd0e3387bb410d5e5d64b599e891ad1d30e7102cbdd4f74faa62604",
+      "status": "held",
+      "expected_event": {
+        "name": "Art & Ciocc, Il Tour dei Cioccolatieri ad Asiago",
+        "location": {
+          "name": "tensostruttura riscaldata in Piazza Carli",
+          "address": null,
+          "city": "Asiago",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": ", Asiago,"
+        },
+        "hours_text": "Orari Vari",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "Orari Vari"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-06",
+            "end": "2026-02-08"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": true,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [
+        {
+          "field": "hours",
+          "code": "programme_hours_scope_unrepresented"
+        }
+      ],
+      "expected_warnings": [],
+      "published_at": "2026-02-04"
+    },
+    {
+      "fixture": "viterbotoday.it--51968ac255a6.html",
+      "requested_url": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-15-febbraio-2026.html",
+      "final_url": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-22-febbraio-2026.html",
+      "redirects": [
+        {
+          "from": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-15-febbraio-2026.html",
+          "to": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-22-febbraio-2026.html",
+          "status": 301
+        }
+      ],
+      "fetched_at": "2026-10-20T18:42:03.735767+00:00",
+      "http_status": 200,
+      "raw_bytes": 908638,
+      "raw_sha256": "ba282397f58b493dd68000dba1fc0a4b115b9f8d01c11eac449a81d0ddf4616e",
+      "fixture_bytes": 3760,
+      "fixture_sha256": "883209ee909c6be78e6dfb6a6fe253ede6aaff23e627d4821b598aaa1d792871",
+      "status": "held",
+      "expected_event": {
+        "name": "Mercatino dell'antico a Viterbo",
+        "location": {
+          "name": "Centro storico",
+          "address": "Piazza dei Caduti e via Ascenzi",
+          "city": "Viterbo",
+          "province": null,
+          "region": null,
+          "country": null,
+          "raw_address": "Piazza dei Caduti e via Ascenzi, Viterbo,"
+        },
+        "hours_text": "Dalle 8 al tramonto",
+        "hours_intervals": [],
+        "hours_qualifications": [
+          "Dalle 8 al tramonto"
+        ],
+        "recurrence_text": null,
+        "archive_marker": false,
+        "edition_intervals": [
+          {
+            "start": "2026-02-22",
+            "end": "2026-02-22"
+          }
+        ],
+        "occurrences": [],
+        "date_intervals": [],
+        "calendar_complete": false,
+        "calendar_scope": "edition_bounds",
+        "calendar_rules": [],
+        "suspensions": [],
+        "scope_statements": [],
+        "conditions": [],
+        "source_rows": [],
+        "forecast_rule": null
+      },
+      "expected_conflicts": [
+        {
+          "field": "identity",
+          "code": "redirect_changes_exact_event_identity"
+        }
+      ],
+      "expected_warnings": [],
+      "published_at": "2026-02-12"
+    }
+  ]
+}

@@ -231,13 +231,35 @@ def _editorial_reader_coverage(rows, report, publisher, today):
     """Configured URL support and observed reads are separate evidence."""
     from editorial_calendar_scope import source_identity
     from eventiesagre_detail_refresh import validate_redirects
+    from citynews_urls import source_identity as citynews_identity
+
+    grouped_citynews = publisher == "citynews"
+
+    def reviewed_identity(url):
+        if grouped_citynews:
+            return citynews_identity(url)
+        bound = source_identity(url)
+        return bound if bound and bound[0] == publisher else None
 
     if (not isinstance(report, dict) or report.get("schema") != 1
             or report.get("publisher") != publisher or report.get("date") != today.isoformat()
             or type(report.get("enabled")) is not bool):
         return None
     state = {"enabled": report["enabled"], "default": "not_observed", "reads": {},
-             "contents": {}, "proofs": {}, "outcomes": {}}
+             "contents": {}, "proofs": {}, "outcomes": {}, "layout_holds": set()}
+    if grouped_citynews and report.get("state") is not None:
+        # An observed unsupported template remains an explicit limitation on
+        # later unselected/offline runs. It is never relabelled as today's read.
+        from citynews_detail_refresh import validate_state
+        try:
+            queue = validate_state(report["state"], today=today)
+            if set(queue["resources"]) != {row.get("url_fonte") for row in rows
+                                           if reviewed_identity(row.get("url_fonte"))}:
+                return state
+            state["layout_holds"] = {url for url, item in queue["resources"].items()
+                                     if item["status"] == "layout_held" and item["last_read"]}
+        except (TypeError, ValueError):
+            return state
     if not state["enabled"]:
         state["default"] = "disabled"
         return state
@@ -249,7 +271,7 @@ def _editorial_reader_coverage(rows, report, publisher, today):
         return state
     attempts, pages = report.get("attempts"), report.get("source_pages")
     holds, evidence = report.get("parse_holds", []), report.get("evidence")
-    limit = 64 if publisher == "eventiesagre.it" else 16
+    limit = 8 if grouped_citynews else 64 if publisher == "eventiesagre.it" else 16
     if (not isinstance(attempts, list) or len(attempts) > limit or not isinstance(pages, list)
             or len(pages) > len(attempts) or not isinstance(holds, list)
             or not isinstance(evidence, dict) or evidence.get("schema") != 1 or evidence.get("publisher") != publisher
@@ -257,8 +279,7 @@ def _editorial_reader_coverage(rows, report, publisher, today):
             or not isinstance(evidence.get("documents"), list)
             or not isinstance(evidence.get("outcomes"), list)):
         return state
-    targets = {row.get("url_fonte") for row in rows
-               if (source_identity(row.get("url_fonte")) or (None,))[0] == publisher}
+    targets = {row.get("url_fonte") for row in rows if reviewed_identity(row.get("url_fonte"))}
     indexed, documents, parse_holds, acquired = {}, {}, set(), {}
     outcomes = {}
     catalog = {row["slug"]: row for row in rows}
@@ -279,17 +300,27 @@ def _editorial_reader_coverage(rows, report, publisher, today):
             document = entry["parsed"]
             source = document["source"]
             url = source["requested_url"]
-            if (url in documents or url in parse_holds or url not in indexed or document.get("schema") != 1
+            bound = reviewed_identity(url)
+            unsupported = grouped_citynews and document.get("status") == "unsupported"
+            if (url in documents or url not in indexed or document.get("schema") != 1
                     or as_day(entry.get("read_on")) != today
-                    or source.get("publisher") != publisher or document.get("status") not in {"parsed", "held"}):
+                    or not bound or source.get("publisher") != bound[0]
+                    or grouped_citynews and source.get("source_id") != bound[1]
+                    or unsupported and url not in parse_holds
+                    or not unsupported and (url in parse_holds or document.get("status") not in {"parsed", "held"})):
                 return state
             documents[url] = document
         for page in pages:
             url, final = page["requested_url"], page["final_url"]
-            expected, actual = source_identity(url), source_identity(final)
-            redirected = validate_redirects(url, final, page.get("redirects", []))
+            expected, actual = reviewed_identity(url), reviewed_identity(final)
+            if grouped_citynews:
+                if final != url or page.get("redirects", []) != []:
+                    return state
+                redirected = False
+            else:
+                redirected = validate_redirects(url, final, page.get("redirects", []))
             if (url not in indexed or url in acquired or not expected or not actual
-                    or expected[0] != publisher or actual[0] != publisher
+                    or actual[0] != expected[0]
                     or publisher == "eventiesagre.it" and actual != expected
                     or page.get("redirect_observed", False) is not redirected
                     or indexed[url]["status"] not in {"retrieved", "layout_held"}
@@ -310,7 +341,7 @@ def _editorial_reader_coverage(rows, report, publisher, today):
                              if attempt["status"] in {"retrieved", "layout_held"}}
                 or set(documents) | parse_holds != set(acquired)
                 or report.get("source_pages_read") != len(acquired)
-                or report.get("documents_parsed") != len(documents)
+                or report.get("documents_parsed") != sum(d["status"] != "unsupported" for d in documents.values())
                 or report.get("details_attempted") != len(indexed)):
             return state
         for outcome in evidence["outcomes"]:
@@ -383,7 +414,7 @@ def _existing_source_coverage(rows, report, today):
             or report.get("date") != today.isoformat() or not isinstance(report.get("editorial"), dict)):
         return {}
     result = {"editorial": {}}
-    for publisher in ("eventiesagre.it", "cosedicasa.com"):
+    for publisher in ("eventiesagre.it", "cosedicasa.com", "citynews"):
         if publisher in report["editorial"]:
             state = _editorial_reader_coverage(rows, report["editorial"][publisher], publisher, today)
             if state:
@@ -399,7 +430,10 @@ def _existing_reader(row, states):
     if not states:
         return None
     from editorial_calendar_scope import source_identity
+    from citynews_urls import source_identity as citynews_identity
     url = row.get("url_fonte")
+    if "citynews" in states["editorial"] and citynews_identity(url):
+        return "citynews-detail", "citynews_existing_detail", states["editorial"]["citynews"]
     bound = source_identity(url)
     if bound and bound[0] in states["editorial"]:
         publisher = bound[0]
@@ -539,6 +573,11 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
                 "source_layout_status": "supported" if enabled else "disabled",
                 "source_read_status": state["reads"].get(exact_url, state["default"]),
                 "market_outcome_statuses": dict(Counter(state["outcomes"].get(row["slug"], "not_evaluated") for row in group))}
+            if sid == "citynews-detail":
+                reader["reader_configured"] = enabled
+                if enabled and (exact_url in state["layout_holds"]
+                                or state["contents"].get(exact_url) in {"unsupported", "layout_held"}):
+                    reader["source_layout_status"] = "unsupported"
             if exact_url in state["contents"]:
                 reader["source_content_status"] = state["contents"][exact_url]
             if exact_url in state["proofs"]:
@@ -585,7 +624,7 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
             # paths cover one URL, show a successful read before an unavailable
             # one, while retaining both exact reader dispositions below.
             selected = min(readers, key=lambda r: (
-                {"supported": 0, "approval_required": 1, "disabled": 2}[r["source_layout_status"]],
+                {"supported": 0, "approval_required": 1, "disabled": 2, "unsupported": 3}[r["source_layout_status"]],
                 r["source_read_status"] not in {"retrieved", "cached_snapshot", "resumed_checkpoint",
                                                 "source_contract_approved_staged_only"},
                 r["reader"] != ("official_adapter" if r["source_layout_status"] == "supported"

@@ -20,8 +20,16 @@ function staticURL(path) {
   return BASE_URL.replace(/\/$/, '/') + path
 }
 
-async function loadJSON(path, immutable = false, revalidate = false) {
-  const response = await fetch(staticURL(path), {
+async function loadJSON(path, immutable = false, revalidate = false, now = Date.now()) {
+  let url = staticURL(path)
+  if (path === 'data/v1/manifest.json') {
+    if (!Number.isFinite(now) || now < 0) throw new Error('Data controllo catalogo non valida')
+    // The stable preview CDN can retain an old manifest even with no-cache.
+    // Share one deterministic cache entry per half hour; hashed assets keep
+    // their immutable URL. Add this key only after validating the local path.
+    url += '?refresh=' + Math.floor(now / CATALOG_CHECK_INTERVAL_MS)
+  }
+  const response = await fetch(url, {
     cache: immutable ? 'force-cache' : revalidate ? 'no-cache' : 'default',
   })
   if (!response.ok) throw new Error('Catalogo non disponibile: ' + path + ' (' + response.status + ')')
@@ -97,8 +105,9 @@ async function loadCatalogFromManifest(manifest) {
 }
 
 async function loadCatalog() {
-  const result = await loadCatalogFromManifest(await loadJSON('data/v1/manifest.json'))
-  lastCatalogCheckAt = Date.now()
+  const checkedAt = Date.now()
+  const result = await loadCatalogFromManifest(await loadJSON('data/v1/manifest.json', false, false, checkedAt))
+  lastCatalogCheckAt = checkedAt
   return result
 }
 
@@ -114,8 +123,11 @@ export async function revalidateCatalogIfStale(now = Date.now()) {
   const current = await fetchCatalog()
   if (catalogRecheckPromise) return catalogRecheckPromise
   if (!shouldRevalidateCatalog(lastCatalogCheckAt, now)) return false
+  // A failed check keeps the working catalog and also observes the rate
+  // limit. Focus/visibility events must not repeatedly hit a failing CDN.
+  lastCatalogCheckAt = now
   catalogRecheckPromise = (async () => {
-    const manifest = await loadJSON('data/v1/manifest.json', false, true)
+    const manifest = await loadJSON('data/v1/manifest.json', false, true, now)
     if (manifest.content_signature && current.manifest.content_signature
         && manifest.content_signature === current.manifest.content_signature
         && manifest.index === current.manifest.index) {

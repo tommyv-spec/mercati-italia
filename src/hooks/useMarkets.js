@@ -3,12 +3,12 @@
  * No Firebase or Cloudflare runtime invocation on visits.
  */
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import { isSuspiciousCityName, safeCityLabel } from '../lib/locationQuality'
-import { fieldEvidenceSummary } from '../lib/fieldEvidence'
+import { isSuspiciousCityName, safeCityLabel } from '../lib/locationQuality.js'
+import { fieldEvidenceSummary } from '../lib/fieldEvidence.js'
 import {
   fetchMarkets, fetchMarketById, getFavorites, revalidateCatalogIfStale,
   toggleFavorite as apiToggleFavorite, getDataMode,
-} from '../services/staticMarkets'
+} from '../services/staticMarkets.js'
 
 const CATEGORY_LABELS = {
   alimentare: 'Alimentare',
@@ -29,7 +29,7 @@ const CATEGORY_COLORS = {
   Usato: '#805B08', Artigianato: '#216886', Misto: '#9C4B36',
 }
 
-function adaptMarket(m, userLat, userLng) {
+export function adaptMarket(m, userLat, userLng) {
   const categoryLabel = CATEGORY_LABELS[m.categoria] || m.categoria || 'Misto'
   const locationReviewRequired = isSuspiciousCityName(m.citta) ||
     m.navigazione_sospesa_motivo === 'indirizzo_e_punto_sorgente_non_riconciliati'
@@ -38,6 +38,7 @@ function adaptMarket(m, userLat, userLng) {
     name: m.nome,
     city: safeCityLabel(m.citta),
     originalCity: m.citta,
+    province: m.provincia || '',
     locationReviewRequired,
     region: m.regione,
     address: m.indirizzo || '',

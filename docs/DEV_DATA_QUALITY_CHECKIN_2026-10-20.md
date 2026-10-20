@@ -1,6 +1,24 @@
 # Qualità dei dati DEV: verifica della pubblicazione
 
-## Pubblicazione effettiva verificata il 20 ottobre, ore 18:21 UTC
+## Stato pubblicato verificato il 20 ottobre, ore 19:31 UTC
+
+Il DEV pubblicato più recente è `9766ca21`; il ramo di anteprima è
+`0cb717e6`. Contengono 13.856 schede e le **220 province riconciliate** nei
+tre passaggi descritti sotto. Gli asset del candidato, del DEV e del ramo
+di anteprima coincidono. MAIN resta `1ef738e`.
+
+La verifica HTTP ha anche individuato un problema effettivo di cache: alle
+19:31 UTC l'URL stabile del manifest sull'anteprima serviva ancora la versione
+delle 18:16. L'URL fissato al commit e quello con la nuova chiave di cache
+restituivano invece il manifest corretto delle 19:27. La correzione del client
+usa una chiave condivisa che cambia ogni 30 minuti per il solo manifest;
+i file con hash mantengono la propria cache. Questo fix è nel nuovo lotto di
+codice, ancora da pubblicare al momento di questo check-in. Una verifica del
+ramo Git non viene quindi presentata come prova che il CDN serva già la stessa
+versione. Prove in `dev-province-publication-39483325379.json` e
+`source-format-audit-2026-10-20/manifest-cache-check.md`.
+
+## Acquisizione sorgenti effettivamente pubblicata, ore 18:21 UTC
 
 L’esecuzione [39471001816](https://github.com/tommyv-spec/mercati-italia/actions/runs/39471001816)
 ha completato acquisizione, controlli sui dati, build, test mobile e pubblicazione.
@@ -45,14 +63,15 @@ e 409 URL Cose di Casa ancora senza una lettura riuscita nella storia salvata.
 Il completamento del job non equivale al completamento di queste code.
 
 **Il catalogo non è ancora completo né interamente verificato come attuale.**
-I lettori configurati coprono 12.182 schede su 13.856; restano 1.674 schede
+Prima della riconciliazione delle province i lettori configurati coprivano
+12.182 schede su 13.856. Nel DEV `9766ca21` coprono **12.226** schede; restano **1.630** schede
 senza un raccordo automatico ammesso. La [revisione dei meccanismi residui](../reports/automation/remaining-source-mechanisms-20261020.json)
 distingue difetti implementabili da identità ambigue e prove mancanti.
 Le schede con tutti e tre i campi principali riscontrati su fonti considerate
 recenti dalle regole esistenti sono 1.009; questo non verifica singole aperture.
 Per 12.593 schede non è dimostrata la data effettiva del contenuto sorgente.
 
-## Riconciliazione sistematica delle province: pronta per il normale rilascio
+## Riconciliazione sistematica delle province: 220 correzioni pubblicate
 
 La regola generale usa Comune e regione già salvati per cercare una sola
 corrispondenza nel registro ISTAT fissato. Cambia soltanto la provincia e
@@ -60,13 +79,50 @@ aggiunge una prova amministrativa autonoma. Non riscrive ricevute sorgenti,
 calendari, verifiche, indirizzi o coordinate. Il file ISTAT oggi pubblicato
 è stato riscaricato: l’impronta coincide con il riferimento del 21 febbraio.
 
-Sul catalogo appena pubblicato sono eleggibili 220 schede di tre fonti.
-Il tetto esistente resta 80 modifiche complessive per ciclo: i replay con
-esportazione reale applicano 80, 80, 60 e poi zero correzioni, conservando
-integralmente le 25 evidenze editoriali e tutte le 2.264 ricevute.
-La [prova riproducibile](../reports/automation/source-format-audit-2026-10-20/istat-province-replay.json)
-include i controlli finali della pipeline. Queste correzioni amministrative
-non sono ancora conteggiate nella tabella della pubblicazione sopra.
+La regola è stata pubblicata attraverso il normale Autopilot MAIN, mantenendo
+il tetto esistente di 80 modifiche complessive per ciclo:
+
+| Esecuzione | Province corrette | Commit DEV | Commit anteprima |
+| --- | ---: | --- | --- |
+| [39475291184](https://github.com/tommyv-spec/mercati-italia/actions/runs/39475291184) | 80 | `5430d772` | `b56e6c40` |
+| [39476248402](https://github.com/tommyv-spec/mercati-italia/actions/runs/39476248402) | 80 | `209c8bc3` | `c4053c20` |
+| [39483325379](https://github.com/tommyv-spec/mercati-italia/actions/runs/39483325379) | 60 | `9766ca21` | `0cb717e6` |
+
+Tutti e tre i rilasci hanno superato acquisizione offline, QA e pubblicazione.
+Le 220 schede comprendono 216 Happings, tre Milanopocket e una Sagreumbre.
+Il confronto completo conserva tutti gli ID e **ogni altro campo identico**,
+comprese le 25 evidenze editoriali e le 2.264 ricevute. L'indice, i frammenti,
+il manifest e le quattro code del candidato coincidono con quelli pubblicati.
+Il successivo passaggio non trova altre correzioni in questo gruppo.
+La [prova di pubblicazione](../reports/automation/dev-province-publication-39483325379.json)
+conserva le singole correzioni con Comune/regione e riferimento ISTAT.
+Questi tre passaggi non hanno effettuato nuove richieste alle fonti dei mercati
+e non vengono conteggiati come nuove letture o conferme di apertura.
+
+## Nuovo lotto di lettori e aggiornamento: validato, pubblicazione da verificare
+
+Il lettore Citynews riconosce 57 URL di dettaglio già presenti, riferiti a
+62 schede. Nei 27 HTML reali confrontati con l'intero catalogo aggiunge 11
+evidenze storiche e trattiene 19 raccordi incompatibili o non dimostrati.
+Il ciclo completo sul DEV `9766ca21`, con otto invocazioni simulate e nessuna
+nuova richiesta HTTP, supera 17 controlli su 17: tutti gli ID e le 2.264
+ricevute sono conservati, soltanto due evidenze storiche cambiano nel primo
+lotto selezionato. La coda persistente e l'interfaccia sono integrate;
+30 schede su indici/tag/articoli e la variante Lecco restano fuori da questo
+lettore. I due URL senza fixture nel replay non sono guasti osservati dei siti.
+
+Le sezioni narrative EES `INFORMAZIONI UTILI`, `DOVE` e `ORARI` conservano sedi,
+orari per data e contraddizioni. Il replay degli 11 HTML originali aggiorna
+soltanto due evidenze storiche; le varianti narrative residue restano nella
+checklist. La diagnostica Happings confronta separatamente contenuto HTML,
+campi estratti e schede abbinate: 13 pagine provinciali, 1.088 righe e nove
+dettagli. Le fasce qualitative come «la mattina» non diventano orari precisi;
+i metadati WebPage non diventano una nuova verifica del mercato.
+
+Il lotto corregge inoltre i checkpoint compressi tra versioni Python e il
+manifest servito dalla cache. I risultati dei replay dimostrano questi
+meccanismi; i nuovi recuperi saranno conteggiati soltanto dopo una nuova
+acquisizione reale e il confronto con gli asset effettivamente pubblicati.
 
 ## Stato misurato prima della nuova esecuzione
 

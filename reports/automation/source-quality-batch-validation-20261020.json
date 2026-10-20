@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "checked_at": "2026-10-20T19:49:40.092157+00:00",
+  "code_commit": "a20ea635dcc3ae510d8d17980e116a505912d68b",
+  "data_baseline": "9766ca21b7f029342f4e65b7c1ea6d2285184b2d",
+  "catalog_files_unchanged": true,
+  "python": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=backend python -m unittest discover -s backend/tests -p 'test_*.py' -q",
+    "tests": 1494,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 107.504,
+    "log_sha256": "1e39152a073c683658a8dda2ffcbfe8476230dbbb31db4e04ea7d6756ce2008f"
+  },
+  "javascript": {
+    "command": "node --test tests/*.test.mjs",
+    "test_files": 11,
+    "passed_files": 11,
+    "failures": 0,
+    "log_sha256": "2ad1d43b6102aa49f92e128b5e7c89b5bc45b064aa40bd5b4c44ea2b626c03ea"
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "known_nonblocking_chunk_size_warning": true,
+    "log_sha256": "66eb8e5730e8218279843edf737d15636dbce4edfa3de75119b5097b054e1e9b"
+  },
+  "independent_reviews": [
+    "Citynews scoped parser and exact joins",
+    "Citynews bounded queue and checkpoint transport",
+    "Citynews orchestration/export/frontend",
+    "EES/CDC retry migration and interruptible transport",
+    "Happings metadata, qualifiers and independent field diagnostics"
+  ],
+  "source_replays": [
+    "reports/automation/happings-field-coverage-validation-20261020.json",
+    "reports/automation/happings-format-repair-validation-20261020.json",
+    "reports/automation/source-format-audit-2026-10-20/ees-narrative-replay.json",
+    "reports/automation/source-format-audit-2026-10-20/citynews-detail-replay.json",
+    "reports/automation/source-format-audit-2026-10-20/citynews-integrated-recurring-replay.json",
+    "reports/automation/editorial-retry-validation-20261020.json",
+    "reports/automation/source-format-audit-2026-10-20/citynews-frontend-replay.json",
+    "reports/automation/editorial-v2-integrated-checkpoint-replay-20261020.json"
+  ],
+  "limitations": [
+    "This validates code and captured-source replays, not a new live acquisition.",
+    "Observed CDN staleness is documented separately; publication of the client fix must be checked.",
+    "All remaining source-format gaps and ambiguous joins stay in the ledger."
+  ],
+  "editorial_checkpoint_v2_integration": {
+    "passed": true,
+    "catalog_records": 13856,
+    "queue_files": 5,
+    "actual_network_requests": 0,
+    "runtime_checkpoint_resume_identical": true,
+    "tampered_published_queue_rejected": true,
+    "report": "reports/automation/editorial-v2-integrated-checkpoint-replay-20261020.json"
+  }
+}

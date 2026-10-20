@@ -1,0 +1,168 @@
+{
+  "provenance": {
+    "github_run_id": 39471001816,
+    "source_file": "eventiesagre-detail-refresh.json",
+    "source_file_sha256": "060a4df90b237e57b7ba4893c2598ca5395b4ceaed90c098e8a5daf3603f2baf",
+    "observation_date": "2026-10-20",
+    "original_resources": 1853,
+    "original_attempts": 19,
+    "original_successful_reads": 11,
+    "root_cause": "URLError subclass only; underlying reason was not persisted"
+  },
+  "state": {
+    "cycle": 1,
+    "cycle_started_on": "2026-10-20",
+    "last_completed_cycle": 0,
+    "last_completed_on": null,
+    "publisher": "eventiesagre.it",
+    "schema": 1,
+    "resources": {
+      "https://www.eventiesagre.it/Eventi_Enogastronomici/21145551_Borgo+DiVino+in+Tour+a+Citta+SantaAngelo.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      },
+      "https://www.eventiesagre.it/Eventi_Enogastronomici/21157966_L+Ape+In+Citta.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      },
+      "https://www.eventiesagre.it/Eventi_Enogastronomici/21160786_Festa+Del+Cardo+Dolce+A+Cervia.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      },
+      "https://www.eventiesagre.it/Eventi_Enogastronomici/21177849_Festival+Delle+Regioni+D+italia+A+Falvaterra.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      },
+      "https://www.eventiesagre.it/Eventi_Enogastronomici/21193524_Monte+Food+Festival+A+Monticelli+Terme.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      },
+      "https://www.eventiesagre.it/Eventi_Enogastronomici/21195272_Pasta+Ripiena+E+Cacciagione.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      },
+      "https://www.eventiesagre.it/Eventi_Feste/15489_Fiera+della+Pallavicina+a+Izano.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      },
+      "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html": {
+        "attempt_cycle": 1,
+        "attempts": 1,
+        "first_seen": "2026-10-20",
+        "last_attempt": "2026-10-20",
+        "last_error": "URLError",
+        "last_parsed": null,
+        "last_read": null,
+        "read_cycle": 0,
+        "sha256": null,
+        "status": "unavailable"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21145551_Borgo+DiVino+in+Tour+a+Citta+SantaAngelo.html"
+    },
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21157966_L+Ape+In+Citta.html"
+    },
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21160786_Festa+Del+Cardo+Dolce+A+Cervia.html"
+    },
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21177849_Festival+Delle+Regioni+D+italia+A+Falvaterra.html"
+    },
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21193524_Monte+Food+Festival+A+Monticelli+Terme.html"
+    },
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195272_Pasta+Ripiena+E+Cacciagione.html"
+    },
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Feste/15489_Fiera+della+Pallavicina+a+Izano.html"
+    },
+    {
+      "error_type": "URLError",
+      "network_attempted": true,
+      "status": "unavailable",
+      "url": "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html"
+    }
+  ]
+}

@@ -84,8 +84,10 @@ class ExistingSourceIntegrationTests(unittest.TestCase):
         normalized = [normalize(r, TODAY)[0] for r in after]
         self.assertTrue(integration.verify_editorial_export(normalized, report, today=TODAY)["release_safe"])
         for publisher, phase in report["editorial"].items():
-            self.assertEqual(phase["source_pages_read"], 1, publisher)
-            self.assertEqual(phase["progress"]["cycle_read"], 1, publisher)
+            expected = 0 if publisher == "citynews" else 1
+            read_key = "read_in_cycle" if publisher == "citynews" else "cycle_read"
+            self.assertEqual(phase["source_pages_read"], expected, publisher)
+            self.assertEqual(phase["progress"][read_key], expected, publisher)
 
     def test_even_individually_valid_readers_cannot_both_change_one_identity(self):
         before = [row()]

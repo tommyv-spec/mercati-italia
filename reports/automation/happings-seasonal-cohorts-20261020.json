@@ -1,0 +1,273 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "read_only_existing_captures",
+  "network_requests": 0,
+  "catalog_writes": 0,
+  "code_commit": "9b19d17",
+  "input_manifest": "/tmp/vintagery-live-39471001816/candidate/public/data/v1/manifest.json",
+  "input_manifest_sha256": "dc5295b06ce85c44b7beba9974af475c1ccfd76a0830c3affd16f1bee0865383",
+  "input_cache": "/tmp/vintagery-live-39471001816/sources/happings-pages.json",
+  "input_cache_sha256": "e61d253b47277e39a04be0b586e6dcc7d21b6e3a60b7d4751cdafd11408de2a2",
+  "catalog_records": 13856,
+  "source_pages": [
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-como-e-provincia/",
+      "sha256": "67db25da671c9e97fac7352983ef48020850488bebcde11732f5d59db5cb8ba1",
+      "source_rows": 90,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 175
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-cosenza.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/",
+      "sha256": "da2d99998d493195c82325c5a7d2f03176106d10e6d8156a5cf56889e8c7db17",
+      "source_rows": 60,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 81
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-cremona.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-cremona-e-provincia/",
+      "sha256": "ff656e34ca80a80444e80c58d206b97698dcfe52ae85b02e76db938922735e4b",
+      "source_rows": 55,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 106
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-crotone.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/",
+      "sha256": "9cc43cc90baceb0e1611113628dbb109bc8b6a7eb6c56f4bc21ff1e2527094ca",
+      "source_rows": 10,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 9
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+      "sha256": "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+      "source_rows": 215,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 266
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-fermo.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/",
+      "sha256": "a8fe38337971256d6e26c62014b1672d71e106099d1aa6f3910312cd429a5a86",
+      "source_rows": 18,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 15
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+      "sha256": "fe0a9189765664fbcc0d7dd4de1061822487ebf0fe4dace597b24336ec97f769",
+      "source_rows": 45,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 26
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+      "sha256": "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+      "source_rows": 242,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 119
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-foggia.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/",
+      "sha256": "efe258f3df68c5f544ec777394f0db4cf2487b23a62267ca7a93f6ce194dcb4c",
+      "source_rows": 45,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 58
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+      "sha256": "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+      "source_rows": 76,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 106
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-genova-e-provincia/",
+      "sha256": "60c2ff931e6df176f7d234382ac08302b6f0dbee552c57b3d051b6b35d91eb01",
+      "source_rows": 69,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 54
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+      "sha256": "f86dc56271f275b89b61325bd84ab0baec932b5f62721a32665455a1aa7892e7",
+      "source_rows": 113,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 83
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+      "sha256": "564a78d22ec7f3172c55c89c1af7fa787f20fa3ab3a6571fa485e5dcf67441c6",
+      "source_rows": 50,
+      "qualified_rows": 0,
+      "independent_listing_term_occurrences": [],
+      "ordinary_existing_primary_candidates": 53
+    }
+  ],
+  "qualified_source_rows": [],
+  "identity_venue_proven_cohorts": [],
+  "existing_qualified_catalog_rows": [
+    {
+      "market_id": "mercato-settimanale-di-ramiseto-estivo-ramiseto-giovedi",
+      "name": "Mercato settimanale di Ramiseto (estivo)",
+      "city": "Ramiseto",
+      "address": "centro",
+      "source_url": "https://www.happings.com/it/mercato-settimanale-a-ramiseto--estivo-.html",
+      "reason": "seasonal_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    },
+    {
+      "market_id": "mercato-settimanale-di-ravenna-ravenna-domenica",
+      "name": "Mercato settimanale di Ravenna",
+      "city": "Ravenna",
+      "address": "Porto Corsini Viale Sirotti",
+      "source_url": "https://www.happings.com/it/mercato-settimanale-a-ravenna--estivo-.html",
+      "reason": "seasonal_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    },
+    {
+      "market_id": "mercato-settimanale-di-ravenna-ravenna-lunedi",
+      "name": "Mercato settimanale di Ravenna",
+      "city": "Ravenna",
+      "address": "Lido di Savio piazza Forlimpopoli",
+      "source_url": "https://www.happings.com/it/mercato-settimanale-a-ravenna--estivo-.html",
+      "reason": "seasonal_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    },
+    {
+      "market_id": "mercato-settimanale-di-riolo-terme-riolo-terme-lunedi",
+      "name": "Mercato settimanale di Riolo Terme",
+      "city": "Riolo Terme",
+      "address": "centro",
+      "source_url": "https://www.happings.com/it/mercato-settimanale-a-riolo-terme--estivo-.html",
+      "reason": "seasonal_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    },
+    {
+      "market_id": "mercato-settimanale-di-riolo-terme-estivo-riolo-terme-lunedi",
+      "name": "Mercato settimanale di Riolo Terme (estivo)",
+      "city": "Riolo Terme",
+      "address": "",
+      "source_url": "https://www.happings.com/it/mercato-settimanale-a-riolo-terme--estivo-.html",
+      "reason": "seasonal_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    },
+    {
+      "market_id": "mercato-settimanale-di-riolo-terme-estivo-riolo-terme-estivo",
+      "name": "Mercato settimanale di Riolo Terme (estivo)",
+      "city": "Riolo Terme (estivo)",
+      "address": "",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-ravenna.html",
+      "reason": "seasonal_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    },
+    {
+      "market_id": "mercato-settimanale-di-poggiorsini-poggiorsini-venerdi",
+      "name": "Mercato settimanale di Poggiorsini",
+      "city": "Poggiorsini",
+      "address": "centro",
+      "source_url": "https://www.happings.com/it/mercato-settimanale-a-poggiorsini--ogni-15gg-.html",
+      "reason": "interval_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    },
+    {
+      "market_id": "mercato-settimanale-di-poggiorsini-ogni-15gg-poggiorsini-venerdi",
+      "name": "Mercato settimanale di Poggiorsini (ogni 15gg)",
+      "city": "Poggiorsini",
+      "address": "",
+      "source_url": "https://www.happings.com/it/mercato-settimanale-a-poggiorsini--ogni-15gg-.html",
+      "reason": "interval_scope_unrepresented",
+      "date_quality": "sconosciuta",
+      "future_dates": 0
+    }
+  ],
+  "summary": {
+    "pages": 13,
+    "source_rows": 1088,
+    "source_qualified_rows": 0,
+    "independent_listing_term_occurrences": 0,
+    "qualified_source_rows_matching_unique_catalog_identity_and_venue": 0,
+    "existing_catalog_season_or_interval_holds": 8,
+    "existing_qualified_catalog_future_dates": 0,
+    "rows_flagged_by_existing_full_temporal_scope_guard": 0
+  },
+  "conclusion": "The 13 captured provincial listings contain no seasonal or numeric-interval qualifier in any of 1,088 rows or other text of the scoped listing. Zero applicable source-only calendar limits can be proved from this sample. Do not manufacture a qualifying cohort or infer a limit from an unrelated card/footer. Existing catalog identity qualifiers are counted separately and are not a fresh source observation.",
+  "independent_existing_temporal_guard_scan": [],
+  "proposed_guard": {
+    "implementation_status": "Design only; no code changes after commit9b19d17 and no actual source-qualified cohort in the13capturedpages.",
+    "candidate_identity_requirements": [
+      "Use one successfully acquired reviewed provincial page, retain actual requested/final URLs, exact HTML SHA256 and actual read date. Canonical-only metadata is not transport evidence.",
+      "Require exact ISTAT municipality/province/region, one unambiguous source weekday and a nonempty specific saved venue equal to the literal source venue after permitted normalization. Blank/centro/area-only addresses cannot identify the seasonal venue.",
+      "Require exactly one source row with that city/day/venue, counting all source rows including qualifiers and rejected candidates. Distinct rows at a different venue must not be collapsed to the weekday.",
+      "Bind the existing primary source URL or independently proved legacy route and a compatible generic market identity. A differently named fair, annual event or neighboring venue is not the same market.",
+      "Inspect every existing catalog candidate across primary and auxiliary sources. Start with a unique saved identity; retain multiple same-source cards or competing source records as explicit unresolved cohorts until their physical identity and calendar agreement are independently established."
+    ],
+    "persistent_envelope": {
+      "suggested_field": "ambito_calendario_happings",
+      "schema": 1,
+      "market_identity": "exact saved slug/name/city/province/region/primary URL/venue/weekday",
+      "source": "requested URL, observed final URL, HTML SHA256, original read date and exact source row city/place labels",
+      "qualifiers": "verbatim bounded factual qualifier plus parsed class; estivo without bounds and ogni15gg without anchor both remain unrepresented",
+      "effect": "projection_disallowed_until_represented_or_explicitly_retracted",
+      "page_dates": "optional editorial metadata only, never observation date, opening confirmation or row freshness"
+    },
+    "allowed_transition": [
+      "Reparse source HTML independently, reconstruct the full source and saved cohorts and the exact envelope. A claimed hash or hand-authored hold flag alone cannot authorize a data change.",
+      "For an identity-proven limit, remove only future predicted dates and unsupported projection metadata; retain the saved identity, address, original source and raw recurrence text. Do not report the market as cancelled/closed.",
+      "Retire the prior Happings ordinary recurrence field claim only for its exact source/row provenance; preserve independently valid address receipts and claims from other sources.",
+      "Do not erase human-confirmed or explicit source-listed dates on a bare seasonal qualifier. Retain the conflict for exact dated-source reconciliation.",
+      "Apply the persisted envelope in both recurrence refresh and final export so a subsequent offline run cannot restore the unsupported annual/weekly projection.",
+      "A missing page, fetch failure, missing qualifier, recent read or page publication is not evidence that the restriction ended. Require a later complete applicable source statement or an actually bounded/anchored rule to replace the limit."
+    ],
+    "integration_files_if_real_cohort_found": [
+      "new backend/happings_weekly_calendar_scope.py (pure parse/clean/apply/reconstruct)",
+      "backend/happings_source_enrichment.py (source-qualified exact existing-cohort observation)",
+      "backend/happings_autopilot.py (independent diff/export reconstruction and allowed calendar fields)",
+      "backend/recurrence_refresh.py (apply persisted scope after recurrence synthesis)",
+      "backend/export_static.py (normalize/retain scope before final date acceptance)",
+      "focused real and negative tests; no new market IDs"
+    ],
+    "required_negative_tests": [
+      "Same city/day but a different venue cannot acquire the limit.",
+      "Two source rows at same physical key or two unresolved catalog identities cannot produce a unique scope.",
+      "Ordinary and seasonal venues on the same weekday remain distinct.",
+      "Passeggiata d’Inverno and Inverno e Monteleone remain geographic.",
+      "A prior human-confirmed or source-reported date is not erased by an undated seasonal label.",
+      "No source_updated_on/read timestamp is fabricated from publication.",
+      "Next-day offline/export retains the limit and never regenerates annual dates.",
+      "Same-day conflicting source contents cannot silently supersede the accepted source version."
+    ]
+  }
+}

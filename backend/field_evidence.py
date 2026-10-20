@@ -31,7 +31,7 @@ FINGERPRINT_KINDS = {"publisher_parsed_json", "reviewed_factual_excerpt", "web_e
                      "html_bytes", "pdf_bytes"}
 RECEIPT_KEYS = {"schema", "mercato", "valori", "url", "fonte", "fonte_id", "riga_fonte",
                 "letto_il", "fonte_aggiornata_il", "sha256", "impronta_tipo", "ambito", "metodo",
-                "campi_gestiti", "gestore_campi"}
+                "campi_gestiti", "gestore_campi", "metadati_pagina"}
 
 
 def fingerprint(value):
@@ -269,7 +269,8 @@ def mark_managed_fields(receipt, fields, *, manager, previous=None):
 
 def make_receipt(row, *, values, source_url, source_name, source_id,
                  source_row, read_on, source_updated_on, source_sha256,
-                 scope="dataset", method="id_fonte", fingerprint_kind="publisher_parsed_json"):
+                 scope="dataset", method="id_fonte", fingerprint_kind="publisher_parsed_json",
+                 page_metadata=None):
     receipt = {
         "schema": 1, "mercato": identity(row), "valori": dict(values),
         "url": source_url, "fonte": source_name, "fonte_id": source_id,
@@ -278,6 +279,8 @@ def make_receipt(row, *, values, source_url, source_name, source_id,
         "sha256": source_sha256, "impronta_tipo": fingerprint_kind,
         "ambito": scope, "metodo": method,
     }
+    if page_metadata is not None:
+        receipt["metadati_pagina"] = deepcopy(page_metadata)
     if not valid_receipt(receipt, row, today=as_day(str(read_on))):
         raise ValueError("Invalid field observation or mismatched target values")
     return receipt
@@ -305,6 +308,13 @@ def valid_receipt(receipt, row, *, today):
         return False
     if receipt.get("fonte_aggiornata_il") and not updated:
         return False
+    if "metadati_pagina" in receipt:
+        from happings_page_metadata import clean_page_metadata
+        if (receipt.get("ambito") != "pagina" or receipt.get("impronta_tipo") != "html_bytes"
+                or not str(receipt.get("fonte_id") or "").startswith("happings-weekly-")
+                or clean_page_metadata(receipt["metadati_pagina"], final_url=receipt.get("url"),
+                                       read_on=read) is None):
+            return False
     return bool(safe_url(receipt.get("url")) and
                 isinstance(receipt.get("fonte"), str) and
                 0 < len(receipt["fonte"]) <= 140 and
@@ -345,6 +355,14 @@ def clean_receipts(value, row, *, today):
             # rolls the content date back or loses a formerly known date.
             if not _source_date_not_regressed(earlier, winner):
                 winner, earlier = earlier, winner
+            # A parser upgrade can recover editorial metadata from the same
+            # already observed bytes. Enrich that exact proof without moving
+            # the read date, changing field values or claiming row freshness.
+            if ("metadati_pagina" not in winner and "metadati_pagina" in earlier
+                    and winner["letto_il"] == earlier["letto_il"]
+                    and winner["sha256"] == earlier["sha256"]):
+                winner = deepcopy(winner)
+                winner["metadati_pagina"] = deepcopy(earlier["metadati_pagina"])
             chosen[key] = _carry_management(winner, earlier)
     return sorted(chosen.values(), key=lambda x: (x["letto_il"], x["url"], x["riga_fonte"]),
                   reverse=True)[:MAX_RECEIPTS]

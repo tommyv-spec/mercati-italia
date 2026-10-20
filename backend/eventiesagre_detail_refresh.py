@@ -11,19 +11,17 @@ import base64
 import gzip
 import hashlib
 import io
-import ipaddress
 import json
 import re
-import socket
 import time
+import zlib
 from collections import Counter, defaultdict
 from copy import deepcopy
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from http.client import HTTPException
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urljoin, urlsplit
-from urllib.request import HTTPRedirectHandler, Request, build_opener
 from urllib.robotparser import RobotFileParser
 
 from editorial_calendar_scope import (
@@ -32,6 +30,7 @@ from editorial_calendar_scope import (
     istat_geography, source_identity, text_key, valid_editorial_reported_dates,
 )
 from eventiesagre_source_layout import MAX_BYTES, parse_eventiesagre_html
+from editorial_transport import ERROR_CODES, fetch as _http, failure_code
 from field_evidence import (
     FIELDS, as_day, clean_receipts, fingerprint, make_receipt,
     managed_update_allowed, mark_managed_fields, retire_superseded_receipts,
@@ -58,11 +57,19 @@ MUTABLE = set(FIELDS) | {KEY, "riscontri_campi", "fonti", "date", "date_quality"
 BLOCKING_IDENTITY = {"locality_missing_or_ambiguous", "card_heading_locality_conflict",
                      "jsonld_visible_locality_conflict"}
 CALENDAR_ISSUES = {"edition_dates_missing_or_invalid", "archive_marker_date_conflict",
-                   "jsonld_visible_edition_conflict", "multiple_recurrence_statements"}
+                   "jsonld_visible_edition_conflict", "multiple_recurrence_statements",
+                   "visible_edition_conflict", "narrative_calendar_incomplete"}
 PUBLISHERS = {"eventiesagre.it": {"policy_key": "eventiesagre", "stem": "eventiesagre",
                  "manager": MANAGER, "max_details": 64, "max_seconds": 210},
               "cosedicasa.com": {"policy_key": "cosedicasa", "stem": "cosedicasa",
                  "manager": "cosedicasa_detail", "max_details": 16, "max_seconds": 90}}
+STATE_SCHEMA = 2
+RETRY_DAYS = (1, 2, 4, 7)
+RETRY_EVERY = 4
+
+
+class _BudgetExhausted(RuntimeError):
+    """No new HTTP attempt began; its resource must remain incomplete."""
 
 
 def state_filename(publisher=PUBLISHER):
@@ -112,7 +119,12 @@ def catalog_urls(rows, *, publisher=PUBLISHER):
 def _resource(today):
     return {"first_seen": today.isoformat(), "last_attempt": None, "last_read": None,
             "last_parsed": None, "sha256": None, "status": "unread", "attempts": 0,
-            "attempt_cycle": 0, "read_cycle": 0, "last_error": None}
+            "attempt_cycle": 0, "read_cycle": 0, "last_error": None,
+            "failure_count": 0, "next_retry_on": None, "last_error_code": None}
+
+
+def _retry_day(day, failures):
+    return (day + timedelta(days=RETRY_DAYS[min(max(failures, 1), len(RETRY_DAYS)) - 1])).isoformat()
 
 
 def validate_state(state, *, today, publisher=None):
@@ -121,7 +133,7 @@ def validate_state(state, *, today, publisher=None):
         raise ValueError("Unreviewed editorial queue publisher")
     if (not isinstance(state, dict) or set(state) != {"schema", "publisher", "cycle",
             "cycle_started_on", "last_completed_cycle", "last_completed_on", "resources"}
-            or state.get("schema") != 1 or state.get("publisher") != publisher
+            or state.get("schema") not in {1, STATE_SCHEMA} or state.get("publisher") != publisher
             or type(state.get("cycle")) is not int or not 1 <= state["cycle"] <= 100000
             or type(state.get("last_completed_cycle")) is not int
             or not 0 <= state["last_completed_cycle"] <= state["cycle"]
@@ -132,10 +144,13 @@ def validate_state(state, *, today, publisher=None):
     completed = as_day(state.get("last_completed_on"))
     if bool(state["last_completed_cycle"]) != bool(completed) or completed and completed > today:
         raise ValueError("Editorial cycle completion date is invalid")
-    for url, entry in state["resources"].items():
+    result = deepcopy(state)
+    legacy = result["schema"] == 1
+    old_keys = set(_resource(today)) - {"failure_count", "next_retry_on", "last_error_code"}
+    for url, entry in result["resources"].items():
         if (source_identity(url) or (None,))[0] != publisher or not isinstance(entry, dict):
             raise ValueError("Editorial queue URL is outside the reviewed publisher")
-        if (set(entry) != set(_resource(today)) or entry.get("status") not in STATUSES
+        if (set(entry) != (old_keys if legacy else set(_resource(today))) or entry.get("status") not in STATUSES
                 or type(entry.get("attempts")) is not int or entry["attempts"] < 0
                 or type(entry.get("attempt_cycle")) is not int
                 or type(entry.get("read_cycle")) is not int
@@ -157,7 +172,33 @@ def validate_state(state, *, today, publisher=None):
         if entry["last_error"] is not None and (not isinstance(entry["last_error"], str)
                                                or len(entry["last_error"]) > 100):
             raise ValueError("Editorial queue error is unbounded")
-    return state
+        if legacy:
+            # v1 has no proof of consecutive failures or even whether a
+            # TimeoutError preceded HTTP. Preserve its history, but never
+            # invent a failure streak or a newer read during migration.
+            entry.update(failure_count=0, next_retry_on=None, last_error_code=None)
+            if entry["status"] in {"unavailable", "inflight", "robots_denied"} and entry["last_attempt"]:
+                delay = 7 if entry["status"] == "robots_denied" else 1
+                entry["next_retry_on"] = (as_day(entry["last_attempt"]) + timedelta(days=delay)).isoformat()
+            if entry["status"] == "inflight":
+                entry["attempt_cycle"] = max(entry["read_cycle"], min(entry["attempt_cycle"], state["cycle"] - 1))
+        retry = as_day(entry["next_retry_on"])
+        if (type(entry["failure_count"]) is not int or not 0 <= entry["failure_count"] <= entry["attempts"]
+                or entry["last_error_code"] is not None and entry["last_error_code"] not in ERROR_CODES
+                or entry["next_retry_on"] is not None and (retry is None or not entry["last_attempt"]
+                    or not as_day(entry["last_attempt"]) < retry <= as_day(entry["last_attempt"]) + timedelta(days=7))
+                or entry["status"] in {"unavailable", "inflight", "robots_denied"} and retry is None
+                or entry["status"] in {"unread", "retrieved", "layout_held"}
+                    and (retry is not None or entry["failure_count"] != 0)):
+            raise ValueError("Editorial retry history or diagnostic is invalid")
+    result["schema"] = STATE_SCHEMA
+    if legacy and any(v["status"] == "inflight" and v["attempt_cycle"] < result["cycle"]
+                      for v in result["resources"].values()) and result["last_completed_cycle"] == result["cycle"]:
+        # No historical date for an earlier completed cycle is available.
+        result.update(last_completed_cycle=0, last_completed_on=None)
+    if len(json.dumps(result, ensure_ascii=False).encode()) > MAX_STATE_BYTES:
+        raise ValueError("Editorial queue exceeds its byte bound")
+    return result
 
 
 def seed_state(rows, previous=None, *, today, publisher=PUBLISHER):
@@ -165,7 +206,7 @@ def seed_state(rows, previous=None, *, today, publisher=PUBLISHER):
     if len(urls) > MAX_RESOURCES:
         raise ValueError("Existing editorial source inventory exceeds its limit")
     state = deepcopy(validate_state(previous, today=today, publisher=publisher)) if previous is not None else {
-        "schema": 1, "publisher": publisher, "cycle": 1,
+        "schema": STATE_SCHEMA, "publisher": publisher, "cycle": 1,
         "cycle_started_on": today.isoformat(), "last_completed_cycle": 0,
         "last_completed_on": None, "resources": {}}
     state["resources"] = {url: state["resources"].get(url, _resource(today)) for url in urls}
@@ -178,7 +219,7 @@ def seed_state(rows, previous=None, *, today, publisher=PUBLISHER):
 
 
 def progress(state, *, today, overdue_after_days=45):
-    validate_state(state, today=today)
+    state = validate_state(state, today=today)
     entries = state["resources"]
     attempted = sum(v["attempt_cycle"] == state["cycle"] for v in entries.values())
     read = sum(v["read_cycle"] == state["cycle"] for v in entries.values())
@@ -193,7 +234,43 @@ def progress(state, *, today, overdue_after_days=45):
             "never_read": sum(v["last_read"] is None for v in entries.values()),
             "overdue_after_days": overdue_after_days, "overdue_urls": overdue,
             "statuses": dict(sorted(Counter(v["status"] for v in entries.values()).items())),
+            "retry_pending": sum(v["next_retry_on"] is not None for v in entries.values()),
+            "retry_due": sum(v["next_retry_on"] is not None and v["next_retry_on"] <= today.isoformat()
+                             and v["last_attempt"] != today.isoformat() for v in entries.values()),
+            "retry_backoff_days": list(RETRY_DAYS),
+            "retry_share_when_fresh_pending": "one_in_four_attempts",
             "market_freshness_guaranteed": False}
+
+
+def next_requests(state, *, today, limit):
+    """Interleave due retries and first/current-cycle reads without starvation.
+
+The turn is derived from persisted attempts, not from the start of this run.
+Even a run that can finish only one request advances the shared 3:1 rotation.
+When either queue is empty, the other can use the remaining bounded allowance.
+"""
+    state = validate_state(state, today=today)
+    if type(limit) is not int or not 0 <= limit <= MAX_DETAILS:
+        raise ValueError("Unbounded editorial queue selection")
+    day = today.isoformat()
+    fresh, retries = [], []
+    for url, entry in state["resources"].items():
+        if entry["last_attempt"] == day:
+            continue
+        if entry["next_retry_on"] is not None:
+            if entry["next_retry_on"] <= day:
+                retries.append((entry["next_retry_on"], entry["last_attempt"], url))
+        elif entry["attempt_cycle"] < state["cycle"]:
+            fresh.append((entry["last_attempt"] or "", url))
+    fresh.sort(); retries.sort()
+    turn = sum(v["attempts"] for v in state["resources"].values())
+    selected = []
+    while len(selected) < limit and (fresh or retries):
+        preferred = retries if turn % RETRY_EVERY == 0 else fresh
+        pool = preferred or fresh or retries
+        selected.append(pool.pop(0)[-1])
+        turn += 1
+    return selected
 
 
 def _geography():
@@ -263,10 +340,12 @@ def parse_document(blob, *, requested_url, final_url=None, today):
     conflicts = [c for issue in issues if (c := _conflict(issue))]
     intervals = deepcopy(parsed["edition_intervals"])
     recurrence = parsed["recurrence_text"]
-    complete = bool(intervals and not calendar_conflicted(conflicts))
-    occurrences = [{"date": v["start"], "start_time": None, "end_time": None,
+    narrative_occurrences = deepcopy(parsed.get("explicit_occurrences", []))
+    complete = bool(intervals and not calendar_conflicted(conflicts) and not (
+        narrative_occurrences and any(c.get("field") == "hours" for c in conflicts)))
+    occurrences = narrative_occurrences or ([{"date": v["start"], "start_time": None, "end_time": None,
                     "status": "source_listed", "evidence": ["visible event card Dal/Al"]}
-                   for v in intervals if v["start"] == v["end"]] if complete else []
+                   for v in intervals if v["start"] == v["end"]] if complete else [])
     document = {
         "schema": 1, "status": "held" if conflicts else "parsed",
         "source": {"publisher": PUBLISHER, "source_id": parsed["source_id"],
@@ -282,7 +361,8 @@ def parse_document(blob, *, requested_url, final_url=None, today):
             "recurrence_text": recurrence, "archive_marker": parsed["archive_marker"],
             "edition_intervals": intervals, "occurrences": occurrences,
             "date_intervals": [], "calendar_complete": complete,
-            "calendar_scope": "edition_bounds", "calendar_rules": [], "suspensions": [],
+            "calendar_scope": "explicit_visible_list" if narrative_occurrences else "edition_bounds",
+            "calendar_rules": [], "suspensions": [],
             "scope_statements": deepcopy(parsed["scope_statements"]), "conditions": [],
             "source_rows": deepcopy(parsed["source_rows"]),
             "forecast_rule": explicit_rule(recurrence)},
@@ -296,6 +376,11 @@ def parse_document(blob, *, requested_url, final_url=None, today):
             "calendar": {"selector": "#schedaEvento Dal/Al and #eventopassato"},
         },
     }
+    if parsed.get("hours_qualifications"):
+        document["event"]["hours_qualifications"] = deepcopy(parsed["hours_qualifications"])
+    for field, observations in parsed.get("narrative_field_evidence", {}).items():
+        if observations and field in document["field_evidence"]:
+            document["field_evidence"][field]["observations"] = deepcopy(observations)
     return document
 
 
@@ -605,37 +690,6 @@ def verify_exported(rows, report, *, today):
     return {"release_safe": True, "editorial_identities_checked": checked}
 
 
-class _NoRedirect(HTTPRedirectHandler):
-    def redirect_request(self, req, fp, code, msg, headers, newurl):
-        return None
-
-
-def _http(url, *, timeout, max_bytes, accept):
-    # Every network target is a fixed publisher host and is checked before
-    # each request; redirected destinations are checked separately below.
-    host = urlsplit(url).hostname
-    if host not in {"www.eventiesagre.it", "www.cosedicasa.com"}:
-        raise ValueError("Unreviewed editorial transport host")
-    for item in socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM):
-        if not ipaddress.ip_address(item[4][0]).is_global:
-            raise ValueError("Editorial publisher DNS is not public")
-    request = Request(url, headers={"User-Agent": USER_AGENT, "Accept": accept,
-                                    "Accept-Encoding": "identity"})
-    with build_opener(_NoRedirect).open(request, timeout=timeout) as response:
-        if (response.geturl() != url or response.status != 200
-                or accept not in response.headers.get("Content-Type", "").casefold()
-                or response.headers.get("Content-Encoding", "identity").casefold() not in {"", "identity"}):
-            raise ValueError("Editorial response type or destination changed")
-        length = response.headers.get("Content-Length")
-        expected = int(length) if length is not None else None
-        if expected is not None and not 1 <= expected <= max_bytes:
-            raise ValueError("Editorial response exceeds its byte limit")
-        body = response.read(max_bytes + 1)
-        if not body or len(body) > max_bytes or expected is not None and expected != len(body):
-            raise ValueError("Editorial response is incomplete or oversized")
-    return body, url
-
-
 def _delay(robots, minimum):
     delay = max(minimum, robots.crawl_delay(USER_AGENT) or robots.crawl_delay("*") or 0)
     rate = robots.request_rate(USER_AGENT) or robots.request_rate("*")
@@ -677,20 +731,55 @@ def validate_redirects(requested_url, final_url, redirects):
 
 
 def _unpack(entry, *, today):
+    fields = {"requested_url", "final_url", "read_on", "redirects", "redirect_observed",
+              "bytes", "sha256", "body_gzip_base64"}
+    if not isinstance(entry, dict) or set(entry) != fields or type(entry["bytes"]) is not int:
+        raise ValueError("Invalid editorial checkpoint fields")
     try:
         with gzip.GzipFile(fileobj=io.BytesIO(base64.b64decode(entry["body_gzip_base64"], validate=True))) as stream:
             body = stream.read(MAX_BYTES + 1)
-    except (OSError, ValueError, TypeError, KeyError, EOFError):
+    except (OSError, ValueError, TypeError, KeyError, EOFError, zlib.error):
         raise ValueError("Invalid compressed editorial checkpoint") from None
     page = {k: entry.get(k) for k in ("requested_url", "final_url", "read_on", "redirects", "redirect_observed")}
     page["body"] = body
-    if (not 100 <= len(body) <= MAX_BYTES or _pack(page) != entry
+    # Gzip headers and compression output vary across Python/zlib versions.
+    # Bind the observed response bytes and transport metadata, not their encoding.
+    if (not 100 <= len(body) <= MAX_BYTES or len(body) != entry["bytes"]
+            or hashlib.sha256(body).hexdigest() != entry["sha256"]
             or as_day(page["read_on"]) != today
             or type(page["redirect_observed"]) is not bool
             or page["redirect_observed"] != validate_redirects(
                 page["requested_url"], page["final_url"], page["redirects"])):
         raise ValueError("Editorial checkpoint content or identity changed")
     return page
+
+
+def _begin_resource(entry, *, today):
+    entry.update(last_attempt=today.isoformat(), attempts=entry["attempts"] + 1,
+                 status="inflight", last_error=None, last_error_code=None,
+                 next_retry_on=_retry_day(today, 1))
+
+
+def _finish_resource(entry, attempt, *, today, cycle, page=None):
+    status = attempt["status"]
+    if status == "inflight":
+        return
+    entry.update(status=status, attempt_cycle=cycle)
+    if status in {"retrieved", "layout_held"}:
+        entry.update(last_read=page["read_on"], read_cycle=cycle,
+                     sha256=hashlib.sha256(page["body"]).hexdigest(),
+                     failure_count=0, next_retry_on=None)
+        if status == "retrieved":
+            entry["last_parsed"] = page["read_on"]
+        else:
+            entry.update(last_error="SourceLayoutChanged", last_error_code="source_layout_changed")
+    elif status == "robots_denied":
+        entry.update(last_error="RobotsDenied", last_error_code="robots_denied",
+                     next_retry_on=(today + timedelta(days=7)).isoformat())
+    elif status == "unavailable":
+        failures = entry["failure_count"] + 1
+        entry.update(last_error=attempt["error_type"], last_error_code=attempt["error_code"],
+                     failure_count=failures, next_retry_on=_retry_day(today, failures))
 
 
 def _verify_checkpoint_state(before, after, attempts, pages, *, today):
@@ -700,21 +789,50 @@ def _verify_checkpoint_state(before, after, attempts, pages, *, today):
     if len(page_by_url) != len(pages):
         raise ValueError("Editorial checkpoint repeated a successful response")
     for attempt in attempts:
-        if (not isinstance(attempt, dict) or set(attempt) - {"url", "status", "network_attempted", "error_type"}
-                or not {"url", "status", "network_attempted"} <= set(attempt)
+        if (not isinstance(attempt, dict) or set(attempt) - {"url", "status", "network_attempted", "request_count", "requests", "error_type", "error_code"}
+                or not {"url", "status", "network_attempted", "request_count", "requests"} <= set(attempt)
                 or type(attempt["network_attempted"]) is not bool
+                or type(attempt["request_count"]) is not int or not 0 <= attempt["request_count"] <= 3
+                or not isinstance(attempt["requests"], list) or len(attempt["requests"]) != attempt["request_count"]
+                or attempt["network_attempted"] != bool(attempt["request_count"])
                 or attempt["status"] not in STATUSES - {"unread"}
                 or attempt["url"] not in expected["resources"]):
             raise ValueError("Invalid editorial checkpoint attempt")
+        target = attempt["url"]
+        for index, request in enumerate(attempt["requests"]):
+            if (not isinstance(request, dict) or set(request) - {"url", "status", "error_type", "error_code", "redirect_to", "http_status"}
+                    or request.get("url") != target or request.get("status") not in {"started", "succeeded", "failed"}
+                    or request["status"] in {"started", "succeeded"} and set(request) != {"url", "status"}
+                    or request["status"] == "failed" and (not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,99}", str(request.get("error_type") or ""))
+                        or request.get("error_code") not in ERROR_CODES)):
+                raise ValueError("Editorial checkpoint request lifecycle is invalid")
+            redirected = request.get("redirect_to")
+            if redirected is not None:
+                original_identity, actual = source_identity(attempt["url"]), source_identity(redirected)
+                if (request["status"] != "failed" or request.get("error_type") != "HTTPError"
+                        or request.get("http_status") not in {301, 302, 303, 307, 308}
+                        or not actual or actual[0] != original_identity[0]
+                        or original_identity[0] == PUBLISHER and actual != original_identity):
+                    raise ValueError("Editorial checkpoint redirect changed source identity")
+                target = redirected
+            elif index + 1 < len(attempt["requests"]):
+                raise ValueError("Editorial checkpoint repeated HTTP without a redirect")
         entry = expected["resources"][attempt["url"]]
-        entry.update(last_attempt=today.isoformat(), attempts=entry["attempts"] + 1,
-                     attempt_cycle=before["cycle"], status=attempt["status"], last_error=None)
+        _begin_resource(entry, today=today)
+        page = None
         if attempt["status"] in {"retrieved", "layout_held"}:
             page = page_by_url.get(attempt["url"])
             if page is None or not attempt["network_attempted"]:
                 raise ValueError("Editorial checkpoint read lacks its HTTP response")
-            entry.update(last_read=page["read_on"], read_cycle=before["cycle"],
-                         sha256=hashlib.sha256(page["body"]).hexdigest())
+            if attempt["request_count"] != 1 + len(page.get("redirects", [])):
+                raise ValueError("Editorial checkpoint lost its redirect request count")
+            if (attempt["requests"][-1]["status"] != "succeeded"
+                    or attempt["requests"][-1]["url"] != page["final_url"]):
+                raise ValueError("Editorial successful page lacks a completed HTTP request")
+            observed_redirects = [{"from": r["url"], "to": r["redirect_to"], "status": r["http_status"]}
+                                  for r in attempt["requests"] if r.get("redirect_to") is not None]
+            if observed_redirects != page.get("redirects", []):
+                raise ValueError("Editorial response changed its observed redirect chain")
             try:
                 parse_document(page["body"], requested_url=page["requested_url"],
                                final_url=page["final_url"], today=today)
@@ -723,19 +841,29 @@ def _verify_checkpoint_state(before, after, attempts, pages, *, today):
                 parsed = False
             if parsed != (attempt["status"] == "retrieved"):
                 raise ValueError("Editorial checkpoint parse status differs from its saved bytes")
-            if parsed:
-                entry["last_parsed"] = page["read_on"]
-            else:
-                entry["last_error"] = "SourceLayoutChanged"
+            if "error_type" in attempt or "error_code" in attempt:
+                raise ValueError("Editorial captured read claims a transport error")
         elif attempt["status"] == "robots_denied":
             if attempt["network_attempted"]:
                 raise ValueError("Robots-denied editorial request claims an HTTP read")
-            entry["last_error"] = "RobotsDenied"
+            if "error_type" in attempt or "error_code" in attempt:
+                raise ValueError("Editorial robots disposition changed its schema")
         elif attempt["status"] == "unavailable":
             error = attempt.get("error_type")
-            if not isinstance(error, str) or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,99}", error):
+            if (not attempt["network_attempted"] or not isinstance(error, str)
+                    or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,99}", error)
+                    or attempt.get("error_code") not in ERROR_CODES):
                 raise ValueError("Editorial checkpoint failure lost its error type")
-            entry["last_error"] = error
+            last = attempt["requests"][-1]
+            if (last["status"] != "failed" or last.get("error_type") != error
+                    or last.get("error_code") != attempt["error_code"]):
+                raise ValueError("Editorial terminal failure lacks a completed failed request")
+        elif not attempt["network_attempted"] or "error_type" in attempt or "error_code" in attempt:
+            raise ValueError("Editorial interrupted attempt was not an unfinished HTTP request")
+        elif not (attempt["requests"][-1]["status"] == "started"
+                  or attempt["requests"][-1].get("redirect_to") is not None):
+            raise ValueError("Editorial interrupted attempt already has a terminal outcome")
+        _finish_resource(entry, attempt, today=today, cycle=before["cycle"], page=page)
     if expected == after:
         return
     if expected["resources"] and all(v["attempt_cycle"] == before["cycle"] for v in expected["resources"].values()):
@@ -772,13 +900,21 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
     now = now or (lambda: datetime.now(timezone.utc))
     pages, attempts = [], []
     robots_proof = None
+    robots_attempted = False
     network_requests = 0
     status, stop_reason = "disabled", "disabled"
 
     def save_checkpoint():
-        _write(checkpoint, {"schema": 1, "context": context, "state": state,
+        _write(checkpoint, {"schema": STATE_SCHEMA, "context": context, "state": state,
             "pages": [_pack(v) for v in pages], "attempts": attempts,
-            "robots": robots_proof, "network_requests": network_requests})
+            "robots": robots_proof, "robots_attempted": robots_attempted,
+            "network_requests": network_requests})
+
+    def remaining_time():
+        remaining = end - monotonic()
+        if remaining <= .1:
+            raise _BudgetExhausted("Editorial deadline reached before HTTP started")
+        return remaining
 
     if policy["enabled"] and resume:
         status, stop_reason = "resume_missing_evidence", "resume_missing_evidence"
@@ -786,7 +922,7 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
             if checkpoint.stat().st_size > MAX_DETAILS * MAX_BYTES * 2 + MAX_STATE_BYTES:
                 raise ValueError("Editorial checkpoint exceeds its size limit")
             saved = json.loads(checkpoint.read_text("utf-8"))
-            if saved.get("schema") != 1 or saved.get("context") != context:
+            if saved.get("schema") != STATE_SCHEMA or saved.get("context") != context:
                 raise ValueError("Editorial resume belongs to a different baseline, policy or queue")
             state = deepcopy(validate_state(saved.get("state"), today=today, publisher=publisher))
             if set(state["resources"]) != set(catalog_urls(rows, publisher=publisher)):
@@ -806,10 +942,12 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
                     raise ValueError("Editorial checkpoint disagrees with its persisted state")
             _verify_checkpoint_state(state_before, state, attempts, pages, today=today)
             robots_proof = saved.get("robots")
+            robots_attempted = saved.get("robots_attempted")
             recorded_requests = saved.get("network_requests")
-            attempted_http = sum(v["network_attempted"] for v in attempts)
+            attempted_http = sum(v["request_count"] for v in attempts)
             if (type(recorded_requests) is not int or not 0 <= recorded_requests <= 1 + 3 * policy["max_details"]
-                    or recorded_requests < bool(robots_proof) + attempted_http
+                    or type(robots_attempted) is not bool
+                    or recorded_requests != int(robots_attempted) + attempted_http
                     or pages and not robots_proof):
                 raise ValueError("Editorial checkpoint transport counts are inconsistent")
             status, stop_reason = "resumed", "saved_checkpoint_only"
@@ -817,31 +955,36 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
         status, stop_reason = "offline_skipped", "offline"
     elif policy["enabled"]:
         status, stop_reason = "running", "queue_exhausted"
-        pending = sorted((url for url, v in state["resources"].items()
-                          if v["attempt_cycle"] < state["cycle"]),
-                         key=lambda url: (state["resources"][url]["last_attempt"] or "", url))
+        pending = next_requests(state, today=today, limit=policy["max_details"])
         if not state["resources"]:
             status, stop_reason = "completed", "no_catalog_rows"
+        elif not pending:
+            status, stop_reason = "completed", "no_due_resources"
         robots = None
         if pending and end - monotonic() >= 1:
             try:
                 stamp = now()
                 if stamp.tzinfo is None or stamp.date() != today:
                     raise ValueError("Live editorial read date differs from the candidate date")
+                remaining = remaining_time()
+                robots_attempted = True
                 network_requests += 1
-                raw, final = http(robots_url, timeout=min(18, max(.1, end - monotonic())),
+                raw, final = http(robots_url, timeout=min(18, remaining),
                                   max_bytes=55_000, accept="text/plain")
                 if final != robots_url or not isinstance(raw, bytes) or not 1 <= len(raw) <= 55_000:
                     raise ValueError("Editorial robots response changed destination or size")
                 text = raw.decode("utf-8-sig", errors="strict")
                 if not re.search(r"(?im)^\s*user-agent\s*:", text) or "<html" in text.lower():
                     raise ValueError("Editorial robots contains no readable policy")
-                robots = RobotFileParser(robots_url)
-                robots.parse(text.splitlines())
-                pause = _delay(robots, policy["min_delay_seconds"])
+                parsed_robots = RobotFileParser(robots_url)
+                parsed_robots.parse(text.splitlines())
+                pause = _delay(parsed_robots, policy["min_delay_seconds"])
                 robots_proof = {"url": robots_url, "read_on": stamp.date().isoformat(),
                                 "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
                                 "pacing_seconds": pause}
+                robots = parsed_robots
+            except _BudgetExhausted:
+                status, stop_reason = "time_budget_exhausted", "time_budget"
             except (OSError, HTTPException, ValueError, UnicodeError) as error:
                 status, stop_reason = "robots_unavailable", type(error).__name__
         elif pending:
@@ -855,27 +998,43 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
                     stop_reason = "time_budget"
                     break
                 entry = state["resources"][url]
-                entry.update(last_attempt=today.isoformat(), attempts=entry["attempts"] + 1,
-                             attempt_cycle=state["cycle"], status="inflight", last_error=None)
-                attempt = {"url": url, "status": "inflight", "network_attempted": False}
-                attempts.append(attempt)
-                save_checkpoint()
+                original = deepcopy(entry)
+                attempt = {"url": url, "status": "inflight", "network_attempted": False,
+                           "request_count": 0, "requests": []}
                 if not robots.can_fetch(USER_AGENT, url):
-                    entry.update(status="robots_denied", last_error="RobotsDenied")
                     attempt.update(status="robots_denied")
+                    attempts.append(attempt)
+                    _begin_resource(entry, today=today)
+                    _finish_resource(entry, attempt, today=today, cycle=state["cycle"])
                     save_checkpoint()
                     continue
                 target, redirects = url, []
                 try:
                     for hop in range(3):
                         if end - monotonic() <= pause + 1:
-                            raise TimeoutError("Editorial shared deadline exhausted")
+                            raise _BudgetExhausted("Editorial shared deadline exhausted before HTTP")
                         sleep(pause)
-                        remaining = end - monotonic()
-                        if remaining <= 0:
-                            raise TimeoutError("Editorial shared deadline exhausted")
+                        remaining_time()
+                        if not attempt["request_count"]:
+                            attempts.append(attempt)
+                            _begin_resource(entry, today=today)
                         network_requests += 1
                         attempt["network_attempted"] = True
+                        attempt["request_count"] += 1
+                        request = {"url": target, "status": "started"}
+                        attempt["requests"].append(request)
+                        save_checkpoint()
+                        try:
+                            remaining = remaining_time()
+                        except _BudgetExhausted:
+                            network_requests -= 1
+                            attempt["request_count"] -= 1
+                            attempt["requests"].pop()
+                            attempt["network_attempted"] = bool(attempt["request_count"])
+                            if not attempt["request_count"]:
+                                attempts.pop()
+                                state["resources"][url] = original
+                            raise
                         try:
                             body, final = http(target, timeout=min(18, remaining), max_bytes=MAX_BYTES, accept="text/html")
                             break
@@ -889,6 +1048,8 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
                                     or not robots.can_fetch(USER_AGENT, redirected)):
                                 raise ValueError("Editorial redirect changed source ID or robots scope") from None
                             redirects.append({"from": target, "to": redirected, "status": error.code})
+                            request.update(status="failed", error_type="HTTPError", error_code=failure_code(error),
+                                           http_status=error.code, redirect_to=redirected)
                             target = redirected
                     if ((source_identity(final) or (None,))[0] != publisher
                             or publisher == PUBLISHER and source_identity(final) != source_identity(url) or final != target
@@ -901,20 +1062,30 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
                             "read_on": stamp.date().isoformat(), "body": body,
                             "redirects": redirects,
                             "redirect_observed": validate_redirects(url, final, redirects)}
+                    request["status"] = "succeeded"
                     pages.append(page)
-                    entry.update(last_read=page["read_on"], read_cycle=state["cycle"],
-                                 sha256=hashlib.sha256(body).hexdigest(), status="retrieved")
                     try:
                         parse_document(body, requested_url=url, final_url=final, today=today)
-                        entry["last_parsed"] = page["read_on"]
+                        attempt["status"] = "retrieved"
                     except (ValueError, KeyError, TypeError):
-                        entry.update(status="layout_held", last_error="SourceLayoutChanged")
-                    attempt["status"] = entry["status"]
+                        attempt["status"] = "layout_held"
+                    _finish_resource(entry, attempt, today=today, cycle=state["cycle"], page=page)
+                except _BudgetExhausted:
+                    stop_reason = "time_budget"
+                    save_checkpoint()
+                    break
                 except (OSError, HTTPException, ValueError, TypeError) as error:
-                    entry.update(status="unavailable", last_error=type(error).__name__)
-                    attempt.update(status="unavailable", error_type=type(error).__name__)
+                    if not attempt["network_attempted"]:
+                        raise
+                    attempt.update(status="unavailable", error_type=type(error).__name__, error_code=failure_code(error))
+                    request.update(status="failed", error_type=attempt["error_type"], error_code=attempt["error_code"])
+                    if isinstance(error, HTTPError):
+                        request["http_status"] = error.code
+                    _finish_resource(entry, attempt, today=today, cycle=state["cycle"])
                 save_checkpoint()
             status = "completed"
+            if stop_reason == "queue_exhausted" and next_requests(state, today=today, limit=1):
+                stop_reason = "detail_limit"
     if state["resources"] and all(v["attempt_cycle"] == state["cycle"] for v in state["resources"].values()):
         state["last_completed_cycle"] = state["cycle"]
         state["last_completed_on"] = today.isoformat()
@@ -938,6 +1109,7 @@ URLs and transport history; raw responses stay in the temporary checkpoint.
         "progress": progress(state, today=today, overdue_after_days=policy["overdue_after_days"]),
         "evidence": evidence}
     if not resume and policy["enabled"] and not offline:
+        _verify_checkpoint_state(state_before, state, attempts, pages, today=today)
         save_checkpoint()
     _write(out / state_filename(publisher), state)
     _write(out / report_filename(publisher), report)

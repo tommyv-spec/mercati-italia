@@ -1,0 +1,684 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "scope": "Existing primary Citynews detail URLs only; no new IDs or catalog writes. Real captured bytes replayed against all 13,856 catalog rows.",
+  "summary": {
+    "catalog_rows": 13856,
+    "runtime_detail_urls": 57,
+    "captured": 27,
+    "outcomes": {
+      "changed": 11,
+      "held": 19
+    },
+    "reasons": {
+      "exact_url_title_municipality_and_edition": 11,
+      "source_geography_not_established": 13,
+      "source_identity_conflict": 2,
+      "source_layout_unsupported": 1,
+      "source_exact_title_changed": 2,
+      "source_exact_url_changed": 1
+    },
+    "changed_fields": {
+      "evidenza_editoriale": 11
+    },
+    "changed_ids": [
+      "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo",
+      "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+      "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+      "sapori-stagionali-e-supporto-alle-filiere-locali-al-mercato-di-campagna-amica-un",
+      "ceccano-mercatino-degli-artigiani-del-borgo-odv-ceccano",
+      "edizione-numero-20-per-artegenova-la-grande-mostra-mercato-di-arte-moderna-e-con",
+      "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena",
+      "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
+      "hippie-market-tra-gli-acquedotti-romani-roma",
+      "1deg-mostra-mercato-del-disco-di-silea-silea",
+      "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-mirano"
+    ],
+    "raw_replay": {
+      "source_pages_replayed": 27,
+      "release_safe": true
+    },
+    "export_guard": {
+      "release_safe": true,
+      "editorial_identities_checked": 11
+    }
+  },
+  "acquisition": {
+    "network_requests_including_robots": 56,
+    "elapsed_seconds": 35.219,
+    "reviewed_sample_urls": 28,
+    "successful_http_pages": 27,
+    "unavailable_before_detail_read": 1
+  },
+  "sources": [
+    {
+      "requested_url": "https://www.arezzonotizie.it/eventi/mercato-pulci-2026.html",
+      "format_id": "arezzonotizie.it--9521d1fd66d9",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.arezzonotizie.it/eventi/mercato-pulci-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:33.460589+00:00",
+      "bytes": 915917,
+      "sha256": "7744ff254819a615855708b8801f52d04d183c2f6c149cb22959652bf8da401b"
+    },
+    {
+      "requested_url": "https://www.baritoday.it/eventi/fiera-fischietto-rutigliano-24-25-gennaio-2026.html",
+      "format_id": "baritoday.it--0c17b5073dc8",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.baritoday.it/eventi/fiera-fischietto-rutigliano-24-25-gennaio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:32.701620+00:00",
+      "bytes": 924868,
+      "sha256": "a98e0530af7c6026997e4c8ec0413f0e28746f323bb9bac08a973189c283e23e"
+    },
+    {
+      "requested_url": "https://www.bolognatoday.it/eventi/da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-lucretio-e-idriss-d-13675563.html",
+      "format_id": "bolognatoday.it--98c9652acb3c",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.bolognatoday.it/eventi/da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-lucretio-e-idriss-d-13675563.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:32.696227+00:00",
+      "bytes": 937973,
+      "sha256": "6c7b5e7b9ffc362cc529fe09b83a57396215d94052c6db35dee66a4115e8fbbe"
+    },
+    {
+      "requested_url": "https://www.bresciatoday.it/eventi/sagre/chiari-mercatini-san-faustino-2026.html",
+      "format_id": "bresciatoday.it--323a7ea664ee",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.bresciatoday.it/eventi/sagre/chiari-mercatini-san-faustino-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:34.413726+00:00",
+      "bytes": 900118,
+      "sha256": "da9998f4dc0a39e50b023978942397be7ac8acccf74f68c5b69ab8fe8d5628cc"
+    },
+    {
+      "requested_url": "https://www.cagliaritoday.it/eventi/Hermaearket-pirri-marzo-handmade-artigianato.html",
+      "format_id": "cagliaritoday.it--e1ef02204e41",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.cagliaritoday.it/eventi/Hermaearket-pirri-marzo-handmade-artigianato.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:36.978815+00:00",
+      "bytes": 921247,
+      "sha256": "17fdaea8e4064eb26907301798a54f286e34fb91740e99d4c73f5293eac33aa0"
+    },
+    {
+      "requested_url": "https://www.casertanews.it/eventi/fiera-vintage-polo-a1-expo-14-15-febbraio.html",
+      "format_id": "casertanews.it--2214b2178409",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.casertanews.it/eventi/fiera-vintage-polo-a1-expo-14-15-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:37.025531+00:00",
+      "bytes": 921746,
+      "sha256": "15188f3d695ba26969d691fc17bb0d620815206ef65bff722ebb74e3915a99bd"
+    },
+    {
+      "requested_url": "https://www.cataniatoday.it/eventi/mercatino-fera-bio-catania-febbraio-2026.html",
+      "format_id": "cataniatoday.it--31ed67739fab",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.cataniatoday.it/eventi/mercatino-fera-bio-catania-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:38.112225+00:00",
+      "bytes": 909949,
+      "sha256": "1db5e0dfe9989c4b4292b39ca31a6fbbe147529d5a0e665c2ba0d8c15674c2d5"
+    },
+    {
+      "requested_url": "https://www.cesenatoday.it/eventi/festa-del-maiale-quando-montiano-25-gennaio-2026.html",
+      "format_id": "cesenatoday.it--c9fd22db3421",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.cesenatoday.it/eventi/festa-del-maiale-quando-montiano-25-gennaio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:38.490409+00:00",
+      "bytes": 919592,
+      "sha256": "861078eff4b09defd8ad2bdaf986f1454f5338ce502029f12a54bd96adf2279b"
+    },
+    {
+      "requested_url": "https://www.ferraratoday.it/eventi/markettino-prima-edizione-del-mercato-contemporaneo-atigianato-indipendente-8-febbraio.html",
+      "format_id": "ferraratoday.it--2f49a574f3cd",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.ferraratoday.it/eventi/markettino-prima-edizione-del-mercato-contemporaneo-atigianato-indipendente-8-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:41.085694+00:00",
+      "bytes": 916795,
+      "sha256": "075df4651853e13eb7d06c69c3578073763eb0352b91253102a66d5681798104"
+    },
+    {
+      "requested_url": "https://www.firenzetoday.it/eventi/emporium-piazza-savonarola-firenze-24-gennaio-2026.html",
+      "format_id": "firenzetoday.it--3aaf8d291320",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.firenzetoday.it/eventi/emporium-piazza-savonarola-firenze-24-gennaio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:41.892137+00:00",
+      "bytes": 921711,
+      "sha256": "b81a41ec0aa0cdeb5539b10b5f26ea5014f08a0e73fcf8c8d1f4f24034b3c20e"
+    },
+    {
+      "requested_url": "https://www.forlitoday.it/eventi/mercato-di-campagna-amica-coldiretti-programma-iniziative-febbraio-2026.html",
+      "format_id": "forlitoday.it--ebf7741cbe52",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.forlitoday.it/eventi/mercato-di-campagna-amica-coldiretti-programma-iniziative-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:42.445897+00:00",
+      "bytes": 923045,
+      "sha256": "fc24df999ed24531ae811f705b564e48091c77770a36049b41d98e7cc2001f21"
+    },
+    {
+      "requested_url": "https://www.frosinonetoday.it/eventi/ceccano-mercatino-degli-artigiani-del-borgo-odv.html",
+      "format_id": "frosinonetoday.it--719a6eee7966",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.frosinonetoday.it/eventi/ceccano-mercatino-degli-artigiani-del-borgo-odv.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:42.652486+00:00",
+      "bytes": 917742,
+      "sha256": "57f135d5bbc0313bb527b6aa71566482f4ef41c4805ac9cc4e046fda43aa608f"
+    },
+    {
+      "requested_url": "https://www.genovatoday.it/eventi/artegenova-mostra-mercato-arte-moderna-contemporanea-2026.html",
+      "format_id": "genovatoday.it--bd4d23568a60",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.genovatoday.it/eventi/artegenova-mostra-mercato-arte-moderna-contemporanea-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:45.377826+00:00",
+      "bytes": 925463,
+      "sha256": "0cacf27acad3df2364ddb9afd433ce5a3a9b9028882f209d32e921afe06db7ef"
+    },
+    {
+      "requested_url": "https://www.leccotoday.it/eventi/mandello-mercatino-2000-libri-fuoriclasse-.html",
+      "format_id": "leccotoday.it--a1f15b11015f",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.leccotoday.it/eventi/mandello-mercatino-2000-libri-fuoriclasse-.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:47.341168+00:00",
+      "bytes": 929753,
+      "sha256": "4a7cf16331ca47c91ae1ec64d510620f86a280e38890e2ffdb29f0eb19b67fec"
+    },
+    {
+      "requested_url": "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+      "format_id": "modenatoday.it--d4f51ae43a3f",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:46.366095+00:00",
+      "bytes": 900360,
+      "sha256": "27556b6df8b381f3b3543f67a88b5f0b66283146d0a9e034686a5c0fbb02267c"
+    },
+    {
+      "requested_url": "https://www.monzatoday.it/eventi/monza-mercatino-francese_febbraio-2026.html",
+      "format_id": "monzatoday.it--a48c40adcb3f",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.monzatoday.it/eventi/monza-mercatino-francese_febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:47.486862+00:00",
+      "bytes": 900670,
+      "sha256": "d252b8d13e700863c52e6246aa5e31c03c2a75987c03d845d6e1f6dc9d35e666"
+    },
+    {
+      "requested_url": "https://www.novaratoday.it/eventi/sagra-primavera-cameri-2026.html",
+      "format_id": "novaratoday.it--12e887ae9cfd",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.novaratoday.it/eventi/sagra-primavera-cameri-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:50.095651+00:00",
+      "bytes": 918356,
+      "sha256": "13dc1395bc8ac01504dc70749a4393662dfa07f254b9e427ada6d073c0376b53"
+    },
+    {
+      "requested_url": "https://www.padovatoday.it/eventi/festa-baccala-pesce-taggi-sopra-30-gennaio-1-febbraio-2026.html",
+      "format_id": "padovatoday.it--a15e8e68ca15",
+      "status": "unavailable",
+      "network_requests": 1,
+      "error_type": "HTTPError"
+    },
+    {
+      "requested_url": "https://www.palermotoday.it/eventi/artgarden-14-15-febbraio-2026-vivai-gitto.html",
+      "format_id": "palermotoday.it--5b9cabc75906",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.palermotoday.it/eventi/artgarden-14-15-febbraio-2026-vivai-gitto.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:51.675814+00:00",
+      "bytes": 925000,
+      "sha256": "67fcfec24650b0256456687d5cc08ebd6985422d42077b5f64295a116170ce82"
+    },
+    {
+      "requested_url": "https://www.parmatoday.it/eventi/librokilo-parma-1-febbraio.html",
+      "format_id": "parmatoday.it--4d0ed834ab18",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.parmatoday.it/eventi/librokilo-parma-1-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:51.899072+00:00",
+      "bytes": 920269,
+      "sha256": "d935beb28f71d23a8fdfb3c850404b34801ebe1cc4593380fc6d5a5e4c3ed7fc"
+    },
+    {
+      "requested_url": "https://www.ravennatoday.it/eventi/festa-della-patrona-sant-agata-sul-santerno-iniziative-2026.html",
+      "format_id": "ravennatoday.it--d19463631447",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.ravennatoday.it/eventi/festa-della-patrona-sant-agata-sul-santerno-iniziative-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:52.590315+00:00",
+      "bytes": 912745,
+      "sha256": "8a91034884510b791e0aca72f473af05ccaf4c45f3a661a249ac4467359a6aee"
+    },
+    {
+      "requested_url": "https://www.riminitoday.it/eventi/piazzetta-delle-idee-chi-cerca-trova-artigianato-creativita-tesori-riccione-paese.html",
+      "format_id": "riminitoday.it--3fcce20b0a85",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.riminitoday.it/eventi/piazzetta-delle-idee-chi-cerca-trova-artigianato-creativita-tesori-riccione-paese.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:54.807546+00:00",
+      "bytes": 920178,
+      "sha256": "8cffb2e91aa0b4b8f77bfc173804c52e01d0a743e2370197ccfa5c33b2b86916"
+    },
+    {
+      "requested_url": "https://www.romatoday.it/eventi/hippie-market-14-15-febbraio-2026.html",
+      "format_id": "romatoday.it--d53004dedb50",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.romatoday.it/eventi/hippie-market-14-15-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:56.106953+00:00",
+      "bytes": 922382,
+      "sha256": "3dc846480c24cef134cfaab81ad6501f35e2d20646702e6da84b79aa88717778"
+    },
+    {
+      "requested_url": "https://www.torinotoday.it/eventi/salone-libro-usato-nichelino-14-22-febbraio.html",
+      "format_id": "torinotoday.it--9d13c4c3e50b",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.torinotoday.it/eventi/salone-libro-usato-nichelino-14-22-febbraio.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:56.545965+00:00",
+      "bytes": 923702,
+      "sha256": "494d8a0a8190f03114fc08a8b86a941ffc3278f7ef6d0aacb85d92e49670cebf"
+    },
+    {
+      "requested_url": "https://www.trevisotoday.it/eventi/mostra-mercato-disco-silea-2026.html",
+      "format_id": "trevisotoday.it--d14b81554c11",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.trevisotoday.it/eventi/mostra-mercato-disco-silea-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:57.434664+00:00",
+      "bytes": 920883,
+      "sha256": "7bc42fd57bc0b26a1f23b0c59ce3a974e2abc6257e8c11db7c29b8c01fe844a9"
+    },
+    {
+      "requested_url": "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+      "format_id": "veneziatoday.it--98a866420834",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:41:59.802944+00:00",
+      "bytes": 921377,
+      "sha256": "11263c5a2ed7686136bc010d9ec5faaa109f97cbeaba3c25c53c8b754a5d6a20"
+    },
+    {
+      "requested_url": "https://www.vicenzatoday.it/eventi/art-ciocc-il-tour-dei-cioccolatieri-ad-asiago.html",
+      "format_id": "vicenzatoday.it--711d824754df",
+      "status": "retrieved",
+      "network_requests": 2,
+      "final_url": "https://www.vicenzatoday.it/eventi/art-ciocc-il-tour-dei-cioccolatieri-ad-asiago.html",
+      "redirects": [],
+      "fetched_at": "2026-10-20T18:42:01.145199+00:00",
+      "bytes": 910271,
+      "sha256": "39802d240119cdd3341e58d81e7f78407f23799c8af33b40a9e90c9c1bf433da"
+    },
+    {
+      "requested_url": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-15-febbraio-2026.html",
+      "format_id": "viterbotoday.it--51968ac255a6",
+      "status": "retrieved",
+      "network_requests": 3,
+      "final_url": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-22-febbraio-2026.html",
+      "redirects": [
+        {
+          "from": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-15-febbraio-2026.html",
+          "to": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-22-febbraio-2026.html",
+          "status": 301
+        }
+      ],
+      "fetched_at": "2026-10-20T18:42:03.735767+00:00",
+      "bytes": 908638,
+      "sha256": "ba282397f58b493dd68000dba1fc0a4b115b9f8d01c11eac449a81d0ddf4616e"
+    }
+  ],
+  "outcomes": [
+    {
+      "url": "https://www.arezzonotizie.it/eventi/mercato-pulci-2026.html",
+      "slug": "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "limit_forecasts",
+      "calendar_disposition": "editorial_recurrence_not_proven",
+      "before_sha256": "c568a1a16690e29fc0e9ce348bf7bbd326b0451970519aa911a4e44fc884e118",
+      "after_sha256": "2c736e0235911457a0b892354e6505bb7c5abfbed905f85d8049b599f67423ce"
+    },
+    {
+      "url": "https://www.baritoday.it/eventi/fiera-fischietto-rutigliano-24-25-gennaio-2026.html",
+      "slug": "fiera-del-fischietto-in-terracotta-a-rutigliano-artigianato-visite-guidate-intra",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.bolognatoday.it/eventi/da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-lucretio-e-idriss-d-13675563.html",
+      "slug": "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "limit_forecasts",
+      "calendar_disposition": "editorial_recurrence_not_proven",
+      "before_sha256": "fefdd74faa4cb75866deae590890efffd061ea1cd59aa1887b8f9b386cf68ee7",
+      "after_sha256": "7b4d15136868a8aa15e6884570edab875e1dbc8d62bed61b24f463b6dca828f4"
+    },
+    {
+      "url": "https://www.bresciatoday.it/eventi/sagre/chiari-mercatini-san-faustino-2026.html",
+      "slug": "chiari-mercatini-di-san-faustino-brescia",
+      "status": "held",
+      "reason": "source_identity_conflict",
+      "fields": []
+    },
+    {
+      "url": "https://www.bresciatoday.it/eventi/sagre/chiari-mercatini-san-faustino-2026.html",
+      "slug": "chiari-mercatini-di-san-faustino-centro-storico",
+      "status": "held",
+      "reason": "source_identity_conflict",
+      "fields": []
+    },
+    {
+      "url": "https://www.cagliaritoday.it/eventi/Hermaearket-pirri-marzo-handmade-artigianato.html",
+      "slug": "hermaearket-torna-a-pirri-il-14-e-15-marzo-con-artigianato-creativita-e-handmade",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.casertanews.it/eventi/fiera-vintage-polo-a1-expo-14-15-febbraio.html",
+      "slug": "ritorna-la-fiera-del-vintage-due-giorni-di-stile-musica-e-cultura-pop-al-polo-a1",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.cataniatoday.it/eventi/mercatino-fera-bio-catania-febbraio-2026.html",
+      "slug": "mercatino-a-fera-bio-parco-madre-teresa-di-calcutta",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.cesenatoday.it/eventi/festa-del-maiale-quando-montiano-25-gennaio-2026.html",
+      "slug": "cicciolata-mercatini-e-stand-gastronomici-aprono-le-porte-alla-festa-del-maiale",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.ferraratoday.it/eventi/markettino-prima-edizione-del-mercato-contemporaneo-atigianato-indipendente-8-febbraio.html",
+      "slug": "dallartigianato-indipendente-alle-produzioni-creative-torna-l-appuntamento-con-m",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.firenzetoday.it/eventi/emporium-piazza-savonarola-firenze-24-gennaio-2026.html",
+      "slug": "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "reported_explicit",
+      "calendar_disposition": "explicit_editorial_dates_retained",
+      "before_sha256": "98236527149be9637ff7f9090082a56e376c03e33a7ea6358f1539d8604820cc",
+      "after_sha256": "755a146d44e142e6f1cc679b8843185996d53a5c2c345991348e183897e82377"
+    },
+    {
+      "url": "https://www.forlitoday.it/eventi/mercato-di-campagna-amica-coldiretti-programma-iniziative-febbraio-2026.html",
+      "slug": "sapori-stagionali-e-supporto-alle-filiere-locali-al-mercato-di-campagna-amica-un",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "limit_forecasts",
+      "calendar_disposition": "editorial_recurrence_not_proven",
+      "before_sha256": "f4f16893c3ffe516a41e571bdd5183c031204c3f5c0adc29e314c2d5c85d8719",
+      "after_sha256": "18876d77bbb14d025aab2d3179935e6729d58dd3e2eeb41d7adb0885f48c99d4"
+    },
+    {
+      "url": "https://www.frosinonetoday.it/eventi/ceccano-mercatino-degli-artigiani-del-borgo-odv.html",
+      "slug": "ceccano-mercatino-degli-artigiani-del-borgo-odv-ceccano",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "reported_explicit",
+      "calendar_disposition": "explicit_editorial_dates_retained",
+      "before_sha256": "c67c3f674bc95255b3f2d376d51a3a54fc1acfa506bd5f966b4ead9685f7ce70",
+      "after_sha256": "ed0e797e29e771d4f50e08f0b1360c8d2c115b2069e8867806e1a3e2cb42d59d"
+    },
+    {
+      "url": "https://www.genovatoday.it/eventi/artegenova-mostra-mercato-arte-moderna-contemporanea-2026.html",
+      "slug": "edizione-numero-20-per-artegenova-la-grande-mostra-mercato-di-arte-moderna-e-con",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "limit_forecasts",
+      "calendar_disposition": "editorial_recurrence_not_proven",
+      "before_sha256": "dcb19ae299a14e1b1bf1e8deec029953e42c5f3532d624c5320a24d2bbb74dcb",
+      "after_sha256": "e398d16f6103452c38eac5b947114cd0eff13ad9f405545920d75354b990f50e"
+    },
+    {
+      "url": "https://www.leccotoday.it/eventi/mandello-mercatino-2000-libri-fuoriclasse-.html",
+      "slug": "con-i-fuoriclasse-un-mercatino-dell-usato-con-oltre-2-000-libri-lecco",
+      "status": "held",
+      "reason": "source_layout_unsupported",
+      "fields": []
+    },
+    {
+      "url": "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+      "slug": "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-parco-novi-sad",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+      "slug": "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "reported_explicit",
+      "calendar_disposition": "explicit_editorial_dates_retained",
+      "before_sha256": "b99bbb6dcf9bdd7fa6cc0bf7f917735943c3d44af4acca351f590603d5ca0306",
+      "after_sha256": "9a8f41db3359ed8d14e18efa2c7ecb377e60f7e3b80319ae793aeb0d001ac1ad"
+    },
+    {
+      "url": "https://www.monzatoday.it/eventi/monza-mercatino-francese_febbraio-2026.html",
+      "slug": "il-mercatino-delle-pulci-al-parco-acquatico-monza",
+      "status": "held",
+      "reason": "source_exact_title_changed",
+      "fields": []
+    },
+    {
+      "url": "https://www.novaratoday.it/eventi/sagra-primavera-cameri-2026.html",
+      "slug": "novara-a-marzo-torna-fiorissimo-la-mostra-mercato-di-fiori-piante-e-artigianato",
+      "status": "held",
+      "reason": "source_exact_title_changed",
+      "fields": []
+    },
+    {
+      "url": "https://www.palermotoday.it/eventi/artgarden-14-15-febbraio-2026-vivai-gitto.html",
+      "slug": "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "limit_forecasts",
+      "calendar_disposition": "editorial_recurrence_not_proven",
+      "before_sha256": "74ef25bba784be31fc1d9aa4320b76779b63386fae41e7d5e9bd7d2dcd86561c",
+      "after_sha256": "92868850fd829c15713030065e29ecdc355dadc1bea5fcaa61b23f102649bc55"
+    },
+    {
+      "url": "https://www.parmatoday.it/eventi/librokilo-parma-1-febbraio.html",
+      "slug": "librokilo-torna-a-parma-il-1deg-febbraio-colonne-ventotto",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.ravennatoday.it/eventi/festa-della-patrona-sant-agata-sul-santerno-iniziative-2026.html",
+      "slug": "maccheronata-mercatini-luna-park-dj-set-e-spettacoli-per-la-festa-della-patrona",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.riminitoday.it/eventi/piazzetta-delle-idee-chi-cerca-trova-artigianato-creativita-tesori-riccione-paese.html",
+      "slug": "bancarelle-idee-e-piccoli-tesori-tornano-piazzetta-delle-idee-e-chi-cerca-trova",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.romatoday.it/eventi/hippie-market-14-15-febbraio-2026.html",
+      "slug": "hippie-market-tra-gli-acquedotti-romani-roma",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "limit_forecasts",
+      "calendar_disposition": "editorial_recurrence_not_proven",
+      "before_sha256": "31733c1df41661fa6c5beb01ac3e27c56c4a6e65e5ea43cb141d0d7f5f0c4fee",
+      "after_sha256": "7550dc7a72d28b54774d74d3a692cd5330718ece3adb7a7d1ea25903dfcd567d"
+    },
+    {
+      "url": "https://www.torinotoday.it/eventi/salone-libro-usato-nichelino-14-22-febbraio.html",
+      "slug": "il-fascino-delle-pagine-vissute-a-nichelino-torna-l-8deg-salone-del-libro-usato",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.trevisotoday.it/eventi/mostra-mercato-disco-silea-2026.html",
+      "slug": "1deg-mostra-mercato-del-disco-di-silea-silea",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "limit_forecasts",
+      "calendar_disposition": "editorial_recurrence_not_proven",
+      "before_sha256": "c1c70814a91f5b9054b14912f4b00865b304feb6c7b66e7a04ed8f89f598eb5a",
+      "after_sha256": "7f07f4fc3d8bfcbfc9f962855e49801512183ed003a9b135cc2229ac94d0c93e"
+    },
+    {
+      "url": "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+      "slug": "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-mirano",
+      "status": "changed",
+      "reason": "exact_url_title_municipality_and_edition",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "accepted_fields": {},
+      "field_holds": [],
+      "historical_edition": true,
+      "calendar_mode": "reported_explicit",
+      "calendar_disposition": "explicit_editorial_dates_retained",
+      "before_sha256": "7f14d110f9b326fa1ae483f49a200b6ed079914a935b2544f6f54302f52e12b6",
+      "after_sha256": "651a2da36a7150fa4a402bcaabdb4a186f23b862e7fe76fdb9f3e308d901d98d"
+    },
+    {
+      "url": "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+      "slug": "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-venezia",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.vicenzatoday.it/eventi/art-ciocc-il-tour-dei-cioccolatieri-ad-asiago.html",
+      "slug": "art-ciocc-il-tour-dei-cioccolatieri-ad-asiago-tensostruttura-riscaldata-in-piazz",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    },
+    {
+      "url": "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-15-febbraio-2026.html",
+      "slug": "mercatino-dell-antico-a-viterbo-centro-storico",
+      "status": "held",
+      "reason": "source_exact_url_changed",
+      "fields": []
+    }
+  ],
+  "limits": [
+    "11 changes retain historical facts only; no new current addresses, hours, calendars or confirmations.",
+    "57 exact detail URLs represent 62 catalog records; 30 index/tag/article records remain outside this reader.",
+    "13 catalog/source geography mismatches and 2 records without explicit source municipality remain held. No municipality or identity was repaired.",
+    "2 titles now describe different source events; 1 observed Viterbo redirect changes edition; both joins stay held.",
+    "Publication date is not source modification, acquisition date is not content freshness.",
+    "Recurring queue integration is a separate change; this report does not claim a production source run."
+  ]
+}

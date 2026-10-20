@@ -33,7 +33,8 @@ MAX_ROWS=100_000
 MAX_RESULTS=1400
 ADDRESS_PREFIX=re.compile(
     r"^(?:via|viale|vicolo|vico|corso|piazza|piazzale|piazzetta|largo|"
-    r"lungomare|strada|villaggio|campo|parco|borgo|frazione|contrada)\b",re.I
+    r"lungomare|strada|villaggio|campo|parco|borgo|frazione|contrada|"
+    r"passeggiata(?=\s+(?:d|di|del|della|dell|dei|delle|degli)(?:\s+|['’])[^\W\d_]))\b",re.I
 )
 BAD_PHRASES=("mercati in ","mercati settimanali","sagra","fiera",
              "su richiesta","consultare","da definire","presso gli stand")

@@ -39,6 +39,7 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.robotparser import RobotFileParser
 
 from happings_weekly_layout import parse, fold, _valid_page_url, province_page_key
+from happings_page_metadata import clean_page_metadata
 from stored_market_sibling_proposals import same_generic_venue, safe_stored_street
 from source_reconciliation_audit import _unambiguous_day
 from recurrence_refresh import explicit_rule, temporal_scope_hold
@@ -453,7 +454,8 @@ def _field_receipt(row, values, evidence):
         read_on=evidence["observed_at"], source_updated_on="",
         source_sha256=evidence["source_html_sha256"], scope="pagina",
         method=("comune_provincia_giorno_univoco" if row.get("fonte")==PUBLISHER
-                else "sede_giorno_provincia"), fingerprint_kind="html_bytes")
+                else "sede_giorno_provincia"), fingerprint_kind="html_bytes",
+        page_metadata=evidence.get("page_metadata"))
 
 
 def _version_is_ordered(row, receipt, today):
@@ -593,6 +595,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
     counters=Counter()
     seen_page=set()
     page_results=[]
+    coverage_inputs=[]
     secondary_routes=secondary_catalog_page_routes(base) if pages else {}
     for page in pages:
         if not isinstance(page,dict):
@@ -607,11 +610,14 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
         page_receipt={"requested_url":requested,"final_url":final,
                       "source_html_sha256":hashlib.sha256(blob).hexdigest()}
         try:
-            parser=parse(blob,source_url=final)
+            parser=parse(blob,source_url=final,observed_on=today)
         except ValueError:
             counters["source_pages_layout_changed"]+=1
             page_results.append({**page_receipt,"status":"layout_changed"})
+            coverage_inputs.append((page,None,[],{}))
             continue
+        if parser.page_metadata is not None:
+            page_receipt["page_metadata"]=parser.page_metadata
         page_results.append({**page_receipt,"status":"parsed","source_rows":len(parser.rows)})
         source=defaultdict(list)
         for entry in parser.rows:
@@ -622,6 +628,8 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                       (_town_url_matches(r) and _catalog_geography_matches(r,final)))]
         matched.extend(r for r in base if r["slug"] in secondary_routes
                        and allowed_url(secondary_routes[r["slug"]],requested,final))
+        coverage_holds=defaultdict(list)
+        coverage_inputs.append((page,parser,[r["slug"] for r in matched],coverage_holds))
         # A competing ordinary weekly venue remains a collision regardless
         # of where its existing address or qualified calendar came from.
         cohort=[r for r in base if same_generic_venue(r)
@@ -640,15 +648,23 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
             entries=source.get(pair,[])
             if len(entries)!=1:
                 counters["no_unique_source_market_city_weekday"]+=len(matching_rows)
+                coverage_holds[pair].append("no_unique_source_market_city_weekday")
+                continue
+            if entries[0].get("calendar_scope"):
+                counters["publisher_calendar_scope_unrepresented"]+=len(matching_rows)
+                coverage_holds[pair].append("publisher_calendar_scope_unrepresented")
                 continue
             street=entries[0]["place"].strip()
             if entries[0].get("has_specific_location") is not True or not safe_stored_street(street):
                 counters["publisher_only_vague_or_area_location"]+=len(matching_rows)
+                coverage_holds[pair].append("publisher_only_vague_or_area_location")
                 continue
             def evidence_for(row):
                 return {
                     "market_id":row["slug"],"source_url":final,"source_requested_url":requested,
                     "source_html_sha256":page_receipt["source_html_sha256"],
+                    **({"page_metadata":page_receipt["page_metadata"]}
+                       if "page_metadata" in page_receipt else {}),
                     "source_city":row["citta"],"source_province":row["provincia"],
                     "source_region":row["regione"],"source_day":pair[1],
                     "source_value":street,"observed_at":today.isoformat(),
@@ -676,6 +692,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                     break
             if conflicting:
                 counters["conflicting_previously_saved_location"]+=len(matching_rows)
+                coverage_holds[pair].append("conflicting_previously_saved_location")
             for row in matching_rows:
                 common=evidence_for(row)
                 current=str(row.get("indirizzo") or "")
@@ -685,12 +702,14 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                         retirements.append(retirement)
                     if not conflicting:
                         counters["secondary_existing_street_disagrees"]+=1
+                        coverage_holds[pair].append("secondary_existing_street_disagrees")
                     continue
                 value=current if _same_place(current,street) else street
                 values={"indirizzo":value,"ricorrenza_testo":row["ricorrenza_testo"]}
                 plain=_field_receipt(row,values,common)
                 if not _version_is_ordered(row,plain,today):
                     counters["source_version_ordering_not_proven"]+=1
+                    coverage_holds[pair].append("source_version_ordering_not_proven")
                     continue
                 proposal=None
                 proof=plain
@@ -700,6 +719,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                     if (row.get("verificato_il") or row.get("position_quality")=="precisa"
                             or not (initial or managed)):
                         counters["already_has_street_or_vague_original"]+=1
+                        coverage_holds[pair].append("already_has_street_or_vague_original")
                         continue
                     proposal={**common,"field":"indirizzo","old_value":current,
                               "candidate_value":value,"assignment":"initial" if initial else "managed_update"}
@@ -737,6 +757,14 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
         "market_rows_deleted":0,"market_rows_inserted":0,
         "market_openings_verified":0,"new_geographic_points":0,"source_primary_links_replaced":0,
     }
+    from happings_field_coverage import aggregate_coverage, weekly_page_coverage
+    coverage_before={row["slug"]:row for row in base}
+    coverage_after={row["slug"]:row for row in updated}
+    report["field_coverage"]=aggregate_coverage([
+        weekly_page_coverage(page["html"],parsed,requested_url=page["requested_url"],final_url=page["final_url"],
+            observations=observations,considered_ids=considered,holds=holds,
+            before=coverage_before,after=coverage_after)
+        for page,parsed,considered,holds in coverage_inputs])
     return updated,report
 
 
@@ -812,6 +840,9 @@ def safe_report(report,base):
                 or not isinstance(digest,str) or not re.fullmatch(r"[0-9a-f]{64}",digest)
                 or page.get("status") not in {"parsed","layout_changed"}):
             raise ValueError("Publisher report has invalid source page evidence")
+        if ("page_metadata" in page and clean_page_metadata(
+                page["page_metadata"],final_url=key[1],read_on=today) is None):
+            raise ValueError("Publisher page editorial metadata lost its exact scope")
         observed_pages[key]=page
         seen_provinces.add(province_page_key(key[0]))
     secondary_routes=(secondary_catalog_page_routes(base) if any(
@@ -829,6 +860,7 @@ def safe_report(report,base):
                 or (item["source_relation"]=="secondary" and not allowed_url(
                     secondary_routes.get(target["slug"]),item.get("source_requested_url"),item.get("source_url")))
                 or item.get("source_html_sha256")!=source["source_html_sha256"]
+                or item.get("page_metadata")!=source.get("page_metadata")
                 or item.get("source_city")!=target.get("citta")
                 or item.get("source_province")!=target.get("provincia")
                 or item.get("source_region")!=target.get("regione")
@@ -871,6 +903,7 @@ def summarize(report):
         "field_changes":report["field_changes"],
         "parser_counts":report["parser_counts"],
         "source_pages":report.get("source_pages",[]),
+        "field_coverage":report.get("field_coverage"),
         "verified_market_openings_created":0,
         "geocoded_market_locations_created":0,
         "unapproved_publisher_field_overwrites":0,
