@@ -847,12 +847,15 @@
       "same_id_already_published": 39
     },
     "events_confirmed": 0,
+    "historical_relocation_evidence_not_applicable": 0,
     "independent_relocation_evidence": 1,
     "records_imported": 0,
+    "relocation_evidence_applicable_to_dataset": 1,
     "samples_for_review": {
       "ambiguous": [
         "bo-open-418bc4fab526dfb293eaa88d97334c86f06aecbc"
       ],
+      "historical_location_review": [],
       "location_conflict": [],
       "possible_distinct": [
         "bo-open-17afa4a1b31405dc911429ed57f2949a95dd3637",
@@ -867,11 +870,11 @@
       "strong": []
     },
     "schema": 1,
-    "source_age_days": 565,
+    "source_age_days": 566,
     "source_ids_sha256": "c045561fc022bba002e2cc3252d75550c8d0b0669cbc7ed911e2886d5c788471"
   },
   "catalog_market_ids_retained": 13824,
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "location_conflicts_documented": 1,
   "location_conflicts_source_sha256": "985b6705ef852f2dbf5ecab4aec8459d1945e7183df299a4d1a6fda198d9d6bc",
   "market_events_confirmed": 0,

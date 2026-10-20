@@ -10,6 +10,7 @@
 - Possibili sedi distinte, ancora da verificare: **8**.
 - Possibili sovrapposizioni tra fonti: **1**.
 - Conflitti di località documentati: **n.d.**.
+- Prove storiche di località da riconciliare con una nuova versione: **0**.
 - Documento ufficiale: https://atti9.comune.bologna.it/webpub/wpub_ordtraf.nsf/dettaglio.xsp?action=editDocument&documentId=77B931E39816680CC1258B270043B4E3 (Via Segantini / Via Battindarno).
 - Source data Bologna: **2025-04-02**; non e' una conferma di apertura.
 
