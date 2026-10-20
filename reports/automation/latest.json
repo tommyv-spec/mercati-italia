@@ -37,8 +37,8 @@
   "municipality_forecast_dates_removed": 0,
   "municipality_istat_enabled": true,
   "municipality_needs_manual_review": 2,
-  "municipality_province_fixed": 80,
-  "municipality_province_pending": 60,
+  "municipality_province_fixed": 60,
+  "municipality_province_pending": 0,
   "municipality_province_protected": 0,
   "municipality_titles_repaired": 0,
   "official_enrichment_attributions_added": 0,
@@ -59,7 +59,7 @@
   "quality_suspicious_cities": 2,
   "quality_unscheduled_false_labels": 0,
   "record_count": 13856,
-  "recorded_utc": "2026-10-20T18:41:21.813812+00:00",
+  "recorded_utc": "2026-10-20T19:29:25.832031+00:00",
   "reviewed_city_source_coordinates_held_total": 7,
   "reviewed_city_source_coordinates_quarantined": 0,
   "reviewed_city_source_corrected": 0,
@@ -73,7 +73,7 @@
   "roma_xiii_2026_reviewed_venues_active": 5,
   "roma_xiii_coordinate_holds_active": 2,
   "roma_xiii_navigation_holds_active": 2,
-  "run_id": "39476248402",
+  "run_id": "39483325379",
   "source_age_over_limit": 52,
   "source_age_within_30_days": 1204,
   "source_candidates_scored": 0,
@@ -97,5 +97,5 @@
   "visitor_duplicate_buttons_avoided": 588,
   "visitor_duplicate_visit_groups": 536,
   "visitor_original_market_ids_retained": 13856,
-  "workflow_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39476248402"
+  "workflow_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39483325379"
 }

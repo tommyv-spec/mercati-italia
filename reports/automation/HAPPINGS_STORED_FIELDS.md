@@ -6,7 +6,7 @@ a certificare l'unicità della sede in un intero Comune.
 
 - Schede nazionali controllate: **13856**
 - Schede Happings controllate: **9679**
-- Candidate che hanno già un indirizzo in un'altra scheda: **683**
+- Candidate che hanno già un indirizzo in un'altra scheda: **689**
 - Gruppi con più sedi note: **0**
 - Campi riempiti senza prova indipendente: **0**
 

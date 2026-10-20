@@ -3,9 +3,9 @@
   "counts": {
     "cross_market_scraper_text": 20,
     "needs_manual_municipality_review": 2,
-    "province_candidates": 140,
-    "province_fixed": 80,
-    "province_pending": 60,
+    "province_candidates": 60,
+    "province_fixed": 60,
+    "province_pending": 0,
     "province_protected": 0,
     "suspicious_before": 2
   },
@@ -40,20 +40,20 @@
   "istat_reference": "2026-02-21",
   "market_confirmations_created": 0,
   "province_corrections": {
-    "applied": 80,
-    "eligible": 140,
+    "applied": 60,
+    "eligible": 60,
     "metodo": "comune_regione_esatti_istat",
-    "pending": 60,
+    "pending": 0,
     "prior_municipality_changes": 0,
     "proofs": [
       {
-        "comune_istat": "Busnago",
+        "comune_istat": "Ornago",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Busnago",
+          "citta": "Ornago",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-busnago-busnago-giovedi"
+          "slug": "mercato-settimanale-di-ornago-ornago"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -63,477 +63,237 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Canosa di Puglia",
+        "comune_istat": "Ornago",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Canosa di Puglia",
+          "citta": "Ornago",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-ornago-ornago-giovedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Parghelia",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Parghelia",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-parghelia-parghelia-venerdi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pizzo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pizzo",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-pizzo-pizzo-giovedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Poggio a Caiano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Poggio a Caiano",
+          "regione": "Toscana",
+          "slug": "mercato-settimanale-di-poggio-a-caiano-poggio-a-caiano-giovedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PO",
+        "provincia_originale": "PR",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Poggio a Caiano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Poggio a Caiano",
+          "regione": "Toscana",
+          "slug": "mercato-settimanale-di-poggio-a-caiano-poggio-a-caiano-venerdi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PO",
+        "provincia_originale": "PR",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Renate",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Renate",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-renate-renate"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Renate",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Renate",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-renate-renate-martedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Rombiolo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Rombiolo",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-rombiolo-rombiolo-giovedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Roncello",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Roncello",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-roncello-roncello"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Roncello",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Roncello",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-roncello-roncello-mercoledi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Ronco Briantino",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Ronco Briantino",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-ronco-briantino-ronco-briantino"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Ronco Briantino",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Ronco Briantino",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-ronco-briantino-ronco-briantino-sabato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Ferdinando di Puglia",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Ferdinando di Puglia",
           "regione": "Puglia",
-          "slug": "mercato-settimanale-di-canosa-di-puglia-canosa-di-puglia-giovedi"
+          "slug": "mercato-settimanale-di-san-ferdinando-di-puglia-san-ferdinando-di-puglia-martedi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "BT",
-        "provincia_originale": "BA",
+        "provincia_originale": "FG",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Cantagallo",
+        "comune_istat": "San Mauro Marchesato",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Cantagallo",
-          "regione": "Toscana",
-          "slug": "mercato-settimanale-di-cantagallo-cantagallo-mercoledi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "PO",
-        "provincia_originale": "PT",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Caponago",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Caponago",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-caponago-caponago"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Caponago",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Caponago",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-caponago-caponago-sabato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Carate Brianza",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Carate Brianza",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-carate-brianza-carate-brianza"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Carate Brianza",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Carate Brianza",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-carate-brianza-carate-brianza-lunedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Carate Brianza",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Carate Brianza",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-carate-brianza-carate-brianza-sabato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Carmignano",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Carmignano",
-          "regione": "Toscana",
-          "slug": "mercato-settimanale-di-carmignano-carmignano-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "PO",
-        "provincia_originale": "PT",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Carmignano",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Carmignano",
-          "regione": "Toscana",
-          "slug": "mercato-settimanale-di-carmignano-carmignano-mercoledi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "PO",
-        "provincia_originale": "PT",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Carnate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Carnate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-carnate-carnate"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Carnate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Carnate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-carnate-carnate-giovedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cavenago di Brianza",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cavenago di Brianza",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cavenago-di-brianza-cavenago-di-brianza"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cavenago di Brianza",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cavenago di Brianza",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cavenago-di-brianza-cavenago-di-brianza-sabato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Ceriano Laghetto",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Ceriano Laghetto",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-ceriano-laghetto-ceriano-laghetto"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Ceriano Laghetto",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Ceriano Laghetto",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-ceriano-laghetto-ceriano-laghetto-mercoledi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cesano Maderno",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cesano Maderno",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cesano-maderno-cesano-maderno"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cesano Maderno",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cesano Maderno",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cesano-maderno-cesano-maderno-venerdi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Chiusa di Pesio",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Chiusa di Pesio",
-          "regione": "Piemonte",
-          "slug": "mercato-settimanale-di-chiusa-di-pesio-chiusa-di-pesio-domenica"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "CN",
-        "provincia_originale": "CU",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cogliate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cogliate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cogliate-cogliate"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cogliate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cogliate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cogliate-cogliate-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Concorezzo",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Concorezzo",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-concorezzo-concorezzo"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Concorezzo",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Concorezzo",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-concorezzo-concorezzo-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cornate d'Adda",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cornate d'Adda",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cornate-d-adda-cornate-d-adda"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cornate d'Adda",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cornate d'Adda",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cornate-d-adda-cornate-d-adda-sabato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Correzzana",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Correzzana",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-correzzana-correzzana"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Correzzana",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Correzzana",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-correzzana-correzzana-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Cortenova",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Cortenova",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-cortenova-cortenova-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "LC",
-        "provincia_originale": "LE",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Desio",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Desio",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-desio-desio"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Desio",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Desio",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-desio-desio-lunedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Filogaso",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Filogaso",
+          "citta": "San Mauro Marchesato",
           "regione": "Calabria",
-          "slug": "mercato-settimanale-di-filogaso-filogaso-lunedi"
+          "slug": "mercato-settimanale-di-san-mauro-marchesato-san-mauro-marchesato-sabato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "KR",
+        "provincia_originale": "CR",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Nicola da Crissa",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Nicola da Crissa",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-san-nicola-da-crissa-san-nicola-da-crissa-martedi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "VV",
@@ -543,13 +303,13 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Francica",
+        "comune_istat": "Sant'Onofrio",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Francica",
+          "citta": "Sant'Onofrio",
           "regione": "Calabria",
-          "slug": "mercato-settimanale-di-francica-francica-lunedi"
+          "slug": "mercato-settimanale-di-sant-onofrio-sant-onofrio-venerdi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "VV",
@@ -559,381 +319,93 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Genoni",
+        "comune_istat": "Seregno",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Genoni",
+          "citta": "Seregno",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-seregno-seregno"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Seregno",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Seregno",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-seregno-seregno-mercoledi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Seregno",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Seregno",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-seregno-seregno-sabato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Serra San Bruno",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Serra San Bruno",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-serra-san-bruno-serra-san-bruno-giovedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Seulo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Seulo",
           "regione": "Sardegna",
-          "slug": "mercato-settimanale-di-genoni-genoni"
+          "slug": "mercato-settimanale-di-seulo-seulo-mercoledi"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "CA",
-        "provincia_originale": "OR",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Genoni",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Genoni",
-          "regione": "Sardegna",
-          "slug": "mercato-settimanale-di-genoni-genoni-mercoledi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "CA",
-        "provincia_originale": "OR",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Gerocarne",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Gerocarne",
-          "regione": "Calabria",
-          "slug": "mercato-settimanale-di-gerocarne-gerocarne-venerdi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "VV",
-        "provincia_originale": "VB",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Giussano",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Giussano",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-giussano-giussano"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Giussano",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Giussano",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-giussano-giussano-giovedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Giussano",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Giussano",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-giussano-giussano-venerdi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lazzate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lazzate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lazzate-lazzate"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lazzate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lazzate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lazzate-lazzate-mercoledi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lentate sul Seveso",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lentate sul Seveso",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lentate-sul-seveso-lentate-sul-seveso"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lentate sul Seveso",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lentate sul Seveso",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lentate-sul-seveso-lentate-sul-seveso-giovedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lentate sul Seveso",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lentate sul Seveso",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lentate-sul-seveso-lentate-sul-seveso-lunedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lentate sul Seveso",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lentate sul Seveso",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lentate-sul-seveso-lentate-sul-seveso-sabato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lesmo",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lesmo",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lesmo-lesmo"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lesmo",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lesmo",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lesmo-lesmo-lunedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Limbiate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Limbiate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-limbiate-limbiate"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Limbiate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Limbiate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-limbiate-limbiate-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Limbiate",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Limbiate",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-limbiate-limbiate-sabato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lissone",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lissone",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lissone-lissone"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lissone",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lissone",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lissone-lissone-giovedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lissone",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lissone",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lissone-lissone-lunedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lissone",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lissone",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lissone-lissone-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Lissone",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Lissone",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-lissone-lissone-venerdi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Macerata Campania",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Macerata Campania",
-          "regione": "Campania",
-          "slug": "mercato-settimanale-di-macerata-campania-1-macerata-campania-mercoledi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "CE",
+        "provincia": "NU",
         "provincia_originale": "CA",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Macherio",
+        "comune_istat": "Seveso",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Macherio",
+          "citta": "Seveso",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-macherio-macherio"
+          "slug": "mercato-settimanale-di-seveso-seveso"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -943,13 +415,13 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Macherio",
+        "comune_istat": "Seveso",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Macherio",
+          "citta": "Seveso",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-macherio-macherio-giovedi"
+          "slug": "mercato-settimanale-di-seveso-seveso-mercoledi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -959,109 +431,109 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Margherita di Savoia",
+        "comune_istat": "Seveso",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Margherita di Savoia",
+          "citta": "Seveso",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-seveso-seveso-sabato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Soriano Calabro",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Soriano Calabro",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-soriano-calabro-soriano-calabro-mercoledi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Soriano Calabro",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Soriano Calabro",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-soriano-calabro-soriano-calabro-sabato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sovico",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sovico",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-sovico-sovico"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sovico",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sovico",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-sovico-sovico-sabato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Spadola",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Spadola",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-spadola-spadola-lunedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Spinazzola",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Spinazzola",
           "regione": "Puglia",
-          "slug": "mercato-settimanale-di-margherita-di-savoia-margherita-di-savoia"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "BT",
-        "provincia_originale": "FG",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Margherita di Savoia",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Margherita di Savoia",
-          "regione": "Puglia",
-          "slug": "mercato-settimanale-di-margherita-di-savoia-margherita-di-savoia-giovedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "BT",
-        "provincia_originale": "FG",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Meda",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "MEDA",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-meda-meda"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Meda",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Meda",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-meda-meda-giovedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Mezzago",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Mezzago",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-mezzago-mezzago"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Mezzago",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Mezzago",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-mezzago-mezzago-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Minervino Murge",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Minervino Murge",
-          "regione": "Puglia",
-          "slug": "mercato-settimanale-di-minervino-murge-minervino-murge-lunedi"
+          "slug": "mercato-settimanale-di-spinazzola-spinazzola-sabato"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "BT",
@@ -1071,13 +543,29 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Misinto",
+        "comune_istat": "Stefanaconi",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Misinto",
+          "citta": "Stefanaconi",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-stefanaconi-stefanaconi-mercoledi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sulbiate",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sulbiate",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-misinto-misinto"
+          "slug": "mercato-settimanale-di-sulbiate-sulbiate"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -1087,13 +575,13 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Misinto",
+        "comune_istat": "Sulbiate",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Misinto",
+          "citta": "Sulbiate",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-misinto-misinto-lunedi"
+          "slug": "mercato-settimanale-di-sulbiate-sulbiate-giovedi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -1103,13 +591,125 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montemurlo",
+        "comune_istat": "Teulada",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montemurlo",
+          "citta": "Teulada",
+          "regione": "Sardegna",
+          "slug": "mercato-settimanale-di-teulada-teulada"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "CI",
+        "provincia_originale": "CA",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Teulada",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Teulada",
+          "regione": "Sardegna",
+          "slug": "mercato-settimanale-di-teulada-teulada-lunedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "CI",
+        "provincia_originale": "CA",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Trani",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Trani",
+          "regione": "Puglia",
+          "slug": "mercato-settimanale-di-trani-trani"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BT",
+        "provincia_originale": "BA",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Trevi",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "TREVI",
+          "regione": "Umbria",
+          "slug": "mercato-settimanale-di-trevi-trevi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PG",
+        "provincia_originale": "RM",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Trinitapoli",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Trinitapoli",
+          "regione": "Puglia",
+          "slug": "mercato-settimanale-di-trinitapoli-trinitapoli-lunedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BT",
+        "provincia_originale": "FG",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Usmate Velate",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Usmate Velate",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-usmate-velate-usmate-velate"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Usmate Velate",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Usmate Velate",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-usmate-velate-usmate-velate-lunedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Vaiano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Vaiano",
           "regione": "Toscana",
-          "slug": "mercato-settimanale-di-montemurlo-montemurlo-martedi"
+          "slug": "mercato-settimanale-di-vaiano-vaiano-sabato"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "PO",
@@ -1119,13 +719,173 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montemurlo",
+        "comune_istat": "Vallelonga",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montemurlo",
+          "citta": "Vallelonga",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-vallelonga-vallelonga-lunedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Varedo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Varedo",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-varedo-varedo"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Varedo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Varedo",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-varedo-varedo-giovedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Vazzano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Vazzano",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-vazzano-vazzano-giovedi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VV",
+        "provincia_originale": "VB",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Vedano al Lambro",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Vedano al Lambro",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-vedano-al-lambro-vedano-al-lambro"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Vedano al Lambro",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Vedano al Lambro",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-vedano-al-lambro-vedano-al-lambro-sabato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Veduggio con Colzano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Veduggio con Colzano",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-veduggio-con-colzano-veduggio-con-colzano"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Veduggio con Colzano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Veduggio con Colzano",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-veduggio-con-colzano-veduggio-con-colzano-venerdi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Verano Brianza",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Verano Brianza",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-verano-brianza-verano-brianza"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Verano Brianza",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Verano Brianza",
+          "regione": "Lombardia",
+          "slug": "mercato-settimanale-di-verano-brianza-verano-brianza-mercoledi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MB",
+        "provincia_originale": "MI",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Vernio",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Vernio",
           "regione": "Toscana",
-          "slug": "mercato-settimanale-di-montemurlo-montemurlo-sabato"
+          "slug": "mercato-settimanale-di-vernio-vernio-venerdi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "PO",
@@ -1135,29 +895,13 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montemurlo",
+        "comune_istat": "Villasanta",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montemurlo",
-          "regione": "Toscana",
-          "slug": "mercato-settimanale-di-montemurlo-montemurlo-venerdi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "PO",
-        "provincia_originale": "PR",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Monza",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Monza",
+          "citta": "Villasanta",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-monza-monza"
+          "slug": "mercato-settimanale-di-villasanta-villasanta"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -1167,13 +911,13 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Monza",
+        "comune_istat": "Villasanta",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Monza",
+          "citta": "Villasanta",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-monza-monza-giovedi"
+          "slug": "mercato-settimanale-di-villasanta-villasanta-venerdi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -1183,13 +927,13 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Monza",
+        "comune_istat": "Vimercate",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Monza",
+          "citta": "Vimercate",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-monza-monza-martedi"
+          "slug": "mercato-settimanale-di-vimercate-vimercate"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -1199,13 +943,13 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Monza",
+        "comune_istat": "Vimercate",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Monza",
+          "citta": "Vimercate",
           "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-monza-monza-mercoledi"
+          "slug": "mercato-settimanale-di-vimercate-vimercate-venerdi"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "MB",
@@ -1215,113 +959,49 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Monza",
+        "comune_istat": "Zaccanopoli",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Monza",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-monza-monza-sabato"
+          "citta": "Zaccanopoli",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-zaccanopoli-zaccanopoli-mercoledi"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
+        "provincia": "VV",
+        "provincia_originale": "VB",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Monza",
+        "comune_istat": "Zambrone",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Monza",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-monza-monza-venerdi"
+          "citta": "Zambrone",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-zambrone-zambrone-mercoledi"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
+        "provincia": "VV",
+        "provincia_originale": "VB",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Muggiò",
+        "comune_istat": "Zungri",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Muggiò",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-muggio-muggio"
+          "citta": "Zungri",
+          "regione": "Calabria",
+          "slug": "mercato-settimanale-di-zungri-zungri-venerdi"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Muggiò",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Muggiò",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-muggio-muggio-martedi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Nova Milanese",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Nova Milanese",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-nova-milanese-nova-milanese"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Nova Milanese",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Nova Milanese",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-nova-milanese-nova-milanese-mercoledi"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Nova Milanese",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Nova Milanese",
-          "regione": "Lombardia",
-          "slug": "mercato-settimanale-di-nova-milanese-nova-milanese-sabato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MB",
-        "provincia_originale": "MI",
+        "provincia": "VV",
+        "provincia_originale": "VB",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"

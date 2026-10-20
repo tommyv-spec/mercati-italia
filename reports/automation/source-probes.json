@@ -74,9 +74,9 @@
       "viability": "manual_schema_review_required"
     },
     "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7": {
-      "checked_date": "2026-10-19",
+      "checked_date": "2026-10-20",
       "column_fingerprint": null,
-      "status": "needs_review",
+      "status": "offline_skipped",
       "viability": "manual_schema_review_required"
     },
     "60fab25c-12d7-43f9-b8e7-7ef709d58aa2": {
@@ -86,9 +86,9 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "6791a91c-4e34-4ec3-89f3-cdbb8d96b3d8": {
-      "checked_date": "2026-10-12",
-      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
-      "status": "schema_preview_only",
+      "checked_date": "2026-10-20",
+      "column_fingerprint": null,
+      "status": "offline_skipped",
       "viability": "manual_schema_review_required"
     },
     "74600cc1-0adb-4ae3-8255-30556e03e932": {
@@ -226,11 +226,11 @@
       "field_hints": {},
       "fields": [],
       "format": "CSV",
-      "id": "0cffe11e-1a55-471e-9bc0-3fec3247b7d9",
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/1bb563f3-e2b4-4b93-8974-0165285f5913.csv",
+      "id": "6791a91c-4e34-4ec3-89f3-cdbb8d96b3d8",
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/fd62e57c-6000-479d-afb9-cd6ff5956c66.csv",
       "source_license_verified": false,
       "status": "offline_skipped",
-      "title": "Posteggi mercati e fiere - Comune di Pianiga"
+      "title": "Posteggi mercati e fiere - Comune di Meolo"
     },
     {
       "adapter_enabled": false,
@@ -238,11 +238,11 @@
       "field_hints": {},
       "fields": [],
       "format": "CSV",
-      "id": "f4407fb8-5e36-4311-8422-02d463741780",
-      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
+      "id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
+      "sample_url": "https://dati.lazio.it/dataset/5cb467ed-a783-4507-a36a-c0a0f6a7d9a7/resource/97f6ae01-f57f-49e7-a713-349d8fce8160/download/oscomercatigiornalieri.csv",
       "source_license_verified": false,
       "status": "offline_skipped",
-      "title": "Censimento dei mercati itineranti"
+      "title": "Censimento dei mercati giornalieri"
     },
     {
       "adapter_enabled": false,
