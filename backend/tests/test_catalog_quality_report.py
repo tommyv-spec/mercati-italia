@@ -1,10 +1,12 @@
 import copy
+from datetime import date
 import unittest
 from pathlib import Path
 import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from catalog_quality_report import analyze, suspicious_city, count_venue_weekday_groups
+from field_evidence import make_receipt
 
 
 def mk(slug,city="Albizzate",region="Lombardia",street="Piazzale Sefro",
@@ -20,6 +22,31 @@ def mk(slug,city="Albizzate",region="Lombardia",street="Piazzale Sefro",
     }
     row.update(kw)
     return row
+
+
+def overlap_recovery_catalog():
+    """Reproduce the failed run's 765 -> 859 overlap arithmetic with stable IDs."""
+    baseline = [mk(f"known-{i}-{j}", city=f"Existing town {i}", provincia="VA")
+                for i in range(765) for j in range(2)]
+    baseline += [mk(f"recovered-{i}-{j}", city=f"Recovered town {i}",
+                    street="" if j else "centro", provincia="VA")
+                 for i in range(94) for j in range(2)]
+    candidate = copy.deepcopy(baseline)
+    for row in candidate:
+        if row["slug"].startswith("recovered-"):
+            row["indirizzo"] = "Piazza della Repubblica"
+            receipt_for_address(row)
+    return baseline, candidate
+
+
+def receipt_for_address(row):
+    row["riscontri_campi"] = [make_receipt(
+        row, values={"indirizzo": row["indirizzo"]},
+        source_url="https://www.dati.lombardia.it/d/68zx-njaw",
+        source_name="Regione Lombardia", source_id="lombardia",
+        source_row=row["citta"], read_on="2026-10-20",
+        source_updated_on="2026-10-13", source_sha256="a" * 64,
+        method="comune_provincia_giorno_univoco")]
 
 
 class CatalogQualityTests(unittest.TestCase):
@@ -129,6 +156,122 @@ class CatalogQualityTests(unittest.TestCase):
             analyze([one],{"schema":1,"review_only":False})
         with self.assertRaisesRegex(ValueError,"Invalid or unbounded"):
             analyze([])
+
+    def test_documented_missing_address_recovery_preserves_raw_overlap_totals(self):
+        baseline, candidate = overlap_recovery_catalog()
+        original = copy.deepcopy((baseline, candidate))
+        previous = analyze(baseline)
+        report = analyze(candidate, previous, baseline_rows=baseline, today=date(2026,10,20))
+        self.assertTrue(report["quality_release_safe"])
+        self.assertEqual(previous["metrics"]["review_only_potential_extra_rows"], 765)
+        self.assertEqual(report["metrics"]["review_only_potential_extra_rows"], 859)
+        self.assertEqual(report["baseline_delta"]["review_only_potential_extra_rows"], 94)
+        review = report["overlap_growth_review"]
+        self.assertEqual(review["source_supported_revealed_extra_rows"], 94)
+        self.assertEqual(review["unexplained_group_growth"], 0)
+        self.assertEqual((baseline, candidate), original)
+        self.assertEqual(report["market_identities_deleted"], 0)
+        self.assertEqual(report["market_confirmations_created"], 0)
+
+    def test_previous_summary_without_baseline_rows_keeps_original_gate(self):
+        baseline, candidate = overlap_recovery_catalog()
+        report = analyze(candidate, analyze(baseline), today=date(2026,10,20))
+        self.assertFalse(report["quality_release_safe"])
+        self.assertEqual(report["quality_regressions"][0]["maximum_permitted_increase"], 77)
+        self.assertEqual(report["overlap_growth_review"]["source_supported_revealed_extra_rows"], 0)
+
+    def test_unsupported_recovery_or_mismatched_proof_still_blocks(self):
+        baseline, candidate = overlap_recovery_catalog()
+        previous = analyze(baseline)
+        for tamper in ("missing", "identity", "value", "hash", "future_read"):
+            with self.subTest(tamper=tamper):
+                changed = copy.deepcopy(candidate)
+                for row in changed:
+                    if not row["slug"].startswith("recovered-"):
+                        continue
+                    proof = row["riscontri_campi"][0]
+                    if tamper == "missing":
+                        row["riscontri_campi"] = []
+                    elif tamper == "identity":
+                        proof["mercato"]["slug"] = "unrelated-market"
+                    elif tamper == "value":
+                        proof["valori"]["indirizzo"] = "Via Indipendenza"
+                    elif tamper == "hash":
+                        proof["sha256"] = "invalid"
+                    else:
+                        proof["letto_il"] = "2026-10-21"
+                report = analyze(changed, previous, baseline_rows=baseline, today=date(2026,10,20))
+                self.assertFalse(report["quality_release_safe"])
+                self.assertEqual(report["overlap_growth_review"]["unexplained_group_growth"], 94)
+
+    def test_new_ids_cannot_be_explained_by_another_records_address_recovery(self):
+        baseline, candidate = overlap_recovery_catalog()
+        for row in candidate:
+            if row["slug"].startswith("recovered-") and row["slug"].endswith("-1"):
+                row["slug"] += "-new"
+                receipt_for_address(row)
+        # Retain the old identities too. The new overlapping records have
+        # valid receipts, but did not exist in the published baseline.
+        candidate += [copy.deepcopy(row) for row in baseline
+                      if row["slug"].startswith("recovered-") and row["slug"].endswith("-1")]
+        report = analyze(candidate, analyze(baseline), baseline_rows=baseline, today=date(2026,10,20))
+        self.assertFalse(report["quality_release_safe"])
+        self.assertEqual(report["overlap_growth_review"]["source_supported_revealed_extra_rows"], 0)
+
+    def test_supported_recoveries_cannot_offset_unexplained_new_market_groups(self):
+        baseline, recovered = overlap_recovery_catalog()
+        for disappear_old_groups in (False, True):
+            with self.subTest(disappear_old_groups=disappear_old_groups):
+                candidate = copy.deepcopy(recovered)
+                for i in range(94):
+                    extra = mk(f"new-duplicate-{i}", city=f"Existing town {i + 200}", provincia="VA")
+                    receipt_for_address(extra)
+                    candidate.append(extra)
+                if disappear_old_groups:
+                    # Old overlaps disappearing elsewhere cannot cancel
+                    # the unexplained growth of new market identities.
+                    for row in candidate:
+                        if row["slug"] in {f"known-{i}-0" for i in range(94)}:
+                            row["indirizzo"] = "Via Indipendenza"
+                report = analyze(candidate, analyze(baseline), baseline_rows=baseline,
+                                 today=date(2026,10,20))
+                self.assertFalse(report["quality_release_safe"])
+                review = report["overlap_growth_review"]
+                self.assertEqual(review["source_supported_revealed_extra_rows"], 94)
+                self.assertEqual(review["unexplained_group_growth"], 94)
+                self.assertEqual(report["quality_regressions"][0]["maximum_permitted_increase"], 77)
+
+    def test_existing_venue_or_identity_changes_cannot_excuse_overlap_growth(self):
+        base, candidate = overlap_recovery_catalog()
+        for field, value in (("indirizzo", "Via Indipendenza"), ("provincia", "MI"),
+                             ("url_fonte", "https://example.org/different-source"),
+                             ("nome", "Mercato settimanale a altra località"),
+                             ("ricorrenza_testo", "settimanale - venerdì"),
+                             ("verificato_il", "2026-10-19"),
+                             ("position_quality", "precisa")):
+            with self.subTest(field=field):
+                baseline = copy.deepcopy(base)
+                for row in baseline:
+                    if row["slug"].startswith("recovered-"):
+                        row[field] = value
+                report = analyze(candidate, analyze(baseline), baseline_rows=baseline,
+                                 today=date(2026,10,20))
+                self.assertFalse(report["quality_release_safe"])
+                self.assertEqual(report["overlap_growth_review"]["source_supported_revealed_extra_rows"], 0)
+
+    def test_old_address_evidence_and_unbound_baseline_cannot_authorize_recovery(self):
+        baseline, candidate = overlap_recovery_catalog()
+        for row in baseline:
+            if row["slug"].startswith("recovered-") and row["indirizzo"]:
+                receipt_for_address(row)
+        previous = analyze(baseline)
+        report = analyze(candidate, previous, baseline_rows=baseline, today=date(2026,10,20))
+        self.assertFalse(report["quality_release_safe"])
+        self.assertEqual(report["overlap_growth_review"]["source_supported_revealed_extra_rows"], 0)
+        previous["metrics"]["total"] += 1
+        report = analyze(candidate, previous, baseline_rows=baseline, today=date(2026,10,20))
+        self.assertFalse(report["quality_release_safe"])
+        self.assertEqual(report["overlap_growth_review"]["status"], "baseline_summary_mismatch")
 
 
 if __name__=="__main__":

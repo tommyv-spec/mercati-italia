@@ -25,5 +25,11 @@ export function marketDateDisclosure(dates, quality, now = new Date()) {
     return 'Nessuna data futura disponibile. Giorni e aperture da verificare presso la fonte prima di partire.'
   }
   if (quality === 'confermata') return ''
+  if (quality === 'riportata') {
+    return 'Date riportate dalla fonte. Controlla eventuali variazioni prima di partire.'
+  }
+  if (quality === 'mista') {
+    return 'Date previste e date riportate dalle fonti. Controlla la singola scheda e le eventuali variazioni prima di partire.'
+  }
   return 'Date previste, non confermate per ogni singola edizione. Controlla la fonte prima di partire.'
 }

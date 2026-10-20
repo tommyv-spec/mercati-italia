@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import { distinctWeekdays, groupVenues, groupVenueAppointments, nextMatchingDate, WEEKDAY_LABELS } from '../lib/marketGrouping'
 import { marketDateDisclosure } from '../lib/dateDisclosure'
+import { sourceHoursForDate } from '../lib/sourceCalendar'
 import './WeeklyCityGroup.css'
 
 function dateLabel(iso) {
@@ -75,10 +76,11 @@ export default function WeeklyCityGroup({
     ...(showUnknownVenues || knownVenues.length === 0 ? unknownVenues : []),
   ]
 
-  const uncertain = group.markets.some(m => m.dateQuality !== 'confermata')
+  const reported = group.markets.some(m => m.dateQuality === 'riportata')
+  const predicted = group.markets.some(m => !['confermata', 'riportata'].includes(m.dateQuality))
   const disclosure = marketDateDisclosure(
     group.markets.flatMap(m => m.dates || []),
-    uncertain ? 'prevista' : 'confermata'
+    reported && predicted ? 'mista' : reported ? 'riportata' : predicted ? 'prevista' : 'confermata'
   )
 
   return (
@@ -152,8 +154,10 @@ export default function WeeklyCityGroup({
                             aria-label={'Apri ' + dateLabel(date) + ', ' + (venue.address || group.city)}>
                             <span className="weekly-appointment-date">{dateLabel(date)}</span>
                             <span className="weekly-appointment-meta">
-                              {market.hours || 'Orario da verificare'}
-                              {market.dateQuality !== 'confermata' && <small> · Previsto</small>}
+                              {sourceHoursForDate(market, date)}
+                              {market.dateQuality !== 'confermata' && <small>
+                                {market.dateQuality === 'riportata' ? ' · Riportato dalla fonte' : ' · Previsto'}
+                              </small>}
                             </span>
                             <span aria-hidden="true" className="weekly-appointment-arrow">›</span>
                           </button>

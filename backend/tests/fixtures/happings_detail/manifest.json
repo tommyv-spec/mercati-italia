@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "scope": "Observed factual event subtrees; image, style, executable scripts, forms, nonces, navigation and publisher footer removed. Related cards remain for extraction-isolation regression tests. Matching WebPage publication/modification timestamps retained separately from Event dates; no other Yoast objects retained.",
+  "samples": [
+    {
+      "name": "pisa",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "final_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 135037,
+        "sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+        "captured_at": "2026-10-20T15:32:41.308593+00:00"
+      },
+      "fixture_path": "pisa.html",
+      "fixture_sha256": "9ac23f51baa4dfe48fe2014b59362c811b6dab8e9b0f5525e1f3eee538cdca2c",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+          "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+          "datePublished": "2026-09-30T19:14:55+00:00"
+        }
+      ]
+    },
+    {
+      "name": "lana",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "final_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 145113,
+        "sha256": "8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58",
+        "captured_at": "2026-10-20T15:34:40.551888+00:00"
+      },
+      "fixture_path": "lana.html",
+      "fixture_sha256": "a29742abdd3f6a535683e66f02fd5939a18dfdce675baf44c007a943ce3f7129",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "datePublished": "2026-10-02T10:31:36+00:00"
+        }
+      ]
+    },
+    {
+      "name": "pescia",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "final_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 145918,
+        "sha256": "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+        "captured_at": "2026-10-20T15:36:14.380071+00:00"
+      },
+      "fixture_path": "pescia.html",
+      "fixture_sha256": "b774af5820eb58da5e98a5d2e17defd5c4f922c0eac8722825428d0fb1e1d065",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+          "datePublished": "2026-09-30T19:15:11+00:00"
+        }
+      ]
+    },
+    {
+      "name": "lucca_antiquario",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "final_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 141685,
+        "sha256": "f3cbddbae2ef0a4c2d4f100110646c661efe7525c5d3c67acc1b1d797b6e7d81",
+        "captured_at": "2026-10-20T15:41:40.544547+00:00"
+      },
+      "fixture_path": "lucca_antiquario.html",
+      "fixture_sha256": "2cfedee1bcb5fcd14384056594813fe81729543f4448ea9460ef743cae31b906",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+          "url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+          "datePublished": "2026-10-08T14:13:11+00:00",
+          "dateModified": "2026-10-19T09:05:39+00:00"
+        }
+      ]
+    },
+    {
+      "name": "castelrotto",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "final_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 144687,
+        "sha256": "e5ff56d561d4df2a7e495c71b69d23fe22a2f5729b0ecd0f8ef3d2eed2814fbc",
+        "captured_at": "2026-10-20T15:41:46.295803+00:00"
+      },
+      "fixture_path": "castelrotto.html",
+      "fixture_sha256": "a838f948a20de7e6286ecacaf4a91c9d2fa913aa7a7044b02976243b300eb0b3",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+          "datePublished": "2026-10-02T10:16:12+00:00"
+        }
+      ]
+    },
+    {
+      "name": "piemontese",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 143470,
+        "sha256": "fa5aa012531ec6b5be3428d955deb5a6a4ade16a84cbbe4a1a22ef9aebf874e2",
+        "captured_at": "2026-10-20T15:42:08.444838+00:00"
+      },
+      "fixture_path": "piemontese.html",
+      "fixture_sha256": "307ef22badbb1e7324cd35808a8a752dd9aaa2d0f80ee0f3950f2d7240896133",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+          "url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+          "datePublished": "2026-09-23T16:48:29+00:00"
+        }
+      ]
+    },
+    {
+      "name": "natale_parcines",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 187679,
+        "sha256": "0ea38afb17251db506fe98ff4c7c12d277bdc96faa0a631ec22c6b58af0724e9",
+        "captured_at": "2026-10-20T15:41:52.486746+00:00"
+      },
+      "fixture_path": "natale_parcines.html",
+      "fixture_sha256": "71745c12f1faf12e22535f0755dc526e25dbaffb72b0c4656728629da42dbf9f",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+          "datePublished": "2026-10-20T10:27:51+00:00",
+          "dateModified": "2026-10-20T10:27:52+00:00"
+        }
+      ]
+    },
+    {
+      "name": "natale_concerto",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 188505,
+        "sha256": "76ce1928a92446d2d7f3dc0c1674268b9976de7d0da529e0f454637e058a5ba5",
+        "captured_at": "2026-10-20T15:42:01.871964+00:00"
+      },
+      "fixture_path": "natale_concerto.html",
+      "fixture_sha256": "31b07088259b1d42f134f046f8e553a9b93d3d07c5da508024cb16b43c862260",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+          "datePublished": "2026-10-20T10:30:37+00:00"
+        }
+      ]
+    },
+    {
+      "name": "notizia_fumetti",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "final_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 159351,
+        "sha256": "9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429",
+        "captured_at": "2026-10-20T15:41:56.136859+00:00"
+      },
+      "fixture_path": "notizia_fumetti.html",
+      "fixture_sha256": "a541c5def15823c14f2657ce3dd4bad280ec4584093aa563d3fa264d34b3a472",
+      "retained_editorial_metadata": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+          "url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+          "datePublished": "2026-10-20T10:24:38+00:00"
+        }
+      ]
+    }
+  ]
+}

@@ -20,7 +20,7 @@ Sono state inventariate **109 unità di formato URL**, tutte presenti nel regist
 
 Le risorse ausiliarie, come CSV, GeoJSON, metadati, PDF allegati e nuovi formati raggiunti dai vecchi URL, sono registrate separatamente. Non aumentano il numero delle schede conteggiate.
 
-Nel registro finale **102 formati hanno tutti e quattro i confronti del campione completati e sette restano parziali**. Sono tracciate anche 27 unità ausiliarie. Dei 55 TODO individuati, quattro sono implementati e verificati e 51 restano aperti: il completamento del confronto non viene confuso con la risoluzione di tutte le perdite.
+Nel registro del primo confronto **102 formati avevano tutti e quattro i confronti del campione completati e sette restavano parziali**. Erano tracciate anche 27 unità ausiliarie, con quattro dei 55 TODO implementati. Il successivo check-in sui dettagli Happings chiude `HAPP-FORMAT-01` e `HAPP-FORMAT-02`; la checklist generata riporta lo stato corrente, compresi i ricontrolli richiesti dai cambiamenti al codice condiviso. Il completamento del confronto non viene confuso con la risoluzione di tutte le perdite.
 
 ## Dove seguire check-in e TODO
 
@@ -61,7 +61,7 @@ Le prove dopo la correzione, con le impronte definitive del codice, sono separat
 
 ### Happings
 
-Le pagine provinciali e i dettagli evento contengono informazioni diverse. Il dettaglio attuale osservato per Lana pubblica indirizzo, orario, dieci date esplicite e un’eccezione per il 24 dicembre. Il lettore settimanale non importa questo formato. Il vecchio URL comunale può invece restituire l’elenco provinciale, senza dimostrare da solo il collegamento con il dettaglio giusto.
+Le pagine provinciali e i dettagli evento contengono informazioni diverse. Il dettaglio attuale osservato per Lana pubblica indirizzo, orario, dieci date esplicite e un’eccezione per il 24 dicembre. Il nuovo [percorso sistematico dei dettagli](HAPPINGS_DETAIL_EXTRACTION.md) importa questo formato nel ciclo DEV, con discovery dalle sitemap, confronto delle identità e calendario conservato fino all’interfaccia. Il replay di nove pagine reali sul catalogo completo produce due nuove identità distinte e mantiene quattro possibili duplicati in verifica, due conflitti della fonte e un incontro estraneo alla categoria mercato. Tutte le righe preesistenti restano integre. Il vecchio URL comunale può ancora restituire l’elenco provinciale, senza dimostrare da solo il collegamento con il dettaglio giusto.
 
 Per Trieste è emerso un limite nel reperimento della risorsa: esistono righe leggibili sul vecchio URL comunale ma manca una risorsa provinciale già collegata dal percorso corrente. In altri elenchi, come i campioni Avellino e Bari, le sedi precise non sono pubblicate. La correzione deve quindi distinguere informazioni presenti ma non lette, risorse non raggiunte e informazioni assenti nella fonte. I TODO `HAPP-FORMAT-*` mantengono separati dettagli, calendari, collegamenti, sedi, URL e stagionalità.
 

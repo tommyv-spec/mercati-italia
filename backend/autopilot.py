@@ -79,6 +79,8 @@ from happings_autopilot import (
     run as enrich_happings_records, validate_policy as validate_happings_policy,
     verify_exported as verify_happings_exported,
 )
+from happings_detail_autopilot import STATE_FILENAME as HAPPINGS_DISCOVERY_STATE, digest as happings_state_digest
+from happings_detail_discovery import validate_state as validate_happings_discovery_state
 from official_source_output_gate import inspect as inspect_official_source_output
 from municipality_release_guard import check as check_municipality_changes
 from reviewed_city_evidence import (
@@ -495,7 +497,7 @@ def prune_old_assets(output: Path, old_manifest: dict, new_manifest: dict):
     root = output.parent.parent
     removed = 0
     for file in output.rglob("*.json"):
-        if file.name == "manifest.json":
+        if file.name == "manifest.json" or file == output / HAPPINGS_DISCOVERY_STATE:
             continue
         relative = file.relative_to(root).as_posix()
         if relative not in keep:
@@ -1232,14 +1234,14 @@ def run(args):
         "opening_verifications_created":0,
     })
 
-    # Field-only publisher enrichment belongs before export and every final
-    # release gate. It must never be added as an official-source importer.
-    # Live access requires the enabled policy and persisted authorization.
+    # Publisher-specific extraction belongs before export and the final
+    # release gates. Details retain listed dates, never human confirmation.
     before_happings = projected
     projected, happings_report, happings_preserve_ids = enrich_happings_records(
         before_happings, policy=happings_policy, out=out, today=args.today,
         baseline_signature=baseline_id, pipeline_policy_digest=policy_id,
         offline=args.offline, resume=args.resume,
+        detail_state_path=manifest_path.parent / HAPPINGS_DISCOVERY_STATE,
     )
     checkpoint(out, "happings_enrichment", {
         "status": happings_report["status"],
@@ -1262,6 +1264,19 @@ def run(args):
                       preserve_ids=happings_preserve_ids | page_preserve_ids |
                           set(generic_admission_report["new_market_ids"]) |
                           set(generic_admission_report.get("evidence_updated_market_ids", [])))
+    detail_state_changed = False
+    detail_report = happings_report.get("details")
+    if detail_report and detail_report["status"] not in {"disabled", "offline_skipped", "resume_missing_evidence"}:
+        # The existing DEV publisher copies this directory after all QA.
+        # Persist progress even if this batch only read sitemaps or failures.
+        state = validate_happings_discovery_state(
+            read_json(out / HAPPINGS_DISCOVERY_STATE), today=args.today)
+        if happings_state_digest(state) != detail_report["state_after_sha256"]:
+            raise ValueError("Happings discovery state changed after source validation")
+        previous_path = manifest_path.parent / HAPPINGS_DISCOVERY_STATE
+        previous_state = read_json(previous_path) if previous_path.is_file() else None
+        detail_state_changed = previous_state != state
+        save_json(dest / HAPPINGS_DISCOVERY_STATE, state)
     result_manifest = read_json(dest / "manifest.json")
     checkpoint(out, "export", {
         "records": result_manifest["total"],
@@ -1273,6 +1288,24 @@ def run(args):
 
     from validate_static import validate
     validated = validate(dest / "manifest.json")
+    new_rows = load_existing(dest / "manifest.json")
+    happings_static_guard = verify_happings_exported(
+        before_happings, projected, new_rows, happings_report, today=args.today
+    )
+    save_json(out / "happings-enrichment-static-guard.json", happings_static_guard)
+    if happings_report.get("details", {}).get("evidence", {}).get("new_market_ids"):
+        # Existing external QA imports these shared source guards. Carry
+        # reconstructable facts for later admissions into their reports;
+        # a bare whitelist must never authorize extra final catalog IDs.
+        from happings_detail_enrichment import cert_from_detail_evidence
+        admission_certificate = cert_from_detail_evidence(
+            happings_report["details"]["evidence"], today=args.today)
+        if generic_enabled:
+            generic_admission_report["happings_detail_admission_certificate"] = admission_certificate
+            save_json(out / "generic-source-admissions.json", generic_admission_report)
+        if milano_enabled:
+            milano_report["happings_detail_admission_certificate"] = admission_certificate
+            save_json(out / "milano-2026-review.json", milano_report)
     if publisher_enabled:
         publisher_static = verify_publisher_static(
             dest / "manifest.json", pinned_publisher, policy
@@ -1301,7 +1334,6 @@ def run(args):
             raise ValueError("Source-approved generic markets lost their source and navigation protection")
         save_json(out / "generic-source-admissions-static-guard.json", generic_final_proof)
     new_report = audit(dest / "manifest.json", args.today)
-    new_rows = load_existing(dest / "manifest.json")
     page_guard = verify_publisher_page_export(new_rows, page_report, today=args.today)
     save_json(out / "publisher-refresh-static-guard.json", page_guard)
     field_quality = audit_field_evidence(new_rows, today=args.today)
@@ -1318,6 +1350,7 @@ def run(args):
         new_rows, publisher_contracts,
         official_urls={r.get("url_fonte", "") for r in feeds},
         happings_enabled=happings_report["enabled"] and happings_report["fetch_authorized"],
+        happings_details_enabled=happings_policy.get("details", {}).get("enabled", False),
         happings_report=happings_report,
         source_policy=policy["sources"], source_status=source_status,
         admissions_enabled=generic_enabled, admission_report=generic_admission_report,
@@ -1327,10 +1360,6 @@ def run(args):
     format_review = build_source_format_report(new_rows, read_json(SOURCE_FORMAT_LEDGER), today=args.today)
     save_json(out / "source-format-audit.json", format_review)
     (out / "SOURCE_FORMAT_CHECKLIST.md").write_text(source_format_checklist(format_review), "utf-8")
-    happings_static_guard = verify_happings_exported(
-        before_happings, projected, new_rows, happings_report, today=args.today
-    )
-    save_json(out / "happings-enrichment-static-guard.json", happings_static_guard)
     if milano_enabled:
         # The Milano guard is a *same-ID* source audit. Its source baseline
         # predates the separately reviewed five Roma venue additions on the
@@ -1338,6 +1367,9 @@ def run(args):
         # mistaken for a Milano identity mutation.
         reviewed_roma_added = set(roma_2026_report["new_market_ids"])
         reviewed_generic_added = set(generic_admission_report["new_market_ids"])
+        reviewed_happings_added = set(happings_report.get("details", {}).get("evidence", {}).get("new_market_ids", []))
+        if reviewed_happings_added and happings_static_guard.get("release_safe") is not True:
+            raise ValueError("Unproved Happings identity entered the Milano comparison")
         if reviewed_generic_added and (
                 len(reviewed_generic_added)!=len(generic_admission_report["new_market_ids"])
                 or generic_admission_diff.get("release_safe") is not True):
@@ -1371,7 +1403,8 @@ def run(args):
     findings["base_signature"] = baseline_id
     findings["new_signature"] = result_manifest["content_signature"]
     findings["elapsed_seconds"] = round(time.monotonic() - start, 2)
-    findings["has_changes"] = baseline_id != result_manifest["content_signature"]
+    findings["has_changes"] = baseline_id != result_manifest["content_signature"] or detail_state_changed
+    findings["happings_discovery_state_changed"] = detail_state_changed
     findings["job_id"] = status["job_id"]
     findings["today"] = args.today.isoformat()
     findings["happings_enrichment"] = {
@@ -1381,6 +1414,9 @@ def run(args):
         "protected_existing_market_ids": happings_report["protected_existing_market_ids"],
         "protected_catalog_market_ids": len(happings_preserve_ids),
         "release_safe": happings_static_guard["release_safe"],
+        "details_status": detail_report["status"] if detail_report else "disabled",
+        "detail_pages": len(detail_report["source_pages"]) if detail_report else 0,
+        "new_detail_markets": len(detail_report["evidence"]["new_market_ids"]) if detail_report else 0,
     }
     findings["field_evidence"] = {
         "metrics": field_quality["metrics"],

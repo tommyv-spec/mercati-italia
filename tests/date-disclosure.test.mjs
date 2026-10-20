@@ -25,3 +25,11 @@ test('calendar dates are compared at browser local date, not UTC midnight', () =
   assert.equal(hasUpcomingDate(['2026-10-11'], TODAY), false)
   assert.equal(hasUpcomingDate(['garbage'], TODAY), false)
 })
+
+test('source-listed dates remain distinct from forecasts and human confirmation', () => {
+  const reported = marketDateDisclosure(['2026-10-13'], 'riportata', TODAY)
+  assert.match(reported, /Date riportate dalla fonte/)
+  assert.doesNotMatch(reported, /Date previste|confermate|Verificato/)
+  assert.match(marketDateDisclosure(['2026-10-13'], 'mista', TODAY), /Date previste e date riportate/)
+  assert.match(marketDateDisclosure(['2025-10-13'], 'riportata', TODAY), /Nessuna data futura/)
+})

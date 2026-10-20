@@ -1,0 +1,2247 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-10-20T16:23:54.115805+00:00",
+  "date": "2026-10-20",
+  "scope": "Actual nine-page replay through parser, identity matching and static export; not evidence of every Happings event or physical opening.",
+  "baseline_commit": "e2ee92aded38ccb505528dd74cd6be8a98886999",
+  "baseline_records": 13824,
+  "candidate_records": 13826,
+  "existing_records_changed_in_detail_phase": 0,
+  "proof": {
+    "existing_ids_preserved": 13824,
+    "new_market_ids": 2,
+    "changed_existing_ids": 0,
+    "individually_confirmed": 0
+  },
+  "counts": {
+    "ambiguous_existing_identity": 4,
+    "held": 7,
+    "new_venue_admitted": 2,
+    "source_category_or_event_is_not_a_market": 1,
+    "source_layout_or_content_conflict": 2
+  },
+  "new_market_ids": [
+    "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5",
+    "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5"
+  ],
+  "new_market_examples": [
+    {
+      "aggiornato_il": "",
+      "calendario_fonte": {
+        "ambito_calendario": "explicit_visible_list",
+        "fonte_aggiornata_il": "",
+        "fonte_id": "happings-detail-d864b6f23fe55f5de86aba366e1c2535",
+        "fonte_pubblicata_il": "2026-09-30",
+        "gestore": "happings-detail",
+        "intervalli": [],
+        "intervallo_edizione": {
+          "end": "2026-12-26",
+          "start": "2026-10-03"
+        },
+        "letto_il": "2026-10-20",
+        "mercato": {
+          "citta": "Pisa",
+          "provincia": "PI",
+          "regione": "Toscana",
+          "slug": "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5"
+        },
+        "occorrenze": [
+          {
+            "date": "2026-10-24",
+            "end_time": "12:30",
+            "evidence": [
+              ".happings-event-performances li",
+              "Event.startDate/endDate"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-10-31",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-07",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-14",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-21",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-28",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-05",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-12",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-19",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-26",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "07:30",
+            "status": "source_listed"
+          }
+        ],
+        "schema": 1,
+        "sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+        "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "url_richiesto": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+      },
+      "categoria": "alimentare",
+      "citta": "Pisa",
+      "completezza": 80,
+      "confidence": 0,
+      "date": [
+        "2026-10-24",
+        "2026-10-31",
+        "2026-11-07",
+        "2026-11-14",
+        "2026-11-21",
+        "2026-11-28",
+        "2026-12-05",
+        "2026-12-12",
+        "2026-12-19",
+        "2026-12-26"
+      ],
+      "date_quality": "riportata",
+      "descrizione": "Mercato coperto Campagna Amica di Pisa si svolge a Pisa, in VIA del Chiassatello, 64/65. La scheda del mercato elenca vini e aceti, conserve dolci e salate, pasta, farine e cereali, salumi, ortaggi, oli e olive, legumi e altri seminativi, latte e latticini, formaggi freschi, formaggi semistagionati/stagionati, carni fresche, frutta, agrumi, uova, miele e derivati, pane e prodotti da forno, benessere, grappe, distillati e liquori, pesce fresco di lago/fiume, altri prodotti trasformati, lumache, pesce fresco di mare, crostacei di mare, molluschi di mare, crostacei di lago/fiume. Le aperture settimanali riportate dalla fonte sono: sabato 07:30–12:30. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+      "dettaglio_fonte": {
+        "evento": {
+          "admission_text": null,
+          "all_day": null,
+          "calendar_complete": true,
+          "calendar_notes": [],
+          "calendar_scope": "explicit_visible_list",
+          "category": "Mercati",
+          "conditions": [],
+          "contacts": [],
+          "description": "Mercato coperto Campagna Amica di Pisa si svolge a Pisa, in VIA del Chiassatello, 64/65. La scheda del mercato elenca vini e aceti, conserve dolci e salate, pasta, farine e cereali, salumi, ortaggi, oli e olive, legumi e altri seminativi, latte e latticini, formaggi freschi, formaggi semistagionati/stagionati, carni fresche, frutta, agrumi, uova, miele e derivati, pane e prodotti da forno, benessere, grappe, distillati e liquori, pesce fresco di lago/fiume, altri prodotti trasformati, lumache, pesce fresco di mare, crostacei di mare, molluschi di mare, crostacei di lago/fiume. Le aperture settimanali riportate dalla fonte sono: sabato 07:30–12:30. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+          "event_status": "https://schema.org/EventScheduled",
+          "geo": {
+            "latitude": 43.7069188,
+            "longitude": 10.3831794,
+            "precision": "publisher_point_unverified"
+          },
+          "hours_intervals": [
+            {
+              "end": "12:30",
+              "start": "07:30"
+            }
+          ],
+          "hours_qualifications": [],
+          "hours_scope": "event_hours",
+          "hours_text": "7:30 - 12:30",
+          "location": {
+            "city": "Pisa",
+            "country": "IT",
+            "name": "Mercato coperto Campagna Amica di Pisa",
+            "postal_code": null,
+            "province": null,
+            "region": "Toscana",
+            "street_address": "VIA del Chiassatello, 64/65"
+          },
+          "name": "Mercato coperto Campagna Amica di Pisa",
+          "organizer": null,
+          "recurrence_text": "sabato 07:30–12:30.",
+          "sidebar_hours_text": "7:30 - 12:30",
+          "source_id": "14873",
+          "source_links": [],
+          "subevents": [],
+          "visible_location": "Mercato coperto Campagna Amica di Pisa\nVIA del Chiassatello, 64/65, Pisa"
+        },
+        "fonte_aggiornata_il": "",
+        "fonte_id": "happings-detail-d864b6f23fe55f5de86aba366e1c2535",
+        "fonte_pubblicata_il": "2026-09-30",
+        "gestore": "happings-detail",
+        "letto_il": "2026-10-20",
+        "mercato": {
+          "citta": "Pisa",
+          "provincia": "PI",
+          "regione": "Toscana",
+          "slug": "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5"
+        },
+        "schema": 1,
+        "sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+        "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "url_richiesto": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+      },
+      "fonte": "happings.com",
+      "fonte_letta_il": "2026-10-20",
+      "fonti": [
+        {
+          "nome": "Happings — scheda evento (informazioni riportate dalla fonte)",
+          "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+        },
+        {
+          "nome": "happings.com",
+          "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+        }
+      ],
+      "importato_il": "2026-10-20",
+      "indirizzo": "VIA del Chiassatello, 64/65",
+      "lat": null,
+      "lng": null,
+      "nome": "Mercato coperto Campagna Amica di Pisa",
+      "orario_testo": "7:30 - 12:30",
+      "position_quality": "sconosciuta",
+      "proiezione_fonte": "",
+      "proiezione_generata_il": "",
+      "proiezione_regola": null,
+      "provincia": "PI",
+      "regione": "Toscana",
+      "ricorrenza_testo": "sabato 07:30–12:30.",
+      "riscontri_campi": [
+        {
+          "ambito": "pagina",
+          "campi_gestiti": [
+            "indirizzo",
+            "orario_testo",
+            "ricorrenza_testo"
+          ],
+          "fonte": "Happings — scheda evento (informazioni riportate dalla fonte)",
+          "fonte_aggiornata_il": "",
+          "fonte_id": "happings-detail-d864b6f23fe55f5de86aba366e1c2535",
+          "gestore_campi": "happings-detail",
+          "impronta_tipo": "html_bytes",
+          "letto_il": "2026-10-20",
+          "mercato": {
+            "citta": "Pisa",
+            "provincia": "PI",
+            "regione": "Toscana",
+            "slug": "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5"
+          },
+          "metodo": "pagina_primaria_revisionata",
+          "riga_fonte": "happings-detail-d864b6f23fe55f5de86aba366e1c2535",
+          "schema": 1,
+          "sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+          "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+          "valori": {
+            "indirizzo": "VIA del Chiassatello, 64/65",
+            "orario_testo": "7:30 - 12:30",
+            "ricorrenza_testo": "sabato 07:30–12:30."
+          }
+        }
+      ],
+      "slug": "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5",
+      "status": "non_confermato",
+      "tags": [],
+      "url_fonte": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+      "verificato_il": ""
+    },
+    {
+      "aggiornato_il": "",
+      "calendario_fonte": {
+        "ambito_calendario": "explicit_visible_list",
+        "fonte_aggiornata_il": "",
+        "fonte_id": "happings-detail-210cbce146d5b96bbd5bf430cc6b9025",
+        "fonte_pubblicata_il": "2026-09-30",
+        "gestore": "happings-detail",
+        "intervalli": [],
+        "intervallo_edizione": {
+          "end": "2026-12-22",
+          "start": "2026-09-29"
+        },
+        "letto_il": "2026-10-20",
+        "mercato": {
+          "citta": "Pescia",
+          "provincia": "PT",
+          "regione": "Toscana",
+          "slug": "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5"
+        },
+        "occorrenze": [
+          {
+            "date": "2026-10-27",
+            "end_time": "12:30",
+            "evidence": [
+              ".happings-event-performances li",
+              "Event.startDate/endDate"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-03",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-10",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-17",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-11-24",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-01",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-08",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-15",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          },
+          {
+            "date": "2026-12-22",
+            "end_time": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ],
+            "note": null,
+            "start_time": "08:30",
+            "status": "source_listed"
+          }
+        ],
+        "schema": 1,
+        "sha256": "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+        "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "url_richiesto": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/"
+      },
+      "categoria": "alimentare",
+      "citta": "Pescia",
+      "completezza": 80,
+      "confidence": 0,
+      "date": [
+        "2026-10-27",
+        "2026-11-03",
+        "2026-11-10",
+        "2026-11-17",
+        "2026-11-24",
+        "2026-12-01",
+        "2026-12-08",
+        "2026-12-15",
+        "2026-12-22"
+      ],
+      "date_quality": "riportata",
+      "descrizione": "Mercato di Campagna Amica di Pescia si svolge a Pescia, in VIALE Giovanni XXIII, snc. La scheda del mercato elenca ortaggi, frutta, miele e derivati, altri prodotti trasformati. Le aperture settimanali riportate dalla fonte sono: martedì 08:30–12:30. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+      "dettaglio_fonte": {
+        "evento": {
+          "admission_text": null,
+          "all_day": null,
+          "calendar_complete": true,
+          "calendar_notes": [],
+          "calendar_scope": "explicit_visible_list",
+          "category": "Mercati",
+          "conditions": [],
+          "contacts": [],
+          "description": "Mercato di Campagna Amica di Pescia si svolge a Pescia, in VIALE Giovanni XXIII, snc. La scheda del mercato elenca ortaggi, frutta, miele e derivati, altri prodotti trasformati. Le aperture settimanali riportate dalla fonte sono: martedì 08:30–12:30. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+          "event_status": "https://schema.org/EventScheduled",
+          "geo": {
+            "latitude": 43.8989876,
+            "longitude": 10.6900098,
+            "precision": "publisher_point_unverified"
+          },
+          "hours_intervals": [
+            {
+              "end": "12:30",
+              "start": "08:30"
+            }
+          ],
+          "hours_qualifications": [],
+          "hours_scope": "event_hours",
+          "hours_text": "8:30 - 12:30",
+          "location": {
+            "city": "Pescia",
+            "country": "IT",
+            "name": "Mercato di Campagna Amica di Pescia",
+            "postal_code": null,
+            "province": null,
+            "region": "Toscana",
+            "street_address": "VIALE Giovanni XXIII, snc"
+          },
+          "name": "Mercato di Campagna Amica di Pescia",
+          "organizer": null,
+          "recurrence_text": "martedì 08:30–12:30.",
+          "sidebar_hours_text": "8:30 - 12:30",
+          "source_id": "15328",
+          "source_links": [],
+          "subevents": [],
+          "visible_location": "Mercato di Campagna Amica di Pescia\nVIALE Giovanni XXIII, snc, Pescia"
+        },
+        "fonte_aggiornata_il": "",
+        "fonte_id": "happings-detail-210cbce146d5b96bbd5bf430cc6b9025",
+        "fonte_pubblicata_il": "2026-09-30",
+        "gestore": "happings-detail",
+        "letto_il": "2026-10-20",
+        "mercato": {
+          "citta": "Pescia",
+          "provincia": "PT",
+          "regione": "Toscana",
+          "slug": "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5"
+        },
+        "schema": 1,
+        "sha256": "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+        "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "url_richiesto": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/"
+      },
+      "fonte": "happings.com",
+      "fonte_letta_il": "2026-10-20",
+      "fonti": [
+        {
+          "nome": "Happings — scheda evento (informazioni riportate dalla fonte)",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/"
+        },
+        {
+          "nome": "happings.com",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/"
+        }
+      ],
+      "importato_il": "2026-10-20",
+      "indirizzo": "VIALE Giovanni XXIII, snc",
+      "lat": null,
+      "lng": null,
+      "nome": "Mercato di Campagna Amica di Pescia",
+      "orario_testo": "8:30 - 12:30",
+      "position_quality": "sconosciuta",
+      "proiezione_fonte": "",
+      "proiezione_generata_il": "",
+      "proiezione_regola": null,
+      "provincia": "PT",
+      "regione": "Toscana",
+      "ricorrenza_testo": "martedì 08:30–12:30.",
+      "riscontri_campi": [
+        {
+          "ambito": "pagina",
+          "campi_gestiti": [
+            "indirizzo",
+            "orario_testo",
+            "ricorrenza_testo"
+          ],
+          "fonte": "Happings — scheda evento (informazioni riportate dalla fonte)",
+          "fonte_aggiornata_il": "",
+          "fonte_id": "happings-detail-210cbce146d5b96bbd5bf430cc6b9025",
+          "gestore_campi": "happings-detail",
+          "impronta_tipo": "html_bytes",
+          "letto_il": "2026-10-20",
+          "mercato": {
+            "citta": "Pescia",
+            "provincia": "PT",
+            "regione": "Toscana",
+            "slug": "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5"
+          },
+          "metodo": "pagina_primaria_revisionata",
+          "riga_fonte": "happings-detail-210cbce146d5b96bbd5bf430cc6b9025",
+          "schema": 1,
+          "sha256": "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+          "valori": {
+            "indirizzo": "VIALE Giovanni XXIII, snc",
+            "orario_testo": "8:30 - 12:30",
+            "ricorrenza_testo": "martedì 08:30–12:30."
+          }
+        }
+      ],
+      "slug": "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5",
+      "status": "non_confermato",
+      "tags": [],
+      "url_fonte": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+      "verificato_il": ""
+    }
+  ],
+  "samples": [
+    {
+      "name": "pisa",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "final_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 135037,
+        "sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+        "captured_at": "2026-10-20T15:32:41.308593+00:00"
+      },
+      "fixture_sha256": "9ac23f51baa4dfe48fe2014b59362c811b6dab8e9b0f5525e1f3eee538cdca2c",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "parsed",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "read_on": "2026-10-20",
+        "status": "new_venue_admitted",
+        "market_id": "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5",
+        "reason": null,
+        "field_holds": [],
+        "matching": "new_source_venue",
+        "possible_market_ids": []
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "final_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "canonical_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "html_sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+        "bytes": 135037,
+        "published_at": "2026-09-30T19:14:55+00:00",
+        "modified_at": null
+      },
+      "event": {
+        "name": "Mercato coperto Campagna Amica di Pisa",
+        "source_id": "14873",
+        "category": "Mercati",
+        "location": {
+          "name": "Mercato coperto Campagna Amica di Pisa",
+          "street_address": "VIA del Chiassatello, 64/65",
+          "city": "Pisa",
+          "province": null,
+          "region": "Toscana",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "7:30 - 12:30",
+        "hours_intervals": [
+          {
+            "start": "07:30",
+            "end": "12:30"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-10-24",
+            "start_time": "07:30",
+            "end_time": "12:30",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li",
+              "Event.startDate/endDate"
+            ]
+          },
+          {
+            "date": "2026-10-31",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-07",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-14",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-21",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-28",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-05",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-12",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-19",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-26",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          }
+        ],
+        "edition_interval": {
+          "start": "2026-10-03",
+          "end": "2026-12-26"
+        },
+        "recurrence_text": "sabato 07:30–12:30.",
+        "description": "Mercato coperto Campagna Amica di Pisa si svolge a Pisa, in VIA del Chiassatello, 64/65. La scheda del mercato elenca vini e aceti, conserve dolci e salate, pasta, farine e cereali, salumi, ortaggi, oli e olive, legumi e altri seminativi, latte e latticini, formaggi freschi, formaggi semistagionati/stagionati, carni fresche, frutta, agrumi, uova, miele e derivati, pane e prodotti da forno, benessere, grappe, distillati e liquori, pesce fresco di lago/fiume, altri prodotti trasformati, lumache, pesce fresco di mare, crostacei di mare, molluschi di mare, crostacei di lago/fiume. Le aperture settimanali riportate dalla fonte sono: sabato 07:30–12:30. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+        "organizer": null,
+        "contacts": [],
+        "geo": {
+          "latitude": 43.7069188,
+          "longitude": 10.3831794,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "Mercato coperto Campagna Amica di Pisa\nVIA del Chiassatello, 64/65, Pisa",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-vicenza-piazza-delle-erbe/",
+          "https://www.happings.com/it/happing/mercato-campagna-amica-serra-madre/",
+          "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/"
+        ],
+        "hours_qualifications": [],
+        "sidebar_hours_text": "7:30 - 12:30",
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "date_intervals": [],
+        "conditions": [],
+        "subevents": [],
+        "hours_scope": "event_hours",
+        "source_links": [],
+        "admission_text": null
+      },
+      "conflicts": [],
+      "warnings": []
+    },
+    {
+      "name": "lana",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "final_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 145113,
+        "sha256": "8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58",
+        "captured_at": "2026-10-20T15:34:40.551888+00:00"
+      },
+      "fixture_sha256": "a29742abdd3f6a535683e66f02fd5939a18dfdce675baf44c007a943ce3f7129",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "parsed",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "read_on": "2026-10-20",
+        "status": "held",
+        "market_id": null,
+        "reason": "ambiguous_existing_identity",
+        "field_holds": [],
+        "matching": "ambiguous_existing_identity",
+        "possible_market_ids": [
+          "mercato-settimanale-di-lana-lana-venerdi"
+        ]
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "final_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "canonical_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "html_sha256": "8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58",
+        "bytes": 145113,
+        "published_at": "2026-10-02T10:31:36+00:00",
+        "modified_at": null
+      },
+      "event": {
+        "name": "Mercato del venerdì mattina a Lana",
+        "source_id": "22567",
+        "category": "Mercati",
+        "location": {
+          "name": "Parco Lorenzer",
+          "street_address": "Via Lorenzer, 39011 Lana",
+          "city": "Lana",
+          "province": null,
+          "region": "Trentino-Alto Adige",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "7:30 - 12:30\nLe bancarelle sono presenti dalle 07:30 alle 12:30 fino al 18 dicembre; l’appuntamento straordinario del 24 dicembre termina alle 13:00.",
+        "hours_intervals": [
+          {
+            "start": "07:30",
+            "end": "12:30"
+          },
+          {
+            "start": "07:30",
+            "end": "12:30"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-10-23",
+            "start_time": "07:30",
+            "end_time": "12:30",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li",
+              "Event.startDate/endDate"
+            ]
+          },
+          {
+            "date": "2026-10-30",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-06",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-13",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-20",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-27",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-04",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-11",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-18",
+            "start_time": "07:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-24",
+            "start_time": "07:30",
+            "end_time": "13:00",
+            "status": "source_listed",
+            "note": "24 dicembre termina alle 13:00",
+            "evidence": [
+              ".happings-event-performances li",
+              ".happings-event-description-card date-specific hours"
+            ]
+          }
+        ],
+        "edition_interval": {
+          "start": "2026-10-02",
+          "end": "2026-12-24"
+        },
+        "recurrence_text": "Il mercato settimanale del venerdì mattina si svolge al Parco Lorenzer di Lana. Le bancarelle sono presenti dalle 07:30 alle 12:30 fino al 18 dicembre; l’appuntamento straordinario del 24 dicembre termina alle 13:00.",
+        "description": "Il mercato settimanale del venerdì mattina si svolge al Parco Lorenzer di Lana. Le bancarelle sono presenti dalle 07:30 alle 12:30 fino al 18 dicembre; l’appuntamento straordinario del 24 dicembre termina alle 13:00.",
+        "organizer": {
+          "name": "Comune di Lana",
+          "url": "https://www.happings.com/it/organizer/comune-di-lana/"
+        },
+        "contacts": [],
+        "geo": {
+          "latitude": 46.617000579834,
+          "longitude": 11.149200439453,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "Parco Lorenzer\nVia Lorenzer, 39011 Lana, Lana",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/agrimercato-di-campagna-amica-di-favara/",
+          "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-merate/",
+          "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bologna-piazzetta-don-antonio-gavinelli/"
+        ],
+        "hours_qualifications": [
+          "Le bancarelle sono presenti dalle 07:30 alle 12:30 fino al 18 dicembre; l’appuntamento straordinario del 24 dicembre termina alle 13:00."
+        ],
+        "sidebar_hours_text": "7:30 - 12:30",
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "date_intervals": [],
+        "conditions": [],
+        "subevents": [],
+        "hours_scope": "event_hours",
+        "source_links": [],
+        "admission_text": null
+      },
+      "conflicts": [],
+      "warnings": []
+    },
+    {
+      "name": "pescia",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "final_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 145918,
+        "sha256": "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+        "captured_at": "2026-10-20T15:36:14.380071+00:00"
+      },
+      "fixture_sha256": "b774af5820eb58da5e98a5d2e17defd5c4f922c0eac8722825428d0fb1e1d065",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "parsed",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "read_on": "2026-10-20",
+        "status": "new_venue_admitted",
+        "market_id": "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5",
+        "reason": null,
+        "field_holds": [],
+        "matching": "new_source_venue",
+        "possible_market_ids": []
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "final_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "canonical_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "html_sha256": "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+        "bytes": 145918,
+        "published_at": "2026-09-30T19:15:11+00:00",
+        "modified_at": null
+      },
+      "event": {
+        "name": "Mercato di Campagna Amica di Pescia",
+        "source_id": "15328",
+        "category": "Mercati",
+        "location": {
+          "name": "Mercato di Campagna Amica di Pescia",
+          "street_address": "VIALE Giovanni XXIII, snc",
+          "city": "Pescia",
+          "province": null,
+          "region": "Toscana",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "8:30 - 12:30",
+        "hours_intervals": [
+          {
+            "start": "08:30",
+            "end": "12:30"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-10-27",
+            "start_time": "08:30",
+            "end_time": "12:30",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li",
+              "Event.startDate/endDate"
+            ]
+          },
+          {
+            "date": "2026-11-03",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-10",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-17",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-24",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-01",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-08",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-15",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-12-22",
+            "start_time": "08:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          }
+        ],
+        "edition_interval": {
+          "start": "2026-09-29",
+          "end": "2026-12-22"
+        },
+        "recurrence_text": "martedì 08:30–12:30.",
+        "description": "Mercato di Campagna Amica di Pescia si svolge a Pescia, in VIALE Giovanni XXIII, snc. La scheda del mercato elenca ortaggi, frutta, miele e derivati, altri prodotti trasformati. Le aperture settimanali riportate dalla fonte sono: martedì 08:30–12:30. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+        "organizer": null,
+        "contacts": [],
+        "geo": {
+          "latitude": 43.8989876,
+          "longitude": 10.6900098,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "Mercato di Campagna Amica di Pescia\nVIALE Giovanni XXIII, snc, Pescia",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+          "https://www.happings.com/it/happing/mercato-campagna-amica-di-parabiago/",
+          "https://www.happings.com/it/happing/mercato-campagna-amica-centro-pavesi/"
+        ],
+        "hours_qualifications": [],
+        "sidebar_hours_text": "8:30 - 12:30",
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "date_intervals": [],
+        "conditions": [],
+        "subevents": [],
+        "hours_scope": "event_hours",
+        "source_links": [],
+        "admission_text": null
+      },
+      "conflicts": [],
+      "warnings": []
+    },
+    {
+      "name": "lucca_antiquario",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "final_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 141685,
+        "sha256": "f3cbddbae2ef0a4c2d4f100110646c661efe7525c5d3c67acc1b1d797b6e7d81",
+        "captured_at": "2026-10-20T15:41:40.544547+00:00"
+      },
+      "fixture_sha256": "2cfedee1bcb5fcd14384056594813fe81729543f4448ea9460ef743cae31b906",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "parsed",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "read_on": "2026-10-20",
+        "status": "held",
+        "market_id": null,
+        "reason": "ambiguous_existing_identity",
+        "field_holds": [],
+        "matching": "ambiguous_existing_identity",
+        "possible_market_ids": [
+          "mercatino-antiquariato-e-usato-di-lucca-mercato-antiquario-lucchese-piazza-antel"
+        ]
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "final_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "canonical_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "html_sha256": "f3cbddbae2ef0a4c2d4f100110646c661efe7525c5d3c67acc1b1d797b6e7d81",
+        "bytes": 141685,
+        "published_at": "2026-10-08T14:13:11+00:00",
+        "modified_at": "2026-10-19T09:05:39+00:00"
+      },
+      "event": {
+        "name": "Mercato Antiquario di Lucca: autunno e inverno 2026",
+        "source_id": "33882",
+        "category": "Mercatini dell’antiquariato",
+        "location": {
+          "name": "Piazza San Martino",
+          "street_address": "Piazza San Martino",
+          "city": "Lucca",
+          "province": null,
+          "region": "Toscana",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "Il calendario turistico ufficiale indica per ciascuna edizione l’inizio alle 08:00 del sabato e la conclusione alle 20:00 della domenica. Questo intervallo non attesta l’apertura notturna continuativa delle bancarelle. L’ingresso è gratuito.",
+        "hours_intervals": [],
+        "occurrences": [
+          {
+            "date": "2026-10-17",
+            "start_time": "08:00",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-description-card explicit edition range",
+              ".happings-event-description-card edition boundary hours"
+            ],
+            "interval_start": "2026-10-17",
+            "interval_end": "2026-10-18"
+          },
+          {
+            "date": "2026-10-18",
+            "start_time": null,
+            "end_time": "20:00",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-description-card explicit edition range",
+              ".happings-event-description-card edition boundary hours"
+            ],
+            "interval_start": "2026-10-17",
+            "interval_end": "2026-10-18"
+          },
+          {
+            "date": "2026-11-14",
+            "start_time": "08:00",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li",
+              ".happings-event-description-card explicit edition range",
+              "Event.startDate/endDate interval",
+              ".happings-event-description-card edition boundary hours"
+            ],
+            "interval_start": "2026-11-14",
+            "interval_end": "2026-11-15"
+          },
+          {
+            "date": "2026-11-15",
+            "start_time": null,
+            "end_time": "20:00",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-description-card explicit edition range",
+              "Event.startDate/endDate interval",
+              ".happings-event-description-card edition boundary hours"
+            ],
+            "interval_start": "2026-11-14",
+            "interval_end": "2026-11-15"
+          },
+          {
+            "date": "2026-12-19",
+            "start_time": "08:00",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li",
+              ".happings-event-description-card explicit edition range",
+              ".happings-event-description-card edition boundary hours"
+            ],
+            "interval_start": "2026-12-19",
+            "interval_end": "2026-12-20"
+          },
+          {
+            "date": "2026-12-20",
+            "start_time": null,
+            "end_time": "20:00",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-description-card explicit edition range",
+              ".happings-event-description-card edition boundary hours"
+            ],
+            "interval_start": "2026-12-19",
+            "interval_end": "2026-12-20"
+          }
+        ],
+        "edition_interval": {
+          "start": "2026-10-17",
+          "end": "2026-12-20"
+        },
+        "recurrence_text": "Il calendario turistico ufficiale indica per ciascuna edizione l’inizio alle 08:00 del sabato e la conclusione alle 20:00 della domenica. Questo intervallo non attesta l’apertura notturna continuativa delle bancarelle. L’ingresso è gratuito.",
+        "description": "Il Mercato Antiquario torna nell’area di Piazza San Martino e nelle piazze vicine del centro storico di Lucca. Le edizioni confermate per l’autunno e l’inverno 2026 sono 17–18 ottobre, 14–15 novembre e 19–20 dicembre 2026.\nIl calendario turistico ufficiale indica per ciascuna edizione l’inizio alle 08:00 del sabato e la conclusione alle 20:00 della domenica. Questo intervallo non attesta l’apertura notturna continuativa delle bancarelle. L’ingresso è gratuito.\nFonte ufficiale: eventi.turismo.lucca.it, eventi.turismo.lucca.it, eventi.turismo.lucca.it.\nGuida ai mercatini",
+        "organizer": {
+          "name": "Comune di Lucca",
+          "url": "https://www.happings.com/it/organizer/comune-di-lucca/"
+        },
+        "contacts": [],
+        "geo": {
+          "latitude": 43.8409408,
+          "longitude": 10.5049643,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "Piazza San Martino\nPiazza San Martino, Lucca",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/mercatino-antiquariato-forte-dei-marmi-novembre-dicembre-2026/"
+        ],
+        "hours_qualifications": [
+          "Il calendario turistico ufficiale indica per ciascuna edizione l’inizio alle 08:00 del sabato e la conclusione alle 20:00 della domenica. Questo intervallo non attesta l’apertura notturna continuativa delle bancarelle. L’ingresso è gratuito."
+        ],
+        "sidebar_hours_text": null,
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "date_intervals": [
+          {
+            "start": "2026-10-17",
+            "end": "2026-10-18",
+            "start_time": "08:00",
+            "end_time": "20:00",
+            "hours_scope": "interval_boundaries",
+            "continuous_opening_confirmed": false,
+            "status": "source_listed",
+            "evidence": [
+              ".happings-event-description-card explicit edition range",
+              ".happings-event-description-card edition boundary hours"
+            ]
+          },
+          {
+            "start": "2026-11-14",
+            "end": "2026-11-15",
+            "start_time": "08:00",
+            "end_time": "20:00",
+            "hours_scope": "interval_boundaries",
+            "continuous_opening_confirmed": false,
+            "status": "source_listed",
+            "evidence": [
+              ".happings-event-description-card explicit edition range",
+              "Event.startDate/endDate interval",
+              ".happings-event-description-card edition boundary hours"
+            ]
+          },
+          {
+            "start": "2026-12-19",
+            "end": "2026-12-20",
+            "start_time": "08:00",
+            "end_time": "20:00",
+            "hours_scope": "interval_boundaries",
+            "continuous_opening_confirmed": false,
+            "status": "source_listed",
+            "evidence": [
+              ".happings-event-description-card explicit edition range",
+              ".happings-event-description-card edition boundary hours"
+            ]
+          }
+        ],
+        "conditions": [],
+        "subevents": [],
+        "hours_scope": "interval_boundaries",
+        "source_links": [
+          "https://eventi.turismo.lucca.it/evento-singolo.php?cat=mercati&id=3862&titolo=mercato-antiquario",
+          "https://eventi.turismo.lucca.it/en/single-event.php?cat=markets&id=3863&titolo=antiques-market",
+          "https://eventi.turismo.lucca.it/evento-singolo.php?cat=mercati&id=3864&titolo=mercato-antiquario"
+        ],
+        "admission_text": "L’ingresso è gratuito",
+        "schema_interval": {
+          "start": "2026-11-14",
+          "end": "2026-11-15"
+        }
+      },
+      "conflicts": [],
+      "warnings": []
+    },
+    {
+      "name": "castelrotto",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "final_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 144687,
+        "sha256": "e5ff56d561d4df2a7e495c71b69d23fe22a2f5729b0ecd0f8ef3d2eed2814fbc",
+        "captured_at": "2026-10-20T15:41:46.295803+00:00"
+      },
+      "fixture_sha256": "a838f948a20de7e6286ecacaf4a91c9d2fa913aa7a7044b02976243b300eb0b3",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "parsed",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "read_on": "2026-10-20",
+        "status": "held",
+        "market_id": null,
+        "reason": "ambiguous_existing_identity",
+        "field_holds": [],
+        "matching": "ambiguous_existing_identity",
+        "possible_market_ids": [
+          "mercato-settimanale-di-castelrotto-castelrotto-giovedi"
+        ]
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "final_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "canonical_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "html_sha256": "e5ff56d561d4df2a7e495c71b69d23fe22a2f5729b0ecd0f8ef3d2eed2814fbc",
+        "bytes": 144687,
+        "published_at": "2026-10-02T10:16:12+00:00",
+        "modified_at": null
+      },
+      "event": {
+        "name": "Mercato settimanale a Castelrotto",
+        "source_id": "22243",
+        "category": "Enogastronomia",
+        "location": {
+          "name": "Piazza del paese",
+          "street_address": "Piazza del paese",
+          "city": "Castelrotto",
+          "province": null,
+          "region": "Trentino-Alto Adige",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "8:00 - 12:00",
+        "hours_intervals": [
+          {
+            "start": "08:00",
+            "end": "12:00"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-10-22",
+            "start_time": "08:00",
+            "end_time": "12:00",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li",
+              "Event.startDate/endDate"
+            ]
+          },
+          {
+            "date": "2026-10-29",
+            "start_time": "08:00",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-05",
+            "start_time": "08:00",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          },
+          {
+            "date": "2026-11-12",
+            "start_time": "08:00",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li"
+            ]
+          }
+        ],
+        "edition_interval": {
+          "start": "2026-10-08",
+          "end": "2026-11-12"
+        },
+        "recurrence_text": "Il mercato settimanale di Castelrotto propone abbigliamento locale e altri articoli nella piazza del paese. L’appuntamento si svolge il giovedì mattina e viene annullato in caso di maltempo.",
+        "description": "Il mercato settimanale di Castelrotto propone abbigliamento locale e altri articoli nella piazza del paese. L’appuntamento si svolge il giovedì mattina e viene annullato in caso di maltempo.",
+        "organizer": {
+          "name": "Associazione Turistica di Castelrotto",
+          "url": "https://www.happings.com/it/organizer/associazione-turistica-di-castelrotto/"
+        },
+        "contacts": [],
+        "geo": {
+          "latitude": 46.568000793457,
+          "longitude": 11.559599876404,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [
+          "Il mercato settimanale di Castelrotto propone abbigliamento locale e altri articoli nella piazza del paese. L’appuntamento si svolge il giovedì mattina e viene annullato in caso di maltempo."
+        ],
+        "visible_location": "Piazza del paese\nPiazza del paese, Castelrotto",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/14a-passeggiata-meranese-del-vino/",
+          "https://www.happings.com/it/happing/cocktail-art-autumn-edition/",
+          "https://www.happings.com/it/happing/preparare-i-canederli-originali-altoatesini/"
+        ],
+        "hours_qualifications": [],
+        "sidebar_hours_text": "8:00 - 12:00",
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "explicit_visible_list",
+        "date_intervals": [],
+        "conditions": [
+          "Il mercato settimanale di Castelrotto propone abbigliamento locale e altri articoli nella piazza del paese. L’appuntamento si svolge il giovedì mattina e viene annullato in caso di maltempo."
+        ],
+        "subevents": [],
+        "hours_scope": "event_hours",
+        "source_links": [],
+        "admission_text": null
+      },
+      "conflicts": [],
+      "warnings": []
+    },
+    {
+      "name": "piemontese",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 143470,
+        "sha256": "fa5aa012531ec6b5be3428d955deb5a6a4ade16a84cbbe4a1a22ef9aebf874e2",
+        "captured_at": "2026-10-20T15:42:08.444838+00:00"
+      },
+      "fixture_sha256": "307ef22badbb1e7324cd35808a8a752dd9aaa2d0f80ee0f3950f2d7240896133",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "parsed",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "read_on": "2026-10-20",
+        "status": "held",
+        "market_id": null,
+        "reason": "ambiguous_existing_identity",
+        "field_holds": [],
+        "matching": "ambiguous_existing_identity",
+        "possible_market_ids": [
+          "mercatino-regionale-piemontese-monza"
+        ]
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "canonical_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "html_sha256": "fa5aa012531ec6b5be3428d955deb5a6a4ade16a84cbbe4a1a22ef9aebf874e2",
+        "bytes": 143470,
+        "published_at": "2026-09-23T16:48:29+00:00",
+        "modified_at": null
+      },
+      "event": {
+        "name": "MERCATINO REGIONALE PIEMONTESE",
+        "source_id": "8921",
+        "category": "Shopping",
+        "location": {
+          "name": "PIAZZA CENTEMERO PALEARI — MONZA",
+          "street_address": "PIAZZA CENTEMERO PALEARI",
+          "city": "MONZA",
+          "province": null,
+          "region": "Lombardia",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "Inizio edizione: 31/10/2026 ore 09:30; fine edizione: 01/11/2026 ore 19:30. Questi orari indicano i confini dell’edizione; non attestano gli orari giornalieri o l’apertura continuativa.",
+        "hours_intervals": [],
+        "occurrences": [
+          {
+            "date": "2026-10-31",
+            "start_time": "09:30",
+            "end_time": null,
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              "Event.startDate/endDate interval"
+            ],
+            "interval_start": "2026-10-31",
+            "interval_end": "2026-11-01"
+          },
+          {
+            "date": "2026-11-01",
+            "start_time": null,
+            "end_time": "19:30",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              "Event.startDate/endDate interval"
+            ],
+            "interval_start": "2026-10-31",
+            "interval_end": "2026-11-01"
+          }
+        ],
+        "edition_interval": {
+          "start": "2026-10-31",
+          "end": "2026-11-01"
+        },
+        "recurrence_text": null,
+        "description": "FIERA ITINERANTE DELLE ECCELLENZE ENOGASTRONOMICHE",
+        "organizer": {
+          "name": "ASSOCIAZIONE MERCATINO REGIONALE PIEMONTESE",
+          "url": "https://www.happings.com/it/organizer/associazione-mercatino-regionale-piemontese/"
+        },
+        "contacts": [],
+        "geo": {
+          "latitude": 45.58409,
+          "longitude": 9.27096,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "PIAZZA CENTEMERO PALEARI — MONZA\nPIAZZA CENTEMERO PALEARI, MONZA",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/autunno-nelle-frazioni/",
+          "https://www.happings.com/it/happing/mercatino-di-novembre/",
+          "https://www.happings.com/it/happing/trentino-in-piazza-2026/"
+        ],
+        "hours_qualifications": [],
+        "sidebar_hours_text": "9:30 - 19:30",
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "schema_occurrence_only",
+        "date_intervals": [
+          {
+            "start": "2026-10-31",
+            "end": "2026-11-01",
+            "start_time": "09:30",
+            "end_time": "19:30",
+            "hours_scope": "interval_boundaries",
+            "continuous_opening_confirmed": false,
+            "status": "source_listed",
+            "evidence": [
+              "Event.startDate/endDate interval"
+            ]
+          }
+        ],
+        "conditions": [],
+        "subevents": [],
+        "hours_scope": "interval_boundaries",
+        "source_links": [],
+        "admission_text": null,
+        "schema_interval": {
+          "start": "2026-10-31T09:30:00+01:00",
+          "end": "2026-11-01T19:30:00+01:00"
+        }
+      },
+      "conflicts": [],
+      "warnings": []
+    },
+    {
+      "name": "natale_parcines",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 187679,
+        "sha256": "0ea38afb17251db506fe98ff4c7c12d277bdc96faa0a631ec22c6b58af0724e9",
+        "captured_at": "2026-10-20T15:41:52.486746+00:00"
+      },
+      "fixture_sha256": "71745c12f1faf12e22535f0755dc526e25dbaffb72b0c4656728629da42dbf9f",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "conflict",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "read_on": "2026-10-20",
+        "status": "held",
+        "market_id": null,
+        "reason": "source_layout_or_content_conflict",
+        "field_holds": [],
+        "conflicts": [
+          {
+            "field": "hours_text",
+            "code": "schema_sidebar_hours_mismatch",
+            "values": [
+              {
+                "start": "10:00",
+                "end": "18:00"
+              },
+              [
+                {
+                  "start": "10:00",
+                  "end": "16:00"
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "canonical_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "html_sha256": "0ea38afb17251db506fe98ff4c7c12d277bdc96faa0a631ec22c6b58af0724e9",
+        "bytes": 187679,
+        "published_at": "2026-10-20T10:27:51+00:00",
+        "modified_at": "2026-10-20T10:27:52+00:00"
+      },
+      "event": {
+        "name": "Mercatino di Natale di Parcines",
+        "source_id": "34461",
+        "category": "Natale",
+        "location": {
+          "name": "Piazza della chiesa di Parcines/Partschins",
+          "street_address": "Piazza della chiesa, 39020 Partschins",
+          "city": "Partschins",
+          "province": null,
+          "region": "Trentino-Alto Adige",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "10:00 - 16:00",
+        "hours_intervals": [
+          {
+            "start": "10:00",
+            "end": "16:00"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-11-29",
+            "start_time": "10:00",
+            "end_time": "18:00",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              ".happings-event-performances li",
+              "Event.startDate/endDate"
+            ]
+          }
+        ],
+        "edition_interval": null,
+        "recurrence_text": "Il Mercatino di Natale di Parcines si svolge domenica 29 novembre 2026, dalle 10:00 alle 18:00. Nella piazza della chiesa, oltre venti stand propongono manufatti artigianali, creazioni tradizionali, specialità preparate in casa e idee creative da scoprire tra le bancarelle.",
+        "description": "Il Mercatino di Natale di Parcines si svolge domenica 29 novembre 2026, dalle 10:00 alle 18:00. Nella piazza della chiesa, oltre venti stand propongono manufatti artigianali, creazioni tradizionali, specialità preparate in casa e idee creative da scoprire tra le bancarelle.\nIl programma comprende un laboratorio creativo dell’Avvento per bambini, dalle 13:00 alle 16:00 presso la Casa della Comunità, con il KFS Rablà.\nLa sede del mercatino è Piazza della chiesa, 39020 Parcines. Da Merano si può raggiungere l’autostazione di Parcines in autobus e proseguire lungo Via Max-Von-Isser fino alla piazza della chiesa. Dalla Val Venosta il percorso indicato prevede il treno fino a Tel, poi l’autobus per l’autostazione di Parcines e il tratto lungo Via Max-Von-Isser fino alla piazza; gli orari dei trasporti sono consultabili su www.suedtirolmobil.info.\nPer informazioni sono indicati i contatti delle Associazioni di Parcines: in**@********ns.com e https://www.partschins.com/it. La pagina non specifica prezzi, condizioni di accesso o modalità di prenotazione.",
+        "organizer": {
+          "name": "Associazioni di Parcines",
+          "url": "https://www.happings.com/it/organizer/associazioni-di-parcines/"
+        },
+        "contacts": [
+          {
+            "kind": "website",
+            "value": "https://www.partschins.com/it"
+          }
+        ],
+        "geo": {
+          "latitude": 46.6844308,
+          "longitude": 11.0734804,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "Piazza della chiesa di Parcines/Partschins\nPiazza della chiesa, 39020 Partschins, Partschins",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/eine-weihnachtsgeschichte-a-silandro/",
+          "https://www.happings.com/it/happing/auguri-di-natale/",
+          "https://www.happings.com/it/happing/mercatini-di-natale-2/"
+        ],
+        "hours_qualifications": [],
+        "sidebar_hours_text": "10:00 - 16:00",
+        "all_day": null,
+        "calendar_complete": false,
+        "calendar_scope": "explicit_visible_list",
+        "date_intervals": [],
+        "conditions": [],
+        "subevents": [
+          {
+            "date": "2026-11-29",
+            "start_time": "13:00",
+            "end_time": "16:00",
+            "kind": "ancillary_activity",
+            "text": "Il programma comprende un laboratorio creativo dell’Avvento per bambini, dalle 13:00 alle 16:00 presso la Casa della Comunità, con il KFS Rablà.",
+            "evidence": [
+              ".happings-event-description-card ancillary activity",
+              ".happings-event-performances li"
+            ]
+          }
+        ],
+        "hours_scope": "event_hours",
+        "source_links": [],
+        "admission_text": null
+      },
+      "conflicts": [
+        {
+          "field": "hours_text",
+          "code": "schema_sidebar_hours_mismatch",
+          "values": [
+            {
+              "start": "10:00",
+              "end": "18:00"
+            },
+            [
+              {
+                "start": "10:00",
+                "end": "16:00"
+              }
+            ]
+          ]
+        }
+      ],
+      "warnings": [
+        "source_contact_email_obscured"
+      ]
+    },
+    {
+      "name": "natale_concerto",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 188505,
+        "sha256": "76ce1928a92446d2d7f3dc0c1674268b9976de7d0da529e0f454637e058a5ba5",
+        "captured_at": "2026-10-20T15:42:01.871964+00:00"
+      },
+      "fixture_sha256": "31b07088259b1d42f134f046f8e553a9b93d3d07c5da508024cb16b43c862260",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "conflict",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "read_on": "2026-10-20",
+        "status": "held",
+        "market_id": null,
+        "reason": "source_layout_or_content_conflict",
+        "field_holds": [],
+        "conflicts": [
+          {
+            "field": "street_address",
+            "code": "description_schema_address_mismatch",
+            "values": [
+              "Via Braunsberg 6",
+              "Via Andreas Hofer 9/1, 39011 Lana"
+            ]
+          }
+        ]
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "final_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "canonical_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "html_sha256": "76ce1928a92446d2d7f3dc0c1674268b9976de7d0da529e0f454637e058a5ba5",
+        "bytes": 188505,
+        "published_at": "2026-10-20T10:30:37+00:00",
+        "modified_at": null
+      },
+      "event": {
+        "name": "Mercatino di Natale Polvere di Stelle: Jingle Bells Rock",
+        "source_id": "34496",
+        "category": "Natale",
+        "location": {
+          "name": "Giardino dei Cappuccini",
+          "street_address": "Via Braunsberg 6",
+          "city": "Lana",
+          "province": null,
+          "region": "Trentino-Alto Adige",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "16:00 - 17:30",
+        "hours_intervals": [
+          {
+            "start": "16:00",
+            "end": "17:30"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-12-12",
+            "start_time": "16:00",
+            "end_time": "17:30",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              "Event.startDate/endDate"
+            ]
+          }
+        ],
+        "edition_interval": null,
+        "recurrence_text": "L’appuntamento è sabato 12 dicembre 2026, dalle 16:00 alle 17:30. La sede è il Giardino dei Cappuccini, in Via Andreas Hofer 9/1, 39011 Lana.",
+        "description": "Jingle Bells Rock fa parte del Mercatino di Natale Polvere di Stelle. La musica swing accompagna l’avvio del periodo natalizio. Il coro giovanile e la banda musicale della scuola di musica di Lana si esibiscono insieme per creare un’atmosfera natalizia.\nL’appuntamento è sabato 12 dicembre 2026, dalle 16:00 alle 17:30. La sede è il Giardino dei Cappuccini, in Via Andreas Hofer 9/1, 39011 Lana.\nPer informazioni sull’appuntamento sono indicati i contatti dell’Associazione Turistica Lana e dintorni: telefono +39 0473 561770, email in**@********on.it e sito http://www.lanaregion.it.",
+        "organizer": {
+          "name": "Associazione Turistica Lana e dintorni",
+          "url": "https://www.happings.com/it/organizer/associazione-turistica-lana-e-dintorni/"
+        },
+        "contacts": [
+          {
+            "kind": "telephone",
+            "value": "+39 0473 561770"
+          },
+          {
+            "kind": "website",
+            "value": "http://www.lanaregion.it"
+          }
+        ],
+        "geo": {
+          "latitude": 46.615905761719,
+          "longitude": 11.145051002502,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "Giardino dei Cappuccini\nVia Braunsberg 6, Lana",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/concerto-di-natale/",
+          "https://www.happings.com/it/happing/festa-di-natale-2/",
+          "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-hello-we-are-lit/"
+        ],
+        "hours_qualifications": [],
+        "sidebar_hours_text": "16:00 - 17:30",
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "schema_occurrence_only",
+        "date_intervals": [],
+        "conditions": [],
+        "subevents": [],
+        "hours_scope": "event_hours",
+        "source_links": [],
+        "admission_text": null
+      },
+      "conflicts": [
+        {
+          "field": "street_address",
+          "code": "description_schema_address_mismatch",
+          "values": [
+            "Via Braunsberg 6",
+            "Via Andreas Hofer 9/1, 39011 Lana"
+          ]
+        }
+      ],
+      "warnings": [
+        "source_contact_email_obscured"
+      ]
+    },
+    {
+      "name": "notizia_fumetti",
+      "capture": {
+        "requested_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "final_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "bytes": 159351,
+        "sha256": "9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429",
+        "captured_at": "2026-10-20T15:41:56.136859+00:00"
+      },
+      "fixture_sha256": "a541c5def15823c14f2657ce3dd4bad280ec4584093aa563d3fa264d34b3a472",
+      "fixture_matches_observed_event_facts": true,
+      "parse_status": "parsed",
+      "outcome": {
+        "url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "read_on": "2026-10-20",
+        "status": "held",
+        "market_id": null,
+        "reason": "source_category_or_event_is_not_a_market",
+        "field_holds": []
+      },
+      "source": {
+        "requested_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "final_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "canonical_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+        "html_sha256": "9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429",
+        "bytes": 159351,
+        "published_at": "2026-10-20T10:24:38+00:00",
+        "modified_at": null
+      },
+      "event": {
+        "name": "Il mercato dei fumetti nel 2026, tra assestamento e crescita",
+        "source_id": "34397",
+        "category": "Arte e cultura",
+        "location": {
+          "name": "Palazzo Guinigi",
+          "street_address": "Palazzo Guinigi",
+          "city": "Lucca",
+          "province": null,
+          "region": "Toscana",
+          "country": "IT",
+          "postal_code": null
+        },
+        "hours_text": "16:30 - 17:30",
+        "hours_intervals": [
+          {
+            "start": "16:30",
+            "end": "17:30"
+          }
+        ],
+        "occurrences": [
+          {
+            "date": "2026-10-28",
+            "start_time": "16:30",
+            "end_time": "17:30",
+            "status": "source_listed",
+            "note": null,
+            "evidence": [
+              "Event.startDate/endDate"
+            ]
+          }
+        ],
+        "edition_interval": null,
+        "recurrence_text": null,
+        "description": "Il mercato dei fumetti nel 2026, tra assestamento e crescita è un appuntamento del programma 2026. Si svolge il 28/10/2026, con inizio alle 16:30, presso Palazzo Guinigi, nel comune di Lucca. Area del programma: Comics. Tipologia: Incontri. La conclusione è indicata per il 2026-10-28 alle 17:30. Il calendario e le eventuali variazioni sono comunicati dall’organizzazione sul sito ufficiale.\nLeggi la guida",
+        "organizer": {
+          "name": "Lucca Crea srl",
+          "url": "https://www.happings.com/it/organizer/lucca-crea-srl/"
+        },
+        "contacts": [],
+        "geo": {
+          "latitude": 43.8438092,
+          "longitude": 10.5073859,
+          "precision": "publisher_point_unverified"
+        },
+        "event_status": "https://schema.org/EventScheduled",
+        "calendar_notes": [],
+        "visible_location": "Palazzo Guinigi\nPalazzo Guinigi, Lucca",
+        "related_detail_urls": [
+          "https://www.happings.com/it/happing/night-e-se-ci-entrassi-dentro-w-more-eaze-kinkaleri-e-jacopo-benassi-klmguests-epimoric/",
+          "https://www.happings.com/it/happing/geografie-fragili/",
+          "https://www.happings.com/it/happing/connessioni-cosmiche/"
+        ],
+        "hours_qualifications": [],
+        "sidebar_hours_text": "16:30 - 17:30",
+        "all_day": null,
+        "calendar_complete": true,
+        "calendar_scope": "schema_occurrence_only",
+        "date_intervals": [],
+        "conditions": [],
+        "subevents": [],
+        "hours_scope": "event_hours",
+        "source_links": [],
+        "admission_text": null
+      },
+      "conflicts": [],
+      "warnings": []
+    }
+  ],
+  "code_sha256": {
+    "backend/happings_detail_layout.py": "1f443ca549b25be8df210282d0dbf596831ec83ba88dcd1196a7a02b232f9d7a",
+    "backend/happings_detail_discovery.py": "a0946a3acaed35ff5f884add03854bca412926c4fe3db777f2cb69ca813c1f08",
+    "backend/happings_detail_enrichment.py": "ddd78f2a73c7e9a726bfe6f658bc3e4dda29359010876c36b6495e6c367cfd68",
+    "backend/happings_detail_autopilot.py": "d3eaa28397e0e50badfd086c3a071d3e1e5e91ba21d211a6229aee0e86066281",
+    "backend/source_calendar.py": "2e21d72046dba26fa7105c5b03b11f18bbb9df711ecee32bed7cbe4f72f99c95",
+    "backend/happings_autopilot.py": "0d40e3f7cd2bb5074f27389d7b6d972ad958baf8d509d6a95d1705f57d5c89d8",
+    "backend/autopilot.py": "6f1c51d0d94fef5c35cf9f329fe68987d11aac55ccd0b3c931219f29e70cc552",
+    "backend/autopilot_policy.json": "88dca94b70a43fbee46b041f1dc5a8c7aeca57986afca083047eb5955721fd17",
+    "backend/publisher_refresh.py": "44faf5cad7083060138b8374fb67e340729d8dee776f39aeae957497c71f0589",
+    "backend/recurrence_refresh.py": "0c8469fdb7c7841f383e34b081488425af712561d8244ab10acecca50ca953cf",
+    "backend/export_static.py": "9bcdc0c677c6020f6c71c1583f9ed88f111b4f581221aa8093ec08a7c6a3720e",
+    "backend/milano_2026_release_guard.py": "a76b26a7ee41cf27726f458e8094996392e719b927f8439256060435cfcdd827",
+    "backend/source_contract_activation.py": "d484e63e799cb58ed92f801eab7b05aa6d08d2477e07326947b731414eef9e46",
+    "backend/catalog_quality_report.py": "2a311390f1993276f9b86374a8cd0fe60e88512212a2d9cc86e4eb9751b66ce4",
+    "src/lib/sourceCalendar.js": "a73786505eb7baf517758f80da5fc07c1d966843018a73f10329e96a62bd5c28",
+    "src/lib/dateDisclosure.js": "ea25a401851f82345d3d4fa183b76ab4f4b16900ceb2515a4b8dbc6c2eb6b6b3",
+    "src/hooks/useMarkets.js": "d96b5e482e1c98bfab852ae48fa78978f649a8c4b3c509bff840cc1231754390",
+    "src/services/staticMarkets.js": "082e6e2cdbaec7648ffc2308237af470f08055f5268d30ae68d690b00aa03b4a",
+    "src/App.jsx": "4c7d92c83b92343b1d34552b32baca97600ac4ad603ad46007177c72e95db632"
+  },
+  "discovery": {
+    "observed_resources": 2210,
+    "supported_detail_urls": 2196,
+    "sitemap_resources": 14,
+    "all_details_unread_in_bootstrap": true,
+    "source_inventory_path": "backend/data/happings-detail-discovery-seed.json",
+    "observed_urls_outside_supported_detail_route": [
+      "https://www.happings.com/it/happing/",
+      "https://www.happings.com/it/happing/bisatti_canino_ballista/",
+      "https://www.happings.com/it/happing/ceretta_chiesa/",
+      "https://www.happings.com/it/happing/ceretta_de-maria-evento-15520/",
+      "https://www.happings.com/it/happing/ceretta_de-maria-evento-15573/",
+      "https://www.happings.com/it/happing/ceretta_de-maria/",
+      "https://www.happings.com/it/happing/ceretta_krakauer/",
+      "https://www.happings.com/it/happing/l%e2%88%9eplab/",
+      "https://www.happings.com/it/happing/raduno-%f0%9d%90%8f%f0%9d%90%80%f0%9d%90%91%f0%9d%90%80%f0%9d%90%93%f0%9d%90%80-%f0%9d%90%82%f0%9d%90%8e%f0%9d%90%8d-%f0%9d%90%8d%f0%9d%90%80%f0%9d%90%91%f0%9d%90%94%f0%9d%90%93%f0%9d%90%8e/",
+      "https://www.happings.com/it/happing/raduno-show-e-parata-expedition33_community/",
+      "https://www.happings.com/it/happing/turandot-non-esiste-how-i-met-puccini%e2%93%a1-series-special-edition-%c2%b7-lucca-comics-games-2026/",
+      "https://www.happings.com/it/happing/yog%c2%b7amiga-morning-yoga/"
+    ],
+    "seed_sha256": "e3e51cb1f5cac5940053715287dc97d006b9321022e669d009db129745e1ed10"
+  },
+  "validation": {
+    "raw_fixture_semantic_equivalence": 9,
+    "exact_static_roundtrip": 13826,
+    "original_rows_preserved_in_detail_phase": 13824,
+    "manual_catalog_changes": 0,
+    "full_python_suite": {
+      "passed": 1130,
+      "seconds": 62.85,
+      "run_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39455634969",
+      "commit": "f539ad91d6babb420209ea69d360a39299b9b58f"
+    },
+    "javascript_test_files_passed": 9,
+    "production_build_passed": true,
+    "full_offline_pipeline": {
+      "approved": true,
+      "records": 13824,
+      "gates_passed": 17
+    },
+    "publication_performed_by_this_replay": false,
+    "later_targeted_tests": {
+      "generic_enrichment_and_milano": 90,
+      "autopilot_detail_integration": 13,
+      "national_quality_report": 18,
+      "capacity_discovery_and_autopilot": 39,
+      "capacity_enrichment": 56
+    },
+    "throughput_simulation": [
+      {
+        "daily_request_capacity": 128,
+        "days_to_first_visit_all_315_market_like_urls": 3,
+        "days_to_first_visit_all_2196_details": 28,
+        "largest_interval_days_between_priority_detail_reads_over_100_days": 8,
+        "assumptions": "Closed seed frontier, daily runs, all requests successful; market-like is only a scheduling hint; no elapsed/network model."
+      },
+      {
+        "daily_request_capacity": 100,
+        "days_to_first_visit_all_315_market_like_urls": 4,
+        "days_to_first_visit_all_2196_details": 43,
+        "largest_interval_days_between_priority_detail_reads_over_100_days": 9,
+        "assumptions": "Closed seed frontier, daily runs, all requests successful; market-like is only a scheduling hint; no elapsed/network model."
+      },
+      {
+        "daily_request_capacity": 80,
+        "days_to_first_visit_all_315_market_like_urls": 5,
+        "days_to_first_visit_all_2196_details": 76,
+        "largest_interval_days_between_priority_detail_reads_over_100_days": 9,
+        "assumptions": "Closed seed frontier, daily runs, all requests successful; market-like is only a scheduling hint; no elapsed/network model."
+      }
+    ],
+    "full_captured_pipeline": {
+      "added_source_ids": 2,
+      "approved": true,
+      "candidate": {
+        "future_60": 11836,
+        "future_90": 11687,
+        "indexed_gzip_bytes": 406098,
+        "missing_hours": 10853,
+        "precise": 89,
+        "records": 13826,
+        "unknown_dates": 1933,
+        "verified": 0
+      },
+      "details_counts": {
+        "ambiguous_existing_identity": 4,
+        "held": 7,
+        "new_venue_admitted": 2,
+        "source_category_or_event_is_not_a_market": 1,
+        "source_layout_or_content_conflict": 2
+      },
+      "elapsed_seconds": 77.01,
+      "gates": {
+        "forecast_60d": true,
+        "forecast_quality_flags": true,
+        "index_growth_budget": true,
+        "index_under_absolute_budget": true,
+        "max_new_records": true,
+        "max_source_loss": true,
+        "min_id_retention": true,
+        "min_records": true,
+        "never_upgrade_estimates_to_confirmed": true,
+        "no_invented_human_verification": true,
+        "no_unreviewed_new_confirmations": true,
+        "no_unreviewed_new_verifications": true,
+        "official_sources_available": true,
+        "retain_old_source_evidence": true,
+        "source_identities_immutable": true,
+        "unavailable_official_sources_preserved": true,
+        "unknown_source_share_budget": true
+      },
+      "generic_static_guard": {
+        "catalog_content_signature": "c5cebab697c1dc29bd1a4728767d28724b3e80098f98de70efc9cf67bc654056",
+        "existing_source_evidence_ids_checked": 0,
+        "existing_source_evidence_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "existing_source_fields_updated": 0,
+        "market_records_checked": 13826,
+        "navigation_holds_in_index": 0,
+        "new_precise_coordinates": 0,
+        "new_source_venue_ids_verified": 0,
+        "no_individual_market_openings_confirmed": true,
+        "original_markets_deleted": 0,
+        "release_safe": true,
+        "schema": 1,
+        "separately_proved_happings_admissions": 2,
+        "source_admission_report_sha256": "88f11027988ec7b418488451b2b157c43edc78ef6705c80aa206d12ed92f9f1d",
+        "source_contracts_active": 2,
+        "source_contracts_approved": 2,
+        "source_weekly_forecasts_only": 0
+      },
+      "happings_enrichment": {
+        "detail_pages": 9,
+        "details_status": "partial_unavailable",
+        "field_changes": 0,
+        "new_detail_markets": 2,
+        "pages_evaluated": 0,
+        "protected_catalog_market_ids": 13826,
+        "protected_existing_market_ids": 9647,
+        "release_safe": true,
+        "rights_state": "project_owner_authorized",
+        "status": "unavailable"
+      },
+      "happings_static_guard": {
+        "checked_market_ids": 13824,
+        "detail_pages_evaluated": 9,
+        "exported_market_ids": 13826,
+        "happings_ids_added": 2,
+        "happings_ids_deleted": 0,
+        "input_market_ids": 13824,
+        "market_ids_added": 2,
+        "market_ids_deleted": 0,
+        "opening_verifications_created": 0,
+        "protected_catalog_market_ids": 13824,
+        "protected_happings_ids": 9647,
+        "release_safe": true,
+        "retired_source_support_markets": 0,
+        "schema": 1,
+        "secondary_observed_markets": 0,
+        "source_field_changes": 0,
+        "source_observed_markets": 0,
+        "source_record_changes": 0,
+        "unapproved_field_changes": 0
+      },
+      "has_changes": true,
+      "live_http_requests": 0,
+      "milano_certificate": {
+        "admission_count": 2,
+        "market_ids": [
+          "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5",
+          "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5"
+        ],
+        "present": true
+      },
+      "milano_static_guard": {
+        "confirmed_market_events_created": 0,
+        "forecast_labeled_not_confirmed": 76,
+        "market_records_added": 0,
+        "market_records_deleted": 0,
+        "preserved_original_sources": 76,
+        "publisher_document_date": "2026-10-01",
+        "quality_safe": true,
+        "reviewed_milan_ids": 76,
+        "schema": 1,
+        "separately_proved_happings_admissions": 2,
+        "unchanged_stable_market_ids": 13824
+      },
+      "mode": "CACHED REPLAY",
+      "old": {
+        "future_60": 11846,
+        "future_90": 11699,
+        "indexed_gzip_bytes": 406047,
+        "missing_hours": 10853,
+        "precise": 89,
+        "records": 13824,
+        "unknown_dates": 1918,
+        "verified": 0
+      },
+      "passed_gates": 17,
+      "reason": "all_policies_pass",
+      "removed_source_ids": 0,
+      "retained_source_ids": 13824,
+      "total_gates": 17
+    },
+    "national_quality_replay": {
+      "previous_run": 39400676914,
+      "raw_extra_rows_before": 765,
+      "raw_extra_rows_after": 859,
+      "source_supported_revealed_extra_rows": 94,
+      "unexplained_growth": 0,
+      "same_cli_invocation_passed": true
+    },
+    "full_suite_scope": "Complete GitHub suite including admission certificates and the national audit compatibility fix, before the final throughput adjustment; subsequent PR checks rerun the complete suite."
+  }
+}

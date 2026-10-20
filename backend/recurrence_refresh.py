@@ -32,6 +32,7 @@ from typing import Any
 from urllib.parse import unquote, urlsplit
 
 from source_freshness import as_day, source_date_evidence, source_url_domain
+from source_calendar import refresh_source_calendar
 from field_evidence import clean_receipts, MAX_READ_AGE, SOURCE_AGE
 
 WEEKDAYS = ("lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica")
@@ -369,6 +370,13 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     record = dict(original)
     if record.get("status") in {"archiviato", "annullato"}:
         return record, "inactive"
+    source_calendar = refresh_source_calendar(record, today=today)
+    if source_calendar is not None:
+        return source_calendar, "explicit_source_calendar_preserved"
+    if record.get("calendario_fonte") is not None:
+        # Corrupt or identity-mismatched explicit dates cannot authorize a
+        # fallback recurrence. Export will separately reject the bad proof.
+        return record, "invalid_source_calendar_held"
     if record.get("date_quality") in {"confermata", "riportata"}:
         return record, "non_projected_source_date"
     if record.get("date_quality") not in {None, "", "prevista", "sconosciuta"}:

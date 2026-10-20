@@ -505,6 +505,57 @@ class GenericActivationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"approval must match"):
             validate_admissions(cfg,EMPTY)
 
+    def test_generic_static_guard_proves_later_happings_admission_without_count_exemption(self):
+        from tempfile import TemporaryDirectory
+        from export_static import export
+        from recurrence_refresh import refresh_records
+        from happings_detail_enrichment import preview,cert_from_detail_evidence
+        cfg,reg=enabled_fixture()
+        generic,report=fixture_activate(cfg,reg,far_baseline(),today=TODAY,
+                                       fetch=lambda url:(BLOB,False))
+        projected,_=refresh_records(generic,TODAY,120,540)
+        url="https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+        html=(Path(__file__).parent/"fixtures/happings_detail/pisa.html").read_bytes()
+        final,evidence=preview(projected,[{"requested_url":url,"final_url":url,
+            "html":html,"fetched_at":TODAY.isoformat()+"T12:00:00+00:00"}],
+            today=TODAY,apply=True,admit_new=True)
+        certificate=cert_from_detail_evidence(evidence,today=TODAY)
+        self.assertEqual(len(final),len(projected)+1)
+        with TemporaryDirectory() as td:
+            path=Path(td)/"public/data/v1"
+            export(final,path,today=TODAY,min_count=1)
+            with self.assertRaisesRegex(ValueError,"does not match generic"):
+                verify_static(path/"manifest.json",report,cfg,reg,TODAY)
+            report["happings_detail_admission_certificate"]=certificate
+            proof=verify_static(path/"manifest.json",report,cfg,reg,TODAY)
+            self.assertTrue(proof["release_safe"])
+            self.assertEqual(proof["separately_proved_happings_admissions"],1)
+            self.assertEqual(proof["new_source_venue_ids_verified"],4)
+            self.assertEqual(proof["market_records_checked"],6)
+            self.assertEqual(proof["source_weekly_forecasts_only"],4)
+            damaged=copy.deepcopy(report)
+            damaged["happings_detail_admission_certificate"]["admissions"][0]["source_page"]["html_sha256"]="0"*64
+            with self.assertRaises(ValueError):
+                verify_static(path/"manifest.json",damaged,cfg,reg,TODAY)
+            overlap=copy.deepcopy(report)
+            overlap["new_market_ids"].append(evidence["new_market_ids"][0])
+            with self.assertRaisesRegex(ValueError,"Two publishers"):
+                verify_static(path/"manifest.json",overlap,cfg,reg,TODAY)
+            manifest=json.loads((path/"manifest.json").read_text("utf-8"))
+            indexpath=path.parent.parent/manifest["index"]
+            original=indexpath.read_text("utf-8")
+            index=json.loads(original)
+            next(row for row in index["markets"] if row[0]==evidence["new_market_ids"][0])[-1]=["2026-10-25"]
+            indexpath.write_text(json.dumps(index),"utf-8")
+            with self.assertRaisesRegex(ValueError,"source facts lost in compact"):
+                verify_static(path/"manifest.json",report,cfg,reg,TODAY)
+            indexpath.write_text(original,"utf-8")
+            extra={**far_baseline()[0],"slug":"unproved-additional-id","nome":"Mercato extra",
+                   "citta":"Roma","provincia":"RM","regione":"Lazio","indirizzo":"Via Test 1"}
+            export([*final,extra],path,today=TODAY,min_count=1)
+            with self.assertRaisesRegex(ValueError,"does not match generic"):
+                verify_static(path/"manifest.json",report,cfg,reg,TODAY)
+
     def test_independent_guard_rejects_added_id_and_original_record_mutation(self):
         cfg,reg=enabled_fixture();old=far_baseline()
         output,summary=fixture_activate(cfg,reg,old,today=TODAY,fetch=lambda url:(BLOB,False))

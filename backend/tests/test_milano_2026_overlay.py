@@ -196,6 +196,33 @@ class MilanoCrossPublisherTests(unittest.TestCase):
             verify_exported(source_cohort,[*comparable,
                             {"slug":"unapproved-extra-market"}],report,PDF,GIS,today)
 
+        # The unchanged daily workflow calls this same DEV verifier. Its
+        # independent source certificate must work without an inline ID
+        # exemption or any weakening of the historical Milan checks.
+        from happings_detail_enrichment import preview, cert_from_detail_evidence
+        from export_static import normalize
+        url="https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+        html=(Path(__file__).parent/"fixtures/happings_detail/pisa.html").read_bytes()
+        admitted,evidence=preview(source_cohort,[{
+            "requested_url":url,"final_url":url,"html":html,
+            "fetched_at":today.isoformat()+"T12:00:00+00:00"}],
+            today=today,apply=True,admit_new=True)
+        pisa=normalize(admitted[-1],today)[0]
+        with self.assertRaisesRegex(ValueError,"contract changed"):
+            verify_exported(source_cohort,[*comparable,pisa],report,PDF,GIS,today)
+        certified=copy.deepcopy(report)
+        certified["happings_detail_admission_certificate"]=cert_from_detail_evidence(evidence,today=today)
+        proof=verify_exported(source_cohort,[*comparable,pisa],certified,PDF,GIS,today)
+        self.assertEqual(proof["separately_proved_happings_admissions"],1)
+        self.assertEqual(proof["market_records_added"],0)
+        self.assertEqual(proof["reviewed_milan_ids"],76)
+        tampered=copy.deepcopy(comparable)
+        tampered[0]["lat"]=0
+        with self.assertRaisesRegex(ValueError,"Unsafe Milan source field"):
+            verify_exported(source_cohort,[*tampered,pisa],certified,PDF,GIS,today)
+        with self.assertRaises(ValueError):
+            verify_exported(source_cohort,[*comparable,pisa,{"slug":"unproved"}],certified,PDF,GIS,today)
+
     def test_dry_run_proposes_but_does_not_modify_any_input(self):
         rows=[existing(1)]
         frozen=copy.deepcopy(rows)

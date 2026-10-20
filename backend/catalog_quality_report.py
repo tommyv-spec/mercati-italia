@@ -20,8 +20,10 @@ import json
 import re
 import unicodedata
 from collections import Counter, defaultdict
+from datetime import date
 from pathlib import Path
 
+from field_evidence import clean_receipts, identity
 from lombardia_overlap import weekday_evidence
 from merge_catalog import load_existing
 
@@ -66,7 +68,7 @@ def suspicious_city(city):
     )
 
 
-def count_venue_weekday_groups(records):
+def _venue_weekday_groups(records):
     groups = defaultdict(list)
     for row in records:
         label = key(row.get("nome"))
@@ -82,6 +84,11 @@ def count_venue_weekday_groups(records):
             continue
         day = next(iter(days))
         groups[(region, city, address, day)].append(row)
+    return groups
+
+
+def count_venue_weekday_groups(records):
+    groups = _venue_weekday_groups(records)
     duplicates = []
     for (_, _, _, weekday), same in groups.items():
         if len(same) < 2:
@@ -102,7 +109,83 @@ def count_venue_weekday_groups(records):
     return duplicates
 
 
-def analyze(rows, previous=None):
+def _supported_address_revelation(before, after, *, today):
+    """Recognize a missing-field recovery, never a changed established venue.
+
+    The source adapters independently authorize and verify their assignments.
+    This audit also requires their exact, identity-bound field receipt; an
+    unchanged ID alone cannot excuse a new venue/day overlap.
+    """
+    stable = ("slug", "nome", "citta", "provincia", "regione", "categoria",
+              "fonte", "url_fonte", "ricorrenza_testo")
+    if (any(before.get(field) != after.get(field) for field in stable)
+            or identity(before) != identity(after)
+            or weekday_evidence(before) != weekday_evidence(after)):
+        return False
+    old_address, new_address = key(before.get("indirizzo")), key(after.get("indirizzo"))
+    if old_address == new_address:
+        return True
+    if (old_address and old_address not in VAGUE_ADDRESSES
+            or before.get("verificato_il")
+            or before.get("position_quality") == "precisa"
+            or any("indirizzo" in proof["valori"] for proof in clean_receipts(
+                before.get("riscontri_campi"), before, today=today))):
+        return False
+    return any(proof["valori"].get("indirizzo") == after.get("indirizzo")
+               for proof in clean_receipts(after.get("riscontri_campi"), after, today=today))
+
+
+def _overlap_growth(rows, baseline_rows, previous, *, today):
+    """Explain newly observable overlaps without hiding them or deleting IDs."""
+    result = {
+        "status": "baseline_unavailable", "source_supported_revealed_extra_rows": 0,
+        "source_supported_revealed_groups": 0, "examples": [],
+    }
+    if baseline_rows is None or previous is None:
+        return result
+    # Reuse the catalog validation, including unique stable IDs and bounds.
+    baseline_report = analyze(baseline_rows)
+    baseline_metrics = baseline_report["metrics"]
+    if any(baseline_metrics.get(field, 0) != previous.get("metrics", {}).get(field, 0)
+           for field in ("total", "review_only_potential_extra_rows")):
+        result["status"] = "baseline_summary_mismatch"
+        return result
+    old_by_id = {row["slug"]: row for row in baseline_rows}
+    before_groups = _venue_weekday_groups(baseline_rows)
+    after_groups = _venue_weekday_groups(rows)
+    unexplained = positive_growth = explained = 0
+    for group_key, members in sorted(after_groups.items()):
+        before_extra = max(0, len(before_groups.get(group_key, [])) - 1)
+        increase = max(0, len(members) - 1 - before_extra)
+        if not increase:
+            continue
+        positive_growth += increase
+        supported = all(row["slug"] in old_by_id and _supported_address_revelation(
+            old_by_id[row["slug"]], row, today=today) for row in members)
+        if not supported:
+            unexplained += increase
+            continue
+        explained += increase
+        result["source_supported_revealed_groups"] += 1
+        if len(result["examples"]) < MAX_EXAMPLES:
+            result["examples"].append({
+                "region": members[0].get("regione"), "city": members[0].get("citta"),
+                "address": members[0].get("indirizzo"), "weekday": group_key[3],
+                "revealed_extra_rows": increase,
+                "retained_ids": sorted(row["slug"] for row in members)[:6],
+            })
+    result.update({
+        "status": "compared_to_baseline_records",
+        "baseline_records": len(baseline_rows),
+        "baseline_potential_extra_rows": baseline_metrics["review_only_potential_extra_rows"],
+        "positive_group_growth": positive_growth,
+        "source_supported_revealed_extra_rows": explained,
+        "unexplained_group_growth": unexplained,
+    })
+    return result
+
+
+def analyze(rows, previous=None, *, baseline_rows=None, today=None):
     if not isinstance(rows,list) or not 1 <= len(rows) <= MAX_MARKETS:
         raise ValueError("Invalid or unbounded market catalog")
     if previous is not None and (
@@ -177,6 +260,8 @@ def analyze(rows, previous=None):
     ), key=lambda x:(-x["records"],x["source"]))[:12]
     prior_counts=(previous or {}).get("metrics",{})
     metrics=dict(sorted(count.items()))
+    overlap_growth = _overlap_growth(
+        rows, baseline_rows, previous, today=today or date.today())
     regressions=[]
     if previous is not None:
         for code, margin in (("suspicious_city",5),
@@ -185,11 +270,25 @@ def analyze(rows, previous=None):
             new_value=int(metrics.get(code,0))
             # Flag genuinely large increases, not tiny day-to-day noise.
             allowance=max(margin,(old_value+9)//10)
-            if new_value-old_value>allowance:
-                regressions.append({
+            increase = new_value-old_value
+            explained = 0
+            if (code == "review_only_potential_extra_rows"
+                    and overlap_growth["status"] == "compared_to_baseline_records"):
+                explained = overlap_growth["source_supported_revealed_extra_rows"]
+                # Disappearing old groups cannot offset an unexplained new
+                # group. All raw counts remain in metrics and baseline_delta.
+                increase = max(increase - explained,
+                               overlap_growth["unexplained_group_growth"])
+            if increase>allowance:
+                regression = {
                     "code":code,"before":old_value,"after":new_value,
                     "maximum_permitted_increase":allowance,
-                })
+                }
+                if (code == "review_only_potential_extra_rows"
+                        and overlap_growth["status"] == "compared_to_baseline_records"):
+                    regression.update({"source_supported_revealed_extra_rows": explained,
+                                       "unexplained_increase": increase})
+                regressions.append(regression)
     return {
         "schema": VERSION,
         "review_only": True,
@@ -203,6 +302,7 @@ def analyze(rows, previous=None):
         "unscheduled_forecast_label_examples":missing_future_with_label,
         "potential_duplicate_weekly_venue_examples":repeats[:MAX_EXAMPLES],
         "potential_duplicates_are_not_confirmed": True,
+        "overlap_growth_review": overlap_growth,
         "baseline_delta": {name:int(metrics.get(name,0))-int(prior_counts.get(name,0))
                            for name in ("total","hours_missing","address_missing",
                                         "coordinates_missing","future_dates_missing",
@@ -237,11 +337,15 @@ def markdown(report):
         f"- Gate qualità: **{'APPROVATO' if report['quality_release_safe'] else 'BLOCCATO'}**.",
         *[f"- REGRESSIONE: {r['code']} {r['before']} → {r['after']} (soglia +{r['maximum_permitted_increase']})"
           for r in report.get('quality_regressions',[])],
-        "",
-        "## Fonte di provenienza (primi editori)",
-        "",
-        "| Fonte | Schede |","|---|---:|",
     ]
+    growth = report.get("overlap_growth_review", {})
+    if growth.get("status") == "compared_to_baseline_records":
+        out.extend([
+            f"- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **{growth['source_supported_revealed_extra_rows']:,}** righe potenziali in **{growth['source_supported_revealed_groups']:,}** gruppi; restano tutte nel conteggio da rivedere.",
+            f"- Incremento dei gruppi senza questa prova: **{growth['unexplained_group_growth']:,}** righe potenziali; le soglie del gate restano invariate.",
+        ])
+    out.extend(["", "## Fonte di provenienza (primi editori)", "",
+                "| Fonte | Schede |", "|---|---:|"])
     out.extend(f"| {x['source'].replace('|','/')} | {x['records']:,} |"
                for x in report["top_sources"])
     out.extend(["","## Regioni","",
@@ -276,13 +380,18 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--manifest",type=Path,required=True)
     parser.add_argument("--previous",type=Path)
+    parser.add_argument("--baseline-manifest", type=Path,
+                        default=Path(__file__).resolve().parents[1] / "public/data/v1/manifest.json",
+                        help="Published catalog used to prove retained-ID address recoveries; missing baseline keeps the original strict gate.")
     parser.add_argument("--out",type=Path,required=True)
     parser.add_argument("--report",type=Path,required=True)
     args=parser.parse_args()
     records=load_existing(args.manifest)
     previous=json.loads(args.previous.read_text("utf-8")) if (
         args.previous and args.previous.is_file()) else None
-    result=analyze(records,previous)
+    baseline_rows = load_existing(args.baseline_manifest) if (
+        previous is not None and args.baseline_manifest.is_file()) else None
+    result=analyze(records,previous,baseline_rows=baseline_rows)
     for path in (args.out,args.report): path.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n","utf-8")
     args.report.write_text(markdown(result),"utf-8")

@@ -44,29 +44,36 @@
       "id": "SOURCE-FORMATS-VALIDATION-20261020",
       "at": "2026-10-19T23:31:01.565477+00:00",
       "summary": "995 test Python, 8 file di test Node, build e worker verificati; replay offline del catalogo con 17 gate superati e 13.824 identità conservate. Revisione indipendente conclusa; checklist integrata nel report quotidiano esistente, con 102 confronti completi, sette parziali e 51 TODO aperti."
+    },
+    {
+      "id": "HAPPINGS-DETAIL-MECHANISM-20261020",
+      "at": "2026-10-20T16:23:54.115805+00:00",
+      "summary": "Nuovo lettore dettagli, discovery dalle sitemap con stato persistente, calendari espliciti e visualizzazione. Nove pagine reali confrontate con 13.824 schede; due nuove identità nel replay, nessuna scheda esistente alterata. HAPP-FORMAT-01 e 02 chiusi con prove; gli altri problemi delle fonti restano tracciati."
     }
   ],
   "tasks": [
     {
       "id": "HAPP-FORMAT-01",
       "title": "Leggere i dettagli evento e dimostrare il raccordo con il mercato",
-      "status": "open",
+      "status": "done",
       "priority": "P0",
       "format_ids": [
         "happings.com--795abb069b70",
         "happings.com--7b87b2b2b5db"
       ],
-      "acceptance": "Fixture returns address, ordinary hours, explicit dates, organizer profile and source GPS for the self Event URL. Related-event cards, footer/publisher Organization and a second market in the same town cannot contribute fields. Ambiguous venue/name matches produce review evidence without overwriting an existing address or claiming precise GPS."
+      "acceptance": "Fixture returns address, ordinary hours, explicit dates, organizer profile and source GPS for the self Event URL. Related-event cards, footer/publisher Organization and a second market in the same town cannot contribute fields. Ambiguous venue/name matches produce review evidence without overwriting an existing address or claiming precise GPS.",
+      "resolution": "Lettore self Event, confronto identità/Comune/indirizzo, discovery dalle sitemap e arricchimento automatico DEV implementati. Replay di nove dettagli su 13.824 schede, due nuove identità distinte, quattro possibili duplicati sospesi. Footer, schede correlate, concerti e articoli non forniscono dati di mercato. Prove: reports/automation/happings-detail-validation-2026-10-20.json."
     },
     {
       "id": "HAPP-FORMAT-02",
       "title": "Conservare calendari espliciti ed eccezioni della singola edizione",
-      "status": "open",
+      "status": "done",
       "priority": "P0",
       "format_ids": [
         "happings.com--795abb069b70"
       ],
-      "acceptance": "Nine ordinary Friday entries plus the listed Thursday exception remain ten dates, without fabricating 25 December or January dates. The extraordinary 24 December closing time remains 13:00; do not copy the next-date 12:30 end time to it. A missing next edition, changed boundary or conflicting text/JSON-LD prevents renewal until the scope is resolved."
+      "acceptance": "Nine ordinary Friday entries plus the listed Thursday exception remain ten dates, without fabricating 25 December or January dates. The extraordinary 24 December closing time remains 13:00; do not copy the next-date 12:30 end time to it. A missing next edition, changed boundary or conflicting text/JSON-LD prevents renewal until the scope is resolved.",
+      "resolution": "Calendario della fonte conservato fino a export e interfaccia. Lana mantiene dieci date e la chiusura alle 13 del 24 dicembre; nessuna proiezione oltre il calendario pubblicato. Intervalli di più giorni conservano i limiti senza inventare aperture quotidiane. Conflitti, annullamenti ed eccezioni vengono mantenuti; regressioni backend/frontend e replay reali documentati."
     },
     {
       "id": "HAPP-FORMAT-03",
@@ -127,13 +134,14 @@
     {
       "id": "HAPP-FORMAT-08",
       "title": "Separare la data della pagina dalla verifica del mercato",
-      "status": "open",
+      "status": "in_progress",
       "priority": "P2",
       "format_ids": [
         "happings.com--311686cb6f8d",
         "happings.com--795abb069b70"
       ],
-      "acceptance": "JSON-LD WebPage.datePublished is discoverable even when article meta tags are absent. A page publication date cannot manufacture event confirmation or override a contradicted edition list. Unknown row freshness remains distinguishable from a known page publication date."
+      "acceptance": "JSON-LD WebPage.datePublished is discoverable even when article meta tags are absent. A page publication date cannot manufacture event confirmation or override a contradicted edition list. Unknown row freshness remains distinguishable from a known page publication date.",
+      "resolution": "Dettagli evento: WebPage.datePublished/dateModified estratti separatamente da calendario, lettura e conferma, con test. Resta da estendere il confronto dei metadati al formato provinciale compreso in questo TODO; non chiuso globalmente."
     },
     {
       "id": "EES-SCOPED-DETAIL",
@@ -7516,7 +7524,7 @@
       "url_pattern": "/it/happing/{slug}/",
       "url_kind": "happings_event_detail_current",
       "scope": "current_observed_layout",
-      "reviewed_at": "2026-10-19T22:47:28.515202+00:00",
+      "reviewed_at": "2026-10-20T16:23:54.115805+00:00",
       "review_interval_days": 30,
       "primary_urls_sha256": null,
       "samples": [
@@ -7571,18 +7579,1405 @@
           },
           "time_basis": "The synchronous connector returned no response timestamp; recorded_at is when the acquired response was recorded.",
           "transport_limit": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect."
+        },
+        {
+          "id": "detail-replay-20261020-pisa",
+          "requested_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+          "acquired_at": "2026-10-20T15:32:41.308593+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+          "bytes": 135037,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Mercato coperto Campagna Amica di Pisa"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Mercato coperto Campagna Amica di Pisa",
+                "street_address": "VIA del Chiassatello, 64/65",
+                "city": "Pisa",
+                "province": null,
+                "region": "Toscana",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "7:30 - 12:30"
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-10-24",
+                  "start_time": "07:30",
+                  "end_time": "12:30",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li",
+                    "Event.startDate/endDate"
+                  ]
+                },
+                {
+                  "date": "2026-10-31",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-07",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-14",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-21",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-28",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-05",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-12",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-19",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-26",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "organizer": {
+              "state": "not_published_or_not_reconciled",
+              "value": null
+            },
+            "contacts": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 43.7069188,
+                "longitude": 10.3831794,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "parsed",
+          "conflicts": [],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+            "read_on": "2026-10-20",
+            "status": "new_venue_admitted",
+            "market_id": "happings-mercato-coperto-campagna-amica-di-pisa-d864b6f23fe5",
+            "reason": null,
+            "field_holds": [],
+            "matching": "new_source_venue",
+            "possible_market_ids": []
+          }
+        },
+        {
+          "id": "detail-replay-20261020-lana",
+          "requested_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "acquired_at": "2026-10-20T15:34:40.551888+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58",
+          "bytes": 145113,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Mercato del venerdì mattina a Lana"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Parco Lorenzer",
+                "street_address": "Via Lorenzer, 39011 Lana",
+                "city": "Lana",
+                "province": null,
+                "region": "Trentino-Alto Adige",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "7:30 - 12:30\nLe bancarelle sono presenti dalle 07:30 alle 12:30 fino al 18 dicembre; l’appuntamento straordinario del 24 dicembre termina alle 13:00."
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-10-23",
+                  "start_time": "07:30",
+                  "end_time": "12:30",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li",
+                    "Event.startDate/endDate"
+                  ]
+                },
+                {
+                  "date": "2026-10-30",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-06",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-13",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-20",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-27",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-04",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-11",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-18",
+                  "start_time": "07:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-24",
+                  "start_time": "07:30",
+                  "end_time": "13:00",
+                  "status": "source_listed",
+                  "note": "24 dicembre termina alle 13:00",
+                  "evidence": [
+                    ".happings-event-performances li",
+                    ".happings-event-description-card date-specific hours"
+                  ]
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "organizer": {
+              "state": "present",
+              "value": {
+                "name": "Comune di Lana",
+                "url": "https://www.happings.com/it/organizer/comune-di-lana/"
+              }
+            },
+            "contacts": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 46.617000579834,
+                "longitude": 11.149200439453,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "parsed",
+          "conflicts": [],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+            "read_on": "2026-10-20",
+            "status": "held",
+            "market_id": null,
+            "reason": "ambiguous_existing_identity",
+            "field_holds": [],
+            "matching": "ambiguous_existing_identity",
+            "possible_market_ids": [
+              "mercato-settimanale-di-lana-lana-venerdi"
+            ]
+          }
+        },
+        {
+          "id": "detail-replay-20261020-pescia",
+          "requested_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+          "acquired_at": "2026-10-20T15:36:14.380071+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+          "bytes": 145918,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Mercato di Campagna Amica di Pescia"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Mercato di Campagna Amica di Pescia",
+                "street_address": "VIALE Giovanni XXIII, snc",
+                "city": "Pescia",
+                "province": null,
+                "region": "Toscana",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "8:30 - 12:30"
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-10-27",
+                  "start_time": "08:30",
+                  "end_time": "12:30",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li",
+                    "Event.startDate/endDate"
+                  ]
+                },
+                {
+                  "date": "2026-11-03",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-10",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-17",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-24",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-01",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-08",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-15",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-12-22",
+                  "start_time": "08:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "organizer": {
+              "state": "not_published_or_not_reconciled",
+              "value": null
+            },
+            "contacts": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 43.8989876,
+                "longitude": 10.6900098,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "parsed",
+          "conflicts": [],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+            "read_on": "2026-10-20",
+            "status": "new_venue_admitted",
+            "market_id": "happings-mercato-di-campagna-amica-di-pescia-210cbce146d5",
+            "reason": null,
+            "field_holds": [],
+            "matching": "new_source_venue",
+            "possible_market_ids": []
+          }
+        },
+        {
+          "id": "detail-replay-20261020-lucca_antiquario",
+          "requested_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+          "acquired_at": "2026-10-20T15:41:40.544547+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "f3cbddbae2ef0a4c2d4f100110646c661efe7525c5d3c67acc1b1d797b6e7d81",
+          "bytes": 141685,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Mercato Antiquario di Lucca: autunno e inverno 2026"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Piazza San Martino",
+                "street_address": "Piazza San Martino",
+                "city": "Lucca",
+                "province": null,
+                "region": "Toscana",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "Il calendario turistico ufficiale indica per ciascuna edizione l’inizio alle 08:00 del sabato e la conclusione alle 20:00 della domenica. Questo intervallo non attesta l’apertura notturna continuativa delle bancarelle. L’ingresso è gratuito."
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-10-17",
+                  "start_time": "08:00",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-description-card explicit edition range",
+                    ".happings-event-description-card edition boundary hours"
+                  ],
+                  "interval_start": "2026-10-17",
+                  "interval_end": "2026-10-18"
+                },
+                {
+                  "date": "2026-10-18",
+                  "start_time": null,
+                  "end_time": "20:00",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-description-card explicit edition range",
+                    ".happings-event-description-card edition boundary hours"
+                  ],
+                  "interval_start": "2026-10-17",
+                  "interval_end": "2026-10-18"
+                },
+                {
+                  "date": "2026-11-14",
+                  "start_time": "08:00",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li",
+                    ".happings-event-description-card explicit edition range",
+                    "Event.startDate/endDate interval",
+                    ".happings-event-description-card edition boundary hours"
+                  ],
+                  "interval_start": "2026-11-14",
+                  "interval_end": "2026-11-15"
+                },
+                {
+                  "date": "2026-11-15",
+                  "start_time": null,
+                  "end_time": "20:00",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-description-card explicit edition range",
+                    "Event.startDate/endDate interval",
+                    ".happings-event-description-card edition boundary hours"
+                  ],
+                  "interval_start": "2026-11-14",
+                  "interval_end": "2026-11-15"
+                },
+                {
+                  "date": "2026-12-19",
+                  "start_time": "08:00",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li",
+                    ".happings-event-description-card explicit edition range",
+                    ".happings-event-description-card edition boundary hours"
+                  ],
+                  "interval_start": "2026-12-19",
+                  "interval_end": "2026-12-20"
+                },
+                {
+                  "date": "2026-12-20",
+                  "start_time": null,
+                  "end_time": "20:00",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-description-card explicit edition range",
+                    ".happings-event-description-card edition boundary hours"
+                  ],
+                  "interval_start": "2026-12-19",
+                  "interval_end": "2026-12-20"
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "present",
+              "value": [
+                {
+                  "start": "2026-10-17",
+                  "end": "2026-10-18",
+                  "start_time": "08:00",
+                  "end_time": "20:00",
+                  "hours_scope": "interval_boundaries",
+                  "continuous_opening_confirmed": false,
+                  "status": "source_listed",
+                  "evidence": [
+                    ".happings-event-description-card explicit edition range",
+                    ".happings-event-description-card edition boundary hours"
+                  ]
+                },
+                {
+                  "start": "2026-11-14",
+                  "end": "2026-11-15",
+                  "start_time": "08:00",
+                  "end_time": "20:00",
+                  "hours_scope": "interval_boundaries",
+                  "continuous_opening_confirmed": false,
+                  "status": "source_listed",
+                  "evidence": [
+                    ".happings-event-description-card explicit edition range",
+                    "Event.startDate/endDate interval",
+                    ".happings-event-description-card edition boundary hours"
+                  ]
+                },
+                {
+                  "start": "2026-12-19",
+                  "end": "2026-12-20",
+                  "start_time": "08:00",
+                  "end_time": "20:00",
+                  "hours_scope": "interval_boundaries",
+                  "continuous_opening_confirmed": false,
+                  "status": "source_listed",
+                  "evidence": [
+                    ".happings-event-description-card explicit edition range",
+                    ".happings-event-description-card edition boundary hours"
+                  ]
+                }
+              ]
+            },
+            "organizer": {
+              "state": "present",
+              "value": {
+                "name": "Comune di Lucca",
+                "url": "https://www.happings.com/it/organizer/comune-di-lucca/"
+              }
+            },
+            "contacts": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 43.8409408,
+                "longitude": 10.5049643,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "parsed",
+          "conflicts": [],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+            "read_on": "2026-10-20",
+            "status": "held",
+            "market_id": null,
+            "reason": "ambiguous_existing_identity",
+            "field_holds": [],
+            "matching": "ambiguous_existing_identity",
+            "possible_market_ids": [
+              "mercatino-antiquariato-e-usato-di-lucca-mercato-antiquario-lucchese-piazza-antel"
+            ]
+          }
+        },
+        {
+          "id": "detail-replay-20261020-castelrotto",
+          "requested_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+          "acquired_at": "2026-10-20T15:41:46.295803+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "e5ff56d561d4df2a7e495c71b69d23fe22a2f5729b0ecd0f8ef3d2eed2814fbc",
+          "bytes": 144687,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Mercato settimanale a Castelrotto"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Piazza del paese",
+                "street_address": "Piazza del paese",
+                "city": "Castelrotto",
+                "province": null,
+                "region": "Trentino-Alto Adige",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "8:00 - 12:00"
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-10-22",
+                  "start_time": "08:00",
+                  "end_time": "12:00",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li",
+                    "Event.startDate/endDate"
+                  ]
+                },
+                {
+                  "date": "2026-10-29",
+                  "start_time": "08:00",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-05",
+                  "start_time": "08:00",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                },
+                {
+                  "date": "2026-11-12",
+                  "start_time": "08:00",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ]
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "organizer": {
+              "state": "present",
+              "value": {
+                "name": "Associazione Turistica di Castelrotto",
+                "url": "https://www.happings.com/it/organizer/associazione-turistica-di-castelrotto/"
+              }
+            },
+            "contacts": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 46.568000793457,
+                "longitude": 11.559599876404,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "present",
+              "value": [
+                "Il mercato settimanale di Castelrotto propone abbigliamento locale e altri articoli nella piazza del paese. L’appuntamento si svolge il giovedì mattina e viene annullato in caso di maltempo."
+              ]
+            }
+          },
+          "parse_status": "parsed",
+          "conflicts": [],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+            "read_on": "2026-10-20",
+            "status": "held",
+            "market_id": null,
+            "reason": "ambiguous_existing_identity",
+            "field_holds": [],
+            "matching": "ambiguous_existing_identity",
+            "possible_market_ids": [
+              "mercato-settimanale-di-castelrotto-castelrotto-giovedi"
+            ]
+          }
+        },
+        {
+          "id": "detail-replay-20261020-piemontese",
+          "requested_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+          "acquired_at": "2026-10-20T15:42:08.444838+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "fa5aa012531ec6b5be3428d955deb5a6a4ade16a84cbbe4a1a22ef9aebf874e2",
+          "bytes": 143470,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "MERCATINO REGIONALE PIEMONTESE"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "PIAZZA CENTEMERO PALEARI — MONZA",
+                "street_address": "PIAZZA CENTEMERO PALEARI",
+                "city": "MONZA",
+                "province": null,
+                "region": "Lombardia",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "Inizio edizione: 31/10/2026 ore 09:30; fine edizione: 01/11/2026 ore 19:30. Questi orari indicano i confini dell’edizione; non attestano gli orari giornalieri o l’apertura continuativa."
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-10-31",
+                  "start_time": "09:30",
+                  "end_time": null,
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    "Event.startDate/endDate interval"
+                  ],
+                  "interval_start": "2026-10-31",
+                  "interval_end": "2026-11-01"
+                },
+                {
+                  "date": "2026-11-01",
+                  "start_time": null,
+                  "end_time": "19:30",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    "Event.startDate/endDate interval"
+                  ],
+                  "interval_start": "2026-10-31",
+                  "interval_end": "2026-11-01"
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "present",
+              "value": [
+                {
+                  "start": "2026-10-31",
+                  "end": "2026-11-01",
+                  "start_time": "09:30",
+                  "end_time": "19:30",
+                  "hours_scope": "interval_boundaries",
+                  "continuous_opening_confirmed": false,
+                  "status": "source_listed",
+                  "evidence": [
+                    "Event.startDate/endDate interval"
+                  ]
+                }
+              ]
+            },
+            "organizer": {
+              "state": "present",
+              "value": {
+                "name": "ASSOCIAZIONE MERCATINO REGIONALE PIEMONTESE",
+                "url": "https://www.happings.com/it/organizer/associazione-mercatino-regionale-piemontese/"
+              }
+            },
+            "contacts": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 45.58409,
+                "longitude": 9.27096,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "parsed",
+          "conflicts": [],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+            "read_on": "2026-10-20",
+            "status": "held",
+            "market_id": null,
+            "reason": "ambiguous_existing_identity",
+            "field_holds": [],
+            "matching": "ambiguous_existing_identity",
+            "possible_market_ids": [
+              "mercatino-regionale-piemontese-monza"
+            ]
+          }
+        },
+        {
+          "id": "detail-replay-20261020-natale_parcines",
+          "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+          "acquired_at": "2026-10-20T15:41:52.486746+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "0ea38afb17251db506fe98ff4c7c12d277bdc96faa0a631ec22c6b58af0724e9",
+          "bytes": 187679,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Mercatino di Natale di Parcines"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Piazza della chiesa di Parcines/Partschins",
+                "street_address": "Piazza della chiesa, 39020 Partschins",
+                "city": "Partschins",
+                "province": null,
+                "region": "Trentino-Alto Adige",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "10:00 - 16:00"
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-11-29",
+                  "start_time": "10:00",
+                  "end_time": "18:00",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    ".happings-event-performances li",
+                    "Event.startDate/endDate"
+                  ]
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "organizer": {
+              "state": "present",
+              "value": {
+                "name": "Associazioni di Parcines",
+                "url": "https://www.happings.com/it/organizer/associazioni-di-parcines/"
+              }
+            },
+            "contacts": {
+              "state": "present",
+              "value": [
+                {
+                  "kind": "website",
+                  "value": "https://www.partschins.com/it"
+                }
+              ]
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 46.6844308,
+                "longitude": 11.0734804,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "conflict",
+          "conflicts": [
+            {
+              "field": "hours_text",
+              "code": "schema_sidebar_hours_mismatch",
+              "values": [
+                {
+                  "start": "10:00",
+                  "end": "18:00"
+                },
+                [
+                  {
+                    "start": "10:00",
+                    "end": "16:00"
+                  }
+                ]
+              ]
+            }
+          ],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+            "read_on": "2026-10-20",
+            "status": "held",
+            "market_id": null,
+            "reason": "source_layout_or_content_conflict",
+            "field_holds": [],
+            "conflicts": [
+              {
+                "field": "hours_text",
+                "code": "schema_sidebar_hours_mismatch",
+                "values": [
+                  {
+                    "start": "10:00",
+                    "end": "18:00"
+                  },
+                  [
+                    {
+                      "start": "10:00",
+                      "end": "16:00"
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "detail-replay-20261020-natale_concerto",
+          "requested_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+          "acquired_at": "2026-10-20T15:42:01.871964+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "76ce1928a92446d2d7f3dc0c1674268b9976de7d0da529e0f454637e058a5ba5",
+          "bytes": 188505,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Mercatino di Natale Polvere di Stelle: Jingle Bells Rock"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Giardino dei Cappuccini",
+                "street_address": "Via Braunsberg 6",
+                "city": "Lana",
+                "province": null,
+                "region": "Trentino-Alto Adige",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "16:00 - 17:30"
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-12-12",
+                  "start_time": "16:00",
+                  "end_time": "17:30",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    "Event.startDate/endDate"
+                  ]
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "organizer": {
+              "state": "present",
+              "value": {
+                "name": "Associazione Turistica Lana e dintorni",
+                "url": "https://www.happings.com/it/organizer/associazione-turistica-lana-e-dintorni/"
+              }
+            },
+            "contacts": {
+              "state": "present",
+              "value": [
+                {
+                  "kind": "telephone",
+                  "value": "+39 0473 561770"
+                },
+                {
+                  "kind": "website",
+                  "value": "http://www.lanaregion.it"
+                }
+              ]
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 46.615905761719,
+                "longitude": 11.145051002502,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "conflict",
+          "conflicts": [
+            {
+              "field": "street_address",
+              "code": "description_schema_address_mismatch",
+              "values": [
+                "Via Braunsberg 6",
+                "Via Andreas Hofer 9/1, 39011 Lana"
+              ]
+            }
+          ],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+            "read_on": "2026-10-20",
+            "status": "held",
+            "market_id": null,
+            "reason": "source_layout_or_content_conflict",
+            "field_holds": [],
+            "conflicts": [
+              {
+                "field": "street_address",
+                "code": "description_schema_address_mismatch",
+                "values": [
+                  "Via Braunsberg 6",
+                  "Via Andreas Hofer 9/1, 39011 Lana"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "detail-replay-20261020-notizia_fumetti",
+          "requested_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+          "acquired_at": "2026-10-20T15:41:56.136859+00:00",
+          "state": "read",
+          "http_status": 200,
+          "sha256": "9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429",
+          "bytes": 159351,
+          "hash_basis": "http_response_bytes",
+          "content_reviewed": true,
+          "observed_final_url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+          "canonical_url_in_html": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+          "layout": {
+            "content": ".happings-event-content",
+            "structured_event": "Event matching the current canonical URL",
+            "performances": ".happings-event-performances",
+            "related_events": "excluded from identity/field extraction"
+          },
+          "field_map": {
+            "name": {
+              "state": "present",
+              "value": "Il mercato dei fumetti nel 2026, tra assestamento e crescita"
+            },
+            "location": {
+              "state": "present",
+              "value": {
+                "name": "Palazzo Guinigi",
+                "street_address": "Palazzo Guinigi",
+                "city": "Lucca",
+                "province": null,
+                "region": "Toscana",
+                "country": "IT",
+                "postal_code": null
+              }
+            },
+            "hours_text": {
+              "state": "present",
+              "value": "16:30 - 17:30"
+            },
+            "occurrences": {
+              "state": "present",
+              "value": [
+                {
+                  "date": "2026-10-28",
+                  "start_time": "16:30",
+                  "end_time": "17:30",
+                  "status": "source_listed",
+                  "note": null,
+                  "evidence": [
+                    "Event.startDate/endDate"
+                  ]
+                }
+              ]
+            },
+            "date_intervals": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "organizer": {
+              "state": "present",
+              "value": {
+                "name": "Lucca Crea srl",
+                "url": "https://www.happings.com/it/organizer/lucca-crea-srl/"
+              }
+            },
+            "contacts": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            },
+            "geo": {
+              "state": "present",
+              "value": {
+                "latitude": 43.8438092,
+                "longitude": 10.5073859,
+                "precision": "publisher_point_unverified"
+              }
+            },
+            "conditions": {
+              "state": "not_published_or_not_reconciled",
+              "value": []
+            }
+          },
+          "parse_status": "parsed",
+          "conflicts": [],
+          "catalog_outcome": {
+            "url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/",
+            "read_on": "2026-10-20",
+            "status": "held",
+            "market_id": null,
+            "reason": "source_category_or_event_is_not_a_market",
+            "field_holds": []
+          }
         }
       ],
       "findings": [
-        "fields_present_but_no_operational_detail_reader"
+        "Lettore operativo del dettaglio e discovery persistente collegati ad Autopilot DEV.",
+        "Due nuove identità nel replay; quattro confronti ambigui conservati senza fusione.",
+        "Due conflitti della fonte e un incontro non commerciale esclusi dall’importazione.",
+        "Date riportate dalla fonte, orari per data, intervalli e condizioni conservati fino all’interfaccia.",
+        "Data editoriale e lettura della fonte non costituiscono conferma dell’apertura."
       ],
       "code_sha256": {
-        "backend/happings_weekly_layout.py": "9cb3c14483849b77c45cbad60693fbf06295f784339f72c05ecc4b1e788189eb",
-        "backend/happings_source_enrichment.py": "050739dfb08231aaf1b4a83b97fc739618d04209e5f61600203ce41f4f48ea1f",
-        "backend/publisher_template_monitor.py": "d9ad0f5e1dda34a4169c87619a11fdbbe7d923dcf5099d9f737a75dd6ca73b5f"
+        "backend/happings_detail_layout.py": "1f443ca549b25be8df210282d0dbf596831ec83ba88dcd1196a7a02b232f9d7a",
+        "backend/happings_detail_discovery.py": "a0946a3acaed35ff5f884add03854bca412926c4fe3db777f2cb69ca813c1f08",
+        "backend/happings_detail_enrichment.py": "ddd78f2a73c7e9a726bfe6f658bc3e4dda29359010876c36b6495e6c367cfd68",
+        "backend/happings_detail_autopilot.py": "d3eaa28397e0e50badfd086c3a071d3e1e5e91ba21d211a6229aee0e86066281",
+        "backend/source_calendar.py": "2e21d72046dba26fa7105c5b03b11f18bbb9df711ecee32bed7cbe4f72f99c95",
+        "backend/happings_autopilot.py": "0d40e3f7cd2bb5074f27389d7b6d972ad958baf8d509d6a95d1705f57d5c89d8",
+        "backend/autopilot.py": "6f1c51d0d94fef5c35cf9f329fe68987d11aac55ccd0b3c931219f29e70cc552",
+        "backend/autopilot_policy.json": "88dca94b70a43fbee46b041f1dc5a8c7aeca57986afca083047eb5955721fd17",
+        "backend/publisher_refresh.py": "44faf5cad7083060138b8374fb67e340729d8dee776f39aeae957497c71f0589",
+        "backend/recurrence_refresh.py": "0c8469fdb7c7841f383e34b081488425af712561d8244ab10acecca50ca953cf",
+        "backend/export_static.py": "9bcdc0c677c6020f6c71c1583f9ed88f111b4f581221aa8093ec08a7c6a3720e",
+        "backend/milano_2026_release_guard.py": "a76b26a7ee41cf27726f458e8094996392e719b927f8439256060435cfcdd827",
+        "backend/source_contract_activation.py": "d484e63e799cb58ed92f801eab7b05aa6d08d2477e07326947b731414eef9e46",
+        "backend/catalog_quality_report.py": "2a311390f1993276f9b86374a8cd0fe60e88512212a2d9cc86e4eb9751b66ce4",
+        "src/lib/sourceCalendar.js": "a73786505eb7baf517758f80da5fc07c1d966843018a73f10329e96a62bd5c28",
+        "src/lib/dateDisclosure.js": "ea25a401851f82345d3d4fa183b76ab4f4b16900ceb2515a4b8dbc6c2eb6b6b3",
+        "src/hooks/useMarkets.js": "d96b5e482e1c98bfab852ae48fa78978f649a8c4b3c509bff840cc1231754390",
+        "src/services/staticMarkets.js": "082e6e2cdbaec7648ffc2308237af470f08055f5268d30ae68d690b00aa03b4a",
+        "src/App.jsx": "4c7d92c83b92343b1d34552b32baca97600ac4ad603ad46007177c72e95db632"
       },
-      "parser_comparison_basis": "same_sample_current_parser_replay",
-      "sample_catalog_urls": [],
+      "parser_comparison_basis": "nine_actual_responses_and_reduced_fixture_semantic_replay",
+      "sample_catalog_urls": [
+        "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/",
+        "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+        "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/",
+        "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/",
+        "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/",
+        "https://www.happings.com/it/happing/mercatino-regionale-piemontese/",
+        "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/",
+        "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/",
+        "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/"
+      ],
       "storage_snapshot": {
         "records": 0,
         "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
@@ -7593,23 +8988,23 @@
         "HAPP-FORMAT-07",
         "HAPP-FORMAT-08"
       ],
-      "evidence_report": "reports/automation/source-format-audit-2026-10-20/happings.json",
+      "evidence_report": "reports/automation/happings-detail-validation-2026-10-20.json",
       "checks": {
         "source_sample": {
           "state": "done",
-          "note": "Letti e analizzati 1 campioni del formato; acquisizioni, hash e transizioni registrati."
+          "note": "Nove nuove risposte HTTP complete analizzate, con URL finale, SHA e timestamp originali."
         },
         "field_mapping": {
           "state": "done",
-          "note": "Campi, assenze e limiti di attribuzione annotati nel campione; dati dell’evento distinti da footer, altri eventi e date editoriali."
+          "note": "Testo, self Event, elenco date, intervalli, condizioni e sottoeventi confrontati; conflitti mantenuti."
         },
         "parser_comparison": {
           "state": "done",
-          "note": "Replay del lettore provinciale sul contenuto restituito e confronto con il monitor del dettaglio; il monitor riconosce il template ma non importa i campi del dettaglio."
+          "note": "Nove replay dei byte originali uguali alle fixture nei fatti e conflitti; estrazione, discovery, raccordi ed interfaccia identificati dagli hash."
         },
         "storage_comparison": {
           "state": "done",
-          "note": "Risorsa ausiliaria: nessuna scheda conteggiata di nuovo; il raccordo alle identità esistenti resta separato dalla lettura."
+          "note": "Confronto con tutte le 13.824 schede; 13.826 schede nel candidato esportato, due nuove identità e nessuna riga precedente alterata dal dettaglio. Pubblicazione distinta dal replay."
         }
       }
     },
