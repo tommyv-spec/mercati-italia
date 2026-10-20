@@ -33,6 +33,7 @@ from field_evidence import (transfer_receipts, managed_update_allowed,
                             MAX_READ_AGE, SOURCE_AGE)
 from catalog_quality_report import VAGUE_ADDRESSES, key as address_key
 from recurrence_refresh import WEEKDAYS
+from lombardia_calendar_scope import calendar_scope
 from source_lombardia import (months_of_operation, weekday, convert as convert_lombardia,
                               DAY_LABELS)
 
@@ -213,6 +214,9 @@ def official_identity_issue(source):
     if (not isinstance(details, dict) or type(details.get("schema")) is not int
             or details.get("schema") != 1):
         return "official_raw_identity_missing"
+    scope = calendar_scope(source)
+    if scope and (scope["state"] in {"invalid", "ambiguous"} or scope.get("limited")):
+        return "official_raw_recurrence_not_annual_weekly"
     if (norm(details.get("periodicita_tipo")) != "settimanale"
             or details.get("frequenza_settimanale") not in (None, "")
             or months_of_operation(details.get("mesi_svolgimento")) != set(range(1, 13))

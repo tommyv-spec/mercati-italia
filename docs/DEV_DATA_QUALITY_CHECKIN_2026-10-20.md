@@ -19,7 +19,7 @@ conserva manifest, impronta, definizioni delle misure e limiti del confronto.
 | Orario vuoto | 10.853 |
 | Nessuna data futura | 1.918 |
 | Date future classificate `prevista` | 11.906 |
-| Date future classificate `segnalata` o `confermata` | 0 |
+| Date future classificate `riportata` o `confermata` | 0 |
 | Data del contenuto sorgente non dimostrata nel catalogo | 12.574 |
 | Almeno una ricevuta di campo valida esportata | 0 |
 | Lettore configurato per il formato primario | 9.451 |
@@ -48,12 +48,62 @@ rimangono storici: non vengono riscritti per farli coincidere con il risultato.
 Un numero dichiarato, un ID aggiuntivo senza prova o una sede modificata non
 autorizzano la pubblicazione.
 
+## Acquisizione reale del 20 ottobre, ore 16:50–17:02 UTC
+
+L'[esecuzione 39460884416](https://github.com/tommyv-spec/mercati-italia/actions/runs/39460884416)
+ha acquisito fonti HTTP e prodotto un candidato di 13.853 schede con tutte
+le 13.824 identità precedenti. Il commit DEV usato è
+`7b9388d532b4da1fc0ef14b5a64211420b306a76`. Il
+[confronto completo per fonte e formato](../reports/automation/dev-live-candidate-39460884416-quality.json)
+è legato all'impronta dell'artefatto originale e ai due manifest validati.
+
+**Questo candidato non è stato pubblicato.** I controlli sui dati, sulle prove
+sorgenti, sull'indice e sulla build sono passati. Il test mobile si è fermato
+perché un indirizzo appena recuperato porta un'altra scheda nella stessa sede:
+il controllo contava tutte le visite della sede invece di verificare il gruppo
+dei due duplicati originali. La correzione verifica quel gruppo e l'accesso
+a entrambi gli originali, conservando distinte le altre identità.
+
+| Misura con definizione invariata | DEV prima | Candidato HTTP |
+| --- | ---: | ---: |
+| Schede | 13.824 | 13.853 |
+| Indirizzi vuoti | 3.429 | 3.214 |
+| Indirizzi vuoti o vaghi, `audit_dataset` | 5.889 | 5.655 |
+| Orari vuoti | 10.853 | 10.593 |
+| Schede con ricevute di campo valide | 0 | 1.671 |
+| Schede con calendario esplicito della fonte valido | 0 | 29 |
+
+Sulle identità già presenti: 215 indirizzi vuoti recuperati, 26 sedi generiche
+precisate, 260 orari vuoti recuperati e un testo orario aggiornato. Nessun
+indirizzo o orario preesistente è stato svuotato; nessun nome, Comune o punto
+geografico è stato cambiato da questo aggiornamento. Le 29 nuove schede Happings
+hanno 152 date future esplicitamente pubblicate, classificate `riportata`.
+Il normale scorrimento delle previsioni e la rimozione delle date passate sono
+misurati separatamente e non sono conteggiati come nuove informazioni sorgenti.
+
+La lettura dei dettagli Happings ha completato 61 pagine entro il limite di
+420 secondi. Le 16 pagine provinciali selezionate hanno invece incontrato un
+redirect intermedio non riconosciuto. La catena realmente osservata è ora
+documentata nei test del trasporto; non viene resa più permissiva l'identità
+della pagina finale. La frontiera dei vecchi URL conserva il punto raggiunto
+e consuma al massimo due richieste del budget provinciale esistente.
+
+## Calendari con limiti dichiarati dalla fonte
+
+Il lettore MERCap conserva ora i campi originali `dal`, `al`, mesi, Comune,
+provincia e identità della sede. Le previsioni rispettano gli intervalli
+giorno/mese anche dopo merge, export e riapertura del catalogo senza rete.
+Valori composti o incompleti restano documentati e sospendono la previsione;
+non ricevono un anno o un'interpretazione inventati. Il replay completo conserva
+13.824 identità e rimuove 38 previsioni sicuramente fuori intervallo. Queste
+regole sono verificate anche dai controlli finali del percorso di pubblicazione.
+
 ## Check-in e criterio di completamento
 
 - [x] Misurare il catalogo realmente pubblicato, su tutte le fonti.
 - [x] Riprodurre i blocchi dei controlli finali sul candidato completo.
 - [x] Correggere i consumatori mantenendo la verifica semantica delle fonti.
-- [ ] Completare una nuova acquisizione HTTP nel normale Autopilot.
+- [x] Completare una nuova acquisizione HTTP nel normale Autopilot (`39460884416`).
 - [ ] Superare QA e pubblicazione con lo stesso commit DEV e gli stessi asset.
 - [ ] Confrontare il manifest pubblicato e la preview con il candidato verificato.
 - [ ] Misurare i recuperi effettivi e le lacune rimaste, con le stesse definizioni.

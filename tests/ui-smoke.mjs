@@ -219,8 +219,10 @@ try {
   await page.getByRole('button', { name: 'Azzera filtri' }).click()
   await assertCards()
 
-  // Albizzate: two source records for exactly one Tuesday at Piazzale Sefro
-  // must show one visit but retain two original links and their source IDs.
+  // Albizzate: the two identical source records at Piazzale Sefro must
+  // remain one visit with both originals accessible. Source enrichment can
+  // also resolve another record to this venue; its different source URL
+  // correctly leaves it in a separate visit instead of merging identities.
   await page.locator('.bottom-tabs').getByRole('button', { name: 'Impostazioni' }).click()
   await page.getByRole('button', { name: /Scegli una città/ }).click()
   await page.locator('.manual-city-input input').fill('Albizzate')
@@ -236,12 +238,17 @@ try {
     hasText: 'Piazzale Sefro',
   }).first()
   await piazzale.waitFor()
-  assert.equal(await piazzale.locator('.weekly-appointment').count(), 1,
-    'Duplicate original listings must show one visible weekly visit')
   const duplicateButton = piazzale.getByRole('button', { name: /2 schede della stessa fonte/ })
   assert.equal(await duplicateButton.count(), 1)
+  const duplicateVisit = piazzale.locator('.weekly-appointment-group').filter({
+    has: page.getByRole('button', { name: /2 schede della stessa fonte/ }),
+  })
+  assert.equal(await duplicateVisit.count(), 1,
+    'The identical source pair must belong to one reversible visit group')
+  assert.equal(await duplicateVisit.locator('.weekly-appointment').count(), 1,
+    'Duplicate original listings must show one visible weekly visit')
   await duplicateButton.click()
-  assert.equal(await piazzale.locator('.weekly-original-record').count(), 2,
+  assert.equal(await duplicateVisit.locator('.weekly-original-record').count(), 2,
     'The two original source records must remain accessible to visitors')
   await page.screenshot({ path: 'ux-weekly-duplicate-detail.png', animations: 'disabled' })
   await duplicateButton.click()

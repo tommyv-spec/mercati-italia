@@ -127,6 +127,11 @@
   "happings_enrichment": {
     "enabled": true,
     "max_pages": 16,
+    "legacy_resolution": {
+      "enabled": true,
+      "max_requests": 2,
+      "max_seconds": 45
+    },
     "details": {
       "enabled": true,
       "max_requests": 128,

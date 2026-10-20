@@ -1,0 +1,99 @@
+{
+  "mode": "CACHED_REPLAY_NO_HTTP",
+  "catalog_records": 13824,
+  "origin_urls": 43,
+  "queued_rows": 57,
+  "captured_http_chain": [
+    {
+      "requested_url": "https://www.happings.com/it/mercato-settimanale-a-trieste.html",
+      "fetched_at": "2026-10-20T17:05:22.353890+00:00",
+      "transport": "fixed_url_fixture_capture_no_redirect_following",
+      "status": 301,
+      "location": "https://www.happings.com/it/mercato-settimanale-a-trieste/"
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercato-settimanale-a-trieste/",
+      "fetched_at": "2026-10-20T17:06:27.730830+00:00",
+      "transport": "fixed_url_fixture_capture_no_redirect_following",
+      "status": 301,
+      "location": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/"
+    },
+    {
+      "requested_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+      "fetched_at": "2026-10-20T17:07:07.884036+00:00",
+      "transport": "fixed_url_fixture_capture_no_redirect_following",
+      "status": 200,
+      "final_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 139963,
+      "sha256": "5452a6fbd04d0fdcca6a3cdcc61dc303126edf67e6aff95da77e2576aa686c8a"
+    }
+  ],
+  "batch_requests": [
+    2,
+    1
+  ],
+  "source_rows": 52,
+  "resource_proof": {
+    "requested_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+    "final_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+    "canonical_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+    "resource_url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+    "source_html_sha256": "5452a6fbd04d0fdcca6a3cdcc61dc303126edf67e6aff95da77e2576aa686c8a",
+    "observed_on": "2026-10-20",
+    "province_heading": "trieste",
+    "source_rows": 52,
+    "matched_city_days": [
+      {
+        "city_key": "trieste",
+        "weekday": 0
+      },
+      {
+        "city_key": "trieste",
+        "weekday": 1
+      },
+      {
+        "city_key": "trieste",
+        "weekday": 2
+      },
+      {
+        "city_key": "trieste",
+        "weekday": 3
+      },
+      {
+        "city_key": "trieste",
+        "weekday": 4
+      },
+      {
+        "city_key": "trieste",
+        "weekday": 5
+      },
+      {
+        "city_key": "trieste",
+        "weekday": 6
+      }
+    ]
+  },
+  "newly_routable_ids": [
+    "mercato-settimanale-di-muggia-muggia-giovedi",
+    "mercato-settimanale-di-trieste-trieste-domenica",
+    "mercato-settimanale-di-trieste-trieste-giovedi",
+    "mercato-settimanale-di-trieste-trieste-lunedi",
+    "mercato-settimanale-di-trieste-trieste-martedi",
+    "mercato-settimanale-di-trieste-trieste-mercoledi",
+    "mercato-settimanale-di-trieste-trieste-sabato",
+    "mercato-settimanale-di-trieste-trieste-venerdi"
+  ],
+  "weekly_field_changes": 0,
+  "weekly_observed_ids": [],
+  "weekly_parser_counts": {
+    "conflicting_previously_saved_location": 2,
+    "html_market_rows": 52,
+    "no_unique_source_market_city_weekday": 6
+  },
+  "record_count_unchanged": true,
+  "seconds": 12.52,
+  "scope": "Only the observed Trieste redirect chain is replayed; all 13824 catalog rows are used for geography, routing and field conflicts.",
+  "raw_html_committed": false,
+  "reviewed_on": "2026-10-20"
+}

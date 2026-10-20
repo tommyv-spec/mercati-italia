@@ -60,6 +60,52 @@ RIGHTS_REVIEW_FILE=Path(__file__).resolve().parent/"data/happings-rights-review.
 MUNICIPALITIES_FILE=Path(__file__).resolve().parent/"data/istat-comuni-2026.json"
 SOURCE_EVIDENCE_NAME="Happings — elenco settimanale (sede indicativa; apertura non verificata)"
 FIELD_MANAGER="happings-weekly-index"
+FAILURE_CODES=frozenset({
+    "redirect_hop_limit", "redirect_loop", "redirect_unreviewed", "redirect_crossed_province",
+    "robots_denied_requested", "robots_denied_redirect", "robots_unavailable", "robots_invalid",
+    "crawl_delay_exceeded", "source_url_unreviewed", "source_dns_not_public", "dns_failure",
+    "response_mime_changed", "response_size_exceeded", "final_url_unreviewed",
+    "http_error", "connection_error", "timeout", "response_incomplete", "validation_failed",
+})
+
+
+def valid_failure_code(value):
+    """Allow bounded diagnostics in checkpoints without copying exception text."""
+    return isinstance(value,str) and bool(
+        value in FAILURE_CODES or re.fullmatch(r"http_[45]\d\d",value))
+
+
+def failure_code(error):
+    """Expose a stable operational reason; raw remote text/URLs stay private."""
+    if isinstance(error,HTTPError):
+        return "http_"+str(error.code) if type(error.code) is int and 400<=error.code<=599 else "http_error"
+    if isinstance(error,socket.gaierror):
+        return "dns_failure"
+    if isinstance(error,TimeoutError):
+        return "timeout"
+    if isinstance(error,OSError):
+        return "connection_error"
+    if isinstance(error,HTTPException):
+        return "response_incomplete"
+    return {
+        "Publisher redirect exceeds bounded hop count":"redirect_hop_limit",
+        "Publisher redirect repeats an observed URL":"redirect_loop",
+        "Source redirect left reviewed Happings province layout":"redirect_unreviewed",
+        "Publisher redirect crossed province":"redirect_crossed_province",
+        "Publisher redirected to a different market region":"redirect_crossed_province",
+        "Publisher robots policy denied requested weekly index":"robots_denied_requested",
+        "Publisher robots policy denied redirected weekly index":"robots_denied_redirect",
+        "Publisher robots unavailable: no automatic fetching":"robots_unavailable",
+        "Untrusted robots response":"robots_invalid",
+        "Publisher robots has no policy":"robots_invalid",
+        "Publisher crawl delay exceeds this bounded run":"crawl_delay_exceeded",
+        "Unapproved publisher URL":"source_url_unreviewed",
+        "Publisher hostname resolved to private address":"source_dns_not_public",
+        "Publisher changed response MIME type":"response_mime_changed",
+        "Publisher response exceeds bounded size":"response_size_exceeded",
+        "Publisher response exceeds bounded source page size":"response_size_exceeded",
+        "Publisher sent an unreviewed target URL":"final_url_unreviewed",
+    }.get(str(error),"validation_failed")
 
 
 def authorization_status(record, *, today=None):
@@ -145,17 +191,29 @@ class GuardedRedirects(HTTPRedirectHandler):
         self.hops=0
         self.robots=robots
         self.sleep=sleep
+        self.seen={expected}
 
     def redirect_request(self, request, fp, code, msg, headers, newurl):
         self.hops+=1
-        if self.hops>2 or not _valid_page_url(newurl):
+        if self.hops>2:
+            raise ValueError("Publisher redirect exceeds bounded hop count")
+        if newurl in self.seen:
+            raise ValueError("Publisher redirect repeats an observed URL")
+        # Observed 2026-10-20 for Crotone/Cuneo: legacy .html -> same
+        # exact slug + / -> reviewed -e-provincia/. The middle URL is
+        # transport only, never a catalog alias or an accepted final page.
+        intermediate=(self.hops==1 and _valid_page_url(self.expected)
+                      and self.expected.endswith(".html")
+                      and newurl==self.expected[:-5]+"/")
+        if not intermediate and not _valid_page_url(newurl):
             raise ValueError("Source redirect left reviewed Happings province layout")
         # Only province-specific old .html --> canonical -e-provincia/
         # changes from the same company. Never read an arbitrary path.
-        if province_page_key(self.expected)!=province_page_key(newurl):
+        if not intermediate and province_page_key(self.expected)!=province_page_key(newurl):
             raise ValueError("Publisher redirect crossed province")
         if self.robots is not None and not self.robots.can_fetch(USER_AGENT,newurl):
             raise ValueError("Publisher robots policy denied redirected weekly index")
+        self.seen.add(newurl)
         self.sleep(_request_pause(self.robots))
         return super().redirect_request(request,fp,code,msg,headers,newurl)
 
@@ -281,10 +339,17 @@ def _record_relation(row, requested_url, final_url):
     return None
 
 
-def catalog_page_routes(markets):
-    """Route compatible existing identities to existing province URLs."""
+def catalog_page_routes(markets, *, resource_urls=()):
+    """Route existing identities to catalog or independently observed resources.
+
+    The optional URLs come from the bounded legacy resolver's validated
+    receipts. They do not alter the town identity predicate or field proof.
+    """
     if not isinstance(markets,list) or not 0<=len(markets)<=MAX_MARKETS:
         raise ValueError("Unbounded publisher catalog routes")
+    if (not isinstance(resource_urls,(list,tuple)) or len(resource_urls)>10_000
+            or any(not _valid_page_url(url) for url in resource_urls)):
+        raise ValueError("Unreviewed publisher resource URLs")
     by_area=defaultdict(set)
     seen=set()
     for row in markets:
@@ -297,6 +362,11 @@ def catalog_page_routes(markets):
         if (row.get("fonte")==PUBLISHER and _valid_page_url(url)
                 and _catalog_geography_matches(row,url)):
             by_area[(fold(row.get("regione")),str(row.get("provincia") or "").strip().upper())].add(url)
+    page_areas=_official_geography()[1]
+    for url in resource_urls:
+        areas=page_areas.get(province_page_key(url),set())
+        if len(areas)==1:
+            by_area[next(iter(areas))].add(url)
     representatives={area:min(urls,key=lambda url:(province_page_key(url),url))
                      for area,urls in by_area.items()}
     routes={}
@@ -360,14 +430,14 @@ def _blocked_source_cohort(rows,source_city,weekday):
     return stored
 
 
-def select_pages(markets, *, today=None, limit=MAX_REQUESTS_PER_RUN):
+def select_pages(markets, *, today=None, limit=MAX_REQUESTS_PER_RUN, resource_urls=()):
     """Stable source rotation continues after addresses have been filled."""
     today=today or date.today()
     if (not isinstance(today,date) or not isinstance(markets,list)
         or not 1<=len(markets)<=MAX_MARKETS or type(limit) is not int
         or not 1<=limit<=MAX_REQUESTS_PER_RUN):
         raise ValueError("Unbounded publisher page scheduling")
-    ranked=sorted(set(catalog_page_routes(markets).values()),key=lambda url:(province_page_key(url),url))
+    ranked=sorted(set(catalog_page_routes(markets,resource_urls=resource_urls).values()),key=lambda url:(province_page_key(url),url))
     if not ranked:
         return []
     start=(today.toordinal()*limit)%len(ranked)
@@ -672,7 +742,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
 
 def fetch_pages(urls, *, permission_confirmed=False,
                 robots_fetch=_fetch_one, page_fetch=_fetch_one,
-                sleep=time.sleep, failures=None):
+                sleep=time.sleep, failures=None, robots=None):
     if permission_confirmed is not True:
         raise ValueError("No automated fetch without active project authorization")
     if not isinstance(urls,list) or not 1<=len(urls)<=MAX_REQUESTS_PER_RUN:
@@ -682,7 +752,7 @@ def fetch_pages(urls, *, permission_confirmed=False,
         raise ValueError("Publisher URL not from an approved weekly-index family")
     if failures is not None and (not isinstance(failures,list) or failures):
         raise ValueError("Publisher page failures must start as an empty list")
-    robots=robots_allowed(robots_fetch)
+    robots=robots_allowed(robots_fetch) if robots is None else robots
     delay=_request_pause(robots)
     result=[]
     for i,url in enumerate(urls):
@@ -701,7 +771,8 @@ def fetch_pages(urls, *, permission_confirmed=False,
         except (OSError,HTTPError,HTTPException,ValueError) as error:
             if failures is None:
                 raise
-            failures.append({"requested_url":url,"error_type":type(error).__name__})
+            failures.append({"requested_url":url,"error_type":type(error).__name__,
+                             "error_code":failure_code(error)})
     return result
 
 

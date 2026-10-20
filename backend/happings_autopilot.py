@@ -19,6 +19,7 @@ from urllib.error import HTTPError
 import happings_source_enrichment as source
 from export_static import normalize
 import happings_detail_autopilot as details
+import happings_legacy_resources as legacy
 
 SCHEMA = 1
 DEFAULT_POLICY = {"enabled": False}
@@ -32,7 +33,7 @@ def digest(value):
 
 
 def validate_policy(policy):
-    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages", "details"}
+    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages", "details", "legacy_resolution"}
             or type(policy.get("enabled", False)) is not bool
             or type(policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)) is not int
             or not 1 <= policy.get("max_pages", source.MAX_REQUESTS_PER_RUN) <= source.MAX_REQUESTS_PER_RUN):
@@ -41,6 +42,8 @@ def validate_policy(policy):
               "max_pages": policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)}
     if "details" in policy:
         result["details"] = details.validate_policy(policy["details"])
+    if "legacy_resolution" in policy:
+        result["legacy_resolution"] = legacy.validate_policy(policy["legacy_resolution"])
     return result
 
 
@@ -73,6 +76,17 @@ def _pack_page(page):
     }
 
 
+def _valid_page_failure(failure):
+    if (not isinstance(failure, dict)
+            or set(failure) not in ({"requested_url", "error_type"}, {"requested_url", "error_type", "error_code"})
+            or not isinstance(failure.get("error_type"), str)
+            or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,79}", failure["error_type"])):
+        return False
+    if "error_code" in failure:
+        return source.valid_failure_code(failure["error_code"])
+    return True
+
+
 def _unpack_pages(saved, context):
     if (not isinstance(saved, dict) or saved.get("schema") != SCHEMA
             or saved.get("context") != context or not isinstance(saved.get("pages"), list)
@@ -102,11 +116,9 @@ def _unpack_pages(saved, context):
         raise ValueError("Happings checkpoint lost failed page outcomes")
     failed = set()
     for failure in failures:
-        if (not isinstance(failure, dict) or set(failure) != {"requested_url", "error_type"}
+        if (not _valid_page_failure(failure)
                 or failure.get("requested_url") not in context["selected_urls"]
-                or failure["requested_url"] in seen | failed
-                or not isinstance(failure.get("error_type"), str)
-                or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,79}", failure["error_type"])):
+                or failure["requested_url"] in seen | failed):
             raise ValueError("Happings checkpoint lost failed page identity")
         failed.add(failure["requested_url"])
     if [item["requested_url"] for item in failures] != [url for url in context["selected_urls"] if url in failed]:
@@ -122,7 +134,7 @@ def _unpack_pages(saved, context):
     return pages
 
 
-def _fetch_and_checkpoint(urls, path, context, fetcher=None):
+def _fetch_and_checkpoint(urls, path, context, fetcher=None, *, robots=None, robots_error=None):
     """Keep every completed page even if a later request fails or is interrupted."""
     failures = []
     saved = {"schema": SCHEMA, "context": context, "status": "fetch_started", "pages": [],
@@ -141,9 +153,12 @@ def _fetch_and_checkpoint(urls, path, context, fetcher=None):
         return raw, final
 
     try:
+        if robots_error:
+            raise ValueError("Publisher robots unavailable during legacy resource resolution")
         if fetcher is None:
+            shared = {"robots": robots} if robots is not None else {}
             pages = source.fetch_pages(list(urls), permission_confirmed=True, page_fetch=capture,
-                                       failures=failures)
+                                       failures=failures, **shared)
         else:
             pages = fetcher(list(urls), permission_confirmed=True, failures=failures)
         if not isinstance(pages, list) or any(not isinstance(page, dict) for page in pages):
@@ -159,10 +174,7 @@ def _fetch_and_checkpoint(urls, path, context, fetcher=None):
         # fails. Missing outcomes are explicit; no date or content is guessed.
         succeeded = {page["requested_url"] for page in saved["pages"]}
         known_failures = {item.get("requested_url"): item for item in failures
-                          if isinstance(item, dict) and set(item) == {"requested_url", "error_type"}
-                          and item.get("requested_url") in urls
-                          and isinstance(item.get("error_type"), str)
-                          and re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,79}", item["error_type"])}
+                          if _valid_page_failure(item) and item.get("requested_url") in urls}
         saved["failures"] = [known_failures.get(url, {"requested_url": url, "error_type": type(error).__name__})
                              for url in urls if url not in succeeded]
     saved["status"] = ("partial_unavailable" if saved["pages"] and saved["failures"]
@@ -172,8 +184,119 @@ def _fetch_and_checkpoint(urls, path, context, fetcher=None):
     return pages, saved
 
 
+def _run_legacy(base, *, policy, out, today, context, previous_state_path=None,
+                offline=False, resume=False, fetcher=None):
+    """Discover resource URLs only; raw responses never become market facts here."""
+    policy = legacy.validate_policy(policy)
+    catalog = legacy.catalog_context(base)
+    previous = None
+    if previous_state_path and Path(previous_state_path).is_file():
+        if Path(previous_state_path).stat().st_size > legacy.MAX_STATE_BYTES:
+            raise ValueError("Unbounded persisted legacy resource frontier")
+        previous = legacy.validate_state(json.loads(Path(previous_state_path).read_text("utf-8")), today=today)
+    seeded = legacy.seed_state(base, state=previous, today=today, catalog=catalog)
+    state = seeded
+    context = {**context, "legacy_policy": policy, "initial_state_sha256": digest(seeded)}
+    path = Path(out) / "sources" / "happings-legacy-pages.json"
+    report = {"enabled": policy["enabled"], "status": "disabled",
+              "state_before_sha256": digest(previous), "state_after_sha256": digest(state),
+              "state_changed": previous != state, "available_resource_urls": [],
+              "acquisition": {"requests_attempted": 0, "request_slots_used": 0,
+                              "max_requests": policy["max_requests"], "max_seconds": policy["max_seconds"],
+                              "elapsed_seconds": 0, "budget_stop": "not_run", "outcomes": []}}
+    robots, robots_error = None, None
+
+    def pack(captures):
+        return [{**{k: v for k, v in capture.items() if k != "html"},
+                 "html_base64": base64.b64encode(capture["html"]).decode("ascii")} for capture in captures]
+
+    def checkpoint(current, acquisition, captures):
+        snapshot = {**report, "status": "acquired", "acquisition": acquisition,
+                    "state_after_sha256": digest(current), "state_changed": previous != current,
+                    "available_resource_urls": legacy.known_resources(current, base, today=today, catalog=catalog)}
+        _write_json(path, {"schema": SCHEMA, "context": context, "state": current,
+                           "report": snapshot, "captures": pack(captures)})
+
+    if policy["enabled"] and resume:
+        if not path.is_file():
+            report["status"] = "resume_missing_evidence"
+        else:
+            if path.stat().st_size > legacy.MAX_STATE_BYTES + legacy.MAX_REQUESTS * source.MAX_RESPONSE_BYTES * 2:
+                raise ValueError("Unbounded legacy resource checkpoint")
+            saved = json.loads(path.read_text("utf-8"))
+            if (not isinstance(saved, dict) or set(saved) != {"schema", "context", "state", "report", "captures"}
+                    or saved["schema"] != SCHEMA or saved["context"] != context
+                    or not isinstance(saved["captures"], list) or len(saved["captures"]) > policy["max_requests"]):
+                raise ValueError("Legacy resource resume context changed")
+            state = legacy.validate_state(saved["state"], today=today)
+            report = saved["report"]
+            if (report.get("state_before_sha256") != digest(previous)
+                    or report.get("state_after_sha256") != digest(state)
+                    or report.get("state_changed") != (previous != state)
+                    or report.get("available_resource_urls") != legacy.known_resources(state, base, today=today, catalog=catalog)
+                    or report.get("acquisition", {}).get("max_requests") != policy["max_requests"]
+                    or report.get("acquisition", {}).get("max_seconds") != policy["max_seconds"]
+                    or type(report["acquisition"].get("request_slots_used")) is not int
+                    or not 0 <= report["acquisition"]["request_slots_used"] <= policy["max_requests"]
+                    or type(report["acquisition"].get("requests_attempted")) is not int
+                    or not 0 <= report["acquisition"]["requests_attempted"] <= report["acquisition"]["request_slots_used"]):
+                raise ValueError("Legacy resource checkpoint lost its request budget or state")
+            origins = catalog["origins"]
+            entries = {item["origin_url"]: item for item in state["resources"]}
+            initial = {item["origin_url"]: item["proof"] for item in seeded["resources"]}
+            changed = {url for url, item in entries.items() if item["proof"] != initial.get(url)}
+            captured = set()
+            for capture in saved["captures"]:
+                if (not isinstance(capture, dict) or set(capture) != {
+                        "origin_url", "requested_url", "final_url", "html_base64", "proof"}
+                        or capture["origin_url"] not in changed or capture["origin_url"] in captured
+                        or capture["final_url"] != capture["requested_url"]):
+                    raise ValueError("Legacy checkpoint capture lost its original URL")
+                try:
+                    raw = base64.b64decode(capture["html_base64"], validate=True)
+                except (TypeError, ValueError):
+                    raise ValueError("Invalid legacy checkpoint HTML") from None
+                entry = entries[capture["origin_url"]]
+                proof, status = legacy.prove_resource(entry, capture["requested_url"], raw,
+                                                      origins.get(capture["origin_url"], []), today=today)
+                if status != "resolved" or proof != capture["proof"] or proof != entry["proof"]:
+                    raise ValueError("Legacy resource proof is not bound to its captured HTML")
+                captured.add(capture["origin_url"])
+            if captured != changed:
+                raise ValueError("Legacy checkpoint has an uncaptured resource success")
+            report["status"] = "resumed_checkpoint"
+    elif policy["enabled"] and offline:
+        report["status"] = "offline_skipped"
+    elif policy["enabled"]:
+        if not legacy.pending_origins(state, base, today=today, catalog=catalog):
+            report["status"] = "no_pending_legacy"
+        else:
+            try:
+                robots = source.robots_allowed()
+            except (OSError, HTTPException, ValueError) as error:
+                robots_error = type(error).__name__
+                report.update(status="robots_unavailable", error_type=robots_error)
+            if robots is not None:
+                arguments = {"fetcher": fetcher} if fetcher is not None else {}
+                state, acquisition, captures = legacy.acquire(
+                    base, state, today=today, robots=robots, max_requests=policy["max_requests"],
+                    max_seconds=policy["max_seconds"], checkpoint=checkpoint, catalog=catalog, **arguments)
+                report.update(status="acquired", acquisition=acquisition)
+                checkpoint(state, acquisition, captures)
+    report.update(state_after_sha256=digest(state), state_changed=previous != state,
+                  available_resource_urls=legacy.known_resources(state, base, today=today, catalog=catalog),
+                  pending_origin_urls=legacy.pending_origins(state, base, today=today, catalog=catalog),
+                  known_origin_urls=len(state["resources"]))
+    report["identity_unproven_rows"] = sum(not source._town_url_matches(row)
+                                            for rows in catalog["origins"].values() for row in rows)
+    _write_json(Path(out) / legacy.STATE_FILENAME, state)
+    _write_json(Path(out) / "happings-legacy-resolution.json", report)
+    return state, report, robots, robots_error
+
+
 def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
-        offline=False, resume=False, rights_path=None, fetcher=None):
+        offline=False, resume=False, rights_path=None, fetcher=None,
+        legacy_state_path=None, legacy_fetcher=None):
     """Return (candidate rows, bounded evidence report, IDs export must retain)."""
     policy = validate_policy(policy)
     if (not isinstance(today, date) or type(offline) is not bool or type(resume) is not bool
@@ -207,13 +330,30 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
     if policy["enabled"] and not authorization["authorized"]:
         report["status"] = "blocked_rights"
     elif policy["enabled"]:
-        urls = source.select_pages(base, today=today, limit=policy["max_pages"])
+        resource_urls, robots, robots_error, consumed = [], None, None, 0
+        legacy_policy = policy.get("legacy_resolution", legacy.DEFAULT_POLICY)
+        if legacy_policy["enabled"]:
+            bounded_policy = {**legacy_policy, "max_requests": min(legacy_policy["max_requests"], policy["max_pages"])}
+            _, report["legacy_resolution"], robots, robots_error = _run_legacy(
+                base, policy=bounded_policy, out=out, today=today,
+                context={"today": today.isoformat(), "baseline_signature": baseline_signature,
+                         "input_sha256": report["input_sha256"], "policy_sha256": pipeline_policy_digest,
+                         "rights_sha256": rights_digest}, previous_state_path=legacy_state_path,
+                offline=offline, resume=resume, fetcher=legacy_fetcher)
+            resource_urls = report["legacy_resolution"]["available_resource_urls"]
+            consumed = report["legacy_resolution"]["acquisition"]["request_slots_used"]
+        remaining = policy["max_pages"] - consumed
+        urls = source.select_pages(base, today=today, limit=remaining, resource_urls=resource_urls) if remaining else []
+        report["legacy_request_slots_used"] = consumed
+        report["remaining_index_page_budget"] = remaining
         report["selected_urls"] = urls
         context = {
             "today": today.isoformat(), "baseline_signature": baseline_signature,
             "input_sha256": report["input_sha256"], "policy_sha256": pipeline_policy_digest,
             "rights_sha256": rights_digest, "selected_urls": urls,
         }
+        if "legacy_resolution" in report:
+            context["legacy_state_sha256"] = report["legacy_resolution"]["state_after_sha256"]
         pages = []
         if not urls:
             report["status"] = "no_eligible_pages"
@@ -238,7 +378,8 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
         elif offline:
             report["status"] = "offline_skipped"
         else:
-            pages, saved = _fetch_and_checkpoint(urls, path, context, fetcher)
+            pages, saved = _fetch_and_checkpoint(urls, path, context, fetcher,
+                                                 robots=robots, robots_error=robots_error)
             report["status"] = saved["status"]
             report["page_failures"] = deepcopy(saved["failures"])
             if saved.get("error_type"):
@@ -272,6 +413,13 @@ def _verify_weekly_changes(before, after, report):
                 r["slug"] for r in before if r.get("fonte") == source.PUBLISHER))
             or [r["slug"] for r in before] != [r["slug"] for r in after]):
         raise ValueError("Happings field phase changed its baseline or market identities")
+    consumed = report.get("legacy_request_slots_used", 0)
+    maximum = report.get("max_index_pages_per_run")
+    if (type(consumed) is not int or not 0 <= consumed <= legacy.MAX_REQUESTS
+            or type(maximum) is not int or not 1 <= maximum <= source.MAX_REQUESTS_PER_RUN
+            or len(report.get("selected_urls", [])) + consumed > maximum
+            or ("legacy_resolution" in report and consumed != report["legacy_resolution"]["acquisition"]["request_slots_used"])):
+        raise ValueError("Legacy requests exceeded the shared Happings weekly budget")
     authorization_states = {
         "authenticated": (True, "authenticated_publisher_grant", True),
         "project_owner_authorized": (True, "explicit_project_owner_instruction", False),
@@ -358,14 +506,16 @@ def _weekly_rows(before, report):
 
 def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
         offline=False, resume=False, rights_path=None, fetcher=None,
-        detail_fetcher=None, detail_state_path=None, detail_bootstrap=details.BOOTSTRAP):
+        detail_fetcher=None, detail_state_path=None, detail_bootstrap=details.BOOTSTRAP,
+        legacy_state_path=None, legacy_fetcher=None):
     """Run existing weekly repairs, then the source-bound detail mechanism."""
     policy = validate_policy(policy)
     updated, report, preserve_ids = _run_weekly(
-        base, policy={key: policy[key] for key in ("enabled", "max_pages")},
+        base, policy={key: policy[key] for key in ("enabled", "max_pages", "legacy_resolution") if key in policy},
         out=out, today=today, baseline_signature=baseline_signature,
         pipeline_policy_digest=pipeline_policy_digest, offline=offline, resume=resume,
-        rights_path=rights_path, fetcher=fetcher)
+        rights_path=rights_path, fetcher=fetcher, legacy_state_path=legacy_state_path,
+        legacy_fetcher=legacy_fetcher)
     detail_policy = policy.get("details", details.DEFAULT_POLICY)
     if detail_policy["enabled"] and policy["enabled"] and report["fetch_authorized"]:
         updated, report["details"], state = details.run(
@@ -455,6 +605,20 @@ def markdown(report):
         "- Gli elenchi provinciali aggiornano sedi e riscontri; le date esplicite appartengono al lettore dei dettagli.\n"
         "- I riscontri essenziali sono conservati con la scheda; HTML e rapporto dettagliato restano nei checkpoint temporanei.\n"
     )
+    if "legacy_resolution" in report:
+        legacy_report = report["legacy_resolution"]
+        result += (
+            "\n## Collegamenti comunali storici\n\n"
+            f"- Stato: `{legacy_report['status']}`.\n"
+            f"- URL di origine tracciati: {legacy_report['known_origin_urls']}.\n"
+            f"- Risorse provinciali osservate: {len(legacy_report['available_resource_urls'])}.\n"
+            f"- URL in attesa di lettura: {len(legacy_report['pending_origin_urls'])}.\n"
+            f"- Schede con identità comunale ancora da provare: {legacy_report['identity_unproven_rows']}.\n"
+            f"- Richieste HTTP: {legacy_report['acquisition']['requests_attempted']}; "
+            f"slot utilizzati nel budget settimanale: {legacy_report['acquisition']['request_slots_used']}.\n"
+            "- Originale, risposta HTTP e canonical dichiarato restano distinti. "
+            "La risoluzione non corregge identità, province o indirizzi e non conferma aperture.\n"
+        )
     if "details" in report:
         detail = report["details"]
         result += (

@@ -17,6 +17,9 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, build_opener, HTTPRedirectHandler
+from lombardia_calendar_scope import (
+    IDENTITY_FIELDS, calendar_scope, filter_dates, scope_label, source_identity,
+)
 
 DATASET_ID = "68zx-njaw"
 SOURCE_PAGE = "https://www.dati.lombardia.it/d/68zx-njaw"
@@ -36,10 +39,6 @@ EXCLUDED_CITIES = frozenset({"MILANO"})
 # Preserve the source qualifiers needed for safe cross-source joins. The
 # legacy public category remains unchanged; a broad "misto" label alone is
 # not evidence that a market really has both merchandise sectors.
-IDENTITY_FIELDS = (
-    "periodicita_tipo", "giorno", "frequenza_settimanale", "mesi_svolgimento",
-    "n_post_alim", "n_post_non_alim", "n_post_tot",
-)
 
 
 class NoRedirect(HTTPRedirectHandler):
@@ -269,7 +268,11 @@ def convert(payload, today=None):
         )
         if historical_address_note:
             descr += " Nota storica sulla sede, NON verificata: " + raw_address + "."
-        output.append({
+        identity = source_identity(record)
+        boundary_label = scope_label(identity)
+        if boundary_label:
+            recurrence += "; " + boundary_label
+        market = {
             "slug": slug,
             "nome": name[:158],
             "citta": city.title(), "provincia": province, "regione": "Lombardia",
@@ -286,12 +289,14 @@ def convert(payload, today=None):
             "aggiornato_il": source_updated.isoformat(),
             "aggiornamento_ambito": "dataset",
             "id_fonte": ident,
-            "identita_fonte": {"schema": 1, **{
-                key: record.get(key) for key in IDENTITY_FIELDS
-            }},
+            "identita_fonte": identity,
             "verificato_il": "",
             "confidence": 0,
-        })
+        }
+        scope = calendar_scope(market)
+        market["date"] = filter_dates(dates, scope)
+        market["date_quality"] = "prevista" if market["date"] else "sconosciuta"
+        output.append(market)
     if len(output) < 1000:
         raise ValueError("Lombardia importer returned implausibly few valid records")
     return sorted(output, key=lambda x: x["slug"])
