@@ -103,7 +103,10 @@ def source_identity(url):
                 return "cosedicasa.com", match[1]
     except ValueError:
         pass
-    return None
+    # A narrow existing-detail adapter owns its reviewed origins and exact
+    # URL grammar; this does not enable arbitrary Citynews hosts or indexes.
+    from citynews_urls import source_identity as citynews_identity
+    return citynews_identity(url)
 
 
 def _bounded(value, depth=0):

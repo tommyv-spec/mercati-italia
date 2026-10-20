@@ -1,0 +1,392 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "network_requests": 0,
+  "code_worktree": "/workspace/scratch/81e91a77b820/mercati-editorial-retry",
+  "catalog_baseline": "/tmp/vintagery-dev-39483325379/public/data/v1/manifest.json",
+  "catalog_manifest_sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625",
+  "observed_run": 39471001816,
+  "migration": {
+    "eventiesagre.it": {
+      "source": "/tmp/vintagery-live-39471001816/eventiesagre-detail-state.json",
+      "source_sha256": "b2c782a42008fbdadbe7bb88802fb20894ceac695cc8fdf10b811689929e8da5",
+      "stored_schema": 1,
+      "validated_schema": 2,
+      "resource_count": 1853,
+      "observation_dates_hashes_and_attempts_retained": true,
+      "underlying_legacy_failure_cause": "not recorded; cannot infer from URLError alone",
+      "failure_streak_invented": false,
+      "stored_counts": {
+        "attempted": 19,
+        "read": 11,
+        "statuses": {
+          "retrieved": 11,
+          "unavailable": 8,
+          "unread": 1834
+        }
+      },
+      "after": {
+        "cycle": 1,
+        "cycle_started_on": "2026-10-20",
+        "resources": 1853,
+        "cycle_attempted": 19,
+        "cycle_read": 11,
+        "cycle_remaining": 1834,
+        "attempt_cycle_complete": false,
+        "successful_read_cycle_complete": false,
+        "last_completed_cycle": 0,
+        "never_read": 1842,
+        "overdue_after_days": 45,
+        "statuses": {
+          "retrieved": 11,
+          "unavailable": 8,
+          "unread": 1834
+        },
+        "retry_pending": 8,
+        "retry_due": 0,
+        "retry_backoff_days": [
+          1,
+          2,
+          4,
+          7
+        ],
+        "retry_share_when_fresh_pending": "one_in_four_attempts",
+        "market_freshness_guaranteed": false
+      },
+      "next_day": {
+        "mode": "selection simulation only; no read success assumed",
+        "date": "2026-10-21",
+        "selected": 64,
+        "prior_failures_selected": 8,
+        "first_or_current_cycle_selected": 56,
+        "first_19_prior_failures": 5,
+        "urls": [
+          "https://www.eventiesagre.it/Eventi_Feste/21062977_pero+in+festa.html",
+          "https://www.eventiesagre.it/Eventi_Enogastronomici/21145551_Borgo+DiVino+in+Tour+a+Citta+SantaAngelo.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21092070_Primavera+In+Piazza.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21170497_Festa+Di+Primavera+A+San+Martino.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21172277_Serate+Agostane+A+Condofuri.html",
+          "https://www.eventiesagre.it/Eventi_Enogastronomici/21157966_L+Ape+In+Citta.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21186805_Abbey+Fest+All+abbazia+Di+Mirasole+A+Opera.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21189469_Natale+Di+Luci.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21194238_Oli+Day.html",
+          "https://www.eventiesagre.it/Eventi_Enogastronomici/21160786_Festa+Del+Cardo+Dolce+A+Cervia.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21194845_Il+Mercatino+Della+Festa+Rione+San+Bonaventura.html",
+          "https://www.eventiesagre.it/Eventi_Feste/21195441_Massaciuccoli+In+Festa.html",
+          "https://www.eventiesagre.it/Eventi_Festival/21161723_Gradara+800+A+Vapore.html",
+          "https://www.eventiesagre.it/Eventi_Enogastronomici/21177849_Festival+Delle+Regioni+D+italia+A+Falvaterra.html",
+          "https://www.eventiesagre.it/Eventi_Festival/21173054_Il+Festival+Hippie+A+Roma.html",
+          "https://www.eventiesagre.it/Eventi_Festival/21192780_Green+Market+Festival+Giornata+Della+Terra.html",
+          "https://www.eventiesagre.it/Eventi_Festival/21194149_Pasqua+Tra+Le+Mura.html",
+          "https://www.eventiesagre.it/Eventi_Enogastronomici/21193524_Monte+Food+Festival+A+Monticelli+Terme.html",
+          "https://www.eventiesagre.it/Eventi_Festival/21194258_Green+Market+Festival+18+19+Maggio.html",
+          "https://www.eventiesagre.it/Eventi_Festival/21195123_Woodstock+A+Tragliata.html",
+          "https://www.eventiesagre.it/Eventi_Fiere/21087135_Artigianando.html",
+          "https://www.eventiesagre.it/Eventi_Enogastronomici/21195272_Pasta+Ripiena+E+Cacciagione.html",
+          "https://www.eventiesagre.it/Eventi_Folklore/21072795_Profumi+Di+Primavera+a+Collevecchio.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/11791_7+8+Novecento.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21021615_Mostra+Mercato+dell+Vinile+a+Castellanza.html",
+          "https://www.eventiesagre.it/Eventi_Feste/15489_Fiera+della+Pallavicina+a+Izano.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21042692_Artigianato+d+Eccellenza.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21050916_Mercato+Dell+antiquariato+E+Del+Collezionismo.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21053129_Mercantico+Lonatese+a+Lonato+del+Garda.html",
+          "https://www.eventiesagre.it/Eventi_Feste/17309_Festa+nel+Borgo+a+Cassinetta+di+Lugagnano.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21070780_Mercato+Settimanale+A+Cuggiono.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21088580_Mercanti+In+Villa.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21159660_CCR2+MOSTRA+SCAMBIO+RIUSO.html",
+          "https://www.eventiesagre.it/Eventi_Mostra+Mercato/21177862_Mostra+Scambio+Della+Bambola+E+Del+Giocattolo+D+epoca+E+Non+A+Roma.html",
+          "https://www.eventiesagre.it/Eventi_Sagre/21195398_Ferrara+Food+Festival.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/10595_Oggetti+e+cose+d+altri+tempi+a+Maniago.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/11255_Mercatino+dell+Antiquariato+di+Asolo.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/11734_Mercatino+Dell+Antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/11918_Mercatino+dellaAntiquariato+a+Piazzola+sul+Brenta.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/12090_Mercatino+dell+Antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/13409_Il+Gran+Balon.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/14063_Mercatino+Dell+antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/14623_Il+Mercatino+dell+Antiquariato+a+Albenga.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/14756_Mercatino+dell+Antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/15083_Mercato+dell+Antiquariato+a+Valeggio+Sul+Mincio.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/17905_Il+Mercatino+dell+antiquariato+di+Moncalvo.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/18240_Mercatino+dell+Antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/18411_Mercatino+Antiquariato+e+Vintage.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/18485_Mercatino+Antiquariato+di+Torri+del+Benaco.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/19003_Curiosando+il+Mercatino+Dell+antiquariato+E+Collezionismo.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/20032_Mercatino+dell+Antiquariato+Valsesiano.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21014169_Mercatino+Antiquariato+a+Mondovi.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21014201_Mercatino+di+Villa+Stecchini.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21017561_L+Angolo+dell+Antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21018091_Mercatino+Antiquariato+I+Portici+Di+Medicina.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21022268_Mercato+dell+Antiquariato+e+Collezionismo.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21023781_Mercatino+d+Antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21026372_Mercatino+dell+Antiquariato+a+Fontanellato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21032561_Mirandolantiquaria.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21035552_Mercatino+d+antiquariato+a+San+Bartolomeo+al+Mare.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21035554_Pietrantico.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21035634_Mercatino+dell+Antiquariato.html",
+          "https://www.eventiesagre.it/Mercatini_Antiquariato/21036009_Antiquariato+a+Bologna.html"
+        ]
+      },
+      "latest_published_state": {
+        "path": "/tmp/vintagery-dev-39483325379/public/data/v1/eventiesagre-detail-state.json",
+        "sha256": "b2c782a42008fbdadbe7bb88802fb20894ceac695cc8fdf10b811689929e8da5",
+        "stored_schema": 1,
+        "validated_schema": 2,
+        "normalized_copy": "/tmp/editorial-retry-rotation-validation-20261020/eventiesagre-detail-state.json",
+        "normalized_sha256": "fb609199a382814d9669bdff0cf14f9edbd8ef4773be2b9482410c20e9de5449"
+      }
+    },
+    "cosedicasa.com": {
+      "source": "/tmp/vintagery-live-39471001816/cosedicasa-detail-state.json",
+      "source_sha256": "14fd4df62ec909407084a11ede2c80eff22526df7f912f48483ec6522f6e740d",
+      "stored_schema": 1,
+      "validated_schema": 2,
+      "resource_count": 425,
+      "observation_dates_hashes_and_attempts_retained": true,
+      "underlying_legacy_failure_cause": "not recorded; cannot infer from URLError alone",
+      "failure_streak_invented": false,
+      "stored_counts": {
+        "attempted": 16,
+        "read": 16,
+        "statuses": {
+          "retrieved": 16,
+          "unread": 409
+        }
+      },
+      "after": {
+        "cycle": 1,
+        "cycle_started_on": "2026-10-20",
+        "resources": 425,
+        "cycle_attempted": 16,
+        "cycle_read": 16,
+        "cycle_remaining": 409,
+        "attempt_cycle_complete": false,
+        "successful_read_cycle_complete": false,
+        "last_completed_cycle": 0,
+        "never_read": 409,
+        "overdue_after_days": 45,
+        "statuses": {
+          "retrieved": 16,
+          "unread": 409
+        },
+        "retry_pending": 0,
+        "retry_due": 0,
+        "retry_backoff_days": [
+          1,
+          2,
+          4,
+          7
+        ],
+        "retry_share_when_fresh_pending": "one_in_four_attempts",
+        "market_freshness_guaranteed": false
+      },
+      "next_day": {
+        "mode": "selection simulation only; no read success assumed",
+        "date": "2026-10-21",
+        "selected": 16,
+        "prior_failures_selected": 0,
+        "first_or_current_cycle_selected": 16,
+        "first_19_prior_failures": 0,
+        "urls": [
+          "https://www.cosedicasa.com/mercatini/arona-lungolago-caduti-di-nassiria",
+          "https://www.cosedicasa.com/mercatini/ascoli-piceno-centro-storico",
+          "https://www.cosedicasa.com/mercatini/asiago-piazza-carli-via-trento-e-trieste",
+          "https://www.cosedicasa.com/mercatini/asola-piazza-xx-settembre",
+          "https://www.cosedicasa.com/mercatini/asolo-centro-storico",
+          "https://www.cosedicasa.com/mercatini/asti-centro-storico",
+          "https://www.cosedicasa.com/mercatini/aviano-piazza-duomo",
+          "https://www.cosedicasa.com/mercatini/badoere-piazza-indipendenza",
+          "https://www.cosedicasa.com/mercatini/bari-piazza-giuseppe-massari",
+          "https://www.cosedicasa.com/mercatini/bari-piazza-massari",
+          "https://www.cosedicasa.com/mercatini/bari-zona-carbonara",
+          "https://www.cosedicasa.com/mercatini/baura",
+          "https://www.cosedicasa.com/mercatini/bene-vagienna-augusta-antiquaria-mercatino-cuneo-piemonte",
+          "https://www.cosedicasa.com/mercatini/benevento-piazza-castello",
+          "https://www.cosedicasa.com/mercatini/bergamo-alta-piazza-vecchia",
+          "https://www.cosedicasa.com/mercatini/biella-la-brocanterie-giardini-alpini-ditalia"
+        ]
+      },
+      "latest_published_state": {
+        "path": "/tmp/vintagery-dev-39483325379/public/data/v1/cosedicasa-detail-state.json",
+        "sha256": "14fd4df62ec909407084a11ede2c80eff22526df7f912f48483ec6522f6e740d",
+        "stored_schema": 1,
+        "validated_schema": 2,
+        "normalized_copy": "/tmp/editorial-retry-rotation-validation-20261020/cosedicasa-detail-state.json",
+        "normalized_sha256": "0df8303939fd412700286a4c1293215d79bf62002cd0d34297f5b5ec512ddf3d"
+      }
+    }
+  },
+  "captured_replay": {
+    "eventiesagre.it": {
+      "checkpoint": "/tmp/vintagery-live-39471001816/sources/eventiesagre-detail-pages.json",
+      "sha256": "15762ea49481a91d902359ef08548660bd71b5c90c2b140d5b9c4d7643dd9e63",
+      "stored_checkpoint_schema": 1,
+      "checkpoint_v1_reinterpreted_as_runtime_v2": false,
+      "mode": "separate raw-body parser/evidence replay, preserving observed HTTP metadata",
+      "http_bodies_validated": 11,
+      "original_read_dates": [
+        "2026-10-20"
+      ],
+      "outcomes": {
+        "changed": 2,
+        "held": 2,
+        "observed": 8
+      },
+      "changed_existing_ids": [
+        "fiera-del-vino-a-polpenazze-del-garda-polpenazze-del-garda",
+        "le-vie-del-gusto-e-dell-artigianato-san-piero-patti"
+      ],
+      "field_changes": {
+        "evidenza_editoriale": 2
+      },
+      "proof": {
+        "release_safe": true,
+        "retained_ids": 13856,
+        "new_ids": 0,
+        "changed_existing_ids": 2
+      }
+    },
+    "cosedicasa.com": {
+      "checkpoint": "/tmp/vintagery-live-39471001816/sources/cosedicasa-detail-pages.json",
+      "sha256": "a2b091b03a51a4f2d8c58bece88424b604ad8c35c28be292e51dc4087168f869",
+      "stored_checkpoint_schema": 1,
+      "checkpoint_v1_reinterpreted_as_runtime_v2": false,
+      "mode": "separate raw-body parser/evidence replay, preserving observed HTTP metadata",
+      "http_bodies_validated": 16,
+      "original_read_dates": [
+        "2026-10-20"
+      ],
+      "outcomes": {
+        "observed": 14,
+        "held": 3
+      },
+      "changed_existing_ids": [],
+      "field_changes": {},
+      "proof": {
+        "release_safe": true,
+        "retained_ids": 13856,
+        "new_ids": 0,
+        "changed_existing_ids": 0
+      }
+    }
+  },
+  "catalog_rows": 13856,
+  "full_export": {
+    "rows": 13856,
+    "all_original_ids_retained": true,
+    "duplicate_preservation": "explicit original ID set, same preservation contract as the pipeline",
+    "stats": {
+      "same_source_duplicates_merged": 0,
+      "input": 13856,
+      "accepted": 13856,
+      "skipped": {},
+      "id_collisions_kept_separate": [],
+      "with_coordinates": 13550,
+      "with_source_url": 13856,
+      "with_future_date": 11907,
+      "human_verified": 0,
+      "by_region": {
+        "Abruzzo": 392,
+        "Basilicata": 36,
+        "Calabria": 328,
+        "Campania": 821,
+        "Emilia-Romagna": 902,
+        "Friuli Venezia Giulia": 242,
+        "Lazio": 1079,
+        "Liguria": 385,
+        "Lombardia": 3965,
+        "Marche": 288,
+        "Molise": 214,
+        "Piemonte": 1332,
+        "Puglia": 483,
+        "Sardegna": 384,
+        "Sicilia": 400,
+        "Toscana": 949,
+        "Trentino-Alto Adige": 223,
+        "Umbria": 176,
+        "Valle d'Aosta": 54,
+        "Veneto": 1203
+      }
+    },
+    "proofs": {
+      "eventiesagre.it": {
+        "release_safe": true,
+        "editorial_identities_checked": 10
+      },
+      "cosedicasa.com": {
+        "release_safe": true,
+        "editorial_identities_checked": 14
+      }
+    }
+  },
+  "next_day_offline": {
+    "date": "2026-10-21",
+    "rows": 13856,
+    "all_original_ids_retained": true,
+    "supported_editorial_evidence_unchanged": 24,
+    "read_timestamps_promoted": 0,
+    "network_requests": 0,
+    "reader_statuses": {
+      "eventiesagre.it": "offline_skipped",
+      "cosedicasa.com": "offline_skipped"
+    },
+    "proofs": {
+      "eventiesagre.it": {
+        "release_safe": true,
+        "editorial_identities_checked": 10
+      },
+      "cosedicasa.com": {
+        "release_safe": true,
+        "editorial_identities_checked": 14
+      }
+    },
+    "export_stats": {
+      "same_source_duplicates_merged": 0,
+      "input": 13856,
+      "accepted": 13856,
+      "skipped": {},
+      "id_collisions_kept_separate": [],
+      "with_coordinates": 13550,
+      "with_source_url": 13856,
+      "with_future_date": 11907,
+      "human_verified": 0,
+      "by_region": {
+        "Abruzzo": 392,
+        "Basilicata": 36,
+        "Calabria": 328,
+        "Campania": 821,
+        "Emilia-Romagna": 902,
+        "Friuli Venezia Giulia": 242,
+        "Lazio": 1079,
+        "Liguria": 385,
+        "Lombardia": 3965,
+        "Marche": 288,
+        "Molise": 214,
+        "Piemonte": 1332,
+        "Puglia": 483,
+        "Sardegna": 384,
+        "Sicilia": 400,
+        "Toscana": 949,
+        "Trentino-Alto Adige": 223,
+        "Umbria": 176,
+        "Valle d'Aosta": 54,
+        "Veneto": 1203
+      }
+    }
+  },
+  "limits": [
+    "This is offline validation, not a newly successful source retrieval.",
+    "The eight stored URLError records do not contain the underlying cause.",
+    "Retry selection is not proof of successful reading or current market information.",
+    "The existing caps and publisher pacing remain unchanged.",
+    "Public frontier advancement still requires the unchanged release guards to publish the candidate."
+  ],
+  "validation": {
+    "targeted_tests": 89,
+    "new_regressions": 18,
+    "independent_review": "approved after interruption cleanup regression",
+    "test_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=backend:backend/tests python -m unittest test_editorial_retry test_eventiesagre_detail_refresh test_existing_source_refresh test_existing_source_refresh_coverage -q",
+    "replay_runner": "/tmp/replay-editorial-retry-20261020.py",
+    "root_cause_of_legacy_8_errors": "unknown: only URLError type was stored"
+  }
+}

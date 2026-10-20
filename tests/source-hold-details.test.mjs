@@ -37,7 +37,7 @@ test('municipality navigation hold and publisher links survive regional lazy-loa
   globalThis.fetch=async (url)=>{
     const s=String(url)
     urls.push(s)
-    if(s.endsWith('/manifest.json')) return {ok:true,json:async()=>({
+    if(new URL(s, 'https://catalog.example').pathname.endsWith('/manifest.json')) return {ok:true,json:async()=>({
       schema:1,layout:'regional',total:1,regions:[{
         name:'Lombardia',count:1,path:'data/v1/regions/lombardia-proof.json',
       }],

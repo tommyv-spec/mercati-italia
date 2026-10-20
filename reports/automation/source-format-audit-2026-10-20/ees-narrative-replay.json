@@ -1,0 +1,886 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "CACHED_REPLAY_OF_ACTUAL_HTTP_BYTES",
+  "source_workflow_run": "39471001816",
+  "baseline_published_dev": "6274e1dd252173597bea539e9d95a1a936f446a3",
+  "baseline_signature": "caba80be4514927a00e882f434e6783a7cb330bb470824a2ac9c747e2f6d5c71",
+  "capture_path": "/tmp/vintagery-live-39471001816/sources/eventiesagre-detail-pages.json",
+  "capture_sha256": "15762ea49481a91d902359ef08548660bd71b5c90c2b140d5b9c4d7643dd9e63",
+  "network_requests": 0,
+  "remote_writes": 0,
+  "published_catalog_writes": 0,
+  "raw_bytes_and_sha_verified": true,
+  "existing_transport_proof_verified": true,
+  "source_pages": 11,
+  "historical_editions": 10,
+  "future_editions": 1,
+  "parsed_documents_changed": 3,
+  "parsed_documents_unchanged": 8,
+  "parser_new_historical_street_facts": 1,
+  "parser_pages_with_dated_hours_recovered": 3,
+  "joined_historical_street_facts": 0,
+  "joined_pages_with_dated_hours_and_conflicts": 2,
+  "pages_with_new_visible_hours_conflicts": 2,
+  "pages_with_new_visible_edition_conflicts": 1,
+  "new_current_address_or_hours_fields": 0,
+  "new_future_dates_applied": 0,
+  "catalog_before": 13856,
+  "catalog_after": 13856,
+  "new_ids": [],
+  "removed_ids": [],
+  "catalog_changes": [
+    {
+      "slug": "fiera-del-vino-a-polpenazze-del-garda-polpenazze-del-garda",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "source_id": "17258",
+      "historical": true,
+      "calendar_mode": "limit_forecasts"
+    },
+    {
+      "slug": "le-vie-del-gusto-e-dell-artigianato-san-piero-patti",
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "source_id": "21165715",
+      "historical": true,
+      "calendar_mode": "limit_forecasts"
+    }
+  ],
+  "all_non_editorial_record_values_unchanged": true,
+  "market_outcomes": [
+    {
+      "slug": "fiera-del-vino-a-polpenazze-del-garda-polpenazze-del-garda",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html",
+      "status": "changed",
+      "reason": "exact_existing_source_identity",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "borgo-divino-in-tour-a-celle-ligure-celle-ligure",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21052639_Borgo+DiVino+in+Tour+a+Celle+Ligure.html",
+      "status": "held",
+      "reason": "existing_venue_conflict",
+      "fields": []
+    },
+    {
+      "slug": "courmayeur-food-market-courmayeur",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21155326_Courmayeur+Food+Market.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "courmayeur-food-market-courmayeur-martedi",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21155326_Courmayeur+Food+Market.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "le-vie-del-gusto-e-dell-artigianato-san-piero-patti",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21165715_Le+Vie+Del+Gusto+E+Dell+artigianato.html",
+      "status": "changed",
+      "reason": "exact_existing_source_identity",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "legumi-che-passione-a-stra-stra",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21178870_Legumi+Che+Passione+A+Stra.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "la-zena-poreta-lavarone",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195228_La+Zena+Poreta.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "ciaspomagna-cimbra-luserna",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195255_Ciaspomagna+Cimbra.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "fasulin-de-l-oc-cun-le-cudeghe-pizzighettone",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/2269_Fasulin+De+L+oc+Cun+Le+Cudeghe.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "november-porc-polesine-zibello",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "mielinumbria-foligno",
+      "url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3318_Mielinumbria.html",
+      "status": "observed",
+      "reason": "exact_existing_source_identity",
+      "fields": []
+    },
+    {
+      "slug": "festa-dei-bisi-scorze",
+      "url": "https://www.eventiesagre.it/Eventi_Feste/1338_Festa+Dei+Bisi.html",
+      "status": "held",
+      "reason": "source_geography_not_established",
+      "fields": []
+    }
+  ],
+  "existing_receipts_count": 2264,
+  "existing_receipts_sha256": "c3758e6943338c02a46bed967fcf9cac2bd02e7e096cbfab7d1b7138d63a7359",
+  "all_existing_receipts_unchanged": true,
+  "existing_editorial_evidence_count": 25,
+  "final_editorial_evidence_count": 25,
+  "semantic_guard": {
+    "release_safe": true,
+    "retained_ids": 13856,
+    "new_ids": 0,
+    "changed_existing_ids": 2
+  },
+  "final_export_guard": {
+    "release_safe": true,
+    "editorial_identities_checked": 10
+  },
+  "static_validation_passed": true,
+  "replay_is_idempotent": true,
+  "targeted_eventiesagre_tests": 100,
+  "elapsed_seconds": 10.015,
+  "pages": [
+    {
+      "source_id": "17258",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "5ccacf2c328163d3f1905098bd33e3270da9d6d16f7fa52b00f79f211e25e1a2",
+      "source_bytes": 53989,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "Dalle 10:00",
+        "edition_intervals": [
+          {
+            "start": "2026-05-29",
+            "end": "2026-06-01"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2026-05-29",
+            "end": "2026-06-01"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored",
+          "narrative_calendar_incomplete",
+          "visible_edition_conflict",
+          "visible_hours_conflict"
+        ],
+        "occurrence_clocks": [
+          {
+            "date": "2026-05-29",
+            "start_time": "18:00",
+            "end_time": "24:00"
+          },
+          {
+            "date": "2026-05-30",
+            "start_time": "10:00",
+            "end_time": "15:00"
+          },
+          {
+            "date": "2026-05-31",
+            "start_time": "10:00",
+            "end_time": "15:00"
+          },
+          {
+            "date": "2026-05-30",
+            "start_time": "16:00",
+            "end_time": "24:00"
+          },
+          {
+            "date": "2026-05-31",
+            "start_time": "16:00",
+            "end_time": "24:00"
+          }
+        ]
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "Venerdì 29 maggio: 18:00 - 24:00 ingresso a pagamento"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "10:00 - 15:00 ingresso libero"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "15.00 - 16.00: chiusura fiera per riallestimento"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "16.00 - 24.00: ingresso a pagamento"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "Lunedì 1 giugno: 18:00 - 24:00 ingresso a pagamento"
+          }
+        ],
+        "calendar": [
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(1)",
+            "excerpt": "FIERA DEL VINO DI POLPENAZZE 29/30/31 MAGGIO 1/2 GIUGNO 2026"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "Venerdì 29 maggio"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "Sabato 30 e domenica 31 maggio"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(3)",
+            "excerpt": "Lunedì 1 giugno"
+          }
+        ]
+      },
+      "hours_qualifications": [
+        "2026-05-29: 18:00–24:00 ingresso a pagamento",
+        "2026-05-30, 2026-05-31: 10:00–15:00 ingresso libero",
+        "2026-05-30, 2026-05-31: 15:00–16:00 chiusura fiera per riallestimento",
+        "2026-05-30, 2026-05-31: 16:00–24:00 ingresso a pagamento",
+        "2026-06-01: orari sovrapposti nella fonte; righe senza data non attribuite."
+      ],
+      "calendar_complete": false,
+      "calendar_scope": "explicit_visible_list",
+      "document_changed": true,
+      "status": "scoped_conflicts_and_dated_hours_recovered",
+      "remaining": [
+        "Multiple header streets remain an event footprint, no single venue selected.",
+        "Body lead includes 2 June beyond the card ending 1 June.",
+        "Overlapping unlabeled continuation for 1 June is retained as unresolved evidence, not openings."
+      ]
+    },
+    {
+      "source_id": "21052639",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21052639_Borgo+DiVino+in+Tour+a+Celle+Ligure.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21052639_Borgo+DiVino+in+Tour+a+Celle+Ligure.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "fd83e41b4a1b29c10fa141832e77eeb0c1f88edb7932bf7601cdbba50d0449dc",
+      "source_bytes": 55986,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2026-06-19",
+            "end": "2026-06-21"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "Via S. Boagno",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2026-06-19",
+            "end": "2026-06-21"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": [
+          {
+            "date": "2026-06-19",
+            "start_time": "18:00",
+            "end_time": "24:00"
+          },
+          {
+            "date": "2026-06-20",
+            "start_time": "18:00",
+            "end_time": "24:00"
+          },
+          {
+            "date": "2026-06-21",
+            "start_time": "18:00",
+            "end_time": "24:00"
+          }
+        ]
+      },
+      "narrative_field_evidence": {
+        "location": [
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(12)",
+            "excerpt": "DOVE SI TIENE L’EVENTO – Borgo diVino sarà ospitato nel pieno centro storico di Celle Ligure, in Via S. Boagno."
+          }
+        ],
+        "hours": [
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > ul:nth-of-type(1) > li:nth-of-type(1)",
+            "excerpt": "Venerdì 19 giugno dalle 18.00 alle 24.00"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > ul:nth-of-type(1) > li:nth-of-type(2)",
+            "excerpt": "Sabato 20 giugno dalle 18.00 alle 24.00"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > ul:nth-of-type(1) > li:nth-of-type(3)",
+            "excerpt": "Domenica 21 giugno dalle 18.00 alle 24.00"
+          }
+        ],
+        "calendar": [
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > ul:nth-of-type(1) > li:nth-of-type(1)",
+            "excerpt": "Venerdì 19 giugno"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > ul:nth-of-type(1) > li:nth-of-type(2)",
+            "excerpt": "Sabato 20 giugno"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > ul:nth-of-type(1) > li:nth-of-type(3)",
+            "excerpt": "Domenica 21 giugno"
+          }
+        ]
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "explicit_visible_list",
+      "document_changed": true,
+      "status": "structured_location_and_three_dated_hours_recovered",
+      "remaining": [
+        "Archived June edition cannot certify current address or hours.",
+        "Actual existing catalog address repeats the event title; the nonempty-address guard holds the join."
+      ]
+    },
+    {
+      "source_id": "21155326",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21155326_Courmayeur+Food+Market.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21155326_Courmayeur+Food+Market.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "215646d5e3fbe84147796cc45795c53fb946e90c9f30ee014ea47232254c49c3",
+      "source_bytes": 52879,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "Dalle 09:00",
+        "edition_intervals": [
+          {
+            "start": "2016-07-26",
+            "end": "2016-08-23"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored",
+          "multiple_recurrence_statements"
+        ],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "Dalle 09:00",
+        "edition_intervals": [
+          {
+            "start": "2016-07-26",
+            "end": "2016-08-23"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored",
+          "multiple_recurrence_statements"
+        ],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": false,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "unchanged_accessory_programme_and_recurrence_hold",
+      "remaining": [
+        "Chef meetings at 17:30 are not market closing time.",
+        "Similar bounded 2016 recurrence statements still require semantic deduplication."
+      ]
+    },
+    {
+      "source_id": "21165715",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21165715_Le+Vie+Del+Gusto+E+Dell+artigianato.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21165715_Le+Vie+Del+Gusto+E+Dell+artigianato.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "e27c3513749101470c05d8c87a4ad3d36d720c3da15ebbc9d36066e7c2c31711",
+      "source_bytes": 52110,
+      "edition_is_past": true,
+      "before": {
+        "address": "Piazza Duomo",
+        "hours": "10:00–23:55",
+        "edition_intervals": [
+          {
+            "start": "2017-09-30",
+            "end": "2017-10-01"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "Piazza Duomo",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2017-09-30",
+            "end": "2017-10-01"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored",
+          "visible_hours_conflict"
+        ],
+        "occurrence_clocks": [
+          {
+            "date": "2017-09-30",
+            "start_time": "18:00",
+            "end_time": "00:00"
+          },
+          {
+            "date": "2017-10-01",
+            "start_time": "10:00",
+            "end_time": "23:30"
+          }
+        ]
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(2)",
+            "excerpt": "SABATO 30 SETTEMBRE DALLE ORE 18:00 ALLE ORE 00:00"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(2)",
+            "excerpt": "DOMENICA 1 OTTOBRE DALLE ORE 10:00 ALLE ORE 23:30"
+          }
+        ],
+        "calendar": [
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(2)",
+            "excerpt": "SABATO 30 SETTEMBRE"
+          },
+          {
+            "selector": "#contenuto > div:nth-of-type(2) > p:nth-of-type(2)",
+            "excerpt": "DOMENICA 1 OTTOBRE"
+          }
+        ]
+      },
+      "hours_qualifications": [],
+      "calendar_complete": false,
+      "calendar_scope": "explicit_visible_list",
+      "document_changed": true,
+      "status": "two_historical_dated_hours_and_header_conflict_recovered",
+      "remaining": [
+        "Header 10:00–23:55 disagrees with the two explicit day schedules."
+      ]
+    },
+    {
+      "source_id": "21178870",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21178870_Legumi+Che+Passione+A+Stra.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21178870_Legumi+Che+Passione+A+Stra.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "55af3de30e4ed530bdbc6642ad547eefd340c3cd053d1799ea4d17ce80aa908f",
+      "source_bytes": 54878,
+      "edition_is_past": true,
+      "before": {
+        "address": "Piazza Marconi",
+        "hours": "09:30–18:30",
+        "edition_intervals": [
+          {
+            "start": "2026-02-07",
+            "end": "2026-02-08"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "Piazza Marconi",
+        "hours": "09:30–18:30",
+        "edition_intervals": [
+          {
+            "start": "2026-02-07",
+            "end": "2026-02-08"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "unchanged_primary_venue_and_hours_preserved",
+      "remaining": [
+        "Dinner on 6 February and activity clocks on 7/8 February remain accessory.",
+        "Unlabeled narrative date lists are outside this focused structured-section change."
+      ]
+    },
+    {
+      "source_id": "21195228",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195228_La+Zena+Poreta.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195228_La+Zena+Poreta.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "9b1b1ab5621c042365ccb5a8dede5a6aca0ce947d17db13c4fe2ec0a70a68f8f",
+      "source_bytes": 53453,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "Dalle 20:00",
+        "edition_intervals": [
+          {
+            "start": "2025-12-29",
+            "end": "2025-12-29"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "Dalle 20:00",
+        "edition_intervals": [
+          {
+            "start": "2025-12-29",
+            "end": "2025-12-29"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "unchanged_partial_start_and_locality",
+      "remaining": [
+        "20:00–20:00 does not establish a closing time.",
+        "Gionghi is a locality, not a precise street."
+      ]
+    },
+    {
+      "source_id": "21195255",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195255_Ciaspomagna+Cimbra.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/21195255_Ciaspomagna+Cimbra.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "a6636d61bff4ac3b1793d37e6ec63352ca1c8848debf2c59c9bd0c17f6088e38",
+      "source_bytes": 56212,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "17:00–23:00",
+        "edition_intervals": [
+          {
+            "start": "2026-01-17",
+            "end": "2026-01-24"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "17:00–23:00",
+        "edition_intervals": [
+          {
+            "start": "2026-01-17",
+            "end": "2026-01-24"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "named_venue_and_unlabeled_date_list_still_pending",
+      "remaining": [
+        "Malga Millegrobbe is a named venue, not a street.",
+        "17 and 24 January should not become every day in the edition interval.",
+        "Other programme stops are not the primary venue."
+      ]
+    },
+    {
+      "source_id": "2269",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/2269_Fasulin+De+L+oc+Cun+Le+Cudeghe.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/2269_Fasulin+De+L+oc+Cun+Le+Cudeghe.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "6e36124f50257d653afcdbde389be2c875c039fc3e7e6b2a7ec2b222300067e8",
+      "source_bytes": 55881,
+      "edition_is_past": false,
+      "before": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2026-10-30",
+            "end": "2026-11-09"
+          }
+        ],
+        "archive_marker": false,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2026-10-30",
+            "end": "2026-11-09"
+          }
+        ],
+        "archive_marker": false,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "unchanged_future_edition_with_ambiguous_narrative_calendar",
+      "remaining": [
+        "The expression 1 - 8 e 9 novembre is not unambiguously a date list or range.",
+        "No exact street or opening times occur in the acquired main body."
+      ]
+    },
+    {
+      "source_id": "3043",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3043_November+Porc.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "17a3d75774b2d80397bb445f330710881baee423b1dafbf958242cf882e1d0d0",
+      "source_bytes": 53748,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "Dalle 20:00",
+        "edition_intervals": [
+          {
+            "start": "2025-11-21",
+            "end": "2025-11-23"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "Dalle 20:00",
+        "edition_intervals": [
+          {
+            "start": "2025-11-21",
+            "end": "2025-11-23"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "unchanged_multiple_town_tour_is_not_one_market_calendar",
+      "remaining": [
+        "Sissa, Polesine Parmense and Roccabianca dates cannot be assigned to Zibello."
+      ]
+    },
+    {
+      "source_id": "3318",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3318_Mielinumbria.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Enogastronomici/3318_Mielinumbria.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "1b6191637577056b34df1dfa5af288f4d1ed37e08e6d48099b8b0a3c79464444",
+      "source_bytes": 52022,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2025-11-21",
+            "end": "2025-11-23"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2025-11-21",
+            "end": "2025-11-23"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "unchanged_no_precise_venue_or_hours_in_main_content",
+      "remaining": [
+        "The lodging promotion and its booking contacts inside the article are accessory."
+      ]
+    },
+    {
+      "source_id": "1338",
+      "requested_url": "https://www.eventiesagre.it/Eventi_Feste/1338_Festa+Dei+Bisi.html",
+      "final_url": "https://www.eventiesagre.it/Eventi_Feste/1338_Festa+Dei+Bisi.html",
+      "read_on": "2026-10-20",
+      "source_sha256": "285bcc1f3480b986ff41b07f8473a8df27bcd46a6f26096b50b0cf114b6a4de9",
+      "source_bytes": 51756,
+      "edition_is_past": true,
+      "before": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2026-05-29",
+            "end": "2026-06-08"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "after": {
+        "address": "",
+        "hours": "",
+        "edition_intervals": [
+          {
+            "start": "2026-05-29",
+            "end": "2026-06-08"
+          }
+        ],
+        "archive_marker": true,
+        "issues": [
+          "invalid_jsonld_ignored"
+        ],
+        "occurrence_clocks": []
+      },
+      "narrative_field_evidence": {
+        "location": [],
+        "hours": [],
+        "calendar": []
+      },
+      "hours_qualifications": [],
+      "calendar_complete": true,
+      "calendar_scope": "edition_bounds",
+      "document_changed": false,
+      "status": "unchanged_geography_hold_and_locality_only",
+      "remaining": [
+        "Peseggia is a locality, not a precise street; the existing geography join remains held."
+      ]
+    }
+  ],
+  "remaining_scope": [
+    "Unlabeled narrative date lists, named venues and multi-street header footprints remain distinct open formats.",
+    "Historical editions are not evidence of current opening hours or locations.",
+    "The one future captured page still lacks precise venue/hours and has an ambiguous date expression."
+  ]
+}

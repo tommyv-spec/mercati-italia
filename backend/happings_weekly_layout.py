@@ -29,6 +29,7 @@ from urllib.parse import urlsplit
 
 from source_reconciliation_audit import _unambiguous_day
 from stored_market_sibling_proposals import safe_stored_street
+from happings_page_metadata import parse_page_metadata
 
 MAX_HTML_BYTES=2_600_000
 MAX_PUBLISHER_ITEMS=2200
@@ -63,8 +64,57 @@ EXACT_TIME_CONTEXT=re.compile(
 UNREVIEWED_LOCATION_CONTEXT=re.compile(
     r"\b(?:sospes[oaie]|annullat[oaie]|trasferit[oaie]|spostat[oaie]|"
     r"temporaneamente|provvisori[oaie]|esclus[oaie]|eccetto|tranne|"
-    r"solo|festivi|estate|inverno|estiv[oaie]|invernal[ei])\b"
+    r"solo|festivi)\b"
 )
+SEASONAL_QUALIFIER=re.compile(
+    r"\b(?:estate|inverno|primavera|autunno|estiv[oaie]|invernal[ei]|"
+    r"primaveril[ei]|autunnal[ei]|stagional[ei])\b")
+INTERVAL_QUALIFIER=re.compile(
+    r"\b(?:quindicinal[ei]|bisettimanal[ei]|alternat[oaie])\b|\bsettimane alterne\b|"
+    r"\bogni\s*(?:\d{1,3}|due|tre|quattordici|quindici)\s*(?:gg|giorni?|settimane?|mesi)\b")
+GEOGRAPHIC_SEASON_NAME=re.compile(
+    r"(?:via|viale|vicolo|piazza|piazzale|passeggiata|lungomare|largo|corso) "
+    r"(?:(?:d|di|del|della|dell|delle) )?(?:estate|inverno|primavera|autunno)(?: \d+[a-z]?)?")
+
+
+def _calendar_qualifiers(label, field):
+    """Split explicit trailing source qualifiers without changing a geonym.
+
+    A retained incomplete qualifier forbids an ordinary weekly assignment.
+    No season boundary, interval anchor or future edition is inferred here.
+    """
+    qualifiers=[]
+
+    def add(text):
+        key=fold(text)
+        kinds=[]
+        if SEASONAL_QUALIFIER.search(key):
+            kinds.append("seasonal_scope_unrepresented")
+        if INTERVAL_QUALIFIER.search(key):
+            kinds.append("interval_scope_unrepresented")
+        # Use the existing conservative calendar grammar for explicit month
+        # or dated windows. Do not leave "da giugno a settembre" inside an
+        # otherwise ordinary address, and never manufacture a missing year.
+        from recurrence_refresh import temporal_scope_hold
+        if temporal_scope_hold({"ricorrenza_testo":text})=="date_range_scope_unrepresented":
+            kinds.append("date_range_scope_unrepresented")
+        for kind in kinds:
+            qualifiers.append({"field":field,"text":text,"reason":kind})
+        return bool(kinds)
+
+    # Parentheses make the annotation boundary explicit. Keep the complete
+    # original label separately; do not rewrite the saved market identity.
+    while (match:=re.fullmatch(r"(.*?)\s*\(([^()]*)\)\s*",label)):
+        if not match.group(1).strip() or not add(match.group(2).strip()):
+            break
+        label=match.group(1).strip()
+    if field=="place":
+        # These complete street-name forms are geographic, not calendar
+        # prose: Passeggiata d'Inverno / Via dell'Estate. A separate qualifier
+        # is still retained above and can never be masked by this exemption.
+        if not GEOGRAPHIC_SEASON_NAME.fullmatch(fold(label)):
+            add(label)
+    return label,qualifiers
 
 
 def fold(text):
@@ -214,6 +264,7 @@ class WeeklyIndexParser(HTMLParser):
                     self.unparsed_listing_items+=1
                     continue
                 city,place=match.groups()
+                city_label=city.strip()
                 suffix=re.search(r"\s*\((la mattina|il mattino|al mattino|il pomeriggio|la sera)\)\s*$",
                                  place,re.I)
                 daypart=None
@@ -221,14 +272,23 @@ class WeeklyIndexParser(HTMLParser):
                     folded=fold(suffix.group(1))
                     daypart=next((v for token,v in DAY_PARTS.items() if token in folded),None)
                     place=place[:suffix.start()].strip()
+                place_label=place
+                city,city_qualifiers=_calendar_qualifiers(city.strip(),"city")
+                place,place_qualifiers=_calendar_qualifiers(place,"place")
+                qualifiers=city_qualifiers+place_qualifiers
                 if not 2<=len(city.strip())<=120 or not 3<=len(place)<=240:
                     self.unparsed_listing_items+=1
                     continue
                 self.rows.append({
                     "city":city.strip(),
                     "city_key":fold(city),
+                    "city_label":city_label,
                     "weekday":frame["weekday"],
                     "place":place,
+                    "place_label":place_label,
+                    "calendar_scope":({"status":"unrepresented","qualifiers":qualifiers,
+                                       "forecast_allowed":False,"assignment_allowed":False}
+                                      if qualifiers else None),
                     "location_indicated":True,
                     "daypart":daypart,
                     # An unreviewed exact-time suffix is not part of a street
@@ -238,13 +298,14 @@ class WeeklyIndexParser(HTMLParser):
                     # a current location. Keep these rows in ambiguity checks.
                     "has_specific_location":(safe_stored_street(place)
                                              and not EXACT_TIME_CONTEXT.search(place)
-                                             and not UNREVIEWED_LOCATION_CONTEXT.search(fold(place))),
+                                             and not UNREVIEWED_LOCATION_CONTEXT.search(fold(place))
+                                             and not qualifiers),
                 })
                 if len(self.rows)>MAX_PUBLISHER_ITEMS:
                     raise ValueError("Weekly HTML contains an excessive number of source rows")
 
 
-def parse(html_bytes,*,source_url):
+def parse(html_bytes,*,source_url,observed_on=None):
     if not _valid_page_url(source_url):
         raise ValueError("Source URL is outside the reviewed Happings provincial layout")
     if (not isinstance(html_bytes,bytes) or
@@ -262,6 +323,8 @@ def parse(html_bytes,*,source_url):
         raise ValueError("Publisher weekday layout has unparsed listing items or headings, or is incomplete")
     if not parser.seo_blocks or not parser.weekday_headings or not parser.rows:
         raise ValueError("Publisher HTML no longer matches the reviewed day/venue layout")
+    parser.page_metadata=parse_page_metadata(html_bytes,final_url=source_url,
+                                             read_on=observed_on or date.today())
     return parser
 
 
@@ -284,7 +347,7 @@ def compare_saved_markets(original_rows,html_bytes,*,source_url,today=None):
     if (not isinstance(today,date) or not isinstance(original_rows,list)
             or not 1<=len(original_rows)<=MAX_CATALOG):
         raise ValueError("Invalid saved-market comparison")
-    parsed=parse(html_bytes,source_url=source_url)
+    parsed=parse(html_bytes,source_url=source_url,observed_on=today)
     by_city_day=defaultdict(list)
     for src in parsed.rows:
         by_city_day[(src["city_key"],src["weekday"])].append(src)
@@ -331,10 +394,17 @@ def compare_saved_markets(original_rows,html_bytes,*,source_url,today=None):
                     counts["source_and_saved_market_street_agree"]+=1
                 else:
                     counts["source_and_saved_market_street_disagree_review_only"]+=1
+            elif source.get("calendar_scope"):
+                counts["publisher_calendar_scope_unrepresented"]+=1
             elif not source["has_specific_location"]:
                 counts["source_only_has_vague_place"]+=1
             if source["daypart"]:
                 counts["publisher_dayparts_not_exact_hours"]+=1
+    from happings_field_coverage import aggregate_coverage, weekly_page_coverage
+    field_coverage=aggregate_coverage([weekly_page_coverage(html_bytes,parsed,
+        requested_url=source_url,final_url=source_url,considered_ids=compared_ids)])
+    exact_hours=field_coverage["fields"]["orario_testo"]["source_presence"]["precise"]
+    dayparts=field_coverage["fields"]["orario_testo"]["source_presence"]["qualitative"]
     return {
         "schema":1,"as_of":today.isoformat(),
         "source_id":"happings-weekly-area-index",
@@ -342,7 +412,9 @@ def compare_saved_markets(original_rows,html_bytes,*,source_url,today=None):
         "source_html_sha256":hashlib.sha256(html_bytes).hexdigest(),
         "publisher_items_detected":len(parsed.rows),
         "source_weekday_headings":len(parsed.weekday_headings),
-        "publisher_time_granularity":"daypart_not_clock_hours",
+        "publisher_time_granularity":("clock_information_present_reader_gap" if exact_hours
+                                      else "daypart_not_clock_hours" if dayparts else "not_indicated"),
+        "field_coverage":field_coverage,
         "source_page_publication_date_is_not_market_verification":True,
         "saved_market_ids_examined":len(original_rows),
         "matching_legacy_market_records":counts["same_publisher_page_catalog_rows"],

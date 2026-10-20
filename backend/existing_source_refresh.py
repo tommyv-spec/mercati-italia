@@ -15,6 +15,8 @@ from http.client import HTTPException
 from pathlib import Path
 
 import eventiesagre_detail_refresh as editorial
+import citynews_detail_refresh as citynews
+import citynews_detail_enrichment as citynews_evidence
 import roma_d881_enrichment as roma
 import source_roma_d881 as roma_source
 from field_evidence import fingerprint
@@ -25,20 +27,24 @@ CDC_RESERVED_SECONDS = 90
 EDITORIAL_STATES = {
     "eventiesagre.it": "eventiesagre-detail-state.json",
     "cosedicasa.com": "cosedicasa-detail-state.json",
+    "citynews": citynews.STATE_FILENAME,
 }
 STATE_FILENAMES = frozenset(EDITORIAL_STATES.values())
 NO_NEW_STATE = {"disabled", "offline_skipped", "resume_missing_evidence"}
 
 
-def configuration(*, enabled=True):
+def configuration(*, enabled=True, citynews_policy=None):
     """Validate every source-level policy before the pipeline starts reading."""
     if type(enabled) is not bool:
         raise ValueError("Existing-source enablement must be an explicit boolean")
     return {
         "schema": SCHEMA,
         "enabled": enabled,
-        "editorial": {publisher: editorial.validate_policy(publisher=publisher)
-                      for publisher in EDITORIAL_STATES},
+        "editorial": {
+            **{publisher: editorial.validate_policy(publisher=publisher)
+               for publisher in EDITORIAL_STATES if publisher != citynews.PUBLISHER},
+            citynews.PUBLISHER: citynews.validate_policy(citynews_policy),
+        },
         "roma": roma.load_policy(),
         "editorial_shared_seconds": EDITORIAL_SECONDS,
         "cosedicasa_reserved_seconds": CDC_RESERVED_SECONDS,
@@ -57,10 +63,11 @@ def _read_state(path, *, publisher, today):
     path = Path(path)
     if not path.is_file():
         return None
-    if path.stat().st_size > editorial.MAX_STATE_BYTES:
+    reader = citynews if publisher == citynews.PUBLISHER else editorial
+    if path.stat().st_size > reader.MAX_STATE_BYTES:
         raise ValueError("Editorial public queue exceeds the source reader's bound")
-    return editorial.validate_state(json.loads(path.read_text("utf-8")),
-                                    today=today, publisher=publisher)
+    kwargs = {} if publisher == citynews.PUBLISHER else {"publisher": publisher}
+    return reader.validate_state(json.loads(path.read_text("utf-8")), today=today, **kwargs)
 
 
 def run_editorial(rows, *, out, state_dir, today, baseline_signature,
@@ -76,11 +83,14 @@ other's time allowance. A shared catalog identity changed by both is rejected.
     end = min(started + EDITORIAL_SECONDS, deadline) if deadline is not None else started + EDITORIAL_SECONDS
     reports, preserve = {}, set()
     def read_publisher(publisher, filename):
+        reader = citynews if publisher == citynews.PUBLISHER else editorial
+        evidence = citynews_evidence if publisher == citynews.PUBLISHER else editorial
+        source_kwargs = {} if publisher == citynews.PUBLISHER else {"publisher": publisher}
         allowance = config["editorial"][publisher]["max_seconds"]
         source_end = min(end, started + allowance)
         previous = _read_state(Path(state_dir) / filename, publisher=publisher, today=today)
-        revised, report, protected = editorial.run(
-            rows, out=out, today=today, publisher=publisher,
+        revised, report, protected = reader.run(
+            rows, out=out, today=today, **source_kwargs,
             baseline_signature=baseline_signature, policy_digest=policy_digest,
             policy={**config["editorial"][publisher],
                     "enabled": config["enabled"] and config["editorial"][publisher]["enabled"]},
@@ -89,12 +99,12 @@ other's time allowance. A shared catalog identity changed by both is rejected.
             fetcher=(fetchers or {}).get(publisher), deadline=source_end,
             monotonic=monotonic,
         )
-        editorial.verify_changes(rows, revised, report["evidence"], today=today)
+        evidence.verify_changes(rows, revised, report["evidence"], today=today)
         if [row["slug"] for row in rows] != [row["slug"] for row in revised]:
             raise ValueError("Existing-source refresh changed the original identity set")
         return revised, report, protected
 
-    with ThreadPoolExecutor(max_workers=2, thread_name_prefix="existing-source") as workers:
+    with ThreadPoolExecutor(max_workers=len(EDITORIAL_STATES), thread_name_prefix="existing-source") as workers:
         pending = {publisher: workers.submit(read_publisher, publisher, filename)
                    for publisher, filename in EDITORIAL_STATES.items()}
         phases = {publisher: future.result() for publisher, future in pending.items()}
@@ -136,11 +146,26 @@ def persist_editorial_states(report, *, out, source_dir, destination, today):
     return changed
 
 
-def verify_editorial_export(rows, report, *, today):
-    proofs = {publisher: editorial.verify_exported(rows, phase["evidence"], today=today)
-              for publisher, phase in report["editorial"].items()}
+def verify_editorial_export(rows, report, *, today, state_dir=None):
+    if (report.get("schema") != SCHEMA or report.get("date") != today.isoformat()
+            or set(report.get("editorial", {})) != set(EDITORIAL_STATES)):
+        raise ValueError("Editorial final proof lost a configured reader or its date")
+    proofs, queues = {}, {}
+    for publisher, phase in report["editorial"].items():
+        evidence = citynews_evidence if publisher == citynews.PUBLISHER else editorial
+        proofs[publisher] = evidence.verify_exported(rows, phase["evidence"], today=today)
+        if state_dir is not None:
+            state = _read_state(Path(state_dir) / EDITORIAL_STATES[publisher],
+                                publisher=publisher, today=today)
+            if phase["status"] not in NO_NEW_STATE:
+                if state is None or fingerprint(state) != fingerprint(phase["state"]):
+                    raise ValueError("Exported editorial queue differs from its validated source report")
+                queues[publisher] = {"status": "validated_report_bound",
+                                     "sha256": fingerprint(state)}
+            else:
+                queues[publisher] = {"status": "validated_previous" if state is not None else "absent"}
     return {"schema": SCHEMA, "release_safe": all(p["release_safe"] for p in proofs.values()),
-            "publishers": proofs}
+            "publishers": proofs, "queues": queues}
 
 
 def run_roma(rows, *, out, today, baseline_signature, policy_digest, config,

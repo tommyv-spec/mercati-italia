@@ -51,6 +51,25 @@ SCOPE = re.compile(r"\b(?:tranne|eccetto|esclus[oaie]|sospes[oaie]|sospension[ei
                    r"estiv[oaie]|invernal[ei]|maltempo|annullat[oaie]|fino\s+al|dal\s+\d)", re.I)
 SIMPLE_RULE = re.compile(r"ogni\s+(?:(?:prima|primo|seconda|secondo|terza|terzo|quarta|quarto|"
                          r"ultima|ultimo)\s+)?" + DAY + r"(?:\s+del\s+mese)?", re.I)
+MONTHS = {name: index for index, name in enumerate(("gennaio", "febbraio", "marzo", "aprile",
+    "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"), 1)}
+MONTH = r"(?:" + "|".join(MONTHS) + r")"
+WEEKDAYS = {name: index for index, name in enumerate(
+    ("lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica"))}
+DATE_GROUP = re.compile(r"(?P<days>(?:(?:" + DAY + r")\s+)?\d{1,2}"
+    r"(?:\s*(?:,|/|\be\b)\s*(?:(?:" + DAY + r")\s+)?\d{1,2})*)\s+"
+    r"(?P<month>" + MONTH + r")(?:\s+(?P<year>20\d{2}))?", re.I)
+DATED_START = re.compile(r"^(?:" + DAY + r")\s+\d{1,2}\b", re.I)
+CLOCK_RANGE = re.compile(r"(?<![\w:.,])(?:dalle?\s+(?:ore\s+)?|ore\s+)?"
+    r"(?P<start>" + TIME + r")\s*(?:alle?\s+(?:ore\s+)?|[-–—]\s*)"
+    r"(?P<end>" + TIME + r")(?![\d.,]|:\d)", re.I)
+ACTIVITY = re.compile(r"\b(?:concert[oi]|laborator(?:io|i)|showcooking|spettacol[oi]|"
+    r"degustazion[ei]|visite?\s+guidat[ae]|cena|aperitivo|prenotazion[ei]|telefono|whatsapp)\b", re.I)
+STOP_SECTION = re.compile(r"^(?:programma(?:\s+e\s+men[uù])?|concerti|laboratori|"
+    r"contatti|info(?:rmazioni)?(?:\s+e\s+prenotazioni)?|prenotazioni|dove\s+dormire)\s*:?(?:\s|$)", re.I)
+WHERE_LABEL = re.compile(r"^(?:dove(?:\s+si\s+tiene\s+l[’']evento)?|sede(?:\s+dell[’']evento)?)"
+    r"\s*[:–—-]\s*(.+)$", re.I)
+MAX_NARRATIVE_ROWS = 120
 
 
 def _clean(value):
@@ -143,6 +162,284 @@ def _lines(node):
 
 def _text(node):
     return " ".join(_lines(node))
+
+
+def _body_blocks(content, body_nodes):
+    """Keep paragraph/list boundaries and selectors inside the existing scope.
+
+    A heading applies only to its following siblings in the article flow. The
+    whole container is not searched for clocks, contacts or street fragments.
+    """
+    allowed = {id(n) for n in body_nodes}
+    result = []
+
+    def visit(node, selector):
+        if node.tag in IGNORED or node.attrs.get("id") in EXCLUDED_IDS:
+            return
+        if node.tag in {"p", "li", "h2", "h3", "h4", "h5", "h6"}:
+            if _text(node):
+                result.append({"selector": selector, "text": _text(node), "lines": _lines(node)})
+            return
+        elements = [n for n in node.children if isinstance(n, _Node)]
+        if not any(n.tag in BLOCKS or n.tag in {"ul", "ol"} for n in elements):
+            if _text(node):
+                result.append({"selector": selector, "text": _text(node), "lines": _lines(node)})
+            return
+        counts = {}
+        for child in elements:
+            counts[child.tag] = counts.get(child.tag, 0) + 1
+            visit(child, selector + " > " + child.tag + ":nth-of-type(" + str(counts[child.tag]) + ")")
+
+    counts = {}
+    for node in content.children:
+        if not isinstance(node, _Node):
+            continue
+        counts[node.tag] = counts.get(node.tag, 0) + 1
+        if id(node) in allowed:
+            visit(node, "#contenuto > " + node.tag + ":nth-of-type(" + str(counts[node.tag]) + ")")
+    return result
+
+
+def _narrative_dates(expression, intervals):
+    """Resolve explicit day/month lists only within one dated edition.
+
+    The page read date is never a year source. Hyphens/ranges, missing months,
+    mismatched weekdays and cross-year inference remain unresolved.
+    """
+    expression = _clean(expression).strip(" :;,.–—")
+    if len(intervals) != 1:
+        return [], "narrative_calendar_incomplete"
+    start, end = intervals[0]["start"], intervals[0]["end"]
+    inferred_year = int(start[:4]) if start[:4] == end[:4] else None
+    groups = list(DATE_GROUP.finditer(expression))
+    remainder = DATE_GROUP.sub("", expression)
+    if not groups or re.sub(r"[\s,;/]+|\be\b", "", remainder, flags=re.I):
+        return [], "narrative_calendar_incomplete"
+    values = []
+    for group in groups:
+        year = int(group["year"]) if group["year"] else inferred_year
+        if year is None:
+            return [], "narrative_calendar_incomplete"
+        for token in re.split(r"\s*(?:,|/|\be\b)\s*", group["days"], flags=re.I):
+            match = re.fullmatch(r"(?:(?P<weekday>" + DAY + r")\s+)?(?P<day>\d{1,2})", token, re.I)
+            if not match:
+                return [], "narrative_calendar_incomplete"
+            try:
+                value = date(year, MONTHS[group["month"].lower()], int(match["day"]))
+            except ValueError:
+                return [], "narrative_calendar_incomplete"
+            if match["weekday"] and value.weekday() != WEEKDAYS[_key(match["weekday"])]:
+                return [], "narrative_calendar_incomplete"
+            if not start <= value.isoformat() <= end:
+                return [], "visible_edition_conflict"
+            values.append(value.isoformat())
+    return list(dict.fromkeys(values)), None
+
+
+def _event_title_prefix(prefix, name, city):
+    ignored = {"a", "al", "alla", "il", "la", "le", "del", "della", "delle", "dei", "di", "in", "e"}
+    ignored |= set(_key(city).split())
+    expected = set(_key(name).split()) - ignored
+    actual = set(_key(prefix).split()) - ignored
+    return len(expected & actual) >= 2 and actual <= expected
+
+
+def _bounded_street(value, city):
+    """Accept a street/civic plus only an explicitly matching locality suffix.
+
+    City-looking words inside a street name (Via Roma, Via Milano) are not
+    geography. A comma or an explicit 'a/ad/nel Comune di' suffix does carry
+    extra scope, so an unknown/different suffix remains held without guessing.
+    """
+    value = value.strip(" .,;")
+    suffix = re.search(r"\s+(?:ad?|nel\s+Comune\s+di)\s+(.+)$", value, re.I)
+    if suffix:
+        if _key(suffix[1]) != _key(city):
+            return None
+        value = value[:suffix.start()].strip(" .,;")
+    parts = [v.strip() for v in value.split(",")]
+    accepted = [parts[0]]
+    for part in parts[1:]:
+        if _key(part) == _key(city):
+            continue
+        if re.fullmatch(r"\d{5}\s+" + re.escape(city), part, re.I):
+            continue
+        if not re.fullmatch(r"(?:n[.°º]?\s*)?\d{1,5}(?:[A-Za-z]|[/\-][A-Za-z0-9]+)?", part):
+            return None
+        accepted.append(part)
+    value = ", ".join(accepted)
+    # A parenthetic/dash-qualified place is not silently merged into a street.
+    if re.search(r"[()]|\s+[–—-]\s+", value):
+        return None
+    return value if 3 <= len(value) <= 160 else None
+
+
+def _narrative_fields(content, body_nodes, *, intervals, name, city):
+    blocks = _body_blocks(content, body_nodes)
+    result = {"addresses": [], "occurrences": [], "qualifications": [], "issues": [], "field_lines": [],
+              "field_evidence": {"location": [], "hours": [], "calendar": []}}
+
+    def evidence(field, block, text=None):
+        item = {"selector": block["selector"], "excerpt": (text or block["text"])[:280]}
+        entries = result["field_evidence"][field]
+        if item not in entries and len(entries) < 16:
+            entries.append(item)
+
+    def schedule(group):
+        current_dates, declared_dates, timed_dates = [], set(), set()
+        for block in group:
+            # A new list item must supply its own day. Clock-only continuation
+            # is accepted only inside the same paragraph (for split sessions).
+            current_dates = []
+            for raw_line in block["lines"]:
+                # Broken inline markup can join midnight directly to the next
+                # weekday (00:00DOMENICA). Split date clauses, never clock tokens.
+                boundaries = [0]
+                for match in re.finditer(r"(?<![A-Za-zÀ-ÿ])" + DAY + r"\s+\d{1,2}\b", raw_line, re.I):
+                    if CLOCK_RANGE.search(raw_line[boundaries[-1]:match.start()]):
+                        boundaries.append(match.start())
+                pieces = [raw_line[a:b] for a, b in zip(boundaries, [*boundaries[1:], len(raw_line)])]
+                for line in (v.strip(" \t🕟:;") for v in pieces if v.strip(" \t🕟:;")):
+                    if ACTIVITY.search(line):
+                        result["issues"].append("narrative_calendar_incomplete")
+                        continue
+                    ranges = list(CLOCK_RANGE.finditer(line))
+                    prefix = line[:ranges[0].start()].strip(" :;") if ranges else line.strip(" :;")
+                    if prefix:
+                        current_dates, issue = _narrative_dates(prefix, intervals)
+                        evidence("calendar", block, prefix)
+                        if issue:
+                            result["issues"].append(issue)
+                        declared_dates.update(current_dates)
+                    if not ranges:
+                        continue
+                    if not current_dates:
+                        if ranges:
+                            result["issues"].append("narrative_calendar_incomplete")
+                        continue
+                    for index, clock in enumerate(ranges):
+                        tail = line[clock.end():ranges[index + 1].start() if index + 1 < len(ranges) else None]
+                        qualifier = _clean(tail).strip(" :;,.🕟")
+                        if qualifier and not re.fullmatch(r"(?:ingresso\s+(?:a\s+pagamento|libero|gratuito)|"
+                                r"chiusura\s+(?:fiera|evento|mercato)(?:\s+per\s+riallestimento)?)", qualifier, re.I):
+                            result["issues"].append("narrative_calendar_incomplete")
+                            evidence("hours", block, line)
+                            continue
+                        start, end = _clock(clock["start"]), _clock(clock["end"])
+                        if not start or not end or start == end:
+                            result["issues"].append("narrative_calendar_incomplete")
+                            continue
+                        timed_dates.update(current_dates)
+                        evidence("hours", block, line)
+                        if qualifier:
+                            result["qualifications"].append(", ".join(current_dates) + ": " + start + "–" + end + " " + qualifier)
+                        if qualifier.lower().startswith("chiusura"):
+                            continue
+                        for day in current_dates:
+                            item = {"date": day, "start_time": start, "end_time": end,
+                                    "status": "source_listed", "evidence": [block["selector"] + ": " + line[:220]]}
+                            if len(result["occurrences"]) >= MAX_NARRATIVE_ROWS:
+                                result["issues"].append("narrative_calendar_incomplete")
+                                return
+                            if not any((v["date"], v["start_time"], v["end_time"]) == (day, start, end)
+                                       for v in result["occurrences"]):
+                                result["occurrences"].append(item)
+        if declared_dates - timed_dates:
+            result["issues"].append("narrative_calendar_incomplete")
+
+    blocked, index = False, 0
+    while index < len(blocks):
+        block = blocks[index]
+        value, key = block["text"], _key(block["text"])
+        if key == "informazioni utili":
+            index += 1
+            continue
+        if STOP_SECTION.match(value):
+            blocked = True
+            index += 1
+            continue
+        if blocked:
+            index += 1
+            continue
+        if not ACTIVITY.search(value):
+            result["field_lines"].extend(block["lines"])
+        where = WHERE_LABEL.fullmatch(value)
+        if where and city and not ACTIVITY.search(where[1]):
+            prose = where[1]
+            streets = list(STREET.finditer(prose))
+            if len(streets) == 1:
+                direct = STREET.match(prose)
+                scoped_prose = _key(city) in _key(prose) and (
+                    _event_title_prefix(prose.split(",")[0].split(" sarà ")[0], name, city)
+                    or re.search(r"\b(?:evento|mercato|mercatino|manifestazione|fiera)\b", prose, re.I))
+                if direct or scoped_prose:
+                    address = _bounded_street(prose[streets[0].start():], city)
+                    if address:
+                        result["addresses"].append(address)
+                        evidence("location", block)
+                    else:
+                        result["issues"].append("visible_address_conflict")
+                        evidence("location", block)
+            elif len(streets) > 1:
+                result["issues"].append("visible_address_conflict")
+                evidence("location", block)
+        if re.fullmatch(r"orari(?:o)?(?:\s+(?:del\s+mercato|dell[’']evento))?\s*:?", value, re.I):
+            group, next_index = [], index + 1
+            while next_index < len(blocks) and len(group) < MAX_NARRATIVE_ROWS:
+                candidate = blocks[next_index]
+                text = candidate["text"].strip(" \t🕟:;")
+                same_list = bool(group and "> li:nth-of-type(" in candidate["selector"]
+                    and candidate["selector"].rsplit(" > ", 1)[0] == group[0]["selector"].rsplit(" > ", 1)[0])
+                if STOP_SECTION.match(text) or not (same_list or re.match(DAY + r"\b", text, re.I)
+                        or DATE_GROUP.match(text) or CLOCK_RANGE.match(text)):
+                    break
+                group.append(candidate)
+                if not ACTIVITY.search(text):
+                    result["field_lines"].extend(candidate["lines"])
+                next_index += 1
+            if group:
+                schedule(group)
+            index = next_index
+            continue
+        if DATED_START.match(value) and CLOCK_RANGE.search(value) and not ACTIVITY.search(value):
+            schedule([block])
+        # A title/date lead can contradict the card even without any clocks.
+        # It is used only for conflict detection, never to expand an interval.
+        first_date = DATE_GROUP.search(value)
+        if (index < 3 and first_date and _event_title_prefix(value[:first_date.start()], name, city)):
+            _, issue = _narrative_dates(value[first_date.start():], intervals)
+            if issue:
+                result["issues"].append(issue)
+                evidence("calendar", block)
+        index += 1
+
+    if len(result["occurrences"]) > MAX_NARRATIVE_ROWS:
+        result["occurrences"] = []
+        result["issues"].append("narrative_calendar_incomplete")
+    conflicting_days = set()
+    for index, left in enumerate(result["occurrences"]):
+        for right in result["occurrences"][index + 1:]:
+            if left["date"] == right["date"]:
+                a, b = left["start_time"], left["end_time"]
+                c, d = right["start_time"], right["end_time"]
+                if b == "00:00":
+                    b = "24:00"
+                if d == "00:00":
+                    d = "24:00"
+                if max(a, c) < min(b, d):
+                    result["issues"].append("visible_hours_conflict")
+                    result["issues"].append("narrative_calendar_incomplete")
+                    conflicting_days.add(left["date"])
+    if conflicting_days:
+        # Retain excerpts/qualifications for review, not competing openings for
+        # a day whose unlabeled continuation cannot be assigned consistently.
+        result["occurrences"] = [v for v in result["occurrences"] if v["date"] not in conflicting_days]
+        result["qualifications"] = [v for v in result["qualifications"]
+            if not any(v.startswith(day + ":") for day in conflicting_days)]
+        result["qualifications"].extend(day + ": orari sovrapposti nella fonte; righe senza data non attribuite."
+                                         for day in sorted(conflicting_days))
+    result["qualifications"] = list(dict.fromkeys(result["qualifications"]))
+    return result
 
 
 def _raw_text(node):
@@ -360,6 +657,9 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
         if isinstance(loc, dict) and city and loc.get("addressLocality") and _key(loc["addressLocality"]) != _key(city):
             issues.append("jsonld_visible_locality_conflict")
 
+    narrative = _narrative_fields(content, body_nodes, intervals=intervals, name=name, city=city)
+    issues.extend(narrative["issues"])
+
     card_addresses = []
     after_where = False
     for node in left.children:
@@ -375,7 +675,7 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
             card_addresses.append(value)
 
     source_rows, current = [], None
-    for line in body_lines:
+    for line in narrative["field_lines"]:
         if (m := re.fullmatch(r"Luogo\s*:\s*(.+)", line, re.I)):
             current = {"address": m.group(1), "recurrence": "", "hours": ""}
             source_rows.append(current)
@@ -387,9 +687,15 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
     multiple_locations = len(unique_rows) > 1
     if multiple_locations:
         issues.append("multiple_market_rows_require_separate_identity")
+        if narrative["occurrences"]:
+            # A page-wide date list cannot be attached to every separate venue.
+            # Existing per-venue address/day matching must remain authoritative.
+            narrative["occurrences"] = []
+            narrative["qualifications"] = []
+            issues.append("narrative_calendar_incomplete")
 
     body_addresses = []
-    for line in body_lines:
+    for line in narrative["field_lines"]:
         m = re.fullmatch(r"(?:Dove fanno il mercato(?: settimanale)?|Luogo|Indirizzo|Sede)\s*:\s*(.+)", line, re.I)
         if m and STREET.search(m.group(1)):
             body_addresses.append(m.group(1))
@@ -407,13 +713,15 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
                           r"([^;.!?]{3,120})(?:[;.!?]|$)", line, re.I)
             if m and STREET.match(m.group(1)):
                 body_addresses.append(m.group(1))
-    address_options = list({_key(x): x for x in [*card_addresses, *body_addresses]}.values())
+    address_options = list({_key(x): x for x in [*card_addresses, *body_addresses, *narrative["addresses"]]}.values())
     if len(address_options) > 1 and not multiple_locations:
         issues.append("visible_address_conflict")
     address = address_options[0] if len(address_options) == 1 and not multiple_locations else ""
+    if "visible_address_conflict" in issues:
+        address = ""
 
     header_hours = list(dict.fromkeys(h for line in header_lines for h in _hours(line)))
-    body_hours = list(dict.fromkeys(h for line in body_lines
+    body_hours = list(dict.fromkeys(h for line in narrative["field_lines"]
                                   if re.match(r"Orari(?:o)?(?:\s+del\s+mercato)?\s*:", line, re.I)
                                   for h in _hours(line)))
     hour_options = list(dict.fromkeys([*header_hours, *body_hours]))
@@ -425,6 +733,17 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
                                     if (m := START_ONLY.search(line))))
         if len(starts) == 1 and starts[0]:
             hours = "Dalle " + starts[0]
+    if narrative["occurrences"]:
+        observed = {v["start_time"] + "–" + v["end_time"] for v in narrative["occurrences"]}
+        if (header_hours and set(header_hours) != observed
+                or hours.startswith("Dalle ") and any(
+                    v["start_time"] != hours[len("Dalle "):] for v in narrative["occurrences"])):
+            issues.append("visible_hours_conflict")
+        # A clock attached to explicit dates is not a permanent daily timetable.
+        # Its dated source facts survive separately, including historical ones.
+        hours = ""
+    if "visible_hours_conflict" in issues:
+        hours = ""
 
     recurrences = _recurrences(body_lines)
     recurrence = recurrences[0] if len(recurrences) == 1 and not multiple_locations else ""
@@ -433,14 +752,16 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
     scope_lines = [line for line in body_lines if SCOPE.search(line)]
     blocking = {"locality_missing_or_ambiguous", "card_heading_locality_conflict",
                 "jsonld_visible_locality_conflict", "multiple_market_rows_require_separate_identity",
-                "multiple_recurrence_statements", "jsonld_visible_edition_conflict"}
+                "multiple_recurrence_statements", "jsonld_visible_edition_conflict",
+                "visible_edition_conflict", "narrative_calendar_incomplete"}
     safe_recurrence = bool(recurrence and SIMPLE_RULE.fullmatch(recurrence) and not scope_lines
                            and not archived and not past and not intervals
                            and not blocking.intersection(issues))
     # Single-day editions remain source evidence, including past dates. Never
     # expand a span or attach today's read/modified date to the market calendar.
     single_dates = [r["start"] for r in intervals if r["start"] == r["end"]]
-    if any(code in issues for code in ("jsonld_visible_edition_conflict", "archive_marker_date_conflict")):
+    if any(code in issues for code in ("jsonld_visible_edition_conflict", "archive_marker_date_conflict",
+                                       "visible_edition_conflict", "narrative_calendar_incomplete")):
         single_dates = []
     legacy = {"nome": name, "citta": city, "provincia": province, "regione": region,
               "indirizzo": address, "orario_raw": hours,
@@ -451,6 +772,9 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
             "edition_intervals": intervals, "jsonld_events_matched": len(events),
             "invalid_jsonld_blocks": invalid_ld, "recurrence_text": recurrence,
             "recurrence_statements": recurrences, "scope_statements": scope_lines,
+            "explicit_occurrences": narrative["occurrences"],
+            "hours_qualifications": narrative["qualifications"],
+            "narrative_field_evidence": narrative["field_evidence"],
             "source_rows": unique_rows, "issues": sorted(set(issues)),
             "legacy_fields": legacy, "description_text": " ".join(body_lines),
             "market_openings_verified": False, "network_requests": 0}

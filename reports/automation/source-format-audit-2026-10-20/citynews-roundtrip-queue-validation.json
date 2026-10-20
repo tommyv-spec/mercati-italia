@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "OFFLINE captured-byte replay, including simulated missing-fixture failures. This is not a live acquisition or publishable queue state.",
+  "actual_network_requests_in_this_replay": 0,
+  "catalog_rows_before": 13856,
+  "catalog_rows_exported": 13856,
+  "existing_detail_url_inventory": 57,
+  "existing_detail_record_inventory": 62,
+  "raw_pages_verified": 27,
+  "raw_guard": {
+    "source_pages_replayed": 27,
+    "release_safe": true
+  },
+  "source_outcomes": {
+    "changed": 11,
+    "held": 19
+  },
+  "source_hold_reasons": {
+    "source_geography_not_established": 13,
+    "source_identity_conflict": 2,
+    "source_layout_unsupported": 1,
+    "source_exact_title_changed": 2,
+    "source_exact_url_changed": 1
+  },
+  "changed_fields_after_actual_export": {
+    "evidenza_editoriale": 11
+  },
+  "changed_rows": [
+    {
+      "slug": "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "sapori-stagionali-e-supporto-alle-filiere-locali-al-mercato-di-campagna-amica-un",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "ceccano-mercatino-degli-artigiani-del-borgo-odv-ceccano",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "hippie-market-tra-gli-acquedotti-romani-roma",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "edizione-numero-20-per-artegenova-la-grande-mostra-mercato-di-arte-moderna-e-con",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "torna-il-mercatino-in-centro-a-mirano-con-150-espositori-mirano",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "1deg-mostra-mercato-del-disco-di-silea-silea",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    }
+  ],
+  "queue_simulation": {
+    "bounded_rounds": 12,
+    "simulated_requests": 91,
+    "max_requests_in_round": 8,
+    "captured_pages_replayed_in_no_follow_runtime": 26,
+    "completed_attempt_cycle": 1,
+    "read_in_cycle": 26,
+    "never_read_due_to_missing_fixture_or_held_redirect": 31,
+    "all_round_resumes_equal": true
+  },
+  "final_guard": {
+    "release_safe": true,
+    "editorial_identities_checked": 11
+  },
+  "static_validation": {
+    "records": 13856,
+    "assets": 20,
+    "index_bytes": 5093545,
+    "regions": 20
+  },
+  "source_receipts_preserved": 2264,
+  "no_published_catalog_or_remote_writes": true,
+  "code_commits": [
+    "edd6b46",
+    "bd64b77"
+  ],
+  "tests": {
+    "citynews_core": {
+      "passed": 36,
+      "independently_repeated": true
+    },
+    "citynews_controller_transport": {
+      "passed": 19,
+      "independently_repeated": true
+    },
+    "existing_editorial_regressions": {
+      "passed": 47
+    },
+    "independent_core_review": "approved within exact-existing-record parsing, matching and export scope",
+    "independent_controller_review": "approved within bounded acquisition, state, checkpoint and transport scope"
+  },
+  "acquisition_before_replay": {
+    "date": "2026-10-20",
+    "inventoried_samples": 28,
+    "html_responses": 27,
+    "network_requests_including_robots_and_redirect": 56,
+    "seconds": 35.219,
+    "unavailable_before_detail_http": "Padova robots request",
+    "facts_not_freshness": "All sampled edition intervals are historical relative to the audit date. Read time does not establish source modification or present operation."
+  },
+  "integration_status": {
+    "parser_and_controller_committed": true,
+    "orchestrator_policy_and_coverage_wiring": "separate integration required",
+    "no_publication_in_this_validation": true
+  }
+}

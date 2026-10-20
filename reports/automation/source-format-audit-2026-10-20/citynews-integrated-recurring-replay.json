@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "Full current Autopilot with captured Citynews responses. All real network access forbidden; other sources use normal offline mode.",
+  "actual_network_requests": 0,
+  "simulated_request_count": 8,
+  "uncaptured_requests_are_test_fixtures_not_live_failures": true,
+  "code_base": "cfb41a6",
+  "data_baseline": "9766ca21b7f029342f4e65b7c1ea6d2285184b2d",
+  "baseline_records": 13856,
+  "final_records": 13856,
+  "all_existing_ids_retained": true,
+  "protected_identity_geography_primary_url_and_coordinates_unchanged": true,
+  "approved": true,
+  "passed_gates": 17,
+  "total_gates": 17,
+  "gates": {
+    "min_records": true,
+    "max_source_loss": true,
+    "min_id_retention": true,
+    "max_new_records": true,
+    "no_unreviewed_new_confirmations": true,
+    "no_unreviewed_new_verifications": true,
+    "unknown_source_share_budget": true,
+    "official_sources_available": true,
+    "unavailable_official_sources_preserved": true,
+    "forecast_60d": true,
+    "index_under_absolute_budget": true,
+    "index_growth_budget": true,
+    "never_upgrade_estimates_to_confirmed": true,
+    "no_invented_human_verification": true,
+    "retain_old_source_evidence": true,
+    "forecast_quality_flags": true,
+    "source_identities_immutable": true
+  },
+  "elapsed_seconds": 78.72,
+  "citynews": {
+    "status": "completed",
+    "stop_reason": "request_limit",
+    "network_requests": 8,
+    "details_attempted": 5,
+    "source_pages_read": 3,
+    "documents_parsed": 3,
+    "progress": {
+      "attempted_in_cycle": 5,
+      "cycle": 1,
+      "market_freshness_guaranteed": false,
+      "never_read": 54,
+      "overdue": 54,
+      "read_in_cycle": 3,
+      "resources": 57,
+      "statuses": {
+        "retrieved": 3,
+        "unavailable": 2,
+        "unread": 52
+      }
+    }
+  },
+  "citynews_outcomes": {
+    "changed": 2,
+    "held": 1
+  },
+  "citynews_changes": [
+    {
+      "slug": "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    }
+  ],
+  "citynews_current_address_hours_or_date_changes": 0,
+  "citynews_modified_time_not_invented": true,
+  "citynews_queue_exported_and_report_bound": true,
+  "previous_queues_byte_equal_after_export_and_pruning": {
+    "eventiesagre-detail-state.json": "b2c782a42008fbdadbe7bb88802fb20894ceac695cc8fdf10b811689929e8da5",
+    "cosedicasa-detail-state.json": "14fd4df62ec909407084a11ede2c80eff22526df7f912f48483ec6522f6e740d",
+    "happings-discovery.json": "2d6f168b495e2ec3f8a07c3ffd5e62060ce9ebc48944af7fe37dd6c53e3a0081",
+    "happings-legacy-resources.json": "3187a6c30733678cf37cef6c4fcf4d1004e53769de14cc7ace55c6e657187273"
+  },
+  "citynews_coverage": {
+    "resources": 57,
+    "markets": 62,
+    "resource_read_statuses": {
+      "retrieved": 3,
+      "unavailable": 2,
+      "not_selected": 52
+    }
+  },
+  "editorial_final_guard": {
+    "publishers": {
+      "citynews": {
+        "editorial_identities_checked": 2,
+        "release_safe": true
+      },
+      "cosedicasa.com": {
+        "editorial_identities_checked": 0,
+        "release_safe": true
+      },
+      "eventiesagre.it": {
+        "editorial_identities_checked": 0,
+        "release_safe": true
+      }
+    },
+    "queues": {
+      "citynews": {
+        "sha256": "8df8656eb36e45e0837a8cbba36c5ae99a0ce1e349dd0b4c20f10cae304555d0",
+        "status": "validated_report_bound"
+      },
+      "cosedicasa.com": {
+        "status": "validated_previous"
+      },
+      "eventiesagre.it": {
+        "status": "validated_previous"
+      }
+    },
+    "release_safe": true,
+    "schema": 1
+  },
+  "no_remote_or_published_catalog_writes": true,
+  "all_exported_field_changes": {
+    "evidenza_editoriale": 2
+  },
+  "all_exported_changed_records": [
+    {
+      "slug": "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    },
+    {
+      "slug": "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo",
+      "fields": [
+        "evidenza_editoriale"
+      ]
+    }
+  ],
+  "all_existing_field_receipts_preserved_and_valid": 2264,
+  "tests": {
+    "citynews_integration": 6,
+    "existing_source_integration_and_coverage": 24,
+    "publisher_refresh": 20,
+    "autopilot": 21
+  },
+  "independent_review": {
+    "result": "approved within orchestration, policy, queue persistence and coverage scope",
+    "integration_tests_independently_repeated": 6,
+    "full_catalog_replay_independently_inspected_not_reexecuted": true,
+    "reviewer_modified_files": false,
+    "reviewer_network_requests": 0
+  }
+}

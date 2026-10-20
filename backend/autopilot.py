@@ -687,10 +687,11 @@ def run(args):
         Path(__file__).resolve().parent / "data/publisher-refresh-contracts.json"))
     existing_source_policy = policy.get("existing_source_refresh", {"enabled": False})
     if (not isinstance(existing_source_policy, dict)
-            or set(existing_source_policy) != {"enabled"}
-            or type(existing_source_policy["enabled"]) is not bool):
+            or set(existing_source_policy) - {"enabled", "citynews"}
+            or type(existing_source_policy.get("enabled")) is not bool):
         raise ValueError("Invalid existing-source refresh enablement")
-    existing_source_config = existing_source_configuration(enabled=existing_source_policy["enabled"])
+    existing_source_config = existing_source_configuration(
+        enabled=existing_source_policy["enabled"], citynews_policy=existing_source_policy.get("citynews"))
     policy_id = digest({"policy": policy, "publisher_contracts": publisher_contracts,
                         "existing_source_contracts": existing_source_config})
     baseline_id = old_manifest.get("content_signature")
@@ -1184,11 +1185,15 @@ def run(args):
         page_rows, out=out, state_dir=manifest_path.parent, today=args.today,
         baseline_signature=baseline_id, policy_digest=policy_id,
         config=existing_source_config, offline=args.offline, resume=args.resume,
+        # MAIN's existing 20-minute job is not extended. Concurrent readers
+        # also retain their shorter publisher allowances (Citynews: 60 s).
+        deadline=start + 20 * 60,
     )
     save_json(out / "intermediate/editorial-source-refreshed.json", editorial_rows)
     checkpoint(out, "editorial_sources", {
         publisher: {key: phase[key] for key in (
-            "status", "details_attempted", "source_pages_read", "documents_parsed", "progress")}
+            "status", "stop_reason", "network_requests", "details_attempted",
+            "source_pages_read", "documents_parsed", "progress")}
         for publisher, phase in existing_source_report["editorial"].items()
     })
 
@@ -1361,7 +1366,8 @@ def run(args):
         before_happings, projected, new_rows, happings_report, today=args.today
     )
     save_json(out / "happings-enrichment-static-guard.json", happings_static_guard)
-    editorial_static_guard = verify_editorial_export(new_rows, existing_source_report, today=args.today)
+    editorial_static_guard = verify_editorial_export(
+        new_rows, existing_source_report, today=args.today, state_dir=dest)
     roma_d881_static_guard = verify_roma_fields(new_rows, existing_source_report["roma"], today=args.today)
     save_json(out / "editorial-source-static-guard.json", editorial_static_guard)
     save_json(out / "roma-d881-static-guard.json", roma_d881_static_guard)
@@ -1503,7 +1509,8 @@ def run(args):
     findings["source_format_review"] = format_review["summary"]
     findings["existing_source_refresh"] = {
         "editorial": {publisher: {key: phase[key] for key in (
-            "status", "details_attempted", "source_pages_read", "documents_parsed", "progress")}
+            "status", "stop_reason", "network_requests", "details_attempted",
+            "source_pages_read", "documents_parsed", "progress")}
             for publisher, phase in existing_source_report["editorial"].items()},
         "roma": {"status": existing_source_report["roma"]["status"],
                  "matched_existing_ids": len(existing_source_report["roma"].get("matched_ids", [])),

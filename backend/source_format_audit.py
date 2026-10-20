@@ -128,7 +128,8 @@ def inventory(rows):
             "unique_primary_urls": len(urls), "primary_urls_sha256": digest(sorted(urls)),
             "sample_candidates": sorted(urls, key=lambda u: (-scores[u], u))[:3],
             "source_labels": dict(sorted(g["source_labels"].items())),
-            "empty_fields": {field: g["empty_fields"].get(field, 0) for field in FIELDS}})
+            "empty_fields": {field: g["empty_fields"].get(field, 0) for field in FIELDS},
+            "empty_fields_basis": "catalog_storage_only_not_source_absence"})
         result.append(g)
     return {"catalog_records": len(rows), "catalog_ids_sha256": digest(sorted(seen_ids)),
         "primary_source_labels": len({str(r.get("fonte") or "") for r in rows}),

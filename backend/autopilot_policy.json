@@ -1,6 +1,18 @@
 {
   "schema": 1,
-  "existing_source_refresh": {"enabled": true},
+  "existing_source_refresh": {
+    "enabled": true,
+    "citynews": {
+      "enabled": true,
+      "max_requests": 8,
+      "max_details": 8,
+      "max_seconds": 60,
+      "min_delay_seconds": 2,
+      "overdue_after_days": 45,
+      "new_market_ids_allowed": false,
+      "overwrite_unowned_fields": false
+    }
+  },
   "description": "Fail-closed daily DEV automation with source-level freshness, identity and no dynamic billed reads",
   "sources": [
     {

@@ -1,4 +1,5 @@
 import { localDateISO } from './dateDisclosure.js'
+import { citynewsSourceIdentity } from './citynewsIdentity.js'
 
 const text = value => typeof value === 'string' ? value.trim() : ''
 const list = value => Array.isArray(value) ? value : []
@@ -31,7 +32,7 @@ function sourceIdentity(value) {
       return ['eventiesagre.it', match[1]]
     }
   } catch { /* A malformed URL is not displayable evidence. */ }
-  return null
+  return citynewsSourceIdentity(value)
 }
 
 function boundEvidence(market, today) {
@@ -51,6 +52,11 @@ function boundEvidence(market, today) {
   for (const field of ['published_on', 'modified_on']) {
     if (proof[field] && (!validDate(proof[field]) || proof[field] > proof.read_on)) return null
   }
+  if (bound[1].startsWith('citynews-') && (
+      proof.final_url !== proof.primary_url || proof.canonical_url !== proof.primary_url ||
+      proof.redirect_observed !== false || proof.hash_basis !== 'http_response_bytes' || proof.modified_on ||
+      proof.market.citta !== market.originalCity || proof.market.provincia !== market.province ||
+      proof.market.regione !== market.region)) return null
   return proof
 }
 
@@ -79,6 +85,11 @@ function isPastEdition(facts, today) {
     bounds.every(item => item.end < today) && dates.every(item => item.date < today)
 }
 
+function calendarExceptions(market) {
+  return new Map(list(market?.calendarExceptions).filter(item => item && validDate(item.data))
+    .map(item => [item.data, text(item.motivo)]))
+}
+
 const clock = value => typeof value === 'string' && /^(?:(?:[01]\d|2[0-3]):[0-5]\d|24:00)$/.test(value) ? value : ''
 function occurrenceHours(item) {
   const start = clock(item.start_time), end = clock(item.end_time)
@@ -94,6 +105,7 @@ export function editorialEvidenceView(market, now = new Date()) {
   const proof = boundEvidence(market, today)
   if (!proof) return null
   const facts = proof.facts
+  const exceptions = calendarExceptions(market)
   const fields = conflictFields(proof)
   const calendarConflict = [...fields].some(field => calendarFields.has(field))
   const historical = isPastEdition(facts, today)
@@ -108,25 +120,34 @@ export function editorialEvidenceView(market, now = new Date()) {
   notes.push(...factualNotes)
   const explicitDates = occurrences(facts)
   const singleDates = new Set(explicitDates.map(item => item.date))
-  const rows = intervals(facts).filter(item => item.start !== item.end || !singleDates.has(item.start)).map(item => ({
-    key: 'period/' + item.start + '/' + item.end, sortDate: item.start, kind: 'interval',
-    label: item.start === item.end ? dateLabel(item.start) : `${dateLabel(item.start)} – ${dateLabel(item.end)}`,
-    status: calendarConflict ? 'Periodo da verificare' : item.end < today ? 'Periodo passato' : 'Periodo riportato',
-    hours: '', note: 'Il periodo non specifica le aperture dei singoli giorni.',
-  }))
+  const rows = intervals(facts).filter(item => item.start !== item.end || !singleDates.has(item.start)).map(item => {
+    const stopped = [...exceptions].filter(([day]) => item.start <= day && day <= item.end)
+      .sort(([a], [b]) => a.localeCompare(b))
+    const changes = stopped.map(([day, reason]) => `${dateLabel(day)}: Annullato${reason ? ' — ' + reason : ''}`)
+    return {
+      key: 'period/' + item.start + '/' + item.end, sortDate: item.start, kind: 'interval',
+      label: item.start === item.end ? dateLabel(item.start) : `${dateLabel(item.start)} – ${dateLabel(item.end)}`,
+      status: stopped.length ? item.start === item.end ? 'Annullato' : 'Variazioni nel periodo'
+        : calendarConflict ? 'Periodo da verificare' : item.end < today ? 'Periodo passato' : 'Periodo riportato',
+      hours: '', note: ['Il periodo non specifica le aperture dei singoli giorni.', ...changes].join(' '),
+    }
+  })
   for (const item of explicitDates) {
+    const stopped = exceptions.has(item.date)
     rows.push({key: ['date', item.date, item.start_time, item.end_time, item.status].join('/'),
       sortDate: item.date, kind: 'date', label: dateLabel(item.date),
-      status: statusLabels[item.status] || (calendarConflict ? 'Data da verificare' : facts.archive_marker === true
+      status: stopped ? 'Annullato' : statusLabels[item.status] || (calendarConflict ? 'Data da verificare' : facts.archive_marker === true
         ? 'Data nella pagina archiviata' : item.date < today ? 'Data passata' : 'Data riportata'),
-      hours: !calendarConflict && !fields.has('hours') && facts.archive_marker !== true && ['source_listed', 'rescheduled'].includes(item.status)
-        ? occurrenceHours(item) : '', note: text(item.note),
+      hours: !stopped && !calendarConflict && !fields.has('hours') && facts.archive_marker !== true && ['source_listed', 'rescheduled'].includes(item.status)
+        ? occurrenceHours(item) : '',
+      note: [text(item.note), stopped ? exceptions.get(item.date) : ''].filter(Boolean).join(' · '),
     })
   }
   rows.sort((a, b) => a.sortDate.localeCompare(b.sortDate) || a.key.localeCompare(b.key))
   return {
     title: historical ? 'Edizione passata descritta dalla fonte' : 'Dettagli dell’edizione nella fonte',
-    sourceName: proof.publisher === 'cosedicasa.com' ? 'Cose di Casa' : 'Eventi e Sagre',
+    sourceName: proof.publisher === 'cosedicasa.com' ? 'Cose di Casa'
+      : proof.publisher === 'eventiesagre.it' ? 'Eventi e Sagre' : `Citynews · ${proof.publisher}`,
     sourceUrl: proof.final_url, readOn: dateLabel(proof.read_on),
     editorialDate: proof.modified_on ? `Modifica dichiarata: ${dateLabel(proof.modified_on)}`
       : proof.published_on ? `Pubblicazione dichiarata: ${dateLabel(proof.published_on)}` : 'Data dei contenuti non dichiarata',
@@ -142,6 +163,7 @@ export function editorialHoursForDate(market, day, now = new Date()) {
   const proof = boundEvidence(market, localDateISO(now))
   if (!proof) return null
   if (!validDate(day)) return 'Orario per questa data da verificare'
+  if (calendarExceptions(market).has(day)) return 'Annullato'
   const fields = conflictFields(proof)
   if ([...fields].some(field => calendarFields.has(field)) || fields.has('hours') || proof.facts.archive_marker === true) {
     return 'Orario per questa data da verificare'

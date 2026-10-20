@@ -1,0 +1,506 @@
+{
+  "schema": 1,
+  "commit": "9b19d17c925aa0be8d14813898193872067b565e",
+  "review": "approved_no_release_blocker_found",
+  "date": "2026-10-20",
+  "focused_tests_passed": 87,
+  "existing_receipt_compatibility": {
+    "catalog_records": 13856,
+    "records_with_valid_receipts": 2249,
+    "valid_receipts": 2264,
+    "receipt_or_freshness_state_regressions": 0
+  },
+  "real_capture_replay": {
+    "pages": [
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-como-e-provincia/",
+        "rows": 90,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-como-e-provincia/",
+          "published_at": "2025-10-24T09:08:09+00:00",
+          "modified_at": "2025-10-24T09:33:55+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:33:55+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-como-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-como-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:33:55+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-como-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-como-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/",
+        "rows": 60,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/",
+          "published_at": "2025-10-24T09:07:44+00:00",
+          "modified_at": "2025-10-24T09:32:34+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:32:34+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:07:44+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:32:34+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:07:44+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cosenza-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-cremona-e-provincia/",
+        "rows": 55,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-cremona-e-provincia/",
+          "published_at": "2025-10-24T09:08:09+00:00",
+          "modified_at": "2025-10-24T09:33:58+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:33:58+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cremona-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cremona-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:33:58+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cremona-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cremona-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/",
+        "rows": 10,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/",
+          "published_at": "2025-10-24T09:07:44+00:00",
+          "modified_at": "2025-10-24T09:32:36+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:32:36+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:07:44+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:32:36+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:07:44+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+        "rows": 215,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/",
+          "published_at": "2025-10-24T09:08:09+00:00",
+          "modified_at": "2025-10-24T09:34:40+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:34:40+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:34:40+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/",
+        "rows": 18,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/",
+          "published_at": "2025-10-24T09:08:09+00:00",
+          "modified_at": "2025-10-24T09:34:22+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:34:22+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:34:22+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:08:09+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-fermo-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+        "rows": 45,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/",
+          "published_at": "2025-10-24T09:07:44+00:00",
+          "modified_at": "2025-10-24T09:32:57+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:32:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:07:44+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:32:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:07:44+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-ferrara-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+        "rows": 242,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/",
+          "published_at": "2025-10-24T09:08:35+00:00",
+          "modified_at": "2025-10-24T09:35:47+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:35:47+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:08:35+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:35:47+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:08:35+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-firenze-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/",
+        "rows": 45,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/",
+          "published_at": "2025-10-24T09:08:22+00:00",
+          "modified_at": "2025-10-24T09:34:59+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:34:59+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:08:22+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:34:59+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:08:22+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-foggia-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+        "rows": 76,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/",
+          "published_at": "2025-10-24T09:07:57+00:00",
+          "modified_at": "2025-10-24T09:33:25+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:33:25+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:07:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:33:25+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:07:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-frosinone-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-genova-e-provincia/",
+        "rows": 69,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-genova-e-provincia/",
+          "published_at": "2025-10-24T09:07:57+00:00",
+          "modified_at": "2025-10-24T09:33:39+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:33:39+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-genova-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:07:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-genova-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:33:39+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-genova-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:07:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-genova-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+        "rows": 113,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/",
+          "published_at": "2025-10-24T09:08:35+00:00",
+          "modified_at": "2025-10-24T09:35:49+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:35:49+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:08:35+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:35:49+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:08:35+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-grosseto-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      },
+      {
+        "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+        "rows": 50,
+        "scoped_rows": 0,
+        "metadata": {
+          "schema": 1,
+          "scope": "editorial_page_only_not_market_verification",
+          "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/",
+          "published_at": "2025-10-24T09:07:57+00:00",
+          "modified_at": "2025-10-24T09:33:41+00:00",
+          "evidence": [
+            {
+              "property": "WebPage.dateModified",
+              "value": "2025-10-24T09:33:41+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/"
+            },
+            {
+              "property": "WebPage.datePublished",
+              "value": "2025-10-24T09:07:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/"
+            },
+            {
+              "property": "article:modified_time",
+              "value": "2025-10-24T09:33:41+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/"
+            },
+            {
+              "property": "article:published_time",
+              "value": "2025-10-24T09:07:57+00:00",
+              "url": "https://www.happings.com/it/mercati-settimanali-a-imperia-e-provincia/"
+            }
+          ],
+          "conflicts": []
+        }
+      }
+    ],
+    "source_rows": 1088,
+    "source_row_losses": 0,
+    "page_metadata_available": 13,
+    "changed_source_labels": [],
+    "source_qualified_rows": 0,
+    "address_changes": 0,
+    "record_changes": 580,
+    "identity_calendar_human_verification_or_freshness_changes": 0,
+    "safe_report": true,
+    "pages_read": 13
+  },
+  "assessment": [
+    "Page publication/modification metadata stays scoped under metadati_pagina; fonte_aggiornata_il remains empty for provincial receipts.",
+    "Same-body metadata attachment requires identical source provenance, SHA256 and read date, and preserves field values and ownership.",
+    "Original read date is used to validate persisted metadata, so future/conflict statements are not silently reinterpreted on later offline refresh.",
+    "Seasonal/interval city qualifiers keep the complete source label, enter ambiguity checks under their municipality and prohibit ordinary weekly assignment.",
+    "Geographic seasonal street names gain only the existing bounded address route; no new weekdays, hours or forecasts are derived."
+  ],
+  "limitations": [
+    "No newly acquired source page was fetched in this review.",
+    "Evidence validators establish schema and source binding; retained transport bytes are needed to independently replay publisher assertions."
+  ],
+  "nonblocking_findings": [
+    {
+      "code": "same_day_editorial_timestamp_order",
+      "file": "backend/happings_page_metadata.py",
+      "function": "_from_statements",
+      "reproduction": {
+        "published_at": "2026-10-19T12:00:00+00:00",
+        "modified_at": "2026-10-19T09:00:00+00:00",
+        "actual_conflicts": []
+      },
+      "impact": "Editoral metadata can retain an internally reversed timestamp pair. No market freshness, calendar or verification promotion occurs. Parent authorized a separate correction."
+    }
+  ]
+}

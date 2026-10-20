@@ -1,0 +1,169 @@
+{
+  "actual_network_requests": 0,
+  "all_existing_ids_retained": true,
+  "baseline_files_unchanged": true,
+  "baseline_records": 13856,
+  "candidate_records": 13856,
+  "changed_rows": [
+    {
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "slug": "da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-bologna"
+    },
+    {
+      "fields": [
+        "completezza",
+        "date",
+        "date_quality",
+        "evidenza_editoriale",
+        "orario_testo",
+        "proiezione_fonte",
+        "proiezione_generata_il",
+        "proiezione_regola",
+        "riscontri_campi"
+      ],
+      "slug": "mercatino-antiquariato-e-usato-di-bologna-mercato-antiquario-citta-di-bologna-pi"
+    },
+    {
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "slug": "fiera-del-vino-a-polpenazze-del-garda-polpenazze-del-garda"
+    },
+    {
+      "fields": [
+        "evidenza_editoriale"
+      ],
+      "slug": "mercato-delle-pulci-di-arezzo-2026-evento-al-centro-affari-arezzo"
+    }
+  ],
+  "checkpoint_v2_resumes": {
+    "cosedicasa.com": {
+      "checkpoint_schema": 2,
+      "network_requests": 0,
+      "same_candidate_same_proof_same_state": true
+    },
+    "eventiesagre.it": {
+      "checkpoint_schema": 2,
+      "network_requests": 0,
+      "same_candidate_same_proof_same_state": true
+    }
+  },
+  "code_commit": "a20ea635dcc3ae510d8d17980e116a505912d68b",
+  "code_sha256": "2c82bdfe37a26cb1abedde252608bbe70a4aff40566307741c722352d9a92833",
+  "code_unchanged_during_check": true,
+  "date": "2026-10-20",
+  "deleted_ids": [],
+  "editorial_static_guard": {
+    "publishers": {
+      "citynews": {
+        "editorial_identities_checked": 2,
+        "release_safe": true
+      },
+      "cosedicasa.com": {
+        "editorial_identities_checked": 1,
+        "release_safe": true
+      },
+      "eventiesagre.it": {
+        "editorial_identities_checked": 1,
+        "release_safe": true
+      }
+    },
+    "queues": {
+      "citynews": {
+        "sha256": "8df8656eb36e45e0837a8cbba36c5ae99a0ce1e349dd0b4c20f10cae304555d0",
+        "status": "validated_report_bound"
+      },
+      "cosedicasa.com": {
+        "sha256": "ba54c7aeb212450ce6c8f06ecef82f0a0d6c57284076f0a9adf3bdeccf81fd6c",
+        "status": "validated_report_bound"
+      },
+      "eventiesagre.it": {
+        "sha256": "5bce77fcbb8af11644ea66b8499db65d10b0e4d3bbd7158d5cd27fe2d594253b",
+        "status": "validated_report_bound"
+      }
+    },
+    "release_safe": true,
+    "schema": 1
+  },
+  "elapsed_seconds": 39.425,
+  "five_queue_files_present": true,
+  "full_autopilot_repeated": false,
+  "identity_geography_primary_urls_coordinates_unchanged": true,
+  "limitations": [
+    "Offline injected responses; no live reads or publication approval.",
+    "EES robots is a disclosed synthetic fixture; detail HTML and CDC/Citynews robots are existing hash-verified captures.",
+    "Only the first EES/CDC selection was overridden to exercise saved-body persistence without changing original queue history.",
+    "Citynews missing-fixture errors are simulated and must not be reported as live source failures.",
+    "No full Autopilot rerun; previous 17/17 integration and live MAIN gates remain distinct evidence."
+  ],
+  "mode": "TARGETED_CAPTURED_INTEGRATION_CHECK",
+  "new_ids": [],
+  "passed": true,
+  "previous_happings_queues_byte_equal": true,
+  "queue_migration": {
+    "cosedicasa.com": {
+      "changed_resources_after_migration": [
+        "https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano"
+      ],
+      "nonselected_resource_history_preserved": true,
+      "raw_sha256_after": "234db2b5caff8f35dd1231715f14e5800360f64c66ed5a506e412cfd2064a40d",
+      "raw_sha256_before": "14fd4df62ec909407084a11ede2c80eff22526df7f912f48483ec6522f6e740d",
+      "report_bound_tamper_rejected": true,
+      "resources": 425,
+      "stored_schema_after": 2,
+      "stored_schema_before": 1
+    },
+    "eventiesagre.it": {
+      "changed_resources_after_migration": [
+        "https://www.eventiesagre.it/Eventi_Enogastronomici/17258_Fiera+del+Vino+a+Polpenazze+Del+Garda.html"
+      ],
+      "nonselected_resource_history_preserved": true,
+      "raw_sha256_after": "3bf65f2628bb1997c3e2f28531db1521ae6fc8d643fc85605efe462222172319",
+      "raw_sha256_before": "b2c782a42008fbdadbe7bb88802fb20894ceac695cc8fdf10b811689929e8da5",
+      "report_bound_tamper_rejected": true,
+      "resources": 1853,
+      "stored_schema_after": 2,
+      "stored_schema_before": 1
+    }
+  },
+  "schema": 1,
+  "simulated_fetch_calls": 12,
+  "source_results": {
+    "citynews": {
+      "details_attempted": 5,
+      "documents_parsed": 3,
+      "network_requests": 8,
+      "outcomes": {
+        "changed": 2,
+        "held": 1
+      },
+      "source_pages_read": 3,
+      "status": "completed",
+      "stop_reason": "request_limit"
+    },
+    "cosedicasa.com": {
+      "details_attempted": 1,
+      "documents_parsed": 1,
+      "network_requests": 2,
+      "outcomes": {
+        "changed": 1
+      },
+      "source_pages_read": 1,
+      "status": "completed",
+      "stop_reason": "detail_limit"
+    },
+    "eventiesagre.it": {
+      "details_attempted": 1,
+      "documents_parsed": 1,
+      "network_requests": 2,
+      "outcomes": {
+        "changed": 1
+      },
+      "source_pages_read": 1,
+      "status": "completed",
+      "stop_reason": "detail_limit"
+    }
+  }
+}

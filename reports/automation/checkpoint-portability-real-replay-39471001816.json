@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "run_id": "39471001816",
+  "date": "2026-10-20",
+  "base_commit": "6274e1d",
+  "network_requests": 0,
+  "catalog_writes": 0,
+  "editorial": {
+    "eventiesagre.it": {
+      "pages": 11,
+      "bytes": 592914,
+      "raw_parsed_facts_exact": true,
+      "source_reconciliation_exact": true,
+      "queue_transition_exact": true,
+      "export_guard": {
+        "release_safe": true,
+        "editorial_identities_checked": 11
+      },
+      "gzip_os_bytes": [
+        255
+      ]
+    },
+    "cosedicasa.com": {
+      "pages": 16,
+      "bytes": 9813756,
+      "raw_parsed_facts_exact": true,
+      "source_reconciliation_exact": true,
+      "queue_transition_exact": true,
+      "export_guard": {
+        "release_safe": true,
+        "editorial_identities_checked": 14
+      },
+      "gzip_os_bytes": [
+        255
+      ]
+    }
+  },
+  "happings": {
+    "pages": 90,
+    "bytes": 13747924,
+    "metadata_and_frontier_exact": true,
+    "raw_parsed_facts_exact": true,
+    "gzip_os_bytes": [
+      255
+    ]
+  },
+  "editorial_combined_exact": true,
+  "total_real_bodies_verified": 117,
+  "passed": true
+}

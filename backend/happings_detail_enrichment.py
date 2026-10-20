@@ -563,6 +563,13 @@ def preview(base, pages, *, today, apply=False, admit_new=False, max_new=32):
     report["counts"] = dict(sorted(counters.items()))
     report["output_sha256"] = digest(result)
     verify_changes(base, result, report, today=today)
+    from happings_field_coverage import aggregate_coverage, detail_page_coverage
+    coverage_before = {row["slug"]: row for row in base}
+    coverage_after = {row["slug"]: row for row in result}
+    report["field_coverage"] = aggregate_coverage([
+        detail_page_coverage(page["html"],document["parsed"],outcome,
+                             before=coverage_before,after=coverage_after,applied=apply)
+        for page,document,outcome in zip(pages,report["documents"],report["outcomes"])])
     return result, report
 
 
