@@ -5,7 +5,7 @@ Campi rilevati e corrispondenze sono suggerimenti, non dati verificati.
 Fonti strutturate ammesse per probing: **32**; mai osservate: **0**.
 Ogni run controlla fino a tre fonti in rotazione, mantenendo uno storico bounded dei soli schemi.
 
-## Fiere e mercati - Comune di Sona
+## Posteggi mercati e fiere - Comune di Pianiga
 - Esito: offline_skipped
 - Formato: CSV
 - Campi: 
@@ -14,7 +14,7 @@ Ogni run controlla fino a tre fonti in rotazione, mantenendo uno storico bounded
 - Punti da risolvere: 
 - Verifiche obbligatorie: licenza, schema completo, ID stabili, date attuali, dedup.
 
-## Censimento dei mercati quindicinali
+## Censimento dei mercati itineranti
 - Esito: offline_skipped
 - Formato: CSV
 - Campi: 

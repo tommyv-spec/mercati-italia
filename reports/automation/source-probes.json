@@ -20,9 +20,9 @@
       "viability": "legacy_probe"
     },
     "0cffe11e-1a55-471e-9bc0-3fec3247b7d9": {
-      "checked_date": "2026-10-12",
-      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
-      "status": "schema_preview_only",
+      "checked_date": "2026-10-20",
+      "column_fingerprint": null,
+      "status": "offline_skipped",
       "viability": "manual_schema_review_required"
     },
     "23edf989-5a91-47ff-a6b1-fb0a9cce061d": {
@@ -206,9 +206,9 @@
       "viability": "manual_schema_review_required"
     },
     "f4407fb8-5e36-4311-8422-02d463741780": {
-      "checked_date": "2026-10-18",
-      "column_fingerprint": "e4f54283ac5b9a78b0b91e16f489d17769814f3d53625f14a483545b636de3c8",
-      "status": "schema_preview_only",
+      "checked_date": "2026-10-20",
+      "column_fingerprint": null,
+      "status": "offline_skipped",
       "viability": "manual_schema_review_required"
     },
     "fcdebbfc-16d5-47fd-908b-8cba7e88be53": {
@@ -226,11 +226,11 @@
       "field_hints": {},
       "fields": [],
       "format": "CSV",
-      "id": "ecfe375b-8322-47da-972f-c208649a8b9d",
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv",
+      "id": "0cffe11e-1a55-471e-9bc0-3fec3247b7d9",
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/1bb563f3-e2b4-4b93-8974-0165285f5913.csv",
       "source_license_verified": false,
       "status": "offline_skipped",
-      "title": "Fiere e mercati - Comune di Sona"
+      "title": "Posteggi mercati e fiere - Comune di Pianiga"
     },
     {
       "adapter_enabled": false,
@@ -238,11 +238,11 @@
       "field_hints": {},
       "fields": [],
       "format": "CSV",
-      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
-      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
+      "id": "f4407fb8-5e36-4311-8422-02d463741780",
+      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
       "source_license_verified": false,
       "status": "offline_skipped",
-      "title": "Censimento dei mercati quindicinali"
+      "title": "Censimento dei mercati itineranti"
     },
     {
       "adapter_enabled": false,

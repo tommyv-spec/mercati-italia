@@ -2,7 +2,7 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [39475291184](https://github.com/tommyv-spec/mercati-italia/actions/runs/39475291184) — UTC 2026-10-20T18:34:02.161146+00:00
+- Ultimo run: [39476248402](https://github.com/tommyv-spec/mercati-italia/actions/runs/39476248402) — UTC 2026-10-20T18:41:21.813812+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
 - Schede nel catalogo: **13,856**
@@ -20,7 +20,7 @@
 - Corciano: **0** record senza conflitti su **0**, in revisione **0**, impronta sorgente **non disponibile**.
 - Enrichment ufficiale: attivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **0** corrispondenze esatte su **0** record fonte in revisione.
 - Riconciliazione ISTAT (21 febbraio 2026): attiva, **0** Comuni corretti e **0** titoli ripuliti in questo run; **0** calendari sospesi (**0** date previste), **2** casi ancora ambigui. Nessuna conferma di apertura generata.
-- Province amministrative riconciliate: **80**; in attesa del budget dei prossimi cicli **140**; protette da prove o verifiche preesistenti **0**. Tetto complessivo invariato: 80 schede per ciclo ISTAT.
+- Province amministrative riconciliate: **80**; in attesa del budget dei prossimi cicli **60**; protette da prove o verifiche preesistenti **0**. Tetto complessivo invariato: 80 schede per ciclo ISTAT.
 - Revisione manuale di pagine originali e Comuni ISTAT: attiva; **0** Comuni sistemati, **0** punti geografici incompatibili sospesi, **0** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.
 - Protezioni ancora attive nel sito statico DEV: **16** navigazioni sospese, **7** coordinate in quarantena, **16** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
 - Roma Municipio XIII (mappa pubblicata nel 2024): **2** coordinate ancora sospese e **2** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **9** coordinate e **18** navigazioni. Nessuna apertura 2026 confermata dal documento storico.
