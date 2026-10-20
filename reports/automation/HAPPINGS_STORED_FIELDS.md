@@ -4,9 +4,9 @@ Analisi **senza accesso al sito Happings** o altri siti editoriali.
 Gli stessi ID, Comune, provincia, giorno e URL originale non bastano
 a certificare l'unicità della sede in un intero Comune.
 
-- Schede nazionali controllate: **13856**
-- Schede Happings controllate: **9679**
-- Candidate che hanno già un indirizzo in un'altra scheda: **689**
+- Schede nazionali controllate: **13888**
+- Schede Happings controllate: **9711**
+- Candidate che hanno già un indirizzo in un'altra scheda: **602**
 - Gruppi con più sedi note: **0**
 - Campi riempiti senza prova indipendente: **0**
 
@@ -14,10 +14,10 @@ a certificare l'unicità della sede in un intero Comune.
 
 | Struttura URL | Schede | Indirizzo assente | Sede non specifica | Orari assenti |
 |---|---:|---:|---:|---:|
-| town_detail_legacy | 4746 | 16 | 2074 | 4604 |
-| province_index_old_a | 4487 | 2264 | 3341 | 4220 |
+| town_detail_legacy | 4746 | 16 | 2074 | 4602 |
+| province_index_old_a | 4487 | 2176 | 3253 | 4203 |
 | province_index_old_ad | 414 | 229 | 378 | 414 |
-| other_historical_layout | 32 | 0 | 0 | 0 |
+| other_historical_layout | 64 | 0 | 0 | 0 |
 
 Le vecchie pagine `ad-...` possono non essere più raggiungibili:
 non cancellare mai le schede; controllare origine e redirect prima
@@ -28,17 +28,12 @@ di abilitare la stessa struttura del parser automatico.
 - mercato-settimanale-a-pompei-pompei-martedi ← mercato-settimanale-di-pompei-pompei-martedi (sede già archiviata: via Aldo Moro (vicino al centro commerciale La Cartiera))
 - mercato-settimanale-a-carpi-carpi-giovedi ← mercato-settimanale-di-carpi-carpi-giovedi (sede già archiviata: Piazza Martiri)
 - mercato-settimanale-di-carpi-carpi ← mercato-settimanale-di-carpi-carpi-giovedi (sede già archiviata: Piazza Martiri)
-- mercato-settimanale-a-fanano-fanano-domenica ← mercato-settimanale-di-fanano-fanano-domenica (sede già archiviata: Piazza Rinaldi)
 - mercato-settimanale-a-guiglia-guiglia-mercoledi ← mercato-settimanale-di-guiglia-guiglia-mercoledi (sede già archiviata: piazza Belvedere)
-- mercato-settimanale-a-modena-modena-lunedi ← mercato-settimanale-di-modena-modena-lunedi (sede già archiviata: Parco Novi Sad)
-- mercato-settimanale-di-modena-modena ← mercato-settimanale-di-modena-modena-lunedi (sede già archiviata: Parco Novi Sad)
 - mercato-settimanale-di-rimini-rimini ← mercato-settimanale-di-rimini-rimini-mercoledi (sede già archiviata: piazza Malatesta e piazza Cavour)
-- mercato-settimanale-a-soliera-soliera-martedi ← mercato-settimanale-di-soliera-soliera-martedi (sede già archiviata: piazza F.lli Sassi, piazza Lusvardi, via Garibaldi, via IV Novembre)
 - mercato-settimanale-di-zocca-zocca ← mercato-settimanale-di-zocca-zocca-martedi (sede già archiviata: Via del Mercato)
 - mercato-settimanale-di-alassio-alassio ← mercato-settimanale-di-alassio-alassio-sabato (sede già archiviata: Piazza confraternita)
 - mercato-settimanale-di-albenga-albenga ← mercato-settimanale-di-albenga-albenga-mercoledi (sede già archiviata: Via Dalmazia)
 - mercato-settimanale-di-altare-altare ← mercato-settimanale-di-altare-altare-venerdi (sede già archiviata: Via Restagno)
-- mercato-settimanale-di-arcola-arcola ← mercato-settimanale-di-arcola-arcola-mercoledi (sede già archiviata: Via Aurelia)
 - mercato-settimanale-a-busalla-busalla-giovedi ← mercato-settimanale-di-busalla-busalla-giovedi (sede già archiviata: Piazza Colombo)
 - mercato-settimanale-di-busalla-busalla ← mercato-settimanale-di-busalla-busalla-giovedi (sede già archiviata: Piazza Colombo)
 - mercato-settimanale-di-calizzano-calizzano ← mercato-settimanale-di-calizzano-calizzano-martedi (sede già archiviata: Piazza vittorio veneto)
@@ -50,6 +45,11 @@ di abilitare la stessa struttura del parser automatico.
 - mercato-settimanale-a-molassana-molassana-lunedi ← mercato-settimanale-di-molassana-molassana-lunedi (sede già archiviata: Via Isola del Vescovo)
 - mercato-settimanale-di-molassana-molassana ← mercato-settimanale-di-molassana-molassana-lunedi (sede già archiviata: Via Isola del Vescovo)
 - mercato-settimanale-a-oregina-oregina-venerdi ← mercato-settimanale-di-oregina-oregina-venerdi (sede già archiviata: Via Maculano)
+- mercato-settimanale-di-oregina-oregina ← mercato-settimanale-di-oregina-oregina-venerdi (sede già archiviata: Via Maculano)
+- mercato-settimanale-di-quiliano-quiliano ← mercato-settimanale-di-quiliano-quiliano-lunedi (sede già archiviata: Via Roma)
+- mercato-settimanale-di-spotorno-spotorno ← mercato-settimanale-di-spotorno-spotorno-martedi (sede già archiviata: Via Aurelia)
+- mercato-settimanale-di-taggia-taggia ← mercato-settimanale-di-taggia-taggia-sabato (sede già archiviata: Piazza cavour)
+- mercato-settimanale-di-toirano-toirano ← mercato-settimanale-di-toirano-toirano-giovedi (sede già archiviata: Parco Rosciano)
 
 Ogni proposta conserva entrambi gli ID, lo stesso URL fonte originale
 e una ragione esplicita per cui non viene promossa a sede verificata.

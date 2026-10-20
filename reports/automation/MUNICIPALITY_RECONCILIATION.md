@@ -11,7 +11,7 @@ Questo controllo non dimostra che un mercato sia aperto.
 - Calendari potenzialmente confusi fra mercati diversi: 0
 - Comuni corretti in DEV: 0
 - Record con date previste sospese: 0
-- Province riconciliate con Comune e regione ISTAT: 60
+- Province riconciliate con Comune e regione ISTAT: 0
 - Province in attesa del prossimo ciclo entro il tetto complessivo di 80 modifiche: 0
 - Conflitti di provincia protetti da prove/verifiche preesistenti: 0
 

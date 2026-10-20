@@ -4,19 +4,19 @@
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
 - Data della misura: **2026-10-20**.
-- Schede totali: **13,856**.
+- Schede totali: **13,888**.
 - Fonti misurate (nome e dominio): **88**.
-- Importazione registrata entro 30 giorni: **32**.
-- Lettura della fonte registrata entro 30 giorni: **1,213**.
+- Importazione registrata entro 30 giorni: **64**.
+- Lettura della fonte registrata entro 30 giorni: **1,245**.
 - Fonte datata entro 30 giorni: **1,204**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,204**.
 - Schede con aggiornamento soltanto del dataset: **1,250**.
 - Fonte datata tra 31 e 365 giorni: **6**.
 - Fonte più vecchia del limite di 540 giorni: **52**.
-- Schede con età del contenuto della fonte non comprovata: **12,593**.
+- Schede con età del contenuto della fonte non comprovata: **12,625**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,875**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **11,057**.
+- Schede con date future previste: **11,845**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **11,027**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,14 +25,15 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
+- Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
 
 | Ente | Lettura metadati | Aggiornamento dati dichiarato |
 |---|---|---|
-| Comune di Bologna | offline | non disponibile |
-| Regione Lombardia | offline | non disponibile |
-| Roma Capitale | offline | non disponibile |
+| Comune di Bologna | metadata_checked | 2025-04-02 |
+| Regione Lombardia | metadata_checked | 2026-10-20 |
+| Roma Capitale | metadata_checked | 2022-07-04 |
 
 ## Copertura di tutte le fonti del catalogo
 
@@ -91,7 +92,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
-| happings.com | www.happings.com | 9679 | 0 | 0 | 9679 | 32 |
+| happings.com | www.happings.com | 9711 | 0 | 0 | 9711 | 64 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -135,20 +136,20 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 3066 | 8760 | 1374 | 609 | 47 |
-| Orari | 10590 | 1943 | 1155 | 32 | 136 |
-| Giorni | 960 | 10935 | 1359 | 583 | 19 |
+| Sede | 2978 | 8407 | 1401 | 1053 | 49 |
+| Orari | 10494 | 1941 | 1180 | 64 | 209 |
+| Giorni | 962 | 10507 | 1375 | 1025 | 19 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 5784. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 5816. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | offline_skipped | 0 | 0 |
-| bassa-romagna-weekly | offline_skipped | 0 | 0 |
+| bassa-romagna-farmers | retrieved | 0 | 0 |
+| bassa-romagna-weekly | retrieved | 0 | 0 |
 
-Conflitti mantenuti in revisione: 0.
+Conflitti mantenuti in revisione: 13.
 
 
 ## Limiti del sistema

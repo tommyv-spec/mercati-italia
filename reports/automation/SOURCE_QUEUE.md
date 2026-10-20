@@ -3,9 +3,9 @@
 **Metadati da dati.gov.it, non mercati verificati.** Nessun dataset viene importato.
 Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 
-- Fonti note: **49**; viste ora: **0**.
+- Fonti note: **49**; viste ora: **43**.
 - Nuove: **0**; cambiate: **0**.
-- Query fallite: **0**; offline: **True**.
+- Query fallite: **0**; offline: **False**.
 - Probabili elenchi/sedi: **7**; statistiche aggregate: **13**.
 - Il punteggio indica solo la priorità della verifica. NON è una misura di affidabilità.
 - La ricerca restituisce solo i primi risultati. Una fonte non vista non è stata cancellata.
@@ -13,10 +13,10 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 
 | Priorità | Punti | Dataset | Tipo | Schema osservato | Editore dichiarato | Data ufficiale analizzata (se disponibile) |
 |---:|---:|---|---|---|---|---|
-| 1 | 23 | Mercati e fiere | mixed_events_candidate | non esplorato | Comune di Bologna | 2025-12-31T12:31:56+00:00 |
+| 1 | 24 | Mercati su aree pubbliche | market_location_candidate | non esplorato | Regione Lombardia | 2026-10-20 |
 | 2 | 23 | Elenco dei mercati settimanali | market_location_candidate | non esplorato | Comune di Corciano | 07-01-2026 |
-| 3 | 18 | Mercati su aree pubbliche | market_location_candidate | non esplorato | Regione Lombardia | sconosciuta |
-| 4 | 16 | Dati sui Mercati Rionali | market_location_candidate | manual_schema_review_required | Roma Capitale | sconosciuta |
+| 3 | 19 | Mercati e fiere | mixed_events_candidate | non esplorato | Comune di Bologna | 2025-04-02 |
+| 4 | 18 | Dati sui Mercati Rionali | market_location_candidate | venue_inventory_missing_visit_days | Roma Capitale | 2022-07-04 |
 | 5 | 14 | Attività commerciali: mercati settimanali scoperti | market_location_candidate | non esplorato | Comune di Milano | sconosciuta |
 | 6 | 13 | Fiere e mercati - Comune di Sona | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 7 | 10 | Anagrafica mercati | general_market_candidate | non esplorato | Regione Piemonte | sconosciuta |
@@ -36,9 +36,9 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 
 ## Risorse candidate prioritarie (URL non verificati)
 
-- Mercati e fiere: [CSV](https://opendata.comune.bologna.it/api/v2/catalog/datasets/mercati-e-fiere/exports/csv?use_labels=true)
-- Elenco dei mercati settimanali: [CSV](https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv)
 - Mercati su aree pubbliche: [CSV](https://www.dati.lombardia.it/api/views/68zx-njaw/rows.csv?accessType=DOWNLOAD)
+- Elenco dei mercati settimanali: [CSV](https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv)
+- Mercati e fiere: [CSV](https://opendata.comune.bologna.it/api/v2/catalog/datasets/mercati-e-fiere/exports/csv?use_labels=true)
 - Dati sui Mercati Rionali: [CSV](https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv)
 - Attività commerciali: mercati settimanali scoperti: [CSV](https://dati.comune.milano.it/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/5d4a83c3-6ac5-4430-b5a9-d669a933b036/download/mss-mag24_final.csv)
 - Fiere e mercati - Comune di Sona: [CSV](https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv)
