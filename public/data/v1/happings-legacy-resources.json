@@ -2,13 +2,13 @@
   "publisher": "happings.com",
   "resources": [
     {
-      "attempts": 1,
+      "attempts": 2,
       "city_keys": [
         "agrate brianza"
       ],
       "first_seen_on": "2026-10-20",
       "last_attempt_on": "2026-10-20",
-      "last_error": null,
+      "last_error": "UnreviewedRedirect",
       "last_success_on": null,
       "next_url": "https://www.happings.com/it/mercato-settimanale-a-agrate-brianza/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-agrate-brianza.html",
@@ -23,7 +23,7 @@
         }
       ],
       "region": "lombardia",
-      "status": "redirect_observed"
+      "status": "unreviewed_target"
     },
     {
       "attempts": 0,
@@ -43,21 +43,28 @@
       "status": "pending"
     },
     {
-      "attempts": 0,
+      "attempts": 1,
       "city_keys": [
         "barlassina"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-20",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-barlassina.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-barlassina/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-barlassina.html",
       "proof": null,
       "province": "MB",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-barlassina/",
+          "observed_on": "2026-10-20",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-barlassina.html",
+          "status_code": 301
+        }
+      ],
       "region": "lombardia",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,

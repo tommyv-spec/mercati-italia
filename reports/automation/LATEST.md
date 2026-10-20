@@ -2,23 +2,23 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [39487468359](https://github.com/tommyv-spec/mercati-italia/actions/runs/39487468359) — UTC 2026-10-20T20:14:51.924715+00:00
+- Ultimo run: [39496846004](https://github.com/tommyv-spec/mercati-italia/actions/runs/39496846004) — UTC 2026-10-20T21:22:49.886466+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
-- Schede nel catalogo: **13,888**
-- Schede con date previste a +60 giorni: **11,827**
-- Schede con date previste a +90 giorni: **11,657**
-- Indice nazionale gzip: **403.5 KiB**
+- Schede nel catalogo: **13,920**
+- Schede con date previste a +60 giorni: **11,834**
+- Schede con date previste a +90 giorni: **11,649**
+- Indice nazionale gzip: **407.5 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **10,494**
+- Orari mancanti: **10,484**
 - Dataset pubblici candidati individuati: **43** (licenze da verificare)
 - Fonti conservate nello storico: **49**; nuove: **0**; aggiornate: **0**.
 - Possibili elenchi/sedi: **7**; statistiche storiche aggregate: **13**.
 - Lombardia MERCap: **1127** record non ambigui su **1360**, in revisione **233**.
 - Bologna: **0** record non ambigui su **0**, in revisione **0** (fonte storica; nessuna verifica singolo evento).
 - Corciano: **2** record senza conflitti su **4**, in revisione **2**, impronta sorgente **1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121**.
-- Enrichment ufficiale: attivo; **19** orari mancanti recuperati in questo run, **19** fonti collegate, **148** corrispondenze esatte su **1360** record fonte in revisione.
+- Enrichment ufficiale: attivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **148** corrispondenze esatte su **1360** record fonte in revisione.
 - Riconciliazione ISTAT (21 febbraio 2026): attiva, **0** Comuni corretti e **0** titoli ripuliti in questo run; **0** calendari sospesi (**0** date previste), **2** casi ancora ambigui. Nessuna conferma di apertura generata.
 - Province amministrative riconciliate: **0**; in attesa del budget dei prossimi cicli **0**; protette da prove o verifiche preesistenti **0**. Tetto complessivo invariato: 80 schede per ciclo ISTAT.
 - Revisione manuale di pagine originali e Comuni ISTAT: attiva; **0** Comuni sistemati, **0** punti geografici incompatibili sospesi, **0** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.
@@ -29,15 +29,16 @@
 - Aggiornamenti generici con prove per campo: **0** valori gestiti aggiornati e **2** schede con riscontri aggiornati o ritirati; identità conservate.
 - Dettagli Happings: **32** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **987** gruppi settimanali con possibile sovrapposizione (**1088** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **589** gruppi provati dalla stessa fonte, **655** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13888** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1204**; oltre soglia: **52**; senza data: **12625**.
+- Miglioramento UX reversibile: **589** gruppi provati dalla stessa fonte, **655** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13920** ID originali preservati.
+- Fonti datate negli ultimi 30 giorni: **1204**; oltre soglia: **52**; senza data: **12657**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1250**, di cui recenti **1204**.
-- Date previste con origine vecchia/sconosciuta: **11027**.
-- Metadati degli enti leggibili: **3/3**.
+- Date previste con origine vecchia/sconosciuta: **11012**.
+- Metadati degli enti leggibili: **2/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_content_dates_are_unproven
 - ATTENZIONE fonte: future_predictions_have_stale_or_missing_source_dates
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
+- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 - ATTENZIONE fonte: publisher_refresh_conflicting_fields
 
 ## Prossimi miglioramenti calcolati

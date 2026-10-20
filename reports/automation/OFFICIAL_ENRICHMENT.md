@@ -7,35 +7,30 @@ Coordinates can veto a join; they never establish market identity.
 No forecast, human verification, original source, or identity changed.
 
 - Held official rows screened: **1360**
-- Existing market cards with added information: **21**
-- Missing hours supplied from official regional source: **19**
-- Missing/vague venues supplied from the complete source: **16**
+- Existing market cards with added information: **0**
+- Missing hours supplied from official regional source: **0**
+- Missing/vague venues supplied from the complete source: **0**
 - Managed venues updated from the same source ID: **0**
-- Official source attributions attached: **19**
-- addresses_added: 16
+- Official source attributions attached: **0**
 - exact_matches: 148
-- existing_hours_preserved: 145
-- field_observation_records_updated: 21
-- held_unique_town_coordinates_conflict: 66
+- existing_hours_preserved: 148
+- held_unique_town_coordinates_conflict: 53
 - held_unique_town_multiple_eligible_sources: 14
-- held_unique_town_no_eligible_source: 330
-- held_unique_town_raw_same_city_day_competitor: 5
+- held_unique_town_no_eligible_source: 282
+- held_unique_town_raw_same_city_day_competitor: 4
 - held_unique_town_raw_unknown_weekday_competitor: 13
 - held_unique_town_target_identity_incomplete: 60
-- hours_added: 19
 - municipality_day_unique_matches: 239
 - observed_spelling_matches: 25
-- official_source_attributions_added: 19
-- recurrence_observations_added: 16
-- skipped_coordinates_conflict: 20
-- skipped_legacy_without_explicit_annual_weekday: 270
+- skipped_coordinates_conflict: 22
+- skipped_legacy_without_explicit_annual_weekday: 279
 - skipped_market_type_unproved_or_conflicting: 2
-- skipped_multiple_official_markets_same_venue_day: 1
+- skipped_multiple_official_markets_same_venue_day: 2
 - skipped_no_exact_legacy_market: 638
 - skipped_no_exact_location_or_day: 548
 - skipped_official_raw_identity_unproved_or_conflicting: 56
 - skipped_official_without_explicit_annual_weekday: 523
-- unique_town_targets_screened: 727
+- unique_town_targets_screened: 665
 
 ## Example exact matches
 
