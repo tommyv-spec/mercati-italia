@@ -194,6 +194,10 @@ function normalize(m, userLat, userLng) {
     fonte_aggiornata_il: m.fonte_aggiornata_il || '',
     riscontri_campi: Array.isArray(m.riscontri_campi) ? m.riscontri_campi : [],
     eccezioni_calendario: Array.isArray(m.eccezioni_calendario) ? m.eccezioni_calendario : [],
+    calendario_fonte: m.calendario_fonte && typeof m.calendario_fonte === 'object'
+      && !Array.isArray(m.calendario_fonte) ? m.calendario_fonte : null,
+    dettaglio_fonte: m.dettaglio_fonte && typeof m.dettaglio_fonte === 'object'
+      && !Array.isArray(m.dettaglio_fonte) ? m.dettaglio_fonte : null,
     date_quality: m.date_quality || 'prevista',
     position_quality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',

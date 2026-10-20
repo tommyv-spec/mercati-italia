@@ -21,6 +21,14 @@ test('municipality navigation hold and publisher links survive regional lazy-loa
     fonti:[{nome:'Fonte comunale',url:source}],
     date_quality:'sconosciuta',date:[],
     fonte:'Editore originale',url_fonte:source,
+    calendario_fonte:{schema:1,url:source,occorrenze:[{
+      date:'2026-12-24',start_time:'07:30',end_time:'13:00',status:'source_listed',
+      note:'Orario diverso per il 24 dicembre',
+    }],intervalli:[],ambito_calendario:'explicit_visible_list'},
+    dettaglio_fonte:{schema:1,url:source,evento:{
+      name:'Mercatino delle Curiosità',conditions:['Sospeso in caso di maltempo'],
+      contacts:[{kind:'telephone',value:'+39 055 123456'}],
+    }},
   }
   globalThis.fetch=async (url)=>{
     const s=String(url)
@@ -52,6 +60,11 @@ test('municipality navigation hold and publisher links survive regional lazy-loa
       'coordinate_sorgente_incompatibili_con_localita_documentata')
     assert.equal(reviewed.lat,null)
     assert.deepEqual(reviewed.fonti,[{nome:'Fonte comunale',url:source}])
+    assert.deepEqual(reviewed.calendario_fonte,detail.calendario_fonte,
+      'Explicit source dates and per-date hours must survive regional lazy-load')
+    assert.deepEqual(reviewed.dettaglio_fonte,detail.dettaglio_fonte,
+      'Source conditions and contacts must reach the React detail adapter')
+    assert.equal(list[0].calendario_fonte,null,'The national index stays compact')
     assert.equal(urls.filter(url=>url.endsWith('/lombardia-proof.json')).length,1)
     assert.equal(urls.length,3,'No dynamic Firestore/Worker calls to read regional details')
   } finally{

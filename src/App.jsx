@@ -4,6 +4,7 @@ import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyG
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 import { UNKNOWN_CITY_HELP } from './lib/locationQuality';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
+import { sourceCalendarView, sourceContacts, sourceHoursForDate } from './lib/sourceCalendar.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
 const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
@@ -745,6 +746,38 @@ body {
   font-weight: 600;
   color: var(--ink);
   letter-spacing: -0.02em;
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+.source-calendar {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.source-calendar summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 8px 0;
+}
+
+.source-calendar-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.85fr) minmax(0, 1.15fr);
+  gap: 8px 14px;
+  padding: 10px 0;
+  border-top: 1px solid var(--beige-dark);
+}
+
+.source-calendar-row[data-period="true"] { display: block; }
+.source-calendar-row dt { font-weight: 600; }
+.source-calendar-row dd { margin: 0; overflow-wrap: anywhere; }
+.source-calendar-note {
+  font-size: 12px;
+  color: var(--ink-lighter);
+  margin-top: 6px;
+  line-height: 1.5;
 }
 
 .detail-recurrence {
@@ -1813,7 +1846,7 @@ export default function App() {
           </span>
           <span className="card-info-item">
             <Icon name="clock" size={14} color="#6C6255" />
-            {market.hours || 'Orari da verificare'}
+            {sourceHoursForDate(market, nextDate)}
           </span>
           <span className="card-info-item">
             <Icon name="mapPin" size={14} color="#6C6255" />
@@ -1849,6 +1882,8 @@ export default function App() {
     const isFav = favorites.has(m.id);
     const futureDates = m.dates.filter(d => d >= todayStr).sort();
     const canNavigate = !detailLoading && !detailError && Boolean(destinationForMarket(m));
+    const sourceSchedule = sourceCalendarView(m);
+    const contacts = sourceContacts(m.sourceDetail);
 
     return (
       <div className="detail-page">
@@ -1896,7 +1931,8 @@ export default function App() {
                 const dayOfWeek = new Date(d + "T00:00:00").getDay();
                 const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
                 return (
-                  <span key={d} className={`date-chip ${isToday ? 'today' : isWeekend ? 'weekend' : ''}`}>
+                  <span key={d} className={`date-chip ${isToday ? 'today' : isWeekend ? 'weekend' : ''}`}
+                    title={sourceHoursForDate(m, d)}>
                     {formatDateIT(d)}
                   </span>
                 );
@@ -1917,7 +1953,30 @@ export default function App() {
             <div className="detail-section-title">
               <Icon name="clock" size={18} color={catColor} /> Orari
             </div>
-            <div className="detail-hours">{m.hours || "Orari non disponibili"}</div>
+            <div className="detail-hours" style={m.hours?.length > 100 ? { fontSize: 15 } : undefined}>
+              {m.hours || (sourceSchedule.rows.length ? 'Vedi gli orari delle singole date' : 'Orari non disponibili')}
+            </div>
+            {sourceSchedule.notes.map((note, i) => (
+              <p key={note + i} className="source-calendar-note">{note}</p>
+            ))}
+            {sourceSchedule.rows.length > 0 && (
+              <details className="source-calendar" key={m.id}
+                open={sourceSchedule.hasVariations || sourceSchedule.rows.length <= 3}>
+                <summary>Date e orari riportati dalla fonte ({sourceSchedule.rows.length})</summary>
+                <dl>
+                  {sourceSchedule.rows.map(row => (
+                    <div key={row.key} className="source-calendar-row" data-period={row.kind === 'interval'}>
+                      <dt>{row.label}</dt>
+                      <dd>
+                        {row.status && <strong>{row.status}{row.hours ? ' · ' : ''}</strong>}
+                        {row.hours}
+                        {row.note && <p className="source-calendar-note">{row.note}</p>}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </details>
+            )}
           </div>
 
           {/* Address */}
@@ -1963,6 +2022,25 @@ export default function App() {
           )}
 
           {/* Tags */}
+          {(contacts.organizer || contacts.links.length > 0) && (
+            <div className="detail-section">
+              <div className="detail-section-title">
+                <Icon name="info" size={18} color={catColor} /> Contatti riportati dalla fonte
+              </div>
+              {contacts.organizer && <p className="detail-description">
+                Organizzatore:{' '}
+                {contacts.organizer.href
+                  ? <a href={contacts.organizer.href} target="_blank" rel="noopener noreferrer">{contacts.organizer.label}</a>
+                  : contacts.organizer.label}
+              </p>}
+              {contacts.links.map((contact, i) => (
+                <p key={contact.href + i} className="detail-description" style={{ marginTop: 6, overflowWrap: 'anywhere' }}>
+                  <a href={contact.href} target="_blank" rel="noopener noreferrer">{contact.label}</a>
+                </p>
+              ))}
+            </div>
+          )}
+
           {m.tags && m.tags.length > 0 && (
             <div className="detail-section" style={{ animationDelay: '0.25s' }}>
               <div className="detail-section-title">Tag</div>
@@ -2443,7 +2521,8 @@ export default function App() {
                       <span style={{ flex: 1 }}>
                         <strong>{market.name}</strong>
                         <span style={{ display: 'block', fontSize: 12, opacity: 0.75 }}>
-                          {market.city} · {market.dateQuality === 'confermata' ? 'Confermata' : 'Prevista, da verificare'}
+                          {market.city} · {market.dateQuality === 'confermata' ? 'Confermata'
+                            : market.dateQuality === 'riportata' ? 'Riportata dalla fonte' : 'Prevista, da verificare'}
                         </span>
                       </span>
                     </button>

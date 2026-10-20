@@ -22,6 +22,7 @@ from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from field_evidence import clean_receipts, clean_exceptions
+from source_calendar import clean_source_calendar, clean_source_detail, source_calendar_dates
 from source_freshness import source_date_evidence
 from source_hours import preserve_hours_text
 from urllib.parse import urlsplit
@@ -158,13 +159,21 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     if status == "attivo" and not raw.get("verificato_il"):
         status = "non_confermato"
     category = raw.get("categoria") if raw.get("categoria") in VALID_CATEGORIES else "misto"
-    future_dates = parse_dates(raw.get("date"), today)
+    source_calendar = clean_source_calendar(raw.get("calendario_fonte"), raw, today=today)
+    if raw.get("calendario_fonte") is not None and source_calendar is None:
+        return None, "invalid_source_calendar"
+    use_source_calendar = bool(source_calendar and not raw.get("verificato_il")
+                               and raw.get("date_quality") != "confermata")
+    future_dates = (source_calendar_dates(source_calendar, raw, today=today)
+                    if use_source_calendar else parse_dates(raw.get("date"), today))
     exceptions = clean_exceptions(raw.get("eccezioni_calendario"), raw, today=today)
     excluded_dates = {item["data"] for item in exceptions}
     future_dates = [value for value in future_dates if value not in excluded_dates]
     quality = raw.get("date_quality", "sconosciuta")
     if quality not in VALID_DATE_QUALITY:
         quality = "sconosciuta"
+    if use_source_calendar:
+        quality = "riportata"
     # A record with no upcoming occurrence cannot advertise a planned or
     # confirmed future date. Preserve source/verification provenance, but
     # avoid promising dates that are absent or already in the past.
@@ -271,6 +280,13 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["riscontri_campi"] = receipts
     if exceptions:
         result["eccezioni_calendario"] = clean_exceptions(exceptions, result, today=today)
+    if source_calendar:
+        result["calendario_fonte"] = clean_source_calendar(source_calendar, result, today=today)
+    source_detail = clean_source_detail(raw.get("dettaglio_fonte"), result, today=today)
+    if raw.get("dettaglio_fonte") is not None and source_detail is None:
+        return None, "invalid_source_detail"
+    if source_detail:
+        result["dettaglio_fonte"] = source_detail
     return result, None
 
 

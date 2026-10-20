@@ -75,6 +75,12 @@ def verify_exported(before, after, report, pdf, gis, today):
     from datetime import date
     if not isinstance(today, date):
         raise ValueError("Real reference date required for final Milan proof")
+    admission_certificate = report.get("happings_detail_admission_certificate")
+    separately_proved = 0
+    if admission_certificate is not None:
+        from happings_detail_enrichment import verify_source_admission_certificate
+        after, separately_proved = verify_source_admission_certificate(
+            before, after, admission_certificate, today)
     matched, _ = verified_pairs(pdf, gis)
     if (len(matched) != 76 or not isinstance(before, list) or
             not isinstance(after, list) or len(before) != len(after) or
@@ -135,7 +141,7 @@ def verify_exported(before, after, report, pdf, gis, today):
         covered[slug]=current
     if source_modified - set(covered):
         raise ValueError("Milan source report cites an unreviewed official market ID")
-    return {
+    proof = {
         "schema":1,"reviewed_milan_ids":len(covered),
         "publisher_document_date":PDF_DATE.isoformat(),
         "forecast_labeled_not_confirmed":sum(x.get("date_quality")=="prevista" for x in covered.values()),
@@ -145,3 +151,6 @@ def verify_exported(before, after, report, pdf, gis, today):
         "market_records_deleted":0,
         "quality_safe":True,
     }
+    if admission_certificate is not None:
+        proof["separately_proved_happings_admissions"] = separately_proved
+    return proof

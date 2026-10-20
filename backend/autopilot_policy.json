@@ -126,6 +126,12 @@
   },
   "happings_enrichment": {
     "enabled": true,
-    "max_pages": 16
+    "max_pages": 16,
+    "details": {
+      "enabled": true,
+      "max_requests": 32,
+      "admit_new": true,
+      "max_new": 32
+    }
   }
 }

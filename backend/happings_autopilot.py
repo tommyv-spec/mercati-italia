@@ -18,6 +18,7 @@ from urllib.error import HTTPError
 
 import happings_source_enrichment as source
 from export_static import normalize
+import happings_detail_autopilot as details
 
 SCHEMA = 1
 DEFAULT_POLICY = {"enabled": False}
@@ -31,13 +32,16 @@ def digest(value):
 
 
 def validate_policy(policy):
-    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages"}
+    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages", "details"}
             or type(policy.get("enabled", False)) is not bool
             or type(policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)) is not int
             or not 1 <= policy.get("max_pages", source.MAX_REQUESTS_PER_RUN) <= source.MAX_REQUESTS_PER_RUN):
         raise ValueError("Unreviewed Happings Autopilot policy")
-    return {"enabled": policy.get("enabled", False),
-            "max_pages": policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)}
+    result = {"enabled": policy.get("enabled", False),
+              "max_pages": policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)}
+    if "details" in policy:
+        result["details"] = details.validate_policy(policy["details"])
+    return result
 
 
 def _write_json(path, value):
@@ -168,7 +172,7 @@ def _fetch_and_checkpoint(urls, path, context, fetcher=None):
     return pages, saved
 
 
-def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
+def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
         offline=False, resume=False, rights_path=None, fetcher=None):
     """Return (candidate rows, bounded evidence report, IDs export must retain)."""
     policy = validate_policy(policy)
@@ -257,7 +261,7 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
     return updated, report, preserve_ids
 
 
-def verify_changes(before, after, report):
+def _verify_weekly_changes(before, after, report):
     """Independent field diff; source receipts cannot authorize other changes."""
     if (report.get("schema") != SCHEMA or report.get("publisher") != source.PUBLISHER
             or report.get("input_sha256") != digest(before)
@@ -340,6 +344,61 @@ def verify_changes(before, after, report):
     return True
 
 
+def _weekly_rows(before, report):
+    evidence = report["evidence"]
+    proposals = {p["market_id"]: p for p in evidence["proposals"]}
+    observations = {p["market_id"]: p for p in evidence["observations"]}
+    retirements = {p["market_id"]: p for p in evidence["retirements"]}
+    day = date.fromisoformat(report["date"])
+    return [source.expected_record(row, proposal=proposals.get(row["slug"]),
+                                   observation=observations.get(row["slug"]),
+                                   retirement=retirements.get(row["slug"]), today=day)
+            for row in before]
+
+
+def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
+        offline=False, resume=False, rights_path=None, fetcher=None,
+        detail_fetcher=None, detail_state_path=None, detail_bootstrap=details.BOOTSTRAP):
+    """Run existing weekly repairs, then the source-bound detail mechanism."""
+    policy = validate_policy(policy)
+    updated, report, preserve_ids = _run_weekly(
+        base, policy={key: policy[key] for key in ("enabled", "max_pages")},
+        out=out, today=today, baseline_signature=baseline_signature,
+        pipeline_policy_digest=pipeline_policy_digest, offline=offline, resume=resume,
+        rights_path=rights_path, fetcher=fetcher)
+    detail_policy = policy.get("details", details.DEFAULT_POLICY)
+    if detail_policy["enabled"] and policy["enabled"] and report["fetch_authorized"]:
+        updated, report["details"], state = details.run(
+            updated, policy=detail_policy, out=out, today=today,
+            baseline_signature=baseline_signature, pipeline_policy_digest=pipeline_policy_digest,
+            previous_state_path=detail_state_path, offline=offline, resume=resume,
+            fetcher=detail_fetcher, bootstrap=detail_bootstrap)
+        new_ids = report["details"]["evidence"]["new_market_ids"]
+        preserve_ids = preserve_ids | frozenset(new_ids)
+        report["output_market_ids"] = len(updated)
+        report["output_ids_sha256"] = digest(sorted(row["slug"] for row in updated))
+        report["details_enabled"] = True
+        report["detail_state_changed"] = report["details"]["state_changed"]
+        verify_changes(base, updated, report)
+        _write_json(Path(out) / "happings-enrichment.json", report)
+        (Path(out) / "HAPPINGS_ENRICHMENT.md").write_text(markdown(report), "utf-8")
+    return updated, report, preserve_ids
+
+
+def verify_changes(before, after, report):
+    if "details" not in report:
+        return _verify_weekly_changes(before, after, report)
+    if report.get("enabled") is not True or report.get("fetch_authorized") is not True:
+        raise ValueError("Happings details lack the active project authorization")
+    weekly_rows = _weekly_rows(before, report)
+    _verify_weekly_changes(before, weekly_rows, report)
+    if (report.get("output_market_ids") != len(after)
+            or report.get("output_ids_sha256") != digest(sorted(row["slug"] for row in after))):
+        raise ValueError("Happings details changed the certified identity set")
+    return details.verify_changes(weekly_rows, after, report["details"],
+                                  today=date.fromisoformat(report["date"]))
+
+
 def verify_exported(before, revised, exported, report, *, today):
     """Check exact IDs and source-proven values in the actual exported details."""
     if not isinstance(today, date) or report.get("date") != today.isoformat():
@@ -351,8 +410,10 @@ def verify_exported(before, revised, exported, report, *, today):
     by_id = {row["slug"]: row for row in exported}
     exported_publisher_ids = {row["slug"] for row in exported
                               if row.get("fonte") == source.PUBLISHER}
+    added = set(report.get("details", {}).get("evidence", {}).get("new_market_ids", []))
     if (len(set(original_ids)) != len(original_ids) or len(by_id) != len(exported)
-            or exported_publisher_ids != publisher_ids or protected != by_id.keys()):
+            or added & protected or exported_publisher_ids != publisher_ids | added
+            or protected | added != by_id.keys()):
         raise ValueError("Happings export lost, added or duplicated original market IDs")
     for row in revised:
         expected, error = normalize(row, today)
@@ -370,14 +431,15 @@ def verify_exported(before, revised, exported, report, *, today):
         "source_record_changes": report["evidence"]["record_changes"],
         "market_ids_deleted": len(set(original_ids) - by_id.keys()),
         "market_ids_added": len(by_id.keys() - set(original_ids)),
-        "happings_ids_deleted": 0, "happings_ids_added": 0,
+        "happings_ids_deleted": 0, "happings_ids_added": len(added),
+        "detail_pages_evaluated": len(report.get("details", {}).get("source_pages", [])),
         "unapproved_field_changes": 0, "opening_verifications_created": 0,
     }
 
 
 def markdown(report):
     evidence = report["evidence"]
-    return (
+    result = (
         "# Happings — arricchimento nel ciclo DEV\n\n"
         f"- Stato: `{report['status']}`.\n"
         f"- Autorizzazione operativa: `{report['rights_state']}`.\n"
@@ -390,6 +452,18 @@ def markdown(report):
         f"- Schede con riscontri della fonte: {len(evidence['observed_ids'])}.\n"
         f"- Riscontri su schede di altre origini: {len(evidence['secondary_observed_ids'])}.\n"
         f"- Vecchi riscontri della fonte ritirati dopo una nuova prova discordante: {len(evidence['retired_ids'])}.\n"
-        "- Nessun orario, data, punto geografico o verifica di apertura aggiunto.\n"
+        "- Gli elenchi provinciali aggiornano sedi e riscontri; le date esplicite appartengono al lettore dei dettagli.\n"
         "- I riscontri essenziali sono conservati con la scheda; HTML e rapporto dettagliato restano nei checkpoint temporanei.\n"
     )
+    if "details" in report:
+        detail = report["details"]
+        result += (
+            "\n## Schede di dettaglio\n\n"
+            f"- Stato: `{detail['status']}`.\n"
+            f"- Dettagli letti: {len(detail['source_pages'])}.\n"
+            f"- Nuove identità ammesse: {len(detail['evidence']['new_market_ids'])}.\n"
+            f"- URL di dettaglio conosciuti: {detail['discovery'].get('known_detail_urls', 0)}.\n"
+            "- Indirizzi, orari, singole date ed eccezioni conservano la prova della fonte.\n"
+            "- Date riportate dalla fonte; nessuna verifica umana o previsione oltre il calendario pubblicato.\n"
+        )
+    return result

@@ -525,6 +525,32 @@ def verify_static(manifest_path,report,config,registry,today):
     manifest=json.loads(manifest_path.read_text("utf-8"))
     source_ids=report.get("new_market_ids",[])
     evidence_ids=report.get("evidence_updated_market_ids",[])
+    rows=load_existing(manifest_path)
+    if not isinstance(manifest.get("total"),int) or len(rows)!=manifest["total"]:
+        raise ValueError("Final generic source output has incomplete regional records")
+    admission_certificate=report.get("happings_detail_admission_certificate")
+    separately_proved=0
+    later_ids=set()
+    cohort_total=len(rows)
+    if admission_certificate is not None:
+        from happings_detail_enrichment import verify_source_admission_certificate
+        if (not isinstance(admission_certificate,dict)
+                or not isinstance(admission_certificate.get("admissions"),list)
+                or any(not isinstance(item,dict) or not isinstance(item.get("market_id"),str)
+                       for item in admission_certificate["admissions"])):
+            raise ValueError("Invalid later publisher admission certificate")
+        later_ids={item["market_id"] for item in admission_certificate["admissions"]}
+        if (not isinstance(source_ids,list) or not isinstance(evidence_ids,list)
+                or later_ids & (set(source_ids)|set(evidence_ids))):
+            raise ValueError("Two publishers claim the same new or updated market identity")
+        # This source's historical report stores its cohort size, while the
+        # later Happings phase retains independently reconstructable page
+        # facts. Validate the complete rows before excluding those exact IDs
+        # from this source's count. Keep the actual manifest and index below.
+        cohort=[row for row in rows if row["slug"] not in later_ids]
+        cohort,separately_proved=verify_source_admission_certificate(
+            cohort,rows,admission_certificate,today)
+        cohort_total=len(cohort)
     if (report.get("schema")!=1
             or report.get("publication_channel")!="dev-only"
             or report.get("source_registry_sha256")!=digest(registry)
@@ -534,21 +560,22 @@ def verify_static(manifest_path,report,config,registry,today):
             or not isinstance(source_ids,list) or len(source_ids)!=len(set(source_ids))
             or not isinstance(evidence_ids,list) or len(evidence_ids)!=len(set(evidence_ids))
             or set(evidence_ids) & set(source_ids)
-            or not isinstance(manifest.get("total"),int)
-            or report.get("candidate_market_ids")!=manifest["total"]
-            or manifest["total"]<report.get("original_market_ids",0)
-            or manifest["total"]-report["original_market_ids"]!=len(source_ids)):
+            or report.get("candidate_market_ids")!=cohort_total
+            or cohort_total<report.get("original_market_ids",0)
+            or cohort_total-report["original_market_ids"]!=len(source_ids)):
         raise ValueError("Final public catalog does not match generic source admission proof")
-    rows=load_existing(manifest_path)
-    if len(rows)!=manifest["total"]:
-        raise ValueError("Final generic source output has incomplete regional records")
     catalog={x["slug"]:x for x in rows}
     indexed_path=manifest_path.parent.parent.parent/manifest["index"]
     index=json.loads(indexed_path.read_text("utf-8"))
-    checked_ids=set(source_ids)|set(evidence_ids)
+    checked_ids=set(source_ids)|set(evidence_ids)|later_ids
     by_index={x[0]:x for x in index["markets"] if x and x[0] in checked_ids}
     if len(by_index)!=len(checked_ids):
         raise ValueError("Approved publisher identity absent from compact search index")
+    if later_ids:
+        from export_static import small_index
+        for mid in later_ids:
+            if by_index[mid]!=small_index([catalog[mid]])[0]:
+                raise ValueError("Later publisher source facts lost in compact search index")
     profiles={p["id"]:p for p in config["raw_profiles"]}
     scoped={}
     updated={}
@@ -676,7 +703,7 @@ def verify_static(manifest_path,report,config,registry,today):
             dates_predicted+=1
         elif row.get("date"):
             raise ValueError("Unconfirmed generic source has an unlabelled market date")
-    return {
+    result = {
         "schema":1,"source_contracts_active":active_profile_count(config, approved),
         "source_contracts_approved":len(approved),
         "market_records_checked":len(rows),
@@ -693,3 +720,6 @@ def verify_static(manifest_path,report,config,registry,today):
         "original_markets_deleted":0,
         "release_safe":True,
     }
+    if admission_certificate is not None:
+        result["separately_proved_happings_admissions"]=separately_proved
+    return result

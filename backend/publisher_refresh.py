@@ -131,8 +131,16 @@ def _happings_page_reads(rows, report, today):
     from happings_source_enrichment import allowed_url
     from happings_weekly_layout import province_page_key
 
-    protected = sorted(row["slug"] for row in rows if row.get("fonte") == "happings.com")
-    catalog_ids = sorted(row["slug"] for row in rows)
+    added = set()
+    if isinstance(report, dict) and isinstance(report.get("details"), dict):
+        added = set(report["details"].get("evidence", {}).get("new_market_ids", []))
+        ids = sorted(row["slug"] for row in rows)
+        if (not added <= set(ids) or report.get("output_market_ids") != len(rows)
+                or report.get("output_ids_sha256") != fingerprint(ids)):
+            return {}, set()
+    protected = sorted(row["slug"] for row in rows
+                       if row.get("fonte") == "happings.com" and row["slug"] not in added)
+    catalog_ids = sorted(row["slug"] for row in rows if row["slug"] not in added)
     if (not isinstance(report, dict) or report.get("schema") != 1
             or report.get("publisher") != "happings.com"
             or report.get("date") != today.isoformat()
@@ -176,10 +184,53 @@ def _happings_page_reads(rows, report, today):
     return observed, selected
 
 
+def _happings_detail_reads(rows, report, today):
+    """Acquisition proof for details, separate from a successful identity match."""
+    from happings_detail_discovery import url_kind
+    from datetime import datetime
+
+    if (not isinstance(report, dict) or report.get("enabled") is not True
+            or report.get("fetch_authorized") is not True or report.get("date") != today.isoformat()
+            or not isinstance(report.get("details"), dict)):
+        return {}
+    detail = report["details"]
+    if (detail.get("enabled") is not True or detail.get("date") != today.isoformat()
+            or report.get("output_market_ids") != len(rows)
+            or report.get("output_ids_sha256") != fingerprint(sorted(row["slug"] for row in rows))):
+        return {}
+    acquisition = detail.get("source_pages")
+    parsed = detail.get("evidence", {}).get("source_pages")
+    if not isinstance(acquisition, list) or not isinstance(parsed, list) or len(acquisition) != len(parsed):
+        return {}
+    result = {}
+    for transport, content in zip(acquisition, parsed):
+        url = transport.get("requested_url")
+        try:
+            read = datetime.fromisoformat(transport.get("fetched_at", ""))
+        except (TypeError, ValueError):
+            return {}
+        if (url_kind(url) != "detail" or transport.get("final_url") != url or url in result
+                or read.tzinfo is None or read.date() != today
+                or content.get("requested_url") != url or content.get("final_url") != url
+                or content.get("read_on") != today.isoformat()
+                or content.get("html_sha256") != transport.get("sha256")
+                or not re.fullmatch(r"[0-9a-f]{64}", str(transport.get("sha256", "")))):
+            return {}
+        result[url] = ("layout_changed" if content.get("status") == "layout_changed"
+                       else "content_conflict" if content.get("status") == "conflict"
+                       else "resumed_checkpoint" if detail.get("source_evidence_reused")
+                       else "retrieved")
+    for item in detail.get("discovery", {}).get("outcomes", []):
+        url = item.get("requested_url")
+        if url_kind(url) == "detail" and item.get("status") in {"unavailable", "robots_denied"}:
+            result[url] = item["status"]
+    return result
+
+
 def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
                       source_contracts=None, source_admissions=None, source_policy=(),
                       source_status=None, admissions_enabled=False, admission_report=None,
-                      happings_report=None, today=None):
+                      happings_report=None, happings_details_enabled=False, today=None):
     """Describe configured readers separately from this run's source availability.
 
     Admission comes from the existing exact source certificate, never from a
@@ -194,6 +245,10 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
     happings_enabled = (happings_enabled is True and (
         happings_report is None or isinstance(happings_report, dict)
         and happings_report.get("enabled") is True and happings_report.get("fetch_authorized") is True))
+    happings_details_enabled = (happings_enabled and happings_details_enabled is True
+                                and (happings_report is None or
+                                     happings_report.get("details", {}).get("enabled") is True))
+    detail_reads = _happings_detail_reads(rows, happings_report, today) if happings_details_enabled else {}
     known = {canonical_url(p["url"]): p for p in config["sources"]}
     official = {canonical_url(u) for u in official_urls}
     policies = {p["id"]: p for p in source_policy if isinstance(p, dict) and "id" in p}
@@ -303,8 +358,14 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
             layout = "supported" if known[url]["enabled"] else "disabled"
             read_status = "not_observed" if known[url]["enabled"] else "disabled"
         elif host.removeprefix("www.") == "happings.com":
+            from happings_detail_discovery import url_kind
             if not happings_enabled:
                 mode, layout, read_status = "happings_gate_not_active", "disabled", "disabled"
+            elif happings_details_enabled and url_kind(url) == "detail":
+                mode, layout = "happings_event_detail", "supported"
+                default = (happings_report or {}).get("details", {}).get("status")
+                read_status = detail_reads.get(url, "offline_skipped" if default == "offline_skipped"
+                                               else "not_selected")
             elif not happings_page:
                 mode, layout, read_status = "happings_source_scope_unproven", "unsupported", "not_read"
             else:
@@ -341,6 +402,9 @@ def catalog_resources(rows, config, *, official_urls=(), happings_enabled=False,
             resource["source_route_url"] = happings_page
             resource["source_route_method"] = ("province_index" if province_page_key(url) is not None
                                                else "province_index_join")
+        elif mode == "happings_event_detail":
+            resource["source_route_url"] = url
+            resource["source_route_method"] = "exact_event_detail"
         secondary = Counter(secondary_routes[row["slug"]] for row in group
                             if row.get("slug") in secondary_routes)
         if secondary:
