@@ -17,7 +17,7 @@ Le spunte indicano una verifica eseguita sul campione. Non attestano che tutte l
 - **2026-10-19T23:28:56.354672+00:00 — EDITORIAL-FORMATS-20261020**: Esaminati 16 prefissi Eventi e Sagre e cinque varianti di calendario Cose di Casa. Replay di 17 pagine prima/dopo la correzione; ponte dei nuovi metadati ancora aperto.
 - **2026-10-19T23:28:56.354672+00:00 — CITYNEWS-FORMATS-20261020**: 48 unità di formato, 47 contenuti letti e un errore 503. Distinti dettagli, variante redazionale, articoli e indici; 11 indirizzi e 14 testi di orario presenti in fonte ma vuoti nelle schede campione.
 - **2026-10-19T23:31:01.565477+00:00 — SOURCE-FORMATS-VALIDATION-20261020**: 995 test Python, 8 file di test Node, build e worker verificati; replay offline del catalogo con 17 gate superati e 13.824 identità conservate. Revisione indipendente conclusa; checklist integrata nel report quotidiano esistente, con 102 confronti completi, sette parziali e 51 TODO aperti.
-- **2026-10-20T16:09:24.295488+00:00 — HAPPINGS-DETAIL-MECHANISM-20261020**: Nuovo lettore dettagli, discovery dalle sitemap con stato persistente, calendari espliciti e visualizzazione. Nove pagine reali confrontate con 13.824 schede; due nuove identità nel replay, nessuna scheda esistente alterata. HAPP-FORMAT-01 e 02 chiusi con prove; gli altri problemi delle fonti restano tracciati.
+- **2026-10-20T16:23:54.115805+00:00 — HAPPINGS-DETAIL-MECHANISM-20261020**: Nuovo lettore dettagli, discovery dalle sitemap con stato persistente, calendari espliciti e visualizzazione. Nove pagine reali confrontate con 13.824 schede; due nuove identità nel replay, nessuna scheda esistente alterata. HAPP-FORMAT-01 e 02 chiusi con prove; gli altri problemi delle fonti restano tracciati.
 
 ## Checklist dei formati primari
 
@@ -2178,7 +2178,7 @@ Ultimo check-in: 2026-10-19T22:47:28.515202+00:00.
 
 `/it/happing/{slug}/` — current_observed_layout.
 
-Ultimo check-in: 2026-10-20T16:09:24.295488+00:00.
+Ultimo check-in: 2026-10-20T16:23:54.115805+00:00.
 - [x] Fonte letta: Nove nuove risposte HTTP complete analizzate, con URL finale, SHA e timestamp originali.
 - [x] Campi letti: Testo, self Event, elenco date, intervalli, condizioni e sottoeventi confrontati; conflitti mantenuti.
 - [x] Parser confrontato: Nove replay dei byte originali uguali alle fixture nei fatti e conflitti; estrazione, discovery, raccordi ed interfaccia identificati dagli hash.

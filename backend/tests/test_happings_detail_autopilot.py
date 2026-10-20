@@ -119,7 +119,7 @@ class HappingsDetailAutopilotTests(unittest.TestCase):
         self.execute()
         path = self.root / "run/sources/happings-detail-pages.json"
         original_saved = json.loads(path.read_text())
-        for mutation in ("count", "hash", "state", "policy"):
+        for mutation in ("count", "hash", "state", "policy", "duration_budget"):
             saved = copy.deepcopy(original_saved)
             if mutation == "count":
                 saved["discovery"]["requests_attempted"] += 1
@@ -127,8 +127,10 @@ class HappingsDetailAutopilotTests(unittest.TestCase):
                 saved["pages"][0]["sha256"] = "a" * 64
             elif mutation == "state":
                 saved["state"]["resources"][PISA]["last_success_at"] = "2026-10-20T13:00:00+00:00"
-            else:
+            elif mutation == "policy":
                 saved["context"]["details_policy"]["admit_new"] = False
+            else:
+                saved["discovery"]["max_seconds"] += 1
             path.write_text(json.dumps(saved))
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 self.execute(resume=True)
@@ -191,7 +193,8 @@ class HappingsDetailAutopilotTests(unittest.TestCase):
         self.assertTrue((folder / phase.STATE_FILENAME).is_file())
 
     def test_detail_policy_requires_bounded_integer_limits(self):
-        for change in ({"max_requests": 33}, {"max_requests": True}, {"max_new": 0},
+        for change in ({"max_requests": 129}, {"max_requests": True}, {"max_new": 0},
+                       {"max_seconds": 421}, {"max_seconds": 0}, {"max_seconds": True},
                        {"admit_new": 1}, {"enabled": "true"}, {"unreviewed": True}):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 phase.validate_policy({**POLICY, **change})

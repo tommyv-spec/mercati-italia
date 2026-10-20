@@ -517,6 +517,29 @@ class SourceCalendarTests(unittest.TestCase):
 
 
 class SourceAdmissionCertificateTests(unittest.TestCase):
+    def test_over_sixty_four_unique_source_pages_keep_bounded_admission_and_certificate(self):
+        from export_static import normalize
+        template = observed_page("notizia_fumetti")
+        source_url = template["requested_url"]
+        pages = []
+        for index in range(65):
+            url = source_url.rstrip("/") + "-campione-" + str(index) + "/"
+            pages.append({**template, "requested_url": url, "final_url": url,
+                          "html": template["html"].replace(source_url.encode(), url.encode())})
+        pages.append(page())
+        rows, evidence = enrich.preview([], pages, today=TODAY, apply=True, admit_new=True)
+        self.assertEqual(len(evidence["source_pages"]), 66)
+        self.assertEqual(len({item["final_url"] for item in evidence["source_pages"]}), 66)
+        self.assertEqual(evidence["counts"]["source_category_or_event_is_not_a_market"], 65)
+        self.assertEqual(evidence["max_new"], 32)
+        self.assertEqual(len(rows), 1)
+        certificate = enrich.cert_from_detail_evidence(evidence, today=TODAY)
+        exported = [normalize(row, TODAY)[0] for row in rows]
+        self.assertEqual(enrich.verify_source_admission_certificate([], exported, certificate, TODAY),
+                         ([], 1))
+        with self.assertRaisesRegex(ValueError, "Invalid Happings detail batch"):
+            enrich.preview([], pages + pages[:63], today=TODAY, apply=True, admit_new=True)
+
     def fixture(self):
         from export_static import normalize
         base = [existing(slug="unrelated-weekly", nome="Mercato settimanale di Pisa",

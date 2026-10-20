@@ -28,7 +28,8 @@ SCHEMA = 1
 MAX_RESOURCES = 50_000
 MAX_LINKS_PER_PAGE = 20_000
 MAX_ORIGINS = 4
-MAX_REQUESTS = 32
+MAX_REQUESTS = 128
+MAX_SECONDS = 420
 MAX_RESPONSE_BYTES = weekly.MAX_RESPONSE_BYTES
 REFRESH_DAYS = 7
 DETAIL_PATH = re.compile(r"/it/happing/[a-z0-9][a-z0-9-]{0,239}/$")
@@ -358,7 +359,7 @@ def import_observed_pages(state, pages, *, observed_at):
 
 
 def next_requests(state, *, today, limit, sitemap_quota=2):
-    """Oldest due work first; reserve a bounded slot for sitemap maintenance."""
+    """Prioritize relevant refresh while reserving discovery/background slots."""
     day = _day(today)
     validate_state(state, today=day)
     if type(limit) is not int or not 0 <= limit <= MAX_REQUESTS:
@@ -376,14 +377,27 @@ def next_requests(state, *, today, limit, sitemap_quota=2):
         seeded = any(origin["kind"] in {"catalog_url", "explicit_seed"} for origin in item["origins"])
         return (0 if seeded else 1 if MARKET_SLUG.search(urlsplit(url).path) else 2, *key(pair))
     unseen = sorted([pair for pair in details if pair[1]["last_success"] is None], key=priority)
-    refresh = sorted([pair for pair in details if pair[1]["last_success"] is not None], key=key)
+    unseen_oldest = sorted(unseen, key=key)
+    refresh = [pair for pair in details if pair[1]["last_success"] is not None]
+    primary_refresh = sorted([pair for pair in refresh if priority(pair)[0] < 2], key=key)
+    other_refresh = sorted([pair for pair in refresh if priority(pair)[0] == 2], key=key)
     chosen_maps = maps[:min(limit, sitemap_quota)]
     selected = list(chosen_maps)
     turn = sum(item["attempts"] for item in state["resources"].values() if item["kind"] == "detail")
-    while len(selected) < limit and (unseen or refresh):
-        # A large unseen sitemap cannot postpone every reread indefinitely.
-        pool = refresh if refresh and (turn % 3 == 2 or not unseen) else unseen
-        selected.append(pool.pop(0)[0])
+    while len(selected) < limit and (unseen or primary_refresh or other_refresh):
+        # Six of nine slots favor existing/market-like pages; two discover
+        # unread URLs and one refreshes the remainder. An oldest-first unseen
+        # slot prevents permanent starvation by new high-priority discoveries.
+        slot = turn % 9
+        preferred = (unseen if slot == 2 else unseen_oldest if slot == 5
+                     else other_refresh if slot == 8 else primary_refresh)
+        pool = preferred or primary_refresh or unseen or other_refresh
+        pair = pool.pop(0)
+        selected.append(pair[0])
+        if pair in unseen:
+            unseen.remove(pair)
+        if pair in unseen_oldest:
+            unseen_oldest.remove(pair)
         turn += 1
     return selected
 
@@ -415,7 +429,8 @@ def fetch_one(url, *, robots, opener=None):
 
 
 def acquire(state, *, today, max_requests, robots, fetcher=None, checkpoint=None,
-            sleep=time.sleep, sitemap_quota=2, clock=None):
+            sleep=time.sleep, sitemap_quota=2, clock=None, max_seconds=MAX_SECONDS,
+            monotonic=time.monotonic):
     """Consume at most the caller's remaining budget and checkpoint each result.
 
     ``checkpoint(state, pages, report)`` is called immediately before each
@@ -423,52 +438,93 @@ def acquire(state, *, today, max_requests, robots, fetcher=None, checkpoint=None
     ``pages`` holds every successful detail response so far, with original bytes
     and acquisition timestamps. Interrupted requests are not retried that day.
 
+    No delay or request starts after the monotonic elapsed budget. A request
+    already in progress can finish; its existing socket timeout still applies.
+    Unstarted frontier entries remain unchanged for the next run. Reports expose
+    ``max_seconds``, ``elapsed_seconds`` and ``budget_stop`` (``elapsed_limit``,
+    ``request_limit`` or ``queue_exhausted``).
+
     Only detail pages are returned to the detail parser. Sitemap lastmod values
-never become observed freshness or event dates. A failed response stays due
-after a bounded backoff; it cannot erase an earlier catalog observation.
-"""
+    never become observed freshness or event dates. A failed response stays due
+    after a bounded backoff; it cannot erase an earlier catalog observation.
+    """
+    started = monotonic()
     day = _day(today)
     result = deepcopy(validate_state(state, today=day))
     if type(max_requests) is not int or not 0 <= max_requests <= MAX_REQUESTS:
         raise ValueError("Discovery request budget is invalid")
+    if type(max_seconds) is not int or not 1 <= max_seconds <= MAX_SECONDS:
+        raise ValueError("Discovery elapsed budget is invalid")
     if robots is None:
         raise ValueError("Discovery requires the already-observed robots policy")
     fetcher = fetcher or fetch_one
     clock = clock or (lambda: datetime.now(timezone.utc).isoformat())
     delay = weekly._request_pause(robots)
     pages = []
-    report = {"max_requests": max_requests, "requests_attempted": 0,
+    report = {"max_requests": max_requests, "max_seconds": max_seconds,
+              "elapsed_seconds": 0.0, "budget_stop": None, "requests_attempted": 0,
               "sitemaps_read": 0, "details_read": 0, "new_detail_urls": 0,
               "new_sitemap_urls": 0, "outcomes": [], "robots_fetches": 0,
               "inflight": None}
+    def elapsed():
+        report["elapsed_seconds"] = round(max(0.0, monotonic() - started), 6)
+        return report["elapsed_seconds"]
+
+    def save_checkpoint():
+        elapsed()
+        if checkpoint is not None:
+            checkpoint(deepcopy(result), deepcopy(pages), deepcopy(report))
+
     maps_used = 0
     for _ in range(max_requests):
+        if elapsed() >= max_seconds:
+            report["budget_stop"] = "elapsed_limit"
+            break
         choice = next_requests(result, today=day, limit=1,
                                sitemap_quota=max(0, sitemap_quota - maps_used))
         if not choice:
+            report["budget_stop"] = "queue_exhausted"
             break
         url = choice[0]
+        allowed = robots.can_fetch(weekly.USER_AGENT, url)
+        # Leave the selected URL completely untouched if its required delay
+        # would consume the remaining acquisition window.
+        if elapsed() + (delay if allowed else 0) >= max_seconds:
+            report["budget_stop"] = "elapsed_limit"
+            break
+        if allowed:
+            sleep(delay)
+        if elapsed() >= max_seconds:
+            report["budget_stop"] = "elapsed_limit"
+            break
         resource = result["resources"][url]
+        original = deepcopy(resource)
         resource["last_attempt"] = day
         resource["attempts"] += 1
         resource["status"] = "fetching"
         resource["next_due"] = (date.fromisoformat(day) + timedelta(days=1)).isoformat()
         outcome = {"requested_url": url, "kind": resource["kind"], "network_attempted": False}
         report["inflight"] = deepcopy(outcome)
-        if checkpoint is not None:
-            checkpoint(deepcopy(result), deepcopy(pages), deepcopy(report))
-        if resource["kind"] == "sitemap":
-            maps_used += 1
+        save_checkpoint()
         try:
-            if not robots.can_fetch(weekly.USER_AGENT, url):
+            if not allowed:
                 resource["status"] = "robots_denied"
                 raise ValueError("Publisher robots denied this discovery URL")
-            sleep(delay)
+            if elapsed() >= max_seconds:
+                result["resources"][url] = original
+                report["inflight"] = None
+                report["budget_stop"] = "elapsed_limit"
+                break
             outcome["network_attempted"] = True
             report["requests_attempted"] += 1
             report["inflight"] = deepcopy(outcome)
-            if checkpoint is not None:
-                checkpoint(deepcopy(result), deepcopy(pages), deepcopy(report))
+            save_checkpoint()
+            if elapsed() >= max_seconds:
+                result["resources"][url] = original
+                report["requests_attempted"] -= 1
+                report["inflight"] = None
+                report["budget_stop"] = "elapsed_limit"
+                break
             body, final = fetcher(url, robots=robots)
             captured_at = clock()
             if (not isinstance(captured_at, str)
@@ -503,11 +559,14 @@ after a bounded backoff; it cannot erase an earlier catalog observation.
             outcome.update({"status": resource["status"], "error_type": resource["last_error"]})
         report["outcomes"].append(outcome)
         report["inflight"] = None
+        if resource["kind"] == "sitemap":
+            maps_used += 1
         validate_state(result, today=day)
-        if checkpoint is not None:
-            checkpoint(deepcopy(result), deepcopy(pages), deepcopy(report))
+        save_checkpoint()
+    report["budget_stop"] = report["budget_stop"] or "request_limit"
     report["known_detail_urls"] = sum(r["kind"] == "detail" for r in result["resources"].values())
     report["known_sitemap_urls"] = sum(r["kind"] == "sitemap" for r in result["resources"].values())
     report["pending_detail_urls"] = sum(r["kind"] == "detail" and r["last_success"] is None
                                         for r in result["resources"].values())
+    save_checkpoint()
     return result, pages, report

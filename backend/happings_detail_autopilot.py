@@ -25,8 +25,9 @@ SCHEMA = 1
 STATE_FILENAME = "happings-discovery.json"
 BOOTSTRAP = Path(__file__).resolve().parent / "data/happings-detail-discovery-seed.json"
 MAX_STATE_BYTES = 45_000_000
-MAX_CHECKPOINT_BYTES = 32 * weekly.MAX_RESPONSE_BYTES * 2 + MAX_STATE_BYTES
-DEFAULT_POLICY = {"enabled": False, "max_requests": 32, "admit_new": False, "max_new": 32}
+MAX_CHECKPOINT_BYTES = discovery.MAX_REQUESTS * weekly.MAX_RESPONSE_BYTES * 2 + MAX_STATE_BYTES
+DEFAULT_POLICY = {"enabled": False, "max_requests": 128, "max_seconds": 420,
+                  "admit_new": False, "max_new": 32}
 
 
 def digest(value):
@@ -38,8 +39,10 @@ def validate_policy(policy):
     if (not isinstance(policy, dict) or set(policy) - set(DEFAULT_POLICY)
             or type(policy.get("enabled", False)) is not bool
             or type(policy.get("admit_new", False)) is not bool
-            or type(policy.get("max_requests", 32)) is not int
-            or not 1 <= policy.get("max_requests", 32) <= 32
+            or type(policy.get("max_requests", DEFAULT_POLICY["max_requests"])) is not int
+            or not 1 <= policy.get("max_requests", DEFAULT_POLICY["max_requests"]) <= discovery.MAX_REQUESTS
+            or type(policy.get("max_seconds", DEFAULT_POLICY["max_seconds"])) is not int
+            or not 1 <= policy.get("max_seconds", DEFAULT_POLICY["max_seconds"]) <= 420
             or type(policy.get("max_new", 32)) is not int
             or not 1 <= policy.get("max_new", 32) <= 32):
         raise ValueError("Unreviewed Happings detail policy")
@@ -102,11 +105,12 @@ def _unpack(saved, context, *, today, max_requests):
     outcomes = acquisition.get("outcomes")
     inflight = acquisition.get("inflight")
     if (acquisition.get("max_requests") != max_requests
+            or acquisition.get("max_seconds") != context["details_policy"]["max_seconds"]
             or not isinstance(outcomes, list) or len(outcomes) > max_requests
             or inflight is not None and not isinstance(inflight, dict)
             or saved["status"] == "completed" and inflight is not None
             or len(outcomes) + int(inflight is not None) > max_requests):
-        raise ValueError("Happings detail checkpoint changed its request budget")
+        raise ValueError("Happings detail checkpoint changed its request or duration budget")
     outcome_urls, successful_details = set(), {}
     attempted = 0
     for outcome in outcomes + ([inflight] if inflight is not None else []):
@@ -239,7 +243,7 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
 
             state, pages, report["discovery"] = discovery.acquire(
                 state, today=today, max_requests=policy["max_requests"], robots=robots,
-                fetcher=fetcher, checkpoint=checkpoint)
+                fetcher=fetcher, checkpoint=checkpoint, max_seconds=policy["max_seconds"])
             write_json(checkpoint_path, {
                 "schema": SCHEMA, "context": context, "status": "completed", "state": state,
                 "pages": [_pack(p, today=today) for p in pages], "discovery": report["discovery"],

@@ -38,7 +38,9 @@ Il rapporto conserva inoltre dodici URL osservati fuori dalla route supportata: 
 
 La coda persistente `public/data/v1/happings-discovery.json` registra scoperta, ultimo tentativo, ultima lettura riuscita, impronta dei byte, errore e prossima lettura. Non basta scaricare una pagina per dichiarare corretto il mercato. Il bootstrap conserva gli orari reali delle acquisizioni e lascia i dettagli ancora da leggere.
 
-Il ciclo esistente ha un massimo di **32 richieste per la fase dettagli**, comprese le sitemap, oltre alla lettura di `robots.txt`. Le richieste vengono distanziate. Una quota permette di controllare nuove sitemap; una quota delle letture di dettaglio torna su pagine già note. Le letture riuscite diventano nuovamente dovute dopo sette giorni; il completamento effettivo dipende dalla coda e dal budget. Gli errori hanno un’attesa crescente fino a sette giorni.
+Il ciclo esistente ha un massimo di **128 richieste per la fase dettagli**, comprese le sitemap, oltre alla lettura di `robots.txt`. Un limite di **420 secondi** impedisce di avviare ulteriori richieste quando il tempo disponibile termina; le risorse rimanenti conservano il proprio stato per il ciclo successivo. La risposta eventualmente già in corso mantiene il suo timeout. Restano tutte le pause richieste dal sito, con almeno tre secondi fra richieste.
+
+Le riletture dovute delle pagine già collegate al catalogo e degli URL con termini tipici di mercato hanno priorità. Quote riservate mantengono la scoperta di pagine nuove e la rilettura degli altri dettagli, evitando che una classe occupi tutta la coda. Le letture riuscite diventano nuovamente dovute dopo sette giorni: questa è la data di eleggibilità, non una promessa di freschezza settimanale indipendente da errori e capacità. Gli errori hanno un’attesa crescente fino a sette giorni. I report conservano durata effettiva e motivo di arresto del lotto.
 
 La fase provinciale già esistente mantiene il suo limite di sedici pagine e il proprio controllo robots. Non vengono aggiunti servizi, dipendenze, workflow o nuove programmazioni. Il job Autopilot quotidiano esistente usa la configurazione DEV.
 

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reviewed_at": "2026-10-20T16:09:24.295488+00:00",
+  "reviewed_at": "2026-10-20T16:23:54.115805+00:00",
   "date": "2026-10-20",
   "scope": "Actual nine-page replay through parser, identity matching and static export; not evidence of every Happings event or physical opening.",
   "baseline_commit": "e2ee92aded38ccb505528dd74cd6be8a98886999",
@@ -2012,13 +2012,13 @@
   ],
   "code_sha256": {
     "backend/happings_detail_layout.py": "1f443ca549b25be8df210282d0dbf596831ec83ba88dcd1196a7a02b232f9d7a",
-    "backend/happings_detail_discovery.py": "bad1f70213da277b18ef93403e62608172a2d2190ed8c9698837de9ed6cf2fb6",
-    "backend/happings_detail_enrichment.py": "c10289084adfaa607278afb4705ea91d63353dba2138e1e009d5f614899255cf",
-    "backend/happings_detail_autopilot.py": "ce6b1d57eea2bee795a50b306c6a2617a3f2dea791ecfdfe619eb0463f527d63",
+    "backend/happings_detail_discovery.py": "a0946a3acaed35ff5f884add03854bca412926c4fe3db777f2cb69ca813c1f08",
+    "backend/happings_detail_enrichment.py": "ddd78f2a73c7e9a726bfe6f658bc3e4dda29359010876c36b6495e6c367cfd68",
+    "backend/happings_detail_autopilot.py": "d3eaa28397e0e50badfd086c3a071d3e1e5e91ba21d211a6229aee0e86066281",
     "backend/source_calendar.py": "2e21d72046dba26fa7105c5b03b11f18bbb9df711ecee32bed7cbe4f72f99c95",
-    "backend/happings_autopilot.py": "233580c3a05f69a3481b0220c5c1eb48c42288fef9b9ef2642e0d482a184ca89",
+    "backend/happings_autopilot.py": "0d40e3f7cd2bb5074f27389d7b6d972ad958baf8d509d6a95d1705f57d5c89d8",
     "backend/autopilot.py": "6f1c51d0d94fef5c35cf9f329fe68987d11aac55ccd0b3c931219f29e70cc552",
-    "backend/autopilot_policy.json": "77e41b762471d37e393bffd52712d14a4b8dfa70db00d3675b0890a001052648",
+    "backend/autopilot_policy.json": "88dca94b70a43fbee46b041f1dc5a8c7aeca57986afca083047eb5955721fd17",
     "backend/publisher_refresh.py": "44faf5cad7083060138b8374fb67e340729d8dee776f39aeae957497c71f0589",
     "backend/recurrence_refresh.py": "0c8469fdb7c7841f383e34b081488425af712561d8244ab10acecca50ca953cf",
     "backend/export_static.py": "9bcdc0c677c6020f6c71c1583f9ed88f111b4f581221aa8093ec08a7c6a3720e",
@@ -2059,8 +2059,10 @@
     "original_rows_preserved_in_detail_phase": 13824,
     "manual_catalog_changes": 0,
     "full_python_suite": {
-      "passed": 1114,
-      "seconds": 137.743
+      "passed": 1130,
+      "seconds": 62.85,
+      "run_url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39455634969",
+      "commit": "f539ad91d6babb420209ea69d360a39299b9b58f"
     },
     "javascript_test_files_passed": 9,
     "production_build_passed": true,
@@ -2073,8 +2075,33 @@
     "later_targeted_tests": {
       "generic_enrichment_and_milano": 90,
       "autopilot_detail_integration": 13,
-      "national_quality_report": 18
+      "national_quality_report": 18,
+      "capacity_discovery_and_autopilot": 39,
+      "capacity_enrichment": 56
     },
+    "throughput_simulation": [
+      {
+        "daily_request_capacity": 128,
+        "days_to_first_visit_all_315_market_like_urls": 3,
+        "days_to_first_visit_all_2196_details": 28,
+        "largest_interval_days_between_priority_detail_reads_over_100_days": 8,
+        "assumptions": "Closed seed frontier, daily runs, all requests successful; market-like is only a scheduling hint; no elapsed/network model."
+      },
+      {
+        "daily_request_capacity": 100,
+        "days_to_first_visit_all_315_market_like_urls": 4,
+        "days_to_first_visit_all_2196_details": 43,
+        "largest_interval_days_between_priority_detail_reads_over_100_days": 9,
+        "assumptions": "Closed seed frontier, daily runs, all requests successful; market-like is only a scheduling hint; no elapsed/network model."
+      },
+      {
+        "daily_request_capacity": 80,
+        "days_to_first_visit_all_315_market_like_urls": 5,
+        "days_to_first_visit_all_2196_details": 76,
+        "largest_interval_days_between_priority_detail_reads_over_100_days": 9,
+        "assumptions": "Closed seed frontier, daily runs, all requests successful; market-like is only a scheduling hint; no elapsed/network model."
+      }
+    ],
     "full_captured_pipeline": {
       "added_source_ids": 2,
       "approved": true,
@@ -2095,7 +2122,7 @@
         "source_category_or_event_is_not_a_market": 1,
         "source_layout_or_content_conflict": 2
       },
-      "elapsed_seconds": 81.66,
+      "elapsed_seconds": 77.01,
       "gates": {
         "forecast_60d": true,
         "forecast_quality_flags": true,
@@ -2114,10 +2141,6 @@
         "source_identities_immutable": true,
         "unavailable_official_sources_preserved": true,
         "unknown_source_share_budget": true
-      },
-      "generic_certificate": {
-        "admission_count": 2,
-        "present": true
       },
       "generic_static_guard": {
         "catalog_content_signature": "c5cebab697c1dc29bd1a4728767d28724b3e80098f98de70efc9cf67bc654056",
@@ -2219,6 +2242,6 @@
       "unexplained_growth": 0,
       "same_cli_invocation_passed": true
     },
-    "full_suite_scope": "Broad suite before the final cross-source admission certificate and national audit compatibility fixes; the final GitHub checks rerun the complete suite."
+    "full_suite_scope": "Complete GitHub suite including admission certificates and the national audit compatibility fix, before the final throughput adjustment; subsequent PR checks rerun the complete suite."
   }
 }

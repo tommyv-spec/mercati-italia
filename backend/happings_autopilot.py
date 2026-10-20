@@ -463,6 +463,10 @@ def markdown(report):
             f"- Dettagli letti: {len(detail['source_pages'])}.\n"
             f"- Nuove identità ammesse: {len(detail['evidence']['new_market_ids'])}.\n"
             f"- URL di dettaglio conosciuti: {detail['discovery'].get('known_detail_urls', 0)}.\n"
+            f"- Dettagli ancora da leggere: {detail['discovery'].get('pending_detail_urls', 0)}.\n"
+            f"- Richieste effettuate: {detail['discovery'].get('requests_attempted', 0)}; "
+            f"durata: {detail['discovery'].get('elapsed_seconds', 0)} secondi; "
+            f"fine del lotto: `{detail['discovery'].get('budget_stop', 'not_run')}`.\n"
             "- Indirizzi, orari, singole date ed eccezioni conservano la prova della fonte.\n"
             "- Date riportate dalla fonte; nessuna verifica umana o previsione oltre il calendario pubblicato.\n"
         )

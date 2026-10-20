@@ -47,7 +47,7 @@
     },
     {
       "id": "HAPPINGS-DETAIL-MECHANISM-20261020",
-      "at": "2026-10-20T16:09:24.295488+00:00",
+      "at": "2026-10-20T16:23:54.115805+00:00",
       "summary": "Nuovo lettore dettagli, discovery dalle sitemap con stato persistente, calendari espliciti e visualizzazione. Nove pagine reali confrontate con 13.824 schede; due nuove identità nel replay, nessuna scheda esistente alterata. HAPP-FORMAT-01 e 02 chiusi con prove; gli altri problemi delle fonti restano tracciati."
     }
   ],
@@ -7524,7 +7524,7 @@
       "url_pattern": "/it/happing/{slug}/",
       "url_kind": "happings_event_detail_current",
       "scope": "current_observed_layout",
-      "reviewed_at": "2026-10-20T16:09:24.295488+00:00",
+      "reviewed_at": "2026-10-20T16:23:54.115805+00:00",
       "review_interval_days": 30,
       "primary_urls_sha256": null,
       "samples": [
@@ -8947,13 +8947,13 @@
       ],
       "code_sha256": {
         "backend/happings_detail_layout.py": "1f443ca549b25be8df210282d0dbf596831ec83ba88dcd1196a7a02b232f9d7a",
-        "backend/happings_detail_discovery.py": "bad1f70213da277b18ef93403e62608172a2d2190ed8c9698837de9ed6cf2fb6",
-        "backend/happings_detail_enrichment.py": "c10289084adfaa607278afb4705ea91d63353dba2138e1e009d5f614899255cf",
-        "backend/happings_detail_autopilot.py": "ce6b1d57eea2bee795a50b306c6a2617a3f2dea791ecfdfe619eb0463f527d63",
+        "backend/happings_detail_discovery.py": "a0946a3acaed35ff5f884add03854bca412926c4fe3db777f2cb69ca813c1f08",
+        "backend/happings_detail_enrichment.py": "ddd78f2a73c7e9a726bfe6f658bc3e4dda29359010876c36b6495e6c367cfd68",
+        "backend/happings_detail_autopilot.py": "d3eaa28397e0e50badfd086c3a071d3e1e5e91ba21d211a6229aee0e86066281",
         "backend/source_calendar.py": "2e21d72046dba26fa7105c5b03b11f18bbb9df711ecee32bed7cbe4f72f99c95",
-        "backend/happings_autopilot.py": "233580c3a05f69a3481b0220c5c1eb48c42288fef9b9ef2642e0d482a184ca89",
+        "backend/happings_autopilot.py": "0d40e3f7cd2bb5074f27389d7b6d972ad958baf8d509d6a95d1705f57d5c89d8",
         "backend/autopilot.py": "6f1c51d0d94fef5c35cf9f329fe68987d11aac55ccd0b3c931219f29e70cc552",
-        "backend/autopilot_policy.json": "77e41b762471d37e393bffd52712d14a4b8dfa70db00d3675b0890a001052648",
+        "backend/autopilot_policy.json": "88dca94b70a43fbee46b041f1dc5a8c7aeca57986afca083047eb5955721fd17",
         "backend/publisher_refresh.py": "44faf5cad7083060138b8374fb67e340729d8dee776f39aeae957497c71f0589",
         "backend/recurrence_refresh.py": "0c8469fdb7c7841f383e34b081488425af712561d8244ab10acecca50ca953cf",
         "backend/export_static.py": "9bcdc0c677c6020f6c71c1583f9ed88f111b4f581221aa8093ec08a7c6a3720e",

@@ -43,7 +43,7 @@ def sitemap(urls):
 
 def acquire(state, **kwargs):
     return discovery.acquire(state, today=TODAY, max_requests=kwargs.pop("max_requests", 4),
-                             robots=kwargs.pop("robots", robots()), sleep=lambda _: None,
+                             robots=kwargs.pop("robots", robots()), sleep=kwargs.pop("sleep", lambda _: None),
                              clock=lambda: STAMP, **kwargs)
 
 
@@ -221,6 +221,97 @@ class HappingsDetailDiscoveryTests(unittest.TestCase):
         self.assertEqual(discovery.next_requests(state, today=TODAY, limit=3), [unknown_name, PISA, generic])
         self.assertFalse(any("category" in r or "market_id" in r for r in state["resources"].values()))
 
+    def test_refresh_priority_reserves_both_unseen_and_other_event_slots(self):
+        primary = [ROOT + f"/it/happing/mercato-{i}/" for i in range(12)]
+        other = [ROOT + f"/it/happing/concerto-{i}/" for i in range(6)]
+        oldest_unseen = ROOT + "/it/happing/ancora-da-leggere/"
+        state, _ = discovery.ingest_pages(discovery.empty_state(),
+            [page(MAP, sitemap(primary + other + [oldest_unseen]))], observed_at=TODAY)
+        later = TODAY + timedelta(days=7)
+        for url in primary + other:
+            state["resources"][url].update(last_attempt=TODAY.isoformat(), last_success=TODAY.isoformat(),
+                last_success_at=STAMP, last_sha256=hashlib.sha256(HTML).hexdigest(),
+                attempts=1, status="retrieved", next_due=later.isoformat())
+        new_market = ROOT + "/it/happing/mercato-nuovo/"
+        state, _ = discovery.ingest_pages(state, [page(MAP, sitemap([new_market]))], observed_at=later)
+        selected = discovery.next_requests(state, today=later, limit=9)
+        self.assertEqual(len(set(selected) & set(primary)), 6)
+        self.assertEqual(len(set(selected) & set(other)), 1)
+        self.assertEqual(selected[2], new_market)
+        self.assertEqual(selected[5], oldest_unseen)
+        self.assertEqual(len(set(selected)), 9)
+
+    def test_elapsed_limit_before_delay_preserves_unread_frontier(self):
+        state = discovery.seed_state(seed_urls=[PISA], observed_at=TODAY)
+        fetch, pause = Mock(), Mock()
+        after, pages, report = acquire(state, fetcher=fetch, sleep=pause,
+                                       max_seconds=2, monotonic=lambda: 0)
+        self.assertEqual(after, state)
+        self.assertEqual(pages, [])
+        fetch.assert_not_called()
+        pause.assert_not_called()
+        self.assertEqual(report["budget_stop"], "elapsed_limit")
+        self.assertEqual(report["max_seconds"], 2)
+
+    def test_elapsed_limit_after_delay_leaves_selected_url_unattempted(self):
+        state = discovery.seed_state(seed_urls=[PISA], observed_at=TODAY)
+        now = [0]
+        def pause(_):
+            now[0] += 5
+        fetch = Mock()
+        after, pages, report = acquire(state, fetcher=fetch, sleep=pause,
+                                       max_seconds=4, monotonic=lambda: now[0])
+        self.assertEqual(after, state)
+        fetch.assert_not_called()
+        self.assertEqual(report["elapsed_seconds"], 5)
+        self.assertEqual(report["budget_stop"], "elapsed_limit")
+
+    def test_elapsed_stop_retains_prior_html_and_unstarted_remaining_work(self):
+        state = discovery.seed_state(seed_urls=[PISA, LANA], observed_at=TODAY)
+        now, snapshots = [0], []
+        def pause(seconds):
+            now[0] += seconds
+        def fetch(url, **kwargs):
+            now[0] += 1
+            return HTML, url
+        after, pages, report = acquire(state, fetcher=fetch, sleep=pause,
+            max_seconds=7, monotonic=lambda: now[0], checkpoint=lambda *args: snapshots.append(args))
+        self.assertEqual(report["requests_attempted"], 1)
+        self.assertEqual(report["elapsed_seconds"], 4)
+        self.assertEqual(report["budget_stop"], "elapsed_limit")
+        self.assertEqual(len(pages), 1)
+        remaining = ({PISA, LANA} - {pages[0]["requested_url"]}).pop()
+        self.assertEqual(after["resources"][remaining], state["resources"][remaining])
+        self.assertEqual(snapshots[-1], (after, pages, report))
+
+    def test_deadline_crossed_in_checkpoint_restores_unstarted_request(self):
+        state = discovery.seed_state(seed_urls=[PISA], observed_at=TODAY)
+        now, snapshots = [0], []
+        def save(*args):
+            snapshots.append(args)
+            if (args[2].get("inflight") or {}).get("network_attempted"):
+                now[0] += 10
+        fetch = Mock()
+        after, pages, report = acquire(state, fetcher=fetch, checkpoint=save,
+                                       max_seconds=5, monotonic=lambda: now[0])
+        self.assertEqual(after, state)
+        fetch.assert_not_called()
+        self.assertEqual(report["requests_attempted"], 0)
+        self.assertEqual(report["outcomes"], [])
+        self.assertIsNone(report["inflight"])
+        self.assertEqual(report["budget_stop"], "elapsed_limit")
+        self.assertEqual(snapshots[-1], (after, pages, report))
+
+    def test_128_page_request_budget_is_bounded_and_reported(self):
+        urls = [ROOT + f"/it/happing/mercato-{i}/" for i in range(129)]
+        state = discovery.seed_state(seed_urls=urls, observed_at=TODAY)
+        after, pages, report = acquire(state, max_requests=128, fetcher=lambda url, **kw: (HTML, url))
+        self.assertEqual(report["requests_attempted"], 128)
+        self.assertEqual(len(pages), 128)
+        self.assertEqual(report["pending_detail_urls"], 1)
+        self.assertEqual(report["budget_stop"], "request_limit")
+        self.assertEqual(report["max_seconds"], 420)
+
     def test_robots_denial_never_calls_fetcher(self):
         state = discovery.seed_state(seed_urls=[PISA], observed_at=TODAY)
         fetcher = Mock()
@@ -260,10 +351,13 @@ class HappingsDetailDiscoveryTests(unittest.TestCase):
                     acquire(item, fetcher=Mock())
 
     def test_budget_bounds_do_not_allow_bool_or_unbounded_values(self):
-        for value in (-1, 33, True, "3"):
+        for value in (-1, 129, True, "3"):
             with self.subTest(value=value):
                 with self.assertRaises(ValueError):
                     acquire(discovery.empty_state(), max_requests=value, fetcher=Mock())
+        for value in (0, 421, True, "420"):
+            with self.subTest(max_seconds=value), self.assertRaises(ValueError):
+                acquire(discovery.empty_state(), max_seconds=value, fetcher=Mock())
 
     def test_http_layer_requires_public_dns_exact_url_status_and_content_type(self):
         response = Mock()
