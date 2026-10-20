@@ -110,6 +110,7 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
     generic_additions = 0
     generic_fields_checked = 0
     generic_evidence_checked = 0
+    separately_proved_happings_admissions = 0
     if generic_admission_report_path:
         from source_contract_activation import (
             active_profile_count, validate_admissions, verify_static as verify_generic_static,
@@ -147,9 +148,13 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         if (type(changed_fields) is not int or changed_fields<0
                 or not isinstance(evidence_ids,list)):
             raise ValueError("Untrusted generic publisher field update counts")
-        if changed_fields or evidence_ids or active_profile_count(contracts, reviewed) < len(reviewed):
+        if (changed_fields or evidence_ids
+                or active_profile_count(contracts, reviewed) < len(reviewed)
+                or generator.get("happings_detail_admission_certificate") is not None):
             # Re-run the exact final data/receipt guard on these same assets.
-            # A count alone cannot bypass the existing city or map safeguards.
+            # Later Happings additions must be reconstructed from their source
+            # facts and agree with both the actual detail rows and search index.
+            # A claimed count alone cannot exempt them from these safeguards.
             generic_proof=verify_generic_static(manifest_path,generator,contracts,admissions,
                                                 as_day(generator.get("reference_date")))
             if (generic_proof.get("release_safe") is not True
@@ -159,13 +164,16 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
                 raise ValueError("Managed publisher changes lack exact final source evidence")
             generic_fields_checked=changed_fields
             generic_evidence_checked=len(evidence_ids)
+            separately_proved_happings_admissions=generic_proof.get(
+                "separately_proved_happings_admissions",0)
         generic_additions=len(generator["new_market_ids"])
         if (generator.get("candidate_market_ids")!=generator["original_market_ids"]+generic_additions
                 or generic_additions>250):
             raise ValueError("Unapproved number of generic source market identities")
     if (manifest.get("schema") != 1 or manifest.get("index_schema") != 5
             or not isinstance(manifest.get("total"), int)
-            or report.get("records_total") + approved_additions + generic_additions != manifest["total"]):
+            or report.get("records_total") + approved_additions + generic_additions
+               + separately_proved_happings_admissions != manifest["total"]):
         raise ValueError("Static manifest and reviewed source counts disagree")
     if manifest.get("layout") == "regional":
         parts = manifest.get("regions")
@@ -263,6 +271,7 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         "individual_market_confirmations": 0,
         "generic_existing_fields_checked":generic_fields_checked,
         "generic_existing_evidence_ids_checked":generic_evidence_checked,
+        "separately_proved_happings_admissions":separately_proved_happings_admissions,
         "release_safe": True,
     }
 

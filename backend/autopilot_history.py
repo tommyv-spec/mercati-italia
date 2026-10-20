@@ -10,13 +10,63 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from collections import Counter
 from pathlib import Path
 from roma_xiii_2026_venues import EXPECTED as ROMA_XIII_VENUE_IDS, EVIDENCE_FILE as ROMA_VENUE_EVIDENCE, checksum as roma_venue_digest
 from source_lifecycle import digest as source_digest
 
 HISTORY_LIMIT = 400  # more than one year of daily checkpoint scorecards
+
+
+def _proved_later_source_admissions(decision, generic, generic_final, final_manifest):
+    """Reconcile earlier cohorts only against the actual source-proven export.
+
+    A saved count or whitelist is insufficient. The immutable assets/index,
+    decision signature and source report must agree, and each later identity
+    is reconstructed from its bound parsed publisher facts before counting it.
+    """
+    certificate=generic.get("happings_detail_admission_certificate")
+    claimed=generic_final.get("separately_proved_happings_admissions",0)
+    if certificate is None:
+        if type(claimed) is not int or claimed!=0:
+            raise ValueError("Later source count lacks its admission certificate")
+        return 0
+    if final_manifest is None or not isinstance(certificate,dict):
+        raise ValueError("Later source admissions require the actual final catalog")
+    try:
+        today=date.fromisoformat(decision["today"])
+        manifest_path=Path(final_manifest)
+        from validate_static import validate
+        from merge_catalog import load_existing
+        from happings_detail_enrichment import verify_source_admission_certificate
+        validated=validate(manifest_path)
+        manifest=json.loads(manifest_path.read_text("utf-8"))
+        rows=load_existing(manifest_path)
+    except (KeyError,TypeError,OSError) as error:
+        raise ValueError("Later source admissions lack readable final catalog evidence") from error
+    admissions=certificate.get("admissions")
+    if (not isinstance(admissions,list)
+            or any(not isinstance(item,dict) or not isinstance(item.get("market_id"),str)
+                   for item in admissions)):
+        raise ValueError("Invalid later source admission identities")
+    added={item["market_id"] for item in admissions}
+    if added & (set(generic.get("new_market_ids",[])) |
+                set(generic.get("evidence_updated_market_ids",[]))):
+        raise ValueError("Distinct source phases claim the same market identity")
+    cohort=[row for row in rows if row["slug"] not in added]
+    cohort,count=verify_source_admission_certificate(cohort,rows,certificate,today)
+    signature=manifest.get("content_signature")
+    if (type(claimed) is not int or claimed!=count
+            or validated["records"]!=decision.get("candidate",{}).get("records")
+            or manifest.get("total")!=len(rows)
+            or generic.get("candidate_market_ids")!=len(cohort)
+            or generic.get("reference_date")!=today.isoformat()
+            or generic_final.get("source_admission_report_sha256")!=source_digest(generic)
+            or generic_final.get("catalog_content_signature")!=signature
+            or decision.get("new_signature")!=signature):
+        raise ValueError("Later source admissions lack the exact final catalog proof")
+    return count
 
 
 def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None,
@@ -35,7 +85,8 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             roma_xiii_2026_report: dict | None = None,
             roma_xiii_2026_final_guard: dict | None = None,
             generic_admission_report: dict | None = None,
-            generic_admission_static_guard: dict | None = None) -> dict:
+            generic_admission_static_guard: dict | None = None,
+            final_manifest: Path | None = None) -> dict:
     if decision.get("approved") is not True:
         raise ValueError("Cannot persist a failed candidate as a successful run")
     metric = decision.get("candidate", {})
@@ -70,11 +121,13 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             or set(generic_observed)&set(generic_added_ids)
             or not len(generic_updated)<=generic_fields<=3*len(generic_updated)):
         raise ValueError("Untrusted generic publisher managed field counts")
+    later_source_count=_proved_later_source_admissions(
+        decision,generic,generic_final,final_manifest)
     if generic and (
             generic.get("schema")!=1 or generic.get("enabled") is not True
             or generic.get("publication_channel")!="dev-only"
             or not 0<=generic_count<=250
-            or generic.get("candidate_market_ids")!=metric.get("records")
+            or generic.get("candidate_market_ids",0)+later_source_count!=metric.get("records")
             or generic.get("candidate_market_ids")!=generic.get("original_market_ids",0)+generic_count
             or any(generic.get(k)!=0 for k in (
                 "record_ids_deleted",
@@ -120,7 +173,7 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
                 or not set(already_ids).issubset(ROMA_XIII_VENUE_IDS)
                 or set(new_ids).intersection(already_ids)
                 or market_intake.get("new_market_count") != newly_added
-                or market_intake.get("existing_catalog_records") + newly_added + generic_count != metric.get("records")
+                or market_intake.get("existing_catalog_records") + newly_added + generic_count + later_source_count != metric.get("records")
                 or any(market_intake.get(key)!=0 for key in (
                     "records_removed","existing_records_changed",
                     "new_coordinates_added","new_opening_confirmations",
@@ -165,6 +218,7 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
             "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a" or
         static_guard.get("release_safe") is not True or
         static_guard.get("manifest_records") != metric.get("records") or
+        static_guard.get("separately_proved_happings_admissions",0) != later_source_count or
         static_guard.get("reviewed_cities_in_final_details") != 16 or
         static_guard.get("reviewed_cities_in_search_index") != 16 or
         static_guard.get("source_urls_preserved") != 16 or
@@ -178,7 +232,7 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         city_review.get("reviewed_at") != "2026-10-12" or
         city_review.get("reviewed_evidence_digest") !=
             "4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a" or
-        city_review.get("records_total") + newly_added + generic_count != metric.get("records") or
+        city_review.get("records_total") + newly_added + generic_count + later_source_count != metric.get("records") or
         any(city_review.get(k,0) != 0 for k in (
             "individual_events_confirmed","publisher_links_replaced",
             "opening_dates_added","market_records_deleted")) or
@@ -309,6 +363,7 @@ def summary(decision: dict, roadmap: dict | None, source_candidates: dict | None
         "roma_xiii_2026_new_venues_this_run": newly_added,
         "generic_approved_publisher_contracts": int(generic.get("source_contracts_active",0)),
         "generic_approved_publisher_venues_added": generic_count,
+        "happings_source_venues_added": later_source_count,
         "generic_approved_publisher_fields_updated":generic_fields,
         "generic_approved_publisher_evidence_refreshed":len(generic_observed),
         "generic_approved_publisher_forecasts_only": int(generic_final.get("source_weekly_forecasts_only",0)),
@@ -386,6 +441,7 @@ def markdown(latest: dict) -> str:
         f"- Roma XIII nuove fonti comunali 2025–2026: **{latest['roma_xiii_2026_new_venues_this_run']}** schede aggiunte in questo run, **{latest['roma_xiii_2026_reviewed_venues_active']}** sedi distinte tutelate nel sito, **{latest['roma_xiii_2026_forecast_only_venues']}** con calendari solo previsti, **{latest['roma_xiii_2026_navigation_suspended']}** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.",
         f"- Import generico tramite contratti di interi dataset: **{latest['generic_approved_publisher_contracts']}** fonti con licenza e identità approvate, **{latest['generic_approved_publisher_venues_added']}** nuove schede in questo run, **{latest['generic_approved_publisher_forecasts_only']}** calendari solo previsti, **{latest['generic_approved_publisher_routes_suspended']}** indicazioni sospese. Nessuna singola apertura verificata automaticamente.",
         f"- Aggiornamenti generici con prove per campo: **{latest.get('generic_approved_publisher_fields_updated',0)}** valori gestiti aggiornati e **{latest.get('generic_approved_publisher_evidence_refreshed',0)}** schede con riscontri aggiornati o ritirati; identità conservate.",
+        f"- Dettagli Happings: **{latest.get('happings_source_venues_added',0)}** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.",
         f"- Audit nazionale: **{latest['quality_unscheduled_false_labels']}** date dichiarate previste/confermate ma assenti, **{latest['quality_suspicious_cities']}** località da esaminare e **{latest['quality_potential_weekly_duplicate_groups']}** gruppi settimanali con possibile sovrapposizione (**{latest['quality_possible_duplicate_extra_rows']}** righe candidate, non cancellate).",
         f"- Miglioramento UX reversibile: **{latest['visitor_duplicate_visit_groups']}** gruppi provati dalla stessa fonte, **{latest['visitor_duplicate_buttons_avoided']}** pulsanti ripetuti evitati, **{latest['visitor_bad_city_labels_guarded']}** località anomale non mostrate come Comuni; **{latest['visitor_original_market_ids_retained']}** ID originali preservati.",
         f"- Fonti datate negli ultimi 30 giorni: **{latest['source_age_within_30_days']}**; oltre soglia: **{latest['source_age_over_limit']}**; senza data: **{latest['source_date_unknown']}**.",
@@ -449,6 +505,8 @@ def main():
     p.add_argument("--roma-xiii-2026-final-guard", type=Path)
     p.add_argument("--generic-admission-report", type=Path)
     p.add_argument("--generic-admission-static-guard", type=Path)
+    p.add_argument("--manifest", type=Path, default=Path("public/data/v1/manifest.json"),
+                   help="Actual final catalog used to verify later source admission certificates")
     p.add_argument("--run-id", required=True)
     p.add_argument("--out", type=Path, default=Path("reports/automation"))
     args = p.parse_args()
@@ -491,6 +549,7 @@ def main():
         if args.generic_admission_report and args.generic_admission_report.is_file() else None,
         json.loads(args.generic_admission_static_guard.read_text("utf-8"))
         if args.generic_admission_static_guard and args.generic_admission_static_guard.is_file() else None,
+        final_manifest=args.manifest,
     )
     count = save_history(args.out, value)
     print(json.dumps({"last_run":value["run_id"],"quality_approved":True,

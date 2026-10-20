@@ -2,6 +2,7 @@ import tempfile
 import unittest
 import copy
 import json
+from contextlib import contextmanager
 from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
@@ -41,7 +42,123 @@ def decision():
         "gates":{"records_ok":True},
     }
 
+
+@contextmanager
+def later_happings_cycle():
+    """Real source builders, mixed admission phases, and immutable export."""
+    from datetime import date
+    from test_source_contract_activation import enabled_fixture,fixture_activate,far_baseline,BLOB
+    from roma_xiii_2026_venues import integrate,EVIDENCE_FILE,EXPECTED_EXISTING,CATALOG_SOURCE
+    from roma_xiii_2026_release_guard import check_static
+    from source_contract_activation import verify_static
+    from happings_detail_enrichment import preview,cert_from_detail_evidence
+    from export_static import export
+    from recurrence_refresh import refresh_records
+    today=date(2026,10,20)
+    original=far_baseline()+[{
+        "slug":sid,"nome":"Mercato comunale "+sid,"citta":"Roma","provincia":"RM",
+        "regione":"Lazio","indirizzo":street,"url_fonte":CATALOG_SOURCE,
+        "status":"non_confermato"} for sid,street in EXPECTED_EXISTING.items()]
+    source=json.loads(EVIDENCE_FILE.read_text("utf-8"))
+    roman,rome=integrate(original,source,apply=True,today=today)
+    cfg,registry=enabled_fixture()
+    generic,report=fixture_activate(cfg,registry,roman,today=today,fetch=lambda url:(BLOB,False))
+    report["enabled"]=True
+    projected,_=refresh_records(generic,today,120,540)
+    url="https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+    html=(Path(__file__).parent/"fixtures/happings_detail/pisa.html").read_bytes()
+    final,evidence=preview(projected,[{"requested_url":url,"final_url":url,"html":html,
+        "fetched_at":today.isoformat()+"T12:00:00+00:00"}],today=today,apply=True,admit_new=True)
+    report["happings_detail_admission_certificate"]=cert_from_detail_evidence(evidence,today=today)
+    with tempfile.TemporaryDirectory() as td:
+        path=Path(td)/"public/data/v1"
+        export(final,path,today=today,min_count=1,preserve_ids={row["slug"] for row in final})
+        guard=verify_static(path/"manifest.json",report,cfg,registry,today)
+        approved=decision()
+        approved.update(today=today.isoformat(),new_signature=json.loads(
+            (path/"manifest.json").read_text())["content_signature"])
+        approved["candidate"]["records"]=len(final)
+        city={"schema":1,"reviewed_at":"2026-10-12",
+              "reviewed_evidence_digest":"4ee7fe7ac44ee2111dde0d50926f9547827256a6c11361eb1d7eeb0fe6de802a",
+              "records_total":len(original),"individual_events_confirmed":0,
+              "publisher_links_replaced":0,"opening_dates_added":0,"market_records_deleted":0,
+              "counts":{"city_fixed":0,"coordinates_quarantined":0,"navigation_hold_added":0}}
+        yield approved,{
+            "reviewed_cities":city,"roma_xiii_2026_report":rome,
+            "roma_xiii_2026_final_guard":check_static(path/"manifest.json",source,today),
+            "generic_admission_report":report,"generic_admission_static_guard":guard,
+            "final_manifest":path/"manifest.json"}
+
+
 class AutopilotHistoryTests(unittest.TestCase):
+    def test_later_source_additions_reconcile_all_earlier_cohorts_from_actual_export(self):
+        with later_happings_cycle() as (approved,kwargs):
+            result=summary(approved,None,None,"mixed-source-growth",**kwargs)
+            self.assertEqual(result["record_count"],13)
+            self.assertEqual(result["roma_xiii_2026_new_venues_this_run"],5)
+            self.assertEqual(result["generic_approved_publisher_venues_added"],4)
+            self.assertEqual(result["happings_source_venues_added"],1)
+            self.assertEqual(result["documented_verification_count"],0)
+
+    def test_later_source_count_requires_certificate_actual_assets_and_matching_signature(self):
+        with later_happings_cycle() as (approved,kwargs):
+            for change in ("manifest_missing","certificate_missing","count","signature","report_hash"):
+                decision_copy=copy.deepcopy(approved); bad=copy.deepcopy(kwargs)
+                if change=="manifest_missing":bad.pop("final_manifest")
+                elif change=="certificate_missing":bad["generic_admission_report"].pop("happings_detail_admission_certificate")
+                elif change=="count":bad["generic_admission_static_guard"]["separately_proved_happings_admissions"]=2
+                elif change=="signature":decision_copy["new_signature"]="0"*64
+                else:bad["generic_admission_static_guard"]["source_admission_report_sha256"]="0"*64
+                with self.subTest(change=change),self.assertRaises(ValueError):
+                    summary(decision_copy,None,None,"unproved-count",**bad)
+
+    def test_recomputed_export_hash_cannot_authorize_changed_source_hours(self):
+        from datetime import date
+        from export_static import export
+        from merge_catalog import load_existing
+        with later_happings_cycle() as (approved,kwargs):
+            path=kwargs["final_manifest"]
+            rows=load_existing(path)
+            added=kwargs["generic_admission_report"]["happings_detail_admission_certificate"]["admissions"][0]["market_id"]
+            next(row for row in rows if row["slug"]==added)["orario_testo"]="00:00–23:59"
+            export(rows,path.parent,today=date.fromisoformat(approved["today"]),min_count=1,
+                   preserve_ids={row["slug"] for row in rows})
+            signature=json.loads(path.read_text())["content_signature"]
+            approved["new_signature"]=signature
+            kwargs["generic_admission_static_guard"]["catalog_content_signature"]=signature
+            with self.assertRaisesRegex(ValueError,"differs from parsed source"):
+                summary(approved,None,None,"tampered-candidate",**kwargs)
+
+    def test_later_source_proof_does_not_hide_a_changed_prior_cohort_count(self):
+        with later_happings_cycle() as (approved,kwargs):
+            for key,field in (("reviewed_cities","records_total"),
+                              ("roma_xiii_2026_report","existing_catalog_records"),
+                              ("generic_admission_report","original_market_ids")):
+                bad=copy.deepcopy(kwargs);bad[key][field]+=1
+                with self.subTest(cohort=key),self.assertRaises(ValueError):
+                    summary(approved,None,None,"unproved-cohort",**bad)
+
+    def test_existing_workflow_cli_validates_default_published_manifest(self):
+        import subprocess
+        with later_happings_cycle() as (approved,kwargs):
+            root=kwargs["final_manifest"].parents[3]
+            decision_path=root/"release-decision.json"
+            decision_path.write_text(json.dumps(approved),"utf-8")
+            args=[sys.executable,str(Path(__file__).resolve().parents[1]/"autopilot_history.py"),
+                  "--decision",str(decision_path),"--run-id","unchanged-workflow",
+                  "--out",str(root/"history")]
+            for key,flag in (("reviewed_cities","--reviewed-cities-report"),
+                             ("roma_xiii_2026_report","--roma-xiii-2026-report"),
+                             ("roma_xiii_2026_final_guard","--roma-xiii-2026-final-guard"),
+                             ("generic_admission_report","--generic-admission-report"),
+                             ("generic_admission_static_guard","--generic-admission-static-guard")):
+                path=root/(key+".json");path.write_text(json.dumps(kwargs[key]),"utf-8")
+                args.extend([flag,str(path)])
+            # No new flag is needed by the trusted MAIN workflow: it has
+            # already copied the approved candidate to public/data/v1.
+            result=subprocess.run(args,cwd=root,text=True,capture_output=True,check=True)
+            self.assertTrue(json.loads(result.stdout)["quality_approved"])
+
     def test_managed_source_updates_persist_only_with_exact_final_catalog_proof(self):
         approved,generic,final=managed_generic_cycle()
         result=summary(approved,None,None,"source-updated",generic_admission_report=generic,
