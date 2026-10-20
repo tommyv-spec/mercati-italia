@@ -5,6 +5,8 @@
  * The update job creates a manifest and content-hashed JSON assets at build time.
  * Browser Cache-Control handles subsequent visits and refreshes.
  */
+import { cleanAddressConflicts } from '../lib/sourceFieldConflicts.js'
+
 const BASE_URL = import.meta.env?.BASE_URL || '/'
 export const CATALOG_CHECK_INTERVAL_MS = 30 * 60 * 1000
 let lastCatalogCheckAt = 0
@@ -12,6 +14,37 @@ let catalogRecheckPromise = null
 const FAVORITES_KEY = 'mercati_preferiti'
 let catalogPromise
 const regionPromises = new Map()
+const INDEX_FIELDS = ['slug', 'nome', 'citta', 'regione', 'categoria', 'tags',
+  'lat', 'lng', 'position_quality', 'orario_testo', 'date_quality', 'date']
+const HOURS_SCOPES = new Set(['', 'per_data', 'storico'])
+
+export function decodeIndexRecords(records, manifest) {
+  const schema = manifest.index_schema
+  const compact = [4, 5, 6].includes(schema)
+  const legacy = schema === undefined || [1, 2, 3].includes(schema)
+  if (!compact && !legacy) throw new Error('Versione indice non supportata')
+  if (schema === 6) {
+    const day = manifest.index_as_of
+    const parsed = typeof day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(day)
+      ? new Date(day + 'T12:00:00Z') : null
+    if (!parsed || !Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== day) {
+      throw new Error('Data di riferimento indice non valida')
+    }
+  }
+  const columns = schema === 6 ? [...INDEX_FIELDS, 'ambito_orari'] : INDEX_FIELDS
+  return records.map(record => {
+    if (!Array.isArray(record)) {
+      if (!legacy || !record || typeof record !== 'object') throw new Error('Formato indice errato')
+      // Legacy object previews never establish the new source-bound flag.
+      return {...record, ambito_orari: ''}
+    }
+    if ((schema !== undefined && !compact) || record.length !== columns.length ||
+        schema === 6 && !HOURS_SCOPES.has(record[columns.length - 1])) {
+      throw new Error('Formato indice errato')
+    }
+    return Object.fromEntries(columns.map((key, i) => [key, record[i]]))
+  })
+}
 
 function staticURL(path) {
   if (typeof path !== 'string' || !/^data\/v1\/[a-zA-Z0-9._/-]+\.json$/.test(path) || path.includes('..')) {
@@ -58,14 +91,7 @@ async function loadCatalogFromManifest(manifest) {
     if (index.schema !== 1 || !Array.isArray(index.markets) || index.markets.length !== manifest.total) {
       throw new Error('Indice mercati incompleto')
     }
-    // Schema 4 stores compact arrays, preserving display fields and date filters.
-    const columns = ['slug', 'nome', 'citta', 'regione', 'categoria', 'tags',
-      'lat', 'lng', 'position_quality', 'orario_testo', 'date_quality', 'date']
-    const markets = index.markets.map(record => {
-      if (!Array.isArray(record)) return record // legacy preview compatibility
-      if (record.length !== columns.length) throw new Error('Formato indice errato')
-      return Object.fromEntries(columns.map((key, i) => [key, record[i]]))
-    })
+    const markets = decodeIndexRecords(index.markets, manifest)
     const ids = new Set()
     for (const record of markets) {
       if (!record.slug || ids.has(record.slug)) throw new Error('Indice duplicato o non valido')
@@ -192,6 +218,7 @@ function normalize(m, userLat, userLng) {
     categoria: m.categoria || 'misto',
     tags: m.tags || [],
     orario_testo: m.orario_testo || '',
+    ambito_orari: HOURS_SCOPES.has(m.ambito_orari) ? m.ambito_orari : '',
     ricorrenza_testo: m.ricorrenza_testo || '',
     descrizione: m.descrizione || '',
     date: m.date || [],
@@ -205,6 +232,7 @@ function normalize(m, userLat, userLng) {
     fonte_letta_il: m.fonte_letta_il || '',
     fonte_aggiornata_il: m.fonte_aggiornata_il || '',
     riscontri_campi: Array.isArray(m.riscontri_campi) ? m.riscontri_campi : [],
+    conflitti_campi: cleanAddressConflicts(m.conflitti_campi, m),
     eccezioni_calendario: Array.isArray(m.eccezioni_calendario) ? m.eccezioni_calendario : [],
     calendario_fonte: m.calendario_fonte && typeof m.calendario_fonte === 'object'
       && !Array.isArray(m.calendario_fonte) ? m.calendario_fonte : null,

@@ -1,0 +1,54 @@
+{
+  "variant_id": "hpe-editorial-local-guide-with-explicit-section-scopes",
+  "status": "sample_replayed_with_qualified_holds",
+  "source_hash": "7da91da612bba4e282f50c0ea254a804d877c1c81bfbf65eaa1b54abe1e9e1fd",
+  "read_on": "2026-10-20",
+  "read_time_precision": "day",
+  "content_selector": "main#main article.hpe-editorial--local-guide .hpe-editorial-grid > .hpe-editorial-body",
+  "sections": [
+    {
+      "selector": "main#main article.hpe-editorial--local-guide .hpe-editorial-grid > .hpe-editorial-body > h2:nth-child(1)",
+      "status": "current",
+      "reason": "explicit_updated_section",
+      "source_rows": 3,
+      "unparsed_statements": 0,
+      "rows_with_exact_source_hours": 3
+    },
+    {
+      "selector": "main#main article.hpe-editorial--local-guide .hpe-editorial-grid > .hpe-editorial-body > h2:nth-child(5)",
+      "status": "historical_unverified",
+      "reason": "historical_source_section",
+      "source_rows": 53,
+      "unparsed_statements": 0,
+      "rows_with_exact_source_hours": 0
+    }
+  ],
+  "acceptance_criteria": [
+    "Use only the main editorial body; sidebar, navigation and footer remain excluded.",
+    "An explicitly current section may propose ordinary evidence only after existing identity/geography/day guards.",
+    "Keep all 53 historical rows as qualified facts; do not promote them into current fields or calendar.",
+    "Unknown current market statements, including ul/ol lists, invalidate uniqueness for that section.",
+    "Attribute an address conflict only with explicit previous-to-current replacement and a unique whole-catalog identity.",
+    "Bind the final conflict guard to the original bounded response bytes and hash, not a self-declared parsed report.",
+    "Keep all existing IDs, addresses, coordinates, dates and opening-verification flags unchanged."
+  ],
+  "proved_results": {
+    "compared_catalog_rows": 13888,
+    "linked_catalog_rows_compared": 60,
+    "current_day_locality_units": 3,
+    "historical_units_held": 53,
+    "explicit_address_conflicts": 2,
+    "other_catalog_fields_changed": 0,
+    "all_other_weekly_captures_unchanged": 13
+  },
+  "remaining_limits": [
+    "Only this observed DOM variant and its explicit section statements were replayed.",
+    "HAPP-FORMAT-04, HAPP-FORMAT-06 and NC-05 retain their broader unfinished requirements.",
+    "The two warning envelopes require the next real DEV run; this check-in is offline."
+  ],
+  "evidence": [
+    "reports/automation/happings-lucca-layout-validation-20261020/summary.json",
+    "reports/automation/address-conflict-ui-validation-20261020.json",
+    "reports/automation/source-format-final-rechecks-20261020/capture-replays.json"
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "mode": "Actual compiled React app, full 13,888-record validated temporary catalog, mocked static JSON reads, every browser network request blocked; no HTTP server or publisher call",
+  "baseline": {
+    "baseline_manifest": "/tmp/vintagery-live-39487468359/candidate/public/data/v1/manifest.json",
+    "baseline_sha256": "f70dddd6664ba5dc020c2f83c465382a748231175abd2d350d660b8571dae816",
+    "candidate_manifest": "/tmp/address-conflict-ui-candidate-20261020/public/data/v1/manifest.json",
+    "candidate_sha256": "c0e3cf7077499ea5eff9f09dea6baf983ec0a68d2b6f4cb1a9f0053863b9b85d",
+    "backend_code_commit": "8d14a6e",
+    "rows": 13888,
+    "only_source_producer_changes": [
+      "mercato-settimanale-di-lucca-lucca-mercoledi",
+      "mercato-settimanale-di-lucca-lucca-sabato"
+    ],
+    "source_values_overwritten": 0,
+    "coordinate_changes": 0,
+    "opening_confirmations": 0,
+    "validation": {
+      "records": 13888,
+      "assets": 20,
+      "index_bytes": 5165000,
+      "regions": 20
+    }
+  },
+  "raw_source_sha256": "7da91da612bba4e282f50c0ea254a804d877c1c81bfbf65eaa1b54abe1e9e1fd",
+  "bundle_sha256": "c1f4e2334901a1848780f5d238b899115491eb93991c18109a742797daff98cd",
+  "rows_checked": 13888,
+  "full_ids_retained": true,
+  "unchanged_except_two_conflict_envelopes": true,
+  "venue_grouping_unchanged": true,
+  "compact_index_no_conflict_envelope": true,
+  "warnings": [
+    {
+      "id": "mercato-settimanale-di-lucca-lucca-mercoledi",
+      "address": "Piazza del Carmine",
+      "source": "Piazzale Don Baroni",
+      "read_on": "2026-10-20",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-lucca-e-provincia/",
+      "coordinates_unchanged": [
+        43.84,
+        10.51
+      ],
+      "dates_unchanged": 17,
+      "published_verification": ""
+    },
+    {
+      "id": "mercato-settimanale-di-lucca-lucca-sabato",
+      "address": "Via dei Bacchettoni",
+      "source": "Piazzale Don Baroni",
+      "read_on": "2026-10-20",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-lucca-e-provincia/",
+      "coordinates_unchanged": [
+        43.84,
+        10.51
+      ],
+      "dates_unchanged": 17,
+      "published_verification": ""
+    }
+  ],
+  "browser": [
+    {
+      "viewport_width": 390,
+      "catalog_reads": [
+        "data/v1/manifest.json",
+        "data/v1/index-5e502de3a91d5c.json",
+        "data/v1/regions/toscana-ab248c0728698c.json"
+      ],
+      "displayed_conflicts": 2,
+      "group_warning_notes": 2,
+      "group_to_detail": [
+        {
+          "saved_address": "Piazza del Carmine",
+          "source_address": "Piazzale Don Baroni",
+          "directions_disabled": true,
+          "city_warning_absent": true,
+          "source_and_read_date_visible": true,
+          "statement_overflow": false
+        },
+        {
+          "saved_address": "Via dei Bacchettoni",
+          "source_address": "Piazzale Don Baroni",
+          "directions_disabled": true,
+          "city_warning_absent": true,
+          "source_and_read_date_visible": true,
+          "statement_overflow": false
+        }
+      ],
+      "blocked_external_attempts": [
+        "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      ],
+      "actual_external_HTTP_requests": 0,
+      "page_errors": []
+    },
+    {
+      "viewport_width": 1280,
+      "catalog_reads": [
+        "data/v1/manifest.json",
+        "data/v1/index-5e502de3a91d5c.json",
+        "data/v1/regions/toscana-ab248c0728698c.json"
+      ],
+      "displayed_conflicts": 2,
+      "group_warning_notes": 2,
+      "group_to_detail": [
+        {
+          "saved_address": "Piazza del Carmine",
+          "source_address": "Piazzale Don Baroni",
+          "directions_disabled": true,
+          "city_warning_absent": true,
+          "source_and_read_date_visible": true,
+          "statement_overflow": false
+        },
+        {
+          "saved_address": "Via dei Bacchettoni",
+          "source_address": "Piazzale Don Baroni",
+          "directions_disabled": true,
+          "city_warning_absent": true,
+          "source_and_read_date_visible": true,
+          "statement_overflow": false
+        }
+      ],
+      "blocked_external_attempts": [
+        "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      ],
+      "actual_external_HTTP_requests": 0,
+      "page_errors": []
+    }
+  ],
+  "unit_regressions": {
+    "file": "tests/source-field-conflicts.test.mjs",
+    "cases": 6,
+    "passed": true,
+    "invalid_variants": 24,
+    "identity_and_address_fields_bound": 8
+  },
+  "validation_limits": [
+    "The alternative address is a publisher statement, not a verified current venue.",
+    "Coordinates, saved addresses, forecasts and opening confirmations were not changed.",
+    "Only the two unambiguous source associations receive a warning; historical or unresolved rows are not treated as current facts."
+  ],
+  "code_base_commit": "c4ea9f554dc4325d920cdea257ea22dc573b6683",
+  "tested_code_sha256": {
+    "src/App.jsx": "abd8a867a8f4db3ef5789f96be83c58bb38e0e63dcf9b49a2a77d701f85d019f",
+    "src/components/WeeklyCityGroup.jsx": "7d236ca31ece34b2dbf9e046bfbda16252ee743c704b72874e3a4dd45ab4be18",
+    "src/components/WeeklyCityGroup.css": "dab335a0abf444f554c8aca86d3647446910c47f511c914db7ea20dfacfe7f7b",
+    "src/hooks/useMarkets.js": "b4f366c329bb38031782b8829dd9ba61f93d50806c390e4ea18724c03955f78b",
+    "src/services/staticMarkets.js": "feed20111bd06cb2aeb6803e3ece2a329d531fa1bb2d4ebcb39679f199d2d852",
+    "src/lib/sourceFieldConflicts.js": "f80d728a7d236efecb4ad1da1103dd6c092efcf9f47a003be9237b665b44c1db",
+    "src/lib/marketDirections.js": "a74f6a6adc228f66fa3dd77297b5dd240880fcd347290e1461055b355b775524",
+    "tests/source-field-conflicts.test.mjs": "539893fe217526ce592f5b05da37a05cf75542811442e1f61602fb2c02f9b111"
+  },
+  "targeted_regression_files": {
+    "command": "node --test tests/source-field-conflicts.test.mjs tests/source-hold-details.test.mjs tests/compact-index-scope.test.mjs tests/catalog-refresh.test.mjs",
+    "files_passed": 4,
+    "files_failed": 0
+  },
+  "build": {
+    "command": "npm run build -- --outDir /tmp/address-conflict-ui-build-20261020",
+    "passed": true,
+    "modules": 45,
+    "catalog_written_to_repository": false
+  },
+  "independent_review": {
+    "scope": "Full identity and saved-address binding; strict evidence and Unicode normalization parity; direct proof-based navigation hold; exact source claims and read date; existing city and coordinate behavior",
+    "reviewer": "happings_detail_matching",
+    "approved": true,
+    "new_ui_test_cases_rerun": 6,
+    "browser_and_build_independently_reviewed": false
+  },
+  "visual_inspection": {
+    "screenshots_inspected": 2,
+    "widths": [
+      390,
+      1280
+    ],
+    "address_and_source_claim_readable": true,
+    "source_read_date_visible": true,
+    "disabled_directions_visible": true,
+    "external_fonts_blocked": true
+  },
+  "publication": {
+    "remote_actions": 0,
+    "status": "Local isolated change; publication remains with the integration workflow"
+  }
+}

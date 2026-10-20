@@ -11,14 +11,12 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from compact_index import LEGACY_FIELDS, index_fields, index_options, project_index
 
 NAVIGATION_HOLD = "indirizzo_e_punto_sorgente_non_riconciliati"
 COORDINATE_HOLD = "coordinate_sorgente_incompatibili_con_localita_documentata"
 PROVENANCE = "ISTAT comuni 2026-02-21; nome fonte e provincia"
-INDEX_FIELDS = (
-    "slug", "nome", "citta", "regione", "categoria", "tags",
-    "lat", "lng", "position_quality", "orario_testo", "date_quality", "date",
-)
+INDEX_FIELDS = LEGACY_FIELDS
 REVIEWED_CASES = 16
 COORDINATE_CASES = 7
 
@@ -170,7 +168,9 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         if (generator.get("candidate_market_ids")!=generator["original_market_ids"]+generic_additions
                 or generic_additions>250):
             raise ValueError("Unapproved number of generic source market identities")
-    if (manifest.get("schema") != 1 or manifest.get("index_schema") != 5
+    projection_options = index_options(manifest)
+    fields = index_fields(manifest["index_schema"])
+    if (manifest.get("schema") != 1
             or not isinstance(manifest.get("total"), int)
             or report.get("records_total") + approved_additions + generic_additions
                + separately_proved_happings_admissions != manifest["total"]):
@@ -245,17 +245,19 @@ def verify_static(manifest_path: Path, evidence_path: Path, policy_path: Path,
         raise ValueError("Static search index is incomplete")
     indexed = {}
     for values in index_rows:
-        if not isinstance(values, list) or len(values) != len(INDEX_FIELDS):
+        if not isinstance(values, list) or len(values) != len(fields):
             raise ValueError("Unsafe static search index row")
         sid = values[0]
         if sid in expected:
             if sid in indexed:
                 raise ValueError("Duplicate reviewed ID in search index: " + sid)
-            indexed[sid] = dict(zip(INDEX_FIELDS, values))
+            indexed[sid] = dict(zip(fields, values))
     if set(indexed) != set(expected):
         raise ValueError("A reviewed market is missing from the search index")
     for sid, summary in indexed.items():
         detail = inspected[sid]
+        if list(summary.values()) != project_index([detail], **projection_options)[0]:
+            raise ValueError("Review safety data differs between index and detail (versioned projection): " + sid)
         if any(summary[key] != detail.get(key) for key in (
             "citta", "regione", "lat", "lng", "position_quality", "date_quality"
         )):

@@ -156,6 +156,36 @@ def _weekday_heading(value):
     return WEEKDAYS.index(match.group(1))
 
 
+def _source_row(city, place, weekday):
+    """Keep the reviewed list grammar identical across bounded containers."""
+    city_label=city.strip()
+    suffix=re.search(r"\s*\((la mattina|il mattino|al mattino|il pomeriggio|la sera)\)\s*$",
+                     place,re.I)
+    daypart=None
+    if suffix:
+        folded=fold(suffix.group(1))
+        daypart=next((v for token,v in DAY_PARTS.items() if token in folded),None)
+        place=place[:suffix.start()].strip()
+    place_label=place
+    city,city_qualifiers=_calendar_qualifiers(city.strip(),"city")
+    place,place_qualifiers=_calendar_qualifiers(place,"place")
+    qualifiers=city_qualifiers+place_qualifiers
+    if not 2<=len(city.strip())<=120 or not 3<=len(place)<=240:
+        raise ValueError("Publisher weekly row exceeds reviewed field bounds")
+    return {
+        "city":city.strip(),"city_key":fold(city),"city_label":city_label,
+        "weekday":weekday,"place":place,"place_label":place_label,
+        "calendar_scope":({"status":"unrepresented","qualifiers":qualifiers,
+                           "forecast_allowed":False,"assignment_allowed":False}
+                          if qualifiers else None),
+        "location_indicated":True,"daypart":daypart,
+        "has_specific_location":(safe_stored_street(place)
+                                 and not EXACT_TIME_CONTEXT.search(place)
+                                 and not UNREVIEWED_LOCATION_CONTEXT.search(fold(place))
+                                 and not qualifiers),
+    }
+
+
 class WeeklyIndexParser(HTMLParser):
     """Only one reviewed HTML structure: .happings-seo-content h3 + ul>li."""
 
@@ -263,44 +293,12 @@ class WeeklyIndexParser(HTMLParser):
                 if not match:
                     self.unparsed_listing_items+=1
                     continue
-                city,place=match.groups()
-                city_label=city.strip()
-                suffix=re.search(r"\s*\((la mattina|il mattino|al mattino|il pomeriggio|la sera)\)\s*$",
-                                 place,re.I)
-                daypart=None
-                if suffix:
-                    folded=fold(suffix.group(1))
-                    daypart=next((v for token,v in DAY_PARTS.items() if token in folded),None)
-                    place=place[:suffix.start()].strip()
-                place_label=place
-                city,city_qualifiers=_calendar_qualifiers(city.strip(),"city")
-                place,place_qualifiers=_calendar_qualifiers(place,"place")
-                qualifiers=city_qualifiers+place_qualifiers
-                if not 2<=len(city.strip())<=120 or not 3<=len(place)<=240:
+                try:
+                    entry=_source_row(*match.groups(),frame["weekday"])
+                except ValueError:
                     self.unparsed_listing_items+=1
                     continue
-                self.rows.append({
-                    "city":city.strip(),
-                    "city_key":fold(city),
-                    "city_label":city_label,
-                    "weekday":frame["weekday"],
-                    "place":place,
-                    "place_label":place_label,
-                    "calendar_scope":({"status":"unrepresented","qualifiers":qualifiers,
-                                       "forecast_allowed":False,"assignment_allowed":False}
-                                      if qualifiers else None),
-                    "location_indicated":True,
-                    "daypart":daypart,
-                    # An unreviewed exact-time suffix is not part of a street
-                    # and is not an authorization to import clock hours.
-                    # Suspensions, relocations and seasonal conditions also
-                    # need a reviewed representation before they can support
-                    # a current location. Keep these rows in ambiguity checks.
-                    "has_specific_location":(safe_stored_street(place)
-                                             and not EXACT_TIME_CONTEXT.search(place)
-                                             and not UNREVIEWED_LOCATION_CONTEXT.search(fold(place))
-                                             and not qualifiers),
-                })
+                self.rows.append(entry)
                 if len(self.rows)>MAX_PUBLISHER_ITEMS:
                     raise ValueError("Weekly HTML contains an excessive number of source rows")
 
@@ -311,6 +309,12 @@ def parse(html_bytes,*,source_url,observed_on=None):
     if (not isinstance(html_bytes,bytes) or
             not 300<=len(html_bytes)<=MAX_HTML_BYTES):
         raise ValueError("Missing or unbounded reviewed weekly-index HTML")
+    from happings_editorial_weekly_layout import parse_editorial
+    editorial=parse_editorial(html_bytes,source_province=province_page_key(source_url))
+    if editorial is not None:
+        editorial.page_metadata=parse_page_metadata(html_bytes,final_url=source_url,
+                                                     read_on=observed_on or date.today())
+        return editorial
     parser=WeeklyIndexParser(source_province=province_page_key(source_url))
     parser.feed(html_bytes.decode("utf-8-sig",errors="replace"))
     parser.close()

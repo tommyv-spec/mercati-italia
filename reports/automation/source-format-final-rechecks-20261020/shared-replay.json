@@ -1,0 +1,387 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "network_requests": 0,
+  "comparison": "Previous changed modules at 3a4d5c7 against final 37f1078, current dependencies held constant; LIVE7 catalog and index schema6.",
+  "catalog_records": 13888,
+  "manifest_path": "/tmp/vintagery-live-39487468359/candidate/public/data/v1/manifest.json",
+  "manifest_sha256": "f70dddd6664ba5dc020c2f83c465382a748231175abd2d350d660b8571dae816",
+  "normalization_differences": {
+    "riconciliazione_provincia": 220
+  },
+  "all_other_normalized_fields_identical": true,
+  "old_and_new_receipts_identical": 2819,
+  "publisher_coverage": [
+    {
+      "context": "no_run_report",
+      "catalog_records": 13888,
+      "compared_format_ids": [
+        "algherohospitality.it--e297ca84a4bf",
+        "assosagre.it--4377f96ccd50",
+        "bolognatoday.it--e0f6de959b8b",
+        "bresciatoday.it--6206d2d85129",
+        "brindisireport.it--5b0c85ac1d51",
+        "chietitoday.it--2f12ec6202a9",
+        "cittadellaspezia.com--daef88baba75",
+        "cosafareafirenze.it--4aba31ad6df6",
+        "emiliaromagnaturismo.it--058519c55f08",
+        "enjoysicilia.it--c47fcfe933c0",
+        "eventi.bergamo.it--849986cf0982",
+        "eventi.bergamo.it--86372603eab0",
+        "eventiinsardegna.it--4f6de7c3abb7",
+        "eventiintoscana.it--641b8123d9f9",
+        "ferrarainfo.com--1dfcae70a0aa",
+        "ferraratoday.it--096c9d2b9991",
+        "firenzetoday.it--4c68a0e41483",
+        "frosinonetoday.it--13df3249e7e8",
+        "genovatoday.it--023670032cbe",
+        "lazioinfesta.com--9432160459d4",
+        "lombardiainfesta.it--aac72178e0f0",
+        "milanopocket.it--549124b1743e",
+        "milanotoday.it--800bdea3a7e9",
+        "modenatoday.it--6d93abfa3a9b",
+        "napolidavivere.it--679a0a2b46d4",
+        "novaratoday.it--fd80b2faea81",
+        "padovatoday.it--a15e8e68ca15",
+        "palermotoday.it--7be3a486df34",
+        "paradisola.it--b32e4258186f",
+        "pugliainfesta.it--8852e0d42557",
+        "ravennatoday.it--b46159a30433",
+        "riminitoday.it--8bfbd004bf42",
+        "romapop.it--55f380b91494",
+        "romatoday.it--773e7b132541",
+        "sagrefvg.it--6113121f4eaf",
+        "sagrefvg.it--bb0f79aae507",
+        "sagreinromagna.it--073cd6052d05",
+        "sagretorino.it--3ad295df7ef3",
+        "sagretoscane.com--7e915f1a79a5",
+        "sagreumbre.it--f52d57ff5da2",
+        "salernotoday.it--6f80ccd14ebc",
+        "solosagre.it--ceaedca6c042",
+        "suedtirol.info--826da4efb87f",
+        "terredipisa.it--6b239e3c095e",
+        "trentino.com--2b837e50ce8e",
+        "trentino.com--f4ac442f344e",
+        "trevisotoday.it--f2521f69a8c7",
+        "umbriaeventi.com--a21a189c200c",
+        "umbriaeventi.com--f193ae86be90",
+        "varesenews.it--888bef8902d4",
+        "veneziatoday.it--81e9b7eb8036",
+        "vicenzatoday.it--7f29dd72d035",
+        "viterbotoday.it--c0d9902be5e7",
+        "wwwservizi.regione.emilia-romagna.itnote.asp--08f6dd05bcee"
+      ],
+      "compared_resource_urls": 78,
+      "identical_resource_count": 78,
+      "changed_restricted_resources": [],
+      "all_resource_differences": [],
+      "report_path": null
+    },
+    {
+      "context": "actual_live7_report",
+      "catalog_records": 13888,
+      "compared_format_ids": [
+        "algherohospitality.it--e297ca84a4bf",
+        "assosagre.it--4377f96ccd50",
+        "bolognatoday.it--e0f6de959b8b",
+        "bresciatoday.it--6206d2d85129",
+        "brindisireport.it--5b0c85ac1d51",
+        "chietitoday.it--2f12ec6202a9",
+        "cittadellaspezia.com--daef88baba75",
+        "cosafareafirenze.it--4aba31ad6df6",
+        "emiliaromagnaturismo.it--058519c55f08",
+        "enjoysicilia.it--c47fcfe933c0",
+        "eventi.bergamo.it--849986cf0982",
+        "eventi.bergamo.it--86372603eab0",
+        "eventiinsardegna.it--4f6de7c3abb7",
+        "eventiintoscana.it--641b8123d9f9",
+        "ferrarainfo.com--1dfcae70a0aa",
+        "ferraratoday.it--096c9d2b9991",
+        "firenzetoday.it--4c68a0e41483",
+        "frosinonetoday.it--13df3249e7e8",
+        "genovatoday.it--023670032cbe",
+        "lazioinfesta.com--9432160459d4",
+        "lombardiainfesta.it--aac72178e0f0",
+        "milanopocket.it--549124b1743e",
+        "milanotoday.it--800bdea3a7e9",
+        "modenatoday.it--6d93abfa3a9b",
+        "napolidavivere.it--679a0a2b46d4",
+        "novaratoday.it--fd80b2faea81",
+        "padovatoday.it--a15e8e68ca15",
+        "palermotoday.it--7be3a486df34",
+        "paradisola.it--b32e4258186f",
+        "pugliainfesta.it--8852e0d42557",
+        "ravennatoday.it--b46159a30433",
+        "riminitoday.it--8bfbd004bf42",
+        "romapop.it--55f380b91494",
+        "romatoday.it--773e7b132541",
+        "sagrefvg.it--6113121f4eaf",
+        "sagrefvg.it--bb0f79aae507",
+        "sagreinromagna.it--073cd6052d05",
+        "sagretorino.it--3ad295df7ef3",
+        "sagretoscane.com--7e915f1a79a5",
+        "sagreumbre.it--f52d57ff5da2",
+        "salernotoday.it--6f80ccd14ebc",
+        "solosagre.it--ceaedca6c042",
+        "suedtirol.info--826da4efb87f",
+        "terredipisa.it--6b239e3c095e",
+        "trentino.com--2b837e50ce8e",
+        "trentino.com--f4ac442f344e",
+        "trevisotoday.it--f2521f69a8c7",
+        "umbriaeventi.com--a21a189c200c",
+        "umbriaeventi.com--f193ae86be90",
+        "varesenews.it--888bef8902d4",
+        "veneziatoday.it--81e9b7eb8036",
+        "vicenzatoday.it--7f29dd72d035",
+        "viterbotoday.it--c0d9902be5e7",
+        "wwwservizi.regione.emilia-romagna.itnote.asp--08f6dd05bcee"
+      ],
+      "compared_resource_urls": 78,
+      "identical_resource_count": 77,
+      "changed_restricted_resources": [
+        {
+          "url": "https://www.padovatoday.it/eventi/festa-baccala-pesce-taggi-sopra-30-gennaio-1-febbraio-2026.html",
+          "old": {
+            "url": "https://www.padovatoday.it/eventi/festa-baccala-pesce-taggi-sopra-30-gennaio-1-febbraio-2026.html",
+            "host": "www.padovatoday.it",
+            "markets": 1,
+            "mode": "source_layout_needed",
+            "source_layout_status": "unsupported",
+            "source_read_status": "not_read",
+            "missing_address": 1,
+            "missing_hours": 1
+          },
+          "new": {
+            "url": "https://www.padovatoday.it/eventi/festa-baccala-pesce-taggi-sopra-30-gennaio-1-febbraio-2026.html",
+            "host": "www.padovatoday.it",
+            "markets": 1,
+            "mode": "citynews_existing_detail",
+            "source_layout_status": "supported",
+            "source_read_status": "not_selected",
+            "missing_address": 1,
+            "missing_hours": 1,
+            "readers": [
+              {
+                "source_id": "citynews-detail",
+                "reader": "existing_source_detail",
+                "mode": "citynews_existing_detail",
+                "source_layout_status": "supported",
+                "source_read_status": "not_selected",
+                "market_outcome_statuses": {
+                  "not_evaluated": 1
+                },
+                "reader_configured": true
+              }
+            ],
+            "source_route_url": "https://www.padovatoday.it/eventi/festa-baccala-pesce-taggi-sopra-30-gennaio-1-febbraio-2026.html",
+            "source_route_method": "exact_existing_source"
+          }
+        }
+      ],
+      "all_resource_differences": [
+        "https://www.arezzonotizie.it/eventi/mercato-pulci-2026.html",
+        "https://www.baritoday.it/eventi/fiera-fischietto-rutigliano-24-25-gennaio-2026.html",
+        "https://www.baritoday.it/eventi/riciclo-dei-ricordi-mercatino-carbonara-bari-1-febbraio-2026.html",
+        "https://www.bolognatoday.it/eventi/da-berlino-a-bologna-the-vinyl-market-berlin-arriva-a-eufonica-lucretio-e-idriss-d-13675563.html",
+        "https://www.bolognatoday.it/eventi/sana-food-2026.html",
+        "https://www.bresciatoday.it/eventi/sagre/chiari-mercatini-san-faustino-2026.html",
+        "https://www.cagliaritoday.it/eventi/Hermaearket-pirri-marzo-handmade-artigianato.html",
+        "https://www.casertanews.it/eventi/fiera-vintage-polo-a1-expo-14-15-febbraio.html",
+        "https://www.cataniatoday.it/eventi/mercatino-fera-bio-catania-febbraio-2026.html",
+        "https://www.cesenatoday.it/eventi/festa-del-maiale-quando-montiano-25-gennaio-2026.html",
+        "https://www.ferraratoday.it/eventi/markettino-prima-edizione-del-mercato-contemporaneo-atigianato-indipendente-8-febbraio.html",
+        "https://www.firenzetoday.it/eventi/emporium-piazza-savonarola-firenze-24-gennaio-2026.html",
+        "https://www.firenzetoday.it/eventi/festa-tortello-carne-alla-brace-25-gennaio-15-febbraio-2026.html",
+        "https://www.firenzetoday.it/eventi/galluzzo-fiera-15-febbraio-2026.html",
+        "https://www.firenzetoday.it/eventi/pop-up-store-artigianale-in-piazza-dei-ciompi.html",
+        "https://www.firenzetoday.it/eventi/vintage-fest-empoli-7-8-febbraio-2026.html",
+        "https://www.forlitoday.it/eventi/mercatissimo-gruppo-di-preghiera-di-montepaolo-usato-7-8-febbraio-2026.html",
+        "https://www.forlitoday.it/eventi/mercato-di-campagna-amica-coldiretti-programma-iniziative-febbraio-2026.html",
+        "https://www.frosinonetoday.it/eventi/ceccano-mercatino-degli-artigiani-del-borgo-odv.html",
+        "https://www.frosinonetoday.it/eventi/frosinone-ambulanti-di-forte-dei-marmi-frosinone-2026.html",
+        "https://www.genovatoday.it/eventi/artegenova-mostra-mercato-arte-moderna-contemporanea-2026.html",
+        "https://www.genovatoday.it/eventi/fiera-rapallo-san-sebastiano-2026.html",
+        "https://www.genovatoday.it/eventi/mercatini-gastronomia-peglingusto-8-febbraio-2026.html",
+        "https://www.genovatoday.it/eventi/mercatino-forte-dei-marmi-sant-olcese-11-gennaio-2026html.html",
+        "https://www.genovatoday.it/eventi/mercatino-forte-dei-marmi-sori-febbraio-2026.html",
+        "https://www.genovatoday.it/eventi/tipicamente-chiavari-mercatino-agroalimentare-gennaio-2026.html",
+        "https://www.leccotoday.it/eventi/mandello-mercatino-2000-libri-fuoriclasse-.html",
+        "https://www.modenatoday.it/eventi/Mercato-invernale-parco-novi-sad-Modena-15-febbraio-3026.html",
+        "https://www.modenatoday.it/eventi/modentiquaria-fiera-7-15-febbraio-2026.html",
+        "https://www.modenatoday.it/eventi/rotonda-mercatopolini-mercatino-bambini-befana-6-gennaio.html",
+        "https://www.monzatoday.it/eventi/monza-mercatino-francese_febbraio-2026.html",
+        "https://www.monzatoday.it/eventi/monza-piazza-centemero-mercatino-regionale-inverno-2026.html",
+        "https://www.novaratoday.it/eventi/sagra-primavera-cameri-2026.html",
+        "https://www.padovatoday.it/eventi/festa-baccala-pesce-taggi-sopra-30-gennaio-1-febbraio-2026.html",
+        "https://www.palermotoday.it/eventi/artgarden-14-15-febbraio-2026-vivai-gitto.html",
+        "https://www.palermotoday.it/eventi/mostra-orchidee-bonsai-gittogarden-febbraio-2026.html",
+        "https://www.parmatoday.it/eventi/librokilo-parma-1-febbraio.html",
+        "https://www.ravennatoday.it/eventi/festa-della-patrona-sant-agata-sul-santerno-iniziative-2026.html",
+        "https://www.riminitoday.it/eventi/anticatt-torna-a-cattolica-il-mercato-di-antiquariato-modernariato-e-vintage-tutte-le-date-2026.html",
+        "https://www.riminitoday.it/eventi/mercatino-antiquario-la-casa-del-tempo-santarcangelo-di-romagna-book-crossing-musas.html",
+        "https://www.riminitoday.it/eventi/piazzetta-delle-idee-chi-cerca-trova-artigianato-creativita-tesori-riccione-paese.html",
+        "https://www.romatoday.it/eventi/ambulanti-di-forte-dei-marmi-santa-maria-delle-mole-14-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/hippie-market-14-15-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/mercatino-delle-streghe-citta-dell-altra-economia-7-8-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/mercatino-streghe-citta-dell-altra-economia-14-15-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/mostra-scambio-giocattolo-vintage-31-gennaio-1-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/remira-market-roma-mediterraneo-maxxi-1-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/unique-market-industrie-fluviali-7-8-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/vintage-market-febbraio-2026.html",
+        "https://www.romatoday.it/eventi/vintage-market-san-paolo-district-21-22-febbraio-2026.html",
+        "https://www.torinotoday.it/eventi/salone-libro-usato-nichelino-14-22-febbraio.html",
+        "https://www.torinotoday.it/eventi/san-salvario-emporium-1-febbraio.html",
+        "https://www.trevisotoday.it/eventi/mostra-mercato-disco-silea-2026.html",
+        "https://www.veneziatoday.it/eventi/mercatini-noale-8-febbraio-2026.html",
+        "https://www.veneziatoday.it/eventi/mercatino-mirano-15-febbraio-2026.html",
+        "https://www.vicenzatoday.it/eventi/art-ciocc-il-tour-dei-cioccolatieri-ad-asiago.html",
+        "https://www.viterbotoday.it/eventi/fiere/mercatino-dell-antico-viterbo-15-febbraio-2026.html"
+      ],
+      "report_path": "/tmp/vintagery-live-39487468359/existing-source-refresh.json"
+    }
+  ],
+  "static_roundtrip": {
+    "manifest": "/tmp/source-format-final-rechecks-20261020/shared-export/public/data/v1/manifest.json",
+    "manifest_sha256": "05cf69f9172745f400377514d38c01e1ea4c42a0fe3097d448ea407f36cc6e7c",
+    "records": 13888,
+    "all_ids_preserved": true,
+    "stats": {
+      "same_source_duplicates_merged": 0,
+      "input": 13888,
+      "accepted": 13888,
+      "skipped": {},
+      "id_collisions_kept_separate": [],
+      "with_coordinates": 13550,
+      "with_source_url": 13888,
+      "with_future_date": 11910,
+      "human_verified": 0,
+      "by_region": {
+        "Abruzzo": 392,
+        "Basilicata": 36,
+        "Calabria": 328,
+        "Campania": 821,
+        "Emilia-Romagna": 906,
+        "Friuli Venezia Giulia": 242,
+        "Lazio": 1080,
+        "Liguria": 389,
+        "Lombardia": 3974,
+        "Marche": 290,
+        "Molise": 215,
+        "Piemonte": 1333,
+        "Puglia": 484,
+        "Sardegna": 385,
+        "Sicilia": 402,
+        "Toscana": 953,
+        "Trentino-Alto Adige": 224,
+        "Umbria": 176,
+        "Valle d'Aosta": 54,
+        "Veneto": 1204
+      }
+    },
+    "index_schema": 6,
+    "index_as_of": "2026-10-20",
+    "regional_files_byte_identical": [
+      {
+        "path": "regions/abruzzo-1be29dae9372f3.json",
+        "sha256": "1be29dae9372f3b62cb80eadc5c48af71fe1cf222683d10344a945073a69d9b3"
+      },
+      {
+        "path": "regions/basilicata-d47fde77db9bb7.json",
+        "sha256": "d47fde77db9bb71775397ed01fc3aeec0177ba0800bea253e4fb5ba5e9e4fc53"
+      },
+      {
+        "path": "regions/calabria-ccded00b813c3b.json",
+        "sha256": "ccded00b813c3bf3c42fa62fa93554e935228e9a86202ba6c6cae953f4a590f5"
+      },
+      {
+        "path": "regions/campania-e3a53f48573414.json",
+        "sha256": "e3a53f4857341418fc5a03dca6605dba9981738e49af26c4a1ccddfb12276723"
+      },
+      {
+        "path": "regions/emilia-romagna-4d45867c875f2d.json",
+        "sha256": "4d45867c875f2d9303bc0cbd089abd7483d55d72e43c926b5ce35c9272c29d0a"
+      },
+      {
+        "path": "regions/friuli-venezia-giulia-b3605d11adbff3.json",
+        "sha256": "b3605d11adbff3d3ba21de856abd7679d6b464ae21104b3b7fa855c7011f002f"
+      },
+      {
+        "path": "regions/lazio-fa84895f4bd1d4.json",
+        "sha256": "fa84895f4bd1d4294f9eadf8b6182461bd5d69ddd95675c84abf0a03bf2d3cc0"
+      },
+      {
+        "path": "regions/liguria-f3107f75bd8da1.json",
+        "sha256": "f3107f75bd8da17ed56243665a8a78d23bacc2b9c875c39783bc97e5ed385da2"
+      },
+      {
+        "path": "regions/lombardia-b3a1b8810698a5.json",
+        "sha256": "b3a1b8810698a525539ea034d2d7cbf6f68fa1ddb8211d74fb581ae25645103a"
+      },
+      {
+        "path": "regions/marche-03694d4f3e96b4.json",
+        "sha256": "03694d4f3e96b4d118d612b5b1ab4de2d3027de70a9c7404a32c5e960bebfb84"
+      },
+      {
+        "path": "regions/molise-27aa2b52fab996.json",
+        "sha256": "27aa2b52fab996f3fbcd932cc10bdfbcda0b0be805b24a8e38896d8b6f4a03ae"
+      },
+      {
+        "path": "regions/piemonte-afe986396689fc.json",
+        "sha256": "afe986396689fc8ab8a88e9e3f4bcc872af9d8209bb48ecb89aab0e26733042b"
+      },
+      {
+        "path": "regions/puglia-4e6f71765e63f5.json",
+        "sha256": "4e6f71765e63f5a54ada0db04e926c51c86f4d97d627279a7e659b679febcf00"
+      },
+      {
+        "path": "regions/sardegna-5990368e301942.json",
+        "sha256": "5990368e301942630bd8eb806188422df7b2943c6688fe54ad6f77923d348283"
+      },
+      {
+        "path": "regions/sicilia-72e0362dba94cb.json",
+        "sha256": "72e0362dba94cb6bed012899b20a76caef5efd88ec1fa1fae2121d555f4040e6"
+      },
+      {
+        "path": "regions/toscana-710e7a31f17c97.json",
+        "sha256": "710e7a31f17c97cd293e3c8b64ea720891701145456e5ff6a1c2bcfc11c8cbfc"
+      },
+      {
+        "path": "regions/trentino-alto-adige-8bf3b8e80133f6.json",
+        "sha256": "8bf3b8e80133f69f95be5041b2fa4661f84087b1cee1ebd0f2ca62cf036f00df"
+      },
+      {
+        "path": "regions/umbria-fa504abeac81f8.json",
+        "sha256": "fa504abeac81f8b7b53fec5876c7f3b0824d31a64b2db2b64079ece99014c237"
+      },
+      {
+        "path": "regions/valle-d-aosta-b34e65cab2ffb4.json",
+        "sha256": "b34e65cab2ffb43d960aa0e503ba183ddeb5b06b5ee02e658612f8a815c806c5"
+      },
+      {
+        "path": "regions/veneto-cf5d041c723471.json",
+        "sha256": "cf5d041c723471c06214c1d0ab183701ce891f6174630b811c34cdb181cf6d21"
+      }
+    ]
+  },
+  "static_all_rows_byte_equivalent": true,
+  "generic_admission_contract_recomparison": {
+    "path": "backend/source_contract_activation.py",
+    "previous_sha256": "d484e63e799cb58ed92f801eab7b05aa6d08d2477e07326947b731414eef9e46",
+    "current_sha256": "a82636dc47a1ecb52b00e5e0b76604296031bd0a1a3d87fec89a6e73976246b8",
+    "changed_functions": [
+      "verify_static"
+    ],
+    "source_acquisition_parsing_identity_and_admission_functions_ast_identical": true,
+    "difference": "Final compact-index validation now uses the declared schema and reference day and checks all supported identities.",
+    "all_original_index_fields_equal": 13888,
+    "new_index_schema": 6,
+    "index_hours_scopes": {
+      "ordinary": 13731,
+      "storico": 64,
+      "per_data": 93
+    },
+    "full_pipeline_reference": "reports/automation/source-quality-offline-integration-20261020.json",
+    "full_pipeline_report_commit": "f29d1a1",
+    "full_pipeline_gates_passed": 17
+  }
+}

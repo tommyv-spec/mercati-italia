@@ -60,7 +60,8 @@ def audit(manifest_path: Path, today: date | None = None) -> dict:
 
     assert manifest["total"] == len(records), "Snapshot total differs from published manifest"
     assert len(index["markets"]) == len(records), "Index record count mismatch"
-    assert manifest["index_schema"] in (4, 5), "Unknown compact schema"
+    from compact_index import index_fields, index_options, project_index
+    assert index["markets"] == project_index(records, **index_options(manifest)), "Compact index differs from its records"
 
     by_category = Counter()
     by_source = Counter()
@@ -150,8 +151,7 @@ def audit(manifest_path: Path, today: date | None = None) -> dict:
         selected = sum(1 for m in records if any(str(d) >= moment.isoformat() for d in m.get("date", [])))
         date_counts[str(days)] = selected
 
-    schema_cols = ["slug", "nome", "citta", "regione", "categoria", "tags",
-                   "lat", "lng", "position_quality", "orario_testo", "date_quality", "date"]
+    schema_cols = index_fields(manifest["index_schema"])
     index_dates = []
     summary_items = []
     for row in index["markets"]:

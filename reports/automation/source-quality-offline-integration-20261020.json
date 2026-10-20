@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "code_commit": "37f1078c0fdef79a70e20e9ce2e3876b38742f94",
+  "mode": "FULL_OFFLINE_INTEGRATION",
+  "date": "2026-10-20",
+  "source_network_requests": 0,
+  "published": false,
+  "baseline_manifest_sha256": "f70dddd6664ba5dc020c2f83c465382a748231175abd2d350d660b8571dae816",
+  "candidate_manifest_sha256": "cb8c3b9b4f8665a5b60f15577cfd384646c8352f7d6f488302c6851d1667f914",
+  "records": 13888,
+  "original_index_schema": 5,
+  "index_schema": 6,
+  "index_as_of": "2026-10-20",
+  "content_signature_unchanged": true,
+  "every_original_index_field_identical": true,
+  "index_hours_scopes": {
+    "ordinary": 13731,
+    "storico": 64,
+    "per_data": 93
+  },
+  "index_gzip_bytes_before": 400562,
+  "index_gzip_bytes_after": 401745,
+  "regional_assets": [
+    {
+      "path": "data/v1/regions/abruzzo-1be29dae9372f3.json",
+      "sha256": "1be29dae9372f3b62cb80eadc5c48af71fe1cf222683d10344a945073a69d9b3",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/basilicata-d47fde77db9bb7.json",
+      "sha256": "d47fde77db9bb71775397ed01fc3aeec0177ba0800bea253e4fb5ba5e9e4fc53",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/calabria-ccded00b813c3b.json",
+      "sha256": "ccded00b813c3bf3c42fa62fa93554e935228e9a86202ba6c6cae953f4a590f5",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/campania-e3a53f48573414.json",
+      "sha256": "e3a53f4857341418fc5a03dca6605dba9981738e49af26c4a1ccddfb12276723",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/emilia-romagna-4d45867c875f2d.json",
+      "sha256": "4d45867c875f2d9303bc0cbd089abd7483d55d72e43c926b5ce35c9272c29d0a",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/friuli-venezia-giulia-b3605d11adbff3.json",
+      "sha256": "b3605d11adbff3d3ba21de856abd7679d6b464ae21104b3b7fa855c7011f002f",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/lazio-fa84895f4bd1d4.json",
+      "sha256": "fa84895f4bd1d4294f9eadf8b6182461bd5d69ddd95675c84abf0a03bf2d3cc0",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/liguria-f3107f75bd8da1.json",
+      "sha256": "f3107f75bd8da17ed56243665a8a78d23bacc2b9c875c39783bc97e5ed385da2",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/lombardia-b3a1b8810698a5.json",
+      "sha256": "b3a1b8810698a525539ea034d2d7cbf6f68fa1ddb8211d74fb581ae25645103a",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/marche-03694d4f3e96b4.json",
+      "sha256": "03694d4f3e96b4d118d612b5b1ab4de2d3027de70a9c7404a32c5e960bebfb84",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/molise-27aa2b52fab996.json",
+      "sha256": "27aa2b52fab996f3fbcd932cc10bdfbcda0b0be805b24a8e38896d8b6f4a03ae",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/piemonte-afe986396689fc.json",
+      "sha256": "afe986396689fc8ab8a88e9e3f4bcc872af9d8209bb48ecb89aab0e26733042b",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/puglia-4e6f71765e63f5.json",
+      "sha256": "4e6f71765e63f5a54ada0db04e926c51c86f4d97d627279a7e659b679febcf00",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/sardegna-5990368e301942.json",
+      "sha256": "5990368e301942630bd8eb806188422df7b2943c6688fe54ad6f77923d348283",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/sicilia-72e0362dba94cb.json",
+      "sha256": "72e0362dba94cb6bed012899b20a76caef5efd88ec1fa1fae2121d555f4040e6",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/toscana-710e7a31f17c97.json",
+      "sha256": "710e7a31f17c97cd293e3c8b64ea720891701145456e5ff6a1c2bcfc11c8cbfc",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/trentino-alto-adige-8bf3b8e80133f6.json",
+      "sha256": "8bf3b8e80133f69f95be5041b2fa4661f84087b1cee1ebd0f2ca62cf036f00df",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/umbria-fa504abeac81f8.json",
+      "sha256": "fa504abeac81f8b7b53fec5876c7f3b0824d31a64b2db2b64079ece99014c237",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/valle-d-aosta-b34e65cab2ffb4.json",
+      "sha256": "b34e65cab2ffb43d960aa0e503ba183ddeb5b06b5ee02e658612f8a815c806c5",
+      "identical": true
+    },
+    {
+      "path": "data/v1/regions/veneto-cf5d041c723471.json",
+      "sha256": "cf5d041c723471c06214c1d0ab183701ce891f6174630b811c34cdb181cf6d21",
+      "identical": true
+    }
+  ],
+  "persisted_queues": [
+    {
+      "path": "happings-discovery.json",
+      "sha256": "cf218ddddfc96e8c8b0c11e4dcc0ff59f40a6189673ef8973d70a5cf7824e6fc",
+      "identical": true
+    },
+    {
+      "path": "happings-legacy-resources.json",
+      "sha256": "02aceee9b69beec0737bb30c86b939d66e177cf01b21124bb448509734ad84a5",
+      "identical": true
+    },
+    {
+      "path": "eventiesagre-detail-state.json",
+      "sha256": "afa98f67a3881e1c225015be3609aa56a495f7dcf52ee4ba89d7ee1966058c9d",
+      "identical": true
+    },
+    {
+      "path": "cosedicasa-detail-state.json",
+      "sha256": "819f131802ed3afadd546b6e912c0b9b97c88efd801b48bce50a49aee7b5c8d3",
+      "identical": true
+    },
+    {
+      "path": "citynews-detail-state.json",
+      "sha256": "bd780b7a6731bdaa83ac3f4fd64be453d86357316f94ee34f2e689207aa16176",
+      "identical": true
+    }
+  ],
+  "release_decision": {
+    "approved": true,
+    "reason": "all_policies_pass",
+    "has_changes": true,
+    "index_changed": true,
+    "retained_source_ids": 13888,
+    "added_source_ids": 0,
+    "removed_source_ids": 0,
+    "gates": {
+      "forecast_60d": true,
+      "forecast_quality_flags": true,
+      "index_growth_budget": true,
+      "index_under_absolute_budget": true,
+      "max_new_records": true,
+      "max_source_loss": true,
+      "min_id_retention": true,
+      "min_records": true,
+      "never_upgrade_estimates_to_confirmed": true,
+      "no_invented_human_verification": true,
+      "no_unreviewed_new_confirmations": true,
+      "no_unreviewed_new_verifications": true,
+      "official_sources_available": true,
+      "retain_old_source_evidence": true,
+      "source_identities_immutable": true,
+      "unavailable_official_sources_preserved": true,
+      "unknown_source_share_budget": true
+    }
+  },
+  "limitations": [
+    "No source page was fetched. The separate Lucca replay reconstructs two negative address proofs from captured HTML.",
+    "This is an integration candidate, not a new publication or a current-opening confirmation."
+  ]
+}

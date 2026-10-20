@@ -22,6 +22,7 @@ from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from field_evidence import clean_receipts, clean_exceptions
+from field_conflicts import KEY as FIELD_CONFLICTS, clean_conflicts
 from source_calendar import clean_source_calendar, clean_source_detail, source_calendar_dates
 from source_freshness import source_date_evidence
 from source_hours import preserve_hours_text
@@ -32,6 +33,7 @@ from editorial_calendar_scope import (
     apply_editorial_scope, retain_editorial_evidence,
 )
 from urllib.parse import urlsplit
+from compact_index import INDEX_SCHEMA, LEGACY_FIELDS, project_index
 
 CANONICAL_REGIONS = [
     "Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna",
@@ -307,6 +309,9 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     receipts = clean_receipts(raw.get("riscontri_campi"), result, today=today)
     if receipts:
         result["riscontri_campi"] = receipts
+    conflicts = clean_conflicts(raw.get(FIELD_CONFLICTS), result, today=today)
+    if conflicts:
+        result[FIELD_CONFLICTS] = conflicts
     if exceptions:
         result["eccezioni_calendario"] = clean_exceptions(exceptions, result, today=today)
     if source_calendar:
@@ -418,7 +423,8 @@ def combine_safe_source_duplicates(records: list[dict], *, preserve_ids=None) ->
     """
     protected = frozenset(preserve_ids or ()) | frozenset(
         row["slug"] for row in records
-        if row.get("riscontri_campi") or row.get("eccezioni_calendario") or row.get(EDITORIAL_EVIDENCE)
+        if row.get("riscontri_campi") or row.get("eccezioni_calendario")
+        or row.get(EDITORIAL_EVIDENCE) or row.get(FIELD_CONFLICTS)
     )
     unique = []
     groups = {}
@@ -476,6 +482,7 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         if isinstance(raw, dict) and (
                 clean_receipts(raw.get("riscontri_campi"), raw, today=today)
                 or clean_exceptions(raw.get("eccezioni_calendario"), raw, today=today)
+                or clean_conflicts(raw.get(FIELD_CONFLICTS), raw, today=today)
                 or clean_editorial_evidence(raw.get(EDITORIAL_EVIDENCE), raw, today=today)):
             # Protect before normalization/collision handling: changing the
             # slug of a valid source claim would silently lose its proof.
@@ -490,7 +497,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
             skipped[error] += 1
             continue
         slug = result["slug"]
-        if result.get("riscontri_campi") or result.get("eccezioni_calendario") or result.get(EDITORIAL_EVIDENCE):
+        if (result.get("riscontri_campi") or result.get("eccezioni_calendario")
+                or result.get(EDITORIAL_EVIDENCE) or result.get(FIELD_CONFLICTS)):
             protected.add(slug)
         if slug in by_slug:
             if slug in protected:
@@ -525,6 +533,9 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         if (row.get("eccezioni_calendario") and
                 clean_exceptions(row["eccezioni_calendario"], row, today=today) != row["eccezioni_calendario"]):
             raise ValueError("Export changed a cancellation's market identity")
+        if (row.get(FIELD_CONFLICTS) and
+                clean_conflicts(row[FIELD_CONFLICTS], row, today=today) != row[FIELD_CONFLICTS]):
+            raise ValueError("Export changed an address conflict's identity or saved value")
     cleaned.sort(key=lambda m: (m["regione"], m["citta"], m["nome"], m["slug"]))
     stats = {
         "same_source_duplicates_merged": safe_merged,
@@ -544,20 +555,10 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
 # Clicking a card fetches just one cached region's full detail JSON.
 # Schema 4: compact positional rows for fast first paint on slow mobile networks.
 # Full descriptive text and source metadata stay in the lazy-loaded regional file.
-INDEX_FIELDS = (
-    "slug", "nome", "citta", "regione", "categoria", "tags",
-    "lat", "lng", "position_quality", "orario_testo", "date_quality", "date",
-)
+INDEX_FIELDS = LEGACY_FIELDS
 
-def small_index(markets: list[dict]) -> list[list]:
-    result = []
-    for market in markets:
-        row = [market.get(key) for key in INDEX_FIELDS]
-        # 16 nearest forecast dates span over 60 days for weekly markets,
-        # while scheduled weekly publishing keeps refreshing this compact index.
-        row[-1] = (row[-1] or [])[:16]
-        result.append(row)
-    return result
+def small_index(markets: list[dict], *, schema=5, today=None) -> list[list]:
+    return project_index(markets, schema=schema, today=today)
 
 
 
@@ -592,7 +593,8 @@ def export(records: list, out: Path, today: date | None = None,
 
     signature = hashlib.sha256(compact_json(markets)).hexdigest()
     if (previous and previous.get("content_signature") == signature
-            and previous.get("index_schema") == 5
+            and previous.get("index_schema") == INDEX_SCHEMA
+            and previous.get("index_as_of") == now.isoformat()
             and previous.get("index")
             and (out.parent.parent / previous["index"]).is_file()):
         return {"unchanged": True, "stats": stats, "manifest": previous}
@@ -617,12 +619,13 @@ def export(records: list, out: Path, today: date | None = None,
 
     # One lightweight global index fetch on page load; full regional datasets
     # are immutable and fetched only when a market detail is opened.
-    index_path = _write_asset(out, "index-{hash}.json", small_index(markets))
+    index_path = _write_asset(out, "index-{hash}.json", small_index(markets, schema=INDEX_SCHEMA, today=now))
 
     manifest = {
         "schema": 1, "layout": layout, "total": len(markets),
         "index": index_path,
-        "index_schema": 5,
+        "index_schema": INDEX_SCHEMA,
+        "index_as_of": now.isoformat(),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "content_signature": signature,
         "regions_summary": stats["by_region"],

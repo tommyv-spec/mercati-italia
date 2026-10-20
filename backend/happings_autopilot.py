@@ -134,6 +134,32 @@ def _unpack_pages(saved, context):
     return pages
 
 
+def _source_pages_for_guard(out, report):
+    """Load only this phase's bounded checkpoint, tied to its exact context.
+
+    The caller supplies its known output directory, never a report-supplied
+    arbitrary path. Old reports without editorial warnings need no sidecar.
+    """
+    if not report.get("evidence", {}).get("editorial_documents"):
+        return None
+    if out is None:
+        raise ValueError("Editorial field warnings require the original checkpoint at the final guard")
+    path = Path(out) / "sources" / "happings-pages.json"
+    if not path.is_file() or path.stat().st_size > MAX_CHECKPOINT_BYTES:
+        raise ValueError("Missing or unbounded editorial Happings source checkpoint")
+    try:
+        saved = json.loads(path.read_text("utf-8"))
+    except (OSError, UnicodeError, ValueError):
+        raise ValueError("Invalid editorial Happings source checkpoint") from None
+    context = saved.get("context") if isinstance(saved, dict) else None
+    if (not isinstance(context, dict) or context.get("today") != report.get("date")
+            or context.get("input_sha256") != report.get("input_sha256")
+            or context.get("selected_urls") != report.get("selected_urls")
+            or context.get("rights_sha256") != report.get("rights_record_sha256")):
+        raise ValueError("Editorial Happings checkpoint differs from the released phase context")
+    return _unpack_pages(saved, context)
+
+
 def _fetch_and_checkpoint(urls, path, context, fetcher=None, *, robots=None, robots_error=None):
     """Keep every completed page even if a later request fails or is interrupted."""
     failures = []
@@ -326,6 +352,7 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
         "evidence": empty_evidence,
     }
     updated = unchanged
+    pages = []
     path = Path(out) / "sources" / "happings-pages.json"
     if policy["enabled"] and not authorization["authorized"]:
         report["status"] = "blocked_rights"
@@ -395,14 +422,14 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
             if changed_layouts:
                 report["status"] = ("layout_changed" if changed_layouts == len(pages)
                                     else "partial_layout_changed")
-    source.safe_report(report["evidence"], base)
-    verify_changes(base, updated, report)
+    source.safe_report(report["evidence"], base, source_pages=pages)
+    verify_changes(base, updated, report, source_pages=pages)
     _write_json(Path(out) / "happings-enrichment.json", report)
     (Path(out) / "HAPPINGS_ENRICHMENT.md").write_text(markdown(report), "utf-8")
     return updated, report, preserve_ids
 
 
-def _verify_weekly_changes(before, after, report):
+def _verify_weekly_changes(before, after, report, *, source_pages=None):
     """Independent field diff; source receipts cannot authorize other changes."""
     if (report.get("schema") != SCHEMA or report.get("publisher") != source.PUBLISHER
             or report.get("input_sha256") != digest(before)
@@ -436,7 +463,7 @@ def _verify_weekly_changes(before, after, report):
                  or not re.fullmatch(r"[0-9a-f]{64}", report["rights_record_sha256"])))):
         raise ValueError("Happings report misstates its actual authorization basis")
     evidence = report["evidence"]
-    source.safe_report(evidence, before)
+    source.safe_report(evidence, before, source_pages=source_pages)
     if (evidence.get("date") != report.get("date")
             or report.get("source_pages") != evidence.get("source_pages")
             or any(page["requested_url"] not in report.get("selected_urls", [])
@@ -445,9 +472,11 @@ def _verify_weekly_changes(before, after, report):
     proposals = {p["market_id"]: p for p in evidence["proposals"]}
     observations = {p["market_id"]: p for p in evidence["observations"]}
     retirements = {p["market_id"]: p for p in evidence["retirements"]}
+    address_conflicts = {p["market_id"]: p for p in evidence.get("address_conflicts", [])}
     if (len(proposals) != len(evidence["proposals"])
             or len(observations) != len(evidence["observations"])
-            or len(retirements) != len(evidence["retirements"])):
+            or len(retirements) != len(evidence["retirements"])
+            or len(address_conflicts) != len(evidence.get("address_conflicts", []))):
         raise ValueError("Happings repeated a field proposal or observation")
     observed_on = date.fromisoformat(report["date"])
     changed, address_changed = [], []
@@ -456,8 +485,10 @@ def _verify_weekly_changes(before, after, report):
         receipt = proposals.get(sid)
         observation = observations.get(sid)
         retirement = retirements.get(sid)
+        address_conflict = address_conflicts.get(sid)
         expected = source.expected_record(old, proposal=receipt, observation=observation,
-                                          retirement=retirement, today=observed_on)
+                                          retirement=retirement, address_conflict=address_conflict,
+                                          today=observed_on)
         if expected != current:
             raise ValueError("Unapproved Happings market-field change: " + sid)
         if old == current:
@@ -465,9 +496,11 @@ def _verify_weekly_changes(before, after, report):
         fields = (set(old) ^ set(current)) | {
             key for key in set(old) | set(current) if old.get(key) != current.get(key)
         }
-        proof = observation or retirement
+        proof = observation or retirement or address_conflict
         allowed = ({"riscontri_campi"} if retirement else {"fonti", "riscontri_campi"}
                    if old.get("fonte") != source.PUBLISHER else {"indirizzo", "fonti", "riscontri_campi"})
+        if address_conflict is not None:
+            allowed = (allowed if retirement else set()) | {"conflitti_campi"}
         if (fields - allowed
                 or report.get("enabled") is not True or report.get("fetch_authorized") is not True
                 or report.get("authorization_basis") not in {
@@ -497,10 +530,12 @@ def _weekly_rows(before, report):
     proposals = {p["market_id"]: p for p in evidence["proposals"]}
     observations = {p["market_id"]: p for p in evidence["observations"]}
     retirements = {p["market_id"]: p for p in evidence["retirements"]}
+    address_conflicts = {p["market_id"]: p for p in evidence.get("address_conflicts", [])}
     day = date.fromisoformat(report["date"])
     return [source.expected_record(row, proposal=proposals.get(row["slug"]),
                                    observation=observations.get(row["slug"]),
-                                   retirement=retirements.get(row["slug"]), today=day)
+                                   retirement=retirements.get(row["slug"]),
+                                   address_conflict=address_conflicts.get(row["slug"]), today=day)
             for row in before]
 
 
@@ -529,19 +564,19 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
         report["output_ids_sha256"] = digest(sorted(row["slug"] for row in updated))
         report["details_enabled"] = True
         report["detail_state_changed"] = report["details"]["state_changed"]
-        verify_changes(base, updated, report)
+        verify_changes(base, updated, report, source_pages=_source_pages_for_guard(out, report))
         _write_json(Path(out) / "happings-enrichment.json", report)
         (Path(out) / "HAPPINGS_ENRICHMENT.md").write_text(markdown(report), "utf-8")
     return updated, report, preserve_ids
 
 
-def verify_changes(before, after, report):
+def verify_changes(before, after, report, *, source_pages=None):
     if "details" not in report:
-        return _verify_weekly_changes(before, after, report)
+        return _verify_weekly_changes(before, after, report, source_pages=source_pages)
     if report.get("enabled") is not True or report.get("fetch_authorized") is not True:
         raise ValueError("Happings details lack the active project authorization")
     weekly_rows = _weekly_rows(before, report)
-    _verify_weekly_changes(before, weekly_rows, report)
+    _verify_weekly_changes(before, weekly_rows, report, source_pages=source_pages)
     if (report.get("output_market_ids") != len(after)
             or report.get("output_ids_sha256") != digest(sorted(row["slug"] for row in after))):
         raise ValueError("Happings details changed the certified identity set")
@@ -549,11 +584,11 @@ def verify_changes(before, after, report):
                                   today=date.fromisoformat(report["date"]))
 
 
-def verify_exported(before, revised, exported, report, *, today):
+def verify_exported(before, revised, exported, report, *, today, source_checkpoint_dir=None):
     """Check exact IDs and source-proven values in the actual exported details."""
     if not isinstance(today, date) or report.get("date") != today.isoformat():
         raise ValueError("Happings export changed its observation reference date")
-    verify_changes(before, revised, report)
+    verify_changes(before, revised, report, source_pages=_source_pages_for_guard(source_checkpoint_dir, report))
     original_ids = [row["slug"] for row in before]
     protected = set(original_ids)
     publisher_ids = {row["slug"] for row in before if row.get("fonte") == source.PUBLISHER}
@@ -578,6 +613,7 @@ def verify_exported(before, revised, exported, report, *, today):
         "source_observed_markets": len(report["evidence"]["observed_ids"]),
         "secondary_observed_markets": len(report["evidence"]["secondary_observed_ids"]),
         "retired_source_support_markets": len(report["evidence"]["retired_ids"]),
+        "explicit_address_conflict_markets": len(report["evidence"].get("address_conflict_ids", [])),
         "source_record_changes": report["evidence"]["record_changes"],
         "market_ids_deleted": len(set(original_ids) - by_id.keys()),
         "market_ids_added": len(by_id.keys() - set(original_ids)),

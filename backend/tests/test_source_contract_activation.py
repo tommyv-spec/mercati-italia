@@ -545,7 +545,7 @@ class GenericActivationTests(unittest.TestCase):
             indexpath=path.parent.parent/manifest["index"]
             original=indexpath.read_text("utf-8")
             index=json.loads(original)
-            next(row for row in index["markets"] if row[0]==evidence["new_market_ids"][0])[-1]=["2026-10-25"]
+            next(row for row in index["markets"] if row[0]==evidence["new_market_ids"][0])[11]=["2026-10-25"]
             indexpath.write_text(json.dumps(index),"utf-8")
             with self.assertRaisesRegex(ValueError,"source facts lost in compact"):
                 verify_static(path/"manifest.json",report,cfg,reg,TODAY)

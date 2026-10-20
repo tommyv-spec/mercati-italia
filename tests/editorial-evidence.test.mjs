@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { editorialEvidenceView, editorialHoursForDate } from '../src/lib/editorialEvidence.js'
+import { editorialEvidenceView, editorialHoursForDate, editorialSummaryView } from '../src/lib/editorialEvidence.js'
 import { sourceHoursForDate } from '../src/lib/sourceCalendar.js'
 
 const TODAY = new Date(2026, 9, 20, 12)
@@ -157,4 +157,54 @@ test('general date tooltip uses exact editorial occurrence without changing Happ
   assert.equal(sourceHoursForDate(record, '2026-10-25'), '07:30–12:30')
   record.calendarExceptions = [{data: '2026-10-25', motivo: 'Edizione annullata'}]
   assert.equal(sourceHoursForDate(record, '2026-10-25'), 'Annullato')
+})
+
+test('archived hours do not present an older complete time range as current', () => {
+  const record = market({archive_marker: true, hours_text: 'Dalle 20:00',
+    edition_intervals: [{start: '2023-08-18', end: '2023-08-18'}],
+    recurrence_text: 'Edizione del 18 agosto 2023'})
+  record.hours = '20:00–20:00'
+  record.recurrence = 'Mensile'
+  const original = structuredClone(record)
+  const summary = editorialSummaryView(record, TODAY)
+  assert.equal(summary.hours, 'Orari attuali da verificare')
+  assert.equal(summary.recurrence, '')
+  assert.equal(summary.evidence.hours, 'Dalle 20:00')
+  assert.equal(summary.evidence.recurrence, 'Edizione del 18 agosto 2023')
+  assert.match(summary.evidence.hoursLabel, /edizione passata/)
+  assert.deepEqual(record, original)
+})
+
+test('past edition bounds qualify the summary even without an archive marker', () => {
+  const record = market({hours_text: 'Dalle 10:00',
+    edition_intervals: [{start: '2025-05-23', end: '2025-05-26'}]})
+  record.hours = '18:00–24:00'
+  record.recurrence = 'Ogni domenica'
+  const summary = editorialSummaryView(record, TODAY)
+  assert.equal(summary.hours, 'Orari attuali da verificare')
+  assert.equal(summary.recurrence, '')
+  assert.equal(summary.evidence.hours, 'Dalle 10:00')
+  assert.equal(summary.evidence.rows[0].status, 'Periodo passato')
+})
+
+test('a current edition keeps existing general hours and recurrence unchanged', () => {
+  const record = market({edition_intervals: [{start: '2026-10-01', end: '2026-12-31'}]})
+  record.recurrence = 'Ogni domenica'
+  const summary = editorialSummaryView(record, TODAY)
+  assert.equal(summary.evidence.historical, false)
+  assert.equal(summary.hours, record.hours)
+  assert.equal(summary.recurrence, record.recurrence)
+})
+
+test('missing or unbound historical evidence cannot change the general summary', () => {
+  const records = [market({archive_marker: true}, {market: {slug: 'another-market'}}),
+    market({archive_marker: true}, {read_on: '2026-10-21'}),
+    {hours: '07:00–13:00', recurrence: 'Ogni martedì'}]
+  for (const record of records) {
+    record.recurrence = 'Ogni martedì'
+    const summary = editorialSummaryView(record, TODAY)
+    assert.equal(summary.evidence, null)
+    assert.equal(summary.hours, record.hours)
+    assert.equal(summary.recurrence, record.recurrence)
+  }
 })

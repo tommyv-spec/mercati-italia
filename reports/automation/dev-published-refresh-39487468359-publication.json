@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "verified_at": "2026-10-20T20:18:14Z",
+  "run": {
+    "id": 39487468359,
+    "url": "https://github.com/tommyv-spec/mercati-italia/actions/runs/39487468359",
+    "main_commit": "1ef738e6c05981e208ffcea5aae483ed0df14969",
+    "dev_source_commit": "1f0c624cbb5c96019458d119abc9f30b47663014",
+    "offline": false,
+    "jobs": [
+      {
+        "id": 118851533132,
+        "name": "Source → merge → recurrence → export → quality gates",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": 22
+      },
+      {
+        "id": 118860266360,
+        "name": "Security, compiled static site, mobile browser checks",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": 44
+      },
+      {
+        "id": 118861335629,
+        "name": "Update DEV catalog + separately hosted static preview",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": 12
+      },
+      {
+        "id": 118861577329,
+        "name": "Failure monitoring and automatic GitHub incident",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": 4
+      }
+    ]
+  },
+  "artifact": {
+    "id": 12295745381,
+    "bytes": 34775129,
+    "sha256": "e42a530de5c9d8c84af83838c1949bc18ab568db7771683aafcfc0c6762c122c"
+  },
+  "published": {
+    "dev_commit": "6e58d56c50d29d81d985f1e7617628e23a8f81c7",
+    "preview_commit": "214e58777f6a0abc78acd7ffc4684abe404e5dce",
+    "main_unchanged": true,
+    "manifest_sha256": "f70dddd6664ba5dc020c2f83c465382a748231175abd2d350d660b8571dae816",
+    "records": 13888
+  },
+  "comparisons": {
+    "entire_catalog": "dev-published-refresh-39487468359-evidence.json",
+    "established_metrics": "dev-published-refresh-39487468359-quality.json",
+    "incremental": "dev-published-refresh-39487468359-incremental.json",
+    "all_five_queue_files_compared": true,
+    "all_candidate_dev_preview_assets_equal": true,
+    "all_original_13824_ids_retained": true
+  },
+  "http": {
+    "report": "dev-published-refresh-39487468359-http.json",
+    "status": "not_verified_blocked",
+    "observed_status": 403,
+    "observed_error": "Cloudflare error code 1010",
+    "scope": "Three manifest URLs rejected this verification client. Git snapshots are fully compared; this does not establish current CDN delivery."
+  },
+  "recurring_workflow": {
+    "schedule_utc": "04:17 daily",
+    "offline_default": false,
+    "new_paid_services": 0
+  },
+  "limits": [
+    "Presence and extraction receipts do not establish independent current opening confirmation.",
+    "The 68 recovered Roma hours retain a historical-source qualification.",
+    "Source formats without a specific successful comparison remain open in the ledger."
+  ]
+}

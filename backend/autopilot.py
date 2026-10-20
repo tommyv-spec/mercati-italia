@@ -495,6 +495,12 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
     }
 
 
+def index_payload_changed(old_manifest: dict, new_manifest: dict) -> bool:
+    """Hashed index content/version changes count independently of detail rows."""
+    return any(old_manifest.get(key) != new_manifest.get(key)
+               for key in ("index", "index_schema"))
+
+
 def prune_old_assets(output: Path, old_manifest: dict, new_manifest: dict):
     """Keep the current and prior generation for immutable-client safety.
 
@@ -1363,7 +1369,8 @@ def run(args):
         merged, municipality_rows, municipality_report, new_rows)
     save_json(out / "municipality-static-guard.json", municipality_static_guard)
     happings_static_guard = verify_happings_exported(
-        before_happings, projected, new_rows, happings_report, today=args.today
+        before_happings, projected, new_rows, happings_report, today=args.today,
+        source_checkpoint_dir=out
     )
     save_json(out / "happings-enrichment-static-guard.json", happings_static_guard)
     editorial_static_guard = verify_editorial_export(
@@ -1482,7 +1489,9 @@ def run(args):
     findings["base_signature"] = baseline_id
     findings["new_signature"] = result_manifest["content_signature"]
     findings["elapsed_seconds"] = round(time.monotonic() - start, 2)
+    findings["index_changed"] = index_payload_changed(old_manifest, result_manifest)
     findings["has_changes"] = (baseline_id != result_manifest["content_signature"]
+                               or findings["index_changed"]
                                or detail_state_changed or legacy_state_changed or editorial_state_changed)
     findings["happings_discovery_state_changed"] = detail_state_changed
     findings["happings_legacy_state_changed"] = legacy_state_changed

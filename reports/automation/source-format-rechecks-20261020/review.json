@@ -1,0 +1,3581 @@
+{
+  "schema": 1,
+  "checked_at": "2026-10-20T20:10:31.150433+00:00",
+  "mode": "OFFLINE_CONDITIONAL_RECHECK_PROPOSAL",
+  "code_commit": "1f0c624cbb5c96019458d119abc9f30b47663014",
+  "catalog_manifest": "public/data/v1/manifest.json",
+  "catalog_manifest_sha256": "13382293ef0b1f7c2d741f96395e1a5642b5b28a892c21ee3b401be6832dd625",
+  "ledger_before_sha256": "247fcbb9ef5006d71d319510cdcb1546808c93b5199787f09f3ca2ed78918a54",
+  "network_requests": 0,
+  "catalog_product_files_modified": 0,
+  "baseline_summary": {
+    "primary_format_units": 110,
+    "formats_with_sample_attempt": 110,
+    "formats_with_documented_source_read": 104,
+    "reviewed_sample_formats": 22,
+    "partial_review_formats": 83,
+    "unreviewed_formats": 5,
+    "auxiliary_format_units": 28,
+    "formats_with_open_corrections": 105,
+    "formats_requiring_recheck": 83,
+    "open_tasks": 36,
+    "completed_tasks": 23,
+    "network_reads_performed": 0,
+    "catalog_records_modified": 0
+  },
+  "hypothetical_proposal_summary": {
+    "primary_format_units": 110,
+    "formats_with_sample_attempt": 110,
+    "formats_with_documented_source_read": 104,
+    "reviewed_sample_formats": 77,
+    "partial_review_formats": 28,
+    "unreviewed_formats": 5,
+    "auxiliary_format_units": 28,
+    "formats_with_open_corrections": 105,
+    "formats_requiring_recheck": 27,
+    "open_tasks": 36,
+    "completed_tasks": 23,
+    "network_reads_performed": 0,
+    "catalog_records_modified": 0
+  },
+  "not_approved_for_next_release": true,
+  "next_release_requirements": [
+    "Re-run the shared export/reload comparison on final index schema6 code.",
+    "Compare the newly published LIVE7 catalog to these exact storage snapshots; a new hash alone is not evidence.",
+    "Any changed source facts not covered by retained captures remain pending.",
+    "Never relabel original source acquisition timestamps or turn compatibility into currentness."
+  ],
+  "counts": {
+    "shared_compatibility_primary_formats": 61,
+    "shared_compatibility_auxiliary_formats": 25,
+    "routing_compatibility_only_formats": 53,
+    "source_parser_replayed_primary_formats": 7,
+    "source_parser_replayed_auxiliary_formats": 1,
+    "unchanged_citynews_formats_replayed": 27,
+    "raw_http_bodies": 78,
+    "storage_reconfirmations": 9,
+    "storage_pending": 6,
+    "parser_pending_no_specific_raw": 15,
+    "shared_compatible_but_source_comparison_incomplete_primary": 6,
+    "shared_compatible_but_source_comparison_incomplete_auxiliary": 1,
+    "parser_hash_updates_proposed_primary": 62,
+    "parser_hash_updates_proposed_auxiliary": 25
+  },
+  "validation": {
+    "shared_catalog_roundtrip_rows": 13856,
+    "existing_receipts_preserved": 2264,
+    "administrative_proofs_retained": 220,
+    "targeted_tests": 54,
+    "test_failures": 0,
+    "test_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=backend:backend/tests python -m unittest test_source_format_audit test_existing_source_refresh_coverage test_field_evidence -q",
+    "separate_capture_replay_exports": 6
+  },
+  "storage_limit": "Six actual sample fact/provenance changes are documented but their hashes stay old until a dedicated saved-source reconciliation is proved.",
+  "all_original_samples_preserved_exactly": true,
+  "task_statuses_unchanged": true,
+  "formats": [
+    {
+      "format_id": "happings.com--7b87b2b2b5db",
+      "scope": "primary_catalog",
+      "catalog_records": 4746,
+      "url_pattern": "/it/{scheda-comunale}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/happings_weekly_layout.py": {
+          "before": "9cb3c14483849b77c45cbad60693fbf06295f784339f72c05ecc4b1e788189eb",
+          "after": "95349dd10816c0a4ffb489aedecda5fb81ca1adfb6343b56586674f48c8a88b7"
+        },
+        "backend/happings_source_enrichment.py": {
+          "before": "f5780c7df4a3b794085b3927d7c7ccbf4f570ff84094f849ac5bb4665806487b",
+          "after": "b16ff1fca61231a0e23acf23794fc0388ad9eb3502c2d152f8a442bc9570d4fe"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 2,
+      "original_capture_hashes": [
+        "5452a6fbd04d0fdcca6a3cdcc61dc303126edf67e6aff95da77e2576aa686c8a",
+        "927c730fd6c3704ec441fc40c831c8c078affd11af6b1bf3ec65f8147a124bab"
+      ],
+      "storage_comparison": {
+        "changed_records": 5,
+        "changed_fields": {
+          "completezza": 4,
+          "date": 5,
+          "date_quality": 4,
+          "proiezione_fonte": 4,
+          "proiezione_generata_il": 4,
+          "proiezione_regola": 4
+        },
+        "reconfirmable": true,
+        "proof_kind": "existing_recurrence_scope_and_normalization_exact_reconstruction"
+      }
+    },
+    {
+      "format_id": "happings.com--04b85587f84c",
+      "scope": "primary_catalog",
+      "catalog_records": 4487,
+      "url_pattern": "/it/mercati-settimanali-a-{provincia}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/happings_weekly_layout.py": {
+          "before": "9cb3c14483849b77c45cbad60693fbf06295f784339f72c05ecc4b1e788189eb",
+          "after": "95349dd10816c0a4ffb489aedecda5fb81ca1adfb6343b56586674f48c8a88b7"
+        },
+        "backend/happings_source_enrichment.py": {
+          "before": "f5780c7df4a3b794085b3927d7c7ccbf4f570ff84094f849ac5bb4665806487b",
+          "after": "b16ff1fca61231a0e23acf23794fc0388ad9eb3502c2d152f8a442bc9570d4fe"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 12,
+      "original_capture_hashes": [
+        "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+        "60c2ff931e6df176f7d234382ac08302b6f0dbee552c57b3d051b6b35d91eb01",
+        "67db25da671c9e97fac7352983ef48020850488bebcde11732f5d59db5cb8ba1",
+        "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+        "9cc43cc90baceb0e1611113628dbb109bc8b6a7eb6c56f4bc21ff1e2527094ca",
+        "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+        "a8fe38337971256d6e26c62014b1672d71e106099d1aa6f3910312cd429a5a86",
+        "da2d99998d493195c82325c5a7d2f03176106d10e6d8156a5cf56889e8c7db17",
+        "efe258f3df68c5f544ec777394f0db4cf2487b23a62267ca7a93f6ce194dcb4c",
+        "f86dc56271f275b89b61325bd84ab0baec932b5f62721a32665455a1aa7892e7",
+        "fe0a9189765664fbcc0d7dd4de1061822487ebf0fe4dace597b24336ec97f769",
+        "ff656e34ca80a80444e80c58d206b97698dcfe52ae85b02e76db938922735e4b"
+      ],
+      "storage_comparison": {
+        "changed_records": 144,
+        "changed_fields": {
+          "provincia": 81,
+          "riconciliazione_provincia": 81,
+          "completezza": 44,
+          "fonti": 44,
+          "indirizzo": 43,
+          "orario_testo": 44,
+          "proiezione_fonte": 43,
+          "proiezione_generata_il": 43,
+          "riscontri_campi": 49,
+          "date": 45
+        },
+        "reconfirmable": false,
+        "proof_kind": null
+      }
+    },
+    {
+      "format_id": "eventiesagre.it--c25111abbd5a",
+      "scope": "primary_catalog",
+      "catalog_records": 1150,
+      "url_pattern": "/Mercatini_Filiera+Corta/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": true,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 1,
+        "changed_fields": {
+          "date": 1
+        },
+        "reconfirmable": true,
+        "proof_kind": "past_dates_pruned_only"
+      }
+    },
+    {
+      "format_id": "dati.lombardia.it--eb61afdd496f",
+      "scope": "primary_catalog",
+      "catalog_records": 1128,
+      "url_pattern": "/d/68zx-njaw",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 1128,
+        "changed_fields": {
+          "aggiornato_il": 1127,
+          "fonte_aggiornata_il": 1128,
+          "fonte_letta_il": 1127,
+          "identita_fonte": 1127,
+          "proiezione_generata_il": 738,
+          "proiezione_regola": 140,
+          "riscontri_campi": 1127,
+          "date": 223,
+          "ricorrenza_testo": 14,
+          "completezza": 2,
+          "date_quality": 2,
+          "proiezione_fonte": 2
+        },
+        "reconfirmable": false,
+        "proof_kind": null
+      }
+    },
+    {
+      "format_id": "cosedicasa.com--e4978a2ff443",
+      "scope": "primary_catalog",
+      "catalog_records": 432,
+      "url_pattern": "/mercatini/{slug}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 16,
+      "original_capture_hashes": [
+        "13dd741c4b49d83c79d42c605929e6e32d4a16242bf775a9d850528256a99e51",
+        "3682922afa310a607890c7b3b5558505b62d7692e75fe2412b21be7c2b4823c1",
+        "495ca98c2cd5f73dec344d957f542c91721227be71ccbbf6783bfc3c22da043e",
+        "53a5edb88060e902575be2290ffc28d5923fabd59bfa984ea09328838fd16e16",
+        "6bd4ec245cc31c4cb5ab35368a2b0ce7d7d0d575edeb6d0be1bba29a44ad2115",
+        "73b7c8e7de80acc761f0285a74896044c537e2b8f5aa7d7687fd6a7007938ffa",
+        "86195e428c0e7336bf903290cd3c873f79f21e164e04f087cb7056d33b6ab372",
+        "899fd7f592d9b10fb2cd8f1337e4fe2190d1a8e5e41984ba2b99fdd3b54f2b52",
+        "8e5fd645ae3816174ec570f64795e485f2624b9a026bce7ebcb729a921684de6",
+        "b9fbc68912ef8e60cf1425d8eceb21b754df981d361a5b0021d3ca89867140d1",
+        "c0e8b96443ee5f6dd647699ba1e6ea26ea4f86af2f4d998cd7274e144f53c0ef",
+        "c3d2d172afba4c847fc3f7543e04f45525a361b3bd7421bf9bc7b1d5ff5015f0",
+        "d0d52c013126612519abca173851e9e3ec33a3b306fe25576f1d9643e8addae8",
+        "d60ca9c06eda85fed2c945f89ee58904d1fc62d732bc46c1cfd1ca9494462a51",
+        "d9665710b3e59ff3f13f7ab95bde0a06e596319a73e776c6e6645d13bccd4350",
+        "e428bc512e3fd662a46fb6d03e1245d59bb2d03f0a80aa52fa3310df128a9811"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "happings.com--3d81fd9e0a91",
+      "scope": "primary_catalog",
+      "catalog_records": 414,
+      "url_pattern": "/it/mercati-settimanali-ad-{provincia}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/happings_weekly_layout.py": {
+          "before": "9cb3c14483849b77c45cbad60693fbf06295f784339f72c05ecc4b1e788189eb",
+          "after": "95349dd10816c0a4ffb489aedecda5fb81ca1adfb6343b56586674f48c8a88b7"
+        },
+        "backend/happings_source_enrichment.py": {
+          "before": "f5780c7df4a3b794085b3927d7c7ccbf4f570ff84094f849ac5bb4665806487b",
+          "after": "b16ff1fca61231a0e23acf23794fc0388ad9eb3502c2d152f8a442bc9570d4fe"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "564a78d22ec7f3172c55c89c1af7fa787f20fa3ab3a6571fa485e5dcf67441c6"
+      ],
+      "storage_comparison": {
+        "changed_records": 6,
+        "changed_fields": {
+          "date": 6
+        },
+        "reconfirmable": true,
+        "proof_kind": "past_dates_pruned_only"
+      }
+    },
+    {
+      "format_id": "eventiesagre.it--5130dde4763c",
+      "scope": "primary_catalog",
+      "catalog_records": 267,
+      "url_pattern": "/Mercatini_Vari/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--86b2ab982276",
+      "scope": "primary_catalog",
+      "catalog_records": 205,
+      "url_pattern": "/Mercatini_Antiquariato/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--7b2012e05e04",
+      "scope": "primary_catalog",
+      "catalog_records": 173,
+      "url_pattern": "/Mercatini_Artigianato/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--85894968edb7",
+      "scope": "primary_catalog",
+      "catalog_records": 151,
+      "url_pattern": "/Mercatini_Usato/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--f3b997a2f09a",
+      "scope": "primary_catalog",
+      "catalog_records": 142,
+      "url_pattern": "/Mercatini_Enogastronomici/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.comune.milano.it--de1e536ced97",
+      "scope": "primary_catalog",
+      "catalog_records": 85,
+      "url_pattern": "/dataset/ds291-economia-mercati-settimanali-scoperti",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 85,
+        "changed_fields": {
+          "fonte_aggiornata_il": 85,
+          "proiezione_generata_il": 76,
+          "riscontri_campi": 85,
+          "date": 25,
+          "fonte_letta_il": 9
+        },
+        "reconfirmable": false,
+        "proof_kind": null
+      }
+    },
+    {
+      "format_id": "dati.comune.roma.it--eae32c9ad822",
+      "scope": "primary_catalog",
+      "catalog_records": 70,
+      "url_pattern": "/catalog/dataset/d881",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "opendata.comune.bologna.it--72028fdb86a6",
+      "scope": "primary_catalog",
+      "catalog_records": 39,
+      "url_pattern": "/explore/dataset/mercati-e-fiere/",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 39,
+        "changed_fields": {
+          "fonte_aggiornata_il": 39,
+          "fonte_letta_il": 39,
+          "riscontri_campi": 39,
+          "completezza": 9,
+          "orario_testo": 9
+        },
+        "reconfirmable": false,
+        "proof_kind": null
+      }
+    },
+    {
+      "format_id": "eventiesagre.it--2e3d99867afe",
+      "scope": "primary_catalog",
+      "catalog_records": 32,
+      "url_pattern": "/Mercatini_hobbisti+creativi/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "happings.com--795abb069b70",
+      "scope": "primary_catalog",
+      "catalog_records": 32,
+      "url_pattern": "/it/happing/{slug}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/happings_detail_enrichment.py": {
+          "before": "ddd78f2a73c7e9a726bfe6f658bc3e4dda29359010876c36b6495e6c367cfd68",
+          "after": "57bcd31318a9b65933e017c852d31bd13eb4bfa554562bb2c36df18bbaa37ecf"
+        },
+        "backend/happings_detail_autopilot.py": {
+          "before": "d3eaa28397e0e50badfd086c3a071d3e1e5e91ba21d211a6229aee0e86066281",
+          "after": "90e2cd3285613aa9b8e141261e20b9eb30619e25359cd2a6bceed774a9d0b5c2"
+        },
+        "backend/autopilot.py": {
+          "before": "efc8ea16f7a63f42b49d0821d13a521ed286710a82e3025b441398e76a17b7cc",
+          "after": "5ea53f727e2f6c9a30c12535dae5c5699ada91ceb24be901bef7341d86a66b07"
+        },
+        "backend/autopilot_policy.json": {
+          "before": "9bb346163def3a3c498f34ea3da55dd167d3720602b5d1cbdfe269eb4458ef4e",
+          "after": "031af07473592c5a1846b2952670d997e2ec10c6e36325996092e72752db72f0"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "src/hooks/useMarkets.js": {
+          "before": "1c766e155fcb63cc197c83b51e3751ddc3c42599b03fe6a48dcb2927e8cf3a1a",
+          "after": "a2f09ed661120fad6906ac0a6645639bea5d9a262a9b1e0c6cea3a5a7349355f"
+        },
+        "src/services/staticMarkets.js": {
+          "before": "bae5281f7dc260ec5b7e7ac19c6850caf7d2c5ae9250161fcb14ea83f4cea0a9",
+          "after": "0b2555feabda7218064c1a002d063cf67cdbcae00ced7ff5a5e83a40a8374603"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 9,
+      "original_capture_hashes": [
+        "0ea38afb17251db506fe98ff4c7c12d277bdc96faa0a631ec22c6b58af0724e9",
+        "76ce1928a92446d2d7f3dc0c1674268b9976de7d0da529e0f454637e058a5ba5",
+        "8c998dc38dd2732bc5e1ddd2ae7604475a617ad82b3655584ba2bb7464e55e58",
+        "9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429",
+        "913814e5bde8a34ae4b72ce900042e0437e3c67a40e25576cce3e60bf4cc2045",
+        "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
+        "e5ff56d561d4df2a7e495c71b69d23fe22a2f5729b0ecd0f8ef3d2eed2814fbc",
+        "f3cbddbae2ef0a4c2d4f100110646c661efe7525c5d3c67acc1b1d797b6e7d81",
+        "fa5aa012531ec6b5be3428d955deb5a6a4ade16a84cbbe4a1a22ef9aebf874e2"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "cosafareafirenze.it--4aba31ad6df6",
+      "scope": "primary_catalog",
+      "catalog_records": 22,
+      "url_pattern": "/mercati-firenze/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--eb4c1e3b925a",
+      "scope": "primary_catalog",
+      "catalog_records": 17,
+      "url_pattern": "/Eventi_Enogastronomici/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 10,
+      "original_capture_hashes": [
+        "17a3d75774b2d80397bb445f330710881baee423b1dafbf958242cf882e1d0d0",
+        "1b6191637577056b34df1dfa5af288f4d1ed37e08e6d48099b8b0a3c79464444",
+        "215646d5e3fbe84147796cc45795c53fb946e90c9f30ee014ea47232254c49c3",
+        "55af3de30e4ed530bdbc6642ad547eefd340c3cd053d1799ea4d17ce80aa908f",
+        "5ccacf2c328163d3f1905098bd33e3270da9d6d16f7fa52b00f79f211e25e1a2",
+        "6e36124f50257d653afcdbde389be2c875c039fc3e7e6b2a7ec2b222300067e8",
+        "9b1b1ab5621c042365ccb5a8dede5a6aca0ce947d17db13c4fe2ec0a70a68f8f",
+        "a6636d61bff4ac3b1793d37e6ec63352ca1c8848debf2c59c9bd0c17f6088e38",
+        "e27c3513749101470c05d8c87a4ad3d36d720c3da15ebbc9d36066e7c2c31711",
+        "fd83e41b4a1b29c10fa141832e77eeb0c1f88edb7932bf7601cdbba50d0449dc"
+      ],
+      "storage_comparison": {
+        "changed_records": 1,
+        "changed_fields": {
+          "evidenza_editoriale": 1
+        },
+        "reconfirmable": true,
+        "proof_kind": "exact_original_http_replay_of_current_historical_evidence"
+      }
+    },
+    {
+      "format_id": "eventiesagre.it--91f1a4b8c538",
+      "scope": "primary_catalog",
+      "catalog_records": 16,
+      "url_pattern": "/Mercatini_Collezionismo/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--1e35acf83ff0",
+      "scope": "primary_catalog",
+      "catalog_records": 13,
+      "url_pattern": "/Mercatini_Natale/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--895ca733a723",
+      "scope": "primary_catalog",
+      "catalog_records": 13,
+      "url_pattern": "/Eventi_Feste/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "285bcc1f3480b986ff41b07f8473a8df27bcd46a6f26096b50b0cf114b6a4de9"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "romatoday.it--d53004dedb50",
+      "scope": "primary_catalog",
+      "catalog_records": 10,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "3dc846480c24cef134cfaab81ad6501f35e2d20646702e6da84b79aa88717778"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--fe59c2391d07",
+      "scope": "primary_catalog",
+      "catalog_records": 9,
+      "url_pattern": "/Eventi_Mostra+Mercato/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "emiliaromagnaturismo.it--058519c55f08",
+      "scope": "primary_catalog",
+      "catalog_records": 8,
+      "url_pattern": "/it/eventi/{slug}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "trentino.com--2b837e50ce8e",
+      "scope": "primary_catalog",
+      "catalog_records": 8,
+      "url_pattern": "/it/calendario/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_proved_but_prior_source_or_field_comparison_incomplete",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "algherohospitality.it--e297ca84a4bf",
+      "scope": "primary_catalog",
+      "catalog_records": 7,
+      "url_pattern": "/mercati-rionali-di-alghero/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventi.bergamo.it--86372603eab0",
+      "scope": "primary_catalog",
+      "catalog_records": 7,
+      "url_pattern": "/evento/{slug}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "genovatoday.it--bd4d23568a60",
+      "scope": "primary_catalog",
+      "catalog_records": 7,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "0cacf27acad3df2364ddb9afd433ce5a3a9b9028882f209d32e921afe06db7ef"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "solosagre.it--ceaedca6c042",
+      "scope": "primary_catalog",
+      "catalog_records": 7,
+      "url_pattern": "/mostre-e-mercatini/{regione}/{provincia}/{comune}/{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--23337f2e261f",
+      "scope": "primary_catalog",
+      "catalog_records": 6,
+      "url_pattern": "/Eventi_Festival/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "sagretorino.it--3ad295df7ef3",
+      "scope": "primary_catalog",
+      "catalog_records": 6,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "firenzetoday.it--3aaf8d291320",
+      "scope": "primary_catalog",
+      "catalog_records": 5,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "b81a41ec0aa0cdeb5539b10b5f26ea5014f08a0e73fcf8c8d1f4f24034b3c20e"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "milanopocket.it--549124b1743e",
+      "scope": "primary_catalog",
+      "catalog_records": 5,
+      "url_pattern": "/sagre-lombardia/",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 3,
+        "changed_fields": {
+          "provincia": 3,
+          "riconciliazione_provincia": 3
+        },
+        "reconfirmable": true,
+        "proof_kind": "independent_pinned_istat_province_only"
+      }
+    },
+    {
+      "format_id": "sagreumbre.it--f52d57ff5da2",
+      "scope": "primary_catalog",
+      "catalog_records": 5,
+      "url_pattern": "/fiere-mercati/",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 1,
+        "changed_fields": {
+          "provincia": 1,
+          "riconciliazione_provincia": 1
+        },
+        "reconfirmable": true,
+        "proof_kind": "independent_pinned_istat_province_only"
+      }
+    },
+    {
+      "format_id": "comune.roma.it--d39d0b6041d2",
+      "scope": "primary_catalog",
+      "catalog_records": 4,
+      "url_pattern": "/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 4,
+        "changed_fields": {
+          "date": 2,
+          "fonte_aggiornata_il": 4,
+          "proiezione_generata_il": 4
+        },
+        "reconfirmable": true,
+        "proof_kind": "existing_recurrence_scope_and_normalization_exact_reconstruction"
+      }
+    },
+    {
+      "format_id": "feelflorence.it--01efd5fd9033",
+      "scope": "primary_catalog",
+      "catalog_records": 4,
+      "url_pattern": "/it/punti-di-interesse/{slug}",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 4,
+        "changed_fields": {
+          "fonte_aggiornata_il": 4,
+          "fonte_letta_il": 4,
+          "orario_testo": 1,
+          "riscontri_campi": 4
+        },
+        "reconfirmable": false,
+        "proof_kind": null
+      }
+    },
+    {
+      "format_id": "modenatoday.it--d4f51ae43a3f",
+      "scope": "primary_catalog",
+      "catalog_records": 4,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "27556b6df8b381f3b3543f67a88b5f0b66283146d0a9e034686a5c0fbb02267c"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "umbriaeventi.com--a21a189c200c",
+      "scope": "primary_catalog",
+      "catalog_records": 4,
+      "url_pattern": "/{slug}-{id}.htm",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "umbriaeventi.com--f193ae86be90",
+      "scope": "primary_catalog",
+      "catalog_records": 4,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "enjoysicilia.it--c47fcfe933c0",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/it/events/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "riminitoday.it--3fcce20b0a85",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "8cffb2e91aa0b4b8f77bfc173804c52e01d0a743e2370197ccfa5c33b2b86916"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "romatoday.it--773e7b132541",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "sagrefvg.it--bb0f79aae507",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_proved_but_prior_source_or_field_comparison_incomplete",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "sagretoscane.com--7e915f1a79a5",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/fiere-mercati/si/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "suedtirol.info--826da4efb87f",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/it/esperienze/eventi",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "veneziatoday.it--98a866420834",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "11263c5a2ed7686136bc010d9ec5faaa109f97cbeaba3c25c53c8b754a5d6a20"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "vicenzatoday.it--7f29dd72d035",
+      "scope": "primary_catalog",
+      "catalog_records": 3,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "assosagre.it--4377f96ccd50",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/calendario_sagre.php?id_provincia={value}&id_sagra={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_proved_but_prior_source_or_field_comparison_incomplete",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "baritoday.it--0c17b5073dc8",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "a98e0530af7c6026997e4c8ec0413f0e28746f323bb9bac08a973189c283e23e"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "bolognatoday.it--98c9652acb3c",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "6c7b5e7b9ffc362cc529fe09b83a57396215d94052c6db35dee66a4115e8fbbe"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "bresciatoday.it--323a7ea664ee",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "da9998f4dc0a39e50b023978942397be7ac8acccf74f68c5b69ab8fe8d5628cc"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "brindisireport.it--5b0c85ac1d51",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/tag/{tag}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "cittadellaspezia.com--daef88baba75",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/tag/sagre/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "comune.corciano.pg.it--1d7a32ba013d",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/area_letturaDocumento/29645/pagsistema.html",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 2,
+        "changed_fields": {
+          "date": 1,
+          "fonte_aggiornata_il": 2,
+          "fonte_letta_il": 2,
+          "proiezione_generata_il": 2,
+          "riscontri_campi": 2
+        },
+        "reconfirmable": false,
+        "proof_kind": null
+      }
+    },
+    {
+      "format_id": "eventiintoscana.it--641b8123d9f9",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "ferrarainfo.com--1dfcae70a0aa",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/it/eventi/eventi",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_proved_but_prior_source_or_field_comparison_incomplete",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "forlitoday.it--ebf7741cbe52",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "fc24df999ed24531ae811f705b564e48091c77770a36049b41d98e7cc2001f21"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "frosinonetoday.it--719a6eee7966",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "57f135d5bbc0313bb527b6aa71566482f4ef41c4805ac9cc4e046fda43aa608f"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "genovatoday.it--023670032cbe",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "lazioinfesta.com--9432160459d4",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "monzatoday.it--a48c40adcb3f",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "d252b8d13e700863c52e6246aa5e31c03c2a75987c03d845d6e1f6dc9d35e666"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "novaratoday.it--fd80b2faea81",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "palermotoday.it--5b9cabc75906",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "67fcfec24650b0256456687d5cc08ebd6985422d42077b5f64295a116170ce82"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "paradisola.it--b32e4258186f",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi-sardegna",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "pugliainfesta.it--8852e0d42557",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/evento/{id}/{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "ravennatoday.it--b46159a30433",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "sagreinromagna.it--073cd6052d05",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/sagre_per_provincia/1/ravenna",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "terredipisa.it--6b239e3c095e",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/events/categories/sagra-fiere-mercati/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "torinotoday.it--9d13c4c3e50b",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "494d8a0a8190f03114fc08a8b86a941ffc3278f7ef6d0aacb85d92e49670cebf"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "trevisotoday.it--f2521f69a8c7",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "varesenews.it--888bef8902d4",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/category-evento/eventi-sagre-feste/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "veneziatoday.it--81e9b7eb8036",
+      "scope": "primary_catalog",
+      "catalog_records": 2,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "arezzonotizie.it--9521d1fd66d9",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "7744ff254819a615855708b8801f52d04d183c2f6c149cb22959652bf8da401b"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "bolognatoday.it--e0f6de959b8b",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "bresciatoday.it--6206d2d85129",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "cagliaritoday.it--e1ef02204e41",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "17fdaea8e4064eb26907301798a54f286e34fb91740e99d4c73f5293eac33aa0"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "casertanews.it--2214b2178409",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "15188f3d695ba26969d691fc17bb0d620815206ef65bff722ebb74e3915a99bd"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "cataniatoday.it--31ed67739fab",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "1db5e0dfe9989c4b4292b39ca31a6fbbe147529d5a0e665c2ba0d8c15674c2d5"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "cesenatoday.it--c9fd22db3421",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "861078eff4b09defd8ad2bdaf986f1454f5338ce502029f12a54bd96adf2279b"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "chietitoday.it--2f12ec6202a9",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/attualita/{articolo}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "comune.roma.it--b6b446c7c7b8",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/web/it/bando-concorso.page?contentId={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 1,
+        "changed_fields": {
+          "fonte_aggiornata_il": 1
+        },
+        "reconfirmable": true,
+        "proof_kind": "existing_recurrence_scope_and_normalization_exact_reconstruction"
+      }
+    },
+    {
+      "format_id": "eventi.bergamo.it--849986cf0982",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--3c3a269d898e",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/Eventi_Sagre/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--c49b67f8f8bc",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/Eventi_Folklore/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiesagre.it--e5298c4f16d6",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/Eventi_Fiere/{id}_{slug}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/editorial_calendar_scope.py": {
+          "before": "978f80397b71f287b0e47f4764c42ad49515c4ad55433939ddccfe91f29ec071",
+          "after": "fc034eefd336df3781c92cad3d745bff451ea0f79297987d9fb3f2ff46816772"
+        },
+        "backend/eventiesagre_detail_refresh.py": {
+          "before": "2fb5933174f61265315d16f5db46fbb70419d111e71d96d0b68176cf9e1f0c89",
+          "after": "351620f197b0f6c377aca38625aadb67b5dedef62b104434833ddb080f20b1cc"
+        },
+        "backend/eventiesagre_source_layout.py": {
+          "before": "42d83cf850c97442c446b52142851860433b1c333cb082f6e7a5556c0b8e6d44",
+          "after": "b9c4d084cb024cb6b5841e523777d665224d5f2507cea0a3ae9c4a7adad5f189"
+        },
+        "backend/existing_source_refresh.py": {
+          "before": "ddc19ba0034216cd4ab921c4c69ddfd97f4019ff50a7c6bafd74b8bd36b0b201",
+          "after": "47ff7ee85e33c75cc4586befb62f081fe94b579175df6852078f22a77001503c"
+        },
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "changed_source_parser_no_retained_body_for_this_format",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "eventiinsardegna.it--4f6de7c3abb7",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "ferraratoday.it--096c9d2b9991",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "ferraratoday.it--2f49a574f3cd",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "075df4651853e13eb7d06c69c3578073763eb0352b91253102a66d5681798104"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "firenzetoday.it--4c68a0e41483",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "frosinonetoday.it--13df3249e7e8",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "leccotoday.it--a1f15b11015f",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "4a7cf16331ca47c91ae1ec64d510620f86a280e38890e2ffdb29f0eb19b67fec"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "lombardiainfesta.it--aac72178e0f0",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "milanotoday.it--800bdea3a7e9",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "modenatoday.it--6d93abfa3a9b",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "napolidavivere.it--679a0a2b46d4",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/category/eventi/sagre-e-feste/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "novaratoday.it--12e887ae9cfd",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "13dc1395bc8ac01504dc70749a4393662dfa07f254b9e427ada6d073c0376b53"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "padovatoday.it--a15e8e68ca15",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "reader_newly_routed_but_no_successful_body_capture",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "palermotoday.it--7be3a486df34",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "parmatoday.it--4d0ed834ab18",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "d935beb28f71d23a8fdfb3c850404b34801ebe1cc4593380fc6d5a5e4c3ed7fc"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "ravennatoday.it--d19463631447",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "8a91034884510b791e0aca72f473af05ccaf4c45f3a661a249ac4467359a6aee"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "riminitoday.it--8bfbd004bf42",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed",
+        "sample_catalog_fields_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": true,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": {
+        "changed_records": 1,
+        "changed_fields": {
+          "date": 1
+        },
+        "reconfirmable": true,
+        "proof_kind": "past_dates_pruned_only"
+      }
+    },
+    {
+      "format_id": "romapop.it--55f380b91494",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/roma/sagre-fiere-mercatini/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "sagrefvg.it--6113121f4eaf",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/sagris/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "salernotoday.it--6f80ccd14ebc",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "trentino.com--f4ac442f344e",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/it/calendario/dettagli/{slug}/#{edizione}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_proved_but_prior_source_or_field_comparison_incomplete",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "trevisotoday.it--d14b81554c11",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "7bc42fd57bc0b26a1f23b0c59ce3a974e2abc6257e8c11db7c29b8c01fe844a9"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "vicenzatoday.it--711d824754df",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "39802d240119cdd3341e58d81e7f78407f23799c8af33b40a9e90c9c1bf433da"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "viterbotoday.it--51968ac255a6",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/{percorso-evento}.html",
+      "original_recheck_reasons": [],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 1,
+      "original_capture_hashes": [
+        "ba282397f58b493dd68000dba1fc0a4b115b9f8d01c11eac449a81d0ddf4616e"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "viterbotoday.it--c0d9902be5e7",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/eventi/tipo/{filtri}/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "wwwservizi.regione.emilia-romagna.itnote.asp--08f6dd05bcee",
+      "scope": "primary_catalog",
+      "catalog_records": 1,
+      "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/publisher_refresh.py": {
+          "before": "b55a21ce4f1bb8e8eab9070dfd07585b171d426deaac7d5e914131032682e527",
+          "after": "ecd0462985553f180d9876834163231498831fcaf19d15a9d930bf1b26802c7d"
+        }
+      },
+      "parser_disposition": "shared_compatibility_proved_but_prior_source_or_field_comparison_incomplete",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "bassaromagnamia.it--3389a37e9a00",
+      "scope": "additional_attribution",
+      "catalog_records": 0,
+      "url_pattern": "/poitofintrests/mercati-settimanali-6/",
+      "original_recheck_reasons": [
+        "new_format"
+      ],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "bassaromagnamia.it--77f16ec61d3d",
+      "scope": "additional_attribution",
+      "catalog_records": 0,
+      "url_pattern": "/poitofintrests/mercati-del-contadino/",
+      "original_recheck_reasons": [
+        "new_format"
+      ],
+      "changed_code_paths": {},
+      "parser_disposition": "not_changed_or_not_reviewed",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "comune.corciano.pg.it--742b4c3b5941",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "comune.roma.it--198edc4b9b92",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/web/it/informazione-di-servizio.page?contentId={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "comune.roma.it--289437d31bd8",
+      "scope": "additional_attribution",
+      "catalog_records": 0,
+      "url_pattern": "/web-resources/cms/documents/Determina_17723_24_02_2025_venerd_firm.pdf",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "comune.roma.it--62c2acfb1eb4",
+      "scope": "additional_attribution",
+      "catalog_records": 0,
+      "url_pattern": "/web-resources/cms/documents/Contratto_AMA_2024__2025_Allegato_7_Carta_Municipale_Municipio_13.pdf",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "data.comune.fi.it--aebe3c51a74f",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/datastore/download.php?format={value}&id={value}&type={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.comune.milano.it--811e995cd76b",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b07ed03a-d198-4a16-9eb5-744cb406f3eb/download/mss-mag24_final.json",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.comune.milano.it--e93fe70b0688",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b6c162cb-6e26-4e1c-bba0-3f1f595a19dc/download/mss-mag24.geojson",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.comune.milano.it--fa20a25c15b9",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/5d4a83c3-6ac5-4430-b5a9-d669a933b036/download/mss-mag24_final.csv",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.comune.roma.it--698a81c590c6",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.comune.roma.it--e20fd21ce1be",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/cd515283-3079-42fe-a066-ced11b9a8387/download/mercati_rionali_agosto_2023.csv",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.comune.roma.it--e33b298b8b6e",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/catalog/api/3/action/package_show?id={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.lombardia.it--432287cb35fe",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/resource/68zx-njaw.json?$limit={value}&$order={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "dati.lombardia.it--94017c4ffe4c",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/api/views/68zx-njaw.json",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "datigis.comune.fi.it--13155d9f084d",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.zip",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "datigis.comune.fi.it--3dffd7636e05",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.geojson",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "datigis.comune.fi.it--d75dc7aad7be",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.csv",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "gisportal.comune.milano.it--435c4683d9f2",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0/query?f={value}&outFields={value}&outSR={value}&resultRecordCount={value}&returnGeometry={value}&where={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "gisportal.comune.milano.it--b80d45a7e660",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0?f={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "google.com--d20b509e76f3",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/maps/d/kml?forcekml={value}&mid={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "happings.com--311686cb6f8d",
+      "scope": "additional_attribution",
+      "catalog_records": 0,
+      "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/happings_weekly_layout.py": {
+          "before": "9cb3c14483849b77c45cbad60693fbf06295f784339f72c05ecc4b1e788189eb",
+          "after": "95349dd10816c0a4ffb489aedecda5fb81ca1adfb6343b56586674f48c8a88b7"
+        },
+        "backend/happings_source_enrichment.py": {
+          "before": "f5780c7df4a3b794085b3927d7c7ccbf4f570ff84094f849ac5bb4665806487b",
+          "after": "b16ff1fca61231a0e23acf23794fc0388ad9eb3502c2d152f8a442bc9570d4fe"
+        }
+      },
+      "parser_disposition": "captured_format_replayed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 15,
+      "original_capture_hashes": [
+        "21c3ab0ef68483bbfa083499d6477b83e80da1e5e39fc734d6e0540d2afdb628",
+        "5452a6fbd04d0fdcca6a3cdcc61dc303126edf67e6aff95da77e2576aa686c8a",
+        "564a78d22ec7f3172c55c89c1af7fa787f20fa3ab3a6571fa485e5dcf67441c6",
+        "60c2ff931e6df176f7d234382ac08302b6f0dbee552c57b3d051b6b35d91eb01",
+        "67db25da671c9e97fac7352983ef48020850488bebcde11732f5d59db5cb8ba1",
+        "892d3fba4c49cd4c256bcf631a30f3fceaca35b91fe46f439b6b2e6a64a9d334",
+        "927c730fd6c3704ec441fc40c831c8c078affd11af6b1bf3ec65f8147a124bab",
+        "9cc43cc90baceb0e1611113628dbb109bc8b6a7eb6c56f4bc21ff1e2527094ca",
+        "a81f698a1f17151c8da20f9085e8b739b243a22e0ebecc124ef08c4b8322c360",
+        "a8fe38337971256d6e26c62014b1672d71e106099d1aa6f3910312cd429a5a86",
+        "da2d99998d493195c82325c5a7d2f03176106d10e6d8156a5cf56889e8c7db17",
+        "efe258f3df68c5f544ec777394f0db4cf2487b23a62267ca7a93f6ce194dcb4c",
+        "f86dc56271f275b89b61325bd84ab0baec932b5f62721a32665455a1aa7892e7",
+        "fe0a9189765664fbcc0d7dd4de1061822487ebf0fe4dace597b24336ec97f769",
+        "ff656e34ca80a80444e80c58d206b97698dcfe52ae85b02e76db938922735e4b"
+      ],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "opendata.comune.bologna.it--1cd38e42835b",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/api/records/1.0/search/?dataset={value}&rows={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "opendata.comune.bologna.it--7645d392be0d",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/api/records/1.0/search/?dataset={value}&fields={value}&q={value}&rows={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "opendata.comune.bologna.it--97ad8bc609d7",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "opendata.comune.fi.it--87db03cd3378",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/page_dataset_show?id={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "www2.comune.milano.it--040bb7e6ca15",
+      "scope": "attached_resource",
+      "catalog_records": 0,
+      "url_pattern": "/web/fare-impresa/mercati-settimanali-scoperti",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_proved_but_prior_source_or_field_comparison_incomplete",
+      "parser_hash_update_proposed": false,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    },
+    {
+      "format_id": "www2.comune.milano.it--5fe8b3668208",
+      "scope": "additional_attribution",
+      "catalog_records": 0,
+      "url_pattern": "/documents/87339536/190972166/MSS+-+ubicazioni%2Corari%2Corganici+1+Ottobre+2026.pdf/d5b13a87-b9de-7c48-5674-65c4151565c3?t={value}",
+      "original_recheck_reasons": [
+        "parser_code_changed"
+      ],
+      "changed_code_paths": {
+        "backend/export_static.py": {
+          "before": "2298382f3a7a85f47d8dd7ef30299eb70258b682794022e384ffa45e7f336ea2",
+          "after": "9b2e3f3588cf537701ee21854fbbfd19293161e773af09e216f4f6c222b1363e"
+        },
+        "backend/field_evidence.py": {
+          "before": "ef4c4f8420d21875a63cad1416c64fa8583b5d9226944b15306f474193e799c8",
+          "after": "8044441b9f310ca4d4478f2704f8ef0d0e00c94534ab9cb30a890aae851a26a2"
+        }
+      },
+      "parser_disposition": "shared_compatibility_reconfirmed",
+      "parser_hash_update_proposed": true,
+      "storage_hash_update_proposed": false,
+      "capture_count": 0,
+      "original_capture_hashes": [],
+      "storage_comparison": null
+    }
+  ]
+}

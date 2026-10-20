@@ -39,12 +39,12 @@ jobs:
         run: |
           test -s dist/index.html
           test -s dist/data/v1/manifest.json
+          python backend/validate_static.py --manifest dist/data/v1/manifest.json
           python - <<'PY'
           import json
           from pathlib import Path
           m = json.loads(Path('dist/data/v1/manifest.json').read_text())
           assert m['total'] > 10000
-          assert m['index_schema'] == 5
           assert (Path('dist') / m['index']).exists()
           print('Ready: ' + str(m['total']) + ' candidate markets')
           PY
