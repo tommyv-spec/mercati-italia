@@ -241,6 +241,30 @@ class HappingsDetailDiscoveryTests(unittest.TestCase):
         self.assertEqual(selected[5], oldest_unseen)
         self.assertEqual(len(set(selected)), 9)
 
+    def test_first_pass_gets_majority_slots_when_unread_outnumbers_due_refresh(self):
+        primary = [ROOT + f"/it/happing/mercato-gia-letto-{i}/" for i in range(18)]
+        other = [ROOT + f"/it/happing/concerto-gia-letto-{i}/" for i in range(6)]
+        old_unread = ROOT + "/it/happing/zz-vecchia-pagina/"
+        state, _ = discovery.ingest_pages(discovery.empty_state(),
+            [page(MAP, sitemap(primary + other + [old_unread]))], observed_at=TODAY)
+        later = TODAY + timedelta(days=7)
+        for url in primary + other:
+            state["resources"][url].update(
+                last_attempt=TODAY.isoformat(), last_success=TODAY.isoformat(),
+                last_success_at=STAMP, last_sha256=hashlib.sha256(HTML).hexdigest(),
+                attempts=1, status="retrieved", next_due=later.isoformat())
+        fresh = [ROOT + f"/it/happing/mercato-mai-letto-{i}/" for i in range(36)]
+        state, _ = discovery.ingest_pages(state, [page(MAP, sitemap(fresh))], observed_at=later)
+        selected = discovery.next_requests(state, today=later, limit=9)
+        self.assertEqual(len(selected), 9)
+        self.assertEqual(len(set(selected)), 9)
+        self.assertEqual(len(set(selected) & set(primary)), 2)
+        self.assertEqual(len(set(selected) & set(other)), 1)
+        self.assertEqual(len(set(selected) & (set(fresh) | {old_unread})), 6)
+        self.assertIn(old_unread, selected)  # oldest first despite newly discovered market slugs
+        self.assertEqual(discovery.next_requests(state, today=later, limit=9), selected)
+        self.assertTrue(all(state["resources"][url]["status"] != "fetching" for url in selected))
+
     def test_elapsed_limit_before_delay_preserves_unread_frontier(self):
         state = discovery.seed_state(seed_urls=[PISA], observed_at=TODAY)
         fetch, pause = Mock(), Mock()

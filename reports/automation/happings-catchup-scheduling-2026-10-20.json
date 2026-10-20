@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "mode": "OFFLINE_SELECTION_REGRESSION",
+  "as_of": "2026-10-20",
+  "source_ref": "59e9e50eef3a13ba3577fbc4fca34c83121036df",
+  "source_state_path": "public/data/v1/happings-discovery.json",
+  "source_sha256": "f2b59a513baf80910cc7362b7a12fb49158e89f4d8cd39dacafb4a86447bf779",
+  "observed_resources": {
+    "total": 2210,
+    "detail": {
+      "retrieved": 216,
+      "unread": 1980
+    },
+    "sitemap": {
+      "retrieved": 14,
+      "unread": 0
+    }
+  },
+  "selection_test": {
+    "frozen_state": true,
+    "select_for": "2026-10-28",
+    "no_intervening_requests_simulated": true,
+    "request_limit": 128,
+    "before": {
+      "unread_details": 28,
+      "due_details": 98,
+      "sitemaps": 2
+    },
+    "after": {
+      "unread_details": 84,
+      "due_details": 42,
+      "sitemaps": 2
+    },
+    "unread_details_increase": 56,
+    "due_refresh_slots_retained": 42
+  },
+  "safety": {
+    "network_requests": 0,
+    "catalog_fields_changed": 0,
+    "market_identities_created": 0,
+    "opening_confirmations_created": 0,
+    "robots_and_delay_policy_unchanged": true,
+    "request_budget_unchanged": true,
+    "checkpoint_schema_unchanged": true
+  },
+  "interpretation": "Frozen-frontier selection only, not a production crawl or forecast. The 7-day due date does not guarantee a page will be read within 7 days. Extracted fields still require source parsing, exact identity checks and the existing quality gates."
+}

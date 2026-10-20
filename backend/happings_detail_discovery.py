@@ -383,14 +383,24 @@ def next_requests(state, *, today, limit, sitemap_quota=2):
     other_refresh = sorted([pair for pair in refresh if priority(pair)[0] == 2], key=key)
     chosen_maps = maps[:min(limit, sitemap_quota)]
     selected = list(chosen_maps)
+    # While more pages have never been read than are due for refresh, give
+    # the first pass most slots. Otherwise the regular 7-day refresh wave
+    # can keep the unseen frontier waiting for months despite a healthy
+    # daily request budget. This is scheduling only, never an identity claim.
+    initial_crawl = bool(refresh) and len(unseen) > len(refresh)
     turn = sum(item["attempts"] for item in state["resources"].values() if item["kind"] == "detail")
     while len(selected) < limit and (unseen or primary_refresh or other_refresh):
-        # Six of nine slots favor existing/market-like pages; two discover
-        # unread URLs and one refreshes the remainder. An oldest-first unseen
-        # slot prevents permanent starvation by new high-priority discoveries.
         slot = turn % 9
-        preferred = (unseen if slot == 2 else unseen_oldest if slot == 5
-                     else other_refresh if slot == 8 else primary_refresh)
+        if initial_crawl:
+            # 6/9 new (including 2 oldest-first), 2/9 relevant rereads,
+            # and 1/9 unrelated rereads. Keep the 7-day queue alive.
+            preferred = (unseen_oldest if slot in {1, 5} else
+                         other_refresh if slot == 8 else
+                         primary_refresh if slot in {3, 7} else unseen)
+        else:
+            # Once coverage catches up, favor source freshness as before.
+            preferred = (unseen if slot == 2 else unseen_oldest if slot == 5
+                         else other_refresh if slot == 8 else primary_refresh)
         pool = preferred or primary_refresh or unseen or other_refresh
         pair = pool.pop(0)
         selected.append(pair[0])
