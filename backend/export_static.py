@@ -25,6 +25,7 @@ from field_evidence import clean_receipts, clean_exceptions
 from source_calendar import clean_source_calendar, clean_source_detail, source_calendar_dates
 from source_freshness import source_date_evidence
 from source_hours import preserve_hours_text
+from lombardia_calendar_scope import calendar_scope, filter_dates, retained_identity
 from urllib.parse import urlsplit
 
 CANONICAL_REGIONS = [
@@ -174,6 +175,12 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         quality = "sconosciuta"
     if use_source_calendar:
         quality = "riportata"
+    source_scope = calendar_scope(raw)
+    scope_filtered = False
+    if quality not in {"confermata", "riportata"} and not raw.get("verificato_il") and source_scope:
+        retained = filter_dates(future_dates, source_scope)
+        scope_filtered = retained != future_dates or not retained
+        future_dates = retained
     # A record with no upcoming occurrence cannot advertise a planned or
     # confirmed future date. Preserve source/verification provenance, but
     # avoid promising dates that are absent or already in the past.
@@ -239,6 +246,13 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["aggiornamento_ambito"] = "dataset"
     if raw.get("id_fonte"):
         result["id_fonte"] = safe_string(raw.get("id_fonte"), 40)
+    identity = retained_identity(raw)
+    if identity is not None:
+        result["identita_fonte"] = identity
+    if scope_filtered:
+        result["proiezione_regola"] = None
+        result["proiezione_generata_il"] = ""
+        result["proiezione_fonte"] = ""
     # Retain provenance when repairing only the displayed municipality
     # against the official ISTAT register. Never imply the event was verified.
     if raw.get("localita_ricostruita_da") == "ISTAT comuni 2026-02-21; nome fonte e provincia":

@@ -34,6 +34,7 @@ from urllib.parse import unquote, urlsplit
 from source_freshness import as_day, source_date_evidence, source_url_domain
 from source_calendar import refresh_source_calendar
 from field_evidence import clean_receipts, MAX_READ_AGE, SOURCE_AGE
+from lombardia_calendar_scope import calendar_scope, filter_dates, within_bounds
 
 WEEKDAYS = ("lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica")
 DAYS_PATTERN = re.compile(r"\b(?:lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)\b")
@@ -110,6 +111,7 @@ STREET_PREFIX = re.compile(
 TEMPORAL_SCOPE_REASONS = frozenset({
     "seasonal_scope_unrepresented", "interval_scope_unrepresented",
     "calendar_exception_scope_unrepresented", "date_range_scope_unrepresented",
+    "source_calendar_scope_unrepresented",
 })
 
 
@@ -226,6 +228,16 @@ def _complete_month_rule(value: Any) -> dict | None:
 
 def forecast_rule(record: dict) -> dict | None:
     """Derive forecast scope from complete text, never a saved metadata flag."""
+    scope = calendar_scope(record)
+    if scope is not None:
+        rule = scope.get("rule")
+        declared = explicit_rule(record.get("ricorrenza_testo"))
+        # Raw boundaries cannot authorize a cadence that contradicts the
+        # normalized schedule or an unsupported week-of-month qualifier.
+        if rule and (declared is None or declared == {
+                "kind": "weekly", "weekdays": rule["weekdays"]}):
+            return rule
+        return None
     return (_complete_month_rule(record.get("ricorrenza_testo"))
             or explicit_rule(record.get("ricorrenza_testo")))
 
@@ -244,9 +256,21 @@ def temporal_scope_hold(record: dict) -> str | None:
     """
     if not isinstance(record, dict):
         return None
-    represented_rule = _complete_month_rule(record.get("ricorrenza_testo"))
+    source_scope = calendar_scope(record)
+    if source_scope and source_scope["state"] in {"invalid", "ambiguous"}:
+        return "source_calendar_scope_unrepresented"
+    if source_scope and source_scope.get("rule"):
+        declared = explicit_rule(record.get("ricorrenza_testo"))
+        if ((declared and declared != {"kind": "weekly", "weekdays": source_scope["rule"]["weekdays"]})
+                or not declared and re.search(r"\bmensile\b", text_key(record.get("ricorrenza_testo")))):
+            return "source_calendar_scope_unrepresented"
+    represented_rule = (forecast_rule(record) if source_scope
+                        else _complete_month_rule(record.get("ricorrenza_testo")))
     represented_months = (represented_rule or {}).get("active_months")
     previous_rule = record.get("proiezione_regola")
+    if (isinstance(previous_rule, dict) and "source_day_month_bounds" in previous_rule
+            and (not source_scope or not source_scope.get("bounds"))):
+        return "date_range_scope_unrepresented"
     if (isinstance(previous_rule, dict) and "active_months" in previous_rule
             and (not represented_rule or previous_rule != represented_rule
                  or not isinstance(previous_rule["active_months"], list)
@@ -277,6 +301,8 @@ def temporal_scope_hold(record: dict) -> str | None:
                       for place in sorted(places, key=len, reverse=True) if place]
     values = [(record.get(field), field in {"ricorrenza_testo", "ricorrenza_originale"})
               for field in ("ricorrenza_testo", "ricorrenza_originale", "nome", "nome_originale", "slug")]
+    if source_scope:
+        values.append((source_scope["identity"].get("ubicazione"), False))
     try:
         values.append((unquote(urlsplit(str(record.get("url_fonte") or "")).path), False))
     except ValueError:
@@ -289,8 +315,14 @@ def temporal_scope_hold(record: dict) -> str | None:
             for pattern in place_patterns:
                 text = pattern.sub(" ", text)
             text = " ".join(text.split())
-        if SEASONAL_SCOPE.search(text):
-            return "seasonal_scope_unrepresented"
+        seasonal_terms = SEASONAL_SCOPE.findall(text)
+        if seasonal_terms:
+            # A complete window represents a generic "stagionale" label.
+            # Do not infer the calendar meaning of "invernale", "in estate"
+            # or another additional seasonal condition from that window.
+            if not (source_scope and source_scope.get("limited") and represented_rule
+                    and all(term in {"stagionale", "stagionali"} for term in seasonal_terms)):
+                return "seasonal_scope_unrepresented"
         if INTERVAL_SCOPE.search(text):
             return "interval_scope_unrepresented"
         for match in COUNTED_INTERVAL.finditer(text):
@@ -320,8 +352,12 @@ def temporal_scope_hold(record: dict) -> str | None:
             months = NAMED_MONTH_RANGE.fullmatch(match.group(0))
             if not (months and represented_months == _month_numbers(months[1], months[2])):
                 return "date_range_scope_unrepresented"
-        if NUMERIC_DATE_RANGE_SCOPE.search(text_key(value)):
-            return "date_range_scope_unrepresented"
+        for numeric_range in NUMERIC_DATE_RANGE_SCOPE.finditer(text_key(value)):
+            stated = re.findall(r"\d{1,4}", numeric_range.group(0))
+            observed = (re.findall(r"\d{1,4}", " ".join(source_scope.get("bounds") or []))
+                        if source_scope else [])
+            if not represented_rule or stated != observed:
+                return "date_range_scope_unrepresented"
     return None
 
 
@@ -330,6 +366,11 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
         raise ValueError("Horizon must be between 7 and 365 days")
     end = today + timedelta(days=horizon_days)
     active_months = rule.get("active_months")
+    bounds = rule.get("source_day_month_bounds")
+    if bounds is not None:
+        if not isinstance(bounds, list) or len(bounds) != 2:
+            raise ValueError("Unrecognized source day/month scope")
+        within_bounds(today, bounds)  # Validate before iterating.
     if active_months is not None and (
             not isinstance(active_months, list) or not active_months
             or any(type(month) is not int or not 1 <= month <= 12 for month in active_months)
@@ -340,7 +381,8 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
         return [(today + timedelta(days=i)).isoformat()
                 for i in range(horizon_days + 1)
                 if (today + timedelta(days=i)).weekday() in weekdays
-                and (active_months is None or (today + timedelta(days=i)).month in active_months)]
+                and (active_months is None or (today + timedelta(days=i)).month in active_months)
+                and (bounds is None or within_bounds(today + timedelta(days=i), bounds))]
     if rule["kind"] == "monthly_nth_weekday":
         results = []
         year, month = today.year, today.month
@@ -356,7 +398,8 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
                 candidate = candidates[ordinal - 1]
             else:
                 continue
-            if today <= candidate <= end and (active_months is None or candidate.month in active_months):
+            if (today <= candidate <= end and (active_months is None or candidate.month in active_months)
+                    and (bounds is None or within_bounds(candidate, bounds))):
                 results.append(candidate.isoformat())
             if date(y, m, 1) > end:
                 break
@@ -382,18 +425,37 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     if record.get("date_quality") not in {None, "", "prevista", "sconosciuta"}:
         return record, "unrecognized_date_quality"
 
+    source_scope = calendar_scope(record)
     scope_hold = temporal_scope_hold(record)
-    if record.get("verificato_il") and (scope_hold or _complete_month_rule(record.get("ricorrenza_testo"))):
+    if record.get("verificato_il") and (source_scope or scope_hold or _complete_month_rule(record.get("ricorrenza_testo"))):
         # A complete scope still does not authorize changing a human review.
         return record, "verified_temporal_scope_preserved"
     if scope_hold:
-        if record.get("date_quality") == "prevista":
+        if (record.get("date_quality") == "prevista" or source_scope and (
+                record.get("date") or record.get("proiezione_regola")
+                or record.get("proiezione_generata_il") or record.get("proiezione_fonte"))):
             record["date"] = []
             record["date_quality"] = "sconosciuta"
             record["proiezione_regola"] = None
             record["proiezione_generata_il"] = ""
             record["proiezione_fonte"] = ""
         return record, scope_hold
+
+    filtered_existing_source_scope = False
+    if source_scope:
+        retained = filter_dates(record.get("date") or [], source_scope)
+        if retained != (record.get("date") or []):
+            record["date"] = retained
+            filtered_existing_source_scope = True
+        if filtered_existing_source_scope or not retained and any(record.get(key) for key in (
+                "proiezione_regola", "proiezione_generata_il", "proiezione_fonte")):
+            # Do not claim that an earlier unbounded projection used the new
+            # evidence. A fresh source may rebuild provenance below.
+            record["proiezione_regola"] = None
+            record["proiezione_generata_il"] = ""
+            record["proiezione_fonte"] = ""
+            if not retained:
+                record["date_quality"] = "sconosciuta"
 
     rule = forecast_rule(record)
     if not rule:
@@ -474,7 +536,8 @@ def refresh_record(original: dict, today: date, horizon_days: int = MAX_LOOKAHEA
     if updated is None:
         # Existing estimates are retained as estimates, with their original
         # provenance. A recent import/read is never a reason to extend them.
-        return record, ("existing_forecast_month_scope_filtered" if filtered_existing_month_scope
+        return record, ("existing_forecast_source_scope_filtered" if filtered_existing_source_scope
+                        else "existing_forecast_month_scope_filtered" if filtered_existing_month_scope
                         else "unknown_source_age")
     age = (today - updated).days
     if age < 0:

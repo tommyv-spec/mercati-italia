@@ -9,6 +9,7 @@ import unittest
 import tempfile
 from datetime import date, timedelta
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from happings_source_enrichment import (
@@ -278,6 +279,90 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"robots policy denied redirected"):
             GuardedRedirects(VENICE_OLD,robots).redirect_request(
                 Request(VENICE_OLD),None,301,"Moved",{},VENICE_NEW)
+
+    def test_observed_legacy_two_hop_transport_retains_exact_province_and_final_scope(self):
+        from happings_source_enrichment import GuardedRedirects
+        from happings_weekly_layout import _valid_page_url
+        from urllib.request import Request
+        from urllib.robotparser import RobotFileParser
+        robots=RobotFileParser();robots.parse(["User-agent: *","Allow: /"])
+        for old,canonical in (
+            ("https://www.happings.com/it/mercati-settimanali-a-crotone.html",
+             "https://www.happings.com/it/mercati-settimanali-a-crotone-e-provincia/"),
+            ("https://www.happings.com/it/mercati-settimanali-a-cuneo.html",
+             "https://www.happings.com/it/mercati-settimanali-a-cuneo-e-provincia/"),
+            ("https://www.happings.com/it/mercati-settimanali-ad-enna.html",
+             "https://www.happings.com/it/mercati-settimanali-a-enna-e-provincia/"),
+        ):
+            with self.subTest(old=old):
+                transport=old[:-5]+"/";pauses=[]
+                guard=GuardedRedirects(old,robots,sleep=pauses.append)
+                first=guard.redirect_request(Request(old),None,301,"Moved",{},transport)
+                final=guard.redirect_request(first,None,301,"Moved",{},canonical)
+                self.assertEqual(final.full_url,canonical)
+                self.assertEqual(pauses,[3,3])
+                self.assertFalse(_valid_page_url(transport))
+                self.assertFalse(allowed_url(old,old,transport))
+                self.assertTrue(allowed_url(old,old,canonical))
+                with self.assertRaisesRegex(ValueError,"hop count"):
+                    guard.redirect_request(final,None,301,"Moved",{},old)
+
+    def test_legacy_intermediate_cannot_escape_original_slug_or_bypass_robots(self):
+        from happings_source_enrichment import GuardedRedirects
+        from urllib.request import Request
+        from urllib.robotparser import RobotFileParser
+        transport=VENICE_OLD[:-5]+"/"
+        for target in (transport.replace("venezia","modena"),
+                       transport.replace("https:","http:"),
+                       transport.replace("www.happings.com","evil.example"),
+                       transport+"?alternate=1",transport+"#section"):
+            with self.subTest(target=target),self.assertRaisesRegex(ValueError,"left reviewed"):
+                GuardedRedirects(VENICE_OLD,sleep=lambda _:self.fail("No request before URL proof")).redirect_request(
+                    Request(VENICE_OLD),None,301,"Moved",{},target)
+        robot=RobotFileParser();robot.parse(["User-agent: *","Disallow: "+transport.split(".com",1)[1]])
+        with self.assertRaisesRegex(ValueError,"robots policy denied"):
+            GuardedRedirects(VENICE_OLD,robot,sleep=lambda _:self.fail("No denied request")).redirect_request(
+                Request(VENICE_OLD),None,301,"Moved",{},transport)
+        guard=GuardedRedirects(VENICE_OLD,sleep=lambda _:None)
+        first=guard.redirect_request(Request(VENICE_OLD),None,301,"Moved",{},transport)
+        with self.assertRaisesRegex(ValueError,"crossed province"):
+            guard.redirect_request(first,None,301,"Moved",{},VENICE_NEW.replace("venezia","modena"))
+
+    def test_intermediate_200_body_is_not_accepted_as_a_reviewed_final_page(self):
+        import happings_source_enrichment as source
+        class Response:
+            url=VENICE_OLD[:-5]+"/"
+            headers={"Content-Type":"text/html; charset=utf-8"}
+            def __enter__(self):return self
+            def __exit__(self,*args):return None
+            def read(self,limit):return SAMPLE
+        class Opener:
+            def open(self,*args,**kwargs):return Response()
+        with patch.object(source,"_public_dns"),self.assertRaisesRegex(ValueError,"unreviewed target"):
+            source._fetch_one(VENICE_OLD,opener=Opener())
+
+    def test_fetch_error_codes_are_bounded_and_do_not_copy_exception_payloads(self):
+        from happings_source_enrichment import failure_code,valid_failure_code
+        from urllib.error import HTTPError
+        examples=[
+            (ValueError("Source redirect left reviewed Happings province layout"),"redirect_unreviewed"),
+            (ValueError("Publisher redirect crossed province"),"redirect_crossed_province"),
+            (HTTPError(VENICE_OLD,429,"remote body is not a diagnostic",{},None),"http_429"),
+            (OSError("private upstream text"),"connection_error"),
+            (ValueError("arbitrary untrusted details"),"validation_failed"),
+        ]
+        for error,expected in examples:
+            self.assertEqual(failure_code(error),expected)
+            self.assertTrue(valid_failure_code(expected))
+        for bad in (None,[],"http_200","http_600","http_429?secret=1","unknown",False):
+            self.assertFalse(valid_failure_code(bad))
+        failures=[]
+        def fail(url,**kwargs):raise examples[0][0]
+        self.assertEqual(fetch_pages([VENICE_OLD],permission_confirmed=True,failures=failures,
+            robots_fetch=lambda url,**kwargs:(b"User-agent: *\nAllow: /\n",url),
+            page_fetch=fail,sleep=lambda _:None),[])
+        self.assertEqual(failures,[{"requested_url":VENICE_OLD,"error_type":"ValueError",
+                                    "error_code":"redirect_unreviewed"}])
 
     def test_robot_delay_and_aliases_cannot_bypass_request_budget(self):
         sleeps=[]
@@ -698,7 +783,8 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
             page_fetch=get,sleep=lambda _:None)
         self.assertEqual(attempts,[modena,VENICE_OLD])
         self.assertEqual([p["requested_url"] for p in pages],[VENICE_OLD])
-        self.assertEqual(failures,[{"requested_url":modena,"error_type":"OSError"}])
+        self.assertEqual(failures,[{"requested_url":modena,"error_type":"OSError",
+                                    "error_code":"connection_error"}])
 
 if __name__=="__main__":
     unittest.main()

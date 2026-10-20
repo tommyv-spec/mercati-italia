@@ -81,6 +81,9 @@ from happings_autopilot import (
 )
 from happings_detail_autopilot import STATE_FILENAME as HAPPINGS_DISCOVERY_STATE, digest as happings_state_digest
 from happings_detail_discovery import validate_state as validate_happings_discovery_state
+from happings_legacy_resources import (
+    STATE_FILENAME as HAPPINGS_LEGACY_STATE, validate_state as validate_happings_legacy_state,
+)
 from official_source_output_gate import inspect as inspect_official_source_output
 from municipality_release_guard import check as check_municipality_changes
 from reviewed_city_evidence import (
@@ -497,7 +500,7 @@ def prune_old_assets(output: Path, old_manifest: dict, new_manifest: dict):
     root = output.parent.parent
     removed = 0
     for file in output.rglob("*.json"):
-        if file.name == "manifest.json" or file == output / HAPPINGS_DISCOVERY_STATE:
+        if file.name == "manifest.json" or file in {output / HAPPINGS_DISCOVERY_STATE, output / HAPPINGS_LEGACY_STATE}:
             continue
         relative = file.relative_to(root).as_posix()
         if relative not in keep:
@@ -1242,6 +1245,7 @@ def run(args):
         baseline_signature=baseline_id, pipeline_policy_digest=policy_id,
         offline=args.offline, resume=args.resume,
         detail_state_path=manifest_path.parent / HAPPINGS_DISCOVERY_STATE,
+        legacy_state_path=manifest_path.parent / HAPPINGS_LEGACY_STATE,
     )
     checkpoint(out, "happings_enrichment", {
         "status": happings_report["status"],
@@ -1265,6 +1269,7 @@ def run(args):
                           set(generic_admission_report["new_market_ids"]) |
                           set(generic_admission_report.get("evidence_updated_market_ids", [])))
     detail_state_changed = False
+    legacy_state_changed = False
     detail_report = happings_report.get("details")
     if detail_report and detail_report["status"] not in {"disabled", "offline_skipped", "resume_missing_evidence"}:
         # The existing DEV publisher copies this directory after all QA.
@@ -1277,6 +1282,15 @@ def run(args):
         previous_state = read_json(previous_path) if previous_path.is_file() else None
         detail_state_changed = previous_state != state
         save_json(dest / HAPPINGS_DISCOVERY_STATE, state)
+    legacy_report = happings_report.get("legacy_resolution")
+    if legacy_report and legacy_report["status"] not in {"disabled", "offline_skipped", "resume_missing_evidence"}:
+        state = validate_happings_legacy_state(read_json(out / HAPPINGS_LEGACY_STATE), today=args.today)
+        if happings_state_digest(state) != legacy_report["state_after_sha256"]:
+            raise ValueError("Legacy Happings resource state changed after validation")
+        previous_path = manifest_path.parent / HAPPINGS_LEGACY_STATE
+        previous_state = read_json(previous_path) if previous_path.is_file() else None
+        legacy_state_changed = previous_state != state
+        save_json(dest / HAPPINGS_LEGACY_STATE, state)
     result_manifest = read_json(dest / "manifest.json")
     checkpoint(out, "export", {
         "records": result_manifest["total"],
@@ -1403,8 +1417,9 @@ def run(args):
     findings["base_signature"] = baseline_id
     findings["new_signature"] = result_manifest["content_signature"]
     findings["elapsed_seconds"] = round(time.monotonic() - start, 2)
-    findings["has_changes"] = baseline_id != result_manifest["content_signature"] or detail_state_changed
+    findings["has_changes"] = baseline_id != result_manifest["content_signature"] or detail_state_changed or legacy_state_changed
     findings["happings_discovery_state_changed"] = detail_state_changed
+    findings["happings_legacy_state_changed"] = legacy_state_changed
     findings["job_id"] = status["job_id"]
     findings["today"] = args.today.isoformat()
     findings["happings_enrichment"] = {
@@ -1417,6 +1432,9 @@ def run(args):
         "details_status": detail_report["status"] if detail_report else "disabled",
         "detail_pages": len(detail_report["source_pages"]) if detail_report else 0,
         "new_detail_markets": len(detail_report["evidence"]["new_market_ids"]) if detail_report else 0,
+        "legacy_resolution_status": legacy_report["status"] if legacy_report else "disabled",
+        "legacy_requests": legacy_report["acquisition"]["requests_attempted"] if legacy_report else 0,
+        "legacy_known_resources": len(legacy_report["available_resource_urls"]) if legacy_report else 0,
     }
     findings["field_evidence"] = {
         "metrics": field_quality["metrics"],
