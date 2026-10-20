@@ -14,6 +14,7 @@ import argparse
 import json
 from pathlib import Path
 from urllib.request import Request, urlopen
+from source_hours import preserve_hours_text
 
 SOURCE = "https://datigis.comune.fi.it/resources/open-data/mercati/feelflorence_mercati.geojson"
 SOURCE_PAGE = "https://opendata.comune.fi.it/page_dataset_show?id=mercati"
@@ -81,7 +82,7 @@ def convert(collection: dict) -> list[dict]:
             "date": [],
             "date_quality": "sconosciuta",
             "ricorrenza_testo": "Consulta il sito ufficiale per aperture e variazioni",
-            "orario_testo": str(props.get("orari") or "").strip()[:180],
+            "orario_testo": preserve_hours_text(props.get("orari")),
             "descrizione": description[:900],
             "fonte": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
             "url_fonte": detail,

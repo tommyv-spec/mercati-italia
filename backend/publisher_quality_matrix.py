@@ -20,6 +20,8 @@ from urllib.parse import urlsplit
 from catalog_quality_report import VAGUE_ADDRESSES, key as text_key, suspicious_city
 from merge_catalog import load_existing
 from recurrence_refresh import explicit_rule, parse_source_day
+from source_format_audit import (build_report as source_format_report, compact_status as source_format_status,
+                                 render_checklist as source_format_checklist, DEFAULT_LEDGER)
 
 SCHEMA=1
 MAX_MARKETS=100_000
@@ -32,7 +34,7 @@ SUFFIX_DAY=re.compile(r"-(lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domeni
 
 # This classification is explicitly NOT an import or rights approval.
 REVIEWED_KINDS={
-    "happings.com":("legacy_aggregator","weekly_area_index_and_event_details","publisher_rights_unreviewed"),
+    "happings.com":("legacy_aggregator","weekly_area_index_and_event_details","see_existing_happings_operational_policy"),
     "eventiesagre.it":("third_party_event_aggregator","regional_listing_and_details","urls_only_no_bulk_content_reuse"),
     "cosedicasa.com":("editorial_event_calendar","monthly_recurrence_with_exceptions","publisher_rights_unreviewed"),
     "Regione Lombardia – MERCap (CC0 1.0 dichiarata)":(
@@ -176,10 +178,10 @@ def _publisher_action(label):
     kind,layout,rights=REVIEWED_KINDS.get(label,(
         "other_legacy_or_publisher","unclassified_source_page","source_rights_and_structure_require_review"))
     if label=="happings.com":
-        next_action=("Audit catalog rows against publisher's weekly province lists and "
-                     "event detail page formats. Prefer a separate current municipal "
-                     "source for hours, street and seasonal exceptions; do not reimport "
-                     "commercial source content or certify schedules from scraping.")
+        next_action=("Continue the existing authorized Happings pipeline and track "
+                     "province/detail format coverage. Preserve source field scope, "
+                     "identity, calendar limits and conflicts; a scrape is not proof "
+                     "of each market opening.")
     elif label=="eventiesagre.it":
         next_action=("Use existing two-page rotating URLs-only discovery, then verify "
                      "dates/street with independent organizer/Comune; exclude expired editions.")
@@ -401,6 +403,23 @@ def markdown(report):
                    " | "+str(src["triage_score_not_market_yield"])+
                    " | "+_safe(src["review_status"])+
                    " | "+_safe(src["triage_class"])+" |")
+    if report.get("source_format_review"):
+        review=report["source_format_review"]
+        summary=review["summary"]
+        out.extend(["", "## Formati delle fonti: avanzamento dei controlli", "",
+                    f"Unità primarie: **{summary['primary_format_units']}**; campioni confrontati: "
+                    f"**{summary['reviewed_sample_formats']}**; parziali: **{summary['partial_review_formats']}**; "
+                    f"non esaminati: **{summary['unreviewed_formats']}**.", "",
+                    "Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna il registro "
+                    "dal catalogo senza nuove richieste alle fonti. Prove e TODO completi in "
+                    "`backend/data/source-format-review-ledger.json` e `reports/automation/SOURCE_FORMAT_CHECKLIST.md`.", "",
+                    "| Formato | Schede | Controlli da completare | Da riconfrontare | TODO aperti |",
+                    "| --- | ---: | --- | --- | --- |"])
+        for f in review["formats"]:
+            out.append("| "+_safe(f["format_id"])+" | "+str(f["catalog_records"])+" | "+
+                       _safe(", ".join(f["pending_checks"]) or "completati sul campione")+" | "+
+                       _safe(", ".join(f["recheck_reasons"]) or "—")+" | "+
+                       _safe(", ".join(f["open_todo_ids"]) or "—")+" |")
     out.extend(["","## Condizioni per un aggiornamento automatico reale","",
                 "- Una modifica a un calendario editoriale NON verifica l'apertura della sede.",
                 "- La data di import del record NON è la data di verifica del mercato.",
@@ -426,10 +445,18 @@ def main():
     probes=json.loads(a.probes.read_text("utf-8")) if a.probes.is_file() else None
     prior=json.loads(a.previous.read_text("utf-8")) if a.previous and a.previous.is_file() else None
     report=analyze(old,sources,probes=probes,previous=prior,today=a.today)
+    formats=source_format_report(old,json.loads(DEFAULT_LEDGER.read_text("utf-8")),today=a.today)
+    # Existing workflow already publishes this JSON/Markdown pair to DEV.
+    # Keep per-format progress there; detailed evidence joins its existing
+    # output artifact, without changing workflows, schedules or network work.
+    report["source_format_review"]=source_format_status(formats)
     validate(report,sources)
     for p in (a.out,a.report):p.parent.mkdir(parents=True,exist_ok=True)
     a.out.write_text(json.dumps(report,sort_keys=True,indent=2,ensure_ascii=False)+"\n","utf-8")
     a.report.write_text(markdown(report),"utf-8")
+    (a.out.parent/"source-format-audit.json").write_text(
+        json.dumps(formats,indent=2,ensure_ascii=False)+"\n","utf-8")
+    (a.out.parent/"SOURCE_FORMAT_CHECKLIST.md").write_text(source_format_checklist(formats),"utf-8")
     print(json.dumps({
         "sources_in_catalog":report["catalog_source_labels_count"],
         "official_candidates":report["official_candidate_dataset_count"],

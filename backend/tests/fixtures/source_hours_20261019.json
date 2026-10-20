@@ -1,0 +1,2863 @@
+{
+  "schema": 1,
+  "purpose": "Offline regression of source text loss. Public-source objects and minimal pre-fix catalog fields; no new live read or event confirmation.",
+  "source_snapshots": {
+    "bologna-generic-query": {
+      "name": "bologna-generic-query",
+      "format_expected": "Opendatasoft JSON configured subset",
+      "requested_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+      "started_at_utc": "2026-10-19T22:38:50.776332+00:00",
+      "read_scope": "One bounded complete-body read of already referenced resource; no catalog changes",
+      "status": 200,
+      "final_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "31925",
+        "Date": "Mon, 19 Oct 2026 22:38:51 GMT"
+      },
+      "result": "retrieved",
+      "bytes": 31925,
+      "sha256_wire": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
+      "file": "/tmp/mercati-source-format-review-20261020/official/raw/bologna-generic-query.json",
+      "completed_at_utc": "2026-10-19T22:38:51.721355+00:00"
+    },
+    "bologna-metadata": {
+      "name": "bologna-metadata",
+      "format_expected": "JSON metadata",
+      "requested_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
+      "started_at_utc": "2026-10-19T22:36:56.676252+00:00",
+      "read_scope": "One bounded complete-body read of already referenced resource; no catalog changes",
+      "status": 200,
+      "final_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "8716",
+        "Date": "Mon, 19 Oct 2026 22:36:56 GMT"
+      },
+      "result": "retrieved",
+      "bytes": 8716,
+      "sha256_wire": "46298b228c3d5d39c8925bc104b81e331e7fde1962c4f4193ff16f2ee7138e68",
+      "file": "/tmp/mercati-source-format-review-20261020/official/raw/bologna-metadata.json",
+      "completed_at_utc": "2026-10-19T22:36:56.877571+00:00"
+    },
+    "firenze-geojson": {
+      "name": "firenze-geojson",
+      "format_expected": "GeoJSON",
+      "requested_url": "https://datigis.comune.fi.it/resources/open-data/mercati/feelflorence_mercati.geojson",
+      "started_at_utc": "2026-10-19T22:38:50.123823+00:00",
+      "read_scope": "One bounded complete-body read of already referenced resource; no catalog changes",
+      "status": 200,
+      "final_url": "https://datigis.comune.fi.it/resources/open-data/mercati/feelflorence_mercati.geojson",
+      "headers": {
+        "Content-Type": "application/geo+json",
+        "Content-Length": "6674",
+        "Last-Modified": "Tue, 01 Sep 2026 11:24:56 GMT",
+        "ETag": "\"1a12-65a6a2b1ca163\"",
+        "Date": "Mon, 19 Oct 2026 22:38:50 GMT"
+      },
+      "result": "retrieved",
+      "bytes": 6674,
+      "sha256_wire": "a37afe2e8bbb6ad43ec30d9b02cb5132c852b25f8a828a207bb1be52d625c257",
+      "file": "/tmp/mercati-source-format-review-20261020/official/raw/firenze-geojson.json",
+      "completed_at_utc": "2026-10-19T22:38:51.356991+00:00"
+    }
+  },
+  "bologna_original_query": {
+    "nhits": 79,
+    "parameters": {
+      "dataset": "mercati-e-fiere",
+      "q": "tipologia_mercato:rionale OR tipologia_mercato:periodico OR tipologia:\"mercato produttori agricoli\"",
+      "rows": 100,
+      "start": 0,
+      "format": "json",
+      "timezone": "UTC",
+      "fields": [
+        "denominazione",
+        "ubicazione",
+        "tipologia",
+        "tipologia_mercato",
+        "giorni_svolgimento",
+        "orario_svolgimento"
+      ]
+    },
+    "records": [
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "8c9f872aa350c4745a1c1ae39ef9668842e092dc",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "Estivo: 15:30-21:30 Invernale: 15:00-21:00",
+          "ubicazione": "Via Piave (angolo via Asiago)",
+          "giorni_svolgimento": "Lunedì",
+          "denominazione": "VIA PIAVE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "6c9c0c26143a7d8f1cc982cf1c593491f720a16d",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "Estivo: 18:00-21:00 Invernale: 16:00-19:30",
+          "ubicazione": "via Pieve di Cadore",
+          "giorni_svolgimento": "Venerdì",
+          "denominazione": "VIA PIEVE DI CADORE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "538c3dda8b7a754e82b2d1ba76cb865d099f030f",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "08:30-13:30",
+          "ubicazione": "via Grandi angolo via Giovanni XXIII",
+          "giorni_svolgimento": "Venerdì",
+          "denominazione": "VIA GRANDI ANGOLO VIA GIOVANNI XXIII"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "3a150cf453dc8050ee37edfbf006699118c15901",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "14:30-20:30",
+          "ubicazione": "piazza Testoni-piazza Don Gavinelli",
+          "giorni_svolgimento": "Martedì",
+          "denominazione": "PIAZZA TESTONI-PIAZZA DON GAVINELLI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "66394d0a7ad3a4c491648b63e1530039b3d357b7",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "13:00-19:00",
+          "ubicazione": "via San Giuseppe",
+          "giorni_svolgimento": "Giovedì",
+          "denominazione": "VIA SAN GIUSEPPE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "a53fddcb0077ff341aaeb3dbd393cfca0509e4bf",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "08:00-13:30",
+          "ubicazione": "piazza della Pace (trasferimento temporaneo da via Felice Battaglia)",
+          "giorni_svolgimento": "Mercoledì",
+          "denominazione": "PIAZZA DELLA PACE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "83de3d1a11f8f9531806fefaff64eb237e58ea8d",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "Estivo: 18:00-22:00 Invernale: 15:30-21:30",
+          "ubicazione": "via Paolo Fabbri",
+          "giorni_svolgimento": "Martedì",
+          "denominazione": "VIA PAOLO FABBRI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "d6845cd4d9cde664e4929864e791dea0c2957e75",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "09:00-13:30",
+          "ubicazione": "piazza Carducci",
+          "giorni_svolgimento": "Domenica",
+          "denominazione": "PIAZZA CARDUCCI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "1cf592e9467cb490c75272ea9a067dc7b00fd938",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "08:30-13:30",
+          "ubicazione": "via Garavaglia-piazza Spadolini",
+          "giorni_svolgimento": "Martedì",
+          "denominazione": "VIA GARAVAGLIA-PIAZZA SPADOLINI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "cf7fea67feb1f732decc825de2dd5e905b8a7184",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "Estivo: 16:30-20:30 Invernale: 17:00-19:30",
+          "ubicazione": "via Tolmino 7",
+          "giorni_svolgimento": "Lunedì",
+          "denominazione": "VIA TOLMINO 7"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "e81575cb363da1160a7f04540a6d036627eb233a",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "08:30-13:30",
+          "ubicazione": "piazza Aldrovandi",
+          "giorni_svolgimento": "Domenica",
+          "denominazione": "PIAZZA ALDROVANDI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "d82a772f39a1fa565dbfd659a6aef1b64a61b6d6",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "08:00-12:30",
+          "ubicazione": "via Morazzo presso villa Bernaroli",
+          "giorni_svolgimento": "Sabato",
+          "denominazione": "VIA MORAZZO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "19653f31ebf2e04bca9be221cac14f987b14d6e8",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "08:30-13:00",
+          "ubicazione": "via Bentini angolo via Sant’Anna",
+          "giorni_svolgimento": "Giovedì",
+          "denominazione": "VIA BENTINI ANGOLO VIA SANT’ANNA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "48964642314ad23dddd6a4b89d128ea9777fa5f2",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "07:30-14:00",
+          "ubicazione": "piazza San Rocco-via del Pratello",
+          "giorni_svolgimento": "Sabato",
+          "denominazione": "PIAZZA SAN ROCCO-VIA DEL PRATELLO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "Estivo: 18:00-21:00 Invernale: 17:30-20:30",
+          "ubicazione": "via Zamboni",
+          "giorni_svolgimento": "Lunedì",
+          "denominazione": "VIA ZAMBONI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "3f3a4de111659a982cfc95930efcde2e3ecbadf2",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "08:00-13:30",
+          "ubicazione": "largo Cardinal Lercaro",
+          "giorni_svolgimento": "sabato",
+          "denominazione": "LARGO CARDINAL LERCARO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "f4924871e3e6f3cf18348f793b56ff39ef1147a4",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "09:30-13:30",
+          "ubicazione": "via Azzo Gardino piazzale della Cineteca",
+          "giorni_svolgimento": "sabato",
+          "denominazione": "VIA AZZO GARDINO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "0ed2ef3503873cbd9fef285e4228285b159fd15f",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "14:30-18:30",
+          "ubicazione": "via Segantini",
+          "giorni_svolgimento": "Mercoledì",
+          "denominazione": "VIA SEGANTINI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "f6302dbade6cb2000a4a7fc38a5a8518cdfaa147",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "07:30-13:30",
+          "ubicazione": "via Cristoforo Colombo",
+          "giorni_svolgimento": "sabato",
+          "denominazione": "VIA CRISTOFORO COLOMBO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "70522f9011788d8b4f6c70e9a1f965e3243788db",
+        "fields": {
+          "tipologia": "mercato produttori agricoli",
+          "orario_svolgimento": "Estivo: 18:00-21:00 Invernale: 16:00-21:30",
+          "ubicazione": "piazza Lucio Dalla (ex via Gobetti)",
+          "giorni_svolgimento": "Giovedì",
+          "denominazione": "VIA GOBETTI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "adc29dc00756e4dbb9355c4fa3695dce146a7fc8",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "via Sigonio",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "VIA SIGONIO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "9a6d3429f04736789dcf5b3d1f77e7a49de11780",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "via Vittorio Veneto",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "VIA VITTORIO VENETO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "17afa4a1b31405dc911429ed57f2949a95dd3637",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "piazza Aldrovandi",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "PIAZZA ALDROVANDI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "via Francesco Albani",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "ALBANI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "via Murri",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "CHIESA NUOVA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "44f2aa20256822de1b92f74992e8f370eb37c25f",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "via Toscana",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "VIA TOSCANA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "3f34d4c24bd3987141bfd575e364c0543f75e9e1",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "via Mazzoni",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "MAZZONI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "ec5364668636ba5e21b8995ae00fddc0a34e8ff1",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "piazza di Porta San Mamolo",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "PIAZZA DI PORTA SAN MAMOLO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "8c433a5be53cbd1a50d478966ce112b8c2d46895",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "07:30-19:30",
+          "ubicazione": "via Sante Vincenzi",
+          "tipologia_mercato": "rionale",
+          "giorni_svolgimento": "Lunedì-sabato",
+          "denominazione": "CIRENAICA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "a113cae523a449bc08cd15be91dd4a2346791fda",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "via Beolco-via Andreini-via Cuccoli",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Giovedì",
+          "denominazione": "GANDOLFI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "ba62248f71f676bfef73404a785b71f06bc0b443",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "via del Lavoro",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Mercoledì",
+          "denominazione": "VIA DEL LAVORO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "5acefea09a32c8271b69d2aba5aeece7e0d8deef",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza 31",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "25f7162ce9dca51b8173a32f28046a6c08a852bb",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "piazza Lambrakis",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Martedì",
+          "denominazione": "PIAZZA LAMBRAKIS"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "88a82e7e02d583c7448f1a58de9177a84e0665e7",
+        "fields": {
+          "tipologia": "fiera",
+          "ubicazione": "via Altabella",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "4 ottobre",
+          "denominazione": "FIERA DI SAN PETRONIO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "Invernale 08:00-17:00 estivo 08:00-18:00",
+          "ubicazione": "piazza Giovanni XXIII",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Ogni seconda Domenica del mese",
+          "denominazione": "DEL TRENO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "97633715f6389ea774184ae4d0914085f26e8844",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:30-19:30",
+          "ubicazione": "Piazza XX Settembre (area pedonalizzata)",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Edizione primaverile: dal 18 marzo al 1 maggio Edizione autunnale: dal 12 ottobre al 25 novembre",
+          "denominazione": "FIERA DEL LIBRO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "3408414d572217fd69f0d5179a955bb4de99d542",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "via Normandia",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Martedì",
+          "denominazione": "VIA NORMANDIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "11c6297f0f44c35bcb32e91d3d2fb192099ecf0a",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "09:30-20:00",
+          "ubicazione": "Strada Maggiore (portico monumentale della Chiesa dei Servi)",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "dal 17 novembre al 26 dicembre, ad eccezione del posteggio specializzato nella vendita di piante e fiori che svolge l’attività fino al 1 gennaio",
+          "denominazione": "FIERA DI SANTA LUCIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "9f85cad646a628da3614d764451dfc055a2a03ad",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "via Normandia",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Giovedì",
+          "denominazione": "VIA NORMANDIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "72098282e3d67cf0fbcf6d60b79112ca3ff101af",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza 2",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "2-6 gennaio – se l’Epifania cade di venerdì o sabato viene prolungata fino alla domenica",
+          "denominazione": "FIERA DELL'EPIFANIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "0a3fa521675beb26c1c1a5664ae3d3f77fe6e688",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza 53",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "4af1f3bc02e4a67f1fafc05fb050d18402615982",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:30-20:00",
+          "ubicazione": "via Indipendenza angolo via Goito",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "dal sabato precedente la domenica delle Palme al Lunedì di Pasqua",
+          "denominazione": "FIERA DI PASQUA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "5d2880043ef1aa05f65ecaedbf42c115ea074bc0",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "piazza Maggiore angolo piazza Nettuno",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "676c0691d642384e07ba5c77399f112550bcf690",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza angolo via Montegrappa",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "2-6 gennaio – se l’Epifania cade di venerdì o sabato viene prolungata fino alla domenica",
+          "denominazione": "FIERA DELL'EPIFANIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "9fa03c011de3879a41c9dbfde86b1e73f3e0f1da",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "09:30-20:00",
+          "ubicazione": "via Altabella",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Settimana precedente l'Ascensione, da due sabati precedenti alla domenica dell'Ascensione",
+          "denominazione": "FIERA DI SAN LUCA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "01d7b0fdebcd854a40f0ed39a218e396ce28ad91",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "via Caduti di Casteldebole",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Domenica",
+          "denominazione": "VIA CADUTI DI CASTELDEBOLE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "d191b741c1edcec1db7343d32b96964e4d77ef85",
+        "fields": {
+          "tipologia": "fiera",
+          "ubicazione": "via Guinizelli",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "13 giugno",
+          "denominazione": "FIERA DI S. ANTONIO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "39be7fd2a669d2d65d416bfa8f54b357a51b6bf3",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "piazza Nettuno (fronte Agenzia viaggi)",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "5c9edd43d9ee0d6293707a7fb3540f211dde3608",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza angolo via Irnerio",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "76b3b4a53bb82d937b41200ba08c2a4c2f9a3d22",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-17:00",
+          "ubicazione": "piazza VIII Agosto",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Venerdì",
+          "denominazione": "LA PIAZZOLA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "048b17c0e7e3392bc0053688e02cd0437174429d",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza 4",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "81bf9a3844861f45a2bd5522613024273a1a9df9",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:30-20:00",
+          "ubicazione": "via Rizzoli 5/B",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "dal sabato precedente la domenica delle Palme al Lunedì di Pasqua",
+          "denominazione": "FIERA DI PASQUA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "714698170282b1519f85550252a5766bbf1e7972",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:30-20:00",
+          "ubicazione": "via Indipendenza 31",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "dal sabato precedente la domenica delle Palme al Lunedì di Pasqua",
+          "denominazione": "FIERA DI PASQUA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "via London-via Bentini",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Lunedì",
+          "denominazione": "LONDON-BENTINI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "5f75026bdbb44965603dfadd682eabc320bad408",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "piazza Maggiore (lato palazzo del Podestà)",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "2d3fc77071d4457285ebbb4a86cb6154b8375a12",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Rizzoli 5/B",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "2-6 gennaio – se l’Epifania cade di venerdì o sabato viene prolungata fino alla domenica",
+          "denominazione": "FIERA DELL'EPIFANIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "eae8241215c113f95f156eef05ddaf2228f19afb",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "09:30-20:00",
+          "ubicazione": "via Altabella",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "dal penultimo venerdì di Novembre al 6 Gennaio",
+          "denominazione": "FIERA DI NATALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "e6ff2bf3a239b2440d66eaf0c646041dbe45e251",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza angolo via Goito",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "418bc4fab526dfb293eaa88d97334c86f06aecbc",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "Invernale 08:30-17:00 estivo 08:30-18:00",
+          "ubicazione": "via Matteotti",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Primo martedì di ogni mese ad esclusione di luglio e agosto. Terzo martedì di ogni mese ad esclusione di gennaio, febbraio, luglio, agosto",
+          "denominazione": "MERCATO DELL’ANTIQUARIATO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "1c2df0e0ea899f85c4ff912a926dce875aceceed",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "09:00-17:00",
+          "ubicazione": "piazza Puntoni",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Martedì da marzo a giugno e da settembre a dicembre",
+          "denominazione": "VINTAGE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "6c4a16eaa703b4b575542523384702949027505e",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-17:00",
+          "ubicazione": "piazza VIII Agosto",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Sabato",
+          "denominazione": "LA PIAZZOLA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "5fa275de187fc908efdff84c06961f591e030977",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:30-19:00",
+          "ubicazione": "voltone del Podestà",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "12-24 dicembre",
+          "denominazione": "FIERA DELL'ANTIQUARIATO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "0cb93f0429f38a69e79dd7ab368c5bdd4186bb9f",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza angolo via Montegrappa",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "8ae1d6ac1b5715b84d19528f8d9c9b4452392ea2",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "Via Zamboni, Piazza Rossini e P.zza Verdi",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "22 maggio",
+          "denominazione": "FIERA DI SANTA RITA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "88cd29cbaaa8a299ccc7c902605b9821d21752f9",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Ugo Bassi",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "2-6 gennaio – se l’Epifania cade di venerdì o sabato viene prolungata fino alla domenica",
+          "denominazione": "FIERA DELL'EPIFANIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "aa32c50e2f8945f731ef7ad240ba8a8d4c71022a",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza 31",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "2-6 gennaio – se l’Epifania cade di venerdì o sabato viene prolungata fino alla domenica",
+          "denominazione": "FIERA DELL'EPIFANIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "afa53d48d55336bb0c130bd9bb3db8336e4cf0d8",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "piazza della Pace",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Sabato",
+          "denominazione": "PIAZZA DELLA PACE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "6f22f7ac59618577b8aaf7963b24a0789d5e0527",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "piazza Maggiore (Orologio)",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "41164d9b9a275411efa3408a0273c59fa6bd4506",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:30-20:00",
+          "ubicazione": "via Indipendenza angolo via Montegrappa",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "dal sabato precedente la domenica delle Palme al Lunedì di Pasqua",
+          "denominazione": "FIERA DI PASQUA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "c6d931c90cc98a72d5c3ac55f821ffa50341ebec",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza 17",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "e8da80b38f8547e6171a08f57d2a15dfb63ecc82",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "via Milani-via Marco Emilio Lepido",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Mercoledì",
+          "denominazione": "VIA MANUZIO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "70472450ee8d71167730139b73638b824b822c40",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "Invernale 08:30-18:00 estivo 08:30-19:00",
+          "ubicazione": "piazza Santo Stefano",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Seconda domenica e sabato antecedente di ogni mese escluso luglio ed agosto",
+          "denominazione": "MERCATO ANTIQUARIO CITTÀ DI BOLOGNA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "cd8e5bd4add01c0d857b767830e542e6f90d7ae0",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "Largo Cardinale Lercaro",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Mercoledì",
+          "denominazione": "LARGO CARDINALE LERCARO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "38f090b93f3970e1a6c1ba682b8b79016c936298",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "piazza Nettuno (fronte Agenzia viaggi)",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "a5be468ac1579c8d3ac29001f663d455461ea4f0",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza 3",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Febbraio o Marzo (ultima domenica di Carnevale e martedì “grasso”, contestualmente alla sfilata dei carri allegorici)",
+          "denominazione": "FIERA DI CARNEVALE"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "7a40119eff125e0617098394b3c005ac520c2b00",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "piazza Capitini",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Martedì",
+          "denominazione": "PIAZZA CAPITINI"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "f845a0f3b4bfdf83983f8f19ac0d743c47d73029",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "08:00-13:00",
+          "ubicazione": "piazza San Francesco",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Martedì",
+          "denominazione": "PIAZZA SAN FRANCESCO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "476dd8d222899e9ab636844587c2aa99a03580b1",
+        "fields": {
+          "tipologia": "fiera",
+          "orario_svolgimento": "08:00-20:00",
+          "ubicazione": "via Indipendenza angolo via Goito",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "2-6 gennaio – se l’Epifania cade di venerdì o sabato viene prolungata fino alla domenica",
+          "denominazione": "FIERA DELL'EPIFANIA"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      },
+      {
+        "datasetid": "mercati-e-fiere",
+        "recordid": "a1410034a462bb228aff9396f18521a8c87c31d8",
+        "fields": {
+          "tipologia": "mercato",
+          "orario_svolgimento": "Invernale 08:30-17:00 estivo 08:30-18:00",
+          "ubicazione": "piazza VIII Agosto-lato via Indipendenza",
+          "tipologia_mercato": "periodico",
+          "giorni_svolgimento": "Giovedì",
+          "denominazione": "PIAZZA VIII AGOSTO"
+        },
+        "record_timestamp": "2025-04-02T14:32:57.843Z"
+      }
+    ]
+  },
+  "bologna_original_metadata": {
+    "visibility": "domain",
+    "fields": [
+      {
+        "name": "denominazione",
+        "description": "Denominazione mercato",
+        "annotations": {},
+        "label": "denominazione",
+        "type": "text",
+        "label_it": "denominazione",
+        "label_en": "denominazione",
+        "description_it": "Denominazione mercato",
+        "description_en": "Denominazione mercato"
+      },
+      {
+        "name": "tipologia",
+        "description": "mercato o fiera",
+        "annotations": {
+          "facet": true,
+          "facetsort": "-alphanum",
+          "disjunctive": true
+        },
+        "label": "tipologia",
+        "type": "text",
+        "label_it": "tipologia",
+        "label_en": "tipologia",
+        "description_it": "mercato o fiera",
+        "description_en": "mercato o fiera"
+      },
+      {
+        "name": "tipologia_mercato",
+        "description": null,
+        "annotations": {
+          "facet": true,
+          "facetsort": "alphanum",
+          "disjunctive": true,
+          "sortable": true
+        },
+        "label": "tipologia mercato",
+        "type": "text",
+        "label_it": "tipologia mercato",
+        "label_en": "tipologia mercato",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "ubicazione",
+        "description": null,
+        "annotations": {},
+        "label": "ubicazione",
+        "type": "text",
+        "label_it": "ubicazione",
+        "label_en": "ubicazione",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "specializzazione",
+        "description": null,
+        "annotations": {},
+        "label": "specializzazione",
+        "type": "text",
+        "label_it": "specializzazione",
+        "label_en": "specializzazione",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "numero_posteggi",
+        "description": null,
+        "annotations": {},
+        "label": "numero posteggi",
+        "type": "int",
+        "label_it": "numero posteggi",
+        "label_en": "numero posteggi",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "numero_chioschi_alimentari",
+        "description": null,
+        "annotations": {},
+        "label": "numero chioschi alimentari",
+        "type": "int",
+        "label_it": "numero chioschi alimentari",
+        "label_en": "numero chioschi alimentari",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "numero_chioschi_non_alimentari",
+        "description": null,
+        "annotations": {},
+        "label": "numero chioschi non alimentari",
+        "type": "int",
+        "label_it": "numero chioschi non alimentari",
+        "label_en": "numero chioschi non alimentari",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "numero_chioschi_misti",
+        "description": null,
+        "annotations": {},
+        "label": "numero chioschi misti",
+        "type": "int",
+        "label_it": "numero chioschi misti",
+        "label_en": "numero chioschi misti",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "numero_chioschi_prodotti_agricoli",
+        "description": null,
+        "annotations": {},
+        "label": "numero chioschi prodotti agricoli",
+        "type": "int",
+        "label_it": "numero chioschi prodotti agricoli",
+        "label_en": "numero chioschi prodotti agricoli",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "giorni_svolgimento",
+        "description": null,
+        "annotations": {},
+        "label": "giorni svolgimento",
+        "type": "text",
+        "label_it": "giorni svolgimento",
+        "label_en": "giorni svolgimento",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "orario_svolgimento",
+        "description": null,
+        "annotations": {
+          "facetsort": "-count"
+        },
+        "label": "orario svolgimento",
+        "type": "text",
+        "label_it": "orario svolgimento",
+        "label_en": "orario svolgimento",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "nome_quartiere",
+        "description": null,
+        "annotations": {
+          "facet": true,
+          "facetsort": "alphanum"
+        },
+        "label": "Quartiere",
+        "type": "text",
+        "label_it": "Quartiere",
+        "label_en": "Quartiere",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "nome_zona",
+        "description": null,
+        "annotations": {
+          "facet": true,
+          "facetsort": "alphanum"
+        },
+        "label": "Zona statistica",
+        "type": "text",
+        "label_it": "Zona statistica",
+        "label_en": "Zona statistica",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "area_statistica",
+        "description": null,
+        "annotations": {
+          "facet": true,
+          "facetsort": "alphanum"
+        },
+        "label": "Area statistica",
+        "type": "text",
+        "label_it": "Area statistica",
+        "label_en": "Area statistica",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "codice_area_statistica",
+        "description": null,
+        "annotations": {},
+        "label": "codice area statistica",
+        "type": "int",
+        "label_it": "codice area statistica",
+        "label_en": "codice area statistica",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "codice_quartiere",
+        "description": null,
+        "annotations": {},
+        "label": "codice quartiere",
+        "type": "int",
+        "label_it": "codice quartiere",
+        "label_en": "codice quartiere",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "codice_zona",
+        "description": null,
+        "annotations": {},
+        "label": "codice zona",
+        "type": "text",
+        "label_it": "codice zona",
+        "label_en": "codice zona",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "long",
+        "description": null,
+        "annotations": {},
+        "label": "long",
+        "type": "double",
+        "label_it": "long",
+        "label_en": "long",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "lat",
+        "description": null,
+        "annotations": {},
+        "label": "lat",
+        "type": "double",
+        "label_it": "lat",
+        "label_en": "lat",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "geopoint",
+        "description": null,
+        "annotations": {},
+        "label": "geopoint",
+        "type": "geo_point_2d",
+        "label_it": "geopoint",
+        "label_en": "geopoint",
+        "description_it": null,
+        "description_en": null
+      },
+      {
+        "name": "zona_pross",
+        "description": null,
+        "annotations": {
+          "facet": true,
+          "facetsort": "alphanum"
+        },
+        "label": "zona di prossimità",
+        "type": "text",
+        "label_it": "zona di prossimità",
+        "label_en": "zona di prossimità",
+        "description_it": null,
+        "description_en": null
+      }
+    ],
+    "dataset_id": "mercati-e-fiere",
+    "dataset_uid": "da_kb69lj",
+    "has_records": true,
+    "features": [
+      "analyze",
+      "geo",
+      "custom_view"
+    ],
+    "attachments": [],
+    "alternative_exports": [],
+    "data_visible": true,
+    "metas": {
+      "default": {
+        "title": "Mercati e fiere",
+        "title_it": "Mercati e fiere",
+        "title_en": "Mercati e fiere",
+        "description": "Mercati e fiere del comune di Bologna dal \"PIANO DELLE AREE E DEL NUMERO DEI POSTEGGI PER L’ESERCIZIO DEL COMMERCIO SU AREE PUBBLICHE\". In più sono indicati anche i mercati dei produttori agricoli.",
+        "description_it": "Mercati e fiere del comune di Bologna dal \"PIANO DELLE AREE E DEL NUMERO DEI POSTEGGI PER L’ESERCIZIO DEL COMMERCIO SU AREE PUBBLICHE\". In più sono indicati anche i mercati dei produttori agricoli.",
+        "description_en": "Mercati e fiere del comune di Bologna dal \"PIANO DELLE AREE E DEL NUMERO DEI POSTEGGI PER L’ESERCIZIO DEL COMMERCIO SU AREE PUBBLICHE\". In più sono indicati anche i mercati dei produttori agricoli.",
+        "theme": [
+          "Regioni e città"
+        ],
+        "theme_it": [
+          "Regioni e città"
+        ],
+        "theme_en": [
+          "Regioni e città"
+        ],
+        "keyword": [
+          "Imprese",
+          "Città in 15 minuti",
+          "piano dei quartieri"
+        ],
+        "keyword_it": [
+          "Imprese",
+          "Città in 15 minuti",
+          "piano dei quartieri"
+        ],
+        "keyword_en": [
+          "Imprese",
+          "Città in 15 minuti",
+          "piano dei quartieri"
+        ],
+        "license": "CC BY 4.0",
+        "license_it": "CC BY 4.0",
+        "license_en": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_url_it": "https://creativecommons.org/licenses/by/4.0/",
+        "license_url_en": "https://creativecommons.org/licenses/by/4.0/",
+        "language": "it",
+        "modified": "2025-12-31T12:31:56+00:00",
+        "publisher": null,
+        "publisher_it": null,
+        "publisher_en": null,
+        "references": null,
+        "attributions": null,
+        "update_frequency": null,
+        "bbox": {
+          "type": "Feature",
+          "geometry": {
+            "coordinates": [
+              [
+                [
+                  11.41390467993915,
+                  44.54828674905002
+                ],
+                [
+                  11.253814017400146,
+                  44.54828674905002
+                ],
+                [
+                  11.253814017400146,
+                  44.456746433861554
+                ],
+                [
+                  11.41390467993915,
+                  44.456746433861554
+                ],
+                [
+                  11.41390467993915,
+                  44.54828674905002
+                ]
+              ]
+            ],
+            "type": "Polygon"
+          },
+          "properties": {}
+        },
+        "data_processed": "2025-04-02T14:33:42.872000+00:00",
+        "federated": false,
+        "geographic_reference": [
+          "it_80_037006"
+        ],
+        "geographic_reference_auto": true,
+        "geometry_types": [
+          "Point"
+        ],
+        "metadata_languages": [
+          "it"
+        ],
+        "metadata_processed": "2026-09-30T06:40:50.062000+00:00",
+        "modified_updates_on_data_change": false,
+        "modified_updates_on_metadata_change": false,
+        "parent_domain": null,
+        "records_count": 249,
+        "shared_catalog": null,
+        "source_dataset": null,
+        "source_domain": null,
+        "source_domain_address": null,
+        "source_domain_title": null,
+        "territory": [
+          "Bologna"
+        ],
+        "timezone": "Europe/Rome"
+      },
+      "dcat": {
+        "accessRights": null,
+        "accrualperiodicity": "http://publications.europa.eu/resource/authority/frequency/IRREG",
+        "conforms_to": null,
+        "contact_email": "opendata@comune.bologna.it",
+        "contact_name": "Ufficio Dati e Open Data",
+        "contributor": null,
+        "created": null,
+        "creator": null,
+        "dataquality": null,
+        "granularity": null,
+        "issued": null,
+        "publisher_type": null,
+        "relation": null,
+        "spatial": null,
+        "temporal": null,
+        "temporal_coverage_end": null,
+        "temporal_coverage_start": null
+      },
+      "dcat_ap_it": {
+        "publisher_id": null
+      },
+      "semantic": {
+        "classes": null,
+        "properties": null,
+        "rml_mapping": null
+      }
+    }
+  },
+  "firenze_original_geojson": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            11.2530437,
+            43.776523915216
+          ]
+        },
+        "properties": {
+          "nome": "Mercato di San Lorenzo o mercato centrale",
+          "descrizione": "Il Mercato di San Lorenzo - anche noto come Mercato Centrale (nell'omonima piazza a due passi dalla celebre Basilica) - è molto frequentato anche dai turisti in cerca di esperienze enogastronomiche.\nAl piano terra sono raccolti i venditori di frutta, verdura, carne, pesce, pane: è possibile anche degustare sul luogo.\nAl primo piano invece il Mercato Centrale riunisce botteghe di delikatessen e ristoranti a diversa vocazione, in uno spazio aperto tutto il giorno e fino alle 24.\n",
+          "indirizzo": "Piazza del Mercato Centrale, Via dell'Ariento, 50123 Firenze FI, Italia",
+          "email": "info@storicomercatocentrale.it\ninfo@mercatocentrale.it",
+          "telefono": "+39 055 2399798",
+          "link": "http://www.storicomercatocentrale.it/\nhttps://www.mercatocentrale.it/firenze/",
+          "feelflorence_link": "https://www.feelflorence.it/it/punti-di-interesse/mercato-di-san-lorenzo-o-mercato-centrale",
+          "orari": "Piano Terralunedì - venerdì dalle 09:00 alle 15:00sabato dalle 09:00 alle 17:00Chiuso: domenica e festiviPrimo Pianolunedì - domenica dalle 08:00 alle 00:00 Chiuso: 25 dicembre"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            11.268055425795,
+            43.770639496768
+          ]
+        },
+        "properties": {
+          "nome": "Mercato delle Pulci",
+          "descrizione": "Il mercato delle Pulci (del piccolo antiquariato) è un must per gli amanti del genere. Nella nuova struttura nel quartiere di Sant'Ambrogio (proprio di fronte al mercato) si apre una galleria di stand, dove è piacevole perdersi per rivivere l'atmosfera del passato.\n\n\n\nStand di modernariato, libri usati, dischi in vinile, arredamento, oggettistica vintage... e tanto altro ancora! La nuova sede sostituisce quella storica, che si trovava in Piazza de' Ciompi.\n\n",
+          "indirizzo": "Piazza Pietro Annigoni, 50122 Firenze FI, Italia",
+          "email": null,
+          "telefono": null,
+          "link": null,
+          "feelflorence_link": "https://www.feelflorence.it/it/punti-di-interesse/mercato-delle-pulci",
+          "orari": "lunedì  - domenica   dalle 09:00  alle 19:30 Chiuso: 25, 26 dicembre e 1 gennaio"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            11.2542113,
+            43.769906215213
+          ]
+        },
+        "properties": {
+          "nome": "Mercato del Porcellino",
+          "descrizione": "Tre sono i nomi con i quali è noto questo luogo: Loggia del Porcellino (dal celebre animale bronzeo – in realtà un cinghiale – copia dell’originale seicentesco del Tacca al Museo Stefano Bardini), Loggia del Mercato Nuovo (per distinguerlo da quello vecchio, che si trovava nell’attuale piazza della Repubblica) e Mercato della Paglia (a partiredall’Ottocento vi si vendevano i tradizionali cappelli di paglia fiorentini). La struttura architettonica, opera di Giovan Battista Del Tasso (1550), è decorata nelle nicchie angolari da tre sculture ottocentesche che rappresentano illustri uomini della storia fiorentina: Michele di Lando, protagonista del celebre Tumulto dei Ciompi (i lavoratori “minori” della lana) del 1378;  Giovanni Villani, noto storiografo fiorentino del Trecento; Bernardo Cennini, pioniere della tipografia fiorentina.\n\nOltre che a luogo dedicato a funzioni militari fu sede, in origine, del mercato della seta e di altre stoffe preziose. Sul pavimento, al centro della loggia, si trova la cosiddetta Pietra dello scandalo,  dove venivano puniti debitori e commercianti insolventi. \n\nOggi ospita un mercato turistico (uno dei più visitati Mercati di Firenze) con vendita, perlopiù, di articoli di pelletteria e souvenir.\n\n",
+          "indirizzo": "Piazza del Mercato Nuovo, Firenze FI, Italia",
+          "email": null,
+          "telefono": null,
+          "link": "https://www.mercatodelporcellino.it/",
+          "feelflorence_link": "https://www.feelflorence.it/it/punti-di-interesse/mercato-del-porcellino",
+          "orari": "lunedì  - domenica   dalle 09:00  alle 18:30 Chiuso: 25,26 dicembre e 1 gennaio."
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            11.25282205,
+            43.776368365216
+          ]
+        },
+        "properties": {
+          "nome": "Mercatino di San Lorenzo",
+          "descrizione": "Nel cuore di Firenze, un mercato all'aperto con abbigliamento, accessori di pelle, souvenir. Molto amato dai turisti, si sviluppa fra via dell'Ariento e le strade adiacenti al grande parallelepipedo del Mercato Centrale. \n\n",
+          "indirizzo": "Via dell'Ariento, 50123 Firenze FI, Italia",
+          "email": null,
+          "telefono": null,
+          "link": null,
+          "feelflorence_link": "https://www.feelflorence.it/it/punti-di-interesse/mercatino-di-san-lorenzo",
+          "orari": "martedì  - domenica   dalle 09:00  alle 18:30 Chiuso: 01-02-2025  - 31-03-2025 lunedì \n                                                                        ,\n                                        07-04-2025 \n                                                                                    ,\n                                        05-05-2025 \n                                                                                    ,\n                                        19-05-2025 \n                                                                                    ,\n                                        16-06-2025 \n                                                                                    ,\n                                        07-07-2025 \n                                                                                    ,\n                                        21-07-2025 \n                                                                                    ,\n                                        01-08-2025  - 31-08-2025 lunedì \n                                                                        ,\n                                        01-09-2025 \n                                                                                    ,\n                                        15-09-2025 \n                                                                                    ,\n                                        06-10-2025 \n                                                                                    ,\n                                        20-10-2025 \n                                                                                    ,\n                                        01-11-2025  - 30-11-2025 lunedì \n                                                                        ,\n                                        01-12-2025 "
+        }
+      }
+    ],
+    "totalFeatures": 4,
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    }
+  },
+  "baseline_fields_captured_from_commit": "bd9889f",
+  "baseline_bologna39_and_two_overlap_guards": [
+    {
+      "slug": "mercati-settimanali-a-bologna-bologna",
+      "nome": "Mercati Settimanali A Bologna",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via della Pace",
+      "orario_testo": "07:30–13:30",
+      "ricorrenza_testo": "Appuntamenti Fissi Settimanali",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2026-02-11T04:26:54.730652",
+      "lat": 44.635397,
+      "lng": 11.185553,
+      "position_quality": "non_verificata",
+      "url_fonte": "https://www.eventiesagre.it/Mercatini_Vari/21182859_Mercati+Settimanali+A+Bologna.html",
+      "fonte": "eventiesagre.it",
+      "categoria": "misto",
+      "tags": [
+        "all'aperto",
+        "settimanale"
+      ],
+      "confidence": 70
+    },
+    {
+      "slug": "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
+      "nome": "Mercato Albani",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Francesco Albani",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-70472450ee8d71167730139b73638b824b822c40",
+      "nome": "Mercato Antiquario Città Di Bologna",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Santo Stefano",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
+      "nome": "Mercato Chiesa Nuova",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Murri",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
+      "nome": "Mercato Cirenaica",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Sante Vincenzi",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
+      "nome": "Mercato Del Treno",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Giovanni Xxiii",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
+      "nome": "Mercato Gandolfi",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Beolco-Via Andreini-Via Cuccoli",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2",
+      "nome": "Mercato Largo Cardinal Lercaro",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Largo Cardinal Lercaro",
+      "orario_testo": "08:00–13:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0",
+      "nome": "Mercato Largo Cardinale Lercaro",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Largo Cardinale Lercaro",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e",
+      "nome": "Mercato London-Bentini",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via London-Via Bentini",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1",
+      "nome": "Mercato Mazzoni",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Mazzoni",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-7a40119eff125e0617098394b3c005ac520c2b00",
+      "nome": "Mercato Piazza Capitini",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Capitini",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75",
+      "nome": "Mercato Piazza Carducci",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Carducci",
+      "orario_testo": "09:00–13:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1",
+      "nome": "Mercato Piazza Di Porta San Mamolo",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Di Porta San Mamolo",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
+      "nome": "Mercato Piazza Lambrakis",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Lambrakis",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029",
+      "nome": "Mercato Piazza San Francesco",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza San Francesco",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2",
+      "nome": "Mercato Piazza San Rocco-Via Del Pratello",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza San Rocco-Via Del Pratello",
+      "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-3a150cf453dc8050ee37edfbf006699118c15901",
+      "nome": "Mercato Piazza Testoni-Piazza Don Gavinelli",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Testoni-Piazza Don Gavinelli",
+      "orario_testo": "14:30–20:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8",
+      "nome": "Mercato Piazza Viii Agosto",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Viii Agosto-Lato Via Indipendenza",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4",
+      "nome": "Mercato Via Azzo Gardino",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Azzo Gardino Piazzale Della Cineteca",
+      "orario_testo": "09:30–13:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8",
+      "nome": "Mercato Via Bentini Angolo Via Sant’Anna",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Bentini Angolo Via Sant’Anna",
+      "orario_testo": "08:30–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91",
+      "nome": "Mercato Via Caduti Di Casteldebole",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Caduti Di Casteldebole",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147",
+      "nome": "Mercato Via Cristoforo Colombo",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Cristoforo Colombo",
+      "orario_testo": "07:30–13:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443",
+      "nome": "Mercato Via Del Lavoro",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Del Lavoro",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938",
+      "nome": "Mercato Via Garavaglia-Piazza Spadolini",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Garavaglia-Piazza Spadolini",
+      "orario_testo": "08:30–13:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
+      "nome": "Mercato Via Gobetti",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Lucio Dalla (Ex Via Gobetti)",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f",
+      "nome": "Mercato Via Grandi Angolo Via Giovanni Xxiii",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Grandi Angolo Via Giovanni Xxiii",
+      "orario_testo": "08:30–13:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82",
+      "nome": "Mercato Via Manuzio",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Milani-Via Marco Emilio Lepido",
+      "orario_testo": "08:00–13:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6",
+      "nome": "Mercato Via Morazzo",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Morazzo Presso Villa Bernaroli",
+      "orario_testo": "08:00–12:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d",
+      "nome": "Mercato Via Paolo Fabbri",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Paolo Fabbri",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc",
+      "nome": "Mercato Via Piave",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Piave (Angolo Via Asiago)",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d",
+      "nome": "Mercato Via Pieve Di Cadore",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Pieve Di Cadore",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7",
+      "nome": "Mercato Via San Giuseppe",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via San Giuseppe",
+      "orario_testo": "13:00–19:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f",
+      "nome": "Mercato Via Segantini",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Segantini",
+      "orario_testo": "14:30–18:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8",
+      "nome": "Mercato Via Sigonio",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Sigonio",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184",
+      "nome": "Mercato Via Tolmino 7",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Tolmino 7",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f",
+      "nome": "Mercato Via Toscana",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Toscana",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780",
+      "nome": "Mercato Via Vittorio Veneto",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Vittorio Veneto",
+      "orario_testo": "07:30–19:30 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794",
+      "nome": "Mercato Via Zamboni",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Zamboni",
+      "orario_testo": "",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "alimentare",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed",
+      "nome": "Mercato Vintage",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Piazza Puntoni",
+      "orario_testo": "09:00–17:00 (da verificare con il Comune)",
+      "ricorrenza_testo": "Calendario da verificare",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2025-04-02",
+      "aggiornamento_ambito": "dataset",
+      "lat": null,
+      "lng": null,
+      "position_quality": "sconosciuta",
+      "url_fonte": "https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/",
+      "fonte": "Comune di Bologna — dati ufficiali; apertura non confermata",
+      "navigazione_sospesa_motivo": "indirizzo_e_punto_sorgente_non_riconciliati",
+      "categoria": "misto",
+      "tags": [
+        "mercato comunale"
+      ],
+      "confidence": 0
+    },
+    {
+      "slug": "re-pop-mercato-di-abbigliamento-a-bologna-bologna",
+      "nome": "Re Pop Mercato Di Abbigliamento a Bologna",
+      "citta": "Bologna",
+      "provincia": "BO",
+      "regione": "Emilia-Romagna",
+      "indirizzo": "Via Matteotti",
+      "orario_testo": "",
+      "ricorrenza_testo": "",
+      "date": [],
+      "date_quality": "sconosciuta",
+      "status": "non_confermato",
+      "verificato_il": "",
+      "aggiornato_il": "2026-06-05T10:48:46.161914",
+      "lat": 44.49,
+      "lng": 11.34,
+      "position_quality": "non_verificata",
+      "url_fonte": "https://www.eventiesagre.it/Mercatini_Usato/21152131_Re+Pop+Mercato+Di+Abbigliamento.html",
+      "fonte": "eventiesagre.it",
+      "categoria": "usato",
+      "tags": [],
+      "confidence": 60
+    }
+  ],
+  "expected_nine_seasonal_hours": {
+    "bo-open-70472450ee8d71167730139b73638b824b822c40": "Invernale 08:30-18:00 estivo 08:30-19:00",
+    "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb": "Invernale 08:00-17:00 estivo 08:00-18:00",
+    "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8": "Invernale 08:30-17:00 estivo 08:30-18:00",
+    "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db": "Estivo: 18:00-21:00 Invernale: 16:00-21:30",
+    "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d": "Estivo: 18:00-22:00 Invernale: 15:30-21:30",
+    "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc": "Estivo: 15:30-21:30 Invernale: 15:00-21:00",
+    "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d": "Estivo: 18:00-21:00 Invernale: 16:00-19:30",
+    "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184": "Estivo: 16:30-20:30 Invernale: 17:00-19:30",
+    "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794": "Estivo: 18:00-21:00 Invernale: 17:30-20:30"
+  },
+  "date_proof_replay_note": "CI constructs a date-binding proof from the saved metadata twice. This is an offline test, not evidence of two live metadata reads around a new acquisition.",
+  "baseline_firenze4": [
+    {
+      "aggiornato_il": "2023-03-03",
+      "categoria": "misto",
+      "citta": "Firenze",
+      "completezza": 80,
+      "confidence": 0,
+      "date": [],
+      "date_quality": "sconosciuta",
+      "descrizione": "Nel cuore di Firenze, un mercato all'aperto con abbigliamento, accessori di pelle, souvenir. Molto amato dai turisti, si sviluppa fra via dell'Ariento e le strade adiacenti al grande parallelepipedo del Mercato Centrale.",
+      "fonte": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+      "fonti": [
+        {
+          "nome": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+          "url": "https://www.feelflorence.it/it/punti-di-interesse/mercatino-di-san-lorenzo"
+        }
+      ],
+      "indirizzo": "Via dell'Ariento, 50123 Firenze FI, Italia",
+      "lat": 43.776368,
+      "lng": 11.252822,
+      "nome": "Mercatino di San Lorenzo",
+      "orario_testo": "martedì  - domenica   dalle 09:00  alle 18:30 Chiuso: 01-02-2025  - 31-03-2025 lunedì \n                                                                        ,",
+      "position_quality": "precisa",
+      "proiezione_fonte": "",
+      "proiezione_generata_il": "",
+      "proiezione_regola": null,
+      "provincia": "FI",
+      "regione": "Toscana",
+      "ricorrenza_testo": "Consulta il sito ufficiale per aperture e variazioni",
+      "slug": "fi-feelflorence-4",
+      "status": "non_confermato",
+      "tags": [
+        "mercato storico"
+      ],
+      "url_fonte": "https://www.feelflorence.it/it/punti-di-interesse/mercatino-di-san-lorenzo",
+      "verificato_il": ""
+    },
+    {
+      "aggiornato_il": "2023-03-03",
+      "categoria": "misto",
+      "citta": "Firenze",
+      "completezza": 80,
+      "confidence": 0,
+      "date": [],
+      "date_quality": "sconosciuta",
+      "descrizione": "Tre sono i nomi con i quali è noto questo luogo: Loggia del Porcellino (dal celebre animale bronzeo – in realtà un cinghiale – copia dell’originale seicentesco del Tacca al Museo Stefano Bardini), Loggia del Mercato Nuovo (per distinguerlo da quello vecchio, che si trovava nell’attuale piazza della Repubblica) e Mercato della Paglia (a partiredall’Ottocento vi si vendevano i tradizionali cappelli di paglia fiorentini). La struttura architettonica, opera di Giovan Battista Del Tasso (1550), è decorata nelle nicchie angolari da tre sculture ottocentesche che rappresentano illustri uomini della storia fiorentina: Michele di Lando, protagonista del celebre Tumulto dei Ciompi (i lavoratori “minori” della lana) del 1378;  Giovanni Villani, noto storiografo fiorentino del Trecento; Bernardo Cennini, pioniere della tipografia fiorentina.\n\nOltre che a luogo dedicato a funzioni militari fu sede, i",
+      "fonte": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+      "fonti": [
+        {
+          "nome": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+          "url": "https://www.feelflorence.it/it/punti-di-interesse/mercato-del-porcellino"
+        }
+      ],
+      "indirizzo": "Piazza del Mercato Nuovo, Firenze FI, Italia",
+      "lat": 43.769906,
+      "lng": 11.254211,
+      "nome": "Mercato del Porcellino",
+      "orario_testo": "lunedì  - domenica   dalle 09:00  alle 18:30 Chiuso: 25,26 dicembre e 1 gennaio.",
+      "position_quality": "precisa",
+      "proiezione_fonte": "",
+      "proiezione_generata_il": "",
+      "proiezione_regola": null,
+      "provincia": "FI",
+      "regione": "Toscana",
+      "ricorrenza_testo": "Consulta il sito ufficiale per aperture e variazioni",
+      "slug": "fi-feelflorence-3",
+      "status": "non_confermato",
+      "tags": [
+        "mercato storico"
+      ],
+      "url_fonte": "https://www.feelflorence.it/it/punti-di-interesse/mercato-del-porcellino",
+      "verificato_il": ""
+    },
+    {
+      "aggiornato_il": "2023-03-03",
+      "categoria": "usato",
+      "citta": "Firenze",
+      "completezza": 80,
+      "confidence": 0,
+      "date": [],
+      "date_quality": "sconosciuta",
+      "descrizione": "Il mercato delle Pulci (del piccolo antiquariato) è un must per gli amanti del genere. Nella nuova struttura nel quartiere di Sant'Ambrogio (proprio di fronte al mercato) si apre una galleria di stand, dove è piacevole perdersi per rivivere l'atmosfera del passato.\n\n\n\nStand di modernariato, libri usati, dischi in vinile, arredamento, oggettistica vintage... e tanto altro ancora! La nuova sede sostituisce quella storica, che si trovava in Piazza de' Ciompi.",
+      "fonte": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+      "fonti": [
+        {
+          "nome": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+          "url": "https://www.feelflorence.it/it/punti-di-interesse/mercato-delle-pulci"
+        }
+      ],
+      "indirizzo": "Piazza Pietro Annigoni, 50122 Firenze FI, Italia",
+      "lat": 43.770639,
+      "lng": 11.268055,
+      "nome": "Mercato delle Pulci",
+      "orario_testo": "lunedì  - domenica   dalle 09:00  alle 19:30 Chiuso: 25, 26 dicembre e 1 gennaio",
+      "position_quality": "precisa",
+      "proiezione_fonte": "",
+      "proiezione_generata_il": "",
+      "proiezione_regola": null,
+      "provincia": "FI",
+      "regione": "Toscana",
+      "ricorrenza_testo": "Consulta il sito ufficiale per aperture e variazioni",
+      "slug": "fi-feelflorence-2",
+      "status": "non_confermato",
+      "tags": [
+        "mercato storico"
+      ],
+      "url_fonte": "https://www.feelflorence.it/it/punti-di-interesse/mercato-delle-pulci",
+      "verificato_il": ""
+    },
+    {
+      "aggiornato_il": "2023-03-03",
+      "categoria": "alimentare",
+      "citta": "Firenze",
+      "completezza": 80,
+      "confidence": 0,
+      "date": [],
+      "date_quality": "sconosciuta",
+      "descrizione": "Il Mercato di San Lorenzo - anche noto come Mercato Centrale (nell'omonima piazza a due passi dalla celebre Basilica) - è molto frequentato anche dai turisti in cerca di esperienze enogastronomiche.\nAl piano terra sono raccolti i venditori di frutta, verdura, carne, pesce, pane: è possibile anche degustare sul luogo.\nAl primo piano invece il Mercato Centrale riunisce botteghe di delikatessen e ristoranti a diversa vocazione, in uno spazio aperto tutto il giorno e fino alle 24.",
+      "fonte": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+      "fonti": [
+        {
+          "nome": "Comune di Firenze - FeelFlorence (CC BY 4.0)",
+          "url": "https://www.feelflorence.it/it/punti-di-interesse/mercato-di-san-lorenzo-o-mercato-centrale"
+        }
+      ],
+      "indirizzo": "Piazza del Mercato Centrale, Via dell'Ariento, 50123 Firenze FI, Italia",
+      "lat": 43.776524,
+      "lng": 11.253044,
+      "nome": "Mercato di San Lorenzo o mercato centrale",
+      "orario_testo": "Piano Terralunedì - venerdì dalle 09:00 alle 15:00sabato dalle 09:00 alle 17:00Chiuso: domenica e festiviPrimo Pianolunedì - domenica dalle 08:00 alle 00:00 Chiuso: 25 dicembre",
+      "position_quality": "precisa",
+      "proiezione_fonte": "",
+      "proiezione_generata_il": "",
+      "proiezione_regola": null,
+      "provincia": "FI",
+      "regione": "Toscana",
+      "ricorrenza_testo": "Consulta il sito ufficiale per aperture e variazioni",
+      "slug": "fi-feelflorence-1",
+      "status": "non_confermato",
+      "tags": [
+        "mercato storico"
+      ],
+      "url_fonte": "https://www.feelflorence.it/it/punti-di-interesse/mercato-di-san-lorenzo-o-mercato-centrale",
+      "verificato_il": ""
+    }
+  ]
+}

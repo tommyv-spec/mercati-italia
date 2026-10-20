@@ -1,0 +1,1807 @@
+{
+  "schema": 1,
+  "audit_id": "happings-source-formats-20261020",
+  "report_created_at_utc": "2026-10-19T22:47:28.515202+00:00",
+  "actual_sample_utc_date": "2026-10-19",
+  "audit_label_caveat": "The task/branch is labelled 20261020; acquisitions retain their real UTC timestamps on 2026-10-19.",
+  "repository_base": "bd9889fb49c0b0a6bfa5f948cdd6c99659150661",
+  "code_sha256": {
+    "backend/happings_weekly_layout.py": "9cb3c14483849b77c45cbad60693fbf06295f784339f72c05ecc4b1e788189eb",
+    "backend/happings_source_enrichment.py": "050739dfb08231aaf1b4a83b97fc739618d04209e5f61600203ce41f4f48ea1f",
+    "backend/publisher_template_monitor.py": "d9ad0f5e1dda34a4169c87619a11fdbbe7d923dcf5099d9f737a75dd6ca73b5f",
+    "backend/source_format_audit.py": "7d6cfe81cdda8d3a49561a85760658874567d875d0c6d0b8a6246313f23489d7"
+  },
+  "catalog_manifest_sha256": "cfa988a9a3c35daaa8c028a7958a7e8f95925716554285be543d9263cebc4591",
+  "catalog_records": 13824,
+  "happings_records": 9647,
+  "happings_unique_primary_urls": 3329,
+  "all_Happings_URL_fields_checked": [
+    "url_fonte",
+    "fonti[].url"
+  ],
+  "additional_Happings_URL_families_elsewhere_in_catalog": 0,
+  "primary_formats": [
+    {
+      "family": "province_legacy_a_html",
+      "records": 4487,
+      "urls": 85,
+      "missing_address": 2616,
+      "missing_hours": 4438,
+      "missing_coordinates": 2,
+      "position_quality": {
+        "non_verificata": 4485,
+        "sconosciuta": 2
+      },
+      "empty_dates": 268,
+      "empty_recurrence": 0,
+      "date_quality": {
+        "prevista": 4219,
+        "sconosciuta": 268
+      },
+      "routes": 3883,
+      "format_id": "happings.com--04b85587f84c",
+      "host": "happings.com",
+      "url_pattern": "/it/mercati-settimanali-a-{provincia}.html",
+      "url_kind": "happings_province_legacy_a",
+      "classification_basis": "URL_shape_not_DOM_verification",
+      "scope": "primary_catalog_URLs",
+      "exhaustive_catalog_inventory": true
+    },
+    {
+      "family": "province_legacy_ad_html",
+      "records": 414,
+      "urls": 10,
+      "missing_address": 236,
+      "missing_hours": 414,
+      "missing_coordinates": 0,
+      "position_quality": {
+        "non_verificata": 414
+      },
+      "empty_dates": 37,
+      "empty_recurrence": 0,
+      "date_quality": {
+        "sconosciuta": 37,
+        "prevista": 377
+      },
+      "routes": 332,
+      "format_id": "happings.com--3d81fd9e0a91",
+      "host": "happings.com",
+      "url_pattern": "/it/mercati-settimanali-ad-{provincia}.html",
+      "url_kind": "happings_province_legacy_ad",
+      "classification_basis": "URL_shape_not_DOM_verification",
+      "scope": "primary_catalog_URLs",
+      "exhaustive_catalog_inventory": true
+    },
+    {
+      "family": "town_legacy_html",
+      "records": 4746,
+      "urls": 3234,
+      "missing_address": 16,
+      "missing_hours": 4631,
+      "missing_coordinates": 1,
+      "position_quality": {
+        "non_verificata": 4745,
+        "sconosciuta": 1
+      },
+      "empty_dates": 0,
+      "empty_recurrence": 0,
+      "date_quality": {
+        "prevista": 4746
+      },
+      "routes": 3978,
+      "format_id": "happings.com--7b87b2b2b5db",
+      "host": "happings.com",
+      "url_pattern": "/it/{scheda-comunale}.html",
+      "url_kind": "happings_town_legacy",
+      "classification_basis": "URL_shape_not_DOM_verification",
+      "scope": "primary_catalog_URLs",
+      "exhaustive_catalog_inventory": true
+    }
+  ],
+  "auxiliary_observed_formats": [
+    {
+      "format_id": "happings.com--311686cb6f8d",
+      "host": "happings.com",
+      "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+      "url_kind": "happings_province_current",
+      "classification_basis": "URL_shape_not_DOM_verification",
+      "scope": "current_HTML_format_observed_not_a_saved_primary_URL",
+      "primary_catalog_records": 0,
+      "primary_catalog_urls": 0
+    },
+    {
+      "format_id": "happings.com--795abb069b70",
+      "host": "happings.com",
+      "url_pattern": "/it/happing/{slug}/",
+      "url_kind": "happings_event_detail_current",
+      "classification_basis": "URL_shape_not_DOM_verification",
+      "scope": "current_HTML_format_observed_not_a_saved_primary_URL",
+      "primary_catalog_records": 0,
+      "primary_catalog_urls": 0
+    }
+  ],
+  "overlapping_town_URL_variants": {
+    "repeated_hyphens": {
+      "records": 128,
+      "unique_urls": 97,
+      "mutually_exclusive": false
+    },
+    "numeric_suffix": {
+      "records": 112,
+      "unique_urls": 95,
+      "mutually_exclusive": false
+    },
+    "seasonal_qualifier": {
+      "records": 5,
+      "unique_urls": 3,
+      "mutually_exclusive": false
+    },
+    "interval_qualifier": {
+      "records": 2,
+      "unique_urls": 1,
+      "mutually_exclusive": false
+    }
+  },
+  "sampling_summary": {
+    "original_HTML_samples": 7,
+    "robots_samples": 1,
+    "HTTP_404_reported_samples": 1,
+    "Happings_reads_were_serial": true,
+    "previous_day_samples_relabelled_as_new": 0,
+    "transport_limit": "Local urllib attempts failed during DNS before receiving HTTP; successful connector reads do not expose transport headers/final URLs."
+  },
+  "operational_current_scope": {
+    "routed_primary_records": 8193,
+    "unrouted_primary_records": 1454,
+    "operational_event_detail_reader": false,
+    "event_detail_template_monitor_only": true
+  },
+  "samples": [
+    {
+      "sample_id": "event-detail-lana",
+      "original_url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+      "original_format": {
+        "format_id": "happings.com--795abb069b70",
+        "host": "happings.com",
+        "url_pattern": "/it/happing/{slug}/",
+        "url_kind": "happings_event_detail_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 0,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": null,
+        "completed_at_utc": null,
+        "recorded_at_utc": "2026-10-19 22:34:48 UTC",
+        "time_caveat": "The synchronous connector returned no response timestamp; recorded_at is when the acquired response was recorded.",
+        "http_status": null,
+        "http_status_basis": "not_exposed_by_connector",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "5ba96a9364c3db4e29fea0f4f4603011205df3e658716f79bc8a9746ed9f3e0b",
+        "hash_basis": "UTF-8 encoding of the original HTML string returned by the connector; not raw HTTP bytes",
+        "bytes": 160622
+      },
+      "canonical_url_in_HTML": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+      "canonical_format": {
+        "format_id": "happings.com--795abb069b70",
+        "host": "happings.com",
+        "url_pattern": "/it/happing/{slug}/",
+        "url_kind": "happings_event_detail_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "state": "original_HTML_acquired",
+      "publisher_page_dates": [
+        {
+          "property": "JSON-LD WebPage.datePublished",
+          "content": "2026-10-02T10:31:36+00:00"
+        }
+      ],
+      "current_parser": {
+        "requested_url": {
+          "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "error": "Source URL is outside the reviewed Happings provincial layout"
+        },
+        "canonical_url": {
+          "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/",
+          "error": "Source URL is outside the reviewed Happings provincial layout"
+        }
+      },
+      "publisher_date_scope": "page_publication_or_modification_not_verification_of_each_market_or_edition",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Mercato del venerdì mattina a Lana"
+        },
+        {
+          "tag": "h2",
+          "text": "Tutte le date"
+        },
+        {
+          "tag": "h2",
+          "text": "Informazioni utili"
+        },
+        {
+          "tag": "h2",
+          "text": "Potrebbero interessarti anche"
+        },
+        {
+          "tag": "h3",
+          "text": "Agrimercato di Mariano Comense"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercato Campagna Amica di Concorezzo"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercato di Campagna Amica di Busto Garolfo"
+        },
+        {
+          "tag": "h3",
+          "text": "Informazioni evento"
+        }
+      ],
+      "structure": {
+        "content": ".happings-event-content",
+        "performances": ".happings-event-performances ul > li",
+        "sidebar": ".happings-event-info-list .happings-event-info-item",
+        "structured_event": "script[type=application/ld+json] Event with matching self URL",
+        "related_events": ".happings-related-events must remain excluded from the current event identity"
+      },
+      "fields": {
+        "address": {
+          "state": "present_precise_street",
+          "detail": "Visible event information and Event.location.address.streetAddress."
+        },
+        "clock_hours": {
+          "state": "present_with_exception",
+          "detail": "Ordinary 07:30–12:30; the explicitly described 24 December edition ends at 13:00. The next Event JSON-LD describes only 23 October."
+        },
+        "date_list": {
+          "state": "present_explicit",
+          "detail": "Ten listed dates, 23 October through 24 December 2026; nine Fridays and the exceptional Thursday 24 December."
+        },
+        "recurrence": {
+          "state": "present_bounded",
+          "detail": "Description states Friday morning and an end boundary; the useful-information paragraph states 2 October–24 December 2026. This is not an unbounded weekly rule."
+        },
+        "exceptions": {
+          "state": "present_explicit",
+          "detail": "24 December is an extraordinary Thursday edition with a different closing time."
+        },
+        "gps": {
+          "state": "present_source_asserted",
+          "detail": "Event.location.geo and map embed provide the same pair. Source precision and correspondence to a catalog identity still need validation."
+        },
+        "organizer": {
+          "state": "present_name_and_internal_profile",
+          "detail": "Visible organizer name and /it/organizer/comune-di-lana/ profile link. No claim that the internal profile is an independent official source."
+        }
+      },
+      "structured_event_summary": {
+        "startDate": "2026-10-23T07:30:00+02:00",
+        "endDate": "2026-10-23T12:30:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Lorenzer, 39011 Lana",
+          "addressLocality": "Lana",
+          "addressRegion": "Trentino-Alto Adige",
+          "addressCountry": "IT"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.617000579834,
+          "longitude": 11.149200439453
+        }
+      },
+      "template_monitor": {
+        "template_id": "happings-event-detail",
+        "publisher": "happings.com",
+        "source_format": "event_detail_calendar",
+        "observed_markers": [
+          "detail_calendar_heading",
+          "detail_information_heading",
+          "market_h1_seen",
+          "single_market_h1"
+        ],
+        "missing_required_markers": [],
+        "document_structure_counts": {
+          "h1": 1,
+          "weekday_group_headings": 0,
+          "weekly_list_entries_not_individual_verified_markets": 0,
+          "calendar_list_entries_not_confirmed": 10,
+          "editorial_suspensions_warning_present": false
+        },
+        "page_sha256_for_change_alert_only": "5ba96a9364c3db4e29fea0f4f4603011205df3e658716f79bc8a9746ed9f3e0b",
+        "layout_valid_for_template_comparison": true,
+        "publisher_text_persisted": false,
+        "individual_markets_verified": 0,
+        "importable_market_rows": 0
+      },
+      "catalog_candidate_comparison": {
+        "identity_status": "candidate_only_not_independently_joined",
+        "candidate_slug": "mercato-settimanale-di-lana-lana-venerdi",
+        "missing_fields": [
+          "clock_hours",
+          "explicit_edition_list",
+          "bounded_calendar_and_exception",
+          "organizer",
+          "source_asserted_GPS_provenance"
+        ],
+        "location_difference_requires_review": "Catalog uses a legacy Lorenzerhof venue phrase; detail uses Parco Lorenzer plus a street. These are not exact street matches.",
+        "saved_forecast_examples_not_in_bounded_source_list": [
+          "2026-12-25",
+          "2027-01-01"
+        ],
+        "source_exception_missing_from_weekly_forecast": "2026-12-24",
+        "warning": "This shows a format and calendar-scope gap; it does not authorize overwriting a particular market on town/title similarity."
+      },
+      "gap_status": "fields_present_but_no_operational_detail_reader"
+    },
+    {
+      "sample_id": "province-a-milano",
+      "original_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
+      "original_format": {
+        "format_id": "happings.com--04b85587f84c",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-a-{provincia}.html",
+        "url_kind": "happings_province_legacy_a",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 246,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": "2026-10-19T22:34:51.189862+00:00",
+        "completed_at_utc": "2026-10-19T22:34:55.035315+00:00",
+        "recorded_at_utc": "2026-10-19T22:35:53.614Z",
+        "time_caveat": null,
+        "http_status": null,
+        "http_status_basis": "not_exposed_by_connector",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "6705b3eaed3523c3f1aaffac4ef30ff630f794743861ccaff7c6fa10bd1b80aa",
+        "hash_basis": "UTF-8 encoding of the original HTML string returned by the connector; not raw HTTP bytes",
+        "bytes": 171117
+      },
+      "canonical_url_in_HTML": "https://www.happings.com/it/mercati-settimanali-a-milano-e-provincia/",
+      "canonical_format": {
+        "format_id": "happings.com--311686cb6f8d",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+        "url_kind": "happings_province_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "state": "original_HTML_acquired",
+      "publisher_page_dates": [
+        {
+          "property": "article:published_time",
+          "content": "2025-10-24T09:08:09+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2025-10-24T09:34:06+00:00"
+        },
+        {
+          "property": "JSON-LD Article.datePublished",
+          "content": "2025-10-24T09:08:09+00:00"
+        },
+        {
+          "property": "JSON-LD Article.dateModified",
+          "content": "2025-10-24T09:34:06+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.datePublished",
+          "content": "2025-10-24T09:08:09+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.dateModified",
+          "content": "2025-10-24T09:34:06+00:00"
+        }
+      ],
+      "current_parser": {
+        "requested_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
+          "province_page_key": "milano",
+          "rows": 369,
+          "daypart_rows": 369,
+          "specific_location_rows": 326,
+          "weekday_headings": [
+            2,
+            5,
+            6,
+            0,
+            1,
+            3,
+            4
+          ]
+        },
+        "canonical_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-a-milano-e-provincia/",
+          "province_page_key": "milano",
+          "rows": 369,
+          "daypart_rows": 369,
+          "specific_location_rows": 326,
+          "weekday_headings": [
+            2,
+            5,
+            6,
+            0,
+            1,
+            3,
+            4
+          ]
+        }
+      },
+      "publisher_date_scope": "page_publication_or_modification_not_verification_of_each_market_or_edition",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Mercati settimanali a Milano e provincia"
+        },
+        {
+          "tag": "h2",
+          "text": "Mercati settimanali nei comuni in provincia di Milano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del mercoledì nei comuni di Milano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del sabato nei comuni di Milano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati della domenica nei comuni di Milano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del lunedì nei comuni di Milano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del martedì nei comuni di Milano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del giovedì nei comuni di Milano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del venerdì nei comuni di Milano"
+        },
+        {
+          "tag": "h2",
+          "text": "Esplora altri mercati"
+        }
+      ],
+      "structure": {
+        "content": ".happings-seo-content",
+        "weekday_headers": "h3",
+        "market_rows": "ul > li",
+        "source_rows": 369,
+        "specific_location_rows": 326,
+        "daypart_rows": 369
+      },
+      "fields": {
+        "address": {
+          "state": "present_specific_and_or_vague",
+          "detail": "326 of 369 rows have a location accepted as specific by the current parser; others remain vague or qualified."
+        },
+        "clock_hours": {
+          "state": "absent_in_sample",
+          "detail": "The examined market rows give dayparts; no exact clock interval was observed."
+        },
+        "date_list": {
+          "state": "absent_in_sample",
+          "detail": "Weekday groups are recurrence assertions; publisher page dates do not enumerate editions."
+        },
+        "recurrence": {
+          "state": "present_weekday_groups",
+          "detail": "The parser reads weekday + city + venue, preserving multiple venue rows."
+        },
+        "exceptions": {
+          "state": "not_observed_in_sample",
+          "detail": "No explicit exception was observed in this sample; this is not proof that all editions have no exceptions."
+        },
+        "gps": {
+          "state": "absent_in_sample",
+          "detail": "No market-specific coordinates were observed in the page content or event-scoped data."
+        },
+        "organizer": {
+          "state": "absent_in_sample",
+          "detail": "Site publisher/author metadata is not the organizer of each listed market."
+        }
+      },
+      "current_parser_fields": [
+        "city",
+        "city_key",
+        "weekday",
+        "place",
+        "location_indicated",
+        "daypart",
+        "has_specific_location"
+      ],
+      "current_operational_field_scope": [
+        "eligible_blank_address_or_managed_address",
+        "matching_recurrence_receipt_without_source_date"
+      ],
+      "same_provincial_origin_comparison": {
+        "more_than_one_source_venue_on_city_day": 18,
+        "no_matching_city_day_on_page": 16,
+        "publisher_dayparts_not_exact_hours": 212,
+        "same_publisher_page_catalog_rows": 246,
+        "saved_market_missing_source_location": 132,
+        "source_and_saved_market_street_agree": 69,
+        "source_and_saved_market_street_disagree_review_only": 4,
+        "source_only_has_vague_place": 7,
+        "unique_city_day_source_item": 212
+      },
+      "comparison_caveat": "The existing diagnostic compares matching original provincial source URLs only; town-linked identities are represented separately. Diagnostic source-location gaps are not counts of safe updates.",
+      "gap_status": "existing_index_reader_with_source_and_routing_limits"
+    },
+    {
+      "sample_id": "province-ad-avellino",
+      "original_url": "https://www.happings.com/it/mercati-settimanali-ad-avellino.html",
+      "original_format": {
+        "format_id": "happings.com--3d81fd9e0a91",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-ad-{provincia}.html",
+        "url_kind": "happings_province_legacy_ad",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 77,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": "2026-10-19T22:32:48.767461+00:00",
+        "completed_at_utc": "2026-10-19T22:32:52.622758+00:00",
+        "recorded_at_utc": null,
+        "time_caveat": null,
+        "http_status": null,
+        "http_status_basis": "not_exposed_by_connector",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "52113c376b20c8ff0450c98a0f870331eba8087372114bbe5d140e8ad4e324e5",
+        "hash_basis": "UTF-8 encoding of the original HTML string returned by the connector; not raw HTTP bytes",
+        "bytes": 156349
+      },
+      "canonical_url_in_HTML": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+      "canonical_format": {
+        "format_id": "happings.com--311686cb6f8d",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+        "url_kind": "happings_province_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "state": "original_HTML_acquired",
+      "publisher_page_dates": [
+        {
+          "property": "article:published_time",
+          "content": "2025-10-24T09:07:44+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2025-10-24T09:32:45+00:00"
+        },
+        {
+          "property": "JSON-LD Article.datePublished",
+          "content": "2025-10-24T09:07:44+00:00"
+        },
+        {
+          "property": "JSON-LD Article.dateModified",
+          "content": "2025-10-24T09:32:45+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.datePublished",
+          "content": "2025-10-24T09:07:44+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.dateModified",
+          "content": "2025-10-24T09:32:45+00:00"
+        }
+      ],
+      "current_parser": {
+        "requested_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-ad-avellino.html",
+          "province_page_key": "avellino",
+          "rows": 110,
+          "daypart_rows": 110,
+          "specific_location_rows": 0,
+          "weekday_headings": [
+            2,
+            5,
+            6,
+            0,
+            1,
+            3,
+            4
+          ]
+        },
+        "canonical_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+          "province_page_key": "avellino",
+          "rows": 110,
+          "daypart_rows": 110,
+          "specific_location_rows": 0,
+          "weekday_headings": [
+            2,
+            5,
+            6,
+            0,
+            1,
+            3,
+            4
+          ]
+        }
+      },
+      "publisher_date_scope": "page_publication_or_modification_not_verification_of_each_market_or_edition",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Mercati settimanali a Avellino e provincia"
+        },
+        {
+          "tag": "h2",
+          "text": "Mercati settimanali nei comuni in provincia di Avellino"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del mercoledì nei comuni di Avellino"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del sabato nei comuni di Avellino"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati della domenica nei comuni di Avellino"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del lunedì nei comuni di Avellino"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del martedì nei comuni di Avellino"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del giovedì nei comuni di Avellino"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del venerdì nei comuni di Avellino"
+        },
+        {
+          "tag": "h2",
+          "text": "Esplora altri mercati"
+        }
+      ],
+      "structure": {
+        "content": ".happings-seo-content",
+        "weekday_headers": "h3",
+        "market_rows": "ul > li",
+        "source_rows": 110,
+        "specific_location_rows": 0,
+        "daypart_rows": 110
+      },
+      "fields": {
+        "address": {
+          "state": "present_specific_and_or_vague",
+          "detail": "0 of 110 rows have a location accepted as specific by the current parser; others remain vague or qualified."
+        },
+        "clock_hours": {
+          "state": "absent_in_sample",
+          "detail": "The examined market rows give dayparts; no exact clock interval was observed."
+        },
+        "date_list": {
+          "state": "absent_in_sample",
+          "detail": "Weekday groups are recurrence assertions; publisher page dates do not enumerate editions."
+        },
+        "recurrence": {
+          "state": "present_weekday_groups",
+          "detail": "The parser reads weekday + city + venue, preserving multiple venue rows."
+        },
+        "exceptions": {
+          "state": "not_observed_in_sample",
+          "detail": "No explicit exception was observed in this sample; this is not proof that all editions have no exceptions."
+        },
+        "gps": {
+          "state": "absent_in_sample",
+          "detail": "No market-specific coordinates were observed in the page content or event-scoped data."
+        },
+        "organizer": {
+          "state": "absent_in_sample",
+          "detail": "Site publisher/author metadata is not the organizer of each listed market."
+        }
+      },
+      "current_parser_fields": [
+        "city",
+        "city_key",
+        "weekday",
+        "place",
+        "location_indicated",
+        "daypart",
+        "has_specific_location"
+      ],
+      "current_operational_field_scope": [
+        "eligible_blank_address_or_managed_address",
+        "matching_recurrence_receipt_without_source_date"
+      ],
+      "same_provincial_origin_comparison": {
+        "cannot_prove_catalog_weekday": 9,
+        "no_matching_city_day_on_page": 12,
+        "publisher_dayparts_not_exact_hours": 56,
+        "same_publisher_page_catalog_rows": 77,
+        "source_only_has_vague_place": 56,
+        "unique_city_day_source_item": 56
+      },
+      "comparison_caveat": "The existing diagnostic compares matching original provincial source URLs only; town-linked identities are represented separately. Diagnostic source-location gaps are not counts of safe updates.",
+      "gap_status": "existing_index_reader_with_source_and_routing_limits"
+    },
+    {
+      "sample_id": "town-accent-citt-santangelo",
+      "original_url": "https://www.happings.com/it/mercato-settimanale-a-citt---sant-angelo.html",
+      "original_format": {
+        "format_id": "happings.com--7b87b2b2b5db",
+        "host": "happings.com",
+        "url_pattern": "/it/{scheda-comunale}.html",
+        "url_kind": "happings_town_legacy",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 1,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": "2026-10-19T22:39:44.014721+00:00",
+        "completed_at_utc": "2026-10-19T22:39:48.012688+00:00",
+        "recorded_at_utc": "2026-10-19T22:41:12.999Z",
+        "time_caveat": null,
+        "http_status": 404,
+        "http_status_basis": "connector_error_message",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "9026b64d6aa06cb533291ec1991e64cd7bd5a1e12ceeeaf17c1cb57e30bbd059",
+        "hash_basis": "UTF-8 encoding of the connector error message; no source HTML was acquired",
+        "bytes": 51
+      },
+      "canonical_url_in_HTML": null,
+      "canonical_format": null,
+      "state": "source_HTML_unavailable",
+      "publisher_page_dates": [],
+      "current_parser": {},
+      "error": "Error: Failed to fetch URL: HTTP error! Status: 404",
+      "fields": {
+        "address": {
+          "state": "not_observed",
+          "detail": "No source HTML was returned; absence of fields cannot be inferred from a 404 response."
+        },
+        "clock_hours": {
+          "state": "not_observed",
+          "detail": "No source HTML was returned; absence of fields cannot be inferred from a 404 response."
+        },
+        "date_list": {
+          "state": "not_observed",
+          "detail": "No source HTML was returned; absence of fields cannot be inferred from a 404 response."
+        },
+        "recurrence": {
+          "state": "not_observed",
+          "detail": "No source HTML was returned; absence of fields cannot be inferred from a 404 response."
+        },
+        "exceptions": {
+          "state": "not_observed",
+          "detail": "No source HTML was returned; absence of fields cannot be inferred from a 404 response."
+        },
+        "gps": {
+          "state": "not_observed",
+          "detail": "No source HTML was returned; absence of fields cannot be inferred from a 404 response."
+        },
+        "organizer": {
+          "state": "not_observed",
+          "detail": "No source HTML was returned; absence of fields cannot be inferred from a 404 response."
+        }
+      }
+    },
+    {
+      "sample_id": "town-interval-poggiorsini",
+      "original_url": "https://www.happings.com/it/mercato-settimanale-a-poggiorsini--ogni-15gg-.html",
+      "original_format": {
+        "format_id": "happings.com--7b87b2b2b5db",
+        "host": "happings.com",
+        "url_pattern": "/it/{scheda-comunale}.html",
+        "url_kind": "happings_town_legacy",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 2,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": "2026-10-19T22:37:19.546326+00:00",
+        "completed_at_utc": "2026-10-19T22:37:23.63424+00:00",
+        "recorded_at_utc": "2026-10-19T22:38:58.753Z",
+        "time_caveat": null,
+        "http_status": null,
+        "http_status_basis": "not_exposed_by_connector",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "94fb7ce8a36011999e2111b8bed935b2d57485523255e3dd59ed28603aed050c",
+        "hash_basis": "UTF-8 encoding of the original HTML string returned by the connector; not raw HTTP bytes",
+        "bytes": 153014
+      },
+      "canonical_url_in_HTML": "https://www.happings.com/it/mercati-settimanali-a-bari-e-provincia/",
+      "canonical_format": {
+        "format_id": "happings.com--311686cb6f8d",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+        "url_kind": "happings_province_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "state": "original_HTML_acquired",
+      "publisher_page_dates": [
+        {
+          "property": "article:published_time",
+          "content": "2025-10-24T09:08:22+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2025-10-24T09:34:54+00:00"
+        },
+        {
+          "property": "JSON-LD Article.datePublished",
+          "content": "2025-10-24T09:08:22+00:00"
+        },
+        {
+          "property": "JSON-LD Article.dateModified",
+          "content": "2025-10-24T09:34:54+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.datePublished",
+          "content": "2025-10-24T09:08:22+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.dateModified",
+          "content": "2025-10-24T09:34:54+00:00"
+        }
+      ],
+      "current_parser": {
+        "requested_url": {
+          "url": "https://www.happings.com/it/mercato-settimanale-a-poggiorsini--ogni-15gg-.html",
+          "error": "Source URL is outside the reviewed Happings provincial layout"
+        },
+        "canonical_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-a-bari-e-provincia/",
+          "province_page_key": "bari",
+          "rows": 46,
+          "daypart_rows": 46,
+          "specific_location_rows": 0,
+          "weekday_headings": [
+            2,
+            5,
+            0,
+            1,
+            3,
+            4
+          ]
+        }
+      },
+      "publisher_date_scope": "page_publication_or_modification_not_verification_of_each_market_or_edition",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Mercati settimanali a BARI e provincia"
+        },
+        {
+          "tag": "h2",
+          "text": "Mercati settimanali nei comuni in provincia di BARI"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del mercoledì nei comuni di BARI"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del sabato nei comuni di BARI"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del lunedì nei comuni di BARI"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del martedì nei comuni di BARI"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del giovedì nei comuni di BARI"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del venerdì nei comuni di BARI"
+        },
+        {
+          "tag": "h2",
+          "text": "Esplora altri mercati"
+        }
+      ],
+      "structure": {
+        "content": ".happings-seo-content",
+        "weekday_headers": "h3",
+        "market_rows": "ul > li",
+        "source_rows": 46,
+        "specific_location_rows": 0,
+        "daypart_rows": 46
+      },
+      "fields": {
+        "address": {
+          "state": "present_specific_and_or_vague",
+          "detail": "0 of 46 rows have a location accepted as specific by the current parser; others remain vague or qualified."
+        },
+        "clock_hours": {
+          "state": "absent_in_sample",
+          "detail": "The examined market rows give dayparts; no exact clock interval was observed."
+        },
+        "date_list": {
+          "state": "absent_in_sample",
+          "detail": "Weekday groups are recurrence assertions; publisher page dates do not enumerate editions."
+        },
+        "recurrence": {
+          "state": "present_weekday_groups",
+          "detail": "The parser reads weekday + city + venue, preserving multiple venue rows."
+        },
+        "exceptions": {
+          "state": "qualifiers_present_unresolved",
+          "detail": "Raw city labels contain temporal qualifiers which must not be discarded."
+        },
+        "gps": {
+          "state": "absent_in_sample",
+          "detail": "No market-specific coordinates were observed in the page content or event-scoped data."
+        },
+        "organizer": {
+          "state": "absent_in_sample",
+          "detail": "Site publisher/author metadata is not the organizer of each listed market."
+        }
+      },
+      "qualified_source_labels": [
+        "Poggiorsini (ogni 15gg)"
+      ],
+      "current_parser_fields": [
+        "city",
+        "city_key",
+        "weekday",
+        "place",
+        "location_indicated",
+        "daypart",
+        "has_specific_location"
+      ],
+      "current_operational_field_scope": [
+        "eligible_blank_address_or_managed_address",
+        "matching_recurrence_receipt_without_source_date"
+      ],
+      "same_provincial_origin_comparison": {
+        "cannot_prove_catalog_weekday": 2,
+        "no_matching_city_day_on_page": 2,
+        "publisher_dayparts_not_exact_hours": 55,
+        "same_publisher_page_catalog_rows": 59,
+        "source_only_has_vague_place": 55,
+        "unique_city_day_source_item": 55
+      },
+      "comparison_caveat": "The existing diagnostic compares matching original provincial source URLs only; town-linked identities are represented separately. Diagnostic source-location gaps are not counts of safe updates.",
+      "gap_status": "existing_index_reader_with_source_and_routing_limits"
+    },
+    {
+      "sample_id": "town-lana",
+      "original_url": "https://www.happings.com/it/mercato-settimanale-a-lana.html",
+      "original_format": {
+        "format_id": "happings.com--7b87b2b2b5db",
+        "host": "happings.com",
+        "url_pattern": "/it/{scheda-comunale}.html",
+        "url_kind": "happings_town_legacy",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 2,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": "2026-10-19T22:30:10.617355+00:00",
+        "completed_at_utc": "2026-10-19T22:30:14.309439+00:00",
+        "recorded_at_utc": null,
+        "time_caveat": null,
+        "http_status": null,
+        "http_status_basis": "not_exposed_by_connector",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "5cf7bd9871a61fd76a1f00210459997d3777d73d897e9e70a34bdeb114bf8012",
+        "hash_basis": "UTF-8 encoding of the original HTML string returned by the connector; not raw HTTP bytes",
+        "bytes": 154663
+      },
+      "canonical_url_in_HTML": "https://www.happings.com/it/mercati-settimanali-a-bolzano-e-provincia/",
+      "canonical_format": {
+        "format_id": "happings.com--311686cb6f8d",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+        "url_kind": "happings_province_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "state": "original_HTML_acquired",
+      "publisher_page_dates": [
+        {
+          "property": "article:published_time",
+          "content": "2025-10-24T09:08:35+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2025-10-24T09:36:09+00:00"
+        },
+        {
+          "property": "JSON-LD Article.datePublished",
+          "content": "2025-10-24T09:08:35+00:00"
+        },
+        {
+          "property": "JSON-LD Article.dateModified",
+          "content": "2025-10-24T09:36:09+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.datePublished",
+          "content": "2025-10-24T09:08:35+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.dateModified",
+          "content": "2025-10-24T09:36:09+00:00"
+        }
+      ],
+      "current_parser": {
+        "requested_url": {
+          "url": "https://www.happings.com/it/mercato-settimanale-a-lana.html",
+          "error": "Source URL is outside the reviewed Happings provincial layout"
+        },
+        "canonical_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-a-bolzano-e-provincia/",
+          "province_page_key": "bolzano",
+          "rows": 60,
+          "daypart_rows": 60,
+          "specific_location_rows": 38,
+          "weekday_headings": [
+            2,
+            5,
+            0,
+            1,
+            3,
+            4
+          ]
+        }
+      },
+      "publisher_date_scope": "page_publication_or_modification_not_verification_of_each_market_or_edition",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Mercati settimanali a Bolzano e provincia"
+        },
+        {
+          "tag": "h2",
+          "text": "Mercati settimanali nei comuni in provincia di Bolzano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del mercoledì nei comuni di Bolzano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del sabato nei comuni di Bolzano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del lunedì nei comuni di Bolzano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del martedì nei comuni di Bolzano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del giovedì nei comuni di Bolzano"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del venerdì nei comuni di Bolzano"
+        },
+        {
+          "tag": "h2",
+          "text": "Esplora altri mercati"
+        }
+      ],
+      "structure": {
+        "content": ".happings-seo-content",
+        "weekday_headers": "h3",
+        "market_rows": "ul > li",
+        "source_rows": 60,
+        "specific_location_rows": 38,
+        "daypart_rows": 60
+      },
+      "fields": {
+        "address": {
+          "state": "present_specific_and_or_vague",
+          "detail": "38 of 60 rows have a location accepted as specific by the current parser; others remain vague or qualified."
+        },
+        "clock_hours": {
+          "state": "absent_in_sample",
+          "detail": "The examined market rows give dayparts; no exact clock interval was observed."
+        },
+        "date_list": {
+          "state": "absent_in_sample",
+          "detail": "Weekday groups are recurrence assertions; publisher page dates do not enumerate editions."
+        },
+        "recurrence": {
+          "state": "present_weekday_groups",
+          "detail": "The parser reads weekday + city + venue, preserving multiple venue rows."
+        },
+        "exceptions": {
+          "state": "not_observed_in_sample",
+          "detail": "No explicit exception was observed in this sample; this is not proof that all editions have no exceptions."
+        },
+        "gps": {
+          "state": "absent_in_sample",
+          "detail": "No market-specific coordinates were observed in the page content or event-scoped data."
+        },
+        "organizer": {
+          "state": "absent_in_sample",
+          "detail": "Site publisher/author metadata is not the organizer of each listed market."
+        }
+      },
+      "current_parser_fields": [
+        "city",
+        "city_key",
+        "weekday",
+        "place",
+        "location_indicated",
+        "daypart",
+        "has_specific_location"
+      ],
+      "current_operational_field_scope": [
+        "eligible_blank_address_or_managed_address",
+        "matching_recurrence_receipt_without_source_date"
+      ],
+      "same_provincial_origin_comparison": {
+        "cannot_prove_catalog_weekday": 3,
+        "more_than_one_source_venue_on_city_day": 2,
+        "publisher_dayparts_not_exact_hours": 7,
+        "same_publisher_page_catalog_rows": 12,
+        "saved_market_missing_source_location": 3,
+        "source_and_saved_market_street_agree": 2,
+        "source_only_has_vague_place": 2,
+        "unique_city_day_source_item": 7
+      },
+      "comparison_caveat": "The existing diagnostic compares matching original provincial source URLs only; town-linked identities are represented separately. Diagnostic source-location gaps are not counts of safe updates.",
+      "gap_status": "existing_index_reader_with_source_and_routing_limits"
+    },
+    {
+      "sample_id": "town-seasonal-riolo",
+      "original_url": "https://www.happings.com/it/mercato-settimanale-a-riolo-terme--estivo-.html",
+      "original_format": {
+        "format_id": "happings.com--7b87b2b2b5db",
+        "host": "happings.com",
+        "url_pattern": "/it/{scheda-comunale}.html",
+        "url_kind": "happings_town_legacy",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 2,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": "2026-10-19T22:36:35.055084+00:00",
+        "completed_at_utc": "2026-10-19T22:36:38.906006+00:00",
+        "recorded_at_utc": "2026-10-19T22:37:18.192Z",
+        "time_caveat": null,
+        "http_status": null,
+        "http_status_basis": "not_exposed_by_connector",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "3eb4fe0fb501c86ff5d01c1a085809b7d07c6f1d4c2ceccd5741e8bb2686ada1",
+        "hash_basis": "UTF-8 encoding of the original HTML string returned by the connector; not raw HTTP bytes",
+        "bytes": 153407
+      },
+      "canonical_url_in_HTML": "https://www.happings.com/it/mercati-settimanali-a-ravenna-e-provincia/",
+      "canonical_format": {
+        "format_id": "happings.com--311686cb6f8d",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+        "url_kind": "happings_province_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "state": "original_HTML_acquired",
+      "publisher_page_dates": [
+        {
+          "property": "article:published_time",
+          "content": "2025-10-24T09:07:57+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2025-10-24T09:33:10+00:00"
+        },
+        {
+          "property": "JSON-LD Article.datePublished",
+          "content": "2025-10-24T09:07:57+00:00"
+        },
+        {
+          "property": "JSON-LD Article.dateModified",
+          "content": "2025-10-24T09:33:10+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.datePublished",
+          "content": "2025-10-24T09:07:57+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.dateModified",
+          "content": "2025-10-24T09:33:10+00:00"
+        }
+      ],
+      "current_parser": {
+        "requested_url": {
+          "url": "https://www.happings.com/it/mercato-settimanale-a-riolo-terme--estivo-.html",
+          "error": "Source URL is outside the reviewed Happings provincial layout"
+        },
+        "canonical_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-a-ravenna-e-provincia/",
+          "province_page_key": "ravenna",
+          "rows": 42,
+          "daypart_rows": 42,
+          "specific_location_rows": 5,
+          "weekday_headings": [
+            2,
+            5,
+            6,
+            0,
+            1,
+            3,
+            4
+          ]
+        }
+      },
+      "publisher_date_scope": "page_publication_or_modification_not_verification_of_each_market_or_edition",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Mercati settimanali a Ravenna e provincia"
+        },
+        {
+          "tag": "h2",
+          "text": "Mercati settimanali nei comuni in provincia di Ravenna"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del mercoledì nei comuni di Ravenna"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del sabato nei comuni di Ravenna"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati della domenica nei comuni di Ravenna"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del lunedì nei comuni di Ravenna"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del martedì nei comuni di Ravenna"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del giovedì nei comuni di Ravenna"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del venerdì nei comuni di Ravenna"
+        },
+        {
+          "tag": "h2",
+          "text": "Esplora altri mercati"
+        }
+      ],
+      "structure": {
+        "content": ".happings-seo-content",
+        "weekday_headers": "h3",
+        "market_rows": "ul > li",
+        "source_rows": 42,
+        "specific_location_rows": 5,
+        "daypart_rows": 42
+      },
+      "fields": {
+        "address": {
+          "state": "present_specific_and_or_vague",
+          "detail": "5 of 42 rows have a location accepted as specific by the current parser; others remain vague or qualified."
+        },
+        "clock_hours": {
+          "state": "absent_in_sample",
+          "detail": "The examined market rows give dayparts; no exact clock interval was observed."
+        },
+        "date_list": {
+          "state": "absent_in_sample",
+          "detail": "Weekday groups are recurrence assertions; publisher page dates do not enumerate editions."
+        },
+        "recurrence": {
+          "state": "present_weekday_groups",
+          "detail": "The parser reads weekday + city + venue, preserving multiple venue rows."
+        },
+        "exceptions": {
+          "state": "qualifiers_present_unresolved",
+          "detail": "Raw city labels contain temporal qualifiers which must not be discarded."
+        },
+        "gps": {
+          "state": "absent_in_sample",
+          "detail": "No market-specific coordinates were observed in the page content or event-scoped data."
+        },
+        "organizer": {
+          "state": "absent_in_sample",
+          "detail": "Site publisher/author metadata is not the organizer of each listed market."
+        }
+      },
+      "qualified_source_labels": [
+        "Ravenna (estivo)",
+        "Riolo Terme (estivo)",
+        "Ravenna (estivo)",
+        "Ravenna (estivo)",
+        "Ravenna (estivo)",
+        "Ravenna (estivo)"
+      ],
+      "current_parser_fields": [
+        "city",
+        "city_key",
+        "weekday",
+        "place",
+        "location_indicated",
+        "daypart",
+        "has_specific_location"
+      ],
+      "current_operational_field_scope": [
+        "eligible_blank_address_or_managed_address",
+        "matching_recurrence_receipt_without_source_date"
+      ],
+      "same_provincial_origin_comparison": {
+        "cannot_prove_catalog_weekday": 1,
+        "more_than_one_source_venue_on_city_day": 1,
+        "no_matching_city_day_on_page": 1,
+        "publisher_dayparts_not_exact_hours": 5,
+        "same_publisher_page_catalog_rows": 8,
+        "source_only_has_vague_place": 5,
+        "unique_city_day_source_item": 5
+      },
+      "comparison_caveat": "The existing diagnostic compares matching original provincial source URLs only; town-linked identities are represented separately. Diagnostic source-location gaps are not counts of safe updates.",
+      "gap_status": "existing_index_reader_with_source_and_routing_limits"
+    },
+    {
+      "sample_id": "town-trieste",
+      "original_url": "https://www.happings.com/it/mercato-settimanale-a-trieste.html",
+      "original_format": {
+        "format_id": "happings.com--7b87b2b2b5db",
+        "host": "happings.com",
+        "url_pattern": "/it/{scheda-comunale}.html",
+        "url_kind": "happings_town_legacy",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "catalog_records_with_this_primary_URL": 7,
+      "acquisition": {
+        "tool": "Remote Desktop Commander read_file(isUrl=true)",
+        "started_at_utc": "2026-10-19T22:35:55.229648+00:00",
+        "completed_at_utc": "2026-10-19T22:35:58.712386+00:00",
+        "recorded_at_utc": "2026-10-19T22:36:33.532Z",
+        "time_caveat": null,
+        "http_status": null,
+        "http_status_basis": "not_exposed_by_connector",
+        "response_mime": null,
+        "transport_final_url": null,
+        "http_redirect_chain": null,
+        "transport_caveat": "Successful read_file responses expose HTML but no status/headers/final URL. The canonical link below is HTML evidence, not proof of an HTTP redirect.",
+        "sha256": "8504f0ff37d0e38d6944fdb121aa1972d7dd08aa65458b5dd7fa6d1253d08f85",
+        "hash_basis": "UTF-8 encoding of the original HTML string returned by the connector; not raw HTTP bytes",
+        "bytes": 155676
+      },
+      "canonical_url_in_HTML": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+      "canonical_format": {
+        "format_id": "happings.com--311686cb6f8d",
+        "host": "happings.com",
+        "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/",
+        "url_kind": "happings_province_current",
+        "classification_basis": "URL_shape_not_DOM_verification"
+      },
+      "state": "original_HTML_acquired",
+      "publisher_page_dates": [
+        {
+          "property": "article:published_time",
+          "content": "2025-10-24T09:07:57+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2025-10-24T09:33:21+00:00"
+        },
+        {
+          "property": "JSON-LD Article.datePublished",
+          "content": "2025-10-24T09:07:57+00:00"
+        },
+        {
+          "property": "JSON-LD Article.dateModified",
+          "content": "2025-10-24T09:33:21+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.datePublished",
+          "content": "2025-10-24T09:07:57+00:00"
+        },
+        {
+          "property": "JSON-LD WebPage.dateModified",
+          "content": "2025-10-24T09:33:21+00:00"
+        }
+      ],
+      "current_parser": {
+        "requested_url": {
+          "url": "https://www.happings.com/it/mercato-settimanale-a-trieste.html",
+          "error": "Source URL is outside the reviewed Happings provincial layout"
+        },
+        "canonical_url": {
+          "url": "https://www.happings.com/it/mercati-settimanali-a-trieste-e-provincia/",
+          "province_page_key": "trieste",
+          "rows": 52,
+          "daypart_rows": 52,
+          "specific_location_rows": 52,
+          "weekday_headings": [
+            2,
+            5,
+            6,
+            0,
+            1,
+            3,
+            4
+          ]
+        }
+      },
+      "publisher_date_scope": "page_publication_or_modification_not_verification_of_each_market_or_edition",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Mercati settimanali a Trieste e provincia"
+        },
+        {
+          "tag": "h2",
+          "text": "Mercati settimanali nei comuni in provincia di Trieste"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del mercoledì nei comuni di Trieste"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del sabato nei comuni di Trieste"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati della domenica nei comuni di Trieste"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del lunedì nei comuni di Trieste"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del martedì nei comuni di Trieste"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del giovedì nei comuni di Trieste"
+        },
+        {
+          "tag": "h3",
+          "text": "Mercati del venerdì nei comuni di Trieste"
+        },
+        {
+          "tag": "h2",
+          "text": "Esplora altri mercati"
+        }
+      ],
+      "structure": {
+        "content": ".happings-seo-content",
+        "weekday_headers": "h3",
+        "market_rows": "ul > li",
+        "source_rows": 52,
+        "specific_location_rows": 52,
+        "daypart_rows": 52
+      },
+      "fields": {
+        "address": {
+          "state": "present_specific_and_or_vague",
+          "detail": "52 of 52 rows have a location accepted as specific by the current parser; others remain vague or qualified."
+        },
+        "clock_hours": {
+          "state": "absent_in_sample",
+          "detail": "The examined market rows give dayparts; no exact clock interval was observed."
+        },
+        "date_list": {
+          "state": "absent_in_sample",
+          "detail": "Weekday groups are recurrence assertions; publisher page dates do not enumerate editions."
+        },
+        "recurrence": {
+          "state": "present_weekday_groups",
+          "detail": "The parser reads weekday + city + venue, preserving multiple venue rows."
+        },
+        "exceptions": {
+          "state": "not_observed_in_sample",
+          "detail": "No explicit exception was observed in this sample; this is not proof that all editions have no exceptions."
+        },
+        "gps": {
+          "state": "absent_in_sample",
+          "detail": "No market-specific coordinates were observed in the page content or event-scoped data."
+        },
+        "organizer": {
+          "state": "absent_in_sample",
+          "detail": "Site publisher/author metadata is not the organizer of each listed market."
+        }
+      },
+      "current_parser_fields": [
+        "city",
+        "city_key",
+        "weekday",
+        "place",
+        "location_indicated",
+        "daypart",
+        "has_specific_location"
+      ],
+      "current_operational_field_scope": [
+        "eligible_blank_address_or_managed_address",
+        "matching_recurrence_receipt_without_source_date"
+      ],
+      "same_provincial_origin_comparison": {},
+      "comparison_caveat": "The existing diagnostic compares matching original provincial source URLs only; town-linked identities are represented separately. Diagnostic source-location gaps are not counts of safe updates.",
+      "gap_status": "existing_index_reader_with_source_and_routing_limits"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "HAPP-GAP-DETAIL",
+      "status": "demonstrated_format_gap",
+      "samples": [
+        "event-detail-lana"
+      ],
+      "summary": "The new detailed-event layout supplies address, exact hours, explicit dates, exception, organizer and GPS; the operational reader rejects this format. Correspondence to a legacy catalog market still needs a proved join."
+    },
+    {
+      "finding_id": "HAPP-GAP-ROUTING",
+      "status": "demonstrated_mechanism_limit",
+      "samples": [
+        "town-trieste"
+      ],
+      "catalog_TS_records": 8,
+      "catalog_TS_routed_records": 0,
+      "source_city_day_venue_rows": 52,
+      "summary": "A current provincial layout is obtainable from an existing town URL, but the scheduler admits only province URLs already represented in the catalog."
+    },
+    {
+      "finding_id": "HAPP-GAP-MULTIVENUE",
+      "status": "demonstrated_cardinality_difference_not_count_of_new_markets",
+      "samples": [
+        "town-trieste"
+      ],
+      "summary": "52 source rows versus 8 Happings TS records show why discovery must retain venue identity; this does not prove 44 new independent markets after cross-source deduplication."
+    },
+    {
+      "finding_id": "HAPP-SOURCE-VAGUE",
+      "status": "demonstrated_source_limit",
+      "samples": [
+        "province-ad-avellino",
+        "town-interval-poggiorsini"
+      ],
+      "summary": "Avellino has 110 rows and Bari 46, but no specific street passes the current parser. Repeated extraction cannot turn centro into a precise address."
+    },
+    {
+      "finding_id": "HAPP-SOURCE-ADMIN",
+      "status": "demonstrated_geographic_scope_mismatch",
+      "samples": [
+        "province-a-milano"
+      ],
+      "source_row_municipalities_by_trusted_current_province": {
+        "MB": 76,
+        "MI": 291,
+        "unresolved": 2
+      },
+      "summary": "The page titled Milano e provincia includes municipalities now assigned to MB. Publisher page title cannot update administrative geography."
+    },
+    {
+      "finding_id": "HAPP-SOURCE-404",
+      "status": "connector_reported_http_404",
+      "samples": [
+        "town-accent-citt-santangelo"
+      ],
+      "summary": "One real lossy-accent URL returned HTTP 404. That sample has no observed HTML or field absence claims."
+    }
+  ],
+  "todos": [
+    {
+      "todo_id": "HAPP-FORMAT-01",
+      "status": "open",
+      "priority": "P0",
+      "title": "Add an event-detail field reader and prove each join",
+      "format_ids": [
+        "happings.com--795abb069b70",
+        "happings.com--7b87b2b2b5db"
+      ],
+      "evidence_sample_ids": [
+        "event-detail-lana",
+        "town-lana"
+      ],
+      "mechanism_change": "Discover current event-detail links under a bounded source budget, then join by compatible full identity, municipality, weekday and venue evidence. Extract only fields scoped to that event; keep primary IDs and existing human facts.",
+      "acceptance_tests": [
+        "Fixture returns address, ordinary hours, explicit dates, organizer profile and source GPS for the self Event URL.",
+        "Related-event cards, footer/publisher Organization and a second market in the same town cannot contribute fields.",
+        "Ambiguous venue/name matches produce review evidence without overwriting an existing address or claiming precise GPS."
+      ],
+      "per_market_patch": false
+    },
+    {
+      "todo_id": "HAPP-FORMAT-02",
+      "status": "open",
+      "priority": "P0",
+      "title": "Preserve explicit calendars and edition exceptions",
+      "format_ids": [
+        "happings.com--795abb069b70"
+      ],
+      "evidence_sample_ids": [
+        "event-detail-lana"
+      ],
+      "mechanism_change": "Read the bounded list of editions and attach exceptions to their edition. Keep source-reported dates distinct from forecasts and confirmations; an Event JSON-LD next-date object cannot establish all recurrences.",
+      "acceptance_tests": [
+        "Nine ordinary Friday entries plus the listed Thursday exception remain ten dates, without fabricating 25 December or January dates.",
+        "The extraordinary 24 December closing time remains 13:00; do not copy the next-date 12:30 end time to it.",
+        "A missing next edition, changed boundary or conflicting text/JSON-LD prevents renewal until the scope is resolved."
+      ],
+      "per_market_patch": false
+    },
+    {
+      "todo_id": "HAPP-FORMAT-03",
+      "status": "open",
+      "priority": "P1",
+      "title": "Discover current province resources even when none was stored",
+      "format_ids": [
+        "happings.com--7b87b2b2b5db",
+        "happings.com--311686cb6f8d"
+      ],
+      "evidence_sample_ids": [
+        "town-trieste"
+      ],
+      "mechanism_change": "Use a bounded resolver for legacy town URLs and independently validate observed destination/canonical geography before admitting the current provincial resource. Do not require an already-saved provincial URL as the only source of discovery.",
+      "acceptance_tests": [
+        "The Trieste-shaped fixture becomes a source resource candidate while all 8 old TS market IDs remain intact.",
+        "A canonical link or redirect to a different/unproved province fails closed; no inferred HTTP redirect metadata.",
+        "Source-location ambiguity is still held after routing succeeds."
+      ],
+      "per_market_patch": false
+    },
+    {
+      "todo_id": "HAPP-FORMAT-04",
+      "status": "open",
+      "priority": "P1",
+      "title": "Retain distinct venue rows when discovering or reconciling a town",
+      "format_ids": [
+        "happings.com--7b87b2b2b5db",
+        "happings.com--311686cb6f8d"
+      ],
+      "evidence_sample_ids": [
+        "town-trieste",
+        "province-a-milano"
+      ],
+      "mechanism_change": "Keep separate source row identities for town + weekday + venue before any market-level deduplication or import. Review unmatched venues as source candidates instead of choosing the first venue for every town/day.",
+      "acceptance_tests": [
+        "The 52-row Trieste-shaped source fixture retains all 52 row identities; a seven-weekday map cannot collapse them to 7.",
+        "Multiple venues on the same weekday never yield an arbitrary address overwrite.",
+        "Cross-source duplicate review occurs before declaring a new market; source rows are not counted as newly verified markets."
+      ],
+      "per_market_patch": false
+    },
+    {
+      "todo_id": "HAPP-FORMAT-05",
+      "status": "open",
+      "priority": "P1",
+      "title": "Resolve lossy legacy URL variants with evidence",
+      "format_ids": [
+        "happings.com--7b87b2b2b5db"
+      ],
+      "evidence_sample_ids": [
+        "town-accent-citt-santangelo"
+      ],
+      "mechanism_change": "Queue a 404 legacy link as an unavailable source and use observed publisher links or trusted discovery to find a candidate. Preserve the original URL and do not reconstruct missing accented letters or strip identifying numeric suffixes as an automatic join.",
+      "acceptance_tests": [
+        "A 404 sample contributes no field-presence claims or freshness receipt.",
+        "A guessed town slug is never recorded as an observed canonical or redirect.",
+        "Repeated-hyphen, suffix-number and qualifier variants remain distinct until a source/identity match is proven."
+      ],
+      "per_market_patch": false
+    },
+    {
+      "todo_id": "HAPP-FORMAT-06",
+      "status": "open",
+      "priority": "P1",
+      "title": "Represent temporal qualifiers separately from municipality names",
+      "format_ids": [
+        "happings.com--7b87b2b2b5db",
+        "happings.com--311686cb6f8d"
+      ],
+      "evidence_sample_ids": [
+        "town-seasonal-riolo",
+        "town-interval-poggiorsini"
+      ],
+      "mechanism_change": "Parse unambiguous source qualifiers into a separate retained calendar scope while preserving the original label. Maintain quarantine whenever the complete season or fortnightly anchor is absent.",
+      "acceptance_tests": [
+        "Estivo does not create a year-round weekly forecast or get swallowed into a geographical match.",
+        "Ogni 15gg without an anchor cannot turn into a weekly or an invented fortnightly calendar.",
+        "Known place names such as Inverno e Monteleone or Passeggiata d’Inverno remain protected from false seasonal matches."
+      ],
+      "per_market_patch": false
+    },
+    {
+      "todo_id": "HAPP-FORMAT-07",
+      "status": "open",
+      "priority": "P2",
+      "title": "Report missing fields according to what each source format supplies",
+      "format_ids": [
+        "happings.com--04b85587f84c",
+        "happings.com--3d81fd9e0a91",
+        "happings.com--311686cb6f8d",
+        "happings.com--795abb069b70"
+      ],
+      "evidence_sample_ids": [
+        "province-a-milano",
+        "province-ad-avellino",
+        "event-detail-lana"
+      ],
+      "mechanism_change": "Maintain separate counts for field present and parsed, present but unsupported/lost, absent in the sampled source, and unresolved identity. Preserve dayparts as qualitative information only if the model can label them honestly.",
+      "acceptance_tests": [
+        "A source giving only centro contributes zero recoverable precise addresses.",
+        "La mattina remains a daypart and never becomes fabricated opening/closing hours.",
+        "An event-detail page with real hours is counted as an unsupported field-reader gap rather than source-hours absent."
+      ],
+      "per_market_patch": false
+    },
+    {
+      "todo_id": "HAPP-FORMAT-08",
+      "status": "open",
+      "priority": "P2",
+      "title": "Keep publisher page dates as separately scoped evidence",
+      "format_ids": [
+        "happings.com--311686cb6f8d",
+        "happings.com--795abb069b70"
+      ],
+      "evidence_sample_ids": [
+        "province-a-milano",
+        "event-detail-lana"
+      ],
+      "mechanism_change": "Record observed article/WebPage publication and modification dates for page provenance. Preserve their scope and do not substitute a read date, import date, generic website metadata or migration date for market verification.",
+      "acceptance_tests": [
+        "JSON-LD WebPage.datePublished is discoverable even when article meta tags are absent.",
+        "A page publication date cannot manufacture event confirmation or override a contradicted edition list.",
+        "Unknown row freshness remains distinguishable from a known page publication date."
+      ],
+      "per_market_patch": false
+    }
+  ],
+  "limitations": [
+    "The original pre-migration town-page HTML was not available; current returned content cannot prove every field existed when the legacy importer ran.",
+    "Seven successful HTML samples establish observed templates and concrete gaps; this is not a claim that all 3,329 distinct Happings URLs were read.",
+    "Canonical URLs observed in HTML are kept separate from unobserved HTTP redirects.",
+    "Source assertions and source-provided GPS are not independent validation of market operation or map precision."
+  ],
+  "mutations": {
+    "repository_code": 0,
+    "public_catalog": 0,
+    "market_IDs": 0,
+    "external_publication": 0
+  }
+}

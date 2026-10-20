@@ -13,6 +13,7 @@ import re
 import time
 import httpx
 from bs4 import BeautifulSoup
+from eventiesagre_source_layout import parse_eventiesagre_html
 from typing import Generator
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
@@ -122,184 +123,32 @@ def scrape_detail_page(client: httpx.Client, url: str, regione: str, section: st
         console.print(f"[red]HTTP error fetching {url}: {e}[/red]")
         return None
 
-    soup = BeautifulSoup(resp.text, "lxml")
-
-    # ── Extract name ──
-    nome = ""
-    h1 = soup.find("h1")
-    if h1:
-        nome = h1.get_text(strip=True)
-    if not nome:
-        title = soup.find("title")
-        if title:
-            nome = title.get_text(strip=True).split("|")[0].strip()
-
-    if not nome:
+    # Read the event card and its own article only. Page-wide fallbacks can
+    # capture a related event's municipality or the publisher footer address.
+    try:
+        parsed = parse_eventiesagre_html(resp.content, url)
+    except ValueError as exc:
+        console.print(f"[yellow]Unsupported or ambiguous event detail {url}: {exc}[/yellow]")
         return None
-
-    # ── Extract body text ──
-    body_text = ""
-    # Try common content containers
-    for selector in [".testo_evento", ".descrizione", ".corpo", "article", ".content"]:
-        el = soup.select_one(selector)
-        if el:
-            body_text = el.get_text(separator=" ", strip=True)
-            break
-    if not body_text:
-        # Fallback: grab all paragraph text
-        paras = soup.find_all("p")
-        body_text = " ".join(p.get_text(strip=True) for p in paras[:10])
-
-    # ── Extract city and province ──
-    citta, provincia = _extract_location(soup, body_text)
-
-    # ── Extract dates ──
-    date_raw = _extract_dates(soup, body_text)
-
-    # ── Extract hours ──
-    orario = _extract_hours(soup, body_text)
-
-    # ── Extract recurrence ──
-    ricorrenza = _extract_recurrence(body_text)
-
-    # ── Extract address ──
-    indirizzo = _extract_address(soup, body_text)
-
-    # ── Extract description ──
-    descrizione = _clean_description(body_text, nome)
-
+    fields = parsed["legacy_fields"]
+    # The pure result also contains archive/source-date/interval evidence.
+    # RawMarket/CleanMarket do not yet retain that metadata. Do not encode it
+    # in descriptions or tags, or allow the old cleaner to ignore its limits.
     return RawMarket(
-        nome=nome,
-        citta=citta,
-        provincia=provincia,
-        regione=regione,
-        indirizzo=indirizzo,
+        nome=fields["nome"],
+        citta=fields["citta"],
+        provincia=fields["provincia"],
+        regione=fields["regione"] or regione,
+        indirizzo=fields["indirizzo"],
         categoria_raw=section,
-        descrizione=descrizione,
-        orario_raw=orario,
-        ricorrenza_raw=ricorrenza,
-        date_raw=date_raw,
+        descrizione=_clean_description(parsed["description_text"], fields["nome"]),
+        orario_raw=fields["orario_raw"],
+        ricorrenza_raw=fields["ricorrenza_raw"],
+        date_raw=fields["date_raw"],
         tags_raw=[],
         url_fonte=url,
         fonte_nome="eventiesagre.it",
     )
-
-
-# ─── Extraction helpers ─────────────────────────────────────
-
-def _extract_location(soup: BeautifulSoup, body: str) -> tuple[str, str]:
-    """Extract city and province code from the page."""
-    citta, provincia = "", ""
-
-    # Look for structured location elements
-    for selector in [".luogo", ".localita", ".citta"]:
-        el = soup.select_one(selector)
-        if el:
-            text = el.get_text(strip=True)
-            # Pattern: "Firenze (FI)" or "Firenze - FI"
-            match = re.search(r"([A-Za-zÀ-ú\s']+)\s*[\(\-]\s*([A-Z]{2})\s*\)?", text)
-            if match:
-                return match.group(1).strip(), match.group(2)
-            citta = text
-            break
-
-    # Try from breadcrumb or path
-    for a in soup.find_all("a", href=True):
-        text = a.get_text(strip=True)
-        # Pattern: "Toscana > Firenze (FI) > ..."
-        match = re.search(r"([A-Za-zÀ-ú\s']+)\s*\(([A-Z]{2})\)", text)
-        if match:
-            citta = match.group(1).strip()
-            provincia = match.group(2)
-            break
-
-    # Try from body text
-    if not citta:
-        match = re.search(r"(?:a|in|di)\s+([A-Z][a-zà-ú]+(?:\s[A-Z][a-zà-ú]+)*)\s*[\(\-]\s*([A-Z]{2})", body)
-        if match:
-            citta = match.group(1).strip()
-            provincia = match.group(2)
-
-    return citta, provincia
-
-
-def _extract_dates(soup: BeautifulSoup, body: str) -> list[str]:
-    """Extract date strings from the page."""
-    dates = []
-
-    # Look for structured date elements
-    for selector in [".data_evento", ".date", "time", "[datetime]"]:
-        for el in soup.select(selector):
-            text = el.get("datetime", "") or el.get_text(strip=True)
-            if text:
-                dates.append(text)
-
-    # Extract from body: DD/MM/YYYY patterns
-    for match in re.findall(r"\d{1,2}/\d{1,2}/\d{2,4}", body):
-        dates.append(match)
-
-    # Also try: "Dal DD/MM al DD/MM/YYYY"
-    dal_al = re.findall(r"[Dd]al\s+(\d{1,2}/\d{1,2}(?:/\d{2,4})?)\s+[Aa]l\s+(\d{1,2}/\d{1,2}/\d{2,4})", body)
-    for start, end in dal_al:
-        dates.extend([start, end])
-
-    return list(set(dates))
-
-
-def _extract_hours(soup: BeautifulSoup, body: str) -> str:
-    """Extract opening hours from the page."""
-    # Structured element
-    for selector in [".orario", ".orari", ".time"]:
-        el = soup.select_one(selector)
-        if el:
-            return el.get_text(strip=True)
-
-    # Regex patterns in body
-    patterns = [
-        r"(?:dalle?\s+)?(\d{1,2}[.:]\d{2})\s*[-–]\s*(\d{1,2}[.:]\d{2})",
-        r"ore\s+(\d{1,2}[.:]\d{2})\s*[-–]\s*(\d{1,2}[.:]\d{2})",
-        r"dalle\s+(\d{1,2})\s+alle\s+(\d{1,2})",
-    ]
-    for pattern in patterns:
-        match = re.search(pattern, body)
-        if match:
-            return match.group(0)
-
-    return ""
-
-
-def _extract_recurrence(body: str) -> str:
-    """Extract recurrence pattern from body text."""
-    patterns = [
-        r"[Oo]gni\s+(?:prima|seconda|terza|quarta|ultima|1[ªa°]|2[ªa°]|3[ªa°]|4[ªa°])\s+\w+\s+del\s+mese",
-        r"[Oo]gni\s+(?:luned[ìi]|marted[ìi]|mercoled[ìi]|gioved[ìi]|venerd[ìi]|sabato|domenica)",
-        r"[Tt]utti\s+i\s+giorni(?:\s+tranne\s+\w+)?",
-        r"[Oo]gni\s+(?:due\s+)?settiman[ae]",
-        r"[Uu]na\s+\w+\s+al\s+mese",
-    ]
-    for pattern in patterns:
-        match = re.search(pattern, body, re.IGNORECASE)
-        if match:
-            return match.group(0)
-    return ""
-
-
-def _extract_address(soup: BeautifulSoup, body: str) -> str:
-    """Extract street address."""
-    for selector in [".indirizzo", ".address", "address"]:
-        el = soup.select_one(selector)
-        if el:
-            return el.get_text(strip=True)
-
-    # Try to find patterns like "Via/Piazza/Corso X, N"
-    match = re.search(
-        r"(?:Via|Viale|Piazza|P\.za|P\.zza|Corso|Largo|Lungomare|Vicolo|Contrada)\s+[A-Za-zÀ-ú\s']+(?:,?\s*\d+)?",
-        body
-    )
-    if match:
-        return match.group(0).strip()
-
-    return ""
 
 
 def _clean_description(body: str, nome: str) -> str:

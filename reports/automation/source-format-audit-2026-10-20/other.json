@@ -1,0 +1,2794 @@
+{
+  "schema_version": 1,
+  "task": "non_citynews_source_format_semantic_review",
+  "review_generated_at_utc": "2026-10-19T23:09:26.342049+00:00",
+  "catalog_input": {
+    "path": "temporary-capture-not-committed:catalog.json",
+    "sha256": "39477490a49fe33959305f4d1be25af45e8e146784c530edef68bad87b860c22",
+    "records": 13824
+  },
+  "source_input": "temporary-capture-not-committed:non-citynews-review-input.json",
+  "acquisition_note": "Acquisizioni ereditate dal processo principale; timestamp di acquisizione del 19 ottobre 2026 conservati. Il suffisso 20261020 della cartella identifica il lavoro, non la data delle letture.",
+  "method": "Revisione locale di HTML originale e DOM/JSON-LD/microdata per tutti i campioni disponibili, hash verificati; confronto con record del medesimo URL. Annotazioni umane, probe diagnostico solo come indice di prove, nessuna nuova rete.",
+  "reader_assessment": {
+    "state": "dedicated_current_domain_readers_not_found_in_repository_search",
+    "inspected_paths": [
+      "backend",
+      "scripts",
+      ".github"
+    ],
+    "search_scope": "Tutti gli hostname di queste 33 unità ricercati in reader/config correnti; unici riferimenti rilevanti nei pattern del classificatore source_format_audit e in evidenze statiche di città SoloSagre.",
+    "shared_module": "backend/publisher_page_parser.py: parser puro con contratto esplicito source_id/category/cadence/content_scope/gazetteer; non è attivazione automatica per questi 33 formati.",
+    "classification_module": "backend/source_format_audit.py classifica forme URL, non verifica DOM né estrae campi dei mercati.",
+    "historical_reader_proof": "Nessuna acquisizione storica abbinata al vecchio import per questi campioni; non è dimostrato che tutti i campi della pagina corrente esistessero al momento dell’import.",
+    "operational_status": "Copertura operativa di questi specifici formati non dimostrata dalla semplice presenza del parser generico; predisporre contratti e fixture prima di aggiornamenti automatici."
+  },
+  "summary": {
+    "format_units": 33,
+    "catalog_records_in_formats": 123,
+    "successfully_acquired_and_semantically_reviewed_html_samples": 29,
+    "catalog_records_in_successful_sample_formats": 111,
+    "catalog_records_sharing_exact_successfully_read_sample_urls": 88,
+    "not_checked_format_units": 4,
+    "catalog_records_in_not_checked_formats": 12,
+    "not_checked_reasons": {
+      "HTTP_429": 1,
+      "HTTP_503": 2,
+      "malformed_url_without_network_request": 1
+    },
+    "review_state_counts": {
+      "reviewed_source_sample": 7,
+      "not_checked_http_failure": 3,
+      "reviewed_index_only": 18,
+      "reviewed_expired_or_conflicting": 3,
+      "reviewed_dynamic_content_unresolved": 1,
+      "not_checked_malformed_url": 1
+    },
+    "all_successful_html_sha256_verified_against_acquisition": true,
+    "network_requests_by_this_semantic_review": 0,
+    "repository_or_catalog_mutations": 0,
+    "new_market_freshness_claims": 0,
+    "direct_high_priority_examples": [
+      "SoloSagre: indirizzo del catalogo contaminato dal menu, luogo descrittivo corretto nel blocco evento.",
+      "UmbriaEventi dettaglio: titolo contaminato e sede/orario parziale/date future assenti; DOM futuro diverso dal JSON-LD storico e organizzatore editore discordante dal testo.",
+      "Firenze: ricorrenza composta presente e non salvata; orari/sedi fra edizioni non sempre coerenti.",
+      "Bergamo dettaglio: ricorrenza presente e non salvata, ma due date interne discordanti e passate.",
+      "UmbriaEventi homepage: date future di Foligno e Ponte Rio disponibili in card diverse dello stesso marchio.",
+      "Suedtirol: trenta card DOM nonostante ItemList vuoto; nessun target del catalogo nella vista.",
+      "SagreToscane: omonimo Buonconvento non può validare tre mercati domenicali di altri Comuni.",
+      "PugliainFesta: sede disponibile ma conflitto Brindisi/Ostuni e promozione ristorante, richiede eleggibilità.",
+      "Ferrara: HTML riuscito ma elenco eventi dinamico non risolto; Trentino/Assosagre non verificati per errori HTTP."
+    ]
+  },
+  "formats": [
+    {
+      "format_id": "algherohospitality.it--e297ca84a4bf",
+      "host": "algherohospitality.it",
+      "url_pattern": "/mercati-rionali-di-alghero/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 7,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 4
+      },
+      "exact_sample_url_catalog_record_count": 7,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:0",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 4
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.algherohospitality.it/mercati-rionali-di-alghero/",
+        "acquired_at": "2026-10-19T22:38:42.279885+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.algherohospitality.it/mercati-rionali-di-alghero/",
+        "redirect_chain": [],
+        "bytes": 143373,
+        "sha256": "fc061ddaaeb24666c341cad7879cc685f2ac1b50b2236bfea19b40e96499e08d",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Mercati Rionali di Alghero - Autenticità e Sapore",
+      "observed_canonical_links": [
+        "https://www.algherohospitality.it/mercati-rionali-di-alghero/"
+      ],
+      "observed_schema_types": {
+        "WebPage": 1,
+        "ReadAction": 1,
+        "ImageObject": 1,
+        "BreadcrumbList": 1,
+        "ListItem": 2,
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "PropertyValueSpecification": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:algherohospitality.it--e297ca84a4bf.txt",
+      "semantic_layout_observed": "Articolo Elementor con sezioni separate per otto mercati, descrizione e schede Quando/Dove/Orari/mappe.",
+      "sample_identity_assessment": "Sette schede del catalogo condividono il campione; corrispondenza dei nomi e sedi da mantenere per sezione. Un ottavo blocco del sito non dimostra automaticamente un nuovo mercato assente da tutto il catalogo.",
+      "field_observations": {
+        "identity_geography": "Nome e Comune di ciascun blocco; Fertilia è una località da conservare.",
+        "address": "Sedi specifiche per più sezioni. Fertilia contiene Via Fiume nel testo/Dove e Via Zara altrove e nel link mappa: conflitto interno.",
+        "hours": "Orari precisi per sette blocchi; il blocco artigianale/esotico non ne espone. Non completare il suo vuoto con le ore vicine.",
+        "dates": "Nessun elenco di singole edizioni con anno nel campione.",
+        "recurrence": "Quotidiana, settimanale e calendario composto per antiquariato: terzo e ultimo sabato, più ultima domenica del mese.",
+        "exceptions": "Nessuna sospensione di calendario esplicita osservata; la ricorrenza composta non va ridotta a una sola domenica.",
+        "gps": "Otto link Google Maps con coordinate e destinazioni. Viewport @lat,lon e coordinate del luogo sono distinti; alcuni link portano a strade intere e il link di Fertilia contraddice il testo.",
+        "organizer": "Associazioni non nominate in un blocco: non è prova di un organizzatore identificato."
+      },
+      "demonstrated_findings": [
+        "Gran parte di sedi, orari e ricorrenze dei sette mercati risulta già salvata; i vuoti del mercato artigianale non sono un gap dimostrato della fonte.",
+        "La sede di Fertilia non è aggiornabile prendendo il primo indirizzo trovato: il sito pubblica due sedi discordanti.",
+        "Un estrattore di mappe deve conservare ambito e precisione, senza promuovere il centro viewport a posizione del mercato."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-05",
+        "NC-06",
+        "NC-10",
+        "NC-14"
+      ],
+      "review_state": "reviewed_source_sample",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "assosagre.it--4377f96ccd50",
+      "host": "assosagre.it",
+      "url_pattern": "/calendario_sagre.php?id_provincia={value}&id_sagra={value}",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 2,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:1",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.assosagre.it/calendario_sagre.php?id_sagra=74&id_provincia=105",
+        "acquired_at": "2026-10-19T22:38:58.171119+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": false,
+        "status_code": 429,
+        "observed_final_url": "https://www.assosagre.it/calendario_sagre.php?id_sagra=74&id_provincia=105",
+        "redirect_chain": [],
+        "state": "http_error_or_external_redirect",
+        "robots_state": "http_error_or_external_redirect",
+        "robots_policy_observed": false
+      },
+      "source_html_hash_verified": false,
+      "observed_title": null,
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": null,
+      "semantic_layout_observed": "Non verificato: risposta HTTP 429 senza HTML utilizzabile.",
+      "sample_identity_assessment": "Due URL/schede nel formato; campione non letto. La città PD nella scheda è un dato del catalogo, non un valore confermato dalla fonte.",
+      "field_observations": {
+        "identity_geography": "non_checked",
+        "address": "non_checked",
+        "hours": "non_checked",
+        "dates": "non_checked",
+        "recurrence": "non_checked",
+        "exceptions": "non_checked",
+        "gps": "non_checked",
+        "organizer": "non_checked"
+      },
+      "demonstrated_findings": [
+        "Nessuna conclusione sulla presenza di campi nella pagina. Via Mameli e apertura 19:00 già salvate non vengono riconfermate da un errore HTTP."
+      ],
+      "todo_ids": [
+        "NC-08",
+        "NC-11",
+        "NC-14"
+      ],
+      "review_state": "not_checked_http_failure",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "cittadellaspezia.com--daef88baba75",
+      "host": "cittadellaspezia.com",
+      "url_pattern": "/tag/sagre/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:2",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.cittadellaspezia.com/tag/sagre/",
+        "acquired_at": "2026-10-19T22:39:02.617261+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.cittadellaspezia.com/tag/sagre/",
+        "redirect_chain": [],
+        "bytes": 422898,
+        "sha256": "e450daf46205004384be4309d5cafe842ccceb81ae9a883e267d6c1593536eeb",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "sagre Archives - Città della Spezia",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:cittadellaspezia.com--daef88baba75.txt",
+      "semantic_layout_observed": "Archivio WordPress per tag sagre: titoli, estratti e link di articoli distinti.",
+      "sample_identity_assessment": "I due eventi salvati per questo URL (Cantamaggio e Madonna dell’Olmo) non sono stati individuati nelle schede del campione corrente.",
+      "field_observations": {
+        "identity_geography": "Nomi di eventi e località nei singoli articoli; nessuna identità unica della pagina.",
+        "address": "Nessuna sede precisa dei due eventi del catalogo osservata nel campione.",
+        "hours": "Ore occasionali negli estratti appartengono al relativo articolo.",
+        "dates": "Date di articolo e/o evento negli estratti, da distinguere per riga e ruolo.",
+        "recurrence": "Nessuna ricorrenza completa dei due eventi del catalogo osservata.",
+        "exceptions": "Non osservate per i due eventi del catalogo.",
+        "gps": "Nessuna coordinata di luogo evento osservata.",
+        "organizer": "Autori e contatti editoriali non identificano gli organizzatori dei mercati."
+      },
+      "demonstrated_findings": [
+        "Il listato può scoprire URL dettagliati; il solo URL di tag non è prova aggiornata per tutte le schede importate in passato.",
+        "L’assenza dalla prima pagina non dimostra cessazione o annullamento."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "cosafareafirenze.it--4aba31ad6df6",
+      "host": "cosafareafirenze.it",
+      "url_pattern": "/mercati-firenze/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 22,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 4,
+        "ricorrenza_testo": 19,
+        "date": 20
+      },
+      "exact_sample_url_catalog_record_count": 22,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:3",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 4,
+        "ricorrenza_testo": 19,
+        "date": 20
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.cosafareafirenze.it/mercati-firenze/",
+        "acquired_at": "2026-10-19T22:38:39.609482+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.cosafareafirenze.it/mercati-firenze/",
+        "redirect_chain": [],
+        "bytes": 179063,
+        "sha256": "6429b67c954387706f0cde9fd2b5686408a75e106653a5c33897abb64c5b064e",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "I mercati di Firenze a Ottobre 2026 - Cosa Fare a Firenze",
+      "observed_canonical_links": [
+        "https://www.cosafareafirenze.it/mercati-firenze/"
+      ],
+      "observed_schema_types": {
+        "Article": 1,
+        "CommentAction": 1,
+        "WebPage": 1,
+        "ReadAction": 1,
+        "ImageObject": 3,
+        "BreadcrumbList": 1,
+        "ListItem": 2,
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "PropertyValueSpecification": 1,
+        "Organization": 1,
+        "Person": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:cosafareafirenze.it--4aba31ad6df6.txt",
+      "semantic_layout_observed": "Articolo mensile con blocchi evento; riga data/orari prima del titolo, sede dopo, poi collegamenti informativi; sezione separata EVENTI CONCLUSI.",
+      "sample_identity_assessment": "Ventidue schede condividono il campione. Stessi nomi ricorrono in sedi e date diverse: Only Usato compare in più luoghi; Fiera dell’Oltrarno e Santo Spirito in Fiera sono eventi distinti.",
+      "field_observations": {
+        "identity_geography": "Nome, luogo, Comune e periodo devono restare uniti al singolo blocco; non usare la sola marca come chiave.",
+        "address": "Piazze, strutture e vie presenti per molti eventi; Creative Factory e Only Usato richiedono confronto di edizione/sede.",
+        "hours": "Orari precisi, anche su due fasce. Mercato Vintage Piazza Ciompi riporta 9–19 nella pagina corrente, mentre il catalogo conserva 9–20.",
+        "dates": "Date esplicite di ottobre 2026, sia future sia concluse. Aggiornamento articolo del 19 ottobre è metadato editoriale.",
+        "recurrence": "Indipendenza Antiquaria: terza domenica e sabato precedente, assente nel relativo campo salvato. Altri blocchi hanno prima/seconda/quarta domenica.",
+        "exceptions": "Cantine in Piazza Q5 contiene rinvio alla domenica successiva in caso di maltempo. Un giorno della settimana non coerente col numero/data compare in un altro blocco.",
+        "gps": "Nessuna coppia GPS direttamente attribuita ai mercati osservata nei dati strutturati.",
+        "organizer": "Collegamenti Info a organizzatori/associazioni nel rispettivo blocco; editore dell’articolo è altro ruolo."
+      },
+      "demonstrated_findings": [
+        "Gap dimostrato di ricorrenza per Indipendenza Antiquaria e conflitto di orari per Mercato Vintage Piazza Ciompi.",
+        "Il confronto corrente non prova che il vecchio scraper vedesse lo stesso contenuto: il listato mensile viene aggiornato.",
+        "Non sostituire una sede salvata con quella di un’altra edizione dello stesso marchio.",
+        "Valori salvati molto corti come indirizzo G o ore 11/15 richiedono controllo di completezza; gli eventi corrispondenti non sono nel campione attuale, quindi nessun recupero per contiguità."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-05",
+        "NC-06",
+        "NC-09",
+        "NC-15",
+        "NC-14"
+      ],
+      "review_state": "reviewed_source_sample",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "emiliaromagnaturismo.it--058519c55f08",
+      "host": "emiliaromagnaturismo.it",
+      "url_pattern": "/it/eventi/{slug}",
+      "url_kind_by_shape": "tourism_event_detail",
+      "catalog_records_in_format": 8,
+      "unique_primary_urls_in_format": 8,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 4,
+        "orario_testo": 8,
+        "ricorrenza_testo": 8,
+        "date": 7
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:4",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://emiliaromagnaturismo.it/it/eventi/sagra-uva-lambrusco-grasparossa-di-castelvetro-di-modena",
+        "acquired_at": "2026-10-19T22:38:38.919366+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://emiliaromagnaturismo.it/it/eventi/sagra-uva-lambrusco-grasparossa-di-castelvetro-di-modena",
+        "redirect_chain": [],
+        "bytes": 76523,
+        "sha256": "66ca55acd751e85a707f1a72fd6a7f5af1894c7a8c41096002552717e483be61",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Sagra dell'Uva e del Lambrusco Grasparossa di Castelvetro | Emilia Romagna Turismo",
+      "observed_canonical_links": [
+        "https://emiliaromagnaturismo.it/it/eventi/sagra-uva-lambrusco-grasparossa-di-castelvetro-di-modena"
+      ],
+      "observed_schema_types": {
+        "WebSite": 1,
+        "SearchAction": 1,
+        "Event": 1,
+        "Place": 1,
+        "PostalAddress": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:emiliaromagnaturismo.it--058519c55f08.txt",
+      "semantic_layout_observed": "Scheda turistica ufficiale di evento con metadati Event e corpo descrittivo, periodo e avviso di edizione passata.",
+      "sample_identity_assessment": "Otto URL nel formato; il campione coincide con la Sagra Uva/Lambrusco di Castelvetro del catalogo. Gli altri sette dettagli non sono stati acquisiti in questa revisione.",
+      "field_observations": {
+        "identity_geography": "Castelvetro di Modena esplicito nel dettaglio e nella localizzazione.",
+        "address": "Vari luoghi del centro storico: sede descrittiva, non indirizzo stradale preciso. PostalAddress.streetAddress vuoto.",
+        "hours": "Nessun orario operativo preciso dimostrato: 00:00 e 23:59:59 nel JSON-LD delimitano giorni interi.",
+        "dates": "19–27 settembre 2026, sabati e domeniche; edizione conclusa. Aggiornamento pagina 7 ottobre 2026 non crea nuove edizioni.",
+        "recurrence": "Terzo e quarto fine settimana di settembre espliciti; non dimostrano da soli date confermate del 2027.",
+        "exceptions": "Finestra stagionale/edizione annuale esplicita da conservare.",
+        "gps": "Nessuna coppia GPS del mercato osservata.",
+        "organizer": "Contatti di redazione turistica e link al sito dell’evento: non trasformare la redazione nell’organizzatore."
+      },
+      "demonstrated_findings": [
+        "Catalogo senza sede descrittiva, ricorrenza e date; il campione offre informazioni storiche e una regola annuale limitata, non una nuova agenda futura.",
+        "Un parser deve preservare i weekend disgiunti e la precisione del luogo, senza inventare orario giornaliero o indirizzo."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-03",
+        "NC-04",
+        "NC-06",
+        "NC-07",
+        "NC-15",
+        "NC-14"
+      ],
+      "review_state": "reviewed_source_sample",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "enjoysicilia.it--c47fcfe933c0",
+      "host": "enjoysicilia.it",
+      "url_pattern": "/it/events/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 3,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 3,
+        "orario_testo": 3,
+        "ricorrenza_testo": 3,
+        "date": 3
+      },
+      "exact_sample_url_catalog_record_count": 3,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:5",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 3,
+        "orario_testo": 3,
+        "ricorrenza_testo": 3,
+        "date": 3
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.enjoysicilia.it/it/events/",
+        "acquired_at": "2026-10-19T22:38:51.029232+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.enjoysicilia.it/it/events/",
+        "redirect_chain": [],
+        "bytes": 144455,
+        "sha256": "1c43edfbadfcd67ed84ff0c641e4ef1b775e64e23b8369038c5472006476b621",
+        "state": "read",
+        "robots_state": "http_error_or_external_redirect",
+        "robots_policy_observed": false
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Sagre, Feste, Concerti, Spettacoli ed Eventi in Sicilia nel 2026",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:enjoysicilia.it--c47fcfe933c0.txt",
+      "semantic_layout_observed": "Indice regionale di eventi con card e link a schede dettagliate, date complete o mese/anno.",
+      "sample_identity_assessment": "Tre eventi del catalogo (Little Sicily, Catarratto, Aspettando EnoEtna) non individuati nelle card del campione corrente.",
+      "field_observations": {
+        "identity_geography": "Titolo e città/località per card; l’indice copre tutta la Sicilia.",
+        "address": "Sedi precise dei tre eventi salvati non osservate nel listato.",
+        "hours": "Orari precisi dei tre eventi salvati non osservati.",
+        "dates": "Date o periodi per card, talvolta solo mese e anno. Non convertire un mese in un giorno preciso.",
+        "recurrence": "Nessuna ricorrenza completa dei tre eventi salvati osservata.",
+        "exceptions": "Non osservate per i tre eventi salvati.",
+        "gps": "Nessuna coordinata puntuale evento osservata.",
+        "organizer": "Non identificato per i tre eventi salvati nel listato."
+      },
+      "demonstrated_findings": [
+        "Fonte adatta a scoprire dettagli e conservare precisione delle date; mancanza dalla vista corrente non indica chiusura del mercato.",
+        "Nessun Event JSON-LD osservato nel campione: non basta affidarsi allo schema strutturato."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "eventi.bergamo.it--849986cf0982",
+      "host": "eventi.bergamo.it",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:6",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.eventi.bergamo.it",
+        "acquired_at": "2026-10-19T22:38:45.040188+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.eventi.bergamo.it",
+        "redirect_chain": [],
+        "bytes": 202569,
+        "sha256": "5c2f12f994539c233abb71574750de967c40583f98e7c3ee15ad07274ca67c03",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "EVENTI BERGAMO - Portale VivereBergamo.it",
+      "observed_canonical_links": [
+        "https://www.eventi.bergamo.it/"
+      ],
+      "observed_schema_types": {
+        "BreadcrumbList": 1,
+        "ListItem": 1,
+        "Organization": 1,
+        "ImageObject": 2,
+        "WebPage": 1,
+        "WebSite": 1,
+        "Event": 10,
+        "Place": 10,
+        "PostalAddress": 10
+      },
+      "evidence_text_file": "temporary-capture-not-committed:eventi.bergamo.it--849986cf0982.txt",
+      "semantic_layout_observed": "Homepage Eventi Bergamo con lista The Events Calendar di eventi odierni e consigliati, dieci oggetti Event JSON-LD.",
+      "sample_identity_assessment": "Wine Form Mais a Casnigo, unica scheda catalogo per questo URL, non individuata fra gli eventi del campione.",
+      "field_observations": {
+        "identity_geography": "Ogni titolo ha il proprio Comune e URL evento; la homepage non rappresenta un mercato unico.",
+        "address": "Venue/indirizzo di altre card presenti anche in location.name, non necessariamente in PostalAddress.",
+        "hours": "Orari di inizio/fine espliciti per gli eventi della lista, non del target del catalogo.",
+        "dates": "Date Event per le singole card e vista oggi; nessuna data del target osservata.",
+        "recurrence": "Nessuna ricorrenza del target osservata.",
+        "exceptions": "Nessuna eccezione del target osservata.",
+        "gps": "Non dimostrato per il target.",
+        "organizer": "performer con valore Organization e editore sito non identificano un organizzatore reale del target."
+      },
+      "demonstrated_findings": [
+        "Estrarre il primo JSON-LD Event della homepage e attribuirlo al target sarebbe un falso collegamento.",
+        "I titoli/orari dentro header locali delle card sono contenuto evento e vanno conservati, separando l’header globale."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-04",
+        "NC-07",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "eventi.bergamo.it--86372603eab0",
+      "host": "eventi.bergamo.it",
+      "url_pattern": "/evento/{slug}/",
+      "url_kind_by_shape": "wordpress_event_detail",
+      "catalog_records_in_format": 7,
+      "unique_primary_urls_in_format": 7,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 7,
+        "date": 7
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:7",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.eventi.bergamo.it/evento/%f0%9f%9b%8d%ef%b8%8f-mercatino-agricolo-km-0-piazza-pontida-bergamo-citta-5/",
+        "acquired_at": "2026-10-19T22:38:42.124188+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.eventi.bergamo.it/evento/%f0%9f%9b%8d%ef%b8%8f-mercatino-agricolo-km-0-piazza-pontida-bergamo-citta-5/",
+        "redirect_chain": [],
+        "bytes": 209495,
+        "sha256": "4538cfce9aef56e512b9c789b593f5b650b0bc56b825c706eded95158a166c9c",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "🛍️ Mercatino Agricolo Km 0, Piazza Pontida – Bergamo Città - EVENTI BERGAMO",
+      "observed_canonical_links": [
+        "https://www.eventi.bergamo.it/evento/%f0%9f%9b%8d%ef%b8%8f-mercatino-agricolo-km-0-piazza-pontida-bergamo-citta-5/"
+      ],
+      "observed_schema_types": {
+        "BreadcrumbList": 1,
+        "ListItem": 10,
+        "Organization": 1,
+        "ImageObject": 1,
+        "Person": 1,
+        "WebPage": 1,
+        "WebSite": 1,
+        "Event": 1,
+        "Place": 1,
+        "PostalAddress": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:eventi.bergamo.it--86372603eab0.txt",
+      "semantic_layout_observed": "Scheda The Events Calendar con titolo, schedule, descrizione e box Dettagli/Luogo; articoli turistici e pubblicità aggiunti dopo il contenuto evento.",
+      "sample_identity_assessment": "Sette URL nel formato; il campione corrisponde al mercato agricolo Piazza Pontida. Stessa identità, ma due date diverse all’interno della fonte.",
+      "field_observations": {
+        "identity_geography": "Mercatino agricolo Km 0, Piazza Pontida, Bergamo espliciti.",
+        "address": "Piazza Pontida, 24122 Bergamo, nel blocco Luogo; già salvata.",
+        "hours": "8:00–12:30 sia nel testo sia nei dettagli; già salvato.",
+        "dates": "Schedule e JSON-LD: 20 febbraio 2026; titolo interno descrittivo: 23 gennaio 2026. Entrambe passate, con avviso evento passato.",
+        "recurrence": "Ogni venerdì 8:00–12:30 nel corpo; campo ricorrenza del catalogo vuoto.",
+        "exceptions": "Conflitto di edizione nella stessa pagina: richiede verifica prima di nuovi calendari.",
+        "gps": "Nessuna coordinata puntuale provata per il target nel campione.",
+        "organizer": "Contatto commerciale nel testo, ma non basta un indirizzo email a provare il nome dell’organizzatore."
+      },
+      "demonstrated_findings": [
+        "Ricorrenza presente in fonte e assente nella scheda: gap dimostrato.",
+        "L’edizione passata e le date discordanti impediscono di trattare la lettura come prova fresca di una cadenza futura illimitata.",
+        "Il contenuto turistico Bergamo Città sotto l’evento non deve fornire sede/orari del mercato."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-03",
+        "NC-04",
+        "NC-05",
+        "NC-07",
+        "NC-15",
+        "NC-14"
+      ],
+      "review_state": "reviewed_expired_or_conflicting",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "eventiinsardegna.it--4f6de7c3abb7",
+      "host": "eventiinsardegna.it",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:8",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.eventiinsardegna.it/",
+        "acquired_at": "2026-10-19T22:39:22.403259+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.eventiinsardegna.it/",
+        "redirect_chain": [],
+        "bytes": 158233,
+        "sha256": "8a02719d1006cd933a29f17e54818b3b764f8d1df598125ce59dc0311fb53cf1",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Eventi in Sardegna 2026 | Sagre, concerti e feste",
+      "observed_canonical_links": [
+        "https://www.eventiinsardegna.it/"
+      ],
+      "observed_schema_types": {
+        "BreadcrumbList": 1,
+        "ListItem": 7,
+        "CollectionPage": 1,
+        "Organization": 1,
+        "ImageObject": 1,
+        "WebSite": 1,
+        "Event": 10,
+        "Place": 10,
+        "PostalAddress": 10
+      },
+      "evidence_text_file": "temporary-capture-not-committed:eventiinsardegna.it--4f6de7c3abb7.txt",
+      "semantic_layout_observed": "Homepage editoriale con articoli e calendario laterale The Events Calendar; dieci Event JSON-LD distinti.",
+      "sample_identity_assessment": "Primavera nel Cuore a Baunei non individuata nel campione corrente.",
+      "field_observations": {
+        "identity_geography": "Località e nomi per card evento; molte categorie e tag nel sito non sono il Comune del target.",
+        "address": "Sede del target non dimostrata; catalogo conserva NA come testo.",
+        "hours": "Orari di altri eventi presenti; Tutto il giorno e 00:00/23:59 sono precisione giornata. NA nel catalogo non è un orario.",
+        "dates": "Pubblicazioni articoli e date eventi distinte; date future di altre card non aggiornano il target.",
+        "recurrence": "Nessuna ricorrenza del target osservata.",
+        "exceptions": "Non osservate per il target.",
+        "gps": "Non dimostrato per il target.",
+        "organizer": "Contatti del portale e commenti non sono organizzatori del target."
+      },
+      "demonstrated_findings": [
+        "I placeholder NA non devono contare come completezza dei dati.",
+        "L’Event graph della homepage descrive altre manifestazioni, non prova nuove date del mercato salvato."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-04",
+        "NC-09",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "eventiintoscana.it--641b8123d9f9",
+      "host": "eventiintoscana.it",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:9",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.eventiintoscana.it",
+        "acquired_at": "2026-10-19T22:39:04.175631+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.eventiintoscana.it",
+        "redirect_chain": [],
+        "bytes": 156873,
+        "sha256": "82a1b7486601597e050fb365a5b54dccc32e1fcfbc7c56ba43282a178079144c",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Eventi in Toscana by Toscana Tascabile",
+      "observed_canonical_links": [
+        "https://www.eventiintoscana.it/"
+      ],
+      "observed_schema_types": {
+        "WebPage": 1,
+        "ReadAction": 1,
+        "BreadcrumbList": 1,
+        "ListItem": 1,
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "PropertyValueSpecification": 1,
+        "Organization": 1,
+        "ImageObject": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:eventiintoscana.it--641b8123d9f9.txt",
+      "semantic_layout_observed": "Homepage editoriale a rubriche con titoli/estratti e link, senza Event JSON-LD.",
+      "sample_identity_assessment": "Fiera Antiquaria Arezzo e Mercatini San Quirico non individuati nei contenuti del campione corrente.",
+      "field_observations": {
+        "identity_geography": "Nome e città nei titoli dei singoli articoli; sito interregionale nel contesto toscano.",
+        "address": "Via XX Settembre 60 a Firenze è contatto editoriale globale, non sede dei mercati del catalogo.",
+        "hours": "Nessun orario del target osservato.",
+        "dates": "Segnali temporali negli articoli; non costituiscono calendario dei target.",
+        "recurrence": "Mensile descrive la rivista nel contesto editoriale, non una ricorrenza del mercato.",
+        "exceptions": "Non osservate per i target.",
+        "gps": "Nessuna coordinata evento provata per i target.",
+        "organizer": "Email e ragione sociale editoriali non sono organizzatori del mercato."
+      },
+      "demonstrated_findings": [
+        "Serve discovery di URL evento e scoping; indirizzi e parole di frequenza nel contatto editoriale sono falsi candidati.",
+        "Non considerare l’assenza dei target dalla homepage prova di cessazione."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-07",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "ferrarainfo.com--1dfcae70a0aa",
+      "host": "ferrarainfo.com",
+      "url_pattern": "/it/eventi/eventi",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:10",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.ferrarainfo.com/it/eventi/eventi",
+        "acquired_at": "2026-10-19T22:39:05.314682+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.ferrarainfo.com/it/vivi-gli-eventi",
+        "redirect_chain": [
+          {
+            "from": "https://www.ferrarainfo.com/it/eventi/eventi",
+            "to": "https://www.ferrarainfo.com/it/vivi-gli-eventi",
+            "status": 301
+          }
+        ],
+        "bytes": 690335,
+        "sha256": "63862bbfec16bc07dda302ca4d1d7a14818c9f5a3ed57fa9c1cd31b03b8e00cc",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Vivi gli eventi - Ferrara Terra e Acqua",
+      "observed_canonical_links": [
+        "https://www.ferrarainfo.com/it/vivi-gli-eventi"
+      ],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:ferrarainfo.com--1dfcae70a0aa.txt",
+      "semantic_layout_observed": "Vecchio URL reindirizzato HTTP 301 a /it/vivi-gli-eventi; applicazione Plone/Volto con filtri e stato serializzato window.__data.",
+      "sample_identity_assessment": "Agrimercato Grisù e mercato contadino del venerdì non compaiono come testo nel HTML o nello stato serializzato del campione.",
+      "field_observations": {
+        "identity_geography": "Nessun risultato evento risolto nel listato acquisito; filtri di località non sono identità di mercato.",
+        "address": "Non osservata per i due target.",
+        "hours": "Non osservati per i due target.",
+        "dates": "Widget di calendario e data del documento non sono date dei target.",
+        "recurrence": "Non dimostrata per i target dal campione.",
+        "exceptions": "Non verificabili con questo output.",
+        "gps": "Etichette latitude/longitude nello stato di traduzione non sono coordinate di un evento.",
+        "organizer": "Link istituzionali e crediti non dimostrano organizzatori dei target."
+      },
+      "demonstrated_findings": [
+        "Il HTML di circa 690 kB contiene soprattutto stato applicativo e traduzioni, mentre il corpo dice Nessun risultato.",
+        "La lettura della pagina è riuscita, ma la raccolta degli eventi dinamici non è risolta: non segnare il calendario verificato né cancellare schede.",
+        "Le proiezioni già salvate per i due mercati non ricevono nuova prova da una pagina senza risultati."
+      ],
+      "todo_ids": [
+        "NC-02",
+        "NC-03",
+        "NC-11",
+        "NC-12",
+        "NC-14"
+      ],
+      "review_state": "reviewed_dynamic_content_unresolved",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "lazioinfesta.com--9432160459d4",
+      "host": "lazioinfesta.com",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:11",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.lazioinfesta.com/",
+        "acquired_at": "2026-10-19T22:39:07.808020+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.lazioinfesta.com/",
+        "redirect_chain": [],
+        "bytes": 104073,
+        "sha256": "232a033665a64319dd121f7dd1873a9a6eaf065ff93bd12da71ecc6ba1fbe8b6",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Lazio in Festa - Sagre, Fiere, Feste, Eventi della regione Lazio - Eventi dal 20 al 26 Ottobre",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:lazioinfesta.com--9432160459d4.txt",
+      "semantic_layout_observed": "Homepage Lanet/InFesta con calendario e card settimanali, date, Comune/provincia e link di dettaglio.",
+      "sample_identity_assessment": "Bonfire Market Roma e I Sapori del Parco Sabaudia non individuati nelle card correnti.",
+      "field_observations": {
+        "identity_geography": "Comune e provincia di ogni card; il calendario regionale comprende più province.",
+        "address": "Nessuna sede precisa dei due target osservata. Indirizzo del fornitore del sito a Senigallia appartiene al footer.",
+        "hours": "Non osservati per i target nella homepage.",
+        "dates": "Date/intervalli propri di ogni card; calendario globale è controllo di navigazione.",
+        "recurrence": "Nessuna cadenza completa del target osservata.",
+        "exceptions": "Non osservate per i target.",
+        "gps": "Non dimostrato per i target.",
+        "organizer": "Contatti del fornitore/portale non sono organizzatori degli eventi."
+      },
+      "demonstrated_findings": [
+        "Card utili alla discovery di schede; non trasformare un intervallo lungo in presenza quotidiana o data corrente del target.",
+        "Nessuna riconferma possibile per i due eventi assenti dalla vista."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-07",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "lombardiainfesta.it--aac72178e0f0",
+      "host": "lombardiainfesta.it",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:12",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.lombardiainfesta.it/",
+        "acquired_at": "2026-10-19T22:39:24.266731+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.lombardiainfesta.it/",
+        "redirect_chain": [],
+        "bytes": 95077,
+        "sha256": "1c07b35a03ff985b002f2143a41b6df5735967e2e2dc8ce4e8c2aaa7af02ce28",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Lombardia in Festa - Sagre, Fiere, Feste, Eventi della regione Lombardia - Eventi dal 20 al 26 Ottobre",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:lombardiainfesta.it--aac72178e0f0.txt",
+      "semantic_layout_observed": "Homepage Lanet/InFesta con calendario regionale e card eventi correnti.",
+      "sample_identity_assessment": "Crema Wine Festival non individuato nelle card del campione.",
+      "field_observations": {
+        "identity_geography": "Nome, Comune e provincia per singola card.",
+        "address": "Non osservata per il target nella homepage.",
+        "hours": "Non osservati per il target.",
+        "dates": "Date e periodi di altre card; giorni del widget non sono nuove edizioni del target.",
+        "recurrence": "Non osservata per il target.",
+        "exceptions": "Non osservate per il target.",
+        "gps": "Non dimostrato per il target.",
+        "organizer": "Nessun organizzatore del target dimostrato."
+      },
+      "demonstrated_findings": [
+        "Il formato è una sorgente di link, non una scheda stabile di Crema Wine Festival.",
+        "Nessun Event JSON-LD osservato; richiede contratto DOM e dettaglio."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-07",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "milanopocket.it--549124b1743e",
+      "host": "milanopocket.it",
+      "url_pattern": "/sagre-lombardia/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 5,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 4,
+        "orario_testo": 5,
+        "ricorrenza_testo": 5,
+        "date": 5
+      },
+      "exact_sample_url_catalog_record_count": 5,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:13",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 4,
+        "orario_testo": 5,
+        "ricorrenza_testo": 5,
+        "date": 5
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.milanopocket.it/sagre-lombardia/",
+        "acquired_at": "2026-10-19T22:38:48.193709+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.milanopocket.it/sagre-lombardia/",
+        "redirect_chain": [],
+        "bytes": 71972,
+        "sha256": "ee8f5093a1f5a8711fd30fdc6138c5f6122cf2e52adfa7a066ce2c24e1990b94",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Sagre, mercatini e fiere a Milano e in Lombardia di Ottobre 2026 (lista completa)",
+      "observed_canonical_links": [
+        "https://www.milanopocket.it/sagre-lombardia/"
+      ],
+      "observed_schema_types": {
+        "SiteNavigationElement": 21,
+        "BreadcrumbList": 1,
+        "ListItem": 3,
+        "Article": 1,
+        "Person": 2,
+        "ImageObject": 4,
+        "Organization": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:milanopocket.it--549124b1743e.txt",
+      "semantic_layout_observed": "Articolo mensile di sagre lombarde, voci titolo/data/Comune-provincia e link; pubblicazione articolo separata.",
+      "sample_identity_assessment": "I cinque eventi del catalogo non sono individuati nella pagina corrente. Il marchio Mercatino da Forte dei Marmi compare a Crema, diverso da Padenghe/Rozzano salvati.",
+      "field_observations": {
+        "identity_geography": "Comune e provincia sono indicati per ogni voce della lista; non tutti gli eventi si trovano a Milano.",
+        "address": "Nessuna nuova sede precisa dei cinque target osservata.",
+        "hours": "Nessun orario preciso dei cinque target osservato; avvisi generali sulle variazioni non sono ore.",
+        "dates": "Date di ottobre/novembre 2026, incluse date disgiunte e fine settimana separati.",
+        "recurrence": "Non osservata per i target.",
+        "exceptions": "Intervalli con giorni disgiunti non sono svolgimento continuo.",
+        "gps": "Nessuna coordinata dei target osservata.",
+        "organizer": "Editore e casella per segnalazioni non sono organizzatori delle voci."
+      },
+      "demonstrated_findings": [
+        "Tutte le cinque schede hanno provincia MI, anche città denominate Varese/Padenghe/Solbiate: anomalia geografica da validare con repertorio di Comuni, non col dominio del sito.",
+        "Stesso marchio in città diversa è prova del rischio di join solo per titolo, non autorizza un aggiornamento degli eventi salvati.",
+        "Le date multiple del listato richiedono parser di insiemi, non min/max."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-08",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "napolidavivere.it--679a0a2b46d4",
+      "host": "napolidavivere.it",
+      "url_pattern": "/category/eventi/sagre-e-feste/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:14",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.napolidavivere.it/category/eventi/sagre-e-feste/",
+        "acquired_at": "2026-10-19T22:39:26.215739+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.napolidavivere.it/category/eventi/sagre-e-feste/",
+        "redirect_chain": [],
+        "bytes": 113827,
+        "sha256": "1aa6574990417885f00b4b03a7729de2bc941491accc38d5d5182acd2546ca73",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Sagre e Feste a Napoli ed in Campania | Napoli da Vivere",
+      "observed_canonical_links": [
+        "https://www.napolidavivere.it/category/eventi/sagre-e-feste/"
+      ],
+      "observed_schema_types": {
+        "CollectionPage": 1,
+        "ImageObject": 2,
+        "BreadcrumbList": 1,
+        "ListItem": 3,
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "PropertyValueSpecification": 1,
+        "Organization": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:napolidavivere.it--679a0a2b46d4.txt",
+      "semantic_layout_observed": "Archivio editoriale per categoria, card con titolo/estratto, data e ora di pubblicazione, autore Staff e link articolo.",
+      "sample_identity_assessment": "Pescato di Paranza a Santa Maria di Castellabate non individuato nel campione corrente.",
+      "field_observations": {
+        "identity_geography": "Località in titoli/estratti delle singole sagre; categoria copre la Campania.",
+        "address": "Sede Villa Matarazzo già salvata non riconfermata nel campione.",
+        "hours": "Ore mostrate accanto a Published sono orari di pubblicazione, non del mercato.",
+        "dates": "Date di articolo e eventuali date evento negli estratti da distinguere.",
+        "recurrence": "L’aggiornamento settimanale della rubrica non è cadenza dell’evento.",
+        "exceptions": "Non osservate per il target.",
+        "gps": "Non dimostrato per il target.",
+        "organizer": "Autore Staff e contatti editoriali non sono organizzatore del target."
+      },
+      "demonstrated_findings": [
+        "Serve lettore di archivio più URL dettaglio, con ruoli separati per publication time/event time.",
+        "Provincia NA salvata per Santa Maria di Castellabate richiede controllo geografico indipendente; il nome del portale non è una provincia di default."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-07",
+        "NC-08",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "paradisola.it--b32e4258186f",
+      "host": "paradisola.it",
+      "url_pattern": "/eventi-sardegna",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:15",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.paradisola.it/eventi-sardegna",
+        "acquired_at": "2026-10-19T22:39:10.462598+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.paradisola.it/eventi-sardegna",
+        "redirect_chain": [],
+        "bytes": 48224,
+        "sha256": "cc2b047bb0f7614511e4b63ff481e29bf30d8a75a339915c7c21edf68058890b",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Eventi e sagre in Sardegna oggi e domani",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:paradisola.it--b32e4258186f.txt",
+      "semantic_layout_observed": "Indice regionale con date, nomi di feste, descrizioni brevi e collegamenti al programma.",
+      "sample_identity_assessment": "Sulcis Iglesiente Espone Carbonia e festival birra Serramanna non individuati nel listato corrente.",
+      "field_observations": {
+        "identity_geography": "Nome e luogo per singola voce; introduzione regionale non identifica un evento.",
+        "address": "Non osservata per i target.",
+        "hours": "Non osservati per i target.",
+        "dates": "Date del listato di ottobre, da collegare al singolo programma.",
+        "recurrence": "Richiami generici alle tradizioni annuali non provano la cadenza di ogni evento.",
+        "exceptions": "Non osservate per i target.",
+        "gps": "Non dimostrato per i target.",
+        "organizer": "Un organizzatore nominato in una descrizione vale solo per quell’evento, non per i target assenti."
+      },
+      "demonstrated_findings": [
+        "Necessaria discovery verso programmi e dettagli, mantenendo precisione dell’anno e identità.",
+        "Nessun Event JSON-LD osservato nel campione."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-07",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "pugliainfesta.it--8852e0d42557",
+      "host": "pugliainfesta.it",
+      "url_pattern": "/evento/{id}/{slug}.html",
+      "url_kind_by_shape": "event_detail",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 2,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 0,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:16",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 0,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.pugliainfesta.it/evento/18483/la-tua-pausa-gourmet-nella-citt-bianca.html",
+        "acquired_at": "2026-10-19T22:39:10.493110+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.pugliainfesta.it/evento/18483/la-tua-pausa-gourmet-nella-citt-bianca.html",
+        "redirect_chain": [],
+        "bytes": 74962,
+        "sha256": "29afa5575adc60a2938465e16bd14599a49eda15699c4a36ce8bb928689e15ab",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "La tua pausa gourmet nella Città Bianca., Brindisi BR, 23/09/2025 - Puglia in Festa",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:pugliainfesta.it--8852e0d42557.txt",
+      "semantic_layout_observed": "Scheda Lanet/InFesta con tabella Quando/Dove/Organizzato da e descrizione; avviso evento passato.",
+      "sample_identity_assessment": "Due URL nel formato; il campione è una promozione pranzo/cena di ristorante. Intestazione Brindisi, descrizione Ostuni (BR): conflitto di Comune.",
+      "field_observations": {
+        "identity_geography": "Nome evento e due Comuni discordanti nella stessa scheda; categoria evento non prova tipologia mercato.",
+        "address": "Via Giosuè Pinto 48/50, Ostuni, nel corpo: campo disponibile ma incompatibile con la città Brindisi salvata.",
+        "hours": "12:00 e 22:00 sono estremi temporali 2025/2026 della scheda, non dimostrano apertura giornaliera 12–22.",
+        "dates": "23 settembre 2025 ore 12 fino al 23 settembre 2026 ore 22, evento marcato passato.",
+        "recurrence": "Nessuna cadenza di mercato verificata; intervallo annuale promozionale non equivale a ricorrenza.",
+        "exceptions": "Limite di edizione esplicito e passato.",
+        "gps": "Nessuna coppia precisa validata per il mercato.",
+        "organizer": "Hostaria Antica Posada nominata nel blocco organizzatore/descrizione."
+      },
+      "demonstrated_findings": [
+        "Fonte offre un indirizzo che il catalogo non salva, ma prima servono controllo di identità geografica ed eleggibilità come mercato.",
+        "Lettori di pagine evento non devono importare automaticamente ristorazione permanente come mercato, né trasformare gli estremi della promozione in orari."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-03",
+        "NC-05",
+        "NC-06",
+        "NC-07",
+        "NC-08",
+        "NC-13",
+        "NC-14"
+      ],
+      "review_state": "reviewed_expired_or_conflicting",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "romapop.it--55f380b91494",
+      "host": "romapop.it",
+      "url_pattern": "/eventi/roma/sagre-fiere-mercatini/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:17",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.romapop.it/eventi/roma/sagre-fiere-mercatini/",
+        "acquired_at": "2026-10-19T22:39:27.916797+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.romapop.it:443/sagre-lazio/",
+        "redirect_chain": [
+          {
+            "from": "https://www.romapop.it/eventi/roma/sagre-fiere-mercatini/",
+            "to": "https://www.romapop.it:443/sagre-lazio/",
+            "status": 301
+          }
+        ],
+        "bytes": 73660,
+        "sha256": "c0e3ce1cb1c5c47784e20da2718aad908679e87e09f96ac6ec6c71c071fdaad8",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Sagre, mercatini e fiere a Roma e nel Lazio di Ottobre 2026 (lista completa)",
+      "observed_canonical_links": [
+        "https://www.romapop.it/sagre-lazio/"
+      ],
+      "observed_schema_types": {
+        "SiteNavigationElement": 19,
+        "BreadcrumbList": 1,
+        "ListItem": 3,
+        "Article": 1,
+        "Person": 2,
+        "ImageObject": 4,
+        "Organization": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:romapop.it--55f380b91494.txt",
+      "semantic_layout_observed": "HTTP 301 dal vecchio percorso /eventi/roma/... a /sagre-lazio/; articolo mensile con voci nome/date/Comune-provincia.",
+      "sample_identity_assessment": "Fuori Mercato Roma non individuato nel campione. Bonfire Market compare in un’altra voce, ma è diverso dal target di questo URL.",
+      "field_observations": {
+        "identity_geography": "Nome e Comune/provincia per voce; regione coperta più ampia del nome Roma nel vecchio URL.",
+        "address": "Nessuna sede precisa di Fuori Mercato osservata.",
+        "hours": "Nessun orario preciso di Fuori Mercato osservato.",
+        "dates": "Date e weekend multipli di ottobre/novembre 2026; pubblicazione articolo non è data evento.",
+        "recurrence": "Non osservata per il target.",
+        "exceptions": "Date disgiunte non devono diventare un unico intervallo continuo.",
+        "gps": "Nessuna coordinata del target osservata.",
+        "organizer": "Email del portale per segnalazioni non è organizzatore degli eventi."
+      },
+      "demonstrated_findings": [
+        "Il redirect effettivamente osservato cambia tipo semantico da presunto percorso evento a articolo di raccolta.",
+        "Il contenuto può offrire nuova discovery/corroborazione per altri eventi, solo con identità e data proprie; non va riversato nel target assente."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-07",
+        "NC-11",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "sagrefvg.it--6113121f4eaf",
+      "host": "sagrefvg.it",
+      "url_pattern": "/sagris/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:18",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 0,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://sagrefvg.it/sagris/",
+        "acquired_at": "2026-10-19T22:38:56.675781+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://sagrefvg.it/sagris/",
+        "redirect_chain": [],
+        "bytes": 219454,
+        "sha256": "f151040b91dbc5de50ce37203b0c3cb184b0542ccd5814c52c22ed78d2f83d75",
+        "state": "read",
+        "robots_state": "http_error_or_external_redirect",
+        "robots_policy_observed": false
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Tutte, ma proprio tutte le sagre del Friuli Venezia Giulia, a cura di UOLLI. Sagrefvg.it – Sagre FVG",
+      "observed_canonical_links": [
+        "https://sagrefvg.it/sagris/"
+      ],
+      "observed_schema_types": {
+        "CollectionPage": 1,
+        "ImageObject": 2,
+        "BreadcrumbList": 1,
+        "ListItem": 2,
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "PropertyValueSpecification": 1,
+        "['Person', 'Organization']": 1,
+        "Event": 8,
+        "Place": 8,
+        "PostalAddress": 8,
+        "GeoCoordinates": 8
+      },
+      "evidence_text_file": "temporary-capture-not-committed:sagrefvg.it--6113121f4eaf.txt",
+      "semantic_layout_observed": "Lista The Events Calendar con otto Event JSON-LD e card; date del badge di navigazione distinte dal periodo completo della card.",
+      "sample_identity_assessment": "Festa dello Sport a Treppo Grande non individuata fra gli otto eventi correnti.",
+      "field_observations": {
+        "identity_geography": "Ogni card ha URL, nome, Comune/frazione, talvolta provincia. Le località non vanno confuse col titolo del sito.",
+        "address": "Sedi precise di altre card nel DOM/JSON-LD, come Via Prestento, Via Tagliamento e Via Canonica; non provano le sedi dei target assenti.",
+        "hours": "Estremi generali del periodo in schema possono divergere dalle fasce dei singoli giorni nel programma; non interpretarli come apertura quotidiana.",
+        "dates": "Intervalli di ottobre 2026 per card; badge della vista può mostrare solo il giorno corrente. Il corpo descrive weekend disgiunti.",
+        "recurrence": "Ricorrenze/weekend limitati al programma specifico, non cadenze dei target assenti.",
+        "exceptions": "Sottoinsiemi di giornate e orari diversi nel corpo devono restringere l’intervallo generale.",
+        "gps": "GeoCoordinates presenti su alcune Place di altre card; precisione del luogo/centro comunale da distinguere, nessuna validazione puntuale dei target.",
+        "organizer": "Autore Uolli o performer Organization non dimostrano l’organizzatore dell’evento."
+      },
+      "demonstrated_findings": [
+        "Campi ricchi esistono ma appartengono ad altre schede. Occorre join per URL/Comune/luogo e controllo programma/schema.",
+        "Rimuovere indiscriminatamente gli header distruggerebbe titolo, periodo e sede delle card: servono confini semantici del template."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-04",
+        "NC-06",
+        "NC-07",
+        "NC-10",
+        "NC-15",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "sagrefvg.it--bb0f79aae507",
+      "host": "sagrefvg.it",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 3,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 3,
+        "date": 3
+      },
+      "exact_sample_url_catalog_record_count": 3,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:19",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 3,
+        "date": 3
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://sagrefvg.it/",
+        "acquired_at": "2026-10-19T22:38:53.462727+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://sagrefvg.it/sagre/",
+        "redirect_chain": [
+          {
+            "from": "https://sagrefvg.it/",
+            "to": "https://sagrefvg.it/sagre/",
+            "status": 301
+          }
+        ],
+        "bytes": 216903,
+        "sha256": "029fc02aa621028403faeae85c52e1d90c2fd57ea9583db3b9bc88d60f14a351",
+        "state": "read",
+        "robots_state": "http_error_or_external_redirect",
+        "robots_policy_observed": false
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Tutte, ma proprio tutte le sagre del Friuli Venezia Giulia, a cura di UOLLI. Sagrefvg.it – Sagre FVG",
+      "observed_canonical_links": [
+        "https://sagrefvg.it/sagris/"
+      ],
+      "observed_schema_types": {
+        "CollectionPage": 1,
+        "ImageObject": 2,
+        "BreadcrumbList": 1,
+        "ListItem": 2,
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "PropertyValueSpecification": 1,
+        "['Person', 'Organization']": 1,
+        "Event": 8,
+        "Place": 8,
+        "PostalAddress": 8,
+        "GeoCoordinates": 8
+      },
+      "evidence_text_file": "temporary-capture-not-committed:sagrefvg.it--bb0f79aae507.txt",
+      "semantic_layout_observed": "Lista The Events Calendar con otto Event JSON-LD e card; date del badge di navigazione distinte dal periodo completo della card.",
+      "sample_identity_assessment": "Borgo Pinzano, Magnalonga Savorgnano e I Cjarsons Sutrio non individuati fra gli otto eventi correnti; la homepage ha redirect HTTP 301 a /sagre/.",
+      "field_observations": {
+        "identity_geography": "Ogni card ha URL, nome, Comune/frazione, talvolta provincia. Le località non vanno confuse col titolo del sito.",
+        "address": "Sedi precise di altre card nel DOM/JSON-LD, come Via Prestento, Via Tagliamento e Via Canonica; non provano le sedi dei target assenti.",
+        "hours": "Estremi generali del periodo in schema possono divergere dalle fasce dei singoli giorni nel programma; non interpretarli come apertura quotidiana.",
+        "dates": "Intervalli di ottobre 2026 per card; badge della vista può mostrare solo il giorno corrente. Il corpo descrive weekend disgiunti.",
+        "recurrence": "Ricorrenze/weekend limitati al programma specifico, non cadenze dei target assenti.",
+        "exceptions": "Sottoinsiemi di giornate e orari diversi nel corpo devono restringere l’intervallo generale.",
+        "gps": "GeoCoordinates presenti su alcune Place di altre card; precisione del luogo/centro comunale da distinguere, nessuna validazione puntuale dei target.",
+        "organizer": "Autore Uolli o performer Organization non dimostrano l’organizzatore dell’evento."
+      },
+      "demonstrated_findings": [
+        "Campi ricchi esistono ma appartengono ad altre schede. Occorre join per URL/Comune/luogo e controllo programma/schema.",
+        "Rimuovere indiscriminatamente gli header distruggerebbe titolo, periodo e sede delle card: servono confini semantici del template."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-04",
+        "NC-06",
+        "NC-07",
+        "NC-10",
+        "NC-15",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "sagreinromagna.it--073cd6052d05",
+      "host": "sagreinromagna.it",
+      "url_pattern": "/sagre_per_provincia/1/ravenna",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:20",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 2,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.sagreinromagna.it/sagre_per_provincia/1/ravenna",
+        "acquired_at": "2026-10-19T22:39:13.778762+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.sagreinromagna.it/sagre_per_provincia/1/ravenna",
+        "redirect_chain": [],
+        "bytes": 244540,
+        "sha256": "f9c0b4bfd977b44e34e31933d976faef5c9fb4ec10b4fb075e4cff5d713bf516",
+        "state": "read",
+        "robots_state": "http_error_or_external_redirect",
+        "robots_policy_observed": false
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Sagre in provincia di Common.RESTClient.Models.Province",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:sagreinromagna.it--073cd6052d05.txt",
+      "semantic_layout_observed": "Pagina provinciale Ravenna con card in programma, sezione appena trascorsi e tabella annuale completa duplicante molte voci.",
+      "sample_identity_assessment": "Entrambi i target del catalogo sono nel listato: Mercatini di primavera e Portobello Beach, a Marina di Ravenna. Solo edizioni passate osservate per loro.",
+      "field_observations": {
+        "identity_geography": "Nome e Comune/frazione per riga; Marina di Ravenna non va persa. Titolo HTML contiene stringa tecnica ma h1 Ravenna è valido.",
+        "address": "Località Ravenna–Marina di Ravenna, nessuna sede stradale precisa dei due target nel listato.",
+        "hours": "Nessun orario dei due target osservato. Una fascia accanto al telefono di un altro evento è orario di contatto, non del target.",
+        "dates": "Mercatini di primavera: 15/22/29 marzo e date disgiunte di maggio 2026; Portobello 17 ottobre 2026, già passato.",
+        "recurrence": "Date finite del programma non dimostrano una regola perpetua.",
+        "exceptions": "Più giorni, mesi e weekend da mantenere come insieme finito; alcuni altri record del listato non hanno anno completo.",
+        "gps": "Nessuna coordinata precisa dei target osservata.",
+        "organizer": "Telefoni di contatto per target nella tabella, senza nome organizzatore sufficientemente esplicito."
+      },
+      "demonstrated_findings": [
+        "Date storiche presenti e campo date vuoto: gap di conservazione dell’edizione, non prova di nuove date future.",
+        "Le card e la tabella duplicano gli stessi eventi e vanno deduplicate per identità/edizione.",
+        "L’indirizzo mancante non può diventare una via inventata a partire dal solo Comune/frazione."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-06",
+        "NC-07",
+        "NC-08",
+        "NC-14"
+      ],
+      "review_state": "reviewed_source_sample",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "sagretorino.it--3ad295df7ef3",
+      "host": "sagretorino.it",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 6,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 6,
+        "orario_testo": 6,
+        "ricorrenza_testo": 6,
+        "date": 6
+      },
+      "exact_sample_url_catalog_record_count": 6,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:21",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 6,
+        "orario_testo": 6,
+        "ricorrenza_testo": 6,
+        "date": 6
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.sagretorino.it/",
+        "acquired_at": "2026-10-19T22:38:45.972288+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html",
+        "observed_final_url": "https://www.sagretorino.it/",
+        "redirect_chain": [],
+        "bytes": 33469,
+        "sha256": "00458f660ccc1ace94853a9d1713069c9d8095796b50246ecd9476cf1070c4a0",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "programmi sagre provincia di Torino",
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:sagretorino.it--3ad295df7ef3.txt",
+      "semantic_layout_observed": "Homepage statica con elenco paese/evento/giorno-mese e link a programmi/locandine; dichiarazione di programmi di anni precedenti e date indicative.",
+      "sample_identity_assessment": "Nessuno dei sei specifici eventi del catalogo è riconfermato: alcuni Comuni ricompaiono per eventi diversi.",
+      "field_observations": {
+        "identity_geography": "Paese indicato per riga; stessi Comuni ospitano feste/passeggiate diverse.",
+        "address": "Corso Lecce 38 nel fondo pagina è attività che offre il servizio editoriale, non sede delle manifestazioni.",
+        "hours": "Descrizioni generali e recapiti del servizio non sono ore dei target.",
+        "dates": "Molte date prive di anno; alcuni intervalli incompleti. Il sito avverte che programmi lontani possono appartenere a precedenti anni.",
+        "recurrence": "Il richiamo introduttivo alle passeggiate fra aprile e ottobre non è calendario ricorrente di ogni scheda.",
+        "exceptions": "Anno ignoto e programmi indicativi sono limiti da conservare, non completare con l’anno corrente.",
+        "gps": "Nessuna coordinata dei target osservata.",
+        "organizer": "Sito di un’attività commerciale e contatti per pubblicare eventi non ne provano l’organizzatore."
+      },
+      "demonstrated_findings": [
+        "Il sistema deve leggere il programma collegato e una data con anno prima di generare edizioni.",
+        "Contenuto su passeggiate/biciclettate richiede verifica della tipologia mercato, senza cancellare ID storici.",
+        "Non unire la ricomparsa di un paese al vecchio evento dello stesso paese."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-06",
+        "NC-07",
+        "NC-13",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "sagretoscane.com--7e915f1a79a5",
+      "host": "sagretoscane.com",
+      "url_pattern": "/fiere-mercati/si/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 3,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 2,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "exact_sample_url_catalog_record_count": 3,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:22",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 2,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.sagretoscane.com/fiere-mercati/si/",
+        "acquired_at": "2026-10-19T22:38:54.322708+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.sagretoscane.com/fiere-mercati/si/",
+        "redirect_chain": [],
+        "bytes": 31053,
+        "sha256": "1447eb9ef4457606d003511ab0ffb9a8021b8e169b518be868ef98fec6552fb9",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Fiere e Mercati in Provincia di Siena",
+      "observed_canonical_links": [
+        "https://www.sagretoscane.com/fiere-mercati/si/"
+      ],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:sagretoscane.com--7e915f1a79a5.txt",
+      "semantic_layout_observed": "Indice fiere/mercati provincia Siena, quattro card con date, Comune e descrizioni/collegamenti.",
+      "sample_identity_assessment": "Il nome Angolo del Collezionista compare a Buonconvento l’8 dicembre 2026, mentre le tre schede salvate sono di Gaiole, San Gimignano e Siena, tutte con cadenza domenicale.",
+      "field_observations": {
+        "identity_geography": "Nome e Comune per card obbligatori per l’identità; marca condivisa non prova lo stesso mercato.",
+        "address": "Piazza Matteotti per Buonconvento; Piazza Duomo/Via Porsenna appartengono all’altra card di Chiusi.",
+        "hours": "9–19 è orario del mercato di Chiusi, non di Angolo del Collezionista.",
+        "dates": "8 dicembre 2026 per Buonconvento è martedì; altre card hanno date proprie di ottobre/novembre.",
+        "recurrence": "Nessuna conferma della cadenza settimanale domenicale delle tre schede salvate.",
+        "exceptions": "Edizione datata specifica non estendibile ad altri Comuni.",
+        "gps": "Nessuna coordinata precisa dei tre target osservata.",
+        "organizer": "Nessun organizzatore dei tre target confermato nel campione."
+      },
+      "demonstrated_findings": [
+        "Il campione dimostra un rischio concreto di falso join per nome: 51 date previste delle tre schede non possono ricevere prova dal mercato di Buonconvento.",
+        "I campi ricchi della card di Chiusi non vanno ereditati dalla card vicina."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-05",
+        "NC-08",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "sagreumbre.it--f52d57ff5da2",
+      "host": "sagreumbre.it",
+      "url_pattern": "/fiere-mercati/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 5,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 5,
+        "ricorrenza_testo": 5,
+        "date": 5
+      },
+      "exact_sample_url_catalog_record_count": 5,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:23",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 5,
+        "ricorrenza_testo": 5,
+        "date": 5
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.sagreumbre.it/fiere-mercati/",
+        "acquired_at": "2026-10-19T22:38:48.253717+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.sagreumbre.it/fiere-mercati/",
+        "redirect_chain": [],
+        "bytes": 19007,
+        "sha256": "a6857870a3bbf9836a015f9bbeb47c9e44aa61e105120fe344103518803268cf",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Fiere e Mercati in Umbria",
+      "observed_canonical_links": [
+        "https://www.sagreumbre.it/fiere-mercati/"
+      ],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:sagreumbre.it--f52d57ff5da2.txt",
+      "semantic_layout_observed": "Indice fiere/mercati Umbria con tre card, microdata time startDate/endDate e descrizioni abbreviate.",
+      "sample_identity_assessment": "Cinque target salvati non individuati nelle tre card correnti; il listato attuale riguarda Alviano, Valtopina e Terni.",
+      "field_observations": {
+        "identity_geography": "Comune e sigla provincia espliciti per card; Orvieto PG salvato è anomalia catalogo da validare, non confermata dalla pagina corrente.",
+        "address": "Una card diversa dai target contiene Via Montefiorino 48; altra sede centro storico è vaga.",
+        "hours": "9:00–19:30 per la Fiera del Disco di Terni; apertura Palasport ore 12 per un’altra card, non dei target.",
+        "dates": "Date complete di novembre 2026, anche negli elementi time; nessuna data dei target osservata.",
+        "recurrence": "Nessuna ricorrenza dei target osservata.",
+        "exceptions": "Non osservate per i target.",
+        "gps": "Nessuna coordinata precisa dei target osservata.",
+        "organizer": "Non dimostrato per i target nella vista corrente."
+      },
+      "demonstrated_findings": [
+        "Indirizzi e orari presenti in altre card non possono riempire i cinque eventi che condividevano il vecchio URL di indice.",
+        "Microdata e DOM offrono discovery, ma nessun Event JSON-LD è presente."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-04",
+        "NC-08",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "solosagre.it--ceaedca6c042",
+      "host": "solosagre.it",
+      "url_pattern": "/mostre-e-mercatini/{regione}/{provincia}/{comune}/{slug}.html",
+      "url_kind_by_shape": "event_detail",
+      "catalog_records_in_format": 7,
+      "unique_primary_urls_in_format": 7,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 4,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:24",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 1,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/ra/cervia/a-spass-per-zirvia-cervia.html",
+        "acquired_at": "2026-10-19T22:38:44.680075+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/ra/cervia/a-spass-per-zirvia-cervia.html",
+        "redirect_chain": [],
+        "bytes": 41242,
+        "sha256": "7a83d05762a08d96945f6a8465ad7d0756cde8c368991a6f2709d74e3c04d21c",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "A Spass Per Zirvia | Fiere, Mostre e Mercati | Emilia-Romagna, Ravenna - Cervia",
+      "observed_canonical_links": [
+        "https://www.solosagre.it/mostre-e-mercatini/emilia-romagna/ra/cervia/a-spass-per-zirvia-cervia.html"
+      ],
+      "observed_schema_types": {},
+      "evidence_text_file": "temporary-capture-not-committed:solosagre.it--ceaedca6c042.txt",
+      "semantic_layout_observed": "Scheda SoloSagre con blocco postContentDescription e Informazioni evento contenente responsabile/luogo; microdata time per data.",
+      "sample_identity_assessment": "Sette URL nel formato; il campione corrisponde ad A Spass per Zirvia a Cervia, edizione 22 febbraio 2026 marcata conclusa.",
+      "field_observations": {
+        "identity_geography": "Nome pulito e Comune Cervia (RA) espliciti, coerenti con la scheda.",
+        "address": "Luogo: centro storico, 48015 Cervia. Catalogo conserva una frase di navigazione iniziata con via Sagre Lombardia Sagre Lazio: non è una sede.",
+        "hours": "Nessun orario preciso osservato nel campione, quindi campo vuoto corretto.",
+        "dates": "22 febbraio 2026, concluso; una futura edizione non è garantita dal testo generico sul possibile anno seguente.",
+        "recurrence": "Ultima domenica del mese esplicita, già salvata.",
+        "exceptions": "Appuntamenti speciali per festività e Festa del Cardo; invito a verificare il calendario ufficiale. La semplice ultima domenica non copre tutto il programma.",
+        "gps": "Link mappa del luogo, ma nessuna coppia GPS validata come posizione precisa del mercato in questa revisione.",
+        "organizer": "Consorzio Cervia Centro esplicitamente responsabile; contatti nel medesimo blocco, distinti dalle offerte di collaborazione del sito."
+      },
+      "demonstrated_findings": [
+        "Contaminazione dimostrata dell’indirizzo da navigazione; serve controllo generico su confini DOM e plausibilità della sede.",
+        "Il sito offre un luogo descrittivo, non una strada precisa: non sostituire la contaminazione con un indirizzo inventato.",
+        "Le proiezioni salvate non sono date fonte; eccezioni e stato scaduto richiedono prova ulteriore per aggiornamento."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-03",
+        "NC-06",
+        "NC-07",
+        "NC-09",
+        "NC-15",
+        "NC-14"
+      ],
+      "review_state": "reviewed_expired_or_conflicting",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "suedtirol.info--826da4efb87f",
+      "host": "suedtirol.info",
+      "url_pattern": "/it/esperienze/eventi",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 3,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 3,
+        "orario_testo": 3,
+        "ricorrenza_testo": 3,
+        "date": 3
+      },
+      "exact_sample_url_catalog_record_count": 3,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:25",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 3,
+        "orario_testo": 3,
+        "ricorrenza_testo": 3,
+        "date": 3
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.suedtirol.info/it/esperienze/eventi",
+        "acquired_at": "2026-10-19T22:38:54.557674+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html;charset=utf-8",
+        "observed_final_url": "https://www.suedtirol.info/it/it/esperienze-eventi/eventi-alto-adige",
+        "redirect_chain": [
+          {
+            "from": "https://www.suedtirol.info/it/esperienze/eventi",
+            "to": "https://www.suedtirol.info/it/it/esperienze-eventi/eventi-alto-adige",
+            "status": 301
+          }
+        ],
+        "bytes": 1242370,
+        "sha256": "518f16ceae6b514e2e7872c0df7f3e883507be57e8e7f25889bd8cf6692f02ef",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Tutti gli Eventi e Attività in Alto Adige in un click | Suedtirol.info",
+      "observed_canonical_links": [
+        "https://www.suedtirol.info/it/it/esperienze-eventi/eventi-alto-adige"
+      ],
+      "observed_schema_types": {
+        "ItemList": 1,
+        "BreadcrumbList": 1,
+        "ListItem": 3
+      },
+      "evidence_text_file": "temporary-capture-not-committed:suedtirol.info--826da4efb87f.txt",
+      "semantic_layout_observed": "Vecchio URL turistico con HTTP 301 a indice esperienze-eventi; trenta card DOM article.event-wrapper con titolo/località e date multiple. ItemList JSON-LD vuoto.",
+      "sample_identity_assessment": "Nessuno dei tre target Merano via Galilei/Naturno/Terlano individuato nelle card o nelle relative stringhe del campione.",
+      "field_observations": {
+        "identity_geography": "Titolo, località e area turistica per card separati; nel catalogo Naturno Naturno/Terlano Terlano sono duplicazioni testuali, non due Comuni.",
+        "address": "Nessuna sede precisa dei target nella pagina; località delle altre attività non basta.",
+        "hours": "Nessun orario preciso dei target nella pagina.",
+        "dates": "Molte singole date esplicite per card, alcune duplicate; non appartengono ai tre mercati salvati.",
+        "recurrence": "La densità di date nelle attività non prova una cadenza dei target.",
+        "exceptions": "Date/card da preservare come insiemi; altre attività non devono creare calendario per nome di città.",
+        "gps": "Nessuna coppia puntuale del target dimostrata dal campione.",
+        "organizer": "Nessun organizzatore dei target individuato."
+      },
+      "demonstrated_findings": [
+        "Un reader solo JSON-LD vedrebbe ItemList vuoto malgrado trenta card nel DOM: gap concreto di copertura del formato.",
+        "Campione utile per discovery con link dettaglio; non è prova di completezza di tutta la base dati dinamica.",
+        "La normalizzazione geografica deve tenere separati Comune, area turistica e ripetizioni di UI."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-04",
+        "NC-08",
+        "NC-11",
+        "NC-12",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "terredipisa.it--6b239e3c095e",
+      "host": "terredipisa.it",
+      "url_pattern": "/events/categories/sagra-fiere-mercati/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 2,
+        "orario_testo": 0,
+        "ricorrenza_testo": 2,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:26",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 2,
+        "orario_testo": 0,
+        "ricorrenza_testo": 2,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.terredipisa.it/events/categories/sagra-fiere-mercati/",
+        "acquired_at": "2026-10-19T22:39:13.886516+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.terredipisa.it/events/categories/sagra-fiere-mercati/",
+        "redirect_chain": [],
+        "bytes": 57938,
+        "sha256": "7ef68a51a286cadd0da2146207b7ea251b6c5112802901e8ed372bc95c607b03",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "sagra, fiere e mercati – Terre di Pisa",
+      "observed_canonical_links": [],
+      "observed_schema_types": {
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "PropertyValueSpecification": 1,
+        "Organization": 1,
+        "ImageObject": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:terredipisa.it--6b239e3c095e.txt",
+      "semantic_layout_observed": "Archivio Events Manager con lista li: link titolo, data iniziale/finale e orario; paginazione.",
+      "sample_identity_assessment": "Il target San Miniato è presente. Il target Vicopisano non è nella prima pagina; non se ne deduce cessazione.",
+      "field_observations": {
+        "identity_geography": "San Miniato esplicito nel titolo del link; marchio Mercato della terra appartiene a un altro evento della stessa città.",
+        "address": "Nessuna sede precisa del target San Miniato nell’indice.",
+        "hours": "9:00–19:00 per il target, già salvato. Tutto il giorno su altre voci non significa 00:00–24:00 operativo.",
+        "dates": "Riga San Miniato: 1 novembre – 6 dicembre 2026. Il range del listato non chiarisce da solo le singole giornate effettive.",
+        "recurrence": "Nessuna ricorrenza esplicita per San Miniato nel campione.",
+        "exceptions": "Il periodo fra due edizioni non può essere espanso a presenza ogni giorno.",
+        "gps": "Nessuna coordinata precisa dei target osservata.",
+        "organizer": "Organizzazione nei metadati globali è il sito, non prova per i mercati."
+      },
+      "demonstrated_findings": [
+        "Link dettagliato disponibile per il mercato di San Miniato, mentre il catalogo conserva il solo indice.",
+        "Il catalogo salva solo 6 dicembre prevista; non è corretto aggiungere ogni data del range senza leggere il programma dettagliato."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-06",
+        "NC-07",
+        "NC-14"
+      ],
+      "review_state": "reviewed_source_sample",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "trentino.com--2b837e50ce8e",
+      "host": "trentino.com",
+      "url_pattern": "/it/calendario/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 8,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 8,
+        "orario_testo": 0,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "exact_sample_url_catalog_record_count": 8,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:27",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 8,
+        "orario_testo": 0,
+        "ricorrenza_testo": 0,
+        "date": 0
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.trentino.com/it/calendario/",
+        "acquired_at": "2026-10-19T22:38:38.827658+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": false,
+        "status_code": 503,
+        "observed_final_url": "https://www.trentino.com/it/calendario/",
+        "redirect_chain": [],
+        "state": "http_error_or_external_redirect",
+        "robots_state": "http_error_or_external_redirect",
+        "robots_policy_observed": false
+      },
+      "source_html_hash_verified": false,
+      "observed_title": null,
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": null,
+      "semantic_layout_observed": "Non verificato: risposta HTTP 503, nessun HTML sorgente utilizzabile.",
+      "sample_identity_assessment": "Otto schede settimanali hanno ore e date previste ma indirizzo vuoto; risposta 503 non le riconferma.",
+      "field_observations": {
+        "identity_geography": "non_checked",
+        "address": "non_checked",
+        "hours": "non_checked",
+        "dates": "non_checked",
+        "recurrence": "non_checked",
+        "exceptions": "non_checked",
+        "gps": "non_checked",
+        "organizer": "non_checked"
+      },
+      "demonstrated_findings": [
+        "Non classificare un errore HTTP come fonte controllata o vuota; nessun nuovo timestamp di prova dei mercati.",
+        "Conservare distinzione tra URL pagina e identificatore di edizione/fragment, senza assumere calendario attuale."
+      ],
+      "todo_ids": [
+        "NC-08",
+        "NC-11",
+        "NC-14"
+      ],
+      "review_state": "not_checked_http_failure",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "trentino.com--f4ac442f344e",
+      "host": "trentino.com",
+      "url_pattern": "/it/calendario/dettagli/{slug}/#{edizione}",
+      "url_kind_by_shape": "calendar_event_detail",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:28",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://trentino.com/it/calendario/dettagli/mercato-contadino-trento---pdante/#2026-02-14",
+        "acquired_at": "2026-10-19T22:38:39.729834+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": false,
+        "status_code": 503,
+        "observed_final_url": "https://trentino.com/it/calendario/dettagli/mercato-contadino-trento---pdante/#2026-02-14",
+        "redirect_chain": [],
+        "state": "http_error_or_external_redirect",
+        "robots_state": "http_error_or_external_redirect",
+        "robots_policy_observed": false
+      },
+      "source_html_hash_verified": false,
+      "observed_title": null,
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": null,
+      "semantic_layout_observed": "Non verificato: risposta HTTP 503, nessun HTML sorgente utilizzabile.",
+      "sample_identity_assessment": "Una scheda Trento ha Comune TN, dati mancanti e frammento URL con vecchia edizione 2026-02-14; risposta 503 non dimostra il contenuto della pagina.",
+      "field_observations": {
+        "identity_geography": "non_checked",
+        "address": "non_checked",
+        "hours": "non_checked",
+        "dates": "non_checked",
+        "recurrence": "non_checked",
+        "exceptions": "non_checked",
+        "gps": "non_checked",
+        "organizer": "non_checked"
+      },
+      "demonstrated_findings": [
+        "Non classificare un errore HTTP come fonte controllata o vuota; nessun nuovo timestamp di prova dei mercati.",
+        "Conservare distinzione tra URL pagina e identificatore di edizione/fragment, senza assumere calendario attuale."
+      ],
+      "todo_ids": [
+        "NC-08",
+        "NC-11",
+        "NC-14"
+      ],
+      "review_state": "not_checked_http_failure",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "umbriaeventi.com--a21a189c200c",
+      "host": "umbriaeventi.com",
+      "url_pattern": "/{slug}-{id}.htm",
+      "url_kind_by_shape": "event_detail_legacy",
+      "catalog_records_in_format": 4,
+      "unique_primary_urls_in_format": 4,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 4,
+        "orario_testo": 4,
+        "ricorrenza_testo": 4,
+        "date": 4
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:29",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.umbriaeventi.com/anticamente-orvieto-mostra-mercato-collezionismo-antiquariato-15811.htm",
+        "acquired_at": "2026-10-19T22:38:50.817216+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.umbriaeventi.com/eventi/anticamente-orvieto-mostra-mercato-collezionismo-antiquariato-15811",
+        "redirect_chain": [
+          {
+            "from": "https://www.umbriaeventi.com/anticamente-orvieto-mostra-mercato-collezionismo-antiquariato-15811.htm",
+            "to": "https://www.umbriaeventi.com/eventi/anticamente-orvieto-mostra-mercato-collezionismo-antiquariato-15811",
+            "status": 301
+          }
+        ],
+        "bytes": 197250,
+        "sha256": "18ffb174195cfaf7b9248074a27b4789a0d848baa162602b24fc1d41dabc142d",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Anticamente 2026 a Orvieto mostra antiquariato - UmbriaEventi",
+      "observed_canonical_links": [
+        "https://www.umbriaeventi.com/eventi/anticamente-orvieto-mostra-mercato-collezionismo-antiquariato-15811"
+      ],
+      "observed_schema_types": {
+        "Organization": 9,
+        "Event": 8,
+        "Place": 8,
+        "PostalAddress": 8,
+        "GeoCoordinates": 8,
+        "BreadcrumbList": 1,
+        "ListItem": 4
+      },
+      "evidence_text_file": "temporary-capture-not-committed:umbriaeventi.com--a21a189c200c.txt",
+      "semantic_layout_observed": "Vecchia scheda .htm con HTTP 301 a /eventi/{slug}-{id}; header DOM con prossime date, descrizione/info, galleria e otto Event JSON-LD storici.",
+      "sample_identity_assessment": "Quattro URL nel formato; il campione corrisponde all’Anticamente di Orvieto. Le altre città citate come eventi gemelli non appartengono alla stessa sede.",
+      "field_observations": {
+        "identity_geography": "h1 pulito, Orvieto (TR). Nome catalogo contiene data/Comune e descrizione concatenate, provincia vuota.",
+        "address": "Piazza della Repubblica esplicita nella descrizione, campo catalogo vuoto.",
+        "hours": "Dalle 9:00 al tramonto: apertura precisa e chiusura qualitativa. Campo vuoto; non trasformare tramonto in ora numerica.",
+        "dates": "Header: 15 novembre e 20 dicembre 2026 future. Gli otto JSON-LD Event coprono gennaio–agosto 2026 e non includono queste prossime edizioni.",
+        "recurrence": "Nessuna regola perpetua esplicita nel campione: le date mensili non autorizzano a dedurre automaticamente terza domenica per sempre.",
+        "exceptions": "Finitezza delle date pubblicate e disallineamento fra DOM e JSON-LD da conservare.",
+        "gps": "GeoCoordinates e link Maps presenti, ma Place è Orvieto generico: verificare che il punto rappresenti Piazza della Repubblica prima di assegnare precisione di sede.",
+        "organizer": "Testo Info: Associazione InDivenire. JSON-LD organizer: UmbriaEventi, cioè l’editore; ruoli discordanti, non privilegiare ciecamente lo schema."
+      },
+      "demonstrated_findings": [
+        "Gap dimostrati di sede, orario parziale e prossime edizioni; titolo contaminato da concatenazione di altri blocchi.",
+        "Estrarre solo JSON-LD perderebbe le prossime due date. Unire calendario, h1 e blocco descrittivo dello stesso evento con provenienza per campo.",
+        "I link di eventi gemelli Foligno/Todi/Perugia non sono sedi alternative di Orvieto."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-04",
+        "NC-05",
+        "NC-06",
+        "NC-07",
+        "NC-08",
+        "NC-09",
+        "NC-10",
+        "NC-11",
+        "NC-14"
+      ],
+      "review_state": "reviewed_source_sample",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "umbriaeventi.com--f193ae86be90",
+      "host": "umbriaeventi.com",
+      "url_pattern": "/",
+      "url_kind_by_shape": "publisher_homepage",
+      "catalog_records_in_format": 4,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 4,
+        "orario_testo": 4,
+        "ricorrenza_testo": 4,
+        "date": 4
+      },
+      "exact_sample_url_catalog_record_count": 4,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:30",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 4,
+        "orario_testo": 4,
+        "ricorrenza_testo": 4,
+        "date": 4
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.umbriaeventi.com/",
+        "acquired_at": "2026-10-19T22:38:53.322438+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=utf-8",
+        "observed_final_url": "https://www.umbriaeventi.com/",
+        "redirect_chain": [],
+        "bytes": 224736,
+        "sha256": "8dd8225b6efd1794c6aa865b60f367d1ff6ed8c6ff8d9735c05439943ee92e9c",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Eventi e Sagre in Umbria oggi e prossimi giorni - UmbriaEventi",
+      "observed_canonical_links": [
+        "https://www.umbriaeventi.com/home"
+      ],
+      "observed_schema_types": {
+        "Organization": 1,
+        "WebSite": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:umbriaeventi.com--f193ae86be90.txt",
+      "semantic_layout_observed": "Homepage UmbriaEventi con eventi consigliati, prossimi e altre rubriche; card con Comune/provincia, date e link.",
+      "sample_identity_assessment": "Anticamente Foligno e Ponte Rio fra i quattro target sono presenti, con date proprie. Mercato delle Gaite e Calzolarissimo non individuati nel campione.",
+      "field_observations": {
+        "identity_geography": "Stesso marchio Anticamente in quattro località: Perugia, Orvieto, Foligno, Ponte Rio; obbligatorio collegare la città della card.",
+        "address": "Piazza Italia/Giardini Carducci appartengono al blocco Perugia, non alle due schede catalogo Foligno/Ponte Rio.",
+        "hours": "9:00–tramonto appare nell’estratto di Perugia; non va ereditato dalle altre località.",
+        "dates": "Foligno 14 novembre 2026 e Ponte Rio 8 novembre 2026, date future esplicite delle card. I campi delle due schede sono vuoti.",
+        "recurrence": "Un’altra card Scheggino ha quarta domenica da marzo a… troncato: non importare la sola regola ignorando il limite incompleto.",
+        "exceptions": "Qualificatore stagionale troncato in estratto è motivo per leggere il dettaglio prima delle proiezioni.",
+        "gps": "Nessuna coppia di coordinate precise dei target dimostrata.",
+        "organizer": "Editore globale non è organizzatore; nomi nelle descrizioni valgono solo per quella card."
+      },
+      "demonstrated_findings": [
+        "Gap dimostrato di discovery/date per i due Anticamente del catalogo, con collegamento dettagliato disponibile.",
+        "Stessa marca e date diverse richiedono join composto; la geografia nel catalogo è inclusa nel campo citta come testo (PG), provincia separata vuota.",
+        "La lettura di un estratto tagliato non deve produrre ricorrenze parziali."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-06",
+        "NC-07",
+        "NC-08",
+        "NC-15",
+        "NC-14"
+      ],
+      "review_state": "reviewed_source_sample",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "varesenews.it--888bef8902d4",
+      "host": "varesenews.it",
+      "url_pattern": "/category-evento/eventi-sagre-feste/",
+      "url_kind_by_shape": "literal_route_needs_layout_review",
+      "catalog_records_in_format": 2,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 0,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "exact_sample_url_catalog_record_count": 2,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:31",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 0,
+        "orario_testo": 2,
+        "ricorrenza_testo": 2,
+        "date": 2
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://www.varesenews.it/category-evento/eventi-sagre-feste/",
+        "acquired_at": "2026-10-19T22:39:17.086801+00:00",
+        "transport": "urllib_environment_HTTP_transport",
+        "network_response_observed": true,
+        "new_source_read": true,
+        "status_code": 200,
+        "mime": "text/html; charset=UTF-8",
+        "observed_final_url": "https://www.varesenews.it/category-evento/eventi-sagre-feste/",
+        "redirect_chain": [],
+        "bytes": 127655,
+        "sha256": "13a5cae821eb636d1a92aebedfd83d406be24b037858cdd5756821e0c2f7b45a",
+        "state": "read",
+        "robots_state": "read",
+        "robots_policy_observed": true
+      },
+      "source_html_hash_verified": true,
+      "observed_title": "Eventi di Sagre, Fiere e Feste a Varese e Provincia",
+      "observed_canonical_links": [
+        "https://www.varesenews.it/category-evento/eventi-sagre-feste/"
+      ],
+      "observed_schema_types": {
+        "CollectionPage": 1,
+        "BreadcrumbList": 1,
+        "ListItem": 2,
+        "WebSite": 1,
+        "SearchAction": 1,
+        "EntryPoint": 1,
+        "Organization": 2,
+        "ImageObject": 3,
+        "NewsMediaOrganization": 1,
+        "ContactPoint": 1,
+        "NewsArticle": 1,
+        "['CreativeWork', 'Product']": 1
+      },
+      "evidence_text_file": "temporary-capture-not-committed:varesenews.it--888bef8902d4.txt",
+      "semantic_layout_observed": "Categoria WordPress con sei article.item-evento; header locale contiene date, titolo, città e struttura, separato dall’intestazione del sito.",
+      "sample_identity_assessment": "Fashion Day Lavena Ponte Tresa e Calici Sapori Motori Venegono non individuati nelle card correnti.",
+      "field_observations": {
+        "identity_geography": "Nome, Comune e struttura per card; categorie e titolo di pagina non sono identità evento.",
+        "address": "Strutture nominate per le altre card (cantina, Sacro Monte, parco, centro sportivo), non nuove sedi dei target.",
+        "hours": "Nessun orario preciso dei target nel listato.",
+        "dates": "Date per card. Bike & Music definito due giorni ha range 16 maggio 2026–17 maggio 2027: incongruenza sorgente da trattenere.",
+        "recurrence": "Non osservata per i target.",
+        "exceptions": "La festa delle zucche descrive tre weekend entro un range; non è presenza quotidiana per tutto il periodo.",
+        "gps": "Nessuna coordinata dei target dimostrata.",
+        "organizer": "NewsMediaOrganization/Organization sono metadati dell’editore, non organizzatore del target."
+      },
+      "demonstrated_findings": [
+        "Il lettore deve conservare gli header locali delle card: una pulizia globale degli header cancella tutti i campi utili.",
+        "La pagina contiene date e luoghi ma non dei due target; richiede discovery e controlli di plausibilità del periodo.",
+        "Non correggere da soli l’anno discordante della manifestazione sportiva né importarvi un mercato."
+      ],
+      "todo_ids": [
+        "NC-01",
+        "NC-02",
+        "NC-03",
+        "NC-04",
+        "NC-05",
+        "NC-07",
+        "NC-13",
+        "NC-14"
+      ],
+      "review_state": "reviewed_index_only",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    },
+    {
+      "format_id": "wwwservizi.regione.emilia-romagna.itnote.asp--08f6dd05bcee",
+      "host": "wwwservizi.regione.emilia-romagna.itnote.asp",
+      "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}",
+      "url_kind_by_shape": "possibly_concatenated_relative_url",
+      "catalog_records_in_format": 1,
+      "unique_primary_urls_in_format": 1,
+      "catalog_empty_fields_in_format": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "exact_sample_url_catalog_record_count": 1,
+      "exact_sample_url_catalog_records_ref": "temporary-capture-not-committed:32",
+      "exact_sample_url_catalog_empty_fields": {
+        "indirizzo": 1,
+        "orario_testo": 1,
+        "ricorrenza_testo": 1,
+        "date": 1
+      },
+      "acquisition_evidence": {
+        "requested_url": "https://wwwservizi.regione.emilia-romagna.itnote.asp?anno=2026&cod_co=037009&progr_fiera=1&dt_datada=&dt_dataa=&r1=&strr_sede=&strr_provincia=&r2=&strs_keywords=",
+        "network_response_observed": false,
+        "new_source_read": false,
+        "state": "malformed_source_url_needs_repair"
+      },
+      "source_html_hash_verified": false,
+      "observed_title": null,
+      "observed_canonical_links": [],
+      "observed_schema_types": {},
+      "evidence_text_file": null,
+      "semantic_layout_observed": "Non verificato: URL con hostname e relativo note.asp concatenati; non è stato richiesto alla rete.",
+      "sample_identity_assessment": "Una scheda ha titolo SETTIMANA CALDERARESE - MERCATO DEI CENTO e campo citta MERCATO DEI CENTO: il nome non è una geografia confermata.",
+      "field_observations": {
+        "identity_geography": "non_checked",
+        "address": "non_checked",
+        "hours": "non_checked",
+        "dates": "non_checked",
+        "recurrence": "non_checked",
+        "exceptions": "non_checked",
+        "gps": "non_checked",
+        "organizer": "non_checked"
+      },
+      "demonstrated_findings": [
+        "Nessuna presenza/assenza di campi fonte è verificata.",
+        "Serve risolvere link relativi con urljoin contro la pagina di provenienza, validare hostname e conservare URL originale. Non indovinare la destinazione della vecchia scheda."
+      ],
+      "todo_ids": [
+        "NC-08",
+        "NC-11",
+        "NC-14"
+      ],
+      "review_state": "not_checked_malformed_url",
+      "parser_assessment_ref": "reader_assessment",
+      "individual_market_updates_applied": 0,
+      "verification_limit": "Un campione per formato; confronto tra HTML attuale e dati salvati, non prova del contenuto visto dall’import storico. Una lettura HTTP riuscita non conferma tutti i mercati che condividono l’URL."
+    }
+  ],
+  "generic_todos": [
+    {
+      "id": "NC-01",
+      "title": "Contratti DOM per confini di evento e campi",
+      "mechanism": "Leggere blocchi/righe e header locali; separare menu, footer, articoli consigliati, calendario di navigazione, autore e pubblicazione. Conservare selettore e testo prova per campo.",
+      "acceptance_tests": [
+        "VareseNews/SagreFVG: mantenere date e sede in header della card, scartare header globale.",
+        "SoloSagre: luogo centro storico, mai menu Sagre Lombardia.",
+        "UmbriaEventi: titolo dal solo h1, mai data+città+descrizione concatenati.",
+        "Firenze: riga orari prima del titolo resta unita al relativo blocco."
+      ]
+    },
+    {
+      "id": "NC-02",
+      "title": "Discovery dall’indice al dettaglio con identità composta",
+      "mechanism": "Conservare URL dettaglio/canonical e associare prove solo a nome, Comune e sede/cadenza compatibili. Indice paginato o homepage assente non significa evento cancellato.",
+      "acceptance_tests": [
+        "Angolo del Collezionista Buonconvento non si collega a Gaiole/Siena/San Gimignano.",
+        "Anticamente Foligno/Ponte Rio/Orvieto/Perugia restano distinti.",
+        "Only Usato in sedi diverse non sovrascrive una sede tramite nome.",
+        "Homepage Eventi Bergamo: primo Event JSON-LD non viene attribuito a Wine Form Mais."
+      ]
+    },
+    {
+      "id": "NC-03",
+      "title": "Precisione e provenienza dei calendari",
+      "mechanism": "Separare publicationDate, data lettura, date evento e previsioni; conservare anno esplicito, singole edizioni, insiemi disgiunti e stato passato. Un range non dimostra presenza giornaliera.",
+      "acceptance_tests": [
+        "SagreTorino: nessuna data numerica nuova quando manca anno o estremo.",
+        "SagreInRomagna: marzo/maggio si salvano come storia finita, non prossime edizioni.",
+        "Terre di Pisa: range 1 novembre–6 dicembre non diventa 36 giorni di mercato.",
+        "EmiliaRomagnaTurismo: terzo/quarto weekend restano quattro giornate limitate all’edizione."
+      ]
+    },
+    {
+      "id": "NC-04",
+      "title": "Confronto DOM, microdata e JSON-LD",
+      "mechanism": "Integrare canali dello stesso evento, rilevando disaccordi/incompletezza; non assumere né che il primo Event sia il target né che schema vuoto equivalga a assenza di eventi.",
+      "acceptance_tests": [
+        "Orvieto: otto Event storici non nascondono due date future nell’header.",
+        "Suedtirol: ItemList vuoto e trenta card DOM produce discovery con copertura dichiarata, non zero eventi.",
+        "Bergamo: date 20 febbraio e 23 gennaio discordanti generano conflitto tracciato."
+      ]
+    },
+    {
+      "id": "NC-05",
+      "title": "Conflitti sorgente e valori salvati senza sovrascritture",
+      "mechanism": "Trattenere cambi di indirizzo, città, ora o edizione discordanti; fornire prove per confronto. Una singola pagina internamente incoerente non sana il conflitto.",
+      "acceptance_tests": [
+        "Alghero Fertilia: Via Fiume/Via Zara produce conflitto.",
+        "PugliainFesta: Brindisi/Ostuni non produce overwrite.",
+        "Firenze: 9–19 nuovo contro 9–20 salvato ha provenance e conflitto.",
+        "VareseNews: descrizione due giorni/range un anno è incoerente, non autocorrezione dell’anno."
+      ]
+    },
+    {
+      "id": "NC-06",
+      "title": "Orari completi, parziali e limiti di validità",
+      "mechanism": "Preservare inizio noto/fine qualitativa, giorni interi, fasce separate, orari di contatto e confini di intervallo. Non fabbricare una chiusura numerica o un’apertura giornaliera.",
+      "acceptance_tests": [
+        "Orvieto: 9:00–tramonto conserva tramonto.",
+        "PugliainFesta: estremi 2025 ore12 / 2026 ore22 non diventano 12–22 tutti i giorni.",
+        "JSON-LD 00:00/23:59 non crea ore operative.",
+        "Numero di telefono con 19.30–21.30 non diventa orario mercato."
+      ]
+    },
+    {
+      "id": "NC-07",
+      "title": "Ruoli corretti per organizzatore e contatti",
+      "mechanism": "Dare priorità a etichette esplicite organizzazione/responsabile del singolo evento; distinguere publisher, autore, sponsor e fornitore del portale.",
+      "acceptance_tests": [
+        "UmbriaEventi: Associazione InDivenire nel testo non è rimpiazzata dall’editore in schema.",
+        "SoloSagre: Consorzio Cervia Centro dal blocco Informazioni, mai contatto recruiting.",
+        "Footer editoriale o performer Organization non produce un organizzatore mercato."
+      ]
+    },
+    {
+      "id": "NC-08",
+      "title": "Geografia strutturata e validata senza default dal sito",
+      "mechanism": "Separare Comune, frazione, sigla provincia e area turistica; usare repertorio di Comuni con ambiguità esplicite e preservare testo originale. Nessun capoluogo/provincia di default dal dominio.",
+      "acceptance_tests": [
+        "Naturno Naturno/Terlano Terlano e città con (PG) non restano geografie duplicate.",
+        "Provincia MI non viene assegnata automaticamente a ogni voce del portale lombardo.",
+        "PD/TN come unico campo città e MERCATO DEI CENTO vengono segnalati come geografia non risolta.",
+        "Ravenna–Marina di Ravenna conserva la frazione."
+      ]
+    },
+    {
+      "id": "NC-09",
+      "title": "Qualità dei valori prima della completezza",
+      "mechanism": "Contare NA, frammenti e testo di navigazione come valori non utilizzabili; riparazione mediante prove dello stesso evento, senza inventare valori mancanti.",
+      "acceptance_tests": [
+        "NA in orario/indirizzo non conta come dato completo.",
+        "via Sagre Lombardia Sagre Lazio non passa plausibilità indirizzo.",
+        "Nome concatenato data/luogo/descrizione non sostituisce un h1 pulito.",
+        "Indirizzo G e ora 11 privi di contesto non diventano validi solo perché non vuoti."
+      ]
+    },
+    {
+      "id": "NC-10",
+      "title": "Coordinate con ambito e precisione dimostrati",
+      "mechanism": "Separare coordinate luogo da viewport mappa e geocentro del Comune; validare coerenza con la sede e segnare precisione/provenienza, senza promuovere map link a verifica puntuale.",
+      "acceptance_tests": [
+        "Link Maps con viewport e destinazione usa coordinate del luogo solo se coerenti.",
+        "Orvieto Place generico non garantisce posizione della piazza.",
+        "Coordinate di altra card non vengono assegnate al target assente."
+      ]
+    },
+    {
+      "id": "NC-11",
+      "title": "Esiti HTTP e migrazioni URL verificabili",
+      "mechanism": "Registrare acquisizione/status/MIME/final URL/redirect/hash reali. Errori 429/503 e URL malformati non aggiornano source freshness. Risolvere relativi dalla pagina sorgente e ritentare in budget esistente.",
+      "acceptance_tests": [
+        "429/503 mantengono stato non verificato, nessun source_checked_at mercato.",
+        "Redirect osservato conserva URL originario e finale con hash del contenuto.",
+        "note.asp concatenato a hostname viene segnalato, non richiesto o riparato per congettura."
+      ]
+    },
+    {
+      "id": "NC-12",
+      "title": "Indice dinamico con copertura misurabile",
+      "mechanism": "Definire un contratto su payload pubblico/rendered DOM disponibile, paginazione e identità; non contare traduzioni o controlli filtro come eventi né un output vuoto come chiusura delle schede.",
+      "acceptance_tests": [
+        "Ferrara: Nessun risultato/stato non popolato è coverage unresolved.",
+        "Suedtirol: trenta card campionate non diventano dichiarazione di intero catalogo verificato.",
+        "Nessun latitude/longitude di dizionario traduzioni produce coordinate."
+      ]
+    },
+    {
+      "id": "NC-13",
+      "title": "Eleggibilità di manifestazione come mercato",
+      "mechanism": "Richiedere evidenza del tipo mercato/fiera pertinente prima dell’ingresso automatico; pagina evento, passeggiata, concerto o ristorante non basta. Preservare gli ID/storico esistenti.",
+      "acceptance_tests": [
+        "Promozione ristorante Hostaria non viene importata come mercato solo dal template evento.",
+        "Passeggiata/biciclettata priva di vendita/espositori non viene ammessa come mercato dal titolo generico.",
+        "Manifestazione sportiva nel listato sagre non diventa mercato."
+      ]
+    },
+    {
+      "id": "NC-14",
+      "title": "Copertura operativa per formato e prove riproducibili",
+      "mechanism": "Catalogare reader/contratto/versione attivi, fixture acquisite e campi fonte letti/persi. Il classificatore URL e un parser puro non dimostrano una route operativa o il comportamento del vecchio import.",
+      "acceptance_tests": [
+        "Ogni formato ha fixture, hash, data originale e stato review; HTTP falliti restano aperti.",
+        "Report separa record del formato, record dello stesso URL campione e mercati effettivamente identificati.",
+        "Replay dei futuri reader conserva ID/storia/dati umani e non rinnova prove assenti."
+      ]
+    },
+    {
+      "id": "NC-15",
+      "title": "Qualificatori temporali completi prima delle proiezioni",
+      "mechanism": "Conservare eccezioni, rinvii, mesi, festività e testo tagliato; non estrarre solo il prefisso settimanale/mensile quando manca parte della regola. Demandare a motore rappresentabile o quarantena.",
+      "acceptance_tests": [
+        "Scheggino da marzo a… nell’estratto impedisce proiezione finché dettaglio completo non è disponibile.",
+        "SoloSagre appuntamenti speciali non vengono cancellati dalla sola ultima domenica.",
+        "Rinvio meteo Q5 e weekend di SagreFVG non si perdono trasformando il programma in cadenza generica."
+      ]
+    }
+  ]
+}

@@ -25,7 +25,7 @@ from source_lifecycle import (
     weekday as source_weekday,
 )
 from field_evidence import (
-    FIELDS, as_day, clean_receipts, fingerprint as evidence_fingerprint,
+    FIELDS, MAX_READ_AGE, as_day, clean_receipts, fingerprint as evidence_fingerprint,
     make_receipt, managed_update_allowed, mark_managed_fields, valid_receipt,
     retire_superseded_receipts,
 )
@@ -212,12 +212,74 @@ def _source_receipt(profile, record, *, read_on, parsed_sha256, source_date, val
     )
 
 
+def _source_hours_fill_allowed(profile, prior, receipt, *, today):
+    """Fill only missing hours of the same contracted publisher venue.
+
+    The source admission certificate is still required by ``apply_approved``.
+    A blank field has no previous managed receipt, so require its existing
+    source ID, geography and street to agree with this complete new receipt.
+    Existing values retain the stricter managed-update rules.
+    """
+    current=prior.get("orario_testo")
+    if (not (current is None or (isinstance(current,str) and not current.strip()))
+            or prior.get("verificato_il") or not isinstance(receipt,dict)
+            or not isinstance(today,date)):
+        return False
+    values=receipt.get("valori")
+    read=as_day(receipt.get("letto_il"))
+    if (not isinstance(values,dict) or not values.get("orario_testo")
+            or not read or not 0<=(today-read).days<=MAX_READ_AGE
+            or not canonical(prior.get("indirizzo"))
+            or canonical(values.get("indirizzo"))!=canonical(prior.get("indirizzo"))
+            or any(canonical(prior.get(field))!=canonical(profile.get(setting))
+                   for field,setting in (("citta","municipality"),
+                                         ("provincia","province"),("regione","region")))
+            or not str(prior.get("slug") or "").startswith(profile["catalog_slug_prefix"])
+            or prior.get("url_fonte")!=profile["attribution_url"]
+            or receipt.get("riga_fonte")!=prior.get("slug")
+            or receipt.get("fonte_id")!=profile["id"]
+            or receipt.get("fonte")!=profile["publisher"]
+            or receipt.get("url")!=profile["resource_url"]
+            or receipt.get("ambito")!="dataset"
+            or receipt.get("metodo")!="id_fonte"
+            or receipt.get("impronta_tipo")!="publisher_parsed_json"):
+        return False
+    previous=[r for r in clean_receipts(prior.get("riscontri_campi"),prior,today=today)
+              if all(r.get(k)==receipt.get(k) for k in (
+                  "fonte_id","url","riga_fonte","metodo","ambito"))
+              and r.get("impronta_tipo","publisher_parsed_json")==receipt["impronta_tipo"]]
+    source_date=as_day(receipt.get("fonte_aggiornata_il"))
+    for observed in previous:
+        previous_date=as_day(observed.get("fonte_aggiornata_il"))
+        # A previous observation can concern the address alone. It still
+        # establishes the source version floor for this same publisher row.
+        # Same-day reads have no reliable ordering in the date-only schema.
+        if (read<=as_day(observed["letto_il"])
+                or (previous_date and (not source_date or source_date<previous_date))):
+            return False
+    return valid_receipt(receipt,{**prior,**values},today=today)
+
+
+def _hours_receipt_retained(row, receipt, *, today):
+    """The hours actually saved must retain their complete source/ownership proof."""
+    keys=("mercato","url","fonte","fonte_id","riga_fonte","letto_il",
+          "fonte_aggiornata_il","sha256","impronta_tipo","ambito","metodo")
+    return any(all(saved.get(k)==receipt.get(k) for k in keys)
+               and all(saved["valori"].get(k)==v for k,v in receipt["valori"].items())
+               and "orario_testo" in saved.get("campi_gestiti",[])
+               and saved.get("gestore_campi")==FIELD_MANAGER
+               for saved in clean_receipts(row.get("riscontri_campi"),row,today=today))
+
+
 def _observed_row(prior, receipt, changes, *, today):
     result = copy.deepcopy(prior)
     for field, change in changes.items():
         result[field] = change["after"]
     result["riscontri_campi"] = clean_receipts(
         [*(prior.get("riscontri_campi") or []), receipt], result, today=today)
+    if ("orario_testo" in changes and
+            not _hours_receipt_retained(result,receipt,today=today)):
+        raise ValueError("Source hours update lost its complete retained field receipt")
     for key, value in (("fonte_letta_il", receipt["letto_il"]),
                        ("fonte_aggiornata_il", receipt["fonte_aggiornata_il"])):
         # A newer address/hours observation cannot renew an old calendar.
@@ -312,8 +374,10 @@ def verify_update(profile, prior, result, proof, *, today, source_observations=N
         if (not isinstance(change, dict) or set(change) != {"before", "after"}
                 or change["before"] != prior.get(field)
                 or change["after"] != receipt["valori"].get(field)
-                or not managed_update_allowed(prior, plain, field,
-                                              manager=FIELD_MANAGER, today=today)
+                or not (managed_update_allowed(prior, plain, field,
+                                                manager=FIELD_MANAGER, today=today)
+                        or (field=="orario_testo" and
+                            _source_hours_fill_allowed(profile,prior,plain,today=today)))
                 or (field == "indirizzo" and
                     (prior.get("lat") is not None or prior.get("lng") is not None))):
             raise ValueError("Independent generic source update lacks previous field ownership")
@@ -423,7 +487,10 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
             values = _source_values(record)
             # Preserve the existing display spelling when the contracted
             # normalization agrees (for example lunedì / lunedi).
-            values = {field: prior[field] if isinstance(prior.get(field), str)
+            # Hours can include closure lists/ranges: punctuation is evidence,
+            # so "1, 5 gennaio" must never compare equal to "1-5 gennaio".
+            values = {field: prior[field] if field!="orario_testo"
+                      and isinstance(prior.get(field), str)
                       and canonical(prior[field]) == canonical(value) else value
                       for field, value in values.items()}
             target = {**prior, **values}
@@ -437,8 +504,10 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
                     field_audit[field + ":source_value_unavailable"] += 1
                 elif prior.get(field) == incoming:
                     field_audit[field + ":observed_identical"] += 1
-                elif (managed_update_allowed(prior, receipt, field,
-                                              manager=FIELD_MANAGER, today=today)
+                elif ((managed_update_allowed(prior, receipt, field,
+                                               manager=FIELD_MANAGER, today=today)
+                       or (field=="orario_testo" and
+                           _source_hours_fill_allowed(profile,prior,receipt,today=today)))
                       and not (field == "indirizzo" and
                                (prior.get("lat") is not None or prior.get("lng") is not None))):
                     changes[field] = {"before": prior.get(field), "after": incoming}

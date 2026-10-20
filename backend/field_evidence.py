@@ -15,8 +15,9 @@ from collections import Counter, defaultdict
 from copy import deepcopy
 from datetime import date
 from urllib.parse import urlsplit
+from source_hours import MAX_HOURS_TEXT_LENGTH
 
-FIELDS = {"indirizzo": 300, "orario_testo": 180, "ricorrenza_testo": 180}
+FIELDS = {"indirizzo": 300, "orario_testo": MAX_HOURS_TEXT_LENGTH, "ricorrenza_testo": 180}
 LABELS = {"indirizzo": "sede", "orario_testo": "orari", "ricorrenza_testo": "giorni"}
 SOURCE_AGE = {"indirizzo": 365, "orario_testo": 180, "ricorrenza_testo": 180}
 MAX_READ_AGE = 45
