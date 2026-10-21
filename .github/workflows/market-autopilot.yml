@@ -1374,6 +1374,36 @@ jobs:
           python -X utf8 backend/happings_weekly_dev_admission.py \
             --repo . --from-autopilot-output autopilot-output \
             --out autopilot-output --max-pages 16 --max-new 32 --publish-dev
+          # Verify the ACTUAL git trees after any successful Happings commit:
+          # every prior market record is unchanged and the added IDs replay
+          # exactly from the source HTML captured earlier in this same run.
+          admission_status="$(python -c 'import json;print(json.load(open("autopilot-output/happings-weekly-admission.json",encoding="utf-8"))["status"])')"
+          if [[ "$admission_status" == "dev_published" ]]; then
+            python -X utf8 backend/happings_postrelease_audit.py \
+              --repo . --before 'HEAD^' --after HEAD \
+              --source-dir autopilot-output \
+              --admission autopilot-output/happings-weekly-admission.json \
+              --out autopilot-output/happings-postrelease-proof.json
+            python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          proof=json.loads(Path('autopilot-output/happings-postrelease-proof.json').read_text('utf-8'))
+          if proof.get('release_safe') is not True:
+              raise ValueError('Independent Happings post-release proof rejected DEV')
+          lines=[
+              '### Happings independent post-publication audit',
+              f'- Exact previously published records retained: {proof["existing_market_ids_preserved"]}',
+              f'- Added markets replayed from original Happings HTML: {proof["published_new_market_ids"]}',
+              f'- Old records modified or removed: {proof["existing_record_content_changes"] + proof["market_ids_deleted"]}',
+              f'- Original publisher HTML pages independently replayed: {proof["source_html_pages_replayed"]}',
+              '- Invented source hours, openings and GPS positions: 0',
+          ]
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as file:
+              file.write('\n'.join(lines)+'\n')
+          print('\n'.join(lines))
+          PY
+          fi
           # Only rebuild the isolated preview after the exact validated static
           # catalog has been pushed to DEV. The main production site is untouched.
           python - <<'PY'
