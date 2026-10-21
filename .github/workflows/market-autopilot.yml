@@ -92,6 +92,35 @@ jobs:
           args=()
           if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
           python backend/autopilot.py --output autopilot-output "${args[@]}"
+      - name: Record Happings homepage and full-directory crawl progress
+        if: success()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          path = Path("autopilot-output/happings-enrichment.json")
+          if path.is_file():
+              report = json.loads(path.read_text(encoding="utf-8"))
+              detail = report.get("details") or {}
+              discovery = detail.get("discovery") or {}
+              directory = report.get("directory") or {}
+              lines = [
+                  "### Happings automatic source crawl (DEV only)",
+                  f"- Provincial directory: {directory.get('italian_province_urls', 0)} source URLs found; {directory.get('requests_used', 0)} requests used",
+                  f"- Event details read this run: {discovery.get('details_read', 0)}",
+                  f"- Detail URLs still awaiting their first successful read: {discovery.get('pending_detail_urls', 'unknown')}",
+                  f"- Homepage/category archive pages read this run: {discovery.get('home_read', 0)} / {discovery.get('archives_read', 0)}",
+                  f"- Existing Happings addresses updated: {(report.get('evidence') or {}).get('field_changes', 0)}",
+                  "- URL discovery alone does not establish complete market fields or verified openings.",
+              ]
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as output:
+                  output.write("\n".join(lines) + "\n")
+              print("\n".join(lines))
+          else:
+              print("No Happings phase report in this run; no completeness claim.")
+          PY
       - name: Rank improvement opportunities from measured data
         if: success()
         run: |
