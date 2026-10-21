@@ -23,6 +23,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 from xml.etree import ElementTree
 
 import happings_source_enrichment as weekly
+from happings_detail_urls import detail_url as valid_detail_url
 
 SCHEMA = 1
 MAX_RESOURCES = 50_000
@@ -32,11 +33,13 @@ MAX_REQUESTS = 128
 MAX_SECONDS = 420
 MAX_RESPONSE_BYTES = weekly.MAX_RESPONSE_BYTES
 REFRESH_DAYS = 7
-DETAIL_PATH = re.compile(r"/it/happing/[a-z0-9][a-z0-9-]{0,239}/$")
+HOMEPAGE = "https://www.happings.com/it/"
+ARCHIVE_PATH = re.compile(r"/it/categoria-evento/[a-z0-9-]{1,100}/(?:page/[1-9][0-9]{0,3}/)?$")
+ARCHIVE_MARKET = re.compile(r"mercat|antiquar|antichit|vintage|brocant|usato|pulci", re.I)
 SITEMAP_PATH = re.compile(r"(?:/it/sitemap_index|/happings_event-sitemap\d*)\.xml$")
 MARKET_SLUG = re.compile(r"mercat|antiquar|antichit|vintage|brocant|usato|pulci", re.I)
 SHA256 = re.compile(r"[0-9a-f]{64}$")
-ORIGIN_KINDS = {"catalog_url", "explicit_seed", "robots_sitemap", "sitemap_loc", "html_link"}
+ORIGIN_KINDS = {"catalog_url", "explicit_seed", "homepage_seed", "robots_sitemap", "sitemap_loc", "html_link"}
 STATUSES = {"unread", "fetching", "retrieved", "unavailable", "robots_denied"}
 
 
@@ -54,12 +57,16 @@ def _same_host_url(url):
 
 
 def url_kind(url):
-    """Only the observed Italian detail and Yoast Happing sitemap families."""
+    """Italian homepage, market category archives, event details and Yoast maps."""
+    if valid_detail_url(url):
+        return "detail"
     if not _same_host_url(url):
         return None
     path = urlsplit(url).path
-    if DETAIL_PATH.fullmatch(path):
-        return "detail"
+    if url == HOMEPAGE:
+        return "home"
+    if ARCHIVE_PATH.fullmatch(path) and ARCHIVE_MARKET.search(path.split("/")[3]):
+        return "archive"
     if SITEMAP_PATH.fullmatch(path):
         return "sitemap"
     return None
@@ -128,14 +135,15 @@ def validate_state(state, *, today=None):
             if (not isinstance(origin, dict)
                     or set(origin) != {"kind", "url", "observed_at", "sha256"}
                     or origin.get("kind") not in ORIGIN_KINDS
-                    or not _same_host_url(origin.get("url"))):
+                    or not (_same_host_url(origin.get("url")) or valid_detail_url(origin.get("url")))):
                 raise ValueError("Discovery origin is invalid")
             stamp = _day(origin["observed_at"])
             if stamp < observed or (day and stamp > day):
                 raise ValueError("Discovery origin has an invalid observation date")
             digest = origin["sha256"]
-            if origin["kind"] in {"catalog_url", "explicit_seed"}:
-                if origin["url"] != url or digest is not None:
+            if origin["kind"] in {"catalog_url", "explicit_seed", "homepage_seed"}:
+                if (origin["url"] != url or digest is not None
+                        or (origin["kind"] == "homepage_seed" and url != HOMEPAGE)):
                     raise ValueError("An unfetched seed cannot claim source evidence")
             elif not isinstance(digest, str) or not SHA256.fullmatch(digest):
                 raise ValueError("Discovered links need the actual source content hash")
@@ -182,7 +190,8 @@ def _remember(state, url, origin):
     return False
 
 
-def seed_state(state=None, *, catalog_rows=(), seed_urls=(), robots_text=None, observed_at):
+def seed_state(state=None, *, catalog_rows=(), seed_urls=(), robots_text=None,
+               observed_at, seed_home=False):
     """Seed only URLs actually present in the catalog, request, or robots body."""
     day = _day(observed_at)
     result = deepcopy(empty_state() if state is None else validate_state(state, today=day))
@@ -199,6 +208,8 @@ def seed_state(state=None, *, catalog_rows=(), seed_urls=(), robots_text=None, o
             raise ValueError("Explicit seed must be an observed Happings detail URL")
         _remember(result, url, {"kind": "explicit_seed", "url": url,
                                "observed_at": day, "sha256": None})
+    if seed_home and robots_text is None:
+        raise ValueError("Homepage discovery needs robots evidence")
     if robots_text is not None:
         raw = robots_text.encode("utf-8") if isinstance(robots_text, str) else robots_text
         if not isinstance(raw, bytes) or not 12 <= len(raw) <= 55_000:
@@ -207,6 +218,10 @@ def seed_state(state=None, *, catalog_rows=(), seed_urls=(), robots_text=None, o
         if "user-agent:" not in text.casefold():
             raise ValueError("Robots response lacks a policy")
         digest = hashlib.sha256(raw).hexdigest()
+        # Crawl from the actual public homepage, not from invented market slugs.
+        if seed_home:
+            _remember(result, HOMEPAGE, {"kind": "homepage_seed", "url": HOMEPAGE,
+                                         "observed_at": day, "sha256": None})
         for line in text.splitlines():
             match = re.fullmatch(r"\s*Sitemap:\s*(\S+)\s*", line, re.I)
             if match and url_kind(match[1]) == "sitemap":
@@ -270,21 +285,23 @@ def ingest_pages(state, pages, *, observed_at):
     day = _day(observed_at)
     result = deepcopy(validate_state(state, today=day))
     report = {"pages_observed": 0, "new_detail_urls": 0, "new_sitemap_urls": 0,
+              "new_archive_urls": 0,
               "links_outside_scope": 0}
     for page in pages:
         if not isinstance(page, dict):
             raise ValueError("Discovery page is invalid")
         requested, final, body = (page.get(k) for k in ("requested_url", "final_url", "html"))
-        if (not _same_host_url(requested) or not _same_host_url(final)
+        if (not (_same_host_url(requested) or valid_detail_url(requested))
+                or not (_same_host_url(final) or valid_detail_url(final))
                 or not isinstance(body, bytes) or not 12 <= len(body) <= MAX_RESPONSE_BYTES):
             raise ValueError("Discovery page has invalid origin or content")
-        if url_kind(requested) in {"detail", "sitemap"} and requested != final:
+        if url_kind(requested) in {"detail", "sitemap", "home", "archive"} and requested != final:
             raise ValueError("A changed detail or sitemap URL requires an explicit review")
         relation, links = _observed_links(body, final)
         digest = hashlib.sha256(body).hexdigest()
         for url in sorted(set(links)):
             kind = url_kind(url)
-            if kind is None or (relation == "html_link" and kind != "detail"):
+            if kind is None or (relation == "html_link" and kind not in {"detail", "archive"}):
                 report["links_outside_scope"] += 1
                 continue
             added = _remember(result, url, {"kind": relation, "url": final,
@@ -358,7 +375,7 @@ def import_observed_pages(state, pages, *, observed_at):
     return validate_state(result, today=day), report
 
 
-def next_requests(state, *, today, limit, sitemap_quota=2):
+def next_requests(state, *, today, limit, sitemap_quota=2, navigation_quota=3):
     """Prioritize relevant refresh while reserving discovery/background slots."""
     day = _day(today)
     validate_state(state, today=day)
@@ -366,6 +383,8 @@ def next_requests(state, *, today, limit, sitemap_quota=2):
         raise ValueError("Discovery request budget is invalid")
     if type(sitemap_quota) is not int or not 0 <= sitemap_quota <= MAX_REQUESTS:
         raise ValueError("Discovery sitemap budget is invalid")
+    if type(navigation_quota) is not int or not 0 <= navigation_quota <= MAX_REQUESTS:
+        raise ValueError("Discovery navigation budget is invalid")
     due = [(url, item) for url, item in state["resources"].items()
            if item["next_due"] <= day and item["last_attempt"] != day]
     key = lambda pair: (pair[1]["next_due"], pair[1]["last_attempt"] or "0001-01-01", pair[0])
@@ -381,8 +400,19 @@ def next_requests(state, *, today, limit, sitemap_quota=2):
     refresh = [pair for pair in details if pair[1]["last_success"] is not None]
     primary_refresh = sorted([pair for pair in refresh if priority(pair)[0] < 2], key=key)
     other_refresh = sorted([pair for pair in refresh if priority(pair)[0] == 2], key=key)
-    chosen_maps = maps[:min(limit, sitemap_quota)]
-    selected = list(chosen_maps)
+    # A home-first navigation frontier provides an independent cross-check
+    # against Yoast event sitemaps. Paginated URLs must first be observed.
+    navigable = [(url, item) for url, item in sorted(due, key=key)
+                 if item["kind"] in {"home", "archive"}]
+    home_due = [pair for pair in navigable if pair[1]["kind"] == "home"]
+    archive_unseen = sorted([pair for pair in navigable if pair[1]["kind"] == "archive"
+                             and pair[1]["last_success"] is None], key=key)
+    archive_refresh = sorted([pair for pair in navigable if pair[1]["kind"] == "archive"
+                              and pair[1]["last_success"] is not None], key=key)
+    chosen_nav = [url for url, _ in (home_due + archive_unseen + archive_refresh)
+                  [:min(limit, navigation_quota)]]
+    chosen_maps = maps[:min(max(0, limit - len(chosen_nav)), sitemap_quota)]
+    selected = chosen_nav + chosen_maps
     # While more pages have never been read than are due for refresh, give
     # the first pass most slots. Otherwise the regular 7-day refresh wave
     # can keep the unseen frontier waiting for months despite a healthy
@@ -439,7 +469,8 @@ def fetch_one(url, *, robots, opener=None):
 
 
 def acquire(state, *, today, max_requests, robots, fetcher=None, checkpoint=None,
-            sleep=time.sleep, sitemap_quota=2, clock=None, max_seconds=MAX_SECONDS,
+            sleep=time.sleep, sitemap_quota=2, navigation_quota=3, clock=None,
+            max_seconds=MAX_SECONDS,
             monotonic=time.monotonic):
     """Consume at most the caller's remaining budget and checkpoint each result.
 
@@ -473,8 +504,10 @@ def acquire(state, *, today, max_requests, robots, fetcher=None, checkpoint=None
     pages = []
     report = {"max_requests": max_requests, "max_seconds": max_seconds,
               "elapsed_seconds": 0.0, "budget_stop": None, "requests_attempted": 0,
-              "sitemaps_read": 0, "details_read": 0, "new_detail_urls": 0,
-              "new_sitemap_urls": 0, "outcomes": [], "robots_fetches": 0,
+              "sitemaps_read": 0, "details_read": 0, "home_read": 0,
+              "archives_read": 0, "new_detail_urls": 0,
+              "new_sitemap_urls": 0, "new_archive_urls": 0,
+              "outcomes": [], "robots_fetches": 0,
               "inflight": None}
     def elapsed():
         report["elapsed_seconds"] = round(max(0.0, monotonic() - started), 6)
@@ -486,12 +519,14 @@ def acquire(state, *, today, max_requests, robots, fetcher=None, checkpoint=None
             checkpoint(deepcopy(result), deepcopy(pages), deepcopy(report))
 
     maps_used = 0
+    navigation_used = 0
     for _ in range(max_requests):
         if elapsed() >= max_seconds:
             report["budget_stop"] = "elapsed_limit"
             break
         choice = next_requests(result, today=day, limit=1,
-                               sitemap_quota=max(0, sitemap_quota - maps_used))
+                               sitemap_quota=max(0, sitemap_quota - maps_used),
+                               navigation_quota=max(0, navigation_quota - navigation_used))
         if not choice:
             report["budget_stop"] = "queue_exhausted"
             break
@@ -551,9 +586,11 @@ def acquire(state, *, today, max_requests, robots, fetcher=None, checkpoint=None
                              "last_sha256": hashlib.sha256(body).hexdigest(),
                              "last_error": None, "status": "retrieved", "failures": 0,
                              "next_due": (date.fromisoformat(day) + timedelta(days=REFRESH_DAYS)).isoformat()})
-            for key in ("new_detail_urls", "new_sitemap_urls"):
+            for key in ("new_detail_urls", "new_sitemap_urls", "new_archive_urls"):
                 report[key] += found[key]
-            report["sitemaps_read" if resource["kind"] == "sitemap" else "details_read"] += 1
+            counter = {"sitemap": "sitemaps_read", "detail": "details_read",
+                       "home": "home_read", "archive": "archives_read"}[resource["kind"]]
+            report[counter] += 1
             if resource["kind"] == "detail":
                 pages.append(page)
             outcome.update({"status": "retrieved", "final_url": final,
@@ -571,11 +608,16 @@ def acquire(state, *, today, max_requests, robots, fetcher=None, checkpoint=None
         report["inflight"] = None
         if resource["kind"] == "sitemap":
             maps_used += 1
+        if resource["kind"] in {"home", "archive"}:
+            navigation_used += 1
         validate_state(result, today=day)
         save_checkpoint()
     report["budget_stop"] = report["budget_stop"] or "request_limit"
     report["known_detail_urls"] = sum(r["kind"] == "detail" for r in result["resources"].values())
     report["known_sitemap_urls"] = sum(r["kind"] == "sitemap" for r in result["resources"].values())
+    report["known_archive_urls"] = sum(r["kind"] == "archive" for r in result["resources"].values())
+    report["pending_archive_urls"] = sum(r["kind"] == "archive" and r["last_success"] is None
+                                       for r in result["resources"].values())
     report["pending_detail_urls"] = sum(r["kind"] == "detail" and r["last_success"] is None
                                         for r in result["resources"].values())
     save_checkpoint()

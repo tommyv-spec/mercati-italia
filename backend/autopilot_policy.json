@@ -150,7 +150,13 @@
       "max_requests": 128,
       "max_seconds": 420,
       "admit_new": true,
-      "max_new": 32
+      "max_new": 32,
+      "home_navigation": true
+    },
+    "directory": {
+      "enabled": true,
+      "max_requests": 4,
+      "max_seconds": 60
     }
   }
 }

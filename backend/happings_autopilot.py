@@ -20,6 +20,7 @@ import happings_source_enrichment as source
 from export_static import normalize
 import happings_detail_autopilot as details
 import happings_legacy_resources as legacy
+import happings_province_directory as directory
 
 SCHEMA = 1
 DEFAULT_POLICY = {"enabled": False}
@@ -33,7 +34,7 @@ def digest(value):
 
 
 def validate_policy(policy):
-    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages", "details", "legacy_resolution"}
+    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages", "details", "legacy_resolution", "directory"}
             or type(policy.get("enabled", False)) is not bool
             or type(policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)) is not int
             or not 1 <= policy.get("max_pages", source.MAX_REQUESTS_PER_RUN) <= source.MAX_REQUESTS_PER_RUN):
@@ -44,6 +45,8 @@ def validate_policy(policy):
         result["details"] = details.validate_policy(policy["details"])
     if "legacy_resolution" in policy:
         result["legacy_resolution"] = legacy.validate_policy(policy["legacy_resolution"])
+    if "directory" in policy:
+        result["directory"] = directory.validate_policy(policy["directory"])
     return result
 
 
@@ -322,7 +325,7 @@ def _run_legacy(base, *, policy, out, today, context, previous_state_path=None,
 
 def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
         offline=False, resume=False, rights_path=None, fetcher=None,
-        legacy_state_path=None, legacy_fetcher=None):
+        legacy_state_path=None, legacy_fetcher=None, directory_fetcher=None):
     """Return (candidate rows, bounded evidence report, IDs export must retain)."""
     policy = validate_policy(policy)
     if (not isinstance(today, date) or type(offline) is not bool or type(resume) is not bool
@@ -369,8 +372,79 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
                 offline=offline, resume=resume, fetcher=legacy_fetcher)
             resource_urls = report["legacy_resolution"]["available_resource_urls"]
             consumed = report["legacy_resolution"]["acquisition"]["request_slots_used"]
-        remaining = policy["max_pages"] - consumed
-        urls = source.select_pages(base, today=today, limit=remaining, resource_urls=resource_urls) if remaining else []
+        # WordPress post-sitemaps are the authoritative *discovery* index for
+        # provincial weekly lists. These pages contain both Italian and foreign
+        # markets: only uniquely scoped ISTAT provinces can be scheduled.
+        # Discovery spends slots from the existing 16-page weekly budget.
+        directory_policy = policy.get("directory", directory.DEFAULT_POLICY)
+        directory_urls = []
+        directory_used = 0
+        directory_report = {"enabled": directory_policy["enabled"], "status": "disabled",
+                            "requests_used": 0}
+        directory_context = {"date": today.isoformat(),
+                             "baseline_signature": baseline_signature,
+                             "input_sha256": report["input_sha256"],
+                             "policy_sha256": pipeline_policy_digest,
+                             "rights_sha256": rights_digest,
+                             "legacy_urls_sha256": digest(sorted(resource_urls)),
+                             "directory_policy": directory_policy}
+        directory_path = Path(out) / "sources" / "happings-directory.json"
+        available = policy["max_pages"] - consumed
+        if directory_policy["enabled"]:
+            if offline:
+                directory_report["status"] = "offline_skipped"
+            elif resume:
+                if directory_path.is_file():
+                    if directory_path.stat().st_size > 250_000:
+                        raise ValueError("Unbounded Happings directory checkpoint")
+                    snapshot = json.loads(directory_path.read_text("utf-8"))
+                    if (set(snapshot) != {"schema", "context", "urls", "report"}
+                            or snapshot["schema"] != SCHEMA
+                            or snapshot["context"] != directory_context
+                            or not isinstance(snapshot["urls"], list)
+                            or len(snapshot["urls"]) > directory.MAX_LINKS
+                            or any(not source._valid_page_url(u)
+                                   or len(source._official_geography()[1].get(source.province_page_key(u), ())) != 1
+                                   for u in snapshot["urls"])):
+                        raise ValueError("Happings directory checkpoint changed context or URL scope")
+                    directory_urls, directory_report = snapshot["urls"], snapshot["report"]
+                    if (type(directory_report.get("requests_used")) is not int
+                            or not 0 <= directory_report["requests_used"] <= available
+                            or directory_report["requests_used"] > directory_policy["max_requests"]
+                            or len(set(directory_urls)) != len(directory_urls)):
+                        raise ValueError("Happings directory checkpoint exceeded its request budget")
+                    directory_report = {**directory_report, "resumed_checkpoint": True}
+                else:
+                    directory_report["status"] = "resume_missing_evidence"
+            elif available < 2:
+                directory_report["status"] = "insufficient_shared_budget"
+            else:
+                if robots is None:
+                    try:
+                        robots = source.robots_allowed()
+                    except (OSError, HTTPException, ValueError) as error:
+                        robots_error = type(error).__name__
+                if robots is None:
+                    directory_report["status"] = "robots_unavailable"
+                else:
+                    bounded = {**directory_policy,
+                               "max_requests": min(available, directory_policy["max_requests"])}
+                    directory_urls, directory_report = directory.discover(
+                        today=today, robots=robots, policy=bounded,
+                        fetcher=directory_fetcher)
+                _write_json(directory_path, {
+                    "schema": SCHEMA, "context": directory_context,
+                    "urls": directory_urls, "report": directory_report})
+            directory_used = directory_report["requests_used"]
+            if type(directory_used) is not int or not 0 <= directory_used <= available:
+                raise ValueError("Happings directory exceeded the shared weekly request budget")
+        report["directory"] = directory_report
+        report["directory_request_slots_used"] = directory_used
+        remaining = policy["max_pages"] - consumed - directory_used
+        urls = source.select_pages(
+            base, today=today, limit=remaining,
+            resource_urls=sorted(set(resource_urls) | set(directory_urls))
+        ) if remaining else []
         report["legacy_request_slots_used"] = consumed
         report["remaining_index_page_budget"] = remaining
         report["selected_urls"] = urls
@@ -441,10 +515,13 @@ def _verify_weekly_changes(before, after, report, *, source_pages=None):
             or [r["slug"] for r in before] != [r["slug"] for r in after]):
         raise ValueError("Happings field phase changed its baseline or market identities")
     consumed = report.get("legacy_request_slots_used", 0)
+    directory_used = report.get("directory_request_slots_used", 0)
     maximum = report.get("max_index_pages_per_run")
     if (type(consumed) is not int or not 0 <= consumed <= legacy.MAX_REQUESTS
             or type(maximum) is not int or not 1 <= maximum <= source.MAX_REQUESTS_PER_RUN
-            or len(report.get("selected_urls", [])) + consumed > maximum
+            or type(directory_used) is not int or not 0 <= directory_used <= directory.MAX_REQUESTS
+            or report.get("directory", {"requests_used": 0}).get("requests_used") != directory_used
+            or len(report.get("selected_urls", [])) + consumed + directory_used > maximum
             or ("legacy_resolution" in report and consumed != report["legacy_resolution"]["acquisition"]["request_slots_used"])):
         raise ValueError("Legacy requests exceeded the shared Happings weekly budget")
     authorization_states = {
@@ -542,15 +619,15 @@ def _weekly_rows(before, report):
 def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
         offline=False, resume=False, rights_path=None, fetcher=None,
         detail_fetcher=None, detail_state_path=None, detail_bootstrap=details.BOOTSTRAP,
-        legacy_state_path=None, legacy_fetcher=None):
+        legacy_state_path=None, legacy_fetcher=None, directory_fetcher=None):
     """Run existing weekly repairs, then the source-bound detail mechanism."""
     policy = validate_policy(policy)
     updated, report, preserve_ids = _run_weekly(
-        base, policy={key: policy[key] for key in ("enabled", "max_pages", "legacy_resolution") if key in policy},
+        base, policy={key: policy[key] for key in ("enabled", "max_pages", "legacy_resolution", "directory") if key in policy},
         out=out, today=today, baseline_signature=baseline_signature,
         pipeline_policy_digest=pipeline_policy_digest, offline=offline, resume=resume,
         rights_path=rights_path, fetcher=fetcher, legacy_state_path=legacy_state_path,
-        legacy_fetcher=legacy_fetcher)
+        legacy_fetcher=legacy_fetcher, directory_fetcher=directory_fetcher)
     detail_policy = policy.get("details", details.DEFAULT_POLICY)
     if detail_policy["enabled"] and policy["enabled"] and report["fetch_authorized"]:
         updated, report["details"], state = details.run(

@@ -12,6 +12,7 @@ import re
 from copy import deepcopy
 from datetime import date, timedelta
 from urllib.parse import urlsplit
+from happings_detail_urls import detail_url as valid_detail_url
 
 from field_evidence import as_day, clean_exceptions, identity
 
@@ -28,15 +29,7 @@ DETAIL_FIELDS = {"name", "category", "source_id", "location", "hours_text",
 
 
 def detail_url(value):
-    if not isinstance(value, str) or not 20 <= len(value) <= 700:
-        return False
-    try:
-        parsed = urlsplit(value)
-        return bool(parsed.scheme == "https" and parsed.netloc == "www.happings.com"
-                    and not parsed.query and not parsed.fragment
-                    and re.fullmatch(r"/it/happing/[a-z0-9]+(?:-[a-z0-9]+)*/", parsed.path))
-    except ValueError:
-        return False
+    return valid_detail_url(value)
 
 
 def _provenance(value, row, today):

@@ -159,6 +159,10 @@ def _official_geography():
         "reggio-calabria":"reggio-di-calabria",
         "reggio-emilia":"reggio-nell-emilia",
         "massa-carrara":"massa",
+        "ascoli":"ascoli-piceno",
+        "caltanisetta":"caltanissetta",
+        "forli-e-cesena":"forli",
+        "pesaro-urbino":"pesaro",
     }.items():
         page_areas[source_name]=set(page_areas[municipal_name])
     return municipalities,page_areas
@@ -438,7 +442,21 @@ def select_pages(markets, *, today=None, limit=MAX_REQUESTS_PER_RUN, resource_ur
         or not 1<=len(markets)<=MAX_MARKETS or type(limit) is not int
         or not 1<=limit<=MAX_REQUESTS_PER_RUN):
         raise ValueError("Unbounded publisher page scheduling")
-    ranked=sorted(set(catalog_page_routes(markets,resource_urls=resource_urls).values()),key=lambda url:(province_page_key(url),url))
+    # An observed Italian index is worth reading even if no old market exists
+    # in that area. Otherwise a previously missing province never gets read.
+    # Market admission remains a separate, source-evidenced decision.
+    routes=catalog_page_routes(markets,resource_urls=resource_urls)
+    pool=set(routes.values())
+    areas=_official_geography()[1]
+    for url in resource_urls:
+        if _valid_page_url(url) and len(areas.get(province_page_key(url),()))==1:
+            pool.add(url)
+    # Use one physical page per equivalent province key. Prefer the current
+    # observed -e-provincia/ variant over historic .html routes.
+    by_key={}
+    for url in sorted(pool,key=lambda url:(not url.endswith("-e-provincia/"),url)):
+        by_key.setdefault(province_page_key(url),url)
+    ranked=sorted(by_key.values(),key=lambda url:(province_page_key(url),url))
     if not ranked:
         return []
     start=(today.toordinal()*limit)%len(ranked)

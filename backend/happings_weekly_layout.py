@@ -123,6 +123,28 @@ def fold(text):
         c for c in n if not unicodedata.combining(c)).lower()))
 
 
+def _canonical_province_slug(slug):
+    """Normalize *observed* WordPress hex-escaped province labels, not URLs.
+
+    Happings emits /l-27aquila/ and /forl-c3-ac-e-cesena/. These fragments
+    encode an apostrophe or UTF-8 bytes as hyphen-separated hexadecimal.
+    Interpret them only for comparing with unique ISTAT province scopes.
+    """
+    def decode(match):
+        try:
+            value = bytes.fromhex(match.group(0)[1:].replace("-", "")).decode("utf-8")
+        except (UnicodeError, ValueError):
+            return match.group(0)
+        if not all(char.isprintable() for char in value):
+            return match.group(0)
+        if not any(ord(char) > 127 or char in "'’" for char in value):
+            return match.group(0)
+        return value
+
+    expanded = re.sub(r"(?:-[0-9a-f]{2})+", decode, slug)
+    return fold(expanded.replace("-", " ")).replace(" ", "-")
+
+
 def province_page_key(url):
     """Return a syntactic province key, not proof a redirect actually occurred.
 
@@ -137,7 +159,7 @@ def province_page_key(url):
                 or p.query or p.fragment):
             return None
         match=PROVINCE_PAGE_PATH.fullmatch(p.path)
-        return match.group("province") if match else None
+        return _canonical_province_slug(match.group("province")) if match else None
     except ValueError:
         return None
 

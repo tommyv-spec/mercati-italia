@@ -28,7 +28,7 @@ BOOTSTRAP = Path(__file__).resolve().parent / "data/happings-detail-discovery-se
 MAX_STATE_BYTES = 45_000_000
 MAX_CHECKPOINT_BYTES = discovery.MAX_REQUESTS * weekly.MAX_RESPONSE_BYTES * 2 + MAX_STATE_BYTES
 DEFAULT_POLICY = {"enabled": False, "max_requests": 128, "max_seconds": 420,
-                  "admit_new": False, "max_new": 32}
+                  "admit_new": False, "max_new": 32, "home_navigation": False}
 
 
 def digest(value):
@@ -40,6 +40,7 @@ def validate_policy(policy):
     if (not isinstance(policy, dict) or set(policy) - set(DEFAULT_POLICY)
             or type(policy.get("enabled", False)) is not bool
             or type(policy.get("admit_new", False)) is not bool
+            or type(policy.get("home_navigation", False)) is not bool
             or type(policy.get("max_requests", DEFAULT_POLICY["max_requests"])) is not int
             or not 1 <= policy.get("max_requests", DEFAULT_POLICY["max_requests"]) <= discovery.MAX_REQUESTS
             or type(policy.get("max_seconds", DEFAULT_POLICY["max_seconds"])) is not int
@@ -242,7 +243,7 @@ def run(base, *, policy, out, today, baseline_signature, pipeline_policy_digest,
         try:
             robots = weekly.robots_allowed(robots_fetch)
             state = discovery.seed_state(state, catalog_rows=base, observed_at=today,
-                                         robots_text=robot_bytes[0].decode("utf-8-sig"))
+                                         robots_text=robot_bytes[0].decode("utf-8-sig"), seed_home=policy["home_navigation"])
 
             def checkpoint(current_state, current_pages, current_report):
                 write_json(checkpoint_path, {

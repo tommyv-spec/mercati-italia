@@ -19,6 +19,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
+from happings_detail_urls import detail_url as valid_detail_url
 
 SCHEMA = 1
 MAX_BYTES = 2_600_000
@@ -64,18 +65,8 @@ def _key(value):
 
 
 def detail_url(url):
-    """Return the exact reviewed URL, never manufacture a detail slug."""
-    if not isinstance(url, str):
-        return None
-    try:
-        p = urlsplit(url)
-        if (p.scheme == "https" and p.netloc == "www.happings.com"
-                and not p.query and not p.fragment
-                and re.fullmatch(r"/it/happing/[a-z0-9]+(?:-[a-z0-9]+)*/", p.path)):
-            return url
-    except ValueError:
-        pass
-    return None
+    """Return only a valid exact observed event URL."""
+    return url if valid_detail_url(url) else None
 
 
 @dataclass
