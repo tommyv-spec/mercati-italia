@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 13920,
-    "ids_retained": 13920,
-    "generic_weekly_with_specific_venue": 5126,
+    "original_records": 13952,
+    "ids_retained": 13952,
+    "generic_weekly_with_specific_venue": 5218,
     "malformed_source_city_labels_guarded_in_ui": 2,
     "venue_groups_examined": 3577,
-    "highly_supported_same_source_visit_groups": 589,
-    "suppressed_repeat_buttons_only": 655,
-    "original_records_in_reversible_groups": 1244,
+    "highly_supported_same_source_visit_groups": 623,
+    "suppressed_repeat_buttons_only": 699,
+    "original_records_in_reversible_groups": 1322,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -29,13 +29,13 @@
     },
     {
       "region": "Lombardia",
-      "groups": 521,
-      "extra_display_entries": 554
+      "groups": 524,
+      "extra_display_entries": 557
     },
     {
       "region": "Piemonte",
-      "groups": 36,
-      "extra_display_entries": 61
+      "groups": 41,
+      "extra_display_entries": 66
     },
     {
       "region": "Toscana",
@@ -43,9 +43,14 @@
       "extra_display_entries": 20
     },
     {
+      "region": "Trentino-Alto Adige",
+      "groups": 10,
+      "extra_display_entries": 10
+    },
+    {
       "region": "Veneto",
-      "groups": 2,
-      "extra_display_entries": 2
+      "groups": 18,
+      "extra_display_entries": 28
     }
   ],
   "examples": [
@@ -83,7 +88,7 @@
         "mercato-settimanale-a-soliera-soliera-martedi",
         "mercato-settimanale-di-soliera-soliera-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Liguria",
@@ -120,7 +125,7 @@
         "mercato-settimanale-di-bogliasco-bogliasco",
         "mercato-settimanale-di-bogliasco-bogliasco-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Liguria",
@@ -207,7 +212,7 @@
         "mercato-settimanale-di-vernazza-vernazza",
         "mercato-settimanale-di-vernazza-vernazza-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Liguria",
@@ -219,7 +224,7 @@
         "mercato-settimanale-a-zoagli-zoagli-martedi",
         "mercato-settimanale-di-zoagli-zoagli-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Lombardia",
@@ -231,7 +236,7 @@
         "mercato-settimanale-di-acquafredda-acquafredda",
         "mercato-settimanale-di-acquafredda-acquafredda-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Lombardia",
@@ -315,7 +320,7 @@
         "mercato-settimanale-a-albavilla-albavilla-martedi",
         "mercato-settimanale-di-albavilla-albavilla"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Lombardia",
@@ -363,7 +368,7 @@
         "mercato-settimanale-di-albizzate-albizzate",
         "mercato-settimanale-di-albizzate-albizzate-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Lombardia",
@@ -387,7 +392,7 @@
         "mercato-settimanale-di-alzate-brianza-alzate-brianza",
         "mercato-settimanale-di-alzate-brianza-alzate-brianza-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Lombardia",
@@ -411,7 +416,7 @@
         "mercato-settimanale-di-angolo-terme-angolo-terme",
         "mercato-settimanale-di-angolo-terme-angolo-terme-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Lombardia",
@@ -435,7 +440,7 @@
         "mercato-settimanale-di-appiano-gentile-appiano-gentile",
         "mercato-settimanale-di-appiano-gentile-appiano-gentile-martedi"
       ],
-      "date": "2026-10-20"
+      "date": "2026-10-27"
     },
     {
       "region": "Lombardia",

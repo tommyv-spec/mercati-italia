@@ -4,6 +4,7 @@
   "counts": {
     "exact_matches": 148,
     "existing_hours_preserved": 148,
+    "field_observation_records_updated": 387,
     "held_unique_town_coordinates_conflict": 53,
     "held_unique_town_multiple_eligible_sources": 14,
     "held_unique_town_no_eligible_source": 282,
@@ -13,7 +14,7 @@
     "municipality_day_unique_matches": 239,
     "observed_spelling_matches": 25,
     "skipped_coordinates_conflict": 22,
-    "skipped_legacy_without_explicit_annual_weekday": 279,
+    "skipped_legacy_without_explicit_annual_weekday": 283,
     "skipped_market_type_unproved_or_conflicting": 2,
     "skipped_multiple_official_markets_same_venue_day": 2,
     "skipped_no_exact_legacy_market": 638,
@@ -26,7 +27,7 @@
   "exact_matches": 148,
   "existing_market_addresses_added": 0,
   "existing_market_hours_added": 0,
-  "field_observation_records_updated": 0,
+  "field_observation_records_updated": 387,
   "field_updates": [],
   "identity_conflicts": [
     {
@@ -14642,7 +14643,7 @@
     }
   ],
   "individual_market_verifications": 0,
-  "legacy_records_changed": 0,
+  "legacy_records_changed": 387,
   "managed_market_addresses_updated": 0,
   "managed_market_hours_updated": 0,
   "municipality_day_unique_matches": 239,
@@ -14655,7 +14656,7 @@
     "non_normalized_rows_still_screened": 93,
     "normalized_rows_reproduced": 1360,
     "raw_rows_screened": 1453,
-    "read_on": "2026-10-20",
+    "read_on": "2026-10-21",
     "sha256": "f74cafac2406bc4047a6bb17288ed81a547c7bd7324a3c263d8dcf847a0f8892",
     "source_updated_on": "2026-10-20",
     "status": "complete"

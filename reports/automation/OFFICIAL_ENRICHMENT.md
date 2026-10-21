@@ -7,13 +7,14 @@ Coordinates can veto a join; they never establish market identity.
 No forecast, human verification, original source, or identity changed.
 
 - Held official rows screened: **1360**
-- Existing market cards with added information: **0**
+- Existing market cards with added information: **387**
 - Missing hours supplied from official regional source: **0**
 - Missing/vague venues supplied from the complete source: **0**
 - Managed venues updated from the same source ID: **0**
 - Official source attributions attached: **0**
 - exact_matches: 148
 - existing_hours_preserved: 148
+- field_observation_records_updated: 387
 - held_unique_town_coordinates_conflict: 53
 - held_unique_town_multiple_eligible_sources: 14
 - held_unique_town_no_eligible_source: 282
@@ -23,7 +24,7 @@ No forecast, human verification, original source, or identity changed.
 - municipality_day_unique_matches: 239
 - observed_spelling_matches: 25
 - skipped_coordinates_conflict: 22
-- skipped_legacy_without_explicit_annual_weekday: 279
+- skipped_legacy_without_explicit_annual_weekday: 283
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
 - skipped_no_exact_legacy_market: 638

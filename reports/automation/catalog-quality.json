@@ -5,15 +5,15 @@
   "market_confirmations_created": 0,
   "market_identities_deleted": 0,
   "metrics": {
-    "address_missing": 2978,
-    "coordinates_missing": 370,
-    "future_dates_missing": 1992,
-    "hours_missing": 10484,
-    "review_only_duplicate_groups": 987,
-    "review_only_potential_extra_rows": 1088,
+    "address_missing": 2886,
+    "coordinates_missing": 402,
+    "future_dates_missing": 2005,
+    "hours_missing": 10473,
+    "review_only_duplicate_groups": 1069,
+    "review_only_potential_extra_rows": 1180,
     "suspicious_city": 2,
-    "total": 13920,
-    "without_individual_verification": 13920
+    "total": 13952,
+    "without_individual_verification": 13952
   },
   "per_region": [
     {
@@ -33,10 +33,11 @@
     },
     {
       "region": "Calabria",
-      "markets": 328,
+      "markets": 331,
       "hours_missing": 284,
       "address_missing": 94,
-      "future_dates_missing": 21
+      "future_dates_missing": 21,
+      "coordinates_missing": 3
     },
     {
       "region": "Campania",
@@ -48,19 +49,19 @@
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 907,
-      "hours_missing": 572,
+      "markets": 909,
+      "hours_missing": 570,
       "address_missing": 160,
-      "future_dates_missing": 257,
-      "coordinates_missing": 44
+      "future_dates_missing": 260,
+      "coordinates_missing": 46
     },
     {
       "region": "Friuli Venezia Giulia",
-      "markets": 243,
+      "markets": 244,
       "hours_missing": 95,
       "address_missing": 16,
       "future_dates_missing": 46,
-      "coordinates_missing": 4
+      "coordinates_missing": 5
     },
     {
       "region": "Lazio",
@@ -80,11 +81,11 @@
     },
     {
       "region": "Lombardia",
-      "markets": 3978,
-      "future_dates_missing": 548,
-      "hours_missing": 2496,
-      "address_missing": 343,
-      "coordinates_missing": 248
+      "markets": 3984,
+      "future_dates_missing": 550,
+      "hours_missing": 2495,
+      "address_missing": 339,
+      "coordinates_missing": 254
     },
     {
       "region": "Marche",
@@ -104,59 +105,59 @@
     },
     {
       "region": "Piemonte",
-      "markets": 1336,
-      "hours_missing": 1181,
-      "future_dates_missing": 164,
-      "address_missing": 338,
-      "coordinates_missing": 4
+      "markets": 1340,
+      "hours_missing": 1178,
+      "future_dates_missing": 165,
+      "address_missing": 292,
+      "coordinates_missing": 8
     },
     {
       "region": "Puglia",
       "markets": 484,
-      "hours_missing": 440,
+      "hours_missing": 439,
       "address_missing": 214,
-      "future_dates_missing": 47,
+      "future_dates_missing": 48,
       "coordinates_missing": 2
     },
     {
       "region": "Sardegna",
-      "markets": 388,
-      "coordinates_missing": 4,
-      "hours_missing": 324,
+      "markets": 390,
+      "coordinates_missing": 6,
+      "hours_missing": 323,
       "address_missing": 164,
       "future_dates_missing": 32
     },
     {
       "region": "Sicilia",
-      "markets": 403,
-      "hours_missing": 339,
+      "markets": 404,
+      "hours_missing": 338,
       "address_missing": 141,
-      "future_dates_missing": 54,
-      "coordinates_missing": 3
+      "future_dates_missing": 55,
+      "coordinates_missing": 4
     },
     {
       "region": "Toscana",
-      "markets": 955,
+      "markets": 962,
       "hours_missing": 784,
       "address_missing": 161,
-      "future_dates_missing": 179,
-      "coordinates_missing": 10
+      "future_dates_missing": 182,
+      "coordinates_missing": 17
     },
     {
       "region": "Trentino-Alto Adige",
       "markets": 228,
       "hours_missing": 171,
-      "address_missing": 55,
+      "address_missing": 45,
       "future_dates_missing": 28,
       "coordinates_missing": 12
     },
     {
       "region": "Umbria",
-      "markets": 177,
-      "hours_missing": 151,
+      "markets": 179,
+      "hours_missing": 150,
       "address_missing": 74,
-      "future_dates_missing": 37,
-      "coordinates_missing": 2
+      "future_dates_missing": 38,
+      "coordinates_missing": 4
     },
     {
       "region": "Valle d'Aosta",
@@ -167,18 +168,18 @@
     },
     {
       "region": "Veneto",
-      "markets": 1208,
-      "future_dates_missing": 113,
-      "hours_missing": 946,
-      "address_missing": 275,
-      "coordinates_missing": 10,
+      "markets": 1212,
+      "future_dates_missing": 114,
+      "hours_missing": 945,
+      "address_missing": 243,
+      "coordinates_missing": 14,
       "suspicious_city": 2
     }
   ],
   "top_sources": [
     {
       "source": "happings.com",
-      "records": 9743
+      "records": 9775
     },
     {
       "source": "eventiesagre.it",
@@ -702,23 +703,409 @@
   "potential_duplicates_are_not_confirmed": true,
   "overlap_growth_review": {
     "status": "compared_to_baseline_records",
-    "source_supported_revealed_extra_rows": 0,
-    "source_supported_revealed_groups": 0,
-    "examples": [],
-    "baseline_records": 13888,
+    "source_supported_revealed_extra_rows": 92,
+    "source_supported_revealed_groups": 82,
+    "examples": [
+      {
+        "region": "Lombardia",
+        "city": "Fusine",
+        "address": "Piazza V. Emanuele",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-fusine-fusine",
+          "mercato-settimanale-di-fusine-fusine-martedi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Morbegno",
+        "address": "Piazza S. Antonio",
+        "weekday": 5,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-morbegno-morbegno",
+          "mercato-settimanale-di-morbegno-morbegno-sabato"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Talamona",
+        "address": "Via alla Provinciale",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-talamona-talamona",
+          "mercato-settimanale-di-talamona-talamona-mercoledi"
+        ]
+      },
+      {
+        "region": "Lombardia",
+        "city": "Teglio",
+        "address": "Via Nazionale Tresenda",
+        "weekday": 0,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-teglio-teglio",
+          "mercato-settimanale-di-teglio-teglio-lunedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Aglie'",
+        "address": "Piazza castello aglie’",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-aglie-aglie",
+          "mercato-settimanale-di-aglie-aglie-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Airasca",
+        "address": "Piazza san barolomeo",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-airasca-airasca",
+          "mercato-settimanale-di-airasca-airasca-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Almese",
+        "address": "Via dei navili",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-almese-almese",
+          "mercato-settimanale-di-almese-almese-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Andezeno",
+        "address": "Piazza italia",
+        "weekday": 5,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-andezeno-andezeno",
+          "mercato-settimanale-di-andezeno-andezeno-sabato"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Azeglio",
+        "address": "Piazza massimo d’azeglio",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-azeglio-azeglio",
+          "mercato-settimanale-di-azeglio-azeglio-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Bairo",
+        "address": "Piazza comunale",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-bairo-bairo",
+          "mercato-settimanale-di-bairo-bairo-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Barbania",
+        "address": "Piazza umberto i",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-barbania-barbania",
+          "mercato-settimanale-di-barbania-barbania-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Bibiana",
+        "address": "Piazza vittorio emanuele ii",
+        "weekday": 0,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-bibiana-bibiana",
+          "mercato-settimanale-di-bibiana-bibiana-lunedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Brosso",
+        "address": "Piazza sclopis",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-brosso-brosso",
+          "mercato-settimanale-di-brosso-brosso-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Bruino",
+        "address": "Piazza della pace",
+        "weekday": 0,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-bruino-bruino",
+          "mercato-settimanale-di-bruino-bruino-lunedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Brusasco",
+        "address": "Via martiri della liberta’",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-brusasco-brusasco",
+          "mercato-settimanale-di-brusasco-brusasco-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Bruzolo",
+        "address": "Piazzale in via de nicola",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-bruzolo-bruzolo",
+          "mercato-settimanale-di-bruzolo-bruzolo-giovedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Buriasco",
+        "address": "Piazza gonnet",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-buriasco-buriasco",
+          "mercato-settimanale-di-buriasco-buriasco-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Buttigliera alta",
+        "address": "Piazza jougne",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-buttigliera-alta-buttigliera-alta",
+          "mercato-settimanale-di-buttigliera-alta-buttigliera-alta-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Caluso",
+        "address": "Piazza actis perinetti mario",
+        "weekday": 0,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-caluso-caluso",
+          "mercato-settimanale-di-caluso-caluso-lunedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Caravino",
+        "address": "Piazza marconi",
+        "weekday": 5,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-caravino-caravino",
+          "mercato-settimanale-di-caravino-caravino-sabato"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Cavour",
+        "address": "Piazza sforzini",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-cavour-cavour",
+          "mercato-settimanale-di-cavour-cavour-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Cirie'",
+        "address": "Piazza caduti sul lavoro",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-cirie-cirie",
+          "mercato-settimanale-di-cirie-cirie-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Druento",
+        "address": "Corso carlo brero",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-druento-druento",
+          "mercato-settimanale-di-druento-druento-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Feletto",
+        "address": "Piazza aprato",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-feletto-feletto",
+          "mercato-settimanale-di-feletto-feletto-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Front",
+        "address": "Piazza iv novembre",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-front-front",
+          "mercato-settimanale-di-front-front-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Grosso",
+        "address": "Piazza iv novembre",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-grosso-grosso",
+          "mercato-settimanale-di-grosso-grosso-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "La cassa",
+        "address": "Piazza michele galetto",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-la-cassa-la-cassa",
+          "mercato-settimanale-di-la-cassa-la-cassa-giovedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Lauriano",
+        "address": "Piazza risorgimento",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-lauriano-lauriano",
+          "mercato-settimanale-di-lauriano-lauriano-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Leini'",
+        "address": "Piazza primo maggio",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-leini-leini",
+          "mercato-settimanale-di-leini-leini-giovedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Lessolo",
+        "address": "Piazza del mercato",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-lessolo-lessolo",
+          "mercato-settimanale-di-lessolo-lessolo-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Locana",
+        "address": "Via roma",
+        "weekday": 2,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-locana-locana",
+          "mercato-settimanale-di-locana-locana-mercoledi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Loranze'",
+        "address": "Piazza della liberta’",
+        "weekday": 3,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-loranze-loranze",
+          "mercato-settimanale-di-loranze-loranze-giovedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Mazze'",
+        "address": "Piazza della repubblica",
+        "weekday": 5,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-mazze-mazze",
+          "mercato-settimanale-di-mazze-mazze-sabato"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Ozegna",
+        "address": "Piazza umberto i",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-ozegna-ozegna",
+          "mercato-settimanale-di-ozegna-ozegna-martedi"
+        ]
+      },
+      {
+        "region": "Piemonte",
+        "city": "Pianezza",
+        "address": "Via torino",
+        "weekday": 1,
+        "revealed_extra_rows": 1,
+        "retained_ids": [
+          "mercato-settimanale-di-pianezza-pianezza",
+          "mercato-settimanale-di-pianezza-pianezza-martedi"
+        ]
+      }
+    ],
+    "baseline_records": 13920,
     "baseline_potential_extra_rows": 1088,
-    "positive_group_growth": 0,
+    "positive_group_growth": 92,
     "unexplained_group_growth": 0
   },
   "baseline_delta": {
     "total": 32,
-    "hours_missing": -10,
-    "address_missing": 0,
+    "hours_missing": -11,
+    "address_missing": -92,
     "coordinates_missing": 32,
-    "future_dates_missing": 14,
+    "future_dates_missing": 13,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
-    "review_only_potential_extra_rows": 0
+    "review_only_potential_extra_rows": 92
   },
   "quality_regressions": [],
   "quality_release_safe": true

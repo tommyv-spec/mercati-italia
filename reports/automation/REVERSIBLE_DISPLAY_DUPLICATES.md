@@ -4,11 +4,11 @@
 Confronta soltanto sede e giorno identici con la stessa URL di fonte
 e orari, coordinate, categoria e ricorrenze compatibili.
 
-- Schede originali: **13.920**.
-- ID originali preservati: **13.920**.
-- Gruppi supportati da prove forti: **589**.
-- Pulsanti ripetuti evitati nella vista delle sedi: **655**.
-- Schede originali ancora apribili dietro tali gruppi: **1244**.
+- Schede originali: **13.952**.
+- ID originali preservati: **13.952**.
+- Gruppi supportati da prove forti: **623**.
+- Pulsanti ripetuti evitati nella vista delle sedi: **699**.
+- Schede originali ancora apribili dietro tali gruppi: **1322**.
 - Campi città evidentemente malformati protetti nella UI: **2**.
 - Eventi o verifiche dichiarati confermati: **0**.
 
@@ -18,10 +18,11 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 |---|---:|---:|
 | Emilia-Romagna | 3 | 3 |
 | Liguria | 11 | 15 |
-| Lombardia | 521 | 554 |
-| Piemonte | 36 | 61 |
+| Lombardia | 524 | 557 |
+| Piemonte | 41 | 66 |
 | Toscana | 16 | 20 |
-| Veneto | 2 | 2 |
+| Trentino-Alto Adige | 10 | 10 |
+| Veneto | 18 | 28 |
 
 ## Esempi reali
 

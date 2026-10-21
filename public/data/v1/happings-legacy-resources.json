@@ -43,13 +43,13 @@
       "status": "pending"
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "city_keys": [
         "barlassina"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": "2026-10-20",
-      "last_error": null,
+      "last_attempt_on": "2026-10-21",
+      "last_error": "UnreviewedRedirect",
       "last_success_on": null,
       "next_url": "https://www.happings.com/it/mercato-settimanale-a-barlassina/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-barlassina.html",
@@ -64,24 +64,31 @@
         }
       ],
       "region": "lombardia",
-      "status": "redirect_observed"
+      "status": "unreviewed_target"
     },
     {
-      "attempts": 0,
+      "attempts": 1,
       "city_keys": [
         "bellusco"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-21",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-bellusco.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-bellusco/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-bellusco.html",
       "proof": null,
       "province": "MB",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-bellusco/",
+          "observed_on": "2026-10-21",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-bellusco.html",
+          "status_code": 301
+        }
+      ],
       "region": "lombardia",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,

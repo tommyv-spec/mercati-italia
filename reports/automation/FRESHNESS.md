@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-20**.
-- Schede totali: **13,920**.
+- Data della misura: **2026-10-21**.
+- Schede totali: **13,952**.
 - Fonti misurate (nome e dominio): **88**.
-- Importazione registrata entro 30 giorni: **96**.
-- Lettura della fonte registrata entro 30 giorni: **1,277**.
+- Importazione registrata entro 30 giorni: **128**.
+- Lettura della fonte registrata entro 30 giorni: **1,309**.
 - Fonte datata entro 30 giorni: **1,204**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,204**.
 - Schede con aggiornamento soltanto del dataset: **1,250**.
 - Fonte datata tra 31 e 365 giorni: **6**.
 - Fonte più vecchia del limite di 540 giorni: **52**.
-- Schede con età del contenuto della fonte non comprovata: **12,657**.
+- Schede con età del contenuto della fonte non comprovata: **12,689**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,830**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **11,012**.
+- Schede con date future previste: **11,817**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,999**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -93,7 +93,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
-| happings.com | www.happings.com | 9743 | 0 | 0 | 9743 | 96 |
+| happings.com | www.happings.com | 9775 | 0 | 0 | 9775 | 128 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -137,20 +137,20 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 2978 | 8394 | 1406 | 1085 | 57 |
-| Orari | 10484 | 1941 | 1186 | 96 | 213 |
-| Giorni | 967 | 10507 | 1375 | 1052 | 19 |
+| Sede | 2886 | 8054 | 1415 | 1535 | 62 |
+| Orari | 10473 | 1941 | 1188 | 128 | 222 |
+| Giorni | 968 | 10089 | 1375 | 1501 | 19 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 5848. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 5880. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 0 | 0 |
-| bassa-romagna-weekly | retrieved | 0 | 0 |
+| bassa-romagna-farmers | retrieved | 4 | 0 |
+| bassa-romagna-weekly | retrieved | 9 | 0 |
 
-Conflitti mantenuti in revisione: 13.
+Conflitti mantenuti in revisione: 4.
 
 
 ## Limiti del sistema

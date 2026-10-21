@@ -274,6 +274,141 @@
       ],
       "status": "retrieved"
     },
+    "https://www.happings.com/it/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "home",
+      "last_attempt": "2026-10-21",
+      "last_error": null,
+      "last_sha256": "c173733517cb840047096e741799229bc84f049375f47c8fda40d9f3d5792c63",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:31:50.967332+00:00",
+      "next_due": "2026-10-28",
+      "origins": [
+        {
+          "kind": "homepage_seed",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-21",
+      "last_error": null,
+      "last_sha256": "8e7c508c2bacf2e5fe42206746f54a2fd9c69b2c87061b3cccf8e7120fd1c686",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:31:57.825977+00:00",
+      "next_due": "2026-10-28",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "c173733517cb840047096e741799229bc84f049375f47c8fda40d9f3d5792c63",
+          "url": "https://www.happings.com/it/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8e7c508c2bacf2e5fe42206746f54a2fd9c69b2c87061b3cccf8e7120fd1c686",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "da83cd4f4170005d5c8d0f33633380a37bc87b183f06dbe1821dc42bf4e6fc3e",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelfiorentino/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/2/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-21",
+      "last_error": null,
+      "last_sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:04.608986+00:00",
+      "next_due": "2026-10-28",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8e7c508c2bacf2e5fe42206746f54a2fd9c69b2c87061b3cccf8e7120fd1c686",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/26/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-21",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8e7c508c2bacf2e5fe42206746f54a2fd9c69b2c87061b3cccf8e7120fd1c686",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/3/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-21",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/1-corso-mascherato-di-apertura/": {
       "attempts": 1,
       "discovered_at": "2026-10-20",
@@ -303,6 +438,12 @@
           "observed_at": "2026-10-20",
           "sha256": "fbb06e9f35b65db81fc8d939766d0586e2da533a3941d9a25477c25284286fec",
           "url": "https://www.happings.com/it/happing/3-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b73516748cf6d2bfc170a54a0d2af3d2d93bf02f073e1d1929f3fc888442aded",
+          "url": "https://www.happings.com/it/happing/5-corso-mascherato/"
         }
       ],
       "status": "retrieved"
@@ -417,6 +558,12 @@
           "observed_at": "2026-10-20",
           "sha256": "d27994900aa1fd2468fc9dca243e31914c0b28e6bf3c18b23c59711ce895ad0e",
           "url": "https://www.happings.com/it/happing/11a-via-della-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "305ce59cfb8d210fa6bfc531d862ca6498873e64f5416abe90abc4a8cce7db2f",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-quarrata/"
         }
       ],
       "status": "retrieved"
@@ -738,6 +885,18 @@
           "observed_at": "2026-10-20",
           "sha256": "fbb06e9f35b65db81fc8d939766d0586e2da533a3941d9a25477c25284286fec",
           "url": "https://www.happings.com/it/happing/3-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b73516748cf6d2bfc170a54a0d2af3d2d93bf02f073e1d1929f3fc888442aded",
+          "url": "https://www.happings.com/it/happing/5-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "542f74e5ad643666433a1a7d71f4047ddf4552589df58acad0f88bc50b8d875a",
+          "url": "https://www.happings.com/it/happing/6-corso-mascherato-notturno-di-chiusura/"
         }
       ],
       "status": "retrieved"
@@ -992,37 +1151,43 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:47.864491+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
+          "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/5-corso-mascherato/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b73516748cf6d2bfc170a54a0d2af3d2d93bf02f073e1d1929f3fc888442aded",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:49.321221+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1041,63 +1206,81 @@
           "observed_at": "2026-10-20",
           "sha256": "4097366ca9694f347498eb2f6ef03aa894d65d234670ad50e5d7a9c8c90c0c3e",
           "url": "https://www.happings.com/it/happing/4-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b73516748cf6d2bfc170a54a0d2af3d2d93bf02f073e1d1929f3fc888442aded",
+          "url": "https://www.happings.com/it/happing/5-corso-mascherato/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/50-anni-del-parco-naturale-gruppo-di-tessa-transumanza/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "c80e16eaac23c0f9373b46463d016462784d6f1cef7723a68c84647c9c028033",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:50.153356+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "c80e16eaac23c0f9373b46463d016462784d6f1cef7723a68c84647c9c028033",
+          "url": "https://www.happings.com/it/happing/50-anni-del-parco-naturale-gruppo-di-tessa-transumanza/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:47.236234+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
+          "url": "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/6-corso-mascherato-notturno-di-chiusura/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "542f74e5ad643666433a1a7d71f4047ddf4552589df58acad0f88bc50b8d875a",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:54.193799+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1110,30 +1293,42 @@
           "observed_at": "2026-10-20",
           "sha256": "fbb06e9f35b65db81fc8d939766d0586e2da533a3941d9a25477c25284286fec",
           "url": "https://www.happings.com/it/happing/3-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "542f74e5ad643666433a1a7d71f4047ddf4552589df58acad0f88bc50b8d875a",
+          "url": "https://www.happings.com/it/happing/6-corso-mascherato-notturno-di-chiusura/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/66thand2nd-presenta-tennis-paradise/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "83fa6e0c5b2ad043e116451c4428434adbb20b6424199bc2641224403d3fd00f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:58.526293+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "83fa6e0c5b2ad043e116451c4428434adbb20b6424199bc2641224403d3fd00f",
+          "url": "https://www.happings.com/it/happing/66thand2nd-presenta-tennis-paradise/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/66thand2nd-presenta-triplete-mourinho-moratti-e-un-anno-indimenticabile/": {
       "attempts": 0,
@@ -1902,6 +2097,12 @@
           "observed_at": "2026-10-20",
           "sha256": "41b51928333e7f8fe2c150fad277378e076d6f93c8aa53843fa8e6491cf6f083",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-al-parco-baden-powell-di-potenza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "03d3b573ff35287165d014dda0c3789978a2216a7a4abf0dbc03a9ea29f19772",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-montevarchi/"
         }
       ],
       "status": "retrieved"
@@ -1974,6 +2175,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a57d0382cb28a0a7d1cdc156d67d8eee9e7dc0121508f24f893224960ae7ec9a",
           "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "30bc32305d271a112477c2c391e55b8658c50d935c4cc88fc9a386b5a9d5dee5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gubbio/"
         }
       ],
       "status": "retrieved"
@@ -2157,6 +2364,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0fa84c35050fd9df3153928adead81ab48d6ed1769f15f5cdf36b140fad8367f",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-brugherio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3256ff51ddf2948ab2a0c242688245e8cace00c0c9d0db749dac05540f7067eb",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-madonna-dellulivo/"
         }
       ],
       "status": "retrieved"
@@ -3234,6 +3447,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "83fa6e0c5b2ad043e116451c4428434adbb20b6424199bc2641224403d3fd00f",
+          "url": "https://www.happings.com/it/happing/66thand2nd-presenta-tennis-paradise/"
         }
       ],
       "status": "unread"
@@ -4035,6 +4254,12 @@
           "observed_at": "2026-10-20",
           "sha256": "176689484a1c51abeaaa5095daec606226073a1a0db59ded8d2c5435cc97c54f",
           "url": "https://www.happings.com/it/happing/mercato-agricolo-evento-10533/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
+          "url": "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/"
         }
       ],
       "status": "unread"
@@ -5124,6 +5349,18 @@
           "observed_at": "2026-10-20",
           "sha256": "31ac2a5d1bf4c6a52090c3a783eb055d52161caab5f0a48a373f2e752826af63",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-della-ghirlandina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "766a30ffade17c4f9c18e3761e70bcae4b88cdd5bbc031b5ee0af354a1652cd2",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cormons/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bd97a2aeae7e28564a401e1d2185e43c2361ecf5b87a2c5f8e707887272f2fa5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/"
         }
       ],
       "status": "unread"
@@ -5862,6 +6099,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b73516748cf6d2bfc170a54a0d2af3d2d93bf02f073e1d1929f3fc888442aded",
+          "url": "https://www.happings.com/it/happing/5-corso-mascherato/"
         }
       ],
       "status": "unread"
@@ -5982,6 +6225,12 @@
           "observed_at": "2026-10-20",
           "sha256": "1b751e6df7f59337040530c18393c6cff01e63737a9b8cf06020ac35d47c6f0f",
           "url": "https://www.happings.com/it/happing/1-corso-mascherato-di-apertura/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "542f74e5ad643666433a1a7d71f4047ddf4552589df58acad0f88bc50b8d875a",
+          "url": "https://www.happings.com/it/happing/6-corso-mascherato-notturno-di-chiusura/"
         }
       ],
       "status": "unread"
@@ -7206,6 +7455,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
+          "url": "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/"
         }
       ],
       "status": "unread"
@@ -7539,6 +7794,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
+          "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/"
         }
       ],
       "status": "unread"
@@ -7692,6 +7953,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
+          "url": "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/"
         }
       ],
       "status": "unread"
@@ -7734,6 +8001,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
+          "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/"
         }
       ],
       "status": "unread"
@@ -7851,6 +8124,12 @@
           "observed_at": "2026-10-20",
           "sha256": "085940e86fcf34087841835c0710601fa6313f8c852e5e1321d0d3ed3472cd15",
           "url": "https://www.happings.com/it/happing/242esima-fiera-di-s-caterina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
+          "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/"
         }
       ],
       "status": "unread"
@@ -25584,6 +25863,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "c80e16eaac23c0f9373b46463d016462784d6f1cef7723a68c84647c9c028033",
+          "url": "https://www.happings.com/it/happing/50-anni-del-parco-naturale-gruppo-di-tessa-transumanza/"
         }
       ],
       "status": "unread"
@@ -27978,6 +28263,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a4b06333bb5df996614160c3a3f8265ba4690b594762dc28dcfdb29e87929b84",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-carrara/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
         }
       ],
       "status": "retrieved"
@@ -28011,6 +28302,12 @@
           "observed_at": "2026-10-20",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercatino-delle-pulci-al-raffeiner-orchideenwelt/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
         }
       ],
       "status": "retrieved"
@@ -28911,6 +29208,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5752442d0815b0f88d0ce40ee3e877d0126aa7e0b2a180043ce20e90d04504f7",
           "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-zeitlous/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8e7c508c2bacf2e5fe42206746f54a2fd9c69b2c87061b3cccf8e7120fd1c686",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/"
         }
       ],
       "status": "retrieved"
@@ -29286,6 +29589,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6fa41d4cc6e2cd4380421885779335067ce50edbb7acc038445053844511ec51",
           "url": "https://www.happings.com/it/happing/mercato-annuale-a-laives/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
         }
       ],
       "status": "retrieved"
@@ -29319,6 +29628,12 @@
           "observed_at": "2026-10-20",
           "sha256": "f538bfdec6e364f973b68196b232835d82a4c819d180356e75ebc2904856ef58",
           "url": "https://www.happings.com/it/happing/mercato-antiquario-lucca-autunno-inverno-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8e7c508c2bacf2e5fe42206746f54a2fd9c69b2c87061b3cccf8e7120fd1c686",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/"
         }
       ],
       "status": "retrieved"
@@ -29430,6 +29745,12 @@
           "observed_at": "2026-10-20",
           "sha256": "dfadbbca34bae3bb20ac98ca0007077ff540d0fdaea2fb477de0105979866398",
           "url": "https://www.happings.com/it/happing/mercato-coperto-della-colonna-di-san-marco-a-siena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b2645ec56ae953572794f7636c466e9679e57e5ae58ff64a11071cb112cda3e5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cortona/"
         }
       ],
       "status": "retrieved"
@@ -29880,6 +30201,12 @@
           "observed_at": "2026-10-20",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-piazza-santo-spirito/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f732c8cf62f1c252ab56b7569de01b01b0dad6b88d440f27cb95abafa1fff15c",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cuorgne/"
         }
       ],
       "status": "retrieved"
@@ -30141,6 +30468,12 @@
           "observed_at": "2026-10-20",
           "sha256": "2ebea966ed1ddbcb75fcebbb12125b2e83ca879eeea1a8d008a764634b61b2bf",
           "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-bordighera/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1dcfb557eb9f1654be00c05b3c56ba3c62efcf087a543b94ff70ddd846418d63",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massarosa/"
         }
       ],
       "status": "retrieved"
@@ -30207,6 +30540,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c2d8924a855ff51d75a5e8e9b455d18586a4d0a9209cd8d9d951229fba5e4bfa",
           "url": "https://www.happings.com/it/happing/mercato-contadino-di-san-genesio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7e9826a45be6aaf7094dac64b1ef2e635c59f7782bfa783326ea871da42dbf49",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pirri-a-cagliari/"
         }
       ],
       "status": "retrieved"
@@ -30429,6 +30768,12 @@
           "observed_at": "2026-10-20",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-imperia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2c3a0e8d746af00768d5740c9d61eebabbba826ba78b7b9181397843317aa518",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massa/"
         }
       ],
       "status": "retrieved"
@@ -30645,6 +30990,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6969081d3adcd04f8f30d5bfed030b3e86b580c4a5293e8b4fceae4aa6c7a320",
           "url": "https://www.happings.com/it/happing/mercato-dei-produttori-di-chieri/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "46c11ae885d7e7bd9acad95b536ac555396f0add7d04c143168caa95956cf0c2",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-sacra-famiglia/"
         }
       ],
       "status": "retrieved"
@@ -30843,6 +31194,12 @@
           "observed_at": "2026-10-20",
           "sha256": "7b1acf18c5073836f6cb1505b2290a964f9bd9b6fec51147287b9fb0ce8d00e6",
           "url": "https://www.happings.com/it/happing/mercato-dei-bambini-a-laives/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "766a30ffade17c4f9c18e3761e70bcae4b88cdd5bbc031b5ee0af354a1652cd2",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cormons/"
         }
       ],
       "status": "retrieved"
@@ -31059,6 +31416,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6679cf9c511988d07830e44ab24920daf28263be9d5da40cec438be18e4d5955",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-oristano/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-coperto-di-oristano/"
         }
       ],
       "status": "retrieved"
@@ -31209,6 +31572,12 @@
           "observed_at": "2026-10-20",
           "sha256": "883c11dfc5974ef57bd05692e45e37ea5bdd6430dbab6bd135f9a0e9789c03cc",
           "url": "https://www.happings.com/it/happing/mercato-del-rosario-di-sluderno/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-coperto-di-verona/"
         }
       ],
       "status": "retrieved"
@@ -31281,6 +31650,12 @@
           "observed_at": "2026-10-20",
           "sha256": "7b1acf18c5073836f6cb1505b2290a964f9bd9b6fec51147287b9fb0ce8d00e6",
           "url": "https://www.happings.com/it/happing/mercato-dei-bambini-a-laives/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
         }
       ],
       "status": "retrieved"
@@ -31380,6 +31755,18 @@
           "observed_at": "2026-10-20",
           "sha256": "4d37dbd028b026215d610d515a5b8b433a88e8669b55ac10e12b4747c514aa01",
           "url": "https://www.happings.com/it/happing/mercato-dei-prodotti-tipici-e-stagionali-di-campagna-amica-di-mogliano-veneto/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-dei-prodotti-tipici-e-stagionali-di-campagna-amica-di-mogliano-veneto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1b4d7db8877a6371cf368263f3c50647acb8d8d6524ad5d1158f4b621a38f203",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porta-galliera-bologna/"
         }
       ],
       "status": "retrieved"
@@ -31407,6 +31794,18 @@
           "observed_at": "2026-10-20",
           "sha256": "6969081d3adcd04f8f30d5bfed030b3e86b580c4a5293e8b4fceae4aa6c7a320",
           "url": "https://www.happings.com/it/happing/mercato-dei-produttori-di-chieri/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-dei-produttori-di-chieri/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ad50f9099a3fc17dbec0ee65a9c48acc27a148dad954f6c8d3b95f871e29959a",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-ponte-san-giovanni-a-perugia/"
         }
       ],
       "status": "retrieved"
@@ -31623,6 +32022,12 @@
           "observed_at": "2026-10-20",
           "sha256": "528d41782de7ee4137536c2cbfec05dd721ef1e519dac82b43c573d729146c37",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-agricoltura-damare-a-nervi-di-genova/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "05e6a691319ba6e7f8122c4a7b047076d98b5fed6e3bc0fff6bec9f154792788",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-collecchio/"
         }
       ],
       "status": "retrieved"
@@ -31710,6 +32115,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c3ce1bc741b3b60022f998fbbf3129c08c66af462d9de0536aaf91c3d5ecc9f4",
           "url": "https://www.happings.com/it/happing/mercato-delle-bonta-di-san-martino/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-delle-bonta-di-san-martino/"
         }
       ],
       "status": "retrieved"
@@ -31736,6 +32147,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "99d20c69f26c92ed21d7d185f82196460ffb2e2f51d017e1a4301d91fd1420b5",
+          "url": "https://www.happings.com/it/happing/mercato-delle-pulci-di-velturno/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-delle-pulci-di-velturno/"
         }
       ],
@@ -31926,6 +32343,12 @@
           "observed_at": "2026-10-20",
           "sha256": "d3bc29ee2de867b9ff3b8ed07c6ee257ea336b0cbfc861a801d168ca1adf6a95",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-al-circo-massimo-di-roma/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-al-circo-massimo-di-roma/"
         }
       ],
       "status": "retrieved"
@@ -31959,6 +32382,12 @@
           "observed_at": "2026-10-20",
           "sha256": "682d9b35f309a62297e62b9bc85ef33893237c31c9832fc3b3be6c777d3ee117",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cadriano/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6020aaa861010c2c1b046ea08d1e53a050d470c955786f150ca0a85183cf606a",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-medole/"
         }
       ],
       "status": "retrieved"
@@ -31992,6 +32421,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5d70453b76a4e8eabafc68741458f18929ad20709d35a423d62c65660adfb972",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-cuneo-piazza-della-costituzione/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "702767495ecb697c6f9c73cadad928f5422ad0421df48f5370130d76896bacc5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelnuovo-del-garda/"
         }
       ],
       "status": "retrieved"
@@ -32018,6 +32453,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "ca6eaea8800a24955b7e9a523f559e31174d6bfe8e0dfaf016ba621b49a33a04",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-del-villaggio-del-sole-di-udine/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-del-villaggio-del-sole-di-udine/"
         }
       ],
@@ -32051,6 +32492,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "6b09e9290fd8698bffd84826e6a3247954b447500c0cc8315277356ac3bc93e7",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-abbasanta/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-abbasanta/"
         }
       ],
@@ -32202,6 +32649,12 @@
           "observed_at": "2026-10-20",
           "sha256": "f49035826fe9f4e0fcbcebf8d3fa651137c654b36043f5092a62dc8e3624f0d8",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-atri/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-atri/"
         }
       ],
       "status": "retrieved"
@@ -32235,6 +32688,12 @@
           "observed_at": "2026-10-20",
           "sha256": "855ee59e22ce584d4dbf8a8625f2e723b5b9be243487100835a4fa4572f68ee7",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-avellino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "be5bf669dcccb6b3867cb59e0ac08f98fa06368e879e4243b68a7ecf9c111f87",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-como/"
         }
       ],
       "status": "retrieved"
@@ -32379,6 +32838,12 @@
           "observed_at": "2026-10-20",
           "sha256": "50af05e3b524421481cd7e129129590bb6f8edb527ab307b5b60f6a4099daf1d",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bastia/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bastia/"
         }
       ],
       "status": "retrieved"
@@ -32445,6 +32910,12 @@
           "observed_at": "2026-10-20",
           "sha256": "46b1a90a32854335100ab4d0c80c6b6180479223801f8a5c3ac1e31874e2d3aa",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bologna-via-po/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "e5aac4ff13909d83947519ae1ece9cba0b93d79b218c36f68a1a4f1272a55821",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-li-punti-sassari/"
         }
       ],
       "status": "retrieved"
@@ -32511,6 +32982,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0fa84c35050fd9df3153928adead81ab48d6ed1769f15f5cdf36b140fad8367f",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-brugherio/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-brugherio/"
         }
       ],
       "status": "retrieved"
@@ -32543,6 +33020,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "a99263d9ff044bfa2a32324cf89b6573b8ea785722615fe6231d1d9a409fba6e",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-busto-garolfo/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-busto-garolfo/"
         }
       ],
@@ -32577,6 +33060,12 @@
           "observed_at": "2026-10-20",
           "sha256": "682d9b35f309a62297e62b9bc85ef33893237c31c9832fc3b3be6c777d3ee117",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cadriano/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cadriano/"
         }
       ],
       "status": "retrieved"
@@ -32609,6 +33098,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "9f37dd5929c939624d673519f298d4e59d3c721eaf9a933806297e8c130be3c7",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cagliari/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cagliari/"
         }
       ],
@@ -32792,16 +33287,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelfiorentino/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "da83cd4f4170005d5c8d0f33633380a37bc87b183f06dbe1821dc42bf4e6fc3e",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:11.434352+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -32814,21 +33309,33 @@
           "observed_at": "2026-10-20",
           "sha256": "99d20c69f26c92ed21d7d185f82196460ffb2e2f51d017e1a4301d91fd1420b5",
           "url": "https://www.happings.com/it/happing/mercato-delle-pulci-di-velturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "da83cd4f4170005d5c8d0f33633380a37bc87b183f06dbe1821dc42bf4e6fc3e",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelfiorentino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "81a5344f15e04a97f2c472444a67fd50146eb121873adae5a8a4c9416abb46a7",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-fornacette-a-calcinaia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelnuovo-del-garda/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "702767495ecb697c6f9c73cadad928f5422ad0421df48f5370130d76896bacc5",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:18.092465+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -32847,21 +33354,27 @@
           "observed_at": "2026-10-20",
           "sha256": "0de5f9901811340617e82624b7c8724f142a35b9ed802a926f18913470f05825",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-pavia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "702767495ecb697c6f9c73cadad928f5422ad0421df48f5370130d76896bacc5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelnuovo-del-garda/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-catanzaro/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f4e24c8f2d904fe4f78f4c2f73fee73259ce7b6debe7d3b4e5f4cb0a916e6638",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:25.396405+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -32874,21 +33387,33 @@
           "observed_at": "2026-10-20",
           "sha256": "cde28f46107b482afa5e117d3dccae9be0aff5282655b2204dab783dc0aafd6e",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-falconara-marittima/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f4e24c8f2d904fe4f78f4c2f73fee73259ce7b6debe7d3b4e5f4cb0a916e6638",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-catanzaro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "81a5344f15e04a97f2c472444a67fd50146eb121873adae5a8a4c9416abb46a7",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-fornacette-a-calcinaia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-collecchio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "05e6a691319ba6e7f8122c4a7b047076d98b5fed6e3bc0fff6bec9f154792788",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:32.687478+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -32907,21 +33432,27 @@
           "observed_at": "2026-10-20",
           "sha256": "51aaf09b7896592bdd3e4d413267788d080650c133accaef67392828494b663c",
           "url": "https://www.happings.com/it/happing/mercato-di-aulla/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "05e6a691319ba6e7f8122c4a7b047076d98b5fed6e3bc0fff6bec9f154792788",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-collecchio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-como/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "be5bf669dcccb6b3867cb59e0ac08f98fa06368e879e4243b68a7ecf9c111f87",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:39.552380+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -32934,21 +33465,27 @@
           "observed_at": "2026-10-20",
           "sha256": "6b09e9290fd8698bffd84826e6a3247954b447500c0cc8315277356ac3bc93e7",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-abbasanta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "be5bf669dcccb6b3867cb59e0ac08f98fa06368e879e4243b68a7ecf9c111f87",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-como/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cormons/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "766a30ffade17c4f9c18e3761e70bcae4b88cdd5bbc031b5ee0af354a1652cd2",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:54.985362+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -32975,40 +33512,52 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bardolino/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-corso-umbria-a-torino/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a1a14f5fcd62863b1ce0831b96caae9d2cf05c214d4492871212bf5665665c16",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:32:59.622344+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "a1a14f5fcd62863b1ce0831b96caae9d2cf05c214d4492871212bf5665665c16",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-corso-umbria-a-torino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fe78feba52b28ace65be92f52d4a9072d0d04b1198c0d3cd6aed83fb3e74349d",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-galliate/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cortona/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b2645ec56ae953572794f7636c466e9679e57e5ae58ff64a11071cb112cda3e5",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:06.492103+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33027,21 +33576,27 @@
           "observed_at": "2026-10-20",
           "sha256": "a99263d9ff044bfa2a32324cf89b6573b8ea785722615fe6231d1d9a409fba6e",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-busto-garolfo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b2645ec56ae953572794f7636c466e9679e57e5ae58ff64a11071cb112cda3e5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cortona/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-costermano/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "cbd5f44d0fb2b3432c818a03ad04a1f6796f0d206dc04b4147e2587b144b70f6",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:13.301599+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33060,21 +33615,27 @@
           "observed_at": "2026-10-20",
           "sha256": "98b1b4adec2dc7d84e5cfe38b3ae097997708517a4a816aebbbe2c7ab1e848f8",
           "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-imperia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cbd5f44d0fb2b3432c818a03ad04a1f6796f0d206dc04b4147e2587b144b70f6",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-costermano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-creazzo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0a69cdaf9b8d94558286c416da7a4cec10ee0f0ffbe252a848daa590a63e6b99",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:20.178666+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33087,21 +33648,27 @@
           "observed_at": "2026-10-20",
           "sha256": "79ea673dc98451a9088afdf2cda6fd4af5c158b984573cea0ab91cab7392deb4",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-macomer/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0a69cdaf9b8d94558286c416da7a4cec10ee0f0ffbe252a848daa590a63e6b99",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-creazzo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cuorgne/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f732c8cf62f1c252ab56b7569de01b01b0dad6b88d440f27cb95abafa1fff15c",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:27.016599+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33120,21 +33687,27 @@
           "observed_at": "2026-10-20",
           "sha256": "8491367a9354b30895e52b528444701c180e6868afe2d7f9968ced0e0729dceb",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-verona/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f732c8cf62f1c252ab56b7569de01b01b0dad6b88d440f27cb95abafa1fff15c",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cuorgne/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-firenze-cascine/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "53f9847d50f3ac587fe675816e8d8716df9a3ffdecaef68cce28122ed62e7549",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:33.938007+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33147,21 +33720,27 @@
           "observed_at": "2026-10-20",
           "sha256": "a6e7debd48586e40e1015f58128d5f56b8405ee6a022e48e5d27084f9a8e9021",
           "url": "https://www.happings.com/it/happing/mercato-del-contadino-di-naturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "53f9847d50f3ac587fe675816e8d8716df9a3ffdecaef68cce28122ed62e7549",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-firenze-cascine/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-fornacette-a-calcinaia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "81a5344f15e04a97f2c472444a67fd50146eb121873adae5a8a4c9416abb46a7",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:40.889406+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33188,19 +33767,19 @@
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-riviera-santa-margherita-a-treviso/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gabicce-mare/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bfa4dd8907f3ff96aea28f1fa2947e29125e83aded9021e05a4c2346d1df74d8",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:33:56.965044+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33219,21 +33798,27 @@
           "observed_at": "2026-10-20",
           "sha256": "084d7f5a36db7fc0b35def7ada1793634da40893bcb9f0c9585b6ed05958cd3f",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-ascoli-piceno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bfa4dd8907f3ff96aea28f1fa2947e29125e83aded9021e05a4c2346d1df74d8",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gabicce-mare/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-galliate/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "fe78feba52b28ace65be92f52d4a9072d0d04b1198c0d3cd6aed83fb3e74349d",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:07.522654+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33246,42 +33831,60 @@
           "observed_at": "2026-10-20",
           "sha256": "4d37dbd028b026215d610d515a5b8b433a88e8669b55ac10e12b4747c514aa01",
           "url": "https://www.happings.com/it/happing/mercato-dei-prodotti-tipici-e-stagionali-di-campagna-amica-di-mogliano-veneto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fe78feba52b28ace65be92f52d4a9072d0d04b1198c0d3cd6aed83fb3e74349d",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-galliate/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "52a9ed3adb07a734b7cf5f72418d7a5cb2fb11f8887105b24fccf309d6675ae1",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-romagna/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gubbio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "30bc32305d271a112477c2c391e55b8658c50d935c4cc88fc9a386b5a9d5dee5",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:12.289138+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "30bc32305d271a112477c2c391e55b8658c50d935c4cc88fc9a386b5a9d5dee5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gubbio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-latina-sede-coldiretti/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7a2c9a244671a3e9136ce0b5661b968b10d4ee630e1aa5506fcfa53d8c696732",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:19.224765+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33300,21 +33903,27 @@
           "observed_at": "2026-10-20",
           "sha256": "3445213d520cf4e8a47cc8a4ee6a42bb12e1507b45cc1cbc77dfe791544ef437",
           "url": "https://www.happings.com/it/happing/mercato-annuale-a-bronzolo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7a2c9a244671a3e9136ce0b5661b968b10d4ee630e1aa5506fcfa53d8c696732",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-latina-sede-coldiretti/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-li-punti-sassari/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e5aac4ff13909d83947519ae1ece9cba0b93d79b218c36f68a1a4f1272a55821",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:26.022127+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33341,19 +33950,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-camaiore/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-lomazzo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "8aaed1913388fe1908959f35ce4b80394a0d11bf2800e2bee8b4ada70a371543",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:32.973619+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33372,21 +33981,27 @@
           "observed_at": "2026-10-20",
           "sha256": "6b09e9290fd8698bffd84826e6a3247954b447500c0cc8315277356ac3bc93e7",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-abbasanta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "da83cd4f4170005d5c8d0f33633380a37bc87b183f06dbe1821dc42bf4e6fc3e",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelfiorentino/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massa/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "2c3a0e8d746af00768d5740c9d61eebabbba826ba78b7b9181397843317aa518",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:37.791034+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33399,21 +34014,27 @@
           "observed_at": "2026-10-20",
           "sha256": "75378483e08cba1cc5c50441298283b2a98704e7942e5d2fb506c0aae409412b",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-macerata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2c3a0e8d746af00768d5740c9d61eebabbba826ba78b7b9181397843317aa518",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massa/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massarosa/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1dcfb557eb9f1654be00c05b3c56ba3c62efcf087a543b94ff70ddd846418d63",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:45.314572+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33432,21 +34053,27 @@
           "observed_at": "2026-10-20",
           "sha256": "5deebd145b95d6b167de5768888846875768319be0b6a6f545ea0002a7dffd2a",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-piazza-santo-spirito/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1dcfb557eb9f1654be00c05b3c56ba3c62efcf087a543b94ff70ddd846418d63",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massarosa/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-medole/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6020aaa861010c2c1b046ea08d1e53a050d470c955786f150ca0a85183cf606a",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:34:57.250660+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33459,21 +34086,33 @@
           "observed_at": "2026-10-20",
           "sha256": "10ed83dc35282134cf734b5ee0e24ceb5a1e1a3a4a4529ee189cde398f6220bb",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castano-primo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "da83cd4f4170005d5c8d0f33633380a37bc87b183f06dbe1821dc42bf4e6fc3e",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelfiorentino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bfa4dd8907f3ff96aea28f1fa2947e29125e83aded9021e05a4c2346d1df74d8",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gabicce-mare/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-melito-di-porto-salvo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3818a642dfae859e5a64568b72be68cd6891e28fb4a4ecacaabc8eb01b4bfc91",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:04.293935+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33486,21 +34125,27 @@
           "observed_at": "2026-10-20",
           "sha256": "8913b295380ec1f9fa28315c01b255fe70fcc206b6ce25f73edcedf7c364bb98",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-coperto-di-catania/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3818a642dfae859e5a64568b72be68cd6891e28fb4a4ecacaabc8eb01b4bfc91",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-melito-di-porto-salvo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-merate/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "8d09d288d2887f2a8ffa16f3e25c6601d7ea0011857d1eeee2222de17abb77b1",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:11.320391+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33519,21 +34164,27 @@
           "observed_at": "2026-10-20",
           "sha256": "a57d0382cb28a0a7d1cdc156d67d8eee9e7dc0121508f24f893224960ae7ec9a",
           "url": "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8d09d288d2887f2a8ffa16f3e25c6601d7ea0011857d1eeee2222de17abb77b1",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-merate/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-messina/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ca28c5b9ee98f66f90d187105f8232bfd0c2aabb685cdccf0a0a94ecacd8103f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:16.225922+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33560,19 +34211,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-avigliana/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-modena/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "03bc4cd9c424d58e7a7e7840fcb99c2bc88b7fa10f4a6d69513c457192617858",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:23.179172+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33585,21 +34236,27 @@
           "observed_at": "2026-10-20",
           "sha256": "ab37f34dcafa855666ddb3fb58d4eab9c9202a38fb27d30255591e94e755f3cc",
           "url": "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-avellino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "03bc4cd9c424d58e7a7e7840fcb99c2bc88b7fa10f4a6d69513c457192617858",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-modena/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-montevarchi/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "03d3b573ff35287165d014dda0c3789978a2216a7a4abf0dbc03a9ea29f19772",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:28.106043+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33626,19 +34283,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-del-villaggio-del-sole-di-udine/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-liberta/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "8ab019443cc48f4436213bd63c65dcf196cebe74dbd2a38b8eddcd36e77e3939",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:33.095680+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33651,21 +34308,27 @@
           "observed_at": "2026-10-20",
           "sha256": "c3ce1bc741b3b60022f998fbbf3129c08c66af462d9de0536aaf91c3d5ecc9f4",
           "url": "https://www.happings.com/it/happing/mercato-delle-bonta-di-san-martino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8ab019443cc48f4436213bd63c65dcf196cebe74dbd2a38b8eddcd36e77e3939",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-liberta/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-romagna/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "52a9ed3adb07a734b7cf5f72418d7a5cb2fb11f8887105b24fccf309d6675ae1",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:40.229891+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33684,21 +34347,27 @@
           "observed_at": "2026-10-20",
           "sha256": "a4b06333bb5df996614160c3a3f8265ba4690b594762dc28dcfdb29e87929b84",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-carrara/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "52a9ed3adb07a734b7cf5f72418d7a5cb2fb11f8887105b24fccf309d6675ae1",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-romagna/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-negrar/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "216874726bd8310b0582e3f4d2b52d3dc188d8209b7082c23e65f3a0515aedbe",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:35:54.357483+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33711,21 +34380,33 @@
           "observed_at": "2026-10-20",
           "sha256": "e1863b6e41f3cf51c8b288672dbd81609abe99e1fc72abb7223d132aad4b1039",
           "url": "https://www.happings.com/it/happing/agrimercato-di-piazzale-leonardo-da-vinci/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "216874726bd8310b0582e3f4d2b52d3dc188d8209b7082c23e65f3a0515aedbe",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-negrar/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ad50f9099a3fc17dbec0ee65a9c48acc27a148dad954f6c8d3b95f871e29959a",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-ponte-san-giovanni-a-perugia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-nichelino/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6c5c10eca17549c03debfd59d4e031434a8bcf052f348f991b92ab59374e1ddd",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:02.048381+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33738,21 +34419,33 @@
           "observed_at": "2026-10-20",
           "sha256": "d27994900aa1fd2468fc9dca243e31914c0b28e6bf3c18b23c59711ce895ad0e",
           "url": "https://www.happings.com/it/happing/11a-via-della-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fe78feba52b28ace65be92f52d4a9072d0d04b1198c0d3cd6aed83fb3e74349d",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-galliate/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6c5c10eca17549c03debfd59d4e031434a8bcf052f348f991b92ab59374e1ddd",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-nichelino/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-palmi/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a67db69409baf5ae5476a5f35f08ec743f0abe21ff5cd1b8516a3ce434c24357",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:09.129433+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33779,19 +34472,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cantu/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-piazza-del-carmine/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9a8be27b4852f847bea121ba3c1b9dbec2d79d7e28dac86c70bfcd1af72335e5",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:16.301380+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33818,19 +34511,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-avola/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-via-de-carlo-tibaldi/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bc7abc11e5e3833f353c150499f77fb12e6747238c632d77db602f7d42caac71",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:23.488594+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33857,19 +34550,19 @@
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-varese/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-via-pastrengo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3f23c467f7f61390ee1f11a07c3bf69836449cdaa9c0398326aaa1f00f4b5f05",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:30.955698+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33882,21 +34575,27 @@
           "observed_at": "2026-10-20",
           "sha256": "0a5a52bcde6f3d597327907d0bac8f685125a9c46d492ea33ad707b7353cd532",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-salsomaggiore-terme/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3f23c467f7f61390ee1f11a07c3bf69836449cdaa9c0398326aaa1f00f4b5f05",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-via-pastrengo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bd97a2aeae7e28564a401e1d2185e43c2361ecf5b87a2c5f8e707887272f2fa5",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:38.116038+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33909,21 +34608,33 @@
           "observed_at": "2026-10-20",
           "sha256": "d07bc45c56cde4ee939aab5bb927496d1e18f0f17aa4cab01fe587cac2faafa0",
           "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "53f9847d50f3ac587fe675816e8d8716df9a3ffdecaef68cce28122ed62e7549",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-firenze-cascine/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9a8be27b4852f847bea121ba3c1b9dbec2d79d7e28dac86c70bfcd1af72335e5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-piazza-del-carmine/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pirri-a-cagliari/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7e9826a45be6aaf7094dac64b1ef2e635c59f7782bfa783326ea871da42dbf49",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:36:45.723345+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33950,19 +34661,19 @@
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-tassina-di-rovigo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pitze-serra-quartu-santelena/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4f2afb8e677b2db8dd7091e90ecfd4c1dd3dfe71a4a4e1832870a7320e91b00f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:01.811699+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -33975,21 +34686,33 @@
           "observed_at": "2026-10-20",
           "sha256": "c91b62419b3fd7369ba86a93177f5aae53daf52a2a9f34a28be51130453088d6",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-centro-pavesi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4f2afb8e677b2db8dd7091e90ecfd4c1dd3dfe71a4a4e1832870a7320e91b00f",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pitze-serra-quartu-santelena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "305ce59cfb8d210fa6bfc531d862ca6498873e64f5416abe90abc4a8cce7db2f",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-quarrata/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-ponte-san-giovanni-a-perugia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ad50f9099a3fc17dbec0ee65a9c48acc27a148dad954f6c8d3b95f871e29959a",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:09.119156+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34016,19 +34739,19 @@
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-a-ponte-san-giovanni/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pontedera-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "512f2755eed74f22b3a00cb6b91d0740a6c2780737eb3be0a26a9fbca3b261ce",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:16.362174+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34047,21 +34770,27 @@
           "observed_at": "2026-10-20",
           "sha256": "49f95f8fbd8f7cf154da008d298b69f838beb07675da61317d4d4a02b4f272cd",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-parabiago/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "512f2755eed74f22b3a00cb6b91d0740a6c2780737eb3be0a26a9fbca3b261ce",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pontedera-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pontedera/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3f6d0dce5448ddcfe5cc034dfedaafd41e0475fec46e130f537cb245a87b5ed0",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:23.777873+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34080,21 +34809,27 @@
           "observed_at": "2026-10-20",
           "sha256": "c91b62419b3fd7369ba86a93177f5aae53daf52a2a9f34a28be51130453088d6",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-centro-pavesi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cbd5f44d0fb2b3432c818a03ad04a1f6796f0d206dc04b4147e2587b144b70f6",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-costermano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porta-galliera-bologna/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1b4d7db8877a6371cf368263f3c50647acb8d8d6524ad5d1158f4b621a38f203",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:31.149631+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34121,19 +34856,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-del-villaggio-del-sole-di-udine/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porto-santelpidio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b50b4378ce7ceaa7d54307328c78e7026a48cf69b2c9e39b576f5d4a0d4fa931",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:38.279470+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34152,42 +34887,54 @@
           "observed_at": "2026-10-20",
           "sha256": "28a0fbabaae8244bc22e618a5e3f9dfc83e94c3dc0308e6aac716646ee60481d",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-torrile/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f732c8cf62f1c252ab56b7569de01b01b0dad6b88d440f27cb95abafa1fff15c",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cuorgne/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porto-torres/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0babbae766e62074aaa2cd4c57d725635fdc534426f8bd9365727176de8a1ffd",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:45.588642+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0babbae766e62074aaa2cd4c57d725635fdc534426f8bd9365727176de8a1ffd",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porto-torres/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-madonna-dellulivo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3256ff51ddf2948ab2a0c242688245e8cace00c0c9d0db749dac05540f7067eb",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:37:50.784061+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34200,42 +34947,60 @@
           "observed_at": "2026-10-20",
           "sha256": "e1863b6e41f3cf51c8b288672dbd81609abe99e1fc72abb7223d132aad4b1039",
           "url": "https://www.happings.com/it/happing/agrimercato-di-piazzale-leonardo-da-vinci/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7a2c9a244671a3e9136ce0b5661b968b10d4ee630e1aa5506fcfa53d8c696732",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-latina-sede-coldiretti/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "03bc4cd9c424d58e7a7e7840fcb99c2bc88b7fa10f4a6d69513c457192617858",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-modena/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-sacra-famiglia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "46c11ae885d7e7bd9acad95b536ac555396f0add7d04c143168caa95956cf0c2",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:38:03.744643+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "46c11ae885d7e7bd9acad95b536ac555396f0add7d04c143168caa95956cf0c2",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-sacra-famiglia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-preganziol/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "082b11cae8e87980944062576d291ec4818720296e684703936f30d954fb1c69",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:38:11.225785+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34262,19 +35027,19 @@
           "url": "https://www.happings.com/it/happing/mercato-brenzone/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-quarrata/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "305ce59cfb8d210fa6bfc531d862ca6498873e64f5416abe90abc4a8cce7db2f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:38:18.733473+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34287,21 +35052,33 @@
           "observed_at": "2026-10-20",
           "sha256": "2e4c68984accc2bcfe461399d47358f1b484a0643655630f0378f40056c99dd1",
           "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-brescia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bfa4dd8907f3ff96aea28f1fa2947e29125e83aded9021e05a4c2346d1df74d8",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gabicce-mare/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "305ce59cfb8d210fa6bfc531d862ca6498873e64f5416abe90abc4a8cce7db2f",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-quarrata/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-reggio-calabria/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b351b69a7d0247e70144e67028901418909397e888a3d9b5f1ee98b97e14fe18",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:38:26.307639+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34314,21 +35091,27 @@
           "observed_at": "2026-10-20",
           "sha256": "c4e85cae2fa1cca50cc7acd3abcce47859591cd4ae86d84cbfa1957be6a08f44",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-presso-il-mercato-ittico-di-milano/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b351b69a7d0247e70144e67028901418909397e888a3d9b5f1ee98b97e14fe18",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-reggio-calabria/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rende-piazza-madonna-di-lourdes/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e9af481c63b5ab7e02ba5bfecfd6cfde14da3ccc9de2b8b5d964f4766f311b32",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:38:33.687016+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34347,42 +35130,54 @@
           "observed_at": "2026-10-20",
           "sha256": "0a0e92e7996ee41ba9bc5a71c8f6824547a40d54b4ecec4bab586e073cbe3022",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bresso/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "a1a14f5fcd62863b1ce0831b96caae9d2cf05c214d4492871212bf5665665c16",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-corso-umbria-a-torino/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rho/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "52ed76f6f0d4ed7c6cff26d36e3dd88fdfdda4df68eb46b7a398471253d5b064",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:38:42.103405+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "52ed76f6f0d4ed7c6cff26d36e3dd88fdfdda4df68eb46b7a398471253d5b064",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rho/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rivarolo-canavese/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "30135fdeb46c79560ad5d605b1d3c1cff9aca17c95876b6c0f4a71dc68d33ccb",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T08:38:49.491508+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -34401,9 +35196,15 @@
           "observed_at": "2026-10-20",
           "sha256": "00791bb43753ef7d3398c18d34f02f3e536fb0052abb3590476f4c0292cde686",
           "url": "https://www.happings.com/it/happing/mercato-dei-contadini-a-brunico/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8d09d288d2887f2a8ffa16f3e25c6601d7ea0011857d1eeee2222de17abb77b1",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-merate/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rivoli/": {
       "attempts": 0,
@@ -34494,6 +35295,12 @@
           "observed_at": "2026-10-20",
           "sha256": "16dde4b38663d713edc751cf84a859c556421904690d0efe6b997d2529d63de5",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-chieti/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "702767495ecb697c6f9c73cadad928f5422ad0421df48f5370130d76896bacc5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelnuovo-del-garda/"
         }
       ],
       "status": "unread"
@@ -34593,6 +35400,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0a5a52bcde6f3d597327907d0bac8f685125a9c46d492ea33ad707b7353cd532",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-salsomaggiore-terme/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0a69cdaf9b8d94558286c416da7a4cec10ee0f0ffbe252a848daa590a63e6b99",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-creazzo/"
         }
       ],
       "status": "unread"
@@ -34620,6 +35433,12 @@
           "observed_at": "2026-10-20",
           "sha256": "405e86520ef0626134368dff233a04087104cee42bf78c624c645aaf23d088e1",
           "url": "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-codroipo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "30135fdeb46c79560ad5d605b1d3c1cff9aca17c95876b6c0f4a71dc68d33ccb",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rivarolo-canavese/"
         }
       ],
       "status": "unread"
@@ -34647,6 +35466,12 @@
           "observed_at": "2026-10-20",
           "sha256": "85440f200ea0b45c5473e656d933006da6b9a22f30aea7fcb2a879bc7a7371cc",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-alpignano/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b2645ec56ae953572794f7636c466e9679e57e5ae58ff64a11071cb112cda3e5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cortona/"
         }
       ],
       "status": "unread"
@@ -34728,6 +35553,12 @@
           "observed_at": "2026-10-20",
           "sha256": "87eecabca84f40b8da69417ed3315ac8430f61f1ed0425ce00dbf5d53372045a",
           "url": "https://www.happings.com/it/happing/mercato-del-pesce-di-campagna-amica-dal-pescatore-al-consumatore-a-genova/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ad50f9099a3fc17dbec0ee65a9c48acc27a148dad954f6c8d3b95f871e29959a",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-ponte-san-giovanni-a-perugia/"
         }
       ],
       "status": "unread"
@@ -34794,6 +35625,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4b6f3ba7465bb040973e6f660a052eef391f59aef326b5d8365501792717fac8",
           "url": "https://www.happings.com/it/happing/mercato-del-sabato-di-aulla/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8ab019443cc48f4436213bd63c65dcf196cebe74dbd2a38b8eddcd36e77e3939",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-liberta/"
         }
       ],
       "status": "unread"
@@ -34881,6 +35718,12 @@
           "observed_at": "2026-10-20",
           "sha256": "39fa7b73652888fc9fc87ce47a6f58af4d4fa703ab1bc550796752ad34b56047",
           "url": "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-monfalcone/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b50b4378ce7ceaa7d54307328c78e7026a48cf69b2c9e39b576f5d4a0d4fa931",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porto-santelpidio/"
         }
       ],
       "status": "unread"
@@ -35040,6 +35883,12 @@
           "observed_at": "2026-10-20",
           "sha256": "46b1a90a32854335100ab4d0c80c6b6180479223801f8a5c3ac1e31874e2d3aa",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bologna-via-po/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3f6d0dce5448ddcfe5cc034dfedaafd41e0475fec46e130f537cb245a87b5ed0",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pontedera/"
         }
       ],
       "status": "unread"
@@ -35061,6 +35910,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0a69cdaf9b8d94558286c416da7a4cec10ee0f0ffbe252a848daa590a63e6b99",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-creazzo/"
         }
       ],
       "status": "unread"
@@ -35088,6 +35943,18 @@
           "observed_at": "2026-10-20",
           "sha256": "bb2b4c58c0f6f083b3927a8611be5001920b93ec09574ea7b99c1f536adff25d",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-gorizia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "46c11ae885d7e7bd9acad95b536ac555396f0add7d04c143168caa95956cf0c2",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-sacra-famiglia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "082b11cae8e87980944062576d291ec4818720296e684703936f30d954fb1c69",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-preganziol/"
         }
       ],
       "status": "unread"
@@ -35148,6 +36015,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7e9826a45be6aaf7094dac64b1ef2e635c59f7782bfa783326ea871da42dbf49",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pirri-a-cagliari/"
         }
       ],
       "status": "unread"
@@ -35247,6 +36120,12 @@
           "observed_at": "2026-10-20",
           "sha256": "89481e889fbe923588663431a5bff1e0a5c3a73313df73f30b9f9137fbd9b080",
           "url": "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-livorno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8d09d288d2887f2a8ffa16f3e25c6601d7ea0011857d1eeee2222de17abb77b1",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-merate/"
         }
       ],
       "status": "unread"
@@ -35415,6 +36294,12 @@
           "observed_at": "2026-10-20",
           "sha256": "111b9a4bb7cb63e059013061277861602c6c76f93b1a59c8a8d7a1ba412b5a47",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-di-bari/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3256ff51ddf2948ab2a0c242688245e8cace00c0c9d0db749dac05540f7067eb",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-madonna-dellulivo/"
         }
       ],
       "status": "unread"
@@ -35463,6 +36348,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "e9af481c63b5ab7e02ba5bfecfd6cfde14da3ccc9de2b8b5d964f4766f311b32",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rende-piazza-madonna-di-lourdes/"
         }
       ],
       "status": "unread"
@@ -35529,6 +36420,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4b6f3ba7465bb040973e6f660a052eef391f59aef326b5d8365501792717fac8",
           "url": "https://www.happings.com/it/happing/mercato-del-sabato-di-aulla/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "216874726bd8310b0582e3f4d2b52d3dc188d8209b7082c23e65f3a0515aedbe",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-negrar/"
         }
       ],
       "status": "unread"
@@ -35649,6 +36546,12 @@
           "observed_at": "2026-10-20",
           "sha256": "3445213d520cf4e8a47cc8a4ee6a42bb12e1507b45cc1cbc77dfe791544ef437",
           "url": "https://www.happings.com/it/happing/mercato-annuale-a-bronzolo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bd97a2aeae7e28564a401e1d2185e43c2361ecf5b87a2c5f8e707887272f2fa5",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/"
         }
       ],
       "status": "unread"
@@ -35682,6 +36585,12 @@
           "observed_at": "2026-10-20",
           "sha256": "b3254286f111708eb5b858f9292f90c4e8bdba660ea3f642e74c52db33b75c85",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-di-cosenza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0babbae766e62074aaa2cd4c57d725635fdc534426f8bd9365727176de8a1ffd",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porto-torres/"
         }
       ],
       "status": "unread"
@@ -35703,6 +36612,18 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "766a30ffade17c4f9c18e3761e70bcae4b88cdd5bbc031b5ee0af354a1652cd2",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cormons/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "8ab019443cc48f4436213bd63c65dcf196cebe74dbd2a38b8eddcd36e77e3939",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-liberta/"
         }
       ],
       "status": "unread"
@@ -35844,6 +36765,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6679cf9c511988d07830e44ab24920daf28263be9d5da40cec438be18e4d5955",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-oristano/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1dcfb557eb9f1654be00c05b3c56ba3c62efcf087a543b94ff70ddd846418d63",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massarosa/"
         }
       ],
       "status": "unread"
@@ -35916,6 +36843,12 @@
           "observed_at": "2026-10-20",
           "sha256": "bbf456add9906efb8e7997639077b6a74ba907e81422a920398ff78fce64e57e",
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-bibbiena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7e9826a45be6aaf7094dac64b1ef2e635c59f7782bfa783326ea871da42dbf49",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pirri-a-cagliari/"
         }
       ],
       "status": "unread"
@@ -35976,6 +36909,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3818a642dfae859e5a64568b72be68cd6891e28fb4a4ecacaabc8eb01b4bfc91",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-melito-di-porto-salvo/"
         }
       ],
       "status": "unread"
@@ -36024,6 +36963,18 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "a1a14f5fcd62863b1ce0831b96caae9d2cf05c214d4492871212bf5665665c16",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-corso-umbria-a-torino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cbd5f44d0fb2b3432c818a03ad04a1f6796f0d206dc04b4147e2587b144b70f6",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-costermano/"
         }
       ],
       "status": "unread"
@@ -36270,6 +37221,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "2f259c71a7fee422d4f929024ec0bf0dfe7d421c8ad46b8977c518cfbfab1b81",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/2/"
         }
       ],
       "status": "unread"
@@ -36291,6 +37248,18 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bfa4dd8907f3ff96aea28f1fa2947e29125e83aded9021e05a4c2346d1df74d8",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gabicce-mare/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "216874726bd8310b0582e3f4d2b52d3dc188d8209b7082c23e65f3a0515aedbe",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-negrar/"
         }
       ],
       "status": "unread"
@@ -37965,6 +38934,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3818a642dfae859e5a64568b72be68cd6891e28fb4a4ecacaabc8eb01b4bfc91",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-melito-di-porto-salvo/"
         }
       ],
       "status": "unread"
@@ -38841,6 +39816,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "c80e16eaac23c0f9373b46463d016462784d6f1cef7723a68c84647c9c028033",
+          "url": "https://www.happings.com/it/happing/50-anni-del-parco-naturale-gruppo-di-tessa-transumanza/"
         }
       ],
       "status": "unread"
@@ -39705,6 +40686,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "c80e16eaac23c0f9373b46463d016462784d6f1cef7723a68c84647c9c028033",
+          "url": "https://www.happings.com/it/happing/50-anni-del-parco-naturale-gruppo-di-tessa-transumanza/"
         }
       ],
       "status": "unread"
@@ -43521,6 +44508,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bc7abc11e5e3833f353c150499f77fb12e6747238c632d77db602f7d42caac71",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-via-de-carlo-tibaldi/"
         }
       ],
       "status": "unread"
@@ -51021,6 +52014,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "83fa6e0c5b2ad043e116451c4428434adbb20b6424199bc2641224403d3fd00f",
+          "url": "https://www.happings.com/it/happing/66thand2nd-presenta-tennis-paradise/"
         }
       ],
       "status": "unread"
@@ -51147,6 +52146,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "83fa6e0c5b2ad043e116451c4428434adbb20b6424199bc2641224403d3fd00f",
+          "url": "https://www.happings.com/it/happing/66thand2nd-presenta-tennis-paradise/"
         }
       ],
       "status": "unread"
