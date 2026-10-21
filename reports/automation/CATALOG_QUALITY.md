@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **13,952**.
-- Orari mancanti: **10,465**.
+- Schede: **13,981**.
+- Orari mancanti: **10,454**.
 - Indirizzi mancanti: **2,886**.
-- Coordinate mancanti: **402**.
-- Date future mancanti: **2,048**.
+- Coordinate mancanti: **431**.
+- Date future mancanti: **2,081**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,069** gruppi, **1,180** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **13,952**.
+- Verifiche umane documentate mancanti: **13,981**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -21,7 +21,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Fonte | Schede |
 |---|---:|
-| happings.com | 9,775 |
+| happings.com | 9,804 |
 | eventiesagre.it | 2,197 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
 | cosedicasa.com | 432 |
@@ -38,26 +38,26 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Regione | Schede | Orari mancanti | Indirizzi mancanti |
 |---|---:|---:|---:|
-| Abruzzo | 394 | 349 | 152 |
+| Abruzzo | 395 | 348 | 152 |
 | Basilicata | 36 | 22 | 12 |
 | Calabria | 331 | 284 | 94 |
-| Campania | 822 | 710 | 257 |
-| Emilia-Romagna | 909 | 567 | 160 |
-| Friuli Venezia Giulia | 244 | 94 | 16 |
-| Lazio | 1,081 | 876 | 259 |
-| Liguria | 391 | 312 | 76 |
-| Lombardia | 3,984 | 2,495 | 339 |
-| Marche | 292 | 194 | 83 |
+| Campania | 824 | 710 | 257 |
+| Emilia-Romagna | 909 | 566 | 160 |
+| Friuli Venezia Giulia | 244 | 93 | 16 |
+| Lazio | 1,082 | 876 | 259 |
+| Liguria | 391 | 309 | 76 |
+| Lombardia | 3,990 | 2,494 | 339 |
+| Marche | 294 | 194 | 83 |
 | Molise | 215 | 185 | 89 |
-| Piemonte | 1,340 | 1,177 | 292 |
-| Puglia | 484 | 439 | 214 |
-| Sardegna | 390 | 323 | 164 |
-| Sicilia | 404 | 338 | 141 |
-| Toscana | 962 | 782 | 161 |
+| Piemonte | 1,347 | 1,176 | 292 |
+| Puglia | 484 | 437 | 214 |
+| Sardegna | 392 | 323 | 164 |
+| Sicilia | 405 | 338 | 141 |
+| Toscana | 967 | 782 | 161 |
 | Trentino-Alto Adige | 228 | 171 | 45 |
-| Umbria | 179 | 150 | 74 |
+| Umbria | 180 | 150 | 74 |
 | Valle d'Aosta | 54 | 52 | 15 |
-| Veneto | 1,212 | 945 | 243 |
+| Veneto | 1,213 | 944 | 243 |
 
 ## Località da verificare (campione limitato)
 

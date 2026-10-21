@@ -3,7 +3,7 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **13952**
+- ID controllati e conservati: **13981**
 - Etichette di fonte: **87**
 - Casi nel lotto di lavoro del giorno: **444**
 - Lotti rotanti: **31**
@@ -12,21 +12,21 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **13863**
-- date: **2048**
+- coordinates: **13892**
+- date: **2081**
 - indirizzo: **5355**
-- individual_edition_confirmation: **13952**
-- orario_testo: **10465**
-- ricorrenza_testo: **968**
+- individual_edition_confirmation: **13981**
+- orario_testo: **10454**
+- ricorrenza_testo: **969**
 
 ## Origini ordinate per numero di schede
 
 | Origine | Schede | Orari | Sedi | Trattamento |
 |---|---:|---:|---:|---|
-| happings.com | 9775 | 9219 | 4746 | happings-weekly-or-detail |
+| happings.com | 9804 | 9219 | 4746 | happings-weekly-or-detail |
 | eventiesagre.it | 2197 | 368 | 485 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 3 | lombardia-mercap |
-| cosedicasa.com | 432 | 385 | 6 | cosedicasa-editorial-calendar |
+| cosedicasa.com | 432 | 374 | 6 | cosedicasa-editorial-calendar |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | source-family-not-resolved-by-this-worklist |
@@ -118,7 +118,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 18
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 12715
+- no_usable_source_match: 12744
 - review_only_field_candidates: 79
 - same_source_id: 789
 - unique_city_province_street_weekday: 371

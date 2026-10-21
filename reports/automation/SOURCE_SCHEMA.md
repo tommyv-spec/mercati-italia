@@ -5,7 +5,7 @@ Campi rilevati e corrispondenze sono suggerimenti, non dati verificati.
 Fonti strutturate ammesse per probing: **32**; mai osservate: **0**.
 Ogni run controlla fino a tre fonti in rotazione, mantenendo uno storico bounded dei soli schemi.
 
-## Posteggi mercati e fiere - Comune di Soave
+## Posteggi mercati e fiere - Comune di Brendola
 - Esito: schema_preview_only
 - Formato: CSV
 - Campi: NOME, FIERA/MERCATO, GIORNO, INIZIO PERIODO, FINE PERIODO, TIPO POSTEGGIO, TOTALE POSTEGGI
@@ -14,7 +14,7 @@ Ogni run controlla fino a tre fonti in rotazione, mantenendo uno storico bounded
 - Punti da risolvere: municipality_must_be_validated_from_publisher_context
 - Verifiche obbligatorie: licenza, schema completo, ID stabili, date attuali, dedup.
 
-## Censimento dei mercati mensili
+## Censimento dei mercati quindicinali
 - Esito: schema_preview_only
 - Formato: CSV
 - Campi: comune, provincia, anno, mercati, totale, attivazioni, cessazioni, posteggi, alimentare_totale, alimentare_attivazioni, alimentare_cessazioni, nonalimentare_totale, nonalimentare_attivazioni, nonalimentare_cessazioni, produttori_totale, produttori_attivazioni, produttori_cessazioni

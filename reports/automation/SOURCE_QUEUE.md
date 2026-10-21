@@ -6,7 +6,7 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 - Fonti note: **49**; viste ora: **43**.
 - Nuove: **0**; cambiate: **0**.
 - Query fallite: **0**; offline: **False**.
-- Probabili elenchi/sedi: **7**; statistiche aggregate: **13**.
+- Probabili elenchi/sedi: **6**; statistiche aggregate: **14**.
 - Il punteggio indica solo la priorità della verifica. NON è una misura di affidabilità.
 - La ricerca restituisce solo i primi risultati. Una fonte non vista non è stata cancellata.
 - Una modifica ai metadati NON dimostra che siano cambiati mercati o orari.
@@ -16,7 +16,7 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 | 1 | 24 | Mercati su aree pubbliche | market_location_candidate | non esplorato | Regione Lombardia | 2026-10-20 |
 | 2 | 23 | Elenco dei mercati settimanali | market_location_candidate | non esplorato | Comune di Corciano | 07-01-2026 |
 | 3 | 19 | Mercati e fiere | mixed_events_candidate | non esplorato | Comune di Bologna | 2025-04-02 |
-| 4 | 18 | Dati sui Mercati Rionali | market_location_candidate | manual_schema_review_required | Roma Capitale | 2022-07-04 |
+| 4 | 16 | Dati sui Mercati Rionali | market_location_candidate | manual_schema_review_required | Roma Capitale | sconosciuta |
 | 5 | 14 | Attività commerciali: mercati settimanali scoperti | market_location_candidate | non esplorato | Comune di Milano | sconosciuta |
 | 6 | 13 | Fiere e mercati - Comune di Sona | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 7 | 10 | Anagrafica mercati | general_market_candidate | non esplorato | Regione Piemonte | sconosciuta |
@@ -28,11 +28,11 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 | 13 | 9 | Posteggi mercati e fiere - Comune di Fontaniva | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 14 | 9 | Posteggi mercati e fiere - Comune di Soave | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
 | 15 | 9 | Posteggi mercati e fiere - Comune di Brendola | mixed_events_candidate | manual_schema_review_required | Regione Veneto | sconosciuta |
-| 16 | 9 | Censimento dei mercati quindicinali | market_location_candidate | manual_schema_review_required | Regione Lazio | sconosciuta |
-| 17 | 9 | Censimento dei mercati itineranti | market_location_candidate | manual_schema_review_required | Regione Lazio | sconosciuta |
-| 18 | -5 | Fiere e mercati - Comune di Casalserugo | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
-| 19 | -5 | Fiere e mercati - Comune di Soave | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
-| 20 | -5 | Fiere e mercati - Comune di Fontaniva | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
+| 16 | 9 | Censimento dei mercati itineranti | market_location_candidate | manual_schema_review_required | Regione Lazio | sconosciuta |
+| 17 | -5 | Fiere e mercati - Comune di Casalserugo | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
+| 18 | -5 | Fiere e mercati - Comune di Soave | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
+| 19 | -5 | Fiere e mercati - Comune di Fontaniva | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
+| 20 | -5 | Fiere e mercati - Comune di Badia Polesine | concession_registry | concession_registry_without_visit_schedule | Regione Veneto | sconosciuta |
 
 ## Risorse candidate prioritarie (URL non verificati)
 

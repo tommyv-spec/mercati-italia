@@ -4,19 +4,19 @@
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
 - Data della misura: **2026-10-21**.
-- Schede totali: **13,952**.
+- Schede totali: **13,981**.
 - Fonti misurate (nome e dominio): **88**.
-- Importazione registrata entro 30 giorni: **128**.
-- Lettura della fonte registrata entro 30 giorni: **1,309**.
+- Importazione registrata entro 30 giorni: **157**.
+- Lettura della fonte registrata entro 30 giorni: **1,338**.
 - Fonte datata entro 30 giorni: **1,204**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,204**.
 - Schede con aggiornamento soltanto del dataset: **1,250**.
 - Fonte datata tra 31 e 365 giorni: **6**.
 - Fonte più vecchia del limite di 540 giorni: **52**.
-- Schede con età del contenuto della fonte non comprovata: **12,689**.
+- Schede con età del contenuto della fonte non comprovata: **12,718**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,774**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,956**.
+- Schede con date future previste: **11,741**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,923**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,6 +25,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
+- Da correggere: publisher_metadata_unavailable_or_changed
 - Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
@@ -33,7 +34,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 |---|---|---|
 | Comune di Bologna | metadata_checked | 2025-04-02 |
 | Regione Lombardia | metadata_checked | 2026-10-20 |
-| Roma Capitale | metadata_checked | 2022-07-04 |
+| Roma Capitale | needs_review | non disponibile |
 
 ## Copertura di tutte le fonti del catalogo
 
@@ -92,7 +93,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
-| happings.com | www.happings.com | 9775 | 0 | 0 | 9775 | 128 |
+| happings.com | www.happings.com | 9804 | 0 | 0 | 9804 | 157 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -136,13 +137,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 2886 | 8037 | 1422 | 1535 | 72 |
-| Orari | 10465 | 1941 | 1188 | 128 | 230 |
-| Giorni | 968 | 10089 | 1375 | 1501 | 19 |
+| Sede | 2886 | 8024 | 1427 | 1565 | 79 |
+| Orari | 10454 | 1939 | 1191 | 158 | 239 |
+| Giorni | 969 | 10089 | 1375 | 1529 | 19 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 5880. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 5909. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
