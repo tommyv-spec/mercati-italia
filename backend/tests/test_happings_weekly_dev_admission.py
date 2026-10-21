@@ -117,6 +117,39 @@ class WeeklyDevAdmissionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 a.archive_source_html(batch,root)
 
+    def test_replay_exact_captured_autopilot_html_without_extra_requests(self):
+        import happings_autopilot
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t)
+            (root/"sources").mkdir()
+            page={"requested_url":W,"final_url":W,"html":b"x"*450}
+            context={"today":"2026-10-21","selected_urls":[W],
+                     "input_sha256":"a"*64,"rights_sha256":"b"*64}
+            saved={"schema":1,"context":context,"status":"retrieved",
+                   "pages":[happings_autopilot._pack_page(page)],
+                   "failures":[]}
+            report={"schema":1,"date":"2026-10-21","enabled":True,
+                    "fetch_authorized":True,"selected_urls":[W],
+                    "input_sha256":context["input_sha256"],
+                    "rights_record_sha256":context["rights_sha256"]}
+            checkpoint=root/"sources/happings-pages.json"
+            checkpoint.write_text(json.dumps(saved),"utf-8")
+            report_file=root/"happings-enrichment.json"
+            report_file.write_text(json.dumps(report),"utf-8")
+            observed,_=a.pages_from_autopilot(root,today=date(2026,10,21))
+            self.assertEqual(len(observed),1)
+            self.assertEqual(observed[0]["html"],page["html"])
+            saved["pages"][0]["html_sha256"]="0"*64
+            checkpoint.write_text(json.dumps(saved),"utf-8")
+            with self.assertRaisesRegex(ValueError,"hash|changed"):
+                a.pages_from_autopilot(root,today=date(2026,10,21))
+            saved["pages"]=[happings_autopilot._pack_page(page)]
+            checkpoint.write_text(json.dumps(saved),"utf-8")
+            report["fetch_authorized"]=False
+            report_file.write_text(json.dumps(report),"utf-8")
+            with self.assertRaisesRegex(ValueError,"authorized"):
+                a.pages_from_autopilot(root,today=date(2026,10,21))
+
     def test_atomic_manifest_updates_only_scoped_assets(self):
         with tempfile.TemporaryDirectory() as t:
             root=Path(t)

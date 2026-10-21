@@ -1,83 +1,95 @@
-# Happings → DEV: acquisizione e pubblicazione ripetibili
+# Happings: ciclo automatico e ripetibile di acquisizione, verifica, ammissione DEV
 
-L'operazione non è un intervento su tre mercati. La procedura giornaliera
-opera sul catalogo nazionale usando le stesse regole per tutte le fonti Happings.
-Nessuna pubblicazione su produzione e nessun runner/servizio GitHub a pagamento.
+Le operazioni sono gestite per **fonti e formati**, non mediante correzioni
+manuali a singoli mercati. Le identità e gli indirizzi sono vincolati alle
+prove del publisher; senza prove, nessun dato nuovo viene pubblicato.
 
-## Unico punto d'ingresso sul PC collegato
+## Acquisizione locale quotidiana
 
-Il task Windows `MercatiItalia-HappingsDaily` è attivo alle 09:30 ora
-locale (solo quando la sessione Windows dell'utente è disponibile):
+Il task Windows già installato `MercatiItalia-HappingsDaily` parte alle
+09:30 ora italiana quando l'utente è connesso e il computer è disponibile.
+L'unico entrypoint è:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\mercati-italia\scraper-code\scripts\happings-daily-windows.ps1"
 ```
 
-Il programma esegue automaticamente, in ordine:
+Lo scheduler usa il clone dedicato del DEV, aggiorna il codice senza
+sovrascrivere altri progetti, esegue **Python in UTF-8** (indispensabile
+per i nomi ISTAT con accenti), lancia i test Happings e poi:
 
-1. `git fetch` del DEV, senza usare `main`, e controllo di checkout
-   dedicato. Aggiornamento atomico del codice locale.
-2. Avvio Python con **`-X utf8`**, obbligatorio su Windows: il decoder
-   CP1252 deformava l'ISTAT e i nomi come Forlì/Mondovì. Il sistema rifiuta
-   esecuzioni non UTF-8, anziché perdere silenziosamente prove.
-3. I test di regressione di Happings. Se falliscono, non scarica nulla.
-4. `happings_bulk_refresh.py`: legge robots.txt e controlla sitemap/home,
-   aggiorna le pagine solo quando scadono. Rispetta i ritardi del publisher,
-   scrive checkpoint atomici e usa lock esclusivo contro doppio crawler.
-5. `happings_bulk_finisher.py`: recupera fallimenti, acquisisce la versione
-   precisa del catalogo DEV, riconcilia **tutti** gli elenchi provinciali e
-   tutte le schede di dettaglio. Salva le ragioni di quarantena.
-6. `happings_weekly_dev_admission.py`: usa **solo** le pagine indicate dal
-   report come candidati nuovi senza collisioni, rilegge l'HTML live per
-   provare il dato attuale, ricostruisce Comune, sede e giorno con ISTAT,
-   valida due volte identità/provenienza e tenta fino a 32 nuove schede.
-7. Esporta in un'area temporanea, applica i gate nazionali Autopilot,
-   controlla la firma del manifest, indici, hash e ID. Nessuna scheda
-   preesistente può cambiare in questa fase.
-8. Se e solo se tutti i controlli passano, committa i soli file
-   `public/data/v1` e spinge in **DEV** con `git push` fast-forward,
-   mai `--force`. Se DEV è cambiato, blocca il push e riprova durante
-   l'esecuzione successiva. Le verifiche CI preesistenti devono passare
-   prima di promuovere manualmente qualsiasi risultato in produzione.
+1. Ricontrolla `robots.txt`, sitemap e gli URL già scoperti; rispetta
+   i limiti per il publisher e usa checkpoint atomici e un lock per
+   impedire crawler concorrenti sulla stessa directory.
+2. Rilegge incrementalmente soltanto pagine nuove/scadute;
+   non cancella una lettura valida se una richiesta fallisce.
+3. Riconcilia le 106 province lette, le schede evento, indirizzi, orari
+   pubblicati, candidati nuovi, collisioni, luoghi ISTAT e calendari.
+4. Riesegue la **preview** dei mercati settimanali usando HTML live e
+   riscontri crittografici, applica tutti i controlli del catalogo
+   in un'area temporanea e produce un report locale.
+5. Conserva l'HTML usato per le ammissioni in file `gzip` con
+   nome legato all'hash del contenuto e URL, **solo sul computer**.
 
-## Provenienza e qualità
+La parte locale è volutamente **read-only verso GitHub**: sul computer,
+il token attualmente collegato può leggere questo repository ma non può
+effettuare push. La procedura non tenta più un push che fallirebbe.
 
-Le pagine HTML esatte usate come prova vengono conservate **solo in locale**
-in `%LOCALAPPDATA%\mercati-italia\happings-reconciliation\happings-source-html`,
-con nome basato su SHA-256 URL/HTML e archivio gzip bounded. I riscontri
-delle schede DEV legano campo, URL, SHA-256, data di lettura e identità.
-L'HTML non viene caricato sul sito, su GitHub o su altri servizi.
+## Pubblicazione automatica soltanto su DEV
 
-Rimangono bloccati: città/ province non riconciliate con ISTAT; più sedi
-nello stesso Comune/giorno; identità già esistenti con calendario ignoto;
-indirizzi vaghi; pagine con layout incompleto; eventuali duplicati;
-mancanza di riscontri; modifiche a qualsiasi mercato esistente;
-nuove date, verifiche, coordinate o orari che la fonte non prova.
+L'**Autopilot GitHub già esistente** è programmato una volta al giorno
+nella workflow `.github/workflows/market-autopilot.yml` sul branch `main`,
+alle 04:17 UTC. Non sono stati creati nuovi job o runner a pagamento.
 
-Una fonte che scrive «la mattina» **non prova un orario esatto**. Le nuove
-schede sono pubblicate con `non_confermato`, `date_quality=sconosciuta`,
-senza date future inventate e senza coordinate.
+Il job esistente `publish_dev` (permesso `contents:write`) continua
+a eseguire la propria acquisizione, export e QA complessiva. Nella sua
+**stessa esecuzione** il modulo `happings_weekly_dev_admission.py`
+può rigiocare soltanto le pagine HTML provinciali già osservate da
+`happings_autopilot.py`, verificate sul checkpoint e sul contesto
+immutabile `autopilot-output/sources/happings-pages.json`. Il
+publisher non viene nuovamente contattato per questo passaggio.
 
-## Rapporti verificabili
+La nuova ammissione:
+- è limitata a **32 nuovi mercati per ciclo**, con ulteriori casi
+  elaborati nei giorni successivi quando riappaiono nelle fonti;
+- richiede Comune ISTAT univoco, una sola sede specifica nella pagina,
+  giorno settimanale esplicito, nessun mercato esistente compatibile e
+  un riscontro sui campi con URL/HTML SHA/date e identità;
+- esegue prima replay del parser, poi normalizzazione, prova esatta
+  degli ID, `validate_static` e i gate nazionali
+  `autopilot.compare_candidates`;
+- non modifica né elimina **alcuna scheda esistente**;
+- produce nuove schede `non_confermato`, senza coordinate, orari
+  numerici o date future inventate;
+- salva soltanto i contenuti statici `public/data/v1` e li spinge
+  su DEV con un push **non forzato**. Un aggiornamento concorrente
+  blocca la pubblicazione.
 
-In `%LOCALAPPDATA%\mercati-italia\happings-reconciliation`:
+La preview statica isolata viene aggiornata solo dopo un export valido,
+con indici e manifest coerenti. Nessun codice o catalogo di produzione
+è modificato.
 
-- `happings-local-run.json`: ultima scansione/QA, errori/last success
-- `happings-source-reconciliation.json`: copertura nazionale su commit DEV
-- `happings-source-worklist.json`: identità e ragione per ogni riga
-- `happings-detail-match-report.json`: comparazione delle schede dettagli
-- `happings-weekly-admission.json`: candidati, prove, ammissioni, QA e
-  commit DEV pubblicato o fallimento.
-- `happings-source-html-index.json`: prove HTML preservate in locale
+I dettagli Happings (date e intervalli orari) rimangono nel precedente
+sistema DEV `happings_detail_autopilot.py` con verifica indipendente
+e provenienza individuale. Non trasformare etichette qualitative come
+«la mattina» in orari di apertura esatti.
 
-Il task Windows `MercatiItalia-HappingsDaily` scrive anche log in
-`%LOCALAPPDATA%\mercati-italia\logs`. Con computer spento o utente
-non collegato la sessione programmata non parte; `StartWhenAvailable`
-la recupera quando Windows lo permette.
+## Controlli, dati e tracciabilità
 
-## Esecuzione QA senza pubblicare
+Rapporti locali in `%LOCALAPPDATA%\mercati-italia\happings-reconciliation`:
+`happings-local-run.json`, `happings-source-reconciliation.json`,
+`happings-source-worklist.json`, `happings-detail-match-report.json`,
+`happings-weekly-admission.json` e archivio HTML
+`happings-source-html/`.
 
-Dalla directory del checkout dedicato:
+I rapporti di GH Actions restano negli artefatti dell'Autopilot e nel
+riepilogo del run. Il job si ferma ai primi errori; nessuna quantità
+di URL equivale da sola a una conferma che un mercato operi oggi.
+
+I dati non presenti nel publisher devono essere cercati in altre fonti
+indipendenti. La procedura non inventa orari, coordinate o conferme.
+
+### Riprodurre una simulazione senza pubblicazione
 
 ```powershell
 python -X utf8 -m unittest discover -s backend/tests -p "test_happings_*.py"
@@ -85,8 +97,6 @@ python -X utf8 backend/happings_daily_local.py
 python -X utf8 backend/happings_weekly_dev_admission.py
 ```
 
-La pubblicazione è attivata **solo** dal parametro `--publish-dev`.
-
-**Limite dell'attuale automazione:** ciò che Happings non fornisce (ad
-esempio orari numerici, coordinate, conferma che un mercato operi oggi)
-richiede un'altra fonte attendibile. Non può essere simulato dalla pipeline.
+Nella workflow GH, la modalità ammissione usa invece:
+`--from-autopilot-output autopilot-output --publish-dev`,
+con permessi limitati a quel job e con tutta la QA già approvata.

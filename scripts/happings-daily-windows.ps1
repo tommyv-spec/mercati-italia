@@ -49,12 +49,12 @@ try {
     if ($LASTEXITCODE -ne 0) {
       throw "Happings source refresh or source-to-DEV audit failed"
     }
-    # The same repeatable daily run now progresses new-market admissions.
-    # No push occurs unless each source has a live HTML replay, canonical
-    # ISTAT location and exact preserved baseline IDs in the static export.
-    & $Python -X utf8 "backend/happings_weekly_dev_admission.py" --repo $Repo --out (Join-Path $DataRoot "happings-reconciliation") --max-pages 8 --max-new 32 --publish-dev
+    # Local identity and source replay stays read-only: this computer has
+    # no repository push rights. The already-authorized scheduled GitHub
+    # Autopilot runs the same DEV-only QA and publication with GITHUB_TOKEN.
+    & $Python -X utf8 "backend/happings_weekly_dev_admission.py" --repo $Repo --out (Join-Path $DataRoot "happings-reconciliation") --max-pages 8 --max-new 32
     if ($LASTEXITCODE -ne 0) {
-      throw "Happings weekly DEV admission failed its replay or publication gate"
+      throw "Happings local weekly source replay failed its read-only gate"
     }
   } finally {
     Pop-Location

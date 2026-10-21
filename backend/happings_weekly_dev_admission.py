@@ -34,7 +34,7 @@ from merge_catalog import load_existing
 from validate_static import validate
 
 BRANCH = "improve/data-quality-security-performance-2026-10-11"
-MAX_SOURCE_PAGES = 8
+MAX_SOURCE_PAGES = 16
 MAX_WORKLIST_BYTES = 12_000_000
 MAX_HTML_BYTES = 2_600_000
 MAX_CATALOG_CHANGES = 80
@@ -60,8 +60,9 @@ def checked_checkout(repo, *, allow_dirty=False):
     repo = Path(repo).resolve()
     if not (repo / ".happings-dedicated-checkout").is_file():
         raise ValueError("Weekly DEV admission requires the dedicated local checkout")
-    if git(repo, "remote", "get-url", "origin") != (
-            "https://github.com/tommyv-spec/mercati-italia.git"):
+    if git(repo, "remote", "get-url", "origin") not in {
+            "https://github.com/tommyv-spec/mercati-italia.git",
+            "https://github.com/tommyv-spec/mercati-italia"}:
         raise ValueError("Weekly DEV publication destination changed")
     if git(repo, "rev-parse", "--abbrev-ref", "HEAD") != BRANCH:
         raise ValueError("Weekly admission cannot write a non-DEV branch")
@@ -162,12 +163,49 @@ def archive_source_html(pages, out):
             part.replace(file)
         archived.append({"url":url,"sha256":source_sha,
                          "html_bytes":len(raw),"archive":name,
-                         "fetched_at":page["fetched_at"]})
+                         "fetched_at":page.get("fetched_at")})
     write_json(Path(out)/"happings-source-html-index.json",{
         "schema":1,"pages":archived,
         "raw_html_published_to_github":False
     })
     return archived
+
+
+def pages_from_autopilot(source_dir, *, today):
+    """Replay the existing Autopilot's publisher capture without refetching.
+
+    Never trust a report-supplied arbitrary file path. Rebuild the exact raw
+    bytes from the fixed candidate artifact path and verify the original
+    checkpoint's URLs, SHA-256 and release-context digest.
+    """
+    import happings_autopilot as autopilot_happings
+
+    folder=Path(source_dir)
+    report_path=folder/"happings-enrichment.json"
+    if not report_path.is_file() or report_path.stat().st_size>8_000_000:
+        raise ValueError("Untrusted Autopilot Happings source report")
+    report=json.loads(report_path.read_text("utf-8"))
+    if (report.get("schema") != 1 or report.get("date") != today.isoformat()
+            or report.get("enabled") is not True
+            or report.get("fetch_authorized") is not True
+            or not isinstance(report.get("selected_urls"),list)):
+        raise ValueError("Weekly archive lacks active authorized source acquisition")
+    urls=report["selected_urls"]
+    if not urls:
+        return [],report
+    file=folder/"sources/happings-pages.json"
+    if not file.is_file() or file.stat().st_size>autopilot_happings.MAX_CHECKPOINT_BYTES:
+        raise ValueError("Happings HTML acquisition checkpoint missing or unbounded")
+    saved=json.loads(file.read_text("utf-8"))
+    context=saved.get("context") if isinstance(saved,dict) else None
+    if (not isinstance(context,dict) or
+            context.get("today") != report["date"]
+            or context.get("selected_urls") != urls
+            or context.get("input_sha256") != report["input_sha256"]
+            or context.get("rights_sha256") != report["rights_record_sha256"]):
+        raise ValueError("Happings weekly checkpoint did not match source report")
+    pages=autopilot_happings._unpack_pages(saved,context)
+    return pages,report
 
 
 def verify_catalog(before, after, evidence, *, today):
@@ -323,6 +361,47 @@ def run(repo, out, *, today=None, max_pages=MAX_SOURCE_PAGES,
     return report
 
 
+def run_from_autopilot(repo, source_dir, out, *, today=None,
+                       max_pages=MAX_SOURCE_PAGES, max_new=MAX_NEW,
+                       publish=False):
+    """Additional protected DEV phase of the already-existing scheduled job."""
+    ensure_utf8()
+    repo,out=Path(repo).resolve(),Path(out)
+    today=today or date.today()
+    if type(publish) is not bool or type(max_new) is not int or not 1<=max_new<=MAX_NEW:
+        raise ValueError("Invalid DEV publication settings")
+    if type(max_pages) is not int or not 1<=max_pages<=MAX_SOURCE_PAGES:
+        raise ValueError("Unbounded same-run Happings source selection")
+    baseline=checked_checkout(repo,allow_dirty=not publish)
+    raw,origin=pages_from_autopilot(source_dir,today=today)
+    source_pages=raw[:max_pages]
+    if not source_pages:
+        report={"schema":1,"status":"no_eligible_source_pages",
+                "added_ids":[],"dev_baseline":baseline,
+                "source_pages_evaluated":0,"dev_published":False}
+        write_json(out/"happings-weekly-admission.json",report)
+        return report
+    observed=archive_source_html(source_pages,out)
+    with tempfile.TemporaryDirectory(prefix="happings-weekly-dev-") as workspace:
+        base=load_existing(repo/"public/data/v1/manifest.json")
+        staged,report=stage_candidate(repo,base,source_pages,today=today,
+                                      max_new=max_new,tmp_root=workspace)
+        report.update(schema=1,dev_baseline=baseline,
+                      source_pages_eligible=len(raw),
+                      html_archived_locally=len(observed),
+                      publication_requested=publish,dev_published=False,
+                      source_mode="reused_autopilot_checkpoint",
+                      source_context_sha256=hashlib.sha256(
+                          (Path(source_dir)/"sources/happings-pages.json").read_bytes()).hexdigest(),
+                      evaluated_on=today.isoformat())
+        write_json(out/"happings-weekly-admission.json",report)
+        if staged is not None and publish:
+            publish_to_dev(repo,staged,expected_sha=baseline,report=report,out=out)
+            report["dev_published"]=True
+            write_json(out/"happings-weekly-admission.json",report)
+    return report
+
+
 def main():
     parser=argparse.ArgumentParser()
     base=Path(os.environ.get("LOCALAPPDATA") or tempfile.gettempdir())/"mercati-italia"
@@ -331,10 +410,17 @@ def main():
     parser.add_argument("--max-pages",type=int,default=MAX_SOURCE_PAGES)
     parser.add_argument("--max-new",type=int,default=MAX_NEW)
     parser.add_argument("--publish-dev",action="store_true")
+    parser.add_argument("--from-autopilot-output",type=Path)
     args=parser.parse_args()
     try:
-        result=run(args.repo,args.out,max_pages=args.max_pages,max_new=args.max_new,
-                   publish=args.publish_dev)
+        if args.from_autopilot_output:
+            result=run_from_autopilot(
+                args.repo,args.from_autopilot_output,args.out,
+                max_pages=args.max_pages,max_new=args.max_new,
+                publish=args.publish_dev)
+        else:
+            result=run(args.repo,args.out,max_pages=args.max_pages,max_new=args.max_new,
+                       publish=args.publish_dev)
     except Exception as error:
         write_json(Path(args.out)/"happings-weekly-admission.json",{
             "schema":1, "status":"failed", "error_type":type(error).__name__,
