@@ -27,10 +27,15 @@ class FinisherTests(unittest.TestCase):
                 json.dumps({"schema":1,"queue":["A"],"done":{"A":{}}}),"utf-8")
             with (patch("happings_bulk_finisher.current_dev_catalog",
                         return_value=(root/"fake-manifest.json","testsha")),
+                  patch("happings_bulk_finisher.retry_failures",
+                        return_value={"new_requests":0,"recovered_in_this_run":0,
+                          "source_pages_unresolved":0,"source_content_complete":True}),
                   patch("happings_bulk_finisher.analyze",
                         return_value={"unique_weekly_city_day_groups":1,
                           "outcomes":{"new_venue_possible_needs_source_html_admission":1},
-                          "existing_catalog_id_mutations":0}) as analyzer):
+                          "existing_catalog_id_mutations":0}) as analyzer,
+                  patch("happings_bulk_finisher.audit_detail_matches",
+                        return_value={"counts":{"uniquely_matched_existing":1}})):
                 result=finish(root,repo=root,out=root/"audit")
                 self.assertTrue(result["complete"])
                 analyzer.assert_called_once()

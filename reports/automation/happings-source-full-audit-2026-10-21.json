@@ -1,0 +1,81 @@
+{
+  "catalog_happings_coverage": {
+    "addresses_blank": 2329,
+    "addresses_specific": 4162,
+    "dates_predicted": 9334,
+    "dates_source_reported": 128,
+    "hours_text_available": 556,
+    "records": 9775,
+    "recurrence_text_available": 9741
+  },
+  "catalog_mutations_from_audit": 0,
+  "detail_matching_counts": {
+    "ambiguous_existing_identity": 18,
+    "event_pages_parsed": 2207,
+    "market_detail_pages_parsed": 281,
+    "market_details_with_source_conflicts": 59,
+    "municipality_not_unique_istat": 49,
+    "possible_new_market": 86,
+    "uniquely_matched_existing": 128,
+    "uniquely_matched_existing_with_hours": 128,
+    "uniquely_matched_existing_with_source_dates": 128
+  },
+  "detail_source_fields": {
+    "detail_events_recognized_as_market": 281,
+    "detail_markets_with_explicit_occurrences": 272,
+    "detail_markets_with_hours_intervals": 273,
+    "detail_markets_with_hours_text": 281,
+    "detail_markets_with_source_conflict": 59,
+    "detail_markets_with_street": 236
+  },
+  "dev_revision_analyzed": "cca613aebe218b9f39df2b298f6a8d25df9b07f8",
+  "notes": [
+    "The 8,053 province listing lines are physical publisher lines, not independently unique market venues.",
+    "A qualitative morning or afternoon label is not an exact opening hour.",
+    "Italian city and province identity must be verified with ISTAT, not inferred from the page heading.",
+    "Potentially new venue groups are not automatically admitted into DEV by this report.",
+    "Source authorizations are project-level and no independent publisher grant is claimed."
+  ],
+  "opening_verifications_from_audit": 0,
+  "possible_new_details_admission_reasons": {
+    "fully_sourced": 55,
+    "new_venue_has_no_upcoming_source_date": 7,
+    "new_venue_requires_explicit_source_dates": 11,
+    "new_venue_requires_market_type_and_specific_address": 13
+  },
+  "publisher": "happings.com",
+  "review_scope": "Source URL coverage and source-versus-catalog field audit; no physical-opening verification",
+  "schema": 1,
+  "snapshot_completed_pages": 2313,
+  "snapshot_digest_sha256": "9f367aca9f6a35d6eb94d423f0e1a1673b621b20f1651d7210697d819267774f",
+  "snapshot_expected_pages": 2313,
+  "source_content_complete": true,
+  "source_pages": {
+    "detail_pages_parsed": 2207,
+    "processed_parsed": 2313,
+    "weekly_pages_parsed": 106,
+    "weekly_rows_city_not_istat_resolved": 918,
+    "weekly_rows_source_province_matches_istat": 6968,
+    "weekly_rows_source_province_mislabelled": 167,
+    "weekly_source_rows": 8053
+  },
+  "weekly_city_day_outcomes": {
+    "ambiguous_multiple_source_streets": 500,
+    "existing_address_conflict_requires_source_review": 23,
+    "existing_address_supported": 746,
+    "existing_blank_address_recoverable_by_live_reader": 1,
+    "existing_location_supported_but_identity_ambiguous": 1374,
+    "existing_market_identity_ambiguous": 110,
+    "new_blocked_unknown_existing_calendar": 17,
+    "new_venue_possible_needs_source_html_admission": 53,
+    "source_calendar_qualified": 41,
+    "source_city_not_istat_resolved": 913,
+    "source_location_vague": 2828
+  },
+  "weekly_dayparts": {
+    "afternoon_not_clock_hours": 22,
+    "morning_not_clock_hours": 7984,
+    "not_supplied": 47
+  },
+  "weekly_unique_groups": 6606
+}

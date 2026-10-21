@@ -18,6 +18,8 @@ import zipfile
 from pathlib import Path
 
 from happings_full_reconciliation import analyze
+from happings_detail_matching_report import run as audit_detail_matches
+from happings_retry_failures import retry as retry_failures
 
 DEV="improve/data-quality-security-performance-2026-10-11"
 
@@ -74,18 +76,31 @@ def finish(snapshot, *, repo, out):
     out.mkdir(parents=True,exist_ok=True)
     if total is None or count!=total:
         return {"complete":False,"pages_completed":count,"pages_total":total}
+    retries = retry_failures(snapshot)
     with tempfile.TemporaryDirectory(prefix="happings-dev-catalog-") as tmp:
         manifest,dev_sha=current_dev_catalog(repo,tmp)
         result=analyze(manifest,snapshot,out)
+        # The match audit independently ties parsed events to existing IDs.
+        detail_audit=audit_detail_matches(manifest,snapshot,out)
+        result["detail_matching_counts"]=detail_audit["counts"]
         result["dev_revision_analyzed"]=dev_sha
+        result["retry_summary"] = {
+            "new_requests":retries["new_requests"],
+            "recovered_in_this_run":retries["recovered_in_this_run"],
+            "source_pages_unresolved":retries["source_pages_unresolved"],
+        }
+        result["source_content_complete"] = retries["source_content_complete"]
         (out/"happings-source-reconciliation.json").write_text(
             json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+"\n",encoding="utf-8")
-    print("HAPPINGS_FULL_RECONCILIATION_COMPLETED",json.dumps({
+    print("HAPPINGS_FULL_RECONCILIATION_COMPLETED" if retries["source_content_complete"]
+          else "HAPPINGS_RECONCILIATION_WITH_SOURCE_GAPS",json.dumps({
         "dev":dev_sha,"pages":count,"market_groups":result["unique_weekly_city_day_groups"],
         "outcomes":result["outcomes"],
         "record_mutations":result["existing_catalog_id_mutations"]},
         ensure_ascii=False),flush=True)
-    return {"complete":True,"pages_completed":count,"pages_total":total,"dev_sha":dev_sha}
+    return {"complete":True,"source_content_complete":retries["source_content_complete"],
+            "source_pages_unresolved":retries["source_pages_unresolved"],
+            "pages_completed":count,"pages_total":total,"dev_sha":dev_sha}
 
 
 def watch(snapshot, *, repo, out, interval_seconds=120, max_hours=48):
