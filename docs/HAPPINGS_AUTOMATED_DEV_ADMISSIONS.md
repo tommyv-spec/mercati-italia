@@ -86,6 +86,39 @@ I rapporti di GH Actions restano negli artefatti dell'Autopilot e nel
 riepilogo del run. Il job si ferma ai primi errori; nessuna quantità
 di URL equivale da sola a una conferma che un mercato operi oggi.
 
+### Verifica indipendente dopo ogni commit DEV
+
+`backend/happings_postrelease_audit.py` è eseguito dallo **stesso**
+job GitHub esistente, solo quando l'ammissione ha pubblicato nuovi ID.
+Rilegge **i record realmente salvati** da `git show HEAD^:` e
+`git show HEAD:`, verifica gli hash degli asset e ricostruisce le
+ammissioni dalla cattura HTML originale già contenuta nel checkpoint
+dell'Autopilot. La release passa soltanto se:
+- tutti i record preesistenti sono identici byte-per-campo;
+- non è sparito nessun ID e i nuovi ID coincidono esattamente con il report;
+- i nuovi record equivalgono ai dati normalizzati dal parser HTML originale;
+- nessun orario numerico, data futura, coordinate o apertura verificata
+  è stata inventata dalla nuova ammissione;
+- il manifest pubblicato coincide con quello verificato nel batch.
+
+La prima prova reale sul commit `54afb270` ha confermato **13.981
+record invariati, 18 aggiunti, zero eliminati**, rigiocando le 10
+pagine Happings utilizzate dal job. Una discrepanza fa fallire il
+job e impedisce la successiva pubblicazione della preview isolata.
+Il report viene registrato nel riepilogo e nel checkpoint temporaneo
+dell'esecuzione, senza nuovi runner.
+
+Da un clone Git completo con un archivio del checkpoint già disponibile:
+
+```bash
+python backend/happings_postrelease_audit.py \
+  --before HEAD^ --after HEAD --repo . \
+  --source-dir autopilot-output \
+  --admission autopilot-output/happings-weekly-admission.json \
+  --out autopilot-output/happings-postrelease-proof.json
+```
+
+
 I dati non presenti nel publisher devono essere cercati in altre fonti
 indipendenti. La procedura non inventa orari, coordinate o conferme.
 
