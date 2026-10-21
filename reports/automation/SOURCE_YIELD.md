@@ -3,7 +3,7 @@
 **Audit in sola lettura. Nessun ID, mercato o calendario modificato.**
 
 - Fonti catalogate: **49**
-- Schede conservate: **13824**
+- Schede conservate: **13952**
 - Fonti con righe ricontrollate ora: **1**
 - Bologna: **48** schede ufficiali osservate.
 - Nuovi ID Bologna (non mercati certificati nuovi): **9**.
@@ -23,6 +23,8 @@
 | 3 | Anagrafica mercati | unreachable_candidate_source | n.d. | n.d. | Restore official dataset endpoint or find replacement, then inspect actual municipality rows. |
 | 4 | Censimento dei mercati giornalieri | schema_and_rights_review | n.d. | n.d. | Check live row schema, source date, attribution and calendar before integration. |
 | 5 | Censimento dei mercati itineranti | schema_and_rights_review | n.d. | n.d. | Check live row schema, source date, attribution and calendar before integration. |
+| 6 | Censimento dei mercati quindicinali | schema_and_rights_review | n.d. | n.d. | Check live row schema, source date, attribution and calendar before integration. |
+| 7 | Fiere e mercati - Comune di Sona | events_and_stalls_mixed | n.d. | n.d. | Separate periodic markets from fairs and vendors; do not auto-import. |
 
 Fonti gia integrate, concessioni e statistiche non contano come nuovi mercati.
 Le fonti con righe non accessibili restano non misurate, non diventano zero.

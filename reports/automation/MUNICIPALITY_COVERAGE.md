@@ -4,19 +4,19 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **4,906** (62.1%).
-- Comuni senza schede in catalogo: **2,988**.
-- Schede esistenti conservate: **13,824**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **4,917** (62.3%).
+- Comuni senza schede in catalogo: **2,977**.
+- Schede esistenti conservate: **13,952**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
 | Piemonte | 1180 | 526 | 654 | 44.6% |
-| Lombardia | 1501 | 1075 | 426 | 71.6% |
-| Calabria | 404 | 176 | 228 | 43.6% |
+| Lombardia | 1501 | 1076 | 425 | 71.7% |
+| Calabria | 404 | 178 | 226 | 44.1% |
 | Sicilia | 391 | 201 | 190 | 51.4% |
-| Trentino-Alto Adige | 282 | 98 | 184 | 34.8% |
 | Sardegna | 377 | 198 | 179 | 52.5% |
-| Veneto | 559 | 428 | 131 | 76.6% |
+| Trentino-Alto Adige | 282 | 103 | 179 | 36.5% |
+| Veneto | 559 | 431 | 128 | 77.1% |
 | Liguria | 234 | 107 | 127 | 45.7% |
 | Friuli Venezia Giulia | 215 | 91 | 124 | 42.3% |
 | Abruzzo | 305 | 190 | 115 | 62.3% |
@@ -39,8 +39,8 @@ Esempi selezionati stabilmente per regione (non sono mercati identificati).
 - **Lombardia:** Carbonate, Cassiglio, Ceto, Merlino, Orino, Roè Volciano, San Damiano al Colle, Vione
 - **Calabria:** Brancaleone, Fiumara, Laino Castello, Marcedusa, Montebello Jonico, Paterno Calabro, San Basile, Tortora
 - **Sicilia:** Altavilla Milicia, Castelmola, Montagnareale, Porto Empedocle, San Filippo del Mela, Sperlinga, Torretta, Valderice
-- **Trentino-Alto Adige:** Castel Ivano, Croviana, Falzes, Luson, Martello, Nogaredo, Sarnonico, Selva dei Molini
 - **Sardegna:** Berchidda, Giba, Lunamatrona, Mores, Oschiri, Triei, Turri, Villamassargia
+- **Trentino-Alto Adige:** Castel Ivano, Croviana, Falzes, Luson, Martello, Nogaredo, Sarnonico, Selva dei Molini
 - **Veneto:** Bagnolo di Po, Gaiba, Giacciano con Baruchella, Povegliano, San Nicolò di Comelico, Tambre, Val Liona, Veggiano
 - **Liguria:** Costarainera, Olivetta San Michele, Ortovero, Plodio, Pornassio, Riomaggiore, Testico, Zuccarello
 - **Friuli Venezia Giulia:** Aiello del Friuli, Artegna, Colloredo di Monte Albano, Remanzacco, Romans d'Isonzo, Torreano, Tramonti di Sotto, Villesse

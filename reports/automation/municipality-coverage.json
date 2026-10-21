@@ -3,13 +3,13 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 13824,
+  "catalog_market_ids_preserved": 13952,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 4906,
-  "municipalities_without_catalog_listings": 2988,
-  "represented_percent": 62.1,
+  "municipalities_with_catalog_listings": 4917,
+  "municipalities_without_catalog_listings": 2977,
+  "represented_percent": 62.3,
   "regions": [
     {
       "region": "Piemonte",
@@ -31,9 +31,9 @@
     {
       "region": "Lombardia",
       "istat_municipalities": 1501,
-      "with_at_least_one_catalog_market": 1075,
-      "without_catalog_market": 426,
-      "represented_percent": 71.6,
+      "with_at_least_one_catalog_market": 1076,
+      "without_catalog_market": 425,
+      "represented_percent": 71.7,
       "unrepresented_examples_for_source_search": [
         "Carbonate",
         "Cassiglio",
@@ -48,9 +48,9 @@
     {
       "region": "Calabria",
       "istat_municipalities": 404,
-      "with_at_least_one_catalog_market": 176,
-      "without_catalog_market": 228,
-      "represented_percent": 43.6,
+      "with_at_least_one_catalog_market": 178,
+      "without_catalog_market": 226,
+      "represented_percent": 44.1,
       "unrepresented_examples_for_source_search": [
         "Brancaleone",
         "Fiumara",
@@ -80,23 +80,6 @@
       ]
     },
     {
-      "region": "Trentino-Alto Adige",
-      "istat_municipalities": 282,
-      "with_at_least_one_catalog_market": 98,
-      "without_catalog_market": 184,
-      "represented_percent": 34.8,
-      "unrepresented_examples_for_source_search": [
-        "Castel Ivano",
-        "Croviana",
-        "Falzes",
-        "Luson",
-        "Martello",
-        "Nogaredo",
-        "Sarnonico",
-        "Selva dei Molini"
-      ]
-    },
-    {
       "region": "Sardegna",
       "istat_municipalities": 377,
       "with_at_least_one_catalog_market": 198,
@@ -114,11 +97,28 @@
       ]
     },
     {
+      "region": "Trentino-Alto Adige",
+      "istat_municipalities": 282,
+      "with_at_least_one_catalog_market": 103,
+      "without_catalog_market": 179,
+      "represented_percent": 36.5,
+      "unrepresented_examples_for_source_search": [
+        "Castel Ivano",
+        "Croviana",
+        "Falzes",
+        "Luson",
+        "Martello",
+        "Nogaredo",
+        "Sarnonico",
+        "Selva dei Molini"
+      ]
+    },
+    {
       "region": "Veneto",
       "istat_municipalities": 559,
-      "with_at_least_one_catalog_market": 428,
-      "without_catalog_market": 131,
-      "represented_percent": 76.6,
+      "with_at_least_one_catalog_market": 431,
+      "without_catalog_market": 128,
+      "represented_percent": 77.1,
       "unrepresented_examples_for_source_search": [
         "Bagnolo di Po",
         "Gaiba",
