@@ -1347,6 +1347,69 @@ jobs:
           else
             echo "No DEV catalog changes, retaining current version."
           fi
+      - name: Replay source-proved Happings weekly venues on DEV (bounded, no new runner)
+        shell: bash
+        env:
+          PYTHONUTF8: "1"
+        run: |
+          set -euo pipefail
+          # Execute in the existing authorized publisher job after all source,
+          # security and mobile QA. Reuse its captured publisher HTML; make no
+          # extra HTTP requests to Happings for this admission.
+          test "$DEV_BRANCH" = "improve/data-quality-security-performance-2026-10-11"
+          test "$(git branch --show-current)" = "$DEV_BRANCH"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          decision=json.loads(Path('autopilot-output/release-decision.json').read_text('utf-8'))
+          if decision.get('approved') is not True:
+              raise ValueError('Unapproved catalog release cannot admit Happings markets')
+          if not Path('autopilot-output/happings-enrichment.json').is_file():
+              raise ValueError('Happings source phase lost its audited report')
+          PY
+          # This marker is restricted to the trusted, already checked-out DEV
+          # and does not authorize a user-account or a production branch push.
+          printf 'scheduled DEV-only GH publish job\n' > .happings-dedicated-checkout
+          trap 'rm -f .happings-dedicated-checkout' EXIT
+          python -X utf8 backend/happings_weekly_dev_admission.py \
+            --repo . --from-autopilot-output autopilot-output \
+            --out autopilot-output --max-pages 16 --max-new 32 --publish-dev
+          # Only rebuild the isolated preview after the exact validated static
+          # catalog has been pushed to DEV. The main production site is untouched.
+          python - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          report=json.loads(Path('autopilot-output/happings-weekly-admission.json').read_text('utf-8'))
+          status=report.get('status')
+          if status == 'dev_published':
+              origin=Path('public/data/v1')
+              target=Path('autopilot-built-site/data/v1')
+              if not origin.is_dir() or not target.is_dir():
+                  raise ValueError('Missing reviewed DEV preview asset directories')
+              shutil.rmtree(target)
+              shutil.copytree(origin,target)
+              import sys
+              sys.path.insert(0,'backend')
+              from validate_static import validate
+              check=validate(target/'manifest.json')
+              if check['records']!=report['new_record_count']:
+                  raise ValueError('Isolated DEV preview differs from source-proved final records')
+          elif status not in ('no_eligible_source_pages','no_new_admissible_markets'):
+              raise ValueError('Happings admission stopped with unapproved status: '+str(status))
+          added=len(report.get('added_ids',[]))
+          lines=[
+              '### Happings weekly DEV admissions (already authorized publisher job)',
+              '- New source-bound identities: '+str(added),
+              '- Existing market identities changed/deleted: 0',
+              '- Opening hours, future dates, locations or human verification invented: 0',
+              '- Status: '+status,
+              '- New paid GitHub runners: 0',
+          ]
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as file:
+              file.write('\n'.join(lines)+'\n')
+          print('\n'.join(lines))
+          PY
+          rm -f .happings-dedicated-checkout
       - name: Rebuild ONLY isolated dev-static-preview branch from tested distribution
         shell: bash
         run: |
