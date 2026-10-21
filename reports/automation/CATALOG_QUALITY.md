@@ -5,16 +5,16 @@ Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 - Schede: **13,952**.
-- Orari mancanti: **10,473**.
+- Orari mancanti: **10,465**.
 - Indirizzi mancanti: **2,886**.
 - Coordinate mancanti: **402**.
-- Date future mancanti: **2,005**.
+- Date future mancanti: **2,048**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,069** gruppi, **1,180** righe in eccesso potenziali.
 - Verifiche umane documentate mancanti: **13,952**.
 - Gate qualità: **APPROVATO**.
-- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **92** righe potenziali in **82** gruppi; restano tutte nel conteggio da rivedere.
+- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
 
 ## Fonte di provenienza (primi editori)
@@ -41,19 +41,19 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Abruzzo | 394 | 349 | 152 |
 | Basilicata | 36 | 22 | 12 |
 | Calabria | 331 | 284 | 94 |
-| Campania | 822 | 711 | 257 |
-| Emilia-Romagna | 909 | 570 | 160 |
-| Friuli Venezia Giulia | 244 | 95 | 16 |
+| Campania | 822 | 710 | 257 |
+| Emilia-Romagna | 909 | 567 | 160 |
+| Friuli Venezia Giulia | 244 | 94 | 16 |
 | Lazio | 1,081 | 876 | 259 |
 | Liguria | 391 | 312 | 76 |
 | Lombardia | 3,984 | 2,495 | 339 |
 | Marche | 292 | 194 | 83 |
 | Molise | 215 | 185 | 89 |
-| Piemonte | 1,340 | 1,178 | 292 |
+| Piemonte | 1,340 | 1,177 | 292 |
 | Puglia | 484 | 439 | 214 |
 | Sardegna | 390 | 323 | 164 |
 | Sicilia | 404 | 338 | 141 |
-| Toscana | 962 | 784 | 161 |
+| Toscana | 962 | 782 | 161 |
 | Trentino-Alto Adige | 228 | 171 | 45 |
 | Umbria | 179 | 150 | 74 |
 | Valle d'Aosta | 54 | 52 | 15 |
