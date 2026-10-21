@@ -21,6 +21,7 @@ from export_static import normalize
 import happings_detail_autopilot as details
 import happings_legacy_resources as legacy
 import happings_province_directory as directory
+import happings_weekly_admission as weekly_admission
 
 SCHEMA = 1
 DEFAULT_POLICY = {"enabled": False}
@@ -492,6 +493,11 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
                 base, pages, today=today, apply=True, rights_verified=True
             )
             report["source_pages"] = deepcopy(report["evidence"]["source_pages"])
+            # Record source-proven NEW venue candidates without inserting IDs.
+            # A separate independent, HTML-bound catalog admission gate is
+            # required before these can enter the published dataset.
+            _, report["weekly_unmatched_review"] = weekly_admission.preview(
+                updated, pages, today=today, apply=False, max_new=32)
             changed_layouts = sum(page["status"] == "layout_changed" for page in report["source_pages"])
             if changed_layouts:
                 report["status"] = ("layout_changed" if changed_layouts == len(pages)
@@ -718,6 +724,14 @@ def markdown(report):
         "- Gli elenchi provinciali aggiornano sedi e riscontri; le date esplicite appartengono al lettore dei dettagli.\n"
         "- I riscontri essenziali sono conservati con la scheda; HTML e rapporto dettagliato restano nei checkpoint temporanei.\n"
     )
+    if "weekly_unmatched_review" in report:
+        unlinked = report["weekly_unmatched_review"]
+        result += (
+            "\n## Nuovi mercati settimanali osservati (sola proposta)\n\n"
+            f"- Candidati con sede e Comune unici: {len(unlinked['candidates'])}.\n"
+            "- Identità nuove pubblicate da questa fase: 0. "
+            "Il certificato indipendente per le ammissioni non è ancora attivo.\n"
+        )
     if "legacy_resolution" in report:
         legacy_report = report["legacy_resolution"]
         result += (
