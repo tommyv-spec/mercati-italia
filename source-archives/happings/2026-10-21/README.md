@@ -43,3 +43,22 @@ sia aperto o che eventuali date previste siano confermate.
 Le modifiche al codice e al catalogo continuano sul branch
 `improve/data-quality-security-performance-2026-10-11`;
 questo branch è dedicato ai backup e non influisce sulla produzione.
+
+## Recuperare i dati sul computer
+
+Lo script di ripristino è sul ramo DEV del progetto:
+[\`backend/happings_github_readable_backup.py\`](https://github.com/tommyv-spec/mercati-italia/blob/improve/data-quality-security-performance-2026-10-11/backend/happings_github_readable_backup.py).
+Dopo aver scaricato questa cartella archivio e lo script, verificarne gli
+hash ed eseguire:
+
+\`\`\`powershell
+python -X utf8 backend/happings_github_readable_backup.py --out PATH_ARCHIVIO
+python -X utf8 backend/happings_github_readable_backup.py --out PATH_ARCHIVIO --restore-to DIRECTORY_VUOTA
+\`\`\`
+
+La prova integrale di recupero è stata superata per **2.313 pagine e 10
+rapporti**. Il restore non sovrascrive file esistenti e rigenera i checksum
+dei gzip ricostruiti, conservando gli hash originari delle pagine HTML.
+
+Questo è uno snapshot del 21 ottobre 2026: aggiornamenti successivi del crawler
+locale non sono automaticamente presenti in questo branch.
