@@ -16,6 +16,7 @@ from datetime import date
 import happings_source_enrichment as source
 from happings_weekly_layout import parse, fold, WEEKDAYS, province_page_key
 from field_evidence import clean_receipts, mark_managed_fields
+from export_static import canonical_region
 from stored_market_sibling_proposals import safe_stored_street
 
 MAX_NEW = 32
@@ -55,10 +56,16 @@ def _possible_existing(row, city, region, province, day):
 
 def _new_row(event, *, region, province, source_url, read_on, page_hash, page_metadata):
     city, day, street = event["city"], event["weekday"], event["place"].strip()
+    # Source ISTAT index keys are lowercase. Normalize the displayed region
+    # BEFORE creating identity-bound receipts, or the final static exporter
+    # would discard evidence after canonicalizing the region spelling.
+    official_region = canonical_region(region)
+    if not official_region:
+        raise ValueError("Publisher region cannot be mapped to canonical Italy region")
     source_name = f"Mercato settimanale di {city}"
     row = {
         "slug": stable_id(region, province, city, day), "nome": source_name,
-        "citta": city, "provincia": province, "regione": region,
+        "citta": city, "provincia": province, "regione": official_region,
         "indirizzo": street, "lat": None, "lng": None,
         "position_quality": "sconosciuta", "categoria": "misto", "tags": [],
         "status": "non_confermato", "orario_testo": "",

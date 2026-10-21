@@ -33,17 +33,28 @@ try {
     throw "Failed to select trusted DEV revision"
   }
   $Python = (Get-Command python -ErrorAction Stop).Source
+  # Windows can otherwise decode UTF-8 ISTAT cities through CP1252.
+  # Explicit Python UTF-8 mode is mandatory for every pipeline stage.
+  $env:PYTHONUTF8 = "1"
+  $env:PYTHONIOENCODING = "utf-8"
   Write-Output "SOURCE_CODE $(git -C $Repo rev-parse HEAD)"
   Push-Location $Repo
   try {
     # Fail closed if a parser or source guard regressed.
-    & $Python -m unittest discover -s "backend/tests" -p "test_happings_*.py"
+    & $Python -X utf8 -m unittest discover -s "backend/tests" -p "test_happings_*.py"
     if ($LASTEXITCODE -ne 0) {
       throw "Happings guard tests failed; no new HTTP crawler launched"
     }
-    & $Python "backend/happings_daily_local.py" --repo $Repo --snapshot (Join-Path $DataRoot "happings-full-crawl") --out (Join-Path $DataRoot "happings-reconciliation") --max-pages 70 --discovery-days 1
+    & $Python -X utf8 "backend/happings_daily_local.py" --repo $Repo --snapshot (Join-Path $DataRoot "happings-full-crawl") --out (Join-Path $DataRoot "happings-reconciliation") --max-pages 70 --discovery-days 1
     if ($LASTEXITCODE -ne 0) {
       throw "Happings source refresh or source-to-DEV audit failed"
+    }
+    # The same repeatable daily run now progresses new-market admissions.
+    # No push occurs unless each source has a live HTML replay, canonical
+    # ISTAT location and exact preserved baseline IDs in the static export.
+    & $Python -X utf8 "backend/happings_weekly_dev_admission.py" --repo $Repo --out (Join-Path $DataRoot "happings-reconciliation") --max-pages 8 --max-new 32 --publish-dev
+    if ($LASTEXITCODE -ne 0) {
+      throw "Happings weekly DEV admission failed its replay or publication gate"
     }
   } finally {
     Pop-Location
