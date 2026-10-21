@@ -25,21 +25,27 @@ class HighYieldResearchTests(unittest.TestCase):
         veneto = next(x for x in result["sources"]
                       if x["id"] == "veneto-regional-calendar-2026")
         gaps = veneto["gap_upper_bounds_not_measured_matches"]
-        self.assertEqual(gaps["baseline_records_in_region"], 1203)
-        self.assertEqual(gaps["missing_hours_in_region"], 947)
-        self.assertEqual(gaps["missing_addresses_in_region"], 275)
+        # This is a dated data-coverage snapshot, not an immutable fixture.
+        # Validate exact source-to-report mapping instead of stale totals.
+        veneto_snapshot = next(x for x in COVERAGE["by_region"] if x["region"] == "Veneto")
+        self.assertEqual(gaps["baseline_records_in_region"], veneto_snapshot["records"])
+        self.assertEqual(gaps["missing_hours_in_region"], veneto_snapshot["missing_hours"])
+        self.assertEqual(gaps["missing_addresses_in_region"], veneto_snapshot["missing_address"])
+        self.assertLessEqual(gaps["missing_hours_in_region"], gaps["baseline_records_in_region"])
         self.assertIsNone(veneto["verified_matches"])
         lombardia = next(x for x in result["sources"]
                          if x["id"] == "lombardia-mercap")
         self.assertTrue(lombardia["already_has_connector"])
-        self.assertEqual(lombardia["gap_upper_bounds_not_measured_matches"]["missing_hours_in_region"], 2766)
+        lombardia_snapshot = next(x for x in COVERAGE["by_region"] if x["region"] == "Lombardia")
+        self.assertEqual(lombardia["gap_upper_bounds_not_measured_matches"]["missing_hours_in_region"],
+                         lombardia_snapshot["missing_hours"])
         coldiretti = next(x for x in result["sources"]
                           if x["id"] == "campagna-amica-markets")
         self.assertIsNone(coldiretti["gap_upper_bounds_not_measured_matches"])
         self.assertIn("rights_status", coldiretti)
         text = markdown(result)
         self.assertIn("non", text)
-        self.assertIn("947", text)
+        self.assertIn(str(veneto_snapshot["missing_hours"]), text)
 
     def test_cannot_enable_import_approval_from_research_metadata(self):
         bad = copy.deepcopy(REGISTRY)
