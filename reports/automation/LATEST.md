@@ -2,16 +2,16 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [39652026641](https://github.com/tommyv-spec/mercati-italia/actions/runs/39652026641) — UTC 2026-10-21T18:43:06.271448+00:00
+- Ultimo run: [39669115861](https://github.com/tommyv-spec/mercati-italia/actions/runs/39669115861) — UTC 2026-10-21T20:38:57.798752+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
-- Schede nel catalogo: **13,981**
-- Schede con date previste a +60 giorni: **11,804**
-- Schede con date previste a +90 giorni: **11,580**
-- Indice nazionale gzip: **411.9 KiB**
+- Schede nel catalogo: **14,007**
+- Schede con date previste a +60 giorni: **11,784**
+- Schede con date previste a +90 giorni: **11,562**
+- Indice nazionale gzip: **413.3 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **10,454**
+- Orari mancanti: **10,459**
 - Dataset pubblici candidati individuati: **43** (licenze da verificare)
 - Fonti conservate nello storico: **49**; nuove: **0**; aggiornate: **0**.
 - Possibili elenchi/sedi: **6**; statistiche storiche aggregate: **14**.
@@ -27,18 +27,17 @@
 - Roma XIII nuove fonti comunali 2025–2026: **0** schede aggiunte in questo run, **5** sedi distinte tutelate nel sito, **4** con calendari solo previsti, **5** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.
 - Import generico tramite contratti di interi dataset: **2** fonti con licenza e identità approvate, **0** nuove schede in questo run, **0** calendari solo previsti, **0** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
 - Aggiornamenti generici con prove per campo: **0** valori gestiti aggiornati e **2** schede con riscontri aggiornati o ritirati; identità conservate.
-- Dettagli Happings: **29** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
+- Dettagli Happings: **8** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **1069** gruppi settimanali con possibile sovrapposizione (**1180** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **623** gruppi provati dalla stessa fonte, **699** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **13981** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1204**; oltre soglia: **52**; senza data: **12718**.
+- Miglioramento UX reversibile: **623** gruppi provati dalla stessa fonte, **699** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14007** ID originali preservati.
+- Fonti datate negli ultimi 30 giorni: **1205**; oltre soglia: **52**; senza data: **12743**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1250**, di cui recenti **1204**.
-- Date previste con origine vecchia/sconosciuta: **10923**.
-- Metadati degli enti leggibili: **2/3**.
+- Date previste con origine vecchia/sconosciuta: **10895**.
+- Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_content_dates_are_unproven
 - ATTENZIONE fonte: future_predictions_have_stale_or_missing_source_dates
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
-- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 - ATTENZIONE fonte: publisher_refresh_conflicting_fields
 
 ## Prossimi miglioramenti calcolati

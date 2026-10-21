@@ -6,21 +6,21 @@
   "daily_shard": 2,
   "daily_worklist_count": 444,
   "distinct_source_labels": 87,
-  "incomplete_market_records_retained": 13981,
+  "incomplete_market_records_retained": 14007,
   "market_fields_changed": 0,
-  "market_identities_preserved": 13981,
-  "market_records_scanned": 13981,
+  "market_identities_preserved": 14007,
+  "market_records_scanned": 14007,
   "market_rows_added": 0,
   "market_rows_removed": 0,
   "may_enable_source_crawlers": false,
   "may_grant_source_reuse_rights": false,
   "missing_by_field": {
-    "coordinates": 13892,
-    "date": 2081,
+    "coordinates": 13918,
+    "date": 2127,
     "indirizzo": 5355,
-    "individual_edition_confirmation": 13981,
-    "orario_testo": 10454,
-    "ricorrenza_testo": 969
+    "individual_edition_confirmation": 14007,
+    "orario_testo": 10459,
+    "ricorrenza_testo": 972
   },
   "official_join_results": {
     "city_weekday_only_unconfirmed_venue": 77,
@@ -28,14 +28,14 @@
     "exact_field_evidence_candidates": 0,
     "many_market_places_on_same_city_day": 18,
     "multiple_official_venues_on_same_street_day": 2,
-    "no_usable_source_match": 12744,
+    "no_usable_source_match": 12770,
     "review_only_field_candidates": 79,
     "same_source_id": 789,
     "unique_city_province_street_weekday": 371
   },
   "official_source_records": 1360,
   "official_source_status": "fresh_dataset_not_market_confirmation",
-  "original_market_ids_sha256": "91fed720f6e40a1ede60456bee3c6ba128cd25774d2b9508aed3d4a6ed8f83d2",
+  "original_market_ids_sha256": "9014643196be313de4d708f812df584a886394942187de61c004501b59364f3e",
   "publisher_copyright_permissions_inferred": false,
   "report_only": true,
   "schema": 1,
@@ -57,16 +57,16 @@
       },
       "bulk_scrape_allowed": true,
       "missing_fields": {
-        "coordinates": 9804,
-        "date": 313,
+        "coordinates": 9830,
+        "date": 331,
         "indirizzo": 4746,
-        "individual_edition_confirmation": 9804,
-        "orario_testo": 9219,
-        "ricorrenza_testo": 35
+        "individual_edition_confirmation": 9830,
+        "orario_testo": 9237,
+        "ricorrenza_testo": 38
       },
       "next_automation": "existing_happings_weekly_index_adapter_then_official_cross_match",
       "publisher": "happings.com",
-      "records": 9804,
+      "records": 9830,
       "reuse_status": "project_owner_authorized",
       "source_family": "happings-weekly-or-detail",
       "source_rows_removed": 0
@@ -76,10 +76,10 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2197,
-        "date": 928,
+        "date": 942,
         "indirizzo": 485,
         "individual_edition_confirmation": 2197,
-        "orario_testo": 368,
+        "orario_testo": 367,
         "ricorrenza_testo": 712
       },
       "next_automation": "use_existing_event_lead_url_id_pipeline_then_official_cross_match",
@@ -111,10 +111,10 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 432,
-        "date": 140,
+        "date": 154,
         "indirizzo": 6,
         "individual_edition_confirmation": 432,
-        "orario_testo": 374
+        "orario_testo": 362
       },
       "next_automation": "check_page_schema_read_only_then_find_primary_organizer",
       "publisher": "cosedicasa.com",

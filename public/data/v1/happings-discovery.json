@@ -361,7 +361,7 @@
       ],
       "status": "retrieved"
     },
-    "https://www.happings.com/it/categoria-evento/mercati/page/23/": {
+    "https://www.happings.com/it/categoria-evento/mercati/page/20/": {
       "attempts": 0,
       "discovered_at": "2026-10-21",
       "failures": 0,
@@ -376,11 +376,104 @@
         {
           "kind": "html_link",
           "observed_at": "2026-10-21",
-          "sha256": "aba64e73b7a3927188c56b68811431488768898171cb5da9194676d34c2e3f2f",
-          "url": "https://www.happings.com/it/categoria-evento/mercati/page/24/"
+          "sha256": "65a80531ce0db07d9d1bbe5e88a847f90eeb19e8ff15e615579df2f4bf77e54d",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/21/"
         }
       ],
       "status": "unread"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/21/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-21",
+      "last_error": null,
+      "last_sha256": "65a80531ce0db07d9d1bbe5e88a847f90eeb19e8ff15e615579df2f4bf77e54d",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:23.475105+00:00",
+      "next_due": "2026-10-28",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d8b7795fa2c78617c3373591529669547bab7c319e34e7814fb5bcd1c4995d7f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/22/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "65a80531ce0db07d9d1bbe5e88a847f90eeb19e8ff15e615579df2f4bf77e54d",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/21/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/22/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-21",
+      "last_error": null,
+      "last_sha256": "d8b7795fa2c78617c3373591529669547bab7c319e34e7814fb5bcd1c4995d7f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:16.463865+00:00",
+      "next_due": "2026-10-28",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9052671f1a4f9d626e5e9ea6db147a1889fc311166949f76246149b03c40321c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/23/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d8b7795fa2c78617c3373591529669547bab7c319e34e7814fb5bcd1c4995d7f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/22/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "65a80531ce0db07d9d1bbe5e88a847f90eeb19e8ff15e615579df2f4bf77e54d",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/21/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/23/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-21",
+      "last_error": null,
+      "last_sha256": "9052671f1a4f9d626e5e9ea6db147a1889fc311166949f76246149b03c40321c",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:09.989854+00:00",
+      "next_due": "2026-10-28",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "aba64e73b7a3927188c56b68811431488768898171cb5da9194676d34c2e3f2f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/24/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9052671f1a4f9d626e5e9ea6db147a1889fc311166949f76246149b03c40321c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/23/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d8b7795fa2c78617c3373591529669547bab7c319e34e7814fb5bcd1c4995d7f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/22/"
+        }
+      ],
+      "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/24/": {
       "attempts": 1,
@@ -405,6 +498,12 @@
           "observed_at": "2026-10-21",
           "sha256": "aba64e73b7a3927188c56b68811431488768898171cb5da9194676d34c2e3f2f",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/24/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9052671f1a4f9d626e5e9ea6db147a1889fc311166949f76246149b03c40321c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/23/"
         }
       ],
       "status": "retrieved"
@@ -1131,6 +1230,12 @@
           "observed_at": "2026-10-20",
           "sha256": "48733f5dac0ba9e3b9e9f2351b3c013da4e96591a73cceef788d9c1a14a9d210",
           "url": "https://www.happings.com/it/happing/3d-tiro-con-larco/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d468a528079114d9a067ef6c40f73d5af799e6713f38dda6d3e3ed5a7328e077",
+          "url": "https://www.happings.com/it/happing/adamello-ultra-trail/"
         }
       ],
       "status": "retrieved"
@@ -1619,289 +1724,367 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abba-mamma-mia-and-much-more-a-silandro/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ae322927df15b24023484e2be8b253c43f3fee952ae70eea61f14f57f2e0dbdb",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:23.544145+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ae322927df15b24023484e2be8b253c43f3fee952ae70eea61f14f57f2e0dbdb",
+          "url": "https://www.happings.com/it/happing/abba-mamma-mia-and-much-more-a-silandro/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-andrea-daniele-signorelli-geopolitica/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "cef8e37516f5fbc31ae0732ef023410746f21a8a58b2b0c092376282e0f04c1f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:26.755151+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cef8e37516f5fbc31ae0732ef023410746f21a8a58b2b0c092376282e0f04c1f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-daniele-signorelli-geopolitica/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-andrea-stazi-ia-e-piattaforme-digitali/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "41c190b3056fb1f4691564e73c573af20329bbd05285ef45eef8560c6423db39",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:15.476814+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "41c190b3056fb1f4691564e73c573af20329bbd05285ef45eef8560c6423db39",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-stazi-ia-e-piattaforme-digitali/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-cosimo-accoto-tecnologia-e-futuro/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9d7d550bf39077c21a1f7b610163c97dce42b8295fd7e4129781ebcf00b099d6",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:22.375668+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9d7d550bf39077c21a1f7b610163c97dce42b8295fd7e4129781ebcf00b099d6",
+          "url": "https://www.happings.com/it/happing/abel-incontra-cosimo-accoto-tecnologia-e-futuro/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-costanza-galante-inclusione/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bd3bd035deebe6f0c4e5b4528c525ccce1c09da39e2d5b042d3fc2f6f354c9ed",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:29.540945+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bd3bd035deebe6f0c4e5b4528c525ccce1c09da39e2d5b042d3fc2f6f354c9ed",
+          "url": "https://www.happings.com/it/happing/abel-incontra-costanza-galante-inclusione/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-elettra-arazatah-ia-genere-ed-erotismo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4fb8ccd74452f3f33f189b985b66be01a5c3a6b49887a2ce44f82e79e661137f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:36.999219+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4fb8ccd74452f3f33f189b985b66be01a5c3a6b49887a2ce44f82e79e661137f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-elettra-arazatah-ia-genere-ed-erotismo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-fernanda-faini-ia-e-responsabilita-delle-macchine/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4e49b4f64c4e094beb15b3cfad2dd5f862e95a952501f2b66af129d17f2b0499",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:44.370328+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4e49b4f64c4e094beb15b3cfad2dd5f862e95a952501f2b66af129d17f2b0499",
+          "url": "https://www.happings.com/it/happing/abel-incontra-fernanda-faini-ia-e-responsabilita-delle-macchine/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-mafe-de-baggis-ia-e-comunicazione/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "94d99bc67aa1343d563048be6ce32c083bc0d0f6efd0be4ae80af51d8b8ab6a9",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:51.119768+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "94d99bc67aa1343d563048be6ce32c083bc0d0f6efd0be4ae80af51d8b8ab6a9",
+          "url": "https://www.happings.com/it/happing/abel-incontra-mafe-de-baggis-ia-e-comunicazione/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-marco-martinelli-teatro-e-tecnologia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "fa6ea370569e652f17d8f412a9d6a8a9edd73aec00efeacbc7f0d49e1f3c9a7b",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:57.940765+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fa6ea370569e652f17d8f412a9d6a8a9edd73aec00efeacbc7f0d49e1f3c9a7b",
+          "url": "https://www.happings.com/it/happing/abel-incontra-marco-martinelli-teatro-e-tecnologia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-martina-pennisi-informazione/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f484e928131fe25ad9da6d3741cd031308c832b2ab20324b7b32b3497ab4f3fa",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:04.820314+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f484e928131fe25ad9da6d3741cd031308c832b2ab20324b7b32b3497ab4f3fa",
+          "url": "https://www.happings.com/it/happing/abel-incontra-martina-pennisi-informazione/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel-incontra-silvia-semenzin-diritti-e-discriminazioni/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "77d88b0420e8dd46359ffea7b1af8be66ee24a450e4e0de5eefedec4c96c740f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:12.209904+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "77d88b0420e8dd46359ffea7b1af8be66ee24a450e4e0de5eefedec4c96c740f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-silvia-semenzin-diritti-e-discriminazioni/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/abel/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6daa2f7a12240e2f4b92e10a49de426be96175c3433018510748c9a3830874ed",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:19.306737+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6daa2f7a12240e2f4b92e10a49de426be96175c3433018510748c9a3830874ed",
+          "url": "https://www.happings.com/it/happing/abel/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/above-us-only-sky/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0f891f94b21caac9d1a9656c98d8044bc9c7a31df371e94701fb8dd4706c21e9",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:26.810618+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0f891f94b21caac9d1a9656c98d8044bc9c7a31df371e94701fb8dd4706c21e9",
+          "url": "https://www.happings.com/it/happing/above-us-only-sky/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/accendiamo-il-natale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "808fb3ef466c30f09efbbb736136aa6a9131aec11e5fe07a7257490de59e75df",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:33.786512+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1914,42 +2097,54 @@
           "observed_at": "2026-10-20",
           "sha256": "9988ccaa67751fc6cbceaefe8178600355a565c91cfa5366ab62b8d000088b4d",
           "url": "https://www.happings.com/it/happing/mercatino-natalizio-sotterraneo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "808fb3ef466c30f09efbbb736136aa6a9131aec11e5fe07a7257490de59e75df",
+          "url": "https://www.happings.com/it/happing/accendiamo-il-natale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/accensione-dellalbero-di-natale-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "93663162a0cfeb44bebcbecabe43917c733bb1f878b8c654f15606270bb17285",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:40.970594+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "93663162a0cfeb44bebcbecabe43917c733bb1f878b8c654f15606270bb17285",
+          "url": "https://www.happings.com/it/happing/accensione-dellalbero-di-natale-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/accensione-dellalbero-di-natale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "70898a99da529527d5fc811ec0a7d19a9e416a3455380512f7f4afed34dbf6f2",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:47.943051+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1976,238 +2171,304 @@
           "url": "https://www.happings.com/it/happing/mercatino-di-natale-a-valas/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/accensione-dellalberto-di-natale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4cea5cc2615c1f6f6de8a82eb6d968d5cd6ac887576e9f7e7a79247006d3202e",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:32:55.109016+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4cea5cc2615c1f6f6de8a82eb6d968d5cd6ac887576e9f7e7a79247006d3202e",
+          "url": "https://www.happings.com/it/happing/accensione-dellalberto-di-natale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/accensione-delle-luminarie/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4b8e5fa53de494c34da41735c57c00a2e88a6df0a783e0290fd099c03e4f13a1",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:02.478665+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4b8e5fa53de494c34da41735c57c00a2e88a6df0a783e0290fd099c03e4f13a1",
+          "url": "https://www.happings.com/it/happing/accensione-delle-luminarie/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/accompagnamento-musicale-chiesa-di-santa-maria-maddalena/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "97295b63c838f5150d64f599a2633bd6e975c0d3dda559eb251ea8f9a4ed2c67",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:09.534511+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "97295b63c838f5150d64f599a2633bd6e975c0d3dda559eb251ea8f9a4ed2c67",
+          "url": "https://www.happings.com/it/happing/accompagnamento-musicale-chiesa-di-santa-maria-maddalena/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/acqua/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "551d3f4cbfc58c987f4005246134ed79fdaa764e096a16df5c3fd8d8bfbfb8b0",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:16.592041+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "551d3f4cbfc58c987f4005246134ed79fdaa764e096a16df5c3fd8d8bfbfb8b0",
+          "url": "https://www.happings.com/it/happing/acqua/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/action-briquette-z-manga-beat-dance-danza/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1dc5eb4eff75d9c962334f79b181519c5cf99df9feb03d027deb671943f7c0be",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:24.060617+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1dc5eb4eff75d9c962334f79b181519c5cf99df9feb03d027deb671943f7c0be",
+          "url": "https://www.happings.com/it/happing/action-briquette-z-manga-beat-dance-danza/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/adamello-ultra-trail/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "d468a528079114d9a067ef6c40f73d5af799e6713f38dda6d3e3ed5a7328e077",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:31.669268+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d468a528079114d9a067ef6c40f73d5af799e6713f38dda6d3e3ed5a7328e077",
+          "url": "https://www.happings.com/it/happing/adamello-ultra-trail/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/addio-anno-vecchio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "752e267e3202e7eaecb1ad696561367426dd754d2f7ad008f1e3ad587510d833",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:39.252145+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "752e267e3202e7eaecb1ad696561367426dd754d2f7ad008f1e3ad587510d833",
+          "url": "https://www.happings.com/it/happing/addio-anno-vecchio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/adriano-fabris-patrizia-tullini-pianeta-terra-festival/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f19e93bedbbe9cc380ac18baf69d876fe76fd8a2914553fb1147e674d8d5faed",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:44.178767+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f19e93bedbbe9cc380ac18baf69d876fe76fd8a2914553fb1147e674d8d5faed",
+          "url": "https://www.happings.com/it/happing/adriano-fabris-patrizia-tullini-pianeta-terra-festival/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/affreschi-cappelle-e-storie-visita-guidata-a-tesido/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f5f964baa872b20df3349c0b6abf2f64ad9262da32f192ec2a9595cb7fcfc755",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:51.681327+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f5f964baa872b20df3349c0b6abf2f64ad9262da32f192ec2a9595cb7fcfc755",
+          "url": "https://www.happings.com/it/happing/affreschi-cappelle-e-storie-visita-guidata-a-tesido/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agricolfest-2025/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "afbc3c6b02aeb6b970ff5e4b965cc756181ffae0b9c1950d5bdf716300776fe9",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:33:58.836103+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "afbc3c6b02aeb6b970ff5e4b965cc756181ffae0b9c1950d5bdf716300776fe9",
+          "url": "https://www.happings.com/it/happing/agricolfest-2025/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrigame/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "fd37edfb786fb017444d7b77e17861675336d596d28d9d3b8fbeb4fc7593bc9a",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:05.831320+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fd37edfb786fb017444d7b77e17861675336d596d28d9d3b8fbeb4fc7593bc9a",
+          "url": "https://www.happings.com/it/happing/agrigame/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-campagna-amica-di-novi/": {
       "attempts": 1,
@@ -2433,6 +2694,12 @@
           "observed_at": "2026-10-20",
           "sha256": "405e86520ef0626134368dff233a04087104cee42bf78c624c645aaf23d088e1",
           "url": "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-codroipo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3b11853c147a5a27139bcfa2fb85898a09829e1ed294b19912d981910e89d580",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-di-naturno/"
         }
       ],
       "status": "retrieved"
@@ -2583,168 +2850,216 @@
           "observed_at": "2026-10-20",
           "sha256": "51208c37bae2d43f2095679291e2c786f17667d9b010cf07a371051b500dda52",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-agricoltura-damare-a-piazza-matteotti-a-genova/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d8b7795fa2c78617c3373591529669547bab7c319e34e7814fb5bcd1c4995d7f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/22/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/aida/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7ee9097878e9381ecbff54196efd42c535e31f37926d692e5822d2e09e5ee3fc",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:13.191813+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7ee9097878e9381ecbff54196efd42c535e31f37926d692e5822d2e09e5ee3fc",
+          "url": "https://www.happings.com/it/happing/aida/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/aisha-bumbum-e-la-loro-nuova-avventura/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "35ee33d74cf9728100288861fdfc6d708bd8811edfa63b4a92660781e847acae",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:21.633457+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "35ee33d74cf9728100288861fdfc6d708bd8811edfa63b4a92660781e847acae",
+          "url": "https://www.happings.com/it/happing/aisha-bumbum-e-la-loro-nuova-avventura/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/akademie-fur-alte-musik-berlin/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7db1a63163c8bf4bce1d3fdfaaffa1e6995809424442ae05e0fdd315f8b1151a",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:29.283099+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7db1a63163c8bf4bce1d3fdfaaffa1e6995809424442ae05e0fdd315f8b1151a",
+          "url": "https://www.happings.com/it/happing/akademie-fur-alte-musik-berlin/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/alba-alla-chiesetta-dei-morti-sullalpe-di-villandro/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "d4847aadb2bcb1f0a35dd0f039c49c3eae300247ce8e7ba5147392581774fa57",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:34.338830+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d4847aadb2bcb1f0a35dd0f039c49c3eae300247ce8e7ba5147392581774fa57",
+          "url": "https://www.happings.com/it/happing/alba-alla-chiesetta-dei-morti-sullalpe-di-villandro/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/alba-alla-forcella-denti-di-terrarossa/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6d5652042bf4946c3cdf47debf17a72f88d676fda8d2974c3f00bb12e6b8f056",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:42.815055+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6d5652042bf4946c3cdf47debf17a72f88d676fda8d2974c3f00bb12e6b8f056",
+          "url": "https://www.happings.com/it/happing/alba-alla-forcella-denti-di-terrarossa/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/alba-alle-tre-cime-di-lavaredo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "5149b546a1ca088c34a2c5f4193965d3a904988a8269fe9da6e7321de5665a52",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:49.958309+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "5149b546a1ca088c34a2c5f4193965d3a904988a8269fe9da6e7321de5665a52",
+          "url": "https://www.happings.com/it/happing/alba-alle-tre-cime-di-lavaredo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/alba-sotterranea-il-passato-e-sotto-ai-tuoi-piedi/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "cce491bfea58fdc242644ad2ce14e81346859620510579a8f0ca35a3ffdecf4c",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:34:58.396703+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cce491bfea58fdc242644ad2ce14e81346859620510579a8f0ca35a3ffdecf4c",
+          "url": "https://www.happings.com/it/happing/alba-sotterranea-il-passato-e-sotto-ai-tuoi-piedi/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/alba-truffle-bimbi/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e9c56da2a49e4da05048959cbbe75875aa85d53b21da67deb6eccaf2f6b2bc14",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:35:07.045853+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -2757,9 +3072,15 @@
           "observed_at": "2026-10-20",
           "sha256": "3df665ad38a6dab677437391ff86881ea4f83ec13fb8dd9ddd3fde1e5d061368",
           "url": "https://www.happings.com/it/happing/il-mercato-dei-produttori-agricoli-terra-viva/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "e9c56da2a49e4da05048959cbbe75875aa85d53b21da67deb6eccaf2f6b2bc14",
+          "url": "https://www.happings.com/it/happing/alba-truffle-bimbi/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/alba-walking-tour-truffle-edition/": {
       "attempts": 0,
@@ -4017,6 +4338,12 @@
           "observed_at": "2026-10-20",
           "sha256": "64df136383d553701469729e21a9d5c7666ac97444cc9badd4bae01c585b08b2",
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "93663162a0cfeb44bebcbecabe43917c733bb1f878b8c654f15606270bb17285",
+          "url": "https://www.happings.com/it/happing/accensione-dellalbero-di-natale-2/"
         }
       ],
       "status": "unread"
@@ -4428,6 +4755,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7ee9097878e9381ecbff54196efd42c535e31f37926d692e5822d2e09e5ee3fc",
+          "url": "https://www.happings.com/it/happing/aida/"
         }
       ],
       "status": "unread"
@@ -4575,6 +4908,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1dc5eb4eff75d9c962334f79b181519c5cf99df9feb03d027deb671943f7c0be",
+          "url": "https://www.happings.com/it/happing/action-briquette-z-manga-beat-dance-danza/"
         }
       ],
       "status": "unread"
@@ -5247,6 +5586,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bd3bd035deebe6f0c4e5b4528c525ccce1c09da39e2d5b042d3fc2f6f354c9ed",
+          "url": "https://www.happings.com/it/happing/abel-incontra-costanza-galante-inclusione/"
         }
       ],
       "status": "unread"
@@ -5460,6 +5805,12 @@
           "observed_at": "2026-10-21",
           "sha256": "33540e55b1d52f619af200883ed3284fdb213591fe352bd1e5c6bb68cf9583b7",
           "url": "https://www.happings.com/it/happing/8a-festa-alpina-d-autunno-39a-castagnata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "afbc3c6b02aeb6b970ff5e4b965cc756181ffae0b9c1950d5bdf716300776fe9",
+          "url": "https://www.happings.com/it/happing/agricolfest-2025/"
         }
       ],
       "status": "unread"
@@ -5925,6 +6276,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "631ca1a71430dfcd2e0257d2f41bebc0fec0a68afddf998edd7ea57619f51e3f",
+          "url": "https://www.happings.com/it/happing/pacini-editore-presenta-quattro-teste-dal-museo-di-corneto-un-giallo-antiquario/"
         }
       ],
       "status": "unread"
@@ -6459,6 +6816,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "26708fa8b59dcfc5ee6bb80d07f94a9dc3826b0e84deab4f70283a6ca6dd44f9",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/"
         }
       ],
       "status": "unread"
@@ -7020,6 +7383,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "48eb5b23fbc9470c934771e0dbdabd11278c42750307ca36813b163ea3bc1b3c",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-siusi/"
         }
       ],
       "status": "unread"
@@ -7971,6 +8340,12 @@
           "observed_at": "2026-10-21",
           "sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cce491bfea58fdc242644ad2ce14e81346859620510579a8f0ca35a3ffdecf4c",
+          "url": "https://www.happings.com/it/happing/alba-sotterranea-il-passato-e-sotto-ai-tuoi-piedi/"
         }
       ],
       "status": "unread"
@@ -8061,6 +8436,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "daf58abd9467ffc9b499684696c49e9010649417aae1f501bdb89f499cad0164",
+          "url": "https://www.happings.com/it/happing/mercato-mondiale-del-tartufo-bianco-dalba/"
         }
       ],
       "status": "unread"
@@ -8773,6 +9154,27 @@
       ],
       "status": "unread"
     },
+    "https://www.happings.com/it/happing/cinema-the-invite/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-21",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4fb8ccd74452f3f33f189b985b66be01a5c3a6b49887a2ce44f82e79e661137f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-elettra-arazatah-ia-genere-ed-erotismo/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/cinema-the-social-reckoning/": {
       "attempts": 0,
       "discovered_at": "2026-10-20",
@@ -8811,6 +9213,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f484e928131fe25ad9da6d3741cd031308c832b2ab20324b7b32b3497ab4f3fa",
+          "url": "https://www.happings.com/it/happing/abel-incontra-martina-pennisi-informazione/"
         }
       ],
       "status": "unread"
@@ -9207,6 +9615,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f5f964baa872b20df3349c0b6abf2f64ad9262da32f192ec2a9595cb7fcfc755",
+          "url": "https://www.happings.com/it/happing/affreschi-cappelle-e-storie-visita-guidata-a-tesido/"
         }
       ],
       "status": "unread"
@@ -9249,6 +9663,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7db1a63163c8bf4bce1d3fdfaaffa1e6995809424442ae05e0fdd315f8b1151a",
+          "url": "https://www.happings.com/it/happing/akademie-fur-alte-musik-berlin/"
         }
       ],
       "status": "unread"
@@ -9333,6 +9753,27 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/happing/concerto-davvento-3/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-21",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7db1a63163c8bf4bce1d3fdfaaffa1e6995809424442ae05e0fdd315f8b1151a",
+          "url": "https://www.happings.com/it/happing/akademie-fur-alte-musik-berlin/"
         }
       ],
       "status": "unread"
@@ -9438,6 +9879,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ae322927df15b24023484e2be8b253c43f3fee952ae70eea61f14f57f2e0dbdb",
+          "url": "https://www.happings.com/it/happing/abba-mamma-mia-and-much-more-a-silandro/"
         }
       ],
       "status": "unread"
@@ -10362,6 +10809,12 @@
           "observed_at": "2026-10-20",
           "sha256": "1d2747e308117762c0a8d25704cf0a70d74903d2b980dd0c6216d3c80bbe542d",
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-a-vestone/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "70898a99da529527d5fc811ec0a7d19a9e416a3455380512f7f4afed34dbf6f2",
+          "url": "https://www.happings.com/it/happing/accensione-dellalbero-di-natale/"
         }
       ],
       "status": "unread"
@@ -10635,6 +11088,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "551d3f4cbfc58c987f4005246134ed79fdaa764e096a16df5c3fd8d8bfbfb8b0",
+          "url": "https://www.happings.com/it/happing/acqua/"
         }
       ],
       "status": "unread"
@@ -10752,6 +11211,18 @@
           "observed_at": "2026-10-21",
           "sha256": "33540e55b1d52f619af200883ed3284fdb213591fe352bd1e5c6bb68cf9583b7",
           "url": "https://www.happings.com/it/happing/8a-festa-alpina-d-autunno-39a-castagnata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "752e267e3202e7eaecb1ad696561367426dd754d2f7ad008f1e3ad587510d833",
+          "url": "https://www.happings.com/it/happing/addio-anno-vecchio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "afbc3c6b02aeb6b970ff5e4b965cc756181ffae0b9c1950d5bdf716300776fe9",
+          "url": "https://www.happings.com/it/happing/agricolfest-2025/"
         }
       ],
       "status": "unread"
@@ -10773,6 +11244,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cce491bfea58fdc242644ad2ce14e81346859620510579a8f0ca35a3ffdecf4c",
+          "url": "https://www.happings.com/it/happing/alba-sotterranea-il-passato-e-sotto-ai-tuoi-piedi/"
         }
       ],
       "status": "unread"
@@ -11436,6 +11913,18 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "97295b63c838f5150d64f599a2633bd6e975c0d3dda559eb251ea8f9a4ed2c67",
+          "url": "https://www.happings.com/it/happing/accompagnamento-musicale-chiesa-di-santa-maria-maddalena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "35ee33d74cf9728100288861fdfc6d708bd8811edfa63b4a92660781e847acae",
+          "url": "https://www.happings.com/it/happing/aisha-bumbum-e-la-loro-nuova-avventura/"
         }
       ],
       "status": "unread"
@@ -11853,6 +12342,18 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "77d88b0420e8dd46359ffea7b1af8be66ee24a450e4e0de5eefedec4c96c740f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-silvia-semenzin-diritti-e-discriminazioni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "97295b63c838f5150d64f599a2633bd6e975c0d3dda559eb251ea8f9a4ed2c67",
+          "url": "https://www.happings.com/it/happing/accompagnamento-musicale-chiesa-di-santa-maria-maddalena/"
         }
       ],
       "status": "unread"
@@ -12096,6 +12597,12 @@
           "observed_at": "2026-10-20",
           "sha256": "af36df9b1a6c461d12f1d83a66e08fc5ee7d64c1dd7df99db9ef4bdb0a8090cd",
           "url": "https://www.happings.com/it/happing/29-settimane-della-castagna-mostra-autunnale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fa6ea370569e652f17d8f412a9d6a8a9edd73aec00efeacbc7f0d49e1f3c9a7b",
+          "url": "https://www.happings.com/it/happing/abel-incontra-marco-martinelli-teatro-e-tecnologia/"
         }
       ],
       "status": "unread"
@@ -12453,6 +12960,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7ee9097878e9381ecbff54196efd42c535e31f37926d692e5822d2e09e5ee3fc",
+          "url": "https://www.happings.com/it/happing/aida/"
         }
       ],
       "status": "unread"
@@ -12870,6 +13383,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f5f964baa872b20df3349c0b6abf2f64ad9262da32f192ec2a9595cb7fcfc755",
+          "url": "https://www.happings.com/it/happing/affreschi-cappelle-e-storie-visita-guidata-a-tesido/"
         }
       ],
       "status": "unread"
@@ -12912,6 +13431,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cef8e37516f5fbc31ae0732ef023410746f21a8a58b2b0c092376282e0f04c1f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-daniele-signorelli-geopolitica/"
         }
       ],
       "status": "unread"
@@ -13317,6 +13842,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6d5652042bf4946c3cdf47debf17a72f88d676fda8d2974c3f00bb12e6b8f056",
+          "url": "https://www.happings.com/it/happing/alba-alla-forcella-denti-di-terrarossa/"
         }
       ],
       "status": "unread"
@@ -13338,6 +13869,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "5149b546a1ca088c34a2c5f4193965d3a904988a8269fe9da6e7321de5665a52",
+          "url": "https://www.happings.com/it/happing/alba-alle-tre-cime-di-lavaredo/"
         }
       ],
       "status": "unread"
@@ -13422,6 +13959,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d4847aadb2bcb1f0a35dd0f039c49c3eae300247ce8e7ba5147392581774fa57",
+          "url": "https://www.happings.com/it/happing/alba-alla-chiesetta-dei-morti-sullalpe-di-villandro/"
         }
       ],
       "status": "unread"
@@ -13590,6 +14133,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6daa2f7a12240e2f4b92e10a49de426be96175c3433018510748c9a3830874ed",
+          "url": "https://www.happings.com/it/happing/abel/"
         }
       ],
       "status": "unread"
@@ -13821,6 +14370,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d4847aadb2bcb1f0a35dd0f039c49c3eae300247ce8e7ba5147392581774fa57",
+          "url": "https://www.happings.com/it/happing/alba-alla-chiesetta-dei-morti-sullalpe-di-villandro/"
         }
       ],
       "status": "unread"
@@ -14505,6 +15060,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "93663162a0cfeb44bebcbecabe43917c733bb1f878b8c654f15606270bb17285",
+          "url": "https://www.happings.com/it/happing/accensione-dellalbero-di-natale-2/"
         }
       ],
       "status": "unread"
@@ -14736,6 +15297,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "35ee33d74cf9728100288861fdfc6d708bd8811edfa63b4a92660781e847acae",
+          "url": "https://www.happings.com/it/happing/aisha-bumbum-e-la-loro-nuova-avventura/"
         }
       ],
       "status": "unread"
@@ -15291,6 +15858,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "041f18fb34e3bee895e1a426f041d0a17cda287e3dfc1954ebde99dcfd6c8fad",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-laives/"
         }
       ],
       "status": "unread"
@@ -16035,6 +16608,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "752e267e3202e7eaecb1ad696561367426dd754d2f7ad008f1e3ad587510d833",
+          "url": "https://www.happings.com/it/happing/addio-anno-vecchio/"
         }
       ],
       "status": "unread"
@@ -17007,6 +17586,12 @@
           "observed_at": "2026-10-20",
           "sha256": "565ba4558dae3fb26393334ecb69b6db729069a09cae85d961e33d8812fddb4c",
           "url": "https://www.happings.com/it/happing/festa-patronale-e-mercatini-2025/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ca51658c21c0eeffcca1db56210b39cf60009fd7f853736f12540317ff73d48b",
+          "url": "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/"
         }
       ],
       "status": "retrieved"
@@ -17112,6 +17697,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "afbc3c6b02aeb6b970ff5e4b965cc756181ffae0b9c1950d5bdf716300776fe9",
+          "url": "https://www.happings.com/it/happing/agricolfest-2025/"
         }
       ],
       "status": "unread"
@@ -17655,6 +18246,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "48eb5b23fbc9470c934771e0dbdabd11278c42750307ca36813b163ea3bc1b3c",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-siusi/"
         }
       ],
       "status": "unread"
@@ -17739,6 +18336,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "daf58abd9467ffc9b499684696c49e9010649417aae1f501bdb89f499cad0164",
+          "url": "https://www.happings.com/it/happing/mercato-mondiale-del-tartufo-bianco-dalba/"
         }
       ],
       "status": "unread"
@@ -17871,6 +18474,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "e9c56da2a49e4da05048959cbbe75875aa85d53b21da67deb6eccaf2f6b2bc14",
+          "url": "https://www.happings.com/it/happing/alba-truffle-bimbi/"
         }
       ],
       "status": "unread"
@@ -17940,6 +18549,12 @@
           "observed_at": "2026-10-20",
           "sha256": "08ea2d49103432219e953fbfde1e83e46bd55d3017b9d1f4a0bc02b44ff80d92",
           "url": "https://www.happings.com/it/happing/mercato-agricolo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "e9c56da2a49e4da05048959cbbe75875aa85d53b21da67deb6eccaf2f6b2bc14",
+          "url": "https://www.happings.com/it/happing/alba-truffle-bimbi/"
         }
       ],
       "status": "unread"
@@ -18030,6 +18645,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fd37edfb786fb017444d7b77e17861675336d596d28d9d3b8fbeb4fc7593bc9a",
+          "url": "https://www.happings.com/it/happing/agrigame/"
         }
       ],
       "status": "unread"
@@ -18156,6 +18777,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ca51658c21c0eeffcca1db56210b39cf60009fd7f853736f12540317ff73d48b",
+          "url": "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/"
         }
       ],
       "status": "unread"
@@ -18244,6 +18871,27 @@
       ],
       "status": "unread"
     },
+    "https://www.happings.com/it/happing/fradeo-sol-comare-luna-47a-rassegna-concorso-nazionale-del-teatro-dialettale-s-fait/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-21",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-21",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "41c190b3056fb1f4691564e73c573af20329bbd05285ef45eef8560c6423db39",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-stazi-ia-e-piattaforme-digitali/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/francesca-dego/": {
       "attempts": 0,
       "discovered_at": "2026-10-20",
@@ -18324,6 +18972,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "35ee33d74cf9728100288861fdfc6d708bd8811edfa63b4a92660781e847acae",
+          "url": "https://www.happings.com/it/happing/aisha-bumbum-e-la-loro-nuova-avventura/"
         }
       ],
       "status": "unread"
@@ -18387,6 +19041,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9d7d550bf39077c21a1f7b610163c97dce42b8295fd7e4129781ebcf00b099d6",
+          "url": "https://www.happings.com/it/happing/abel-incontra-cosimo-accoto-tecnologia-e-futuro/"
         }
       ],
       "status": "unread"
@@ -18618,6 +19278,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4e49b4f64c4e094beb15b3cfad2dd5f862e95a952501f2b66af129d17f2b0499",
+          "url": "https://www.happings.com/it/happing/abel-incontra-fernanda-faini-ia-e-responsabilita-delle-macchine/"
         }
       ],
       "status": "unread"
@@ -18999,6 +19665,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "94d99bc67aa1343d563048be6ce32c083bc0d0f6efd0be4ae80af51d8b8ab6a9",
+          "url": "https://www.happings.com/it/happing/abel-incontra-mafe-de-baggis-ia-e-comunicazione/"
         }
       ],
       "status": "unread"
@@ -19272,6 +19944,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6d5652042bf4946c3cdf47debf17a72f88d676fda8d2974c3f00bb12e6b8f056",
+          "url": "https://www.happings.com/it/happing/alba-alla-forcella-denti-di-terrarossa/"
         }
       ],
       "status": "unread"
@@ -20109,6 +20787,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "5149b546a1ca088c34a2c5f4193965d3a904988a8269fe9da6e7321de5665a52",
+          "url": "https://www.happings.com/it/happing/alba-alle-tre-cime-di-lavaredo/"
         }
       ],
       "status": "unread"
@@ -20613,6 +21297,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f5f964baa872b20df3349c0b6abf2f64ad9262da32f192ec2a9595cb7fcfc755",
+          "url": "https://www.happings.com/it/happing/affreschi-cappelle-e-storie-visita-guidata-a-tesido/"
         }
       ],
       "status": "unread"
@@ -20760,6 +21450,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4fb8ccd74452f3f33f189b985b66be01a5c3a6b49887a2ce44f82e79e661137f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-elettra-arazatah-ia-genere-ed-erotismo/"
         }
       ],
       "status": "unread"
@@ -20919,6 +21615,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "41c190b3056fb1f4691564e73c573af20329bbd05285ef45eef8560c6423db39",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-stazi-ia-e-piattaforme-digitali/"
         }
       ],
       "status": "unread"
@@ -21612,6 +22314,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1dc5eb4eff75d9c962334f79b181519c5cf99df9feb03d027deb671943f7c0be",
+          "url": "https://www.happings.com/it/happing/action-briquette-z-manga-beat-dance-danza/"
         }
       ],
       "status": "unread"
@@ -21963,6 +22671,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d468a528079114d9a067ef6c40f73d5af799e6713f38dda6d3e3ed5a7328e077",
+          "url": "https://www.happings.com/it/happing/adamello-ultra-trail/"
         }
       ],
       "status": "unread"
@@ -22032,6 +22746,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "631ca1a71430dfcd2e0257d2f41bebc0fec0a68afddf998edd7ea57619f51e3f",
+          "url": "https://www.happings.com/it/happing/pacini-editore-presenta-quattro-teste-dal-museo-di-corneto-un-giallo-antiquario/"
         }
       ],
       "status": "unread"
@@ -22311,6 +23031,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0f891f94b21caac9d1a9656c98d8044bc9c7a31df371e94701fb8dd4706c21e9",
+          "url": "https://www.happings.com/it/happing/above-us-only-sky/"
         }
       ],
       "status": "unread"
@@ -23100,6 +23826,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cce491bfea58fdc242644ad2ce14e81346859620510579a8f0ca35a3ffdecf4c",
+          "url": "https://www.happings.com/it/happing/alba-sotterranea-il-passato-e-sotto-ai-tuoi-piedi/"
         }
       ],
       "status": "unread"
@@ -23634,6 +24366,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "631ca1a71430dfcd2e0257d2f41bebc0fec0a68afddf998edd7ea57619f51e3f",
+          "url": "https://www.happings.com/it/happing/pacini-editore-presenta-quattro-teste-dal-museo-di-corneto-un-giallo-antiquario/"
         }
       ],
       "status": "unread"
@@ -23718,6 +24456,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f19e93bedbbe9cc380ac18baf69d876fe76fd8a2914553fb1147e674d8d5faed",
+          "url": "https://www.happings.com/it/happing/adriano-fabris-patrizia-tullini-pianeta-terra-festival/"
         }
       ],
       "status": "unread"
@@ -24444,6 +25188,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "94d99bc67aa1343d563048be6ce32c083bc0d0f6efd0be4ae80af51d8b8ab6a9",
+          "url": "https://www.happings.com/it/happing/abel-incontra-mafe-de-baggis-ia-e-comunicazione/"
         }
       ],
       "status": "unread"
@@ -24534,6 +25284,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4e49b4f64c4e094beb15b3cfad2dd5f862e95a952501f2b66af129d17f2b0499",
+          "url": "https://www.happings.com/it/happing/abel-incontra-fernanda-faini-ia-e-responsabilita-delle-macchine/"
         }
       ],
       "status": "unread"
@@ -24555,6 +25311,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f19e93bedbbe9cc380ac18baf69d876fe76fd8a2914553fb1147e674d8d5faed",
+          "url": "https://www.happings.com/it/happing/adriano-fabris-patrizia-tullini-pianeta-terra-festival/"
         }
       ],
       "status": "unread"
@@ -24765,6 +25527,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "e9c56da2a49e4da05048959cbbe75875aa85d53b21da67deb6eccaf2f6b2bc14",
+          "url": "https://www.happings.com/it/happing/alba-truffle-bimbi/"
         }
       ],
       "status": "unread"
@@ -24891,6 +25659,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cef8e37516f5fbc31ae0732ef023410746f21a8a58b2b0c092376282e0f04c1f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-daniele-signorelli-geopolitica/"
         }
       ],
       "status": "unread"
@@ -25353,6 +26127,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f484e928131fe25ad9da6d3741cd031308c832b2ab20324b7b32b3497ab4f3fa",
+          "url": "https://www.happings.com/it/happing/abel-incontra-martina-pennisi-informazione/"
         }
       ],
       "status": "unread"
@@ -26028,6 +26808,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4fb8ccd74452f3f33f189b985b66be01a5c3a6b49887a2ce44f82e79e661137f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-elettra-arazatah-ia-genere-ed-erotismo/"
         }
       ],
       "status": "unread"
@@ -26319,6 +27105,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "551d3f4cbfc58c987f4005246134ed79fdaa764e096a16df5c3fd8d8bfbfb8b0",
+          "url": "https://www.happings.com/it/happing/acqua/"
         }
       ],
       "status": "unread"
@@ -26340,6 +27132,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9d7d550bf39077c21a1f7b610163c97dce42b8295fd7e4129781ebcf00b099d6",
+          "url": "https://www.happings.com/it/happing/abel-incontra-cosimo-accoto-tecnologia-e-futuro/"
         }
       ],
       "status": "unread"
@@ -26361,6 +27159,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fd37edfb786fb017444d7b77e17861675336d596d28d9d3b8fbeb4fc7593bc9a",
+          "url": "https://www.happings.com/it/happing/agrigame/"
         }
       ],
       "status": "unread"
@@ -26535,6 +27339,12 @@
           "observed_at": "2026-10-20",
           "sha256": "d1c28248f9b821f3c067ab562a8476b1763465d715b485ae31334b4131b07f8c",
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-villaggio-babbo-natale-26/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "70898a99da529527d5fc811ec0a7d19a9e416a3455380512f7f4afed34dbf6f2",
+          "url": "https://www.happings.com/it/happing/accensione-dellalbero-di-natale/"
         }
       ],
       "status": "unread"
@@ -27417,6 +28227,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "97295b63c838f5150d64f599a2633bd6e975c0d3dda559eb251ea8f9a4ed2c67",
+          "url": "https://www.happings.com/it/happing/accompagnamento-musicale-chiesa-di-santa-maria-maddalena/"
         }
       ],
       "status": "unread"
@@ -27753,6 +28569,12 @@
           "observed_at": "2026-10-20",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-3-evento-9418/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "808fb3ef466c30f09efbbb736136aa6a9131aec11e5fe07a7257490de59e75df",
+          "url": "https://www.happings.com/it/happing/accendiamo-il-natale/"
         }
       ],
       "status": "retrieved"
@@ -28119,6 +28941,12 @@
           "observed_at": "2026-10-20",
           "sha256": "d1c28248f9b821f3c067ab562a8476b1763465d715b485ae31334b4131b07f8c",
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-villaggio-babbo-natale-26/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4cea5cc2615c1f6f6de8a82eb6d968d5cd6ac887576e9f7e7a79247006d3202e",
+          "url": "https://www.happings.com/it/happing/accensione-dellalberto-di-natale/"
         }
       ],
       "status": "retrieved"
@@ -28707,6 +29535,12 @@
           "observed_at": "2026-10-20",
           "sha256": "1b8d335efd7fa055c54f93f94bc3114cf7346fadee5da38cc706580827925697",
           "url": "https://www.happings.com/it/happing/mercatino-di-dicembre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9543d7194384c3b85fdf72222ec2dadd9f54cae69800bc21069fdebf6d96a1a5",
+          "url": "https://www.happings.com/it/happing/mostra-mercato/"
         }
       ],
       "status": "retrieved"
@@ -29097,6 +29931,12 @@
           "observed_at": "2026-10-20",
           "sha256": "436cb3822ffb96d90284b9dee50a849e24969d60f53d30e0488013fdfe686b81",
           "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-big-band-della-burgerkapelle-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ae322927df15b24023484e2be8b253c43f3fee952ae70eea61f14f57f2e0dbdb",
+          "url": "https://www.happings.com/it/happing/abba-mamma-mia-and-much-more-a-silandro/"
         }
       ],
       "status": "retrieved"
@@ -29130,6 +29970,12 @@
           "observed_at": "2026-10-20",
           "sha256": "05fc66a0f99341d48ee74af60dbcc3e01e9f17c388179f9b2d15c5def1f5c946",
           "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-hello-we-are-lit/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4cea5cc2615c1f6f6de8a82eb6d968d5cd6ac887576e9f7e7a79247006d3202e",
+          "url": "https://www.happings.com/it/happing/accensione-dellalberto-di-natale/"
         }
       ],
       "status": "retrieved"
@@ -33309,6 +34155,12 @@
           "observed_at": "2026-10-21",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-brugherio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "65a80531ce0db07d9d1bbe5e88a847f90eeb19e8ff15e615579df2f4bf77e54d",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/21/"
         }
       ],
       "status": "retrieved"
@@ -35385,6 +36237,12 @@
           "observed_at": "2026-10-21",
           "sha256": "168451d55d5f9b1e4b7b8c72d572a31c77dbe08a90f3533dd0402e9c050cdbbb",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-san-giorio-di-susa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d8b7795fa2c78617c3373591529669547bab7c319e34e7814fb5bcd1c4995d7f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/22/"
         }
       ],
       "status": "retrieved"
@@ -35496,6 +36354,12 @@
           "observed_at": "2026-10-21",
           "sha256": "b351b69a7d0247e70144e67028901418909397e888a3d9b5f1ee98b97e14fe18",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-reggio-calabria/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1a42c2637d44d471a1ba5ad6ea87f4541cf74818ef9e7124a806306cc76a8935",
+          "url": "https://www.happings.com/it/happing/mercato-di-vendita-diretta-di-novara/"
         }
       ],
       "status": "retrieved"
@@ -35633,6 +36497,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-21",
           "sha256": "fafae19a0d92ca533046cf2499984ce8f07d284272a520fcbca24017541a9ed2",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rivoli/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rivoli/"
         }
       ],
@@ -35973,6 +36843,12 @@
           "observed_at": "2026-10-21",
           "sha256": "4482c860b4cec2d403d113f0031112b98d8dded33cf155bc0bd469fb0eeb16ca",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-settimo-torinese/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-settimo-torinese/"
         }
       ],
       "status": "retrieved"
@@ -36122,6 +36998,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-21",
           "sha256": "8e240da5f30dc5bc81d5c3e7c5d9e1bef6eeec37398dd4fa5521a8f318eff991",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-tirano/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-tirano/"
         }
       ],
@@ -36344,6 +37226,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-21",
           "sha256": "c507eea27cd083546b4bbaac85e9fa2a448b9b2d0d29cc1519359040447876bc",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-varese/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-varese/"
         }
       ],
@@ -36729,6 +37617,12 @@
           "observed_at": "2026-10-21",
           "sha256": "900e17ce3a3bd148d337adb43ffe7dd889debfcf2ee396c4958ee6e7f2a364f7",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-via-gobetti/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-via-gobetti/"
         }
       ],
       "status": "retrieved"
@@ -36789,6 +37683,18 @@
           "observed_at": "2026-10-21",
           "sha256": "a4630069e137a6b3ebf72303cadfb3e49e758f6f95b919e30ae6cb405d60aadf",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-via-spallanzani-ad-arezzo/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-via-spallanzani-ad-arezzo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9052671f1a4f9d626e5e9ea6db147a1889fc311166949f76246149b03c40321c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/23/"
         }
       ],
       "status": "retrieved"
@@ -36938,6 +37844,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-21",
           "sha256": "db19b4f4299adf421941dbce4911c5000226cc8ddcf559cf174369a4e1811009",
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-vigevano/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-vigevano/"
         }
       ],
@@ -37317,6 +38229,18 @@
           "observed_at": "2026-10-21",
           "sha256": "237b3257f9c7a7769af7b5abac25e2b7e345881c0d74b9fd017cca1d4bb6dc33",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-selargius/"
+        },
+        {
+          "kind": "catalog_url",
+          "observed_at": "2026-10-21",
+          "sha256": null,
+          "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-selargius/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "230278406304aaa8570d99027389838eaa5d8eb46546d994e5e91c1dd47a0cbb",
+          "url": "https://www.happings.com/it/happing/mercato-tradizionale-al-brennero/"
         }
       ],
       "status": "retrieved"
@@ -37344,6 +38268,12 @@
           "observed_at": "2026-10-21",
           "sha256": "cbe9c90aa7e84a4d5c1e20c3c1deb0542720456d4be4e079feb38d349c66a57e",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-via-delloceano-pacifico-eur/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ac05cfb80ed006d6a50d6edb66bc7961f04a3fae6693b28c84720873ea2490b1",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-di-dobbiaco/"
         }
       ],
       "status": "retrieved"
@@ -37427,16 +38357,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-piazza-amendola-a-siena/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7a080ce2f5ded74d16bc1ce8bed8cf1ae621d205552e1c605c6d06b4cd51fd03",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:31.133878+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37463,19 +38393,19 @@
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-torrile/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-seravezza-querceta/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "5b152780d8e37828052510c9a7c3be6f9674ed412bd93a04c1b16d654c5d4bc9",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:37.601380+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37502,19 +38432,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pirri-a-cagliari/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-teramo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "85d66225c826a53ed8aacf26fad76c57eb376bf74203ed88d558c15cc82518c1",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:44.700230+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37541,19 +38471,19 @@
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bardolino/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-vendita-diretta-di-alessandria/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b37709c10fc971b5fa2ff186eec03e29bb4d6d63eefa7f000bc8d7fc311acc94",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:51.540975+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37566,21 +38496,27 @@
           "observed_at": "2026-10-21",
           "sha256": "3818a642dfae859e5a64568b72be68cd6891e28fb4a4ecacaabc8eb01b4bfc91",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-melito-di-porto-salvo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b37709c10fc971b5fa2ff186eec03e29bb4d6d63eefa7f000bc8d7fc311acc94",
+          "url": "https://www.happings.com/it/happing/mercato-di-vendita-diretta-di-alessandria/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-vendita-diretta-di-novara/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1a42c2637d44d471a1ba5ad6ea87f4541cf74818ef9e7124a806306cc76a8935",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:28:58.407277+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37593,21 +38529,27 @@
           "observed_at": "2026-10-20",
           "sha256": "6fca5fc6f56d0ef39e7d85d41fc48f8e1c5fadf72ab3ead16c31901c78dc9666",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-pesaro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1a42c2637d44d471a1ba5ad6ea87f4541cf74818ef9e7124a806306cc76a8935",
+          "url": "https://www.happings.com/it/happing/mercato-di-vendita-diretta-di-novara/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-vendita-diretta-di-tortona/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "cdc47dfbd8db1d41e0fc6876c69ebf5e790208f8a06c7e3294324a7ce97a8246",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:05.814484+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37634,19 +38576,19 @@
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/24/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-dorico-di-campagna-amica/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "49c17a9cad04476807ec77cea5d0ff394573f318a95958d1fa9642a27f58fe49",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:12.398080+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37673,19 +38615,19 @@
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-barriera-repubblica-a-parma/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-e-evento-selbergmocht-ad-appiano/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "62361f8d8158d0b1e4c30fc2778abe172c08355b01f41179007a22c952218a73",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:16.857799+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37712,82 +38654,100 @@
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-albissola-marina/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-mondiale-del-tartufo-bianco-dalba/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "daf58abd9467ffc9b499684696c49e9010649417aae1f501bdb89f499cad0164",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:31.243276+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "daf58abd9467ffc9b499684696c49e9010649417aae1f501bdb89f499cad0164",
+          "url": "https://www.happings.com/it/happing/mercato-mondiale-del-tartufo-bianco-dalba/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-brunico/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "34071ee46517083853e06d3a7605f3c856acee2a2c6b8262ec9b36144532489e",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:38.938297+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "34071ee46517083853e06d3a7605f3c856acee2a2c6b8262ec9b36144532489e",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-brunico/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "26708fa8b59dcfc5ee6bb80d07f94a9dc3826b0e84deab4f70283a6ca6dd44f9",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:45.457095+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "26708fa8b59dcfc5ee6bb80d07f94a9dc3826b0e84deab4f70283a6ca6dd44f9",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-fie-allo-sciliar/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4c660f31a0187c39af6f0638c542e13dd542dc8b07d6e42c709aeb332baba6e0",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:52.655326+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37800,63 +38760,81 @@
           "observed_at": "2026-10-21",
           "sha256": "a4630069e137a6b3ebf72303cadfb3e49e758f6f95b919e30ae6cb405d60aadf",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-via-spallanzani-ad-arezzo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4c660f31a0187c39af6f0638c542e13dd542dc8b07d6e42c709aeb332baba6e0",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-fie-allo-sciliar/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-laives/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "041f18fb34e3bee895e1a426f041d0a17cda287e3dfc1954ebde99dcfd6c8fad",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:29:59.278003+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "041f18fb34e3bee895e1a426f041d0a17cda287e3dfc1954ebde99dcfd6c8fad",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-laives/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-siusi/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "48eb5b23fbc9470c934771e0dbdabd11278c42750307ca36813b163ea3bc1b3c",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:06.005731+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "48eb5b23fbc9470c934771e0dbdabd11278c42750307ca36813b163ea3bc1b3c",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-siusi/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-di-abbigliamento-a-caldaro/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b3237ccae1123ffd38ea212b369fe9fad09415cd671357a1cdf264d74d3c708d",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:13.150326+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37869,21 +38847,27 @@
           "observed_at": "2026-10-21",
           "sha256": "2ca26c4453ddbf663542ec6a6a000d86ce513e3e504dfe9e111a3fa8d277409b",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-risorgimento-a-benevento/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "b3237ccae1123ffd38ea212b369fe9fad09415cd671357a1cdf264d74d3c708d",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-di-abbigliamento-a-caldaro/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-di-dobbiaco/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ac05cfb80ed006d6a50d6edb66bc7961f04a3fae6693b28c84720873ea2490b1",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:19.808277+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37902,21 +38886,27 @@
           "observed_at": "2026-10-21",
           "sha256": "54c3057ad740a257524451b42e57cb5a07ec960c82335532b8a91190f589b128",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-voghera/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ac05cfb80ed006d6a50d6edb66bc7961f04a3fae6693b28c84720873ea2490b1",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-di-dobbiaco/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-di-naturno/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3b11853c147a5a27139bcfa2fb85898a09829e1ed294b19912d981910e89d580",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:33.781898+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37935,21 +38925,27 @@
           "observed_at": "2026-10-21",
           "sha256": "216874726bd8310b0582e3f4d2b52d3dc188d8209b7082c23e65f3a0515aedbe",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-negrar/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "3b11853c147a5a27139bcfa2fb85898a09829e1ed294b19912d981910e89d580",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-di-naturno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-tradizionale-al-brennero/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "230278406304aaa8570d99027389838eaa5d8eb46546d994e5e91c1dd47a0cbb",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:40.335430+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37976,7 +38972,7 @@
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-di-foggia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercoledi-in-tour-sentiero-rittersteig-a-naturno/": {
       "attempts": 0,
@@ -38184,6 +39180,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0f891f94b21caac9d1a9656c98d8044bc9c7a31df371e94701fb8dd4706c21e9",
+          "url": "https://www.happings.com/it/happing/above-us-only-sky/"
         }
       ],
       "status": "unread"
@@ -38364,6 +39366,12 @@
           "observed_at": "2026-10-20",
           "sha256": "050b3ddc42e37861589c7bd5b93522dff42c63509779b030d9ee415b49eda2a6",
           "url": "https://www.happings.com/it/happing/mercatino-di-novembre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9543d7194384c3b85fdf72222ec2dadd9f54cae69800bc21069fdebf6d96a1a5",
+          "url": "https://www.happings.com/it/happing/mostra-mercato/"
         }
       ],
       "status": "unread"
@@ -38391,6 +39399,12 @@
           "observed_at": "2026-10-21",
           "sha256": "cbbea22fb35e9cafe79e984c5dac435044b47a11c92d31baaa3cf06c360b3733",
           "url": "https://www.happings.com/it/happing/a-pesca-di-emozioni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f19e93bedbbe9cc380ac18baf69d876fe76fd8a2914553fb1147e674d8d5faed",
+          "url": "https://www.happings.com/it/happing/adriano-fabris-patrizia-tullini-pianeta-terra-festival/"
         }
       ],
       "status": "unread"
@@ -38501,16 +39515,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/mostra-mercato/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9543d7194384c3b85fdf72222ec2dadd9f54cae69800bc21069fdebf6d96a1a5",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:47.663953+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -38529,9 +39543,15 @@
           "observed_at": "2026-10-20",
           "sha256": "050b3ddc42e37861589c7bd5b93522dff42c63509779b030d9ee415b49eda2a6",
           "url": "https://www.happings.com/it/happing/mercatino-di-novembre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9543d7194384c3b85fdf72222ec2dadd9f54cae69800bc21069fdebf6d96a1a5",
+          "url": "https://www.happings.com/it/happing/mostra-mercato/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mostra-ovina-e-caprina-della-valle-isarco/": {
       "attempts": 0,
@@ -39000,6 +40020,18 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "808fb3ef466c30f09efbbb736136aa6a9131aec11e5fe07a7257490de59e75df",
+          "url": "https://www.happings.com/it/happing/accendiamo-il-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "93663162a0cfeb44bebcbecabe43917c733bb1f878b8c654f15606270bb17285",
+          "url": "https://www.happings.com/it/happing/accensione-dellalbero-di-natale-2/"
         }
       ],
       "status": "unread"
@@ -39204,6 +40236,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6d5652042bf4946c3cdf47debf17a72f88d676fda8d2974c3f00bb12e6b8f056",
+          "url": "https://www.happings.com/it/happing/alba-alla-forcella-denti-di-terrarossa/"
         }
       ],
       "status": "unread"
@@ -39288,6 +40326,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "551d3f4cbfc58c987f4005246134ed79fdaa764e096a16df5c3fd8d8bfbfb8b0",
+          "url": "https://www.happings.com/it/happing/acqua/"
         }
       ],
       "status": "unread"
@@ -39852,6 +40896,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bd3bd035deebe6f0c4e5b4528c525ccce1c09da39e2d5b042d3fc2f6f354c9ed",
+          "url": "https://www.happings.com/it/happing/abel-incontra-costanza-galante-inclusione/"
         }
       ],
       "status": "unread"
@@ -40088,25 +41138,31 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/pacini-editore-presenta-quattro-teste-dal-museo-di-corneto-un-giallo-antiquario/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "631ca1a71430dfcd2e0257d2f41bebc0fec0a68afddf998edd7ea57619f51e3f",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:30:54.501926+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "631ca1a71430dfcd2e0257d2f41bebc0fec0a68afddf998edd7ea57619f51e3f",
+          "url": "https://www.happings.com/it/happing/pacini-editore-presenta-quattro-teste-dal-museo-di-corneto-un-giallo-antiquario/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/pacini-editore-presenta-si-puo-dare-di-piu-tra-sfide-bisogni-e-sogni/": {
       "attempts": 0,
@@ -40311,6 +41367,12 @@
           "observed_at": "2026-10-20",
           "sha256": "1d2747e308117762c0a8d25704cf0a70d74903d2b980dd0c6216d3c80bbe542d",
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-a-vestone/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4b8e5fa53de494c34da41735c57c00a2e88a6df0a783e0290fd099c03e4f13a1",
+          "url": "https://www.happings.com/it/happing/accensione-delle-luminarie/"
         }
       ],
       "status": "unread"
@@ -40608,6 +41670,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "bd3bd035deebe6f0c4e5b4528c525ccce1c09da39e2d5b042d3fc2f6f354c9ed",
+          "url": "https://www.happings.com/it/happing/abel-incontra-costanza-galante-inclusione/"
         }
       ],
       "status": "unread"
@@ -40734,6 +41802,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9d7d550bf39077c21a1f7b610163c97dce42b8295fd7e4129781ebcf00b099d6",
+          "url": "https://www.happings.com/it/happing/abel-incontra-cosimo-accoto-tecnologia-e-futuro/"
         }
       ],
       "status": "unread"
@@ -40887,6 +41961,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d468a528079114d9a067ef6c40f73d5af799e6713f38dda6d3e3ed5a7328e077",
+          "url": "https://www.happings.com/it/happing/adamello-ultra-trail/"
         }
       ],
       "status": "unread"
@@ -41019,6 +42099,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "d4847aadb2bcb1f0a35dd0f039c49c3eae300247ce8e7ba5147392581774fa57",
+          "url": "https://www.happings.com/it/happing/alba-alla-chiesetta-dei-morti-sullalpe-di-villandro/"
         }
       ],
       "status": "unread"
@@ -41151,6 +42237,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6daa2f7a12240e2f4b92e10a49de426be96175c3433018510748c9a3830874ed",
+          "url": "https://www.happings.com/it/happing/abel/"
         }
       ],
       "status": "unread"
@@ -41405,16 +42497,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/piccolo-mercato-contadino-di-collepietra/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "84f78064abf14ecc8c37dd03b4f4cb74162fbb93da39c046ad6f4bbfeb3138ff",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:01.324190+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -41441,7 +42533,7 @@
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-varese/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/pierino-e-il-lupo-evento-15901/": {
       "attempts": 0,
@@ -41859,6 +42951,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "77d88b0420e8dd46359ffea7b1af8be66ee24a450e4e0de5eefedec4c96c740f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-silvia-semenzin-diritti-e-discriminazioni/"
         }
       ],
       "status": "unread"
@@ -42138,6 +43236,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "f484e928131fe25ad9da6d3741cd031308c832b2ab20324b7b32b3497ab4f3fa",
+          "url": "https://www.happings.com/it/happing/abel-incontra-martina-pennisi-informazione/"
         }
       ],
       "status": "unread"
@@ -42207,6 +43311,12 @@
           "observed_at": "2026-10-20",
           "sha256": "ba443d753f66cd8e692a1f226ce6e91f5c4dec3efb5a8c0c2ecf0bb2f4b222ab",
           "url": "https://www.happings.com/it/happing/marce-da-nade-mercatino-di-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "808fb3ef466c30f09efbbb736136aa6a9131aec11e5fe07a7257490de59e75df",
+          "url": "https://www.happings.com/it/happing/accendiamo-il-natale/"
         }
       ],
       "status": "unread"
@@ -42702,6 +43812,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "77d88b0420e8dd46359ffea7b1af8be66ee24a450e4e0de5eefedec4c96c740f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-silvia-semenzin-diritti-e-discriminazioni/"
         }
       ],
       "status": "unread"
@@ -42807,6 +43923,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "1dc5eb4eff75d9c962334f79b181519c5cf99df9feb03d027deb671943f7c0be",
+          "url": "https://www.happings.com/it/happing/action-briquette-z-manga-beat-dance-danza/"
         }
       ],
       "status": "unread"
@@ -43332,6 +44454,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4e49b4f64c4e094beb15b3cfad2dd5f862e95a952501f2b66af129d17f2b0499",
+          "url": "https://www.happings.com/it/happing/abel-incontra-fernanda-faini-ia-e-responsabilita-delle-macchine/"
         }
       ],
       "status": "unread"
@@ -43542,6 +44670,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "daf58abd9467ffc9b499684696c49e9010649417aae1f501bdb89f499cad0164",
+          "url": "https://www.happings.com/it/happing/mercato-mondiale-del-tartufo-bianco-dalba/"
         }
       ],
       "status": "unread"
@@ -43668,6 +44802,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "9543d7194384c3b85fdf72222ec2dadd9f54cae69800bc21069fdebf6d96a1a5",
+          "url": "https://www.happings.com/it/happing/mostra-mercato/"
         }
       ],
       "status": "unread"
@@ -44505,6 +45645,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ca51658c21c0eeffcca1db56210b39cf60009fd7f853736f12540317ff73d48b",
+          "url": "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/"
         }
       ],
       "status": "unread"
@@ -44642,25 +45788,31 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-21",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ca51658c21c0eeffcca1db56210b39cf60009fd7f853736f12540317ff73d48b",
+      "last_success": "2026-10-21",
+      "last_success_at": "2026-10-21T20:31:08.705770+00:00",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ca51658c21c0eeffcca1db56210b39cf60009fd7f853736f12540317ff73d48b",
+          "url": "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/sagra-di-gais/": {
       "attempts": 0,
@@ -44880,6 +46032,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "752e267e3202e7eaecb1ad696561367426dd754d2f7ad008f1e3ad587510d833",
+          "url": "https://www.happings.com/it/happing/addio-anno-vecchio/"
         }
       ],
       "status": "unread"
@@ -45471,6 +46629,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "041f18fb34e3bee895e1a426f041d0a17cda287e3dfc1954ebde99dcfd6c8fad",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-laives/"
         }
       ],
       "status": "unread"
@@ -45993,6 +47157,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "26708fa8b59dcfc5ee6bb80d07f94a9dc3826b0e84deab4f70283a6ca6dd44f9",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/"
         }
       ],
       "status": "unread"
@@ -46203,6 +47373,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4cea5cc2615c1f6f6de8a82eb6d968d5cd6ac887576e9f7e7a79247006d3202e",
+          "url": "https://www.happings.com/it/happing/accensione-dellalberto-di-natale/"
         }
       ],
       "status": "unread"
@@ -46581,6 +47757,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7ee9097878e9381ecbff54196efd42c535e31f37926d692e5822d2e09e5ee3fc",
+          "url": "https://www.happings.com/it/happing/aida/"
         }
       ],
       "status": "unread"
@@ -46896,6 +48078,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fa6ea370569e652f17d8f412a9d6a8a9edd73aec00efeacbc7f0d49e1f3c9a7b",
+          "url": "https://www.happings.com/it/happing/abel-incontra-marco-martinelli-teatro-e-tecnologia/"
         }
       ],
       "status": "unread"
@@ -47064,6 +48252,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "5149b546a1ca088c34a2c5f4193965d3a904988a8269fe9da6e7321de5665a52",
+          "url": "https://www.happings.com/it/happing/alba-alle-tre-cime-di-lavaredo/"
         }
       ],
       "status": "unread"
@@ -47958,6 +49152,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "26708fa8b59dcfc5ee6bb80d07f94a9dc3826b0e84deab4f70283a6ca6dd44f9",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/"
         }
       ],
       "status": "unread"
@@ -49560,6 +50760,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "7db1a63163c8bf4bce1d3fdfaaffa1e6995809424442ae05e0fdd315f8b1151a",
+          "url": "https://www.happings.com/it/happing/akademie-fur-alte-musik-berlin/"
         }
       ],
       "status": "unread"
@@ -49884,6 +51090,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "6daa2f7a12240e2f4b92e10a49de426be96175c3433018510748c9a3830874ed",
+          "url": "https://www.happings.com/it/happing/abel/"
         }
       ],
       "status": "unread"
@@ -50634,6 +51846,12 @@
           "observed_at": "2026-10-20",
           "sha256": "72d498180cfec53e2fc9388285d47b5dbb58e760fc153fcee43deb642823c07a",
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-4-evento-9746/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "4b8e5fa53de494c34da41735c57c00a2e88a6df0a783e0290fd099c03e4f13a1",
+          "url": "https://www.happings.com/it/happing/accensione-delle-luminarie/"
         }
       ],
       "status": "unread"
@@ -50862,6 +52080,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "48eb5b23fbc9470c934771e0dbdabd11278c42750307ca36813b163ea3bc1b3c",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-siusi/"
         }
       ],
       "status": "unread"
@@ -51231,6 +52455,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fa6ea370569e652f17d8f412a9d6a8a9edd73aec00efeacbc7f0d49e1f3c9a7b",
+          "url": "https://www.happings.com/it/happing/abel-incontra-marco-martinelli-teatro-e-tecnologia/"
         }
       ],
       "status": "unread"
@@ -51951,6 +53181,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "0f891f94b21caac9d1a9656c98d8044bc9c7a31df371e94701fb8dd4706c21e9",
+          "url": "https://www.happings.com/it/happing/above-us-only-sky/"
         }
       ],
       "status": "unread"
@@ -52167,6 +53403,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "cef8e37516f5fbc31ae0732ef023410746f21a8a58b2b0c092376282e0f04c1f",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-daniele-signorelli-geopolitica/"
         }
       ],
       "status": "unread"
@@ -52188,6 +53430,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "94d99bc67aa1343d563048be6ce32c083bc0d0f6efd0be4ae80af51d8b8ab6a9",
+          "url": "https://www.happings.com/it/happing/abel-incontra-mafe-de-baggis-ia-e-comunicazione/"
         }
       ],
       "status": "unread"
@@ -52335,6 +53583,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "fd37edfb786fb017444d7b77e17861675336d596d28d9d3b8fbeb4fc7593bc9a",
+          "url": "https://www.happings.com/it/happing/agrigame/"
         }
       ],
       "status": "unread"
@@ -52545,6 +53799,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "041f18fb34e3bee895e1a426f041d0a17cda287e3dfc1954ebde99dcfd6c8fad",
+          "url": "https://www.happings.com/it/happing/mercato-settimanale-a-laives/"
         }
       ],
       "status": "unread"
@@ -52746,6 +54006,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "41c190b3056fb1f4691564e73c573af20329bbd05285ef45eef8560c6423db39",
+          "url": "https://www.happings.com/it/happing/abel-incontra-andrea-stazi-ia-e-piattaforme-digitali/"
         }
       ],
       "status": "unread"
@@ -52788,6 +54054,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-21",
+          "sha256": "ae322927df15b24023484e2be8b253c43f3fee952ae70eea61f14f57f2e0dbdb",
+          "url": "https://www.happings.com/it/happing/abba-mamma-mia-and-much-more-a-silandro/"
         }
       ],
       "status": "unread"

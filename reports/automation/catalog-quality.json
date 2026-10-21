@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 2886,
-    "coordinates_missing": 431,
-    "future_dates_missing": 2081,
-    "hours_missing": 10454,
+    "coordinates_missing": 457,
+    "future_dates_missing": 2127,
+    "hours_missing": 10459,
     "review_only_duplicate_groups": 1069,
     "review_only_potential_extra_rows": 1180,
     "suspicious_city": 2,
-    "total": 13981,
-    "without_individual_verification": 13981
+    "total": 14007,
+    "without_individual_verification": 14007
   },
   "per_region": [
     {
@@ -50,25 +50,25 @@
     {
       "region": "Emilia-Romagna",
       "markets": 909,
-      "hours_missing": 566,
+      "hours_missing": 565,
       "address_missing": 160,
-      "future_dates_missing": 274,
+      "future_dates_missing": 277,
       "coordinates_missing": 46
     },
     {
       "region": "Friuli Venezia Giulia",
-      "markets": 244,
-      "hours_missing": 93,
-      "address_missing": 16,
-      "future_dates_missing": 49,
-      "coordinates_missing": 5
+      "markets": 262,
+      "hours_missing": 108,
+      "coordinates_missing": 23,
+      "future_dates_missing": 70,
+      "address_missing": 16
     },
     {
       "region": "Lazio",
       "markets": 1082,
       "hours_missing": 876,
       "address_missing": 259,
-      "future_dates_missing": 206,
+      "future_dates_missing": 207,
       "coordinates_missing": 12
     },
     {
@@ -82,18 +82,18 @@
     {
       "region": "Lombardia",
       "markets": 3990,
-      "future_dates_missing": 565,
-      "hours_missing": 2494,
+      "future_dates_missing": 574,
+      "hours_missing": 2487,
       "address_missing": 339,
       "coordinates_missing": 260
     },
     {
       "region": "Marche",
-      "markets": 294,
-      "future_dates_missing": 53,
+      "markets": 295,
+      "future_dates_missing": 54,
       "hours_missing": 194,
       "address_missing": 83,
-      "coordinates_missing": 6
+      "coordinates_missing": 7
     },
     {
       "region": "Molise",
@@ -105,11 +105,11 @@
     },
     {
       "region": "Piemonte",
-      "markets": 1347,
-      "hours_missing": 1176,
-      "future_dates_missing": 170,
-      "address_missing": 292,
-      "coordinates_missing": 15
+      "markets": 1350,
+      "hours_missing": 1175,
+      "future_dates_missing": 174,
+      "coordinates_missing": 18,
+      "address_missing": 292
     },
     {
       "region": "Puglia",
@@ -137,26 +137,26 @@
     },
     {
       "region": "Toscana",
-      "markets": 967,
+      "markets": 969,
       "hours_missing": 782,
       "address_missing": 161,
-      "future_dates_missing": 189,
-      "coordinates_missing": 22
+      "future_dates_missing": 191,
+      "coordinates_missing": 24
     },
     {
       "region": "Trentino-Alto Adige",
-      "markets": 228,
+      "markets": 230,
       "hours_missing": 171,
       "address_missing": 45,
-      "future_dates_missing": 28,
-      "coordinates_missing": 12
+      "future_dates_missing": 30,
+      "coordinates_missing": 14
     },
     {
       "region": "Umbria",
       "markets": 180,
-      "hours_missing": 150,
+      "hours_missing": 149,
       "address_missing": 74,
-      "future_dates_missing": 39,
+      "future_dates_missing": 41,
       "coordinates_missing": 5
     },
     {
@@ -169,7 +169,7 @@
     {
       "region": "Veneto",
       "markets": 1213,
-      "future_dates_missing": 123,
+      "future_dates_missing": 124,
       "hours_missing": 944,
       "address_missing": 243,
       "coordinates_missing": 15,
@@ -179,7 +179,7 @@
   "top_sources": [
     {
       "source": "happings.com",
-      "records": 9804
+      "records": 9830
     },
     {
       "source": "eventiesagre.it",
@@ -702,21 +702,17 @@
   ],
   "potential_duplicates_are_not_confirmed": true,
   "overlap_growth_review": {
-    "status": "compared_to_baseline_records",
+    "status": "baseline_summary_mismatch",
     "source_supported_revealed_extra_rows": 0,
     "source_supported_revealed_groups": 0,
-    "examples": [],
-    "baseline_records": 13952,
-    "baseline_potential_extra_rows": 1180,
-    "positive_group_growth": 0,
-    "unexplained_group_growth": 0
+    "examples": []
   },
   "baseline_delta": {
-    "total": 29,
-    "hours_missing": -11,
+    "total": 26,
+    "hours_missing": 5,
     "address_missing": 0,
-    "coordinates_missing": 29,
-    "future_dates_missing": 33,
+    "coordinates_missing": 26,
+    "future_dates_missing": 46,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0

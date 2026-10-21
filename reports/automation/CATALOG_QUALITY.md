@@ -4,24 +4,22 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **13,981**.
-- Orari mancanti: **10,454**.
+- Schede: **14,007**.
+- Orari mancanti: **10,459**.
 - Indirizzi mancanti: **2,886**.
-- Coordinate mancanti: **431**.
-- Date future mancanti: **2,081**.
+- Coordinate mancanti: **457**.
+- Date future mancanti: **2,127**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,069** gruppi, **1,180** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **13,981**.
+- Verifiche umane documentate mancanti: **14,007**.
 - Gate qualità: **APPROVATO**.
-- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
-- Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
 
 ## Fonte di provenienza (primi editori)
 
 | Fonte | Schede |
 |---|---:|
-| happings.com | 9,804 |
+| happings.com | 9,830 |
 | eventiesagre.it | 2,197 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
 | cosedicasa.com | 432 |
@@ -42,20 +40,20 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Basilicata | 36 | 22 | 12 |
 | Calabria | 331 | 284 | 94 |
 | Campania | 824 | 710 | 257 |
-| Emilia-Romagna | 909 | 566 | 160 |
-| Friuli Venezia Giulia | 244 | 93 | 16 |
+| Emilia-Romagna | 909 | 565 | 160 |
+| Friuli Venezia Giulia | 262 | 108 | 16 |
 | Lazio | 1,082 | 876 | 259 |
 | Liguria | 391 | 309 | 76 |
-| Lombardia | 3,990 | 2,494 | 339 |
-| Marche | 294 | 194 | 83 |
+| Lombardia | 3,990 | 2,487 | 339 |
+| Marche | 295 | 194 | 83 |
 | Molise | 215 | 185 | 89 |
-| Piemonte | 1,347 | 1,176 | 292 |
+| Piemonte | 1,350 | 1,175 | 292 |
 | Puglia | 484 | 437 | 214 |
 | Sardegna | 392 | 323 | 164 |
 | Sicilia | 405 | 338 | 141 |
-| Toscana | 967 | 782 | 161 |
-| Trentino-Alto Adige | 228 | 171 | 45 |
-| Umbria | 180 | 150 | 74 |
+| Toscana | 969 | 782 | 161 |
+| Trentino-Alto Adige | 230 | 171 | 45 |
+| Umbria | 180 | 149 | 74 |
 | Valle d'Aosta | 54 | 52 | 15 |
 | Veneto | 1,213 | 944 | 243 |
 

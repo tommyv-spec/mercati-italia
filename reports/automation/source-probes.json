@@ -32,16 +32,16 @@
       "viability": "manual_schema_review_required"
     },
     "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6": {
-      "checked_date": "2026-10-13",
+      "checked_date": "2026-10-21",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
       "checked_date": "2026-10-21",
-      "column_fingerprint": null,
-      "status": "needs_review",
-      "viability": "manual_schema_review_required"
+      "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
+      "status": "schema_preview_only",
+      "viability": "venue_inventory_missing_visit_days"
     },
     "2e41941b-80fb-4ded-8330-427383f725f8": {
       "checked_date": "2026-10-12",
@@ -206,9 +206,9 @@
       "viability": "historical_aggregate_not_venues"
     },
     "f4407fb8-5e36-4311-8422-02d463741780": {
-      "checked_date": "2026-10-20",
-      "column_fingerprint": null,
-      "status": "offline_skipped",
+      "checked_date": "2026-10-21",
+      "column_fingerprint": "e4f54283ac5b9a78b0b91e16f489d17769814f3d53625f14a483545b636de3c8",
+      "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
     },
     "fcdebbfc-16d5-47fd-908b-8cba7e88be53": {
@@ -224,36 +224,35 @@
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
+        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
-        ],
-        "weekday": [
-          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "GIORNO",
-        "INIZIO PERIODO",
-        "FINE PERIODO",
-        "TIPO POSTEGGIO",
-        "TOTALE POSTEGGI"
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "ea311e6c-f02a-429d-b5f2-164859ee9445",
+      "id": "2c7b5143-fbb4-4ead-8e32-b9d756e15fe6",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 806,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/58de71b1-7c2c-4c2c-97fa-78b2c9686078.csv",
-      "schema_viability": "manual_schema_review_required",
+      "sample_bytes": 179,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/c97582dd-d37d-4f1d-a1c5-b0b90188c651.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Brendola",
+      "title": "Fiere e mercati - Comune di Casalserugo",
       "truncated": false
     },
     {
@@ -264,7 +263,6 @@
           "comune"
         ],
         "statistics_count": [
-          "mercati",
           "attivazioni",
           "cessazioni"
         ],
@@ -276,11 +274,9 @@
         "comune",
         "provincia",
         "anno",
-        "mercati",
         "totale",
         "attivazioni",
         "cessazioni",
-        "posteggi",
         "alimentare_totale",
         "alimentare_attivazioni",
         "alimentare_cessazioni",
@@ -292,30 +288,89 @@
         "produttori_cessazioni"
       ],
       "format": "CSV",
-      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
+      "id": "f4407fb8-5e36-4311-8422-02d463741780",
       "review_blockers": [
         "explicit_market_name_missing"
       ],
       "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
-      "schema_viability": "historical_aggregate_not_venues",
+      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati quindicinali",
+      "title": "Censimento dei mercati itineranti",
       "truncated": true
     },
     {
       "adapter_enabled": false,
-      "error": "TimeoutError: The read operation timed out",
       "events_confirmed": 0,
-      "field_hints": {},
-      "fields": [],
+      "field_hints": {
+        "address": [
+          "INDIRIZZO"
+        ],
+        "district": [
+          "Municipio"
+        ],
+        "hours": [
+          "Apertura_Lunedi",
+          "Chiusura_Lunedi",
+          "Apertura_Martedi",
+          "Chiusura_Martedi",
+          "Apertura_Mercoledi",
+          "Chiusura_Mercoledi"
+        ],
+        "market_type": [
+          "TIPOLOGIA"
+        ],
+        "name": [
+          "Nome_Mercato"
+        ],
+        "notes": [
+          "Altre_indicazioni",
+          "Note_mercato"
+        ]
+      },
+      "fields": [
+        "Municipio",
+        "Nome_Mercato",
+        "INDIRIZZO",
+        "Civico",
+        "Esp_Civico",
+        "Altre_indicazioni",
+        "CAP",
+        "TIPOLOGIA",
+        "Note_mercato",
+        "POSTEGGI_TOTALI",
+        "POSTEGGI_OCCUPATI",
+        "NUMERO_OPERATORI",
+        "POSTEGGI_ALIMENTARI",
+        "POSTEGGI_NON_ALIMENTARI",
+        "Apertura_Lunedi",
+        "Chiusura_Lunedi",
+        "Apertura_Martedi",
+        "Chiusura_Martedi",
+        "Apertura_Mercoledi",
+        "Chiusura_Mercoledi",
+        "Apertura_Giovedi",
+        "Chiusura_Giovedi",
+        "Apertura_Venedi",
+        "Chiusura_Venedi",
+        "Apertura_Sabato",
+        "Chiusura_Sabato",
+        "Note_orari",
+        "AGGIORNATO"
+      ],
       "format": "CSV",
       "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
+      "sample_bytes": 38408,
       "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
+      "schema_viability": "venue_inventory_missing_visit_days",
       "source_license_verified": false,
-      "status": "needs_review",
-      "title": "Dati sui Mercati Rionali"
+      "status": "schema_preview_only",
+      "title": "Dati sui Mercati Rionali",
+      "truncated": false
     }
   ],
   "schema": 1,
