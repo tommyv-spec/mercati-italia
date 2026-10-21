@@ -1,58 +1,62 @@
-# Happings: dati, backup e spazio locale
+# Happings — GitHub source backup verificato
 
-**Stato al 21 ottobre 2026.**
+## Backup pubblicato: 21 ottobre 2026
 
-Il repository pubblico `tommyv-spec/mercati-italia` contiene già il
-sistema ripetibile di discovery, parsing, riconciliazione ISTAT, aggiornamento
-del catalogo, controlli pre- e post-pubblicazione e scheduler DEV. Il flusso
-GitHub Actions già esistente usa runner pubblici gratuiti, senza Git LFS,
-storage acquistato o nuove infrastrutture.
+Il ramo pubblico [happings-backup-2026-10-21](https://github.com/tommyv-spec/mercati-italia/tree/happings-backup-2026-10-21/source-archives/happings/2026-10-21)
+contiene un backup leggibile in **88 file JSON** più README:
 
-## Verificato su GitHub
+- **2.313 pagine Happings** complete di fatti strutturati, URL, data di acquisizione
+  e SHA-256 dell'HTML originario;
+- **10 rapporti** di qualità, riconciliazione, potenziali duplicati e verifica
+  dell'ammissione DEV di 18 mercati settimanali;
+- manifest con hash SHA-256, dimensioni e numero di record per ogni blocco.
 
-- DEV: `improve/data-quality-security-performance-2026-10-11`.
-- Esecuzione Autopilot: `39652026641`, tutti e quattro i job riusciti.
-- Nuove schede settimanali ammesse da Happings: **18**.
-- Confronto dei cataloghi: **13.981 prima, 13.999 dopo, zero record preesistenti
-  modificati, zero ID cancellati**.
-- Verifica indipendente effettuata rigiocando le stesse dieci pagine HTML:
-  **18 ID ricostruiti**, senza attribuire orari, coordinate o aperture certe.
-- Il codice e le prove essenziali di fonte sono conservati in DEV; gli
-  artefatti completi del run GitHub Actions hanno una retention limitata.
+Prima della pubblicazione, tutti gli **88 Git blob** sono stati confrontati
+con gli hash delle copie locali: **zero differenze**. Il branch GitHub è stato
+riaperto e verificato: **89 file presenti su 89 attesi**, compreso il README.
 
-## Inventario della scansione completa locale
+Il backup conserva integralmente i **dati estratti**, non il markup HTML originale
+o i byte gzip storici. Un ripristino rigenera gzip e relative impronte;
+gli hash della pagina HTML di origine restano quelli osservati.
 
-Sulla macchina `BOOK-V1KQL7L6GB` lo snapshot Happings ha
-**2.313 documenti** processati: 106 pagine di mercati settimanali,
-2.207 dettagli evento, 8.053 righe negli indici, 281 dettagli classificati
-come mercati. La scansione locale ha archiviato per ogni URL i fatti estratti,
-lo SHA-256 della pagina HTML di origine e la data della lettura.
+## Ripristino e verifica ripetibili
 
-È stato generato un backup ZIP deterministico e verificato:
-**2.333 oggetti sorgente/report in 3.537.916 byte compressi**, ripartito in
-18 blocchi, con manifest SHA-256 per blocco e per file. Il digest del
-checkpoint d'origine è
-`9f367aca9f6a35d6eb94d423f0e1a1673b621b20f1651d7210697d819267774f`.
+Lo script `backend/happings_github_readable_backup.py` sul ramo DEV crea,
+verifica e ripristina i fatti Happings. Per ripartire da GitHub, scaricare
+il ramo del backup, poi dal repository DEV:
 
-**Attenzione:** il trasferimento del backup binario compresso a GitHub è
-stato bloccato dai controlli della connessione nel tentativo del
-21 ottobre. Non indicare il backup come già disponibile su GitHub, né
-cancellare lo snapshot locale sulla base di questo inventario.
-La scansione locale pesa meno di 3 MB; gran parte dello spazio occupato
-proviene dai cloni temporanei usati nell'analisi, non dai dati Happings.
+```powershell
+python -X utf8 backend/happings_github_readable_backup.py --out PATH_ARCHIVIO
+python -X utf8 backend/happings_github_readable_backup.py --out PATH_ARCHIVIO --restore-to DIRECTORY_VUOTA
+```
 
-## Politica permanente
+Il restore rifiuta directory non vuote, ricostruisce
+`happings-full-crawl/checkpoint.json`, tutti i `pages/*.json.gz` e i
+rapporti; verifica l'hash di ciascun blocco prima della scrittura e i file
+ricostruiti prima del successo.
 
-- Niente Git LFS, Storage/Actions a pagamento, acquisto di capacità
-  o pubblicazione sulla produzione.
-- Usare il repository DEV e la pipeline già autorizzata per codice e
-  catalogo. Conservare i risultati storici senza far crescere Git
-  indefinitamente con snapshot completi identici ogni giorno.
-- Prima di cancellare un archivio, verificare da GitHub una copia
-  ricostruibile e confrontare dimensione, SHA-256 globale, SHA-256 di
-  ciascun elemento e numero di pagine.
-- Non pubblicare percorsi di Windows, account personali, log, token o
-  altri metadati del dispositivo.
-- Il catalogo DEV e il backup delle pagine d'origine sono due oggetti
-  differenti: i 13.999 record su GitHub non costituiscono di per sé
-  il backup integrale dei 2.313 file della scansione originale.
+**Prova reale effettuata:** 2.313 pagine sorgente e 10 rapporti sono stati
+ripristinati in una directory temporanea, tutte le 2.313 schede hanno
+superato la verifica locale. I byte gzip risultanti non sono dichiarati
+uguali a quelli del primo download.
+
+## Uso quotidiano e nessun costo GitHub
+
+Il catalogo DEV, il codice del crawler e le pubblicazioni periodiche
+continuano sul ramo `improve/data-quality-security-performance-2026-10-11`
+e sull'Autopilot GitHub già esistente, senza nuova infrastruttura.
+Il task Windows locale `MercatiItalia-HappingsDaily` usa ancora
+il piccolo checkpoint attivo per fare aggiornamenti incrementali.
+Non cancellare quel checkpoint mentre il task è attivo.
+
+**Questo archivio è una fotografia del 21 ottobre:** eventuali fonti lette
+successivamente dal PC non sono automaticamente incluse nel backup.
+La procedura di esportazione è ripetibile; la sincronizzazione automatica
+di nuovi backup su GitHub richiede ancora un meccanismo che disponga di
+permessi di scrittura (il token GitHub attualmente collegato al PC non li ha
+sul repository `tommyv-spec`).
+
+Niente Git LFS, GitHub Actions/runner aggiuntivi, piani storage a pagamento,
+dati utente, token o cartelle personali nella pubblicazione. Nessun merge
+in produzione; le prove sorgente non equivalgono a verifica dell'apertura
+effettiva di un mercato.
