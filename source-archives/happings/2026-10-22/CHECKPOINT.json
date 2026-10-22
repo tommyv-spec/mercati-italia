@@ -1,18 +1,13 @@
 {
   "schema": 1,
-  "status": "incomplete",
   "date": "2026-10-22",
-  "base_commit": "8d6e0fa54f4c992e66b352002f7f64739960d3f5",
-  "target_source_pages": 2349,
-  "expected_json_files": 89,
-  "reused_blobs": 80,
-  "uploaded_updated_files": 4,
-  "pending_files": [
-    "manifest.json",
-    "report-happings-source-html-index-000.json",
-    "report-happings-source-reconciliation-000.json",
-    "report-happings-source-worklist-023.json",
-    "report-happings-weekly-admission-000.json"
-  ],
-  "no_paid_github_services": true
+  "status": "uploaded_restore_pending",
+  "source_pages": 2349,
+  "files_uploaded": 89,
+  "files_reused_from_previous_snapshot": 80,
+  "files_updated_or_added": 9,
+  "manifest_sha256": "e8dc73fcaccbfcb68c53be026c4bd66ea5e3085e7bb9e0751906fe979259d350",
+  "previous_archive_branch": "happings-source-archive-2026-10-21",
+  "no_paid_github_services": true,
+  "production_modified": false
 }
