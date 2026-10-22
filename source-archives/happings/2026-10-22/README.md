@@ -5,7 +5,7 @@ The deterministic `manifest.json` indexes **89 JSON files** with SHA-256 checksu
 Eighty JSON blobs are reused byte-for-byte from the 21 October snapshot; only nine new Git blobs were required.
 This preserves previous archive versions without Git LFS, extra runners, or any paid storage.
 
-**Restore (once the independent restore proof has been added):**
+**Restore (independently verified; see `restore-proof.json`):**
 
 ```bash
 git clone --depth 1 --single-branch --branch happings-source-archive-2026-10-22 https://github.com/tommyv-spec/mercati-italia.git mercati-archive
