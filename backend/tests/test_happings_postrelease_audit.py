@@ -32,6 +32,9 @@ def inputs():
     report={"schema":1,"status":"dev_published","dev_published":True,
             "qa_gate_approved":True,"added_ids":[raw["slug"]],
             "old_record_count":1,"new_record_count":2,
+            "existing_market_records_changed":0,
+            "existing_market_dates_expired":0,
+            "existing_market_non_calendar_fields_changed":0,
             "source_page_hashes":[{"url":URL,"sha256":hashlib.sha256(HTML).hexdigest()}]}
     return old,raw,row,page,report
 
@@ -56,6 +59,40 @@ class PostreleaseTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"existing market"):
             audit.verify_cohort({old["slug"]:old},
                 {old["slug"]:modified,row["slug"]:row},
+                report,[page],today=DAY)
+
+    def test_independent_date_expiry_without_other_mutations(self):
+        old,raw,row,page,report=inputs()
+        before={**old,"date":["2026-10-20","2026-10-21","2026-10-22"],
+                "date_quality":"prevista","orario_testo":"08:00 - 13:00"}
+        after={**before,"date":["2026-10-21","2026-10-22"]}
+        proof={**report,"existing_market_records_changed":1,
+               "existing_market_dates_expired":1}
+        with patch.object(audit,"preview",
+                          return_value=([before,raw],{"added_ids":[raw["slug"]]})),\
+             patch.object(audit,"verify_changes"):
+            summary=audit.verify_cohort(
+                {before["slug"]:before},
+                {before["slug"]:after,row["slug"]:row},
+                proof,[page],today=DAY)
+        self.assertEqual(summary["existing_calendar_rollovers"],1)
+        self.assertEqual(summary["existing_non_calendar_changes"],0)
+        for tamper in (
+            {**after,"date":["2026-10-22"]},
+            {**after,"date":["2026-10-21","2026-10-22","2026-10-23"]},
+            {**after,"orario_testo":"opened, verified"},
+            {**after,"fonte":"fabricated"},
+        ):
+            with self.subTest(tamper=tamper):
+                with self.assertRaisesRegex(ValueError,"existing market"):
+                    audit.verify_cohort(
+                        {before["slug"]:before},
+                        {before["slug"]:tamper,row["slug"]:row},
+                        proof,[page],today=DAY)
+        with self.assertRaisesRegex(ValueError,"existing market"):
+            audit.verify_cohort(
+                {before["slug"]:before},
+                {before["slug"]:after,row["slug"]:row},
                 report,[page],today=DAY)
 
     def test_reject_saved_source_html_change(self):

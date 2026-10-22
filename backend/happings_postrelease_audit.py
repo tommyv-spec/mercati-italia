@@ -15,7 +15,7 @@ import subprocess
 from datetime import date
 from pathlib import Path
 
-from export_static import normalize
+from export_static import normalize, parse_dates
 from happings_weekly_admission import preview, verify_changes, MAX_NEW
 from happings_weekly_dev_admission import pages_from_autopilot
 from happings_bulk_snapshot import write_json
@@ -71,8 +71,26 @@ def committed_catalog(repo, revision):
     return manifest,items
 
 
+def _same_committed_record_or_expired_dates(before, after, today):
+    """Independent post-commit proof of the exporter's date-only expiry.
+
+    This does not delegate to the publisher's admission validator: any
+    identity, source field, address, hour, or future-calendar change fails.
+    """
+    if before == after:
+        return True
+    if not isinstance(before, dict) or not isinstance(after, dict):
+        return False
+    if ({k: v for k, v in before.items() if k != "date"} !=
+            {k: v for k, v in after.items() if k != "date"}):
+        return False
+    return (isinstance(before.get("date"), list)
+            and isinstance(after.get("date"), list)
+            and after["date"] == parse_dates(before["date"], today))
+
+
 def verify_cohort(before, after, admission, publisher_pages, *, today):
-    """Prove new records independently of the admission's claimed counters."""
+    """Independently prove new source records and bounded date-only rollover."""
     if (not isinstance(before,dict) or not isinstance(after,dict)
             or not isinstance(admission,dict) or not isinstance(publisher_pages,list)
             or type(today) is not date):
@@ -87,7 +105,12 @@ def verify_cohort(before, after, admission, publisher_pages, *, today):
             or admission.get("qa_gate_approved") is not True
             or not isinstance(ids,list) or len(set(ids))!=len(ids)
             or not isinstance(hashes,list) or not hashes
-            or removed or changed or not added or len(added)>MAX_NEW
+            or removed or not added or len(added)>MAX_NEW
+            or any(not _same_committed_record_or_expired_dates(
+                before[sid],after[sid],today) for sid in changed)
+            or admission.get("existing_market_records_changed") != len(changed)
+            or admission.get("existing_market_dates_expired") != len(changed)
+            or admission.get("existing_market_non_calendar_fields_changed") != 0
             or added!=set(ids)
             or len(before)!=admission.get("old_record_count")
             or len(after)!=admission.get("new_record_count")):
@@ -121,7 +144,9 @@ def verify_cohort(before, after, admission, publisher_pages, *, today):
         "source_html_pages_replayed":len(publisher_pages),
         "published_new_market_ids":len(added),
         "existing_market_ids_preserved":len(before),
-        "existing_record_content_changes":0,
+        "existing_record_content_changes":len(changed),
+        "existing_calendar_rollovers":len(changed),
+        "existing_non_calendar_changes":0,
         "market_ids_deleted":0,
         "invented_opening_verifications":0,
         "invented_exact_hours":0,
