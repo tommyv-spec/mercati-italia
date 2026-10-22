@@ -63,6 +63,32 @@ class WeeklyDevAdmissionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"protected"):
             a.verify_catalog([normalized], [],{"added_ids":[]},today=day)
 
+    def test_deterministic_date_expiry_cannot_change_other_existing_fields(self):
+        day=date(2026,10,22)
+        old={"slug":"protected-weekly","date":["2026-10-21","2026-10-22","2026-10-29"],
+             "indirizzo":"Piazza San Giovanni","orario_testo":"8:00 - 13:00",
+             "fonte":"Happings","date_quality":"prevista"}
+        new=_new_row({"city":"Aquileia","weekday":1,"place":"Piazza San Giovanni"},
+                     region="friuli venezia giulia",province="UD",source_url=W,
+                     read_on=day,page_hash="a"*64,page_metadata=None)
+        candidate,error=normalize(new,day)
+        self.assertIsNone(error)
+        evidence={"added_ids":[candidate["slug"]]}
+        future={**old,"date":["2026-10-22","2026-10-29"]}
+        self.assertEqual(
+            a.verify_catalog([old],[future,candidate],evidence,today=day),
+            [candidate["slug"]])
+        for changed in (
+            {**future,"date":["2026-10-29"]},
+            {**future,"date":["2026-10-22","2026-10-29","2026-10-30"]},
+            {**future,"indirizzo":"Via Inventata"},
+            {**future,"orario_testo":"apertura confermata"},
+            {**future,"fonte":"altra fonte"},
+        ):
+            with self.subTest(modification=changed):
+                with self.assertRaisesRegex(ValueError,"protected"):
+                    a.verify_catalog([old],[changed,candidate],evidence,today=day)
+
     def test_encoded_country_and_robots_bound_live_html(self):
         with patch("happings_weekly_dev_admission.source.authorization_status",
                    return_value={"authorized":True}):

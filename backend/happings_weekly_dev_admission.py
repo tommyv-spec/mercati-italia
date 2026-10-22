@@ -1,8 +1,9 @@
 """Repeatable, fail-closed Happings weekly admission to DEV, never production.
 
 Live publisher HTML, not an old worklist or invented metadata, is the
-admission source. All existing market IDs and complete records are immutable
-for this phase. A separate replay verifier and the existing static QA,
+admission source. Existing market IDs and source fields remain immutable;
+only the exporter's exact deterministic removal of expired dates is allowed.
+A separate replay verifier and the existing static QA,
 autopilot release gate and fast-forward-only Git update guard the transition.
 
 This runs AFTER daily source discovery/reconciliation on the user's computer.
@@ -26,7 +27,7 @@ from pathlib import Path
 
 from audit_dataset import audit
 from autopilot import compare_candidates, prune_old_assets
-from export_static import export
+from export_static import export, parse_dates
 from happings_bulk_snapshot import write_json
 from happings_weekly_admission import MAX_NEW, preview, verify_changes
 import happings_source_enrichment as source
@@ -212,8 +213,26 @@ def pages_from_autopilot(source_dir, *, today):
     return pages,report
 
 
+def _same_protected_market_or_date_rollover(before, after, *, today):
+    """Allow only the exporter's deterministic removal of out-of-window dates.
+
+    Existing source identity, addresses, times, provenance, and future dates
+    remain immutable. This is *not* permission to alter a protected event.
+    """
+    if before == after:
+        return True
+    if not isinstance(before, dict) or not isinstance(after, dict):
+        return False
+    if ({k: v for k, v in before.items() if k != "date"} !=
+            {k: v for k, v in after.items() if k != "date"}):
+        return False
+    return (isinstance(before.get("date"), list)
+            and isinstance(after.get("date"), list)
+            and after["date"] == parse_dates(before["date"], today))
+
+
 def verify_catalog(before, after, evidence, *, today):
-    """Independent normalized static diff with zero changed or removed IDs."""
+    """Independent normalized diff; only expected date expiry may change."""
     original = {row["slug"]:row for row in before}
     candidate = {row["slug"]:row for row in after}
     additions = set(candidate) - set(original)
@@ -221,7 +240,8 @@ def verify_catalog(before, after, evidence, *, today):
             or not set(original).issubset(candidate)
             or additions != set(evidence.get("added_ids") or [])
             or not additions or len(additions) > MAX_NEW
-            or any(candidate[sid] != row for sid,row in original.items())):
+            or any(not _same_protected_market_or_date_rollover(
+                row, candidate[sid], today=today) for sid,row in original.items())):
         raise ValueError("Weekly candidate changed protected identity or source fields")
     for sid in additions:
         row=candidate[sid]
@@ -266,6 +286,10 @@ def stage_candidate(repo, base, pages, *, today, max_new, tmp_root):
                          json.dumps(release["gates"],sort_keys=True))
     fresh=json.loads((output/"manifest.json").read_text("utf-8"))
     prune_old_assets(output,old_snapshot,fresh)
+    old_by_id = {row["slug"]: row for row in old_rows}
+    natural_date_rollovers = sum(
+        old_by_id[row["slug"]].get("date") != row.get("date")
+        for row in normalized if row["slug"] in old_by_id)
     return output, {
         "status":"qa_approved", "added_ids":ids,
         "source_pages":len(pages),
@@ -277,7 +301,9 @@ def stage_candidate(repo, base, pages, *, today, max_new, tmp_root):
         "source_page_hashes":[{
             "url":p["final_url"],"sha256":hashlib.sha256(p["html"]).hexdigest(),
             "size":len(p["html"])} for p in pages],
-        "existing_market_records_changed":0,
+        "existing_market_records_changed":natural_date_rollovers,
+        "existing_market_dates_expired":natural_date_rollovers,
+        "existing_market_non_calendar_fields_changed":0,
         "existing_market_ids_deleted":0,
         "source_claims_opening_verified":0,
         "qa_gate_approved":True
