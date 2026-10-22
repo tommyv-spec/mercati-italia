@@ -98,6 +98,15 @@ class WeeklyDevAdmissionTests(unittest.TestCase):
                 raise AssertionError(args)
             with patch.object(a,"git",side_effect=pretend):
                 self.assertEqual(a.checked_checkout(root),SHA)
+            def advanced(repo,*args,**kw):
+                if args[0]=="ls-remote":
+                    return "f"*40+"\trefs/heads/"+a.BRANCH
+                return pretend(repo,*args,**kw)
+            with patch.object(a,"git",side_effect=advanced):
+                with self.assertRaisesRegex(ValueError,"baseline"):
+                    a.checked_checkout(root)
+                self.assertEqual(
+                    a.checked_checkout(root,allow_dirty=True,allow_stale_remote=True),SHA)
             with patch.object(a,"git",side_effect=lambda *_args,**_kw:"main"):
                 with self.assertRaises(ValueError): a.checked_checkout(root)
 

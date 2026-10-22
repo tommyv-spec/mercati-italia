@@ -56,7 +56,7 @@ def git(repo, *args, timeout=90):
     return p.stdout.strip()
 
 
-def checked_checkout(repo, *, allow_dirty=False):
+def checked_checkout(repo, *, allow_dirty=False, allow_stale_remote=False):
     repo = Path(repo).resolve()
     if not (repo / ".happings-dedicated-checkout").is_file():
         raise ValueError("Weekly DEV admission requires the dedicated local checkout")
@@ -70,7 +70,11 @@ def checked_checkout(repo, *, allow_dirty=False):
         raise ValueError("Weekly admission cannot overwrite local tracked changes")
     current = git(repo, "rev-parse", "HEAD")
     remote = git(repo, "ls-remote", "origin", "refs/heads/" + BRANCH).split()[0]
-    if current != remote:
+    # Read-only source/ISTAT previews are pinned to their local catalog
+    # revision. If DEV moves during a long publisher crawl, no catalog is
+    # written here, so the preview can still be independently checked.
+    # Publication must ALWAYS reject a newer remote DEV baseline.
+    if current != remote and not allow_stale_remote:
         raise ValueError("Weekly admission baseline no longer matches remote DEV")
     return current
 
@@ -332,7 +336,7 @@ def run(repo, out, *, today=None, max_pages=MAX_SOURCE_PAGES,
     today=today or date.today()
     if type(publish) is not bool or type(max_new) is not int or not 1<=max_new<=MAX_NEW:
         raise ValueError("Invalid bounded DEV-only admission mode")
-    baseline=checked_checkout(repo,allow_dirty=not publish)
+    baseline=checked_checkout(repo,allow_dirty=not publish,allow_stale_remote=not publish)
     queue=out/"happings-source-worklist.json"
     qa=out/"happings-source-reconciliation.json"
     urls,pages_total=candidate_pages(queue,qa,dev_sha=baseline,max_pages=max_pages)
@@ -372,7 +376,7 @@ def run_from_autopilot(repo, source_dir, out, *, today=None,
         raise ValueError("Invalid DEV publication settings")
     if type(max_pages) is not int or not 1<=max_pages<=MAX_SOURCE_PAGES:
         raise ValueError("Unbounded same-run Happings source selection")
-    baseline=checked_checkout(repo,allow_dirty=not publish)
+    baseline=checked_checkout(repo,allow_dirty=not publish,allow_stale_remote=not publish)
     raw,origin=pages_from_autopilot(source_dir,today=today)
     source_pages=raw[:max_pages]
     if not source_pages:
