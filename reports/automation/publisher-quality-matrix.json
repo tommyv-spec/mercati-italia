@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-20",
+  "as_of": "2026-10-22",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -105,6 +105,19 @@
       "title": "Anagrafica mercati",
       "triage_class": "general_market_candidate",
       "triage_score_not_market_yield": 10
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "ecfe375b-8322-47da-972f-c208649a8b9d",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Fiere e mercati - Comune di Sona",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 13
     },
     {
       "actual_market_count_estimated": null,
@@ -446,19 +459,6 @@
     },
     {
       "actual_market_count_estimated": null,
-      "dataset_id": "ecfe375b-8322-47da-972f-c208649a8b9d",
-      "market_events_confirmed": 0,
-      "new_market_imports_authorized_by_this_audit": false,
-      "publisher": "Regione Veneto",
-      "record_count_measured": null,
-      "review_status": "concession_registry_not_market_venues",
-      "schema_observation": "concession_registry_without_visit_schedule",
-      "title": "Fiere e mercati - Comune di Sona",
-      "triage_class": "concession_registry",
-      "triage_score_not_market_yield": -5
-    },
-    {
-      "actual_market_count_estimated": null,
       "dataset_id": "74600cc1-0adb-4ae3-8255-30556e03e932",
       "market_events_confirmed": 0,
       "new_market_imports_authorized_by_this_audit": false,
@@ -640,7 +640,7 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 13824,
+  "catalog_record_count": 14007,
   "catalog_source_labels_count": 87,
   "market_confirmations": 0,
   "market_updates": 0,
@@ -652,22 +652,23 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
+      "count_delta_since_last_audit": 183,
       "fields": {
-        "address_generic_not_navigable": 2443,
-        "address_missing": 2868,
-        "coordinates_missing": 3,
-        "future_dates_missing": 305,
-        "hours_missing": 9483,
-        "records": 9647
+        "address_generic_not_navigable": 2417,
+        "address_missing": 2329,
+        "coordinates_missing": 186,
+        "future_dates_missing": 331,
+        "hours_missing": 9237,
+        "records": 9830,
+        "source_or_import_date_unknown": 183
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
-      "next_action": "Audit catalog rows against publisher's weekly province lists and event detail page formats. Prefer a separate current municipal source for hours, street and seasonal exceptions; do not reimport commercial source content or certify schedules from scraping.",
-      "priority_workload_score_not_evidence": 52180,
+      "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
+      "priority_workload_score_not_evidence": 50124,
       "publisher": "happings.com",
-      "records": 9647,
-      "rights_classification": "publisher_rights_unreviewed",
+      "records": 9830,
+      "rights_classification": "see_existing_happings_operational_policy",
       "sample_id_only": {
         "address_generic_not_navigable": [
           "mercato-settimanale-di-acciano-acciano-sabato",
@@ -684,9 +685,11 @@
           "mercato-settimanale-a-alfedena-alfedena-martedi"
         ],
         "coordinates_missing": [
-          "mercato-settimanale-di-castellammare-di-stabia-1-in-provincia-di-mercato-settima",
-          "mercato-settimanale-di-centro-storico-di-collalto-collalto-mercoledi",
-          "mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana"
+          "happings-mercato-di-campagna-amica-di-atri-3d19a276a90a",
+          "happings-mercato-coperto-di-chieti-2412e0ff9a48",
+          "happings-mercato-di-campagna-amica-di-via-gobetti-4fbca6c89bc1",
+          "happings-mercato-di-campagna-amica-di-catanzaro-7751482e165f",
+          "happings-mercato-di-campagna-amica-di-melito-di-porto-salvo-175d867517a9"
         ],
         "future_dates_missing": [
           "mercato-settimanale-di-balsorano-balsorano",
@@ -701,6 +704,13 @@
           "mercato-settimanale-a-aielli-aielli-lunedi",
           "mercato-settimanale-di-aielli-aielli",
           "mercato-settimanale-di-alanno-alanno"
+        ],
+        "source_or_import_date_unknown": [
+          "happings-mercato-di-campagna-amica-di-atri-3d19a276a90a",
+          "happings-mercato-coperto-di-chieti-2412e0ff9a48",
+          "happings-mercato-di-campagna-amica-di-via-gobetti-4fbca6c89bc1",
+          "happings-mercato-di-campagna-amica-di-catanzaro-7751482e165f",
+          "happings-mercato-di-campagna-amica-di-melito-di-porto-salvo-175d867517a9"
         ]
       }
     },
@@ -711,15 +721,15 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 44,
-        "address_missing": 445,
-        "future_dates_missing": 844,
-        "hours_missing": 369,
+        "address_missing": 441,
+        "future_dates_missing": 942,
+        "hours_missing": 367,
         "records": 2197
       },
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5378,
+      "priority_workload_score_not_evidence": 5460,
       "publisher": "eventiesagre.it",
       "records": 2197,
       "rights_classification": "urls_only_no_bulk_content_reuse",
@@ -763,14 +773,14 @@
         "address_generic_not_navigable": 2,
         "address_missing": 1,
         "coordinates_missing": 216,
-        "future_dates_missing": 390,
+        "future_dates_missing": 392,
         "hours_missing": 342,
         "records": 1128
       },
       "kind": "regional_open_data_adapter",
       "layout": "one_market_id_per_weekday",
       "next_action": "Run source-row identity and town+street+weekday checks from the approved official MERCap adapter. Quarantine conflicting venue/day.",
-      "priority_workload_score_not_evidence": 2217,
+      "priority_workload_score_not_evidence": 2219,
       "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
       "records": 1128,
       "rights_classification": "existing_adapter_source_scope",
@@ -813,14 +823,14 @@
       "fields": {
         "address_generic_not_navigable": 6,
         "coordinates_missing": 7,
-        "future_dates_missing": 71,
-        "hours_missing": 431,
+        "future_dates_missing": 154,
+        "hours_missing": 362,
         "records": 432
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1401,
+      "priority_workload_score_not_evidence": 1346,
       "publisher": "cosedicasa.com",
       "records": 432,
       "rights_classification": "publisher_rights_unreviewed",
@@ -843,15 +853,15 @@
           "mercatino-antiquariato-e-usato-di-chieti-l-antico-in-piazza-corso-marrucino-chie",
           "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
           "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste",
-          "mercatino-antiquariato-e-usato-di-cervia-curiosando-viale-roma-piazza-garibaldi",
-          "mercatino-antiquariato-e-usato-di-cesenatico-curiosando-piazza-andrea-costa-cese"
+          "mercatino-antiquariato-e-usato-di-cava-de-tirreni-la-soffitta-in-piazza-corso-ma",
+          "mercatino-antiquariato-e-usato-di-bologna-mercato-antiquario-citta-di-bologna-pi"
         ],
         "hours_missing": [
-          "mercatino-antiquariato-e-usato-di-chieti-l-antico-in-piazza-corso-marrucino-chie",
           "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
           "mercatino-antiquariato-e-usato-di-pescara-mercantico-area-stazione-di-pescara-po",
           "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
-          "mercatino-antiquariato-e-usato-di-potenza-mercatino-degli-scambi-piazza-mario-pa"
+          "mercatino-antiquariato-e-usato-di-potenza-mercatino-degli-scambi-piazza-mario-pa",
+          "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste"
         ]
       }
     },
@@ -905,13 +915,13 @@
       "fields": {
         "coordinates_missing": 2,
         "future_dates_missing": 70,
-        "hours_missing": 70,
+        "hours_missing": 2,
         "records": 70
       },
       "kind": "other_legacy_or_publisher",
       "layout": "unclassified_source_page",
       "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
-      "priority_workload_score_not_evidence": 280,
+      "priority_workload_score_not_evidence": 144,
       "publisher": "dati.comune.roma.it",
       "records": 70,
       "rights_classification": "source_rights_and_structure_require_review",
@@ -928,11 +938,8 @@
           "casal-bernocchi-roma"
         ],
         "hours_missing": [
-          "belsito-roma",
-          "bonfante-roma",
-          "campo-marzio-ii-roma",
-          "capo-passero-roma",
-          "casal-bernocchi-roma"
+          "nuovo-cinecitt-roma",
+          "prati-roma"
         ]
       }
     },
@@ -944,14 +951,13 @@
       "fields": {
         "coordinates_missing": 39,
         "future_dates_missing": 39,
-        "hours_missing": 9,
         "records": 39,
         "stored_source_or_import_date_older_than_540d": 39
       },
       "kind": "municipal_open_data_adapter",
       "layout": "market_venues_mixed_with_fairs",
       "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
-      "priority_workload_score_not_evidence": 174,
+      "priority_workload_score_not_evidence": 156,
       "publisher": "Comune di Bologna — dati ufficiali; apertura non confermata",
       "records": 39,
       "rights_classification": "existing_adapter_source_scope",
@@ -969,13 +975,6 @@
           "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
           "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
           "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb"
-        ],
-        "hours_missing": [
-          "bo-open-70472450ee8d71167730139b73638b824b822c40",
-          "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
-          "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8",
-          "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
-          "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d"
         ],
         "stored_source_or_import_date_older_than_540d": [
           "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
@@ -3420,6 +3419,2324 @@
   "schema": 1,
   "source_count_is_not_number_of_independent_venues": true,
   "source_dates_are_not_per_market_confirmation": true,
+  "source_format_review": {
+    "auxiliary_formats": [
+      {
+        "catalog_records": 0,
+        "format_id": "bassaromagnamia.it--3389a37e9a00",
+        "host": "bassaromagnamia.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/poitofintrests/mercati-settimanali-6/"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "bassaromagnamia.it--77f16ec61d3d",
+        "host": "bassaromagnamia.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/poitofintrests/mercati-del-contadino/"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "comune.corciano.pg.it--742b4c3b5941",
+        "host": "comune.corciano.pg.it",
+        "open_todo_ids": [
+          "OFF-CO-01"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "comune.roma.it--198edc4b9b92",
+        "host": "comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/web/it/informazione-di-servizio.page?contentId={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "comune.roma.it--289437d31bd8",
+        "host": "comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/web-resources/cms/documents/Determina_17723_24_02_2025_venerd_firm.pdf"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "comune.roma.it--62c2acfb1eb4",
+        "host": "comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/web-resources/cms/documents/Contratto_AMA_2024__2025_Allegato_7_Carta_Municipale_Municipio_13.pdf"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "data.comune.fi.it--aebe3c51a74f",
+        "host": "data.comune.fi.it",
+        "open_todo_ids": [
+          "OFF-FI-02",
+          "OFF-FI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/datastore/download.php?format={value}&id={value}&type={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.comune.milano.it--811e995cd76b",
+        "host": "dati.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b07ed03a-d198-4a16-9eb5-744cb406f3eb/download/mss-mag24_final.json"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.comune.milano.it--e93fe70b0688",
+        "host": "dati.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b6c162cb-6e26-4e1c-bba0-3f1f595a19dc/download/mss-mag24.geojson"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.comune.milano.it--fa20a25c15b9",
+        "host": "dati.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/5d4a83c3-6ac5-4430-b5a9-d669a933b036/download/mss-mag24_final.csv"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.comune.roma.it--698a81c590c6",
+        "host": "dati.comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-02"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.comune.roma.it--e20fd21ce1be",
+        "host": "dati.comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-02"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/cd515283-3079-42fe-a066-ced11b9a8387/download/mercati_rionali_agosto_2023.csv"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.comune.roma.it--e33b298b8b6e",
+        "host": "dati.comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-02"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/catalog/api/3/action/package_show?id={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.lombardia.it--432287cb35fe",
+        "host": "dati.lombardia.it",
+        "open_todo_ids": [],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/resource/68zx-njaw.json?$limit={value}&$order={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "dati.lombardia.it--94017c4ffe4c",
+        "host": "dati.lombardia.it",
+        "open_todo_ids": [],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/api/views/68zx-njaw.json"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "datigis.comune.fi.it--13155d9f084d",
+        "host": "datigis.comune.fi.it",
+        "open_todo_ids": [
+          "OFF-FI-02",
+          "OFF-FI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.zip"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "datigis.comune.fi.it--3dffd7636e05",
+        "host": "datigis.comune.fi.it",
+        "open_todo_ids": [
+          "OFF-FI-02",
+          "OFF-FI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.geojson"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "datigis.comune.fi.it--d75dc7aad7be",
+        "host": "datigis.comune.fi.it",
+        "open_todo_ids": [
+          "OFF-FI-02",
+          "OFF-FI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.csv"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "gisportal.comune.milano.it--435c4683d9f2",
+        "host": "gisportal.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0/query?f={value}&outFields={value}&outSR={value}&resultRecordCount={value}&returnGeometry={value}&where={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "gisportal.comune.milano.it--b80d45a7e660",
+        "host": "gisportal.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0?f={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "google.com--d20b509e76f3",
+        "host": "google.com",
+        "open_todo_ids": [
+          "OFF-RO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/maps/d/kml?forcekml={value}&mid={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "opendata.comune.bologna.it--1cd38e42835b",
+        "host": "opendata.comune.bologna.it",
+        "open_todo_ids": [
+          "OFF-BO-02",
+          "OFF-BO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/api/records/1.0/search/?dataset={value}&rows={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "opendata.comune.bologna.it--7645d392be0d",
+        "host": "opendata.comune.bologna.it",
+        "open_todo_ids": [
+          "OFF-BO-02",
+          "OFF-BO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/api/records/1.0/search/?dataset={value}&fields={value}&q={value}&rows={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "opendata.comune.bologna.it--97ad8bc609d7",
+        "host": "opendata.comune.bologna.it",
+        "open_todo_ids": [
+          "OFF-BO-02",
+          "OFF-BO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/api/explore/v2.1/catalog/datasets/mercati-e-fiere"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "opendata.comune.fi.it--87db03cd3378",
+        "host": "opendata.comune.fi.it",
+        "open_todo_ids": [
+          "OFF-FI-02",
+          "OFF-FI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/page_dataset_show?id={value}"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "www2.comune.milano.it--040bb7e6ca15",
+        "host": "www2.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/web/fare-impresa/mercati-settimanali-scoperti"
+      },
+      {
+        "catalog_records": 0,
+        "format_id": "www2.comune.milano.it--5fe8b3668208",
+        "host": "www2.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/documents/87339536/190972166/MSS+-+ubicazioni%2Corari%2Corganici+1+Ottobre+2026.pdf/d5b13a87-b9de-7c48-5674-65c4151565c3?t={value}"
+      }
+    ],
+    "checklist": "reports/automation/SOURCE_FORMAT_CHECKLIST.md",
+    "formats": [
+      {
+        "catalog_records": 4746,
+        "format_id": "happings.com--7b87b2b2b5db",
+        "host": "happings.com",
+        "open_todo_ids": [
+          "HAPP-FORMAT-04",
+          "HAPP-FORMAT-06"
+        ],
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/{scheda-comunale}.html"
+      },
+      {
+        "catalog_records": 4487,
+        "format_id": "happings.com--04b85587f84c",
+        "host": "happings.com",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/mercati-settimanali-a-{provincia}.html"
+      },
+      {
+        "catalog_records": 1150,
+        "format_id": "eventiesagre.it--c25111abbd5a",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Mercatini_Filiera+Corta/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 1128,
+        "format_id": "dati.lombardia.it--eb61afdd496f",
+        "host": "dati.lombardia.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/d/68zx-njaw"
+      },
+      {
+        "catalog_records": 432,
+        "format_id": "cosedicasa.com--e4978a2ff443",
+        "host": "cosedicasa.com",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/mercatini/{slug}"
+      },
+      {
+        "catalog_records": 414,
+        "format_id": "happings.com--3d81fd9e0a91",
+        "host": "happings.com",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/mercati-settimanali-ad-{provincia}.html"
+      },
+      {
+        "catalog_records": 267,
+        "format_id": "eventiesagre.it--5130dde4763c",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
+        "url_pattern": "/Mercatini_Vari/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 205,
+        "format_id": "eventiesagre.it--86b2ab982276",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Mercatini_Antiquariato/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 173,
+        "format_id": "eventiesagre.it--7b2012e05e04",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
+        "url_pattern": "/Mercatini_Artigianato/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 165,
+        "format_id": "happings.com--795abb069b70",
+        "host": "happings.com",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/happing/{slug}/"
+      },
+      {
+        "catalog_records": 151,
+        "format_id": "eventiesagre.it--85894968edb7",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
+        "url_pattern": "/Mercatini_Usato/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 142,
+        "format_id": "eventiesagre.it--f3b997a2f09a",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
+        "url_pattern": "/Mercatini_Enogastronomici/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 85,
+        "format_id": "dati.comune.milano.it--de1e536ced97",
+        "host": "dati.comune.milano.it",
+        "open_todo_ids": [
+          "OFF-MI-01",
+          "OFF-MI-02",
+          "OFF-MI-03"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/dataset/ds291-economia-mercati-settimanali-scoperti"
+      },
+      {
+        "catalog_records": 70,
+        "format_id": "dati.comune.roma.it--eae32c9ad822",
+        "host": "dati.comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-02"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/catalog/dataset/d881"
+      },
+      {
+        "catalog_records": 39,
+        "format_id": "opendata.comune.bologna.it--72028fdb86a6",
+        "host": "opendata.comune.bologna.it",
+        "open_todo_ids": [
+          "OFF-BO-02",
+          "OFF-BO-03"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/explore/dataset/mercati-e-fiere/"
+      },
+      {
+        "catalog_records": 32,
+        "format_id": "eventiesagre.it--2e3d99867afe",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
+        "url_pattern": "/Mercatini_hobbisti+creativi/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 22,
+        "format_id": "cosafareafirenze.it--4aba31ad6df6",
+        "host": "cosafareafirenze.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-05",
+          "NC-06",
+          "NC-09",
+          "NC-15",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/mercati-firenze/"
+      },
+      {
+        "catalog_records": 18,
+        "format_id": "happings.com--311686cb6f8d",
+        "host": "happings.com",
+        "open_todo_ids": [
+          "HAPP-FORMAT-04",
+          "HAPP-FORMAT-06"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/mercati-settimanali-{a|ad}-{provincia}-e-provincia/"
+      },
+      {
+        "catalog_records": 17,
+        "format_id": "eventiesagre.it--eb4c1e3b925a",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Eventi_Enogastronomici/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 16,
+        "format_id": "eventiesagre.it--91f1a4b8c538",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
+        "url_pattern": "/Mercatini_Collezionismo/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 13,
+        "format_id": "eventiesagre.it--1e35acf83ff0",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
+        "url_pattern": "/Mercatini_Natale/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 13,
+        "format_id": "eventiesagre.it--895ca733a723",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Eventi_Feste/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 10,
+        "format_id": "romatoday.it--d53004dedb50",
+        "host": "romatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 9,
+        "format_id": "eventiesagre.it--fe59c2391d07",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Eventi_Mostra+Mercato/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 8,
+        "format_id": "emiliaromagnaturismo.it--058519c55f08",
+        "host": "emiliaromagnaturismo.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-03",
+          "NC-04",
+          "NC-06",
+          "NC-07",
+          "NC-15",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/eventi/{slug}"
+      },
+      {
+        "catalog_records": 8,
+        "format_id": "trentino.com--2b837e50ce8e",
+        "host": "trentino.com",
+        "open_todo_ids": [
+          "NC-08",
+          "NC-11",
+          "NC-14"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/it/calendario/"
+      },
+      {
+        "catalog_records": 7,
+        "format_id": "algherohospitality.it--e297ca84a4bf",
+        "host": "algherohospitality.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-05",
+          "NC-06",
+          "NC-10",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/mercati-rionali-di-alghero/"
+      },
+      {
+        "catalog_records": 7,
+        "format_id": "eventi.bergamo.it--86372603eab0",
+        "host": "eventi.bergamo.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-03",
+          "NC-04",
+          "NC-05",
+          "NC-07",
+          "NC-15",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/evento/{slug}/"
+      },
+      {
+        "catalog_records": 7,
+        "format_id": "genovatoday.it--bd4d23568a60",
+        "host": "genovatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 7,
+        "format_id": "solosagre.it--ceaedca6c042",
+        "host": "solosagre.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-03",
+          "NC-06",
+          "NC-07",
+          "NC-09",
+          "NC-15",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/mostre-e-mercatini/{regione}/{provincia}/{comune}/{slug}.html"
+      },
+      {
+        "catalog_records": 6,
+        "format_id": "eventiesagre.it--23337f2e261f",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Eventi_Festival/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 6,
+        "format_id": "sagretorino.it--3ad295df7ef3",
+        "host": "sagretorino.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-06",
+          "NC-07",
+          "NC-13",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 5,
+        "format_id": "firenzetoday.it--3aaf8d291320",
+        "host": "firenzetoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 5,
+        "format_id": "milanopocket.it--549124b1743e",
+        "host": "milanopocket.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-08",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/sagre-lombardia/"
+      },
+      {
+        "catalog_records": 5,
+        "format_id": "sagreumbre.it--f52d57ff5da2",
+        "host": "sagreumbre.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-04",
+          "NC-08",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/fiere-mercati/"
+      },
+      {
+        "catalog_records": 4,
+        "format_id": "comune.roma.it--d39d0b6041d2",
+        "host": "comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-03"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/web-resources/cms/documents/MunXIII_DD647_2026_Graduatorie_mercati.pdf"
+      },
+      {
+        "catalog_records": 4,
+        "format_id": "feelflorence.it--01efd5fd9033",
+        "host": "feelflorence.it",
+        "open_todo_ids": [
+          "OFF-FI-02",
+          "OFF-FI-03"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/punti-di-interesse/{slug}"
+      },
+      {
+        "catalog_records": 4,
+        "format_id": "modenatoday.it--d4f51ae43a3f",
+        "host": "modenatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 4,
+        "format_id": "umbriaeventi.com--a21a189c200c",
+        "host": "umbriaeventi.com",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-04",
+          "NC-05",
+          "NC-06",
+          "NC-07",
+          "NC-08",
+          "NC-09",
+          "NC-10",
+          "NC-11",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/{slug}-{id}.htm"
+      },
+      {
+        "catalog_records": 4,
+        "format_id": "umbriaeventi.com--f193ae86be90",
+        "host": "umbriaeventi.com",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-06",
+          "NC-07",
+          "NC-08",
+          "NC-15",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "enjoysicilia.it--c47fcfe933c0",
+        "host": "enjoysicilia.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/events/"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "riminitoday.it--3fcce20b0a85",
+        "host": "riminitoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "field_mapping"
+        ],
+        "recheck_reasons": [],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "romatoday.it--773e7b132541",
+        "host": "romatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "sagrefvg.it--bb0f79aae507",
+        "host": "sagrefvg.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-04",
+          "NC-06",
+          "NC-07",
+          "NC-10",
+          "NC-15",
+          "NC-14"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "sagretoscane.com--7e915f1a79a5",
+        "host": "sagretoscane.com",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-05",
+          "NC-08",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/fiere-mercati/si/"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "suedtirol.info--826da4efb87f",
+        "host": "suedtirol.info",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-04",
+          "NC-08",
+          "NC-11",
+          "NC-12",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/esperienze/eventi"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "veneziatoday.it--98a866420834",
+        "host": "veneziatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "vicenzatoday.it--7f29dd72d035",
+        "host": "vicenzatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "assosagre.it--4377f96ccd50",
+        "host": "assosagre.it",
+        "open_todo_ids": [
+          "NC-08",
+          "NC-11",
+          "NC-14"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/calendario_sagre.php?id_provincia={value}&id_sagra={value}"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "baritoday.it--0c17b5073dc8",
+        "host": "baritoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "bolognatoday.it--98c9652acb3c",
+        "host": "bolognatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "bresciatoday.it--323a7ea664ee",
+        "host": "bresciatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "brindisireport.it--5b0c85ac1d51",
+        "host": "brindisireport.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/tag/{tag}/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "cittadellaspezia.com--daef88baba75",
+        "host": "cittadellaspezia.com",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/tag/sagre/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "comune.corciano.pg.it--1d7a32ba013d",
+        "host": "comune.corciano.pg.it",
+        "open_todo_ids": [
+          "OFF-CO-01"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/area_letturaDocumento/29645/pagsistema.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "eventiintoscana.it--641b8123d9f9",
+        "host": "eventiintoscana.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-07",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "ferrarainfo.com--1dfcae70a0aa",
+        "host": "ferrarainfo.com",
+        "open_todo_ids": [
+          "NC-02",
+          "NC-03",
+          "NC-11",
+          "NC-12",
+          "NC-14"
+        ],
+        "pending_checks": [
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/it/eventi/eventi"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "forlitoday.it--ebf7741cbe52",
+        "host": "forlitoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "frosinonetoday.it--719a6eee7966",
+        "host": "frosinonetoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "genovatoday.it--023670032cbe",
+        "host": "genovatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "lazioinfesta.com--9432160459d4",
+        "host": "lazioinfesta.com",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-07",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "monzatoday.it--a48c40adcb3f",
+        "host": "monzatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "novaratoday.it--fd80b2faea81",
+        "host": "novaratoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "palermotoday.it--5b9cabc75906",
+        "host": "palermotoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "paradisola.it--b32e4258186f",
+        "host": "paradisola.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-07",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi-sardegna"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "pugliainfesta.it--8852e0d42557",
+        "host": "pugliainfesta.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-03",
+          "NC-05",
+          "NC-06",
+          "NC-07",
+          "NC-08",
+          "NC-13",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/evento/{id}/{slug}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "ravennatoday.it--b46159a30433",
+        "host": "ravennatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "sagreinromagna.it--073cd6052d05",
+        "host": "sagreinromagna.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-06",
+          "NC-07",
+          "NC-08",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/sagre_per_provincia/1/ravenna"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "terredipisa.it--6b239e3c095e",
+        "host": "terredipisa.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-06",
+          "NC-07",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/events/categories/sagra-fiere-mercati/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "torinotoday.it--9d13c4c3e50b",
+        "host": "torinotoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "trevisotoday.it--f2521f69a8c7",
+        "host": "trevisotoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "varesenews.it--888bef8902d4",
+        "host": "varesenews.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-04",
+          "NC-05",
+          "NC-07",
+          "NC-13",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/category-evento/eventi-sagre-feste/"
+      },
+      {
+        "catalog_records": 2,
+        "format_id": "veneziatoday.it--81e9b7eb8036",
+        "host": "veneziatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "arezzonotizie.it--9521d1fd66d9",
+        "host": "arezzonotizie.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "bolognatoday.it--e0f6de959b8b",
+        "host": "bolognatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "bresciatoday.it--6206d2d85129",
+        "host": "bresciatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "cagliaritoday.it--e1ef02204e41",
+        "host": "cagliaritoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "casertanews.it--2214b2178409",
+        "host": "casertanews.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "cataniatoday.it--31ed67739fab",
+        "host": "cataniatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "cesenatoday.it--c9fd22db3421",
+        "host": "cesenatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "chietitoday.it--2f12ec6202a9",
+        "host": "chietitoday.it",
+        "open_todo_ids": [
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/attualita/{articolo}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "comune.roma.it--b6b446c7c7b8",
+        "host": "comune.roma.it",
+        "open_todo_ids": [
+          "OFF-RO-03"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/web/it/bando-concorso.page?contentId={value}"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "eventi.bergamo.it--849986cf0982",
+        "host": "eventi.bergamo.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-04",
+          "NC-07",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "eventiesagre.it--3c3a269d898e",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Eventi_Sagre/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "eventiesagre.it--c49b67f8f8bc",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Eventi_Folklore/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "eventiesagre.it--e5298c4f16d6",
+        "host": "eventiesagre.it",
+        "open_todo_ids": [
+          "EES-URL-DISCOVERY-INVENTORY",
+          "EES-NAMED-AND-MULTI-VENUES",
+          "EES-NARRATIVE-DATE-LISTS",
+          "EES-HISTORICAL-RECURRENCE-DEDUP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/Eventi_Fiere/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "eventiinsardegna.it--4f6de7c3abb7",
+        "host": "eventiinsardegna.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-04",
+          "NC-09",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "ferraratoday.it--096c9d2b9991",
+        "host": "ferraratoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "ferraratoday.it--2f49a574f3cd",
+        "host": "ferraratoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "firenzetoday.it--4c68a0e41483",
+        "host": "firenzetoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "frosinonetoday.it--13df3249e7e8",
+        "host": "frosinonetoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "leccotoday.it--a1f15b11015f",
+        "host": "leccotoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "field_mapping"
+        ],
+        "recheck_reasons": [],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "lombardiainfesta.it--aac72178e0f0",
+        "host": "lombardiainfesta.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-07",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "milanotoday.it--800bdea3a7e9",
+        "host": "milanotoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "modenatoday.it--6d93abfa3a9b",
+        "host": "modenatoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "napolidavivere.it--679a0a2b46d4",
+        "host": "napolidavivere.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-07",
+          "NC-08",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/category/eventi/sagre-e-feste/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "novaratoday.it--12e887ae9cfd",
+        "host": "novaratoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "padovatoday.it--a15e8e68ca15",
+        "host": "padovatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP",
+          "RETRY-CITYNEWS-PADOVA"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "palermotoday.it--7be3a486df34",
+        "host": "palermotoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "parmatoday.it--4d0ed834ab18",
+        "host": "parmatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "ravennatoday.it--d19463631447",
+        "host": "ravennatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "field_mapping"
+        ],
+        "recheck_reasons": [],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "riminitoday.it--8bfbd004bf42",
+        "host": "riminitoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "romapop.it--55f380b91494",
+        "host": "romapop.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-07",
+          "NC-11",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/roma/sagre-fiere-mercatini/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "sagrefvg.it--6113121f4eaf",
+        "host": "sagrefvg.it",
+        "open_todo_ids": [
+          "NC-01",
+          "NC-02",
+          "NC-03",
+          "NC-04",
+          "NC-06",
+          "NC-07",
+          "NC-10",
+          "NC-15",
+          "NC-14"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/sagris/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "salernotoday.it--6f80ccd14ebc",
+        "host": "salernotoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "trentino.com--f4ac442f344e",
+        "host": "trentino.com",
+        "open_todo_ids": [
+          "NC-08",
+          "NC-11",
+          "NC-14"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/it/calendario/dettagli/{slug}/#{edizione}"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "trevisotoday.it--d14b81554c11",
+        "host": "trevisotoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vicenzatoday.it--711d824754df",
+        "host": "vicenzatoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "field_mapping"
+        ],
+        "recheck_reasons": [],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "viterbotoday.it--51968ac255a6",
+        "host": "viterbotoday.it",
+        "open_todo_ids": [
+          "CNY-DETAIL",
+          "CNY-EDITORIAL",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [
+          "field_mapping"
+        ],
+        "recheck_reasons": [],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
+        "url_pattern": "/eventi/{percorso-evento}.html"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "viterbotoday.it--c0d9902be5e7",
+        "host": "viterbotoday.it",
+        "open_todo_ids": [
+          "CNY-DISCOVERY",
+          "CNY-ROUNDTRIP"
+        ],
+        "pending_checks": [],
+        "recheck_reasons": [],
+        "review_status": "reviewed_sample",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/eventi/tipo/{filtri}/"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "wwwservizi.regione.emilia-romagna.itnote.asp--08f6dd05bcee",
+        "host": "wwwservizi.regione.emilia-romagna.itnote.asp",
+        "open_todo_ids": [
+          "NC-08",
+          "NC-11",
+          "NC-14"
+        ],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
+        "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
+      }
+    ],
+    "generated_for_date": "2026-10-22",
+    "ledger": "backend/data/source-format-review-ledger.json",
+    "schema_version": 1,
+    "summary": {
+      "auxiliary_format_units": 27,
+      "catalog_records_modified": 0,
+      "completed_tasks": 23,
+      "formats_requiring_recheck": 34,
+      "formats_with_documented_source_read": 104,
+      "formats_with_open_corrections": 106,
+      "formats_with_sample_attempt": 110,
+      "network_reads_performed": 0,
+      "open_tasks": 36,
+      "partial_review_formats": 33,
+      "primary_format_units": 111,
+      "reviewed_sample_formats": 72,
+      "unreviewed_formats": 6
+    }
+  },
   "source_labels_added_since_previous": [],
   "source_labels_missing_since_previous": [],
   "source_permissions_inferred": false,
