@@ -3,22 +3,16 @@
   "status": "incomplete",
   "date": "2026-10-22",
   "base_commit": "8d6e0fa54f4c992e66b352002f7f64739960d3f5",
-  "original_source_pages": 2313,
   "target_source_pages": 2349,
   "expected_json_files": 89,
-  "verified_reused_blobs": 80,
-  "missing_json_files": 9,
+  "reused_blobs": 80,
+  "uploaded_updated_files": 4,
   "pending_files": [
     "manifest.json",
-    "source-facts-048.json",
-    "source-facts-049.json",
-    "report-happings-detail-match-report-000.json",
-    "report-happings-detail-match-worklist-001.json",
     "report-happings-source-html-index-000.json",
     "report-happings-source-reconciliation-000.json",
     "report-happings-source-worklist-023.json",
     "report-happings-weekly-admission-000.json"
   ],
-  "source_format": "public-source-facts-json-v1",
   "no_paid_github_services": true
 }
