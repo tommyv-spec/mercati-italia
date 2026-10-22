@@ -1,62 +1,62 @@
-# Happings — GitHub source backup verificato
+# Happings — source backup GitHub verificato
 
-## Backup pubblicato: 21 ottobre 2026
+**Aggiornamento: 22 ottobre 2026 — backup pubblicato e ripristinato.**
 
-Il ramo pubblico [happings-backup-2026-10-21](https://github.com/tommyv-spec/mercati-italia/tree/happings-backup-2026-10-21/source-archives/happings/2026-10-21)
-contiene un backup leggibile in **88 file JSON** più README:
+## Backup pubblico indipendente dal catalogo DEV
 
-- **2.313 pagine Happings** complete di fatti strutturati, URL, data di acquisizione
-  e SHA-256 dell'HTML originario;
-- **10 rapporti** di qualità, riconciliazione, potenziali duplicati e verifica
-  dell'ammissione DEV di 18 mercati settimanali;
-- manifest con hash SHA-256, dimensioni e numero di record per ogni blocco.
+- Repository: `tommyv-spec/mercati-italia`
+- Branch archivio: `happings-source-archive-2026-10-21`
+- Commit pubblicato: `8d6e0fa54f4c992e66b352002f7f64739960d3f5`
+- Cartella: `source-archives/happings/2026-10-21/`
+- Manifest SHA-256: `90d23f8c835420c7b2eca01bfc35f8fc3124069603d74e3df7a86db9ca8292e4`
+- **88 file JSON con SHA-256 corrispondenti**, 49 dei quali con fatti di fonte;
+  **2.313 pagine Happings elaborate + 10 report**.
 
-Prima della pubblicazione, tutti gli **88 Git blob** sono stati confrontati
-con gli hash delle copie locali: **zero differenze**. Il branch GitHub è stato
-riaperto e verificato: **89 file presenti su 89 attesi**, compreso il README.
+La verifica indipendente ha scaricato **i soli file del branch GitHub**
+senza leggere lo snapshot originale del PC e li ha ripristinati in una
+cartella vuota: **2.313 file pagina `*.json.gz` e 10 rapporti**.
+La cartella contiene `github-restore-proof.json` con il risultato di
+questa prova, insieme al `README.md` per il recupero su una nuova macchina.
 
-Il backup conserva integralmente i **dati estratti**, non il markup HTML originale
-o i byte gzip storici. Un ripristino rigenera gzip e relative impronte;
-gli hash della pagina HTML di origine restano quelli osservati.
+## Ripristino
 
-## Ripristino e verifica ripetibili
-
-Lo script `backend/happings_github_readable_backup.py` sul ramo DEV crea,
-verifica e ripristina i fatti Happings. Per ripartire da GitHub, scaricare
-il ramo del backup, poi dal repository DEV:
-
-```powershell
-python -X utf8 backend/happings_github_readable_backup.py --out PATH_ARCHIVIO
-python -X utf8 backend/happings_github_readable_backup.py --out PATH_ARCHIVIO --restore-to DIRECTORY_VUOTA
+```bash
+git clone --depth 1 --single-branch \
+  --branch happings-source-archive-2026-10-21 \
+  https://github.com/tommyv-spec/mercati-italia.git mercati-archive
+cd mercati-archive
+python backend/happings_github_readable_backup.py \
+  --out source-archives/happings/2026-10-21 \
+  --restore-to /percorso/vuoto/mercati-happings
 ```
 
-Il restore rifiuta directory non vuote, ricostruisce
-`happings-full-crawl/checkpoint.json`, tutti i `pages/*.json.gz` e i
-rapporti; verifica l'hash di ciascun blocco prima della scrittura e i file
-ricostruiti prima del successo.
+**Limite esatto:** il crawl nazionale memorizzava fatti strutturati
+e hash dell'HTML originale, non l'intero DOM HTML di ogni pagina.
+Il backup GitHub conserva questi fatti e hash, ma non pretende di
+ricostruire byte per byte l'HTML mai salvato. Il gzip riprodotto
+può avere SHA diverso perché ricostruito dal JSON equivalente.
 
-**Prova reale effettuata:** 2.313 pagine sorgente e 10 rapporti sono stati
-ripristinati in una directory temporanea, tutte le 2.313 schede hanno
-superato la verifica locale. I byte gzip risultanti non sono dichiarati
-uguali a quelli del primo download.
+## Spazio locale e automazione
 
-## Uso quotidiano e nessun costo GitHub
+Dopo il ripristino verificato sono state eliminate **soltanto** le
+due copie di prova e di trasferimento (`github-readable-backup-resume-20261022`
+e `archive-github-smoke-20261022`), per circa 29,7 MB complessivi.
+Rimane la piccola cache operativa del crawler in
+`%LOCALAPPDATA%/mercati-italia/happings-full-crawl`: è richiesta per
+l'aggiornamento incrementale con checkpoint e può essere ricostruita
+dal backup nel caso di guasto.
 
-Il catalogo DEV, il codice del crawler e le pubblicazioni periodiche
-continuano sul ramo `improve/data-quality-security-performance-2026-10-11`
-e sull'Autopilot GitHub già esistente, senza nuova infrastruttura.
-Il task Windows locale `MercatiItalia-HappingsDaily` usa ancora
-il piccolo checkpoint attivo per fare aggiornamenti incrementali.
-Non cancellare quel checkpoint mentre il task è attivo.
+Lo scraper giornaliero Windows rimane distinto dal job DEV GitHub:
+il backup del **21 ottobre è verificato**, ma non bisogna considerare
+automatica la pubblicazione delle successive versioni dell'archivio
+finché non esiste un canale di scrittura autorizzato. L'account GitHub
+del PC ha soltanto permessi di lettura su questo repository; il job
+`publish_dev` usa i permessi già autorizzati.
 
-**Questo archivio è una fotografia del 21 ottobre:** eventuali fonti lette
-successivamente dal PC non sono automaticamente incluse nel backup.
-La procedura di esportazione è ripetibile; la sincronizzazione automatica
-di nuovi backup su GitHub richiede ancora un meccanismo che disponga di
-permessi di scrittura (il token GitHub attualmente collegato al PC non li ha
-sul repository `tommyv-spec`).
+La regressione dei test Happings del 22 ottobre derivava dalla data
+storica `2026-10-21` letta con l'orologio reale; il test usa ora
+un orologio UTC fittizio coerente con la prova, senza indebolire la
+validazione di produzione.
 
-Niente Git LFS, GitHub Actions/runner aggiuntivi, piani storage a pagamento,
-dati utente, token o cartelle personali nella pubblicazione. Nessun merge
-in produzione; le prove sorgente non equivalgono a verifica dell'apertura
-effettiva di un mercato.
+**Nessun servizio GitHub a pagamento, Git LFS o nuovo runner.**
+Nessuna modifica effettuata alla produzione o ai fatti già verificati.
