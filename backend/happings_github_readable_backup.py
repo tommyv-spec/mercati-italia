@@ -93,13 +93,32 @@ def run(root,out):
         "total_bytes":sum(f.stat().st_size for f in out.glob("*.json"))},sort_keys=True),flush=True)
     return manifest
 
+def _verified_json_bytes(path, declaration, message):
+    """Read exact source bytes, tolerating ONLY Git's Windows final CRLF.
+
+    Plain-Git text archives are one-line JSON ending with LF. On Windows
+    core.autocrlf=true changes that final line ending to CRLF in the worktree.
+    The original SHA-256 must still match after reversing precisely that one
+    transport transformation; any other change remains a hard failure.
+    """
+    raw=Path(path).read_bytes()
+    def matches(blob):
+        return len(blob)==declaration["bytes"] and sha(blob)==declaration["sha256"]
+    if matches(raw):
+        return raw
+    if raw.endswith(b"\r\n"):
+        original=raw[:-2]+b"\n"
+        if matches(original):
+            return original
+    raise ValueError(message)
+
+
 def verify(out):
     out=Path(out);m=json.loads((out/"manifest.json").read_text("utf-8"))
     seen=set();count=0
     for section in m["shards"]:
-        body=(out/section["path"]).read_bytes()
-        if sha(body)!=section["sha256"] or len(body)!=section["bytes"]:
-            raise ValueError("Happings source shard hash mismatch")
+        body=_verified_json_bytes(
+            out/section["path"],section,"Happings source shard hash mismatch")
         entries=json.loads(body)["pages"]
         if len(entries)!=section["records"]:raise ValueError("Truncated Happings source chunk")
         for item in entries:
@@ -110,9 +129,8 @@ def verify(out):
         raise ValueError("Not all indexed Happings source documents were backed up")
     for report in m["reports"]:
         for part in report["chunks"]:
-            raw=(out/part["path"]).read_bytes()
-            if sha(raw)!=part["sha256"] or len(raw)!=part["bytes"]:
-                raise ValueError("Report shard hash mismatch")
+            raw=_verified_json_bytes(
+                out/part["path"],part,"Report shard hash mismatch")
             if len(json.loads(raw)["items"])!=part["records"]:
                 raise ValueError("Report shard item count mismatch")
     return count

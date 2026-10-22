@@ -58,6 +58,30 @@ class BackupTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"empty destination"):
                 backup.restore(archive,target)
 
+    def test_windows_autocrlf_checkout_restores_exact_git_source_bytes(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td); source,_=fixture(root); archive=root/"archive"
+            manifest=backup.run(source,archive)
+            # A normal Windows git checkout translates the *single* terminal
+            # newline to CRLF; these are plain Git text assets, not files
+            # whose source facts have changed.
+            sections=[*manifest["shards"],
+                      *(item for report in manifest["reports"]
+                        for item in report["chunks"])]
+            for item in sections:
+                target=archive/item["path"]
+                original=target.read_bytes()
+                self.assertTrue(original.endswith(b"\n"))
+                self.assertEqual(original.count(b"\n"),1)
+                target.write_bytes(original[:-1]+b"\r\n")
+            self.assertEqual(backup.verify(archive),1)
+            restored=backup.restore(archive,root/"restored")
+            self.assertEqual(restored["source_pages_restored"],1)
+            tampered=archive/sections[0]["path"]
+            tampered.write_bytes(tampered.read_bytes()+b"\r\n")
+            with self.assertRaisesRegex(ValueError,"hash mismatch"):
+                backup.verify(archive)
+
     def test_changed_chunk_is_rejected_without_restoring(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td);source,_=fixture(root);out=root/"archive"
