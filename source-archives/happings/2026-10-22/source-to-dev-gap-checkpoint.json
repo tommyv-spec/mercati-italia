@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "observed_on": "2026-10-22",
+  "publisher": "https://www.happings.com/it/",
+  "status": "source_crawl_complete_but_dev_catalog_not_complete",
+  "verified_snapshot": {
+    "source_page_urls_processed": 2349,
+    "source_pages_parsed": 2349,
+    "weekly_index_pages": 106,
+    "event_detail_pages": 2243,
+    "weekly_source_rows": 8053,
+    "distinct_weekly_market_group_keys": 6606,
+    "global_site_completeness_proven": false
+  },
+  "dev_catalog_at_reconciliation": {
+    "total_records": 14007,
+    "happings_primary_source_records": 9830,
+    "happings_specific_address_records": 4217,
+    "happings_blank_address_records": 2329,
+    "happings_hours_text_records": 593,
+    "happings_source_reported_dates_records": 165,
+    "happings_predicted_dates_records": 9334
+  },
+  "unresolved_source_to_dev": {
+    "weekly_groups_vague_locations": 2828,
+    "weekly_groups_unresolved_istat": 913,
+    "weekly_groups_multiple_venues_same_city_weekday": 500,
+    "weekly_groups_existing_identity_ambiguous": 110,
+    "weekly_groups_supported_location_but_ambiguous_identity": 1374,
+    "new_weekly_groups_requiring_live_html": 35
+  },
+  "replay_and_safety": {
+    "live_html_pages_used": 2,
+    "approved_new_market_records_in_read_only_preview": 32,
+    "deferred_new_venues": 3,
+    "expected_expired_date_only_changes": 1891,
+    "non_calendar_existing_record_changes": 0,
+    "qa_gate_approved": true,
+    "live_dev_data_mutations": 0,
+    "production_modified": false
+  },
+  "github_fixes": [
+    {
+      "commit": "0b2ba747a9888794b719cc3d493fc713450c4ab7",
+      "purpose": "allow exact deterministic expired-date trimming in pre-publication proof"
+    },
+    {
+      "commit": "bddab12e7edaeefd65d0d3349f6f1e7bb8f1edab",
+      "purpose": "independently verify expired-date trimming after publishing"
+    }
+  ],
+  "local_task": {
+    "name": "MercatiItalia-HappingsDaily",
+    "last_task_result": 0,
+    "status": "HAPPINGS_DAILY_OK",
+    "tests_passed": 423,
+    "mode": "read_only_qa"
+  },
+  "limitations": [
+    "Queued source pages are not proof every Happings market URL is globally discovered.",
+    "Happings weekly lists often provide only a qualitative morning daypart rather than clock hours.",
+    "Source fields read successfully cannot be applied to ambiguous or mismatched identities without additional evidence.",
+    "Source candidate approval is not publication to DEV.",
+    "Automatic GitHub workflow was not manually dispatched; no paid runner was added."
+  ],
+  "cost": {
+    "new_paid_github_services": 0
+  }
+}
