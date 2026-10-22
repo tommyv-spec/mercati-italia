@@ -47,23 +47,59 @@ def istat_geography():
         for city, province in cities.items())
 
 
-def geography_matches(row, location):
-    """Bind observed geography without filling a missing catalog province.
+@lru_cache(maxsize=8192)
+def _istat_city_with_one_corrupt_character(value, province, region):
+    """Resolve exactly one U+FFFD only against a *unique* official city.
 
-A missing province is permitted only when the observed and saved city/region
-identify one ISTAT municipality. A source province cannot resolve a namesake
-that the saved record's own geography leaves ambiguous.
-"""
-    city, region = text_key(location.get("city")), text_key(location.get("region"))
-    province = location.get("province")
-    if (not city or not region or city != text_key(row.get("citta"))
-            or region != text_key(row.get("regione"))
-            or (city, province, region) not in istat_geography()):
+    Older HTML readers decoded legacy publisher bytes as UTF-8 with
+    errors="replace", irreversibly turning e.g. Mondovì into Mondov�.
+    This does not guess the missing letter: an official ISTAT name within the
+    independently required province and region must be the sole candidate.
+    Typos without U+FFFD and two or more missing characters remain invalid.
+    """
+    key = text_key(value)
+    if (key, province, region) in istat_geography():
+        return key
+    if (not isinstance(value, str) or value.count("\ufffd") != 1
+            or sum(c.isalpha() for c in value) < 4):
+        return None
+    raw = unicodedata.normalize("NFKD", value.casefold())
+    raw = "".join(c for c in raw if not unicodedata.combining(c))
+    masked = " ".join(re.findall(r"[a-z0-9\ufffd]+", raw))
+    if masked.count("\ufffd") != 1:
+        return None
+    pattern = re.escape(masked).replace("\ufffd", "[a-z]")
+    candidates = {city for city, code, area in istat_geography()
+                  if code == province and area == region
+                  and re.fullmatch(pattern, city)}
+    return next(iter(candidates)) if len(candidates) == 1 else None
+
+
+def geography_matches(row, location):
+    """Bind both city labels to the same unique official municipality.
+
+    A missing province is permitted only when city and region identify a
+    unique ISTAT municipality. An independently labelled province cannot
+    resolve a namesake whose catalog geography is ambiguous.
+    """
+    if not isinstance(location, dict):
         return False
-    saved = row.get("provincia")
-    if saved:
-        return saved == province
-    return len({v for v in istat_geography() if v[0] == city and v[2] == region}) == 1
+    region = text_key(location.get("region"))
+    province = location.get("province")
+    if (not region or region != text_key(row.get("regione"))
+            or not isinstance(province, str) or not province):
+        return False
+    observed = _istat_city_with_one_corrupt_character(location.get("city"), province, region)
+    saved_code = row.get("provincia")
+    if saved_code and saved_code != province:
+        return False
+    saved = _istat_city_with_one_corrupt_character(row.get("citta"), province, region)
+    if not observed or observed != saved:
+        return False
+    if saved_code:
+        return True
+    return sum(1 for city, code, area in istat_geography()
+               if city == observed and area == region) == 1
 
 
 def specific_title_match(left, right, city):

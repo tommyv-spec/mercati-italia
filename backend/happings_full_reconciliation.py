@@ -98,14 +98,25 @@ def _categorize(ident, readings, by_day, uncertain, municipalities):
     originals = [row for _,row in readings]
     source_urls = sorted(set(url for url,_ in readings))
     places = {fold(row.get("place")) for row in originals}
+    actual_province = municipalities.get((region,city))
+    indexed_provinces = sorted({
+        row.get("_source_page_province", province) for row in originals})
+    incorrect_source_province = (
+        actual_province is not None
+        and any(p != actual_province for p in indexed_provinces))
+    all_source_pages_mislabelled = (
+        incorrect_source_province
+        and all(p != actual_province for p in indexed_provinces))
     base = {"region":region, "province":province, "city":city,
             "weekday":weekday, "urls":source_urls,
-            "places": sorted(places),
-            "source_rows":len(readings)}
-    actual_province = municipalities.get((region,city))
+            "places": sorted(places), "source_rows":len(readings),
+            "source_page_provinces":indexed_provinces,
+            "actual_istat_province":actual_province,
+            "source_province_mislabelled":incorrect_source_province}
+    if actual_province is None:
+        return {**base,"outcome":"source_city_not_istat_resolved"}
     if actual_province != province:
-        return {**base, "actual_istat_province": actual_province,
-                "outcome":"source_city_outside_index_province"}
+        raise ValueError("Source row was not grouped under its verified ISTAT province")
     if len(places) > 1:
         return {**base,"outcome":"ambiguous_multiple_source_streets"}
     if any(row.get("calendar_scope") for row in originals):
@@ -130,6 +141,8 @@ def _categorize(ident, readings, by_day, uncertain, municipalities):
     if len(current) == 0:
         if unknown:
             return {**base,"outcome":"new_blocked_unknown_existing_calendar"}
+        if all_source_pages_mislabelled:
+            return {**base,"outcome":"new_venue_bad_source_province_needs_second_confirmation"}
         return {**base,"outcome":"new_venue_possible_needs_source_html_admission"}
     if len(primary) != 1 or len(current) != 1:
         if any(fold(r.get("indirizzo")) == fold(street) for r in current):
@@ -138,6 +151,8 @@ def _categorize(ident, readings, by_day, uncertain, municipalities):
     row = primary[0]
     existing_street = str(row.get("indirizzo") or "").strip()
     if not existing_street:
+        if all_source_pages_mislabelled:
+            return {**base,"outcome":"existing_blank_address_bad_source_province_needs_review"}
         return {**base,"outcome":"existing_blank_address_recoverable_by_live_reader"}
     if fold(existing_street) == fold(street):
         return {**base,"outcome":"existing_address_supported"}
@@ -210,8 +225,20 @@ def analyze(manifest, snapshot, out):
                         or not 0 <= row["weekday"] <= 6
                         or not isinstance(row.get("place"),str)):
                     raise ValueError("Invalid observed market row")
-                ident = (region,province,fold(row["city"]),row["weekday"])
-                groups[ident].append((url,row))
+                city = fold(row["city"])
+                actual_province = municipalities.get((region,city))
+                if actual_province is None:
+                    page_metrics["weekly_rows_city_not_istat_resolved"] += 1
+                elif actual_province != province:
+                    page_metrics["weekly_rows_source_province_mislabelled"] += 1
+                else:
+                    page_metrics["weekly_rows_source_province_matches_istat"] += 1
+                # Keep the publisher's page heading as evidence but match a
+                # resolved municipality against its real ISTAT province.
+                # A wrong publisher heading must never change a catalog
+                # record's official region or province.
+                ident = (region,actual_province or province,city,row["weekday"])
+                groups[ident].append((url,{**row,"_source_page_province":province}))
                 page_metrics["weekly_source_rows"] += 1
                 weekly_dayparts[str(row.get("daypart") or "not_supplied")] += 1
         elif fact.get("kind") == "detail":

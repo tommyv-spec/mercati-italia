@@ -4,26 +4,26 @@ Non basta trovare gli URL: serve dimostrare campo per campo se il publisher
 contiene l'informazione, se è stata letta, se identifica una scheda già
 pubblicata e se possiamo salvarla senza attribuirla al mercato sbagliato.
 
-## Copertura osservata il 21 ottobre 2026 (prima scansione non ancora conclusa)
+## Copertura osservata il 21 ottobre 2026 (scansione sorgente completata)
 
 - 2.313 pagine nella coda: 106 indici settimanali italiani e 2.207 dettagli
   evento con URL valido. La home, gli archivi e le sitemap sono già stati
   controllati separatamente.
 - 106 pagine provinciali interpretate: 8.053 righe fisiche della fonte.
-- 6.663 gruppi di fonte distinti per provincia, Comune, giorno.
-- La prima riconciliazione ha trovato **1.054 gruppi Comune/giorno la cui
-  geografia ISTAT non concorda con quella della pagina Happings**.
-- 2.805 gruppi hanno una località troppo vaga per diventare indirizzo.
-- 490 gruppi hanno più sedi differenti nella fonte per lo stesso Comune e
+- 6.606 gruppi di fonte distinti per provincia, Comune, giorno.
+- La prima riconciliazione ha trovato **167 righe associate a un Comune la cui provincia ISTAT
+  non coincide con quella dell'indice Happings; 918 righe senza riconciliazione ISTAT**.
+- 2.828 gruppi hanno una località troppo vaga per diventare indirizzo.
+- 500 gruppi hanno più sedi differenti nella fonte per lo stesso Comune e
   giorno: non possono ricevere un'assegnazione automatica di un indirizzo
   unico senza un'identità aggiuntiva.
 - Sono emersi 53 candidati di mercato settimanale assenti dal catalogo,
   con sede specifica e Comune riconciliabile, non ancora ammessi.
 - Tra gli eventi di dettaglio letti, 281 erano classificati come mercati;
   273 riportavano intervalli orari, 272 appuntamenti e 59 conflitti fra
-  valori della pagina. Il numero cambierà al completamento della coda.
+  valori della pagina. Tutte le pagine della coda sono state elaborate.
 
-Questi numeri sono misure provvisorie della scansione, **non conteggi di
+Questi numeri sono misure della scansione completata, **non conteggi di
 mercati aperti o verificati**.
 
 ### Problema generale osservato nella fonte

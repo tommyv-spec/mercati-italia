@@ -68,10 +68,41 @@ class FullHappingsReconciliationTests(unittest.TestCase):
             snapshot(tmp,[(AL,"Biella","Piazza Cisterna",2)])
             with patch("happings_full_reconciliation.load_existing",return_value=[]):
                 summary=analyze(tmp/"unused-manifest.json",tmp,tmp/"audit")
-            self.assertEqual(summary["outcomes"]["source_city_outside_index_province"],1)
+            self.assertEqual(summary["outcomes"]["new_venue_bad_source_province_needs_second_confirmation"],1)
+            self.assertEqual(summary["observed_source_pages"]["weekly_rows_source_province_mislabelled"],1)
             work=json.loads((tmp/"audit/happings-source-worklist.json").read_text())
+            self.assertEqual(work[0]["province"],"BI")
+            self.assertEqual(work[0]["source_page_provinces"],["AL"])
             self.assertEqual(work[0]["actual_istat_province"],"BI")
-            self.assertEqual(work[0]["new_catalog_ids_admitted"] if "new_catalog_ids_admitted" in work[0] else 0,0)
+            self.assertTrue(work[0]["source_province_mislabelled"])
+            self.assertEqual(summary["new_catalog_ids_admitted"],0)
+
+    def test_wrong_source_province_supports_existing_verified_geography(self):
+        baseline=[{**market(), "slug":"happings-biella",
+                   "regione":"Piemonte", "provincia":"BI","citta":"Biella",
+                   "nome":"Mercato settimanale di Biella",
+                   "indirizzo":"Piazza Cisterna"}]
+        with tempfile.TemporaryDirectory() as folder:
+            tmp=Path(folder)
+            snapshot(tmp,[(AL,"Biella","Piazza Cisterna",2)])
+            with patch("happings_full_reconciliation.load_existing",return_value=baseline):
+                summary=analyze(tmp/"unused-manifest.json",tmp,tmp/"audit")
+            self.assertEqual(summary["outcomes"]["existing_address_supported"],1)
+            work=json.loads((tmp/"audit/happings-source-worklist.json").read_text())
+            self.assertEqual(work[0]["existing_ids"],["happings-biella"])
+            self.assertEqual(work[0]["source_page_provinces"],["AL"])
+            self.assertEqual(work[0]["province"],"BI")
+            self.assertEqual(summary["existing_catalog_id_mutations"],0)
+
+    def test_unknown_istat_municipality_does_not_claim_a_match(self):
+        with tempfile.TemporaryDirectory() as folder:
+            tmp=Path(folder)
+            snapshot(tmp,[(AL,"Alessandriaa","Via Ciapeia",2)])
+            with patch("happings_full_reconciliation.load_existing",return_value=[]):
+                summary=analyze(tmp/"unused-manifest.json",tmp,tmp/"audit")
+            self.assertEqual(summary["outcomes"]["source_city_not_istat_resolved"],1)
+            self.assertEqual(summary["observed_source_pages"]["weekly_rows_city_not_istat_resolved"],1)
+            self.assertEqual(summary["new_catalog_ids_admitted"],0)
 
     def test_missing_catalog_market_is_candidate_only(self):
         with tempfile.TemporaryDirectory() as folder:

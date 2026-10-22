@@ -20,6 +20,7 @@ import re
 import sys
 import tempfile
 import time
+from contextlib import contextmanager
 from collections import Counter
 from datetime import date, datetime, timezone
 from http.client import HTTPException
@@ -199,7 +200,29 @@ def page_fact(url, robots):
                 "error": type(error).__name__}
 
 
-def run(out, *, max_pages=0):
+@contextmanager
+def snapshot_lock(out):
+    """Exclusive crash-persistent lock shared by full and incremental crawls.
+
+    A stale lock requires inspection. Never silently steal it or allow two
+    crawlers to race on the same atomic checkpoint and fact files.
+    """
+    root=Path(out)
+    root.mkdir(parents=True,exist_ok=True)
+    path=root/".happings-crawl.lock"
+    try:
+        fd=os.open(str(path),os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
+    except FileExistsError:
+        raise RuntimeError("Another Happings crawler holds this snapshot lock") from None
+    try:
+        with os.fdopen(fd,"w",encoding="utf-8") as handle:
+            handle.write(json.dumps({"pid":os.getpid(),"started_at":utc_now()})+"\n")
+        yield
+    finally:
+        path.unlink(missing_ok=True)
+
+
+def _run_unlocked(out, *, max_pages=0):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     auth = json.loads(weekly.RIGHTS_REVIEW_FILE.read_text(encoding="utf-8"))
@@ -268,6 +291,11 @@ def run(out, *, max_pages=0):
     write_json(out / "summary.json", summary)
     print("SNAPSHOT", json.dumps(summary, ensure_ascii=False), flush=True)
     return summary
+
+
+def run(out, *, max_pages=0):
+    with snapshot_lock(out):
+        return _run_unlocked(out,max_pages=max_pages)
 
 
 def main():
