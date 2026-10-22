@@ -3,20 +3,20 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 13952,
+  "catalog_market_ids_preserved": 14007,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 4917,
-  "municipalities_without_catalog_listings": 2977,
-  "represented_percent": 62.3,
+  "municipalities_with_catalog_listings": 4936,
+  "municipalities_without_catalog_listings": 2958,
+  "represented_percent": 62.5,
   "regions": [
     {
       "region": "Piemonte",
       "istat_municipalities": 1180,
-      "with_at_least_one_catalog_market": 526,
-      "without_catalog_market": 654,
-      "represented_percent": 44.6,
+      "with_at_least_one_catalog_market": 527,
+      "without_catalog_market": 653,
+      "represented_percent": 44.7,
       "unrepresented_examples_for_source_search": [
         "Crova",
         "Faule",
@@ -82,9 +82,9 @@
     {
       "region": "Sardegna",
       "istat_municipalities": 377,
-      "with_at_least_one_catalog_market": 198,
-      "without_catalog_market": 179,
-      "represented_percent": 52.5,
+      "with_at_least_one_catalog_market": 199,
+      "without_catalog_market": 178,
+      "represented_percent": 52.8,
       "unrepresented_examples_for_source_search": [
         "Berchidda",
         "Giba",
@@ -99,9 +99,9 @@
     {
       "region": "Trentino-Alto Adige",
       "istat_municipalities": 282,
-      "with_at_least_one_catalog_market": 103,
-      "without_catalog_market": 179,
-      "represented_percent": 36.5,
+      "with_at_least_one_catalog_market": 104,
+      "without_catalog_market": 178,
+      "represented_percent": 36.9,
       "unrepresented_examples_for_source_search": [
         "Castel Ivano",
         "Croviana",
@@ -145,23 +145,6 @@
         "Riomaggiore",
         "Testico",
         "Zuccarello"
-      ]
-    },
-    {
-      "region": "Friuli Venezia Giulia",
-      "istat_municipalities": 215,
-      "with_at_least_one_catalog_market": 91,
-      "without_catalog_market": 124,
-      "represented_percent": 42.3,
-      "unrepresented_examples_for_source_search": [
-        "Aiello del Friuli",
-        "Artegna",
-        "Colloredo di Monte Albano",
-        "Remanzacco",
-        "Romans d'Isonzo",
-        "Torreano",
-        "Tramonti di Sotto",
-        "Villesse"
       ]
     },
     {
@@ -230,6 +213,23 @@
         "San Lorenzo in Campo",
         "Vallefoglia",
         "Visso"
+      ]
+    },
+    {
+      "region": "Friuli Venezia Giulia",
+      "istat_municipalities": 215,
+      "with_at_least_one_catalog_market": 107,
+      "without_catalog_market": 108,
+      "represented_percent": 49.8,
+      "unrepresented_examples_for_source_search": [
+        "Artegna",
+        "Colloredo di Monte Albano",
+        "Malborghetto Valbruna",
+        "Remanzacco",
+        "Romans d'Isonzo",
+        "Torreano",
+        "Tramonti di Sotto",
+        "Villesse"
       ]
     },
     {

@@ -4,25 +4,25 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **4,917** (62.3%).
-- Comuni senza schede in catalogo: **2,977**.
-- Schede esistenti conservate: **13,952**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **4,936** (62.5%).
+- Comuni senza schede in catalogo: **2,958**.
+- Schede esistenti conservate: **14,007**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
-| Piemonte | 1180 | 526 | 654 | 44.6% |
+| Piemonte | 1180 | 527 | 653 | 44.7% |
 | Lombardia | 1501 | 1076 | 425 | 71.7% |
 | Calabria | 404 | 178 | 226 | 44.1% |
 | Sicilia | 391 | 201 | 190 | 51.4% |
-| Sardegna | 377 | 198 | 179 | 52.5% |
-| Trentino-Alto Adige | 282 | 103 | 179 | 36.5% |
+| Sardegna | 377 | 199 | 178 | 52.8% |
+| Trentino-Alto Adige | 282 | 104 | 178 | 36.9% |
 | Veneto | 559 | 431 | 128 | 77.1% |
 | Liguria | 234 | 107 | 127 | 45.7% |
-| Friuli Venezia Giulia | 215 | 91 | 124 | 42.3% |
 | Abruzzo | 305 | 190 | 115 | 62.3% |
 | Campania | 550 | 435 | 115 | 79.1% |
 | Basilicata | 131 | 18 | 113 | 13.7% |
 | Marche | 225 | 113 | 112 | 50.2% |
+| Friuli Venezia Giulia | 215 | 107 | 108 | 49.8% |
 | Lazio | 378 | 306 | 72 | 81.0% |
 | Emilia-Romagna | 330 | 276 | 54 | 83.6% |
 | Valle d'Aosta | 74 | 27 | 47 | 36.5% |
@@ -43,11 +43,11 @@ Esempi selezionati stabilmente per regione (non sono mercati identificati).
 - **Trentino-Alto Adige:** Castel Ivano, Croviana, Falzes, Luson, Martello, Nogaredo, Sarnonico, Selva dei Molini
 - **Veneto:** Bagnolo di Po, Gaiba, Giacciano con Baruchella, Povegliano, San Nicolò di Comelico, Tambre, Val Liona, Veggiano
 - **Liguria:** Costarainera, Olivetta San Michele, Ortovero, Plodio, Pornassio, Riomaggiore, Testico, Zuccarello
-- **Friuli Venezia Giulia:** Aiello del Friuli, Artegna, Colloredo di Monte Albano, Remanzacco, Romans d'Isonzo, Torreano, Tramonti di Sotto, Villesse
 - **Abruzzo:** Castel Castagna, Civitella Messer Raimondo, Crecchio, Montebello sul Sangro, Pennadomo, San Pio delle Camere, Vicoli, Villalago
 - **Campania:** Agerola, Contrada, Cuccaro Vetere, Domicella, Laureana Cilento, Letino, Morigerati, Prata di Principato Ultra
 - **Basilicata:** Albano di Lucania, Episcopia, Irsina, Oliveto Lucano, Rapone, Rivello, Venosa, Vietri di Potenza
 - **Marche:** Cagli, Monte Cerignone, Petritoli, Pioraco, Poggio San Marcello, San Lorenzo in Campo, Vallefoglia, Visso
+- **Friuli Venezia Giulia:** Artegna, Colloredo di Monte Albano, Malborghetto Valbruna, Remanzacco, Romans d'Isonzo, Torreano, Tramonti di Sotto, Villesse
 - **Lazio:** Frasso Sabino, Micigliano, Montenero Sabino, Poggio San Lorenzo, Rocca Canterano, Roccagiovine, Saracinesco, Turania
 - **Emilia-Romagna:** Bertinoro, Cerignale, Dovadola, Longiano, Montecopiolo, Pellegrino Parmense, Prignano sulla Secchia, Santa Sofia
 - **Valle d'Aosta:** Antey-Saint-André, Arnad, Arvier, Brusson, Cogne, Issime, Rhêmes-Saint-Georges, Verrayes

@@ -4,8 +4,8 @@
   "offline": false,
   "imports": 0,
   "verified_events": 0,
-  "reference_date": "2026-10-21",
-  "catalog_total": 87,
+  "reference_date": "2026-10-22",
+  "catalog_total": null,
   "sample_limit": 3,
   "history": {
     "25177cb0-f763-44ca-8c30-dd8111c58cc3": {
@@ -171,97 +171,8 @@
       "kind": "historic_stall_capacity_not_market_visits"
     }
   },
-  "sources": [
-    {
-      "id": "00550144-add6-43f8-b87b-2c00672823b6",
-      "title": "Posteggi mercati e fiere - SACCOLONGO",
-      "publisher": "Comune di Saccolongo",
-      "source_modified_claim": "",
-      "resource_id": "3d407706-2e31-4292-b1c3-cf1259c2a516",
-      "resource_last_modified": "2026-10-07T10:01:10.136429",
-      "claimed_license": "CC-BY-4.0",
-      "status": "sampled_complete_csv",
-      "market_import_permission": false,
-      "markets_confirmed": 0,
-      "csv_sha256": "3ec470d3cbb2d75fae5f15e3a54a74b6e2b567b9e70c04c8f0d17875fa7dbcd3",
-      "source_rows_read": 8,
-      "distinct_market_names_not_new_markets": 2,
-      "explicit_valid_weekdays": 2,
-      "rows_with_addresses": 0,
-      "rows_with_hours": 0,
-      "expired_concession_rows": 0,
-      "historical_stall_rows": 2,
-      "source_kind": "historic_stall_capacity_not_market_visits",
-      "fields": [
-        "nome_mercato",
-        "fiera_mercato",
-        "giorno",
-        "inizio_periodo",
-        "fine_periodo",
-        "tipo_posteggio",
-        "totale_posteggi"
-      ]
-    },
-    {
-      "id": "1326d7d8-d7c1-4d56-bb86-659937874488",
-      "title": "Posteggi mercati e fiere - FONTE",
-      "publisher": "Comune di Fonte",
-      "source_modified_claim": "",
-      "resource_id": "5a7dad8c-4228-4803-a15d-800fe53a8b57",
-      "resource_last_modified": "2026-10-04T07:56:19.488038",
-      "claimed_license": "CC-BY-4.0",
-      "status": "sampled_complete_csv",
-      "market_import_permission": false,
-      "markets_confirmed": 0,
-      "csv_sha256": "7efae327708799295f3a458cd691c64c8e5fff34b505d18bf5a52546085132d7",
-      "source_rows_read": 39,
-      "distinct_market_names_not_new_markets": 1,
-      "explicit_valid_weekdays": 39,
-      "rows_with_addresses": 0,
-      "rows_with_hours": 0,
-      "expired_concession_rows": 0,
-      "historical_stall_rows": 36,
-      "source_kind": "historic_stall_capacity_not_market_visits",
-      "fields": [
-        "nome_mercato",
-        "fiera_mercato",
-        "giorno",
-        "inizio_periodo",
-        "fine_periodo",
-        "tipo_posteggio",
-        "totale_posteggi"
-      ]
-    },
-    {
-      "id": "37d4d8a5-b05b-48bc-88ba-e43f16707a6d",
-      "title": "Posteggi mercati e fiere - VO'",
-      "publisher": "Comune di Vo'",
-      "source_modified_claim": "",
-      "resource_id": "35f3511d-e869-41b5-8359-0f0685454f06",
-      "resource_last_modified": "2026-10-07T09:28:14.675690",
-      "claimed_license": "CC-BY-4.0",
-      "status": "sampled_complete_csv",
-      "market_import_permission": false,
-      "markets_confirmed": 0,
-      "csv_sha256": "26027ff2c01c152dc2f9aa4132ad9cf3235139314ccd8f0f2cc194a3652b0316",
-      "source_rows_read": 23,
-      "distinct_market_names_not_new_markets": 3,
-      "explicit_valid_weekdays": 6,
-      "rows_with_addresses": 0,
-      "rows_with_hours": 0,
-      "expired_concession_rows": 0,
-      "historical_stall_rows": 23,
-      "source_kind": "historic_stall_capacity_not_market_visits",
-      "fields": [
-        "nome_mercato",
-        "fiera_mercato",
-        "giorno",
-        "inizio_periodo",
-        "fine_periodo",
-        "tipo_posteggio",
-        "totale_posteggi"
-      ]
-    }
-  ],
-  "errors": []
+  "sources": [],
+  "errors": [
+    "URLError: <urlopen error timed out>"
+  ]
 }
