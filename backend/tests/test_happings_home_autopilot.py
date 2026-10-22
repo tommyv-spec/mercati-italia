@@ -43,8 +43,23 @@ class HappingsHomeAutopilotTests(unittest.TestCase):
                         out=out,today=TODAY,baseline_signature="home-crawl",
                         pipeline_policy_digest="home-policy",
                         bootstrap=None,fetcher=network)
+            original_acquire = discovery.acquire
+
+            def reproducible_acquire(*args, **settings):
+                # This is a historical fixture for 2026-10-21. The production
+                # crawler correctly rejects capture timestamps from other
+                # days, so pin the mocked acquisition clock to the fixture's
+                # date. A real sleep would only slow down this HTTP-free test.
+                return original_acquire(
+                    *args, **settings,
+                    clock=lambda: "2026-10-21T12:00:00+00:00",
+                    sleep=lambda _: None,
+                )
+
             with (patch("happings_detail_autopilot.weekly._fetch_one",side_effect=fetch_robots),
-                  patch("happings_detail_autopilot.weekly.robots_allowed",side_effect=allow)):
+                  patch("happings_detail_autopilot.weekly.robots_allowed",side_effect=allow),
+                  patch("happings_detail_autopilot.discovery.acquire",
+                        side_effect=reproducible_acquire)):
                 after,report,state=runner.run([],**kwargs)
             self.assertEqual(after,[])
             self.assertEqual(requests,[HOME,CATEGORY,HOME+"sitemap_index.xml",MARKET])
