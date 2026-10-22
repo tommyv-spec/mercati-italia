@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "generated_on": "2026-10-22",
+  "archive_branch": "happings-source-archive-2026-10-22",
+  "source_archive_commit": "4e861b9c1e7501e46cbe9d7098260b8bd916037f",
+  "restore_proof_path": "source-archives/happings/2026-10-22/restore-proof.json",
+  "source_pages_verified": 2349,
+  "reports_verified": 10,
+  "cleanup": {
+    "deleted_local_restore_and_archive_copies": [
+      {
+        "directory": "github-readable-backup-2026-10-22",
+        "bytes": 11337959
+      },
+      {
+        "directory": "_archive-github-restored-20261022",
+        "bytes": 7260489
+      },
+      {
+        "directory": "backup-restore-smoke",
+        "bytes": 7212008
+      },
+      {
+        "directory": "_archive-remote-verify-20261022",
+        "bytes": 19523103
+      }
+    ],
+    "deleted_file_bytes": 45333559,
+    "autopilot_preflight": {
+      "action": "NTFS transparent compression only",
+      "uncompressed_bytes": 428701792,
+      "compressed_bytes": 171728382,
+      "reported_disk_free_gain_bytes": 227926016,
+      "intermediate_files": 13,
+      "all_intermediate_sha256": "4363fea1861e8e27d5d98b24a341e1b421aeedc81680660f603756887365c7e2",
+      "paths_preserved": true,
+      "checkpoint_preserved": true,
+      "backed_up_as_part_of_happings_archive": false
+    },
+    "combined_disk_free_gain_bytes": 273259575,
+    "live_happings_crawl_kept": true,
+    "live_code_kept": true,
+    "original_full_html_dom_archived": false
+  },
+  "github_paid_features_added": 0,
+  "production_modified": false
+}
