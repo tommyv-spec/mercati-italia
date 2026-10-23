@@ -316,6 +316,43 @@ def analyze(rows, previous=None, *, baseline_rows=None, today=None):
     }
 
 
+
+def analyze_release(rows, previous=None, *, baseline_rows=None, today=None):
+    """Compare a proposed release with the ACTUAL published baseline.
+
+    The last compact summary can lag behind an already published DEV catalog.
+    Such drift is reported, never treated as new candidate changes. All candidate
+    overlap growth remains subject to the same source-receipt checks and limits.
+    """
+    if previous is None or baseline_rows is None:
+        return analyze(rows, previous, baseline_rows=baseline_rows, today=today)
+    # Validate the old summary contract even when it is stale. A forged summary
+    # must not be able to suppress quality checks.
+    if (not isinstance(previous, dict) or previous.get("schema") != VERSION
+            or previous.get("review_only") is not True
+            or previous.get("market_updates_applied", 0) != 0):
+        raise ValueError("Untrusted prior quality snapshot")
+    observed_baseline = analyze(baseline_rows)
+    report = analyze(rows, observed_baseline,
+                     baseline_rows=baseline_rows, today=today)
+    old = previous.get("metrics") or {}
+    current = observed_baseline["metrics"]
+    fields = ("total", "hours_missing", "address_missing",
+              "review_only_duplicate_groups",
+              "review_only_potential_extra_rows", "suspicious_city",
+              "future_dates_missing")
+    changes = {key: int(current.get(key, 0)) - int(old.get(key, 0))
+               for key in fields}
+    report["comparison_anchor"] = "actual_published_DEV_catalog"
+    report["previous_scorecard_drift"] = {
+        "status": "stale" if any(changes.values()) else "aligned",
+        "differences": changes,
+        "comparison_is_not_market_mutation": True,
+        "new_candidate_regressions_still_block": True,
+    }
+    return report
+
+
 def markdown(report):
     m=report["metrics"]
     out=[
@@ -391,7 +428,7 @@ def main():
         args.previous and args.previous.is_file()) else None
     baseline_rows = load_existing(args.baseline_manifest) if (
         previous is not None and args.baseline_manifest.is_file()) else None
-    result=analyze(records,previous,baseline_rows=baseline_rows)
+    result=analyze_release(records,previous,baseline_rows=baseline_rows)
     for path in (args.out,args.report): path.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n","utf-8")
     args.report.write_text(markdown(result),"utf-8")
