@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 13824,
-  "baseline_market_records": 13824,
+  "baseline_market_ids_preserved": 14007,
+  "baseline_market_records": 14007,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -8,36 +8,157 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
-      "leads_found": 2,
-      "not_matching_market_scope": 117,
-      "requests": 1,
-      "rows_examined": 119,
-      "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
-      "state": "discovery_leads_only"
+      "reason_class": "URLError",
+      "requests": 0,
+      "state": "source_unavailable_or_schema_review"
     },
     {
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "bologna-agenda",
       "leads_found": 0,
-      "not_matching_market_scope": 1,
+      "not_matching_market_scope": 0,
       "requests": 1,
-      "rows_examined": 1,
-      "schema_digest": "4fa0da276cf67d67c2ac5eeaa8f4be0e240bd2ffb113aced125ebfd6e4612343",
+      "rows_examined": 0,
+      "schema_digest": null,
       "state": "discovery_leads_only"
     },
     {
       "catalog_market_imports": 0,
+      "descriptions_copied": 0,
       "event_confirmations": 0,
       "id": "eventiesagre-index",
-      "reason_class": "ValueError",
-      "requests": 0,
-      "state": "source_unavailable_or_schema_review"
+      "indexes_read": 2,
+      "links_only": 11,
+      "publisher_events_verified": 0,
+      "requests": 3,
+      "state": "discovery_leads_only"
     }
   ],
-  "fresh_official_leads": 2,
+  "fresh_official_leads": 0,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:4266",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/4266_Ossana+il+Borgo+dei+Presepi.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21162496",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21162496_Brenzone+Vintage+AND+Retro.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21162492",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21162492_Malcesine+Antiques.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21159071",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21159071_Fiera+Del+Disco+E+Del+Fumetto+Di+Bassano+Del+Grappa.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21144797",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21144797_Borsa+Scambio+Giocattoli+E+Modelli+Verona.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21097766",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21097766_Mercatino+di+Legnago.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21079231",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21079231_Mercatini+delle+pulci+e+antiquariato+a+Dobbiaco.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21053906",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21053906_Artigianalmente.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21028887",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21022464",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21022464_Mercato+dell+artigianato+artistico.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:13667",
+      "last_seen": "2026-10-23",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/13667_Mercatini+delle+pulci+e+antiquariato+a+Villabassa.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
     {
       "catalog_import_allowed": false,
       "city": "Firenze",
@@ -51,7 +172,7 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
       "start": "2026-11-14",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercato di Natale in Piazza Santa Croce"
     },
     {
@@ -63,13 +184,11 @@
       "kind": "market_candidate",
       "last_seen": "2026-10-20",
       "opening_confirmed": false,
-      "possible_existing_market_ids": [
-        "il-mercatino-da-forte-dei-marmi-a-firenze-firenze"
-      ],
+      "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
       "start": "2026-10-25",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercato del Forte dei Marmi a Firenze"
     },
     {
@@ -363,11 +482,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 0,
+  "new_external_url_pointers": 11,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-20",
+  "reference_date": "2026-10-23",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
