@@ -165,15 +165,7 @@ class D1IncrementalTests(unittest.TestCase):
 
     def test_missing_or_cyclic_parent_rejected(self):
         self.add_delta("cat-v2", "cat-base", [], 2, "d" * 64)
-        self.db.execute(
-            "UPDATE catalog_dataset_parents SET parent_dataset_id='cat-v2' "
-            "WHERE dataset_id='cat-v2'"
-        ) if False else None
-        self.db.execute(
-            "UPDATE catalog_dataset_parents SET parent_dataset_id='cat-missing' "
-            "WHERE dataset_id='cat-v2'"
-        ) if False else None
-        # SQLite foreign keys might be disabled; test the explicit empty base guard.
+        # A version without an actual immutable base must be rejected.
         self.db.execute(
             "DELETE FROM catalog_markets WHERE dataset_id='cat-base'"
         )
@@ -206,6 +198,89 @@ class D1IncrementalTests(unittest.TestCase):
             inc.change_statement("cat-v2", huge)
         self.assertEqual(self.query(
             "SELECT COUNT(*) AS n FROM catalog_markets")[0]["n"], 2)
+
+
+    def release_files(self, rows):
+        root = self.folder / "public/data/v1"
+        (root / "regions").mkdir(parents=True, exist_ok=True)
+        raw = (json.dumps({"schema": 1, "markets": rows}, ensure_ascii=False,
+                          separators=(",", ":")) + "\n").encode("utf-8")
+        hashed = base.digest(raw)[:14]
+        (root / "regions" / ("test-" + hashed + ".json")).write_bytes(raw)
+        manifest = root / "manifest.json"
+        manifest.write_text(json.dumps({
+            "schema": 1, "layout": "regional", "total": len(rows),
+            "content_signature": "f" * 64,
+            "regions": [{
+                "path": "data/v1/regions/test-" + hashed + ".json",
+                "count": len(rows),
+            }],
+        }), encoding="utf-8")
+        proof = self.folder / "proof.json"
+        proof.write_text(json.dumps({
+            "qa_gate_approved": True,
+            "all_existing_market_ids_preserved": True,
+            "manifest_content_signature": "f" * 64,
+            "after_records": len(rows),
+            "old_unrelated_market_fields_changed": 0,
+        }), encoding="utf-8")
+        return manifest, proof
+
+    def test_import_end_to_end_updates_dev_only_and_replay_is_noop(self):
+        changed = self.market("mercato-uno", "09:00-12:00")
+        added = self.market("mercato-tre", "15:00-18:00")
+        manifest, proof = self.release_files([changed, self.original[1], added])
+        log = self.folder / "checkpoint.json"
+        written_statements = []
+
+        def apply_file(file):
+            self.db.executescript(Path(file).read_text(encoding="utf-8"))
+
+        def import_chunks(statements, **kwargs):
+            entries = list(statements)
+            written_statements.extend(entries)
+            for statement in entries:
+                self.db.executescript(statement)
+            return len(entries), len(entries)
+
+        with (patch.object(inc, "validate", return_value={"records": 3}),
+              patch.object(inc, "free_write_guard", return_value=None),
+              patch.object(inc, "execute_file", side_effect=apply_file),
+              patch.object(inc, "import_statements", side_effect=import_chunks)):
+            planned = inc.run(manifest, "e" * 40, proof, log, dry_run=True)
+            self.assertEqual(planned["stored_changes"], 2)
+            self.assertEqual(inc.channel_heads()["dev"], "cat-base")
+            result = inc.run(manifest, "e" * 40, proof, log)
+            self.assertEqual(result["status"], "dev_incremental_imported")
+            self.assertEqual(result["uploaded_in_this_run"], 2)
+            self.assertEqual(inc.channel_heads()["dev"], result["dataset_id"])
+            self.assertIsNone(inc.channel_heads()["prod"])
+            self.assertEqual(len(written_statements), 2)
+            self.assertEqual(self.query(
+                "SELECT COUNT(*) AS n FROM catalog_markets")[0]["n"], 2)
+            self.assertEqual(self.query(
+                "SELECT COUNT(*) AS n FROM release_audit")[0]["n"], 1)
+            again = inc.run(manifest, "e" * 40, proof, log)
+            self.assertEqual(again["status"], "already_active")
+            self.assertEqual(again["stored_changes"], 0)
+            self.assertEqual(len(written_statements), 2)
+            self.assertEqual(self.query(
+                "SELECT COUNT(*) AS n FROM release_audit")[0]["n"], 1)
+
+    def test_free_plan_guard_uses_current_24_hour_usage(self):
+        with (patch.object(inc, "check_database_budget") as checked,
+              patch.object(inc, "cli", return_value=json.dumps({
+                  "rows_written_24h": 84899
+              }))):
+            with self.assertRaisesRegex(ValueError, "headroom exhausted"):
+                inc.free_write_guard(100)
+            self.assertTrue(checked.called)
+        with (patch.object(inc, "check_database_budget") as checked,
+              patch.object(inc, "cli", return_value=json.dumps({
+                  "rows_written_24h": 60817
+              }))):
+            inc.free_write_guard(100)
+            self.assertTrue(checked.called)
 
 
 if __name__ == "__main__":
