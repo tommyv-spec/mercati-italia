@@ -20,6 +20,9 @@ from export_static import canonical_region
 from stored_market_sibling_proposals import safe_stored_street
 
 MAX_NEW = 32
+# These labels are literal publisher dayparts, never guessed clock times.
+DAYPART = {"morning_not_clock_hours": "La mattina",
+           "afternoon_not_clock_hours": "Il pomeriggio"}
 MAX_PAGES = source.MAX_REQUESTS_PER_RUN
 DEFAULT_POLICY = {"enabled": False, "max_new": 32}
 
@@ -56,6 +59,7 @@ def _possible_existing(row, city, region, province, day):
 
 def _new_row(event, *, region, province, source_url, read_on, page_hash, page_metadata):
     city, day, street = event["city"], event["weekday"], event["place"].strip()
+    observed_hours = DAYPART.get(event.get("daypart"), "")
     # Source ISTAT index keys are lowercase. Normalize the displayed region
     # BEFORE creating identity-bound receipts, or the final static exporter
     # would discard evidence after canonicalizing the region spelling.
@@ -68,7 +72,7 @@ def _new_row(event, *, region, province, source_url, read_on, page_hash, page_me
         "citta": city, "provincia": province, "regione": official_region,
         "indirizzo": street, "lat": None, "lng": None,
         "position_quality": "sconosciuta", "categoria": "misto", "tags": [],
-        "status": "non_confermato", "orario_testo": "",
+        "status": "non_confermato", "orario_testo": observed_hours,
         "ricorrenza_testo": "settimanale - " + WEEKDAYS[day],
         "descrizione": "", "date": [], "date_quality": "sconosciuta",
         "proiezione_regola": None, "proiezione_generata_il": "",
@@ -86,6 +90,8 @@ def _new_row(event, *, region, province, source_url, read_on, page_hash, page_me
     if page_metadata is not None:
         evidence["page_metadata"] = page_metadata
     values = {"indirizzo": street, "ricorrenza_testo": row["ricorrenza_testo"]}
+    if observed_hours:
+        values["orario_testo"] = observed_hours
     proof = source._field_receipt(row, values, evidence)
     proof = mark_managed_fields(proof, list(values), manager=source.FIELD_MANAGER)
     if clean_receipts([proof], row, today=read_on) != [proof]:
