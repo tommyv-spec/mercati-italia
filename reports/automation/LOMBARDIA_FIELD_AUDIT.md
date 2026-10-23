@@ -13,17 +13,17 @@ Coordinate indicative mai utilizzate per confermare una sede.
 ## Conteggi e motivi di blocco
 
 - legacy_lombardia_records_checked: **2862**
-- legacy_no_exact_street_day_match: **1833**
+- legacy_no_exact_street_day_match: **1941**
 - legacy_no_safe_street_or_day: **342**
-- missing_address_multiple_official_venues: **14**
-- missing_address_no_matching_official_town_day: **229**
-- missing_address_without_grounded_venue: **55**
+- missing_address_multiple_official_venues: **10**
+- missing_address_no_matching_official_town_day: **143**
+- missing_address_without_grounded_venue: **29**
 - official_source_id_absent_from_catalog_not_new_market_proof: **233**
 - same_source_id_already_in_catalog: **1127**
-- same_venue_hours_present_do_not_overwrite: **371**
-- strong_city_province_street_day_matches: **371**
+- same_venue_hours_present_do_not_overwrite: **374**
+- strong_city_province_street_day_matches: **374**
 - strong_key_ambiguous_official_venue_day: **2**
-- strong_key_coordinate_conflict: **15**
+- strong_key_coordinate_conflict: **20**
 - weak_missing_address_one_venue_nearby_review_only: **1**
 
 ## Campioni con provenienza
