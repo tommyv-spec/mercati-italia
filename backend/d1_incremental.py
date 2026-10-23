@@ -70,6 +70,16 @@ def check_lineage(dataset_id: str) -> None:
     if not remote_query("SELECT slug FROM catalog_markets WHERE dataset_id=" +
                         sql(root) + " LIMIT 1"):
         raise ValueError("Snapshot ancestor has no stored markets")
+    # The current version may still be loading while we verify its delta,
+    # but every ancestor must already have passed its release checks.
+    unready = remote_query(
+        lineage_sql(dataset_id) +
+        "SELECT a.dataset_id FROM ancestry a "
+        "LEFT JOIN catalog_datasets d ON a.dataset_id=d.dataset_id "
+        "WHERE a.depth>0 AND (d.dataset_id IS NULL OR d.status!='ready') LIMIT 1"
+    )
+    if unready:
+        raise ValueError("Incremental version has an unready parent")
 
 
 def effective_hashes_sql(dataset_id: str, *, after: str = "", limit: int = PAGE_SIZE) -> str:
@@ -207,6 +217,7 @@ def dataset_record(meta: dict, parent: str):
         item = rows[0]
         if (item["content_signature"] != meta["signature"]
                 or item["manifest_sha256"] != meta["manifest_sha"]
+                or item["source_git_sha"] != meta["git_sha"]
                 or int(item["expected_rows"]) != meta["rows"]
                 or item["parent_dataset_id"] != parent):
             raise ValueError("Immutable D1 dataset ID or parent was changed")
@@ -282,6 +293,11 @@ def run(manifest_file: Path, git_sha: str, proof_file: Path,
     parent = heads["dev"]
     if parent is None:
         raise ValueError("Existing DEV snapshot required; first use d1_catalog.py catalog")
+    if not remote_query(
+        "SELECT dataset_id FROM catalog_datasets WHERE dataset_id=" +
+        sql(parent) + " AND status='ready'"
+    ):
+        raise ValueError("Current DEV version must be ready")
     previous = effective_hashes(parent)
     target, changes, stats = plan_delta(previous, rows)
     if heads["dev"] == meta["id"]:
@@ -353,6 +369,13 @@ def verify_existing(manifest_file: Path, git_sha: str) -> dict:
     head = channel_heads()
     if head["dev"] != meta["id"]:
         raise ValueError("This manifest is not the active DEV dataset")
+    source = remote_query(
+        "SELECT source_git_sha,status FROM catalog_datasets WHERE dataset_id=" +
+        sql(head["dev"])
+    )
+    if (len(source) != 1 or source[0]["status"] != "ready"
+            or source[0]["source_git_sha"] != git_sha):
+        raise ValueError("DEV dataset does not match the immutable source Git commit")
     rows = list(manifest_rows(manifest_file))
     hashes = {r["slug"]: canonical_hash(r) for r in rows}
     if len(hashes) != meta["rows"]:
