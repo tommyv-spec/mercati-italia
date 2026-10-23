@@ -60,7 +60,44 @@ env:
   BUILD_NAME: mercati-qa-build-${{ github.run_id }}
 
 jobs:
+  prune_old_qa_artifacts:
+    name: Free-tier checkpoint cleanup before data collection
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Purge expired temporary catalog checkpoints only
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const repo = {...context.repo};
+            const metadata = await github.rest.repos.get(repo);
+            if (metadata.data.private) {
+              throw new Error('Never run this workflow with paid private repository runner minutes');
+            }
+            const all = await github.paginate(
+              github.rest.actions.listArtifactsForRepo, {...repo, per_page: 100}
+            );
+            // These are per-run temporary QA snapshots, not permanent source
+            // archives, D1 market data, branches, or catalog exports.
+            const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+            let freed = 0;
+            let deleted = 0;
+            for (const entry of all) {
+              if (!/^mercati-checkpoints-[0-9]+$/.test(entry.name)
+                  || !entry.created_at || Date.parse(entry.created_at) >= cutoff) {
+                continue;
+              }
+              await github.rest.actions.deleteArtifact({...repo, artifact_id: entry.id});
+              freed += entry.size_in_bytes;
+              deleted++;
+            }
+            core.notice('Deleted ' + deleted + ' expired temporary QA checkpoints; freed '
+                        + (freed / 1048576).toFixed(1) + ' MiB. Permanent Git history and D1 untouched.');
   candidate:
+    needs: prune_old_qa_artifacts
     name: Source → merge → recurrence → export → quality gates
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -281,7 +318,7 @@ jobs:
         with:
           name: ${{ env.CHECKPOINT_NAME }}
           path: autopilot-output/
-          retention-days: 30
+          retention-days: 1
           if-no-files-found: warn
 
   qa:
@@ -1124,7 +1161,7 @@ jobs:
             autopilot-output/generic-source-admissions.json
             autopilot-output/generic-source-admissions-diff-guard.json
             autopilot-output/generic-source-admissions-static-guard.json
-          retention-days: 30
+          retention-days: 1
           if-no-files-found: error
       - name: Save tested static distribution (for separate DEV publication)
         uses: actions/upload-artifact@v4
@@ -1142,7 +1179,7 @@ jobs:
             ux-*.png
             ux-smoke-result.json
             /tmp/mercati-autopilot-preview.log
-          retention-days: 30
+          retention-days: 1
           if-no-files-found: warn
 
   publish_dev:
