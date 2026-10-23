@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from catalog_quality_report import analyze, suspicious_city, count_venue_weekday_groups
+from catalog_quality_report import analyze, suspicious_city, count_venue_weekday_groups, analyze_release
 from field_evidence import make_receipt
 
 
@@ -172,6 +172,47 @@ class CatalogQualityTests(unittest.TestCase):
         self.assertEqual((baseline, candidate), original)
         self.assertEqual(report["market_identities_deleted"], 0)
         self.assertEqual(report["market_confirmations_created"], 0)
+
+
+    def test_stale_compact_scorecard_does_not_block_unchanged_published_catalog(self):
+        base, enriched = overlap_recovery_catalog()
+        historical = analyze(base)
+        # Those source-proven streets have ALREADY reached DEV but the compact
+        # report was not refreshed. An unchanged candidate must not be blocked.
+        result = analyze_release(enriched, historical,
+                                 baseline_rows=copy.deepcopy(enriched),
+                                 today=date(2026, 10, 23))
+        self.assertTrue(result["quality_release_safe"])
+        self.assertEqual(result["metrics"]["review_only_potential_extra_rows"], 859)
+        self.assertEqual(result["baseline_delta"]["review_only_potential_extra_rows"], 0)
+        self.assertEqual(result["overlap_growth_review"]["unexplained_group_growth"], 0)
+        self.assertEqual(result["comparison_anchor"], "actual_published_DEV_catalog")
+        self.assertEqual(result["previous_scorecard_drift"]["status"], "stale")
+        self.assertEqual(
+            result["previous_scorecard_drift"]["differences"]["review_only_potential_extra_rows"], 94)
+
+    def test_stale_scorecard_cannot_hide_new_unproven_duplicate_growth(self):
+        base, enriched = overlap_recovery_catalog()
+        historical = analyze(base)
+        candidate = copy.deepcopy(enriched)
+        # Create additional unreviewed records with the same venue/weekday.
+        candidate += [
+            mk(f"spurious-{i}", city=f"Existing town {i}", provincia="VA")
+            for i in range(200)
+        ]
+        result = analyze_release(candidate, historical, baseline_rows=enriched,
+                                 today=date(2026, 10, 23))
+        self.assertFalse(result["quality_release_safe"])
+        self.assertGreater(result["overlap_growth_review"]["unexplained_group_growth"], 100)
+        self.assertTrue(result["quality_regressions"])
+
+    def test_release_comparison_rejects_forged_historical_summary(self):
+        base, enriched = overlap_recovery_catalog()
+        previous = analyze(base)
+        previous["review_only"] = False
+        with self.assertRaisesRegex(ValueError, "Untrusted prior quality"):
+            analyze_release(enriched, previous, baseline_rows=enriched,
+                            today=date(2026, 10, 23))
 
     def test_previous_summary_without_baseline_rows_keeps_original_gate(self):
         baseline, candidate = overlap_recovery_catalog()

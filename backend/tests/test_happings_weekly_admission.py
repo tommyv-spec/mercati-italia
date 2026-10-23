@@ -44,7 +44,8 @@ class WeeklyAdmissionTests(unittest.TestCase):
         self.assertEqual(row["indirizzo"],"Piazza Vittoria")
         self.assertEqual(row["url_fonte"],INDEX)
         self.assertEqual(row["date"],[])
-        self.assertEqual(row["orario_testo"],"")
+        self.assertEqual(row["orario_testo"], "La mattina")
+        self.assertEqual(row["riscontri_campi"][0]["valori"]["orario_testo"], "La mattina")
         self.assertEqual(row["verificato_il"],"")
         self.assertEqual(row["status"],"non_confermato")
         self.assertEqual(row["ricorrenza_testo"],"settimanale - mercoledi")
@@ -54,6 +55,23 @@ class WeeklyAdmissionTests(unittest.TestCase):
         exported,error=normalize(row,DAY)
         self.assertIsNone(error)
         self.assertEqual(exported["slug"],row["slug"])
+    def test_unstated_hours_stay_missing_without_guessing_clock_times(self):
+        bare = HTML.replace(b" (la mattina)", b"")
+        after, report = weekly.preview([], pages(bare), today=DAY, apply=True)
+        self.assertEqual(len(after), 1)
+        self.assertEqual(after[0]["orario_testo"], "")
+        self.assertNotIn("orario_testo", after[0]["riscontri_campi"][0]["valori"])
+        self.assertTrue(weekly.verify_changes([], after, report, today=DAY, pages=pages(bare)))
+
+    def test_changed_qualitative_hours_or_receipt_cannot_pass_replay(self):
+        after, report = weekly.preview([], pages(), today=DAY, apply=True)
+        for bad in ("09:00–13:00", "Il pomeriggio", "apertura confermata"):
+            tampered = copy.deepcopy(after)
+            tampered[0]["orario_testo"] = bad
+            with self.subTest(bad=bad):
+                with self.assertRaisesRegex(ValueError, "not reproduced"):
+                    weekly.verify_changes([], tampered, report, today=DAY, pages=pages())
+
     def test_existing_market_blocks_any_duplicate(self):
         original=[legacy()]
         after,report=weekly.preview(original,pages(),today=DAY,apply=True)
