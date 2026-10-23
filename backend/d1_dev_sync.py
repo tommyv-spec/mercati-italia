@@ -69,12 +69,6 @@ def preflight(decision: dict, quality: dict, admission: dict | None, *,
     candidate = decision.get("candidate") or {}
     before = decision.get("old") or {}
     gates = decision.get("gates") or {}
-    unacceptable = (
-        decision.get("approved") is not True
-        or decision.get("base_signature") != previous_signature
-        or decision.get("new_signature") not in (meta["signature"],)
-           if admission is None else False
-    )
     # Keep all conditions explicit, even with a weekly admission final delta.
     if (decision.get("approved") is not True
             or decision.get("base_signature") != previous_signature
