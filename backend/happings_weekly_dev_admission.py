@@ -248,8 +248,13 @@ def verify_catalog(before, after, evidence, *, today):
         if (row.get("status") != "non_confermato" or row.get("verificato_il")
                 or row.get("date") or row.get("date_quality") != "sconosciuta"
                 or row.get("lat") is not None or row.get("lng") is not None
-                or row.get("orario_testo") or row.get("fonte") != source.PUBLISHER
-                or not row.get("riscontri_campi")):
+                or row.get("orario_testo") not in ("", "La mattina", "Il pomeriggio")
+                or row.get("fonte") != source.PUBLISHER
+                or not row.get("riscontri_campi")
+                or (row.get("orario_testo") and not any(
+                    receipt.get("valori", {}).get("orario_testo") == row["orario_testo"]
+                    and receipt.get("url") == row.get("url_fonte")
+                    for receipt in row["riscontri_campi"]))):
             raise ValueError("Weekly source claimed unverified opening, date or coordinates")
     return sorted(additions)
 
