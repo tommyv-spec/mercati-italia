@@ -41,7 +41,7 @@ def text_key(value):
 
 @lru_cache(maxsize=1)
 def istat_geography():
-    values = json.loads((Path(__file__).resolve().parent / "data/istat-comuni-2026.json").read_text())
+    values = json.loads((Path(__file__).resolve().parent / "data/istat-comuni-2026.json").read_text(encoding="utf-8"))
     return frozenset((text_key(city), province, text_key(region))
         for region, cities in values["provinces_by_region"].items()
         for city, province in cities.items())
