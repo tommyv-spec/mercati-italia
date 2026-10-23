@@ -13,7 +13,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 
 | Fonte | Record | Orari vuoti | Indirizzi vuoti | Coordinate vuote | Data fonte/import >540gg | Contraddizioni giorni | Modello |
 |---|---:|---:|---:|---:|---:|---:|---|
-| happings.com | 9830 | 9237 | 2329 | 186 | 0 | 0 | weekly_area_index_and_event_details |
+| happings.com | 9830 | 1791 | 1965 | 186 | 0 | 0 | weekly_area_index_and_event_details |
 | eventiesagre.it | 2197 | 367 | 441 | 0 | 0 | 0 | regional_listing_and_details |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 1 | 216 | 0 | 0 | one_market_id_per_weekday |
 | cosedicasa.com | 432 | 362 | 0 | 7 | 0 | 0 | monthly_recurrence_with_exceptions |

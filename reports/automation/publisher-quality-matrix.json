@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-22",
+  "as_of": "2026-10-23",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -652,20 +652,20 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 183,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 2417,
-        "address_missing": 2329,
+        "address_missing": 1965,
         "coordinates_missing": 186,
         "future_dates_missing": 331,
-        "hours_missing": 9237,
+        "hours_missing": 1791,
         "records": 9830,
         "source_or_import_date_unknown": 183
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 50124,
+      "priority_workload_score_not_evidence": 34140,
       "publisher": "happings.com",
       "records": 9830,
       "rights_classification": "see_existing_happings_operational_policy",
@@ -699,11 +699,11 @@
           "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "hours_missing": [
-          "mercato-settimanale-di-acciano-acciano",
-          "mercato-settimanale-di-acciano-acciano-sabato",
-          "mercato-settimanale-a-aielli-aielli-lunedi",
-          "mercato-settimanale-di-aielli-aielli",
-          "mercato-settimanale-di-alanno-alanno"
+          "mercato-settimanale-a-atelena-atelena-mercoledi",
+          "mercato-settimanale-di-atelena-atelena",
+          "mercato-settimanale-a-balsorano-balsorano-martedi",
+          "mercato-settimanale-di-balsorano-balsorano",
+          "mercato-settimanale-a-barisciano-barisciano-giovedi"
         ],
         "source_or_import_date_unknown": [
           "happings-mercato-di-campagna-amica-di-atri-3d19a276a90a",
@@ -5718,7 +5718,7 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-10-22",
+    "generated_for_date": "2026-10-23",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
