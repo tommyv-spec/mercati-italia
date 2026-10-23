@@ -13,7 +13,7 @@ from pathlib import Path
 
 from d1_catalog import (
     DB_NAME, MAX_DATABASE_BYTES, MAX_IMPORT_WRITES, MAX_ROWS,
-    check_database_budget, dataset_create_sql, dataset_meta, digest,
+    check_database_budget, cli, dataset_create_sql, dataset_meta, digest,
     execute_file, import_statements, manifest_rows, remote_query, sql,
 )
 from validate_static import validate
@@ -172,6 +172,18 @@ def proof_check(proof_file: Path, meta: dict) -> dict:
     return proof
 
 
+def free_write_guard(changed_rows: int) -> None:
+    """Fail closed before crossing a conservative Workers Free D1 write budget."""
+    check_database_budget(max(1, changed_rows + 100))
+    usage = json.loads(cli("info", DB_NAME, "--json", timeout=90))
+    last_day = usage.get("rows_written_24h")
+    if type(last_day) is not int or last_day < 0:
+        raise ValueError("Current D1 free-tier usage unavailable; do not write")
+    if last_day + changed_rows + 200 > 85000:
+        raise ValueError("D1 free-tier write safety headroom exhausted: " +
+                         str(last_day) + " already written over 24h")
+
+
 def channel_heads() -> dict[str, str | None]:
     rows = remote_query(
         "SELECT channel,dataset_id FROM catalog_channels ORDER BY channel"
@@ -290,7 +302,7 @@ def run(manifest_file: Path, git_sha: str, proof_file: Path,
     if dry_run:
         return {"status": "resume_planned", "dataset_id": meta["id"],
                 "parent": parent, "prod_head": heads["prod"], **stats}
-    check_database_budget(max(1, len(changes) + 100))
+    free_write_guard(len(changes))
     if not dataset_record(meta, parent):
         register_version(meta, parent)
     uploaded = 0
@@ -332,9 +344,27 @@ def run(manifest_file: Path, git_sha: str, proof_file: Path,
     return result
 
 
+def verify_existing(manifest_file: Path, git_sha: str) -> dict:
+    """Read-only full-hash match of the already active DEV version to Git assets."""
+    required_schema()
+    manifest_file = Path(manifest_file)
+    validate(manifest_file)
+    meta = dataset_meta(manifest_file, git_sha)
+    head = channel_heads()
+    if head["dev"] != meta["id"]:
+        raise ValueError("This manifest is not the active DEV dataset")
+    rows = list(manifest_rows(manifest_file))
+    hashes = {r["slug"]: canonical_hash(r) for r in rows}
+    if len(hashes) != meta["rows"]:
+        raise ValueError("Duplicate or lost market identity in export")
+    verify_state(head["dev"], hashes)
+    return {"status": "dev_full_hashes_verified", "records": len(hashes),
+            "dataset_id": head["dev"], "prod_head": head["prod"]}
+
+
 def main():
     parser = argparse.ArgumentParser(description="Safe incremental D1 DEV catalog")
-    parser.add_argument("action", choices=("migrate", "plan", "import", "status"))
+    parser.add_argument("action", choices=("migrate", "plan", "import", "status", "verify"))
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--source-git-sha")
     parser.add_argument("--proof", type=Path)
@@ -346,6 +376,11 @@ def main():
     elif args.action == "status":
         required_schema()
         print(json.dumps(channel_heads(), sort_keys=True))
+    elif args.action == "verify":
+        if not all((args.manifest, args.source_git_sha)):
+            parser.error("verify requires --manifest and --source-git-sha")
+        print(json.dumps(verify_existing(args.manifest, args.source_git_sha),
+                         ensure_ascii=False, sort_keys=True))
     else:
         if not all((args.manifest, args.source_git_sha, args.proof)):
             parser.error("plan/import requires --manifest, --source-git-sha and --proof")
