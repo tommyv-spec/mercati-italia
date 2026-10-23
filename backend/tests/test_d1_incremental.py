@@ -172,6 +172,23 @@ class D1IncrementalTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "no stored markets"):
             inc.effective_hashes("cat-v2")
 
+    def test_original_git_provenance_is_immutable(self):
+        self.add_delta("cat-v2", "cat-base", [], 2, "d" * 64)
+        meta = {"id": "cat-v2", "signature": "d" * 64,
+                "manifest_sha": "a" * 64, "git_sha": "c" * 40, "rows": 2}
+        self.assertEqual(len(inc.dataset_record(meta, "cat-base")), 1)
+        meta["git_sha"] = "f" * 40
+        with self.assertRaisesRegex(ValueError, "was changed"):
+            inc.dataset_record(meta, "cat-base")
+
+    def test_unready_intermediate_version_cannot_serve_children(self):
+        self.add_delta("cat-v2", "cat-base", [], 2, "d" * 64)
+        self.add_delta("cat-v3", "cat-v2", [], 2, "e" * 64)
+        self.db.execute(
+            "UPDATE catalog_datasets SET status='loading' WHERE dataset_id='cat-v2'")
+        with self.assertRaisesRegex(ValueError, "unready parent"):
+            inc.effective_hashes("cat-v3")
+
     def test_proof_must_match_manifest_and_exact_identity(self):
         meta = {"signature": "f" * 64, "rows": 2}
         proof = {
