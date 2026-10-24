@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14007,
-  "baseline_market_records": 14007,
+  "baseline_market_ids_preserved": 14008,
+  "baseline_market_records": 14008,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -8,9 +8,12 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
-      "reason_class": "URLError",
-      "requests": 0,
-      "state": "source_unavailable_or_schema_review"
+      "leads_found": 3,
+      "not_matching_market_scope": 123,
+      "requests": 1,
+      "rows_examined": 126,
+      "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
+      "state": "discovery_leads_only"
     },
     {
       "catalog_market_imports": 0,
@@ -29,15 +32,89 @@
       "event_confirmations": 0,
       "id": "eventiesagre-index",
       "indexes_read": 2,
-      "links_only": 11,
+      "links_only": 2,
       "publisher_events_verified": 0,
       "requests": 3,
       "state": "discovery_leads_only"
     }
   ],
-  "fresh_official_leads": 0,
+  "fresh_official_leads": 3,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "id": "firenze-feelflorence:98",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-24",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [
+        "il-mercatino-da-forte-dei-marmi-a-firenze-firenze"
+      ],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
+      "start": "2026-10-25",
+      "status": "source_lead_unverified",
+      "title": "Mercato del Forte dei Marmi a Firenze"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "id": "firenze-feelflorence:118",
+      "kind": "antique_vintage_market_candidate",
+      "last_seen": "2026-10-24",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercatino-dei-fumetti-del-disco-e-del-vintage",
+      "start": "2026-10-24",
+      "status": "source_lead_unverified",
+      "title": "Mercatino dei fumetti, del disco e del vintage"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "id": "firenze-feelflorence:117",
+      "kind": "fair_review",
+      "last_seen": "2026-10-24",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [
+        "mercatino-antiquariato-e-usato-di-firenze-santo-spirito-in-fiera-piazza-santo-sp"
+      ],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/santo-spirito-fiera",
+      "start": "2026-10-25",
+      "status": "source_lead_unverified",
+      "title": "Santo Spirito in Fiera"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-24",
+      "id": "eventiesagre-index:21174403",
+      "last_seen": "2026-10-24",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21174403_La+Fiera+Del+Disco+A+Salerno.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-24",
+      "id": "eventiesagre-index:21060752",
+      "last_seen": "2026-10-24",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21060752_Mercatino+dell+Artigianato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
     {
       "catalog_import_allowed": false,
       "first_seen": "2026-10-23",
@@ -47,7 +124,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/4266_Ossana+il+Borgo+dei+Presepi.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -58,7 +135,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21162496_Brenzone+Vintage+AND+Retro.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -69,7 +146,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21162492_Malcesine+Antiques.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -80,7 +157,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21159071_Fiera+Del+Disco+E+Del+Fumetto+Di+Bassano+Del+Grappa.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -91,7 +168,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21144797_Borsa+Scambio+Giocattoli+E+Modelli+Verona.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -102,7 +179,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21097766_Mercatino+di+Legnago.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -113,7 +190,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21079231_Mercatini+delle+pulci+e+antiquariato+a+Dobbiaco.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -124,7 +201,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21053906_Artigianalmente.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -135,7 +212,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -146,7 +223,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21022464_Mercato+dell+artigianato+artistico.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -157,7 +234,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/13667_Mercatini+delle+pulci+e+antiquariato+a+Villabassa.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -482,11 +559,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 11,
+  "new_external_url_pointers": 2,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-23",
+  "reference_date": "2026-10-24",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1

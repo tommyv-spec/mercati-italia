@@ -1,31 +1,36 @@
 # Mercati Italia — scoperta automatica eventi: solo segnali
 
-Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-23**.
+Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-24**.
 Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 
-- Schede di mercato esistenti conservate: **14007**
-- Segnali ufficiali nell'ultima scansione: **0**
-- Collegamenti esterni, non dati riutilizzabili: **11**
+- Schede di mercato esistenti conservate: **14008**
+- Segnali ufficiali nell'ultima scansione: **3**
+- Collegamenti esterni, non dati riutilizzabili: **2**
 
 | Fonte | Stato | Richieste |
 |---|---|---:|
-| firenze-feelflorence | source_unavailable_or_schema_review | 0 |
+| firenze-feelflorence | discovery_leads_only | 1 |
 | bologna-agenda | discovery_leads_only | 1 |
 | eventiesagre-index | discovery_leads_only | 3 |
 
 ## Segnali da verificare presso Comune o organizzatore
 
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/4266_Ossana+il+Borgo+dei+Presepi.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21162496_Brenzone+Vintage+AND+Retro.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21162492_Malcesine+Antiques.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Collezionismo/21159071_Fiera+Del+Disco+E+Del+Fumetto+Di+Bassano+Del+Grappa.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Collezionismo/21144797_Borsa+Scambio+Giocattoli+E+Modelli+Verona.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Collezionismo/21097766_Mercatino+di+Legnago.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21079231_Mercatini+delle+pulci+e+antiquariato+a+Dobbiaco.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21053906_Artigianalmente.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21022464_Mercato+dell+artigianato+artistico.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/13667_Mercatini+delle+pulci+e+antiquariato+a+Villabassa.html — stato: external_pointer_only_no_fact_reuse
+- Mercato del Forte dei Marmi a Firenze — https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze — stato: source_lead_unverified
+- Mercatino dei fumetti, del disco e del vintage — https://www.feelflorence.it/it/eventi/mercatino-dei-fumetti-del-disco-e-del-vintage — stato: source_lead_unverified
+- Santo Spirito in Fiera — https://www.feelflorence.it/it/eventi/santo-spirito-fiera — stato: source_lead_unverified
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Collezionismo/21174403_La+Fiera+Del+Disco+A+Salerno.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21060752_Mercatino+dell+Artigianato.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/4266_Ossana+il+Borgo+dei+Presepi.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21162496_Brenzone+Vintage+AND+Retro.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21162492_Malcesine+Antiques.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Collezionismo/21159071_Fiera+Del+Disco+E+Del+Fumetto+Di+Bassano+Del+Grappa.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Collezionismo/21144797_Borsa+Scambio+Giocattoli+E+Modelli+Verona.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Collezionismo/21097766_Mercatino+di+Legnago.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21079231_Mercatini+delle+pulci+e+antiquariato+a+Dobbiaco.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21053906_Artigianalmente.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21022464_Mercato+dell+artigianato+artistico.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/13667_Mercatini+delle+pulci+e+antiquariato+a+Villabassa.html — stato: not_seen_again_not_a_market_closure
 - Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
 - Mercato del Forte dei Marmi a Firenze — https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze — stato: not_seen_again_not_a_market_closure
 - Mercato del Forte dei Marmi a Firenze — https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze — stato: not_seen_again_not_a_market_closure
@@ -45,11 +50,6 @@ Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21021368_San+Giorgio+Antiques.html — stato: not_seen_again_not_a_market_closure
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/20032_Mercatino+dell+Antiquariato+Valsesiano.html — stato: not_seen_again_not_a_market_closure
 - Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
-- Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21194529_Vintage+Market+A+Frosinone+Alta.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21194189_Mercatino+Artigianato+E+Curiosita+A+Lavinio.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21194003_La+Magia+Dell+epifania+A+Sant+angelo+Romano.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21193917_Green+Market+Festival+On+Christmas.html — stato: not_seen_again_not_a_market_closure
 
 Non importare contenuti di EventiESagre: si raccolgono solo URL e ID.
 Non usare le date generiche di inizio/fine come apertura verificata.
