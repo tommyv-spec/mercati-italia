@@ -88,6 +88,38 @@ def _verify_old(snapshot, url, entry):
     return path
 
 
+def _source_now_recognized_as_market(snapshot, url, entry, now):
+    """Recheck recent saved short facts after a parser/classifier improvement.
+
+    Only an already parsed, checksum-verified detail with literal source
+    market taxonomy and a newly recognized title qualifies. Re-fetching
+    the original HTML remains necessary before any market fields may be
+    populated; the saved short record itself is never release evidence.
+    """
+    if (not isinstance(entry, dict) or entry.get("status") != "parsed"
+            or entry.get("kind") != "detail"
+            or entry.get("market_classified") is not False):
+        return False
+    attempted = _when(entry.get("last_attempt") or entry.get("read_at"))
+    if (now - attempted).total_seconds() < 24 * 3600:
+        return False
+    path = _verify_old(snapshot, url, entry)
+    with gzip.GzipFile(fileobj=io.BytesIO(path.read_bytes())) as compressed:
+        raw = compressed.read(5_000_001)
+    if len(raw) > 5_000_000:
+        raise ValueError("Historical short source detail is unbounded")
+    fact = json.loads(raw)
+    event = fact.get("event")
+    if (fact.get("kind") != "detail"
+            or not isinstance(event, dict)
+            or fact.get("market_classified") is not False
+            or not isinstance(event.get("name"), str)
+            or not isinstance(event.get("category"), str)):
+        return False
+    from happings_detail_enrichment import _category
+    return _category(event) is not None
+
+
 def _store(snapshot, url, result, prior):
     if (not isinstance(result,dict) or result.get("url")!=url
             or result.get("status") not in {
@@ -166,8 +198,15 @@ def refresh(snapshot, *, max_pages=70, discovery_days=DEFAULT_DISCOVERY_DAYS,
             except (OSError,ValueError) as exc:
                 discovery_error=type(exc).__name__
         ranked=[]
+        promotions = 0
         for url in queue:
-            due=_due(url,done.get(url),now)
+            entry=done.get(url)
+            due=_due(url,entry,now)
+            if due is None and _source_now_recognized_as_market(snapshot,url,entry,now):
+                # New inventory still comes first; parser catch-up is above
+                # regularly overdue historical pages, within the same budget.
+                due=(-1000000,url)
+                promotions += 1
             if due is not None:
                 ranked.append((due,url))
         ranked.sort(key=lambda x:x[0])
@@ -193,6 +232,7 @@ def refresh(snapshot, *, max_pages=70, discovery_days=DEFAULT_DISCOVERY_DAYS,
                 "discovery_attempted":needs_discovery,"discovery_error":discovery_error,
                 "pages_due":len(ranked),"pages_attempted":len(chosen),
                 "pages_due_after_batch":len(ranked)-len(chosen),
+                "newly_recognized_market_details_due":promotions,
                 "source_statuses":dict(sorted(Counter(x["status"] for x in done.values()).items())),
                 "refresh_outcomes":dict(sorted(fetched.items())),
                 "catalog_mutations":0,
