@@ -141,7 +141,8 @@ class StoredPublisherSiblingAuditTests(unittest.TestCase):
         self.assertGreater(layout["province_index_old_ad"]["records"],300)
         self.assertEqual(sum(x["records"] for x in layout.values()),
                          report["legacy_publisher_records_examined"])
-        self.assertGreater(report["field_sibling_candidates"],200)
+        # Shrinks as source fills land (140 after the 2026-10-24 daypart/street fill).
+        self.assertGreater(report["field_sibling_candidates"],0)
         self.assertLess(report["field_sibling_candidates"],1300)
         self.assertEqual([r["slug"] for r in rows],original_ids)
         self.assertEqual(report["original_market_records_deleted"],0)
