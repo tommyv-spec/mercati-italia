@@ -13,11 +13,11 @@ Coordinate indicative mai utilizzate per confermare una sede.
 ## Conteggi e motivi di blocco
 
 - legacy_lombardia_records_checked: **2862**
-- legacy_no_exact_street_day_match: **1937**
-- legacy_no_safe_street_or_day: **348**
+- legacy_no_exact_street_day_match: **1980**
+- legacy_no_safe_street_or_day: **359**
 - missing_address_multiple_official_venues: **10**
-- missing_address_no_matching_official_town_day: **141**
-- missing_address_without_grounded_venue: **29**
+- missing_address_no_matching_official_town_day: **99**
+- missing_address_without_grounded_venue: **17**
 - official_source_id_absent_from_catalog_not_new_market_proof: **233**
 - same_source_id_already_in_catalog: **1127**
 - same_venue_hours_present_do_not_overwrite: **374**
