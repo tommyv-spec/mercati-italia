@@ -57,6 +57,20 @@ def verified_gha(run_id: str) -> dict:
             or run.get("repository", {}).get("full_name") != REPO
             or not str(run.get("name") or "").startswith("Mercati Autopilot")):
         raise ValueError("The exact official Autopilot run did not complete successfully")
+    jobs = json.loads(command(
+        "gh", "api", "repos/" + REPO + "/actions/runs/" + run_id + "/jobs?per_page=100"
+    )).get("jobs")
+    if not isinstance(jobs, list):
+        raise ValueError("GitHub release job evidence is missing")
+    required = {
+        "Source → merge → recurrence → export → quality gates",
+        "Security, compiled static site, mobile browser checks",
+        "Update DEV catalog + separately hosted static preview",
+    }
+    succeeded = {job.get("name") for job in jobs
+                 if isinstance(job, dict) and job.get("conclusion") == "success"}
+    if not required.issubset(succeeded):
+        raise ValueError("Approved candidate did not complete the final DEV publication job")
     return run
 
 
