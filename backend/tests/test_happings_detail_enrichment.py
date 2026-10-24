@@ -356,6 +356,37 @@ class HappingsDetailEnrichmentTests(unittest.TestCase):
         self.assertEqual(len(rows), 1)
         self.assertEqual(report["outcomes"][1]["reason"], "new_venue_batch_limit")
 
+    def test_saved_agricultural_market_taxonomy_keeps_explicit_local_names(self):
+        cases = [
+            ("Agrimercato di Erba", "Mercati", "alimentare"),
+            ("Agrimercato Campagna Amica di Novi", "Mercati", "alimentare"),
+            ("Bauernmarkt in Kastelruth", "Mercati", "alimentare"),
+            ("Campagna amica a Favaro veneto", "Mercati", "alimentare"),
+            ("Inser Markt’l a Tirolo", "Mercati", "misto"),
+            ("Mercato coperto Campagna Amica", "Mercati", "alimentare"),
+        ]
+        for title, category, expected in cases:
+            with self.subTest(title=title):
+                event = {"name": title, "category": category}
+                self.assertEqual(enrich._category(event), expected)
+
+    def test_market_name_tokens_cannot_override_unrelated_taxonomy(self):
+        cases = [
+            ("Agrimercato Campagna Amica di Novi", "Arte e cultura"),
+            ("Bauernmarkt in Kastelruth", "Fiere"),
+            ("Campagna Amica Day", "Fiere"),
+            ("Campagna amica a Favaro veneto", "Sagre e folklore"),
+            ("Inser Markt’l a Tirolo", "Concerti"),
+            ("Concerto al mercato contadino", "Mercati"),
+            ("Talk sul mercato finanziario", "Mercati"),
+            ("11ª Via della Lana", "Mercati"),
+            ("Biofest(a)", "Mercati"),
+            ("Oasi Prodotti Tipici di Torino", "Mercati"),
+        ]
+        for title, category in cases:
+            with self.subTest(title=title, category=category):
+                self.assertIsNone(enrich._category({"name": title, "category": category}))
+
     def test_false_friend_market_talk_is_not_admitted(self):
         rows, report = self.run_source(source=observed_page("notizia_fumetti"))
         self.assertEqual(rows, [])
