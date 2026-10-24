@@ -158,5 +158,53 @@ class PublishedDevMirrorTests(unittest.TestCase):
                         mirror.verified_gha("40012405193")
 
 
+    def test_already_mirrored_unchanged_data_uses_original_immutable_git_provenance(self):
+        import json
+        import tempfile
+        with tempfile.TemporaryDirectory(prefix="d1-idempotent-") as folder:
+            root = Path(folder)
+            decision_file = root / "decision.json"
+            quality_file = root / "quality.json"
+            decision_file.write_text(json.dumps({"job_id": "40012405193"}), encoding="utf-8")
+            quality_file.write_text("{}", encoding="utf-8")
+            new_sha = self.git_sha
+            old_sha = "f" * 40
+            with (patch.object(mirror, "command", return_value=new_sha),
+                  patch.object(mirror, "verified_git"),
+                  patch.object(mirror, "verified_gha"),
+                  patch.object(mirror, "dataset_meta", return_value=self.meta),
+                  patch.object(mirror.incremental, "required_schema"),
+                  patch.object(mirror, "d1_current_signature", return_value=self.signature),
+                  patch.object(mirror, "remote_query", return_value=[{"source_git_sha": old_sha}]),
+                  patch.object(mirror.incremental, "validate") as validation,
+                  patch.object(mirror.incremental, "verify_existing") as exact_check,
+                  patch.object(mirror.incremental, "run") as importer):
+                response = mirror.sync(root, decision_file=decision_file,
+                                       quality_file=quality_file, dry_run=False)
+                self.assertEqual(response["status"], "already_mirrored")
+                self.assertTrue(response["unchanged_data_new_git_sha"])
+                self.assertEqual(exact_check.call_args.args[1], old_sha)
+                validation.assert_called_once()
+                importer.assert_not_called()
+
+    def test_already_mirrored_rejects_invalid_original_git_source(self):
+        import json
+        import tempfile
+        with tempfile.TemporaryDirectory(prefix="d1-idempotent-") as folder:
+            root = Path(folder)
+            (root / "decision.json").write_text(json.dumps({"job_id": "40012405193"}))
+            (root / "quality.json").write_text("{}")
+            with (patch.object(mirror, "command", return_value=self.git_sha),
+                  patch.object(mirror, "verified_git"),
+                  patch.object(mirror, "verified_gha"),
+                  patch.object(mirror, "dataset_meta", return_value=self.meta),
+                  patch.object(mirror.incremental, "required_schema"),
+                  patch.object(mirror, "d1_current_signature", return_value=self.signature),
+                  patch.object(mirror, "remote_query", return_value=[{"source_git_sha": "unknown"}])):
+                with self.assertRaisesRegex(ValueError, "original Git source"):
+                    mirror.sync(root, decision_file=root/"decision.json",
+                                quality_file=root/"quality.json")
+
+
 if __name__ == "__main__":
     unittest.main()
