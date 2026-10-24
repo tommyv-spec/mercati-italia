@@ -147,8 +147,24 @@ class PublishedDevMirrorTests(unittest.TestCase):
             "event": "schedule", "repository": {"full_name": mirror.REPO},
             "name": "Mercati Autopilot — scheduled DEV improvements",
         }
-        with patch.object(mirror, "command", return_value=__import__("json").dumps(run)):
+        jobs = {"jobs": [
+            {"name": "Source → merge → recurrence → export → quality gates", "conclusion": "success"},
+            {"name": "Security, compiled static site, mobile browser checks", "conclusion": "success"},
+            {"name": "Update DEV catalog + separately hosted static preview", "conclusion": "success"},
+        ]}
+        def mocked_github(*args, **kwargs):
+            from json import dumps
+            return dumps(jobs if "/jobs?" in args[-1] else run)
+        with patch.object(mirror, "command", side_effect=mocked_github):
             self.assertEqual(mirror.verified_gha("40012405193")["conclusion"], "success")
+        failed = copy.deepcopy(jobs)
+        failed["jobs"][-1]["conclusion"] = "skipped"
+        def incomplete_release(*args, **kwargs):
+            from json import dumps
+            return dumps(failed if "/jobs?" in args[-1] else run)
+        with patch.object(mirror, "command", side_effect=incomplete_release):
+            with self.assertRaisesRegex(ValueError, "final DEV publication job"):
+                mirror.verified_gha("40012405193")
         for key, wrong in (("conclusion", "failure"), ("head_branch", "fork"),
                            ("status", "in_progress"), ("event", "repository_dispatch")):
             with self.subTest(field=key):
