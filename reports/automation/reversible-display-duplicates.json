@@ -6,12 +6,12 @@
   "metrics": {
     "original_records": 14007,
     "ids_retained": 14007,
-    "generic_weekly_with_specific_venue": 5236,
+    "generic_weekly_with_specific_venue": 5600,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3595,
-    "highly_supported_same_source_visit_groups": 623,
-    "suppressed_repeat_buttons_only": 699,
-    "original_records_in_reversible_groups": 1322,
+    "venue_groups_examined": 3596,
+    "highly_supported_same_source_visit_groups": 846,
+    "suppressed_repeat_buttons_only": 1008,
+    "original_records_in_reversible_groups": 1854,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -24,33 +24,38 @@
     },
     {
       "region": "Liguria",
-      "groups": 11,
-      "extra_display_entries": 15
+      "groups": 21,
+      "extra_display_entries": 25
     },
     {
       "region": "Lombardia",
-      "groups": 524,
-      "extra_display_entries": 557
+      "groups": 596,
+      "extra_display_entries": 646
     },
     {
       "region": "Piemonte",
-      "groups": 41,
-      "extra_display_entries": 66
+      "groups": 92,
+      "extra_display_entries": 145
+    },
+    {
+      "region": "Sicilia",
+      "groups": 1,
+      "extra_display_entries": 1
     },
     {
       "region": "Toscana",
-      "groups": 16,
-      "extra_display_entries": 20
+      "groups": 40,
+      "extra_display_entries": 56
     },
     {
       "region": "Trentino-Alto Adige",
-      "groups": 10,
-      "extra_display_entries": 10
+      "groups": 11,
+      "extra_display_entries": 12
     },
     {
       "region": "Veneto",
-      "groups": 18,
-      "extra_display_entries": 28
+      "groups": 82,
+      "extra_display_entries": 120
     }
   ],
   "examples": [
@@ -92,6 +97,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Altare",
+      "address": "Via Restagno",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-altare-altare-venerdi",
+      "original_ids": [
+        "mercato-settimanale-di-altare-altare",
+        "mercato-settimanale-di-altare-altare-venerdi"
+      ],
+      "date": "2026-10-30"
+    },
+    {
+      "region": "Liguria",
       "city": "Arcola",
       "address": "Via Aurelia",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-la-spezia.html",
@@ -100,7 +117,7 @@
         "mercato-settimanale-di-arcola-arcola",
         "mercato-settimanale-di-arcola-arcola-mercoledi"
       ],
-      "date": "2026-10-21"
+      "date": "2026-10-28"
     },
     {
       "region": "Liguria",
@@ -112,7 +129,7 @@
         "mercato-settimanale-di-arenzano-arenzano",
         "mercato-settimanale-di-arenzano-arenzano-venerdi"
       ],
-      "date": "2026-10-23"
+      "date": "2026-10-30"
     },
     {
       "region": "Liguria",
@@ -129,6 +146,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Calizzano",
+      "address": "Piazza vittorio veneto",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-calizzano-calizzano-martedi",
+      "original_ids": [
+        "mercato-settimanale-di-calizzano-calizzano",
+        "mercato-settimanale-di-calizzano-calizzano-martedi"
+      ],
+      "date": "2026-10-27"
+    },
+    {
+      "region": "Liguria",
       "city": "Camogli",
       "address": "Via XX Settembre",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
@@ -137,7 +166,43 @@
         "mercato-settimanale-di-camogli-camogli",
         "mercato-settimanale-di-camogli-camogli-mercoledi"
       ],
-      "date": "2026-10-21"
+      "date": "2026-10-28"
+    },
+    {
+      "region": "Liguria",
+      "city": "Carcare",
+      "address": "piazza Caravadossi",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-carcare-carcare-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-di-carcare-carcare",
+        "mercato-settimanale-di-carcare-carcare-mercoledi"
+      ],
+      "date": "2026-10-28"
+    },
+    {
+      "region": "Liguria",
+      "city": "Cengio",
+      "address": "Piazza San Giuseppe",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-cengio-cengio-martedi",
+      "original_ids": [
+        "mercato-settimanale-di-cengio-cengio",
+        "mercato-settimanale-di-cengio-cengio-martedi"
+      ],
+      "date": "2026-10-27"
+    },
+    {
+      "region": "Liguria",
+      "city": "Ceriale",
+      "address": "Lungomare A. Diaz",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-ceriale-ceriale-lunedi",
+      "original_ids": [
+        "mercato-settimanale-di-ceriale-ceriale",
+        "mercato-settimanale-di-ceriale-ceriale-lunedi"
+      ],
+      "date": "2026-10-26"
     },
     {
       "region": "Liguria",
@@ -150,7 +215,31 @@
         "mercato-settimanale-di-dolcedo-dolcedo",
         "mercato-settimanale-di-dolcedo-dolcedo-mercoledi"
       ],
-      "date": "2026-10-21"
+      "date": "2026-10-28"
+    },
+    {
+      "region": "Liguria",
+      "city": "Mallare",
+      "address": "Piazza Odorico del Carretto",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-mallare-mallare-martedi",
+      "original_ids": [
+        "mercato-settimanale-di-mallare-mallare",
+        "mercato-settimanale-di-mallare-mallare-martedi"
+      ],
+      "date": "2026-10-27"
+    },
+    {
+      "region": "Liguria",
+      "city": "Millesimo",
+      "address": "Piazza italia",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-millesimo-millesimo-sabato",
+      "original_ids": [
+        "mercato-settimanale-di-millesimo-millesimo",
+        "mercato-settimanale-di-millesimo-millesimo-sabato"
+      ],
+      "date": "2026-10-24"
     },
     {
       "region": "Liguria",
@@ -162,7 +251,19 @@
         "mercato-settimanale-di-pignone-pignone",
         "mercato-settimanale-di-pignone-pignone-mercoledi"
       ],
-      "date": "2026-10-21"
+      "date": "2026-10-28"
+    },
+    {
+      "region": "Liguria",
+      "city": "Quiliano",
+      "address": "Via Roma",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-quiliano-quiliano-lunedi",
+      "original_ids": [
+        "mercato-settimanale-di-quiliano-quiliano",
+        "mercato-settimanale-di-quiliano-quiliano-lunedi"
+      ],
+      "date": "2026-10-26"
     },
     {
       "region": "Liguria",
@@ -174,7 +275,7 @@
         "mercato-settimanale-di-rapallo-rapallo",
         "mercato-settimanale-di-rapallo-rapallo-giovedi"
       ],
-      "date": "2026-10-22"
+      "date": "2026-10-29"
     },
     {
       "region": "Liguria",
@@ -187,7 +288,19 @@
         "mercato-settimanale-di-soldano-soldano",
         "mercato-settimanale-di-soldano-soldano-venerdi"
       ],
-      "date": "2026-10-23"
+      "date": "2026-10-30"
+    },
+    {
+      "region": "Liguria",
+      "city": "Toirano",
+      "address": "Parco Rosciano",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-toirano-toirano-giovedi",
+      "original_ids": [
+        "mercato-settimanale-di-toirano-toirano",
+        "mercato-settimanale-di-toirano-toirano-giovedi"
+      ],
+      "date": "2026-10-29"
     },
     {
       "region": "Liguria",
@@ -200,7 +313,19 @@
         "mercato-settimanale-di-uscio-uscio",
         "mercato-settimanale-di-uscio-uscio-mercoledi"
       ],
-      "date": "2026-10-21"
+      "date": "2026-10-28"
+    },
+    {
+      "region": "Liguria",
+      "city": "Varazze",
+      "address": "Piazza Gen. C.A. Dalla Chiesa",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-varazze-varazze-sabato",
+      "original_ids": [
+        "mercato-settimanale-di-varazze-varazze",
+        "mercato-settimanale-di-varazze-varazze-sabato"
+      ],
+      "date": "2026-10-24"
     },
     {
       "region": "Liguria",
@@ -248,7 +373,7 @@
         "mercato-settimanale-di-acquanegra-sul-chiese-acquanegra-sul-chiese",
         "mercato-settimanale-di-acquanegra-sul-chiese-acquanegra-sul-chiese-mercoledi"
       ],
-      "date": "2026-10-21"
+      "date": "2026-10-28"
     },
     {
       "region": "Lombardia",
@@ -260,7 +385,19 @@
         "mercato-settimanale-di-agnadello-agnadello",
         "mercato-settimanale-di-agnadello-agnadello-giovedi"
       ],
-      "date": "2026-10-22"
+      "date": "2026-10-29"
+    },
+    {
+      "region": "Lombardia",
+      "city": "Agnosine",
+      "address": "Piazzale Pace",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-brescia.html",
+      "visible_id": "mercato-settimanale-di-agnosine-agnosine-giovedi",
+      "original_ids": [
+        "mercato-settimanale-di-agnosine-agnosine",
+        "mercato-settimanale-di-agnosine-agnosine-giovedi"
+      ],
+      "date": "2026-10-29"
     },
     {
       "region": "Lombardia",
@@ -284,7 +421,7 @@
         "mercato-settimanale-di-albairate-albairate",
         "mercato-settimanale-di-albairate-albairate-giovedi"
       ],
-      "date": "2026-10-22"
+      "date": "2026-10-29"
     },
     {
       "region": "Lombardia",
@@ -296,7 +433,7 @@
         "mercato-settimanale-di-albano-sant-alessandro-albano-sant-alessandro",
         "mercato-settimanale-di-albano-sant-alessandro-albano-sant-alessandro-venerdi"
       ],
-      "date": "2026-10-23"
+      "date": "2026-10-30"
     },
     {
       "region": "Lombardia",
@@ -308,7 +445,7 @@
         "mercato-settimanale-di-albaredo-per-san-marco-albaredo-per-san-marco",
         "mercato-settimanale-di-albaredo-per-san-marco-albaredo-per-san-marco-venerdi"
       ],
-      "date": "2026-10-23"
+      "date": "2026-10-30"
     },
     {
       "region": "Lombardia",
@@ -332,7 +469,7 @@
         "mercato-settimanale-di-albese-con-cassano-albese-con-cassano",
         "mercato-settimanale-di-albese-con-cassano-albese-con-cassano-venerdi"
       ],
-      "date": "2026-10-23"
+      "date": "2026-10-30"
     },
     {
       "region": "Lombardia",
@@ -356,7 +493,7 @@
         "mercato-settimanale-a-albiolo-albiolo-giovedi",
         "mercato-settimanale-di-albiolo-albiolo-giovedi"
       ],
-      "date": "2026-10-22"
+      "date": "2026-10-29"
     },
     {
       "region": "Lombardia",
@@ -396,150 +533,15 @@
     },
     {
       "region": "Lombardia",
-      "city": "Angera",
-      "address": "PIAZZA GIUSEPPE GARIBALDI",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-varese.html",
-      "visible_id": "mercato-settimanale-a-angera-angera-giovedi",
+      "city": "Ambivere",
+      "address": "Via Manzoni",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-bergamo.html",
+      "visible_id": "mercato-settimanale-di-ambivere-ambivere-venerdi",
       "original_ids": [
-        "mercato-settimanale-a-angera-angera-giovedi",
-        "mercato-settimanale-di-angera-angera"
+        "mercato-settimanale-di-ambivere-ambivere",
+        "mercato-settimanale-di-ambivere-ambivere-venerdi"
       ],
-      "date": "2026-10-22"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Angolo Terme",
-      "address": "Piazza Alpini",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-angolo-terme.html",
-      "visible_id": "mercato-settimanale-di-angolo-terme-angolo-terme-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-angolo-terme-angolo-terme",
-        "mercato-settimanale-di-angolo-terme-angolo-terme-martedi"
-      ],
-      "date": "2026-10-27"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Antegnate",
-      "address": "Via Donizetti",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-antegnate.html",
-      "visible_id": "mercato-settimanale-di-antegnate-antegnate-venerdi",
-      "original_ids": [
-        "mercato-settimanale-di-antegnate-antegnate",
-        "mercato-settimanale-di-antegnate-antegnate-venerdi"
-      ],
-      "date": "2026-10-23"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Appiano Gentile",
-      "address": "Piazza Libertà",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-appiano-gentile.html",
-      "visible_id": "mercato-settimanale-di-appiano-gentile-appiano-gentile-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-appiano-gentile-appiano-gentile",
-        "mercato-settimanale-di-appiano-gentile-appiano-gentile-martedi"
-      ],
-      "date": "2026-10-27"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Arcisate",
-      "address": "PIAZZA DELLA REPUBBLICA",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-varese.html",
-      "visible_id": "mercato-settimanale-a-arcisate-arcisate-giovedi",
-      "original_ids": [
-        "mercato-settimanale-a-arcisate-arcisate-giovedi",
-        "mercato-settimanale-di-arcisate-arcisate"
-      ],
-      "date": "2026-10-22"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Arconate",
-      "address": "Via Pellico",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
-      "visible_id": "mercato-settimanale-di-arconate-arconate-sabato",
-      "original_ids": [
-        "mercato-settimanale-a-arconate-arconate-sabato",
-        "mercato-settimanale-di-arconate-arconate",
-        "mercato-settimanale-di-arconate-arconate-sabato"
-      ],
-      "date": "2026-10-24"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Arcore",
-      "address": "PIAZZA ALESSANDRO PERTINI",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
-      "visible_id": "mercato-settimanale-a-arcore-arcore-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-a-arcore-arcore-mercoledi",
-        "mercato-settimanale-di-arcore-arcore"
-      ],
-      "date": "2026-10-21"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Argegno",
-      "address": "PIAZZA, 1",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
-      "visible_id": "mercato-settimanale-a-argegno-argegno-lunedi",
-      "original_ids": [
-        "mercato-settimanale-a-argegno-argegno-lunedi",
-        "mercato-settimanale-di-argegno-argegno"
-      ],
-      "date": "2026-10-26"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Arluno",
-      "address": "VIA DEPORTATI DI MATHAUSEN, 0",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
-      "visible_id": "mercato-settimanale-a-arluno-arluno-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-a-arluno-arluno-mercoledi",
-        "mercato-settimanale-di-arluno-arluno"
-      ],
-      "date": "2026-10-21"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Arosio",
-      "address": "Piazza Chiesa",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
-      "visible_id": "mercato-settimanale-di-arosio-arosio-venerdi",
-      "original_ids": [
-        "mercato-settimanale-a-arosio-arosio-venerdi",
-        "mercato-settimanale-di-arosio-arosio",
-        "mercato-settimanale-di-arosio-arosio-venerdi"
-      ],
-      "date": "2026-10-23"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Arsago Seprio",
-      "address": "Via Monici",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-arsago-seprio.html",
-      "visible_id": "mercato-settimanale-di-arsago-seprio-arsago-seprio-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-di-arsago-seprio-arsago-seprio",
-        "mercato-settimanale-di-arsago-seprio-arsago-seprio-mercoledi"
-      ],
-      "date": "2026-10-21"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Artogne",
-      "address": "Piazza Caduti del Lavoro",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-brescia.html",
-      "visible_id": "mercato-settimanale-di-artogne-artogne-venerdi",
-      "original_ids": [
-        "mercato-settimanale-a-artogne-artogne-venerdi",
-        "mercato-settimanale-di-artogne-artogne",
-        "mercato-settimanale-di-artogne-artogne-venerdi"
-      ],
-      "date": "2026-10-23"
+      "date": "2026-10-30"
     }
   ],
   "suspicious_city_examples": [

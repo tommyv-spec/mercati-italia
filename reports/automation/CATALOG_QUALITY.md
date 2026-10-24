@@ -5,15 +5,17 @@ Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 - Schede: **14,007**.
-- Orari mancanti: **10,459**.
-- Indirizzi mancanti: **2,886**.
+- Orari mancanti: **3,005**.
+- Indirizzi mancanti: **2,522**.
 - Coordinate mancanti: **457**.
-- Date future mancanti: **2,127**.
+- Date future mancanti: **2,152**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
-- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,069** gruppi, **1,180** righe in eccesso potenziali.
+- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,309** gruppi, **1,543** righe in eccesso potenziali.
 - Verifiche umane documentate mancanti: **14,007**.
 - Gate qualità: **APPROVATO**.
+- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
+- Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
 
 ## Fonte di provenienza (primi editori)
 
@@ -36,26 +38,26 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Regione | Schede | Orari mancanti | Indirizzi mancanti |
 |---|---:|---:|---:|
-| Abruzzo | 395 | 348 | 152 |
-| Basilicata | 36 | 22 | 12 |
-| Calabria | 331 | 284 | 94 |
-| Campania | 824 | 710 | 257 |
-| Emilia-Romagna | 909 | 565 | 160 |
-| Friuli Venezia Giulia | 262 | 108 | 16 |
-| Lazio | 1,082 | 876 | 259 |
-| Liguria | 391 | 309 | 76 |
-| Lombardia | 3,990 | 2,487 | 339 |
-| Marche | 295 | 194 | 83 |
-| Molise | 215 | 185 | 89 |
-| Piemonte | 1,350 | 1,175 | 292 |
-| Puglia | 484 | 437 | 214 |
-| Sardegna | 392 | 323 | 164 |
-| Sicilia | 405 | 338 | 141 |
-| Toscana | 969 | 782 | 161 |
-| Trentino-Alto Adige | 230 | 171 | 45 |
-| Umbria | 180 | 149 | 74 |
-| Valle d'Aosta | 54 | 52 | 15 |
-| Veneto | 1,213 | 944 | 243 |
+| Abruzzo | 395 | 43 | 152 |
+| Basilicata | 36 | 5 | 12 |
+| Calabria | 331 | 71 | 94 |
+| Campania | 824 | 186 | 257 |
+| Emilia-Romagna | 909 | 240 | 159 |
+| Friuli Venezia Giulia | 262 | 59 | 16 |
+| Lazio | 1,082 | 410 | 259 |
+| Liguria | 391 | 100 | 64 |
+| Lombardia | 3,990 | 779 | 223 |
+| Marche | 295 | 91 | 83 |
+| Molise | 215 | 22 | 89 |
+| Piemonte | 1,350 | 235 | 211 |
+| Puglia | 484 | 96 | 214 |
+| Sardegna | 392 | 39 | 164 |
+| Sicilia | 405 | 71 | 139 |
+| Toscana | 969 | 268 | 119 |
+| Trentino-Alto Adige | 230 | 49 | 42 |
+| Umbria | 180 | 45 | 74 |
+| Valle d'Aosta | 54 | 10 | 15 |
+| Veneto | 1,213 | 186 | 136 |
 
 ## Località da verificare (campione limitato)
 
@@ -76,14 +78,14 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Lombardia, Arconate · Via Pellico · giorno=5 · 3 righe
 - Lombardia, Arosio · Piazza Chiesa · giorno=4 · 3 righe
 - Lombardia, Artogne · PIAZZA CADUTI DEL LAVORO · giorno=4 · 3 righe
+- Lombardia, Azzate · Via Acquadro · giorno=2 · 3 righe
 - Lombardia, Bareggio · Via S. Sebastiano · giorno=0 · 3 righe
+- Lombardia, Barghe · Via G. Giarelli · giorno=3 · 3 righe
+- Lombardia, Berlingo · Piazza Paolo VI · giorno=0 · 3 righe
 - Lombardia, Besate · Piazza Aldo Moro · giorno=0 · 3 righe
-- Lombardia, Bovezzo · PIAZZALE DONATORI DI SANGUE · giorno=0 · 3 righe
-- Lombardia, Bregnano · Viale Lombardia · giorno=4 · 3 righe
-- Lombardia, Brenna · Piazza Don A. Macchi · giorno=3 · 3 righe
-- Lombardia, Brunate · Via Volta · giorno=4 · 3 righe
-- Lombardia, Buscate · Via S. Pietro · giorno=4 · 3 righe
-- Lombardia, Cabiate · Via Fermi · giorno=0 · 3 righe
+- Lombardia, Bienno · Via Aldo Moro · giorno=4 · 3 righe
+- Lombardia, Bisuschio · Via Garibaldi · giorno=4 · 3 righe
+- Lombardia, Borno · Via Moren · giorno=2 · 3 righe
 
 Il report misura completezza e anomalie, NON l'accuratezza
 effettiva degli orari, la reale apertura o la qualità legale

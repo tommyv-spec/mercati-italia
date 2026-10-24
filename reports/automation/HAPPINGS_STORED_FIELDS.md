@@ -6,7 +6,7 @@ a certificare l'unicità della sede in un intero Comune.
 
 - Schede nazionali controllate: **14007**
 - Schede Happings controllate: **9830**
-- Candidate che hanno già un indirizzo in un'altra scheda: **551**
+- Candidate che hanno già un indirizzo in un'altra scheda: **201**
 - Gruppi con più sedi note: **0**
 - Campi riempiti senza prova indipendente: **0**
 
@@ -14,9 +14,9 @@ a certificare l'unicità della sede in un intero Comune.
 
 | Struttura URL | Schede | Indirizzo assente | Sede non specifica | Orari assenti |
 |---|---:|---:|---:|---:|
-| town_detail_legacy | 4746 | 16 | 2074 | 4602 |
-| province_index_old_a | 4487 | 2084 | 3161 | 4203 |
-| province_index_old_ad | 414 | 229 | 378 | 414 |
+| town_detail_legacy | 4746 | 16 | 2074 | 822 |
+| province_index_old_a | 4487 | 1739 | 2816 | 844 |
+| province_index_old_ad | 414 | 210 | 359 | 107 |
 | other_historical_layout | 165 | 0 | 0 | 0 |
 | province_index_canonical | 18 | 0 | 0 | 18 |
 
@@ -30,27 +30,27 @@ di abilitare la stessa struttura del parser automatico.
 - mercato-settimanale-a-carpi-carpi-giovedi ← mercato-settimanale-di-carpi-carpi-giovedi (sede già archiviata: Piazza Martiri)
 - mercato-settimanale-di-carpi-carpi ← mercato-settimanale-di-carpi-carpi-giovedi (sede già archiviata: Piazza Martiri)
 - mercato-settimanale-a-guiglia-guiglia-mercoledi ← mercato-settimanale-di-guiglia-guiglia-mercoledi (sede già archiviata: piazza Belvedere)
-- mercato-settimanale-di-rimini-rimini ← mercato-settimanale-di-rimini-rimini-mercoledi (sede già archiviata: piazza Malatesta e piazza Cavour)
 - mercato-settimanale-di-zocca-zocca ← mercato-settimanale-di-zocca-zocca-martedi (sede già archiviata: Via del Mercato)
 - mercato-settimanale-di-alassio-alassio ← mercato-settimanale-di-alassio-alassio-sabato (sede già archiviata: Piazza confraternita)
-- mercato-settimanale-di-albenga-albenga ← mercato-settimanale-di-albenga-albenga-mercoledi (sede già archiviata: Via Dalmazia)
-- mercato-settimanale-di-altare-altare ← mercato-settimanale-di-altare-altare-venerdi (sede già archiviata: Via Restagno)
 - mercato-settimanale-a-busalla-busalla-giovedi ← mercato-settimanale-di-busalla-busalla-giovedi (sede già archiviata: Piazza Colombo)
 - mercato-settimanale-di-busalla-busalla ← mercato-settimanale-di-busalla-busalla-giovedi (sede già archiviata: Piazza Colombo)
-- mercato-settimanale-di-calizzano-calizzano ← mercato-settimanale-di-calizzano-calizzano-martedi (sede già archiviata: Piazza vittorio veneto)
-- mercato-settimanale-di-carcare-carcare ← mercato-settimanale-di-carcare-carcare-mercoledi (sede già archiviata: piazza Caravadossi)
-- mercato-settimanale-di-cengio-cengio ← mercato-settimanale-di-cengio-cengio-martedi (sede già archiviata: Piazza San Giuseppe)
-- mercato-settimanale-di-ceriale-ceriale ← mercato-settimanale-di-ceriale-ceriale-lunedi (sede già archiviata: Lungomare A. Diaz)
-- mercato-settimanale-di-mallare-mallare ← mercato-settimanale-di-mallare-mallare-martedi (sede già archiviata: Piazza Odorico del Carretto)
-- mercato-settimanale-di-millesimo-millesimo ← mercato-settimanale-di-millesimo-millesimo-sabato (sede già archiviata: Piazza italia)
 - mercato-settimanale-a-molassana-molassana-lunedi ← mercato-settimanale-di-molassana-molassana-lunedi (sede già archiviata: Via Isola del Vescovo)
 - mercato-settimanale-di-molassana-molassana ← mercato-settimanale-di-molassana-molassana-lunedi (sede già archiviata: Via Isola del Vescovo)
 - mercato-settimanale-a-oregina-oregina-venerdi ← mercato-settimanale-di-oregina-oregina-venerdi (sede già archiviata: Via Maculano)
 - mercato-settimanale-di-oregina-oregina ← mercato-settimanale-di-oregina-oregina-venerdi (sede già archiviata: Via Maculano)
-- mercato-settimanale-di-quiliano-quiliano ← mercato-settimanale-di-quiliano-quiliano-lunedi (sede già archiviata: Via Roma)
-- mercato-settimanale-di-spotorno-spotorno ← mercato-settimanale-di-spotorno-spotorno-martedi (sede già archiviata: Via Aurelia)
 - mercato-settimanale-di-taggia-taggia ← mercato-settimanale-di-taggia-taggia-sabato (sede già archiviata: Piazza cavour)
-- mercato-settimanale-di-toirano-toirano ← mercato-settimanale-di-toirano-toirano-giovedi (sede già archiviata: Parco Rosciano)
+- mercato-settimanale-a-voltri-voltri-martedi ← mercato-settimanale-di-voltri-voltri-martedi (sede già archiviata: Piazza Gaggero)
+- mercato-settimanale-di-voltri-voltri ← mercato-settimanale-di-voltri-voltri-martedi (sede già archiviata: Piazza Gaggero)
+- mercato-settimanale-a-aicurzio-aicurzio-martedi ← mercato-settimanale-di-aicurzio-aicurzio-martedi (sede già archiviata: Piazza della Chiesa)
+- mercato-settimanale-di-aicurzio-aicurzio ← mercato-settimanale-di-aicurzio-aicurzio-martedi (sede già archiviata: Piazza della Chiesa)
+- mercato-settimanale-di-arcisate-arcisate-giovedi ← mercato-settimanale-a-arcisate-arcisate-giovedi (sede già archiviata: PIAZZA DELLA REPUBBLICA)
+- mercato-settimanale-a-bellusco-bellusco-mercoledi ← mercato-settimanale-di-bellusco-bellusco-mercoledi (sede già archiviata: Piazza Libertà)
+- mercato-settimanale-a-binasco-binasco-sabato ← mercato-settimanale-di-binasco-binasco-sabato (sede già archiviata: Via Martiri d' Ungheria)
+- mercato-settimanale-di-binasco-binasco ← mercato-settimanale-di-binasco-binasco-sabato (sede già archiviata: Via Martiri d' Ungheria)
+- mercato-settimanale-di-bozzolo-bozzolo-venerdi ← mercato-settimanale-a-bozzolo-bozzolo-venerdi (sede già archiviata: PIAZZA EUROPA)
+- mercato-settimanale-a-bresso-bresso-mercoledi ← mercato-settimanale-di-bresso-bresso-mercoledi (sede già archiviata: Via Villoresi)
+- mercato-settimanale-a-brugherio-brugherio-venerdi ← mercato-settimanale-di-brugherio-brugherio-venerdi (sede già archiviata: Frazione San Damiano)
+- mercato-settimanale-a-busnago-busnago-giovedi ← mercato-settimanale-di-busnago-busnago-giovedi (sede già archiviata: Via Piave)
 
 Ogni proposta conserva entrambi gli ID, lo stesso URL fonte originale
 e una ragione esplicita per cui non viene promossa a sede verificata.

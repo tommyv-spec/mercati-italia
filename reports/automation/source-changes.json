@@ -7,13 +7,13 @@
     "publisher_data_date_rolled_back": 0,
     "publisher_metadata_changed": 1,
     "publisher_unavailable": 0,
-    "recovered": 1,
+    "recovered": 0,
     "timestamp_interpretation_corrected": 0,
     "unchanged": 2
   },
   "dataset_timestamp_changes_are_not_record_confirmations": true,
   "imported_markets": 0,
-  "reference_date": "2026-10-21",
+  "reference_date": "2026-10-24",
   "results": [
     {
       "automatic_import_allowed": false,
@@ -39,25 +39,14 @@
     },
     {
       "automatic_import_allowed": false,
-      "change_type": "recovered",
+      "change_type": "unchanged",
       "current_data_date": "2022-07-04",
       "current_timestamp_kind": "resource_last_modified",
       "events_confirmed": 0,
-      "prior_data_date": null,
-      "prior_timestamp_kind": null,
+      "prior_data_date": "2022-07-04",
+      "prior_timestamp_kind": "resource_last_modified",
       "publisher": "Roma Capitale",
       "source_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3"
-    },
-    {
-      "automatic_import_allowed": false,
-      "change_type": "unchanged",
-      "current_data_date": null,
-      "dataset_date_still_requires_review": true,
-      "events_confirmed": 0,
-      "prior_data_date": null,
-      "publisher": "Comune di Corciano",
-      "publisher_file_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
-      "source_id": "corciano-municipal-csv"
     }
   ],
   "schema": 1
