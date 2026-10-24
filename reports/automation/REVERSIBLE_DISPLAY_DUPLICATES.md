@@ -4,8 +4,8 @@
 Confronta soltanto sede e giorno identici con la stessa URL di fonte
 e orari, coordinate, categoria e ricorrenze compatibili.
 
-- Schede originali: **14.007**.
-- ID originali preservati: **14.007**.
+- Schede originali: **14.008**.
+- ID originali preservati: **14.008**.
 - Gruppi supportati da prove forti: **846**.
 - Pulsanti ripetuti evitati nella vista delle sedi: **1008**.
 - Schede originali ancora apribili dietro tali gruppi: **1854**.

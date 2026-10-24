@@ -139,13 +139,13 @@
       "status": "unreviewed_target"
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "city_keys": [
         "bovisio masciago"
       ],
       "first_seen_on": "2026-10-20",
       "last_attempt_on": "2026-10-24",
-      "last_error": null,
+      "last_error": "UnreviewedRedirect",
       "last_success_on": null,
       "next_url": "https://www.happings.com/it/mercato-settimanale-a-bovisio-masciago/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-bovisio-masciago.html",
@@ -160,24 +160,31 @@
         }
       ],
       "region": "lombardia",
-      "status": "redirect_observed"
+      "status": "unreviewed_target"
     },
     {
-      "attempts": 0,
+      "attempts": 1,
       "city_keys": [
         "brugherio"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-24",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-brugherio.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-brugherio/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-brugherio.html",
       "proof": null,
       "province": "MB",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-brugherio/",
+          "observed_on": "2026-10-24",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-brugherio.html",
+          "status_code": 301
+        }
+      ],
       "region": "lombardia",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,

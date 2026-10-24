@@ -2,46 +2,242 @@
   "candidate_market_ids": 14007,
   "enabled": true,
   "evidence_updated_market_ids": [
-    "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91",
-    "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f",
-    "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8",
-    "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed",
-    "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938",
-    "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
-    "bo-open-3a150cf453dc8050ee37edfbf006699118c15901",
-    "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1",
-    "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2",
-    "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
-    "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f",
-    "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2",
-    "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f",
-    "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7",
-    "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d",
-    "bo-open-70472450ee8d71167730139b73638b824b822c40",
-    "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
-    "bo-open-7a40119eff125e0617098394b3c005ac520c2b00",
-    "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d",
-    "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e",
-    "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
-    "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc",
-    "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780",
-    "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794",
-    "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
-    "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8",
-    "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8",
-    "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443",
-    "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
-    "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
-    "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0",
-    "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184",
-    "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75",
-    "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6",
-    "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82",
-    "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1",
-    "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4",
-    "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147",
-    "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029"
+    "pg-corciano-mercato-di-mantignana",
+    "pg-corciano-mercato-di-san-mariano"
   ],
+  "happings_detail_admission_certificate": {
+    "admissions": [
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "admission_text": null,
+              "all_day": null,
+              "calendar_complete": true,
+              "calendar_notes": [],
+              "calendar_scope": "explicit_visible_list",
+              "category": "Mercati",
+              "conditions": [],
+              "contacts": [],
+              "date_intervals": [],
+              "description": "Campagna amica a Favaro veneto si svolge a Venezia, in VIA Triestina, 54. La scheda del mercato elenca vini e aceti, conserve dolci e salate, pasta, farine e cereali, salumi, ortaggi, latte e latticini, formaggi freschi, formaggi semistagionati/stagionati, piante aromatiche, condimenti e spezie, carni fresche, frutta, uova, pane e prodotti da forno, piante da orto, piante officinali, piante in vaso, fiori recisi, altri prodotti trasformati. Le aperture settimanali riportate dalla fonte sono: martedì 08:00–13:00. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+              "edition_interval": {
+                "end": "2026-12-22",
+                "start": "2026-09-29"
+              },
+              "event_status": "https://schema.org/EventScheduled",
+              "geo": {
+                "latitude": 45.5048395,
+                "longitude": 12.2865374,
+                "precision": "publisher_point_unverified"
+              },
+              "hours_intervals": [
+                {
+                  "end": "13:00",
+                  "start": "08:00"
+                }
+              ],
+              "hours_qualifications": [],
+              "hours_scope": "event_hours",
+              "hours_text": "8:00 - 13:00",
+              "location": {
+                "city": "Venezia",
+                "country": "IT",
+                "name": "Campagna amica a Favaro veneto",
+                "postal_code": null,
+                "province": null,
+                "region": "Veneto",
+                "street_address": "VIA Triestina, 54"
+              },
+              "name": "Campagna amica a Favaro veneto",
+              "occurrences": [
+                {
+                  "date": "2026-10-27",
+                  "end_time": "13:00",
+                  "evidence": [
+                    ".happings-event-performances li",
+                    "Event.startDate/endDate"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-03",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-10",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-17",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-24",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-01",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-08",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-15",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-22",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                }
+              ],
+              "organizer": null,
+              "recurrence_text": "martedì 08:00–13:00.",
+              "related_detail_urls": [
+                "https://www.happings.com/it/happing/oasi-prodotti-tipici-di-torino/",
+                "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-romagna/",
+                "https://www.happings.com/it/happing/mercato-di-campagna-amica-via-delloceano-pacifico-eur/"
+              ],
+              "sidebar_hours_text": "8:00 - 13:00",
+              "source_id": "14845",
+              "source_links": [],
+              "subevents": [],
+              "visible_location": "Campagna amica a Favaro veneto\nVIA Triestina, 54, Venezia"
+            },
+            "field_evidence": {
+              "category": [
+                ".happings-event-hero .happings-event-category"
+              ],
+              "city": [
+                "Event.location.address.addressLocality"
+              ],
+              "country": [
+                "Event.location.address.addressCountry"
+              ],
+              "edition_interval": [
+                ".happings-event-auto-summary periodo"
+              ],
+              "geo": [
+                "Event.location.geo"
+              ],
+              "hours_text": [
+                ".happings-event-sidebar Orario"
+              ],
+              "identity": [
+                "script#happings-event-schema Event.url/name"
+              ],
+              "name": [
+                ".happings-event-hero h1"
+              ],
+              "occurrences": [
+                ".happings-event-performances li"
+              ],
+              "published_at": [
+                "WebPage[url=final_url].datePublished"
+              ],
+              "recurrence_text": [
+                ".happings-event-content .happings-event-description-card"
+              ],
+              "region": [
+                "Event.location.address.addressRegion"
+              ],
+              "source_id": [
+                ".happings-event-sidebar [data-event-id]"
+              ],
+              "street_address": [
+                "Event.location.address.streetAddress"
+              ],
+              "visible_location": [
+                ".happings-event-sidebar Dove si svolge"
+              ]
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 134571,
+              "canonical_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+              "final_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+              "html_sha256": "439798c3c2cb0613e5ff19e2488339ca38631306afc00ca03ee86c386d695253",
+              "modified_at": null,
+              "published_at": "2026-09-30T19:14:55+00:00",
+              "requested_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/"
+            },
+            "status": "parsed",
+            "warnings": []
+          },
+          "read_on": "2026-10-24"
+        },
+        "market_id": "happings-campagna-amica-a-favaro-veneto-e268d3d4b440",
+        "source_page": {
+          "bytes": 134571,
+          "canonical_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+          "final_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+          "html_sha256": "439798c3c2cb0613e5ff19e2488339ca38631306afc00ca03ee86c386d695253",
+          "modified_at": null,
+          "published_at": "2026-09-30T19:14:55+00:00",
+          "read_on": "2026-10-24",
+          "requested_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+          "status": "parsed"
+        }
+      }
+    ],
+    "date": "2026-10-24",
+    "max_new": 32,
+    "publisher": "happings.com",
+    "schema": 1
+  },
   "new_market_coordinates_created": 0,
   "new_market_directions_enabled": 0,
   "new_market_ids": [],
@@ -72,7 +268,7 @@
           "source_market_identities": 41
         },
         "directions_enabled": 0,
-        "evidence_refreshes_proposed": 39,
+        "evidence_refreshes_proposed": 0,
         "examples_hashed": [
           {
             "new_market_created": false,
@@ -139,930 +335,174 @@
       "source_read_on": "2026-10-24",
       "status": "source_contract_approved_staged_only",
       "updated_fields_count": 0,
+      "updates": [],
+      "verified_market_openings_created": 0
+    },
+    "corciano-generic-shadow": {
+      "approval_sha256": "b459c338cb5336756437e1e95f7ef3c30a6828346251768f6d9149a43c528253",
+      "deferred_candidate_count": 0,
+      "deferred_candidate_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "independent_static_validation_required": true,
+      "new_geocodes_created": 0,
+      "new_market_ids": [],
+      "new_navigation_enabled": 0,
+      "new_venue_evidence": {},
+      "old_market_ids_preserved": 14007,
+      "schema": 1,
+      "source_eligible_candidates": 0,
+      "source_observations": {
+        "base_catalog_records": 14007,
+        "counts": {
+          "already_in_catalog_exact_source_id": 2,
+          "publisher_distinct_address_count": 4,
+          "raw_rows_scanned": 4,
+          "source_market_identities": 4
+        },
+        "directions_enabled": 0,
+        "evidence_refreshes_proposed": 2,
+        "examples_hashed": [
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "1cba4b1ae9416baaa645da881457c7368d9119e9a8e9ad12d9d7e64bad230266"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "generic_city_market_day",
+            "source_identity_sha256": "25b92e2c710902aa6672fb09c19a559c69de486726b5d633e557dd61b71dc9e5"
+          }
+        ],
+        "existing_market_identities_deleted": 0,
+        "existing_market_ids_modified": 0,
+        "field_audit_counts": {
+          "indirizzo:observed_identical": 2,
+          "orario_testo:observed_identical": 2,
+          "ricorrenza_testo:observed_identical": 2
+        },
+        "managed_fields_proposed": 0,
+        "precise_coordinates_created": 0,
+        "profile_sha256": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
+        "publication_enabled": false,
+        "publisher": "Comune di Corciano",
+        "publisher_dataset_date": "2026-01-07",
+        "review_reason_counts": {
+          "generic_city_market_day": 1,
+          "same_named_market_in_city": 1
+        },
+        "safe_candidates_not_published": 0,
+        "schema": 1,
+        "source_id": "corciano-generic-shadow",
+        "source_kind": "market_venue",
+        "source_license_automatically_verified": false,
+        "source_parsed_sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
+        "source_read_on": "2026-10-24",
+        "source_schema_readonly": true,
+        "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
+        "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
+        "verified_openings_created": 0
+      },
+      "source_read_mode": "retrieved",
+      "source_read_on": "2026-10-24",
+      "status": "source_contract_approved_staged_only",
+      "updated_fields_count": 0,
       "updates": [
         {
           "action": "observe",
-          "after_sha256": "eb865472c6837830c88c296c81ffa06b3c400434eeb2d6c56c586b3179b1f869",
-          "before_sha256": "1590b23eb73ed103896336d13f1f3692ca03ee5348432d257adb2f43432b624d",
+          "after_sha256": "a851dc281095e7ac0dcb7cd0680450f8a82833fe797bc66e2770d069ab27a124",
+          "before_sha256": "d96de18619997c1434f7e230ecb28976cef78553e2547efbedc72033e7ed6d96",
           "changed_fields": {},
           "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Piave",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc"
+            "citta": "Corciano",
+            "nome": "Mercato Di Mantignana",
+            "provincia": "PG",
+            "regione": "Umbria",
+            "slug": "pg-corciano-mercato-di-mantignana"
           },
           "observations_after": [
             {
               "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
+              "fonte": "Comune di Corciano",
+              "fonte_aggiornata_il": "2026-01-07",
+              "fonte_id": "corciano-generic-shadow",
               "impronta_tipo": "publisher_parsed_json",
               "letto_il": "2026-10-24",
               "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc"
+                "citta": "Corciano",
+                "provincia": "PG",
+                "regione": "Umbria",
+                "slug": "pg-corciano-mercato-di-mantignana"
               },
               "metodo": "id_fonte",
-              "riga_fonte": "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc",
+              "riga_fonte": "pg-corciano-mercato-di-mantignana",
               "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+              "sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
+              "url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
               "valori": {
-                "indirizzo": "Via Piave (Angolo Via Asiago)",
-                "orario_testo": "Estivo: 15:30-21:30 Invernale: 15:00-21:00 (indicazioni della fonte; da verificare con il Comune)"
+                "indirizzo": "Piazza Giovanni Ercolani, Mantignana",
+                "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+                "ricorrenza_testo": "settimanale - lunedì"
               }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Piave (Angolo Via Asiago)",
-            "orario_testo": "Estivo: 15:30-21:30 Invernale: 15:00-21:00 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc"
             },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Piave (Angolo Via Asiago)",
-              "orario_testo": "Estivo: 15:30-21:30 Invernale: 15:00-21:00 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-8c9f872aa350c4745a1c1ae39ef9668842e092dc",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "5990322fb37830d1637b2db3cc891326b2e72c13d5bee100955dfa5f99e3b948",
-          "before_sha256": "359aa2099afaf3b7f786d0126c610e534d10dfe2b55da508c56f57d42fa90ca1",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Pieve Di Cadore",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d"
-          },
-          "observations_after": [
             {
               "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
+              "fonte": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
+              "fonte_aggiornata_il": "2026-01-07",
+              "fonte_id": "corciano",
               "impronta_tipo": "publisher_parsed_json",
               "letto_il": "2026-10-24",
               "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d"
+                "citta": "Corciano",
+                "provincia": "PG",
+                "regione": "Umbria",
+                "slug": "pg-corciano-mercato-di-mantignana"
               },
               "metodo": "id_fonte",
-              "riga_fonte": "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d",
+              "riga_fonte": "pg-corciano-mercato-di-mantignana",
               "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+              "sha256": "82cce64c3853d03ca9a1feee154c3ff95b9092894856c269f432d9e95f135692",
+              "url": "https://comune.corciano.pg.it/area_letturaDocumento/29645/pagsistema.html",
               "valori": {
-                "indirizzo": "Via Pieve Di Cadore",
-                "orario_testo": "Estivo: 18:00-21:00 Invernale: 16:00-19:30 (indicazioni della fonte; da verificare con il Comune)"
+                "indirizzo": "Piazza Giovanni Ercolani, Mantignana",
+                "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+                "ricorrenza_testo": "settimanale - lunedì"
               }
             }
           ],
           "public_fields_after": {
-            "indirizzo": "Via Pieve Di Cadore",
-            "orario_testo": "Estivo: 18:00-21:00 Invernale: 16:00-19:30 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Pieve Di Cadore",
-              "orario_testo": "Estivo: 18:00-21:00 Invernale: 16:00-19:30 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-6c9c0c26143a7d8f1cc982cf1c593491f720a16d",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "54fbe26eb8b2584e106403f130ba6dbea0db492f16d10acd5fb0759cb9bcbeeb",
-          "before_sha256": "34ce0696b0b3cc8a31a2b0007b2649388bb58ce369256bc1aabcbbea0ab4fec6",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Grandi Angolo Via Giovanni Xxiii",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Grandi Angolo Via Giovanni Xxiii",
-                "orario_testo": "08:30–13:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Grandi Angolo Via Giovanni Xxiii",
-            "orario_testo": "08:30–13:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Grandi Angolo Via Giovanni Xxiii",
-              "orario_testo": "08:30–13:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-538c3dda8b7a754e82b2d1ba76cb865d099f030f",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "d3277c4d58f769b2936b804386e2af4603f51fb76a9f6f1082ac3941612dbbee",
-          "before_sha256": "205386da9774959ce0fde5298a9b712447df97082ff12e1eccdd94295737304c",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza Testoni-Piazza Don Gavinelli",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-3a150cf453dc8050ee37edfbf006699118c15901"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-3a150cf453dc8050ee37edfbf006699118c15901"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-3a150cf453dc8050ee37edfbf006699118c15901",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Testoni-Piazza Don Gavinelli",
-                "orario_testo": "14:30–20:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Testoni-Piazza Don Gavinelli",
-            "orario_testo": "14:30–20:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-3a150cf453dc8050ee37edfbf006699118c15901"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-3a150cf453dc8050ee37edfbf006699118c15901",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Testoni-Piazza Don Gavinelli",
-              "orario_testo": "14:30–20:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-3a150cf453dc8050ee37edfbf006699118c15901",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "f0f250e8ac9172cac6ed74eb6164698fd2d4e27a6f83a790787bfe7e3763e04c",
-          "before_sha256": "413a750c1132dfd6bff22095679c35b553d955f9a8c359de8f93ae8a1fbcdafe",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via San Giuseppe",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via San Giuseppe",
-                "orario_testo": "13:00–19:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via San Giuseppe",
-            "orario_testo": "13:00–19:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via San Giuseppe",
-              "orario_testo": "13:00–19:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-66394d0a7ad3a4c491648b63e1530039b3d357b7",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "24c9208bc4f1a2acc64c539d89e134ec4e19e0d365c103f199effa507f741f1e",
-          "before_sha256": "5aeb8df350291e8fc30eb7b4859745040372de33ca46b9f3fe18a0bb36b87c1d",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Paolo Fabbri",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Paolo Fabbri",
-                "orario_testo": "Estivo: 18:00-22:00 Invernale: 15:30-21:30 (indicazioni della fonte; da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Paolo Fabbri",
-            "orario_testo": "Estivo: 18:00-22:00 Invernale: 15:30-21:30 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Paolo Fabbri",
-              "orario_testo": "Estivo: 18:00-22:00 Invernale: 15:30-21:30 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-83de3d1a11f8f9531806fefaff64eb237e58ea8d",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "68b1b3380718f14c804b74b93e2b98423b1aad07ebce9e738585a49210d8c0dd",
-          "before_sha256": "ee0bd07bb377a7bbdeced79df9cda6cbd0b8d8371af63af7a34750b842adc51e",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza Carducci",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Carducci",
-                "orario_testo": "09:00–13:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Carducci",
-            "orario_testo": "09:00–13:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Carducci",
-              "orario_testo": "09:00–13:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-d6845cd4d9cde664e4929864e791dea0c2957e75",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "4ffeaa0508f6bd2b9e3835d2f55c49346795a46a99edef20176557cfcaeea43a",
-          "before_sha256": "8ccb3f4f1d3449389f1c861be11e55718163ad53834ab121079794290a07aa1b",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Garavaglia-Piazza Spadolini",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Garavaglia-Piazza Spadolini",
-                "orario_testo": "08:30–13:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Garavaglia-Piazza Spadolini",
-            "orario_testo": "08:30–13:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Garavaglia-Piazza Spadolini",
-              "orario_testo": "08:30–13:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-1cf592e9467cb490c75272ea9a067dc7b00fd938",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "8582da09e8c1343436e30ac42219f2b58222aacce5f988c8e94c1e8380bc0afa",
-          "before_sha256": "63cd9322e6fe56b7baade692ab19031eee9177730ec9cca80d243fb8d8bda0cb",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Tolmino 7",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Tolmino 7",
-                "orario_testo": "Estivo: 16:30-20:30 Invernale: 17:00-19:30 (indicazioni della fonte; da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Tolmino 7",
-            "orario_testo": "Estivo: 16:30-20:30 Invernale: 17:00-19:30 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Tolmino 7",
-              "orario_testo": "Estivo: 16:30-20:30 Invernale: 17:00-19:30 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-cf7fea67feb1f732decc825de2dd5e905b8a7184",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "f6df2559e5bbd4a47aae9dcc0b4d3dc5cf3cf2071e9b421537ad0202454ceffa",
-          "before_sha256": "1ee98198b1ff92d67ad448f2fe4ec8ba32e009bc42fa3721c10fe0c69d8adb7d",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Morazzo",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Morazzo Presso Villa Bernaroli",
-                "orario_testo": "08:00–12:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Morazzo Presso Villa Bernaroli",
-            "orario_testo": "08:00–12:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Morazzo Presso Villa Bernaroli",
-              "orario_testo": "08:00–12:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-d82a772f39a1fa565dbfd659a6aef1b64a61b6d6",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "2f0fece3066b7bb6a3ff73cb6ea68f358653dcdfdaf8e6d5e17e15de90ade3f5",
-          "before_sha256": "6b86fcbc3cffcc41bae68fdb6e0bded6bfd5ae543f9c5f164c6aac89ce90c0f8",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Bentini Angolo Via Sant’Anna",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Bentini Angolo Via Sant’Anna",
-                "orario_testo": "08:30–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Bentini Angolo Via Sant’Anna",
-            "orario_testo": "08:30–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Bentini Angolo Via Sant’Anna",
-              "orario_testo": "08:30–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-19653f31ebf2e04bca9be221cac14f987b14d6e8",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "ceff696c7d0e96dba11f8837b087865ac20ced94924b2fe732b3db3208db6153",
-          "before_sha256": "7551a1caad95a7f7df7dc41f5ae0e3e30315a09b8a8d1893db13bab33a7c69ac",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza San Rocco-Via Del Pratello",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza San Rocco-Via Del Pratello",
-                "orario_testo": "07:30–14:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza San Rocco-Via Del Pratello",
+            "indirizzo": "Piazza Giovanni Ercolani, Mantignana",
             "orario_testo": "07:30–14:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
+            "ricorrenza_testo": "settimanale - lunedì"
           },
           "receipt": {
             "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
+            "fonte": "Comune di Corciano",
+            "fonte_aggiornata_il": "2026-01-07",
+            "fonte_id": "corciano-generic-shadow",
             "impronta_tipo": "publisher_parsed_json",
             "letto_il": "2026-10-24",
             "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2"
+              "citta": "Corciano",
+              "provincia": "PG",
+              "regione": "Umbria",
+              "slug": "pg-corciano-mercato-di-mantignana"
             },
             "metodo": "id_fonte",
-            "riga_fonte": "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2",
+            "riga_fonte": "pg-corciano-mercato-di-mantignana",
             "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+            "sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
+            "url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
             "valori": {
-              "indirizzo": "Piazza San Rocco-Via Del Pratello",
-              "orario_testo": "07:30–14:00 (da verificare con il Comune)"
+              "indirizzo": "Piazza Giovanni Ercolani, Mantignana",
+              "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "settimanale - lunedì"
             }
           },
           "retired_observations": [],
-          "slug": "bo-open-48964642314ad23dddd6a4b89d128ea9777fa5f2",
+          "slug": "pg-corciano-mercato-di-mantignana",
           "source_metadata_after": {
             "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
+            "aggiornato_il": "2026-01-07",
+            "fonte_aggiornata_il": "2026-01-07",
             "fonte_letta_il": "2026-10-24",
             "importato_il": "",
             "verificato_il": ""
@@ -1070,2071 +510,101 @@
         },
         {
           "action": "observe",
-          "after_sha256": "a0b6cb0a98e286a0e926fdff343463df66f5e7780ac34fbe520aaff6d2a016b6",
-          "before_sha256": "85478ae2a4a3acb08a6195ab496e07cae8dbdcf3e88556294d68d4c1f2eee2c6",
+          "after_sha256": "09a88827d1e4786a38363b40376364d3bc92c6291efa1e3b8606f48b20d8f599",
+          "before_sha256": "00ce3f537eed23172c1e4b16c15ca9cbf07444ee397c0c4c88d06f364b30eb99",
           "changed_fields": {},
           "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Zamboni",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794"
+            "citta": "Corciano",
+            "nome": "Mercato Di San Mariano",
+            "provincia": "PG",
+            "regione": "Umbria",
+            "slug": "pg-corciano-mercato-di-san-mariano"
           },
           "observations_after": [
             {
               "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
+              "fonte": "Comune di Corciano",
+              "fonte_aggiornata_il": "2026-01-07",
+              "fonte_id": "corciano-generic-shadow",
               "impronta_tipo": "publisher_parsed_json",
               "letto_il": "2026-10-24",
               "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794"
+                "citta": "Corciano",
+                "provincia": "PG",
+                "regione": "Umbria",
+                "slug": "pg-corciano-mercato-di-san-mariano"
               },
               "metodo": "id_fonte",
-              "riga_fonte": "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794",
+              "riga_fonte": "pg-corciano-mercato-di-san-mariano",
               "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+              "sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
+              "url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
               "valori": {
-                "indirizzo": "Via Zamboni",
-                "orario_testo": "Estivo: 18:00-21:00 Invernale: 17:30-20:30 (indicazioni della fonte; da verificare con il Comune)"
+                "indirizzo": "Via Aldo Moro, San Mariano",
+                "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+                "ricorrenza_testo": "settimanale - martedì"
               }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Zamboni",
-            "orario_testo": "Estivo: 18:00-21:00 Invernale: 17:30-20:30 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794"
             },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Zamboni",
-              "orario_testo": "Estivo: 18:00-21:00 Invernale: 17:30-20:30 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-9b77edde36045dbdfeec9a6f0f5cbb7a1e08c794",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "293a368520f5dac325dde524972904904338bdbb5dadaee1ea4b84d67dc4b639",
-          "before_sha256": "4013cf08774493a424b46452d33e1f6f6a10121b138c40bb83020a0320c59695",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Largo Cardinal Lercaro",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
-          },
-          "observations_after": [
             {
               "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
+              "fonte": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
+              "fonte_aggiornata_il": "2026-01-07",
+              "fonte_id": "corciano",
               "impronta_tipo": "publisher_parsed_json",
               "letto_il": "2026-10-24",
               "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+                "citta": "Corciano",
+                "provincia": "PG",
+                "regione": "Umbria",
+                "slug": "pg-corciano-mercato-di-san-mariano"
               },
               "metodo": "id_fonte",
-              "riga_fonte": "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2",
+              "riga_fonte": "pg-corciano-mercato-di-san-mariano",
               "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+              "sha256": "82cce64c3853d03ca9a1feee154c3ff95b9092894856c269f432d9e95f135692",
+              "url": "https://comune.corciano.pg.it/area_letturaDocumento/29645/pagsistema.html",
               "valori": {
-                "indirizzo": "Largo Cardinal Lercaro",
-                "orario_testo": "08:00–13:30 (da verificare con il Comune)"
+                "indirizzo": "Via Aldo Moro, San Mariano",
+                "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+                "ricorrenza_testo": "settimanale - martedì"
               }
             }
           ],
           "public_fields_after": {
-            "indirizzo": "Largo Cardinal Lercaro",
-            "orario_testo": "08:00–13:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
+            "indirizzo": "Via Aldo Moro, San Mariano",
+            "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+            "ricorrenza_testo": "settimanale - martedì"
           },
           "receipt": {
             "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
+            "fonte": "Comune di Corciano",
+            "fonte_aggiornata_il": "2026-01-07",
+            "fonte_id": "corciano-generic-shadow",
             "impronta_tipo": "publisher_parsed_json",
             "letto_il": "2026-10-24",
             "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2"
+              "citta": "Corciano",
+              "provincia": "PG",
+              "regione": "Umbria",
+              "slug": "pg-corciano-mercato-di-san-mariano"
             },
             "metodo": "id_fonte",
-            "riga_fonte": "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2",
+            "riga_fonte": "pg-corciano-mercato-di-san-mariano",
             "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
+            "sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
+            "url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
             "valori": {
-              "indirizzo": "Largo Cardinal Lercaro",
-              "orario_testo": "08:00–13:30 (da verificare con il Comune)"
+              "indirizzo": "Via Aldo Moro, San Mariano",
+              "orario_testo": "07:30–14:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "settimanale - martedì"
             }
           },
           "retired_observations": [],
-          "slug": "bo-open-3f3a4de111659a982cfc95930efcde2e3ecbadf2",
+          "slug": "pg-corciano-mercato-di-san-mariano",
           "source_metadata_after": {
             "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "961d16d5f851b64f5a48a1de5437daad6774765176536cf65e8ea4264dfdfd02",
-          "before_sha256": "d75425935634eaf4c83adb9e984036c5f71e066f318bfa68a8df9395ecdbe454",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Azzo Gardino",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Azzo Gardino Piazzale Della Cineteca",
-                "orario_testo": "09:30–13:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Azzo Gardino Piazzale Della Cineteca",
-            "orario_testo": "09:30–13:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Azzo Gardino Piazzale Della Cineteca",
-              "orario_testo": "09:30–13:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-f4924871e3e6f3cf18348f793b56ff39ef1147a4",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "1ce72e4689d5271b1b081572da96d4625ca0c1b38d09845270c5ed83d49aee45",
-          "before_sha256": "bc4b9dc1dd5e67b29102b1b17eddf9d79eaa09658783cbed55a9d06b5a2b7f52",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Segantini",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Segantini",
-                "orario_testo": "14:30–18:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Segantini",
-            "orario_testo": "14:30–18:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Segantini",
-              "orario_testo": "14:30–18:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-0ed2ef3503873cbd9fef285e4228285b159fd15f",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "c8e2b5a3740b60af4b31e4f86dc07fcab59e1f6dc47f51124f6c73efe734a865",
-          "before_sha256": "4c88670920ae14ae3e11b473f48067a21e780cba8e5b2ac5c0223e933dce3f3e",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Cristoforo Colombo",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Cristoforo Colombo",
-                "orario_testo": "07:30–13:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Cristoforo Colombo",
-            "orario_testo": "07:30–13:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Cristoforo Colombo",
-              "orario_testo": "07:30–13:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-f6302dbade6cb2000a4a7fc38a5a8518cdfaa147",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "f0ce15fe13a9b18e628e266425913641de83c5b08da761932437bf04b3a4f30a",
-          "before_sha256": "2f54d895b52889694d629b015e698e5fbdfc82e7ba9bceec8b86afe66bd636a7",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Gobetti",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Lucio Dalla (Ex Via Gobetti)",
-                "orario_testo": "Estivo: 18:00-21:00 Invernale: 16:00-21:30 (indicazioni della fonte; da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Lucio Dalla (Ex Via Gobetti)",
-            "orario_testo": "Estivo: 18:00-21:00 Invernale: 16:00-21:30 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Lucio Dalla (Ex Via Gobetti)",
-              "orario_testo": "Estivo: 18:00-21:00 Invernale: 16:00-21:30 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-70522f9011788d8b4f6c70e9a1f965e3243788db",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "c19d6a9a3aed201f926067da09a6a602248924987afc4a74a4ec39d900aab821",
-          "before_sha256": "d4b916e13b359de056138b9386daf1c93638d5971ee99ba7923c9911ce58913c",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Sigonio",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Sigonio",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Sigonio",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Sigonio",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-adc29dc00756e4dbb9355c4fa3695dce146a7fc8",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "7b2c345140486913cd5360c2ff4deddaa98efe27e5eca6b6065f54ef07fe97f6",
-          "before_sha256": "5425a6dfc30de4b80aedaa55e6c71deef0889953978cc886118629b33a3fd85b",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Vittorio Veneto",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Vittorio Veneto",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Vittorio Veneto",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Vittorio Veneto",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-9a6d3429f04736789dcf5b3d1f77e7a49de11780",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "ae61ddabe3e002aae700191bec79689f2fdc88c380955bba59abf690a85df60d",
-          "before_sha256": "9d13efd435fc01b6d0f9bf2828e68750443e92177d19cd8b4f9958378c9eee05",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Albani",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Francesco Albani",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Francesco Albani",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Francesco Albani",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-beede1d55dbddaaabc9e8fed2cff47b42c96ce1f",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "295a3444f3771f46411ba0a7e022a664053d03d5ba220a570a63c4744a11d92a",
-          "before_sha256": "8cc5c3c40535274fc8b1f0bc6ae6fbbabab95935013096418983f3657c21fb11",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Chiesa Nuova",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Murri",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Murri",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Murri",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-4044ac2451c2e7faca91e930ce27a3d79d80fa9e",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "43527d6e4eb11fcf6b3d98a25db1d566292637eebaf583f8d5d334bd2c86c7ff",
-          "before_sha256": "0e9dda9cfed3a3bae68ee67b038d58b65f0c093c0784ffbb91ff650443bddcf0",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Toscana",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Toscana",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Toscana",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Toscana",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-44f2aa20256822de1b92f74992e8f370eb37c25f",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "f71c1e3f2228aced54124dee1aabc80daf627aef563e435a59128367d7fa821d",
-          "before_sha256": "f366acc91c9bf54caf3f4e49644eedb22a21724794fe1bfca20c96060f778814",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Mazzoni",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Mazzoni",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Mazzoni",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Mazzoni",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-3f34d4c24bd3987141bfd575e364c0543f75e9e1",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "bb14192ac257dcc96b4d2f8d895c6c539b5c71668739921c073a221f9e82be32",
-          "before_sha256": "ccbb0adc52eb831e5d59b836036248474e08b9e89232c03c982bc7fa0a733bc4",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza Di Porta San Mamolo",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Di Porta San Mamolo",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Di Porta San Mamolo",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Di Porta San Mamolo",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-ec5364668636ba5e21b8995ae00fddc0a34e8ff1",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "4c09f84e74b2f80a5a29cd4d6cf345c28a1562c94f04fafa352c15943e953a7c",
-          "before_sha256": "c9084d5c8ea6b08519c512bd2851f37e9abcb599e5a5d28d0b01d3d7e47dea4e",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Cirenaica",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Sante Vincenzi",
-                "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Sante Vincenzi",
-            "orario_testo": "07:30–19:30 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Sante Vincenzi",
-              "orario_testo": "07:30–19:30 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-8c433a5be53cbd1a50d478966ce112b8c2d46895",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "d42a5d6896a33a7fd834a9fe09c70a822aac775db255514adc7b3719ecaf0859",
-          "before_sha256": "8fa0c2a3e2a2348fe506670a85874572d4bb952afd3e04010931f43cd921f7aa",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Gandolfi",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Beolco-Via Andreini-Via Cuccoli",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Beolco-Via Andreini-Via Cuccoli",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Beolco-Via Andreini-Via Cuccoli",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-a113cae523a449bc08cd15be91dd4a2346791fda",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "8d315bf8ee387ebc337a0aba496e7ed6d6b2a3d25e81f3d786156691228277bc",
-          "before_sha256": "8810151ff9ee977487cfcca9fcd20b89e57e5cbcc0877bfa37e8dfcc69b152b8",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Del Lavoro",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Del Lavoro",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Del Lavoro",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Del Lavoro",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-ba62248f71f676bfef73404a785b71f06bc0b443",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "feeac654a97e8498e7c15462e5c54f1a674d88c2e0dd133abcfca66555ab2266",
-          "before_sha256": "7d2ad1a56119c792d74b04f57c4a57ddff40518decac7a1e64f8b8b63ae174c2",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza Lambrakis",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Lambrakis",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Lambrakis",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Lambrakis",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-25f7162ce9dca51b8173a32f28046a6c08a852bb",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "17e2a416a4fd5ee5e9ccc10cada9d6879ab2b11ef26dadcb51e2b35504554a58",
-          "before_sha256": "42ed4e3d302be8e17ba33fa6af78062b45564afed50ea58cd93878c6feecf0b3",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Del Treno",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Giovanni Xxiii",
-                "orario_testo": "Invernale 08:00-17:00 estivo 08:00-18:00 (indicazioni della fonte; da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Giovanni Xxiii",
-            "orario_testo": "Invernale 08:00-17:00 estivo 08:00-18:00 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Giovanni Xxiii",
-              "orario_testo": "Invernale 08:00-17:00 estivo 08:00-18:00 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-c11dc4bf345871bb3ae0d1fc9cfb752a21843cfb",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "1f570ad8ea457776fe25a4d6d176347544311e258e2c62de06f858e9190ac988",
-          "before_sha256": "d44b7f7ef14cee93b12a65e711aad6acce0e52c5dc67e1e6b58b44acd9ff9a49",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Caduti Di Casteldebole",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Caduti Di Casteldebole",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Caduti Di Casteldebole",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Caduti Di Casteldebole",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-01d7b0fdebcd854a40f0ed39a218e396ce28ad91",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "3a79898e3217e9baff628f172f1321952f6d97a481c561ea272269f3d1d7c5e0",
-          "before_sha256": "ec0b0740166a3c58809c1396df74f8bf54b4ca35bb30c2101e9e404de4feceb0",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato London-Bentini",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via London-Via Bentini",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via London-Via Bentini",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via London-Via Bentini",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-85433ab7c6ee09efaf112a67e2e1c2ab2cdcba8e",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "73ca47fa05be186bc495c018bb1ab8c11f3a5e5dc34ea4952212183408889e2f",
-          "before_sha256": "4f94bec98ac1957ecb00ea7a6e14892c7a8b550ea31605501515459ce35776ec",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Vintage",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Puntoni",
-                "orario_testo": "09:00–17:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Puntoni",
-            "orario_testo": "09:00–17:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Puntoni",
-              "orario_testo": "09:00–17:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-1c2df0e0ea899f85c4ff912a926dce875aceceed",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "34b4e80cea6893516589742de2e2fd7339ca08f5cb29e78c36fc0b563215bd3b",
-          "before_sha256": "ff61b2c701dda8f80d5d421319b3ff359b0b34c438d6ec17f8120ca2919956a7",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Via Manuzio",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Via Milani-Via Marco Emilio Lepido",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Via Milani-Via Marco Emilio Lepido",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Via Milani-Via Marco Emilio Lepido",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-e8da80b38f8547e6171a08f57d2a15dfb63ecc82",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "ccc6e7045c34906474db7da80f8a65cb3885473bc9de42c4ae7d16b08466bfdf",
-          "before_sha256": "18583a818b0b9d6df6a9c7ff1bf55bd735d6751d1c90a4b905e43131fe1868f2",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Antiquario Città Di Bologna",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-70472450ee8d71167730139b73638b824b822c40"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-70472450ee8d71167730139b73638b824b822c40"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-70472450ee8d71167730139b73638b824b822c40",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Santo Stefano",
-                "orario_testo": "Invernale 08:30-18:00 estivo 08:30-19:00 (indicazioni della fonte; da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Santo Stefano",
-            "orario_testo": "Invernale 08:30-18:00 estivo 08:30-19:00 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-70472450ee8d71167730139b73638b824b822c40"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-70472450ee8d71167730139b73638b824b822c40",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Santo Stefano",
-              "orario_testo": "Invernale 08:30-18:00 estivo 08:30-19:00 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-70472450ee8d71167730139b73638b824b822c40",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "cf68d197e66d17d3fb3067ba040338b1bfb7cf289829aab0c49ca68bbbd91471",
-          "before_sha256": "6766e1c91ed579022c4c8f0d0c95cb198f0c377095ac789c66c854e4ead15a6f",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Largo Cardinale Lercaro",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Largo Cardinale Lercaro",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Largo Cardinale Lercaro",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Largo Cardinale Lercaro",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-cd8e5bd4add01c0d857b767830e542e6f90d7ae0",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "60e46c534affefb59f850b4a635efcc58e0899b59afd6428452eea9810d3211c",
-          "before_sha256": "0201252b4da712d472409adcb55f51e727d9f54d74d16b21c6194d46494eaaa3",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza Capitini",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-7a40119eff125e0617098394b3c005ac520c2b00"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-7a40119eff125e0617098394b3c005ac520c2b00"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-7a40119eff125e0617098394b3c005ac520c2b00",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Capitini",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Capitini",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-7a40119eff125e0617098394b3c005ac520c2b00"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-7a40119eff125e0617098394b3c005ac520c2b00",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Capitini",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-7a40119eff125e0617098394b3c005ac520c2b00",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "f6f7464f50119e370efc52b855762d72665d0458e583af17e5f6fcbabe9cc49f",
-          "before_sha256": "db5ed26293ccf62054de251a997fb6a057f72efa30fcb14dbb31f53ac7ded099",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza San Francesco",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza San Francesco",
-                "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza San Francesco",
-            "orario_testo": "08:00–13:00 (da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza San Francesco",
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-f845a0f3b4bfdf83983f8f19ac0d743c47d73029",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_letta_il": "2026-10-24",
-            "importato_il": "",
-            "verificato_il": ""
-          }
-        },
-        {
-          "action": "observe",
-          "after_sha256": "be2e468c8c05ffeb101a13ff3996c9cdb197e10ceac93294ab0fe9df0c02e841",
-          "before_sha256": "f702baf1cce697a1ec27fa14e9f1f19da72693da791245b671062ed178a7b9df",
-          "changed_fields": {},
-          "identity_after": {
-            "citta": "Bologna",
-            "nome": "Mercato Piazza Viii Agosto",
-            "provincia": "BO",
-            "regione": "Emilia-Romagna",
-            "slug": "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8"
-          },
-          "observations_after": [
-            {
-              "ambito": "dataset",
-              "campi_gestiti": [
-                "orario_testo"
-              ],
-              "fonte": "Comune di Bologna",
-              "fonte_aggiornata_il": "2025-04-02",
-              "fonte_id": "bologna-generic-venues",
-              "gestore_campi": "source_contract_ingest",
-              "impronta_tipo": "publisher_parsed_json",
-              "letto_il": "2026-10-24",
-              "mercato": {
-                "citta": "Bologna",
-                "provincia": "BO",
-                "regione": "Emilia-Romagna",
-                "slug": "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8"
-              },
-              "metodo": "id_fonte",
-              "riga_fonte": "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8",
-              "schema": 1,
-              "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-              "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-              "valori": {
-                "indirizzo": "Piazza Viii Agosto-Lato Via Indipendenza",
-                "orario_testo": "Invernale 08:30-17:00 estivo 08:30-18:00 (indicazioni della fonte; da verificare con il Comune)"
-              }
-            }
-          ],
-          "public_fields_after": {
-            "indirizzo": "Piazza Viii Agosto-Lato Via Indipendenza",
-            "orario_testo": "Invernale 08:30-17:00 estivo 08:30-18:00 (indicazioni della fonte; da verificare con il Comune)",
-            "ricorrenza_testo": "Calendario da verificare"
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "fonte": "Comune di Bologna",
-            "fonte_aggiornata_il": "2025-04-02",
-            "fonte_id": "bologna-generic-venues",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-24",
-            "mercato": {
-              "citta": "Bologna",
-              "provincia": "BO",
-              "regione": "Emilia-Romagna",
-              "slug": "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8"
-            },
-            "metodo": "id_fonte",
-            "riga_fonte": "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8",
-            "schema": 1,
-            "sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-            "url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
-            "valori": {
-              "indirizzo": "Piazza Viii Agosto-Lato Via Indipendenza",
-              "orario_testo": "Invernale 08:30-17:00 estivo 08:30-18:00 (indicazioni della fonte; da verificare con il Comune)"
-            }
-          },
-          "retired_observations": [],
-          "slug": "bo-open-a1410034a462bb228aff9396f18521a8c87c31d8",
-          "source_metadata_after": {
-            "aggiornamento_ambito": "dataset",
-            "aggiornato_il": "2025-04-02",
-            "fonte_aggiornata_il": "2025-04-02",
+            "aggiornato_il": "2026-01-07",
+            "fonte_aggiornata_il": "2026-01-07",
             "fonte_letta_il": "2026-10-24",
             "importato_il": "",
             "verificato_il": ""
@@ -3142,23 +612,6 @@
         }
       ],
       "verified_market_openings_created": 0
-    },
-    "corciano-generic-shadow": {
-      "approval_sha256": "b459c338cb5336756437e1e95f7ef3c30a6828346251768f6d9149a43c528253",
-      "error_type": "HTTPError",
-      "existing_records_removed": 0,
-      "field_audit_counts": {},
-      "field_review_needed": {},
-      "hold_reason": "unavailable_or_invalid_source",
-      "individual_market_openings_confirmed": 0,
-      "new_market_ids": [],
-      "schema": 1,
-      "source_observations": {},
-      "source_read_on": null,
-      "source_snapshot_sha256": null,
-      "status": "publisher_source_held_for_review",
-      "updated_fields_count": 0,
-      "updates": []
     }
   },
   "publication_channel": "dev-only",
@@ -3171,12 +624,11 @@
   "source_contracts_approved": 2,
   "source_registry_sha256": "84974156e3b90905fdb97ebf037a554575d09a37a97db65901624ef25831af33",
   "status_counts": {
-    "approved_sources_reconciled": 1,
+    "approved_sources_reconciled": 2,
     "eligible_venues_deferred_to_next_run": 0,
-    "existing_source_evidence_refreshed": 39,
+    "existing_source_evidence_refreshed": 2,
     "existing_source_fields_updated": 0,
-    "new_source_venues_staged_for_DEV": 0,
-    "publisher_sources_held": 1
+    "new_source_venues_staged_for_DEV": 0
   },
   "updated_market_ids": []
 }

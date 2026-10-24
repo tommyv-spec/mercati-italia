@@ -4,19 +4,19 @@
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
 - Data della misura: **2026-10-24**.
-- Schede totali: **14,007**.
+- Schede totali: **14,008**.
 - Fonti misurate (nome e dominio): **88**.
-- Importazione registrata entro 30 giorni: **183**.
-- Lettura della fonte registrata entro 30 giorni: **1,364**.
+- Importazione registrata entro 30 giorni: **184**.
+- Lettura della fonte registrata entro 30 giorni: **1,365**.
 - Fonte datata entro 30 giorni: **1,205**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,204**.
 - Schede con aggiornamento soltanto del dataset: **1,250**.
 - Fonte datata tra 31 e 365 giorni: **6**.
 - Fonte più vecchia del limite di 540 giorni: **52**.
-- Schede con età del contenuto della fonte non comprovata: **12,743**.
+- Schede con età del contenuto della fonte non comprovata: **12,744**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,688**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,870**.
+- Schede con date future previste: **11,672**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,854**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,7 +25,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
-- Da correggere: publisher_refresh_incomplete
+- Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
 
@@ -92,7 +92,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
-| happings.com | www.happings.com | 9830 | 1 | 0 | 9829 | 183 |
+| happings.com | www.happings.com | 9831 | 1 | 0 | 9830 | 184 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -136,20 +136,20 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 2522 | 8854 | 1449 | 1097 | 85 |
-| Orari | 3005 | 1993 | 1195 | 7559 | 255 |
-| Giorni | 972 | 10935 | 1375 | 706 | 19 |
+| Sede | 2522 | 8844 | 1454 | 1098 | 90 |
+| Orari | 3002 | 1992 | 1197 | 7560 | 257 |
+| Giorni | 972 | 10935 | 1375 | 707 | 19 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 5918. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 5919. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | source_held | 0 | 0 |
-| bassa-romagna-weekly | source_held | 0 | 0 |
+| bassa-romagna-farmers | retrieved | 4 | 0 |
+| bassa-romagna-weekly | retrieved | 9 | 0 |
 
-Conflitti mantenuti in revisione: 0.
+Conflitti mantenuti in revisione: 4.
 
 
 ## Limiti del sistema

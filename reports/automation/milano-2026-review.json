@@ -104,6 +104,239 @@
     "pdf_weekday_rows": 87,
     "schema": 1
   },
+  "happings_detail_admission_certificate": {
+    "admissions": [
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "admission_text": null,
+              "all_day": null,
+              "calendar_complete": true,
+              "calendar_notes": [],
+              "calendar_scope": "explicit_visible_list",
+              "category": "Mercati",
+              "conditions": [],
+              "contacts": [],
+              "date_intervals": [],
+              "description": "Campagna amica a Favaro veneto si svolge a Venezia, in VIA Triestina, 54. La scheda del mercato elenca vini e aceti, conserve dolci e salate, pasta, farine e cereali, salumi, ortaggi, latte e latticini, formaggi freschi, formaggi semistagionati/stagionati, piante aromatiche, condimenti e spezie, carni fresche, frutta, uova, pane e prodotti da forno, piante da orto, piante officinali, piante in vaso, fiori recisi, altri prodotti trasformati. Le aperture settimanali riportate dalla fonte sono: martedì 08:00–13:00. Per aggiornamenti sulle aperture, consulta la scheda ufficiale di Campagna Amica.",
+              "edition_interval": {
+                "end": "2026-12-22",
+                "start": "2026-09-29"
+              },
+              "event_status": "https://schema.org/EventScheduled",
+              "geo": {
+                "latitude": 45.5048395,
+                "longitude": 12.2865374,
+                "precision": "publisher_point_unverified"
+              },
+              "hours_intervals": [
+                {
+                  "end": "13:00",
+                  "start": "08:00"
+                }
+              ],
+              "hours_qualifications": [],
+              "hours_scope": "event_hours",
+              "hours_text": "8:00 - 13:00",
+              "location": {
+                "city": "Venezia",
+                "country": "IT",
+                "name": "Campagna amica a Favaro veneto",
+                "postal_code": null,
+                "province": null,
+                "region": "Veneto",
+                "street_address": "VIA Triestina, 54"
+              },
+              "name": "Campagna amica a Favaro veneto",
+              "occurrences": [
+                {
+                  "date": "2026-10-27",
+                  "end_time": "13:00",
+                  "evidence": [
+                    ".happings-event-performances li",
+                    "Event.startDate/endDate"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-03",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-10",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-17",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-11-24",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-01",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-08",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-15",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                },
+                {
+                  "date": "2026-12-22",
+                  "end_time": null,
+                  "evidence": [
+                    ".happings-event-performances li"
+                  ],
+                  "note": null,
+                  "start_time": "08:00",
+                  "status": "source_listed"
+                }
+              ],
+              "organizer": null,
+              "recurrence_text": "martedì 08:00–13:00.",
+              "related_detail_urls": [
+                "https://www.happings.com/it/happing/oasi-prodotti-tipici-di-torino/",
+                "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-romagna/",
+                "https://www.happings.com/it/happing/mercato-di-campagna-amica-via-delloceano-pacifico-eur/"
+              ],
+              "sidebar_hours_text": "8:00 - 13:00",
+              "source_id": "14845",
+              "source_links": [],
+              "subevents": [],
+              "visible_location": "Campagna amica a Favaro veneto\nVIA Triestina, 54, Venezia"
+            },
+            "field_evidence": {
+              "category": [
+                ".happings-event-hero .happings-event-category"
+              ],
+              "city": [
+                "Event.location.address.addressLocality"
+              ],
+              "country": [
+                "Event.location.address.addressCountry"
+              ],
+              "edition_interval": [
+                ".happings-event-auto-summary periodo"
+              ],
+              "geo": [
+                "Event.location.geo"
+              ],
+              "hours_text": [
+                ".happings-event-sidebar Orario"
+              ],
+              "identity": [
+                "script#happings-event-schema Event.url/name"
+              ],
+              "name": [
+                ".happings-event-hero h1"
+              ],
+              "occurrences": [
+                ".happings-event-performances li"
+              ],
+              "published_at": [
+                "WebPage[url=final_url].datePublished"
+              ],
+              "recurrence_text": [
+                ".happings-event-content .happings-event-description-card"
+              ],
+              "region": [
+                "Event.location.address.addressRegion"
+              ],
+              "source_id": [
+                ".happings-event-sidebar [data-event-id]"
+              ],
+              "street_address": [
+                "Event.location.address.streetAddress"
+              ],
+              "visible_location": [
+                ".happings-event-sidebar Dove si svolge"
+              ]
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 134571,
+              "canonical_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+              "final_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+              "html_sha256": "439798c3c2cb0613e5ff19e2488339ca38631306afc00ca03ee86c386d695253",
+              "modified_at": null,
+              "published_at": "2026-09-30T19:14:55+00:00",
+              "requested_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/"
+            },
+            "status": "parsed",
+            "warnings": []
+          },
+          "read_on": "2026-10-24"
+        },
+        "market_id": "happings-campagna-amica-a-favaro-veneto-e268d3d4b440",
+        "source_page": {
+          "bytes": 134571,
+          "canonical_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+          "final_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+          "html_sha256": "439798c3c2cb0613e5ff19e2488339ca38631306afc00ca03ee86c386d695253",
+          "modified_at": null,
+          "published_at": "2026-09-30T19:14:55+00:00",
+          "read_on": "2026-10-24",
+          "requested_url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/",
+          "status": "parsed"
+        }
+      }
+    ],
+    "date": "2026-10-24",
+    "max_new": 32,
+    "publisher": "happings.com",
+    "schema": 1
+  },
   "modified_ids": [],
   "primary_sources_changed": 0,
   "publisher_report_date": "2026-10-01",

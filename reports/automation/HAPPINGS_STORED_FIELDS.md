@@ -4,8 +4,8 @@ Analisi **senza accesso al sito Happings** o altri siti editoriali.
 Gli stessi ID, Comune, provincia, giorno e URL originale non bastano
 a certificare l'unicità della sede in un intero Comune.
 
-- Schede nazionali controllate: **14007**
-- Schede Happings controllate: **9830**
+- Schede nazionali controllate: **14008**
+- Schede Happings controllate: **9831**
 - Candidate che hanno già un indirizzo in un'altra scheda: **201**
 - Gruppi con più sedi note: **0**
 - Campi riempiti senza prova indipendente: **0**
@@ -17,7 +17,7 @@ a certificare l'unicità della sede in un intero Comune.
 | town_detail_legacy | 4746 | 16 | 2074 | 822 |
 | province_index_old_a | 4487 | 1739 | 2816 | 844 |
 | province_index_old_ad | 414 | 210 | 359 | 107 |
-| other_historical_layout | 165 | 0 | 0 | 0 |
+| other_historical_layout | 166 | 0 | 0 | 0 |
 | province_index_canonical | 18 | 0 | 0 | 18 |
 
 Le vecchie pagine `ad-...` possono non essere più raggiungibili:

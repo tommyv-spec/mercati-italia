@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 2522,
-    "coordinates_missing": 457,
-    "future_dates_missing": 2152,
-    "hours_missing": 3005,
+    "coordinates_missing": 458,
+    "future_dates_missing": 2168,
+    "hours_missing": 3002,
     "review_only_duplicate_groups": 1309,
     "review_only_potential_extra_rows": 1543,
     "suspicious_city": 2,
-    "total": 14007,
-    "without_individual_verification": 14007
+    "total": 14008,
+    "without_individual_verification": 14008
   },
   "per_region": [
     {
@@ -52,7 +52,7 @@
       "markets": 909,
       "hours_missing": 240,
       "address_missing": 159,
-      "future_dates_missing": 283,
+      "future_dates_missing": 284,
       "coordinates_missing": 46
     },
     {
@@ -67,15 +67,15 @@
       "region": "Lazio",
       "markets": 1082,
       "address_missing": 259,
-      "future_dates_missing": 210,
+      "future_dates_missing": 211,
       "hours_missing": 410,
       "coordinates_missing": 12
     },
     {
       "region": "Liguria",
       "markets": 391,
-      "hours_missing": 100,
-      "future_dates_missing": 87,
+      "hours_missing": 99,
+      "future_dates_missing": 88,
       "address_missing": 64,
       "coordinates_missing": 6
     },
@@ -90,7 +90,7 @@
     {
       "region": "Marche",
       "markets": 295,
-      "future_dates_missing": 55,
+      "future_dates_missing": 58,
       "address_missing": 83,
       "hours_missing": 91,
       "coordinates_missing": 7
@@ -106,8 +106,8 @@
     {
       "region": "Piemonte",
       "markets": 1350,
-      "hours_missing": 235,
-      "future_dates_missing": 175,
+      "hours_missing": 234,
+      "future_dates_missing": 176,
       "coordinates_missing": 18,
       "address_missing": 211
     },
@@ -138,8 +138,8 @@
     {
       "region": "Toscana",
       "markets": 969,
-      "hours_missing": 268,
-      "future_dates_missing": 193,
+      "hours_missing": 267,
+      "future_dates_missing": 200,
       "address_missing": 119,
       "coordinates_missing": 24
     },
@@ -168,18 +168,18 @@
     },
     {
       "region": "Veneto",
-      "markets": 1213,
-      "future_dates_missing": 126,
+      "markets": 1214,
+      "future_dates_missing": 128,
       "address_missing": 136,
       "hours_missing": 186,
-      "coordinates_missing": 15,
+      "coordinates_missing": 16,
       "suspicious_city": 2
     }
   ],
   "top_sources": [
     {
       "source": "happings.com",
-      "records": 9830
+      "records": 9831
     },
     {
       "source": "eventiesagre.it",
@@ -712,11 +712,11 @@
     "unexplained_group_growth": 0
   },
   "baseline_delta": {
-    "total": 0,
-    "hours_missing": -8,
+    "total": 1,
+    "hours_missing": -3,
     "address_missing": 0,
-    "coordinates_missing": 0,
-    "future_dates_missing": 25,
+    "coordinates_missing": 1,
+    "future_dates_missing": 16,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0
@@ -725,13 +725,13 @@
   "quality_release_safe": true,
   "comparison_anchor": "actual_published_DEV_catalog",
   "previous_scorecard_drift": {
-    "status": "stale",
+    "status": "aligned",
     "differences": {
       "total": 0,
-      "hours_missing": -7446,
-      "address_missing": -364,
-      "review_only_duplicate_groups": 240,
-      "review_only_potential_extra_rows": 363,
+      "hours_missing": 0,
+      "address_missing": 0,
+      "review_only_duplicate_groups": 0,
+      "review_only_potential_extra_rows": 0,
       "suspicious_city": 0,
       "future_dates_missing": 0
     },

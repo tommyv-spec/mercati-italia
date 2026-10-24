@@ -54,20 +54,20 @@
     "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
     "metrics": {
       "indirizzo:mancante": 2522,
-      "indirizzo:riscontrato_data_fonte_sconosciuta": 1097,
-      "indirizzo:riscontrato_fonte_recente": 1449,
-      "indirizzo:riscontro_da_aggiornare": 85,
-      "indirizzo:senza_riscontro_documentato": 8854,
-      "markets": 14007,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 1098,
+      "indirizzo:riscontrato_fonte_recente": 1454,
+      "indirizzo:riscontro_da_aggiornare": 90,
+      "indirizzo:senza_riscontro_documentato": 8844,
+      "markets": 14008,
       "markets_with_all_three_fields_source_supported": 1025,
-      "markets_with_recent_field_evidence": 1601,
-      "orario_testo:mancante": 3005,
-      "orario_testo:riscontrato_data_fonte_sconosciuta": 7559,
-      "orario_testo:riscontrato_fonte_recente": 1195,
-      "orario_testo:riscontro_da_aggiornare": 255,
-      "orario_testo:senza_riscontro_documentato": 1993,
+      "markets_with_recent_field_evidence": 1606,
+      "orario_testo:mancante": 3002,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 7560,
+      "orario_testo:riscontrato_fonte_recente": 1197,
+      "orario_testo:riscontro_da_aggiornare": 257,
+      "orario_testo:senza_riscontro_documentato": 1992,
       "ricorrenza_testo:mancante": 972,
-      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 706,
+      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 707,
       "ricorrenza_testo:riscontrato_fonte_recente": 1375,
       "ricorrenza_testo:riscontro_da_aggiornare": 19,
       "ricorrenza_testo:senza_riscontro_documentato": 10935
@@ -352,15 +352,15 @@
       },
       {
         "indirizzo:riscontrato_data_fonte_sconosciuta": 4,
-        "indirizzo:riscontrato_fonte_recente": 63,
-        "indirizzo:riscontro_da_aggiornare": 42,
-        "indirizzo:senza_riscontro_documentato": 323,
+        "indirizzo:riscontrato_fonte_recente": 67,
+        "indirizzo:riscontro_da_aggiornare": 47,
+        "indirizzo:senza_riscontro_documentato": 314,
         "markets": 432,
-        "markets_with_recent_field_evidence": 63,
-        "orario_testo:mancante": 354,
+        "markets_with_recent_field_evidence": 67,
+        "orario_testo:mancante": 351,
         "orario_testo:riscontrato_data_fonte_sconosciuta": 3,
-        "orario_testo:riscontrato_fonte_recente": 18,
-        "orario_testo:riscontro_da_aggiornare": 56,
+        "orario_testo:riscontrato_fonte_recente": 20,
+        "orario_testo:riscontro_da_aggiornare": 57,
         "orario_testo:senza_riscontro_documentato": 1,
         "publisher": "cosedicasa.com",
         "ricorrenza_testo:senza_riscontro_documentato": 432
@@ -399,14 +399,14 @@
       {
         "indirizzo:mancante": 441,
         "indirizzo:riscontrato_data_fonte_sconosciuta": 66,
-        "indirizzo:riscontrato_fonte_recente": 10,
-        "indirizzo:senza_riscontro_documentato": 1680,
+        "indirizzo:riscontrato_fonte_recente": 11,
+        "indirizzo:senza_riscontro_documentato": 1679,
         "markets": 2197,
-        "markets_with_recent_field_evidence": 13,
+        "markets_with_recent_field_evidence": 14,
         "orario_testo:mancante": 367,
         "orario_testo:riscontrato_fonte_recente": 3,
-        "orario_testo:riscontro_da_aggiornare": 1,
-        "orario_testo:senza_riscontro_documentato": 1826,
+        "orario_testo:riscontro_da_aggiornare": 2,
+        "orario_testo:senza_riscontro_documentato": 1825,
         "publisher": "eventiesagre.it",
         "ricorrenza_testo:mancante": 712,
         "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 66,
@@ -473,19 +473,19 @@
       },
       {
         "indirizzo:mancante": 1965,
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 1027,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 1028,
         "indirizzo:riscontrato_fonte_recente": 248,
         "indirizzo:senza_riscontro_documentato": 6590,
-        "markets": 9830,
+        "markets": 9831,
         "markets_with_all_three_fields_source_supported": 239,
         "markets_with_recent_field_evidence": 396,
         "orario_testo:mancante": 1791,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 7556,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 7557,
         "orario_testo:riscontrato_fonte_recente": 388,
         "orario_testo:senza_riscontro_documentato": 95,
         "publisher": "happings.com",
         "ricorrenza_testo:mancante": 38,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 640,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 641,
         "ricorrenza_testo:riscontrato_fonte_recente": 247,
         "ricorrenza_testo:senza_riscontro_documentato": 8905
       },
@@ -766,23 +766,23 @@
   },
   "metrics": {
     "dataset_updated_not_specific_market": 1250,
-    "forecast_from_stale_or_unknown_source": 10870,
-    "import_within_30d": 183,
+    "forecast_from_stale_or_unknown_source": 10854,
+    "import_within_30d": 184,
     "legacy_update_timestamp_without_source_date": 12561,
     "recent_dataset_only_update": 1204,
     "source_date_366_to_limit": 1,
     "source_date_91_to_365d": 6,
     "source_date_from_declared_source_content": 1264,
     "source_date_outside_limit": 52,
-    "source_date_unknown": 12743,
+    "source_date_unknown": 12744,
     "source_date_within_30d": 1205,
-    "source_read_within_30d": 1364,
-    "total": 14007,
-    "with_any_future_date": 11855,
-    "with_forecast_dates": 11688,
-    "with_import_timestamp": 183,
-    "with_source_read_timestamp": 1364,
-    "without_documented_verification": 14007,
+    "source_read_within_30d": 1365,
+    "total": 14008,
+    "with_any_future_date": 11840,
+    "with_forecast_dates": 11672,
+    "with_import_timestamp": 184,
+    "with_source_read_timestamp": 1365,
+    "without_documented_verification": 14008,
     "without_import_timestamp": 13824,
     "without_source_read_timestamp": 12643
   },
@@ -817,14 +817,14 @@
     "future": 0,
     "historical": 59,
     "recent": 1205,
-    "unknown": 12743
+    "unknown": 12744
   },
   "source_date_unknown_reasons": {
-    "source_content_date_unproven": 12743
+    "source_content_date_unproven": 12744
   },
   "source_domains_top": [
     {
-      "count": 9830,
+      "count": 9831,
       "domain": "www.happings.com"
     },
     {
@@ -873,21 +873,62 @@
     }
   ],
   "source_refresh": {
-    "conflicts": 0,
+    "conflicts": 4,
     "field_changes": 0,
     "markets_with_field_changes": 0,
     "release_safe": true,
     "selected_pages": [
       {
-        "error_type": "ValueError",
+        "changed_fields": 0,
+        "content_date": "2026-01-27",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 46,
+          "no_single_explicit_annual_weekday": 27
+        },
+        "layout_complete": true,
+        "matched_markets": 4,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 0,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 6,
+          "content_scopes": 1,
+          "fraction_rows": 0,
+          "rows": 6,
+          "rows_with_numeric_hours": 6,
+          "unique_source_row_ids": 6
+        },
+        "read_on": "2026-10-24",
+        "sha256": "5ab91563f909b28e23c0bf6b329b09f8706e197362bf7aad8071e09ab68c186b",
         "source_id": "bassa-romagna-farmers",
-        "status": "source_held",
+        "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
       },
       {
-        "error_type": "ValueError",
+        "changed_fields": 0,
+        "content_date": "2026-10-20",
+        "held_reasons": {
+          "multiple_or_missing_source_venues": 35,
+          "no_single_explicit_annual_weekday": 27,
+          "venue_identity_not_established": 6
+        },
+        "layout_complete": true,
+        "matched_markets": 9,
+        "parser_issues": [],
+        "parser_metrics": {
+          "ambiguous_municipality_days": 2,
+          "ambiguous_source_identities": 0,
+          "city_blocks": 9,
+          "content_scopes": 1,
+          "fraction_rows": 7,
+          "rows": 20,
+          "rows_with_numeric_hours": 0,
+          "unique_source_row_ids": 20
+        },
+        "read_on": "2026-10-24",
+        "sha256": "3d76e1ba570c8c7f5d97acc1352e678f2fadd87d4f5f21ac48fa68daf66798b6",
         "source_id": "bassa-romagna-weekly",
-        "status": "source_held",
+        "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
       }
     ],
@@ -897,25 +938,25 @@
         "citynews_existing_detail": 62,
         "cosedicasa_existing_detail": 432,
         "eventiesagre_existing_detail": 2197,
-        "happings_event_detail": 165,
-        "happings_province_index": 8255,
-        "happings_source_scope_unproven": 1410,
+        "happings_event_detail": 166,
+        "happings_province_index": 8290,
+        "happings_source_scope_unproven": 1375,
         "official_adapter": 1219,
         "roma_d881_existing_inventory": 70,
         "source_contract_active": 39,
         "source_layout_needed": 158
       },
       "market_layout_statuses": {
-        "supported": 12438,
-        "unsupported": 1569
+        "supported": 12474,
+        "unsupported": 1534
       },
       "market_read_statuses": {
-        "not_read": 1568,
-        "not_selected": 10384,
-        "retrieved": 2052,
-        "unavailable": 3
+        "not_read": 1533,
+        "not_selected": 10416,
+        "retrieved": 2057,
+        "unavailable": 2
       },
-      "markets": 14007,
+      "markets": 14008,
       "schema": 1,
       "secondary_corroboration": {
         "counts_describe": "comparison_eligibility",
@@ -930,7 +971,7 @@
       },
       "source_admission_registry": "valid",
       "source_contract_configuration": "valid",
-      "unique_primary_urls": 5918
+      "unique_primary_urls": 5919
     }
   },
   "source_summaries": [
@@ -1411,12 +1452,12 @@
     {
       "domain": "www.cosedicasa.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 265,
+        "forecast_from_stale_or_unknown_source": 258,
         "legacy_update_timestamp_without_source_date": 432,
         "source_date_unknown": 432,
         "total": 432,
-        "with_any_future_date": 267,
-        "with_forecast_dates": 265,
+        "with_any_future_date": 260,
+        "with_forecast_dates": 258,
         "without_documented_verification": 432,
         "without_import_timestamp": 432,
         "without_source_read_timestamp": 432
@@ -1477,12 +1518,12 @@
     {
       "domain": "www.eventiesagre.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 1241,
+        "forecast_from_stale_or_unknown_source": 1232,
         "legacy_update_timestamp_without_source_date": 2197,
         "source_date_unknown": 2197,
         "total": 2197,
-        "with_any_future_date": 1241,
-        "with_forecast_dates": 1241,
+        "with_any_future_date": 1232,
+        "with_forecast_dates": 1232,
         "without_documented_verification": 2197,
         "without_import_timestamp": 2197,
         "without_source_read_timestamp": 2197
@@ -1595,18 +1636,18 @@
       "domain": "www.happings.com",
       "metrics": {
         "forecast_from_stale_or_unknown_source": 9334,
-        "import_within_30d": 183,
+        "import_within_30d": 184,
         "legacy_update_timestamp_without_source_date": 9647,
         "source_date_from_declared_source_content": 1,
-        "source_date_unknown": 9829,
+        "source_date_unknown": 9830,
         "source_date_within_30d": 1,
-        "source_read_within_30d": 183,
-        "total": 9830,
-        "with_any_future_date": 9499,
+        "source_read_within_30d": 184,
+        "total": 9831,
+        "with_any_future_date": 9500,
         "with_forecast_dates": 9334,
-        "with_import_timestamp": 183,
-        "with_source_read_timestamp": 183,
-        "without_documented_verification": 9830,
+        "with_import_timestamp": 184,
+        "with_source_read_timestamp": 184,
+        "without_documented_verification": 9831,
         "without_import_timestamp": 9647,
         "without_source_read_timestamp": 9647
       },
@@ -2068,6 +2109,6 @@
     "source_content_dates_are_unproven",
     "future_predictions_have_stale_or_missing_source_dates",
     "source_data_older_than_allowed_forecast_window",
-    "publisher_refresh_incomplete"
+    "publisher_refresh_conflicting_fields"
   ]
 }

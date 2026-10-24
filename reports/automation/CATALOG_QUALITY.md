@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,007**.
-- Orari mancanti: **3,005**.
+- Schede: **14,008**.
+- Orari mancanti: **3,002**.
 - Indirizzi mancanti: **2,522**.
-- Coordinate mancanti: **457**.
-- Date future mancanti: **2,152**.
+- Coordinate mancanti: **458**.
+- Date future mancanti: **2,168**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,309** gruppi, **1,543** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,007**.
+- Verifiche umane documentate mancanti: **14,008**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -21,7 +21,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Fonte | Schede |
 |---|---:|
-| happings.com | 9,830 |
+| happings.com | 9,831 |
 | eventiesagre.it | 2,197 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
 | cosedicasa.com | 432 |
@@ -45,19 +45,19 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Emilia-Romagna | 909 | 240 | 159 |
 | Friuli Venezia Giulia | 262 | 59 | 16 |
 | Lazio | 1,082 | 410 | 259 |
-| Liguria | 391 | 100 | 64 |
+| Liguria | 391 | 99 | 64 |
 | Lombardia | 3,990 | 779 | 223 |
 | Marche | 295 | 91 | 83 |
 | Molise | 215 | 22 | 89 |
-| Piemonte | 1,350 | 235 | 211 |
+| Piemonte | 1,350 | 234 | 211 |
 | Puglia | 484 | 96 | 214 |
 | Sardegna | 392 | 39 | 164 |
 | Sicilia | 405 | 71 | 139 |
-| Toscana | 969 | 268 | 119 |
+| Toscana | 969 | 267 | 119 |
 | Trentino-Alto Adige | 230 | 49 | 42 |
 | Umbria | 180 | 45 | 74 |
 | Valle d'Aosta | 54 | 10 | 15 |
-| Veneto | 1,213 | 186 | 136 |
+| Veneto | 1,214 | 186 | 136 |
 
 ## Località da verificare (campione limitato)
 
