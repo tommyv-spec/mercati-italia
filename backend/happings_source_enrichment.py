@@ -291,6 +291,37 @@ def _eligible_field(row):
     return not str(row.get("indirizzo") or "").strip()
 
 
+def _old_happings_encoded_slug(name):
+    """Model only observed legacy WordPress loss of one non-ASCII town letter.
+
+    Happings old /it/mercato-settimanale-a-{town}.html URLs represent a
+    non-ASCII character as TWO literal dashes. Ordinary punctuation or spaces
+    use one dash. Never infer a partial/nearest city from a broken URL.
+    """
+    value=unicodedata.normalize("NFC",name).casefold()
+    return "".join(char if ("a"<=char<="z" or "0"<=char<="9") else
+                   "--" if char.isalpha() else "-" for char in value)
+
+
+@lru_cache(maxsize=1)
+def _reviewed_old_town_slugs():
+    """Cross-check lost-accent URL slug against every 2026 ISTAT town.
+
+    A matching URL is accepted only when it resolves to precisely ONE
+    municipality in the known province. The original URL and provenance
+    are never rewritten or treated as a redirect.
+    """
+    source=trusted_municipalities(
+        json.loads(MUNICIPALITIES_FILE.read_text(encoding="utf-8")))
+    resolved=defaultdict(set)
+    for region,places in source.items():
+        for official,province in places.values():
+            slug=_old_happings_encoded_slug(official)
+            if "--" in slug:
+                resolved[(fold(region),province,slug)].add(fold(official))
+    return {key:next(iter(towns)) for key,towns in resolved.items() if len(towns)==1}
+
+
 def _town_url_matches(row):
     """Recognize only the existing municipal URL family and its exact town."""
     url=row.get("url_fonte")
@@ -302,7 +333,16 @@ def _town_url_matches(row):
                 or parsed.query or parsed.fragment):
             return False
         match=re.fullmatch(r"/it/mercato-settimanale-a-([a-z0-9][a-z0-9-]*)\.html",parsed.path)
-        return bool(match and fold(match[1].replace("-"," "))==fold(row.get("citta")))
+        if not match:
+            return False
+        slug=match[1]
+        if fold(slug.replace("-"," "))==fold(row.get("citta")):
+            return True
+        if "--" not in slug:
+            return False
+        province=str(row.get("provincia") or "").upper()
+        return (_reviewed_old_town_slugs().get(
+            (fold(row.get("regione")),province,slug))==fold(row.get("citta")))
     except ValueError:
         return False
 
