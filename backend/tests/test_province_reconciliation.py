@@ -186,12 +186,24 @@ class ProvinceReconciliationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Final province differs"):
             verify_exported(before, after, report, bad)
 
-    def test_province_correction_cannot_authorize_old_cross_province_source_url(self):
+    def test_province_correction_only_keeps_the_page_that_still_lists_the_town(self):
         import happings_source_enrichment as source
         before = [wrong_province()]
         after, _ = reconcile(before, REFERENCE, apply=True)
-        self.assertFalse(source.record_matches_page(
-            after[0], before[0]["url_fonte"], before[0]["url_fonte"]))
+        # Happings has no Monza page: MB towns stay on the Milano page.
+        milano = "https://www.happings.com/it/mercati-settimanali-a-milano-e-provincia/"
+        bergamo = "https://www.happings.com/it/mercati-settimanali-a-bergamo-e-provincia/"
+        self.assertTrue(source._catalog_geography_matches(after[0], milano))
+        self.assertFalse(source._catalog_geography_matches(after[0], bergamo))
+
+    def test_non_istat_names_match_only_their_own_province_page(self):
+        import happings_source_enrichment as source
+        roma = "https://www.happings.com/it/mercati-settimanali-a-roma-e-provincia/"
+        quartiere = market("casilino", "CASILINO", "RM", "Lazio", "Mercato settimanale di CASILINO")
+        self.assertTrue(source._catalog_geography_matches(quartiere, roma))
+        # A known ISTAT town filed under the wrong province is still rejected.
+        viterbo = market("viterbo", "Viterbo", "RM", "Lazio", "Mercato settimanale di Viterbo")
+        self.assertFalse(source._catalog_geography_matches(viterbo, roma))
 
 
 if __name__ == "__main__":

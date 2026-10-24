@@ -61,6 +61,9 @@ RIGHTS_REVIEW_FILE=Path(__file__).resolve().parent/"data/happings-rights-review.
 MUNICIPALITIES_FILE=Path(__file__).resolve().parent/"data/istat-comuni-2026.json"
 SOURCE_EVIDENCE_NAME="Happings — elenco settimanale (sede indicativa; apertura non verificata)"
 FIELD_MANAGER="happings-weekly-index"
+# Provinces created in 2009 that have no Happings page of their own: Happings
+# still lists their towns on the parent province page.
+PAGE_EXTRA_PROVINCES={"milano":{"MB"},"bari":{"BT"},"foggia":{"BT"}}
 FAILURE_CODES=frozenset({
     "redirect_hop_limit", "redirect_loop", "redirect_unreviewed", "redirect_crossed_province",
     "robots_denied_requested", "robots_denied_redirect", "robots_unavailable", "robots_invalid",
@@ -173,9 +176,18 @@ def _catalog_geography_matches(row, source_url):
     region=fold(row.get("regione"))
     province=str(row.get("provincia") or "").strip().upper()
     city=fold(row.get("citta"))
-    expected=page_areas.get(province_page_key(source_url),set())
-    return (len(expected)==1 and (region,province) in expected
-            and municipalities.get((region,city))==province)
+    key=province_page_key(source_url)
+    expected=page_areas.get(key,set())
+    if len(expected)!=1:
+        return False
+    page_region,page_province=next(iter(expected))
+    official=municipalities.get((region,city))
+    if (region,province)==(page_region,page_province):
+        # Quartieri (Roma), numbered stalls and renamed towns have no ISTAT
+        # entry; a known town must still sit in this province.
+        return official in (province,None)
+    return (region==page_region and official==province
+            and province in PAGE_EXTRA_PROVINCES.get(key,()))
 
 
 def _request_pause(robots):

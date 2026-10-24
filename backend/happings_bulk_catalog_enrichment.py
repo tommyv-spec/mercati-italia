@@ -60,14 +60,20 @@ def read_weekly_source(snapshot, *, today):
         stats["source_rows"] += len(rows)
         for row in rows:
             city = fold(row.get("city"))
-            real_province = municipalities.get((region, city))
+            # Happings files towns under pre-2009 borders (Monza on the Milano
+            # page) and lists quartieri, numbered stalls and renamed towns.
+            # Dropping them left ~750 records without their stated daypart.
+            # Only records that already cite this page get filled
+            # (record_matches_page), so key on the ISTAT province when known.
+            real_province = municipalities.get((region, city)) or page_province
             if real_province != page_province:
-                stats["wrong_province_or_istat_unresolved"] += 1
-                continue
+                stats["source_page_old_province_border"] += 1
+            elif (region, city) not in municipalities:
+                stats["source_town_not_istat_name"] += 1
             day = row.get("weekday")
             if type(day) is not int or not 0 <= day <= 6:
                 raise ValueError("Invalid publisher weekday")
-            groups[(region, page_province, city, day)].append({
+            groups[(region, real_province, city, day)].append({
                 "url": url, "html_sha256": fact["html_sha256"],
                 "read_on": read_on.isoformat(), "daypart": row.get("daypart"),
                 "place": row.get("place"), "has_specific_location":
