@@ -75,6 +75,24 @@ class FullSourceInventoryTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     bulk.run(tmp,max_pages=1)
 
+    def test_weekly_only_survives_sitemap_timeouts_and_adds_discovered_pages(self):
+        known=json.loads(bulk.WEEKLY_PAGES_FILE.read_text("utf-8"))["urls"]
+        self.assertEqual(len(known),107)
+        timeout={"status":"partial","failures":[{"reason":"TimeoutError"}]}
+        old_form=GORIZIA.replace("-e-provincia/",".html")
+        with patch.object(bulk.province,"discover",return_value=([old_form],timeout)):
+            queue,report=bulk.collect_links(FakeRobots(),sleep=lambda _s:None,weekly_only=True)
+        self.assertEqual(queue,sorted(known))
+        self.assertTrue(report["weekly_only"])
+        self.assertNotIn(FOREIGN,queue)
+        with patch.object(bulk.province,"discover",return_value=([],timeout)):
+            pilot,_=bulk.collect_links(FakeRobots(),sleep=lambda _s:None,weekly_only=True,
+                                       provinces=["gorizia"])
+            self.assertEqual(pilot,[GORIZIA])
+            with self.assertRaises(ValueError):
+                bulk.collect_links(FakeRobots(),sleep=lambda _s:None,weekly_only=True,
+                                   provinces=["gorizia","barcelona"])
+
 
 if __name__=="__main__":
     unittest.main()

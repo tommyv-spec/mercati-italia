@@ -20,10 +20,10 @@ const HOURS_SCOPES = new Set(['', 'per_data', 'storico'])
 
 export function decodeIndexRecords(records, manifest) {
   const schema = manifest.index_schema
-  const compact = [4, 5, 6].includes(schema)
+  const compact = [4, 5, 6, 7].includes(schema)
   const legacy = schema === undefined || [1, 2, 3].includes(schema)
   if (!compact && !legacy) throw new Error('Versione indice non supportata')
-  if (schema === 6) {
+  if (schema >= 6) {
     const day = manifest.index_as_of
     const parsed = typeof day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(day)
       ? new Date(day + 'T12:00:00Z') : null
@@ -31,7 +31,8 @@ export function decodeIndexRecords(records, manifest) {
       throw new Error('Data di riferimento indice non valida')
     }
   }
-  const columns = schema === 6 ? [...INDEX_FIELDS, 'ambito_orari'] : INDEX_FIELDS
+  const columns = schema === 7 ? [...INDEX_FIELDS, 'ambito_orari', 'duplicato_di']
+    : schema === 6 ? [...INDEX_FIELDS, 'ambito_orari'] : INDEX_FIELDS
   return records.map(record => {
     if (!Array.isArray(record)) {
       if (!legacy || !record || typeof record !== 'object') throw new Error('Formato indice errato')
@@ -39,7 +40,8 @@ export function decodeIndexRecords(records, manifest) {
       return {...record, ambito_orari: ''}
     }
     if ((schema !== undefined && !compact) || record.length !== columns.length ||
-        schema === 6 && !HOURS_SCOPES.has(record[columns.length - 1])) {
+        schema >= 6 && !HOURS_SCOPES.has(record[INDEX_FIELDS.length]) ||
+        schema === 7 && typeof record[columns.length - 1] !== 'string') {
       throw new Error('Formato indice errato')
     }
     return Object.fromEntries(columns.map((key, i) => [key, record[i]]))
@@ -81,6 +83,21 @@ async function mapLimited(items, concurrency, mapper) {
   return output
 }
 
+/**
+ * A soft-merged copy ("duplicato_di") keeps its ID only so old favourites and
+ * links resolve to the kept record; list, map and counters never show it.
+ */
+export function splitDuplicates(markets) {
+  const ids = new Set(markets.map(m => m.slug))
+  const aliases = new Map()
+  const visible = []
+  for (const market of markets) {
+    if (market.duplicato_di && ids.has(market.duplicato_di)) aliases.set(market.slug, market.duplicato_di)
+    else visible.push(market)
+  }
+  return { markets: visible, aliases }
+}
+
 async function loadCatalogFromManifest(manifest) {
   if (manifest.schema !== 1 || !Number.isInteger(manifest.total) || manifest.total < 0) {
     throw new Error('Manifest del catalogo non valido')
@@ -97,7 +114,7 @@ async function loadCatalogFromManifest(manifest) {
       if (!record.slug || ids.has(record.slug)) throw new Error('Indice duplicato o non valido')
       ids.add(record.slug)
     }
-    return { manifest, markets }
+    return { manifest, ...splitDuplicates(markets) }
   }
 
   let parts
@@ -127,7 +144,7 @@ async function loadCatalogFromManifest(manifest) {
     if (!market.slug || ids.has(market.slug)) throw new Error('ID mercato duplicato o assente')
     ids.add(market.slug)
   }
-  return { manifest, markets }
+  return { manifest, ...splitDuplicates(markets) }
 }
 
 async function loadCatalog() {
@@ -263,8 +280,9 @@ export async function fetchMarkets({ userLat = null, userLng = null } = {}) {
   return markets.map(m => normalize(m, userLat, userLng))
 }
 
-export async function fetchMarketById(id) {
-  const { manifest, markets } = await fetchCatalog()
+export async function fetchMarketById(requestedId) {
+  const { manifest, markets, aliases } = await fetchCatalog()
+  const id = aliases.get(requestedId) || requestedId
   const summary = markets.find(m => m.slug === id)
   if (!summary) return null
 
@@ -315,12 +333,22 @@ function localFavorites() {
   }
 }
 
+// Favourites saved on a soft-merged copy follow it to the kept record.
+async function resolvedFavorites() {
+  const { aliases } = await fetchCatalog()
+  return new Set([...localFavorites()].map(id => aliases.get(id) || id))
+}
+
 export async function getFavorites() {
-  return localFavorites()
+  try {
+    return await resolvedFavorites()
+  } catch {
+    return localFavorites()
+  }
 }
 
 export async function toggleFavorite(marketId) {
-  const favorites = localFavorites()
+  const favorites = await getFavorites()
   if (favorites.has(marketId)) favorites.delete(marketId)
   else favorites.add(marketId)
   try { localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites])) } catch { /* no storage */ }

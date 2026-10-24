@@ -87,5 +87,73 @@ class BulkFieldTests(unittest.TestCase):
         self.assertEqual(candidate,[other])
         self.assertEqual(report["counts"].get("updated_records",0),0)
 
+    def test_cut_weekday_is_repaired_only_when_the_page_leaves_one_day(self):
+        cut=base_row()
+        cut["ricorrenza_testo"]="settimanale - me"
+        wednesday=("liguria","SV","albenga",2)
+        with patch.object(bulk,"read_weekly_source",
+                          return_value=({wednesday:[fact()]},Counter())):
+            candidate,_=bulk.enrich([cut],".",today=DAY)
+        self.assertEqual(candidate[0]["ricorrenza_testo"],"settimanale - mercoledì")
+        self.assertTrue(any(proof["valori"].get("ricorrenza_testo")=="settimanale - mercoledì"
+                            for proof in candidate[0]["riscontri_campi"]))
+        # "m" fits both Tuesday and Wednesday on the page: no guess.
+        cut["ricorrenza_testo"]="settimanale - m"
+        pages={wednesday:[fact()],wednesday[:3]+(1,):[fact(place="Via Roma")]}
+        with patch.object(bulk,"read_weekly_source",return_value=(pages,Counter())):
+            candidate,_=bulk.enrich([cut],".",today=DAY)
+        self.assertEqual(candidate[0]["ricorrenza_testo"],"settimanale - m")
+
+    def test_centre_is_recorded_only_for_the_single_listed_market(self):
+        row=base_row()
+        key=bulk.catalog_key(row)
+        centre=fact(place="centro")
+        centre["has_specific_location"]=False
+        with patch.object(bulk,"read_weekly_source",
+                          return_value=({key:[centre]},Counter())):
+            candidate,_=bulk.enrich([row],".",today=DAY)
+        self.assertEqual(candidate[0]["indirizzo"],"centro")
+        with patch.object(bulk,"read_weekly_source",
+                          return_value=({key:[centre,fact()]},Counter())):
+            candidate,_=bulk.enrich([row],".",today=DAY)
+        self.assertEqual(candidate[0]["indirizzo"],"")
+
+    def test_copies_of_one_listed_market_are_soft_merged_stably(self):
+        full=base_row(street="Via Dalmazia")
+        full["orario_testo"]="La mattina"
+        blank=base_row("mercato-settimanale-di-albenga-albenga-mercoledi")
+        key=bulk.catalog_key(full)
+        one={key:[fact()]}
+        with patch.object(bulk,"read_weekly_source",return_value=(one,Counter())):
+            first,report=bulk.enrich([full,blank],".",today=DAY)
+        self.assertNotIn("duplicato_di",first[0])
+        self.assertEqual(first[1]["duplicato_di"],full["slug"])
+        self.assertEqual(report["duplicate_markers"],
+                         [{"id":blank["slug"],"duplicato_di":full["slug"]}])
+        with patch.object(bulk,"read_weekly_source",return_value=(one,Counter())):
+            again,report=bulk.enrich(first,".",today=DAY)
+        self.assertEqual(again,first)
+        self.assertEqual(report["duplicate_markers"],[])
+
+    def test_stale_marker_clears_when_the_page_lists_two_markets(self):
+        full=base_row(street="Via Dalmazia")
+        blank=dict(base_row("mercato-settimanale-di-albenga-albenga-mercoledi"),
+                   duplicato_di=full["slug"])
+        two={bulk.catalog_key(full):[fact(),fact(place="Piazza del Popolo")]}
+        with patch.object(bulk,"read_weekly_source",return_value=(two,Counter())):
+            candidate,report=bulk.enrich([full,blank],".",today=DAY)
+        self.assertNotIn("duplicato_di",candidate[1])
+        self.assertEqual(report["duplicate_markers"],[{"id":blank["slug"],"duplicato_di":""}])
+
+    def test_unread_page_keeps_markers_unless_the_kept_record_is_gone(self):
+        full=base_row(street="Via Dalmazia")
+        blank=dict(base_row("mercato-settimanale-di-albenga-albenga-mercoledi"),
+                   duplicato_di=full["slug"])
+        with patch.object(bulk,"read_weekly_source",return_value=({},Counter())):
+            kept,_=bulk.enrich([full,blank],".",today=DAY)
+            orphan,_=bulk.enrich([blank],".",today=DAY)
+        self.assertEqual(kept[1]["duplicato_di"],full["slug"])
+        self.assertNotIn("duplicato_di",orphan[0])
+
 if __name__=="__main__":
     unittest.main()

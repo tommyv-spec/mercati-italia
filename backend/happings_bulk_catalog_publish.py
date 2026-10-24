@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -23,8 +24,10 @@ def build(repo, snapshot, out, *, today):
     manifest=repo/"public/data/v1/manifest.json"
     before=load_existing(manifest)
     after,report=enrich(before,snapshot,today=today)
-    if not report["changes"]:
-        raise ValueError("No source-backed missing values to fill")
+    if not report["changes"] and not report["duplicate_markers"]:
+        # Scheduled runs: an up-to-date catalog is success, not an error.
+        print(json.dumps({"schema":1,"date":today.isoformat(),"no_changes":True}),flush=True)
+        return {"schema":1,"date":today.isoformat(),"no_changes":True}
     policy=json.loads((repo/"backend/autopilot_policy.json").read_text("utf-8"))
     asset_dir=out/"public/data/v1"
     asset_dir.mkdir(parents=True,exist_ok=True)
@@ -39,9 +42,11 @@ def build(repo, snapshot, out, *, today):
     if old_by_id.keys()!=new_by_id.keys():
         raise ValueError("Source enrichment introduced or removed market IDs")
     expected={p["id"]:p for p in report["changes"]}
+    markers={p["id"]:p["duplicato_di"] for p in report["duplicate_markers"]}
     actual=Counter()
     rolled=0
-    allowed={"indirizzo","orario_testo","riscontri_campi","fonti","completezza","date"}
+    allowed={"indirizzo","orario_testo","ricorrenza_testo","riscontri_campi","fonti",
+             "completezza","date","duplicato_di"}
     unexpected=[]
     for sid,old in old_by_id.items():
         new=new_by_id[sid]
@@ -52,10 +57,13 @@ def build(repo, snapshot, out, *, today):
             if new.get("date")!=parse_dates(old.get("date"),today):
                 raise ValueError("Exporter modified a non-expired calendar: "+sid)
             rolled+=1
+        if ("duplicato_di" in changed) != (sid in markers) or new.get("duplicato_di","")!=markers.get(sid,old.get("duplicato_di","")):
+            raise ValueError("Duplicate marker differs from the enrichment report: "+sid)
         entry=expected.get(sid)
         if entry:
             for field,value in entry["after"].items():
-                if new.get(field)!=value or str(old.get(field) or "").strip():
+                # A cut weekday is the one nonempty value repaired here.
+                if new.get(field)!=value or (field!="ricorrenza_testo" and str(old.get(field) or "").strip()):
                     raise ValueError("An enriched field was not preserved: "+sid+" "+field)
                 actual["filled_"+field]+=1
             if "riscontri_campi" not in changed:
@@ -67,7 +75,7 @@ def build(repo, snapshot, out, *, today):
                                 for field,value in entry["after"].items())),None)
             if proof is None:
                 raise ValueError("Export lost Happings HTML source evidence: "+sid)
-        elif changed-{"date"}:
+        elif changed-{"date","duplicato_di"}:
             unexpected.append({"id":sid,"fields":sorted(changed)})
     if unexpected:
         raise ValueError("Unrelated catalog records changed: "+repr(unexpected[:8]))
@@ -97,6 +105,9 @@ def build(repo, snapshot, out, *, today):
         "after_publisher_fields":dict(stats_after),
         "address_fields_filled":actual["filled_indirizzo"],
         "qualitative_hour_fields_filled":actual["filled_orario_testo"],
+        "cut_weekdays_repaired":actual["filled_ricorrenza_testo"],
+        "duplicate_copies_marked":report["counts"]["duplicate_copies_marked"],
+        "duplicate_marker_changes":len(markers),
         "existing_expired_calendar_rollovers":rolled,
         "source_pages_read_from_checksum_snapshot":report["snapshot_pages_checked"],
         "all_existing_market_ids_preserved":True,
@@ -117,14 +128,37 @@ def build(repo, snapshot, out, *, today):
     return summary
 
 
+def install(repo, out):
+    """Copy a built release into public/data/v1, keeping the version it replaces.
+
+    Open tabs may still hold the previous manifest; anything older is removed.
+    """
+    target,built=Path(repo)/"public/data/v1",Path(out)/"public/data/v1"
+    def assets(folder):
+        manifest=json.loads((folder/"manifest.json").read_text("utf-8"))
+        return {p.removeprefix("data/v1/") for p in
+                [manifest["index"],*(r["path"] for r in manifest["regions"])]}
+    keep=assets(target)|assets(built)
+    for old in [*target.glob("index-*.json"),*target.glob("regions/*.json")]:
+        if old.relative_to(target).as_posix() not in keep:
+            old.unlink()
+    for name in sorted(assets(built))+["manifest.json"]:
+        shutil.copyfile(built/name,target/name)
+    validate(target/"manifest.json")
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--repo",required=True,type=Path)
     parser.add_argument("--snapshot",required=True,type=Path)
     parser.add_argument("--out",required=True,type=Path)
     parser.add_argument("--today",default=date.today().isoformat(),type=date.fromisoformat)
+    parser.add_argument("--install",action="store_true",
+                        help="Copy an approved release into the repository's public/data/v1")
     args=parser.parse_args()
-    build(args.repo,args.snapshot,args.out,today=args.today)
+    summary=build(args.repo,args.snapshot,args.out,today=args.today)
+    if args.install and not summary.get("no_changes"):
+        install(args.repo,args.out)
 
 
 if __name__=="__main__":

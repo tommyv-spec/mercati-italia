@@ -1,21 +1,29 @@
-"""Recover source-stated Happings weekly dayparts and duplicate-record streets.
+"""Recover source-stated Happings weekly fields and soft-merge repeated copies.
 
 Offline, repeatable, conservative: reads the checksum-verified national crawl.
 No source page URLs are invented; nonunique venues never get made-up streets.
-Existing confirmed or nonempty fields remain untouched.
+Existing confirmed or nonempty fields remain untouched, except a weekday that
+a legacy import cut short ("settimanale - me"), repaired only when the page
+leaves exactly one possible day.
+
+When the page lists ONE market for a town and weekday, every Happings record
+citing it for that town/day is the same market: the most complete one is kept
+and the others get "duplicato_di" (IDs stay; the app hides the copies).
 """
 from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter, defaultdict
 from copy import deepcopy
 from datetime import date, datetime
 from pathlib import Path
 
+from export_static import data_value_score
 from field_evidence import _provenance_key, clean_receipts, mark_managed_fields, retire_superseded_receipts
 from happings_full_reconciliation import _saved_page
-from happings_weekly_layout import fold, province_page_key
+from happings_weekly_layout import WEEKDAYS, fold, province_page_key
 from merge_catalog import load_existing
 from stored_market_sibling_proposals import same_generic_venue, safe_stored_street
 import happings_source_enrichment as source
@@ -24,7 +32,10 @@ DAYPART = {
     "morning_not_clock_hours": "La mattina",
     "afternoon_not_clock_hours": "Il pomeriggio",
 }
-FIELDS = ("indirizzo", "orario_testo")
+FIELDS = ("indirizzo", "orario_testo", "ricorrenza_testo")
+WEEKDAY_TEXT = ("lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica")
+CUT_WEEKLY = re.compile(r"settimanale(?: ([a-z]{1,7}))?")
+CENTRE = re.compile(r"(?:in )?centro(?: storico| paese| citta)?")
 MAX_RESTORED = 50000
 
 
@@ -103,6 +114,25 @@ def same_weekly_venue(rows):
             and all(r.get("fonte") == source.PUBLISHER for r in rows))
 
 
+def cut_weekday(row, page_days):
+    """The one page weekday still allowed by a cut text, else None."""
+    match = CUT_WEEKLY.fullmatch(fold(row.get("ricorrenza_testo")))
+    if (not match or source.temporal_scope_hold(row)
+            or source._weekly_day(row) is not None):
+        return None
+    prefix = match.group(1) or ""
+    fits = [d for d in page_days if WEEKDAYS[d].startswith(prefix) and WEEKDAYS[d] != prefix]
+    return fits[0] if len(fits) == 1 else None
+
+
+def kept_record(rows, street=None):
+    """The copy showing the listed street; else stable: already kept stays."""
+    already = {r.get("duplicato_di") for r in rows}
+    return max(rows, key=lambda r: (bool(street) and source._same_place(r.get("indirizzo"), street),
+                                    r["slug"] in already, data_value_score(r),
+                                    r.get("lat") is not None, -len(r["slug"]), r["slug"]))
+
+
 def _update(row, proposed, evidence, *, today):
     if not proposed:
         return row, "nothing_source_backed_missing"
@@ -118,6 +148,9 @@ def _update(row, proposed, evidence, *, today):
                   and r["letto_il"] == proof["letto_il"]]
     if len(same_bytes) > 1:
         raise ValueError("Duplicate same-source market provenance")
+    # Only a cut weekday (cut_weekday) is ever proposed over a nonempty
+    # value; the broken text carries no claim to protect.
+    prior = {**row, "ricorrenza_testo": ""} if "ricorrenza_testo" in proposed else row
     if same_bytes:
         # A fixed parser can recover a field from the exact HTML already
         # witnessed by an older receipt. Merge that field into the SAME
@@ -125,10 +158,10 @@ def _update(row, proposed, evidence, *, today):
         merged = deepcopy(same_bytes[0])
         merged["valori"].update(proposed)
         managed = mark_managed_fields(
-            merged, list(proposed), manager=source.FIELD_MANAGER,previous=row)
+            merged, list(proposed), manager=source.FIELD_MANAGER,previous=prior)
     else:
         managed = mark_managed_fields(
-            proof, list(proposed), manager=source.FIELD_MANAGER,previous=row)
+            proof, list(proposed), manager=source.FIELD_MANAGER,previous=prior)
     result = deepcopy(row)
     result.update(proposed)
     kept = retire_superseded_receipts(row, managed, today=today)
@@ -159,7 +192,17 @@ def enrich(catalog, snapshot, *, today):
     if not approved.get("authorized"):
         raise ValueError("Happings source authorization expired")
     groups, stats = read_weekly_source(snapshot,today=today)
+    def qualified(entries):
+        return any(e.get("calendar_scope") or
+                   (e.get("editorial_scope") and
+                    e["editorial_scope"].get("status") != "current")
+                   for e in entries)
+    town_days = defaultdict(set)
+    for (region, province, city, day), entries in groups.items():
+        if not qualified(entries):
+            town_days[(region, province, city)].add(day)
     targets = defaultdict(list)
+    repaired = {}
     catalog_ids = set()
     for row in catalog:
         sid = row.get("slug")
@@ -167,18 +210,24 @@ def enrich(catalog, snapshot, *, today):
             raise ValueError("Missing or duplicated market identity")
         catalog_ids.add(sid)
         if row.get("fonte") == source.PUBLISHER:
-            key = catalog_key(row)
+            # Match a cut weekday under the day its page proves; the
+            # repaired text is proposed below with the same page receipt.
+            day = cut_weekday(row, town_days.get((fold(row.get("regione")),
+                str(row.get("provincia") or "").upper(), fold(row.get("citta"))), ()))
+            view = row if day is None else {**row, "ricorrenza_testo": "settimanale - " + WEEKDAY_TEXT[day]}
+            key = catalog_key(view)
             if key is not None:
-                targets[key].append(row)
+                targets[key].append(view)
+                if view is not row:
+                    repaired[sid] = view["ricorrenza_testo"]
     output = deepcopy(catalog)
     index = {r["slug"]: i for i,r in enumerate(catalog)}
     changes = []
     holds = Counter()
+    marks = {}
+    evaluated = set()
     for key, entries in groups.items():
-        if any(e.get("calendar_scope") or
-               (e.get("editorial_scope") and
-                e["editorial_scope"].get("status") != "current")
-               for e in entries):
+        if qualified(entries):
             holds["qualified_source_calendar"] += 1
             continue
         urls = {e["url"] for e in entries}
@@ -191,6 +240,7 @@ def enrich(catalog, snapshot, *, today):
         if not primary:
             holds["no_proven_happings_weekly_identity"] += 1
             continue
+        evaluated.update(r["slug"] for r in primary)
         precise = [e for e in entries if e.get("has_specific_location")
                    and safe_stored_street(e.get("place"))]
         unique_street = precise[0]["place"] if len(entries) == 1 and len(precise) == 1 else None
@@ -204,6 +254,13 @@ def enrich(catalog, snapshot, *, today):
         can_fill_street = bool(
             unique_street and not conflict and
             (len(primary) == 1 or anchors and same_weekly_venue(primary)))
+        # "in centro" is all the page says: record it as stated, only for the
+        # single listed market and never beside a saved exact street.
+        centre = (entries[0]["place"].strip()
+                  if len(entries) == 1 and not precise
+                  and CENTRE.fullmatch(fold(entries[0].get("place")))
+                  and not any(safe_stored_street(r.get("indirizzo")) for r in primary)
+                  else None)
         dayparts = {e.get("daypart") for e in entries}
         same_daypart = next(iter(dayparts)) if len(dayparts) == 1 else None
         hours = DAYPART.get(same_daypart)
@@ -211,8 +268,13 @@ def enrich(catalog, snapshot, *, today):
         # shared daypart when EVERY venue in that cohort has the same text.
         for row in primary:
             changeset = {}
-            if can_fill_street and not str(row.get("indirizzo") or "").strip():
-                changeset["indirizzo"] = unique_street
+            if row["slug"] in repaired:
+                changeset["ricorrenza_testo"] = repaired[row["slug"]]
+            if not str(row.get("indirizzo") or "").strip():
+                if can_fill_street:
+                    changeset["indirizzo"] = unique_street
+                elif centre:
+                    changeset["indirizzo"] = centre
             if hours and not str(row.get("orario_testo") or "").strip():
                 changeset["orario_testo"] = hours
             if not changeset:
@@ -223,11 +285,11 @@ def enrich(catalog, snapshot, *, today):
                 "source_html_sha256": sample["html_sha256"],
                 "observed_at": sample["read_on"],
             }
-            updated,reason = _update(row, changeset, evidence, today=today)
+            index_position = index[row["slug"]]
+            updated,reason = _update(catalog[index_position], changeset, evidence, today=today)
             if reason:
                 holds[reason] += 1
                 continue
-            index_position = index[row["slug"]]
             output[index_position] = updated
             changes.append({"id":row["slug"],"fields":sorted(changeset),
                             "source":url,"source_html_sha256":sample["html_sha256"],
@@ -235,6 +297,40 @@ def enrich(catalog, snapshot, *, today):
             stats["updated_records"] += 1
             for field in changeset:
                 stats["filled_" + field] += 1
+        # One listed market: every matching record is that market. Several
+        # listed: only records sharing one exact listed street are.
+        current = [output[index[r["slug"]]] for r in primary]
+        if len(entries) == 1:
+            cohorts = [current]
+        else:
+            by_street = defaultdict(list)
+            for r in current:
+                street = r.get("indirizzo")
+                if safe_stored_street(street) and any(source._same_place(street, e["place"]) for e in precise):
+                    by_street[fold(street)].append(r)
+            cohorts = list(by_street.values())
+        for rows in cohorts:
+            if len(rows) > 1:
+                kept = kept_record(rows, unique_street)
+                marks.update({r["slug"]: kept["slug"] for r in rows if r is not kept})
+    # Recompute markers only for records this run evaluated; others keep
+    # theirs unless the kept record vanished or became a copy itself.
+    wanted = {row["slug"]: marks.get(row["slug"], "") if row["slug"] in evaluated
+              else row.get("duplicato_di", "") for row in output}
+    for sid, kept in wanted.items():
+        if kept and wanted.get(kept, "x"):
+            wanted[sid] = ""
+    marker_changes = []
+    for row in output:
+        want = wanted[row["slug"]]
+        if want != row.get("duplicato_di", ""):
+            if want:
+                row["duplicato_di"] = want
+            else:
+                del row["duplicato_di"]
+            marker_changes.append({"id": row["slug"], "duplicato_di": want})
+    stats["duplicate_copies_marked"] = len(marks)
+    stats["duplicate_marker_changes"] = len(marker_changes)
     stats["source_group_keys"] = len(groups)
     stats["catalog_before"] = len(catalog)
     stats["catalog_after"] = len(output)
@@ -245,13 +341,14 @@ def enrich(catalog, snapshot, *, today):
             raise ValueError("Market order or identity changed")
         delta = {field for field in set(old)|set(new)
                  if old.get(field) != new.get(field)}
-        if delta and not delta.issubset(set(FIELDS)|{"fonti","riscontri_campi"}):
+        if delta and not delta.issubset(set(FIELDS)|{"fonti","riscontri_campi","duplicato_di"}):
             raise ValueError("Bulk Happings enrichment modified protected fields")
     return output,{"schema":1,"date":today.isoformat(),"publisher":"happings.com",
                    "snapshot_pages_checked":stats["weekly_pages"],
                    "counts":dict(sorted(stats.items())),
                    "holds":dict(sorted(holds.items())),
-                   "changes":changes,"existing_ids_removed":0,
+                   "changes":changes,"duplicate_markers":marker_changes,
+                   "existing_ids_removed":0,
                    "invented_clock_times":0,"human_openings_confirmed":0}
 
 

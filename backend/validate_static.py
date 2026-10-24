@@ -56,6 +56,9 @@ def validate(manifest_path: Path) -> dict:
         raise ValueError("Manifest total mismatch")
     if not all_markets:
         raise ValueError("Empty market catalog")
+    kept = {m["slug"] for m in all_markets if not m.get("duplicato_di")}
+    if any(m.get("duplicato_di") and m["duplicato_di"] not in kept for m in all_markets):
+        raise ValueError("Soft-merged copy points to a missing or merged record")
 
     # Index entries must be the exact, non-fabricated lightweight projections.
     index_rel = manifest.get("index")
@@ -72,7 +75,7 @@ def validate(manifest_path: Path) -> dict:
         raise ValueError("Global index content hash mismatch")
     index_obj = json.loads(index_blob)
     if (index_obj.get("schema") != 1 or
-        manifest.get("index_schema") not in (4, 5, 6) or
+        manifest.get("index_schema") not in (4, 5, 6, 7) or
         len(index_obj.get("markets", [])) != len(all_markets)):
         raise ValueError("Index count/schema mismatch")
     from export_static import small_index

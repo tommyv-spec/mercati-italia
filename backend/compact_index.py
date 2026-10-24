@@ -9,12 +9,14 @@ from datetime import date
 from editorial_calendar_scope import KEY, clean_editorial_evidence
 from source_calendar import clean_source_calendar
 
-INDEX_SCHEMA = 6
+INDEX_SCHEMA = 7
 LEGACY_FIELDS = (
     "slug", "nome", "citta", "regione", "categoria", "tags",
     "lat", "lng", "position_quality", "orario_testo", "date_quality", "date",
 )
-FIELDS = {4: LEGACY_FIELDS, 5: LEGACY_FIELDS, 6: LEGACY_FIELDS + ("ambito_orari",)}
+# v7: "duplicato_di" names the kept record of a soft-merged copy ("" if none).
+FIELDS = {4: LEGACY_FIELDS, 5: LEGACY_FIELDS, 6: LEGACY_FIELDS + ("ambito_orari",),
+          7: LEGACY_FIELDS + ("ambito_orari", "duplicato_di")}
 HOURS_SCOPES = {"", "per_data", "storico"}
 
 
@@ -28,7 +30,7 @@ def index_options(manifest):
     schema = manifest.get("index_schema")
     index_fields(schema)
     reference = None
-    if schema == INDEX_SCHEMA:
+    if schema >= 6:
         value = manifest.get("index_as_of")
         try:
             reference = date.fromisoformat(value)
@@ -62,13 +64,15 @@ def hours_scope(row, *, today):
 
 
 def project_index(markets, *, schema=5, today=None):
-    """Default keeps the former helper contract; new exports request v6."""
+    """Default keeps the former helper contract; new exports request v7."""
     index_fields(schema)
     result = []
     for market in markets:
         values = [market.get(key) for key in LEGACY_FIELDS]
         values[-1] = (values[-1] or [])[:16]
-        if schema == INDEX_SCHEMA:
+        if schema >= 6:
             values.append(hours_scope(market, today=today))
+        if schema >= 7:
+            values.append(market.get("duplicato_di") or "")
         result.append(values)
     return result

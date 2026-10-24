@@ -19,6 +19,7 @@ from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
+from catalog_quality_report import VAGUE_ADDRESSES, key as addr_key
 from lombardia_overlap import weekday_evidence
 from source_lifecycle import (
     parse_rows, candidate_record, canonical, digest, validate_contracts,
@@ -136,6 +137,9 @@ def venue_row(profile,raw,today,*,source_date=None):
 
 def _location(value):
     """Normalize locality suffix conservatively; NEVER geocode it."""
+    # "centro" and similar labels name no venue: same as no street.
+    if addr_key(value) in VAGUE_ADDRESSES:
+        return ""
     value=canonical(value)
     return re.sub(r"^(?:via|viale|piazza|piazzale|largo|corso)\s+","",value)
 

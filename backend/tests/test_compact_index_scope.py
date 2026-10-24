@@ -86,7 +86,7 @@ class CompactIndexScopeTests(unittest.TestCase):
         upgraded = export([record], self.out, today=TODAY)
         current = upgraded["manifest"]
         self.assertFalse(upgraded["unchanged"])
-        self.assertEqual(current["index_schema"], 6)
+        self.assertEqual(current["index_schema"], 7)
         self.assertEqual(current["content_signature"], old["content_signature"])
         self.assertEqual(current["catalog"], old["catalog"])
         self.assertEqual((public / current["catalog"]).read_bytes(), regional_before)
@@ -129,14 +129,16 @@ class CompactIndexScopeTests(unittest.TestCase):
         self.assertNotEqual(third["index_as_of"], after["index_as_of"])
         self.assertFalse(index_payload_changed(after, third), "Reference day alone is not new content")
 
-    def test_versions_four_five_and_six_have_exact_distinct_shapes(self):
+    def test_versions_four_to_seven_have_exact_distinct_shapes(self):
         record = row()
         for schema in (4, 5):
             values = project_index([record], schema=schema)
             self.assertEqual(len(values[0]), 12)
             self.assertEqual(index_options({"index_schema": schema}), {"schema": schema, "today": None})
         self.assertEqual(len(index_fields(6)), 13)
-        for schema in (None, 3, 7, True, "6"):
+        self.assertEqual(index_fields(7)[-1], "duplicato_di")
+        self.assertEqual(project_index([record], schema=7, today=TODAY)[0][13], "")
+        for schema in (None, 3, 8, True, "6"):
             with self.subTest(schema=schema), self.assertRaises(ValueError):
                 index_fields(schema)
 

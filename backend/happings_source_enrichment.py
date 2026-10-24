@@ -156,7 +156,7 @@ def _official_geography():
         for name, province in cities.values():
             municipalities[(fold(region),fold(name))]=province
             page_areas[fold(name).replace(" ","-")].add((fold(region),province))
-    # These three historic publisher province labels differ from the ISTAT
+    # These historic publisher province labels differ from the ISTAT
     # municipality name. They identify a scope, not an observed redirect.
     for source_name, municipal_name in {
         "reggio-calabria":"reggio-di-calabria",
@@ -166,6 +166,10 @@ def _official_geography():
         "caltanisetta":"caltanissetta",
         "forli-e-cesena":"forli",
         "pesaro-urbino":"pesaro",
+        # Sardinian provinces under their historic names (ISTAT CI/VS/OG).
+        "carbonia-iglesias":"carbonia",
+        "medio-campidano":"sanluri",
+        "ogliastra":"tortoli",
     }.items():
         page_areas[source_name]=set(page_areas[municipal_name])
     return municipalities,page_areas

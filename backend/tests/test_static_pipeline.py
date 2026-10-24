@@ -236,6 +236,20 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(rows[0]["date"], ["2026-10-11", "2026-10-18"])
         self.assertEqual(rows[0]["date_quality"], "prevista")
 
+    def test_soft_merged_copy_must_point_to_a_kept_record_in_its_town(self):
+        from compact_index import project_index
+        kept = market("kept", indirizzo="Via Roma 1")
+        copy = market("copy", indirizzo="Via Roma 1", url_fonte="https://example.org/markets/2",
+                      duplicato_di="kept")
+        rows, _ = prepare([kept, copy], self.today)
+        index = {r[0]: r[-1] for r in project_index(rows, schema=7, today=self.today)}
+        self.assertEqual(index, {"kept": "", "copy": "kept"})
+        for bad in (market("lost", duplicato_di="missing"),
+                    market("chain", url_fonte="https://example.org/markets/3", duplicato_di="copy"),
+                    market("far", citta="Milano", regione="Lombardia", duplicato_di="kept")):
+            with self.subTest(bad["slug"]), self.assertRaises(ValueError):
+                prepare([kept, copy, bad], self.today)
+
     def test_corciano_derived_stable_id_does_not_merge_with_scraped_source(self):
         from export_static import prepare
         old = market(slug="scraped",regione="Umbria",citta="Corciano",
@@ -376,7 +390,7 @@ class ExportTests(unittest.TestCase):
             manifest = result["manifest"]
             self.assertEqual(manifest["total"], 1)
             self.assertEqual(manifest["layout"], "single")
-            self.assertEqual(manifest["index_schema"], 6)
+            self.assertEqual(manifest["index_schema"], 7)
             self.assertEqual(manifest["index_as_of"], self.today.isoformat())
             self.assertTrue((Path(temp) / "public" / manifest["index"]).is_file())
             index = json.loads((Path(temp) / "public" / manifest["index"]).read_text("utf-8"))
@@ -384,6 +398,7 @@ class ExportTests(unittest.TestCase):
             self.assertEqual(index["markets"][0][0], "mercato-centro-roma")
             self.assertEqual(index["markets"][0][11], ["2026-10-13"])
             self.assertEqual(index["markets"][0][12], "")
+            self.assertEqual(index["markets"][0][13], "")
             asset = Path(temp) / "public" / manifest["catalog"]
             self.assertTrue(asset.exists())
             snapshot = json.loads(asset.read_text("utf-8"))

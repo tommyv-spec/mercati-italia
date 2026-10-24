@@ -260,6 +260,10 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["aggiornamento_ambito"] = "dataset"
     if raw.get("id_fonte"):
         result["id_fonte"] = safe_string(raw.get("id_fonte"), 40)
+    # Soft merge: the copy keeps its ID (favourites, receipts) but the app
+    # shows only the kept record. Checked against the whole export in prepare().
+    if raw.get("duplicato_di"):
+        result["duplicato_di"] = safe_string(raw.get("duplicato_di"), 130)
     identity = retained_identity(raw)
     if identity is not None:
         result["identita_fonte"] = identity
@@ -526,6 +530,15 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
     if protected - by_slug.keys():
         raise ValueError("Export normalization removed or changed protected market identifiers")
     cleaned, safe_merged = combine_safe_source_duplicates(cleaned, preserve_ids=protected)
+    by_id = {row["slug"]: row for row in cleaned}
+    for row in cleaned:
+        if "duplicato_di" not in row:
+            continue
+        kept = by_id.get(row["duplicato_di"])
+        if (kept is None or "duplicato_di" in kept
+                or kept["regione"] != row["regione"]
+                or kept["citta"].casefold() != row["citta"].casefold()):
+            raise ValueError("Soft-merged copy must point to a kept record in its town: " + row["slug"])
     for row in cleaned:
         if (row.get("riscontri_campi") and
                 clean_receipts(row["riscontri_campi"], row, today=today) != row["riscontri_campi"]):

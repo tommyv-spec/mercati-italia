@@ -37,6 +37,7 @@ import happings_weekly_layout
 SCHEMA = 1
 MAX_QUEUE = 50_000
 MAX_RESPONSE = 2_600_000
+WEEKLY_PAGES_FILE = Path(__file__).resolve().parent / "data" / "happings-weekly-pages.json"
 
 
 def write_json(path, data):
@@ -65,7 +66,7 @@ def valid_queue(urls):
     return True
 
 
-def collect_links(robots, *, sleep):
+def collect_links(robots, *, sleep, weekly_only=False, provinces=None):
     """Discover all observed roots before touching individual market pages."""
     today = date.today()
     urls, provincial = province.discover(
@@ -74,6 +75,25 @@ def collect_links(robots, *, sleep):
         sleep=sleep)
     if provincial["status"] not in {"retrieved", "partial"}:
         raise ValueError("Happings home/WordPress post index was unavailable")
+    if weekly_only:
+        # Weekly indexes alone feed the field fills (minutes, not hours). The
+        # ~1 MB post sitemaps often time out, so the observed page list is
+        # the base and discovery only adds pages. One URL per province key.
+        known = json.loads(WEEKLY_PAGES_FILE.read_text("utf-8"))["urls"]
+        by_key = {}
+        for url in sorted(set(urls) | set(known), key=lambda u: (not u.endswith("-e-provincia/"), u)):
+            by_key.setdefault(happings_weekly_layout.province_page_key(url), url)
+        if provinces:
+            # Pilot runs: a named subset of pages, never a silent empty one.
+            unknown = set(provinces) - set(by_key)
+            if unknown:
+                raise ValueError("Unknown Happings province pages: " + ", ".join(sorted(unknown)))
+            by_key = {key: by_key[key] for key in provinces}
+        queue = sorted(by_key.values())
+        valid_queue(queue)
+        return queue, {"observed_at": utc_now(), "home_url": province.HOMEPAGE,
+                       "province_discovery": provincial, "weekly_only": True,
+                       "italian_province_pages": len(queue), "event_detail_pages": 0}
     sitemap_url = province.INDEX
     if not robots.can_fetch(weekly.USER_AGENT, sitemap_url):
         raise ValueError("Happings sitemap no longer allowed by robots")
@@ -222,7 +242,7 @@ def snapshot_lock(out):
         path.unlink(missing_ok=True)
 
 
-def _run_unlocked(out, *, max_pages=0):
+def _run_unlocked(out, *, max_pages=0, weekly_only=False, provinces=None):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     auth = json.loads(weekly.RIGHTS_REVIEW_FILE.read_text(encoding="utf-8"))
@@ -242,7 +262,8 @@ def _run_unlocked(out, *, max_pages=0):
             raise ValueError("Saved source outcomes are outside the observed URL inventory")
         print("Resumed checkpoint", len(status["done"]), "/", len(status["queue"]), flush=True)
     else:
-        queue, discovery = collect_links(robots, sleep=time.sleep)
+        queue, discovery = collect_links(robots, sleep=time.sleep, weekly_only=weekly_only,
+                                         provinces=provinces)
         status = {"schema": SCHEMA, "started_at": utc_now(),
                   "queue": queue, "done": {}, "discovery": discovery}
         write_json(checkpoint, status)
@@ -293,9 +314,9 @@ def _run_unlocked(out, *, max_pages=0):
     return summary
 
 
-def run(out, *, max_pages=0):
+def run(out, *, max_pages=0, weekly_only=False, provinces=None):
     with snapshot_lock(out):
-        return _run_unlocked(out,max_pages=max_pages)
+        return _run_unlocked(out,max_pages=max_pages,weekly_only=weekly_only,provinces=provinces)
 
 
 def main():
@@ -304,10 +325,20 @@ def main():
                         default=Path(os.getenv("LOCALAPPDATA") or tempfile.gettempdir()) / "mercati-italia" / "happings-full-crawl")
     parser.add_argument("--max-pages", type=int, default=0,
                         help="Stop after N new pages this invocation; zero means all pending.")
+    parser.add_argument("--weekly-only", action="store_true",
+                        help="Read only the Italian weekly province indexes, then retry failures once.")
+    parser.add_argument("--provinces", type=lambda v: [p for p in v.split(",") if p],
+                        help="With --weekly-only: pilot on these page keys, e.g. pistoia,roma")
     opts = parser.parse_args()
     if opts.max_pages < 0:
         parser.error("--max-pages must not be negative")
-    run(opts.out, max_pages=opts.max_pages)
+    if opts.provinces and not opts.weekly_only:
+        parser.error("--provinces requires --weekly-only")
+    summary = run(opts.out, max_pages=opts.max_pages, weekly_only=opts.weekly_only,
+                  provinces=opts.provinces)
+    if opts.weekly_only and summary["status_counts"].keys() - {"parsed"}:
+        from happings_retry_failures import retry
+        print("RETRY", json.dumps(retry(opts.out, max_attempts=2), ensure_ascii=False, default=str), flush=True)
 
 
 if __name__ == "__main__":

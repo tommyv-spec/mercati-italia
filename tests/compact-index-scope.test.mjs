@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {decodeIndexRecords} from '../src/services/staticMarkets.js'
+import {decodeIndexRecords, splitDuplicates} from '../src/services/staticMarkets.js'
 import {adaptMarket} from '../src/hooks/useMarkets.js'
 import {sourceHoursForDate} from '../src/lib/sourceCalendar.js'
 import {editorialSummaryView} from '../src/lib/editorialEvidence.js'
@@ -26,9 +26,23 @@ test('versions 4 and 5 remain twelve columns; version 6 requires its exact flag 
     assert.throws(() => decodeIndexRecords([[...current, 'storico']], {...manifest, index_as_of: value}))
   }
   assert.throws(() => decodeIndexRecords([{slug: 'another', ambito_orari: 'storico'}], manifest))
-  assert.throws(() => decodeIndexRecords([current], {index_schema: 7}))
+  assert.throws(() => decodeIndexRecords([current], {index_schema: 8}))
   assert.equal(decodeIndexRecords([current], {})[0].slug, current[0], 'Keep unversioned legacy previews')
   assert.equal(decodeIndexRecords([{slug: 'legacy', ambito_orari: 'storico'}], {})[0].ambito_orari, '')
+})
+
+test('version 7 adds the soft-merge column; copies are hidden and resolve to the kept record', () => {
+  const v7 = {index_schema: 7, index_as_of: DAY}
+  const decoded = decodeIndexRecords([[...current, '', ''],
+    ['lana-copy', ...current.slice(1), '', 'lana-example']], v7)
+  assert.equal(decoded[1].duplicato_di, 'lana-example')
+  assert.throws(() => decodeIndexRecords([[...current, '']], v7))
+  assert.throws(() => decodeIndexRecords([[...current, '', null]], v7))
+  const {markets, aliases} = splitDuplicates(decoded)
+  assert.deepEqual(markets.map(m => m.slug), ['lana-example'])
+  assert.equal(aliases.get('lana-copy'), 'lana-example')
+  // A marker pointing outside the catalog never hides a market.
+  assert.equal(splitDuplicates([{slug: 'orphan', duplicato_di: 'missing'}]).markets.length, 1)
 })
 
 test('the first compact list shows a qualified label; regional facts and per-date hours remain exact', async () => {
