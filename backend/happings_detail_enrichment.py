@@ -369,7 +369,19 @@ def _category(event):
     market_categories = {"mercati", "mercatini", "mercatini dell antiquariato",
                          "mercatini di antiquariato", "mercati contadini",
                          "enogastronomia", "shopping", "natale"}
-    if category not in market_categories or not re.search(r"\bmercat(?:o|i|ino|ini)\b", name):
+    # Agrimercato, Bauernmarkt and the local Tyrol dialect Markt'l are
+    # explicit publisher market names, not separate agenda sub-events.
+    # Accept only with the source's reviewed market taxonomy: never use
+    # keywords alone to turn other event categories into markets.
+    market_title = bool(
+        re.search(r"\bmercat(?:o|i|ino|ini)\b", name)
+        or re.search(r"\b(?:agrimercat[oi]|bauernmarkt)\b", name)
+        or category == "mercati" and (
+            name.startswith("campagna amica a ")
+            or re.search(r"\binser markt l\b", name)
+        )
+    )
+    if category not in market_categories or not market_title:
         return None
     if re.search(r"\b(?:concerto|concerti|spettacolo|spettacoli|conferenza|convegno|incontro|talk)\b", name):
         return None
@@ -378,7 +390,7 @@ def _category(event):
                 "coro giovanile", "banda musicale", "concerto", "si esibiscono"))):
         return None
     text = name + " " + category
-    if any(word in text for word in ("campagna amica", "contadino", "contadini", "alimentare")):
+    if any(word in text for word in ("campagna amica", "contadino", "contadini", "alimentare", "agrimercato", "bauernmarkt")):
         return "alimentare"
     if "antiquar" in text:
         return "antiquariato"
