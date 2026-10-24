@@ -157,9 +157,20 @@ def sync(repo: Path, *, decision_file: Path, quality_file: Path,
     previous_signature = d1_current_signature()
     # A repeated invocation on the already imported DEV head is a clean no-op.
     if previous_signature == meta["signature"]:
+        # Code/report commits can advance DEV without changing catalog bytes.
+        # Validate against the ORIGINAL immutable source SHA recorded on D1,
+        # not the latest Git commit. Every market hash must still match.
+        saved = remote_query(
+            "SELECT source_git_sha FROM catalog_datasets WHERE dataset_id=" +
+            sql(meta["id"]) + " AND status='ready'")
+        if (len(saved) != 1 or not SHA.fullmatch(str(saved[0]["source_git_sha"]))):
+            raise ValueError("Active D1 version has no valid original Git source")
         incremental.validate(repo / "public/data/v1/manifest.json")
-        incremental.verify_existing(repo / "public/data/v1/manifest.json", git_sha)
-        return {"status": "already_mirrored", "dataset_id": meta["id"], "records": meta["rows"]}
+        incremental.verify_existing(repo / "public/data/v1/manifest.json",
+                                    saved[0]["source_git_sha"])
+        return {"status": "already_mirrored", "dataset_id": meta["id"],
+                "records": meta["rows"],
+                "unchanged_data_new_git_sha": saved[0]["source_git_sha"] != git_sha}
     proof = preflight(decision, quality, admission, meta=meta,
                       previous_signature=previous_signature)
     # Last gate independently checks all source hashes and catalog identities.
