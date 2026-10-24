@@ -302,6 +302,31 @@ def _replaceable_venue(value):
             or address_key(value) in VAGUE_ADDRESSES)
 
 
+# A publisher's part of the day ("La mattina") is a placeholder for exact
+# official clock hours, but only when every official opening starts in it.
+DAYPARTS = {"la mattina": (0, 12), "il pomeriggio": (12, 24)}
+
+
+def _daypart_agrees(current, official):
+    span = DAYPARTS.get(address_key(current))
+    starts = re.findall(r"(\d\d):\d\d", str(official or ""))[::2]
+    return bool(span and starts and hours_allowed(official)
+                and all(span[0] <= int(hour) < span[1] for hour in starts))
+
+
+PLACE_FILLER = frozenset((
+    "via viale piazza piazzale largo corso vicolo strada localita loc frazione "
+    "del della dei delle dello degli di da e ed il la le lo gli in al alla sp ss"
+).split())
+
+
+def _shares_place_word(saved, official):
+    """Veto only: two venues naming no common distinctive word differ."""
+    words = lambda value: {w for w in address_key(value).split()
+                           if len(w) >= 3 and not w.isdigit() and w not in PLACE_FILLER}
+    return bool(words(saved) & words(official))
+
+
 def _town_binding_receipts(row, spec, *, today):
     return [receipt for receipt in clean_receipts(
         row.get("riscontri_campi"), row, today=today
@@ -508,7 +533,8 @@ def _enrich_unique_town(base, official, updated, context, spec, *, today,
             continue
         bindings = _town_binding_receipts(old, spec, today=today)
         replacing_placeholder = _replaceable_venue(old.get("indirizzo"))
-        if not replacing_placeholder and not bindings:
+        vague_hours = address_key(old.get("orario_testo")) in DAYPARTS
+        if not replacing_placeholder and not bindings and not vague_hours:
             continue
         counts["unique_town_targets_screened"] += 1
         days = explicit_annual_weekday(old)
@@ -574,6 +600,13 @@ def _enrich_unique_town(base, official, updated, context, spec, *, today,
                for proof in bindings):
             counts["held_unique_town_source_version_unordered_or_regressed"] += 1
             continue
+        if not replacing_placeholder and not bindings and not (
+                _daypart_agrees(old.get("orario_testo"), incoming["valori"].get("orario_testo"))
+                and _shares_place_word(old.get("indirizzo"), source.get("indirizzo"))):
+            # Admitted only for its vague hours: a disagreeing daypart or a
+            # different place may be another market, so attach no evidence.
+            counts["held_unique_town_daypart_or_place_disagrees"] += 1
+            continue
         revised = updated[old["slug"]]
         assignments = {}
         for field in ("indirizzo", "orario_testo"):
@@ -582,8 +615,13 @@ def _enrich_unique_town(base, official, updated, context, spec, *, today,
             current, future = str(old.get(field) or ""), incoming["valori"][field]
             if current == future:
                 continue
-            missing = (not current.strip() or (field == "indirizzo"
-                       and replacing_placeholder and not bindings))
+            # Exact official hours replace an agreeing "La mattina"; a saved
+            # street sharing nothing with the official one vetoes (other market).
+            missing = (not current.strip()
+                       or (field == "indirizzo" and replacing_placeholder and not bindings)
+                       or (field == "orario_testo" and _daypart_agrees(current, future)
+                           and (replacing_placeholder
+                                or _shares_place_word(old.get("indirizzo"), source.get("indirizzo")))))
             managed = managed_update_allowed(old, incoming, field,
                                              manager=FIELD_MANAGER, today=today)
             protected = (old.get("verificato_il") or
@@ -598,7 +636,8 @@ def _enrich_unique_town(base, official, updated, context, spec, *, today,
                            "addresses_added" if field == "indirizzo" else "hours_added")
                 counts[counter] += 1
                 if action == "replaced_vague_placeholder":
-                    counts["vague_addresses_replaced"] += 1
+                    counts["vague_addresses_replaced" if field == "indirizzo"
+                           else "vague_hours_replaced"] += 1
                 field_updates.append({
                     "published_id": old["slug"], "official_id": source["id_fonte"],
                     "official_slug": source["slug"], "field": field,
@@ -630,8 +669,8 @@ def _enrich_unique_town(base, official, updated, context, spec, *, today,
                    if action != "updated_managed_source_version"}
         managed = set(assignments) - initial
         if initial:
-            # Explicitly reviewed placeholders are the only nonempty values
-            # permitted to take this first-assignment path.
+            # Explicitly reviewed placeholders (vague venues, agreeing
+            # dayparts) are the only nonempty values permitted on this path.
             incoming = mark_managed_fields(incoming, initial, manager=FIELD_MANAGER)
         if managed:
             incoming = mark_managed_fields(incoming, managed, manager=FIELD_MANAGER, previous=old)
@@ -989,6 +1028,7 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None,
         "vague_market_addresses_replaced":int(counts["vague_addresses_replaced"]),
         "managed_market_addresses_updated":int(counts["managed_addresses_updated"]),
         "existing_market_hours_added":int(counts["hours_added"]),
+        "vague_market_hours_replaced":int(counts["vague_hours_replaced"]),
         "managed_market_hours_updated":int(counts["managed_hours_updated"]),
         "official_source_attributions_added":int(counts["official_source_attributions_added"]),
         "field_observation_records_updated":int(counts["field_observation_records_updated"]),

@@ -180,9 +180,12 @@ Tutti i 14.008 ID conservati; cancelli di rilascio `all_policies_pass`; nessun o
 
 ## 6. Limiti noti e prossimi passi
 
-- **Orari esatti in Lombardia.** MERCap ha l'orario esatto per ≈785 record Happings che dicono solo
-  «La mattina», ma `official_enrichment.py` scrive solo campi vuoti. Serve una regola di precedenza
-  (orario ufficiale esatto > fascia qualitativa dell'editore), con test.
+- **Orari esatti in Lombardia — risolto il 25/10/2026.** Regola di precedenza in
+  `official_enrichment.py`: l'orario esatto MERCap sostituisce «La mattina»/«Il pomeriggio» solo se
+  (1) MERCap ha un solo mercato in quel comune e giorno, (2) l'orario inizia nella stessa fascia e
+  (3) la via salvata è vaga oppure condivide almeno una parola distintiva con quella ufficiale.
+  Altrimenti il record non viene toccato. Pilota CO/BG/VA: 85 orari; tutta la Lombardia: 273, tutti
+  verificati sulle righe grezze MERCap. Lo applica l'autopilota giornaliero.
 - **Date previste per i 210 giorni riparati.** Il generatore di date accetta una ricorrenza solo se la
   fonte è aggiornata da ≤180 giorni; le pagine Happings risultano modificate il 24/10/2025. Le date
   arriveranno quando Happings aggiornerà le pagine, oppure con una decisione esplicita sulla policy.

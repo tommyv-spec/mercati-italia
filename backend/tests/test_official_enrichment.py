@@ -508,6 +508,27 @@ class CompleteMunicipalityEnrichmentTests(unittest.TestCase):
         self.assertEqual(repeated, result)
         self.assertEqual(again["legacy_records_changed"], 0)
 
+    def test_exact_official_hours_replace_only_an_agreeing_daypart_at_the_same_place(self):
+        raw, source = complete_snapshot()
+        exact = "08:00–13:00 (fonte comunale, da verificare)"
+        cases = {"same-place": ("Piazzale Sefro", "La mattina", exact),
+                 "other-place": ("Via Roma", "La mattina", "La mattina"),
+                 "disagrees": ("Piazzale Sefro", "Il pomeriggio", "Il pomeriggio")}
+        for slug, (street, before, after) in cases.items():
+            with self.subTest(slug):
+                result, report = enrich([old(slug=slug, street=street, hours=before, provincia="VA")],
+                                        source, raw_official=raw, today=TODAY)
+                self.assertEqual(result[0]["orario_testo"], after)
+                self.assertEqual(result[0]["indirizzo"], street)
+                self.assertEqual(report["vague_market_hours_replaced"], int(after == exact))
+                if after == exact:
+                    proof = result[0]["riscontri_campi"][0]
+                    self.assertIn("orario_testo", proof["campi_gestiti"])
+                    self.assertTrue(valid_receipt(proof, result[0], today=TODAY))
+                    repeated, again = enrich(result, source, raw_official=raw, today=TODAY)
+                    self.assertEqual(repeated, result)
+                    self.assertEqual(again["legacy_records_changed"], 0)
+
     def test_second_source_version_updates_both_owned_fields_and_keeps_history(self):
         raw, source = complete_snapshot()
         base = [old(street="", provincia="VA")]
