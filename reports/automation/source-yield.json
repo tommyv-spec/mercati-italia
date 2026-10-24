@@ -166,6 +166,23 @@
       "priority": -45,
       "publisher": "Regione Veneto",
       "schema_type": "manual_schema_review_required",
+      "source_id": "dcf55d07-06db-4d89-96fe-ba2ded874b2c",
+      "source_type": "mixed_events_candidate",
+      "stage": "stalls_not_market_visits",
+      "title": "Posteggi mercati e fiere - Comune di Marcon"
+    },
+    {
+      "actual_rows_examined": null,
+      "candidate_status": "not_sampled",
+      "dataset_date_declared": "",
+      "individual_events_confirmed": 0,
+      "license_needs_review": true,
+      "market_entries_added": 0,
+      "next_action": "Posteggi and concessions are not proof of an operating market or visit date.",
+      "possible_distinct_venues": null,
+      "priority": -45,
+      "publisher": "Regione Veneto",
+      "schema_type": "manual_schema_review_required",
       "source_id": "6791a91c-4e34-4ec3-89f3-cdbb8d96b3d8",
       "source_type": "mixed_events_candidate",
       "stage": "stalls_not_market_visits",
@@ -870,11 +887,11 @@
       "strong": []
     },
     "schema": 1,
-    "source_age_days": 569,
+    "source_age_days": 570,
     "source_ids_sha256": "c045561fc022bba002e2cc3252d75550c8d0b0669cbc7ed911e2886d5c788471"
   },
-  "catalog_market_ids_retained": 14007,
-  "date": "2026-10-23",
+  "catalog_market_ids_retained": 14008,
+  "date": "2026-10-24",
   "location_conflicts_documented": 1,
   "location_conflicts_source_sha256": "985b6705ef852f2dbf5ecab4aec8459d1945e7183df299a4d1a6fda198d9d6bc",
   "market_events_confirmed": 0,
@@ -988,7 +1005,7 @@
   ],
   "review_only": true,
   "schema": 1,
-  "sources_checked": 49,
+  "sources_checked": 50,
   "sources_imported": 0,
   "unrepresented_municipalities_are_not_market_claims": 2958
 }

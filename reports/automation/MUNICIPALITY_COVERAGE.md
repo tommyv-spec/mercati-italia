@@ -6,7 +6,7 @@ I risultati indicano dove cercare fonti comunali o regionali affidabili.
 - Comuni ISTAT: **7,894**.
 - Comuni con almeno una scheda nel catalogo: **4,936** (62.5%).
 - Comuni senza schede in catalogo: **2,958**.
-- Schede esistenti conservate: **14,007**; nuove schede: **0**.
+- Schede esistenti conservate: **14,008**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
