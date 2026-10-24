@@ -280,6 +280,12 @@ export async function fetchMarkets({ userLat = null, userLng = null } = {}) {
   return markets.map(m => normalize(m, userLat, userLng))
 }
 
+/** Shared links and favourites may name a soft-merged copy: use its kept record. */
+export async function canonicalMarketId(id) {
+  const { aliases } = await fetchCatalog()
+  return aliases.get(id) || id
+}
+
 export async function fetchMarketById(requestedId) {
   const { manifest, markets, aliases } = await fetchCatalog()
   const id = aliases.get(requestedId) || requestedId

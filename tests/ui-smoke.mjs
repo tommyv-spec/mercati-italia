@@ -219,39 +219,23 @@ try {
   await page.getByRole('button', { name: 'Azzera filtri' }).click()
   await assertCards()
 
-  // Albizzate: the two identical source records at Piazzale Sefro must
-  // remain one visit with both originals accessible. Source enrichment can
-  // also resolve another record to this venue; its different source URL
-  // correctly leaves it in a separate visit instead of merging identities.
+  // Albizzate: Happings lists ONE Tuesday market (Piazzale Sefro); the three
+  // imported copies are soft-merged in the data ("duplicato_di"). The visitor
+  // sees one market, and a link shared for a merged copy opens the kept one.
   await page.locator('.bottom-tabs').getByRole('button', { name: 'Impostazioni' }).click()
   await page.getByRole('button', { name: /Scegli una città/ }).click()
   await page.locator('.manual-city-input input').fill('Albizzate')
   await page.getByRole('button', { name: 'Filtra città' }).click()
-  await assertCards({ allowGroupedVenue: true })
-  const albizzateGroup = page.getByTestId('weekly-city-group').filter({
-    hasText: 'Mercati settimanali a Albizzate',
-  }).first()
-  await albizzateGroup.waitFor({ timeout: 20000 })
-  await albizzateGroup.getByRole('button', { name: 'Visualizza sedi e giornate' }).click()
-  await albizzateGroup.getByText('Caricamento sedi…').waitFor({ state: 'hidden', timeout: 25000 })
-  const piazzale = albizzateGroup.locator('.weekly-venue[data-known="true"]').filter({
-    hasText: 'Piazzale Sefro',
-  }).first()
-  await piazzale.waitFor()
-  const duplicateButton = piazzale.getByRole('button', { name: /2 schede della stessa fonte/ })
-  assert.equal(await duplicateButton.count(), 1)
-  const duplicateVisit = piazzale.locator('.weekly-appointment-group').filter({
-    has: page.getByRole('button', { name: /2 schede della stessa fonte/ }),
+  await assertCards()
+  assert.equal(await page.locator('.market-card').filter({ hasText: 'Mercato settimanale' }).count(), 1,
+    'Soft-merged copies of one listed market must show as one card')
+  assert.equal(await page.getByTestId('weekly-city-group').count(), 0)
+  await page.evaluate(() => {
+    window.location.hash = 'mercato=mercato-settimanale-di-albizzate-albizzate-martedi'
   })
-  assert.equal(await duplicateVisit.count(), 1,
-    'The identical source pair must belong to one reversible visit group')
-  assert.equal(await duplicateVisit.locator('.weekly-appointment').count(), 1,
-    'Duplicate original listings must show one visible weekly visit')
-  await duplicateButton.click()
-  assert.equal(await duplicateVisit.locator('.weekly-original-record').count(), 2,
-    'The two original source records must remain accessible to visitors')
+  await page.locator('.detail-page').filter({ hasText: /Piazzale Sefro/i }).waitFor({ timeout: 20000 })
   await page.screenshot({ path: 'ux-weekly-duplicate-detail.png', animations: 'disabled' })
-  await duplicateButton.click()
+  await page.locator('.detail-back').click()
   await page.getByRole('button', { name: 'Azzera filtri' }).click()
   await assertCards()
 

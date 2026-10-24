@@ -1432,7 +1432,7 @@ export default function App() {
     categoryColors: hookCatColors,
     dataMode,
     userLat, userLng, positionStatus, positionError,
-    requestPosition, clearPosition,
+    requestPosition, clearPosition, canonicalId,
   } = useMarkets();
 
   const [tab, setTab] = useState("esplora");
@@ -1511,16 +1511,18 @@ export default function App() {
 
   // Details are shareable by URL hash: no server-side route required.
   useEffect(() => {
-    const openHash = () => {
+    const openHash = async () => {
       const hash = window.location.hash.replace(/^#/, '');
-      const id = new URLSearchParams(hash).get('mercato');
+      const requested = new URLSearchParams(hash).get('mercato');
+      // A link shared for a soft-merged copy opens its kept record.
+      const id = requested && await canonicalId(requested);
       const item = id && allMarkets.find(market => market.id === id);
       if (item) openMarket(item);
     };
     openHash();
     window.addEventListener('hashchange', openHash);
     return () => window.removeEventListener('hashchange', openHash);
-  }, [allMarkets, openMarket]);
+  }, [allMarkets, openMarket, canonicalId]);
 
   const closeMarket = () => {
     setSelectedMarket(null);

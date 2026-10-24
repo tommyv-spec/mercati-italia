@@ -8,7 +8,7 @@ import { fieldEvidenceSummary } from '../lib/fieldEvidence.js'
 import { addressConflictView, cleanAddressConflicts } from '../lib/sourceFieldConflicts.js'
 import {
   fetchMarkets, fetchMarketById, getFavorites, revalidateCatalogIfStale,
-  toggleFavorite as apiToggleFavorite, getDataMode,
+  toggleFavorite as apiToggleFavorite, getDataMode, canonicalMarketId,
 } from '../services/staticMarkets.js'
 
 const CATEGORY_LABELS = {
@@ -225,7 +225,7 @@ export function useMarkets() {
 
   return {
     markets, loading, error, seedStatus,
-    favorites, toggleFav, getMarketDetails,
+    favorites, toggleFav, getMarketDetails, canonicalId: canonicalMarketId,
     categories, regions, cities,
     categoryIcons: CATEGORY_ICONS,
     categoryColors: CATEGORY_COLORS,
