@@ -1,0 +1,69 @@
+# Weekly Happings field refresh for the DEV catalog. Only the scheduler lives
+# on main; code and data stay on the DEV branch. PROD is never touched.
+#
+# Re-reads the ~107 Italian weekly province pages (robots-aware, >=3 s apart),
+# then backend/happings_bulk_catalog_publish.py fills source-stated dayparts and
+# streets, repairs cut weekdays and soft-merges repeated copies. The publish
+# step re-runs every release gate; the full test suite must pass on the result.
+# Runs before the daily autopilot (04:17 UTC), which then rebuilds the preview.
+name: Happings weekly fields — DEV
+run-name: Happings weekly fields • ${{ github.event_name }} • #${{ github.run_number }}
+
+on:
+  schedule:
+    - cron: '05 03 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  # Same group as the autopilot and report writers: one DEV writer at a time.
+  group: mercati-all-dev-report-and-catalog-writes
+  cancel-in-progress: false
+
+env:
+  DEV_BRANCH: improve/data-quality-security-performance-2026-10-11
+
+jobs:
+  weekly_fields:
+    name: Read weekly pages → fill, repair, soft-merge → gates → commit DEV
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEV_BRANCH }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Read the Italian weekly province pages
+        run: python backend/happings_bulk_snapshot.py --weekly-only --out "$RUNNER_TEMP/happings-weekly"
+      - name: Build, gate and install the DEV catalog update
+        run: |
+          python backend/happings_bulk_catalog_publish.py --repo . \
+            --snapshot "$RUNNER_TEMP/happings-weekly" --out "$RUNNER_TEMP/release" --install
+      - name: Full backend test suite on the updated catalog
+        run: python -m unittest discover -s backend/tests
+      - name: Commit to DEV only if the catalog changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/data/v1
+          if git diff --cached --quiet; then
+            echo "Catalog already up to date with Happings."
+            exit 0
+          fi
+          git commit -m "happings: weekly source-bound fields and soft merges (DEV only)"
+          git push origin "HEAD:$DEV_BRANCH"
+      - name: Record the release report
+        if: always()
+        shell: bash
+        run: |
+          f="$RUNNER_TEMP/release/happings-field-release-report.json"
+          if [[ -f "$f" ]]; then
+            { echo '```json'; cat "$f"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No catalog changes this week." >> "$GITHUB_STEP_SUMMARY"
+          fi
