@@ -156,19 +156,35 @@ class LegacyResolverTests(unittest.TestCase):
         self.assertEqual(legacy.pending_origins(state, base, today=TODAY), [])
         self.assertEqual(set(source.catalog_page_routes(base, resource_urls=report["new_resources"])), {"cormons", "gorizia"})
 
-    def test_malformed_town_identity_is_not_repaired_by_broad_province_page(self):
+    def test_lost_accent_town_url_requires_unique_istat_city_not_only_province(self):
         origin = "https://www.happings.com/it/mercato-settimanale-a-citt---sant-angelo.html"
         page = "https://www.happings.com/it/mercati-settimanali-a-pescara-e-provincia/"
-        base = [market("ambiguous-slug", city="Città Sant'Angelo", province="PE", region="Abruzzo", url=origin)]
+        base = [market("accented-legacy-url", city="Città Sant'Angelo", province="PE", region="Abruzzo", url=origin)]
         raw = html(canonical=page, province="Pescara", cities=("Città Sant'Angelo",))
         state, report, _ = acquire(base, fetcher=Mock(return_value=response(origin, body=raw)))
         self.assertEqual(report["new_resources"], [page])
-        self.assertFalse(source._town_url_matches(base[0]))
-        self.assertEqual(source.catalog_page_routes(base, resource_urls=[page]), {})
+        # The name is EXACTLY the unique ISTAT town whose original non-ASCII
+        # letter WordPress represented with two dashes. This is independently
+        # stronger than accepting an arbitrary malformed URL or province link.
+        self.assertTrue(source._town_url_matches(base[0]))
+        self.assertEqual(source.catalog_page_routes(base, resource_urls=[page]),
+                         {"accented-legacy-url": page})
         updated, evidence = source.preview(base, [{"requested_url": page, "final_url": page, "html": raw}],
                                           today=TODAY, apply=True, rights_verified=True)
-        self.assertEqual(updated, base)
-        self.assertEqual(evidence["record_changes"], 0)
+        self.assertEqual(updated[0]["indirizzo"], "Piazza del Mercato")
+        self.assertEqual(updated[0]["url_fonte"], origin)
+        self.assertEqual(updated[0]["verificato_il"], "")
+        self.assertEqual(updated[0]["date"], base[0]["date"])
+        self.assertEqual(evidence["record_changes"], 1)
+        # A different town in the SAME province cannot inherit this old URL.
+        forged = [market("wrong-identity", city="Pescara", province="PE", region="Abruzzo", url=origin)]
+        self.assertFalse(source._town_url_matches(forged[0]))
+        self.assertEqual(source.catalog_page_routes(forged, resource_urls=[page]), {})
+        unchanged, proof = source.preview(
+            forged, [{"requested_url": page, "final_url": page, "html": raw}],
+            today=TODAY, apply=True, rights_verified=True)
+        self.assertEqual(unchanged, forged)
+        self.assertEqual(proof["record_changes"], 0)
 
     def test_scope_and_explicit_city_weekday_are_required(self):
         for raw, status in (
