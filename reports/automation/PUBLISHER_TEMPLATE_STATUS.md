@@ -6,8 +6,8 @@ Una pagina raggiungibile NON conferma apertura, indirizzo o date.
 
 | Template | Stato | Marcatori mancanti | Richieste |
 |---|---|---|---:|
-| happings-weekly-area | schema_unchanged_or_sufficient |  | 2 |
-| happings-event-detail | schema_unchanged_or_sufficient |  | 1 |
+| happings-weekly-area | unavailable_or_format_review |  | 0 |
+| happings-event-detail | unavailable_or_format_review |  | 0 |
 | cosedicasa-monthly | schema_unchanged_or_sufficient |  | 2 |
 
 Nessun testo originale, evento, contatto o data viene registrato.

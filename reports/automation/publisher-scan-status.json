@@ -1,17 +1,17 @@
 {
-  "as_of": "2026-10-23",
-  "catalog_market_count": 14007,
+  "as_of": "2026-10-24",
+  "catalog_market_count": 14008,
   "full_catalog_source_labels": 87,
   "market_updates": 0,
-  "official_candidate_datasets": 49,
+  "official_candidate_datasets": 50,
   "preserve_last_inspected_template_when_offline": false,
-  "publisher_templates_inspected": 3,
+  "publisher_templates_inspected": 1,
   "research_only": true,
   "schema": 1,
   "template_states": {
     "cosedicasa-monthly": "schema_unchanged_or_sufficient",
-    "happings-event-detail": "schema_unchanged_or_sufficient",
-    "happings-weekly-area": "schema_unchanged_or_sufficient"
+    "happings-event-detail": "unavailable_or_format_review",
+    "happings-weekly-area": "unavailable_or_format_review"
   },
   "verified_events": 0
 }

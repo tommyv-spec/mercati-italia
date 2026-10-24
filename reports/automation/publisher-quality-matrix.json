@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-23",
+  "as_of": "2026-10-24",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -220,6 +220,19 @@
       "review_status": "schema_sampled_review_only",
       "schema_observation": "manual_schema_review_required",
       "title": "Posteggi mercati e fiere - Comune di Soave",
+      "triage_class": "mixed_events_candidate",
+      "triage_score_not_market_yield": 9
+    },
+    {
+      "actual_market_count_estimated": null,
+      "dataset_id": "dcf55d07-06db-4d89-96fe-ba2ded874b2c",
+      "market_events_confirmed": 0,
+      "new_market_imports_authorized_by_this_audit": false,
+      "publisher": "Regione Veneto",
+      "record_count_measured": null,
+      "review_status": "schema_sampled_review_only",
+      "schema_observation": "manual_schema_review_required",
+      "title": "Posteggi mercati e fiere - Comune di Marcon",
       "triage_class": "mixed_events_candidate",
       "triage_score_not_market_yield": 9
     },
@@ -640,34 +653,34 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14007,
+  "catalog_record_count": 14008,
   "catalog_source_labels_count": 87,
   "market_confirmations": 0,
   "market_updates": 0,
   "markets_added": 0,
   "markets_deleted": 0,
-  "official_candidate_dataset_count": 49,
+  "official_candidate_dataset_count": 50,
   "publishers": [
     {
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
+      "count_delta_since_last_audit": 1,
       "fields": {
         "address_generic_not_navigable": 2417,
         "address_missing": 1965,
-        "coordinates_missing": 186,
+        "coordinates_missing": 187,
         "future_dates_missing": 331,
         "hours_missing": 1791,
-        "records": 9830,
-        "source_or_import_date_unknown": 183
+        "records": 9831,
+        "source_or_import_date_unknown": 184
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 34140,
+      "priority_workload_score_not_evidence": 34141,
       "publisher": "happings.com",
-      "records": 9830,
+      "records": 9831,
       "rights_classification": "see_existing_happings_operational_policy",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -722,14 +735,14 @@
       "fields": {
         "address_generic_not_navigable": 44,
         "address_missing": 441,
-        "future_dates_missing": 942,
+        "future_dates_missing": 965,
         "hours_missing": 367,
         "records": 2197
       },
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5460,
+      "priority_workload_score_not_evidence": 5483,
       "publisher": "eventiesagre.it",
       "records": 2197,
       "rights_classification": "urls_only_no_bulk_content_reuse",
@@ -823,14 +836,14 @@
       "fields": {
         "address_generic_not_navigable": 6,
         "coordinates_missing": 7,
-        "future_dates_missing": 154,
-        "hours_missing": 362,
+        "future_dates_missing": 172,
+        "hours_missing": 351,
         "records": 432
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1346,
+      "priority_workload_score_not_evidence": 1342,
       "publisher": "cosedicasa.com",
       "records": 432,
       "rights_classification": "publisher_rights_unreviewed",
@@ -3888,9 +3901,11 @@
         "host": "cosedicasa.com",
         "open_todo_ids": [],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -3944,9 +3959,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Mercatini_Antiquariato/{id}_{slug}.html"
       },
@@ -3961,17 +3980,19 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
         "url_pattern": "/Mercatini_Artigianato/{id}_{slug}.html"
       },
       {
-        "catalog_records": 165,
+        "catalog_records": 166,
         "format_id": "happings.com--795abb069b70",
         "host": "happings.com",
         "open_todo_ids": [],
@@ -4151,9 +4172,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Eventi_Enogastronomici/{id}_{slug}.html"
       },
@@ -4207,9 +4232,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Eventi_Feste/{id}_{slug}.html"
       },
@@ -4222,9 +4251,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -4238,9 +4271,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Eventi_Mostra+Mercato/{id}_{slug}.html"
       },
@@ -4296,9 +4333,13 @@
           "NC-10",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/mercati-rionali-di-alghero/"
       },
@@ -4331,9 +4372,11 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4369,9 +4412,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Eventi_Festival/{id}_{slug}.html"
       },
@@ -4404,9 +4451,11 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4493,9 +4542,11 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4572,9 +4623,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "field_mapping"
+          "field_mapping",
+          "parser_comparison"
         ],
-        "recheck_reasons": [],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
@@ -4667,9 +4721,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -4718,9 +4776,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -4733,9 +4795,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -4748,9 +4814,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -4851,9 +4921,11 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4870,9 +4942,11 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4919,9 +4993,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -4948,9 +5026,15 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5051,9 +5135,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5114,9 +5202,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5157,9 +5249,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5172,9 +5268,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5187,9 +5287,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5202,9 +5306,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5262,9 +5370,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Eventi_Sagre/{id}_{slug}.html"
       },
@@ -5278,9 +5390,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Eventi_Folklore/{id}_{slug}.html"
       },
@@ -5294,9 +5410,13 @@
           "EES-NARRATIVE-DATE-LISTS",
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/Eventi_Fiere/{id}_{slug}.html"
       },
@@ -5341,9 +5461,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5385,9 +5509,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "field_mapping"
+          "field_mapping",
+          "parser_comparison"
         ],
-        "recheck_reasons": [],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
@@ -5464,9 +5591,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5516,9 +5647,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5532,9 +5667,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "field_mapping"
+          "field_mapping",
+          "parser_comparison"
         ],
-        "recheck_reasons": [],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
@@ -5641,9 +5779,13 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
       },
@@ -5657,9 +5799,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "field_mapping"
+          "field_mapping",
+          "parser_comparison"
         ],
-        "recheck_reasons": [],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
@@ -5674,9 +5819,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "field_mapping"
+          "field_mapping",
+          "parser_comparison"
         ],
-        "recheck_reasons": [],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
         "url_pattern": "/eventi/{percorso-evento}.html"
@@ -5718,22 +5866,22 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-10-23",
+    "generated_for_date": "2026-10-24",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
       "auxiliary_format_units": 27,
       "catalog_records_modified": 0,
       "completed_tasks": 23,
-      "formats_requiring_recheck": 34,
+      "formats_requiring_recheck": 65,
       "formats_with_documented_source_read": 104,
       "formats_with_open_corrections": 106,
       "formats_with_sample_attempt": 110,
       "network_reads_performed": 0,
       "open_tasks": 36,
-      "partial_review_formats": 33,
+      "partial_review_formats": 59,
       "primary_format_units": 111,
-      "reviewed_sample_formats": 72,
+      "reviewed_sample_formats": 46,
       "unreviewed_formats": 6
     }
   },
