@@ -84,6 +84,81 @@ class BulkRefreshTests(unittest.TestCase):
 
     @patch("happings_bulk_refresh.weekly.authorization_status",
            return_value={"authorized":True})
+    def test_newly_recognized_market_detail_is_refetched_from_original_html(self, _auth):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            state=seed(root,old_days=2,include_detail=True)
+            source_path=root/"pages"/(bulk.fingerprint(DETAIL)+".json.gz")
+            old=json.loads(gzip.decompress(source_path.read_bytes()))
+            old["market_classified"]=False
+            old["event"]={"name":"Agrimercato Campagna Amica di Novi","category":"Mercati"}
+            packed=gzip.compress(json.dumps(old).encode("utf-8"))
+            source_path.write_bytes(packed)
+            state[DETAIL]["market_classified"]=False
+            state[DETAIL]["facts_sha256"]=hashlib.sha256(packed).hexdigest()
+            checkpoint={"schema":1,"queue":[WEEKLY,DETAIL],"done":state,
+                        "discovery":{"observed_at":NOW.isoformat()}}
+            bulk.write_json(root/"checkpoint.json",checkpoint)
+            attempted=[]
+            def fetched(url,robots):
+                attempted.append(url)
+                result=observed(url,robots)
+                result["market_classified"]=True
+                return result
+            report=refresh(root,now=NOW,robots=Robots(),reader=fetched,sleep=lambda _:None)
+            self.assertEqual(attempted,[DETAIL])
+            self.assertEqual(report["newly_recognized_market_details_due"],1)
+            self.assertEqual(report["pages_attempted"],1)
+            latest=json.loads((root/"checkpoint.json").read_text("utf-8"))
+            self.assertTrue(latest["done"][DETAIL]["market_classified"])
+            self.assertEqual(latest["done"][WEEKLY]["read_at"],state[WEEKLY]["read_at"])
+            self.assertEqual(report["catalog_mutations"],0)
+
+    @patch("happings_bulk_refresh.weekly.authorization_status",
+           return_value={"authorized":True})
+    def test_false_market_keyword_outside_source_taxonomy_does_not_trigger_refresh(self, _auth):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            state=seed(root,old_days=2,include_detail=True)
+            source_path=root/"pages"/(bulk.fingerprint(DETAIL)+".json.gz")
+            old=json.loads(gzip.decompress(source_path.read_bytes()))
+            old["market_classified"]=False
+            old["event"]={"name":"Agrimercato Campagna Amica di Novi","category":"Arte e cultura"}
+            packed=gzip.compress(json.dumps(old).encode("utf-8"))
+            source_path.write_bytes(packed)
+            state[DETAIL]["market_classified"]=False
+            state[DETAIL]["facts_sha256"]=hashlib.sha256(packed).hexdigest()
+            bulk.write_json(root/"checkpoint.json",
+                {"schema":1,"queue":[WEEKLY,DETAIL],"done":state,
+                 "discovery":{"observed_at":NOW.isoformat()}})
+            calls=[]
+            report=refresh(root,now=NOW,robots=Robots(),
+                           reader=lambda *args:calls.append(args[0]),sleep=lambda _:None)
+            self.assertEqual(calls,[])
+            self.assertEqual(report["pages_attempted"],0)
+            self.assertEqual(report["newly_recognized_market_details_due"],0)
+
+    @patch("happings_bulk_refresh.weekly.authorization_status",
+           return_value={"authorized":True})
+    def test_reclassified_cached_detail_requires_matching_checksum(self, _auth):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            state=seed(root,old_days=2,include_detail=True)
+            source_path=root/"pages"/(bulk.fingerprint(DETAIL)+".json.gz")
+            old=json.loads(gzip.decompress(source_path.read_bytes()))
+            old["market_classified"]=False
+            old["event"]={"name":"Bauernmarkt in Kastelruth","category":"Mercati"}
+            source_path.write_bytes(gzip.compress(json.dumps(old).encode("utf-8")))
+            state[DETAIL]["market_classified"]=False
+            bulk.write_json(root/"checkpoint.json",
+                {"schema":1,"queue":[WEEKLY,DETAIL],"done":state,
+                 "discovery":{"observed_at":NOW.isoformat()}})
+            with self.assertRaisesRegex(ValueError,"altered"):
+                refresh(root,now=NOW,robots=Robots(),reader=observed,sleep=lambda _:None)
+            self.assertFalse((root/".happings-crawl.lock").exists())
+
+    @patch("happings_bulk_refresh.weekly.authorization_status",
+           return_value={"authorized":True})
     def test_failed_update_keeps_last_good_and_backoff(self, _auth):
         with tempfile.TemporaryDirectory() as p:
             root=Path(p); old=seed(root,old_days=14)
