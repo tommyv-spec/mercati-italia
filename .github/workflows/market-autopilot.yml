@@ -853,6 +853,21 @@ jobs:
                 metrics.get('suspicious_city',0),'locations to review;',
                 metrics.get('review_only_duplicate_groups',0),'potential weekly venue/day overlaps')
           PY
+      - name: Snapshot actual published DEV visitor baseline before candidate replacement
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original=json.loads(Path('public/data/v1/manifest.json').read_text(encoding='utf-8'))
+          approved=json.loads(Path('autopilot-output/release-decision.json').read_text(encoding='utf-8'))
+          if original.get('content_signature') != approved.get('base_signature'):
+              raise ValueError('Actual DEV baseline differs from source QA certificate')
+          PY
+          node scripts/reversible-duplicate-audit.mjs \
+            --manifest public/data/v1/manifest.json \
+            --out autopilot-output/published-dev-reversible-baseline.json \
+            --report autopilot-output/PUBLISHED_DEV_REVERSIBLE_BASELINE.md
       - name: Verify candidate approved and replace ONLY local static data
         run: |
           python - <<'PY'
@@ -1056,36 +1071,12 @@ jobs:
             --manifest public/data/v1/manifest.json \
             --out autopilot-output/reversible-display-duplicates.json \
             --report autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs'
-          const current=JSON.parse(fs.readFileSync('autopilot-output/reversible-display-duplicates.json','utf8'))
-          const catalog=JSON.parse(fs.readFileSync('autopilot-output/catalog-quality.json','utf8'))
-          const oldPath='reports/automation/reversible-display-duplicates.json'
-          const prior=fs.existsSync(oldPath) ? JSON.parse(fs.readFileSync(oldPath,'utf8')) : null
-          const m=current.metrics
-          if (current.schema !== 1 || current.review_only !== true ||
-              current.display_grouping_only !== true || current.market_data_modified !== false ||
-              m.original_records !== catalog.metrics.total ||
-              m.ids_retained !== catalog.metrics.total ||
-              m.malformed_source_city_labels_guarded_in_ui !== catalog.metrics.suspicious_city ||
-              m.market_identities_deleted !== 0 ||
-              m.event_confirmations_created !== 0 ||
-              m.verification_claims_created !== 0 ||
-              m.suppressed_repeat_buttons_only > m.original_records_in_reversible_groups) {
-            throw new Error('Visitor grouping or bad-city protection contradicts the source quality audit')
-          }
-          if (prior?.metrics) {
-            if (m.malformed_source_city_labels_guarded_in_ui >
-                prior.metrics.malformed_source_city_labels_guarded_in_ui + 10) {
-              throw new Error('Sudden rise in malformed city labels; manual source review required')
-            }
-            if (m.suppressed_repeat_buttons_only >
-                Math.max(50,Math.floor(prior.metrics.suppressed_repeat_buttons_only * 1.35))) {
-              throw new Error('Sudden rise in display duplicates; manual source review required')
-            }
-          }
-          console.log('DAILY_VISITOR_QUALITY',JSON.stringify(m))
-          NODE
+          node scripts/reversible-display-release-guard.mjs \
+            --candidate autopilot-output/reversible-display-duplicates.json \
+            --baseline autopilot-output/published-dev-reversible-baseline.json \
+            --catalog-quality autopilot-output/catalog-quality.json \
+            --previous-scorecard reports/automation/reversible-display-duplicates.json \
+            --out autopilot-output/reversible-display-release-guard.json
       - name: Prove ordinary Cloudflare catalog visits avoid Functions
         run: |
           node - <<'NODE'
@@ -1147,6 +1138,8 @@ jobs:
           name: mercati-visitor-quality-${{ github.run_id }}
           path: |
             autopilot-output/reversible-display-duplicates.json
+            autopilot-output/reversible-display-release-guard.json
+            autopilot-output/published-dev-reversible-baseline.json
             autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
             autopilot-output/reviewed-city-static-safety.json
             autopilot-output/publisher-exception-review.json
@@ -1300,6 +1293,8 @@ jobs:
           test -s autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
           cp autopilot-output/reversible-display-duplicates.json reports/automation/reversible-display-duplicates.json
           cp autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md reports/automation/REVERSIBLE_DISPLAY_DUPLICATES.md
+          test -s autopilot-output/reversible-display-release-guard.json
+          cp autopilot-output/reversible-display-release-guard.json reports/automation/reversible-display-release-guard.json
           test -s autopilot-output/municipality-reconciliation.json
           test -s autopilot-output/MUNICIPALITY_RECONCILIATION.md
           test -s autopilot-output/municipality-release-guard.json
