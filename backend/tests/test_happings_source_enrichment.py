@@ -493,6 +493,51 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         self.assertFalse(_town_url_matches(row("suffix",url="https://www.happings.com/it/mercato-settimanale-a-spinea-2.html")))
         self.assertFalse(_town_url_matches(row("missing",city="Città Sant'Angelo",url="https://www.happings.com/it/mercato-settimanale-a-citt---sant-angelo.html")))
 
+    def test_italian_legacy_lost_accent_url_requires_unique_istat_municipality(self):
+        from happings_source_enrichment import _town_url_matches, record_matches_page
+        cases = (
+            ("Gressoney-La-Trinité", "AO", "Valle d'Aosta",
+             "gressoney-la-trinit--", "aosta", "domenica"),
+            ("Fiè allo Sciliar", "BZ", "Trentino-Alto Adige",
+             "fi---allo-sciliar", "bolzano", "mercoledì"),
+            ("Castel San Niccolò", "AR", "Toscana",
+             "castel-san-niccol--", "arezzo", "lunedì"),
+            ("Città Sant'Angelo", "PE", "Abruzzo",
+             "citt---sant-angelo", "pescara", "martedì"),
+        )
+        for name, province, region, old_slug, page_city, day in cases:
+            with self.subTest(name=name):
+                old_url = "https://www.happings.com/it/mercato-settimanale-a-" + old_slug + ".html"
+                page_url = ("https://www.happings.com/it/mercati-settimanali-a-" +
+                            page_city + "-e-provincia/")
+                record = row("original-" + old_slug, city=name, province=province,
+                             region=region, day=day, url=old_url)
+                self.assertTrue(_town_url_matches(record))
+                self.assertTrue(record_matches_page(record, page_url, page_url))
+                self.assertEqual(record["url_fonte"], old_url)
+
+    def test_old_masked_url_never_maps_other_town_or_wrong_province(self):
+        from happings_source_enrichment import _town_url_matches, record_matches_page
+        old = "https://www.happings.com/it/mercato-settimanale-a-fi---allo-sciliar.html"
+        page = "https://www.happings.com/it/mercati-settimanali-a-bolzano-e-provincia/"
+        for change in (
+            {"city": "Fiè allo Sciliar", "province": "TN"},
+            {"city": "Firenze", "province": "BZ"},
+            {"city": "Fiè allo Sciliar", "province": "BZ", "region": "Toscana"},
+        ):
+            with self.subTest(change=change):
+                record = row("held", city=change["city"],
+                             province=change["province"],
+                             region=change.get("region", "Trentino-Alto Adige"),
+                             url=old)
+                self.assertFalse(_town_url_matches(record))
+                self.assertFalse(record_matches_page(record, page, page))
+        # No accented letter in the official name "Stra": a forged double
+        # dash cannot create a new publisher identity for "Strà".
+        self.assertFalse(_town_url_matches(
+            row("wrong-city",city="Strà", province="VE", region="Veneto",
+                url="https://www.happings.com/it/mercato-settimanale-a-str--.html")))
+
     def test_confirmed_or_precisely_positioned_markets_are_not_assigned_a_street(self):
         for change in ({"verificato_il":"2026-10-18"},{"position_quality":"precisa"}):
             base=[{**row("protected"),**change}]
