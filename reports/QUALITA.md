@@ -32,13 +32,15 @@ Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo
 
 ## Per fonte
 
-| Fonte | Mercati | Orari esatti | Via precisa | Date 30 gg | Letta il |
-|---|---:|---:|---:|---:|---|
-| happings.com | 7,001 | 6.9% | 55.8% | 97.7% | 2026-10-25 |
-| eventiesagre.it | 2,197 | 83.3% | 77.9% | 54.8% | 2026-10-25 |
-| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 | 69.7% | 99.7% | 65.2% | 2026-10-25 |
-| cosedicasa.com | 432 | 21.1% | 98.6% | 54.6% | 2026-10-25 |
-| Comune di Milano - Open Data (CC BY 4.0) | 85 | 100.0% | 88.2% | 89.4% | 2026-10-25 |
-| dati.comune.roma.it | 70 | 97.1% | 100.0% | 0.0% | 2026-10-25 |
-| Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 100.0% | 100.0% | 0.0% | 2026-10-25 |
-| cosafareafirenze.it | 22 | 72.7% | 100.0% | 9.1% | — |
+«Riletti 30 gg»: quota di mercati la cui fonte è stata davvero riletta negli ultimi 30 giorni (le prove prese da altri siti non contano).
+
+| Fonte | Mercati | Orari esatti | Via precisa | Date 30 gg | Riletti 30 gg | Ultima lettura |
+|---|---:|---:|---:|---:|---:|---|
+| happings.com | 7,001 | 6.9% | 55.8% | 97.7% | 85.4% | 2026-10-25 |
+| eventiesagre.it | 2,197 | 83.3% | 77.9% | 54.8% | 23.1% | 2026-10-25 |
+| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 | 69.7% | 99.7% | 65.2% | 99.9% | 2026-10-25 |
+| cosedicasa.com | 432 | 21.1% | 98.6% | 54.6% | 40.0% | 2026-10-25 |
+| Comune di Milano - Open Data (CC BY 4.0) | 85 | 100.0% | 88.2% | 89.4% | 100.0% | 2026-10-25 |
+| dati.comune.roma.it | 70 | 97.1% | 100.0% | 0.0% | 97.1% | 2026-10-25 |
+| Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 100.0% | 100.0% | 0.0% | 100.0% | 2026-10-25 |
+| cosafareafirenze.it | 22 | 72.7% | 100.0% | 9.1% | 0.0% | — |
