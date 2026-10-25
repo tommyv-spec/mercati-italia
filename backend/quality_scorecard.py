@@ -14,9 +14,9 @@ import re
 from collections import defaultdict
 from datetime import date, timedelta
 from pathlib import Path
-from urllib.parse import urlsplit
 
 from catalog_quality_report import VAGUE_ADDRESSES, key
+from export_static import own_source_last_read
 from merge_catalog import load_existing
 
 CLOCK = re.compile(r"\b\d{1,2}[:.]\d\d\b")
@@ -41,16 +41,7 @@ def classify(row, today):
     }
 
 
-host = lambda url: urlsplit(str(url or "")).netloc.lower().removeprefix("www.")
-
-
-def last_read(row, page_reads=None):
-    """Last day the market's OWN source was read: proofs from other sites don't count."""
-    own = host(row.get("url_fonte"))
-    days = [str(row.get("fonte_letta_il") or "")[:10], (page_reads or {}).get(row.get("url_fonte"), "")]
-    days += [str(r.get("letto_il") or "")[:10] for r in row.get("riscontri_campi") or []
-             if isinstance(r, dict) and host(r.get("url")) == own]
-    return max((d for d in days if re.fullmatch(r"\d{4}-\d\d-\d\d", d)), default="")
+last_read = own_source_last_read
 
 
 def page_reads(folder):
@@ -64,7 +55,7 @@ def page_reads(folder):
 
 
 def measure(rows, today, reads=None):
-    visible = [r for r in rows if not r.get("duplicato_di")]
+    visible = [r for r in rows if not r.get("duplicato_di") and not r.get("concluso")]
     total = defaultdict(int)
     by_source = defaultdict(lambda: defaultdict(int))
     read = defaultdict(str)
@@ -83,7 +74,8 @@ def measure(rows, today, reads=None):
     sources = sorted(by_source, key=lambda s: -by_source[s]["schede"])
     return {
         "date": today.isoformat(), "schede": len(rows), "visibili": len(visible),
-        "copie_unite": len(rows) - len(visible),
+        "copie_unite": sum(bool(r.get("duplicato_di")) for r in rows),
+        "conclusi": sum(bool(r.get("concluso")) for r in rows),
         "percentuali": {name: pct(value, len(visible)) for name, value in total.items()},
         "fonti": {s: {"schede": by_source[s]["schede"], "letta_il": read[s],
                       "riletti_30_giorni": pct(by_source[s]["riletti"], by_source[s]["schede"]),
@@ -130,7 +122,8 @@ def markdown(current, previous, flags, jobs):
         lines += [f"| {j} | {'✅' if s.get('status') == 'ok' else '❌'} | {s.get('at', '')} |"
                   for j, s in sorted(jobs.items())]
     lines += ["", "## Cosa vede chi usa l'app", "",
-              f"**{current['visibili']:,}** mercati visibili ({current['copie_unite']:,} copie doppie unite e nascoste).", "",
+              f"**{current['visibili']:,}** mercati visibili ({current['copie_unite']:,} copie doppie unite e nascoste; "
+              f"{current.get('conclusi', 0):,} non più in programma, nascosti).", "",
               "| Dato | Mercati |", "|---|---:|"]
     lines += [f"| {LABELS[n]} | {current['percentuali'][n]}%{delta(n)} |" for n in LABELS]
     lines += ["", "## Per fonte", "",

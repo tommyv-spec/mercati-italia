@@ -20,7 +20,7 @@ const HOURS_SCOPES = new Set(['', 'per_data', 'storico'])
 
 export function decodeIndexRecords(records, manifest) {
   const schema = manifest.index_schema
-  const compact = [4, 5, 6, 7].includes(schema)
+  const compact = [4, 5, 6, 7, 8].includes(schema)
   const legacy = schema === undefined || [1, 2, 3].includes(schema)
   if (!compact && !legacy) throw new Error('Versione indice non supportata')
   if (schema >= 6) {
@@ -31,7 +31,8 @@ export function decodeIndexRecords(records, manifest) {
       throw new Error('Data di riferimento indice non valida')
     }
   }
-  const columns = schema === 7 ? [...INDEX_FIELDS, 'ambito_orari', 'duplicato_di']
+  const columns = schema === 8 ? [...INDEX_FIELDS, 'ambito_orari', 'duplicato_di', 'concluso']
+    : schema === 7 ? [...INDEX_FIELDS, 'ambito_orari', 'duplicato_di']
     : schema === 6 ? [...INDEX_FIELDS, 'ambito_orari'] : INDEX_FIELDS
   return records.map(record => {
     if (!Array.isArray(record)) {
@@ -41,7 +42,8 @@ export function decodeIndexRecords(records, manifest) {
     }
     if ((schema !== undefined && !compact) || record.length !== columns.length ||
         schema >= 6 && !HOURS_SCOPES.has(record[INDEX_FIELDS.length]) ||
-        schema === 7 && typeof record[columns.length - 1] !== 'string') {
+        schema >= 7 && typeof record[INDEX_FIELDS.length + 1] !== 'string' ||
+        schema === 8 && typeof record[columns.length - 1] !== 'string') {
       throw new Error('Formato indice errato')
     }
     return Object.fromEntries(columns.map((key, i) => [key, record[i]]))
@@ -90,12 +92,14 @@ async function mapLimited(items, concurrency, mapper) {
 export function splitDuplicates(markets) {
   const ids = new Set(markets.map(m => m.slug))
   const aliases = new Map()
+  const concluded = new Map()
   const visible = []
   for (const market of markets) {
     if (market.duplicato_di && ids.has(market.duplicato_di)) aliases.set(market.slug, market.duplicato_di)
+    else if (market.concluso) concluded.set(market.slug, market)
     else visible.push(market)
   }
-  return { markets: visible, aliases }
+  return { markets: visible, aliases, concluded }
 }
 
 async function loadCatalogFromManifest(manifest) {
@@ -260,6 +264,7 @@ function normalize(m, userLat, userLng) {
     date_quality: m.date_quality || 'prevista',
     position_quality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',
+    concluso: m.concluso || '',
     fonte: m.fonte || '',
     url_fonte: m.url_fonte || '',
     // Full regional details carry publisher-side safety holds and source
@@ -287,9 +292,10 @@ export async function canonicalMarketId(id) {
 }
 
 export async function fetchMarketById(requestedId) {
-  const { manifest, markets, aliases } = await fetchCatalog()
+  const { manifest, markets, aliases, concluded } = await fetchCatalog()
   const id = aliases.get(requestedId) || requestedId
-  const summary = markets.find(m => m.slug === id)
+  // A concluded market is hidden from lists but still opens from links.
+  const summary = markets.find(m => m.slug === id) || concluded?.get(id)
   if (!summary) return null
 
   // Before the index migration, the entire catalog was already loaded.

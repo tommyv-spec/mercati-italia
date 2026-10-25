@@ -45,6 +45,18 @@ test('version 7 adds the soft-merge column; copies are hidden and resolve to the
   assert.equal(splitDuplicates([{slug: 'orphan', duplicato_di: 'missing'}]).markets.length, 1)
 })
 
+test('version 8 adds the concluded column; concluded markets leave the lists but stay reachable', () => {
+  const v8 = {index_schema: 8, index_as_of: DAY}
+  const decoded = decodeIndexRecords([[...current, '', '', ''],
+    ['old-fair', ...current.slice(1), '', '', 'fonte_non_riletta']], v8)
+  assert.equal(decoded[1].concluso, 'fonte_non_riletta')
+  assert.throws(() => decodeIndexRecords([[...current, '', '']], v8))
+  assert.throws(() => decodeIndexRecords([[...current, '', '', null]], v8))
+  const {markets, concluded} = splitDuplicates(decoded)
+  assert.deepEqual(markets.map(m => m.slug), ['lana-example'])
+  assert.equal(concluded.get('old-fair').concluso, 'fonte_non_riletta')
+})
+
 test('the first compact list shows a qualified label; regional facts and per-date hours remain exact', async () => {
   const oldFetch = globalThis.fetch
   const historic = ['historical-example', 'Edizione passata', 'Lavarone', 'Trentino-Alto Adige', 'misto', [],

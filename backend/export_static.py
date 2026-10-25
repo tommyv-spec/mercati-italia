@@ -539,14 +539,54 @@ def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
     return markers, counts
 
 
+def _host(url) -> str:
+    return urlsplit(str(url or "")).netloc.lower().removeprefix("www.")
+
+
+def own_source_last_read(row: dict, page_reads=None) -> str:
+    """Last day the market's OWN source was read; proofs from other sites don't count."""
+    own = _host(row.get("url_fonte"))
+    evidence = row.get(EDITORIAL_EVIDENCE) if isinstance(row.get(EDITORIAL_EVIDENCE), dict) else {}
+    days = [str(row.get("fonte_letta_il") or "")[:10], (page_reads or {}).get(row.get("url_fonte"), ""),
+            str(evidence.get("read_on") or "")[:10]]
+    days += [str(r.get("letto_il") or "")[:10] for r in row.get("riscontri_campi") or []
+             if isinstance(r, dict) and _host(r.get("url")) == own]
+    return max((d for d in days if re.fullmatch(r"\d{4}-\d\d-\d\d", d)), default="")
+
+
+CONCLUDED_UNREAD_DAYS = 90
+
+
+def concluded_reason(row: dict, today: date) -> str:
+    """Why a market is no longer scheduled ("" if it still is). Same rule for every source:
+    no upcoming date, no recurrence that can produce one, and either its own source shows
+    the edition is over or nobody has re-read that source for CONCLUDED_UNREAD_DAYS."""
+    from recurrence_refresh import forecast_rule
+    if any(str(d) >= today.isoformat() for d in row.get("date") or []) or forecast_rule(row):
+        return ""
+    evidence = row.get(EDITORIAL_EVIDENCE) if isinstance(row.get(EDITORIAL_EVIDENCE), dict) else {}
+    facts = evidence.get("facts") if isinstance(evidence.get("facts"), dict) else {}
+    editions = [i for i in facts.get("edition_intervals") or [] if isinstance(i, dict)]
+    if facts.get("archive_marker") is True or editions and all(str(i.get("end")) < today.isoformat() for i in editions):
+        return "edizione_conclusa"
+    if own_source_last_read(row) < (today - timedelta(days=CONCLUDED_UNREAD_DAYS)).isoformat():
+        return "fonte_non_riletta"
+    return ""
+
+
+# Fields the exporter derives itself (never carried over from the input).
+DERIVED_FIELDS = ("concluso",)
+
+
 def matches_export(expected: dict, actual: dict | None, exported_by_id: dict) -> bool:
-    """A normalize() result equals its exported record, allowing a soft merge."""
+    """A normalize() result equals its exported record, allowing export-derived fields."""
     if actual is None:
         return False
     kept = exported_by_id.get(actual.get("duplicato_di"))
+    dropped = set(DERIVED_FIELDS)
     if "duplicato_di" not in expected and kept is not None and same_market(kept, actual):
-        actual = {k: v for k, v in actual.items() if k != "duplicato_di"}
-    return expected == actual
+        dropped.add("duplicato_di")
+    return expected == {k: v for k, v in actual.items() if k not in dropped}
 
 
 def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[dict], dict]:
@@ -607,6 +647,9 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
     for row in cleaned:
         if row["slug"] in merged:
             row["duplicato_di"] = merged[row["slug"]]
+        # Hidden, never deleted: old links and favourites still open it.
+        elif reason := concluded_reason(row, today):
+            row["concluso"] = reason
     by_id = {row["slug"]: row for row in cleaned}
     for row in cleaned:
         if "duplicato_di" not in row:
@@ -631,6 +674,7 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         "same_source_duplicates_merged": safe_merged,
         "exact_twins_soft_merged": merge_counts["exact_twins"],
         "same_venue_other_source_soft_merged": merge_counts["same_venue_other_source"],
+        "concluded_hidden": dict(Counter(m["concluso"] for m in cleaned if m.get("concluso"))),
         "input": len(raw_records), "accepted": len(cleaned), "skipped": dict(skipped),
         "id_collisions_kept_separate": collisions,
         "with_coordinates": sum(m["lat"] is not None for m in cleaned),

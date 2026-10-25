@@ -13,7 +13,7 @@ from pathlib import Path
 
 from audit_dataset import audit
 from autopilot import compare_candidates
-from export_static import export, parse_dates, same_market
+from export_static import export, parse_dates, prepare, same_market
 from happings_bulk_catalog_enrichment import enrich
 from merge_catalog import load_existing
 from validate_static import validate
@@ -37,7 +37,11 @@ def build(repo, snapshot, out, *, today):
            preserve_ids={r["slug"] for r in before})
     static_valid=validate(asset_dir/"manifest.json")
     normalized=load_existing(asset_dir/"manifest.json")
-    old_by_id={r["slug"]:r for r in before}
+    # Compare like with like: today's exporter on the unchanged input, so its own
+    # derivations (re-read evidence rules, soft merges, concluded markets) are
+    # not mistaken for changes this enrichment made.
+    baseline,_=prepare(before,today,preserve_ids={r["slug"] for r in before})
+    old_by_id={r["slug"]:r for r in baseline}
     new_by_id={r["slug"]:r for r in normalized}
     if old_by_id.keys()!=new_by_id.keys():
         raise ValueError("Source enrichment introduced or removed market IDs")
@@ -47,7 +51,7 @@ def build(repo, snapshot, out, *, today):
     actual=Counter()
     rolled=0
     allowed={"indirizzo","orario_testo","ricorrenza_testo","riscontri_campi","fonti",
-             "completezza","date","duplicato_di"}
+             "completezza","date","duplicato_di","concluso"}
     unexpected=[]
     for sid,old in old_by_id.items():
         new=new_by_id[sid]
@@ -82,14 +86,14 @@ def build(repo, snapshot, out, *, today):
         elif sid in confirmed:
             # A still-listed proof refresh may touch only the proof itself.
             entry=confirmed[sid]
-            if changed-{"riscontri_campi","fonti","date","duplicato_di"}:
+            if changed-{"riscontri_campi","fonti","date","duplicato_di","concluso"}:
                 unexpected.append({"id":sid,"fields":sorted(changed)})
             elif not any(e.get("url")==entry["source"] and e.get("sha256")==entry["source_html_sha256"]
                          and all(e.get("valori",{}).get(f)==v for f,v in entry["values"].items())
                          for e in new.get("riscontri_campi") or []):
                 raise ValueError("Export lost a still-listed source proof: "+sid)
             actual["still_listed_proofs_refreshed"]+=1
-        elif changed-{"date","duplicato_di"}:
+        elif changed-{"date","duplicato_di","concluso"}:
             unexpected.append({"id":sid,"fields":sorted(changed)})
     if unexpected:
         raise ValueError("Unrelated catalog records changed: "+repr(unexpected[:8]))

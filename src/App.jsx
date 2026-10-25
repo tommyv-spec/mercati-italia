@@ -1516,13 +1516,15 @@ export default function App() {
       const requested = new URLSearchParams(hash).get('mercato');
       // A link shared for a soft-merged copy opens its kept record.
       const id = requested && await canonicalId(requested);
-      const item = id && allMarkets.find(market => market.id === id);
+      // A concluded market is not in the lists but its link still opens it.
+      const item = id && (allMarkets.find(market => market.id === id)
+        || await getMarketDetails(id).catch(() => null));
       if (item) openMarket(item);
     };
     openHash();
     window.addEventListener('hashchange', openHash);
     return () => window.removeEventListener('hashchange', openHash);
-  }, [allMarkets, openMarket, canonicalId]);
+  }, [allMarkets, openMarket, canonicalId, getMarketDetails]);
 
   const closeMarket = () => {
     setSelectedMarket(null);
@@ -2030,6 +2032,11 @@ export default function App() {
             {m.locationReviewRequired && (
               <p role="note" style={{ color: '#857660', fontSize: 12, lineHeight: 1.5, margin: '9px 0' }}>
                 {UNKNOWN_CITY_HELP} Le indicazioni stradali per questa scheda sono disabilitate.
+              </p>
+            )}
+            {m.concluded && (
+              <p role="note" style={{ color: '#857660', fontSize: 12, lineHeight: 1.5, margin: '9px 0' }}>
+                Non più in programma: la fonte non indica nuove date.
               </p>
             )}
             {m.positionQuality !== 'precisa' && (

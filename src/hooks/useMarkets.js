@@ -61,6 +61,8 @@ export function adaptMarket(m, userLat, userLng) {
     dateQuality: m.date_quality || 'prevista',
     positionQuality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',
+    // Hidden from lists; still opens from an old link or favourite.
+    concluded: m.concluso || '',
     sourceUrl: m.url_fonte || '',
     // Full source list arrives only with lazy-loaded regional detail JSON.
     // The nationwide compact index remains unchanged and cheap to fetch.

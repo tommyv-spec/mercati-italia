@@ -284,6 +284,17 @@ class ExportTests(unittest.TestCase):
         rows, _ = prepare([a, b, c], self.today, preserve_ids={"a", "b", "c"})
         self.assertFalse(any(r.get("duplicato_di") for r in rows))
 
+    def test_unscheduled_markets_are_concluded_but_kept(self):
+        past = dict(date=["2025-05-01"], date_quality="prevista")
+        rows = [market("dated", url_fonte="https://example.org/markets/1"),
+                market("weekly", url_fonte="https://example.org/markets/2", ricorrenza_testo="Ogni martedì", **past),
+                market("read", url_fonte="https://example.org/markets/3", fonte_letta_il=self.today.isoformat(), **past),
+                market("stale", url_fonte="https://example.org/markets/4", indirizzo="Via Roma 9", **past)]
+        cleaned, report = prepare(rows, self.today, preserve_ids={r["slug"] for r in rows})
+        self.assertEqual({r["slug"]: r.get("concluso", "") for r in cleaned},
+                         {"dated": "", "weekly": "", "read": "", "stale": "fonte_non_riletta"})
+        self.assertEqual(report["concluded_hidden"], {"fonte_non_riletta": 1})
+
     def test_corciano_derived_stable_id_does_not_merge_with_scraped_source(self):
         from export_static import prepare
         old = market(slug="scraped",regione="Umbria",citta="Corciano",
@@ -424,7 +435,7 @@ class ExportTests(unittest.TestCase):
             manifest = result["manifest"]
             self.assertEqual(manifest["total"], 1)
             self.assertEqual(manifest["layout"], "single")
-            self.assertEqual(manifest["index_schema"], 7)
+            self.assertEqual(manifest["index_schema"], 8)
             self.assertEqual(manifest["index_as_of"], self.today.isoformat())
             self.assertTrue((Path(temp) / "public" / manifest["index"]).is_file())
             index = json.loads((Path(temp) / "public" / manifest["index"]).read_text("utf-8"))

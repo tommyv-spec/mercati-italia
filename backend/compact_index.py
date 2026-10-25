@@ -9,14 +9,16 @@ from datetime import date
 from editorial_calendar_scope import KEY, clean_editorial_evidence
 from source_calendar import clean_source_calendar
 
-INDEX_SCHEMA = 7
+INDEX_SCHEMA = 8
 LEGACY_FIELDS = (
     "slug", "nome", "citta", "regione", "categoria", "tags",
     "lat", "lng", "position_quality", "orario_testo", "date_quality", "date",
 )
 # v7: "duplicato_di" names the kept record of a soft-merged copy ("" if none).
+# v8: "concluso" says why a market is no longer scheduled ("" if it is).
 FIELDS = {4: LEGACY_FIELDS, 5: LEGACY_FIELDS, 6: LEGACY_FIELDS + ("ambito_orari",),
-          7: LEGACY_FIELDS + ("ambito_orari", "duplicato_di")}
+          7: LEGACY_FIELDS + ("ambito_orari", "duplicato_di"),
+          8: LEGACY_FIELDS + ("ambito_orari", "duplicato_di", "concluso")}
 HOURS_SCOPES = {"", "per_data", "storico"}
 
 
@@ -74,5 +76,7 @@ def project_index(markets, *, schema=5, today=None):
             values.append(hours_scope(market, today=today))
         if schema >= 7:
             values.append(market.get("duplicato_di") or "")
+        if schema >= 8:
+            values.append(market.get("concluso") or "")
         result.append(values)
     return result
