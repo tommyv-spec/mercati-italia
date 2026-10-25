@@ -74,6 +74,9 @@ class StreetQueryTests(unittest.TestCase):
             with self.subTest(address=address):
                 self.assertIsNone(pr.street_query(address, "Carpi"))
         self.assertIsNone(pr.street_query("Casaloldo", "Casaloldo"))  # only the town's own name
+        self.assertIsNone(pr.street_query("PIEVE CENTRO", "Pieve Emanuele"))  # town + a generic word
+        self.assertEqual(pr.street_query("Piazza del Comune", "Cremona"), "Piazza del Comune")
+        self.assertEqual(pr.street_query("Parco Novi Sad", "Modena"), "Parco Novi Sad")
 
     def test_a_match_needs_the_same_street_type_and_a_word_beyond_the_town(self):
         hit = lambda name, kind="highway": {"name": name, "class": kind}
@@ -219,6 +222,19 @@ class ResolveTests(unittest.TestCase):
                    sleep=waits.append, clock=lambda: next(ticks) * 0.01)
         self.assertEqual(len(waits), 2)
         self.assertTrue(all(wait >= 1.0 for wait in waits))
+
+    def test_a_cached_hit_todays_rules_refuse_becomes_a_miss(self):
+        cache = pr.empty_cache()
+        cache["entries"]["via corinto|roma|rm"] = {
+            "queried_on": "2026-10-01", "query": "Via Corinto, Roma, Italia", "lat": 41.85, "lng": 12.48,
+            "osm": "way/1", "class": "highway", "type": "residential", "name": "Via Locke, Roma, Italia"}
+        cache["entries"]["pieve centro|pieve emanuele|mi"] = {
+            "queried_on": "2026-10-01", "query": "PIEVE CENTRO, Pieve Emanuele, Italia", "lat": 45.34,
+            "lng": 9.2, "osm": "node/2", "class": "amenity", "type": "school",
+            "name": "Centro Polifunzionale, 7, Via dei Gigli, Pieve Emanuele, Italia"}
+        out, report, _ = run(STACK, cache=cache)
+        self.assertIsNone(out[0]["lat"])
+        self.assertEqual({entry.get("miss") for entry in cache["entries"].values()}, {"via_diversa"})
 
     def test_misses_are_retried_after_ninety_days_only(self):
         _, _, cache = run(STACK, lookup=Lookup({}))

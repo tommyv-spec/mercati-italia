@@ -75,6 +75,12 @@ FILLER = frozenset((
     "ai agli alle all sul sulla san santa santo sant s ss sp "
     "mercato mercatino mercati settimanale comunale fiera"
 ).split())
+# Words that name a kind of place, not which one: never enough on their own for a
+# venue written without a street type ("Pieve centro" is not "Centro Polifunzionale").
+GENERIC_PLACE = frozenset((
+    "centro storico zona quartiere area parcheggio parco chiesa stazione scuola comune municipio "
+    "palazzo giardino giardini pubblico pubblici polifunzionale sociale sportivo civico"
+).split())
 
 
 def fold(value) -> str:
@@ -111,6 +117,8 @@ def street_query(address, citta="") -> str | None:
     else:
         end = SEGMENT_END.search(text)
         text = text[:end.start()] if end and end.start() else text
+        if not distinctive_words(text) - distinctive_words(citta) - GENERIC_PLACE:
+            return None
     text = HOUSE_NUMBER.sub("", text).strip(" ,;.-'")
     town = fold(citta)
     if town:
@@ -285,6 +293,8 @@ def same_street(street, hit, town="") -> bool:
     named = [name for part in (parts[:1] if hit["class"] in ("highway", "place") else parts[:2])
              for name in re.split(r";|\s+-\s+|/", part)]
     kind, words = street_type(street), distinctive_words(street) - distinctive_words(town)
+    if kind is None:
+        words -= GENERIC_PLACE
     return any(words & distinctive_words(name) and kind in (None, street_type(name)) for name in named)
 
 
@@ -418,6 +428,10 @@ def resolve(rows, cache, *, today: date, istat: dict, lookup=None, held_ids=froz
         work.append((index, kind, p, name, text, province, visible(row, today)))
 
     entries = cache["entries"]
+    for name, entry in entries.items():
+        # The cache never keeps a hit today's rules would refuse; it is retried like a miss.
+        if "miss" not in entry and not same_street(name.split("|")[0], entry, name.split("|")[1]):
+            entries[name] = {"queried_on": entry["queried_on"], "miss": "via_diversa", "query": entry["query"]}
     stale = (today - timedelta(days=RETRY_MISS_DAYS)).isoformat()
     priority = {"placeholder": 0, "no_point": 1, "rounded_point": 2}
     queue = {}
@@ -472,10 +486,6 @@ def resolve(rows, cache, *, today: date, istat: dict, lookup=None, held_ids=froz
             reason = "non_ancora_cercato"
         elif "miss" in entry:
             reason = entry["miss"]
-        elif not same_street(name.split("|")[0], entry, name.split("|")[1]):
-            # Cached under an older rule: today's rules decide, and it is retried like a miss.
-            entries[name] = entry = {"queried_on": entry["queried_on"], "miss": "via_diversa", "query": entry["query"]}
-            reason = "via_diversa"
         elif (kind == "rounded_point"
               and point_distance_km(old, (entry["lat"], entry["lng"])) > MAX_DISTANCE_KM):
             # Only the market's own rough point bounds the distance. A placeholder is
