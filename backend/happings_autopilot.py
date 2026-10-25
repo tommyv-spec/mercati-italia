@@ -672,8 +672,13 @@ def verify_changes(before, after, report, *, source_pages=None):
                                   today=date.fromisoformat(report["date"]))
 
 
-def verify_exported(before, revised, exported, report, *, today, source_checkpoint_dir=None):
-    """Check exact IDs and source-proven values in the actual exported details."""
+def verify_exported(before, revised, exported, report, *, today, source_checkpoint_dir=None,
+                    final_rows=None):
+    """Check exact IDs and source-proven values in the actual exported details.
+
+    `final_rows` are the rows handed to the exporter when a later general step
+    (street positions, with its own diff guard) ran after this phase.
+    """
     if not isinstance(today, date) or report.get("date") != today.isoformat():
         raise ValueError("Happings export changed its observation reference date")
     verify_changes(before, revised, report, source_pages=_source_pages_for_guard(source_checkpoint_dir, report))
@@ -688,7 +693,7 @@ def verify_exported(before, revised, exported, report, *, today, source_checkpoi
             or added & protected or exported_publisher_ids != publisher_ids | added
             or protected | added != by_id.keys()):
         raise ValueError("Happings export lost, added or duplicated original market IDs")
-    for row in revised:
+    for row in revised if final_rows is None else final_rows:
         expected, error = normalize(row, today)
         if error or not matches_export(expected, by_id[row["slug"]], by_id):
             raise ValueError("Happings final catalog differs from its proved fields: " + row["slug"])

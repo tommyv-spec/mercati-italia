@@ -159,5 +159,10 @@
       "max_requests": 4,
       "max_seconds": 60
     }
+  },
+  "position_resolver": {
+    "enabled": true,
+    "max_lookups": 300,
+    "max_seconds": 600
   }
 }

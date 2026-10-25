@@ -3,7 +3,8 @@
 
 A scheduled runner invokes THIS script, not a chain of copied inline commands.
 Sources are fetched once per run (official importers only); source content
-is untrusted evidence. No LLM inference, bulk geocoding or runtime DB writes.
+is untrusted evidence. No LLM inference or runtime DB writes; street lookups
+happen only in the bounded, cached position step (position_resolver.py).
 
 Phase checkpoints: baseline, sources, merge, forecast, export, quality.
 After each phase an atomic JSON checkpoint is saved. Reruns can resume with
@@ -76,6 +77,7 @@ import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
 import atomic_write
+import position_resolver
 from happings_autopilot import (
     run as enrich_happings_records, validate_policy as validate_happings_policy,
     verify_exported as verify_happings_exported,
@@ -111,7 +113,7 @@ from municipality_reconciliation import (
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
           "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "publisher_pages", "editorial_sources", "editorial_discovery", "forecast",
-          "reviewed_publishers", "roma_geo_hold", "roma_d881", "happings_enrichment", "export", "quality")
+          "reviewed_publishers", "roma_geo_hold", "roma_d881", "happings_enrichment", "positions", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
     "firenze": (source_firenze.download, source_firenze.convert),
@@ -123,6 +125,12 @@ SOURCE_FUNCTIONS = {
     "bologna": (source_bologna.download, source_bologna.convert),
     # Existing reviewed municipal CSV adapter; source policy controls reads.
     "corciano": (source_corciano.download, source_corciano.convert),
+}
+# Stable market-ID prefix of each official publisher (outage carry-forward rules).
+OFFICIAL_ID_PREFIXES = {
+    "milano": "mi-mss-", "firenze": "fi-feelflorence-",
+    "lombardia": "lo-mercap-", "corciano": "pg-corciano-",
+    "bologna": "bo-open-",
 }
 
 
@@ -403,11 +411,7 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
     # official venue identities and stable source facts when a publisher fails.
     # This gate is independent of the overall loss budget: even ONE missing
     # market from the unavailable publisher must fail release.
-    source_prefixes = {
-        "milano":"mi-mss-", "firenze":"fi-feelflorence-",
-        "lombardia":"lo-mercap-", "corciano":"pg-corciano-",
-        "bologna":"bo-open-",
-    }
+    source_prefixes = OFFICIAL_ID_PREFIXES
     stable_outage_fields = (
         "nome","citta","provincia","regione","indirizzo",
         "lat","lng","position_quality","status","verificato_il",
@@ -675,6 +679,18 @@ def run(args):
                 or not lifecycle_enabled
             ))):
         raise ValueError("Unapproved generically admitted municipal source policy")
+
+    # Street-level positions from OpenStreetMap Nominatim: owner-approved 2026-10-25.
+    # Bounded per run (usage policy: <=1 request/s, cached); offline runs use the cache only.
+    position_policy = policy.get("position_resolver", {"enabled": False})
+    positions_enabled = isinstance(position_policy, dict) and position_policy.get("enabled") is True
+    if (not isinstance(position_policy, dict)
+            or set(position_policy) - {"enabled", "max_lookups", "max_seconds"}
+            or type(position_policy.get("enabled", False)) is not bool
+            or (positions_enabled and not (
+                type(position_policy.get("max_lookups")) is int and 0 <= position_policy["max_lookups"] <= 300
+                and type(position_policy.get("max_seconds")) is int and 0 <= position_policy["max_seconds"] <= 900))):
+        raise ValueError("Unbounded or unreviewed street-position lookup policy")
 
     unknown_budget = float(policy["gates"]["max_unknown_source_share_increase"])
     if not 0 <= unknown_budget <= 0.05:
@@ -1337,12 +1353,44 @@ def run(args):
         "source_evidence_reused": happings_report["source_evidence_reused"],
     })
 
+    # One general rule for every market, last before export so every point matches
+    # the final address: shared placeholder points are withdrawn, and markets with
+    # a real street get a street-level OpenStreetMap point (bounded, cached, fail-closed).
+    # New IDs and official publishers that are down today stay exactly as they are.
+    resolved = projected
+    position_cache = None
+    position_held = frozenset(
+        ({row["slug"] for row in projected} - {row["slug"] for row in old_rows})
+        | {row["slug"] for row in projected
+           for sid, entry in source_status.items()
+           if entry.get("status") == "unavailable" and sid in OFFICIAL_ID_PREFIXES
+           and row["slug"].startswith(OFFICIAL_ID_PREFIXES[sid])})
+    position_report = {"schema": 1, "enabled": positions_enabled}
+    istat_register = read_json(Path(__file__).resolve().parent / "data" / "istat-comuni-2026.json")
+    if positions_enabled:
+        resumed_cache = out / "geocode-cache.json"
+        position_cache = position_resolver.load_cache(
+            resumed_cache if args.resume and resumed_cache.is_file()
+            else Path(__file__).resolve().parent / "data" / "geocode-cache.json")
+        resolved, position_report = position_resolver.resolve(
+            projected, position_cache, today=args.today, istat=istat_register,
+            lookup=None if args.offline else position_resolver.nominatim, held_ids=position_held,
+            max_lookups=position_policy["max_lookups"], max_seconds=position_policy["max_seconds"])
+        position_report["enabled"] = True
+        position_report["held_ids"] = sorted(position_held)
+        position_report["diff_guard"] = position_resolver.verify_diff(projected, resolved, held_ids=position_held)
+        position_resolver.save_cache(out / "geocode-cache.json", position_cache)
+    save_json(out / "position-resolver.json", position_report)
+    checkpoint(out, "positions", {key: position_report.get(key) for key in (
+        "enabled", "status", "placeholder_points", "placeholders_withdrawn", "lookups", "cache_hits",
+        "accepted", "rejected", "excluded", "errors")})
+
     # Work on a temp copy. Rejected candidates never touch public/data/v1.
     dest = out / "candidate" / "public" / "data" / "v1"
     if dest.exists():
         shutil.rmtree(dest)
     shutil.copytree(manifest_path.parent, dest)
-    exported = export(projected, dest, today=args.today,
+    exported = export(resolved, dest, today=args.today,
                       min_count=int(policy["gates"]["min_total_records"]),
                       max_drop_ratio=float(policy["gates"]["max_record_loss_fraction"]),
                       preserve_ids=happings_preserve_ids | page_preserve_ids | editorial_preserve_ids |
@@ -1396,10 +1444,15 @@ def run(args):
         merged, municipality_rows, municipality_report, new_rows)
     save_json(out / "municipality-static-guard.json", municipality_static_guard)
     happings_static_guard = verify_happings_exported(
-        before_happings, projected, new_rows, happings_report, today=args.today,
+        before_happings, projected, new_rows, happings_report, today=args.today, final_rows=resolved,
         source_checkpoint_dir=out
     )
     save_json(out / "happings-enrichment-static-guard.json", happings_static_guard)
+    if positions_enabled:
+        # Every published OSM point must be reproducible from the saved cache for the
+        # market's current address, and no visible market may still show a placeholder.
+        save_json(out / "position-resolver-static-guard.json", position_resolver.verify_static(
+            new_rows, position_cache, today=args.today, istat=istat_register, held_ids=position_held))
     editorial_static_guard = verify_editorial_export(
         new_rows, existing_source_report, today=args.today, state_dir=dest)
     roma_d881_static_guard = verify_roma_fields(new_rows, existing_source_report["roma"], today=args.today)

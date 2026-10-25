@@ -34,6 +34,7 @@ from editorial_calendar_scope import (
 )
 from urllib.parse import urlsplit
 from compact_index import INDEX_SCHEMA, LEGACY_FIELDS, project_index
+from position_resolver import OWN_REASONS as RESOLVER_HOLDS, clean_position_source
 
 CANONICAL_REGIONS = [
     "Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna",
@@ -51,6 +52,7 @@ VALID_DATE_QUALITY = {"confermata", "riportata", "prevista", "sconosciuta"}
 MAX_SINGLE_BYTES = 750_000
 MAX_MARKET_BYTES = 24_000_000
 MAX_FUTURE_DAYS = 550
+COORDINATE_HOLDS = frozenset({"coordinate_sorgente_incompatibili_con_localita_documentata"}) | RESOLVER_HOLDS
 ITALY_BOUNDS = (35.0, 48.0, 6.0, 19.6)
 
 
@@ -290,7 +292,8 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["ricorrenza_originale"] = safe_string(raw.get("ricorrenza_originale"), 180)
     if raw.get("navigazione_sospesa_motivo") == "indirizzo_e_punto_sorgente_non_riconciliati":
         result["navigazione_sospesa_motivo"] = raw["navigazione_sospesa_motivo"]
-    if raw.get("coordinate_sospese_motivo") == "coordinate_sorgente_incompatibili_con_localita_documentata":
+    # Every withdrawn point stays auditable, whichever general step withdrew it.
+    if raw.get("coordinate_sospese_motivo") in COORDINATE_HOLDS:
         original_point = raw.get("coordinate_originali")
         if (isinstance(original_point, dict) and
                 isinstance(original_point.get("lat"), (int,float)) and
@@ -300,6 +303,9 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
                 "lat":float(original_point["lat"]),
                 "lng":float(original_point["lng"]),
             }
+    position_source = clean_position_source(raw.get("posizione_fonte"), result)
+    if position_source:  # street-level OpenStreetMap point (ODbL): attribution travels with it
+        result["posizione_fonte"] = position_source
     if raw.get("calendario_sospeso_motivo") == "testo_sorgente_localita_concatenate":
         result["calendario_sospeso_motivo"] = "testo_sorgente_localita_concatenate"
         result["ricorrenza_originale"] = safe_string(raw.get("ricorrenza_originale"), 180)
@@ -455,6 +461,10 @@ def combine_safe_source_duplicates(records: list[dict], *, preserve_ids=None) ->
         old = unique[found]
         better = item if data_value_score(item) > data_value_score(old) else old
         merged = {**old, **better}
+        # The street-position step's fields describe the kept point: never mix two records'.
+        for field in ("posizione_fonte", "coordinate_sospese_motivo", "coordinate_originali"):
+            if field not in better and old.get("coordinate_sospese_motivo") not in COORDINATE_HOLDS - RESOLVER_HOLDS:
+                merged.pop(field, None)
         merged["slug"] = old["slug"]  # stable bookmark identifier
         merged["date"] = sorted(set(old.get("date", []) + item.get("date", [])))
         merged["tags"] = sorted(set(old.get("tags", []) + item.get("tags", [])))

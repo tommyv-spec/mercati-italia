@@ -889,6 +889,10 @@ jobs:
           PY
       - name: Verify hashes, index and conservative source integrity
         run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Independently re-check OpenStreetMap street positions and the lookup bound
+        run: |
+          python backend/position_resolver.py --manifest public/data/v1/manifest.json \
+            --report autopilot-output/position-resolver.json --cache autopilot-output/geocode-cache.json
       - name: Block release if reviewed city safety is missing in final static JSON
         run: |
           python backend/reviewed_city_static_guard.py \
@@ -1345,6 +1349,12 @@ jobs:
               shutil.copytree(source, target)
           print('candidate_changed=',report['has_changes'])
           PY
+          # Street lookups are kept even when the catalog is unchanged, so a miss is
+          # not asked again for 90 days. The cache is validated before it is saved.
+          if [[ -f autopilot-output/geocode-cache.json ]]; then
+            python -c "import sys; sys.path.insert(0, 'backend'); import position_resolver as p; p.load_cache('autopilot-output/geocode-cache.json')"
+            cp autopilot-output/geocode-cache.json backend/data/geocode-cache.json
+          fi
           # Save a compact, long-term operational memory even when the
           # catalog itself is unchanged. This keeps trends and unattended runs
           # visible and prevents silent inactivity of the public repo.
@@ -1373,7 +1383,7 @@ jobs:
             --out reports/automation
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A public/data/v1 reports/automation
+          git add -A public/data/v1 reports/automation backend/data/geocode-cache.json
           if ! git diff --cached --quiet; then
             git commit -m "autopilot: refresh source-bound predicted dates (DEV only)"
             # A non-fast-forward push safely rejects any concurrent change.

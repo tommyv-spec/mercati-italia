@@ -62,6 +62,10 @@ def validate(manifest_path: Path) -> dict:
     if any(m.get("concluso") not in (None, "edizione_conclusa", "fonte_non_riletta")
            or m.get("concluso") and m.get("duplicato_di") for m in all_markets):
         raise ValueError("Unknown concluded-market reason, or a concluded soft-merged copy")
+    from position_resolver import clean_position_source
+    if any(m.get("posizione_fonte") is not None
+           and clean_position_source(m["posizione_fonte"], m) != m["posizione_fonte"] for m in all_markets):
+        raise ValueError("Street-level position provenance detached from its point")
 
     # Index entries must be the exact, non-fabricated lightweight projections.
     index_rel = manifest.get("index")
