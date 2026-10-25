@@ -1,0 +1,888 @@
+[
+ {
+  "date": "2026-10-25",
+  "schede": 14009,
+  "visibili": 11179,
+  "copie_unite": 2830,
+  "percentuali": {
+   "orari_esatti": 30.9,
+   "solo_fascia": 52.0,
+   "via_reale": 66.8,
+   "solo_centro": 23.5,
+   "date_30_giorni": 81.7,
+   "posizione": 95.9
+  },
+  "fonti": {
+   "happings.com": {
+    "schede": 7001,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 6.9,
+    "solo_fascia": 82.9,
+    "via_reale": 55.8,
+    "solo_centro": 36.8,
+    "date_30_giorni": 97.7,
+    "posizione": 97.3
+   },
+   "eventiesagre.it": {
+    "schede": 2197,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 83.3,
+    "solo_fascia": 0.0,
+    "via_reale": 77.9,
+    "solo_centro": 2.0,
+    "date_30_giorni": 54.8,
+    "posizione": 100.0
+   },
+   "Regione Lombardia – MERCap (CC0 1.0 dichiarata)": {
+    "schede": 1128,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 69.7,
+    "solo_fascia": 0.0,
+    "via_reale": 99.7,
+    "solo_centro": 0.2,
+    "date_30_giorni": 65.2,
+    "posizione": 80.9
+   },
+   "cosedicasa.com": {
+    "schede": 432,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 21.1,
+    "solo_fascia": 0.0,
+    "via_reale": 98.6,
+    "solo_centro": 1.4,
+    "date_30_giorni": 54.6,
+    "posizione": 98.4
+   },
+   "Comune di Milano - Open Data (CC BY 4.0)": {
+    "schede": 85,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 88.2,
+    "solo_centro": 0.0,
+    "date_30_giorni": 89.4,
+    "posizione": 100.0
+   },
+   "dati.comune.roma.it": {
+    "schede": 70,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 97.1,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 97.1
+   },
+   "Comune di Bologna — dati ufficiali; apertura non confermata": {
+    "schede": 39,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 0.0
+   },
+   "cosafareafirenze.it": {
+    "schede": 22,
+    "letta_il": "",
+    "orari_esatti": 72.7,
+    "solo_fascia": 9.1,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 9.1,
+    "posizione": 100.0
+   },
+   "trentino.com": {
+    "schede": 9,
+    "letta_il": "",
+    "orari_esatti": 88.9,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 88.9,
+    "posizione": 100.0
+   },
+   "emiliaromagnaturismo.it": {
+    "schede": 8,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 50.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 12.5,
+    "posizione": 100.0
+   },
+   "eventi.bergamo.it": {
+    "schede": 8,
+    "letta_il": "",
+    "orari_esatti": 87.5,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "umbriaeventi.com": {
+    "schede": 8,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "solosagre.it": {
+    "schede": 7,
+    "letta_il": "",
+    "orari_esatti": 42.9,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 100.0,
+    "posizione": 100.0
+   },
+   "citynews_romatoday.it": {
+    "schede": 7,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "genovatoday.it": {
+    "schede": 7,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 28.6,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "algherohospitality.it": {
+    "schede": 7,
+    "letta_il": "",
+    "orari_esatti": 85.7,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 42.9,
+    "posizione": 100.0
+   },
+   "romatoday.it": {
+    "schede": 6,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 33.3,
+    "solo_centro": 0.0,
+    "date_30_giorni": 16.7,
+    "posizione": 100.0
+   },
+   "sagretorino.it": {
+    "schede": 6,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata)": {
+    "schede": 5,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 80.0,
+    "posizione": 0.0
+   },
+   "milanopocket.it": {
+    "schede": 5,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 20.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "sagreumbre.it": {
+    "schede": 5,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "modenatoday.it": {
+    "schede": 4,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 25.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "sagrefvg.it": {
+    "schede": 4,
+    "letta_il": "",
+    "orari_esatti": 75.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "firenzetoday.it": {
+    "schede": 4,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "Comune di Firenze - FeelFlorence (CC BY 4.0)": {
+    "schede": 4,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "bolognatoday.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 33.3,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_riminitoday.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 66.7,
+    "solo_fascia": 0.0,
+    "via_reale": 33.3,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "ravennatoday.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 33.3,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "novaratoday.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 66.7,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "enjoysicilia.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "palermotoday.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 33.3,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "sagretoscane.com": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 33.3,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 100.0,
+    "posizione": 100.0
+   },
+   "suedtirol.info": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)": {
+    "schede": 3,
+    "letta_il": "2026-10-25",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 100.0,
+    "posizione": 100.0
+   },
+   "vicenzatoday.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "veneziatoday.it": {
+    "schede": 3,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 33.3,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "ferrarainfo.com": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 100.0,
+    "posizione": 100.0
+   },
+   "assosagre.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "sagreinromagna.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_frosinonetoday.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "lazioinfesta.com": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_genovatoday.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 50.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "cittadellaspezia.com": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "bresciatoday.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 50.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "varesenews.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "brindisireport.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "pugliainfesta.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "paradisola.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "eventiintoscana.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_firenzetoday.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "terredipisa.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_veneziatoday.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "trevisotoday.it": {
+    "schede": 2,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 100.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 0.0
+   },
+   "chietitoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "casertanews.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "salernotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "napolidavivere.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "ferraratoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "cesenatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_parmatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_ferraratoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "forlitoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "riminitoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 100.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 100.0,
+    "posizione": 100.0
+   },
+   "wwwservizi.regione.emilia-romagna.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_modenatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_forlitoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_viterbotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 100.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "frosinonetoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "romapop.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "viterbotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_bresciatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "lombardiainfesta.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "leccotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "monzatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "milanotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_monzatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_torinotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "torinotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "baritoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_baritoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 100.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "eventiinsardegna.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 100.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_cagliaritoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_cataniatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "arezzonotizie.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "padovatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_trevisotoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 100.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   },
+   "citynews_vicenzatoday.it": {
+    "schede": 1,
+    "letta_il": "",
+    "orari_esatti": 0.0,
+    "solo_fascia": 0.0,
+    "via_reale": 0.0,
+    "solo_centro": 0.0,
+    "date_30_giorni": 0.0,
+    "posizione": 100.0
+   }
+  }
+ }
+]
