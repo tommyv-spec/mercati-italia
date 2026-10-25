@@ -13,10 +13,10 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 ## Campi ancora incerti o assenti
 
 - coordinates: **13920**
-- date: **2208**
+- date: **2013**
 - indirizzo: **4850**
 - individual_edition_confirmation: **14009**
-- orario_testo: **1919**
+- orario_testo: **1908**
 - ricorrenza_testo: **972**
 
 ## Origini ordinate per numero di schede
@@ -26,7 +26,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | happings.com | 9831 | 718 | 4241 | happings-weekly-or-detail |
 | eventiesagre.it | 2197 | 367 | 485 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 3 | lombardia-mercap |
-| cosedicasa.com | 432 | 341 | 6 | cosedicasa-editorial-calendar |
+| cosedicasa.com | 432 | 330 | 6 | cosedicasa-editorial-calendar |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | source-family-not-resolved-by-this-worklist |

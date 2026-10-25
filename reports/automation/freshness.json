@@ -54,23 +54,23 @@
     "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
     "metrics": {
       "indirizzo:mancante": 1182,
-      "indirizzo:riscontrato_data_fonte_sconosciuta": 2475,
-      "indirizzo:riscontrato_fonte_recente": 1465,
-      "indirizzo:riscontro_da_aggiornare": 101,
-      "indirizzo:senza_riscontro_documentato": 8786,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 2604,
+      "indirizzo:riscontrato_fonte_recente": 1476,
+      "indirizzo:riscontro_da_aggiornare": 104,
+      "indirizzo:senza_riscontro_documentato": 8643,
       "markets": 14009,
       "markets_with_all_three_fields_source_supported": 1025,
-      "markets_with_recent_field_evidence": 1892,
-      "orario_testo:mancante": 1919,
-      "orario_testo:riscontrato_data_fonte_sconosciuta": 6944,
-      "orario_testo:riscontrato_fonte_recente": 1470,
-      "orario_testo:riscontro_da_aggiornare": 268,
-      "orario_testo:senza_riscontro_documentato": 3408,
+      "markets_with_recent_field_evidence": 1903,
+      "orario_testo:mancante": 1908,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 6831,
+      "orario_testo:riscontrato_fonte_recente": 1471,
+      "orario_testo:riscontro_da_aggiornare": 277,
+      "orario_testo:senza_riscontro_documentato": 3522,
       "ricorrenza_testo:mancante": 972,
-      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 969,
+      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 1083,
       "ricorrenza_testo:riscontrato_fonte_recente": 1650,
       "ricorrenza_testo:riscontro_da_aggiornare": 20,
-      "ricorrenza_testo:senza_riscontro_documentato": 10398
+      "ricorrenza_testo:senza_riscontro_documentato": 10284
     },
     "publishers": [
       {
@@ -351,16 +351,16 @@
         "ricorrenza_testo:senza_riscontro_documentato": 3
       },
       {
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 4,
-        "indirizzo:riscontrato_fonte_recente": 77,
-        "indirizzo:riscontro_da_aggiornare": 58,
-        "indirizzo:senza_riscontro_documentato": 293,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 5,
+        "indirizzo:riscontrato_fonte_recente": 88,
+        "indirizzo:riscontro_da_aggiornare": 61,
+        "indirizzo:senza_riscontro_documentato": 278,
         "markets": 432,
-        "markets_with_recent_field_evidence": 77,
-        "orario_testo:mancante": 341,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 3,
-        "orario_testo:riscontrato_fonte_recente": 20,
-        "orario_testo:riscontro_da_aggiornare": 67,
+        "markets_with_recent_field_evidence": 88,
+        "orario_testo:mancante": 330,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 4,
+        "orario_testo:riscontrato_fonte_recente": 21,
+        "orario_testo:riscontro_da_aggiornare": 76,
         "orario_testo:senza_riscontro_documentato": 1,
         "publisher": "cosedicasa.com",
         "ricorrenza_testo:senza_riscontro_documentato": 432
@@ -473,21 +473,21 @@
       },
       {
         "indirizzo:mancante": 625,
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 2402,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 2530,
         "indirizzo:riscontrato_fonte_recente": 248,
-        "indirizzo:senza_riscontro_documentato": 6556,
+        "indirizzo:senza_riscontro_documentato": 6428,
         "markets": 9831,
         "markets_with_all_three_fields_source_supported": 239,
         "markets_with_recent_field_evidence": 671,
         "orario_testo:mancante": 718,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 6941,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 6827,
         "orario_testo:riscontrato_fonte_recente": 661,
-        "orario_testo:senza_riscontro_documentato": 1511,
+        "orario_testo:senza_riscontro_documentato": 1625,
         "publisher": "happings.com",
         "ricorrenza_testo:mancante": 38,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 900,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 1014,
         "ricorrenza_testo:riscontrato_fonte_recente": 522,
-        "ricorrenza_testo:senza_riscontro_documentato": 8371
+        "ricorrenza_testo:senza_riscontro_documentato": 8257
       },
       {
         "indirizzo:mancante": 2,
@@ -766,7 +766,7 @@
   },
   "metrics": {
     "dataset_updated_not_specific_market": 1251,
-    "forecast_from_stale_or_unknown_source": 10814,
+    "forecast_from_stale_or_unknown_source": 10997,
     "import_within_30d": 184,
     "legacy_update_timestamp_without_source_date": 12561,
     "recent_dataset_only_update": 1204,
@@ -778,8 +778,8 @@
     "source_date_within_30d": 1205,
     "source_read_within_30d": 1366,
     "total": 14009,
-    "with_any_future_date": 11801,
-    "with_forecast_dates": 11633,
+    "with_any_future_date": 11996,
+    "with_forecast_dates": 11816,
     "with_import_timestamp": 184,
     "with_source_read_timestamp": 1366,
     "without_documented_verification": 14009,
@@ -900,7 +900,7 @@
           "unique_source_row_ids": 6
         },
         "read_on": "2026-10-25",
-        "sha256": "5a0eefa233c1829e89b26e440dcbe56b826b652aee9f9ae786f86a3d38dbbdc6",
+        "sha256": "73d8fe1df13e1bbf296c155a2774949bb51c48e5a649a5e986be122b234aaf38",
         "source_id": "bassa-romagna-farmers",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
@@ -928,7 +928,7 @@
           "unique_source_row_ids": 20
         },
         "read_on": "2026-10-25",
-        "sha256": "8b765c4b616d55919aa135975c5fbafc999732b90301b1da3e948d4f3e47f546",
+        "sha256": "c8c183b2c453c7aa6147e56f26e30b8b3f9c91cc6ed3a88c743019e1f6359a7c",
         "source_id": "bassa-romagna-weekly",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
@@ -953,11 +953,10 @@
         "unsupported": 495
       },
       "market_read_statuses": {
-        "layout_held": 1,
         "not_read": 493,
-        "not_selected": 11322,
-        "retrieved": 2190,
-        "unavailable": 3
+        "not_selected": 11073,
+        "retrieved": 1867,
+        "unavailable": 576
       },
       "markets": 14009,
       "schema": 1,
@@ -965,9 +964,9 @@
         "counts_describe": "comparison_eligibility",
         "eligible_markets": 632,
         "market_read_statuses": {
-          "not_selected": 575,
-          "retrieved": 49,
-          "unavailable": 8
+          "not_selected": 605,
+          "retrieved": 20,
+          "unavailable": 7
         },
         "mode": "existing_address_exact_match",
         "publisher": "happings.com",
@@ -1456,12 +1455,12 @@
     {
       "domain": "www.cosedicasa.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 241,
+        "forecast_from_stale_or_unknown_source": 229,
         "legacy_update_timestamp_without_source_date": 432,
         "source_date_unknown": 432,
         "total": 432,
         "with_any_future_date": 244,
-        "with_forecast_dates": 241,
+        "with_forecast_dates": 229,
         "without_documented_verification": 432,
         "without_import_timestamp": 432,
         "without_source_read_timestamp": 432
@@ -1522,12 +1521,12 @@
     {
       "domain": "www.eventiesagre.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 1209,
+        "forecast_from_stale_or_unknown_source": 1194,
         "legacy_update_timestamp_without_source_date": 2197,
         "source_date_unknown": 2197,
         "total": 2197,
-        "with_any_future_date": 1209,
-        "with_forecast_dates": 1209,
+        "with_any_future_date": 1194,
+        "with_forecast_dates": 1194,
         "without_documented_verification": 2197,
         "without_import_timestamp": 2197,
         "without_source_read_timestamp": 2197
@@ -1639,7 +1638,7 @@
     {
       "domain": "www.happings.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 9334,
+        "forecast_from_stale_or_unknown_source": 9544,
         "import_within_30d": 184,
         "legacy_update_timestamp_without_source_date": 9647,
         "source_date_from_declared_source_content": 1,
@@ -1647,8 +1646,8 @@
         "source_date_within_30d": 1,
         "source_read_within_30d": 184,
         "total": 9831,
-        "with_any_future_date": 9499,
-        "with_forecast_dates": 9334,
+        "with_any_future_date": 9709,
+        "with_forecast_dates": 9544,
         "with_import_timestamp": 184,
         "with_source_read_timestamp": 184,
         "without_documented_verification": 9831,

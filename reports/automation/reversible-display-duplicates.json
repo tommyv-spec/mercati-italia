@@ -9,9 +9,9 @@
     "generic_weekly_with_specific_venue": 5741,
     "malformed_source_city_labels_guarded_in_ui": 2,
     "venue_groups_examined": 3600,
-    "highly_supported_same_source_visit_groups": 878,
-    "suppressed_repeat_buttons_only": 1053,
-    "original_records_in_reversible_groups": 1931,
+    "highly_supported_same_source_visit_groups": 892,
+    "suppressed_repeat_buttons_only": 1072,
+    "original_records_in_reversible_groups": 1964,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -20,12 +20,12 @@
     {
       "region": "Emilia-Romagna",
       "groups": 3,
-      "extra_display_entries": 3
+      "extra_display_entries": 4
     },
     {
       "region": "Liguria",
-      "groups": 24,
-      "extra_display_entries": 29
+      "groups": 27,
+      "extra_display_entries": 32
     },
     {
       "region": "Lombardia",
@@ -34,8 +34,8 @@
     },
     {
       "region": "Piemonte",
-      "groups": 94,
-      "extra_display_entries": 148
+      "groups": 100,
+      "extra_display_entries": 155
     },
     {
       "region": "Sicilia",
@@ -44,8 +44,8 @@
     },
     {
       "region": "Toscana",
-      "groups": 41,
-      "extra_display_entries": 58
+      "groups": 43,
+      "extra_display_entries": 62
     },
     {
       "region": "Trentino-Alto Adige",
@@ -54,8 +54,8 @@
     },
     {
       "region": "Veneto",
-      "groups": 87,
-      "extra_display_entries": 126
+      "groups": 90,
+      "extra_display_entries": 130
     }
   ],
   "examples": [
@@ -91,6 +91,7 @@
       "visible_id": "mercato-settimanale-di-soliera-soliera-martedi",
       "original_ids": [
         "mercato-settimanale-a-soliera-soliera-martedi",
+        "mercato-settimanale-di-soliera-soliera",
         "mercato-settimanale-di-soliera-soliera-martedi"
       ],
       "date": "2026-10-27"
@@ -219,6 +220,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Isolabona",
+      "address": "Via Roma piazza S. Lucia",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-a-isolabona-isolabona-domenica",
+      "original_ids": [
+        "mercato-settimanale-a-isolabona-isolabona-domenica",
+        "mercato-settimanale-di-isolabona-isolabona"
+      ],
+      "date": "2026-10-25"
+    },
+    {
+      "region": "Liguria",
       "city": "Mallare",
       "address": "Piazza Odorico del Carretto",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
@@ -264,6 +277,18 @@
         "mercato-settimanale-di-oregina-oregina"
       ],
       "date": "2026-10-30"
+    },
+    {
+      "region": "Liguria",
+      "city": "Perinaldo",
+      "address": "Piazza Santa Croce",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-a-perinaldo-perinaldo-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-a-perinaldo-perinaldo-mercoledi",
+        "mercato-settimanale-di-perinaldo-perinaldo"
+      ],
+      "date": "2026-10-28"
     },
     {
       "region": "Liguria",
@@ -338,6 +363,18 @@
         "mercato-settimanale-di-uscio-uscio-mercoledi"
       ],
       "date": "2026-10-28"
+    },
+    {
+      "region": "Liguria",
+      "city": "Vallebona",
+      "address": "Piazza Libertà",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-a-vallebona-vallebona-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-vallebona-vallebona-martedi",
+        "mercato-settimanale-di-vallebona-vallebona"
+      ],
+      "date": "2026-10-27"
     },
     {
       "region": "Liguria",
@@ -508,42 +545,6 @@
         "mercato-settimanale-di-albavilla-albavilla"
       ],
       "date": "2026-10-27"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albese con Cassano",
-      "address": "Via Don L. Sturzo",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-albese-con-cassano.html",
-      "visible_id": "mercato-settimanale-di-albese-con-cassano-albese-con-cassano-venerdi",
-      "original_ids": [
-        "mercato-settimanale-di-albese-con-cassano-albese-con-cassano",
-        "mercato-settimanale-di-albese-con-cassano-albese-con-cassano-venerdi"
-      ],
-      "date": "2026-10-30"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albiate",
-      "address": "PIAZZA ACHILLE GRANDI",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
-      "visible_id": "mercato-settimanale-a-albiate-albiate-sabato",
-      "original_ids": [
-        "mercato-settimanale-a-albiate-albiate-sabato",
-        "mercato-settimanale-di-albiate-albiate"
-      ],
-      "date": "2026-10-31"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albiolo",
-      "address": "Via Indipendenza",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
-      "visible_id": "mercato-settimanale-di-albiolo-albiolo-giovedi",
-      "original_ids": [
-        "mercato-settimanale-a-albiolo-albiolo-giovedi",
-        "mercato-settimanale-di-albiolo-albiolo-giovedi"
-      ],
-      "date": "2026-10-29"
     }
   ],
   "suspicious_city_examples": [

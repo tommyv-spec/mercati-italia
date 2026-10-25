@@ -335,25 +335,31 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/10/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "archive",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-25",
+      "last_sha256": "c1e7f8582205d26a0f049909bdab6be045420bd010b2db02ccb6661ec63a85d6",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:24:59.439845+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "html_link",
           "observed_at": "2026-10-25",
           "sha256": "42cff92fa747c35d124dbbeb279fd70076c06288b22abfe316b68bf17d1af34c",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/11/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c1e7f8582205d26a0f049909bdab6be045420bd010b2db02ccb6661ec63a85d6",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/10/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/11/": {
       "attempts": 1,
@@ -378,6 +384,12 @@
           "observed_at": "2026-10-25",
           "sha256": "42cff92fa747c35d124dbbeb279fd70076c06288b22abfe316b68bf17d1af34c",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/11/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c1e7f8582205d26a0f049909bdab6be045420bd010b2db02ccb6661ec63a85d6",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/10/"
         }
       ],
       "status": "retrieved"
@@ -972,11 +984,77 @@
           "observed_at": "2026-10-25",
           "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb14b56a0f0d8bc70dd276a57bc6027cdfd5e04689d2fdbe433975ba04ab7a6f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/5/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/5/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "eb14b56a0f0d8bc70dd276a57bc6027cdfd5e04689d2fdbe433975ba04ab7a6f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:09.820412+00:00",
+      "next_due": "2026-11-01",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb14b56a0f0d8bc70dd276a57bc6027cdfd5e04689d2fdbe433975ba04ab7a6f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/5/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b5d2e25ca0cf820ca4badc93682d0294d8286e79332b91c3d821aa3b21d8f954",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/6/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/6/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "b5d2e25ca0cf820ca4badc93682d0294d8286e79332b91c3d821aa3b21d8f954",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:15.869436+00:00",
+      "next_due": "2026-11-01",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb14b56a0f0d8bc70dd276a57bc6027cdfd5e04689d2fdbe433975ba04ab7a6f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/5/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b5d2e25ca0cf820ca4badc93682d0294d8286e79332b91c3d821aa3b21d8f954",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/6/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/7/": {
       "attempts": 0,
       "discovered_at": "2026-10-25",
       "failures": 0,
@@ -991,8 +1069,29 @@
         {
           "kind": "html_link",
           "observed_at": "2026-10-25",
-          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
-          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
+          "sha256": "b5d2e25ca0cf820ca4badc93682d0294d8286e79332b91c3d821aa3b21d8f954",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/6/"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/9/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c1e7f8582205d26a0f049909bdab6be045420bd010b2db02ccb6661ec63a85d6",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/10/"
         }
       ],
       "status": "unread"
@@ -1428,6 +1527,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c53412be563ce87d835d38bdbdef486f862d7e184fc40be146bdde5da5c12e1e",
           "url": "https://www.happings.com/it/happing/25-internationales-brassfestival-meran-o-german-brass/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bc70b18f9fbd442ff7f19097e9a17ba1683694f398a48a801751c2ad51424e69",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-tirolo/"
         }
       ],
       "status": "retrieved"
@@ -1455,6 +1560,12 @@
           "observed_at": "2026-10-20",
           "sha256": "af36df9b1a6c461d12f1d83a66e08fc5ee7d64c1dd7df99db9ef4bdb0a8090cd",
           "url": "https://www.happings.com/it/happing/29-settimane-della-castagna-mostra-autunnale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3deae0febc59752b5e7ae086d5f2dd7f6c1def48dc039d4c0eee132566d7566a",
+          "url": "https://www.happings.com/it/happing/cinema-spaziergang-nach-syrakus/"
         }
       ],
       "status": "retrieved"
@@ -1965,6 +2076,12 @@
           "observed_at": "2026-10-21",
           "sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
           "url": "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "97659921ca9fc471fb00bb04442c6ba31bb9dd476fb26c281047d7b838aabaa7",
+          "url": "https://www.happings.com/it/happing/chef-walter-ferretto-ristorante-il-cascinalenuovo/"
         }
       ],
       "status": "retrieved"
@@ -2199,6 +2316,12 @@
           "observed_at": "2026-10-21",
           "sha256": "484b662c0f4d5519d94ecdb578cac5c79afa5191f730e0e0fd8488e0e0e44267",
           "url": "https://www.happings.com/it/happing/a-tu-per-tu-con-lo-chef-davide-palluda/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5da349a94a0250dd218c0c94d7d8cbfb75c4693a6a8488b9616bbb3e332f49a1",
+          "url": "https://www.happings.com/it/happing/chef-simone-grazioso-fine-sushi-ristorante-contemporaneo/"
         }
       ],
       "status": "retrieved"
@@ -2847,6 +2970,12 @@
           "observed_at": "2026-10-21",
           "sha256": "1dc5eb4eff75d9c962334f79b181519c5cf99df9feb03d027deb671943f7c0be",
           "url": "https://www.happings.com/it/happing/action-briquette-z-manga-beat-dance-danza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5d5bd6081903a35122a9e945da0610f67a82da2128212ac9c8eb1edb87cd3ca5",
+          "url": "https://www.happings.com/it/happing/cinema-the-social-reckoning/"
         }
       ],
       "status": "retrieved"
@@ -3645,6 +3774,12 @@
           "observed_at": "2026-10-21",
           "sha256": "e9c56da2a49e4da05048959cbbe75875aa85d53b21da67deb6eccaf2f6b2bc14",
           "url": "https://www.happings.com/it/happing/alba-truffle-bimbi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8fc3577f5935b606e197fde479498ed8e6d524882bce4a2e7fc664e8db2d2a61",
+          "url": "https://www.happings.com/it/happing/cibo-2050-dal-roero-al-mondo-le-sfide-che-ci-attendono/"
         }
       ],
       "status": "retrieved"
@@ -3711,6 +3846,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5c33a3f9fdf738fb7429c8b5113a33c23ef824e0969efd73513b2dd609461861",
           "url": "https://www.happings.com/it/happing/albaromatica/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "414645043f2846c05423c8bce45ba0f4403f3699f078acf37a87ceb9fe691424",
+          "url": "https://www.happings.com/it/happing/chef-roland-lamprecht-forestis-accademia-ferri-dal-1905/"
         }
       ],
       "status": "retrieved"
@@ -4293,6 +4434,12 @@
           "observed_at": "2026-10-24",
           "sha256": "723c5d9ca3fcf99402e5c23fe9104d80e72e61af4fc60a5c9856f1a2ab6cc9cb",
           "url": "https://www.happings.com/it/happing/alta-langa-aperitivo-magnum-premiere/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0353290664d453d4ba4dd9f918eac8341367886ffb666744c62d8649dfdec7f9",
+          "url": "https://www.happings.com/it/happing/commemorazione-dei-defunti/"
         }
       ],
       "status": "retrieved"
@@ -4407,6 +4554,12 @@
           "observed_at": "2026-10-24",
           "sha256": "8c54487354e46e611858deb3558c843ff380055b90ab913011698716d129a6af",
           "url": "https://www.happings.com/it/happing/amplify-ripensare-la-connessione-umana-attraverso-tecnologia-e-arte/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f3bd2d6523075bbd19c5349b9283e29ec02454f3f0a4d05b32ae03833ee4835d",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-librogame/"
         }
       ],
       "status": "retrieved"
@@ -4506,6 +4659,12 @@
           "observed_at": "2026-10-24",
           "sha256": "a2efd89b00098eb01240934aac20b81887afb1525ec41cadf8af805c2d2df451",
           "url": "https://www.happings.com/it/happing/andrea-rebaudengo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c776de52a51b638b77ded03e769c51c648b3adb11d5dbb32b40c505edf7db2f",
+          "url": "https://www.happings.com/it/happing/concerto-di-inaugurazione/"
         }
       ],
       "status": "retrieved"
@@ -4539,6 +4698,12 @@
           "observed_at": "2026-10-24",
           "sha256": "80b85fc9a4f0adc90112ff4f299b27e8f26f23254bbf2e1c64e3a4ed423caef9",
           "url": "https://www.happings.com/it/happing/bach-messa-in-si-minore/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f55daf30f6d69bb2816a405870e81facf7009cad6d210c17ef81ee1bc64f2274",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-worb-a-scena/"
         }
       ],
       "status": "retrieved"
@@ -4920,6 +5085,12 @@
           "observed_at": "2026-10-24",
           "sha256": "836c36db6e9ca1b7ccda3bc7bb1ec8d8cb954ef5e3d6583cad13e77d37e89ef2",
           "url": "https://www.happings.com/it/happing/apertura-della-pista-di-pattinaggio-con-musica-live-con-dirty-lovers/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b3b8819aede55fadf7156a9146266a3112cc49f6bf9555a0dec976d0706d9326",
+          "url": "https://www.happings.com/it/happing/concerto-apollo5/"
         }
       ],
       "status": "retrieved"
@@ -5478,6 +5649,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c4baec2ea569bfc50e0cd45d112a6207b5aeec4e68775d3c7e2adb4def67907d",
           "url": "https://www.happings.com/it/happing/arvo-part-vs-david-bowie/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b768352326fe7094f198ff444f75f7b3e5fde7b2a373edc69f1dd4a39a1322b",
+          "url": "https://www.happings.com/it/happing/cinema-fly-fishing-film-tour-2026/"
         }
       ],
       "status": "retrieved"
@@ -6327,6 +6504,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d85060e6d82fbd8acd9da158c7207c680b14929f53a642bf9166074fcf135319",
           "url": "https://www.happings.com/it/happing/auguri-dylan-dog/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a74b15c9cc6a9d8ea9a18257024a85359757cef6c2a0e9c44d1d72f90e6876e7",
+          "url": "https://www.happings.com/it/happing/combattimenti-florence-knights-star-wars/"
         }
       ],
       "status": "retrieved"
@@ -6969,6 +7152,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c233dfb8578a43272795ca5bf5b56ea62f1e3ac995147e6c3b48b7da8296fe16",
           "url": "https://www.happings.com/it/happing/bagni-di-foresta-consapevoli-con-berta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "221e6fd4e1a6ace6f0a86b6c6953daa39e1511da33ff05ecf34e50bdf770801c",
+          "url": "https://www.happings.com/it/happing/ciarun-les-steres-osservazione-delle-stelle/"
         }
       ],
       "status": "retrieved"
@@ -7488,6 +7677,12 @@
           "observed_at": "2026-10-24",
           "sha256": "fb99b8be3610b1a0c18ef72e91638163eea32142a2496a9c7ae36533fc33c7f6",
           "url": "https://www.happings.com/it/happing/botteghe-artigiane-in-piazza-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9706c8e2e345d6515ac45a11b77385eb7d8fb8aeee2732913f5bc6ec3c355789",
+          "url": "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera/"
         }
       ],
       "status": "retrieved"
@@ -7788,6 +7983,12 @@
           "observed_at": "2026-10-24",
           "sha256": "507d15768059240e505c5826142702ffdbf32e9bedd11dfdb17998ffc8156669",
           "url": "https://www.happings.com/it/happing/buio-bq-bariton-saxophone-quartet/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1254f41d497e84560d35fdeb11516da7e159573497f29881688f4439eee8c2b8",
+          "url": "https://www.happings.com/it/happing/concerto-di-fine-anno/"
         }
       ],
       "status": "retrieved"
@@ -7842,6 +8043,12 @@
           "observed_at": "2026-10-24",
           "sha256": "6ec7a9077f7a1ea88bec9a8f76d8b19ec044765c051368784b8db33b59e771f6",
           "url": "https://www.happings.com/it/happing/caccia-allindizio-per-le-vie-della-citta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "db9872bae2f652a2ceb0a71ea904d57eb71a55750051291f58281f82be35ec41",
+          "url": "https://www.happings.com/it/happing/chef-sophie-tabet-chez-sophie/"
         }
       ],
       "status": "retrieved"
@@ -8040,6 +8247,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d0f592b2bdaccec1f4b20856f10a4558207fef3246ebc3f679234a32cc2ccb67",
           "url": "https://www.happings.com/it/happing/campagna-amica-day/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cf010884f02e6a6770b4213b4760856b112431672b16177ffa90cd1f2d1068f0",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale/"
         }
       ],
       "status": "retrieved"
@@ -9342,6 +9555,12 @@
           "observed_at": "2026-10-25",
           "sha256": "f9ef96371b7c24fa40ab6db931d34e69b246376fa629945894ecae6004d2dafa",
           "url": "https://www.happings.com/it/happing/castagnata-dei-chech/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c776de52a51b638b77ded03e769c51c648b3adb11d5dbb32b40c505edf7db2f",
+          "url": "https://www.happings.com/it/happing/concerto-di-inaugurazione/"
         }
       ],
       "status": "retrieved"
@@ -9675,6 +9894,12 @@
           "observed_at": "2026-10-25",
           "sha256": "5b61909aa7db83032df338ecb54a2d45d713c545c144e710e585504d73e60fe2",
           "url": "https://www.happings.com/it/happing/castagnotto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ae6152b8f88bcc244eddcf90cfb15f3f651022f1c6d5b0b3197ad260c4f2e928",
+          "url": "https://www.happings.com/it/happing/christmas-running/"
         }
       ],
       "status": "retrieved"
@@ -10164,6 +10389,12 @@
           "observed_at": "2026-10-24",
           "sha256": "ae1d450d011b9db187556612054dfaa16bf6c15af358b0132efc608e8e3ca1f9",
           "url": "https://www.happings.com/it/happing/alexander-kobrin-in-recital/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "df1ac7e1c65c2812fe628a9ea7536cb24c73d6f853d60d436b170648d02e9c33",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-2/"
         }
       ],
       "status": "unread"
@@ -10212,6 +10443,12 @@
           "observed_at": "2026-10-25",
           "sha256": "0e406a6221e8cec2a2a86debfedd305b5270e5e3b7b06def68886d661d71722c",
           "url": "https://www.happings.com/it/happing/cerimonia-di-accensione-del-82-fiammifero/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8fc3577f5935b606e197fde479498ed8e6d524882bce4a2e7fc664e8db2d2a61",
+          "url": "https://www.happings.com/it/happing/cibo-2050-dal-roero-al-mondo-le-sfide-che-ci-attendono/"
         }
       ],
       "status": "retrieved"
@@ -10443,6 +10680,12 @@
           "observed_at": "2026-10-25",
           "sha256": "30213f0aa02cb54965ee1be25332f90770acf393ea093adec6d289631ef29b7c",
           "url": "https://www.happings.com/it/happing/chef-andrea-nizzi-ristorante-12-monaci/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8fc3577f5935b606e197fde479498ed8e6d524882bce4a2e7fc664e8db2d2a61",
+          "url": "https://www.happings.com/it/happing/cibo-2050-dal-roero-al-mondo-le-sfide-che-ci-attendono/"
         }
       ],
       "status": "retrieved"
@@ -10593,6 +10836,12 @@
           "observed_at": "2026-10-25",
           "sha256": "978bae0ac3cc181dbb9344782f70a95d8aef682161a74ef0cd57e0f6b7e116b9",
           "url": "https://www.happings.com/it/happing/chef-davide-oldani-do/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "db9872bae2f652a2ceb0a71ea904d57eb71a55750051291f58281f82be35ec41",
+          "url": "https://www.happings.com/it/happing/chef-sophie-tabet-chez-sophie/"
         }
       ],
       "status": "retrieved"
@@ -10908,6 +11157,12 @@
           "observed_at": "2026-10-25",
           "sha256": "a0ddee9521926efab20a0ea44d6a18f6c9d58bee6c1b10137fe387b323db1fb2",
           "url": "https://www.happings.com/it/happing/chef-gianluca-renzi-cannavacciuolo-le-cattedrali-relais/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9be4a0f5d31fbe9f637db595fa13d2874362446a59586a62dce0aedf2855224e",
+          "url": "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera-2/"
         }
       ],
       "status": "retrieved"
@@ -11387,58 +11642,70 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b60ecfc1d4a24b8cbbf82f898f736be91d5d5e299a853b7e4bd3eb78a3b01019",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:21.721503+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b60ecfc1d4a24b8cbbf82f898f736be91d5d5e299a853b7e4bd3eb78a3b01019",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-3/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "8762fd9824f4663f2188f119a4f7acc19472897c69b02ccbc484c52c7669465c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:28.982166+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8762fd9824f4663f2188f119a4f7acc19472897c69b02ccbc484c52c7669465c",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-3/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "cf010884f02e6a6770b4213b4760856b112431672b16177ffa90cd1f2d1068f0",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:34.432745+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11457,21 +11724,27 @@
           "observed_at": "2026-10-24",
           "sha256": "d810c4e4b45d2a13d76d9fe5c8c4985c449767ba3f4dd776ec261325888c2dbf",
           "url": "https://www.happings.com/it/happing/baccala-mantecato-e-degustazione-di-bagnetti-rosso-e-verde/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cf010884f02e6a6770b4213b4760856b112431672b16177ffa90cd1f2d1068f0",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-pasquale-laera-ristorante-borgo-santanna/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ec53655fe407b80fe701c449ad388ecdc312ad3ad74e308d83e064384018ea6f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:40.531370+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11490,21 +11763,27 @@
           "observed_at": "2026-10-25",
           "sha256": "32366fba6f62b2dcff56b1dcd82de184498dea96ae16134b4dfb4111de398c5d",
           "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ec53655fe407b80fe701c449ad388ecdc312ad3ad74e308d83e064384018ea6f",
+          "url": "https://www.happings.com/it/happing/chef-pasquale-laera-ristorante-borgo-santanna/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-roberto-conti-casa-camperio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "86e1766e60966390ef3ec71046d1b1c029934de965ad9317d6ef5ed84eac1e74",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:46.218726+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11523,21 +11802,27 @@
           "observed_at": "2026-10-25",
           "sha256": "6311056af5eaba1831932759dd4cec50e266a0671ff94a97eee8a204d96f72d1",
           "url": "https://www.happings.com/it/happing/chef-fernando-tommaso-forino-osteria-arborina-arborina-relais/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "86e1766e60966390ef3ec71046d1b1c029934de965ad9317d6ef5ed84eac1e74",
+          "url": "https://www.happings.com/it/happing/chef-roberto-conti-casa-camperio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-roland-lamprecht-forestis-accademia-ferri-dal-1905/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "414645043f2846c05423c8bce45ba0f4403f3699f078acf37a87ceb9fe691424",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:25:55.668640+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11556,21 +11841,27 @@
           "observed_at": "2026-10-25",
           "sha256": "0e406a6221e8cec2a2a86debfedd305b5270e5e3b7b06def68886d661d71722c",
           "url": "https://www.happings.com/it/happing/cerimonia-di-accensione-del-82-fiammifero/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "414645043f2846c05423c8bce45ba0f4403f3699f078acf37a87ceb9fe691424",
+          "url": "https://www.happings.com/it/happing/chef-roland-lamprecht-forestis-accademia-ferri-dal-1905/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-simone-grazioso-fine-sushi-ristorante-contemporaneo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "5da349a94a0250dd218c0c94d7d8cbfb75c4693a6a8488b9616bbb3e332f49a1",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:01.487944+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11583,21 +11874,27 @@
           "observed_at": "2026-10-25",
           "sha256": "1e447193d887a43d9081fb1622ccae61e268f0a65e7e836d178e1df3f4b3eea5",
           "url": "https://www.happings.com/it/happing/chef-niccolo-palumbo-paca-ristorante-tenuta-ceri/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5da349a94a0250dd218c0c94d7d8cbfb75c4693a6a8488b9616bbb3e332f49a1",
+          "url": "https://www.happings.com/it/happing/chef-simone-grazioso-fine-sushi-ristorante-contemporaneo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-sophie-tabet-chez-sophie/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "db9872bae2f652a2ceb0a71ea904d57eb71a55750051291f58281f82be35ec41",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:07.726639+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11610,42 +11907,54 @@
           "observed_at": "2026-10-25",
           "sha256": "30213f0aa02cb54965ee1be25332f90770acf393ea093adec6d289631ef29b7c",
           "url": "https://www.happings.com/it/happing/chef-andrea-nizzi-ristorante-12-monaci/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "db9872bae2f652a2ceb0a71ea904d57eb71a55750051291f58281f82be35ec41",
+          "url": "https://www.happings.com/it/happing/chef-sophie-tabet-chez-sophie/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9be4a0f5d31fbe9f637db595fa13d2874362446a59586a62dce0aedf2855224e",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:14.118362+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9be4a0f5d31fbe9f637db595fa13d2874362446a59586a62dce0aedf2855224e",
+          "url": "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9706c8e2e345d6515ac45a11b77385eb7d8fb8aeee2732913f5bc6ec3c355789",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:19.987834+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11664,84 +11973,114 @@
           "observed_at": "2026-10-25",
           "sha256": "9328d2e526f3c56232b77c7254b39a7134ea6b419c40917f47a96926a7af2a1b",
           "url": "https://www.happings.com/it/happing/che-viviana-varese-passalacqua-lago-di-como/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9706c8e2e345d6515ac45a11b77385eb7d8fb8aeee2732913f5bc6ec3c355789",
+          "url": "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-walter-ferretto-ristorante-il-cascinalenuovo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "97659921ca9fc471fb00bb04442c6ba31bb9dd476fb26c281047d7b838aabaa7",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:25.216968+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8762fd9824f4663f2188f119a4f7acc19472897c69b02ccbc484c52c7669465c",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "97659921ca9fc471fb00bb04442c6ba31bb9dd476fb26c281047d7b838aabaa7",
+          "url": "https://www.happings.com/it/happing/chef-walter-ferretto-ristorante-il-cascinalenuovo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chi-ha-rubato-le-zucche/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0fdad6cf1a79f2ac462ac8df6de8b9b6234cc7a22f4ddb82109e8dae04a10544",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:30.736566+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0fdad6cf1a79f2ac462ac8df6de8b9b6234cc7a22f4ddb82109e8dae04a10544",
+          "url": "https://www.happings.com/it/happing/chi-ha-rubato-le-zucche/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chiedimi-come-sto/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a2858ff20fdbdcabef39bf9660d75df513fbe274d4415fe3f6083918fd4f5e0f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:35.646355+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a2858ff20fdbdcabef39bf9660d75df513fbe274d4415fe3f6083918fd4f5e0f",
+          "url": "https://www.happings.com/it/happing/chiedimi-come-sto/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/christmas-running/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ae6152b8f88bcc244eddcf90cfb15f3f651022f1c6d5b0b3197ad260c4f2e928",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:40.584566+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11760,55 +12099,73 @@
           "observed_at": "2026-10-25",
           "sha256": "2e7e91f4949e93418561a98cfaa5c188778216a01b37beb1660812dad33cc84f",
           "url": "https://www.happings.com/it/happing/castagnata-lega-nord-caronno-varesino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ae6152b8f88bcc244eddcf90cfb15f3f651022f1c6d5b0b3197ad260c4f2e928",
+          "url": "https://www.happings.com/it/happing/christmas-running/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/ciarun-les-steres-osservazione-delle-stelle/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "221e6fd4e1a6ace6f0a86b6c6953daa39e1511da33ff05ecf34e50bdf770801c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:46.435691+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "221e6fd4e1a6ace6f0a86b6c6953daa39e1511da33ff05ecf34e50bdf770801c",
+          "url": "https://www.happings.com/it/happing/ciarun-les-steres-osservazione-delle-stelle/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cibo-2050-dal-roero-al-mondo-le-sfide-che-ci-attendono/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "8fc3577f5935b606e197fde479498ed8e6d524882bce4a2e7fc664e8db2d2a61",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:51.997746+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8fc3577f5935b606e197fde479498ed8e6d524882bce4a2e7fc664e8db2d2a61",
+          "url": "https://www.happings.com/it/happing/cibo-2050-dal-roero-al-mondo-le-sfide-che-ci-attendono/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
-    "https://www.happings.com/it/happing/cinema-fly-fishing-film-tour-2026/": {
+    "https://www.happings.com/it/happing/cinema-die-camino-therapie-finde-deinen-weg/": {
       "attempts": 0,
-      "discovered_at": "2026-10-20",
+      "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "detail",
       "last_attempt": null,
@@ -11816,79 +12173,124 @@
       "last_sha256": null,
       "last_success": null,
       "last_success_at": null,
-      "next_due": "2026-10-20",
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1ee40476d455f55a4c9678f2d4cfec5b59884003e8d2bfd6b09d129c632cc4a6",
+          "url": "https://www.happings.com/it/happing/code-to-space-algoritmi-su-marte/"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/happing/cinema-fly-fishing-film-tour-2026/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-20",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "4b768352326fe7094f198ff444f75f7b3e5fde7b2a373edc69f1dd4a39a1322b",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:26:57.670711+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b768352326fe7094f198ff444f75f7b3e5fde7b2a373edc69f1dd4a39a1322b",
+          "url": "https://www.happings.com/it/happing/cinema-fly-fishing-film-tour-2026/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cinema-les-musiciens/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ceff4cbc32f2398dd14bbb93087c0c111aebf7951a9b9157bd54288748061679",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:06.125386+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ceff4cbc32f2398dd14bbb93087c0c111aebf7951a9b9157bd54288748061679",
+          "url": "https://www.happings.com/it/happing/cinema-les-musiciens/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cinema-practical-magic-2-zauberhafte-schwestern/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9fe2fd2f6f474d7e9e8446eb35dbc7579671163bbe927e206ef9aba41239ef40",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:12.323130+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fe2fd2f6f474d7e9e8446eb35dbc7579671163bbe927e206ef9aba41239ef40",
+          "url": "https://www.happings.com/it/happing/cinema-practical-magic-2-zauberhafte-schwestern/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cinema-spaziergang-nach-syrakus/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3deae0febc59752b5e7ae086d5f2dd7f6c1def48dc039d4c0eee132566d7566a",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:18.091195+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3deae0febc59752b5e7ae086d5f2dd7f6c1def48dc039d4c0eee132566d7566a",
+          "url": "https://www.happings.com/it/happing/cinema-spaziergang-nach-syrakus/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cinema-the-invite/": {
       "attempts": 0,
@@ -11912,37 +12314,43 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/cinema-the-social-reckoning/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "5d5bd6081903a35122a9e945da0610f67a82da2128212ac9c8eb1edb87cd3ca5",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:23.948211+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5d5bd6081903a35122a9e945da0610f67a82da2128212ac9c8eb1edb87cd3ca5",
+          "url": "https://www.happings.com/it/happing/cinema-the-social-reckoning/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cinque-secondi-pianeta-terra-festival/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "940d129a851866b02e9503dfea75b81f6a72699dd0ccfc441803c213a7995a1a",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:31.025124+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -11955,63 +12363,87 @@
           "observed_at": "2026-10-21",
           "sha256": "f484e928131fe25ad9da6d3741cd031308c832b2ab20324b7b32b3497ab4f3fa",
           "url": "https://www.happings.com/it/happing/abel-incontra-martina-pennisi-informazione/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "940d129a851866b02e9503dfea75b81f6a72699dd0ccfc441803c213a7995a1a",
+          "url": "https://www.happings.com/it/happing/cinque-secondi-pianeta-terra-festival/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cinzia-canneri-womens-bodies-as-battlefields/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "293b072f392228f26ab37fa8ce03e61d0b129a95971c7ac4c6524ebdb5a09fa7",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:37.819092+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "293b072f392228f26ab37fa8ce03e61d0b129a95971c7ac4c6524ebdb5a09fa7",
+          "url": "https://www.happings.com/it/happing/cinzia-canneri-womens-bodies-as-battlefields/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "935ffb4aca690231d23f4e32c857e6d5d293dab7b2c9aa558c0fd540b085598b",
+          "url": "https://www.happings.com/it/happing/citta-nuova-presenta-il-libro-dei-sogni-della-gen-z/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cioccolatata/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "29d0c54788e52650ef3a7224e5ae9eece53d2ed46175d7eca6992226b9f90eb6",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:43.841067+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "29d0c54788e52650ef3a7224e5ae9eece53d2ed46175d7eca6992226b9f90eb6",
+          "url": "https://www.happings.com/it/happing/cioccolatata/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/citta-nuova-presenta-il-libro-dei-sogni-della-gen-z/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "935ffb4aca690231d23f4e32c857e6d5d293dab7b2c9aa558c0fd540b085598b",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:48.135194+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12024,84 +12456,108 @@
           "observed_at": "2026-10-24",
           "sha256": "c4baec2ea569bfc50e0cd45d112a6207b5aeec4e68775d3c7e2adb4def67907d",
           "url": "https://www.happings.com/it/happing/arvo-part-vs-david-bowie/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "935ffb4aca690231d23f4e32c857e6d5d293dab7b2c9aa558c0fd540b085598b",
+          "url": "https://www.happings.com/it/happing/citta-nuova-presenta-il-libro-dei-sogni-della-gen-z/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/ciurma-pendagli-da-forca/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "fb366abfc56bf2dbd61fef3b4aa8617fe6653a19095aca7bee87a0030123da15",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:27:53.606125+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb366abfc56bf2dbd61fef3b4aa8617fe6653a19095aca7bee87a0030123da15",
+          "url": "https://www.happings.com/it/happing/ciurma-pendagli-da-forca/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cocktail-art-autumn-edition/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "d5ed934f008b33194c3e2bd0bcbf7b5690f326061d7c52940ecbcb4ac8fc55ef",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:00.317217+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d5ed934f008b33194c3e2bd0bcbf7b5690f326061d7c52940ecbcb4ac8fc55ef",
+          "url": "https://www.happings.com/it/happing/cocktail-art-autumn-edition/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/code-to-space-algoritmi-su-marte/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1ee40476d455f55a4c9678f2d4cfec5b59884003e8d2bfd6b09d129c632cc4a6",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:07.179967+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1ee40476d455f55a4c9678f2d4cfec5b59884003e8d2bfd6b09d129c632cc4a6",
+          "url": "https://www.happings.com/it/happing/code-to-space-algoritmi-su-marte/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cogli-la-prima-mela-al-vettererhof/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "69aa2c34017d6b9618bc48821574c630ab1ffc25617ddbad800bf8c9bc0bf5cc",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:12.850485+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12114,42 +12570,54 @@
           "observed_at": "2026-10-25",
           "sha256": "6eaaee96ea2e29adbeb92a6240e5aac97958753fb4af6d8cf446f990fae0ba77",
           "url": "https://www.happings.com/it/happing/cena-a-tema-spiriti-in-scena-dolo-vini-miti/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "69aa2c34017d6b9618bc48821574c630ab1ffc25617ddbad800bf8c9bc0bf5cc",
+          "url": "https://www.happings.com/it/happing/cogli-la-prima-mela-al-vettererhof/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/collectors-corner/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "67e7733d32531c984aebd3fdcf9001e3c382e5aa27c3ad7a1ee34e508f2906b2",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:19.278488+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "67e7733d32531c984aebd3fdcf9001e3c382e5aa27c3ad7a1ee34e508f2906b2",
+          "url": "https://www.happings.com/it/happing/collectors-corner/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/colori-dautunno/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "c5b9f5a7702560b7b582ea72ef6c6e1a160ff176042e9f1771434481f1e93e78",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:28.442724+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12168,126 +12636,162 @@
           "observed_at": "2026-10-24",
           "sha256": "508a82e8d08aaf235f359b01e2f204124605320d64d45c7224cfa21c50c8a05b",
           "url": "https://www.happings.com/it/happing/autunnosanpietrino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c5b9f5a7702560b7b582ea72ef6c6e1a160ff176042e9f1771434481f1e93e78",
+          "url": "https://www.happings.com/it/happing/colori-dautunno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/combattimenti-florence-knights-star-wars/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a74b15c9cc6a9d8ea9a18257024a85359757cef6c2a0e9c44d1d72f90e6876e7",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:37.005268+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a74b15c9cc6a9d8ea9a18257024a85359757cef6c2a0e9c44d1d72f90e6876e7",
+          "url": "https://www.happings.com/it/happing/combattimenti-florence-knights-star-wars/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/come-a-primavera-la-baia-delle-cannelle/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f9e8c4931807da4b2abdca6645ce74365fcb26105cc5413e1fcd7f3e270a98d8",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:52.746168+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9e8c4931807da4b2abdca6645ce74365fcb26105cc5413e1fcd7f3e270a98d8",
+          "url": "https://www.happings.com/it/happing/come-a-primavera-la-baia-delle-cannelle/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/come-si-scrive-un-libro-a-piu-mani/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9f0ac3106b421f3795534b05ccc4de943192cb0f403f9db43302482eabeba52e",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:28:58.440875+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9f0ac3106b421f3795534b05ccc4de943192cb0f403f9db43302482eabeba52e",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-libro-a-piu-mani/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/come-si-scrive-un-librogame/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f3bd2d6523075bbd19c5349b9283e29ec02454f3f0a4d05b32ae03833ee4835d",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:04.667174+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f3bd2d6523075bbd19c5349b9283e29ec02454f3f0a4d05b32ae03833ee4835d",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-librogame/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/come-si-scrive-un-personaggio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ba1ea1062cbe5f0448b38c63ea546ef6baa3d1743fa8dd3e2c2ef0990e64e424",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:13.683014+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ba1ea1062cbe5f0448b38c63ea546ef6baa3d1743fa8dd3e2c2ef0990e64e424",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-personaggio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/come-unimmagine-cambia-le-possibilita-di-comunicare/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "78d8bd4fbccc231278e4de8611bb049a64c9a6c7667bf9e580a0bd917eff249d",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:20.567270+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12314,19 +12818,19 @@
           "url": "https://www.happings.com/it/happing/antonio-bicchi-pianeta-terra-festival/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/commemorazione-dei-defunti/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0353290664d453d4ba4dd9f918eac8341367886ffb666744c62d8649dfdec7f9",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:26.653102+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12345,42 +12849,54 @@
           "observed_at": "2026-10-25",
           "sha256": "e9177a91ec682f54404895e05f391c4515cdd12ccc5ec05862d959b7bc4a37ed",
           "url": "https://www.happings.com/it/happing/chef-carlo-cracco-ristorante-cracco/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0353290664d453d4ba4dd9f918eac8341367886ffb666744c62d8649dfdec7f9",
+          "url": "https://www.happings.com/it/happing/commemorazione-dei-defunti/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/competition-anelli-di-congiunzione/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "885d1d165863005cd21401677198bbc9eba78d838fef5a7dc8507f9541c49c3f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:31.779716+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "885d1d165863005cd21401677198bbc9eba78d838fef5a7dc8507f9541c49c3f",
+          "url": "https://www.happings.com/it/happing/competition-anelli-di-congiunzione/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/comprendere-lalto-adige-vivere-lalto-adige/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6efd68df164e3f84627b30062c4a6d88d35d056c159504c2ae85fe05f7fbf48a",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:37.544936+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12393,42 +12909,54 @@
           "observed_at": "2026-10-21",
           "sha256": "f5f964baa872b20df3349c0b6abf2f64ad9262da32f192ec2a9595cb7fcfc755",
           "url": "https://www.happings.com/it/happing/affreschi-cappelle-e-storie-visita-guidata-a-tesido/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6efd68df164e3f84627b30062c4a6d88d35d056c159504c2ae85fe05f7fbf48a",
+          "url": "https://www.happings.com/it/happing/comprendere-lalto-adige-vivere-lalto-adige/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/con-tut-el-ben-che-te-voi-a-laives/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ce6e1d119ae4b2cbd40bcfbb7ac7b3bd427aba4f4e412ee4fbd9e0e0aed771ac",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:45.196688+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ce6e1d119ae4b2cbd40bcfbb7ac7b3bd427aba4f4e412ee4fbd9e0e0aed771ac",
+          "url": "https://www.happings.com/it/happing/con-tut-el-ben-che-te-voi-a-laives/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-apollo5/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b3b8819aede55fadf7156a9146266a3112cc49f6bf9555a0dec976d0706d9326",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:50.779641+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12441,93 +12969,129 @@
           "observed_at": "2026-10-21",
           "sha256": "7db1a63163c8bf4bce1d3fdfaaffa1e6995809424442ae05e0fdd315f8b1151a",
           "url": "https://www.happings.com/it/happing/akademie-fur-alte-musik-berlin/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b3b8819aede55fadf7156a9146266a3112cc49f6bf9555a0dec976d0706d9326",
+          "url": "https://www.happings.com/it/happing/concerto-apollo5/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-augurale-natalizio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "39176512ca86a7642db73568585cbdd95d6554c2220aa99ded9db6211fc6091a",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:29:55.450547+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "39176512ca86a7642db73568585cbdd95d6554c2220aa99ded9db6211fc6091a",
+          "url": "https://www.happings.com/it/happing/concerto-augurale-natalizio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-autunnale-della-banda-musicale-burgerkapelle-lana/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "334e500da859d00774d8333fcbfc977cc139b374847e9423ccfd7057caa0afeb",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:06.802384+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "334e500da859d00774d8333fcbfc977cc139b374847e9423ccfd7057caa0afeb",
+          "url": "https://www.happings.com/it/happing/concerto-autunnale-della-banda-musicale-burgerkapelle-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74a769ec892f23b699534828b83089a58c7c097c44a16babb83e2cf242f3e930",
+          "url": "https://www.happings.com/it/happing/concerto-dellensamble-barocco/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-dautunno-del-gruppo-streichholz-fiedl/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9fb44d1e3100eba2bc8733dbebf5d5f84c500403de2c32ec5221b5a3d7d4b615",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:12.773784+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fb44d1e3100eba2bc8733dbebf5d5f84c500403de2c32ec5221b5a3d7d4b615",
+          "url": "https://www.happings.com/it/happing/concerto-dautunno-del-gruppo-streichholz-fiedl/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-davvento-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "df1ac7e1c65c2812fe628a9ea7536cb24c73d6f853d60d436b170648d02e9c33",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:19.529404+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "df1ac7e1c65c2812fe628a9ea7536cb24c73d6f853d60d436b170648d02e9c33",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-davvento-3/": {
       "attempts": 0,
@@ -12546,63 +13110,81 @@
           "observed_at": "2026-10-21",
           "sha256": "7db1a63163c8bf4bce1d3fdfaaffa1e6995809424442ae05e0fdd315f8b1151a",
           "url": "https://www.happings.com/it/happing/akademie-fur-alte-musik-berlin/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "059fcf4bcfeb23a77ec447bda08813cef98ec90adee6aa7ee4ca2b6a64ca70a5",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-della-banda-musicale-di-coldrano-morter-e-del-coro-maschile-vierklang/"
         }
       ],
       "status": "unread"
     },
     "https://www.happings.com/it/happing/concerto-davvento-con-il-coro-maschile-mannergesangverein-lana/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "2b28fbfb3a31ca1435d4239f76b829b368617a1389b5b978c54242eadf8cf357",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:25.533741+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2b28fbfb3a31ca1435d4239f76b829b368617a1389b5b978c54242eadf8cf357",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-con-il-coro-maschile-mannergesangverein-lana/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-davvento-della-banda-musicale-di-coldrano-morter-e-del-coro-maschile-vierklang/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "059fcf4bcfeb23a77ec447bda08813cef98ec90adee6aa7ee4ca2b6a64ca70a5",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:31.601479+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "059fcf4bcfeb23a77ec447bda08813cef98ec90adee6aa7ee4ca2b6a64ca70a5",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-della-banda-musicale-di-coldrano-morter-e-del-coro-maschile-vierklang/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-davvento/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7ce5d907875e11bd17203973919d4ab30af14a736633d47b32657f693feb3588",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:38.477757+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12615,13 +13197,19 @@
           "observed_at": "2026-10-24",
           "sha256": "507d15768059240e505c5826142702ffdbf32e9bedd11dfdb17998ffc8156669",
           "url": "https://www.happings.com/it/happing/buio-bq-bariton-saxophone-quartet/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7ce5d907875e11bd17203973919d4ab30af14a736633d47b32657f693feb3588",
+          "url": "https://www.happings.com/it/happing/concerto-davvento/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
-    "https://www.happings.com/it/happing/concerto-della-banda-e-processione-di-ringraziamento/": {
+    "https://www.happings.com/it/happing/concerto-dei-suonatori-di-corno-alpino-hotel-goldknopf/": {
       "attempts": 0,
-      "discovered_at": "2026-10-20",
+      "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "detail",
       "last_attempt": null,
@@ -12629,28 +13217,55 @@
       "last_sha256": null,
       "last_success": null,
       "last_success_at": null,
-      "next_due": "2026-10-20",
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fb44d1e3100eba2bc8733dbebf5d5f84c500403de2c32ec5221b5a3d7d4b615",
+          "url": "https://www.happings.com/it/happing/concerto-dautunno-del-gruppo-streichholz-fiedl/"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/happing/concerto-della-banda-e-processione-di-ringraziamento/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-20",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "dbb116537f932e3d890304b710fad6f96791a3392aca6d25d29ee5ddb55cf95c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:44.662564+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "dbb116537f932e3d890304b710fad6f96791a3392aca6d25d29ee5ddb55cf95c",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-e-processione-di-ringraziamento/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-della-banda-musicale-bohmische-albeins/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7716d2f31602a5c659b01e6abdcd0e1e72152e9133e2567be7cf02e66ff09ec1",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:51.524276+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12663,51 +13278,81 @@
           "observed_at": "2026-10-21",
           "sha256": "ae322927df15b24023484e2be8b253c43f3fee952ae70eea61f14f57f2e0dbdb",
           "url": "https://www.happings.com/it/happing/abba-mamma-mia-and-much-more-a-silandro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7716d2f31602a5c659b01e6abdcd0e1e72152e9133e2567be7cf02e66ff09ec1",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-bohmische-albeins/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-lagundo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3d3bd1f41e6df9d077353a3e48195df5ec53afd8d4ba2f2d4b21fc3732e1a297",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:30:58.747188+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2b28fbfb3a31ca1435d4239f76b829b368617a1389b5b978c54242eadf8cf357",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-con-il-coro-maschile-mannergesangverein-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7716d2f31602a5c659b01e6abdcd0e1e72152e9133e2567be7cf02e66ff09ec1",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-bohmische-albeins/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3d3bd1f41e6df9d077353a3e48195df5ec53afd8d4ba2f2d4b21fc3732e1a297",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-lagundo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-parcines-per-la-festa-di-cacilia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "2d7a0d811030930b2dab9f97d37797655d9a0de528e13ad91a51c4b6a4c0b447",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:03.918662+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2d7a0d811030930b2dab9f97d37797655d9a0de528e13ad91a51c4b6a4c0b447",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-parcines-per-la-festa-di-cacilia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-scena-a-verdins/": {
       "attempts": 0,
@@ -12731,16 +13376,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-tirolo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bc70b18f9fbd442ff7f19097e9a17ba1683694f398a48a801751c2ad51424e69",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:12.099479+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12753,34 +13398,46 @@
           "observed_at": "2026-10-21",
           "sha256": "4513eecd67d765f8296cfe31affbde4b99f9b7be5816a5c80f26c26ba45d680f",
           "url": "https://www.happings.com/it/happing/800-anni-di-san-francesco-dassisi-commemorazione-musicale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bc70b18f9fbd442ff7f19097e9a17ba1683694f398a48a801751c2ad51424e69",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-tirolo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-worb-a-scena/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f55daf30f6d69bb2816a405870e81facf7009cad6d210c17ef81ee1bc64f2274",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:21.790405+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f55daf30f6d69bb2816a405870e81facf7009cad6d210c17ef81ee1bc64f2274",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-worb-a-scena/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
-    "https://www.happings.com/it/happing/concerto-della-the-legendary-st-pauls-tschass-band/": {
+    "https://www.happings.com/it/happing/concerto-della-big-band-della-banda-musicale-di-caldaro/": {
       "attempts": 0,
-      "discovered_at": "2026-10-20",
+      "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "detail",
       "last_attempt": null,
@@ -12788,7 +13445,28 @@
       "last_sha256": null,
       "last_success": null,
       "last_success_at": null,
-      "next_due": "2026-10-20",
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7716d2f31602a5c659b01e6abdcd0e1e72152e9133e2567be7cf02e66ff09ec1",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-bohmische-albeins/"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/happing/concerto-della-the-legendary-st-pauls-tschass-band/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-20",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "74673dded93c87153f1f176fecf4456c5e080896a52d7093e3df4381c8efbecc",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:27.768334+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -12801,93 +13479,123 @@
           "observed_at": "2026-10-21",
           "sha256": "4513eecd67d765f8296cfe31affbde4b99f9b7be5816a5c80f26c26ba45d680f",
           "url": "https://www.happings.com/it/happing/800-anni-di-san-francesco-dassisi-commemorazione-musicale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74673dded93c87153f1f176fecf4456c5e080896a52d7093e3df4381c8efbecc",
+          "url": "https://www.happings.com/it/happing/concerto-della-the-legendary-st-pauls-tschass-band/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-dellensamble-barocco/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "74a769ec892f23b699534828b83089a58c7c097c44a16babb83e2cf242f3e930",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:33.530861+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74a769ec892f23b699534828b83089a58c7c097c44a16babb83e2cf242f3e930",
+          "url": "https://www.happings.com/it/happing/concerto-dellensamble-barocco/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-di-fine-anno/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1254f41d497e84560d35fdeb11516da7e159573497f29881688f4439eee8c2b8",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:39.730080+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1254f41d497e84560d35fdeb11516da7e159573497f29881688f4439eee8c2b8",
+          "url": "https://www.happings.com/it/happing/concerto-di-fine-anno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-di-inaugurazione/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3c776de52a51b638b77ded03e769c51c648b3adb11d5dbb32b40c505edf7db2f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:47.123462+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c776de52a51b638b77ded03e769c51c648b3adb11d5dbb32b40c505edf7db2f",
+          "url": "https://www.happings.com/it/happing/concerto-di-inaugurazione/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-di-natale-2-evento-10318/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0b274b9ccd30e33d5591936601386ee8403a6764594bdc9424d95d3cb50a442a",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T18:31:52.897612+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0b274b9ccd30e33d5591936601386ee8403a6764594bdc9424d95d3cb50a442a",
+          "url": "https://www.happings.com/it/happing/concerto-di-natale-2-evento-10318/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/concerto-di-natale-2-evento-9663/": {
       "attempts": 0,
@@ -13017,6 +13725,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2b28fbfb3a31ca1435d4239f76b829b368617a1389b5b978c54242eadf8cf357",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-con-il-coro-maschile-mannergesangverein-lana/"
         }
       ],
       "status": "unread"
@@ -13080,6 +13794,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "dbb116537f932e3d890304b710fad6f96791a3392aca6d25d29ee5ddb55cf95c",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-e-processione-di-ringraziamento/"
         }
       ],
       "status": "unread"
@@ -13218,6 +13938,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "334e500da859d00774d8333fcbfc977cc139b374847e9423ccfd7057caa0afeb",
+          "url": "https://www.happings.com/it/happing/concerto-autunnale-della-banda-musicale-burgerkapelle-lana/"
         }
       ],
       "status": "unread"
@@ -13272,6 +13998,12 @@
           "observed_at": "2026-10-20",
           "sha256": "436cb3822ffb96d90284b9dee50a849e24969d60f53d30e0488013fdfe686b81",
           "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-big-band-della-burgerkapelle-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74a769ec892f23b699534828b83089a58c7c097c44a16babb83e2cf242f3e930",
+          "url": "https://www.happings.com/it/happing/concerto-dellensamble-barocco/"
         }
       ],
       "status": "unread"
@@ -13341,6 +14073,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7ce5d907875e11bd17203973919d4ab30af14a736633d47b32657f693feb3588",
+          "url": "https://www.happings.com/it/happing/concerto-davvento/"
         }
       ],
       "status": "unread"
@@ -13362,6 +14100,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "df1ac7e1c65c2812fe628a9ea7536cb24c73d6f853d60d436b170648d02e9c33",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-2/"
         }
       ],
       "status": "unread"
@@ -13422,6 +14166,12 @@
           "observed_at": "2026-10-24",
           "sha256": "507d15768059240e505c5826142702ffdbf32e9bedd11dfdb17998ffc8156669",
           "url": "https://www.happings.com/it/happing/buio-bq-bariton-saxophone-quartet/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3d3bd1f41e6df9d077353a3e48195df5ec53afd8d4ba2f2d4b21fc3732e1a297",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-lagundo/"
         }
       ],
       "status": "unread"
@@ -13539,6 +14289,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74a769ec892f23b699534828b83089a58c7c097c44a16babb83e2cf242f3e930",
+          "url": "https://www.happings.com/it/happing/concerto-dellensamble-barocco/"
         }
       ],
       "status": "unread"
@@ -13674,6 +14430,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c233dfb8578a43272795ca5bf5b56ea62f1e3ac995147e6c3b48b7da8296fe16",
           "url": "https://www.happings.com/it/happing/bagni-di-foresta-consapevoli-con-berta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a2858ff20fdbdcabef39bf9660d75df513fbe274d4415fe3f6083918fd4f5e0f",
+          "url": "https://www.happings.com/it/happing/chiedimi-come-sto/"
         }
       ],
       "status": "unread"
@@ -13734,6 +14496,27 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/happing/conzert-de-nanu-concerto-di-musica-sacra-di-fine-anno/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74673dded93c87153f1f176fecf4456c5e080896a52d7093e3df4381c8efbecc",
+          "url": "https://www.happings.com/it/happing/concerto-della-the-legendary-st-pauls-tschass-band/"
         }
       ],
       "status": "unread"
@@ -14097,6 +14880,12 @@
           "observed_at": "2026-10-24",
           "sha256": "6ffc1c0a3ff77ac13038162fea1cc3a30e0509c9a42b38ffe9b22636849a776d",
           "url": "https://www.happings.com/it/happing/alps-move-2026-nacre-threshold-catch-me/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "78d8bd4fbccc231278e4de8611bb049a64c9a6c7667bf9e580a0bd917eff249d",
+          "url": "https://www.happings.com/it/happing/come-unimmagine-cambia-le-possibilita-di-comunicare/"
         }
       ],
       "status": "unread"
@@ -14640,6 +15429,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d5ed934f008b33194c3e2bd0bcbf7b5690f326061d7c52940ecbcb4ac8fc55ef",
+          "url": "https://www.happings.com/it/happing/cocktail-art-autumn-edition/"
         }
       ],
       "status": "unread"
@@ -14853,6 +15648,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "940d129a851866b02e9503dfea75b81f6a72699dd0ccfc441803c213a7995a1a",
+          "url": "https://www.happings.com/it/happing/cinque-secondi-pianeta-terra-festival/"
         }
       ],
       "status": "unread"
@@ -15051,6 +15852,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "69aa2c34017d6b9618bc48821574c630ab1ffc25617ddbad800bf8c9bc0bf5cc",
+          "url": "https://www.happings.com/it/happing/cogli-la-prima-mela-al-vettererhof/"
         }
       ],
       "status": "unread"
@@ -15099,6 +15906,12 @@
           "observed_at": "2026-10-20",
           "sha256": "2fea578d3a32867bbb0e9434f2c4d11bc737632b8d58070b52f901a7a7491b95",
           "url": "https://www.happings.com/it/happing/mercatino-contadino-a-chiusa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "69aa2c34017d6b9618bc48821574c630ab1ffc25617ddbad800bf8c9bc0bf5cc",
+          "url": "https://www.happings.com/it/happing/cogli-la-prima-mela-al-vettererhof/"
         }
       ],
       "status": "unread"
@@ -16083,6 +16896,12 @@
           "observed_at": "2026-10-24",
           "sha256": "b366802e469d30fa2d90fca4405a772aaddfa569c125c056f1411a6febfcd591",
           "url": "https://www.happings.com/it/happing/borghi-a-fumetti-15-storie-dautore-in-friuli-venezia-giulia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "885d1d165863005cd21401677198bbc9eba78d838fef5a7dc8507f9541c49c3f",
+          "url": "https://www.happings.com/it/happing/competition-anelli-di-congiunzione/"
         }
       ],
       "status": "unread"
@@ -16695,6 +17514,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ceff4cbc32f2398dd14bbb93087c0c111aebf7951a9b9157bd54288748061679",
+          "url": "https://www.happings.com/it/happing/cinema-les-musiciens/"
         }
       ],
       "status": "unread"
@@ -16716,6 +17541,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb366abfc56bf2dbd61fef3b4aa8617fe6653a19095aca7bee87a0030123da15",
+          "url": "https://www.happings.com/it/happing/ciurma-pendagli-da-forca/"
         }
       ],
       "status": "unread"
@@ -18345,6 +19176,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1254f41d497e84560d35fdeb11516da7e159573497f29881688f4439eee8c2b8",
+          "url": "https://www.happings.com/it/happing/concerto-di-fine-anno/"
         }
       ],
       "status": "unread"
@@ -18963,6 +19800,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c5b9f5a7702560b7b582ea72ef6c6e1a160ff176042e9f1771434481f1e93e78",
+          "url": "https://www.happings.com/it/happing/colori-dautunno/"
         }
       ],
       "status": "unread"
@@ -19365,6 +20208,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5d8e7af67ad253eb62dfe64e5b7d62227e1890b82ae6e428688b05e04f49f926",
           "url": "https://www.happings.com/it/happing/apertura-delle-settimane-della-castagna-a-velturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ae6152b8f88bcc244eddcf90cfb15f3f651022f1c6d5b0b3197ad260c4f2e928",
+          "url": "https://www.happings.com/it/happing/christmas-running/"
         }
       ],
       "status": "unread"
@@ -19842,6 +20691,12 @@
           "observed_at": "2026-10-25",
           "sha256": "f464e94463e58209b5b7ceaecda98c0dec6bd6b60667f7857333992ffb94429d",
           "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cf010884f02e6a6770b4213b4760856b112431672b16177ffa90cd1f2d1068f0",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale/"
         }
       ],
       "status": "unread"
@@ -20391,6 +21246,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c5b9f5a7702560b7b582ea72ef6c6e1a160ff176042e9f1771434481f1e93e78",
+          "url": "https://www.happings.com/it/happing/colori-dautunno/"
         }
       ],
       "status": "unread"
@@ -21246,6 +22107,12 @@
           "observed_at": "2026-10-25",
           "sha256": "4b2b3431629b25d01abe053917a2c666b5572839817d86ea7ff033b83d7a16e6",
           "url": "https://www.happings.com/it/happing/castagnata-del-circolo-di-travino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ae6152b8f88bcc244eddcf90cfb15f3f651022f1c6d5b0b3197ad260c4f2e928",
+          "url": "https://www.happings.com/it/happing/christmas-running/"
         }
       ],
       "status": "unread"
@@ -21465,6 +22332,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9e8c4931807da4b2abdca6645ce74365fcb26105cc5413e1fcd7f3e270a98d8",
+          "url": "https://www.happings.com/it/happing/come-a-primavera-la-baia-delle-cannelle/"
         }
       ],
       "status": "unread"
@@ -21540,6 +22413,12 @@
           "observed_at": "2026-10-25",
           "sha256": "520d184c32a6373989695f1fd203abcd4f30233501733fdd4f152c6bc1f5eedf",
           "url": "https://www.happings.com/it/happing/chef-luigi-taglienti/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "db9872bae2f652a2ceb0a71ea904d57eb71a55750051291f58281f82be35ec41",
+          "url": "https://www.happings.com/it/happing/chef-sophie-tabet-chez-sophie/"
         }
       ],
       "status": "unread"
@@ -21633,6 +22512,12 @@
           "observed_at": "2026-10-20",
           "sha256": "08ea2d49103432219e953fbfde1e83e46bd55d3017b9d1f4a0bc02b44ff80d92",
           "url": "https://www.happings.com/it/happing/mercato-agricolo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8762fd9824f4663f2188f119a4f7acc19472897c69b02ccbc484c52c7669465c",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-3/"
         }
       ],
       "status": "unread"
@@ -21813,6 +22698,12 @@
           "observed_at": "2026-10-24",
           "sha256": "625a9eb9edb8f89408f7c6f6b0bd197985a9b2cade31d33212f405bca6d5b00a",
           "url": "https://www.happings.com/it/happing/aspettando-il-natale-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0b274b9ccd30e33d5591936601386ee8403a6764594bdc9424d95d3cb50a442a",
+          "url": "https://www.happings.com/it/happing/concerto-di-natale-2-evento-10318/"
         }
       ],
       "status": "unread"
@@ -21867,6 +22758,18 @@
           "observed_at": "2026-10-24",
           "sha256": "c47f100c64e80dd8ac180aa32afdc5a4c7d3ac7881a41fddb793d3e12afb070e",
           "url": "https://www.happings.com/it/happing/asta-mondiale-del-tartufo-bianco-dalba/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b60ecfc1d4a24b8cbbf82f898f736be91d5d5e299a853b7e4bd3eb78a3b01019",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cf010884f02e6a6770b4213b4760856b112431672b16177ffa90cd1f2d1068f0",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale/"
         }
       ],
       "status": "unread"
@@ -22185,6 +23088,12 @@
           "observed_at": "2026-10-20",
           "sha256": "f08dbbb4a75d735bd5860aefc0ef85b040972f6f885d8c54e78c86b89bb12f2f",
           "url": "https://www.happings.com/it/happing/119-mostra-del-bitto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0353290664d453d4ba4dd9f918eac8341367886ffb666744c62d8649dfdec7f9",
+          "url": "https://www.happings.com/it/happing/commemorazione-dei-defunti/"
         }
       ],
       "status": "unread"
@@ -22287,6 +23196,12 @@
           "observed_at": "2026-10-25",
           "sha256": "5afceb7d2bee9d2ac9f65f06baf360ef72563283f8bffc5be34285e0d83ae313",
           "url": "https://www.happings.com/it/happing/chef-diego-rossi-trippa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "86e1766e60966390ef3ec71046d1b1c029934de965ad9317d6ef5ed84eac1e74",
+          "url": "https://www.happings.com/it/happing/chef-roberto-conti-casa-camperio/"
         }
       ],
       "status": "unread"
@@ -22455,6 +23370,12 @@
           "observed_at": "2026-10-24",
           "sha256": "7a39e9292047c85785084d8c12afb14cebaa819bf13882eb4316deebd670b0ef",
           "url": "https://www.happings.com/it/happing/aston-crown-run-grv/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ce6e1d119ae4b2cbd40bcfbb7ac7b3bd427aba4f4e412ee4fbd9e0e0aed771ac",
+          "url": "https://www.happings.com/it/happing/con-tut-el-ben-che-te-voi-a-laives/"
         }
       ],
       "status": "unread"
@@ -22551,6 +23472,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "67e7733d32531c984aebd3fdcf9001e3c382e5aa27c3ad7a1ee34e508f2906b2",
+          "url": "https://www.happings.com/it/happing/collectors-corner/"
         }
       ],
       "status": "unread"
@@ -22728,6 +23655,12 @@
           "observed_at": "2026-10-25",
           "sha256": "f9ef96371b7c24fa40ab6db931d34e69b246376fa629945894ecae6004d2dafa",
           "url": "https://www.happings.com/it/happing/castagnata-dei-chech/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b3b8819aede55fadf7156a9146266a3112cc49f6bf9555a0dec976d0706d9326",
+          "url": "https://www.happings.com/it/happing/concerto-apollo5/"
         }
       ],
       "status": "unread"
@@ -23115,6 +24048,12 @@
           "observed_at": "2026-10-21",
           "sha256": "4e49b4f64c4e094beb15b3cfad2dd5f862e95a952501f2b66af129d17f2b0499",
           "url": "https://www.happings.com/it/happing/abel-incontra-fernanda-faini-ia-e-responsabilita-delle-macchine/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "935ffb4aca690231d23f4e32c857e6d5d293dab7b2c9aa558c0fd540b085598b",
+          "url": "https://www.happings.com/it/happing/citta-nuova-presenta-il-libro-dei-sogni-della-gen-z/"
         }
       ],
       "status": "unread"
@@ -23484,6 +24423,12 @@
           "observed_at": "2026-10-24",
           "sha256": "b366802e469d30fa2d90fca4405a772aaddfa569c125c056f1411a6febfcd591",
           "url": "https://www.happings.com/it/happing/borghi-a-fumetti-15-storie-dautore-in-friuli-venezia-giulia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ba1ea1062cbe5f0448b38c63ea546ef6baa3d1743fa8dd3e2c2ef0990e64e424",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-personaggio/"
         }
       ],
       "status": "unread"
@@ -23505,6 +24450,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d5ed934f008b33194c3e2bd0bcbf7b5690f326061d7c52940ecbcb4ac8fc55ef",
+          "url": "https://www.happings.com/it/happing/cocktail-art-autumn-edition/"
         }
       ],
       "status": "unread"
@@ -23793,6 +24744,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "293b072f392228f26ab37fa8ce03e61d0b129a95971c7ac4c6524ebdb5a09fa7",
+          "url": "https://www.happings.com/it/happing/cinzia-canneri-womens-bodies-as-battlefields/"
         }
       ],
       "status": "unread"
@@ -24387,6 +25344,12 @@
           "observed_at": "2026-10-24",
           "sha256": "44b3901c4544fba18e773313097ba4d80392a96f6e04efd5fe4ec82038107577",
           "url": "https://www.happings.com/it/happing/anna-cappelli/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b768352326fe7094f198ff444f75f7b3e5fde7b2a373edc69f1dd4a39a1322b",
+          "url": "https://www.happings.com/it/happing/cinema-fly-fishing-film-tour-2026/"
         }
       ],
       "status": "unread"
@@ -24591,6 +25554,12 @@
           "observed_at": "2026-10-24",
           "sha256": "672c4cb4cf0337b19d9dae68a2757bf24eeff323f7f0129a639f6a65c30e8dac",
           "url": "https://www.happings.com/it/happing/bibi-blocksberg-il-viaggio-nel-tempo-completamente-stregato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5d5bd6081903a35122a9e945da0610f67a82da2128212ac9c8eb1edb87cd3ca5",
+          "url": "https://www.happings.com/it/happing/cinema-the-social-reckoning/"
         }
       ],
       "status": "unread"
@@ -24846,6 +25815,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5da349a94a0250dd218c0c94d7d8cbfb75c4693a6a8488b9616bbb3e332f49a1",
+          "url": "https://www.happings.com/it/happing/chef-simone-grazioso-fine-sushi-ristorante-contemporaneo/"
         }
       ],
       "status": "unread"
@@ -25113,6 +26088,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b768352326fe7094f198ff444f75f7b3e5fde7b2a373edc69f1dd4a39a1322b",
+          "url": "https://www.happings.com/it/happing/cinema-fly-fishing-film-tour-2026/"
         }
       ],
       "status": "unread"
@@ -25167,6 +26148,12 @@
           "observed_at": "2026-10-24",
           "sha256": "15edfa126cd3eede10b2e100aad1e83e25d0cbfb145d5da08bd10b09787ebe08",
           "url": "https://www.happings.com/it/happing/apertura-straordinaria-della-chiesa-di-santa-maria-maddalena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "78d8bd4fbccc231278e4de8611bb049a64c9a6c7667bf9e580a0bd917eff249d",
+          "url": "https://www.happings.com/it/happing/come-unimmagine-cambia-le-possibilita-di-comunicare/"
         }
       ],
       "status": "unread"
@@ -25362,6 +26349,12 @@
           "observed_at": "2026-10-21",
           "sha256": "f5f964baa872b20df3349c0b6abf2f64ad9262da32f192ec2a9595cb7fcfc755",
           "url": "https://www.happings.com/it/happing/affreschi-cappelle-e-storie-visita-guidata-a-tesido/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ceff4cbc32f2398dd14bbb93087c0c111aebf7951a9b9157bd54288748061679",
+          "url": "https://www.happings.com/it/happing/cinema-les-musiciens/"
         }
       ],
       "status": "unread"
@@ -25890,6 +26883,12 @@
           "observed_at": "2026-10-25",
           "sha256": "bac101e3798e199d2d6ceb492a1392bbb1e2f4423b0dca8fb82ca020acc1e736",
           "url": "https://www.happings.com/it/happing/chef-alessandro-rossi-barbagianni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9be4a0f5d31fbe9f637db595fa13d2874362446a59586a62dce0aedf2855224e",
+          "url": "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera-2/"
         }
       ],
       "status": "unread"
@@ -26013,6 +27012,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "940d129a851866b02e9503dfea75b81f6a72699dd0ccfc441803c213a7995a1a",
+          "url": "https://www.happings.com/it/happing/cinque-secondi-pianeta-terra-festival/"
         }
       ],
       "status": "unread"
@@ -26799,6 +27804,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9f0ac3106b421f3795534b05ccc4de943192cb0f403f9db43302482eabeba52e",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-libro-a-piu-mani/"
         }
       ],
       "status": "unread"
@@ -27726,6 +28737,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "293b072f392228f26ab37fa8ce03e61d0b129a95971c7ac4c6524ebdb5a09fa7",
+          "url": "https://www.happings.com/it/happing/cinzia-canneri-womens-bodies-as-battlefields/"
         }
       ],
       "status": "unread"
@@ -27915,6 +28932,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "940d129a851866b02e9503dfea75b81f6a72699dd0ccfc441803c213a7995a1a",
+          "url": "https://www.happings.com/it/happing/cinque-secondi-pianeta-terra-festival/"
         }
       ],
       "status": "unread"
@@ -28209,6 +29232,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "059fcf4bcfeb23a77ec447bda08813cef98ec90adee6aa7ee4ca2b6a64ca70a5",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-della-banda-musicale-di-coldrano-morter-e-del-coro-maschile-vierklang/"
         }
       ],
       "status": "unread"
@@ -28449,6 +29478,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5d5bd6081903a35122a9e945da0610f67a82da2128212ac9c8eb1edb87cd3ca5",
+          "url": "https://www.happings.com/it/happing/cinema-the-social-reckoning/"
         }
       ],
       "status": "unread"
@@ -28497,6 +29532,12 @@
           "observed_at": "2026-10-24",
           "sha256": "35351f8472729372bb3184dc74cf6e9c1bc76f2bdfb1491353da19eeae165640",
           "url": "https://www.happings.com/it/happing/aprire-mondi-dalla-pagina-alla-meraviglia-con-minalima/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f3bd2d6523075bbd19c5349b9283e29ec02454f3f0a4d05b32ae03833ee4835d",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-librogame/"
         }
       ],
       "status": "unread"
@@ -29067,6 +30108,18 @@
           "observed_at": "2026-10-25",
           "sha256": "fb595a9003f76e2017342083c96e7020dd1ff61cb8deb02eaffb10393832134a",
           "url": "https://www.happings.com/it/happing/castagnata-5-evento-10428/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b3b8819aede55fadf7156a9146266a3112cc49f6bf9555a0dec976d0706d9326",
+          "url": "https://www.happings.com/it/happing/concerto-apollo5/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fb44d1e3100eba2bc8733dbebf5d5f84c500403de2c32ec5221b5a3d7d4b615",
+          "url": "https://www.happings.com/it/happing/concerto-dautunno-del-gruppo-streichholz-fiedl/"
         }
       ],
       "status": "unread"
@@ -29661,6 +30714,12 @@
           "observed_at": "2026-10-21",
           "sha256": "4e49b4f64c4e094beb15b3cfad2dd5f862e95a952501f2b66af129d17f2b0499",
           "url": "https://www.happings.com/it/happing/abel-incontra-fernanda-faini-ia-e-responsabilita-delle-macchine/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1ee40476d455f55a4c9678f2d4cfec5b59884003e8d2bfd6b09d129c632cc4a6",
+          "url": "https://www.happings.com/it/happing/code-to-space-algoritmi-su-marte/"
         }
       ],
       "status": "unread"
@@ -29874,6 +30933,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0fdad6cf1a79f2ac462ac8df6de8b9b6234cc7a22f4ddb82109e8dae04a10544",
+          "url": "https://www.happings.com/it/happing/chi-ha-rubato-le-zucche/"
         }
       ],
       "status": "unread"
@@ -29976,6 +31041,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f3bd2d6523075bbd19c5349b9283e29ec02454f3f0a4d05b32ae03833ee4835d",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-librogame/"
         }
       ],
       "status": "unread"
@@ -30108,6 +31179,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2d7a0d811030930b2dab9f97d37797655d9a0de528e13ad91a51c4b6a4c0b447",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-parcines-per-la-festa-di-cacilia/"
         }
       ],
       "status": "unread"
@@ -30591,6 +31668,12 @@
           "observed_at": "2026-10-25",
           "sha256": "137d78e4581fd64a6705590b5a012001a9b93e498130c5f047c40b99ede13478",
           "url": "https://www.happings.com/it/happing/capibarize-yourself-laboratorio-di-fumetto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6efd68df164e3f84627b30062c4a6d88d35d056c159504c2ae85fe05f7fbf48a",
+          "url": "https://www.happings.com/it/happing/comprendere-lalto-adige-vivere-lalto-adige/"
         }
       ],
       "status": "unread"
@@ -30738,6 +31821,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7ce5d907875e11bd17203973919d4ab30af14a736633d47b32657f693feb3588",
+          "url": "https://www.happings.com/it/happing/concerto-davvento/"
         }
       ],
       "status": "unread"
@@ -31056,6 +32145,12 @@
           "observed_at": "2026-10-24",
           "sha256": "fcfbe09dd01aa43f199cd85dc607100c1e00c0dd46f32514b343d3ef336a06ac",
           "url": "https://www.happings.com/it/happing/arrampicata-guidata-sulla-via-ferrata-knott/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9e8c4931807da4b2abdca6645ce74365fcb26105cc5413e1fcd7f3e270a98d8",
+          "url": "https://www.happings.com/it/happing/come-a-primavera-la-baia-delle-cannelle/"
         }
       ],
       "status": "unread"
@@ -31416,6 +32511,12 @@
           "observed_at": "2026-10-24",
           "sha256": "e68d32babe59f74740edabf7d1392a6b78322ecdbefd8189b66851689438c520",
           "url": "https://www.happings.com/it/happing/bambi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9f0ac3106b421f3795534b05ccc4de943192cb0f403f9db43302482eabeba52e",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-libro-a-piu-mani/"
         }
       ],
       "status": "unread"
@@ -31584,6 +32685,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ba1ea1062cbe5f0448b38c63ea546ef6baa3d1743fa8dd3e2c2ef0990e64e424",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-personaggio/"
         }
       ],
       "status": "unread"
@@ -31605,6 +32712,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "885d1d165863005cd21401677198bbc9eba78d838fef5a7dc8507f9541c49c3f",
+          "url": "https://www.happings.com/it/happing/competition-anelli-di-congiunzione/"
         }
       ],
       "status": "unread"
@@ -31692,6 +32805,12 @@
           "observed_at": "2026-10-21",
           "sha256": "fd37edfb786fb017444d7b77e17861675336d596d28d9d3b8fbeb4fc7593bc9a",
           "url": "https://www.happings.com/it/happing/agrigame/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ceff4cbc32f2398dd14bbb93087c0c111aebf7951a9b9157bd54288748061679",
+          "url": "https://www.happings.com/it/happing/cinema-les-musiciens/"
         }
       ],
       "status": "unread"
@@ -32094,6 +33213,12 @@
           "observed_at": "2026-10-25",
           "sha256": "f24158fb641ce8e3e53a2352acbb141fad0201f3ca8aef52df49f641441cf068",
           "url": "https://www.happings.com/it/happing/castagnata-5-evento-10463/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2b28fbfb3a31ca1435d4239f76b829b368617a1389b5b978c54242eadf8cf357",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-con-il-coro-maschile-mannergesangverein-lana/"
         }
       ],
       "status": "unread"
@@ -32580,6 +33705,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fe2fd2f6f474d7e9e8446eb35dbc7579671163bbe927e206ef9aba41239ef40",
+          "url": "https://www.happings.com/it/happing/cinema-practical-magic-2-zauberhafte-schwestern/"
         }
       ],
       "status": "unread"
@@ -32607,6 +33738,18 @@
           "observed_at": "2026-10-20",
           "sha256": "184b6507cfd414ad152d0ac98227e24cf12b20a7f2694b3f3c1ce8071e1ea0a5",
           "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-simple-brass-e-un-quartetto-di-ottoni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7716d2f31602a5c659b01e6abdcd0e1e72152e9133e2567be7cf02e66ff09ec1",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-bohmische-albeins/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74673dded93c87153f1f176fecf4456c5e080896a52d7093e3df4381c8efbecc",
+          "url": "https://www.happings.com/it/happing/concerto-della-the-legendary-st-pauls-tschass-band/"
         }
       ],
       "status": "unread"
@@ -32628,6 +33771,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a23a56903fd236a0982f3e6f3522c40d986251c65e7f1bf133b73a8178751ff5",
           "url": "https://www.happings.com/happings_event-sitemap4.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "334e500da859d00774d8333fcbfc977cc139b374847e9423ccfd7057caa0afeb",
+          "url": "https://www.happings.com/it/happing/concerto-autunnale-della-banda-musicale-burgerkapelle-lana/"
         }
       ],
       "status": "unread"
@@ -32835,6 +33984,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "74673dded93c87153f1f176fecf4456c5e080896a52d7093e3df4381c8efbecc",
+          "url": "https://www.happings.com/it/happing/concerto-della-the-legendary-st-pauls-tschass-band/"
         }
       ],
       "status": "unread"
@@ -35226,6 +36381,12 @@
           "observed_at": "2026-10-20",
           "sha256": "176689484a1c51abeaaa5095daec606226073a1a0db59ded8d2c5435cc97c54f",
           "url": "https://www.happings.com/it/happing/mercato-agricolo-evento-10533/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ec53655fe407b80fe701c449ad388ecdc312ad3ad74e308d83e064384018ea6f",
+          "url": "https://www.happings.com/it/happing/chef-pasquale-laera-ristorante-borgo-santanna/"
         }
       ],
       "status": "retrieved"
@@ -35715,6 +36876,12 @@
           "observed_at": "2026-10-20",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-campagna-amica-di-bibbiena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb14b56a0f0d8bc70dd276a57bc6027cdfd5e04689d2fdbe433975ba04ab7a6f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/5/"
         }
       ],
       "status": "retrieved"
@@ -37224,6 +38391,12 @@
           "observed_at": "2026-10-20",
           "sha256": "bb2b4c58c0f6f083b3927a8611be5001920b93ec09574ea7b99c1f536adff25d",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-gorizia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb14b56a0f0d8bc70dd276a57bc6027cdfd5e04689d2fdbe433975ba04ab7a6f",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/5/"
         }
       ],
       "status": "retrieved"
@@ -43845,6 +45018,18 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a2858ff20fdbdcabef39bf9660d75df513fbe274d4415fe3f6083918fd4f5e0f",
+          "url": "https://www.happings.com/it/happing/chiedimi-come-sto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "221e6fd4e1a6ace6f0a86b6c6953daa39e1511da33ff05ecf34e50bdf770801c",
+          "url": "https://www.happings.com/it/happing/ciarun-les-steres-osservazione-delle-stelle/"
         }
       ],
       "status": "unread"
@@ -44556,6 +45741,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "935ffb4aca690231d23f4e32c857e6d5d293dab7b2c9aa558c0fd540b085598b",
+          "url": "https://www.happings.com/it/happing/citta-nuova-presenta-il-libro-dei-sogni-della-gen-z/"
         }
       ],
       "status": "unread"
@@ -44688,6 +45879,27 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/happing/musica-dal-vivo-con-simon-mac/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fb44d1e3100eba2bc8733dbebf5d5f84c500403de2c32ec5221b5a3d7d4b615",
+          "url": "https://www.happings.com/it/happing/concerto-dautunno-del-gruppo-streichholz-fiedl/"
         }
       ],
       "status": "unread"
@@ -45381,6 +46593,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1ee40476d455f55a4c9678f2d4cfec5b59884003e8d2bfd6b09d129c632cc4a6",
+          "url": "https://www.happings.com/it/happing/code-to-space-algoritmi-su-marte/"
         }
       ],
       "status": "unread"
@@ -45525,6 +46743,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "29d0c54788e52650ef3a7224e5ae9eece53d2ed46175d7eca6992226b9f90eb6",
+          "url": "https://www.happings.com/it/happing/cioccolatata/"
         }
       ],
       "status": "unread"
@@ -46122,6 +47346,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2d7a0d811030930b2dab9f97d37797655d9a0de528e13ad91a51c4b6a4c0b447",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-parcines-per-la-festa-di-cacilia/"
         }
       ],
       "status": "unread"
@@ -46314,6 +47544,18 @@
           "observed_at": "2026-10-20",
           "sha256": "aeb01fb671eba03175dfce67c0cc0a277bf52289cbdce9443b7f944100c6fcd4",
           "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-concerto-di-san-silvest-ladies-in-dress/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bc70b18f9fbd442ff7f19097e9a17ba1683694f398a48a801751c2ad51424e69",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-tirolo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f55daf30f6d69bb2816a405870e81facf7009cad6d210c17ef81ee1bc64f2274",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-worb-a-scena/"
         }
       ],
       "status": "unread"
@@ -46566,6 +47808,12 @@
           "observed_at": "2026-10-24",
           "sha256": "b650c3111ba9759002a5a6a3b79f49159caeaa904d2e8f1b71ec70ff64f15292",
           "url": "https://www.happings.com/it/happing/autoritratto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a74b15c9cc6a9d8ea9a18257024a85359757cef6c2a0e9c44d1d72f90e6876e7",
+          "url": "https://www.happings.com/it/happing/combattimenti-florence-knights-star-wars/"
         }
       ],
       "status": "unread"
@@ -46821,6 +48069,12 @@
           "observed_at": "2026-10-21",
           "sha256": "9d7d550bf39077c21a1f7b610163c97dce42b8295fd7e4129781ebcf00b099d6",
           "url": "https://www.happings.com/it/happing/abel-incontra-cosimo-accoto-tecnologia-e-futuro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "67e7733d32531c984aebd3fdcf9001e3c382e5aa27c3ad7a1ee34e508f2906b2",
+          "url": "https://www.happings.com/it/happing/collectors-corner/"
         }
       ],
       "status": "unread"
@@ -47175,6 +48429,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9e8c4931807da4b2abdca6645ce74365fcb26105cc5413e1fcd7f3e270a98d8",
+          "url": "https://www.happings.com/it/happing/come-a-primavera-la-baia-delle-cannelle/"
         }
       ],
       "status": "unread"
@@ -47352,6 +48612,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "dbb116537f932e3d890304b710fad6f96791a3392aca6d25d29ee5ddb55cf95c",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-e-processione-di-ringraziamento/"
         }
       ],
       "status": "unread"
@@ -47484,6 +48750,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c5b9f5a7702560b7b582ea72ef6c6e1a160ff176042e9f1771434481f1e93e78",
+          "url": "https://www.happings.com/it/happing/colori-dautunno/"
         }
       ],
       "status": "unread"
@@ -47883,6 +49155,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3deae0febc59752b5e7ae086d5f2dd7f6c1def48dc039d4c0eee132566d7566a",
+          "url": "https://www.happings.com/it/happing/cinema-spaziergang-nach-syrakus/"
         }
       ],
       "status": "unread"
@@ -48135,6 +49413,12 @@
           "observed_at": "2026-10-25",
           "sha256": "9328d2e526f3c56232b77c7254b39a7134ea6b419c40917f47a96926a7af2a1b",
           "url": "https://www.happings.com/it/happing/che-viviana-varese-passalacqua-lago-di-como/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5da349a94a0250dd218c0c94d7d8cbfb75c4693a6a8488b9616bbb3e332f49a1",
+          "url": "https://www.happings.com/it/happing/chef-simone-grazioso-fine-sushi-ristorante-contemporaneo/"
         }
       ],
       "status": "unread"
@@ -48252,6 +49536,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6efd68df164e3f84627b30062c4a6d88d35d056c159504c2ae85fe05f7fbf48a",
+          "url": "https://www.happings.com/it/happing/comprendere-lalto-adige-vivere-lalto-adige/"
         }
       ],
       "status": "unread"
@@ -48429,6 +49719,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb366abfc56bf2dbd61fef3b4aa8617fe6653a19095aca7bee87a0030123da15",
+          "url": "https://www.happings.com/it/happing/ciurma-pendagli-da-forca/"
         }
       ],
       "status": "unread"
@@ -48462,6 +49758,12 @@
           "observed_at": "2026-10-21",
           "sha256": "808fb3ef466c30f09efbbb736136aa6a9131aec11e5fe07a7257490de59e75df",
           "url": "https://www.happings.com/it/happing/accendiamo-il-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "39176512ca86a7642db73568585cbdd95d6554c2220aa99ded9db6211fc6091a",
+          "url": "https://www.happings.com/it/happing/concerto-augurale-natalizio/"
         }
       ],
       "status": "unread"
@@ -48585,6 +49887,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ba1ea1062cbe5f0448b38c63ea546ef6baa3d1743fa8dd3e2c2ef0990e64e424",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-personaggio/"
         }
       ],
       "status": "unread"
@@ -48819,6 +50127,12 @@
           "observed_at": "2026-10-24",
           "sha256": "8c0cc562c75407f38440269b2893de60e9a66e0426aec0370342e756c9847655",
           "url": "https://www.happings.com/it/happing/amnesty-saranno-alberi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9f0ac3106b421f3795534b05ccc4de943192cb0f403f9db43302482eabeba52e",
+          "url": "https://www.happings.com/it/happing/come-si-scrive-un-libro-a-piu-mani/"
         }
       ],
       "status": "unread"
@@ -49296,6 +50610,12 @@
           "observed_at": "2026-10-25",
           "sha256": "3bbc9b64c33c620b49647019925d3d56adf4aacca3e9c5454b2098ad03041601",
           "url": "https://www.happings.com/it/happing/castel-rodengo-in-atmosfera-autunnale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fe2fd2f6f474d7e9e8446eb35dbc7579671163bbe927e206ef9aba41239ef40",
+          "url": "https://www.happings.com/it/happing/cinema-practical-magic-2-zauberhafte-schwestern/"
         }
       ],
       "status": "unread"
@@ -49698,6 +51018,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "78d8bd4fbccc231278e4de8611bb049a64c9a6c7667bf9e580a0bd917eff249d",
+          "url": "https://www.happings.com/it/happing/come-unimmagine-cambia-le-possibilita-di-comunicare/"
         }
       ],
       "status": "unread"
@@ -49731,6 +51057,12 @@
           "observed_at": "2026-10-24",
           "sha256": "afaf13ba79d1564951926be44bdeb0240d84a7257d32faa3619ae3e7ae2bf038",
           "url": "https://www.happings.com/it/happing/aston-crown-combattimenti-esibizioni-e-balli-4/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3deae0febc59752b5e7ae086d5f2dd7f6c1def48dc039d4c0eee132566d7566a",
+          "url": "https://www.happings.com/it/happing/cinema-spaziergang-nach-syrakus/"
         }
       ],
       "status": "unread"
@@ -50343,6 +51675,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "df1ac7e1c65c2812fe628a9ea7536cb24c73d6f853d60d436b170648d02e9c33",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-2/"
         }
       ],
       "status": "unread"
@@ -50364,6 +51702,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bc70b18f9fbd442ff7f19097e9a17ba1683694f398a48a801751c2ad51424e69",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-tirolo/"
         }
       ],
       "status": "unread"
@@ -50523,6 +51867,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "67e7733d32531c984aebd3fdcf9001e3c382e5aa27c3ad7a1ee34e508f2906b2",
+          "url": "https://www.happings.com/it/happing/collectors-corner/"
         }
       ],
       "status": "unread"
@@ -51180,6 +52530,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ec53655fe407b80fe701c449ad388ecdc312ad3ad74e308d83e064384018ea6f",
+          "url": "https://www.happings.com/it/happing/chef-pasquale-laera-ristorante-borgo-santanna/"
         }
       ],
       "status": "unread"
@@ -51864,6 +53220,18 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3d3bd1f41e6df9d077353a3e48195df5ec53afd8d4ba2f2d4b21fc3732e1a297",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-lagundo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2d7a0d811030930b2dab9f97d37797655d9a0de528e13ad91a51c4b6a4c0b447",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-parcines-per-la-festa-di-cacilia/"
         }
       ],
       "status": "unread"
@@ -52257,6 +53625,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6efd68df164e3f84627b30062c4a6d88d35d056c159504c2ae85fe05f7fbf48a",
+          "url": "https://www.happings.com/it/happing/comprendere-lalto-adige-vivere-lalto-adige/"
         }
       ],
       "status": "unread"
@@ -52353,6 +53727,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "29d0c54788e52650ef3a7224e5ae9eece53d2ed46175d7eca6992226b9f90eb6",
+          "url": "https://www.happings.com/it/happing/cioccolatata/"
         }
       ],
       "status": "unread"
@@ -52566,6 +53946,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c638b9f6cdbc792e37f2c81934766e31f0fd2bd5e4eb140ce0152ced3f485f79",
           "url": "https://www.happings.com/it/happing/brunch-della-domenica-allhotel-restaurant-hohenwart/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "69aa2c34017d6b9618bc48821574c630ab1ffc25617ddbad800bf8c9bc0bf5cc",
+          "url": "https://www.happings.com/it/happing/cogli-la-prima-mela-al-vettererhof/"
         }
       ],
       "status": "unread"
@@ -52776,6 +54162,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "29d0c54788e52650ef3a7224e5ae9eece53d2ed46175d7eca6992226b9f90eb6",
+          "url": "https://www.happings.com/it/happing/cioccolatata/"
         }
       ],
       "status": "unread"
@@ -52797,6 +54189,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9fe2fd2f6f474d7e9e8446eb35dbc7579671163bbe927e206ef9aba41239ef40",
+          "url": "https://www.happings.com/it/happing/cinema-practical-magic-2-zauberhafte-schwestern/"
         }
       ],
       "status": "unread"
@@ -53175,6 +54573,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "885d1d165863005cd21401677198bbc9eba78d838fef5a7dc8507f9541c49c3f",
+          "url": "https://www.happings.com/it/happing/competition-anelli-di-congiunzione/"
         }
       ],
       "status": "unread"
@@ -53691,6 +55095,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f55daf30f6d69bb2816a405870e81facf7009cad6d210c17ef81ee1bc64f2274",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-worb-a-scena/"
         }
       ],
       "status": "unread"
@@ -54171,6 +55581,18 @@
           "observed_at": "2026-10-20",
           "sha256": "f412fdf14f702542ae69a17a3517b189483517f7398caeea9eb16be384d38e9c",
           "url": "https://www.happings.com/it/happing/mercato-agricolo-evento-10542/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b60ecfc1d4a24b8cbbf82f898f736be91d5d5e299a853b7e4bd3eb78a3b01019",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9706c8e2e345d6515ac45a11b77385eb7d8fb8aeee2732913f5bc6ec3c355789",
+          "url": "https://www.happings.com/it/happing/chef-stefano-sforza-ristorante-opera/"
         }
       ],
       "status": "unread"
@@ -54213,6 +55635,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "414645043f2846c05423c8bce45ba0f4403f3699f078acf37a87ceb9fe691424",
+          "url": "https://www.happings.com/it/happing/chef-roland-lamprecht-forestis-accademia-ferri-dal-1905/"
         }
       ],
       "status": "unread"
@@ -54573,6 +56001,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb366abfc56bf2dbd61fef3b4aa8617fe6653a19095aca7bee87a0030123da15",
+          "url": "https://www.happings.com/it/happing/ciurma-pendagli-da-forca/"
         }
       ],
       "status": "unread"
@@ -54834,6 +56268,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d5ed934f008b33194c3e2bd0bcbf7b5690f326061d7c52940ecbcb4ac8fc55ef",
+          "url": "https://www.happings.com/it/happing/cocktail-art-autumn-edition/"
         }
       ],
       "status": "unread"
@@ -55074,6 +56514,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1254f41d497e84560d35fdeb11516da7e159573497f29881688f4439eee8c2b8",
+          "url": "https://www.happings.com/it/happing/concerto-di-fine-anno/"
         }
       ],
       "status": "unread"
@@ -55221,6 +56667,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ce6e1d119ae4b2cbd40bcfbb7ac7b3bd427aba4f4e412ee4fbd9e0e0aed771ac",
+          "url": "https://www.happings.com/it/happing/con-tut-el-ben-che-te-voi-a-laives/"
         }
       ],
       "status": "unread"
@@ -55374,6 +56826,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "059fcf4bcfeb23a77ec447bda08813cef98ec90adee6aa7ee4ca2b6a64ca70a5",
+          "url": "https://www.happings.com/it/happing/concerto-davvento-della-banda-musicale-di-coldrano-morter-e-del-coro-maschile-vierklang/"
         }
       ],
       "status": "unread"
@@ -55395,6 +56853,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "dbb116537f932e3d890304b710fad6f96791a3392aca6d25d29ee5ddb55cf95c",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-e-processione-di-ringraziamento/"
         }
       ],
       "status": "unread"
@@ -55443,6 +56907,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0fdad6cf1a79f2ac462ac8df6de8b9b6234cc7a22f4ddb82109e8dae04a10544",
+          "url": "https://www.happings.com/it/happing/chi-ha-rubato-le-zucche/"
         }
       ],
       "status": "unread"
@@ -56049,6 +57519,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0fdad6cf1a79f2ac462ac8df6de8b9b6234cc7a22f4ddb82109e8dae04a10544",
+          "url": "https://www.happings.com/it/happing/chi-ha-rubato-le-zucche/"
         }
       ],
       "status": "unread"
@@ -56271,6 +57747,12 @@
           "observed_at": "2026-10-25",
           "sha256": "1e447193d887a43d9081fb1622ccae61e268f0a65e7e836d178e1df3f4b3eea5",
           "url": "https://www.happings.com/it/happing/chef-niccolo-palumbo-paca-ristorante-tenuta-ceri/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "414645043f2846c05423c8bce45ba0f4403f3699f078acf37a87ceb9fe691424",
+          "url": "https://www.happings.com/it/happing/chef-roland-lamprecht-forestis-accademia-ferri-dal-1905/"
         }
       ],
       "status": "unread"
@@ -56553,6 +58035,18 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a2858ff20fdbdcabef39bf9660d75df513fbe274d4415fe3f6083918fd4f5e0f",
+          "url": "https://www.happings.com/it/happing/chiedimi-come-sto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "221e6fd4e1a6ace6f0a86b6c6953daa39e1511da33ff05ecf34e50bdf770801c",
+          "url": "https://www.happings.com/it/happing/ciarun-les-steres-osservazione-delle-stelle/"
         }
       ],
       "status": "unread"
@@ -56709,6 +58203,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c776de52a51b638b77ded03e769c51c648b3adb11d5dbb32b40c505edf7db2f",
+          "url": "https://www.happings.com/it/happing/concerto-di-inaugurazione/"
         }
       ],
       "status": "unread"
@@ -57834,6 +59334,18 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "86e1766e60966390ef3ec71046d1b1c029934de965ad9317d6ef5ed84eac1e74",
+          "url": "https://www.happings.com/it/happing/chef-roberto-conti-casa-camperio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "97659921ca9fc471fb00bb04442c6ba31bb9dd476fb26c281047d7b838aabaa7",
+          "url": "https://www.happings.com/it/happing/chef-walter-ferretto-ristorante-il-cascinalenuovo/"
         }
       ],
       "status": "unread"
@@ -57867,6 +59379,12 @@
           "observed_at": "2026-10-24",
           "sha256": "84b75aa636636a8e699c284d4e6c73c6ae9821273c9f0a800ec116e4fe4306ac",
           "url": "https://www.happings.com/it/happing/babbo-natale-in-piazza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0b274b9ccd30e33d5591936601386ee8403a6764594bdc9424d95d3cb50a442a",
+          "url": "https://www.happings.com/it/happing/concerto-di-natale-2-evento-10318/"
         }
       ],
       "status": "unread"
@@ -59127,6 +60645,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d0f592b2bdaccec1f4b20856f10a4558207fef3246ebc3f679234a32cc2ccb67",
           "url": "https://www.happings.com/it/happing/campagna-amica-day/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "b60ecfc1d4a24b8cbbf82f898f736be91d5d5e299a853b7e4bd3eb78a3b01019",
+          "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-2/"
         }
       ],
       "status": "unread"
@@ -59682,6 +61206,18 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "334e500da859d00774d8333fcbfc977cc139b374847e9423ccfd7057caa0afeb",
+          "url": "https://www.happings.com/it/happing/concerto-autunnale-della-banda-musicale-burgerkapelle-lana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7ce5d907875e11bd17203973919d4ab30af14a736633d47b32657f693feb3588",
+          "url": "https://www.happings.com/it/happing/concerto-davvento/"
         }
       ],
       "status": "unread"
@@ -60237,6 +61773,12 @@
           "observed_at": "2026-10-21",
           "sha256": "ae322927df15b24023484e2be8b253c43f3fee952ae70eea61f14f57f2e0dbdb",
           "url": "https://www.happings.com/it/happing/abba-mamma-mia-and-much-more-a-silandro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3d3bd1f41e6df9d077353a3e48195df5ec53afd8d4ba2f2d4b21fc3732e1a297",
+          "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-lagundo/"
         }
       ],
       "status": "unread"
@@ -60339,6 +61881,12 @@
           "observed_at": "2026-10-24",
           "sha256": "acb4a4c18e3e062af31946288fb95c85f56883ee8ddef70952264364995afbec",
           "url": "https://www.happings.com/it/happing/aston-crown-run-grv-5/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ce6e1d119ae4b2cbd40bcfbb7ac7b3bd427aba4f4e412ee4fbd9e0e0aed771ac",
+          "url": "https://www.happings.com/it/happing/con-tut-el-ben-che-te-voi-a-laives/"
         }
       ],
       "status": "unread"
@@ -60450,6 +61998,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "293b072f392228f26ab37fa8ce03e61d0b129a95971c7ac4c6524ebdb5a09fa7",
+          "url": "https://www.happings.com/it/happing/cinzia-canneri-womens-bodies-as-battlefields/"
         }
       ],
       "status": "unread"
@@ -60567,6 +62121,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c3c697e37ea891b0e6393db030ceb6d3ab5409856fae28b28595e048b2233122",
           "url": "https://www.happings.com/it/happing/call-for-illustrators-focus-concorsi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a74b15c9cc6a9d8ea9a18257024a85359757cef6c2a0e9c44d1d72f90e6876e7",
+          "url": "https://www.happings.com/it/happing/combattimenti-florence-knights-star-wars/"
         }
       ],
       "status": "unread"

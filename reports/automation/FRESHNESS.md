@@ -15,8 +15,8 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Fonte più vecchia del limite di 540 giorni: **52**.
 - Schede con età del contenuto della fonte non comprovata: **12,744**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,633**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,814**.
+- Schede con date future previste: **11,816**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,997**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -136,9 +136,9 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1182 | 8786 | 1465 | 2475 | 101 |
-| Orari | 1919 | 3408 | 1470 | 6944 | 268 |
-| Giorni | 972 | 10398 | 1650 | 969 | 20 |
+| Sede | 1182 | 8643 | 1476 | 2604 | 104 |
+| Orari | 1908 | 3522 | 1471 | 6831 | 277 |
+| Giorni | 972 | 10284 | 1650 | 1083 | 20 |
 
 ## Funzionamento del recupero automatico
 
