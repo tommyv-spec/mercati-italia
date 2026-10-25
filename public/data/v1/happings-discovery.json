@@ -334,9 +334,9 @@
       ],
       "status": "retrieved"
     },
-    "https://www.happings.com/it/categoria-evento/mercati/page/15/": {
+    "https://www.happings.com/it/categoria-evento/mercati/page/13/": {
       "attempts": 0,
-      "discovered_at": "2026-10-24",
+      "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "archive",
       "last_attempt": null,
@@ -344,16 +344,76 @@
       "last_sha256": null,
       "last_success": null,
       "last_success_at": null,
-      "next_due": "2026-10-24",
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/14/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:31:34.832588+00:00",
+      "next_due": "2026-11-01",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9c14f00c7f93d3032d139ce4b2beb884672f29625beaff555731ceb743eb07bc",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/15/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/15/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-24",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "9c14f00c7f93d3032d139ce4b2beb884672f29625beaff555731ceb743eb07bc",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:31:24.524311+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "html_link",
           "observed_at": "2026-10-24",
           "sha256": "b41c1f25a8bdf972211260ca5e9f6eb85dc55f97f3ca8294f6dcfdeff4b752c8",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/16/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9c14f00c7f93d3032d139ce4b2beb884672f29625beaff555731ceb743eb07bc",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/15/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/16/": {
       "attempts": 1,
@@ -378,6 +438,12 @@
           "observed_at": "2026-10-24",
           "sha256": "b41c1f25a8bdf972211260ca5e9f6eb85dc55f97f3ca8294f6dcfdeff4b752c8",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/16/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9c14f00c7f93d3032d139ce4b2beb884672f29625beaff555731ceb743eb07bc",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/15/"
         }
       ],
       "status": "retrieved"
@@ -774,13 +840,46 @@
           "observed_at": "2026-10-24",
           "sha256": "595f56b5f40a9807d9e22bbc829ceec43b16efa4e15f6ed8f8d29743a177fef9",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/4/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-24",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:31:30.247513+00:00",
+      "next_due": "2026-11-01",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-24",
+          "sha256": "595f56b5f40a9807d9e22bbc829ceec43b16efa4e15f6ed8f8d29743a177fef9",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/5/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "archive",
       "last_attempt": null,
@@ -788,13 +887,13 @@
       "last_sha256": null,
       "last_success": null,
       "last_success_at": null,
-      "next_due": "2026-10-24",
+      "next_due": "2026-10-25",
       "origins": [
         {
           "kind": "html_link",
-          "observed_at": "2026-10-24",
-          "sha256": "595f56b5f40a9807d9e22bbc829ceec43b16efa4e15f6ed8f8d29743a177fef9",
-          "url": "https://www.happings.com/it/categoria-evento/mercati/page/3/"
+          "observed_at": "2026-10-25",
+          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
         }
       ],
       "status": "unread"
@@ -888,6 +987,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0ec0eed33732d3936798f8b21992fa8ffdc993c2fb5bf76ec7a4507329aba4da",
           "url": "https://www.happings.com/it/happing/10a-festa-della-tradizione-e-del-gusto-a-prato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c43f72e29f0de1d3c8f27587ade87baaa210557bd3b7ea12a3e5fef8aa8e1f9",
+          "url": "https://www.happings.com/it/happing/castagnata-alla-fontana-di-naturno/"
         }
       ],
       "status": "retrieved"
@@ -1074,6 +1179,12 @@
           "observed_at": "2026-10-20",
           "sha256": "1dc19c481dd34436f0fcb79fa12c9a2887053979f0cf9169688c9edcec20196f",
           "url": "https://www.happings.com/it/happing/15festacastagneincascina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6b7b8eca0fad25904721cd8a0cfd4ee7b11f3894474755d017b4765a25d3dea0",
+          "url": "https://www.happings.com/it/happing/castagnata-2-evento-9327/"
         }
       ],
       "status": "retrieved"
@@ -1107,6 +1218,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4097366ca9694f347498eb2f6ef03aa894d65d234670ad50e5d7a9c8c90c0c3e",
           "url": "https://www.happings.com/it/happing/4-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1c3204692cfd9df50bf04dbad56d66ced4befd8ad685cdaadd068b663b008ebd",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-31-januar-2027/"
         }
       ],
       "status": "retrieved"
@@ -1758,6 +1875,12 @@
           "observed_at": "2026-10-21",
           "sha256": "542f74e5ad643666433a1a7d71f4047ddf4552589df58acad0f88bc50b8d875a",
           "url": "https://www.happings.com/it/happing/6-corso-mascherato-notturno-di-chiusura/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4e6b7c72c8926acc398f29fec03dd2ae3485d68b8120fd90eef1b9bc816dd1b2",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-4-februar-2027/"
         }
       ],
       "status": "retrieved"
@@ -2310,6 +2433,12 @@
           "observed_at": "2026-10-21",
           "sha256": "6daa2f7a12240e2f4b92e10a49de426be96175c3433018510748c9a3830874ed",
           "url": "https://www.happings.com/it/happing/abel/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "936533b36a8be6ff408fa68c66e1702116c791d6e8c665e45ac825936a6125a3",
+          "url": "https://www.happings.com/it/happing/caruso-passione-2-0/"
         }
       ],
       "status": "retrieved"
@@ -2730,6 +2859,12 @@
           "observed_at": "2026-10-21",
           "sha256": "afbc3c6b02aeb6b970ff5e4b965cc756181ffae0b9c1950d5bdf716300776fe9",
           "url": "https://www.happings.com/it/happing/agricolfest-2025/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1e51e2ce8049933f8c9d2b939de23e1115400e3b2c37ecdddd3ddc23e6ff78ac",
+          "url": "https://www.happings.com/it/happing/castagnata-1/"
         }
       ],
       "status": "retrieved"
@@ -3825,6 +3960,18 @@
           "observed_at": "2026-10-24",
           "sha256": "301373d43a2cf3e81c5a131f77f255199b5258457f9c5a58c8bdfd3a11a8f92a",
           "url": "https://www.happings.com/it/happing/allerweltskirchtag-a-marlengo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c40da5919334a1a8c2abe276afc5555af1de2d9cf22f7f00853aec839f21f88a",
+          "url": "https://www.happings.com/it/happing/castagnata-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4cc33d00747149eae194726cf723b8ab7b3495873b66a9f10ad0e6936b4db493",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9974/"
         }
       ],
       "status": "retrieved"
@@ -4587,6 +4734,12 @@
           "observed_at": "2026-10-24",
           "sha256": "7b30f0b8d6afee577f1a709030f5309050670a704d419c3d9599562fbc832300",
           "url": "https://www.happings.com/it/happing/aperitivo-di-san-silvestro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "03dff0f4b3b6698b048c42743d46c19292186299ad5e520a0da2ce638d3d14f3",
+          "url": "https://www.happings.com/it/happing/capodanno-insieme/"
         }
       ],
       "status": "retrieved"
@@ -4668,6 +4821,12 @@
           "observed_at": "2026-10-24",
           "sha256": "9efd8495b6dea6ae36240f2ba2b94c9fb50ad008a1766bf02dbdef835082a1f4",
           "url": "https://www.happings.com/it/happing/apertura-straordinaria-del-chiostro-dei-domenicani/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "936533b36a8be6ff408fa68c66e1702116c791d6e8c665e45ac825936a6125a3",
+          "url": "https://www.happings.com/it/happing/caruso-passione-2-0/"
         }
       ],
       "status": "retrieved"
@@ -5016,6 +5175,12 @@
           "observed_at": "2026-10-24",
           "sha256": "7ca22f521bc9deedc788c0d11f41cec02a31f75aa0f12a3fe8591cef06ca9c10",
           "url": "https://www.happings.com/it/happing/bike-and-gourmet-nelle-dolomiti-tour-dei-canederli/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d27103fdb95090139605748bdb068d8695d3281efa359f610b32e3db01e2330b",
+          "url": "https://www.happings.com/it/happing/castagnata-alpina/"
         }
       ],
       "status": "retrieved"
@@ -5466,6 +5631,12 @@
           "observed_at": "2026-10-24",
           "sha256": "9953369d30c5078eb9359736424eb60efd8c95671702dfcdd12815bc4a47da75",
           "url": "https://www.happings.com/it/happing/assedio-di-asola-palio-delle-contrade/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2e3e62e16eb5be679fe8835cff22422f943b2f5d47b587ad8ec48e4a44a2554b",
+          "url": "https://www.happings.com/it/happing/castagnata-di-lottano/"
         }
       ],
       "status": "retrieved"
@@ -6105,6 +6276,12 @@
           "observed_at": "2026-10-24",
           "sha256": "06e3256f8609d7235cb2210b32fd64677cecf383d879f8f59c3a8050130bbe55",
           "url": "https://www.happings.com/it/happing/bauernkuchl-cucina-contadina-a-scena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e099e315a1aa5677b29cefa024763e73c124d48d3474c4cac44b3751f9893a96",
+          "url": "https://www.happings.com/it/happing/castagnata-2/"
         }
       ],
       "status": "retrieved"
@@ -7329,6 +7506,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5e2455d7fe36bb38f72cb73ce77cfd55484e5c5df6c702e67612d80ec7295406",
           "url": "https://www.happings.com/it/happing/brostoi-formai-e-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
+          "url": "https://www.happings.com/it/happing/castagnata-2026/"
         }
       ],
       "status": "retrieved"
@@ -7694,58 +7877,70 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/campo-delle-zucche-a-somaggia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "16093cdb87387e7782eacf8999ea2521b11efb2848763e8740e5c0a8c7c7734d",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:31:39.458155+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "16093cdb87387e7782eacf8999ea2521b11efb2848763e8740e5c0a8c7c7734d",
+          "url": "https://www.happings.com/it/happing/campo-delle-zucche-a-somaggia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/campus-stakeholders-meeting/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "5723ef65a8a4a95fa94869eb257cc438c0abea3a8fba0c83ebec207be77fd9d5",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:31:45.263980+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5723ef65a8a4a95fa94869eb257cc438c0abea3a8fba0c83ebec207be77fd9d5",
+          "url": "https://www.happings.com/it/happing/campus-stakeholders-meeting/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cantina-bio-sanin-degustazione-di-vini-naturali/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ff554dabfe040308329f5b0b0ce9ab8cfabe9de605e92e362045ec1c0c23d318",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:31:57.551062+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -7758,93 +7953,123 @@
           "observed_at": "2026-10-24",
           "sha256": "db9a3878db36045c7676d17058604987b8f4b3eb680507eb920adeb598e813f6",
           "url": "https://www.happings.com/it/happing/autunno-gourmet-degustazione-con-la-tenuta-pfannenstielhof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ff554dabfe040308329f5b0b0ce9ab8cfabe9de605e92e362045ec1c0c23d318",
+          "url": "https://www.happings.com/it/happing/cantina-bio-sanin-degustazione-di-vini-naturali/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cantine-di-natale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "22094d0206ab0b373b5eb20761b180be8555c2de1b0c07eba47858ba828f9a8d",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:02.254069+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "22094d0206ab0b373b5eb20761b180be8555c2de1b0c07eba47858ba828f9a8d",
+          "url": "https://www.happings.com/it/happing/cantine-di-natale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/capibarize-yourself-laboratorio-di-fumetto/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "137d78e4581fd64a6705590b5a012001a9b93e498130c5f047c40b99ede13478",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:07.556547+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "137d78e4581fd64a6705590b5a012001a9b93e498130c5f047c40b99ede13478",
+          "url": "https://www.happings.com/it/happing/capibarize-yourself-laboratorio-di-fumetto/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/capisciame/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bcdbf79e04a7a2d7ae7b522f1e7441d21d03056864c335ea32957e98d516a676",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:13.118147+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bcdbf79e04a7a2d7ae7b522f1e7441d21d03056864c335ea32957e98d516a676",
+          "url": "https://www.happings.com/it/happing/capisciame/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/capodanno-bornese/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "58e7ba5356a0875518c8e68ac400495b9558082e1b90f4d75eefcee1631404bc",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:19.127776+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "58e7ba5356a0875518c8e68ac400495b9558082e1b90f4d75eefcee1631404bc",
+          "url": "https://www.happings.com/it/happing/capodanno-bornese/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/capodanno-concerto-della-banda-musicale-di-scena-in-piazza-raiffeisen/": {
       "attempts": 0,
@@ -7863,42 +8088,54 @@
           "observed_at": "2026-10-24",
           "sha256": "7b30f0b8d6afee577f1a709030f5309050670a704d419c3d9599562fbc832300",
           "url": "https://www.happings.com/it/happing/aperitivo-di-san-silvestro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "58e7ba5356a0875518c8e68ac400495b9558082e1b90f4d75eefcee1631404bc",
+          "url": "https://www.happings.com/it/happing/capodanno-bornese/"
         }
       ],
       "status": "unread"
     },
     "https://www.happings.com/it/happing/capodanno-insieme/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "03dff0f4b3b6698b048c42743d46c19292186299ad5e520a0da2ce638d3d14f3",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:27.207212+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "03dff0f4b3b6698b048c42743d46c19292186299ad5e520a0da2ce638d3d14f3",
+          "url": "https://www.happings.com/it/happing/capodanno-insieme/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/capunet-dautunno/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "55660629cbabe802d33d705859346c36fed76afcc3004ef226c83d9735f5c851",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:34.746649+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -7911,42 +8148,54 @@
           "observed_at": "2026-10-20",
           "sha256": "1ee827d2a8629e6fbc6bb1c4f3bac643289c5b4336b07531558e5e8bea3ecb57",
           "url": "https://www.happings.com/it/happing/mercato-della-terra-slow-food/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "55660629cbabe802d33d705859346c36fed76afcc3004ef226c83d9735f5c851",
+          "url": "https://www.happings.com/it/happing/capunet-dautunno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carmen/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a9d4e811276cc79f182c32e57dffef976291129553895024f64f465c9b590e18",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:40.187909+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9d4e811276cc79f182c32e57dffef976291129553895024f64f465c9b590e18",
+          "url": "https://www.happings.com/it/happing/carmen/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carnival-official-dinner-show-31-januar-2027/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1c3204692cfd9df50bf04dbad56d66ced4befd8ad685cdaadd068b663b008ebd",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:50.059249+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -7959,42 +8208,72 @@
           "observed_at": "2026-10-21",
           "sha256": "b73516748cf6d2bfc170a54a0d2af3d2d93bf02f073e1d1929f3fc888442aded",
           "url": "https://www.happings.com/it/happing/5-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1c3204692cfd9df50bf04dbad56d66ced4befd8ad685cdaadd068b663b008ebd",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-31-januar-2027/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4609cbf0fba0f537f45f8875ff50d7c621ee4f98ec988236dd806af7db79a3f6",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-5-februar-2027/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carnival-official-dinner-show-4-februar-2027/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4e6b7c72c8926acc398f29fec03dd2ae3485d68b8120fd90eef1b9bc816dd1b2",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:32:55.997707+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4e6b7c72c8926acc398f29fec03dd2ae3485d68b8120fd90eef1b9bc816dd1b2",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-4-februar-2027/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f5b4151670378b196777fe959baf741781096c4939c794358ea9b35cc26ba5c2",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-6-february-2027/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9531c8ec233b0b0b47193bfafbcfe06aeeb823101f9e0d60e4889eeeee3c879d",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-7-februar-2027/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carnival-official-dinner-show-5-februar-2027/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4609cbf0fba0f537f45f8875ff50d7c621ee4f98ec988236dd806af7db79a3f6",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:33:03.259520+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8021,19 +8300,19 @@
           "url": "https://www.happings.com/it/happing/4-corso-mascherato/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carnival-official-dinner-show-6-february-2027/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f5b4151670378b196777fe959baf741781096c4939c794358ea9b35cc26ba5c2",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:33:16.121215+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8052,21 +8331,27 @@
           "observed_at": "2026-10-20",
           "sha256": "b9f3cd56f7b1693686d4f264957f898c30ddddc9885c2ab7f4532c855303261a",
           "url": "https://www.happings.com/it/happing/2-corso-mascherato-notturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4e6b7c72c8926acc398f29fec03dd2ae3485d68b8120fd90eef1b9bc816dd1b2",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-4-februar-2027/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carnival-official-dinner-show-7-februar-2027/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9531c8ec233b0b0b47193bfafbcfe06aeeb823101f9e0d60e4889eeeee3c879d",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:33:23.535368+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8085,63 +8370,93 @@
           "observed_at": "2026-10-21",
           "sha256": "542f74e5ad643666433a1a7d71f4047ddf4552589df58acad0f88bc50b8d875a",
           "url": "https://www.happings.com/it/happing/6-corso-mascherato-notturno-di-chiusura/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9531c8ec233b0b0b47193bfafbcfe06aeeb823101f9e0d60e4889eeeee3c879d",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-7-februar-2027/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carnival-official-dinner-show-8-februar-2027/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0d111b6066bc41c32ad7278fd028d8d0e7ded0a3c13e7165a199ee2a861bd71c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:33:28.575205+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1c3204692cfd9df50bf04dbad56d66ced4befd8ad685cdaadd068b663b008ebd",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-31-januar-2027/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0d111b6066bc41c32ad7278fd028d8d0e7ded0a3c13e7165a199ee2a861bd71c",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-8-februar-2027/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4d34c585d27ed4a962ac16534604566befc7c2b89e28b06e59814d5df60ead1c",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-9-february-2027/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/carnival-official-dinner-show-9-february-2027/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4d34c585d27ed4a962ac16534604566befc7c2b89e28b06e59814d5df60ead1c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:33:35.223433+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4d34c585d27ed4a962ac16534604566befc7c2b89e28b06e59814d5df60ead1c",
+          "url": "https://www.happings.com/it/happing/carnival-official-dinner-show-9-february-2027/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum-in-italiano/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0227cd94923f654df66946b14c87a788b59cff6863efdaaf05370d9b1d39df2f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:33:47.984092+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8154,126 +8469,162 @@
           "observed_at": "2026-10-21",
           "sha256": "26708fa8b59dcfc5ee6bb80d07f94a9dc3826b0e84deab4f70283a6ca6dd44f9",
           "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0227cd94923f654df66946b14c87a788b59cff6863efdaaf05370d9b1d39df2f",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum-in-italiano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "257fd9bdb4fcf8665817a7c42255f0f59e58099637306759dfcd1d8cb276cb0c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:33:54.017907+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "257fd9bdb4fcf8665817a7c42255f0f59e58099637306759dfcd1d8cb276cb0c",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/caruso-passione-2-0/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "936533b36a8be6ff408fa68c66e1702116c791d6e8c665e45ac825936a6125a3",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:34:00.364840+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "936533b36a8be6ff408fa68c66e1702116c791d6e8c665e45ac825936a6125a3",
+          "url": "https://www.happings.com/it/happing/caruso-passione-2-0/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/caseificio-gatscher-dal-latte-al-formaggio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4df9dd6311318c2213c623dd6d8ea66e005c13c7670d8f4ef3fd99fd0bbcc9f6",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:34:07.679276+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4df9dd6311318c2213c623dd6d8ea66e005c13c7670d8f4ef3fd99fd0bbcc9f6",
+          "url": "https://www.happings.com/it/happing/caseificio-gatscher-dal-latte-al-formaggio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-1/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1e51e2ce8049933f8c9d2b939de23e1115400e3b2c37ecdddd3ddc23e6ff78ac",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:34:18.231544+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1e51e2ce8049933f8c9d2b939de23e1115400e3b2c37ecdddd3ddc23e6ff78ac",
+          "url": "https://www.happings.com/it/happing/castagnata-1/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-2-evento-9327/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6b7b8eca0fad25904721cd8a0cfd4ee7b11f3894474755d017b4765a25d3dea0",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:34:31.491323+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6b7b8eca0fad25904721cd8a0cfd4ee7b11f3894474755d017b4765a25d3dea0",
+          "url": "https://www.happings.com/it/happing/castagnata-2-evento-9327/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e099e315a1aa5677b29cefa024763e73c124d48d3474c4cac44b3751f9893a96",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:34:49.404170+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8286,21 +8637,27 @@
           "observed_at": "2026-10-20",
           "sha256": "daf2cd45dfbbd50f081f68e608f245bf85309689033ecb84a49b75554962efba",
           "url": "https://www.happings.com/it/happing/mercato-del-pane-e-dello-strudel-a-bressanone/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e099e315a1aa5677b29cefa024763e73c124d48d3474c4cac44b3751f9893a96",
+          "url": "https://www.happings.com/it/happing/castagnata-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-2026-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "c00859993f67cb1931a1ea637a3791fa8269d37fee76888f59c125d3efa7e9af",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:34:57.036862+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8319,21 +8676,27 @@
           "observed_at": "2026-10-20",
           "sha256": "fe6dcd66f2e0ef634a855a715ddd7a455f64e84927611e6393c73440b0abb805",
           "url": "https://www.happings.com/it/happing/29-settimane-delle-castagne-castagne-lungo-il-sentiero-del-castagno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c00859993f67cb1931a1ea637a3791fa8269d37fee76888f59c125d3efa7e9af",
+          "url": "https://www.happings.com/it/happing/castagnata-2026-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-2026/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:07.305300+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8346,63 +8709,87 @@
           "observed_at": "2026-10-20",
           "sha256": "f6d0bf3f0336109cce821b09fed3d88667365d512c8d02ac4949814e8a987792",
           "url": "https://www.happings.com/it/happing/festa-del-contadino-con-mercatino-a-tiso/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
+          "url": "https://www.happings.com/it/happing/castagnata-2026/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-3/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "c40da5919334a1a8c2abe276afc5555af1de2d9cf22f7f00853aec839f21f88a",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:12.739180+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c40da5919334a1a8c2abe276afc5555af1de2d9cf22f7f00853aec839f21f88a",
+          "url": "https://www.happings.com/it/happing/castagnata-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "92d3210d3032567394095063443629b417b237bd693ac7d2e639ce52c3b23ce3",
+          "url": "https://www.happings.com/it/happing/castagnata-c-a-i/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-4-evento-9781/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "c452a89a6c5d2960ac38d05e916a5a43cf25f292ad53287f4fea4fe7f849d12c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:18.211881+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c452a89a6c5d2960ac38d05e916a5a43cf25f292ad53287f4fea4fe7f849d12c",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9781/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-4-evento-9816/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1493c0b9de5ee4d18a963a4f20ffb1e17b2d8fbe72db43a9d27b419064724c4e",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:23.659312+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8415,21 +8802,27 @@
           "observed_at": "2026-10-20",
           "sha256": "565ba4558dae3fb26393334ecb69b6db729069a09cae85d961e33d8812fddb4c",
           "url": "https://www.happings.com/it/happing/festa-patronale-e-mercatini-2025/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1493c0b9de5ee4d18a963a4f20ffb1e17b2d8fbe72db43a9d27b419064724c4e",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9816/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-4-evento-9974/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4cc33d00747149eae194726cf723b8ab7b3495873b66a9f10ad0e6936b4db493",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:29.477293+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8448,105 +8841,141 @@
           "observed_at": "2026-10-24",
           "sha256": "5d8e7af67ad253eb62dfe64e5b7d62227e1890b82ae6e428688b05e04f49f926",
           "url": "https://www.happings.com/it/happing/apertura-delle-settimane-della-castagna-a-velturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4cc33d00747149eae194726cf723b8ab7b3495873b66a9f10ad0e6936b4db493",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9974/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-4/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:37.951511+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
+          "url": "https://www.happings.com/it/happing/castagnata-4/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-5-evento-10428/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "fb595a9003f76e2017342083c96e7020dd1ff61cb8deb02eaffb10393832134a",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:43.893882+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb595a9003f76e2017342083c96e7020dd1ff61cb8deb02eaffb10393832134a",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10428/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-5-evento-10463/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f24158fb641ce8e3e53a2352acbb141fad0201f3ca8aef52df49f641441cf068",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:35:50.701392+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f24158fb641ce8e3e53a2352acbb141fad0201f3ca8aef52df49f641441cf068",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10463/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-5-evento-10491/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f5f55be950a40211e1d60880225d522ecaee593571ef46bbc885883f3b525b9b",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:36:04.300089+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f5f55be950a40211e1d60880225d522ecaee593571ef46bbc885883f3b525b9b",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10491/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c43f72e29f0de1d3c8f27587ade87baaa210557bd3b7ea12a3e5fef8aa8e1f9",
+          "url": "https://www.happings.com/it/happing/castagnata-alla-fontana-di-naturno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-5/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bf398823f0917dcb557755b8b1076ac54586a5ec25dc98bec8dfbb9f4a6c83d7",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:36:13.819819+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8559,168 +8988,222 @@
           "observed_at": "2026-10-24",
           "sha256": "87c29d46aac674ce515da6eada5b2759c4d9d35539308ebb97933d13aec353e2",
           "url": "https://www.happings.com/it/happing/caldarrosteinpiazza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bf398823f0917dcb557755b8b1076ac54586a5ec25dc98bec8dfbb9f4a6c83d7",
+          "url": "https://www.happings.com/it/happing/castagnata-5/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-alla-fontana-di-naturno/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3c43f72e29f0de1d3c8f27587ade87baaa210557bd3b7ea12a3e5fef8aa8e1f9",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:36:20.480992+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c43f72e29f0de1d3c8f27587ade87baaa210557bd3b7ea12a3e5fef8aa8e1f9",
+          "url": "https://www.happings.com/it/happing/castagnata-alla-fontana-di-naturno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-alpina/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "d27103fdb95090139605748bdb068d8695d3281efa359f610b32e3db01e2330b",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:36:32.618054+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d27103fdb95090139605748bdb068d8695d3281efa359f610b32e3db01e2330b",
+          "url": "https://www.happings.com/it/happing/castagnata-alpina/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-avisina/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9d7c3a2ba77b5ec07c4b00000fb8a0179bb0360c916b385b0a6f7b18cc1593f3",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:36:39.749081+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d7c3a2ba77b5ec07c4b00000fb8a0179bb0360c916b385b0a6f7b18cc1593f3",
+          "url": "https://www.happings.com/it/happing/castagnata-avisina/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-c-a-i/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "92d3210d3032567394095063443629b417b237bd693ac7d2e639ce52c3b23ce3",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:36:51.798962+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d7c3a2ba77b5ec07c4b00000fb8a0179bb0360c916b385b0a6f7b18cc1593f3",
+          "url": "https://www.happings.com/it/happing/castagnata-avisina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "92d3210d3032567394095063443629b417b237bd693ac7d2e639ce52c3b23ce3",
+          "url": "https://www.happings.com/it/happing/castagnata-c-a-i/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-dei-chech/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f9ef96371b7c24fa40ab6db931d34e69b246376fa629945894ecae6004d2dafa",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:37:05.732666+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9ef96371b7c24fa40ab6db931d34e69b246376fa629945894ecae6004d2dafa",
+          "url": "https://www.happings.com/it/happing/castagnata-dei-chech/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-del-circolo-di-travino/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4b2b3431629b25d01abe053917a2c666b5572839817d86ea7ff033b83d7a16e6",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:37:11.432756+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b2b3431629b25d01abe053917a2c666b5572839817d86ea7ff033b83d7a16e6",
+          "url": "https://www.happings.com/it/happing/castagnata-del-circolo-di-travino/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-di-lottano/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "2e3e62e16eb5be679fe8835cff22422f943b2f5d47b587ad8ec48e4a44a2554b",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:37:17.642329+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2e3e62e16eb5be679fe8835cff22422f943b2f5d47b587ad8ec48e4a44a2554b",
+          "url": "https://www.happings.com/it/happing/castagnata-di-lottano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-dottobre/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "c01e7a543e3f5d8ff03cbf88683e4594806f77741acf9a0c93a1c1e058fae655",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:37:32.282107+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8733,63 +9216,87 @@
           "observed_at": "2026-10-21",
           "sha256": "48eb5b23fbc9470c934771e0dbdabd11278c42750307ca36813b163ea3bc1b3c",
           "url": "https://www.happings.com/it/happing/mercato-settimanale-a-siusi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c01e7a543e3f5d8ff03cbf88683e4594806f77741acf9a0c93a1c1e058fae655",
+          "url": "https://www.happings.com/it/happing/castagnata-dottobre/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-festa-del-torggelen-al-podere-gaudententurm/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9a72873900a1b5545b88ac639138cbf30910f88137357354013bce6f0f4597d7",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:37:38.836976+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3c43f72e29f0de1d3c8f27587ade87baaa210557bd3b7ea12a3e5fef8aa8e1f9",
+          "url": "https://www.happings.com/it/happing/castagnata-alla-fontana-di-naturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9a72873900a1b5545b88ac639138cbf30910f88137357354013bce6f0f4597d7",
+          "url": "https://www.happings.com/it/happing/castagnata-festa-del-torggelen-al-podere-gaudententurm/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-in-frazione-san-pietro/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ad811e2333903558a8a86157e0f129e83f6044bbcaf58a3ca9e114ea4f1e00dc",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:37:47.708049+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ad811e2333903558a8a86157e0f129e83f6044bbcaf58a3ca9e114ea4f1e00dc",
+          "url": "https://www.happings.com/it/happing/castagnata-in-frazione-san-pietro/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-in-pineta-aspettando-halloween/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9d5bac6dc1e66732e10370fa5291ab79c720b495002d9c864cc07248882cca43",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:37:57.505126+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8802,21 +9309,27 @@
           "observed_at": "2026-10-24",
           "sha256": "c66b7fa00e412366af6d2e7982c42eb6fbd2531b9f5572c42582c99a19debcbf",
           "url": "https://www.happings.com/it/happing/aspettando-halloween/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d5bac6dc1e66732e10370fa5291ab79c720b495002d9c864cc07248882cca43",
+          "url": "https://www.happings.com/it/happing/castagnata-in-pineta-aspettando-halloween/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-lega-nord-caronno-varesino/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "2e7e91f4949e93418561a98cfaa5c188778216a01b37beb1660812dad33cc84f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T00:38:10.281229+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -8829,9 +9342,15 @@
           "observed_at": "2026-10-24",
           "sha256": "9953369d30c5078eb9359736424eb60efd8c95671702dfcdd12815bc4a47da75",
           "url": "https://www.happings.com/it/happing/assedio-di-asola-palio-delle-contrade/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2e7e91f4949e93418561a98cfaa5c188778216a01b37beb1660812dad33cc84f",
+          "url": "https://www.happings.com/it/happing/castagnata-lega-nord-caronno-varesino/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-solidale-gpl/": {
       "attempts": 0,
@@ -8877,6 +9396,12 @@
           "observed_at": "2026-10-24",
           "sha256": "4d601a4471d7fca4f210e82553a6f5395020952ffdb876de64cc42bbdbb110b1",
           "url": "https://www.happings.com/it/happing/associazione-anziani-e-amici-in-festa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4cc33d00747149eae194726cf723b8ab7b3495873b66a9f10ad0e6936b4db493",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9974/"
         }
       ],
       "status": "unread"
@@ -8967,6 +9492,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c40da5919334a1a8c2abe276afc5555af1de2d9cf22f7f00853aec839f21f88a",
+          "url": "https://www.happings.com/it/happing/castagnata-3/"
         }
       ],
       "status": "unread"
@@ -9504,6 +10035,12 @@
           "observed_at": "2026-10-21",
           "sha256": "484b662c0f4d5519d94ecdb578cac5c79afa5191f730e0e0fd8488e0e0e44267",
           "url": "https://www.happings.com/it/happing/a-tu-per-tu-con-lo-chef-davide-palluda/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "55660629cbabe802d33d705859346c36fed76afcc3004ef226c83d9735f5c851",
+          "url": "https://www.happings.com/it/happing/capunet-dautunno/"
         }
       ],
       "status": "unread"
@@ -9621,6 +10158,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "55660629cbabe802d33d705859346c36fed76afcc3004ef226c83d9735f5c851",
+          "url": "https://www.happings.com/it/happing/capunet-dautunno/"
         }
       ],
       "status": "unread"
@@ -10524,6 +11067,18 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "16093cdb87387e7782eacf8999ea2521b11efb2848763e8740e5c0a8c7c7734d",
+          "url": "https://www.happings.com/it/happing/campo-delle-zucche-a-somaggia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2e7e91f4949e93418561a98cfaa5c188778216a01b37beb1660812dad33cc84f",
+          "url": "https://www.happings.com/it/happing/castagnata-lega-nord-caronno-varesino/"
         }
       ],
       "status": "unread"
@@ -12226,6 +12781,27 @@
       ],
       "status": "unread"
     },
+    "https://www.happings.com/it/happing/concerto-serale-della-banda-musicale-silandro/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f24158fb641ce8e3e53a2352acbb141fad0201f3ca8aef52df49f641441cf068",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10463/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/concerto-ulrich-noethen-anna-ines-walachowski/": {
       "attempts": 0,
       "discovered_at": "2026-10-20",
@@ -12366,6 +12942,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4df9dd6311318c2213c623dd6d8ea66e005c13c7670d8f4ef3fd99fd0bbcc9f6",
+          "url": "https://www.happings.com/it/happing/caseificio-gatscher-dal-latte-al-formaggio/"
         }
       ],
       "status": "unread"
@@ -12564,6 +13146,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c01e7a543e3f5d8ff03cbf88683e4594806f77741acf9a0c93a1c1e058fae655",
+          "url": "https://www.happings.com/it/happing/castagnata-dottobre/"
         }
       ],
       "status": "unread"
@@ -12735,6 +13323,12 @@
           "observed_at": "2026-10-24",
           "sha256": "4485580990cb57b4a1446a05817537728a7f14b8d25efc0accddd3ce1db50a15",
           "url": "https://www.happings.com/it/happing/arrivano-i-dunque-avannotti-sole-blu-e-la-storia-della-giovane-saracinesca/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bcdbf79e04a7a2d7ae7b522f1e7441d21d03056864c335ea32957e98d516a676",
+          "url": "https://www.happings.com/it/happing/capisciame/"
         }
       ],
       "status": "unread"
@@ -14226,6 +14820,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0227cd94923f654df66946b14c87a788b59cff6863efdaaf05370d9b1d39df2f",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum-in-italiano/"
         }
       ],
       "status": "unread"
@@ -15207,6 +15807,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9d4e811276cc79f182c32e57dffef976291129553895024f64f465c9b590e18",
+          "url": "https://www.happings.com/it/happing/carmen/"
         }
       ],
       "status": "unread"
@@ -15408,6 +16014,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9ef96371b7c24fa40ab6db931d34e69b246376fa629945894ecae6004d2dafa",
+          "url": "https://www.happings.com/it/happing/castagnata-dei-chech/"
         }
       ],
       "status": "unread"
@@ -17226,6 +17838,12 @@
           "observed_at": "2026-10-24",
           "sha256": "4fcbf17c7633fecdcdeb5648f1b26b22657c4e7fe45853a9c102c443d1e67d2e",
           "url": "https://www.happings.com/it/happing/caldarroste-al-maso-fruhaufhof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d27103fdb95090139605748bdb068d8695d3281efa359f610b32e3db01e2330b",
+          "url": "https://www.happings.com/it/happing/castagnata-alpina/"
         }
       ],
       "status": "unread"
@@ -17764,6 +18382,27 @@
       ],
       "status": "unread"
     },
+    "https://www.happings.com/it/happing/festa-de-nanu-capodanno-a-san-cassiano/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "03dff0f4b3b6698b048c42743d46c19292186299ad5e520a0da2ce638d3d14f3",
+          "url": "https://www.happings.com/it/happing/capodanno-insieme/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/festa-degli-anziani-e-della-comunita-evento-9432/": {
       "attempts": 0,
       "discovered_at": "2026-10-20",
@@ -17802,6 +18441,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1e51e2ce8049933f8c9d2b939de23e1115400e3b2c37ecdddd3ddc23e6ff78ac",
+          "url": "https://www.happings.com/it/happing/castagnata-1/"
         }
       ],
       "status": "unread"
@@ -17952,6 +18597,12 @@
           "observed_at": "2026-10-20",
           "sha256": "f6d0bf3f0336109cce821b09fed3d88667365d512c8d02ac4949814e8a987792",
           "url": "https://www.happings.com/it/happing/festa-del-contadino-con-mercatino-a-tiso/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bf398823f0917dcb557755b8b1076ac54586a5ec25dc98bec8dfbb9f4a6c83d7",
+          "url": "https://www.happings.com/it/happing/castagnata-5/"
         }
       ],
       "status": "retrieved"
@@ -18000,6 +18651,12 @@
           "observed_at": "2026-10-20",
           "sha256": "ad69a0594f9c6dafa6486f1eb214b3a3a5d3c7792c150f95043bb4c266ef145d",
           "url": "https://www.happings.com/it/happing/festa-del-mercato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "92d3210d3032567394095063443629b417b237bd693ac7d2e639ce52c3b23ce3",
+          "url": "https://www.happings.com/it/happing/castagnata-c-a-i/"
         }
       ],
       "status": "retrieved"
@@ -18291,6 +18948,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6b7b8eca0fad25904721cd8a0cfd4ee7b11f3894474755d017b4765a25d3dea0",
+          "url": "https://www.happings.com/it/happing/castagnata-2-evento-9327/"
         }
       ],
       "status": "unread"
@@ -18318,6 +18981,12 @@
           "observed_at": "2026-10-24",
           "sha256": "9953369d30c5078eb9359736424eb60efd8c95671702dfcdd12815bc4a47da75",
           "url": "https://www.happings.com/it/happing/assedio-di-asola-palio-delle-contrade/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b2b3431629b25d01abe053917a2c666b5572839817d86ea7ff033b83d7a16e6",
+          "url": "https://www.happings.com/it/happing/castagnata-del-circolo-di-travino/"
         }
       ],
       "status": "unread"
@@ -18339,6 +19008,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
+          "url": "https://www.happings.com/it/happing/castagnata-2026/"
         }
       ],
       "status": "unread"
@@ -18387,6 +19062,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
+          "url": "https://www.happings.com/it/happing/castagnata-4/"
         }
       ],
       "status": "unread"
@@ -18408,6 +19089,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6b7b8eca0fad25904721cd8a0cfd4ee7b11f3894474755d017b4765a25d3dea0",
+          "url": "https://www.happings.com/it/happing/castagnata-2-evento-9327/"
         }
       ],
       "status": "unread"
@@ -18550,6 +19237,27 @@
       ],
       "status": "unread"
     },
+    "https://www.happings.com/it/happing/festa-di-capodanno-nel-parco-di-valdaora-di-mezzo/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "58e7ba5356a0875518c8e68ac400495b9558082e1b90f4d75eefcee1631404bc",
+          "url": "https://www.happings.com/it/happing/capodanno-bornese/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/festa-di-fine-anno/": {
       "attempts": 0,
       "discovered_at": "2026-10-20",
@@ -18567,6 +19275,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1493c0b9de5ee4d18a963a4f20ffb1e17b2d8fbe72db43a9d27b419064724c4e",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9816/"
         }
       ],
       "status": "unread"
@@ -18609,6 +19323,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d5bac6dc1e66732e10370fa5291ab79c720b495002d9c864cc07248882cca43",
+          "url": "https://www.happings.com/it/happing/castagnata-in-pineta-aspettando-halloween/"
         }
       ],
       "status": "unread"
@@ -18993,6 +19713,18 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1493c0b9de5ee4d18a963a4f20ffb1e17b2d8fbe72db43a9d27b419064724c4e",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9816/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "92d3210d3032567394095063443629b417b237bd693ac7d2e639ce52c3b23ce3",
+          "url": "https://www.happings.com/it/happing/castagnata-c-a-i/"
         }
       ],
       "status": "unread"
@@ -19149,6 +19881,12 @@
           "observed_at": "2026-10-20",
           "sha256": "fe6dcd66f2e0ef634a855a715ddd7a455f64e84927611e6393c73440b0abb805",
           "url": "https://www.happings.com/it/happing/29-settimane-delle-castagne-castagne-lungo-il-sentiero-del-castagno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c452a89a6c5d2960ac38d05e916a5a43cf25f292ad53287f4fea4fe7f849d12c",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9781/"
         }
       ],
       "status": "unread"
@@ -19212,6 +19950,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c01e7a543e3f5d8ff03cbf88683e4594806f77741acf9a0c93a1c1e058fae655",
+          "url": "https://www.happings.com/it/happing/castagnata-dottobre/"
         }
       ],
       "status": "unread"
@@ -19275,6 +20019,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0227cd94923f654df66946b14c87a788b59cff6863efdaaf05370d9b1d39df2f",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum-in-italiano/"
         }
       ],
       "status": "unread"
@@ -19422,6 +20172,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
+          "url": "https://www.happings.com/it/happing/castagnata-4/"
         }
       ],
       "status": "unread"
@@ -19443,6 +20199,18 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "16093cdb87387e7782eacf8999ea2521b11efb2848763e8740e5c0a8c7c7734d",
+          "url": "https://www.happings.com/it/happing/campo-delle-zucche-a-somaggia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ad811e2333903558a8a86157e0f129e83f6044bbcaf58a3ca9e114ea4f1e00dc",
+          "url": "https://www.happings.com/it/happing/castagnata-in-frazione-san-pietro/"
         }
       ],
       "status": "unread"
@@ -19641,6 +20409,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b2b3431629b25d01abe053917a2c666b5572839817d86ea7ff033b83d7a16e6",
+          "url": "https://www.happings.com/it/happing/castagnata-del-circolo-di-travino/"
         }
       ],
       "status": "unread"
@@ -19668,6 +20442,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5e2455d7fe36bb38f72cb73ce77cfd55484e5c5df6c702e67612d80ec7295406",
           "url": "https://www.happings.com/it/happing/brostoi-formai-e-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bf398823f0917dcb557755b8b1076ac54586a5ec25dc98bec8dfbb9f4a6c83d7",
+          "url": "https://www.happings.com/it/happing/castagnata-5/"
         }
       ],
       "status": "unread"
@@ -19695,6 +20475,12 @@
           "observed_at": "2026-10-21",
           "sha256": "afbc3c6b02aeb6b970ff5e4b965cc756181ffae0b9c1950d5bdf716300776fe9",
           "url": "https://www.happings.com/it/happing/agricolfest-2025/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1493c0b9de5ee4d18a963a4f20ffb1e17b2d8fbe72db43a9d27b419064724c4e",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9816/"
         }
       ],
       "status": "unread"
@@ -20865,6 +21651,12 @@
           "observed_at": "2026-10-21",
           "sha256": "ca51658c21c0eeffcca1db56210b39cf60009fd7f853736f12540317ff73d48b",
           "url": "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c00859993f67cb1931a1ea637a3791fa8269d37fee76888f59c125d3efa7e9af",
+          "url": "https://www.happings.com/it/happing/castagnata-2026-2/"
         }
       ],
       "status": "unread"
@@ -21003,6 +21795,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9ef96371b7c24fa40ab6db931d34e69b246376fa629945894ecae6004d2dafa",
+          "url": "https://www.happings.com/it/happing/castagnata-dei-chech/"
         }
       ],
       "status": "unread"
@@ -22302,6 +23100,12 @@
           "observed_at": "2026-10-24",
           "sha256": "9b5259dd80954ac61891efaeb61eb36ce10243d3bfeba7432043808d960edeef",
           "url": "https://www.happings.com/it/happing/campionato-altoatesino-delle-barzellette/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5723ef65a8a4a95fa94869eb257cc438c0abea3a8fba0c83ebec207be77fd9d5",
+          "url": "https://www.happings.com/it/happing/campus-stakeholders-meeting/"
         }
       ],
       "status": "unread"
@@ -23154,6 +23958,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c66b7fa00e412366af6d2e7982c42eb6fbd2531b9f5572c42582c99a19debcbf",
           "url": "https://www.happings.com/it/happing/aspettando-halloween/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d5bac6dc1e66732e10370fa5291ab79c720b495002d9c864cc07248882cca43",
+          "url": "https://www.happings.com/it/happing/castagnata-in-pineta-aspettando-halloween/"
         }
       ],
       "status": "unread"
@@ -24066,6 +24876,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9a72873900a1b5545b88ac639138cbf30910f88137357354013bce6f0f4597d7",
+          "url": "https://www.happings.com/it/happing/castagnata-festa-del-torggelen-al-podere-gaudententurm/"
         }
       ],
       "status": "unread"
@@ -25020,6 +25836,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e099e315a1aa5677b29cefa024763e73c124d48d3474c4cac44b3751f9893a96",
+          "url": "https://www.happings.com/it/happing/castagnata-2/"
         }
       ],
       "status": "unread"
@@ -25266,6 +26088,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "936533b36a8be6ff408fa68c66e1702116c791d6e8c665e45ac825936a6125a3",
+          "url": "https://www.happings.com/it/happing/caruso-passione-2-0/"
         }
       ],
       "status": "unread"
@@ -26259,6 +27087,18 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f5f55be950a40211e1d60880225d522ecaee593571ef46bbc885883f3b525b9b",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10491/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ad811e2333903558a8a86157e0f129e83f6044bbcaf58a3ca9e114ea4f1e00dc",
+          "url": "https://www.happings.com/it/happing/castagnata-in-frazione-san-pietro/"
         }
       ],
       "status": "unread"
@@ -26559,6 +27399,12 @@
           "observed_at": "2026-10-24",
           "sha256": "836c36db6e9ca1b7ccda3bc7bb1ec8d8cb954ef5e3d6583cad13e77d37e89ef2",
           "url": "https://www.happings.com/it/happing/apertura-della-pista-di-pattinaggio-con-musica-live-con-dirty-lovers/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f9ef96371b7c24fa40ab6db931d34e69b246376fa629945894ecae6004d2dafa",
+          "url": "https://www.happings.com/it/happing/castagnata-dei-chech/"
         }
       ],
       "status": "unread"
@@ -27027,6 +27873,12 @@
           "observed_at": "2026-10-20",
           "sha256": "e5593e3e454fa156a3c9342522eee72ffab4d17e9c9f1ab633bdb49a723a6e0e",
           "url": "https://www.happings.com/it/happing/120-chili-di-jazz/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "137d78e4581fd64a6705590b5a012001a9b93e498130c5f047c40b99ede13478",
+          "url": "https://www.happings.com/it/happing/capibarize-yourself-laboratorio-di-fumetto/"
         }
       ],
       "status": "unread"
@@ -27186,6 +28038,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb595a9003f76e2017342083c96e7020dd1ff61cb8deb02eaffb10393832134a",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10428/"
         }
       ],
       "status": "unread"
@@ -27546,6 +28404,12 @@
           "observed_at": "2026-10-24",
           "sha256": "7ecb398a0b2cc308fd335dcdc319649eb337b074eef1624dee1a3e1f16970072",
           "url": "https://www.happings.com/it/happing/aston-crown-combattimenti-esibizioni-e-balli-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5723ef65a8a4a95fa94869eb257cc438c0abea3a8fba0c83ebec207be77fd9d5",
+          "url": "https://www.happings.com/it/happing/campus-stakeholders-meeting/"
         }
       ],
       "status": "unread"
@@ -27594,6 +28458,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c9c564cee88ad69b537e215ad8ff0bba8f461726f23034e488f2cf643855018a",
           "url": "https://www.happings.com/it/happing/bicicastagno-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2e7e91f4949e93418561a98cfaa5c188778216a01b37beb1660812dad33cc84f",
+          "url": "https://www.happings.com/it/happing/castagnata-lega-nord-caronno-varesino/"
         }
       ],
       "status": "unread"
@@ -27909,6 +28779,12 @@
           "observed_at": "2026-10-24",
           "sha256": "632daff20bed35bf68f883ebc984c9e672d8ebdf9c5fbbdeb88b3b376a39919e",
           "url": "https://www.happings.com/it/happing/antonio-scurati-pianeta-terra-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5723ef65a8a4a95fa94869eb257cc438c0abea3a8fba0c83ebec207be77fd9d5",
+          "url": "https://www.happings.com/it/happing/campus-stakeholders-meeting/"
         }
       ],
       "status": "unread"
@@ -28221,6 +29097,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb595a9003f76e2017342083c96e7020dd1ff61cb8deb02eaffb10393832134a",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10428/"
         }
       ],
       "status": "unread"
@@ -28548,6 +29430,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c452a89a6c5d2960ac38d05e916a5a43cf25f292ad53287f4fea4fe7f849d12c",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9781/"
         }
       ],
       "status": "unread"
@@ -28644,6 +29532,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "137d78e4581fd64a6705590b5a012001a9b93e498130c5f047c40b99ede13478",
+          "url": "https://www.happings.com/it/happing/capibarize-yourself-laboratorio-di-fumetto/"
         }
       ],
       "status": "unread"
@@ -28854,6 +29748,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f24158fb641ce8e3e53a2352acbb141fad0201f3ca8aef52df49f641441cf068",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10463/"
         }
       ],
       "status": "unread"
@@ -29490,6 +30390,12 @@
           "observed_at": "2026-10-24",
           "sha256": "85caa5adb0851bf52bd38d1bf71c4fec1eaada42a42b6518bde144b1a9ba9bb5",
           "url": "https://www.happings.com/it/happing/associazione-nazionale-alpini/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c00859993f67cb1931a1ea637a3791fa8269d37fee76888f59c125d3efa7e9af",
+          "url": "https://www.happings.com/it/happing/castagnata-2026-2/"
         }
       ],
       "status": "unread"
@@ -30123,6 +31029,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f24158fb641ce8e3e53a2352acbb141fad0201f3ca8aef52df49f641441cf068",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10463/"
         }
       ],
       "status": "unread"
@@ -30912,6 +31824,18 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ff554dabfe040308329f5b0b0ce9ab8cfabe9de605e92e362045ec1c0c23d318",
+          "url": "https://www.happings.com/it/happing/cantina-bio-sanin-degustazione-di-vini-naturali/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "d27103fdb95090139605748bdb068d8695d3281efa359f610b32e3db01e2330b",
+          "url": "https://www.happings.com/it/happing/castagnata-alpina/"
         }
       ],
       "status": "unread"
@@ -31569,6 +32493,12 @@
           "observed_at": "2026-10-21",
           "sha256": "4cea5cc2615c1f6f6de8a82eb6d968d5cd6ac887576e9f7e7a79247006d3202e",
           "url": "https://www.happings.com/it/happing/accensione-dellalberto-di-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "22094d0206ab0b373b5eb20761b180be8555c2de1b0c07eba47858ba828f9a8d",
+          "url": "https://www.happings.com/it/happing/cantine-di-natale/"
         }
       ],
       "status": "retrieved"
@@ -32208,6 +33138,12 @@
           "observed_at": "2026-10-24",
           "sha256": "a7bd9481618c5db87685c5ae808369729e124cb15fdb0c95b6b4a31e56176e31",
           "url": "https://www.happings.com/it/happing/mercatino-di-natale-a-s-michele-appiano-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "22094d0206ab0b373b5eb20761b180be8555c2de1b0c07eba47858ba828f9a8d",
+          "url": "https://www.happings.com/it/happing/cantine-di-natale/"
         }
       ],
       "status": "retrieved"
@@ -34806,6 +35742,12 @@
           "observed_at": "2026-10-20",
           "sha256": "a437c4c3e60e64073a1d5b5876669628d93d074166b328f07648e323156dcfac",
           "url": "https://www.happings.com/it/happing/mercato-coperto-di-campagna-amica-a-ponte-san-giovanni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
         }
       ],
       "status": "retrieved"
@@ -34956,6 +35898,12 @@
           "observed_at": "2026-10-20",
           "sha256": "d3bc29ee2de867b9ff3b8ed07c6ee257ea336b0cbfc861a801d168ca1adf6a95",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-al-circo-massimo-di-roma/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
         }
       ],
       "status": "retrieved"
@@ -35601,6 +36549,12 @@
           "observed_at": "2026-10-20",
           "sha256": "46b1a90a32854335100ab4d0c80c6b6180479223801f8a5c3ac1e31874e2d3aa",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bologna-via-po/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
         }
       ],
       "status": "retrieved"
@@ -35934,6 +36888,12 @@
           "observed_at": "2026-10-21",
           "sha256": "fbbf580f850c4b29f1999746e825cc8da8e92c4608581b9b6d7235c1604af086",
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-borgo-roma/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
         }
       ],
       "status": "retrieved"
@@ -41484,6 +42444,12 @@
           "observed_at": "2026-10-21",
           "sha256": "34071ee46517083853e06d3a7605f3c856acee2a2c6b8262ec9b36144532489e",
           "url": "https://www.happings.com/it/happing/mercato-settimanale-a-brunico/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
         }
       ],
       "status": "retrieved"
@@ -41550,6 +42516,12 @@
           "observed_at": "2026-10-21",
           "sha256": "4c660f31a0187c39af6f0638c542e13dd542dc8b07d6e42c709aeb332baba6e0",
           "url": "https://www.happings.com/it/happing/mercato-settimanale-a-fie-allo-sciliar/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c74bd81960c78f143d7df08d6727bb40cd9ee8f900cba58e36d817588f0b7d66",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/4/"
         }
       ],
       "status": "retrieved"
@@ -42111,6 +43083,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2e3e62e16eb5be679fe8835cff22422f943b2f5d47b587ad8ec48e4a44a2554b",
+          "url": "https://www.happings.com/it/happing/castagnata-di-lottano/"
         }
       ],
       "status": "unread"
@@ -42453,6 +43431,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4b2b3431629b25d01abe053917a2c666b5572839817d86ea7ff033b83d7a16e6",
+          "url": "https://www.happings.com/it/happing/castagnata-del-circolo-di-travino/"
         }
       ],
       "status": "unread"
@@ -42606,6 +43590,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb595a9003f76e2017342083c96e7020dd1ff61cb8deb02eaffb10393832134a",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10428/"
         }
       ],
       "status": "unread"
@@ -43926,6 +44916,12 @@
           "observed_at": "2026-10-24",
           "sha256": "88f318589e3006ce19f1367d0f929849d9a2d92c7cc0b25d3e015506413e8552",
           "url": "https://www.happings.com/it/happing/alpine-pinot-alla-tenuta-peter-zemmer/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4df9dd6311318c2213c623dd6d8ea66e005c13c7670d8f4ef3fd99fd0bbcc9f6",
+          "url": "https://www.happings.com/it/happing/caseificio-gatscher-dal-latte-al-formaggio/"
         }
       ],
       "status": "unread"
@@ -44805,6 +45801,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d5bac6dc1e66732e10370fa5291ab79c720b495002d9c864cc07248882cca43",
+          "url": "https://www.happings.com/it/happing/castagnata-in-pineta-aspettando-halloween/"
         }
       ],
       "status": "unread"
@@ -45441,6 +46443,12 @@
           "observed_at": "2026-10-21",
           "sha256": "c80e16eaac23c0f9373b46463d016462784d6f1cef7723a68c84647c9c028033",
           "url": "https://www.happings.com/it/happing/50-anni-del-parco-naturale-gruppo-di-tessa-transumanza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9d4e811276cc79f182c32e57dffef976291129553895024f64f465c9b590e18",
+          "url": "https://www.happings.com/it/happing/carmen/"
         }
       ],
       "status": "unread"
@@ -46098,6 +47106,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "55660629cbabe802d33d705859346c36fed76afcc3004ef226c83d9735f5c851",
+          "url": "https://www.happings.com/it/happing/capunet-dautunno/"
         }
       ],
       "status": "unread"
@@ -46161,6 +47175,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0227cd94923f654df66946b14c87a788b59cff6863efdaaf05370d9b1d39df2f",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum-in-italiano/"
         }
       ],
       "status": "unread"
@@ -47487,6 +48507,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9d4e811276cc79f182c32e57dffef976291129553895024f64f465c9b590e18",
+          "url": "https://www.happings.com/it/happing/carmen/"
         }
       ],
       "status": "unread"
@@ -48120,6 +49146,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bcdbf79e04a7a2d7ae7b522f1e7441d21d03056864c335ea32957e98d516a676",
+          "url": "https://www.happings.com/it/happing/capisciame/"
         }
       ],
       "status": "unread"
@@ -48426,6 +49458,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1e51e2ce8049933f8c9d2b939de23e1115400e3b2c37ecdddd3ddc23e6ff78ac",
+          "url": "https://www.happings.com/it/happing/castagnata-1/"
         }
       ],
       "status": "unread"
@@ -48585,6 +49623,18 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
+          "url": "https://www.happings.com/it/happing/castagnata-4/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f5f55be950a40211e1d60880225d522ecaee593571ef46bbc885883f3b525b9b",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10491/"
         }
       ],
       "status": "unread"
@@ -48819,6 +49869,12 @@
           "observed_at": "2026-10-24",
           "sha256": "301373d43a2cf3e81c5a131f77f255199b5258457f9c5a58c8bdfd3a11a8f92a",
           "url": "https://www.happings.com/it/happing/allerweltskirchtag-a-marlengo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4cc33d00747149eae194726cf723b8ab7b3495873b66a9f10ad0e6936b4db493",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9974/"
         }
       ],
       "status": "unread"
@@ -49074,6 +50130,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c40da5919334a1a8c2abe276afc5555af1de2d9cf22f7f00853aec839f21f88a",
+          "url": "https://www.happings.com/it/happing/castagnata-3/"
         }
       ],
       "status": "unread"
@@ -49260,6 +50322,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "137d78e4581fd64a6705590b5a012001a9b93e498130c5f047c40b99ede13478",
+          "url": "https://www.happings.com/it/happing/capibarize-yourself-laboratorio-di-fumetto/"
         }
       ],
       "status": "unread"
@@ -49521,6 +50589,12 @@
           "observed_at": "2026-10-24",
           "sha256": "429adfd60253460117f4edb4546162c9b3de518b6bad74511d6f068ae2b15381",
           "url": "https://www.happings.com/it/happing/anniversario-gioventu-pedenosso/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d7c3a2ba77b5ec07c4b00000fb8a0179bb0360c916b385b0a6f7b18cc1593f3",
+          "url": "https://www.happings.com/it/happing/castagnata-avisina/"
         }
       ],
       "status": "unread"
@@ -49671,6 +50745,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
+          "url": "https://www.happings.com/it/happing/castagnata-2026/"
         }
       ],
       "status": "unread"
@@ -50073,6 +51153,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "16093cdb87387e7782eacf8999ea2521b11efb2848763e8740e5c0a8c7c7734d",
+          "url": "https://www.happings.com/it/happing/campo-delle-zucche-a-somaggia/"
         }
       ],
       "status": "unread"
@@ -50355,6 +51441,18 @@
           "observed_at": "2026-10-24",
           "sha256": "7b30f0b8d6afee577f1a709030f5309050670a704d419c3d9599562fbc832300",
           "url": "https://www.happings.com/it/happing/aperitivo-di-san-silvestro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "58e7ba5356a0875518c8e68ac400495b9558082e1b90f4d75eefcee1631404bc",
+          "url": "https://www.happings.com/it/happing/capodanno-bornese/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "03dff0f4b3b6698b048c42743d46c19292186299ad5e520a0da2ce638d3d14f3",
+          "url": "https://www.happings.com/it/happing/capodanno-insieme/"
         }
       ],
       "status": "unread"
@@ -50787,6 +51885,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "257fd9bdb4fcf8665817a7c42255f0f59e58099637306759dfcd1d8cb276cb0c",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum/"
         }
       ],
       "status": "unread"
@@ -50994,6 +52098,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5e2455d7fe36bb38f72cb73ce77cfd55484e5c5df6c702e67612d80ec7295406",
           "url": "https://www.happings.com/it/happing/brostoi-formai-e-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2e7e91f4949e93418561a98cfaa5c188778216a01b37beb1660812dad33cc84f",
+          "url": "https://www.happings.com/it/happing/castagnata-lega-nord-caronno-varesino/"
         }
       ],
       "status": "unread"
@@ -52587,6 +53697,12 @@
           "observed_at": "2026-10-21",
           "sha256": "26708fa8b59dcfc5ee6bb80d07f94a9dc3826b0e84deab4f70283a6ca6dd44f9",
           "url": "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ff554dabfe040308329f5b0b0ce9ab8cfabe9de605e92e362045ec1c0c23d318",
+          "url": "https://www.happings.com/it/happing/cantina-bio-sanin-degustazione-di-vini-naturali/"
         }
       ],
       "status": "unread"
@@ -53226,6 +54342,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f5f55be950a40211e1d60880225d522ecaee593571ef46bbc885883f3b525b9b",
+          "url": "https://www.happings.com/it/happing/castagnata-5-evento-10491/"
         }
       ],
       "status": "unread"
@@ -53274,6 +54396,12 @@
           "observed_at": "2026-10-24",
           "sha256": "4fcbf17c7633fecdcdeb5648f1b26b22657c4e7fe45853a9c102c443d1e67d2e",
           "url": "https://www.happings.com/it/happing/caldarroste-al-maso-fruhaufhof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4df9dd6311318c2213c623dd6d8ea66e005c13c7670d8f4ef3fd99fd0bbcc9f6",
+          "url": "https://www.happings.com/it/happing/caseificio-gatscher-dal-latte-al-formaggio/"
         }
       ],
       "status": "unread"
@@ -53301,6 +54429,12 @@
           "observed_at": "2026-10-20",
           "sha256": "206cd0486547e3aaee074f900c1c62554d0f6d8051e9e116613fc053b2fa0603",
           "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bf398823f0917dcb557755b8b1076ac54586a5ec25dc98bec8dfbb9f4a6c83d7",
+          "url": "https://www.happings.com/it/happing/castagnata-5/"
         }
       ],
       "status": "unread"
@@ -53376,6 +54510,12 @@
           "observed_at": "2026-10-20",
           "sha256": "2fea578d3a32867bbb0e9434f2c4d11bc737632b8d58070b52f901a7a7491b95",
           "url": "https://www.happings.com/it/happing/mercatino-contadino-a-chiusa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e099e315a1aa5677b29cefa024763e73c124d48d3474c4cac44b3751f9893a96",
+          "url": "https://www.happings.com/it/happing/castagnata-2/"
         }
       ],
       "status": "unread"
@@ -53964,6 +55104,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c00859993f67cb1931a1ea637a3791fa8269d37fee76888f59c125d3efa7e9af",
+          "url": "https://www.happings.com/it/happing/castagnata-2026-2/"
         }
       ],
       "status": "unread"
@@ -53985,6 +55131,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9d7c3a2ba77b5ec07c4b00000fb8a0179bb0360c916b385b0a6f7b18cc1593f3",
+          "url": "https://www.happings.com/it/happing/castagnata-avisina/"
         }
       ],
       "status": "unread"
@@ -54006,6 +55158,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ad811e2333903558a8a86157e0f129e83f6044bbcaf58a3ca9e114ea4f1e00dc",
+          "url": "https://www.happings.com/it/happing/castagnata-in-frazione-san-pietro/"
         }
       ],
       "status": "unread"
@@ -55635,6 +56793,12 @@
           "observed_at": "2026-10-24",
           "sha256": "101f0b9030e61cd95a29b939372516010e2f00daaa981db9f741c44cb7acf304",
           "url": "https://www.happings.com/it/happing/arte-e-vino-alla-tenuta-eberlehof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "257fd9bdb4fcf8665817a7c42255f0f59e58099637306759dfcd1d8cb276cb0c",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum/"
         }
       ],
       "status": "unread"
@@ -55731,6 +56895,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bcdbf79e04a7a2d7ae7b522f1e7441d21d03056864c335ea32957e98d516a676",
+          "url": "https://www.happings.com/it/happing/capisciame/"
         }
       ],
       "status": "unread"
@@ -55995,6 +57165,12 @@
           "observed_at": "2026-10-20",
           "sha256": "286a0af94a32fea73787ed770d6e38019156c993a63d16c31902f42e58488bd4",
           "url": "https://www.happings.com/it/happing/14a-passeggiata-meranese-del-vino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c01e7a543e3f5d8ff03cbf88683e4594806f77741acf9a0c93a1c1e058fae655",
+          "url": "https://www.happings.com/it/happing/castagnata-dottobre/"
         }
       ],
       "status": "unread"
@@ -56601,6 +57777,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ff554dabfe040308329f5b0b0ce9ab8cfabe9de605e92e362045ec1c0c23d318",
+          "url": "https://www.happings.com/it/happing/cantina-bio-sanin-degustazione-di-vini-naturali/"
         }
       ],
       "status": "unread"
@@ -57327,6 +58509,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "257fd9bdb4fcf8665817a7c42255f0f59e58099637306759dfcd1d8cb276cb0c",
+          "url": "https://www.happings.com/it/happing/caroma-visita-guidata-alla-torrefazione-e-al-coffeeseum/"
         }
       ],
       "status": "unread"
@@ -58146,6 +59334,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c452a89a6c5d2960ac38d05e916a5a43cf25f292ad53287f4fea4fe7f849d12c",
+          "url": "https://www.happings.com/it/happing/castagnata-4-evento-9781/"
         }
       ],
       "status": "unread"

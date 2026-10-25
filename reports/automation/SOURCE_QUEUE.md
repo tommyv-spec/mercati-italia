@@ -4,7 +4,7 @@
 Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 
 - Fonti note: **50**; viste ora: **43**.
-- Nuove: **1**; cambiate: **0**.
+- Nuove: **0**; cambiate: **0**.
 - Query fallite: **0**; offline: **False**.
 - Probabili elenchi/sedi: **6**; statistiche aggregate: **14**.
 - Il punteggio indica solo la priorità della verifica. NON è una misura di affidabilità.

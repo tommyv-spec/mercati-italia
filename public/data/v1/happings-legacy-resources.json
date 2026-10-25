@@ -844,21 +844,28 @@
       "status": "pending"
     },
     {
-      "attempts": 0,
+      "attempts": 2,
       "city_keys": [
         "monti"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": null,
-      "last_error": null,
+      "last_attempt_on": "2026-10-25",
+      "last_error": "UnreviewedRedirect",
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-monti.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-monti/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-monti.html",
       "proof": null,
       "province": "OT",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-monti/",
+          "observed_on": "2026-10-25",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-monti.html",
+          "status_code": 301
+        }
+      ],
       "region": "sardegna",
-      "status": "pending"
+      "status": "unreviewed_target"
     },
     {
       "attempts": 0,

@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14008,
-    "ids_retained": 14008,
-    "generic_weekly_with_specific_venue": 5600,
+    "original_records": 14009,
+    "ids_retained": 14009,
+    "generic_weekly_with_specific_venue": 5741,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3596,
-    "highly_supported_same_source_visit_groups": 846,
-    "suppressed_repeat_buttons_only": 1008,
-    "original_records_in_reversible_groups": 1854,
+    "venue_groups_examined": 3600,
+    "highly_supported_same_source_visit_groups": 878,
+    "suppressed_repeat_buttons_only": 1053,
+    "original_records_in_reversible_groups": 1931,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -24,18 +24,18 @@
     },
     {
       "region": "Liguria",
-      "groups": 21,
-      "extra_display_entries": 25
+      "groups": 24,
+      "extra_display_entries": 29
     },
     {
       "region": "Lombardia",
-      "groups": 596,
-      "extra_display_entries": 646
+      "groups": 616,
+      "extra_display_entries": 675
     },
     {
       "region": "Piemonte",
-      "groups": 92,
-      "extra_display_entries": 145
+      "groups": 94,
+      "extra_display_entries": 148
     },
     {
       "region": "Sicilia",
@@ -44,18 +44,18 @@
     },
     {
       "region": "Toscana",
-      "groups": 40,
-      "extra_display_entries": 56
+      "groups": 41,
+      "extra_display_entries": 58
     },
     {
       "region": "Trentino-Alto Adige",
-      "groups": 11,
-      "extra_display_entries": 12
+      "groups": 12,
+      "extra_display_entries": 13
     },
     {
       "region": "Veneto",
-      "groups": 82,
-      "extra_display_entries": 120
+      "groups": 87,
+      "extra_display_entries": 126
     }
   ],
   "examples": [
@@ -239,7 +239,31 @@
         "mercato-settimanale-di-millesimo-millesimo",
         "mercato-settimanale-di-millesimo-millesimo-sabato"
       ],
-      "date": "2026-10-24"
+      "date": "2026-10-31"
+    },
+    {
+      "region": "Liguria",
+      "city": "Molassana",
+      "address": "Via Isola del Vescovo",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-molassana-molassana-lunedi",
+      "original_ids": [
+        "mercato-settimanale-a-molassana-molassana-lunedi",
+        "mercato-settimanale-di-molassana-molassana"
+      ],
+      "date": "2026-10-26"
+    },
+    {
+      "region": "Liguria",
+      "city": "Oregina",
+      "address": "Via Maculano",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-oregina-oregina-venerdi",
+      "original_ids": [
+        "mercato-settimanale-a-oregina-oregina-venerdi",
+        "mercato-settimanale-di-oregina-oregina"
+      ],
+      "date": "2026-10-30"
     },
     {
       "region": "Liguria",
@@ -325,7 +349,7 @@
         "mercato-settimanale-di-varazze-varazze",
         "mercato-settimanale-di-varazze-varazze-sabato"
       ],
-      "date": "2026-10-24"
+      "date": "2026-10-31"
     },
     {
       "region": "Liguria",
@@ -336,6 +360,19 @@
       "original_ids": [
         "mercato-settimanale-di-vernazza-vernazza",
         "mercato-settimanale-di-vernazza-vernazza-martedi"
+      ],
+      "date": "2026-10-27"
+    },
+    {
+      "region": "Liguria",
+      "city": "Voltri",
+      "address": "Piazza Gaggero",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-voltri-voltri-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-voltri-voltri-martedi",
+        "mercato-settimanale-di-voltri-voltri",
+        "mercato-settimanale-di-voltri-voltri-martedi"
       ],
       "date": "2026-10-27"
     },
@@ -413,6 +450,19 @@
     },
     {
       "region": "Lombardia",
+      "city": "Aicurzio",
+      "address": "Piazza della Chiesa",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
+      "visible_id": "mercato-settimanale-di-aicurzio-aicurzio-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-aicurzio-aicurzio-martedi",
+        "mercato-settimanale-di-aicurzio-aicurzio",
+        "mercato-settimanale-di-aicurzio-aicurzio-martedi"
+      ],
+      "date": "2026-10-27"
+    },
+    {
+      "region": "Lombardia",
       "city": "Albairate",
       "address": "Via Donatori del Sangue",
       "source_url": "https://www.happings.com/it/mercato-settimanale-a-albairate.html",
@@ -481,7 +531,7 @@
         "mercato-settimanale-a-albiate-albiate-sabato",
         "mercato-settimanale-di-albiate-albiate"
       ],
-      "date": "2026-10-24"
+      "date": "2026-10-31"
     },
     {
       "region": "Lombardia",
@@ -494,54 +544,6 @@
         "mercato-settimanale-di-albiolo-albiolo-giovedi"
       ],
       "date": "2026-10-29"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albizzate",
-      "address": "Piazzale Sefro",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-albizzate.html",
-      "visible_id": "mercato-settimanale-di-albizzate-albizzate-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-albizzate-albizzate",
-        "mercato-settimanale-di-albizzate-albizzate-martedi"
-      ],
-      "date": "2026-10-27"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Almenno San Salvatore",
-      "address": "Via Postico",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-almenno-san-salvatore.html",
-      "visible_id": "mercato-settimanale-di-almenno-san-salvatore-almenno-san-salvatore-sabato",
-      "original_ids": [
-        "mercato-settimanale-di-almenno-san-salvatore-almenno-san-salvatore",
-        "mercato-settimanale-di-almenno-san-salvatore-almenno-san-salvatore-sabato"
-      ],
-      "date": "2026-10-24"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Alzate Brianza",
-      "address": "Via D. Guanella",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-alzate-brianza.html",
-      "visible_id": "mercato-settimanale-di-alzate-brianza-alzate-brianza-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-alzate-brianza-alzate-brianza",
-        "mercato-settimanale-di-alzate-brianza-alzate-brianza-martedi"
-      ],
-      "date": "2026-10-27"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Ambivere",
-      "address": "Via Manzoni",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-bergamo.html",
-      "visible_id": "mercato-settimanale-di-ambivere-ambivere-venerdi",
-      "original_ids": [
-        "mercato-settimanale-di-ambivere-ambivere",
-        "mercato-settimanale-di-ambivere-ambivere-venerdi"
-      ],
-      "date": "2026-10-30"
     }
   ],
   "suspicious_city_examples": [

@@ -2,18 +2,18 @@
   "counts": {
     "first_observation": 0,
     "municipal_csv_bytes_changed": 0,
-    "municipal_csv_first_observation": 1,
+    "municipal_csv_first_observation": 0,
     "publisher_data_date_advanced": 0,
     "publisher_data_date_rolled_back": 0,
     "publisher_metadata_changed": 1,
     "publisher_unavailable": 0,
     "recovered": 0,
     "timestamp_interpretation_corrected": 0,
-    "unchanged": 2
+    "unchanged": 3
   },
   "dataset_timestamp_changes_are_not_record_confirmations": true,
   "imported_markets": 0,
-  "reference_date": "2026-10-24",
+  "reference_date": "2026-10-25",
   "results": [
     {
       "automatic_import_allowed": false,
@@ -50,7 +50,7 @@
     },
     {
       "automatic_import_allowed": false,
-      "change_type": "municipal_csv_first_observation",
+      "change_type": "unchanged",
       "current_data_date": null,
       "dataset_date_still_requires_review": true,
       "events_confirmed": 0,

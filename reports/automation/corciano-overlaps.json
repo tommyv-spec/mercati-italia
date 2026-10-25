@@ -1,13 +1,13 @@
 {
-  "accepted": 2,
+  "accepted": 3,
   "counts": {
     "existing_official_source_id": 2,
-    "quarantined_generic_city_day_without_venue": 1,
-    "quarantined_same_market_name_and_weekday": 1
+    "quarantined_same_market_name_and_weekday": 1,
+    "safe_distinct_official_market": 1
   },
   "deleted_existing_records": 0,
   "market_confirmations": 0,
-  "quarantined": 2,
+  "quarantined": 1,
   "quarantined_examples": [
     {
       "day": [
@@ -23,20 +23,6 @@
       "name": "Mercato Di Corciano",
       "official_slug": "pg-corciano-mercato-di-corciano",
       "reason": "same_market_name_and_weekday"
-    },
-    {
-      "day": [
-        4
-      ],
-      "existing_market_ids": [
-        "mercato-settimanale-a-corciano-corciano-venerdi"
-      ],
-      "existing_sources": [
-        "https://www.happings.com/it/mercati-settimanali-a-perugia.html"
-      ],
-      "name": "Mercato Di Ellera",
-      "official_slug": "pg-corciano-mercato-di-ellera",
-      "reason": "generic_city_day_without_venue"
     }
   ],
   "region": "Umbria",

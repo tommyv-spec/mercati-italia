@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-24**.
-- Schede totali: **14,008**.
+- Data della misura: **2026-10-25**.
+- Schede totali: **14,009**.
 - Fonti misurate (nome e dominio): **88**.
 - Importazione registrata entro 30 giorni: **184**.
-- Lettura della fonte registrata entro 30 giorni: **1,365**.
+- Lettura della fonte registrata entro 30 giorni: **1,366**.
 - Fonte datata entro 30 giorni: **1,205**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,204**.
-- Schede con aggiornamento soltanto del dataset: **1,250**.
-- Fonte datata tra 31 e 365 giorni: **6**.
+- Schede con aggiornamento soltanto del dataset: **1,251**.
+- Fonte datata tra 31 e 365 giorni: **7**.
 - Fonte più vecchia del limite di 540 giorni: **52**.
 - Schede con età del contenuto della fonte non comprovata: **12,744**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,672**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,854**.
+- Schede con date future previste: **11,658**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,839**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -42,7 +42,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | Fonte | Dominio | Schede | Contenuto entro 30 g | Contenuto oltre 30 g | Età sconosciuta | Lettura entro 30 g |
 |---|---|---:|---:|---:|---:|---:|
 | Comune di Bologna — dati ufficiali; apertura non confermata | opendata.comune.bologna.it | 39 | 0 | 39 | 0 | 39 |
-| Comune di Corciano, open data CC BY 4.0 (licenza dichiarata) | comune.corciano.pg.it | 2 | 0 | 2 | 0 | 2 |
+| Comune di Corciano, open data CC BY 4.0 (licenza dichiarata) | comune.corciano.pg.it | 3 | 0 | 3 | 0 | 3 |
 | Comune di Firenze - FeelFlorence (CC BY 4.0) | www.feelflorence.it | 4 | 0 | 4 | 0 | 4 |
 | Comune di Milano - Open Data (CC BY 4.0) | dati.comune.milano.it | 85 | 76 | 9 | 0 | 9 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1128 | 1128 | 0 | 0 | 1127 |
@@ -136,9 +136,9 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 2522 | 8844 | 1454 | 1098 | 90 |
-| Orari | 3002 | 1992 | 1197 | 7560 | 257 |
-| Giorni | 972 | 10935 | 1375 | 707 | 19 |
+| Sede | 1182 | 8799 | 1456 | 2475 | 97 |
+| Orari | 1927 | 3408 | 1470 | 6944 | 260 |
+| Giorni | 972 | 10398 | 1650 | 969 | 20 |
 
 ## Funzionamento del recupero automatico
 
@@ -147,9 +147,9 @@ URL primari distinti nel catalogo: 5919. Le pagine riconosciute vengono lette un
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
 | bassa-romagna-farmers | retrieved | 4 | 0 |
-| bassa-romagna-weekly | retrieved | 9 | 0 |
+| bassa-romagna-weekly | retrieved | 11 | 0 |
 
-Conflitti mantenuti in revisione: 4.
+Conflitti mantenuti in revisione: 6.
 
 
 ## Limiti del sistema

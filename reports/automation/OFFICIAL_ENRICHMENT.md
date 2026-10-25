@@ -7,23 +7,30 @@ Coordinates can veto a join; they never establish market identity.
 No forecast, human verification, original source, or identity changed.
 
 - Held official rows screened: **1360**
-- Existing market cards with added information: **0**
-- Missing hours supplied from official regional source: **0**
+- Existing market cards with added information: **660**
+- Missing hours supplied from official regional source: **273**
 - Missing/vague venues supplied from the complete source: **0**
 - Managed venues updated from the same source ID: **0**
-- Official source attributions attached: **0**
+- Official source attributions attached: **273**
 - exact_matches: 150
 - existing_hours_differ_from_official: 2
 - existing_hours_preserved: 150
-- held_unique_town_coordinates_conflict: 37
-- held_unique_town_multiple_eligible_sources: 12
-- held_unique_town_no_eligible_source: 182
-- held_unique_town_raw_same_city_day_competitor: 3
-- held_unique_town_raw_unknown_weekday_competitor: 12
+- field_observation_records_updated: 660
+- held_unique_town_coordinates_conflict: 191
+- held_unique_town_daypart_or_place_disagrees: 207
+- held_unique_town_existing_venue_evidence: 170
+- held_unique_town_multiple_eligible_sources: 38
+- held_unique_town_no_eligible_source: 1054
+- held_unique_town_raw_same_city_day_competitor: 29
+- held_unique_town_raw_unknown_weekday_competitor: 42
 - held_unique_town_target_identity_incomplete: 60
-- municipality_day_unique_matches: 239
+- held_unique_town_unmanaged_indirizzo: 273
+- hours_added: 273
+- municipality_day_unique_matches: 512
 - observed_spelling_matches: 25
-- skipped_coordinates_conflict: 29
+- official_source_attributions_added: 273
+- recurrence_observations_added: 273
+- skipped_coordinates_conflict: 30
 - skipped_legacy_without_explicit_annual_weekday: 295
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
@@ -31,7 +38,8 @@ No forecast, human verification, original source, or identity changed.
 - skipped_no_exact_location_or_day: 548
 - skipped_official_raw_identity_unproved_or_conflicting: 56
 - skipped_official_without_explicit_annual_weekday: 523
-- unique_town_targets_screened: 545
+- unique_town_targets_screened: 2303
+- vague_hours_replaced: 273
 
 ## Example exact matches
 
