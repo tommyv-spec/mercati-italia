@@ -5,6 +5,24 @@ Started 2026-10-25. One line per source (or group of small sources), biggest fir
 
 Status: ⬜ to check · 🔎 checking now · ✅ checked
 
+## General method (no per-market fixes)
+
+Every improvement is a rule that runs the same way for every source and every market, every day.
+Status: ⬜ to do · 🔧 building · ✅ live on DEV
+
+| # | Building block | What it does | Status |
+|---:|---|---|:---:|
+| A | Freshness rule | A market whose source still lists it (page read in the last 45 days, same weekday) keeps its predicted dates renewing. A source that states its own content is too old does not count. | ✅ (pilot 148/148 verified) |
+| B | Weekly proofs | Each Happings weekly read restates, for every listed market, what the page still says (weekday, place, time of day). | ✅ |
+| C | Duplicate finder | Identical records of one source, and the same town + street + weekday listed by two sources, are merged (hidden, IDs kept). | 🔧 (535 copies found) |
+| D | Shared Italian reader | One reader for recurrences used by all sources: "4° domenica", "2^ domenica di ogni mese", "tutti i venerdì". Saved page text is re-read with the current reader on every run, so fixes repair old evidence. | 🔧 |
+| E | Position resolver | Placeholder city-centre points are rejected; real streets are looked up once on OpenStreetMap and kept. | ⬜ |
+| F | Source contracts | New sources are described, not coded: PDF tables, map files, many towns per file (Veneto calendar first). | ⬜ |
+| G | Discovery | Sitemaps and listing pages bring new markets from each source (cosedicasa, eventiesagre, all 107 Happings pages daily). | ⬜ |
+| H | Lifecycle rule | Finished events and non-markets are hidden (IDs kept). | ⬜ |
+| I | Robust saving | All file saves retry when Windows briefly locks a file. | 🔧 |
+| — | Compliance | Citynews forbids automated reading: reading stopped. | 🔧 |
+
 For every source the same four questions:
 1. How do we collect it today, and does that happen automatically?
 2. How complete is it (hours, street, upcoming dates, map position)?

@@ -17,11 +17,12 @@ from pathlib import Path
 from urllib.error import HTTPError
 
 import happings_source_enrichment as source
-from export_static import normalize
+from export_static import matches_export, normalize
 import happings_detail_autopilot as details
 import happings_legacy_resources as legacy
 import happings_province_directory as directory
 import happings_weekly_admission as weekly_admission
+import atomic_write
 
 SCHEMA = 1
 DEFAULT_POLICY = {"enabled": False}
@@ -35,13 +36,16 @@ def digest(value):
 
 
 def validate_policy(policy):
-    if (not isinstance(policy, dict) or set(policy) - {"enabled", "max_pages", "details", "legacy_resolution", "directory"}
+    if (not isinstance(policy, dict)
+            or set(policy) - {"enabled", "max_pages", "details", "legacy_resolution", "directory", "saved_weekly_pages"}
             or type(policy.get("enabled", False)) is not bool
+            or type(policy.get("saved_weekly_pages", False)) is not bool
             or type(policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)) is not int
             or not 1 <= policy.get("max_pages", source.MAX_REQUESTS_PER_RUN) <= source.MAX_REQUESTS_PER_RUN):
         raise ValueError("Unreviewed Happings Autopilot policy")
     result = {"enabled": policy.get("enabled", False),
-              "max_pages": policy.get("max_pages", source.MAX_REQUESTS_PER_RUN)}
+              "max_pages": policy.get("max_pages", source.MAX_REQUESTS_PER_RUN),
+              "saved_weekly_pages": policy.get("saved_weekly_pages", False)}
     if "details" in policy:
         result["details"] = details.validate_policy(policy["details"])
     if "legacy_resolution" in policy:
@@ -55,7 +59,7 @@ def _write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n", "utf-8")
-    temporary.replace(path)
+    atomic_write.replace(temporary, path)
 
 
 def _rights(path, *, today):
@@ -444,7 +448,8 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
         remaining = policy["max_pages"] - consumed - directory_used
         urls = source.select_pages(
             base, today=today, limit=remaining,
-            resource_urls=sorted(set(resource_urls) | set(directory_urls))
+            resource_urls=sorted(set(resource_urls) | set(directory_urls)
+                                 | set(source.saved_weekly_pages() if policy["saved_weekly_pages"] else ()))
         ) if remaining else []
         report["legacy_request_slots_used"] = consumed
         report["remaining_index_page_budget"] = remaining
@@ -685,7 +690,7 @@ def verify_exported(before, revised, exported, report, *, today, source_checkpoi
         raise ValueError("Happings export lost, added or duplicated original market IDs")
     for row in revised:
         expected, error = normalize(row, today)
-        if error or expected != by_id[row["slug"]]:
+        if error or not matches_export(expected, by_id[row["slug"]], by_id):
             raise ValueError("Happings final catalog differs from its proved fields: " + row["slug"])
     return {
         "schema": SCHEMA, "release_safe": True, "checked_market_ids": len(protected),

@@ -251,7 +251,7 @@ def verify_exported(before, exported, report, *, today):
     verifies every original Roma identity and every normalized Roma field,
     including held records, against a fresh replay of the original bytes.
     """
-    from export_static import normalize
+    from export_static import matches_export, normalize
     _catalog(exported)
     document = parse_snapshot(report.get("snapshot"), today=today)
     after, _ = _evaluate(before, document, today=today, apply=report.get("apply"))
@@ -262,7 +262,7 @@ def verify_exported(before, exported, report, *, today):
         if row.get("url_fonte") != DATASET_PAGE:
             continue
         expected, reason = normalize(row, today)
-        if expected is None or reason or by_id.get(row["slug"]) != expected:
+        if expected is None or reason or not matches_export(expected, by_id.get(row["slug"]), by_id):
             raise ValueError("Roma exported record differs from its source-bound normalized result: " + row["slug"])
         checked.append(row["slug"])
     return {"valid": True, "checked_ids": checked, "checked_count": len(checked)}

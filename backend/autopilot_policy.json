@@ -3,7 +3,7 @@
   "existing_source_refresh": {
     "enabled": true,
     "citynews": {
-      "enabled": true,
+      "enabled": false,
       "max_requests": 8,
       "max_details": 8,
       "max_seconds": 60,
@@ -140,6 +140,7 @@
   "happings_enrichment": {
     "enabled": true,
     "max_pages": 16,
+    "saved_weekly_pages": true,
     "legacy_resolution": {
       "enabled": true,
       "max_requests": 2,

@@ -43,6 +43,11 @@ ORDINAL_PATTERN = re.compile(r"\b(?:prim[oa]|second[oa]|terz[oa]|quart[oa]|ultim
 ORDINAL_INDEX = {"primo": 1, "prima": 1, "secondo": 2, "seconda": 2,
                  "terzo": 3, "terza": 3, "quarto": 4, "quarta": 4,
                  "ultimo": -1, "ultima": -1}
+# "4° domenica", "3a domenica", "2^ sabato" are the same ordinals in digits.
+# ° and ^ always mark an ordinal ("2^ e 4^" stays two ordinals, never one).
+NUMERIC_ORDINAL = re.compile(r"\b([1-4])\s*(?:°|\^|[ao](?=\s+(?:" + "|".join(WEEKDAYS) + r")\b))\s*")
+EVERY_WEEKDAY = re.compile(r"tutti i (?:" + "|".join(WEEKDAYS) + r")(?:\s*(?:,|\be\b)\s*(?:" +
+                           "|".join(WEEKDAYS) + r"))*")
 
 MAX_LOOKAHEAD_DAYS = 120
 MAX_SOURCE_STALE_DAYS = 540
@@ -174,14 +179,15 @@ def parse_source_day(value: Any) -> date | None:
 
 
 def explicit_rule(value: Any) -> dict | None:
-    text = text_key(value)
+    text = NUMERIC_ORDINAL.sub(lambda m: ("", "prima ", "seconda ", "terza ", "quarta ")[int(m[1])],
+                               text_key(value))
     days = [WEEKDAYS.index(day) for day in dict.fromkeys(DAYS_PATTERN.findall(text))]
     if not days:
         return None
 
     # Monthly rules must be parsed before weekly. "Ogni prima domenica del
     # mese" is NOT a weekly Sunday market.
-    monthly = "mensil" in text or "del mese" in text or "al mese" in text
+    monthly = "mensil" in text or "del mese" in text or "al mese" in text or "ogni mese" in text
     if monthly:
         ordinals = [m.group(0) for m in ORDINAL_PATTERN.finditer(text)]
         if len(ordinals) != 1 or len(days) != 1:
@@ -191,7 +197,7 @@ def explicit_rule(value: Any) -> dict | None:
 
     # An occurrence has to say *every* named weekday or declare a weekly
     # cadence. Avoid picking unrelated weekdays from prose descriptions.
-    if not ("settimanale" in text or re.search(r"\bogni\b", text)):
+    if not ("settimanale" in text or re.search(r"\bogni\b", text) or EVERY_WEEKDAY.fullmatch(text)):
         return None
     if "bisettimanale" in text or "quindicinal" in text or "alternat" in text:
         return None

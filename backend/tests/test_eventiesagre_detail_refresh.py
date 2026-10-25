@@ -325,13 +325,17 @@ class EditorialBindingTests(unittest.TestCase):
         output, _ = preview([row()], [document()], today=TODAY)
         for change in (lambda e: e.update(source_id="99999"),
                        lambda e: e["market"].update(citta="Modena"),
-                       lambda e: e["facts"].update(forecast_rule={"kind": "daily"}),
                        lambda e: e.update(read_on="2027-01-01")):
             altered = deepcopy(output[0])
             change(altered[KEY])
             self.assertIsNone(clean_editorial_evidence(altered[KEY], altered, today=TODAY))
             with self.assertRaises(ValueError):
                 apply_editorial_scope(altered, today=TODAY)
+        # A stored rule is derived, never trusted: it is re-read from the saved text.
+        altered = deepcopy(output[0])
+        honest = altered[KEY]["facts"]["forecast_rule"]
+        altered[KEY]["facts"]["forecast_rule"] = {"kind": "daily"}
+        self.assertEqual(clean_editorial_evidence(altered[KEY], altered, today=TODAY)["facts"]["forecast_rule"], honest)
 
 
 class EditorialQueueTests(unittest.TestCase):

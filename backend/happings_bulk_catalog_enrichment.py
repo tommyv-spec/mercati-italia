@@ -20,7 +20,7 @@ from copy import deepcopy
 from datetime import date, datetime
 from pathlib import Path
 
-from export_static import data_value_score
+from export_static import data_value_score, same_market
 from field_evidence import _provenance_key, clean_receipts, mark_managed_fields, retire_superseded_receipts
 from happings_full_reconciliation import _saved_page
 from happings_weekly_layout import WEEKDAYS, fold, province_page_key
@@ -331,7 +331,12 @@ def enrich(catalog, snapshot, *, today):
                 marks.update({r["slug"]: kept["slug"] for r in rows if r is not kept})
     # Recompute markers only for records this run evaluated; others keep
     # theirs unless the kept record vanished or became a copy itself.
-    wanted = {row["slug"]: marks.get(row["slug"], "") if row["slug"] in evaluated
+    # Copies merged by export_static.soft_merge_markers (any source) stay merged.
+    by_slug = {row["slug"]: row for row in output}
+    def twin_marker(row):
+        kept = by_slug.get(row.get("duplicato_di"))
+        return row["duplicato_di"] if kept and same_market(kept, row) else ""
+    wanted = {row["slug"]: marks.get(row["slug"]) or twin_marker(row) if row["slug"] in evaluated
               else row.get("duplicato_di", "") for row in output}
     for sid, kept in wanted.items():
         if kept and wanted.get(kept, "x"):

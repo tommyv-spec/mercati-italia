@@ -250,6 +250,40 @@ class ExportTests(unittest.TestCase):
             with self.subTest(bad["slug"]), self.assertRaises(ValueError):
                 prepare([kept, copy, bad], self.today)
 
+    def test_exact_twins_of_any_source_are_soft_merged_and_keep_their_ids(self):
+        twin = lambda slug, **kw: market(slug, indirizzo="Via Roma 1", ricorrenza_testo="Ogni martedì", **kw)
+        ids = {"x", "x-martedi", "other-row", "old"}
+        rows, report = prepare([twin("x"), twin("x-martedi"), twin("other-row", id_fonte="2")],
+                               self.today, preserve_ids=ids - {"old"})
+        self.assertEqual({r["slug"]: r.get("duplicato_di", "") for r in rows},
+                         {"x": "", "x-martedi": "x", "other-row": ""})
+        self.assertEqual(report["exact_twins_soft_merged"], 1)
+        # A record already kept for an older copy stays the visible one.
+        rows, _ = prepare([twin("x"), twin("x-martedi"), market("old", duplicato_di="x-martedi")],
+                          self.today, preserve_ids=ids - {"other-row"})
+        self.assertEqual({r["slug"]: r.get("duplicato_di", "") for r in rows},
+                         {"x": "x-martedi", "x-martedi": "", "old": "x-martedi"})
+
+    def test_same_venue_and_weekday_from_two_sources_is_one_market(self):
+        weekly = dict(ricorrenza_testo="settimanale - martedì")
+        a = market("a", fonte="happings.com", nome="Mercato settimanale", indirizzo="Piazza Vittorio Veneto",
+                   orario_testo="La mattina", **weekly)
+        b = market("b", fonte="eventiesagre.it", url_fonte="https://example.org/markets/2",
+                   nome="Mercato Settimanale Di Roma", indirizzo="piazza vittorio veneto",
+                   ricorrenza_testo="Ogni martedì", orario_testo="08:00–13:00")
+        rows, report = prepare([a, b], self.today, preserve_ids={"a", "b"})
+        marks = {r["slug"]: r.get("duplicato_di", "") for r in rows}
+        self.assertEqual(sorted(marks.values()), ["", next(k for k, v in marks.items() if not v)])
+        self.assertEqual(report["same_venue_other_source_soft_merged"], 1)
+        for case in ({"indirizzo": "centro"}, {"ricorrenza_testo": "settimanale - giovedì"}):
+            rows, _ = prepare([a, {**b, **case}], self.today, preserve_ids={"a", "b"})
+            self.assertFalse(any(r.get("duplicato_di") for r in rows), case)
+        # Two different records of one source at one venue: ambiguous, never merged.
+        c = market("c", fonte="happings.com", nome="Mercato bio", indirizzo="Piazza Vittorio Veneto",
+                   orario_testo="Il pomeriggio", **weekly)
+        rows, _ = prepare([a, b, c], self.today, preserve_ids={"a", "b", "c"})
+        self.assertFalse(any(r.get("duplicato_di") for r in rows))
+
     def test_corciano_derived_stable_id_does_not_merge_with_scraped_source(self):
         from export_static import prepare
         old = market(slug="scraped",regione="Umbria",citta="Corciano",

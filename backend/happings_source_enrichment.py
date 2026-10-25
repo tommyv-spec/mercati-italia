@@ -58,6 +58,13 @@ MAX_UPDATES_PER_RUN=2000
 MIN_REQUEST_PAUSE_SECONDS=3
 USER_AGENT="MercatiItaliaMarketFields/1.0 (+https://github.com/tommyv-spec/mercati-italia)"
 RIGHTS_REVIEW_FILE=Path(__file__).resolve().parent/"data/happings-rights-review.json"
+WEEKLY_PAGES_FILE=Path(__file__).resolve().parent/"data/happings-weekly-pages.json"
+
+
+def saved_weekly_pages():
+    """Every Italian province page; a province whose old markets cite a retired
+    .html route (Verbania, Trieste...) is otherwise never read by the rotation."""
+    return json.loads(WEEKLY_PAGES_FILE.read_text("utf-8"))["urls"]
 MUNICIPALITIES_FILE=Path(__file__).resolve().parent/"data/istat-comuni-2026.json"
 SOURCE_EVIDENCE_NAME="Happings — elenco settimanale (sede indicativa; apertura non verificata)"
 FIELD_MANAGER="happings-weekly-index"

@@ -754,7 +754,7 @@ def verify_source_admission_certificate(before, after, certificate, today):
             or len(set(claimed)) != len(claimed) or set(old_ids) & set(claimed)
             or set(new_ids) != set(old_ids) | set(claimed)):
         raise ValueError("Happings certificate removed or failed to prove catalog identities")
-    from export_static import normalize
+    from export_static import matches_export, normalize
     by_id = {row["slug"]: row for row in after}
     comparable = [row for row in after if row["slug"] not in set(claimed)]
     collision_rows = list(comparable)
@@ -790,7 +790,7 @@ def verify_source_admission_certificate(before, after, certificate, today):
         if expected is None:
             raise ValueError("Happings admission has no complete source calendar: " + str(reason))
         normalized, error = normalize(expected, today)
-        if error or normalized != by_id[admission["market_id"]]:
+        if error or not matches_export(normalized, by_id.get(admission["market_id"]), by_id):
             raise ValueError("Happings exported admission differs from parsed source facts")
         # Later source pages must not create a second version of this venue;
         # the current candidate was excluded above, avoiding self-collision.

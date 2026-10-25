@@ -15,7 +15,7 @@ import subprocess
 from datetime import date
 from pathlib import Path
 
-from export_static import normalize, parse_dates
+from export_static import matches_export, normalize, parse_dates
 from happings_weekly_admission import preview, verify_changes, MAX_NEW
 from happings_weekly_dev_admission import pages_from_autopilot
 from happings_bulk_snapshot import write_json
@@ -130,7 +130,7 @@ def verify_cohort(before, after, admission, publisher_pages, *, today):
         raise ValueError("New DEV identities cannot be replayed from saved publisher HTML")
     for row in reproduced[len(old_rows):]:
         normalized,error=normalize(row,today)
-        if error or normalized!=after.get(row["slug"]):
+        if error or not matches_export(normalized,after.get(row["slug"]),after):
             raise ValueError("A newly committed market differs from its source-reproduced fields")
     for sid in added:
         record=after[sid]

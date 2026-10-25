@@ -215,12 +215,16 @@ def clean_editorial_evidence(value, row, *, today):
             not occurrences or not facts["calendar_complete"] or facts["archive_marker"]
             or calendar_conflicted(value["conflicts"])):
         return None
+    result = deepcopy(value)
     if facts.get("forecast_rule") is not None:
+        # The saved source text is the evidence; its rule is derived. Re-read it
+        # with the current parser every time, so a parser fix corrects old
+        # evidence (e.g. "2^ domenica" once read as every Sunday) and a stored
+        # rule can never be trusted on its own.
         # Import at call time: recurrence_refresh may import this helper.
         from recurrence_refresh import explicit_rule
-        if facts["forecast_rule"] != explicit_rule(facts.get("recurrence_text")):
-            return None
-    return deepcopy(value)
+        result["facts"]["forecast_rule"] = explicit_rule(facts.get("recurrence_text"))
+    return result
 
 
 def build_evidence(row, document, *, read_on, calendar_mode="limit_forecasts"):

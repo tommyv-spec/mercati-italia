@@ -20,6 +20,16 @@ class ExplicitRules(unittest.TestCase):
         self.assertEqual(explicit_rule("Ogni sabato"), {"kind":"weekly","weekdays":[5]})
         self.assertEqual(explicit_rule("Ogni martedì e giovedì"), {"kind":"weekly","weekdays":[1,3]})
 
+    def test_digit_ordinals_and_tutti_i_read_like_their_words(self):
+        monthly = lambda day, nth: {"kind": "monthly_nth_weekday", "weekday": day, "ordinal": nth}
+        for text, rule in (("Ogni 4° Domenica Del Mese", monthly(6, 4)), ("Ogni 3a Domenica Del Mese", monthly(6, 3)),
+                           ("1^ lunedì del mese", monthly(0, 1)), ("tutti i\nVenerdi", {"kind": "weekly", "weekdays": [4]}),
+                           ("tutti i sabato e domenica", {"kind": "weekly", "weekdays": [5, 6]}),
+                           # Two ordinals are never read as one; prose after "tutti i" is not a rule.
+                           ("2^ e 4^ martedì del mese", None), ("tutti i venerdì dal 23 giugno al 25 agosto", None)):
+            with self.subTest(text=text):
+                self.assertEqual(explicit_rule(text), rule)
+
     def test_monthly_not_misclassified_as_weekly(self):
         self.assertEqual(explicit_rule("ogni prima domenica del mese"),
                          {"kind":"monthly_nth_weekday","weekday":6,"ordinal":1})

@@ -18,7 +18,7 @@ import json
 import re
 import sys
 import unicodedata
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from field_evidence import clean_receipts, clean_exceptions
@@ -476,6 +476,79 @@ def combine_safe_source_duplicates(records: list[dict], *, preserve_ids=None) ->
     return unique, merges
 
 
+def twin_key(row: dict) -> tuple:
+    """Records with equal keys are the same market from the same source row."""
+    return (row.get("fonte"), row.get("url_fonte"), row.get("id_fonte") or "",
+            row.get("regione"), str(row.get("citta") or "").casefold(),
+            comparable_market_name(str(row.get("nome") or "")), slugify(row.get("indirizzo") or ""),
+            row.get("orario_testo") or "", str(row.get("ricorrenza_testo") or "").casefold(),
+            tuple(row.get("date") or []))
+
+
+def venue_key(row: dict) -> tuple | None:
+    """Town, exact real street and calendar: one market, whichever source lists it."""
+    from catalog_quality_report import VAGUE_ADDRESSES, key
+    from recurrence_refresh import forecast_rule
+    street = str(row.get("indirizzo") or "").strip()
+    if not street or key(street) in VAGUE_ADDRESSES or len(slugify(street)) < 6:
+        return None
+    rule = forecast_rule(row)
+    if rule:
+        calendar = (rule["kind"], tuple(rule.get("weekdays") or [rule.get("weekday")]), rule.get("ordinal"))
+    else:
+        days = tuple(sorted({date.fromisoformat(d).weekday() for d in row.get("date") or []}))
+        if not days:
+            return None
+        calendar = ("dates", days, None)
+    return (row.get("regione"), str(row.get("citta") or "").casefold(), slugify(street), calendar)
+
+
+def same_market(kept: dict, copy: dict) -> bool:
+    """The one definition of a soft-merged copy, shared by export, enrichment and checks."""
+    if twin_key(kept) == twin_key(copy):
+        return True
+    return kept.get("fonte") != copy.get("fonte") and venue_key(copy) is not None and venue_key(kept) == venue_key(copy)
+
+
+def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
+    """{copy: kept} for every source: identical records, then the same venue and
+    calendar listed by different sources. IDs stay; the app shows the kept one."""
+    kept_ids = {r["duplicato_di"] for r in rows if r.get("duplicato_di")}
+    markers, counts = {}, Counter()
+    def merge(groups, label, one_per_source):
+        for group in groups.values():
+            # Two records already kept for other copies cannot fold into each other;
+            # two different records of one source at one venue are ambiguous.
+            if (len(group) < 2 or sum(r["slug"] in kept_ids for r in group) > 1
+                    or one_per_source and len({r.get("fonte") for r in group}) != len(group)):
+                continue
+            kept = max(group, key=lambda r: (r["slug"] in kept_ids, data_value_score(r),
+                                             -len(r["slug"]), r["slug"]))
+            markers.update({r["slug"]: kept["slug"] for r in group if r is not kept})
+            kept_ids.add(kept["slug"])  # never becomes a copy later: no chains
+            counts[label] += len(group) - 1
+    twins, venues = defaultdict(list), defaultdict(list)
+    for row in rows:
+        if not row.get("duplicato_di"):
+            twins[twin_key(row)].append(row)
+    merge(twins, "exact_twins", False)
+    for row in rows:
+        if not row.get("duplicato_di") and row["slug"] not in markers and (venue := venue_key(row)):
+            venues[venue].append(row)
+    merge(venues, "same_venue_other_source", True)
+    return markers, counts
+
+
+def matches_export(expected: dict, actual: dict | None, exported_by_id: dict) -> bool:
+    """A normalize() result equals its exported record, allowing a soft merge."""
+    if actual is None:
+        return False
+    kept = exported_by_id.get(actual.get("duplicato_di"))
+    if "duplicato_di" not in expected and kept is not None and same_market(kept, actual):
+        actual = {k: v for k, v in actual.items() if k != "duplicato_di"}
+    return expected == actual
+
+
 def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[dict], dict]:
     if preserve_ids is not None and (
             not isinstance(preserve_ids, (set, frozenset))
@@ -530,6 +603,10 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
     if protected - by_slug.keys():
         raise ValueError("Export normalization removed or changed protected market identifiers")
     cleaned, safe_merged = combine_safe_source_duplicates(cleaned, preserve_ids=protected)
+    merged, merge_counts = soft_merge_markers(cleaned)
+    for row in cleaned:
+        if row["slug"] in merged:
+            row["duplicato_di"] = merged[row["slug"]]
     by_id = {row["slug"]: row for row in cleaned}
     for row in cleaned:
         if "duplicato_di" not in row:
@@ -552,6 +629,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
     cleaned.sort(key=lambda m: (m["regione"], m["citta"], m["nome"], m["slug"]))
     stats = {
         "same_source_duplicates_merged": safe_merged,
+        "exact_twins_soft_merged": merge_counts["exact_twins"],
+        "same_venue_other_source_soft_merged": merge_counts["same_venue_other_source"],
         "input": len(raw_records), "accepted": len(cleaned), "skipped": dict(skipped),
         "id_collisions_kept_separate": collisions,
         "with_coordinates": sum(m["lat"] is not None for m in cleaned),

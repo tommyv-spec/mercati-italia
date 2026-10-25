@@ -13,7 +13,7 @@ from pathlib import Path
 
 from audit_dataset import audit
 from autopilot import compare_candidates
-from export_static import export, parse_dates
+from export_static import export, parse_dates, same_market
 from happings_bulk_catalog_enrichment import enrich
 from merge_catalog import load_existing
 from validate_static import validate
@@ -58,7 +58,10 @@ def build(repo, snapshot, out, *, today):
             if new.get("date")!=parse_dates(old.get("date"),today):
                 raise ValueError("Exporter modified a non-expired calendar: "+sid)
             rolled+=1
-        if ("duplicato_di" in changed) != (sid in markers) or new.get("duplicato_di","")!=markers.get(sid,old.get("duplicato_di","")):
+        got=new.get("duplicato_di","")
+        exact_twin=bool(got) and got in new_by_id and same_market(new_by_id[got],new)
+        if (sid in markers and "duplicato_di" not in changed) or (
+                got!=markers.get(sid,old.get("duplicato_di","")) and not exact_twin):
             raise ValueError("Duplicate marker differs from the enrichment report: "+sid)
         entry=expected.get(sid)
         if entry:

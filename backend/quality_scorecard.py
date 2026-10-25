@@ -102,8 +102,9 @@ def red_flags(current, previous, jobs, today):
             before = previous["percentuali"].get(name)
             if before is not None and before - value > DROP_ALERT and name not in ("solo_fascia", "solo_centro"):
                 flags.append(f"**{LABELS[name]}** è sceso da {before}% a {value}%.")
-        if current["visibili"] < previous["visibili"] * 0.98:
-            flags.append(f"Le schede visibili sono scese da {previous['visibili']} a {current['visibili']}.")
+        # Records, not visible markets: merging copies lowers the visible count on purpose.
+        if current["schede"] < previous.get("schede", 0) * 0.98:
+            flags.append(f"Le schede sono scese da {previous['schede']} a {current['schede']}.")
     for source, data in list(current["fonti"].items())[:TOP_SOURCES]:
         if data["letta_il"] and (today - date.fromisoformat(data["letta_il"])).days > STALE_SOURCE_DAYS:
             flags.append(f"La fonte **{source}** non viene riletta dal {data['letta_il']}.")
