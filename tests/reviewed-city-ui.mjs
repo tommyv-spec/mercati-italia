@@ -23,18 +23,32 @@ try {
   await page.locator('.market-card-open').first().waitFor({ timeout: 30000 })
 
   for (const item of [
-    { search: 'Mercatino delle Curiosità', city: 'Cernobbio', image: 'ux-reviewed-city-cernobbio.png' },
-    { search: 'Valeggio Contemporanea', city: 'Valeggio sul Mincio', image: 'ux-reviewed-city-valeggio.png' },
-    { search: 'CreativaMente', city: 'Todi', image: 'ux-reviewed-city-todi.png' },
-    { search: 'Centro storico di Collalto', city: 'Susegana', image: 'ux-reviewed-city-collalto.png' },
-    { search: 'Stoffaday', city: 'Località da verificare', image: 'ux-reviewed-city-stoffaday.png' },
+    { search: 'Mercatino delle Curiosità', city: 'Cernobbio', image: 'ux-reviewed-city-cernobbio.png',
+      id: 'cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita' },
+    { search: 'Valeggio Contemporanea', city: 'Valeggio sul Mincio', image: 'ux-reviewed-city-valeggio.png',
+      id: 'valeggio-sul-mincio-valeggio-contemporanea-valeggio-contemporanea' },
+    { search: 'CreativaMente', city: 'Todi', image: 'ux-reviewed-city-todi.png',
+      id: 'todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando' },
+    { search: 'Centro storico di Collalto', city: 'Susegana', image: 'ux-reviewed-city-collalto.png',
+      id: 'mercato-settimanale-di-centro-storico-di-collalto-in-provincia-mercato-settimana' },
+    { search: 'Stoffaday', city: 'Località da verificare', image: 'ux-reviewed-city-stoffaday.png',
+      id: 'mercatini-stoffaday-na' },
   ]) {
     await page.locator('.search-input').fill(item.search)
     const candidate = page.locator('.market-card').filter({ hasText: item.city }).first()
-    await candidate.waitFor({ timeout: 30000 })
-    await candidate.getByText(item.city, { exact: true }).waitFor({ timeout: 30000 })
-    await candidate.locator('.market-card-open').click()
+    // A reviewed market that is no longer scheduled ("concluso") leaves search but still
+    // opens from its link; the same safety checks apply either way.
+    const listed = await candidate.waitFor({ timeout: 8000 }).then(() => true, () => false)
+    if (listed) {
+      await candidate.getByText(item.city, { exact: true }).waitFor({ timeout: 30000 })
+      await candidate.locator('.market-card-open').click()
+    } else {
+      await page.evaluate(id => { window.location.hash = 'mercato=' + id }, item.id)
+    }
     await page.locator('.detail-page').waitFor({ timeout: 15000 })
+    if (!listed) {
+      await page.getByText('Non più in programma', { exact: false }).waitFor({ timeout: 15000 })
+    }
     await page.getByText('Caricamento dettagli completi…').waitFor({
       state: 'hidden', timeout: 20000,
     })

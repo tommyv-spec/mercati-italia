@@ -557,10 +557,13 @@ def own_source_last_read(row: dict, page_reads=None) -> str:
 CONCLUDED_UNREAD_DAYS = 90
 
 
-def concluded_reason(row: dict, today: date) -> str:
+def concluded_reason(row: dict, today: date, source_reads=None) -> str:
     """Why a market is no longer scheduled ("" if it still is). Same rule for every source:
     no upcoming date, no recurrence that can produce one, and either its own source shows
-    the edition is over or nobody has re-read that source for CONCLUDED_UNREAD_DAYS."""
+    the edition is over or nobody has re-read that source for CONCLUDED_UNREAD_DAYS.
+    An official dataset entry counts as unread only while the dataset itself is still
+    read for other markets (it dropped this one); a dataset nobody re-reads keeps its
+    venues. source_reads: {fonte: last day any of its markets was read}."""
     from recurrence_refresh import forecast_rule
     if any(str(d) >= today.isoformat() for d in row.get("date") or []) or forecast_rule(row):
         return ""
@@ -569,7 +572,10 @@ def concluded_reason(row: dict, today: date) -> str:
     editions = [i for i in facts.get("edition_intervals") or [] if isinstance(i, dict)]
     if facts.get("archive_marker") is True or editions and all(str(i.get("end")) < today.isoformat() for i in editions):
         return "edizione_conclusa"
-    if own_source_last_read(row) < (today - timedelta(days=CONCLUDED_UNREAD_DAYS)).isoformat():
+    cutoff = (today - timedelta(days=CONCLUDED_UNREAD_DAYS)).isoformat()
+    if own_source_last_read(row) < cutoff:
+        if row.get("aggiornamento_ambito") == "dataset" and (source_reads or {}).get(row.get("fonte"), "") < cutoff:
+            return ""
         return "fonte_non_riletta"
     return ""
 
@@ -644,12 +650,15 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         raise ValueError("Export normalization removed or changed protected market identifiers")
     cleaned, safe_merged = combine_safe_source_duplicates(cleaned, preserve_ids=protected)
     merged, merge_counts = soft_merge_markers(cleaned)
+    source_reads = {}
+    for row in cleaned:
+        source_reads[row["fonte"]] = max(source_reads.get(row["fonte"], ""), own_source_last_read(row))
     for row in cleaned:
         if row["slug"] in merged:
             row["duplicato_di"] = merged[row["slug"]]
         # Hidden, never deleted: old links and favourites still open it.
         # A copy (merged now or in an earlier run) is already hidden behind its kept record.
-        elif not row.get("duplicato_di") and (reason := concluded_reason(row, today)):
+        elif not row.get("duplicato_di") and (reason := concluded_reason(row, today, source_reads)):
             row["concluso"] = reason
     by_id = {row["slug"]: row for row in cleaned}
     for row in cleaned:

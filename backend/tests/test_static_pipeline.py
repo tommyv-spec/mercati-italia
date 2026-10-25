@@ -296,6 +296,16 @@ class ExportTests(unittest.TestCase):
         self.assertEqual({r["slug"]: r.get("concluso", "") for r in cleaned},
                          {"dated": "", "weekly": "", "read": "", "stale": "fonte_non_riletta", "old-copy": ""})
         self.assertEqual(report["concluded_hidden"], {"fonte_non_riletta": 1})
+        # Official dataset entries: a dataset nobody re-reads keeps its venues; one still
+        # read for other markets but no longer listing this entry has dropped it.
+        frozen = market("frozen", fonte="Comune X", aggiornamento_ambito="dataset", **past)
+        fresh = market("fresh", fonte="Regione Y", aggiornamento_ambito="dataset",
+                       fonte_letta_il=self.today.isoformat(), **past)
+        dropped = market("dropped", fonte="Regione Y", url_fonte="https://example.org/markets/6",
+                         aggiornamento_ambito="dataset", **past)
+        cleaned, _ = prepare([frozen, fresh, dropped], self.today, preserve_ids={"frozen", "fresh", "dropped"})
+        self.assertEqual({r["slug"]: r.get("concluso", "") for r in cleaned},
+                         {"frozen": "", "fresh": "", "dropped": "fonte_non_riletta"})
 
     def test_corciano_derived_stable_id_does_not_merge_with_scraped_source(self):
         from export_static import prepare

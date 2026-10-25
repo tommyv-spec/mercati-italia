@@ -100,24 +100,20 @@ try {
   }
   await page.locator('.detail-back').click()
 
-  // Source-bound real regression: Cernobbio's Mercatino delle Curiosità
-  // has no upcoming date. An empty forecast must not be advertised as a
-  // "planned" event merely because the source once listed the market.
-  // The name is intentionally read from a still-reviewable legacy card.
+  // Lifecycle rule: Cernobbio's Mercatino delle Curiosità has no upcoming date and its
+  // source shows the edition is over, so it is "concluso": gone from search and lists,
+  // never advertised as planned, but a shared link still opens it.
   await page.locator('.search-input').fill('Mercatino delle Curiosità')
-  const suspectCityCard = page.locator('.market-card').filter({ hasText: 'Cernobbio' }).first()
-  await suspectCityCard.waitFor({ timeout: 20000 })
-  // Before the publisher+ISTAT review the source field is malformed.
-  // After an approved source-bound correction the city is Cernobbio, but
-  // navigation MUST stay disabled until the venue address is reconciled.
-  const reviewedMunicipality = await suspectCityCard.getByText('Cernobbio', { exact: true }).count() > 0
-  if (!reviewedMunicipality) {
-    await suspectCityCard.getByText('Località da verificare', { exact: true }).waitFor()
-  }
+  await page.locator('.results-count').waitFor({ timeout: 20000 })
+  await page.waitForTimeout(1500)
+  assert.equal(await page.locator('.market-card').filter({ hasText: 'Cernobbio' }).count(), 0,
+    'A concluded market must leave search results')
+  // When a visitor *explicitly* selects the 7-day chip while searching, an
+  // undated market should disappear. Toggling it off restores the existing
+  // cards: no hidden persistent filter or fabricated schedule. Lombardy's
+  // registered sites ("sede da verificare") never state a weekday or a date.
+  await page.locator('.search-input').fill('sede da verificare')
   await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
-  // When a visitor *explicitly* selects the 7-day chip while searching,
-  // an undated market should disappear. Toggling it off restores the
-  // existing card: no hidden persistent filter or fabricated schedule.
   await page.getByRole('button', { name: 'Prossimi 7 giorni', exact: true }).click()
   await page.waitForFunction(() =>
     (document.querySelector('.results-count')?.textContent || '').includes('0 appuntamenti previsti'),
@@ -126,18 +122,18 @@ try {
     'Explicit seven-day filter must exclude markets with unknown dates')
   await page.getByRole('button', { name: 'Prossimi 7 giorni', exact: true }).click()
   await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
-  await page.locator('.market-card-open').first().click()
-  await page.locator('.detail-page').waitFor()
+  await page.evaluate(() => {
+    window.location.hash = 'mercato=cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita'
+  })
+  await page.locator('.detail-page').waitFor({ timeout: 20000 })
   await page.getByText('Caricamento dettagli completi…').waitFor({ state: 'hidden', timeout: 20000 })
+  await page.getByText('Non più in programma', { exact: false }).waitFor({ timeout: 20000 })
   await page.getByText('Nessuna data futura disponibile.', { exact: false }).waitFor({ timeout: 20000 })
+  // Navigation MUST stay disabled until the venue address is reconciled.
   await page.getByText('La località riportata dalla fonte non identifica con sicurezza un Comune.',
     { exact: false }).waitFor()
   assert.equal(await page.getByRole('button', { name: /Indicazioni/ }).isDisabled(), true,
     'Unreconciled market addresses must never produce navigation directions, even after ISTAT city repair')
-  if (reviewedMunicipality) {
-    await page.getByText('La località riportata dalla fonte non identifica con sicurezza un Comune.',
-      { exact: false }).waitFor()
-  }
   assert.equal(await page.getByText('Date previste, non confermate per ogni singola edizione.',
     { exact: false }).count(), 0,
     'An unscheduled market must never have a misleading future-date notice')
