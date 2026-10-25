@@ -20,5 +20,106 @@
     "overdue_after_days": 45,
     "new_market_ids_allowed": false,
     "overwrite_unowned_fields": false
+  },
+  "discovery": {
+    "purpose": "Find market pages the catalog does not have yet in each publisher's own sitemap or listing pages, read them with the existing page reader and admit only those that pass the general admission rules. Configured per publisher, never per market.",
+    "eventiesagre": {
+      "publisher": "eventiesagre.it",
+      "enabled": true,
+      "new_market_ids_allowed": true,
+      "reuse_permission_verified": false,
+      "owner_decision": "Owner decision 2026-10-25: Expand - read faster and add new markets from this publisher, accepting that no bulk reuse permission was granted (rights: no_verified_bulk_reuse_permission).",
+      "index_format": "html_links",
+      "seed_urls": [
+        "https://www.eventiesagre.it/cerca/Mercatini/Antiquariato/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/Artigianato/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/Collezionismo/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/Usato/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/Enogastronomici/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/Filiera+Corta/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/Vari/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/hobbisti+creativi/mesi/reg/prov/cit/rilib",
+        "https://www.eventiesagre.it/cerca/Mercatini/Natale/mesi/reg/prov/cit/rilib"
+      ],
+      "follow_pattern": "https://www\\.eventiesagre\\.it/cerca/Mercatini/(?:Antiquariato|Artigianato|Collezionismo|Usato|Enogastronomici|Filiera\\+Corta|Vari|hobbisti\\+creativi|Natale)/mesi/reg/prov/cit/rilib/pag-[1-9]\\.htm",
+      "category_rules": [
+        [
+          "url",
+          "/Mercatini_(?:Antiquariato|Collezionismo)/",
+          "antiquariato"
+        ],
+        [
+          "url",
+          "/Mercatini_Usato/",
+          "usato"
+        ],
+        [
+          "url",
+          "/Mercatini_(?:Artigianato|hobbisti\\+creativi)/",
+          "artigianato"
+        ],
+        [
+          "url",
+          "/Mercatini_(?:Enogastronomici|Filiera\\+Corta)/",
+          "alimentare"
+        ],
+        [
+          "url",
+          "/Mercatini_(?:Vari|Natale)/",
+          "misto"
+        ]
+      ],
+      "max_index_requests": 6,
+      "max_candidate_reads": 12,
+      "max_new": 16,
+      "max_seconds": 120,
+      "min_delay_seconds": 2,
+      "recheck_after_days": 30
+    },
+    "cosedicasa": {
+      "publisher": "cosedicasa.com",
+      "enabled": true,
+      "new_market_ids_allowed": true,
+      "reuse_permission_verified": false,
+      "owner_decision": "Owner decision 2026-10-25: Expand - read faster and add new markets from this publisher, accepting that no bulk reuse permission was granted (rights: no_verified_bulk_reuse_permission).",
+      "index_format": "sitemap_xml",
+      "seed_urls": [
+        "https://www.cosedicasa.com/sitemap_index.xml"
+      ],
+      "follow_pattern": "https://www\\.cosedicasa\\.com/mercatini-sitemap[0-9]{0,2}\\.xml",
+      "category_rules": [
+        [
+          "url",
+          "natale",
+          "misto"
+        ],
+        [
+          "url",
+          "artigian|ingegno|hobbis|creativ",
+          "artigianato"
+        ],
+        [
+          "name",
+          "antiquar|antic|modernariato|collezion|vintage|usato|brocant|pulci|rigatt|svuota|vinil",
+          "antiquariato"
+        ],
+        [
+          "name",
+          "artigian|hobbis|creativ",
+          "artigianato"
+        ],
+        [
+          "name",
+          "mercat|market",
+          "misto"
+        ]
+      ],
+      "max_index_requests": 3,
+      "max_candidate_reads": 12,
+      "max_new": 16,
+      "max_seconds": 120,
+      "min_delay_seconds": 2,
+      "recheck_after_days": 30
+    }
   }
 }

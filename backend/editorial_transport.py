@@ -9,6 +9,7 @@ from __future__ import annotations
 import errno
 import ipaddress
 import json
+import re
 from pathlib import Path
 import socket
 import ssl
@@ -59,6 +60,35 @@ def failure_code(error):
     return "transport_error"
 
 
+POLICY_PATH = Path(__file__).resolve().parent / "data/editorial-detail-refresh-policy.json"
+INDEX_ACCEPT = {"sitemap_xml": "text/xml", "html_links": "text/html"}
+
+
+def discovery_index_url(url, *, accept=None, discovery=None):
+    """A configured publisher index (sitemap or listing page), never a guess.
+
+    The publisher's own seed URLs, or URLs matching its reviewed follow
+    pattern, on the publisher's own host. Read from the policy file so the
+    bounded worker process applies the same rule as its caller.
+    """
+    try:
+        if discovery is None:
+            discovery = json.loads(POLICY_PATH.read_text("utf-8")).get("discovery") or {}
+        value = urlsplit(url)
+        if (value.scheme != "https" or value.query or value.fragment or value.username
+                or value.password or value.port not in (None, 443)):
+            return False
+        for policy in discovery.values():
+            if (isinstance(policy, dict) and value.netloc == "www." + str(policy.get("publisher"))
+                    and (accept is None or INDEX_ACCEPT.get(policy.get("index_format")) == accept)
+                    and (url in (policy.get("seed_urls") or [])
+                         or re.fullmatch(str(policy.get("follow_pattern")), url))):
+                return True
+    except (TypeError, ValueError, OSError, re.error):
+        pass
+    return False
+
+
 def valid_url(url, *, accept):
     try:
         value = urlsplit(url)
@@ -68,7 +98,9 @@ def valid_url(url, *, accept):
         if accept == "text/plain":
             return value.path == "/robots.txt"
         identity = source_identity(url)
-        return bool(accept == "text/html" and identity and "www." + identity[0] in HOSTS)
+        if accept == "text/html" and identity and "www." + identity[0] in HOSTS:
+            return True
+        return accept in INDEX_ACCEPT.values() and discovery_index_url(url, accept=accept)
     except (TypeError, ValueError):
         return False
 
