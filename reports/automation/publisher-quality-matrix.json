@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-24",
+  "as_of": "2026-10-25",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -653,7 +653,7 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14008,
+  "catalog_record_count": 14009,
   "catalog_source_labels_count": 87,
   "market_confirmations": 0,
   "market_updates": 0,
@@ -665,37 +665,37 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
-        "address_generic_not_navigable": 2417,
-        "address_missing": 1965,
+        "address_generic_not_navigable": 3616,
+        "address_missing": 625,
         "coordinates_missing": 187,
-        "future_dates_missing": 331,
-        "hours_missing": 1791,
+        "future_dates_missing": 332,
+        "hours_missing": 718,
         "records": 9831,
         "source_or_import_date_unknown": 184
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 34141,
+      "priority_workload_score_not_evidence": 35170,
       "publisher": "happings.com",
       "records": 9831,
       "rights_classification": "see_existing_happings_operational_policy",
       "sample_id_only": {
         "address_generic_not_navigable": [
-          "mercato-settimanale-di-acciano-acciano-sabato",
-          "mercato-settimanale-di-alanno-alanno-mercoledi",
-          "mercato-settimanale-di-alba-adriatica-alba-adriatica-lunedi",
-          "mercato-settimanale-di-alfedena-alfedena-martedi",
-          "mercato-settimanale-di-alfedena-alfedena-venerdi"
-        ],
-        "address_missing": [
           "mercato-settimanale-di-acciano-acciano",
+          "mercato-settimanale-di-acciano-acciano-sabato",
           "mercato-settimanale-a-aielli-aielli-lunedi",
           "mercato-settimanale-di-aielli-aielli",
-          "mercato-settimanale-di-alanno-alanno",
-          "mercato-settimanale-a-alfedena-alfedena-martedi"
+          "mercato-settimanale-di-alanno-alanno"
+        ],
+        "address_missing": [
+          "mercato-settimanale-a-balsorano-balsorano-martedi",
+          "mercato-settimanale-a-barisciano-barisciano-giovedi",
+          "mercato-settimanale-di-bussi-sul-tirino-bussi-sul-tirino",
+          "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
+          "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "coordinates_missing": [
           "happings-mercato-di-campagna-amica-di-atri-3d19a276a90a",
@@ -712,11 +712,11 @@
           "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "hours_missing": [
-          "mercato-settimanale-a-atelena-atelena-mercoledi",
-          "mercato-settimanale-di-atelena-atelena",
           "mercato-settimanale-a-balsorano-balsorano-martedi",
-          "mercato-settimanale-di-balsorano-balsorano",
-          "mercato-settimanale-a-barisciano-barisciano-giovedi"
+          "mercato-settimanale-a-barisciano-barisciano-giovedi",
+          "mercato-settimanale-di-bussi-sul-tirino-bussi-sul-tirino",
+          "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
+          "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "source_or_import_date_unknown": [
           "happings-mercato-di-campagna-amica-di-atri-3d19a276a90a",
@@ -735,14 +735,14 @@
       "fields": {
         "address_generic_not_navigable": 44,
         "address_missing": 441,
-        "future_dates_missing": 965,
+        "future_dates_missing": 988,
         "hours_missing": 367,
         "records": 2197
       },
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5483,
+      "priority_workload_score_not_evidence": 5506,
       "publisher": "eventiesagre.it",
       "records": 2197,
       "rights_classification": "urls_only_no_bulk_content_reuse",
@@ -836,14 +836,14 @@
       "fields": {
         "address_generic_not_navigable": 6,
         "coordinates_missing": 7,
-        "future_dates_missing": 172,
-        "hours_missing": 351,
+        "future_dates_missing": 188,
+        "hours_missing": 341,
         "records": 432
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1342,
+      "priority_workload_score_not_evidence": 1338,
       "publisher": "cosedicasa.com",
       "records": 432,
       "rights_classification": "publisher_rights_unreviewed",
@@ -1969,6 +1969,23 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": 1,
+      "fields": {
+        "records": 3
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
+      "priority_workload_score_not_evidence": 3,
+      "publisher": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
+      "records": 3,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {}
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
         "coordinates_missing": 2,
@@ -2477,23 +2494,6 @@
           "frosinone-tornano-gli-ambulanti-di-forte-dei-marmi-via-tiburtina-frosinone"
         ]
       }
-    },
-    {
-      "actual_individual_market_validations": 0,
-      "automatic_import_authorized_by_this_audit": false,
-      "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
-      "fields": {
-        "records": 2
-      },
-      "kind": "other_legacy_or_publisher",
-      "layout": "unclassified_source_page",
-      "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
-      "priority_workload_score_not_evidence": 2,
-      "publisher": "Comune di Corciano, open data CC BY 4.0 (licenza dichiarata)",
-      "records": 2,
-      "rights_classification": "source_rights_and_structure_require_review",
-      "sample_id_only": {}
     },
     {
       "actual_individual_market_validations": 0,
@@ -3477,9 +3477,13 @@
         "open_todo_ids": [
           "OFF-CO-01"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv"
       },
@@ -3490,9 +3494,13 @@
         "open_todo_ids": [
           "OFF-RO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/web/it/informazione-di-servizio.page?contentId={value}"
       },
@@ -3503,9 +3511,13 @@
         "open_todo_ids": [
           "OFF-RO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/web-resources/cms/documents/Determina_17723_24_02_2025_venerd_firm.pdf"
       },
@@ -3516,9 +3528,13 @@
         "open_todo_ids": [
           "OFF-RO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/web-resources/cms/documents/Contratto_AMA_2024__2025_Allegato_7_Carta_Municipale_Municipio_13.pdf"
       },
@@ -3530,9 +3546,13 @@
           "OFF-FI-02",
           "OFF-FI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/datastore/download.php?format={value}&id={value}&type={value}"
       },
@@ -3545,9 +3565,13 @@
           "OFF-MI-02",
           "OFF-MI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b07ed03a-d198-4a16-9eb5-744cb406f3eb/download/mss-mag24_final.json"
       },
@@ -3560,9 +3584,13 @@
           "OFF-MI-02",
           "OFF-MI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/b6c162cb-6e26-4e1c-bba0-3f1f595a19dc/download/mss-mag24.geojson"
       },
@@ -3575,9 +3603,13 @@
           "OFF-MI-02",
           "OFF-MI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/dataset/f758d24c-8805-40b0-9a72-a8aac06d1e98/resource/5d4a83c3-6ac5-4430-b5a9-d669a933b036/download/mss-mag24_final.csv"
       },
@@ -3588,9 +3620,13 @@
         "open_todo_ids": [
           "OFF-RO-02"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv"
       },
@@ -3601,9 +3637,13 @@
         "open_todo_ids": [
           "OFF-RO-02"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/cd515283-3079-42fe-a066-ced11b9a8387/download/mercati_rionali_agosto_2023.csv"
       },
@@ -3614,9 +3654,13 @@
         "open_todo_ids": [
           "OFF-RO-02"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/catalog/api/3/action/package_show?id={value}"
       },
@@ -3625,9 +3669,13 @@
         "format_id": "dati.lombardia.it--432287cb35fe",
         "host": "dati.lombardia.it",
         "open_todo_ids": [],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/resource/68zx-njaw.json?$limit={value}&$order={value}"
       },
@@ -3636,9 +3684,13 @@
         "format_id": "dati.lombardia.it--94017c4ffe4c",
         "host": "dati.lombardia.it",
         "open_todo_ids": [],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/api/views/68zx-njaw.json"
       },
@@ -3650,9 +3702,13 @@
           "OFF-FI-02",
           "OFF-FI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.zip"
       },
@@ -3664,9 +3720,13 @@
           "OFF-FI-02",
           "OFF-FI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.geojson"
       },
@@ -3678,9 +3738,13 @@
           "OFF-FI-02",
           "OFF-FI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/resources/open-data/mercati/feelflorence_mercati.csv"
       },
@@ -3693,9 +3757,13 @@
           "OFF-MI-02",
           "OFF-MI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0/query?f={value}&outFields={value}&outSR={value}&resultRecordCount={value}&returnGeometry={value}&where={value}"
       },
@@ -3708,9 +3776,13 @@
           "OFF-MI-02",
           "OFF-MI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/server/rest/services/D_SUAP_Specialistica_autorizzazioni_concessioni/MSS_Mercati_Settimanali_Scoperti/MapServer/0?f={value}"
       },
@@ -3721,9 +3793,13 @@
         "open_todo_ids": [
           "OFF-RO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/maps/d/kml?forcekml={value}&mid={value}"
       },
@@ -3735,9 +3811,13 @@
           "OFF-BO-02",
           "OFF-BO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/api/records/1.0/search/?dataset={value}&rows={value}"
       },
@@ -3749,9 +3829,13 @@
           "OFF-BO-02",
           "OFF-BO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/api/records/1.0/search/?dataset={value}&fields={value}&q={value}&rows={value}"
       },
@@ -3763,9 +3847,13 @@
           "OFF-BO-02",
           "OFF-BO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/api/explore/v2.1/catalog/datasets/mercati-e-fiere"
       },
@@ -3777,9 +3865,13 @@
           "OFF-FI-02",
           "OFF-FI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/page_dataset_show?id={value}"
       },
@@ -3814,9 +3906,13 @@
           "OFF-MI-02",
           "OFF-MI-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/documents/87339536/190972166/MSS+-+ubicazioni%2Corari%2Corganici+1+Ottobre+2026.pdf/d5b13a87-b9de-7c48-5674-65c4151565c3?t={value}"
       }
@@ -3886,9 +3982,11 @@
         "host": "dati.lombardia.it",
         "open_todo_ids": [],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4038,10 +4136,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4057,9 +4157,11 @@
           "OFF-MI-03"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4074,9 +4176,11 @@
           "OFF-RO-02"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4092,9 +4196,11 @@
           "OFF-BO-03"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4193,10 +4299,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4252,10 +4360,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -4505,9 +4615,11 @@
           "OFF-RO-03"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4523,9 +4635,11 @@
           "OFF-FI-03"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4596,6 +4710,25 @@
         "review_status": "reviewed_sample",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
+      },
+      {
+        "catalog_records": 3,
+        "format_id": "comune.corciano.pg.it--1d7a32ba013d",
+        "host": "comune.corciano.pg.it",
+        "open_todo_ids": [
+          "OFF-CO-01"
+        ],
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/area_letturaDocumento/29645/pagsistema.html"
       },
       {
         "catalog_records": 3,
@@ -4853,23 +4986,6 @@
         "review_status": "reviewed_sample",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/tag/sagre/"
-      },
-      {
-        "catalog_records": 2,
-        "format_id": "comune.corciano.pg.it--1d7a32ba013d",
-        "host": "comune.corciano.pg.it",
-        "open_todo_ids": [
-          "OFF-CO-01"
-        ],
-        "pending_checks": [
-          "storage_comparison"
-        ],
-        "recheck_reasons": [
-          "sample_catalog_fields_changed"
-        ],
-        "review_status": "partial_review",
-        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
-        "url_pattern": "/area_letturaDocumento/29645/pagsistema.html"
       },
       {
         "catalog_records": 2,
@@ -5337,9 +5453,13 @@
         "open_todo_ids": [
           "OFF-RO-03"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/web/it/bando-concorso.page?contentId={value}"
       },
@@ -5866,22 +5986,22 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-10-24",
+    "generated_for_date": "2026-10-25",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
       "auxiliary_format_units": 27,
       "catalog_records_modified": 0,
       "completed_tasks": 23,
-      "formats_requiring_recheck": 65,
+      "formats_requiring_recheck": 66,
       "formats_with_documented_source_read": 104,
       "formats_with_open_corrections": 106,
       "formats_with_sample_attempt": 110,
       "network_reads_performed": 0,
       "open_tasks": 36,
-      "partial_review_formats": 59,
+      "partial_review_formats": 60,
       "primary_format_units": 111,
-      "reviewed_sample_formats": 46,
+      "reviewed_sample_formats": 45,
       "unreviewed_formats": 6
     }
   },
