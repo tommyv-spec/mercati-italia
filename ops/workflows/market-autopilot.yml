@@ -1,0 +1,1566 @@
+# MapLibre v6 production blocker regression: verify bundled worker and browser-ready map before any DEV promotion.
+# Recheck 75 municipality PDF/GIS-backed Milan street labels on DEV; no production release.
+# Replay Oct 18: evaluate approved source-pinned Milan streets on DEV after all release QA.
+# Shared source-level CSV/JSON admission is now registered: approve an official dataset once, not each market. Default-deny empty legal registry, exact identity/rights proofs, offline fallback, no fake GPS/opening claims; DEV only.
+# Source lifecycle verifies exact in-memory source-ID exclusion partitions, not just coincidental counts. All uncertain additions stay in review; no per-market scripts.
+# Roma Municipio XIII five source-reviewed 2026 market identities: every daily
+# replay must preserve all five IDs, forecast labels, original source URLs,
+# and suspended directions without adding duplicates or verifying openings.
+# Source-pinned Todi seasonal forecast, Collalto/Susegana and Veneto point holds:
+# persist full independent publisher evidence after mobile QA; DEV only.
+# Idempotence replay for ISTAT town corrections after approved DEV release 38258577545.
+# Expected: zero new town corrections and zero repeated calendar suspensions.
+# Source-pinned ISTAT municipality correction passed read-only national + mobile
+# rehearsal 38257567252; only approved city/title and forecast quarantine
+# edits may reach DEV. Never update production or human verification claims.
+# Search regression 2026-10-12: implicit seven-day default must not hide
+# undated markets found by name; explicit day filter remains authoritative.
+# Verified Playwright mobile run 38237681447; publish only after all CI gates.
+# Real-source enrichment idempotence + diversified source probing approved CI replay.
+# Each previously filled hour and source URL must be preserved without duplicate evidence.
+# Corciano idempotence replay: after first DEV import 38188711597,
+# require the second audited run to preserve exactly the same official IDs.
+# Corciano 4-row official CSV passed complete source+browser dry-run
+# (run 38188219950); only reviewed, non-overlapping IDs may enter DEV.
+# CSV SHA-256 is persisted and monitored for future changes; no false confirmations.
+# Lombardia MERCap has passed a full read-only integration and browser audit.
+# Only this scheduled workflow may publish the screened official source to DEV.
+# Re-runnable methodology: docs/RUNBOOK_DATA_FRESHNESS.md
+# Source data freshness is measured separately from workflow completion time.
+# Only trusted SCHEDULER lives on main. All implementation, data snapshots and
+# publication remain isolated in the DEV branch. No Cloudflare Worker/KV/D1
+# or Firebase call occurs when a visitor browses the static preview.
+name: Mercati Autopilot — scheduled DEV improvements
+run-name: DEV catalog • ${{ github.event_name }} • #${{ github.run_number }}
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/market-autopilot.yml
+  schedule:
+    - cron: '17 04 * * *'
+  workflow_dispatch:
+    inputs:
+      offline:
+        type: boolean
+        required: false
+        default: false
+        description: 'Use existing sources only; no external official feed download'
+
+concurrency:
+  # Serialize the catalog publish and the read-only research report writer.
+  # Otherwise a new DEV QA snapshot can race an unrelated report commit.
+  group: mercati-all-dev-report-and-catalog-writes
+  cancel-in-progress: false
+
+env:
+  DEV_BRANCH: improve/data-quality-security-performance-2026-10-11
+  CHECKPOINT_NAME: mercati-checkpoints-${{ github.run_id }}
+  BUILD_NAME: mercati-qa-build-${{ github.run_id }}
+
+jobs:
+  prune_old_qa_artifacts:
+    name: Free-tier checkpoint cleanup before data collection
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Purge expired temporary catalog checkpoints only
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const repo = {...context.repo};
+            const metadata = await github.rest.repos.get(repo);
+            if (metadata.data.private) {
+              throw new Error('Never run this workflow with paid private repository runner minutes');
+            }
+            const all = await github.paginate(
+              github.rest.actions.listArtifactsForRepo, {...repo, per_page: 100}
+            );
+            // These are per-run temporary QA snapshots, not permanent source
+            // archives, D1 market data, branches, or catalog exports.
+            const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+            let freed = 0;
+            let deleted = 0;
+            for (const entry of all) {
+              if (!/^mercati-checkpoints-[0-9]+$/.test(entry.name)
+                  || !entry.created_at || Date.parse(entry.created_at) >= cutoff) {
+                continue;
+              }
+              await github.rest.actions.deleteArtifact({...repo, artifact_id: entry.id});
+              freed += entry.size_in_bytes;
+              deleted++;
+            }
+            core.notice('Deleted ' + deleted + ' expired temporary QA checkpoints; freed '
+                        + (freed / 1048576).toFixed(1) + ' MiB. Permanent Git history and D1 untouched.');
+  candidate:
+    needs: prune_old_qa_artifacts
+    name: Source → merge → recurrence → export → quality gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEV_BRANCH }}
+          persist-credentials: false
+      - name: Pin the DEV source revision before collecting evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p autopilot-output
+          git rev-parse HEAD > autopilot-output/dev-source-sha.txt
+          echo "Pinned DEV revision: $(cat autopilot-output/dev-source-sha.txt)"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify source adapters and all trusted automation rules
+        run: python -m unittest discover -s backend/tests -v
+      - name: Run fail-closed Autopilot with checkpoint persistence
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          python backend/autopilot.py --output autopilot-output "${args[@]}"
+      - name: Record Happings homepage and full-directory crawl progress
+        if: success()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          path = Path("autopilot-output/happings-enrichment.json")
+          if path.is_file():
+              report = json.loads(path.read_text(encoding="utf-8"))
+              detail = report.get("details") or {}
+              discovery = detail.get("discovery") or {}
+              directory = report.get("directory") or {}
+              lines = [
+                  "### Happings automatic source crawl (DEV only)",
+                  f"- Provincial directory: {directory.get('italian_province_urls', 0)} source URLs found; {directory.get('requests_used', 0)} requests used",
+                  f"- Event details read this run: {discovery.get('details_read', 0)}",
+                  f"- Detail URLs still awaiting their first successful read: {discovery.get('pending_detail_urls', 'unknown')}",
+                  f"- Homepage/category archive pages read this run: {discovery.get('home_read', 0)} / {discovery.get('archives_read', 0)}",
+                  f"- Existing Happings addresses updated: {(report.get('evidence') or {}).get('field_changes', 0)}",
+                  "- URL discovery alone does not establish complete market fields or verified openings.",
+              ]
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as output:
+                  output.write("\n".join(lines) + "\n")
+              print("\n".join(lines))
+          else:
+              print("No Happings phase report in this run; no completeness claim.")
+          PY
+      - name: Rank improvement opportunities from measured data
+        if: success()
+        run: |
+          python backend/autopilot_feedback.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --out autopilot-output/roadmap.json
+          cat autopilot-output/roadmap.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Study every incomplete market and correlate already-reviewed official feeds
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_date="$(python -c 'import json; print(json.load(open("autopilot-output/release-decision.json"))["today"])')"
+          args=(
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json
+            --contracts backend/data/market-evidence-source-families.json
+            --today "$current_date"
+            --out autopilot-output/market-evidence-worklist.json
+            --summary autopilot-output/market-evidence-summary.json
+            --report autopilot-output/MARKET_EVIDENCE_WORKLIST.md
+          )
+          if [[ -s autopilot-output/sources/lombardia.json ]]; then
+            args+=(--official-lombardia autopilot-output/sources/lombardia.json)
+          fi
+          python backend/market_evidence_worklist.py "${args[@]}"
+          cat autopilot-output/MARKET_EVIDENCE_WORKLIST.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Find lost Happings street fields inside existing saved market identities
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/stored_market_sibling_proposals.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --out autopilot-output/happings-sibling-evidence.json \
+            --summary autopilot-output/HAPPINGS_STORED_FIELDS.md
+          cat autopilot-output/HAPPINGS_STORED_FIELDS.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Discover new municipal structured sources (read-only, no auto-import)
+        if: success()
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then
+            python backend/source_scout.py --offline --out autopilot-output/official-candidates.json
+          else
+            python backend/source_scout.py --out autopilot-output/official-candidates.json || {
+              echo "::warning::Source discovery offline; keep last approved source adapters."
+            }
+          fi
+      - name: Build provisional bounded source registry (no publication)
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/source_intake.py \
+            --scout autopilot-output/official-candidates.json \
+            --previous reports/automation/source-registry.json \
+            --publisher-evidence autopilot-output/publisher-not-collected-yet.json \
+            --out autopilot-output/source-registry.json \
+            --report autopilot-output/SOURCE_QUEUE.md
+      - name: Recheck official publisher metadata and license claims (no import)
+        if: success()
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          python backend/source_evidence.py \
+            --registry autopilot-output/source-registry.json \
+            --out autopilot-output/source-evidence.json \
+            --report autopilot-output/SOURCE_EVIDENCE.md \
+            "${args[@]}"
+          cat autopilot-output/SOURCE_EVIDENCE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Rank source intake from official publisher dates in same run
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/source_intake.py \
+            --scout autopilot-output/official-candidates.json \
+            --previous reports/automation/source-registry.json \
+            --publisher-evidence autopilot-output/source-evidence.json \
+            --out autopilot-output/source-registry.json \
+            --report autopilot-output/SOURCE_QUEUE.md
+          cat autopilot-output/SOURCE_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Sample up to three official source schemas in a bounded read-only sandbox
+        if: success()
+        env:
+          AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          python backend/source_probe.py \
+            --registry autopilot-output/source-registry.json \
+            --out autopilot-output/source-probes.json \
+            --report autopilot-output/SOURCE_SCHEMA.md \
+            "${args[@]}"
+          cat autopilot-output/SOURCE_SCHEMA.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Re-rank candidate publishers with observed bounded schema evidence
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/source_intake.py \
+            --scout autopilot-output/official-candidates.json \
+            --previous reports/automation/source-registry.json \
+            --publisher-evidence autopilot-output/source-evidence.json \
+            --schema-evidence autopilot-output/source-probes.json \
+            --out autopilot-output/source-registry.json \
+            --report autopilot-output/SOURCE_QUEUE.md
+          cat autopilot-output/SOURCE_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Compare declared source changes to previous scheduled run
+        if: success()
+        run: |
+          python backend/source_change_detector.py \
+            --current autopilot-output/source-evidence.json \
+            --previous reports/automation/source-evidence.json \
+            --corciano-current autopilot-output/corciano-overlaps.json \
+            --corciano-previous reports/automation/corciano-overlaps.json \
+            --out autopilot-output/source-changes.json \
+            --report autopilot-output/SOURCE_CHANGES.md
+          cat autopilot-output/SOURCE_CHANGES.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Audit real source age, projected dates and documented verification
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          max_age="$(python -c 'import json; print(json.load(open("backend/autopilot_policy.json"))["forecast"]["max_source_age_days"])')"
+          python backend/freshness_monitor.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --publisher-evidence autopilot-output/source-evidence.json \
+            --out autopilot-output/freshness.json \
+            --report autopilot-output/FRESHNESS.md \
+            --max-source-age-days "$max_age"
+          python backend/freshness_alert.py \
+            --freshness autopilot-output/freshness.json \
+            --source-changes autopilot-output/source-changes.json \
+            --out autopilot-output/freshness-alert.json
+          cat autopilot-output/FRESHNESS.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Audit nationwide future-date labels, suspect cities and venue/day overlaps
+        if: success()
+        run: |
+          set -euo pipefail
+          python backend/catalog_quality_report.py \
+            --manifest autopilot-output/candidate/public/data/v1/manifest.json \
+            --previous reports/automation/catalog-quality.json \
+            --out autopilot-output/catalog-quality.json \
+            --report autopilot-output/CATALOG_QUALITY.md
+          cat autopilot-output/CATALOG_QUALITY.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve checkpoints and candidate even after failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output/
+          retention-days: 1
+          if-no-files-found: warn
+
+  qa:
+    name: Security, compiled static site, mobile browser checks
+    needs: candidate
+    if: needs.candidate.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEV_BRANCH }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output
+      - name: Reject QA on a different DEV code revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$(cat autopilot-output/dev-source-sha.txt)"
+      - name: Assert newly discovered sources have no automatic import permission
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          info = json.loads(Path('autopilot-output/source-registry.json').read_text())
+          if info['record_imports'] != 0 or info['source_licenses_verified_by_automation'] != 0:
+              raise ValueError('Source discovery must not import or verify records')
+          if any(item['automatic_import_allowed'] for item in info['sources']):
+              raise ValueError('Unreviewed dataset granted import permissions')
+          print('Metadata-only intake safety check passed.')
+          PY
+      - name: Reject any source schema preview that grants import authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          probes = json.loads(Path('autopilot-output/source-probes.json').read_text())
+          if probes.get('imports') != 0 or probes.get('verified_event_count') != 0:
+              raise ValueError('Source schema probing cannot verify or publish markets')
+          if len(probes.get('reports', [])) > 3:
+              raise ValueError('Sample rate limit exceeded')
+          if len(probes.get('probe_history', {})) > 400:
+              raise ValueError('Unbounded historical municipal schema probes')
+          if probes.get('max_requests') != 3:
+              raise ValueError('Official source probing request budget changed')
+          registry = json.loads(Path('autopilot-output/source-registry.json').read_text())
+          known = probes.get('probe_history', {})
+          for src in registry['sources']:
+              observed = src.get('schema_viability')
+              if observed is not None and (
+                  src['id'] not in known or known[src['id']].get('viability') != observed
+              ):
+                  raise ValueError('Unsubstantiated schema quality claim in source ranking')
+          if any(r.get('adapter_enabled') or r.get('source_license_verified')
+                 or r.get('events_confirmed') for r in probes['reports']):
+              raise ValueError('Schema preview made an unauthorized approval')
+          print('Official source schema previews remain quarantine-only.')
+          PY
+      - name: Reject false inferred market identities and unknown-coordinate labels
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          probes = json.loads(Path('autopilot-output/source-probes.json').read_text())
+          name_false_friends = {'tipologia_mercato', 'nome_quartiere', 'nome_zona',
+                                'note_mercato', 'anno_istituzione_mercato'}
+          for item in probes['reports']:
+              hints = item.get('field_hints', {})
+              values = {name.casefold() for name in hints.get('name', [])}
+              if values & name_false_friends:
+                  raise ValueError('False market-name inference in official data: ' + item['id'])
+              coordinates = {name.casefold() for key in ('latitude', 'longitude')
+                             for name in hints.get(key, [])}
+              if coordinates & {'geo_x', 'geo_y'}:
+                  raise ValueError('Coordinates without verified CRS were treated as degrees')
+              if item.get('status') == 'schema_preview_only' and not item.get('fields'):
+                  raise ValueError('Empty schema was accepted')
+          print('Market identity and coordinate inference remained conservative.')
+          PY
+      - name: Verify reusable publisher contracts stay read-only and source-level
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from source_lifecycle import validate_contracts,digest
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          lifecycle=json.loads((root/'source-lifecycle.json').read_text('utf-8'))
+          config=validate_contracts(json.loads(Path('backend/data/market-source-contracts.json').read_text('utf-8')))
+          original=json.loads(Path('public/data/v1/manifest.json').read_text('utf-8'))
+          expected={p['id'] for p in config['normalized_profiles']}
+          if (lifecycle.get('schema')!=1
+              or lifecycle.get('source_contract_schema')!=1
+              or lifecycle.get('read_only') is not True
+              or lifecycle.get('catalog_count')!=original['total']
+              or any(lifecycle.get(field)!=0 for field in (
+                  'market_imports','market_updates','market_confirmations',
+                  'market_identity_deletions'))):
+              raise ValueError('Generic publisher source inspection modified market identities')
+          if policy.get('source_lifecycle',{}).get('enabled') is True:
+              if (lifecycle.get('registry_sha256')!=digest(config)
+                  or not set(lifecycle.get('sources',{})).issubset(expected)
+                  or lifecycle.get('checked_source_profiles') != len(lifecycle['sources'])):
+                  raise ValueError('Unknown source contract or unreviewed publisher identity')
+              for sid,source in lifecycle['sources'].items():
+                  if (source.get('schema')!=1 or
+                      source.get('source_id')!=sid or
+                      source.get('catalog_records_compared')!=original['total'] or
+                      source.get('confirmed_events_created')!=0 or
+                      source.get('market_records_imported')!=0 or
+                      source.get('market_records_edited')!=0 or
+                      source.get('market_ids_deleted')!=0):
+                      raise ValueError('Generic source audit falsely approved a market: '+sid)
+          # Reuse the SAME exact source identities vetted by the source
+          # overlap gate. Two matching numerical counts are not evidence that
+          # the same records were excluded; only the complete partition is.
+          source_status=json.loads((root/'release-decision.json').read_text('utf-8')).get('sources',{})
+          for sid in ('lombardia','corciano','bologna'):
+              upstream=source_status.get(sid) or {}
+              if upstream.get('status') not in ('retrieved','resumed_checkpoint'):
+                  continue
+              entry=(lifecycle.get('sources') or {}).get(sid)
+              if not entry:
+                  raise ValueError('Reviewed source cohort lacks lifecycle proof: '+sid)
+              counts=entry.get('counts') or {}
+              screened=entry.get('source_screening') or {}
+              outside=counts.get('source_ids_not_yet_in_catalog',0)
+              reviewed=upstream.get('quarantined_review',0)
+              accepted=upstream.get('accepted_after_overlap_qa')
+              if (screened.get('exact_reviewed_id_partition_verified') is not True
+                  or screened.get('already_quarantined_by_venue_overlap_review')!=reviewed
+                  or screened.get('outside_catalog_source_ids_not_necessarily_new_markets')!=outside
+                  or screened.get('remaining_identities_without_overlap_disposition')!=outside-reviewed
+                  or accepted+reviewed!=counts.get('source_records_scanned')
+                  or len(screened.get('quarantine_source_id_set_sha256',''))!=64
+                  or screened.get('screening_missing_exact_source_id_proof') is not False):
+                  raise ValueError('Publisher venue hold only matched count, not exact source IDs: '+sid)
+          print('DECLARATIVE_SOURCE_CONTRACTS',json.dumps({
+              'publisher_sources_checked':lifecycle.get('checked_source_profiles',0),
+              'catalog_market_ids_unchanged':original['total'],
+              'new_events_or_markets_claimed':0
+          }))
+          PY
+      - name: Block unreviewed Lombardia overlap promotions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          report = json.loads(Path('autopilot-output/lombardia-overlaps.json').read_text())
+          if (report.get('schema') != 1 or report.get('market_confirmations') != 0
+                  or report.get('deleted_existing_records') != 0):
+              raise ValueError('Lombardia dedup attempted to delete or verify records')
+          if (report['accepted'] + report['quarantined'] != report['source_total']):
+              raise ValueError('Overlap quarantine report omits official rows')
+          if report['quarantined'] > 500:
+              raise ValueError('Too many overlaps for unattended import')
+          print('Lombardia reviewed:', report['accepted'],
+                'quarantined:', report['quarantined'])
+          PY
+      - name: Reject unsafe Bologna source overlaps or unapproved publication
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('autopilot-output/bologna-overlaps.json').read_text())
+          decision = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if report.get('schema') != 1 or report.get('region') not in (None,'Emilia-Romagna'):
+              raise ValueError('Bologna overlap report malformed')
+          if (report.get('accepted',0) + report.get('quarantined',0)
+                  != report.get('source_total',0)
+                  or report.get('market_confirmations',0) != 0
+                  or report.get('deleted_existing_records',0) != 0):
+              raise ValueError('Bologna source review cannot erase or verify records')
+          if report.get('quarantined',0) > 48:
+              raise ValueError('Bologna source conflicts exceed safe limit')
+          bologna = decision.get('sources',{}).get('bologna')
+          if bologna and bologna.get('status') in ('retrieved','resumed_checkpoint'):
+              evidence = json.loads(Path('autopilot-output/source-evidence.json').read_text())
+              item = next((x for x in evidence['source_evidence']
+                           if x['publisher'] == 'Comune di Bologna'), None)
+              if not item or item['status'] != 'metadata_checked':
+                  raise ValueError('Bologna source not independently checked')
+          print('Bologna quarantined source records:', report['quarantined'])
+          PY
+      - name: Prevent unreviewed Corciano identity, coordinate and timestamp promotions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+          overlap=json.loads(Path('autopilot-output/corciano-overlaps.json').read_text())
+          decision=json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if (overlap.get('schema') != 1
+                  or overlap.get('region') != 'Umbria'
+                  or overlap.get('source_prefix') != 'pg-corciano-'
+                  or overlap.get('market_confirmations') != 0
+                  or overlap.get('deleted_existing_records') != 0):
+              raise ValueError('Corciano source review contract violated')
+          if (overlap.get('accepted',0) + overlap.get('quarantined',0)
+                  != overlap.get('source_total',0)):
+              raise ValueError('Incomplete Corciano source reconciliation')
+          if overlap.get('quarantined',0) > 8:
+              raise ValueError('Corciano source overlap count outside bounds')
+          if overlap.get('source_total',0):
+              sha=overlap.get('source_csv_sha256')
+              if not isinstance(sha,str) or not re.fullmatch('[0-9a-f]{64}',sha):
+                  raise ValueError('Corciano source fingerprint missing')
+          print('Corciano: reviewed source', overlap.get('source_total',0),
+                'accepted',overlap.get('accepted',0),
+                'quarantined',overlap.get('quarantined',0))
+          PY
+      - name: Gate ISTAT municipality corrections against the original complete catalog
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,sys
+          sys.path.insert(0,'backend')
+          from municipality_release_guard import check
+          root=Path('autopilot-output')
+          details=json.loads((root/'municipality-reconciliation.json').read_text('utf-8'))
+          earlier=json.loads((root/'municipality-release-guard.json').read_text('utf-8'))
+          if (details.get('schema')!=1 or
+                  details.get('source_file_sha256')!='83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5' or
+                  details.get('market_confirmations_created')!=0 or
+                  details.get('verified_dates_created')!=0 or
+                  details.get('coordinates_changed')!=0 or
+                  details.get('publisher_sources_replaced')!=0 or
+                  details.get('ids_preserved') is not True):
+              raise ValueError('Municipal ISTAT release not properly source-bound')
+          if details.get('enabled'):
+              a=json.loads((root/'intermediate/merged.json').read_text('utf-8'))
+              b=json.loads((root/'intermediate/municipalities.json').read_text('utf-8'))
+              actual=check(a,b,details)
+              if actual!=earlier:
+                  raise ValueError('ISTAT field-level release certificate does not match source changes')
+          else:
+              if earlier.get('changes')!=0:
+                  raise ValueError('Disabled ISTAT cannot change market records')
+          print('ISTAT protected markets:', earlier['checked_ids'],
+                'city fixes:', earlier['city_replacements'],
+                'quarantined calendars:', earlier['calendar_sources_quarantined'],
+                'unverified forecasts removed:', earlier['forecast_dates_removed'])
+          PY
+      - name: Verify source-reviewed municipality and geolocation holds for EVERY edited record
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from reviewed_city_evidence import verify_reviewed_diff, validate_evidence, manifest_id, NAVIGATION_HOLD
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          report=json.loads((root/'reviewed-cities.json').read_text('utf-8'))
+          certificate=json.loads((root/'reviewed-cities-release-guard.json').read_text('utf-8'))
+          enabled=policy.get('reviewed_source_cities',{}).get('enabled') is True
+          if report.get('enabled') != enabled:
+              raise ValueError('Manual publisher review policy/report mismatch')
+          if enabled:
+              official=json.loads(Path('backend/data/istat-comuni-2026.json').read_text('utf-8'))
+              evidence=json.loads(Path('backend/data/reviewed-city-evidence-2026-10-12.json').read_text('utf-8'))
+              if manifest_id(evidence) != policy['reviewed_source_cities']['evidence_sha256']:
+                  raise ValueError('Reviewed publisher evidence changed from approved fingerprint')
+              approved=validate_evidence(evidence,official)
+              if len(approved)!=16:
+                  raise ValueError('Unexpected manually reviewed publisher case count')
+              before=json.loads((root/'intermediate/municipalities.json').read_text('utf-8'))
+              after=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
+              replay=verify_reviewed_diff(before,after,report,official,evidence)
+              if replay != certificate:
+                  raise ValueError('Publisher city changes contradict independent field-by-field proof')
+              by_id={x['slug']:x for x in after}
+              for sid in approved:
+                  if by_id[sid].get('navigazione_sospesa_motivo') != NAVIGATION_HOLD:
+                      raise ValueError('Reviewed municipality erroneously exposes navigation '+sid)
+              for field,limit in (
+                  ('cities_corrected',16),('unsafe_points_suppressed',7),
+                  ('navigation_routes_paused',16),
+              ):
+                  if not 0<=certificate[field]<=limit:
+                      raise ValueError('Manual municipality correction exceeded budget')
+          else:
+              if any(certificate.get(k)!=0 for k in (
+                      'cities_corrected','unsafe_points_suppressed',
+                      'navigation_routes_paused')):
+                  raise ValueError('Disabled municipality review modified official records')
+          print('PUBLISHER_CITY_RELEASE_GUARD',json.dumps(certificate,ensure_ascii=False))
+          PY
+      - name: Verify only five Roma XIII source-reviewed 2026 venue IDs are added
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_2026_venues import validate_added,EXPECTED,validate_manifest
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          enabled=policy.get('roma_xiii_2026_venues',{}).get('enabled') is True
+          report=json.loads((root/'roma-xiii-2026-venues.json').read_text('utf-8'))
+          cert=json.loads((root/'roma-xiii-2026-venues-diff-guard.json').read_text('utf-8'))
+          if enabled:
+              source=json.loads(Path('backend/data/roma-xiii-verified-venue-evidence-2026-10-13.json').read_text('utf-8'))
+              if set(validate_manifest(source))!=set(EXPECTED):
+                  raise ValueError('Roma XIII evidence has unapproved venue IDs')
+              old=json.loads((root/'intermediate/milano-2026.json').read_text('utf-8'))
+              new=json.loads((root/'intermediate/roma-2026-venues.json').read_text('utf-8'))
+              actual=validate_added(old,new,report,source)
+              if (actual!=cert or actual.get('safe') is not True
+                  or report.get('source_market_identities')!=8
+                  or report.get('candidate_venue_records')!=5
+                  or report.get('held_2026_fogaccia_tuesday_single_stall') is not True
+                  or report.get('held_urbano_ii_relocation') is not True
+                  or not 0<=report.get('records_added',-1)<=5
+                  or not set(report.get('new_market_ids',[])).issubset(EXPECTED)
+                  or not set(report.get('already_published_curated_ids',[])).issubset(EXPECTED)
+                  or report.get('records_added',0)+len(report.get('already_published_curated_ids',[]))!=5):
+                  raise ValueError('Unreviewed Roma XIII municipal market identity promotion')
+              print('ROMA_XIII_EXACT_SOURCE_ADDITIONS',json.dumps({
+                  'new_market_ids':report['new_market_ids'],
+                  'already_published':len(report['already_published_curated_ids']),
+                  'all_previous_records_intact':len(old),
+              }))
+          elif report.get('records_added') or cert.get('approved_official_market_additions'):
+              raise ValueError('Disabled Roma publisher introduced market entries')
+          PY
+      - name: Independently prove Rome XIII wrong-coordinate quarantine is source-bound
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_geo_hold import verify_diff,git_blob_sha,SOURCE_GIT_BLOB_SHA
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          enabled=policy.get('roma_xiii_coordinate_holds',{}).get('enabled') is True
+          report=json.loads((root/'roma-xiii-geo-holds.json').read_text('utf-8'))
+          certificate=json.loads((root/'roma-xiii-diff-guard.json').read_text('utf-8'))
+          if enabled:
+              source_path=Path('backend/data/roma-municipio-xiii-market-map-reviewed.json')
+              if git_blob_sha(source_path)!=SOURCE_GIT_BLOB_SHA:
+                  raise ValueError('Reviewed Rome municipality source evidence changed')
+              source=json.loads(source_path.read_text('utf-8'))
+              before=json.loads((root/'intermediate/rome-before-geo-holds.json').read_text('utf-8'))
+              after=json.loads((root/'intermediate/rome-after-geo-holds.json').read_text('utf-8'))
+              proof=verify_diff(before,after,report,source)
+              if (proof!=certificate or proof.get('release_safe') is not True
+                  or report.get('enabled') is not True or
+                  report.get('source_cases')!=2
+                  or not 0<=report.get('new_coordinates_quarantined',-1)<=2
+                  or not 0<=report.get('new_directions_blocked',-1)<=2
+                  or proof.get('ids_added')!=0 or proof.get('ids_deleted')!=0):
+                  raise ValueError('Unreviewed Rome coordinates or unrelated fields changed')
+              print('ROME_XIII_SOURCE_DIFF_GUARD',json.dumps(proof,ensure_ascii=False))
+          elif (report.get('changed_ids') or
+                certificate.get('changed_source_market_ids') or
+                certificate.get('new_coordinate_holds',0)!=0):
+              raise ValueError('Disabled Rome location review changed market data')
+          PY
+      - name: Independently replay 2026 Milan PDF and GIS weekday changes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,sys
+          sys.path.insert(0,'backend')
+          from milano_2026_release_guard import verify
+          from milano_2026_street_overlay import verify_diff as verify_street_diff, EVIDENCE_FILE as street_evidence_file
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          enabled=policy.get('milano_2026_dual_source',{}).get('enabled') is True
+          review=json.loads((root/'milano-2026-review.json').read_text('utf-8'))
+          certificate=json.loads((root/'milano-2026-diff-guard.json').read_text('utf-8'))
+          if enabled:
+              pdf=json.loads(Path('backend/data/milano-mss-oct2026-observations.json').read_text('utf-8'))
+              gis=json.loads(Path('backend/data/milano-mss-gis-reviewed.json').read_text('utf-8'))
+              original=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
+              street_policy=policy.get('milano_2026_reviewed_streets',{})
+              if street_policy.get('enabled') is True:
+                  ev=json.loads(street_evidence_file.read_text('utf-8'))
+                  street_rows=json.loads((root/'intermediate/milano-street-review.json').read_text('utf-8'))
+                  report=json.loads((root/'milano-streets-review.json').read_text('utf-8'))
+                  certificate_street=json.loads((root/'milano-streets-diff-guard.json').read_text('utf-8'))
+                  proof_street=verify_street_diff(original,street_rows,report,ev,pdf,gis)
+                  expected=street_policy.get('exact_existing_gis_ids')
+                  if (type(expected) is not int or not 25 <= expected <= 85
+                          or proof_street != certificate_street
+                          or proof_street.get('source_reviewed_entries') != expected
+                          or report.get('reviewed_gis_id_count') != expected
+                          or len(ev.get('entries',[])) != expected):
+                      raise ValueError('Municipal street evidence did not pass its separate field-level QA')
+                  original=street_rows
+              revised=json.loads((root/'intermediate/milano-2026.json').read_text('utf-8'))
+              actual=verify(original,revised,review,pdf,gis)
+              if actual!=certificate or review.get('reconciled_id_count')!=76 or review.get('enabled') is not True:
+                  raise ValueError('Milan PDF/GIS field-level proof differs from source')
+              if review.get('records_added')!=0 or review.get('verified_future_events_created')!=0:
+                  raise ValueError('Milan official schedules invented a market or event')
+              print('MILAN_PROVEN_SOURCE_FIELD_GUARD',certificate['milan_source_changes'],
+                    'source updates for',certificate['stable_ids_checked'],'stable IDs')
+          elif review.get('modified_ids') or certificate.get('milan_source_changes',0):
+              raise ValueError('Disabled Milan source still changed existing records')
+          PY
+      - name: Verify all 13k market identities and per-field evidence are retained
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib,json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from market_evidence_worklist import validate,registry_check
+          from merge_catalog import load_existing
+          root=Path('autopilot-output')
+          candidate=root/'candidate/public/data/v1/manifest.json'
+          original=load_existing(candidate)
+          result=json.loads((root/'market-evidence-worklist.json').read_text('utf-8'))
+          summary=json.loads((root/'market-evidence-summary.json').read_text('utf-8'))
+          contract=json.loads(Path('backend/data/market-evidence-source-families.json').read_text('utf-8'))
+          registry_check(contract)
+          validate(result,len(original))
+          proof=hashlib.sha256("\n".join(sorted(x['slug'] for x in original)).encode('utf-8')).hexdigest()
+          if result['original_market_ids_sha256'] != proof:
+              raise ValueError('The source evidence queue lost original market IDs')
+          if ('daily_worklist' in summary or
+              summary.get('daily_detailed_tasks_saved_in_git') is not False or
+              summary.get('original_market_ids_sha256') != proof):
+              raise ValueError('Git summary must be compact and source-bound')
+          print('ALL_MARKET_FIELDS_QUEUED',len(original),
+                'original market IDs retained;',
+                result['distinct_source_labels'],'source labels;',
+                result['daily_worklist_count'],'rotating detailed tasks;',
+                'no imports and no invented opening verifications')
+          PY
+      - name: Ensure every saved-source street lead is read-only and all market IDs survive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from merge_catalog import load_existing
+          from stored_market_sibling_proposals import verify
+          root=Path('autopilot-output')
+          report=json.loads((root/'happings-sibling-evidence.json').read_text('utf-8'))
+          markets=load_existing(root/'candidate/public/data/v1/manifest.json')
+          verify(report,len(markets))
+          if (report['field_sibling_candidates']!=len(report['candidate_records'])
+                  or any(x.get('automatic_fill_authorized') is not False
+                         or x.get('source_html_accessed') is not False
+                         for x in report['candidate_records'])):
+              raise ValueError('Happings audit lost field evidence or invented permissions')
+          print('HAPPINGS_STORED_DATA_QA',report['legacy_publisher_records_examined'],
+                'original Happings cards;',report['field_sibling_candidates'],
+                'recoverable street leads;',len(markets),'original market IDs kept')
+          PY
+      - name: Reject unsupported official enrichment or invented market verification
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('autopilot-output/official-enrichment.json').read_text())
+          if report.get('schema')!=1 or report.get('source_id')!='lombardia-mercap':
+              raise ValueError('Official enrichment report schema mismatch')
+          for key in ('record_identity_changes', 'confirmed_date_changes',
+                      'individual_market_verifications', 'coordinates_overwritten',
+                      'primary_sources_overwritten','old_dataset_dates_overwritten'):
+              if report.get(key)!=0:
+                  raise ValueError('Official enrichment tried to change '+key)
+          # The cap is on visible value changes; evidence re-read on a new
+          # day touches every already-linked record without changing values.
+          if not (0<=report.get('records_with_value_changes',-1)<=500
+                  and report['records_with_value_changes']<=report.get('legacy_records_changed',-1)
+                  and 0<=report.get('existing_market_hours_added',-1)<=500
+                  and 0<=report.get('official_source_attributions_added',-1)<=500
+                  and report['existing_market_hours_added']<=report['legacy_records_changed']
+                  and report['official_source_attributions_added']<=report['legacy_records_changed']):
+              raise ValueError('Implausible source evidence improvement metrics')
+          print('Source evidence quality QA passed:',report['legacy_records_changed'],
+                'market identities enriched,',report['existing_market_hours_added'],
+                'hours supplied,',report['official_source_attributions_added'],
+                'publisher attributions attached')
+          PY
+      - name: Block false freshness or official-source approvals
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('autopilot-output/source-evidence.json').read_text())
+          freshness = json.loads(Path('autopilot-output/freshness.json').read_text())
+          alert = json.loads(Path('autopilot-output/freshness-alert.json').read_text())
+          changes = json.loads(Path('autopilot-output/source-changes.json').read_text())
+          if changes.get('imported_markets') != 0 or any(
+              item.get('automatic_import_allowed') for item in changes.get('results', [])
+          ):
+              raise ValueError('Publisher change scan must not enable an importer')
+          if (report.get('market_imports') != 0
+                  or report.get('market_events_confirmed') != 0
+                  or report.get('legal_license_approvals') != 0):
+              raise ValueError('Publisher metadata approved markets or licenses')
+          if any(row.get('import_permission_granted') or row.get('license_legally_reviewed')
+                 or row.get('record_level_freshness_verified')
+                 for row in report['source_evidence']):
+              raise ValueError('Publisher metadata granted unauthorized publication privileges')
+          if (freshness.get('catalog_was_modified') is not False
+                  or not freshness.get('safe_for_automatic_quality_promotion')):
+              raise ValueError('Unsupported confirmed date or future timestamp: see FRESHNESS.md')
+          if alert.get('problems', {}).get('total') != freshness['metrics']['total']:
+              raise ValueError('Freshness alert/report mismatch')
+          print('Publisher rights, source age and event verification QA passed.')
+          PY
+      - name: Reject false future-date labels and new national quality regressions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          quality = json.loads(Path('autopilot-output/catalog-quality.json').read_text())
+          decision = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          metrics = quality.get('metrics',{})
+          if (quality.get('schema') != 1 or quality.get('review_only') is not True
+                  or quality.get('market_updates_applied') != 0
+                  or quality.get('market_confirmations_created') != 0
+                  or quality.get('market_identities_deleted') != 0):
+              raise ValueError('Quality audit attempted to rewrite markets or claim confirmations')
+          if metrics.get('total') != decision['candidate']['records']:
+              raise ValueError('Quality report/catalog count mismatch')
+          if metrics.get('future_date_quality_mismatch',0) > 0:
+              raise ValueError('A market has no future date but claims a forecast/confirmation')
+          if quality.get('quality_regressions') or quality.get('quality_release_safe') is not True:
+              raise ValueError('Increase in suspect cities or venue/day duplicates; see CATALOG_QUALITY.md')
+          print('National quality verified:', metrics['total'], 'market IDs;',
+                metrics.get('suspicious_city',0),'locations to review;',
+                metrics.get('review_only_duplicate_groups',0),'potential weekly venue/day overlaps')
+          PY
+      - name: Snapshot actual published DEV visitor baseline before candidate replacement
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original=json.loads(Path('public/data/v1/manifest.json').read_text(encoding='utf-8'))
+          approved=json.loads(Path('autopilot-output/release-decision.json').read_text(encoding='utf-8'))
+          if original.get('content_signature') != approved.get('base_signature'):
+              raise ValueError('Actual DEV baseline differs from source QA certificate')
+          PY
+          node scripts/reversible-duplicate-audit.mjs \
+            --manifest public/data/v1/manifest.json \
+            --out autopilot-output/published-dev-reversible-baseline.json \
+            --report autopilot-output/PUBLISHED_DEV_REVERSIBLE_BASELINE.md
+      - name: Verify candidate approved and replace ONLY local static data
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, shutil
+          decision = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if not decision['approved']:
+              raise ValueError('Candidate was not approved by the policy engine')
+          candidate = Path('autopilot-output/candidate/public/data/v1')
+          if not (candidate / 'manifest.json').is_file():
+              raise ValueError('Approved catalog artifact missing')
+          target = Path('public/data/v1')
+          shutil.rmtree(target)
+          shutil.copytree(candidate, target)
+          print('Candidate installed in ephemeral QA runner only.')
+          PY
+      - name: Verify hashes, index and conservative source integrity
+        run: python backend/validate_static.py --manifest public/data/v1/manifest.json
+      - name: Block release if reviewed city safety is missing in final static JSON
+        run: |
+          python backend/reviewed_city_static_guard.py \
+            --manifest public/data/v1/manifest.json \
+            --evidence backend/data/reviewed-city-evidence-2026-10-12.json \
+            --policy backend/autopilot_policy.json \
+            --daily-report autopilot-output/reviewed-cities.json \
+            --roma-venue-report autopilot-output/roma-xiii-2026-venues.json \
+            --generic-admission-report autopilot-output/generic-source-admissions.json \
+            --out autopilot-output/reviewed-city-static-safety.json
+      - name: Independently verify publisher-level generic admission and final source-safe assets
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          from datetime import date
+          sys.path.insert(0,'backend')
+          from source_contract_activation import validate_release,verify_static
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('source_contract_admissions',{}).get('enabled') is True:
+              config=json.loads(Path('backend/data/market-source-contracts.json').read_text('utf-8'))
+              rights=json.loads(Path('backend/data/approved-source-admissions.json').read_text('utf-8'))
+              raw=json.loads((root/'generic-source-admissions.json').read_text('utf-8'))
+              before=json.loads((root/'intermediate/roma-2026-venues.json').read_text('utf-8'))
+              after=json.loads((root/'intermediate/generic-approved-source-candidate.json').read_text('utf-8'))
+              certificate=validate_release(before,after,raw,config,rights)
+              saved=json.loads((root/'generic-source-admissions-diff-guard.json').read_text('utf-8'))
+              day=date.fromisoformat(json.loads((root/'release-decision.json').read_text('utf-8'))['today'])
+              proof=verify_static(Path('public/data/v1/manifest.json'),raw,config,rights,day)
+              full=json.loads((root/'generic-source-admissions-static-guard.json').read_text('utf-8'))
+              if (certificate != saved or proof != full
+                  or proof.get('release_safe') is not True
+                  or proof.get('source_contracts_active')!=len(rights['approvals'])
+                  or proof.get('new_source_venue_ids_verified')!=len(raw['new_market_ids'])
+                  or proof.get('navigation_holds_in_index')!=len(raw['new_market_ids'])
+                  or not proof.get('no_individual_market_openings_confirmed')
+                  or proof.get('new_precise_coordinates')!=0):
+                  raise ValueError('Publisher-level source admission failed field and final index audit')
+              print('GENERIC_APPROVED_PUBLISHER_SOURCE_QA',json.dumps({
+                  'publisher_contracts':len(rights['approvals']),
+                  'new_source_venue_ids':len(raw['new_market_ids']),
+                  'original_records_intact':len(before),
+                  'no_individual_market_confirmations':True
+              }))
+          PY
+      - name: Prove all five Roma 2026 venue details stay sourced and non-navigable
+        run: |
+          python - <<'PY'
+          import json,sys
+          from datetime import date
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_2026_release_guard import check_static
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('roma_xiii_2026_venues',{}).get('enabled') is True:
+              source=json.loads(Path('backend/data/roma-xiii-verified-venue-evidence-2026-10-13.json').read_text('utf-8'))
+              day=date.fromisoformat(json.loads((root/'release-decision.json').read_text('utf-8'))['today'])
+              proof=check_static(Path('public/data/v1/manifest.json'),source,day)
+              saved=json.loads((root/'roma-xiii-2026-venues-static-guard.json').read_text('utf-8'))
+              if (proof!=saved or proof.get('release_safe') is not True
+                  or proof.get('reviewed_2026_venue_identifiers')!=5
+                  or proof.get('route_holds_in_details')!=5
+                  or proof.get('route_holds_in_search_index')!=5
+                  or proof.get('geocoordinates_invented')!=0
+                  or proof.get('verified_future_markets_created')!=0
+                  or proof.get('excluded_fogaccia_tuesday_one_vendor') is not True
+                  or proof.get('excluded_pending_pineta_sacchetti_relocation') is not True):
+                  raise ValueError('Roman municipal source places or forecast dates not safe in the final JSON')
+              print('ROMA_XIII_NEW_VENUE_STATIC_QA',json.dumps(proof,ensure_ascii=False))
+          PY
+      - name: Prove Milan forecasts survive full static export and retain original source
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          from datetime import date
+          sys.path.insert(0,'backend')
+          from milano_2026_release_guard import verify_exported
+          from merge_catalog import load_existing
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('milano_2026_dual_source',{}).get('enabled') is True:
+              pdf=json.loads(Path('backend/data/milano-mss-oct2026-observations.json').read_text('utf-8'))
+              gis=json.loads(Path('backend/data/milano-mss-gis-reviewed.json').read_text('utf-8'))
+              # Check the immutable ORIGINAL Milano records from the exact
+              # Git checkout. Reconstructed merge rows may legitimately have
+              # another official-source field update in the same pipeline.
+              import subprocess
+              source_manifest=json.loads(subprocess.check_output(
+                  ['git','show','HEAD:public/data/v1/manifest.json'],text=True))
+              parts=source_manifest.get('regions') or []
+              lombardia=next((p for p in parts if p.get('name')=='Lombardia'),None)
+              if not lombardia or not str(lombardia.get('path','')).startswith('data/v1/regions/'):
+                  raise ValueError('No original Lombardia regional shard for source proof')
+              published=json.loads(subprocess.check_output(
+                  ['git','show','HEAD:public/'+lombardia['path']],text=True))
+              original_milano={x['slug']:x for x in published['markets']
+                               if x.get('slug','').startswith('mi-mss-')}
+              if len(original_milano)<76:
+                  raise ValueError('Existing Milan market IDs disappeared in original checkout')
+              baseline=json.loads((root/'intermediate/reviewed-cities.json').read_text('utf-8'))
+              before=[original_milano.get(x['slug'],x) for x in baseline]
+              street_policy=policy.get('milano_2026_reviewed_streets',{})
+              if street_policy.get('enabled') is True:
+                  from milano_2026_street_overlay import verify_diff as verify_street_diff, EVIDENCE_FILE as street_file, git_blob_sha
+                  if git_blob_sha(street_file)!=street_policy['evidence_blob_sha1']:
+                      raise ValueError('Milan source street certificate changed after review')
+                  street_rows=json.loads((root/'intermediate/milano-street-review.json').read_text('utf-8'))
+                  street_report=json.loads((root/'milano-streets-review.json').read_text('utf-8'))
+                  street_saved=json.loads((root/'milano-streets-diff-guard.json').read_text('utf-8'))
+                  street_source=json.loads(street_file.read_text('utf-8'))
+                  proof_street=verify_street_diff(baseline,street_rows,street_report,street_source,pdf,gis)
+                  if proof_street!=street_saved or proof_street.get('release_safe') is not True:
+                      raise ValueError('Unapproved Milan street fields detected after export')
+                  approved=set(street_report['changed_ids'])
+                  corrected={x['slug']:x for x in street_rows}
+                  for index,row in enumerate(before):
+                      if row['slug'] in approved:
+                          if row.get('indirizzo') or row['slug'] not in corrected:
+                              raise ValueError('A published or unknown Milan street was overwritten')
+                          safe=dict(row)
+                          safe['indirizzo']=corrected[row['slug']]['indirizzo']
+                          before[index]=safe
+              after=load_existing(Path('public/data/v1/manifest.json'))
+              # Only the independently vetted five new Roma venue IDs may be
+              # excluded from the same-identity Milano historical comparison.
+              new_roma=json.loads((root/'roma-xiii-2026-venues.json').read_text('utf-8'))
+              new_ids=set(new_roma.get('new_market_ids',[]))
+              reviewed_generic=json.loads((root/'generic-source-admissions.json').read_text('utf-8'))
+              new_generic=set(reviewed_generic.get('new_market_ids',[]))
+              if new_ids.intersection(new_generic):
+                  raise ValueError('Roma and generic source separately claim the same new market identity')
+              from roma_xiii_2026_venues import EXPECTED as ROMA_APPROVED_IDS
+              if not new_ids.issubset(ROMA_APPROVED_IDS):
+                  raise ValueError('Unknown municipal source IDs in Milano static proof')
+              after=[item for item in after if item['slug'] not in new_ids
+                     and item['slug'] not in new_generic]
+              report=json.loads((root/'milano-2026-review.json').read_text('utf-8'))
+              day=json.loads((root/'release-decision.json').read_text('utf-8'))['today']
+              proof=verify_exported(before,after,report,pdf,gis,date.fromisoformat(day))
+              prior=json.loads((root/'milano-2026-static-guard.json').read_text('utf-8'))
+              if proof!=prior or proof.get('quality_safe') is not True:
+                  raise ValueError('Independent post-export Milan source proof failed')
+              print('MILAN_STATIC_SAFETY',json.dumps(proof,ensure_ascii=False))
+          PY
+      - name: Verify Rome XIII safety in final detail shards AND national search index
+        run: |
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'backend')
+          from roma_xiii_geo_hold import verify_static
+          root=Path('autopilot-output')
+          policy=json.loads(Path('backend/autopilot_policy.json').read_text('utf-8'))
+          if policy.get('roma_xiii_coordinate_holds',{}).get('enabled') is True:
+              source=json.loads(Path('backend/data/roma-municipio-xiii-market-map-reviewed.json').read_text('utf-8'))
+              proof=verify_static(Path('public/data/v1/manifest.json'),source)
+              saved=json.loads((root/'roma-xiii-static-guard.json').read_text('utf-8'))
+              if (proof!=saved or proof.get('release_safe') is not True
+                  or proof.get('current_coordinate_holds')!=2
+                  or proof.get('current_navigation_holds')!=2
+                  or proof.get('original_source_links_preserved')!=2
+                  or proof.get('market_openings_verified')!=0):
+                  raise ValueError('Rome XIII unsafe coordinates returned in static site')
+              print('ROME_XIII_STATIC_SAFETY',json.dumps(proof,ensure_ascii=False))
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Dependency, data grouping and static build checks
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+          node --test tests/*.test.mjs
+          npm run build -- --base=./
+      - name: Validate reversible duplicate display and malformed city labels on real candidate
+        run: |
+          set -euo pipefail
+          node scripts/reversible-duplicate-audit.mjs \
+            --manifest public/data/v1/manifest.json \
+            --out autopilot-output/reversible-display-duplicates.json \
+            --report autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
+          node scripts/reversible-display-release-guard.mjs \
+            --candidate autopilot-output/reversible-display-duplicates.json \
+            --baseline autopilot-output/published-dev-reversible-baseline.json \
+            --catalog-quality autopilot-output/catalog-quality.json \
+            --previous-scorecard reports/automation/reversible-display-duplicates.json \
+            --out autopilot-output/reversible-display-release-guard.json
+      - name: Prove ordinary Cloudflare catalog visits avoid Functions
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs')
+          const routes = JSON.parse(fs.readFileSync('dist/_routes.json', 'utf8'))
+          if (routes.include.some(x => x === '/*' || x === '/') ||
+              !routes.exclude.includes('/data/*')) {
+            throw new Error('Cloudflare Functions could intercept normal market visits')
+          }
+          console.log('Static catalog and page routing verified')
+          NODE
+      - name: Install mobile browser for end-to-end smoke
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start locally built static site
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/mercati-autopilot-preview.log 2>&1 &
+          for attempt in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/mercati-autopilot-preview.log
+          exit 1
+      - name: Exercise real user flows — no billed backend calls
+        env:
+          UI_BASE: http://127.0.0.1:4173/
+        run: node tests/ui-smoke.mjs
+      - name: Verify blocked directions remain blocked in mobile detail view
+        env:
+          UI_BASE: http://127.0.0.1:4173/
+        run: |
+          if python -c 'import json,sys;sys.exit(0 if json.load(open("backend/autopilot_policy.json")).get("reviewed_source_cities",{}).get("enabled") else 1)'; then
+            node tests/reviewed-city-ui.mjs
+          else
+            echo 'Manual source-city overlay disabled; dedicated mobile route check skipped.'
+          fi
+      - name: Check Rome XIII blocked directions in real lazy-loaded mobile details
+        env:
+          UI_BASE: http://127.0.0.1:4173/
+        run: |
+          if python -c 'import json,sys;sys.exit(0 if json.load(open("backend/autopilot_policy.json")).get("roma_xiii_coordinate_holds",{}).get("enabled") else 1)'; then
+            node tests/roma-xiii-geo-hold-ui.mjs
+          else
+            echo 'Roma XIII source hold disabled; no new routes or coordinates permitted.'
+          fi
+      - name: Verify all five Roma 2026 source-backed market cards on mobile
+        env:
+          UI_BASE: http://127.0.0.1:4173/
+        run: |
+          if python -c 'import json,sys;sys.exit(0 if json.load(open("backend/autopilot_policy.json")).get("roma_xiii_2026_venues",{}).get("enabled") else 1)'; then
+            node tests/roma-xiii-2026-venues-ui.mjs
+          else
+            echo 'Roma XIII new official markets disabled, leaving DEV catalog unchanged.'
+          fi
+      - name: Retain tested visitor duplicate and localities report
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercati-visitor-quality-${{ github.run_id }}
+          path: |
+            autopilot-output/reversible-display-duplicates.json
+            autopilot-output/reversible-display-release-guard.json
+            autopilot-output/published-dev-reversible-baseline.json
+            autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
+            autopilot-output/reviewed-city-static-safety.json
+            autopilot-output/publisher-exception-review.json
+            autopilot-output/publisher-exception-diff-guard.json
+            autopilot-output/publisher-exception-static-safety.json
+            autopilot-output/roma-xiii-geo-holds.json
+            autopilot-output/roma-xiii-diff-guard.json
+            autopilot-output/roma-xiii-static-guard.json
+            autopilot-output/roma-xiii-2026-venues.json
+            autopilot-output/roma-xiii-2026-venues-diff-guard.json
+            autopilot-output/roma-xiii-2026-venues-static-guard.json
+            autopilot-output/generic-source-admissions.json
+            autopilot-output/generic-source-admissions-diff-guard.json
+            autopilot-output/generic-source-admissions-static-guard.json
+          retention-days: 1
+          if-no-files-found: error
+      - name: Save tested static distribution (for separate DEV publication)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error
+      - name: Save mobile QA and screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercati-autopilot-mobile-${{ github.run_id }}
+          path: |
+            ux-*.png
+            ux-smoke-result.json
+            /tmp/mercati-autopilot-preview.log
+          retention-days: 1
+          if-no-files-found: warn
+
+  publish_dev:
+    name: Update DEV catalog + separately hosted static preview
+    needs: [candidate, qa]
+    if: needs.candidate.result == 'success' && needs.qa.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEV_BRANCH }}
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: autopilot-built-site
+      - uses: actions/download-artifact@v4
+        with:
+          name: mercati-visitor-quality-${{ github.run_id }}
+          path: autopilot-output
+      - name: Refuse publication if DEV moved after candidate build
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="$(cat autopilot-output/dev-source-sha.txt)"
+          test "$(git rev-parse HEAD)" = "$expected"
+          git fetch origin "$DEV_BRANCH"
+          test "$(git rev-parse "origin/$DEV_BRANCH")" = "$expected"
+      - name: Prevent overwriting newer DEV catalog changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$DEV_BRANCH"
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          report = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if not report.get('approved'):
+              raise ValueError('Autopilot policy did not approve this candidate')
+          actual = subprocess.check_output(
+              ['git', 'show', 'origin/' + subprocess.check_output(
+                  ['git', 'branch', '--show-current'], text=True).strip()
+               + ':public/data/v1/manifest.json'], text=True)
+          current = json.loads(actual)
+          if current['content_signature'] != report['base_signature']:
+              raise ValueError('DEV market catalog changed after QA: refusing stale overwrite')
+          target = Path('autopilot-output/candidate/public/data/v1/manifest.json')
+          if not target.is_file() or json.loads(target.read_text())['content_signature'] != report['new_signature']:
+              raise ValueError('Candidate artifact signature mismatch')
+          PY
+      - name: Stage QA-approved source discovery history for DEV only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s autopilot-output/source-registry.json
+          test -s autopilot-output/SOURCE_QUEUE.md
+          mkdir -p reports/automation
+          cp autopilot-output/source-registry.json reports/automation/source-registry.json
+          cp autopilot-output/SOURCE_QUEUE.md reports/automation/SOURCE_QUEUE.md
+          test -s autopilot-output/source-probes.json
+          test -s autopilot-output/SOURCE_SCHEMA.md
+          cp autopilot-output/source-probes.json reports/automation/source-probes.json
+          cp autopilot-output/SOURCE_SCHEMA.md reports/automation/SOURCE_SCHEMA.md
+          for item in source-evidence.json SOURCE_EVIDENCE.md source-changes.json SOURCE_CHANGES.md freshness.json FRESHNESS.md freshness-alert.json source-lifecycle.json SOURCE_LIFECYCLE.md; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          test -s autopilot-output/lombardia-overlaps.json
+          test -s autopilot-output/LOMBARDIA_OVERLAPS.md
+          cp autopilot-output/lombardia-overlaps.json reports/automation/lombardia-overlaps.json
+          cp autopilot-output/LOMBARDIA_OVERLAPS.md reports/automation/LOMBARDIA_OVERLAPS.md
+          test -s autopilot-output/bologna-overlaps.json
+          test -s autopilot-output/BOLOGNA_OVERLAPS.md
+          cp autopilot-output/bologna-overlaps.json reports/automation/bologna-overlaps.json
+          cp autopilot-output/BOLOGNA_OVERLAPS.md reports/automation/BOLOGNA_OVERLAPS.md
+          test -s autopilot-output/corciano-overlaps.json
+          test -s autopilot-output/CORCIANO_OVERLAPS.md
+          cp autopilot-output/corciano-overlaps.json reports/automation/corciano-overlaps.json
+          cp autopilot-output/CORCIANO_OVERLAPS.md reports/automation/CORCIANO_OVERLAPS.md
+          # Detailed per-market tasks stay in existing short-lived QA artifacts;
+          # only the compact publisher summary is versioned in Git.
+          test -s autopilot-output/market-evidence-summary.json
+          test -s autopilot-output/MARKET_EVIDENCE_WORKLIST.md
+          cp autopilot-output/market-evidence-summary.json reports/automation/market-evidence-summary.json
+          cp autopilot-output/MARKET_EVIDENCE_WORKLIST.md reports/automation/MARKET_EVIDENCE_WORKLIST.md
+          # Full Happings market-to-market evidence stays in the existing
+          # short-lived QA artifact; store only aggregates in Git.
+          test -s autopilot-output/happings-sibling-evidence.json
+          test -s autopilot-output/HAPPINGS_STORED_FIELDS.md
+          cp autopilot-output/HAPPINGS_STORED_FIELDS.md reports/automation/HAPPINGS_STORED_FIELDS.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original=json.loads(Path('autopilot-output/happings-sibling-evidence.json').read_text('utf-8'))
+          compact={k:v for k,v in original.items()
+                   if k not in ('candidate_records','examples')}
+          compact['full_market_evidence_in_temporary_qa_artifact']=True
+          Path('reports/automation/happings-stored-fields-summary.json').write_text(
+              json.dumps(compact,sort_keys=True,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          PY
+          test -s autopilot-output/official-enrichment.json
+          test -s autopilot-output/OFFICIAL_ENRICHMENT.md
+          cp autopilot-output/official-enrichment.json reports/automation/official-enrichment.json
+          cp autopilot-output/OFFICIAL_ENRICHMENT.md reports/automation/OFFICIAL_ENRICHMENT.md
+          test -s autopilot-output/catalog-quality.json
+          test -s autopilot-output/CATALOG_QUALITY.md
+          cp autopilot-output/catalog-quality.json reports/automation/catalog-quality.json
+          cp autopilot-output/CATALOG_QUALITY.md reports/automation/CATALOG_QUALITY.md
+          test -s autopilot-output/reversible-display-duplicates.json
+          test -s autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md
+          cp autopilot-output/reversible-display-duplicates.json reports/automation/reversible-display-duplicates.json
+          cp autopilot-output/REVERSIBLE_DISPLAY_DUPLICATES.md reports/automation/REVERSIBLE_DISPLAY_DUPLICATES.md
+          test -s autopilot-output/reversible-display-release-guard.json
+          cp autopilot-output/reversible-display-release-guard.json reports/automation/reversible-display-release-guard.json
+          test -s autopilot-output/municipality-reconciliation.json
+          test -s autopilot-output/MUNICIPALITY_RECONCILIATION.md
+          test -s autopilot-output/municipality-release-guard.json
+          cp autopilot-output/municipality-reconciliation.json reports/automation/municipality-reconciliation.json
+          cp autopilot-output/MUNICIPALITY_RECONCILIATION.md reports/automation/MUNICIPALITY_RECONCILIATION.md
+          cp autopilot-output/municipality-release-guard.json reports/automation/municipality-release-guard.json
+          test -s autopilot-output/reviewed-cities.json
+          test -s autopilot-output/reviewed-cities-release-guard.json
+          cp autopilot-output/reviewed-cities.json reports/automation/reviewed-cities.json
+          cp autopilot-output/reviewed-cities-release-guard.json reports/automation/reviewed-cities-release-guard.json
+          test -s autopilot-output/reviewed-city-static-safety.json
+          cp autopilot-output/reviewed-city-static-safety.json reports/automation/reviewed-city-static-safety.json
+          for item in publisher-exception-review.json publisher-exception-diff-guard.json publisher-exception-static-safety.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          for item in milano-2026-review.json milano-2026-diff-guard.json milano-2026-static-guard.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          for item in roma-xiii-geo-holds.json roma-xiii-diff-guard.json roma-xiii-static-guard.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          for item in roma-xiii-2026-venues.json roma-xiii-2026-venues-diff-guard.json roma-xiii-2026-venues-static-guard.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+          for item in generic-source-admissions.json generic-source-admissions-diff-guard.json generic-source-admissions-static-guard.json; do
+            test -s "autopilot-output/$item"
+            cp "autopilot-output/$item" "reports/automation/$item"
+          done
+      - name: Update ONLY DEV data files if content changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json, shutil
+          report = json.loads(Path('autopilot-output/release-decision.json').read_text())
+          if report['has_changes']:
+              source = Path('autopilot-output/candidate/public/data/v1')
+              target = Path('public/data/v1')
+              shutil.rmtree(target)
+              shutil.copytree(source, target)
+          print('candidate_changed=',report['has_changes'])
+          PY
+          # Save a compact, long-term operational memory even when the
+          # catalog itself is unchanged. This keeps trends and unattended runs
+          # visible and prevents silent inactivity of the public repo.
+          python backend/autopilot_history.py \
+            --decision autopilot-output/release-decision.json \
+            --roadmap autopilot-output/roadmap.json \
+            --sources autopilot-output/official-candidates.json \
+            --source-registry autopilot-output/source-registry.json \
+            --freshness autopilot-output/freshness.json \
+            --source-evidence autopilot-output/source-evidence.json \
+            --lombardia-overlap autopilot-output/lombardia-overlaps.json \
+            --bologna-overlap autopilot-output/bologna-overlaps.json \
+            --corciano-overlap autopilot-output/corciano-overlaps.json \
+            --official-enrichment autopilot-output/official-enrichment.json \
+            --catalog-quality autopilot-output/catalog-quality.json \
+            --visitor-display-audit autopilot-output/reversible-display-duplicates.json \
+            --municipality-report autopilot-output/municipality-reconciliation.json \
+            --reviewed-cities-report autopilot-output/reviewed-cities.json \
+            --reviewed-city-static-guard autopilot-output/reviewed-city-static-safety.json \
+            --roma-xiii-static-guard autopilot-output/roma-xiii-static-guard.json \
+            --roma-xiii-2026-report autopilot-output/roma-xiii-2026-venues.json \
+            --roma-xiii-2026-final-guard autopilot-output/roma-xiii-2026-venues-static-guard.json \
+            --generic-admission-report autopilot-output/generic-source-admissions.json \
+            --generic-admission-static-guard autopilot-output/generic-source-admissions-static-guard.json \
+            --run-id "${{ github.run_id }}" \
+            --out reports/automation
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/data/v1 reports/automation
+          if ! git diff --cached --quiet; then
+            git commit -m "autopilot: refresh source-bound predicted dates (DEV only)"
+            # A non-fast-forward push safely rejects any concurrent change.
+            # Never rebase a QA-approved dataset onto untested source code.
+            git push origin "HEAD:$DEV_BRANCH"
+          else
+            echo "No DEV catalog changes, retaining current version."
+          fi
+      - name: Replay source-proved Happings weekly venues on DEV (bounded, no new runner)
+        shell: bash
+        env:
+          PYTHONUTF8: "1"
+        run: |
+          set -euo pipefail
+          # Execute in the existing authorized publisher job after all source,
+          # security and mobile QA. Reuse its captured publisher HTML; make no
+          # extra HTTP requests to Happings for this admission.
+          test "$DEV_BRANCH" = "improve/data-quality-security-performance-2026-10-11"
+          test "$(git branch --show-current)" = "$DEV_BRANCH"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          decision=json.loads(Path('autopilot-output/release-decision.json').read_text('utf-8'))
+          if decision.get('approved') is not True:
+              raise ValueError('Unapproved catalog release cannot admit Happings markets')
+          if not Path('autopilot-output/happings-enrichment.json').is_file():
+              raise ValueError('Happings source phase lost its audited report')
+          PY
+          # This marker is restricted to the trusted, already checked-out DEV
+          # and does not authorize a user-account or a production branch push.
+          printf 'scheduled DEV-only GH publish job\n' > .happings-dedicated-checkout
+          trap 'rm -f .happings-dedicated-checkout' EXIT
+          python -X utf8 backend/happings_weekly_dev_admission.py \
+            --repo . --from-autopilot-output autopilot-output \
+            --out autopilot-output --max-pages 16 --max-new 32 --publish-dev
+          # Verify the ACTUAL git trees after any successful Happings commit:
+          # every prior market record is unchanged and the added IDs replay
+          # exactly from the source HTML captured earlier in this same run.
+          admission_status="$(python -c 'import json;print(json.load(open("autopilot-output/happings-weekly-admission.json",encoding="utf-8"))["status"])')"
+          if [[ "$admission_status" == "dev_published" ]]; then
+            python -X utf8 backend/happings_postrelease_audit.py \
+              --repo . --before 'HEAD^' --after HEAD \
+              --source-dir autopilot-output \
+              --admission autopilot-output/happings-weekly-admission.json \
+              --out autopilot-output/happings-postrelease-proof.json
+            python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          proof=json.loads(Path('autopilot-output/happings-postrelease-proof.json').read_text('utf-8'))
+          if proof.get('release_safe') is not True:
+              raise ValueError('Independent Happings post-release proof rejected DEV')
+          lines=[
+              '### Happings independent post-publication audit',
+              f'- Exact previously published records retained: {proof["existing_market_ids_preserved"]}',
+              f'- Added markets replayed from original Happings HTML: {proof["published_new_market_ids"]}',
+              f'- Old records modified or removed: {proof["existing_record_content_changes"] + proof["market_ids_deleted"]}',
+              f'- Original publisher HTML pages independently replayed: {proof["source_html_pages_replayed"]}',
+              '- Invented source hours, openings and GPS positions: 0',
+          ]
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as file:
+              file.write('\n'.join(lines)+'\n')
+          print('\n'.join(lines))
+          PY
+          fi
+          # Only rebuild the isolated preview after the exact validated static
+          # catalog has been pushed to DEV. The main production site is untouched.
+          python - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          report=json.loads(Path('autopilot-output/happings-weekly-admission.json').read_text('utf-8'))
+          status=report.get('status')
+          if status == 'dev_published':
+              origin=Path('public/data/v1')
+              target=Path('autopilot-built-site/data/v1')
+              if not origin.is_dir() or not target.is_dir():
+                  raise ValueError('Missing reviewed DEV preview asset directories')
+              shutil.rmtree(target)
+              shutil.copytree(origin,target)
+              import sys
+              sys.path.insert(0,'backend')
+              from validate_static import validate
+              check=validate(target/'manifest.json')
+              if check['records']!=report['new_record_count']:
+                  raise ValueError('Isolated DEV preview differs from source-proved final records')
+          elif status not in ('no_eligible_source_pages','no_new_admissible_markets'):
+              raise ValueError('Happings admission stopped with unapproved status: '+str(status))
+          added=len(report.get('added_ids',[]))
+          lines=[
+              '### Happings weekly DEV admissions (already authorized publisher job)',
+              '- New source-bound identities: '+str(added),
+              '- Existing market identities changed/deleted: 0',
+              '- Opening hours, future dates, locations or human verification invented: 0',
+              '- Status: '+status,
+              '- New paid GitHub runners: 0',
+          ]
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as file:
+              file.write('\n'.join(lines)+'\n')
+          print('\n'.join(lines))
+          PY
+          rm -f .happings-dedicated-checkout
+      - name: Rebuild ONLY isolated dev-static-preview branch from tested distribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          snapshot="$(mktemp -d)"
+          cp -a autopilot-built-site/. "$snapshot/"
+          touch "$snapshot/.nojekyll"
+          git switch --orphan dev-static-preview
+          git rm -rf . >/dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -a "$snapshot"/. .
+          git add -A
+          git commit -m "autopilot: approved static DEV preview build"
+          git push --force origin HEAD:refs/heads/dev-static-preview
+          echo '### Verified DEV preview' >> "$GITHUB_STEP_SUMMARY"
+          echo 'https://raw.githack.com/tommyv-spec/mercati-italia/dev-static-preview/index.html' >> "$GITHUB_STEP_SUMMARY"
+
+  notify:
+    name: Failure monitoring and automatic GitHub incident
+    needs: [candidate, qa, publish_dev]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      issues: write
+      actions: read
+    steps:
+      - uses: actions/download-artifact@v4
+        if: always()
+        continue-on-error: true
+        with:
+          name: ${{ env.CHECKPOINT_NAME }}
+          path: autopilot-output
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const results = {
+              candidate: '${{ needs.candidate.result }}',
+              qa: '${{ needs.qa.result }}',
+              publish_dev: '${{ needs.publish_dev.result }}',
+            };
+            const success = Object.values(results).every(x => x === 'success');
+            const title = '[Mercati autopilot] Verifica richiesta';
+            const link = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `Autopilot run: ${link}\n\nJobs: \`\`\`json\n${JSON.stringify(results,null,2)}\n\`\`\`\n\nPubblicazione DEV bloccata quando uno dei controlli fallisce. I checkpoint (se disponibili) sono negli artefatti del run.`;
+            try {
+              const {data: issues} = await github.rest.issues.listForRepo({
+                ...context.repo, state:'open', per_page:100,
+              });
+              const issue = issues.find(x => !x.pull_request && x.title === title);
+              const freshTitle = '[Mercati autopilot] Dati da verificare';
+              const freshIssue = issues.find(x => !x.pull_request && x.title === freshTitle);
+              let freshnessAlert = null;
+              try {
+                const fs = require('fs');
+                freshnessAlert = JSON.parse(
+                  fs.readFileSync('autopilot-output/freshness-alert.json', 'utf8'));
+              } catch (error) {
+                core.info('Freshness alert unavailable in this run.');
+              }
+              if (success && freshnessAlert) {
+                if (freshnessAlert.attention_required) {
+                  const issueBody = freshnessAlert.body + '\n\nUltimo ciclo completato: ' + link;
+                  if (!freshIssue) {
+                    await github.rest.issues.create({...context.repo,
+                      title: freshTitle, body: issueBody});
+                  } else if (!(freshIssue.body || '').includes(
+                      'Firma stato: ' + freshnessAlert.signature)) {
+                    await github.rest.issues.update({...context.repo,
+                      issue_number: freshIssue.number, body: issueBody});
+                  }
+                } else if (freshIssue) {
+                  await github.rest.issues.update({...context.repo,
+                    issue_number: freshIssue.number, state: 'closed'});
+                }
+              }
+              if (success) {
+                if (issue) {
+                  await github.rest.issues.createComment({...context.repo,issue_number:issue.number,body:'Ripristinato: '+link});
+                  await github.rest.issues.update({...context.repo,issue_number:issue.number,state:'closed'});
+                }
+              } else if (issue) {
+                await github.rest.issues.createComment({...context.repo,issue_number:issue.number,body});
+              } else {
+                await github.rest.issues.create({...context.repo,title,body});
+              }
+            } catch (error) {
+              core.warning('GitHub issue notification unavailable: ' + String(error).slice(0,250));
+            }
