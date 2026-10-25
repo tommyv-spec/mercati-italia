@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14009,
-    "ids_retained": 14009,
-    "generic_weekly_with_specific_venue": 5741,
+    "original_records": 14106,
+    "ids_retained": 14106,
+    "generic_weekly_with_specific_venue": 5779,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3600,
-    "highly_supported_same_source_visit_groups": 892,
-    "suppressed_repeat_buttons_only": 1072,
-    "original_records_in_reversible_groups": 1964,
+    "venue_groups_examined": 3638,
+    "highly_supported_same_source_visit_groups": 872,
+    "suppressed_repeat_buttons_only": 1030,
+    "original_records_in_reversible_groups": 1902,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -19,8 +19,8 @@
   "per_region": [
     {
       "region": "Emilia-Romagna",
-      "groups": 3,
-      "extra_display_entries": 4
+      "groups": 4,
+      "extra_display_entries": 6
     },
     {
       "region": "Liguria",
@@ -40,12 +40,12 @@
     {
       "region": "Sicilia",
       "groups": 1,
-      "extra_display_entries": 1
+      "extra_display_entries": 2
     },
     {
       "region": "Toscana",
-      "groups": 43,
-      "extra_display_entries": 62
+      "groups": 44,
+      "extra_display_entries": 63
     },
     {
       "region": "Trentino-Alto Adige",
@@ -54,8 +54,8 @@
     },
     {
       "region": "Veneto",
-      "groups": 90,
-      "extra_display_entries": 130
+      "groups": 68,
+      "extra_display_entries": 84
     }
   ],
   "examples": [
@@ -73,13 +73,26 @@
     },
     {
       "region": "Emilia-Romagna",
+      "city": "Ferrara",
+      "address": "piazza Travaglio via Bologna",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-ferrara.html",
+      "visible_id": "mercato-settimanale-di-ferrara-ferrara-lunedi",
+      "original_ids": [
+        "mercato-settimanale-di-ferrara-ferrara",
+        "mercato-settimanale-di-ferrara-ferrara-lunedi"
+      ],
+      "date": "2026-10-26"
+    },
+    {
+      "region": "Emilia-Romagna",
       "city": "Modena",
       "address": "Parco Novi Sad",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-modena.html",
-      "visible_id": "mercato-settimanale-a-modena-modena-lunedi",
+      "visible_id": "mercato-settimanale-di-modena-modena-lunedi",
       "original_ids": [
         "mercato-settimanale-a-modena-modena-lunedi",
-        "mercato-settimanale-di-modena-modena"
+        "mercato-settimanale-di-modena-modena",
+        "mercato-settimanale-di-modena-modena-lunedi"
       ],
       "date": "2026-10-26"
     },
@@ -533,18 +546,6 @@
         "mercato-settimanale-di-albaredo-per-san-marco-albaredo-per-san-marco-venerdi"
       ],
       "date": "2026-10-30"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albavilla",
-      "address": "Via XXV Aprile",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-como.html",
-      "visible_id": "mercato-settimanale-a-albavilla-albavilla-martedi",
-      "original_ids": [
-        "mercato-settimanale-a-albavilla-albavilla-martedi",
-        "mercato-settimanale-di-albavilla-albavilla"
-      ],
-      "date": "2026-10-27"
     }
   ],
   "suspicious_city_examples": [

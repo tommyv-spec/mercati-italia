@@ -1236,17 +1236,32 @@
       "status": "pending"
     },
     {
-      "attempts": 1,
+      "attempts": 3,
       "city_keys": [
         "san teodoro"
       ],
       "first_seen_on": "2026-10-20",
       "last_attempt_on": "2026-10-25",
       "last_error": null,
-      "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-san-teodoro/",
+      "last_success_on": "2026-10-25",
+      "next_url": "https://www.happings.com/it/mercati-settimanali-a-olbia-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-san-teodoro.html",
-      "proof": null,
+      "proof": {
+        "canonical_url": "https://www.happings.com/it/mercati-settimanali-a-olbia-e-provincia/",
+        "final_url": "https://www.happings.com/it/mercati-settimanali-a-olbia-e-provincia/",
+        "matched_city_days": [
+          {
+            "city_key": "san teodoro",
+            "weekday": 4
+          }
+        ],
+        "observed_on": "2026-10-25",
+        "province_heading": "olbia",
+        "requested_url": "https://www.happings.com/it/mercati-settimanali-a-olbia-e-provincia/",
+        "resource_url": "https://www.happings.com/it/mercati-settimanali-a-olbia-e-provincia/",
+        "source_html_sha256": "40ee92135eaf00d559640ff95a0414d60b0e50c8595c209de31f168038dc781f",
+        "source_rows": 25
+      },
       "province": "OT",
       "redirects": [
         {
@@ -1254,10 +1269,16 @@
           "observed_on": "2026-10-25",
           "requested_url": "https://www.happings.com/it/mercato-settimanale-a-san-teodoro.html",
           "status_code": 301
+        },
+        {
+          "location_url": "https://www.happings.com/it/mercati-settimanali-a-olbia-e-provincia/",
+          "observed_on": "2026-10-25",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-san-teodoro/",
+          "status_code": 301
         }
       ],
       "region": "sardegna",
-      "status": "redirect_observed"
+      "status": "resolved"
     },
     {
       "attempts": 0,

@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,009**.
-- Orari mancanti: **1,908**.
-- Indirizzi mancanti: **1,182**.
-- Coordinate mancanti: **458**.
-- Date future mancanti: **2,013**.
+- Schede: **14,106**.
+- Orari mancanti: **1,892**.
+- Indirizzi mancanti: **1,181**.
+- Coordinate mancanti: **706**.
+- Date future mancanti: **2,103**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
-- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,405** gruppi, **1,680** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,009**.
+- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,406** gruppi, **1,681** righe in eccesso potenziali.
+- Verifiche umane documentate mancanti: **14,106**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -22,9 +22,10 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Fonte | Schede |
 |---|---:|
 | happings.com | 9,831 |
-| eventiesagre.it | 2,197 |
+| eventiesagre.it | 2,199 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
-| cosedicasa.com | 432 |
+| cosedicasa.com | 433 |
+| Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 |
@@ -32,7 +33,6 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | trentino.com | 9 |
 | emiliaromagnaturismo.it | 8 |
 | eventi.bergamo.it | 8 |
-| umbriaeventi.com | 8 |
 
 ## Regioni
 
@@ -42,22 +42,22 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Basilicata | 36 | 4 | 9 |
 | Calabria | 331 | 37 | 37 |
 | Campania | 824 | 121 | 67 |
-| Emilia-Romagna | 909 | 178 | 100 |
-| Friuli Venezia Giulia | 262 | 37 | 15 |
+| Emilia-Romagna | 910 | 175 | 100 |
+| Friuli Venezia Giulia | 262 | 35 | 15 |
 | Lazio | 1,082 | 106 | 59 |
 | Liguria | 391 | 56 | 51 |
-| Lombardia | 3,990 | 541 | 169 |
-| Marche | 295 | 77 | 43 |
+| Lombardia | 3,991 | 538 | 169 |
+| Marche | 296 | 78 | 43 |
 | Molise | 215 | 15 | 30 |
-| Piemonte | 1,350 | 175 | 175 |
-| Puglia | 484 | 53 | 37 |
+| Piemonte | 1,350 | 173 | 175 |
+| Puglia | 484 | 50 | 37 |
 | Sardegna | 392 | 23 | 30 |
-| Sicilia | 405 | 58 | 39 |
-| Toscana | 969 | 208 | 106 |
-| Trentino-Alto Adige | 230 | 24 | 36 |
-| Umbria | 181 | 38 | 19 |
+| Sicilia | 405 | 57 | 39 |
+| Toscana | 969 | 205 | 106 |
+| Trentino-Alto Adige | 230 | 23 | 36 |
+| Umbria | 181 | 37 | 19 |
 | Valle d'Aosta | 54 | 7 | 6 |
-| Veneto | 1,214 | 124 | 122 |
+| Veneto | 1,308 | 126 | 121 |
 
 ## Località da verificare (campione limitato)
 

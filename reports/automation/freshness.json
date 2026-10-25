@@ -53,24 +53,24 @@
     "date": "2026-10-25",
     "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
     "metrics": {
-      "indirizzo:mancante": 1182,
-      "indirizzo:riscontrato_data_fonte_sconosciuta": 2604,
-      "indirizzo:riscontrato_fonte_recente": 1476,
-      "indirizzo:riscontro_da_aggiornare": 104,
-      "indirizzo:senza_riscontro_documentato": 8643,
-      "markets": 14009,
-      "markets_with_all_three_fields_source_supported": 1025,
-      "markets_with_recent_field_evidence": 1903,
-      "orario_testo:mancante": 1908,
-      "orario_testo:riscontrato_data_fonte_sconosciuta": 6831,
-      "orario_testo:riscontrato_fonte_recente": 1471,
-      "orario_testo:riscontro_da_aggiornare": 277,
-      "orario_testo:senza_riscontro_documentato": 3522,
-      "ricorrenza_testo:mancante": 972,
-      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 1083,
-      "ricorrenza_testo:riscontrato_fonte_recente": 1650,
-      "ricorrenza_testo:riscontro_da_aggiornare": 20,
-      "ricorrenza_testo:senza_riscontro_documentato": 10284
+      "indirizzo:mancante": 1181,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 7485,
+      "indirizzo:riscontrato_fonte_recente": 1663,
+      "indirizzo:riscontro_da_aggiornare": 118,
+      "indirizzo:senza_riscontro_documentato": 3659,
+      "markets": 14106,
+      "markets_with_all_three_fields_source_supported": 1029,
+      "markets_with_recent_field_evidence": 2090,
+      "orario_testo:mancante": 1892,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 7896,
+      "orario_testo:riscontrato_fonte_recente": 1479,
+      "orario_testo:riscontro_da_aggiornare": 559,
+      "orario_testo:senza_riscontro_documentato": 2280,
+      "ricorrenza_testo:mancante": 973,
+      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 8522,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1658,
+      "ricorrenza_testo:riscontro_da_aggiornare": 140,
+      "ricorrenza_testo:senza_riscontro_documentato": 2813
     },
     "publishers": [
       {
@@ -116,6 +116,15 @@
         "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
         "ricorrenza_testo:riscontrato_fonte_recente": 1127,
         "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:riscontrato_fonte_recente": 94,
+        "markets": 94,
+        "markets_with_recent_field_evidence": 94,
+        "orario_testo:mancante": 7,
+        "orario_testo:riscontro_da_aggiornare": 87,
+        "publisher": "Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata",
+        "ricorrenza_testo:riscontro_da_aggiornare": 94
       },
       {
         "indirizzo:senza_riscontro_documentato": 5,
@@ -351,19 +360,23 @@
         "ricorrenza_testo:senza_riscontro_documentato": 3
       },
       {
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 5,
-        "indirizzo:riscontrato_fonte_recente": 88,
-        "indirizzo:riscontro_da_aggiornare": 61,
-        "indirizzo:senza_riscontro_documentato": 278,
-        "markets": 432,
-        "markets_with_recent_field_evidence": 88,
-        "orario_testo:mancante": 330,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 4,
-        "orario_testo:riscontrato_fonte_recente": 21,
-        "orario_testo:riscontro_da_aggiornare": 76,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 6,
+        "indirizzo:riscontrato_fonte_recente": 114,
+        "indirizzo:riscontro_da_aggiornare": 75,
+        "indirizzo:senza_riscontro_documentato": 238,
+        "markets": 433,
+        "markets_with_all_three_fields_source_supported": 4,
+        "markets_with_recent_field_evidence": 114,
+        "orario_testo:mancante": 305,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 5,
+        "orario_testo:riscontrato_fonte_recente": 29,
+        "orario_testo:riscontro_da_aggiornare": 93,
         "orario_testo:senza_riscontro_documentato": 1,
         "publisher": "cosedicasa.com",
-        "ricorrenza_testo:senza_riscontro_documentato": 432
+        "ricorrenza_testo:mancante": 1,
+        "ricorrenza_testo:riscontrato_fonte_recente": 6,
+        "ricorrenza_testo:riscontro_da_aggiornare": 26,
+        "ricorrenza_testo:senza_riscontro_documentato": 400
       },
       {
         "indirizzo:senza_riscontro_documentato": 70,
@@ -399,18 +412,18 @@
       {
         "indirizzo:mancante": 441,
         "indirizzo:riscontrato_data_fonte_sconosciuta": 69,
-        "indirizzo:riscontrato_fonte_recente": 11,
-        "indirizzo:senza_riscontro_documentato": 1676,
-        "markets": 2197,
-        "markets_with_recent_field_evidence": 14,
-        "orario_testo:mancante": 367,
+        "indirizzo:riscontrato_fonte_recente": 14,
+        "indirizzo:senza_riscontro_documentato": 1675,
+        "markets": 2199,
+        "markets_with_recent_field_evidence": 17,
+        "orario_testo:mancante": 369,
         "orario_testo:riscontrato_fonte_recente": 3,
         "orario_testo:riscontro_da_aggiornare": 2,
         "orario_testo:senza_riscontro_documentato": 1825,
         "publisher": "eventiesagre.it",
         "ricorrenza_testo:mancante": 712,
         "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 69,
-        "ricorrenza_testo:riscontrato_fonte_recente": 1,
+        "ricorrenza_testo:riscontrato_fonte_recente": 3,
         "ricorrenza_testo:riscontro_da_aggiornare": 4,
         "ricorrenza_testo:senza_riscontro_documentato": 1411
       },
@@ -472,22 +485,23 @@
         "ricorrenza_testo:mancante": 7
       },
       {
-        "indirizzo:mancante": 625,
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 2530,
-        "indirizzo:riscontrato_fonte_recente": 248,
-        "indirizzo:senza_riscontro_documentato": 6428,
+        "indirizzo:mancante": 624,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 7410,
+        "indirizzo:riscontrato_fonte_recente": 312,
+        "indirizzo:senza_riscontro_documentato": 1485,
         "markets": 9831,
         "markets_with_all_three_fields_source_supported": 239,
-        "markets_with_recent_field_evidence": 671,
+        "markets_with_recent_field_evidence": 735,
         "orario_testo:mancante": 718,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 6827,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 7891,
         "orario_testo:riscontrato_fonte_recente": 661,
-        "orario_testo:senza_riscontro_documentato": 1625,
+        "orario_testo:riscontro_da_aggiornare": 178,
+        "orario_testo:senza_riscontro_documentato": 383,
         "publisher": "happings.com",
         "ricorrenza_testo:mancante": 38,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 1014,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 8453,
         "ricorrenza_testo:riscontrato_fonte_recente": 522,
-        "ricorrenza_testo:senza_riscontro_documentato": 8257
+        "ricorrenza_testo:senza_riscontro_documentato": 818
       },
       {
         "indirizzo:mancante": 2,
@@ -765,24 +779,24 @@
     "verification": "recorded verificato_il values; this report does not authenticate their underlying proof"
   },
   "metrics": {
-    "dataset_updated_not_specific_market": 1251,
-    "forecast_from_stale_or_unknown_source": 10997,
-    "import_within_30d": 184,
+    "dataset_updated_not_specific_market": 1345,
+    "forecast_from_stale_or_unknown_source": 10869,
+    "import_within_30d": 281,
     "legacy_update_timestamp_without_source_date": 12561,
     "recent_dataset_only_update": 1204,
     "source_date_366_to_limit": 1,
-    "source_date_91_to_365d": 7,
-    "source_date_from_declared_source_content": 1265,
+    "source_date_91_to_365d": 101,
+    "source_date_from_declared_source_content": 1359,
     "source_date_outside_limit": 52,
-    "source_date_unknown": 12744,
+    "source_date_unknown": 12747,
     "source_date_within_30d": 1205,
-    "source_read_within_30d": 1366,
-    "total": 14009,
-    "with_any_future_date": 11996,
-    "with_forecast_dates": 11816,
-    "with_import_timestamp": 184,
-    "with_source_read_timestamp": 1366,
-    "without_documented_verification": 14009,
+    "source_read_within_30d": 1463,
+    "total": 14106,
+    "with_any_future_date": 12003,
+    "with_forecast_dates": 11782,
+    "with_import_timestamp": 281,
+    "with_source_read_timestamp": 1463,
+    "without_documented_verification": 14106,
     "without_import_timestamp": 13825,
     "without_source_read_timestamp": 12643
   },
@@ -802,11 +816,11 @@
       "status": "metadata_checked"
     },
     {
-      "last_publisher_data_change": "2022-07-04",
-      "license_comparison": "publisher_claim_missing_review_required",
+      "last_publisher_data_change": null,
+      "license_comparison": "not_evaluated",
       "market_records_verified_by_metadata": 0,
       "publisher": "Roma Capitale",
-      "status": "metadata_checked"
+      "status": "needs_review"
     }
   ],
   "reference_date": "2026-10-25",
@@ -815,12 +829,12 @@
   "snapshot_measurement_not_event_verification": true,
   "source_content_age_states": {
     "future": 0,
-    "historical": 60,
+    "historical": 154,
     "recent": 1205,
-    "unknown": 12744
+    "unknown": 12747
   },
   "source_date_unknown_reasons": {
-    "source_content_date_unproven": 12744
+    "source_content_date_unproven": 12747
   },
   "source_domains_top": [
     {
@@ -828,7 +842,7 @@
       "domain": "www.happings.com"
     },
     {
-      "count": 2197,
+      "count": 2199,
       "domain": "www.eventiesagre.it"
     },
     {
@@ -836,8 +850,12 @@
       "domain": "www.dati.lombardia.it"
     },
     {
-      "count": 432,
+      "count": 433,
       "domain": "www.cosedicasa.com"
+    },
+    {
+      "count": 94,
+      "domain": "www.regione.veneto.it"
     },
     {
       "count": 85,
@@ -866,10 +884,6 @@
     {
       "count": 8,
       "domain": "emiliaromagnaturismo.it"
-    },
-    {
-      "count": 8,
-      "domain": "www.eventi.bergamo.it"
     }
   ],
   "source_refresh": {
@@ -900,7 +914,7 @@
           "unique_source_row_ids": 6
         },
         "read_on": "2026-10-25",
-        "sha256": "73d8fe1df13e1bbf296c155a2774949bb51c48e5a649a5e986be122b234aaf38",
+        "sha256": "e0bb9b0a88c50e7bc6ca3b730a4828757d2fb277a7a89f93b5861db7ba20dfe4",
         "source_id": "bassa-romagna-farmers",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
@@ -928,53 +942,56 @@
           "unique_source_row_ids": 20
         },
         "read_on": "2026-10-25",
-        "sha256": "c8c183b2c453c7aa6147e56f26e30b8b3f9c91cc6ed3a88c743019e1f6359a7c",
+        "sha256": "7adfa40ce28334c4c08ba9096a41cf36d5fc282ea8e1e7131fcf5f36d232fb7d",
         "source_id": "bassa-romagna-weekly",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
       }
     ],
     "source_url_coverage": {
-      "hosts": 72,
+      "hosts": 73,
       "market_dispositions": {
         "citynews_existing_detail": 62,
-        "cosedicasa_existing_detail": 432,
-        "eventiesagre_existing_detail": 2197,
+        "cosedicasa_existing_detail": 433,
+        "eventiesagre_existing_detail": 2199,
         "happings_event_detail": 166,
         "happings_province_index": 9330,
         "happings_source_scope_unproven": 335,
         "official_adapter": 1220,
         "roma_d881_existing_inventory": 70,
-        "source_contract_active": 39,
+        "source_contract_active": 133,
         "source_layout_needed": 158
       },
       "market_layout_statuses": {
-        "supported": 13514,
-        "unsupported": 495
+        "disabled": 62,
+        "supported": 13551,
+        "unsupported": 493
       },
       "market_read_statuses": {
+        "disabled": 62,
+        "not_observed": 2632,
         "not_read": 493,
-        "not_selected": 11073,
-        "retrieved": 1867,
-        "unavailable": 576
+        "not_selected": 8695,
+        "retrieved": 2137,
+        "unavailable": 87
       },
-      "markets": 14009,
+      "markets": 14106,
       "schema": 1,
       "secondary_corroboration": {
         "counts_describe": "comparison_eligibility",
-        "eligible_markets": 632,
+        "eligible_markets": 650,
         "market_read_statuses": {
-          "not_selected": 605,
-          "retrieved": 20,
-          "unavailable": 7
+          "not_selected": 591,
+          "retrieved": 51,
+          "unavailable": 8
         },
         "mode": "existing_address_exact_match",
         "publisher": "happings.com",
-        "unique_source_urls": 82
+        "unique_source_urls": 86
       },
       "source_admission_registry": "valid",
       "source_contract_configuration": "valid",
-      "unique_primary_urls": 5919
+      "unique_primary_urls": 5923
     }
   },
   "source_summaries": [
@@ -1057,6 +1074,23 @@
         "without_source_read_timestamp": 1
       },
       "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)"
+    },
+    {
+      "domain": "www.regione.veneto.it",
+      "metrics": {
+        "dataset_updated_not_specific_market": 94,
+        "import_within_30d": 94,
+        "source_date_91_to_365d": 94,
+        "source_date_from_declared_source_content": 94,
+        "source_read_within_30d": 94,
+        "total": 94,
+        "with_any_future_date": 94,
+        "with_forecast_dates": 94,
+        "with_import_timestamp": 94,
+        "with_source_read_timestamp": 94,
+        "without_documented_verification": 94
+      },
+      "publisher": "Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata"
     },
     {
       "domain": "www.comune.roma.it",
@@ -1455,13 +1489,17 @@
     {
       "domain": "www.cosedicasa.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 229,
+        "forecast_from_stale_or_unknown_source": 191,
+        "import_within_30d": 1,
         "legacy_update_timestamp_without_source_date": 432,
-        "source_date_unknown": 432,
-        "total": 432,
+        "source_date_unknown": 433,
+        "source_read_within_30d": 1,
+        "total": 433,
         "with_any_future_date": 244,
-        "with_forecast_dates": 229,
-        "without_documented_verification": 432,
+        "with_forecast_dates": 191,
+        "with_import_timestamp": 1,
+        "with_source_read_timestamp": 1,
+        "without_documented_verification": 433,
         "without_import_timestamp": 432,
         "without_source_read_timestamp": 432
       },
@@ -1521,13 +1559,17 @@
     {
       "domain": "www.eventiesagre.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 1194,
+        "forecast_from_stale_or_unknown_source": 1086,
+        "import_within_30d": 2,
         "legacy_update_timestamp_without_source_date": 2197,
-        "source_date_unknown": 2197,
-        "total": 2197,
-        "with_any_future_date": 1194,
-        "with_forecast_dates": 1194,
-        "without_documented_verification": 2197,
+        "source_date_unknown": 2199,
+        "source_read_within_30d": 2,
+        "total": 2199,
+        "with_any_future_date": 1089,
+        "with_forecast_dates": 1086,
+        "with_import_timestamp": 2,
+        "with_source_read_timestamp": 2,
+        "without_documented_verification": 2199,
         "without_import_timestamp": 2197,
         "without_source_read_timestamp": 2197
       },
@@ -1638,7 +1680,7 @@
     {
       "domain": "www.happings.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 9544,
+        "forecast_from_stale_or_unknown_source": 9562,
         "import_within_30d": 184,
         "legacy_update_timestamp_without_source_date": 9647,
         "source_date_from_declared_source_content": 1,
@@ -1646,8 +1688,8 @@
         "source_date_within_30d": 1,
         "source_read_within_30d": 184,
         "total": 9831,
-        "with_any_future_date": 9709,
-        "with_forecast_dates": 9544,
+        "with_any_future_date": 9727,
+        "with_forecast_dates": 9562,
         "with_import_timestamp": 184,
         "with_source_read_timestamp": 184,
         "without_documented_verification": 9831,
@@ -2112,6 +2154,7 @@
     "source_content_dates_are_unproven",
     "future_predictions_have_stale_or_missing_source_dates",
     "source_data_older_than_allowed_forecast_window",
+    "publisher_metadata_unavailable_or_changed",
     "publisher_refresh_conflicting_fields"
   ]
 }

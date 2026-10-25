@@ -3,30 +3,31 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14009**
-- Etichette di fonte: **87**
-- Casi nel lotto di lavoro del giorno: **452**
+- ID controllati e conservati: **14106**
+- Etichette di fonte: **88**
+- Casi nel lotto di lavoro del giorno: **456**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **13920**
-- date: **2013**
-- indirizzo: **4850**
-- individual_edition_confirmation: **14009**
-- orario_testo: **1908**
-- ricorrenza_testo: **972**
+- coordinates: **14017**
+- date: **2103**
+- indirizzo: **4844**
+- individual_edition_confirmation: **14106**
+- orario_testo: **1892**
+- ricorrenza_testo: **973**
 
 ## Origini ordinate per numero di schede
 
 | Origine | Schede | Orari | Sedi | Trattamento |
 |---|---:|---:|---:|---|
-| happings.com | 9831 | 718 | 4241 | happings-weekly-or-detail |
-| eventiesagre.it | 2197 | 367 | 485 | eventiesagre-event-index |
+| happings.com | 9831 | 718 | 4235 | happings-weekly-or-detail |
+| eventiesagre.it | 2199 | 369 | 485 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 3 | lombardia-mercap |
-| cosedicasa.com | 432 | 330 | 6 | cosedicasa-editorial-calendar |
+| cosedicasa.com | 433 | 305 | 6 | cosedicasa-editorial-calendar |
+| Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | source-family-not-resolved-by-this-worklist |
@@ -114,14 +115,14 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 ## Riscontri ufficiali per singola scheda
 
 - city_weekday_only_unconfirmed_venue: 47
-- coordinates_disagree: 20
+- coordinates_disagree: 19
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 14
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 12799
+- no_usable_source_match: 12895
 - review_only_field_candidates: 49
 - same_source_id: 789
-- unique_city_province_street_weekday: 374
+- unique_city_province_street_weekday: 375
 
 ## Stato operativo Happings
 

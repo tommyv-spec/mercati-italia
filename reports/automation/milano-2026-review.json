@@ -104,6 +104,459 @@
     "pdf_weekday_rows": 87,
     "schema": 1
   },
+  "happings_detail_admission_certificate": {
+    "admissions": [
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
+              "calendar_scope": "edition_bounds",
+              "conditions": [],
+              "date_intervals": [],
+              "edition_intervals": [
+                {
+                  "end": "2026-10-28",
+                  "start": "2026-10-28"
+                }
+              ],
+              "forecast_rule": {
+                "kind": "weekly",
+                "weekdays": [
+                  2
+                ]
+              },
+              "hours_intervals": [],
+              "hours_text": "",
+              "location": {
+                "address": "Piazza Sandro Pertini",
+                "city": "Voghiera",
+                "province": "FE",
+                "region": "Emilia Romagna"
+              },
+              "name": "Mercato Settimanale Di Voghiera",
+              "occurrences": [
+                {
+                  "date": "2026-10-28",
+                  "end_time": null,
+                  "evidence": [
+                    "visible event card Dal/Al"
+                  ],
+                  "start_time": null,
+                  "status": "source_listed"
+                }
+              ],
+              "recurrence_text": "Mercoledì tutto l'anno",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": []
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "#schedaEvento Dal/Al and #eventopassato"
+              },
+              "hours": {
+                "selector": "#contenuto > h3; scoped Orario blocks"
+              },
+              "identity": {
+                "selector": "#schedaEvento Numero Evento; #contenuto > h1",
+                "value": "21185675"
+              },
+              "location": {
+                "selector": "#schedaEvento .SX; scoped Luogo/Indirizzo blocks"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 49000,
+              "canonical_url": null,
+              "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185675_Mercato+Settimanale+Di+Voghiera.html",
+              "hash_basis": "http_response_bytes",
+              "html_sha256": "c27a8fddd63aa0355b18ca4264558ff732a5a46291469e903d83c4ecbca09b2c",
+              "modified_at": "2026-09-02",
+              "published_at": null,
+              "publisher": "eventiesagre.it",
+              "redirect_observed": false,
+              "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185675_Mercato+Settimanale+Di+Voghiera.html",
+              "source_id": "21185675"
+            },
+            "status": "parsed",
+            "warnings": []
+          },
+          "read_on": "2026-10-25"
+        },
+        "market_id": "mercato-settimanale-di-voghiera-voghiera",
+        "source_page": {
+          "bytes": 49000,
+          "canonical_url": null,
+          "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185675_Mercato+Settimanale+Di+Voghiera.html",
+          "hash_basis": "http_response_bytes",
+          "html_sha256": "c27a8fddd63aa0355b18ca4264558ff732a5a46291469e903d83c4ecbca09b2c",
+          "modified_at": "2026-09-02",
+          "published_at": null,
+          "publisher": "eventiesagre.it",
+          "read_on": "2026-10-25",
+          "redirect_observed": false,
+          "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185675_Mercato+Settimanale+Di+Voghiera.html",
+          "source_id": "21185675",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
+              "calendar_scope": "edition_bounds",
+              "conditions": [],
+              "date_intervals": [],
+              "edition_intervals": [
+                {
+                  "end": "2026-10-29",
+                  "start": "2026-10-29"
+                }
+              ],
+              "forecast_rule": {
+                "kind": "weekly",
+                "weekdays": [
+                  3
+                ]
+              },
+              "hours_intervals": [],
+              "hours_text": "",
+              "location": {
+                "address": "Piazza Mattei",
+                "city": "Acqualagna",
+                "province": "PU",
+                "region": "Marche"
+              },
+              "name": "Mercato Settimanale Di Acqualagna",
+              "occurrences": [
+                {
+                  "date": "2026-10-29",
+                  "end_time": null,
+                  "evidence": [
+                    "visible event card Dal/Al"
+                  ],
+                  "start_time": null,
+                  "status": "source_listed"
+                }
+              ],
+              "recurrence_text": "Giovedì tutto l'anno",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": []
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "#schedaEvento Dal/Al and #eventopassato"
+              },
+              "hours": {
+                "selector": "#contenuto > h3; scoped Orario blocks"
+              },
+              "identity": {
+                "selector": "#schedaEvento Numero Evento; #contenuto > h1",
+                "value": "21184771"
+              },
+              "location": {
+                "selector": "#schedaEvento .SX; scoped Luogo/Indirizzo blocks"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 48455,
+              "canonical_url": null,
+              "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21184771_Mercato+Settimanale+Di+Acqualagna.html",
+              "hash_basis": "http_response_bytes",
+              "html_sha256": "bc7eba671b35ad8b68070206cc44231f789684073df4094f7563cc87970f88ab",
+              "modified_at": "2026-07-20",
+              "published_at": null,
+              "publisher": "eventiesagre.it",
+              "redirect_observed": false,
+              "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21184771_Mercato+Settimanale+Di+Acqualagna.html",
+              "source_id": "21184771"
+            },
+            "status": "parsed",
+            "warnings": []
+          },
+          "read_on": "2026-10-25"
+        },
+        "market_id": "mercato-settimanale-di-acqualagna-acqualagna",
+        "source_page": {
+          "bytes": 48455,
+          "canonical_url": null,
+          "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21184771_Mercato+Settimanale+Di+Acqualagna.html",
+          "hash_basis": "http_response_bytes",
+          "html_sha256": "bc7eba671b35ad8b68070206cc44231f789684073df4094f7563cc87970f88ab",
+          "modified_at": "2026-07-20",
+          "published_at": null,
+          "publisher": "eventiesagre.it",
+          "read_on": "2026-10-25",
+          "redirect_observed": false,
+          "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21184771_Mercato+Settimanale+Di+Acqualagna.html",
+          "source_id": "21184771",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-times"
+                  ],
+                  "excluded_months": [],
+                  "included_months": [],
+                  "kind": "monthly_ordinal",
+                  "ordinal": 3,
+                  "relative_day_offsets": [
+                    0
+                  ],
+                  "weekday": 5
+                }
+              ],
+              "calendar_scope": "explicit_visible_list",
+              "conditions": [],
+              "date_intervals": [],
+              "edition_intervals": [
+                {
+                  "end": "2026-11-07",
+                  "start": "2026-11-07"
+                }
+              ],
+              "forecast_rule": null,
+              "hours_intervals": [
+                {
+                  "end": "19:00",
+                  "start": "08:00"
+                }
+              ],
+              "hours_text": "08:00–19:00; Il mercatino di artigianato artistico, ingegno creativo, vintage, riciclo e collezionismo si svolge davanti alla Basilica di Sant'Eustorgio il primo, secondo e terzo sabato del mese, dalle ore 8 alle 19.",
+              "location": {
+                "address": "piazza Sant'Eustorgio",
+                "city": "Milano",
+                "province": "MI",
+                "region": "Lombardia"
+              },
+              "name": "Mercatino antiquariato e usato di Milano, piazza Sant'Eustorgio",
+              "observed_location": {
+                "address": "piazza Sant'Eustorgio",
+                "city": "Milano",
+                "province": "Milano",
+                "region": "Lombardia"
+              },
+              "occurrences": [
+                {
+                  "date": "2026-11-07",
+                  "end_time": null,
+                  "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Prossime date"
+                  ],
+                  "start_time": null,
+                  "status": "source_listed"
+                }
+              ],
+              "recurrence_text": "Primo, secondo, terzo, quarto sabato del mese",
+              "scope_statements": [
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-times"
+                  ],
+                  "kind": "hours_qualification",
+                  "text": "Il mercatino di artigianato artistico, ingegno creativo, vintage, riciclo e collezionismo si svolge davanti alla Basilica di Sant'Eustorgio il primo, secondo e terzo sabato del mese, dalle ore 8 alle 19."
+                }
+              ],
+              "source_rows": [
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-content-title"
+                  ],
+                  "field": "location.city",
+                  "value": "Milano"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-address"
+                  ],
+                  "field": "location.address",
+                  "value": "piazza Sant'Eustorgio"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-region"
+                  ],
+                  "field": "location.region",
+                  "value": "Lombardia"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-performer"
+                  ],
+                  "field": "organizer",
+                  "value": "Associazione Mercatini&Curiosità"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-phone"
+                  ],
+                  "field": "phone",
+                  "value": "335/297842; 346/6409936"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-contacts"
+                  ],
+                  "field": "contacts",
+                  "value": "info@mercatiniecuriosita.com"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-website"
+                  ],
+                  "field": "website",
+                  "value": "www.mercatiniecuriosita.com"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-expo"
+                  ],
+                  "field": "exhibitors",
+                  "value": "20"
+                },
+                {
+                  "evidence": [
+                    "self Event.location.geo"
+                  ],
+                  "field": "publisher_geo",
+                  "value": {
+                    "latitude": "45.453682",
+                    "longitude": "9.180710",
+                    "precision": "publisher_point_unverified"
+                  }
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-date-big:row[1]"
+                  ],
+                  "field": "recurrence_text",
+                  "value": "Primo, secondo, terzo, quarto sabato del mese"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Prossime date"
+                  ],
+                  "field": "next_dates",
+                  "value": "7 novembre 2026"
+                }
+              ],
+              "suspensions": []
+            },
+            "field_evidence": {
+              "calendar": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ],
+              "contacts": [
+                "#post-content .mercatini-mostre-contacts"
+              ],
+              "exhibitors": [
+                "#post-content .mercatini-mostre-expo"
+              ],
+              "hours_text": [
+                "#post-content .mercatini-mostre-times: main market schedule"
+              ],
+              "location.address": [
+                "#post-content .mercatini-mostre-address",
+                "self Event.location.address"
+              ],
+              "location.city": [
+                "#post-content .mercatini-mostre-content-title",
+                "self Event.location.address"
+              ],
+              "location.province": [
+                "self Event.location.address"
+              ],
+              "location.region": [
+                "#post-content .mercatini-mostre-region",
+                "self Event.location.address"
+              ],
+              "name": [
+                "#content h1"
+              ],
+              "next_dates": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ],
+              "organizer": [
+                "#post-content .mercatini-mostre-performer"
+              ],
+              "phone": [
+                "#post-content .mercatini-mostre-phone"
+              ],
+              "publisher_geo": [
+                "self Event.location.geo"
+              ],
+              "recurrence_text": [
+                "#post-content .mercatini-mostre-date-big:row[1]"
+              ],
+              "website": [
+                "#post-content .mercatini-mostre-website"
+              ]
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 616336,
+              "canonical_url": "https://www.cosedicasa.com/mercatini/milano-piazza-santeustorgio-mercatino-artigianato-ingegno",
+              "final_url": "https://www.cosedicasa.com/mercatini/milano-piazza-santeustorgio-mercatino-artigianato-ingegno",
+              "hash_basis": "http_response_bytes",
+              "html_sha256": "d6d68752e90e661b4bbbf650f86373c73eb0da051326c040c4a27db86e741a12",
+              "modified_at": "2026-10-23T14:13:49+00:00",
+              "published_at": null,
+              "publisher": "cosedicasa.com",
+              "redirect_observed": false,
+              "requested_url": "https://www.cosedicasa.com/mercatini/milano-piazza-santeustorgio-mercatino-artigianato-ingegno",
+              "source_id": "milano-piazza-santeustorgio-mercatino-artigianato-ingegno"
+            },
+            "status": "parsed",
+            "warnings": [
+              "auxiliary_activity_hours_not_market_hours",
+              "schema_date_is_read_day"
+            ]
+          },
+          "read_on": "2026-10-25"
+        },
+        "market_id": "mercatino-antiquariato-e-usato-di-milano-piazza-sant-eustorgio-milano",
+        "source_page": {
+          "bytes": 616336,
+          "canonical_url": "https://www.cosedicasa.com/mercatini/milano-piazza-santeustorgio-mercatino-artigianato-ingegno",
+          "final_url": "https://www.cosedicasa.com/mercatini/milano-piazza-santeustorgio-mercatino-artigianato-ingegno",
+          "hash_basis": "http_response_bytes",
+          "html_sha256": "d6d68752e90e661b4bbbf650f86373c73eb0da051326c040c4a27db86e741a12",
+          "modified_at": "2026-10-23T14:13:49+00:00",
+          "published_at": null,
+          "publisher": "cosedicasa.com",
+          "read_on": "2026-10-25",
+          "redirect_observed": false,
+          "requested_url": "https://www.cosedicasa.com/mercatini/milano-piazza-santeustorgio-mercatino-artigianato-ingegno",
+          "source_id": "milano-piazza-santeustorgio-mercatino-artigianato-ingegno",
+          "status": "parsed"
+        }
+      }
+    ],
+    "date": "2026-10-25",
+    "max_new": 3,
+    "publisher": "later-sources",
+    "schema": 1
+  },
   "modified_ids": [],
   "primary_sources_changed": 0,
   "publisher_report_date": "2026-10-01",
