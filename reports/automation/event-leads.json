@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14008,
-  "baseline_market_records": 14008,
+  "baseline_market_ids_preserved": 14009,
+  "baseline_market_records": 14009,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -9,9 +9,9 @@
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
       "leads_found": 3,
-      "not_matching_market_scope": 123,
+      "not_matching_market_scope": 120,
       "requests": 1,
-      "rows_examined": 126,
+      "rows_examined": 123,
       "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
       "state": "discovery_leads_only"
     },
@@ -32,7 +32,7 @@
       "event_confirmations": 0,
       "id": "eventiesagre-index",
       "indexes_read": 2,
-      "links_only": 2,
+      "links_only": 13,
       "publisher_events_verified": 0,
       "requests": 3,
       "state": "discovery_leads_only"
@@ -45,10 +45,10 @@
       "catalog_import_allowed": false,
       "city": "Firenze",
       "end": "2026-10-25",
-      "first_seen": "2026-10-24",
-      "id": "firenze-feelflorence:98",
+      "first_seen": "2026-10-25",
+      "id": "firenze-feelflorence:95",
       "kind": "market_candidate",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-10-25",
       "opening_confirmed": false,
       "possible_existing_market_ids": [
         "il-mercatino-da-forte-dei-marmi-a-firenze-firenze"
@@ -57,6 +57,199 @@
       "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
       "start": "2026-10-25",
       "status": "source_lead_unverified",
+      "title": "Mercato del Forte dei Marmi a Firenze"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-10-25",
+      "first_seen": "2026-10-25",
+      "id": "firenze-feelflorence:113",
+      "kind": "antique_vintage_market_candidate",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercatino-dei-fumetti-del-disco-e-del-vintage",
+      "start": "2026-10-24",
+      "status": "source_lead_unverified",
+      "title": "Mercatino dei fumetti, del disco e del vintage"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-10-25",
+      "first_seen": "2026-10-19",
+      "id": "firenze-feelflorence:112",
+      "kind": "fair_review",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [
+        "mercatino-antiquariato-e-usato-di-firenze-santo-spirito-in-fiera-piazza-santo-sp"
+      ],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/santo-spirito-fiera",
+      "start": "2026-10-25",
+      "status": "source_lead_unverified",
+      "title": "Santo Spirito in Fiera"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21194396",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21194396_Mostra+Scambio+Collezionismo+Sportivo+Figurine+Fumetti+Manifesti+Pubblicitari+E+Vinili.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21194144",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21194144_Mostra+Scambio+Giocattoli+E+Modellismo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21191687",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191687_Il+Mercatino+Delle+Pulci+A+Bussana+Di+Sanremo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21191654",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21191654_Il+Mercatino+Del+Collezionismo+E+Delle+Cose+Vecchie+A+Saronno.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21180666",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21180666_Il+Sogno+Antico+A+Voghera.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21180064",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21180064_Mercatino+a+Pomponesco+Mn.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21163878",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21163878_Riciclo+Recupero+Riuso.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21157996",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21157996_Mercatino+Del+Riuso+A+San+Martino+Dall+argine.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21108484",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21108484_Mercatino+Filatelico+E+Numismatico.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21106864",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21106864_Remember+Vintage.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21079886",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21079886_Antiquariato+E+Collezionismo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21075404",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21075404_Mercatino+Dell+antiquariato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21044727",
+      "last_seen": "2026-10-25",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21044727_Mercatino+Del+Riciclo+E+Riutilizzo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "id": "firenze-feelflorence:98",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-24",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
+      "start": "2026-10-25",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercato del Forte dei Marmi a Firenze"
     },
     {
@@ -72,7 +265,7 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercatino-dei-fumetti-del-disco-e-del-vintage",
       "start": "2026-10-24",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercatino dei fumetti, del disco e del vintage"
     },
     {
@@ -84,13 +277,11 @@
       "kind": "fair_review",
       "last_seen": "2026-10-24",
       "opening_confirmed": false,
-      "possible_existing_market_ids": [
-        "mercatino-antiquariato-e-usato-di-firenze-santo-spirito-in-fiera-piazza-santo-sp"
-      ],
+      "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/santo-spirito-fiera",
       "start": "2026-10-25",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Santo Spirito in Fiera"
     },
     {
@@ -102,7 +293,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21174403_La+Fiera+Del+Disco+A+Salerno.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -113,7 +304,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21060752_Mercatino+dell+Artigianato.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -260,22 +451,6 @@
       "id": "firenze-feelflorence:109",
       "kind": "market_candidate",
       "last_seen": "2026-10-20",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "firenze-feelflorence",
-      "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
-      "start": "2026-10-25",
-      "status": "not_seen_again_not_a_market_closure",
-      "title": "Mercato del Forte dei Marmi a Firenze"
-    },
-    {
-      "catalog_import_allowed": false,
-      "city": "Firenze",
-      "end": "2026-10-25",
-      "first_seen": "2026-10-19",
-      "id": "firenze-feelflorence:112",
-      "kind": "market_candidate",
-      "last_seen": "2026-10-19",
       "opening_confirmed": false,
       "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
@@ -559,11 +734,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 2,
+  "new_external_url_pointers": 13,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-24",
+  "reference_date": "2026-10-25",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
