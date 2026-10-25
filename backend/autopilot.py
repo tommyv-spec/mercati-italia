@@ -75,6 +75,7 @@ import source_bologna
 import source_corciano
 from corciano_overlap import review as review_corciano_overlaps, markdown as corciano_overlap_markdown
 from official_enrichment import enrich as enrich_official_records, markdown as official_enrichment_markdown
+import atomic_write
 from happings_autopilot import (
     run as enrich_happings_records, validate_policy as validate_happings_policy,
     verify_exported as verify_happings_exported,
@@ -134,7 +135,7 @@ def save_json(path: Path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    tmp.replace(path)
+    atomic_write.replace(tmp, path)
 
 
 def read_json(path: Path):

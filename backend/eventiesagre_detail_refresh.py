@@ -36,6 +36,7 @@ from field_evidence import (
     managed_update_allowed, mark_managed_fields, retire_superseded_receipts,
 )
 from recurrence_refresh import explicit_rule
+import atomic_write
 
 PUBLISHER = "eventiesagre.it"
 MANAGER = "eventiesagre_detail"
@@ -106,7 +107,7 @@ def _write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n", "utf-8")
-    temporary.replace(path)
+    atomic_write.replace(temporary, path)
 
 
 def catalog_urls(rows, *, publisher=PUBLISHER):

@@ -29,6 +29,7 @@ from citynews_detail_enrichment import (
 from citynews_urls import source_identity
 from citynews_transport import fetch as _http, valid_url as _valid_transport_url
 from field_evidence import as_day, fingerprint
+import atomic_write
 
 PUBLISHER = "citynews"
 STATE_FILENAME = "citynews-detail-state.json"
@@ -66,7 +67,7 @@ def _write(path, value):
     path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, sort_keys=True, ensure_ascii=False) + "\n", "utf-8")
-    temporary.replace(path)
+    atomic_write.replace(temporary, path)
 
 
 def _resource(today):

@@ -30,6 +30,7 @@ from publisher_snapshot_date import (
     MAX_METADATA_BYTES, make_snapshot_date_proof, resolve_source_date, validate_strategy,
 )
 from reviewed_city_evidence import NAVIGATION_HOLD
+import atomic_write
 
 MAX_APPROVALS = 8
 MAX_NEW_PER_RUN = 250
@@ -39,7 +40,7 @@ def _atomic_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True), encoding="utf-8")
-    temporary.replace(path)
+    atomic_write.replace(temporary, path)
 
 
 def _cache_context(source_cache, config, registry, existing, today, resume):

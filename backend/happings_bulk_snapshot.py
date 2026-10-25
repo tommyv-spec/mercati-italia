@@ -33,6 +33,7 @@ import happings_detail_enrichment
 import happings_province_directory as province
 import happings_source_enrichment as weekly
 import happings_weekly_layout
+import atomic_write
 
 SCHEMA = 1
 MAX_QUEUE = 50_000
@@ -46,7 +47,7 @@ def write_json(path, data):
     tmp = path.with_suffix(path.suffix + ".part")
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True,
                               default=str) + "\n", encoding="utf-8")
-    tmp.replace(path)
+    atomic_write.replace(tmp, path)
 
 
 def utc_now():
@@ -283,7 +284,7 @@ def _run_unlocked(out, *, max_pages=0, weekly_only=False, provinces=None):
         target = path.with_name(path.name + ".part")
         target.write_bytes(gzip.compress((json.dumps(result, ensure_ascii=False,
                               sort_keys=True, default=str)+"\n").encode("utf-8")))
-        target.replace(path)
+        atomic_write.replace(target, path)
         status["done"][url] = {"status": result["status"],
                                "kind": result.get("kind", "unknown"),
                                "facts_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),

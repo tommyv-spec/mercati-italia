@@ -32,6 +32,7 @@ from field_evidence import (FIELDS, as_day, clean_receipts, fingerprint, identit
 from official_enrichment import explicit_annual_weekday
 from recurrence_refresh import explicit_rule, text_key
 from publisher_page_parser import parse_page
+import atomic_write
 
 MANAGER = "publisher_refresh"
 MAX_PAGES = 12
@@ -742,7 +743,7 @@ def _write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temp = path.with_suffix(".tmp")
     temp.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n", "utf-8")
-    temp.replace(path)
+    atomic_write.replace(temp, path)
 
 
 def _page(snapshot, profile, today):

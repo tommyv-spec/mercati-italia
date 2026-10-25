@@ -21,6 +21,7 @@ from urllib.error import HTTPError
 
 import happings_detail_discovery as discovery
 import happings_source_enrichment as weekly
+import atomic_write
 
 SCHEMA = 1
 STATE_FILENAME = "happings-discovery.json"
@@ -56,7 +57,7 @@ def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n", "utf-8")
-    temporary.replace(path)
+    atomic_write.replace(temporary, path)
 
 
 def load_state(path, *, today, bootstrap=BOOTSTRAP):

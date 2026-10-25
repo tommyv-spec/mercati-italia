@@ -16,6 +16,7 @@ from pathlib import Path
 
 import happings_bulk_snapshot as bulk
 import happings_source_enrichment as weekly
+import atomic_write
 
 MAX_ATTEMPTS = 3
 FAILED = {"unavailable", "unassessed"}
@@ -69,7 +70,7 @@ def _retry_unlocked(snapshot, *, max_attempts=MAX_ATTEMPTS, robots=None,
                  sort_keys=True,default=str)+"\n").encode("utf-8"))
         target=path.with_name(path.name+".part")
         target.write_bytes(packed)
-        target.replace(path)
+        atomic_write.replace(target, path)
         earlier=done[url]
         done[url]={"status":fact["status"],"kind":fact.get("kind",earlier.get("kind","unknown")),
                    "facts_sha256":hashlib.sha256(packed).hexdigest(),

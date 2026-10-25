@@ -20,6 +20,7 @@ import citynews_detail_enrichment as citynews_evidence
 import roma_d881_enrichment as roma
 import source_roma_d881 as roma_source
 from field_evidence import fingerprint
+import atomic_write
 
 SCHEMA = 1
 EDITORIAL_SECONDS = 360
@@ -56,7 +57,7 @@ def _write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n", "utf-8")
-    temporary.replace(path)
+    atomic_write.replace(temporary, path)
 
 
 def _read_state(path, *, publisher, today):

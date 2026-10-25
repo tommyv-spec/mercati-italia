@@ -20,6 +20,7 @@ from pathlib import Path
 
 import happings_bulk_snapshot as bulk
 import happings_source_enrichment as weekly
+import atomic_write
 
 MAX_PAGES_PER_RUN = 150
 MAX_DAYS_BETWEEN_DISCOVERY = 14
@@ -137,7 +138,7 @@ def _store(snapshot, url, result, prior):
     path.parent.mkdir(parents=True,exist_ok=True)
     temp=path.with_name(path.name+".part")
     temp.write_bytes(packed)
-    temp.replace(path)
+    atomic_write.replace(temp, path)
     return {
         "status":result["status"],"kind":result.get("kind",prior.get("kind","unknown") if prior else "unknown"),
         "facts_sha256":hashlib.sha256(packed).hexdigest(),
