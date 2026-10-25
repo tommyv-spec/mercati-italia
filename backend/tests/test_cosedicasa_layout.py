@@ -2,6 +2,7 @@ import hashlib
 import json
 import re
 import unittest
+from datetime import date
 from pathlib import Path
 
 from cosedicasa_layout import MAX_BYTES, parse_detail, source_url
@@ -65,6 +66,22 @@ class CoseDiCasaLayoutTests(unittest.TestCase):
         self.assertIn("ordinal_saturday_differs_preceding_saturday", {c["code"] for c in parsed["conflicts"]})
         self.assertFalse(parsed["event"]["calendar_complete"])
         self.assertEqual(parsed["event"]["occurrences"], [])
+
+    def test_schema_date_stamped_with_the_read_day_is_not_a_calendar_conflict(self):
+        sample = SAMPLES["todi"]
+        read = lambda day: parse_detail(html("todi"), requested_url=sample["requested_url"],
+                                        final_url=sample["final_url"], read_on=day)
+        for day in (date(2026, 10, 20), date(2026, 10, 21)):
+            parsed = read(day)
+            self.assertEqual(parsed["status"], "parsed")
+            self.assertEqual(parsed["conflicts"], [])
+            self.assertIn("schema_date_is_read_day", parsed["warnings"])
+            self.assertEqual([o["date"] for o in parsed["event"]["occurrences"]], ["2027-03-21"])
+        codes = {c["code"] for c in read(date(2026, 10, 25))["conflicts"]}
+        self.assertIn("schema_dates_not_visible_calendar", codes)
+        bologna = parse_detail(html("bologna"), requested_url=SAMPLES["bologna"]["requested_url"],
+                               read_on=date(2026, 10, 20))
+        self.assertEqual({c["code"] for c in bologna["conflicts"]}, {"ordinal_saturday_differs_preceding_saturday"})
 
     def test_next_date_row_is_not_a_suspension_despite_shared_css_class(self):
         event = parse("bologna")["event"]

@@ -267,8 +267,12 @@ def _date_rows(node):
     return rows
 
 
-def parse_detail(html, *, requested_url, final_url=None):
-    """Return field-scoped facts; callers add the observed acquisition time."""
+def parse_detail(html, *, requested_url, final_url=None, read_on=None):
+    """Return field-scoped facts; callers add the observed acquisition time.
+
+    read_on (a date) is the day the page was fetched: the site stamps the day it
+    serves the page as Event.startDate, which is not an edition of the market.
+    """
     if not source_url(requested_url) or final_url is not None and not source_url(final_url):
         raise ValueError("Unreviewed Cose di Casa source URL")
     if not isinstance(html, (str, bytes)):
@@ -549,7 +553,12 @@ def parse_detail(html, *, requested_url, final_url=None):
     elif event["calendar_rules"]:
         event["calendar_scope"] = "recurring_statement_only"
     schema_start, schema_end = _iso_day(schema.get("startDate")), _iso_day(schema.get("endDate"))
-    if schema_start and schema_end:
+    served_day = bool(read_on and schema_start and schema_start == schema_end
+                      and (schema_start, schema_end) not in pairs
+                      and abs((date.fromisoformat(schema_start) - read_on).days) <= 1)
+    if served_day:
+        warnings.append("schema_date_is_read_day")
+    elif schema_start and schema_end:
         record("schema_edition", {"start": schema_start, "end": schema_end}, "self Event.startDate/endDate")
         if pairs and (schema_start, schema_end) not in pairs:
             conflict("calendar", "schema_dates_not_visible_calendar", [schema_start, schema_end])

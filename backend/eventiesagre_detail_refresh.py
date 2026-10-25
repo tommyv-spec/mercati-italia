@@ -316,7 +316,7 @@ def parse_document(blob, *, requested_url, final_url=None, today):
         raise ValueError("Editorial redirect changed the numeric source identity")
     if expected[0] == "cosedicasa.com":
         from cosedicasa_layout import parse_detail
-        document = parse_detail(blob, requested_url=requested_url, final_url=final_url)
+        document = parse_detail(blob, requested_url=requested_url, final_url=final_url, read_on=today)
         if document["status"] == "unsupported":
             raise ValueError("Cose di Casa detail layout changed")
         source = document["source"]
