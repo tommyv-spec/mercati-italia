@@ -16,9 +16,9 @@ Status: ⬜ to do · 🔧 building · ✅ live on DEV
 | B | Weekly proofs | Each Happings weekly read restates, for every listed market, what the page still says (weekday, place, time of day). | ✅ |
 | C | Duplicate finder | Identical records of one source, and the same town + street + weekday listed by two sources, are merged (hidden, IDs kept). | ✅ (366 + 170 copies) |
 | D | Shared Italian reader | One reader for recurrences used by all sources: "4° domenica", "2^ domenica di ogni mese", "tutti i venerdì". Saved page text is re-read with the current reader on every run, so fixes repair old evidence. | ✅ |
-| E | Position resolver | Placeholder city-centre points are rejected; real streets are looked up once on OpenStreetMap and kept. | 🔧 |
-| F | Source contracts | New sources are described, not coded: PDF tables, map files, many towns per file (Veneto calendar first). | 🔧 |
-| G | Discovery and re-reading | All 107 Happings pages in the daily rotation ✅. eventiesagre/cosedicasa re-read ~3× faster, and a page that states the same recurrence keeps dates renewing ✅. New markets from sitemaps and listing pages ⬜. | 🔧 |
+| E | Position resolver | Placeholder city-centre points are rejected; real streets are looked up once on OpenStreetMap and kept. First run: 576 markets got a street-level point, 676 fake points removed (pilot 97/97 verified). | ✅ |
+| F | Source contracts | New sources are described, not coded: PDF tables, many towns per file, Italian hours, yearly file found automatically. Veneto calendar live: 179 markets filled, 94 new (Verona pilot 46/46). Next: Liguria map, Veneto antiques. | ✅ |
+| G | Discovery and re-reading | All 107 Happings pages in the daily rotation ✅. eventiesagre/cosedicasa re-read ~3× faster, and a page that states the same recurrence keeps dates renewing ✅. New markets from sitemaps and listing pages ✅ (first run: 96 candidates, 3 admitted, the rest held). | ✅ |
 | H | Lifecycle rule | No upcoming date, no usable recurrence, and an edition shown as over or a source unread for 90 days → hidden as "no longer scheduled" (1,152 now); links still open it; it comes back when its source shows dates again. | ✅ |
 | I | Robust saving | All file saves retry when Windows briefly locks a file. Checks compare like with like (today's exporter on both sides). | ✅ |
 | — | Compliance | Citynews forbids automated reading: reading stopped. | ✅ |
