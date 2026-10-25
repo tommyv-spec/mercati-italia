@@ -265,6 +265,25 @@ class HappingsDetailDiscoveryTests(unittest.TestCase):
         self.assertEqual(discovery.next_requests(state, today=later, limit=9), selected)
         self.assertTrue(all(state["resources"][url]["status"] != "fetching" for url in selected))
 
+    def test_market_rereads_lead_once_only_non_market_pages_remain_unread(self):
+        listed = [ROOT + f"/it/happing/mercato-in-app-{i}/" for i in range(12)]
+        candidates = [ROOT + f"/it/happing/mercato-da-ammettere-{i}/" for i in range(6)]
+        state, _ = discovery.ingest_pages(discovery.empty_state(),
+            [page(MAP, sitemap(listed + candidates))], observed_at=TODAY)
+        state = discovery.seed_state(state, catalog_rows=[{"url_fonte": u} for u in listed], observed_at=TODAY)
+        later = TODAY + timedelta(days=7)
+        for url in listed + candidates:
+            state["resources"][url].update(
+                last_attempt=TODAY.isoformat(), last_success=TODAY.isoformat(),
+                last_success_at=STAMP, last_sha256=hashlib.sha256(HTML).hexdigest(),
+                attempts=1, status="retrieved", next_due=later.isoformat())
+        concerts = [ROOT + f"/it/happing/concerto-mai-letto-{i}/" for i in range(40)]
+        state, _ = discovery.ingest_pages(state, [page(MAP, sitemap(concerts))], observed_at=later)
+        selected = discovery.next_requests(state, today=later, limit=9)
+        # No market-like page is unread: rereads get most slots, admission candidates first.
+        self.assertEqual(len(set(selected) & set(concerts)), 2)
+        self.assertEqual(set(candidates) - set(selected), set())
+
     def test_elapsed_limit_before_delay_preserves_unread_frontier(self):
         state = discovery.seed_state(seed_urls=[PISA], observed_at=TODAY)
         fetch, pause = Mock(), Mock()

@@ -17,6 +17,7 @@ import re
 import unicodedata
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
+from html import unescape as html_unescape
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
 from happings_detail_urls import detail_url as valid_detail_url
@@ -59,7 +60,9 @@ def _clean(value):
 
 
 def _key(value):
-    value = unicodedata.normalize("NFKD", _clean(value).casefold())
+    # The page's JSON-LD keeps HTML codes ("&#8211;", "&amp;") that its visible
+    # text shows decoded; compare the decoded text, or every such title "differs".
+    value = unicodedata.normalize("NFKD", _clean(html_unescape(str(value or ""))).casefold())
     return " ".join(re.findall(r"[a-z0-9]+", "".join(
         c for c in value if not unicodedata.combining(c))))
 

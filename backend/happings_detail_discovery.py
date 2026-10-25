@@ -37,7 +37,7 @@ HOMEPAGE = "https://www.happings.com/it/"
 ARCHIVE_PATH = re.compile(r"/it/categoria-evento/[a-z0-9-]{1,100}/(?:page/[1-9][0-9]{0,3}/)?$")
 ARCHIVE_MARKET = re.compile(r"mercat|antiquar|antichit|vintage|brocant|usato|pulci", re.I)
 SITEMAP_PATH = re.compile(r"(?:/it/sitemap_index|/happings_event-sitemap\d*)\.xml$")
-MARKET_SLUG = re.compile(r"mercat|antiquar|antichit|vintage|brocant|usato|pulci", re.I)
+MARKET_SLUG = re.compile(r"mercat|antiquar|antichit|vintage|brocant|usato|pulci|markt|campagna-amica", re.I)
 SHA256 = re.compile(r"[0-9a-f]{64}$")
 ORIGIN_KINDS = {"catalog_url", "explicit_seed", "homepage_seed", "robots_sitemap", "sitemap_loc", "html_link"}
 STATUSES = {"unread", "fetching", "retrieved", "unavailable", "robots_denied"}
@@ -398,7 +398,9 @@ def next_requests(state, *, today, limit, sitemap_quota=2, navigation_quota=3):
     unseen = sorted([pair for pair in details if pair[1]["last_success"] is None], key=priority)
     unseen_oldest = sorted(unseen, key=key)
     refresh = [pair for pair in details if pair[1]["last_success"] is not None]
-    primary_refresh = sorted([pair for pair in refresh if priority(pair)[0] < 2], key=key)
+    # Market pages not yet in the catalog first: a reread is what admits them.
+    primary_refresh = sorted([pair for pair in refresh if priority(pair)[0] < 2],
+                             key=lambda pair: (priority(pair)[0] == 0, *key(pair)))
     other_refresh = sorted([pair for pair in refresh if priority(pair)[0] == 2], key=key)
     # A home-first navigation frontier provides an independent cross-check
     # against Yoast event sitemaps. Paginated URLs must first be observed.
@@ -417,7 +419,10 @@ def next_requests(state, *, today, limit, sitemap_quota=2, navigation_quota=3):
     # the first pass most slots. Otherwise the regular 7-day refresh wave
     # can keep the unseen frontier waiting for months despite a healthy
     # daily request budget. This is scheduling only, never an identity claim.
-    initial_crawl = bool(refresh) and len(unseen) > len(refresh)
+    # Only while market-like pages are still unread: once they are, the rest of the
+    # frontier (concerts, sport...) must not starve the market rereads.
+    initial_crawl = (bool(refresh) and len(unseen) > len(refresh)
+                     and any(priority(pair)[0] < 2 for pair in unseen))
     turn = sum(item["attempts"] for item in state["resources"].values() if item["kind"] == "detail")
     while len(selected) < limit and (unseen or primary_refresh or other_refresh):
         slot = turn % 9

@@ -227,6 +227,18 @@ class DetailIdentityTests(unittest.TestCase):
         self.assertIsNone(result["event"]["location"]["city"])
         self.assertTrue(any(x["code"] == "schema_url_mismatch" for x in result["conflicts"]))
 
+    def test_html_codes_in_the_schema_title_are_not_a_contradiction(self):
+        # Real pages: JSON-LD "Mercato &#8211; Natale" while the visible title shows "–".
+        schema = {"@type": "Event", "name": "Mercato esempio &#8211; Natale &amp; dintorni", "url": URL,
+                  "startDate": "2026-10-24T07:30:00+02:00", "endDate": "2026-10-24T12:30:00+02:00",
+                  "eventStatus": "https://schema.org/EventScheduled",
+                  "location": {"@type": "Place", "name": "Piazza del mercato",
+                               "address": {"@type": "PostalAddress", "streetAddress": "Via Esempio 2",
+                                           "addressLocality": "Pisa", "addressRegion": "Toscana",
+                                           "addressCountry": "IT"}}}
+        result = parsed(schema=schema, title="Mercato esempio – Natale & dintorni")
+        self.assertFalse(any(x["code"] == "schema_title_mismatch" for x in result["conflicts"]))
+
     def test_title_contradiction_and_multiple_event_schemas_are_explicit(self):
         result = parsed(title="Mercato diverso")
         self.assertTrue(any(x["code"] == "schema_title_mismatch" for x in result["conflicts"]))
