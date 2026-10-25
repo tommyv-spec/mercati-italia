@@ -8,18 +8,20 @@ New-Item -ItemType Directory -Force (Join-Path $home_ 'logs') | Out-Null
 # The scheduled entry point: refresh the runner's own copy of DEV, then run
 # everything due today. New code on DEV is picked up on the next run.
 @'
-$ErrorActionPreference = 'Stop'
+# Judge commands by exit code: in Windows PowerShell any stderr line of a
+# native program would otherwise abort the whole night run.
+$ErrorActionPreference = 'Continue'
 $home_ = Join-Path $env:LOCALAPPDATA 'mercati-italia\runner'
 $code = Join-Path $home_ 'code'
 $dev = 'improve/data-quality-security-performance-2026-10-11'
 $log = Join-Path $home_ ('logs\daily-' + (Get-Date -Format 'yyyyMMdd') + '.log')
 if (-not (Test-Path (Join-Path $code '.git'))) {
-  git clone -q -c core.autocrlf=false -b $dev git@github.com:tommyv-spec/mercati-italia.git $code
+  git clone -q -c core.autocrlf=false -b $dev https://github.com/tommyv-spec/mercati-italia.git $code
 }
-git -C $code fetch -q origin
-git -C $code reset -q --hard "origin/$dev"
+git -C $code fetch -q origin $dev
+if ($LASTEXITCODE -eq 0) { git -C $code reset -q --hard FETCH_HEAD }
 $env:PYTHONUTF8 = '1'
-python (Join-Path $code 'ops\runner.py') daily *>> $log
+cmd /c "python `"$code\ops\runner.py`" daily >> `"$log`" 2>&1"
 exit $LASTEXITCODE
 '@ | Set-Content -Encoding utf8 (Join-Path $home_ 'run-daily.ps1')
 
