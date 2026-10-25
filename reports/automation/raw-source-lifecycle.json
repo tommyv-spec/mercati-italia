@@ -1,12 +1,12 @@
 {
-  "catalog_count": 14008,
+  "catalog_count": 14009,
   "checked_source_profiles": 2,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-10-24",
+  "reference_date": "2026-10-25",
   "registry_sha256": "5c40dafb57af389a3eaf392f6c692be4a492d8a79df44c93e63924dd8b238175",
   "schema": 1,
   "source_checks": {
@@ -16,7 +16,7 @@
   "source_contract_schema": 1,
   "sources": {
     "bologna-generic-venues": {
-      "catalog_records_compared": 14008,
+      "catalog_records_compared": 14009,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -54,13 +54,8 @@
         },
         {
           "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "2ab6ecc2db0df2ea"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "b9d74e9ce4514bdc"
+          "review_state": "possible_existing_venue",
+          "stable_identity_hash": "e70d9b8f9617bb51"
         },
         {
           "publication_permission": "none",
@@ -69,8 +64,13 @@
         },
         {
           "publication_permission": "none",
-          "review_state": "possible_existing_venue",
-          "stable_identity_hash": "e70d9b8f9617bb51"
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "2ab6ecc2db0df2ea"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "b9d74e9ce4514bdc"
         },
         {
           "publication_permission": "none",
@@ -141,7 +141,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
       "publisher": "Comune di Bologna",
-      "publisher_data_age_days": 570,
+      "publisher_data_age_days": 571,
       "publisher_dataset_date": "2025-04-02",
       "review_required": true,
       "row_kind": "market_venue",
@@ -158,20 +158,20 @@
         "dataset_records_count": 249,
         "metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
         "profile_sha256": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
-        "read_on": "2026-10-24",
+        "read_on": "2026-10-25",
         "schema": 1,
         "snapshot_records_count": 79,
-        "snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
+        "snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
         "source_date": "2025-04-02",
         "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
         "strategy": "opendatasoft_data_processed_v1"
       },
       "source_id": "bologna-generic-venues",
-      "source_read_on": "2026-10-24",
+      "source_read_on": "2026-10-25",
       "source_schema_columns_sha256": "d9ffe7fa29cd5cf5d3f933b16a8c0ca46f526dcc8958ae55529f61d84675b424",
-      "source_snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
+      "source_snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
       "source_stage": {
-        "base_catalog_records": 14008,
+        "base_catalog_records": 14009,
         "counts": {
           "already_in_catalog_exact_source_id": 39,
           "informational_schedule_unknown": 12,
@@ -185,7 +185,7 @@
         "examples_hashed": [
           {
             "new_market_created": false,
-            "review_reason": "venue_at_same_street_day",
+            "review_reason": "generic_city_market_day",
             "source_identity_sha256": "f12153b1cf116646fd552b53f6a86b649c9f5d2f8ea615307a9eed9594413519"
           },
           {
@@ -208,11 +208,12 @@
         "publisher": "Comune di Bologna",
         "publisher_dataset_date": "2025-04-02",
         "review_reason_counts": {
+          "generic_city_market_day": 1,
           "not_a_market_venue": 31,
           "repeated_venue_rows_require_grouping": 4,
           "same_place_name_multiple_source_rows": 2,
           "temporary_location_unreconciled": 1,
-          "venue_at_same_street_day": 2
+          "venue_at_same_street_day": 1
         },
         "safe_candidates_not_published": 0,
         "schema": 1,
@@ -226,10 +227,10 @@
           "dataset_records_count": 249,
           "metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
           "profile_sha256": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
-          "read_on": "2026-10-24",
+          "read_on": "2026-10-25",
           "schema": 1,
           "snapshot_records_count": 79,
-          "snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
+          "snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
           "source_date": "2025-04-02",
           "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
           "strategy": "opendatasoft_data_processed_v1"
@@ -238,22 +239,22 @@
         "source_kind": "market_venue",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-        "source_read_on": "2026-10-24",
+        "source_read_on": "2026-10-25",
         "source_schema_readonly": true,
-        "source_snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
+        "source_snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
         "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
         "verified_openings_created": 0
       },
       "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento"
     },
     "corciano-generic-shadow": {
-      "catalog_records_compared": 14008,
+      "catalog_records_compared": 14009,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
-        "already_in_catalog_exact_source_id": 2,
+        "already_in_catalog_exact_source_id": 3,
         "distinct_market_identities": 4,
-        "identity_not_in_existing_catalog": 2,
+        "identity_not_in_existing_catalog": 1,
         "rows_observed": 4
       },
       "diff": {
@@ -268,11 +269,6 @@
           "publication_permission": "none",
           "review_state": "source_level_new_candidate",
           "stable_identity_hash": "594c220a7398160b"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "dffa8de044be14b2"
         }
       ],
       "existing_record_ids_deleted": 0,
@@ -289,7 +285,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
       "publisher": "Comune di Corciano",
-      "publisher_data_age_days": 290,
+      "publisher_data_age_days": 291,
       "publisher_dataset_date": "2026-01-07",
       "review_required": true,
       "row_kind": "market_venue",
@@ -297,13 +293,13 @@
       "source_data_marked_current_by_fetch_time": false,
       "source_data_scope": "dataset_not_per_market",
       "source_id": "corciano-generic-shadow",
-      "source_read_on": "2026-10-24",
+      "source_read_on": "2026-10-25",
       "source_schema_columns_sha256": "2afea7e535523faf2cb891263244e6c9c0d08f728788bb158f320676b9ae5fb7",
       "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
       "source_stage": {
-        "base_catalog_records": 14008,
+        "base_catalog_records": 14009,
         "counts": {
-          "already_in_catalog_exact_source_id": 2,
+          "already_in_catalog_exact_source_id": 3,
           "publisher_distinct_address_count": 4,
           "raw_rows_scanned": 4,
           "source_market_identities": 4
@@ -315,19 +311,14 @@
             "new_market_created": false,
             "review_reason": "same_named_market_in_city",
             "source_identity_sha256": "1cba4b1ae9416baaa645da881457c7368d9119e9a8e9ad12d9d7e64bad230266"
-          },
-          {
-            "new_market_created": false,
-            "review_reason": "generic_city_market_day",
-            "source_identity_sha256": "25b92e2c710902aa6672fb09c19a559c69de486726b5d633e557dd61b71dc9e5"
           }
         ],
         "existing_market_identities_deleted": 0,
         "existing_market_ids_modified": 0,
         "field_audit_counts": {
-          "indirizzo:observed_identical": 2,
-          "orario_testo:observed_identical": 2,
-          "ricorrenza_testo:observed_identical": 2
+          "indirizzo:observed_identical": 3,
+          "orario_testo:observed_identical": 3,
+          "ricorrenza_testo:observed_identical": 3
         },
         "managed_fields_proposed": 0,
         "precise_coordinates_created": 0,
@@ -336,7 +327,6 @@
         "publisher": "Comune di Corciano",
         "publisher_dataset_date": "2026-01-07",
         "review_reason_counts": {
-          "generic_city_market_day": 1,
           "same_named_market_in_city": 1
         },
         "safe_candidates_not_published": 0,
@@ -345,7 +335,7 @@
         "source_kind": "market_venue",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
-        "source_read_on": "2026-10-24",
+        "source_read_on": "2026-10-25",
         "source_schema_readonly": true,
         "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
         "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",

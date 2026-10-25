@@ -4,8 +4,8 @@
   "offline": false,
   "imports": 0,
   "verified_events": 0,
-  "reference_date": "2026-10-24",
-  "catalog_total": null,
+  "reference_date": "2026-10-25",
+  "catalog_total": 87,
   "sample_limit": 3,
   "history": {
     "25177cb0-f763-44ca-8c30-dd8111c58cc3": {
@@ -169,10 +169,111 @@
       "resource_last_modified": "2026-10-07T09:28:14.675690",
       "status": "sampled_complete_csv",
       "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "7904c55f-fc99-4ccb-b5ce-cf54d5897e17": {
+      "checked_on": "2026-10-25",
+      "resource_last_modified": "2026-10-07T08:16:43.468934",
+      "status": "sampled_complete_csv",
+      "kind": "concessions_not_market_visits"
+    },
+    "79442023-de9f-40e1-a581-8fa04885ede8": {
+      "checked_on": "2026-10-25",
+      "resource_last_modified": "2026-10-05T07:26:36.464177",
+      "status": "sampled_complete_csv",
+      "kind": "concessions_not_market_visits"
+    },
+    "7951c63a-9fc7-4da5-8741-998ca23598e2": {
+      "checked_on": "2026-10-25",
+      "resource_last_modified": "2026-10-07T08:31:25.949302",
+      "status": "sampled_complete_csv",
+      "kind": "concessions_not_market_visits"
     }
   },
-  "sources": [],
-  "errors": [
-    "URLError: <urlopen error timed out>"
-  ]
+  "sources": [
+    {
+      "id": "7904c55f-fc99-4ccb-b5ce-cf54d5897e17",
+      "title": "Fiere e mercati - VIGASIO",
+      "publisher": "Comune di Vigasio",
+      "source_modified_claim": "",
+      "resource_id": "b8c2bc66-db12-4ccb-a5fb-e1b2cb344b42",
+      "resource_last_modified": "2026-10-07T08:16:43.468934",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "3817695d9511893d318770a23064042ad8570fe9c85917b7dcede955c0a6a77c",
+      "source_rows_read": 5,
+      "distinct_market_names_not_new_markets": 4,
+      "explicit_valid_weekdays": 0,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 0,
+      "source_kind": "concessions_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "attivita",
+        "data_validita_concessione",
+        "data_scadenza_concessione"
+      ]
+    },
+    {
+      "id": "79442023-de9f-40e1-a581-8fa04885ede8",
+      "title": "Fiere e mercati - SOAVE",
+      "publisher": "Comune di Soave",
+      "source_modified_claim": "",
+      "resource_id": "381b7955-21c1-4ef0-8d1e-120db15ae9c3",
+      "resource_last_modified": "2026-10-05T07:26:36.464177",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "2a00f7b895e5b41c706c71295f0c27a04322f94735dc80742ab052c5dcfeda1a",
+      "source_rows_read": 3,
+      "distinct_market_names_not_new_markets": 2,
+      "explicit_valid_weekdays": 0,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 0,
+      "source_kind": "concessions_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "attivita",
+        "data_validita_concessione",
+        "data_scadenza_concessione"
+      ]
+    },
+    {
+      "id": "7951c63a-9fc7-4da5-8741-998ca23598e2",
+      "title": "Fiere e mercati - CEREA",
+      "publisher": "Comune di Cerea",
+      "source_modified_claim": "",
+      "resource_id": "7a9a47c3-4bbb-484e-ae5f-70c89534d75f",
+      "resource_last_modified": "2026-10-07T08:31:25.949302",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "09021cbb58437bf780fb64786adba9d82dc058669a9a74e9d2a89a1d602af837",
+      "source_rows_read": 38,
+      "distinct_market_names_not_new_markets": 2,
+      "explicit_valid_weekdays": 0,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 34,
+      "historical_stall_rows": 0,
+      "source_kind": "concessions_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "attivita",
+        "data_validita_concessione",
+        "data_scadenza_concessione"
+      ]
+    }
+  ],
+  "errors": []
 }
