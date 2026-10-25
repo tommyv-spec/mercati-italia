@@ -27,6 +27,15 @@ class ScorecardTests(unittest.TestCase):
         self.assertEqual(m["percentuali"]["solo_centro"], 50.0)
         self.assertEqual(m["fonti"]["happings.com"]["letta_il"], "2026-10-24")
 
+    def test_only_reads_of_the_markets_own_source_count(self):
+        page = "https://www.eventiesagre.it/Eventi/1_Fiera.html"
+        other = row("other", fonte="eventiesagre.it", url_fonte="https://www.eventiesagre.it/Eventi/2.html",
+                    riscontri_campi=[{"url": "https://www.happings.com/it/x/", "letto_il": "2026-10-25"}])
+        reread = row("reread", fonte="eventiesagre.it", url_fonte=page)
+        m = q.measure([other, reread], TODAY, {page: "2026-10-21"})
+        self.assertEqual(m["fonti"]["eventiesagre.it"]["letta_il"], "2026-10-21")
+        self.assertEqual(m["fonti"]["eventiesagre.it"]["riletti_30_giorni"], 50.0)
+
     def test_red_flags_for_drops_stale_sources_and_failed_jobs(self):
         now = q.measure([row("a", orario_testo="La mattina", riscontri_campi=[{"letto_il": "2026-10-01"}])], TODAY)
         before = {"date": "2026-10-18", "visibili": 1, "percentuali": {**now["percentuali"], "orari_esatti": 40.0}}
