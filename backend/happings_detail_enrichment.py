@@ -722,12 +722,34 @@ def cert_from_detail_evidence(evidence, *, today):
             "max_new": evidence["max_new"], "admissions": admissions}
 
 
+LATER_SOURCES = "later-sources"
+
+
+def combine_admission_certificates(happings, editorial_admissions, *, today):
+    """One certificate for every later admission: editorial pages first.
+
+    That is the pipeline order (editorial discovery runs before Happings), so
+    each verifier sees exactly the identities that existed when it admitted.
+    Without editorial admissions the Happings certificate is returned as is.
+    """
+    if not editorial_admissions:
+        return happings
+    admissions = list(editorial_admissions) + list((happings or {}).get("admissions") or [])
+    max_new = len(editorial_admissions) + ((happings or {}).get("max_new") or 0)
+    if not len(admissions) <= max_new <= MAX_NEW_MARKETS:
+        raise ValueError("Unbounded combined later-source admissions")
+    return {"schema": 1, "publisher": LATER_SOURCES, "date": today.isoformat(),
+            "max_new": max_new, "admissions": admissions}
+
+
 def verify_source_admission_certificate(before, after, certificate, today):
     """Prove later source admissions, then return a strict same-ID cohort.
 
     No certificate preserves the historical guard's behavior. A certificate
     must explain every added identity and reproduce its entire normalized
     exported record from bound source facts. Existing rows stay in the cohort.
+    A combined certificate may also carry editorial discovery admissions; each
+    of those is rebuilt from its own page facts by editorial_discovery.
     """
     if certificate is None:
         return after, 0
@@ -736,7 +758,8 @@ def verify_source_admission_certificate(before, after, certificate, today):
             or len(after) > MAX_MARKETS + MAX_NEW_MARKETS
             or not isinstance(certificate, dict) or set(certificate) != {
                 "schema", "publisher", "date", "max_new", "admissions"}
-            or certificate.get("schema") != 1 or certificate.get("publisher") != PUBLISHER
+            or certificate.get("schema") != 1
+            or certificate.get("publisher") not in {PUBLISHER, LATER_SOURCES}
             or certificate.get("date") != today.isoformat()
             or type(certificate.get("max_new")) is not int
             or not 1 <= certificate["max_new"] <= MAX_NEW_MARKETS):
@@ -763,6 +786,13 @@ def verify_source_admission_certificate(before, after, certificate, today):
         if set(admission) != {"market_id", "document", "source_page"}:
             raise ValueError("Unexpected Happings admission proof fields")
         record, page = admission["document"], admission["source_page"]
+        # Happings page facts carry no publisher field; editorial ones always do.
+        publisher = (((record.get("parsed") or {}).get("source") or {}).get("publisher")
+                     if isinstance(record, dict) and isinstance(record.get("parsed"), dict) else None)
+        if certificate["publisher"] == LATER_SOURCES and publisher is not None:
+            from editorial_discovery import verify_certified_admission
+            collision_rows.append(verify_certified_admission(collision_rows, admission, by_id, today))
+            continue
         if not isinstance(record, dict) or set(record) != {"parsed", "read_on"}:
             raise ValueError("Happings admission lost its source acquisition date")
         document, read_on = record["parsed"], _read_day(record, today)
