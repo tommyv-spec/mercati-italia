@@ -25,6 +25,9 @@ class ExplicitRules(unittest.TestCase):
         for text, rule in (("Ogni 4° Domenica Del Mese", monthly(6, 4)), ("Ogni 3a Domenica Del Mese", monthly(6, 3)),
                            ("1^ lunedì del mese", monthly(0, 1)), ("tutti i\nVenerdi", {"kind": "weekly", "weekdays": [4]}),
                            ("tutti i sabato e domenica", {"kind": "weekly", "weekdays": [5, 6]}),
+                           ("Mercoledì tutto l'anno", {"kind": "weekly", "weekdays": [2]}),
+                           ("martedì e venerdì tutto l’anno", {"kind": "weekly", "weekdays": [1, 4]}),
+                           ("Domenica tutto l'anno tranne agosto", None),
                            # Two ordinals are never read as one; prose after "tutti i" is not a rule.
                            ("2^ e 4^ martedì del mese", None), ("tutti i venerdì dal 23 giugno al 25 agosto", None)):
             with self.subTest(text=text):

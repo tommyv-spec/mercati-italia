@@ -48,6 +48,9 @@ ORDINAL_INDEX = {"primo": 1, "prima": 1, "secondo": 2, "seconda": 2,
 NUMERIC_ORDINAL = re.compile(r"\b([1-4])\s*(?:°|\^|[ao](?=\s+(?:" + "|".join(WEEKDAYS) + r")\b))\s*")
 EVERY_WEEKDAY = re.compile(r"tutti i (?:" + "|".join(WEEKDAYS) + r")(?:\s*(?:,|\be\b)\s*(?:" +
                            "|".join(WEEKDAYS) + r"))*")
+# "Mercoledì tutto l'anno": the weekday(s) every week of the year.
+ALL_YEAR_WEEKDAYS = re.compile(r"(?:" + "|".join(WEEKDAYS) + r")(?:\s*(?:,|\be\b)\s*(?:" +
+                               "|".join(WEEKDAYS) + r"))* tutto l\W?anno")
 
 MAX_LOOKAHEAD_DAYS = 120
 MAX_SOURCE_STALE_DAYS = 540
@@ -197,7 +200,8 @@ def explicit_rule(value: Any) -> dict | None:
 
     # An occurrence has to say *every* named weekday or declare a weekly
     # cadence. Avoid picking unrelated weekdays from prose descriptions.
-    if not ("settimanale" in text or re.search(r"\bogni\b", text) or EVERY_WEEKDAY.fullmatch(text)):
+    if not ("settimanale" in text or re.search(r"\bogni\b", text) or EVERY_WEEKDAY.fullmatch(text)
+            or ALL_YEAR_WEEKDAYS.fullmatch(text)):
         return None
     if "bisettimanale" in text or "quindicinal" in text or "alternat" in text:
         return None
