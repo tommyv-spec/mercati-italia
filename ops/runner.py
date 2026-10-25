@@ -34,6 +34,13 @@ import yaml
 
 REPO = "tommyv-spec/mercati-italia"
 REPO_SSH = f"git@github.com:{REPO}.git"
+REPO_HTTPS = f"https://github.com/{REPO}.git"
+
+
+def set_origin(repo_dir):
+    # Same origin as actions/checkout (scripts verify it); push over SSH.
+    git("remote", "set-url", "origin", REPO_HTTPS, cwd=repo_dir)
+    git("remote", "set-url", "--push", "origin", REPO_SSH, cwd=repo_dir)
 DEV = "improve/data-quality-security-performance-2026-10-11"
 WORKFLOWS = Path(__file__).resolve().parent / "workflows"
 HOME = Path(os.environ.get("MERCATI_RUNNER_HOME")
@@ -189,7 +196,7 @@ def run_job(run, wf, job_name, job, needs_results, mirror, env_base):
             if uses == "actions/checkout":
                 git("clone", "-q", "-c", "core.autocrlf=false", mirror, job_dir)
                 git("checkout", "-q", expand(spec.get("ref") or "main", ctx), cwd=job_dir)
-                git("remote", "set-url", "origin", REPO_SSH, cwd=job_dir)
+                set_origin(job_dir)
             elif uses in ("actions/setup-python", "actions/setup-node", "actions/github-script"):
                 pass  # the machine's own interpreters; notifications are the runner's job
             elif uses == "actions/upload-artifact":
@@ -331,7 +338,7 @@ def scorecard():
     rmtree(work)
     git("clone", "-q", "-c", "core.autocrlf=false", mirror, work)
     git("checkout", "-q", DEV, cwd=work)
-    git("remote", "set-url", "origin", REPO_SSH, cwd=work)
+    set_origin(work)
     state = HOME / "state.json"
     env = {**os.environ, "PYTHONUTF8": "1"}
     subprocess.run([sys.executable, "backend/quality_scorecard.py", "--jobs", str(state)],
