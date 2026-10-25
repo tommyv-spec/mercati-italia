@@ -1,19 +1,19 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,009\n- Senza verifica documentata: 14,009\n- Fonte vecchia oltre soglia: 52\n- Fonte senza data: 12,744\n- Date previste da fonte vecchia/sconosciuta: 10,839\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: nessuno\n- Conflitti fra valori esistenti e nuove letture: 6\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 2a6b383daf490459",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,009\n- Senza verifica documentata: 14,009\n- Fonte vecchia oltre soglia: 52\n- Fonte senza data: 12,744\n- Date previste da fonte vecchia/sconosciuta: 10,814\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: nessuno\n- Conflitti fra valori esistenti e nuove letture: 15\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 8d5e733c9b808a21",
   "problems": {
-    "automatic_field_conflicts": 6,
+    "automatic_field_conflicts": 15,
     "automatic_page_refresh_held": [],
     "municipal_csv_changed": [],
     "publisher_new_data_claims": [],
     "publisher_unavailable": [],
-    "stale_forecast": 10839,
+    "stale_forecast": 10814,
     "stale_source": 52,
     "total": 14009,
     "unknown_source_date": 12744,
     "unsupported_confirmation": 0,
     "without_verification": 14009
   },
-  "signature": "2a6b383daf490459",
+  "signature": "8d5e733c9b808a21",
   "title": "[Mercati autopilot] Dati da verificare"
 }

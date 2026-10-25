@@ -334,7 +334,7 @@
       ],
       "status": "retrieved"
     },
-    "https://www.happings.com/it/categoria-evento/mercati/page/13/": {
+    "https://www.happings.com/it/categoria-evento/mercati/page/10/": {
       "attempts": 0,
       "discovered_at": "2026-10-25",
       "failures": 0,
@@ -349,11 +349,104 @@
         {
           "kind": "html_link",
           "observed_at": "2026-10-25",
-          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
-          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
+          "sha256": "42cff92fa747c35d124dbbeb279fd70076c06288b22abfe316b68bf17d1af34c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/11/"
         }
       ],
       "status": "unread"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/11/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "42cff92fa747c35d124dbbeb279fd70076c06288b22abfe316b68bf17d1af34c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:07.447556+00:00",
+      "next_due": "2026-11-01",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6126389d18a1a58d8393c966ebf159f6e4627eff14db8aa0f2d47b0a5c119786",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/12/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "42cff92fa747c35d124dbbeb279fd70076c06288b22abfe316b68bf17d1af34c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/11/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/12/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "6126389d18a1a58d8393c966ebf159f6e4627eff14db8aa0f2d47b0a5c119786",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:03:59.319201+00:00",
+      "next_due": "2026-11-01",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "614d32f43af4363b53265bcfcfba9d142506ba7fa65567e359fe644e9198db25",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/13/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6126389d18a1a58d8393c966ebf159f6e4627eff14db8aa0f2d47b0a5c119786",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/12/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "42cff92fa747c35d124dbbeb279fd70076c06288b22abfe316b68bf17d1af34c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/11/"
+        }
+      ],
+      "status": "retrieved"
+    },
+    "https://www.happings.com/it/categoria-evento/mercati/page/13/": {
+      "attempts": 1,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "archive",
+      "last_attempt": "2026-10-25",
+      "last_error": null,
+      "last_sha256": "614d32f43af4363b53265bcfcfba9d142506ba7fa65567e359fe644e9198db25",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:03:52.672783+00:00",
+      "next_due": "2026-11-01",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "614d32f43af4363b53265bcfcfba9d142506ba7fa65567e359fe644e9198db25",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/13/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6126389d18a1a58d8393c966ebf159f6e4627eff14db8aa0f2d47b0a5c119786",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/12/"
+        }
+      ],
+      "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/14/": {
       "attempts": 1,
@@ -378,6 +471,12 @@
           "observed_at": "2026-10-25",
           "sha256": "2c3812b9082b2df1aecddcc0cdf3a5a1e5664bbc5a03228ded52880a07702aaa",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/14/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "614d32f43af4363b53265bcfcfba9d142506ba7fa65567e359fe644e9198db25",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/13/"
         }
       ],
       "status": "retrieved"
@@ -1296,6 +1395,12 @@
           "observed_at": "2026-10-20",
           "sha256": "085940e86fcf34087841835c0710601fa6313f8c852e5e1321d0d3ed3472cd15",
           "url": "https://www.happings.com/it/happing/242esima-fiera-di-s-caterina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c0f0bead67885beb77c51e5dfe76be112c5b2feebc033ae11f54f86dafd06d34",
+          "url": "https://www.happings.com/it/happing/cena-di-gala-al-taste-lab-castello-di-roddi-il-barolo-incontra-i-vini-della-rioja/"
         }
       ],
       "status": "retrieved"
@@ -1716,6 +1821,18 @@
           "observed_at": "2026-10-20",
           "sha256": "cab29f8216f7faed0dc6dd8c24f3e56b924f410345fd3121759ca7f7fe0462cc",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-speciale-visita-guidata-sul-campanile-della-cattedrale-di-alba-aspettando-il-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "86751a247fccca9006e3049e4430c8dfbbb47711d148cf8ef0d6660df5369d11",
+          "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0c5c9257719730e1e533e6e00416820ee49e667a651fa2026211d61fc6cb7239",
+          "url": "https://www.happings.com/it/happing/chef-owner-weng-yongjun-yong-fu/"
         }
       ],
       "status": "retrieved"
@@ -1749,6 +1866,12 @@
           "observed_at": "2026-10-24",
           "sha256": "fb99b8be3610b1a0c18ef72e91638163eea32142a2496a9c7ae36533fc33c7f6",
           "url": "https://www.happings.com/it/happing/botteghe-artigiane-in-piazza-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "56276818f3e8bf53ef3c49af8864bc4b38fba563eb2b392c20f56b6fd3e21196",
+          "url": "https://www.happings.com/it/happing/chef-francesco-marchese-ristorante-fre/"
         }
       ],
       "status": "retrieved"
@@ -3336,6 +3459,12 @@
           "observed_at": "2026-10-21",
           "sha256": "35ee33d74cf9728100288861fdfc6d708bd8811edfa63b4a92660781e847acae",
           "url": "https://www.happings.com/it/happing/aisha-bumbum-e-la-loro-nuova-avventura/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb340d3df5ea6ed030589e38e50318769c1c5e56e408b6c8ed75f8354f3b6c46",
+          "url": "https://www.happings.com/it/happing/cene-rap-pola/"
         }
       ],
       "status": "retrieved"
@@ -3477,6 +3606,12 @@
           "observed_at": "2026-10-24",
           "sha256": "7eb837708aaa31059d17fcaf25cb1783f8c34e2f8df44077dc2ed7f5bc9c05bd",
           "url": "https://www.happings.com/it/happing/atelier-della-pasta-fresca/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e9177a91ec682f54404895e05f391c4515cdd12ccc5ec05862d959b7bc4a37ed",
+          "url": "https://www.happings.com/it/happing/chef-carlo-cracco-ristorante-cracco/"
         }
       ],
       "status": "retrieved"
@@ -3543,6 +3678,12 @@
           "observed_at": "2026-10-24",
           "sha256": "353cdc1e8f861d263788647e47340aaf495d6ed63eeae2448ee91da64ea47e7b",
           "url": "https://www.happings.com/it/happing/alba-walking-tour-truffle-edition/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "78890874a18f235587df5368778ef36b34439f452069caaa7fb49f68f1fdc5cf",
+          "url": "https://www.happings.com/it/happing/chef-federico-zanasi-condividere/"
         }
       ],
       "status": "retrieved"
@@ -4293,6 +4434,18 @@
           "observed_at": "2026-10-24",
           "sha256": "f6dce03f12ea1189e01b922d7626edcb220fbbac6108a10c5aec54ff38528984",
           "url": "https://www.happings.com/it/happing/analisi-sensoriale-del-tartufo-del-week-end/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "489dbcc35625285770f336f8d19d425fe9d51fd87e63b69dc705f54effb77d93",
+          "url": "https://www.happings.com/it/happing/chef-gilberto-rossi-pepenero/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "520d184c32a6373989695f1fd203abcd4f30233501733fdd4f152c6bc1f5eedf",
+          "url": "https://www.happings.com/it/happing/chef-luigi-taglienti/"
         }
       ],
       "status": "retrieved"
@@ -5001,6 +5154,18 @@
           "observed_at": "2026-10-24",
           "sha256": "a9f1cdcf2b4d957a0daa5028c0ee6dfc1e186923d0af2b54423f369c59e91e6b",
           "url": "https://www.happings.com/it/happing/archeomudi-tour/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5afceb7d2bee9d2ac9f65f06baf360ef72563283f8bffc5be34285e0d83ae313",
+          "url": "https://www.happings.com/it/happing/chef-diego-rossi-trippa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7f1dd7a427eec4c11bd2199969ad14f3b70048e68ef81d3af1b39bb765c4d38f",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento/"
         }
       ],
       "status": "retrieved"
@@ -5904,6 +6069,12 @@
           "observed_at": "2026-10-24",
           "sha256": "227a2d230bcb8abd5eb8744189813197ee84acda654358cb2961287db61fe2ae",
           "url": "https://www.happings.com/it/happing/aston-crown-combattimenti-esibizioni-e-balli/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d0fe14d292877fcdb7268f6a8596130233cb88c7a319921a19ca0d72b75675f",
+          "url": "https://www.happings.com/it/happing/cenerentola-301/"
         }
       ],
       "status": "retrieved"
@@ -5931,6 +6102,12 @@
           "observed_at": "2026-10-24",
           "sha256": "9cf9370ec6319ab71a955dc5d4dbfa83a2dddbf1ba41bcd4f65e4880e87a9061",
           "url": "https://www.happings.com/it/happing/aston-crown-run-grv-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d0fe14d292877fcdb7268f6a8596130233cb88c7a319921a19ca0d72b75675f",
+          "url": "https://www.happings.com/it/happing/cenerentola-301/"
         }
       ],
       "status": "retrieved"
@@ -6342,6 +6519,12 @@
           "observed_at": "2026-10-24",
           "sha256": "db9a3878db36045c7676d17058604987b8f4b3eb680507eb920adeb598e813f6",
           "url": "https://www.happings.com/it/happing/autunno-gourmet-degustazione-con-la-tenuta-pfannenstielhof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e01f4428a5bc71e05e801d7cf0f4ef1d2d7affed605c4de43f3436be58e1cc53",
+          "url": "https://www.happings.com/it/happing/catwalk-champagne-more-2026/"
         }
       ],
       "status": "retrieved"
@@ -6693,6 +6876,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d810c4e4b45d2a13d76d9fe5c8c4985c449767ba3f4dd776ec261325888c2dbf",
           "url": "https://www.happings.com/it/happing/baccala-mantecato-e-degustazione-di-bagnetti-rosso-e-verde/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cbc31213a9a7269322d9b062ac44a0737c8cb63d98120535eb5dff46dcb18bcd",
+          "url": "https://www.happings.com/it/happing/chef-federico-gallo-locanda-del-pilone/"
         }
       ],
       "status": "retrieved"
@@ -7326,6 +7515,12 @@
           "observed_at": "2026-10-24",
           "sha256": "ae5ecee01b898f85fbd55b579b415ae1d060a60384a2147518b9ef9729ba212b",
           "url": "https://www.happings.com/it/happing/botteghe-artigiane-in-piazza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a612359243a6c78778bd9847d0d8f976c4857c4bdbffce8078284a0e88a37af0",
+          "url": "https://www.happings.com/it/happing/chef-massimiliano-musso-ristorante-albergo-ca-vittoria/"
         }
       ],
       "status": "retrieved"
@@ -8715,6 +8910,12 @@
           "observed_at": "2026-10-25",
           "sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
           "url": "https://www.happings.com/it/happing/castagnata-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5b61909aa7db83032df338ecb54a2d45d713c545c144e710e585504d73e60fe2",
+          "url": "https://www.happings.com/it/happing/castagnotto/"
         }
       ],
       "status": "retrieved"
@@ -9075,6 +9276,12 @@
           "observed_at": "2026-10-25",
           "sha256": "9d7c3a2ba77b5ec07c4b00000fb8a0179bb0360c916b385b0a6f7b18cc1593f3",
           "url": "https://www.happings.com/it/happing/castagnata-avisina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7bc9d2b622d8fe4bb0cbae4ce2a34401b8aa879939650f75832791420ed696b6",
+          "url": "https://www.happings.com/it/happing/cena-del-maiale/"
         }
       ],
       "status": "retrieved"
@@ -9353,37 +9560,43 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-solidale-gpl/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1cfc74a1371e1e5b6672b03630b37eb63aa06ba640c16fabf649fbfccef62c65",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:12.298707+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1cfc74a1371e1e5b6672b03630b37eb63aa06ba640c16fabf649fbfccef62c65",
+          "url": "https://www.happings.com/it/happing/castagnata-solidale-gpl/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata-solidale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "10352ca83b63bdd3948907f263551ec4c04fb03acf88a496a51adf457e02b755",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:16.960821+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9402,63 +9615,81 @@
           "observed_at": "2026-10-25",
           "sha256": "4cc33d00747149eae194726cf723b8ab7b3495873b66a9f10ad0e6936b4db493",
           "url": "https://www.happings.com/it/happing/castagnata-4-evento-9974/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "10352ca83b63bdd3948907f263551ec4c04fb03acf88a496a51adf457e02b755",
+          "url": "https://www.happings.com/it/happing/castagnata-solidale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnata/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "68681c88578ac84d2c7f55eefb3c1eb4bcf7c32de625261ff310dd132b5ba224",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:25.043613+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "68681c88578ac84d2c7f55eefb3c1eb4bcf7c32de625261ff310dd132b5ba224",
+          "url": "https://www.happings.com/it/happing/castagnata/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castagnotto/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "5b61909aa7db83032df338ecb54a2d45d713c545c144e710e585504d73e60fe2",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:29.772555+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5b61909aa7db83032df338ecb54a2d45d713c545c144e710e585504d73e60fe2",
+          "url": "https://www.happings.com/it/happing/castagnotto/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castel-rodengo-in-atmosfera-autunnale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3bbc9b64c33c620b49647019925d3d56adf4aacca3e9c5454b2098ad03041601",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:34.786557+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9471,21 +9702,27 @@
           "observed_at": "2026-10-24",
           "sha256": "522dcbdf999c3c3ba025e02d391638582f5164befa12488544d731e724251f74",
           "url": "https://www.happings.com/it/happing/alessandro-onorato-mario-pardini-pianeta-terra-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3bbc9b64c33c620b49647019925d3d56adf4aacca3e9c5454b2098ad03041601",
+          "url": "https://www.happings.com/it/happing/castel-rodengo-in-atmosfera-autunnale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/castledadia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bcaa3f3f51b37d79c4a52e4f99e0ac6171ef73834b89e407a0ea28845ca1fadf",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:39.460433+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9498,42 +9735,60 @@
           "observed_at": "2026-10-25",
           "sha256": "c40da5919334a1a8c2abe276afc5555af1de2d9cf22f7f00853aec839f21f88a",
           "url": "https://www.happings.com/it/happing/castagnata-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "68681c88578ac84d2c7f55eefb3c1eb4bcf7c32de625261ff310dd132b5ba224",
+          "url": "https://www.happings.com/it/happing/castagnata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bcaa3f3f51b37d79c4a52e4f99e0ac6171ef73834b89e407a0ea28845ca1fadf",
+          "url": "https://www.happings.com/it/happing/castledadia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/catalogo/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1fb76ddf8c2dae600cdb7f4d0fa59678926f35ca22cad7962fee73f78511e7be",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:44.610569+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1fb76ddf8c2dae600cdb7f4d0fa59678926f35ca22cad7962fee73f78511e7be",
+          "url": "https://www.happings.com/it/happing/catalogo/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/catwalk-champagne-more-2026/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e01f4428a5bc71e05e801d7cf0f4ef1d2d7affed605c4de43f3436be58e1cc53",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:50.626589+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9546,84 +9801,108 @@
           "observed_at": "2026-10-24",
           "sha256": "41f5bf2036956f45d22a9168b63b2987ccf90315b04d623233f04155ee2cbfc9",
           "url": "https://www.happings.com/it/happing/antica-fiera-dei-morti-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e01f4428a5bc71e05e801d7cf0f4ef1d2d7affed605c4de43f3436be58e1cc53",
+          "url": "https://www.happings.com/it/happing/catwalk-champagne-more-2026/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/ce-chi-urla-ce-chi-strilla-chi-comanda-a-villa-arzilla/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "eb596c6c1ecd60e980b0ae1f250682f8fac741ad3517cfc5724c2d52464bbf56",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:04:57.557108+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb596c6c1ecd60e980b0ae1f250682f8fac741ad3517cfc5724c2d52464bbf56",
+          "url": "https://www.happings.com/it/happing/ce-chi-urla-ce-chi-strilla-chi-comanda-a-villa-arzilla/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cena-a-tema-spiriti-in-scena-dolo-vini-miti/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6eaaee96ea2e29adbeb92a6240e5aac97958753fb4af6d8cf446f990fae0ba77",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:05:02.753395+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6eaaee96ea2e29adbeb92a6240e5aac97958753fb4af6d8cf446f990fae0ba77",
+          "url": "https://www.happings.com/it/happing/cena-a-tema-spiriti-in-scena-dolo-vini-miti/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cena-a-tema/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3bc6abfcc6cf3c0e3b70dc838cb323c5cc4df143714ef36a52a42c43a3918e99",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:05:08.224051+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3bc6abfcc6cf3c0e3b70dc838cb323c5cc4df143714ef36a52a42c43a3918e99",
+          "url": "https://www.happings.com/it/happing/cena-a-tema/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cena-dautunno/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "98d2e9fbd450dbffffc2dbf18e99582a8830b1839e094afea47037684d92eb58",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:05:14.148327+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9636,147 +9915,189 @@
           "observed_at": "2026-10-20",
           "sha256": "1dc19c481dd34436f0fcb79fa12c9a2887053979f0cf9169688c9edcec20196f",
           "url": "https://www.happings.com/it/happing/15festacastagneincascina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "98d2e9fbd450dbffffc2dbf18e99582a8830b1839e094afea47037684d92eb58",
+          "url": "https://www.happings.com/it/happing/cena-dautunno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cena-del-maiale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7bc9d2b622d8fe4bb0cbae4ce2a34401b8aa879939650f75832791420ed696b6",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:05:30.257979+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7bc9d2b622d8fe4bb0cbae4ce2a34401b8aa879939650f75832791420ed696b6",
+          "url": "https://www.happings.com/it/happing/cena-del-maiale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cena-di-gala-al-taste-lab-castello-di-roddi-il-barolo-incontra-i-vini-della-rioja/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "c0f0bead67885beb77c51e5dfe76be112c5b2feebc033ae11f54f86dafd06d34",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:05:48.570544+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c0f0bead67885beb77c51e5dfe76be112c5b2feebc033ae11f54f86dafd06d34",
+          "url": "https://www.happings.com/it/happing/cena-di-gala-al-taste-lab-castello-di-roddi-il-barolo-incontra-i-vini-della-rioja/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cene-rap-pola/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "fb340d3df5ea6ed030589e38e50318769c1c5e56e408b6c8ed75f8354f3b6c46",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:05:54.544161+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb340d3df5ea6ed030589e38e50318769c1c5e56e408b6c8ed75f8354f3b6c46",
+          "url": "https://www.happings.com/it/happing/cene-rap-pola/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cenerentola-301/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7d0fe14d292877fcdb7268f6a8596130233cb88c7a319921a19ca0d72b75675f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:00.975458+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d0fe14d292877fcdb7268f6a8596130233cb88c7a319921a19ca0d72b75675f",
+          "url": "https://www.happings.com/it/happing/cenerentola-301/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cenerentola/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7d49af80e9dbc624db502ca96981a40da0577b9da734c5d7c238546bc28c1d46",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:07.146541+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d49af80e9dbc624db502ca96981a40da0577b9da734c5d7c238546bc28c1d46",
+          "url": "https://www.happings.com/it/happing/cenerentola/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cera-una-volta-un-re-omaggio-a-carlo-collodi-per-i-200-anni-dalla-nascita/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "8f451f6e9ab0b73fbea8d80ebc771e2908656b4e691ea01536ed9dd96c6289d7",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:16.547996+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8f451f6e9ab0b73fbea8d80ebc771e2908656b4e691ea01536ed9dd96c6289d7",
+          "url": "https://www.happings.com/it/happing/cera-una-volta-un-re-omaggio-a-carlo-collodi-per-i-200-anni-dalla-nascita/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cercasi-artist/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4277c9376883e5ce7d00238d51f99ef525fdc449e3645984ec4563f839b88a74",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:22.180669+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9789,30 +10110,42 @@
           "observed_at": "2026-10-24",
           "sha256": "8faca00f7825a23fd220d97a3e3c455e92020bf9a5d9edc3daa929facae45693",
           "url": "https://www.happings.com/it/happing/alien-isolation-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4277c9376883e5ce7d00238d51f99ef525fdc449e3645984ec4563f839b88a74",
+          "url": "https://www.happings.com/it/happing/cercasi-artist/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cerchio-per-cerchio-tessitura-circolare-dei-mandala/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "11daaeeb25a9a32890a0839c5e6fd3a94484323301c0cd06b3f8355e5f8b6419",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:29.608207+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "11daaeeb25a9a32890a0839c5e6fd3a94484323301c0cd06b3f8355e5f8b6419",
+          "url": "https://www.happings.com/it/happing/cerchio-per-cerchio-tessitura-circolare-dei-mandala/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/ceretta_chiesa/": {
       "attempts": 0,
@@ -9857,37 +10190,43 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/cerimonia-di-accensione-del-82-fiammifero/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0e406a6221e8cec2a2a86debfedd305b5270e5e3b7b06def68886d661d71722c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:35.568706+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0e406a6221e8cec2a2a86debfedd305b5270e5e3b7b06def68886d661d71722c",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-accensione-del-82-fiammifero/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cerimonia-di-inaugurazione-e-alzabandiera/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7ae543f0953d844ea4510399258a55e8e9ff014858bee2080e431b4fdc9dbe11",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:42.421627+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9900,21 +10239,27 @@
           "observed_at": "2026-10-20",
           "sha256": "fbb06e9f35b65db81fc8d939766d0586e2da533a3941d9a25477c25284286fec",
           "url": "https://www.happings.com/it/happing/3-corso-mascherato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7ae543f0953d844ea4510399258a55e8e9ff014858bee2080e431b4fdc9dbe11",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-inaugurazione-e-alzabandiera/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cerimonia-di-premiazione-teste-tra-le-nuvole/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a87b72ec1b7bc84e0362d014d0c6223d2eba675bd9e556c331195d2762b79139",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:48.924530+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9927,21 +10272,27 @@
           "observed_at": "2026-10-24",
           "sha256": "5453b881b2da6bb33913624d5d0837233ac1eafca00c5bfba664ea3fe54ac1f6",
           "url": "https://www.happings.com/it/happing/avventura-monteneve/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a87b72ec1b7bc84e0362d014d0c6223d2eba675bd9e556c331195d2762b79139",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-premiazione-teste-tra-le-nuvole/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/che-viviana-varese-passalacqua-lago-di-como/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9328d2e526f3c56232b77c7254b39a7134ea6b419c40917f47a96926a7af2a1b",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:06:58.437522+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -9954,42 +10305,54 @@
           "observed_at": "2026-10-21",
           "sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
           "url": "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9328d2e526f3c56232b77c7254b39a7134ea6b419c40917f47a96926a7af2a1b",
+          "url": "https://www.happings.com/it/happing/che-viviana-varese-passalacqua-lago-di-como/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-alessandro-mecca-al-castello-di-grinzane-cavour/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "4512cc6b77480549ec9bbe26d1c03eb1b2fdbcd36f033b8d0c284acac342bfa3",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:06.602153+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4512cc6b77480549ec9bbe26d1c03eb1b2fdbcd36f033b8d0c284acac342bfa3",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-mecca-al-castello-di-grinzane-cavour/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-alessandro-rossi-barbagianni/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "bac101e3798e199d2d6ceb492a1392bbb1e2f4423b0dca8fb82ca020acc1e736",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:13.807994+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10002,21 +10365,33 @@
           "observed_at": "2026-10-24",
           "sha256": "f6dce03f12ea1189e01b922d7626edcb220fbbac6108a10c5aec54ff38528984",
           "url": "https://www.happings.com/it/happing/analisi-sensoriale-del-tartufo-del-week-end/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4512cc6b77480549ec9bbe26d1c03eb1b2fdbcd36f033b8d0c284acac342bfa3",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-mecca-al-castello-di-grinzane-cavour/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bac101e3798e199d2d6ceb492a1392bbb1e2f4423b0dca8fb82ca020acc1e736",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-rossi-barbagianni/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-andrea-incerti-vezzani-ca-matilde/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3ac3e2c8f8a6318d06e6646bbd27c6e4d1eeb7931ebae421007bb647cfe84f7e",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:20.057685+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10043,61 +10418,85 @@
           "url": "https://www.happings.com/it/happing/capunet-dautunno/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-andrea-nizzi-ristorante-12-monaci/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "30213f0aa02cb54965ee1be25332f90770acf393ea093adec6d289631ef29b7c",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:26.602028+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "30213f0aa02cb54965ee1be25332f90770acf393ea093adec6d289631ef29b7c",
+          "url": "https://www.happings.com/it/happing/chef-andrea-nizzi-ristorante-12-monaci/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-carlo-cracco-ristorante-cracco/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e9177a91ec682f54404895e05f391c4515cdd12ccc5ec05862d959b7bc4a37ed",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:32.993214+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e9177a91ec682f54404895e05f391c4515cdd12ccc5ec05862d959b7bc4a37ed",
+          "url": "https://www.happings.com/it/happing/chef-carlo-cracco-ristorante-cracco/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eca42b2930c09cca48c60b941cee9befde0a201e9b2762cc3f1f4de39913193f",
+          "url": "https://www.happings.com/it/happing/chef-celso-laforgia-urban-assassineria-urbana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9255f497430ecc4aa384e3567c51617d4a9800c525a6268826b423b36d43003",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-celso-laforgia-urban-assassineria-urbana/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "eca42b2930c09cca48c60b941cee9befde0a201e9b2762cc3f1f4de39913193f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:39.412233+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10110,21 +10509,33 @@
           "observed_at": "2026-10-20",
           "sha256": "176689484a1c51abeaaa5095daec606226073a1a0db59ded8d2c5435cc97c54f",
           "url": "https://www.happings.com/it/happing/mercato-agricolo-evento-10533/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eca42b2930c09cca48c60b941cee9befde0a201e9b2762cc3f1f4de39913193f",
+          "url": "https://www.happings.com/it/happing/chef-celso-laforgia-urban-assassineria-urbana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a612359243a6c78778bd9847d0d8f976c4857c4bdbffce8078284a0e88a37af0",
+          "url": "https://www.happings.com/it/happing/chef-massimiliano-musso-ristorante-albergo-ca-vittoria/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-davide-caranchini-ristorante-materia-accademia-ferri-dal-1905/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "ab51d06823be13aa425cb43d3d70aa4b06b4a2a15d13a208d452e3eeb1c62279",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:45.414606+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10137,21 +10548,33 @@
           "observed_at": "2026-10-20",
           "sha256": "cab29f8216f7faed0dc6dd8c24f3e56b924f410345fd3121759ca7f7fe0462cc",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-speciale-visita-guidata-sul-campanile-della-cattedrale-di-alba-aspettando-il-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ab51d06823be13aa425cb43d3d70aa4b06b4a2a15d13a208d452e3eeb1c62279",
+          "url": "https://www.happings.com/it/happing/chef-davide-caranchini-ristorante-materia-accademia-ferri-dal-1905/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "efccc4c94b325ff66b0748756036a74c58709013342197842fc17e64330157c1",
+          "url": "https://www.happings.com/it/happing/chef-maurizio-bufi-ristorante-il-fagiano-grand-hotel-fasano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-davide-oldani-do/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "978bae0ac3cc181dbb9344782f70a95d8aef682161a74ef0cd57e0f6b7e116b9",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:07:51.236258+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10164,21 +10587,27 @@
           "observed_at": "2026-10-25",
           "sha256": "55660629cbabe802d33d705859346c36fed76afcc3004ef226c83d9735f5c851",
           "url": "https://www.happings.com/it/happing/capunet-dautunno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "978bae0ac3cc181dbb9344782f70a95d8aef682161a74ef0cd57e0f6b7e116b9",
+          "url": "https://www.happings.com/it/happing/chef-davide-oldani-do/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-diego-rossi-trippa/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "5afceb7d2bee9d2ac9f65f06baf360ef72563283f8bffc5be34285e0d83ae313",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:07.231631+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10197,105 +10626,159 @@
           "observed_at": "2026-10-24",
           "sha256": "ae5ecee01b898f85fbd55b579b415ae1d060a60384a2147518b9ef9729ba212b",
           "url": "https://www.happings.com/it/happing/botteghe-artigiane-in-piazza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e9177a91ec682f54404895e05f391c4515cdd12ccc5ec05862d959b7bc4a37ed",
+          "url": "https://www.happings.com/it/happing/chef-carlo-cracco-ristorante-cracco/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-enrico-marmo-momento-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a9255f497430ecc4aa384e3567c51617d4a9800c525a6268826b423b36d43003",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:13.334171+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3ac3e2c8f8a6318d06e6646bbd27c6e4d1eeb7931ebae421007bb647cfe84f7e",
+          "url": "https://www.happings.com/it/happing/chef-andrea-incerti-vezzani-ca-matilde/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9255f497430ecc4aa384e3567c51617d4a9800c525a6268826b423b36d43003",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "18d6c37348078231d7aedcd2da6baa35b098ee0789dc6b5d622623356a5dfcca",
+          "url": "https://www.happings.com/it/happing/chef-flavio-costa-ristorante-21-9/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-enrico-marmo-momento/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7f1dd7a427eec4c11bd2199969ad14f3b70048e68ef81d3af1b39bb765c4d38f",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:18.767493+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7f1dd7a427eec4c11bd2199969ad14f3b70048e68ef81d3af1b39bb765c4d38f",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-federico-gallo-locanda-del-pilone/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "cbc31213a9a7269322d9b062ac44a0737c8cb63d98120535eb5dff46dcb18bcd",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:24.212062+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cbc31213a9a7269322d9b062ac44a0737c8cb63d98120535eb5dff46dcb18bcd",
+          "url": "https://www.happings.com/it/happing/chef-federico-gallo-locanda-del-pilone/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-federico-zanasi-condividere/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "78890874a18f235587df5368778ef36b34439f452069caaa7fb49f68f1fdc5cf",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:30.355834+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5afceb7d2bee9d2ac9f65f06baf360ef72563283f8bffc5be34285e0d83ae313",
+          "url": "https://www.happings.com/it/happing/chef-diego-rossi-trippa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "78890874a18f235587df5368778ef36b34439f452069caaa7fb49f68f1fdc5cf",
+          "url": "https://www.happings.com/it/happing/chef-federico-zanasi-condividere/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7fb0df1302a9f71bf062ee110ed6fff8ec0d8bc9becd5eab44e12e57dc23f5e4",
+          "url": "https://www.happings.com/it/happing/chef-michelangelo-mammoliti-la-rei-natura-il-boscareto-resort-spa/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-fernando-tommaso-forino-osteria-arborina-arborina-relais/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "6311056af5eaba1831932759dd4cec50e266a0671ff94a97eee8a204d96f72d1",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:38.438077+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10308,21 +10791,33 @@
           "observed_at": "2026-10-24",
           "sha256": "ae5ecee01b898f85fbd55b579b415ae1d060a60384a2147518b9ef9729ba212b",
           "url": "https://www.happings.com/it/happing/botteghe-artigiane-in-piazza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cbc31213a9a7269322d9b062ac44a0737c8cb63d98120535eb5dff46dcb18bcd",
+          "url": "https://www.happings.com/it/happing/chef-federico-gallo-locanda-del-pilone/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6311056af5eaba1831932759dd4cec50e266a0671ff94a97eee8a204d96f72d1",
+          "url": "https://www.happings.com/it/happing/chef-fernando-tommaso-forino-osteria-arborina-arborina-relais/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-flavio-costa-ristorante-21-9/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "18d6c37348078231d7aedcd2da6baa35b098ee0789dc6b5d622623356a5dfcca",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:44.076688+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10341,21 +10836,27 @@
           "observed_at": "2026-10-21",
           "sha256": "cce491bfea58fdc242644ad2ce14e81346859620510579a8f0ca35a3ffdecf4c",
           "url": "https://www.happings.com/it/happing/alba-sotterranea-il-passato-e-sotto-ai-tuoi-piedi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "18d6c37348078231d7aedcd2da6baa35b098ee0789dc6b5d622623356a5dfcca",
+          "url": "https://www.happings.com/it/happing/chef-flavio-costa-ristorante-21-9/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-francesco-marchese-ristorante-fre/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "56276818f3e8bf53ef3c49af8864bc4b38fba563eb2b392c20f56b6fd3e21196",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:50.366162+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10382,40 +10883,46 @@
           "url": "https://www.happings.com/it/happing/baccala-mantecato-e-degustazione-di-bagnetti-rosso-e-verde/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-gianluca-renzi-cannavacciuolo-le-cattedrali-relais/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a0ddee9521926efab20a0ea44d6a18f6c9d58bee6c1b10137fe387b323db1fb2",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:08:57.335386+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a0ddee9521926efab20a0ea44d6a18f6c9d58bee6c1b10137fe387b323db1fb2",
+          "url": "https://www.happings.com/it/happing/chef-gianluca-renzi-cannavacciuolo-le-cattedrali-relais/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-gilberto-rossi-pepenero/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "489dbcc35625285770f336f8d19d425fe9d51fd87e63b69dc705f54effb77d93",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:09:04.259627+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10428,21 +10935,33 @@
           "observed_at": "2026-10-24",
           "sha256": "a9f1cdcf2b4d957a0daa5028c0ee6dfc1e186923d0af2b54423f369c59e91e6b",
           "url": "https://www.happings.com/it/happing/archeomudi-tour/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ab51d06823be13aa425cb43d3d70aa4b06b4a2a15d13a208d452e3eeb1c62279",
+          "url": "https://www.happings.com/it/happing/chef-davide-caranchini-ristorante-materia-accademia-ferri-dal-1905/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "489dbcc35625285770f336f8d19d425fe9d51fd87e63b69dc705f54effb77d93",
+          "url": "https://www.happings.com/it/happing/chef-gilberto-rossi-pepenero/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-giorgia-ceccato-ristorante-philia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "09fd50964cc16f98d6f379e1866d20b63ff8c404004c6e8f091da4dfbfe8ea05",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:09:11.670604+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10455,63 +10974,99 @@
           "observed_at": "2026-10-21",
           "sha256": "daf58abd9467ffc9b499684696c49e9010649417aae1f501bdb89f499cad0164",
           "url": "https://www.happings.com/it/happing/mercato-mondiale-del-tartufo-bianco-dalba/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4512cc6b77480549ec9bbe26d1c03eb1b2fdbcd36f033b8d0c284acac342bfa3",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-mecca-al-castello-di-grinzane-cavour/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "09fd50964cc16f98d6f379e1866d20b63ff8c404004c6e8f091da4dfbfe8ea05",
+          "url": "https://www.happings.com/it/happing/chef-giorgia-ceccato-ristorante-philia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-jacopo-chieppa-equilibrio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "fd940cb1e843a70179a694bd3bc130987ae8a837b6a0d8eab64080a96181acba",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:09:29.365175+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fd940cb1e843a70179a694bd3bc130987ae8a837b6a0d8eab64080a96181acba",
+          "url": "https://www.happings.com/it/happing/chef-jacopo-chieppa-equilibrio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "61aed6ad0a25eea9a760be281c09ac9936239c3a093e7ca3818c5afebbc86d56",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f464e94463e58209b5b7ceaecda98c0dec6bd6b60667f7857333992ffb94429d",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "32366fba6f62b2dcff56b1dcd82de184498dea96ae16134b4dfb4111de398c5d",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:09:36.961891+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "32366fba6f62b2dcff56b1dcd82de184498dea96ae16134b4dfb4111de398c5d",
+          "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "86751a247fccca9006e3049e4430c8dfbbb47711d148cf8ef0d6660df5369d11",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:09:42.954239+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10524,21 +11079,33 @@
           "observed_at": "2026-10-21",
           "sha256": "335f66bd2b80b5bba91902bb2e0d4b2ac2afdb62bc4323e1e32321b3194bf2cb",
           "url": "https://www.happings.com/it/happing/507-fiera-san-gaudenzio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bac101e3798e199d2d6ceb492a1392bbb1e2f4423b0dca8fb82ca020acc1e736",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-rossi-barbagianni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a0ddee9521926efab20a0ea44d6a18f6c9d58bee6c1b10137fe387b323db1fb2",
+          "url": "https://www.happings.com/it/happing/chef-gianluca-renzi-cannavacciuolo-le-cattedrali-relais/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-luigi-taglienti-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7d29c42e587485d53b4058aecc67487d0c8858b2d4067474f6ec1eb1510825bc",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:09:49.113253+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10551,21 +11118,27 @@
           "observed_at": "2026-10-24",
           "sha256": "a6effa4197d214c8d22c48b5507a670085279330da1bd14b41aa91138766ca5f",
           "url": "https://www.happings.com/it/happing/ama-la-carne/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d29c42e587485d53b4058aecc67487d0c8858b2d4067474f6ec1eb1510825bc",
+          "url": "https://www.happings.com/it/happing/chef-luigi-taglienti-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-luigi-taglienti/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "520d184c32a6373989695f1fd203abcd4f30233501733fdd4f152c6bc1f5eedf",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:09:54.657822+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10578,42 +11151,60 @@
           "observed_at": "2026-10-21",
           "sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fd940cb1e843a70179a694bd3bc130987ae8a837b6a0d8eab64080a96181acba",
+          "url": "https://www.happings.com/it/happing/chef-jacopo-chieppa-equilibrio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "520d184c32a6373989695f1fd203abcd4f30233501733fdd4f152c6bc1f5eedf",
+          "url": "https://www.happings.com/it/happing/chef-luigi-taglienti/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante-2/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "61aed6ad0a25eea9a760be281c09ac9936239c3a093e7ca3818c5afebbc86d56",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:10:01.359113+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "61aed6ad0a25eea9a760be281c09ac9936239c3a093e7ca3818c5afebbc86d56",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante-2/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f464e94463e58209b5b7ceaecda98c0dec6bd6b60667f7857333992ffb94429d",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:10:10.997474+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10626,63 +11217,81 @@
           "observed_at": "2026-10-20",
           "sha256": "085940e86fcf34087841835c0710601fa6313f8c852e5e1321d0d3ed3472cd15",
           "url": "https://www.happings.com/it/happing/242esima-fiera-di-s-caterina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f464e94463e58209b5b7ceaecda98c0dec6bd6b60667f7857333992ffb94429d",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-massimiliano-musso-ristorante-albergo-ca-vittoria/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a612359243a6c78778bd9847d0d8f976c4857c4bdbffce8078284a0e88a37af0",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:10:17.137489+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a612359243a6c78778bd9847d0d8f976c4857c4bdbffce8078284a0e88a37af0",
+          "url": "https://www.happings.com/it/happing/chef-massimiliano-musso-ristorante-albergo-ca-vittoria/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-maurizio-bufi-ristorante-il-fagiano-grand-hotel-fasano/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "efccc4c94b325ff66b0748756036a74c58709013342197842fc17e64330157c1",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:10:23.530226+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "efccc4c94b325ff66b0748756036a74c58709013342197842fc17e64330157c1",
+          "url": "https://www.happings.com/it/happing/chef-maurizio-bufi-ristorante-il-fagiano-grand-hotel-fasano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-michelangelo-mammoliti-la-rei-natura-il-boscareto-resort-spa/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "7fb0df1302a9f71bf062ee110ed6fff8ec0d8bc9becd5eab44e12e57dc23f5e4",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:10:29.556037+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -10701,51 +11310,81 @@
           "observed_at": "2026-10-21",
           "sha256": "86eef9e50ce9297f14ce8f2aaa4bf308084a4eed59b71f4e6b13ad6872e18d7e",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-visita-guidata-sul-campanile-e-merenda/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4512cc6b77480549ec9bbe26d1c03eb1b2fdbcd36f033b8d0c284acac342bfa3",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-mecca-al-castello-di-grinzane-cavour/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-niccolo-palumbo-paca-ristorante-tenuta-ceri/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1e447193d887a43d9081fb1622ccae61e268f0a65e7e836d178e1df3f4b3eea5",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:10:36.151516+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "30213f0aa02cb54965ee1be25332f90770acf393ea093adec6d289631ef29b7c",
+          "url": "https://www.happings.com/it/happing/chef-andrea-nizzi-ristorante-12-monaci/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "56276818f3e8bf53ef3c49af8864bc4b38fba563eb2b392c20f56b6fd3e21196",
+          "url": "https://www.happings.com/it/happing/chef-francesco-marchese-ristorante-fre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1e447193d887a43d9081fb1622ccae61e268f0a65e7e836d178e1df3f4b3eea5",
+          "url": "https://www.happings.com/it/happing/chef-niccolo-palumbo-paca-ristorante-tenuta-ceri/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-owner-weng-yongjun-yong-fu/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-25",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "0c5c9257719730e1e533e6e00416820ee49e667a651fa2026211d61fc6cb7239",
+      "last_success": "2026-10-25",
+      "last_success_at": "2026-10-25T01:10:41.840939+00:00",
+      "next_due": "2026-11-01",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0c5c9257719730e1e533e6e00416820ee49e667a651fa2026211d61fc6cb7239",
+          "url": "https://www.happings.com/it/happing/chef-owner-weng-yongjun-yong-fu/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale-2/": {
       "attempts": 0,
@@ -10839,6 +11478,18 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "56276818f3e8bf53ef3c49af8864bc4b38fba563eb2b392c20f56b6fd3e21196",
+          "url": "https://www.happings.com/it/happing/chef-francesco-marchese-ristorante-fre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "32366fba6f62b2dcff56b1dcd82de184498dea96ae16134b4dfb4111de398c5d",
+          "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais-2/"
         }
       ],
       "status": "unread"
@@ -10866,6 +11517,12 @@
           "observed_at": "2026-10-21",
           "sha256": "484b662c0f4d5519d94ecdb578cac5c79afa5191f730e0e0fd8488e0e0e44267",
           "url": "https://www.happings.com/it/happing/a-tu-per-tu-con-lo-chef-davide-palluda/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6311056af5eaba1831932759dd4cec50e266a0671ff94a97eee8a204d96f72d1",
+          "url": "https://www.happings.com/it/happing/chef-fernando-tommaso-forino-osteria-arborina-arborina-relais/"
         }
       ],
       "status": "unread"
@@ -10893,6 +11550,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d998bf3abbe49960b3287e1f5353b4938e6faf46886059494a5929fac6c67608",
           "url": "https://www.happings.com/it/happing/brunch-al-taste-lab-castello-di-roddi-by-chef-luigi-taglienti/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0e406a6221e8cec2a2a86debfedd305b5270e5e3b7b06def68886d661d71722c",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-accensione-del-82-fiammifero/"
         }
       ],
       "status": "unread"
@@ -10914,6 +11577,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1e447193d887a43d9081fb1622ccae61e268f0a65e7e836d178e1df3f4b3eea5",
+          "url": "https://www.happings.com/it/happing/chef-niccolo-palumbo-paca-ristorante-tenuta-ceri/"
         }
       ],
       "status": "unread"
@@ -10935,6 +11604,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "30213f0aa02cb54965ee1be25332f90770acf393ea093adec6d289631ef29b7c",
+          "url": "https://www.happings.com/it/happing/chef-andrea-nizzi-ristorante-12-monaci/"
         }
       ],
       "status": "unread"
@@ -10983,6 +11658,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c47f100c64e80dd8ac180aa32afdc5a4c7d3ac7881a41fddb793d3e12afb070e",
           "url": "https://www.happings.com/it/happing/asta-mondiale-del-tartufo-bianco-dalba/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9328d2e526f3c56232b77c7254b39a7134ea6b419c40917f47a96926a7af2a1b",
+          "url": "https://www.happings.com/it/happing/che-viviana-varese-passalacqua-lago-di-como/"
         }
       ],
       "status": "unread"
@@ -11427,6 +12108,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6eaaee96ea2e29adbeb92a6240e5aac97958753fb4af6d8cf446f990fae0ba77",
+          "url": "https://www.happings.com/it/happing/cena-a-tema-spiriti-in-scena-dolo-vini-miti/"
         }
       ],
       "status": "unread"
@@ -11652,6 +12339,12 @@
           "observed_at": "2026-10-20",
           "sha256": "176689484a1c51abeaaa5095daec606226073a1a0db59ded8d2c5435cc97c54f",
           "url": "https://www.happings.com/it/happing/mercato-agricolo-evento-10533/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e9177a91ec682f54404895e05f391c4515cdd12ccc5ec05862d959b7bc4a37ed",
+          "url": "https://www.happings.com/it/happing/chef-carlo-cracco-ristorante-cracco/"
         }
       ],
       "status": "unread"
@@ -12867,6 +13560,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb596c6c1ecd60e980b0ae1f250682f8fac741ad3517cfc5724c2d52464bbf56",
+          "url": "https://www.happings.com/it/happing/ce-chi-urla-ce-chi-strilla-chi-comanda-a-villa-arzilla/"
         }
       ],
       "status": "unread"
@@ -13491,6 +14190,12 @@
           "observed_at": "2026-10-21",
           "sha256": "cce491bfea58fdc242644ad2ce14e81346859620510579a8f0ca35a3ffdecf4c",
           "url": "https://www.happings.com/it/happing/alba-sotterranea-il-passato-e-sotto-ai-tuoi-piedi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7f1dd7a427eec4c11bd2199969ad14f3b70048e68ef81d3af1b39bb765c4d38f",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento/"
         }
       ],
       "status": "unread"
@@ -13698,6 +14403,18 @@
           "observed_at": "2026-10-20",
           "sha256": "aa522f599d5d569427a6f8f5dac13e257a7e7d1844cf9116abd6ccea479ebc02",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-il-tesoro-della-cattedrale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "78890874a18f235587df5368778ef36b34439f452069caaa7fb49f68f1fdc5cf",
+          "url": "https://www.happings.com/it/happing/chef-federico-zanasi-condividere/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0c5c9257719730e1e533e6e00416820ee49e667a651fa2026211d61fc6cb7239",
+          "url": "https://www.happings.com/it/happing/chef-owner-weng-yongjun-yong-fu/"
         }
       ],
       "status": "unread"
@@ -13719,6 +14436,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f464e94463e58209b5b7ceaecda98c0dec6bd6b60667f7857333992ffb94429d",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante/"
         }
       ],
       "status": "unread"
@@ -13794,6 +14517,12 @@
           "observed_at": "2026-10-24",
           "sha256": "369dbbe48c21bbaba52928cb9761fa70c790c560b21591e790a2815710e95755",
           "url": "https://www.happings.com/it/happing/arco-unamicizia-per-salvare-il-futuro-pianeta-terra-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb596c6c1ecd60e980b0ae1f250682f8fac741ad3517cfc5724c2d52464bbf56",
+          "url": "https://www.happings.com/it/happing/ce-chi-urla-ce-chi-strilla-chi-comanda-a-villa-arzilla/"
         }
       ],
       "status": "unread"
@@ -14001,6 +14730,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a87b72ec1b7bc84e0362d014d0c6223d2eba675bd9e556c331195d2762b79139",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-premiazione-teste-tra-le-nuvole/"
         }
       ],
       "status": "unread"
@@ -14247,6 +14982,12 @@
           "observed_at": "2026-10-24",
           "sha256": "a5f3507754d9f56a79067d5d39eefb690924f7a4a9e5b4fb9fc746b97b86f746",
           "url": "https://www.happings.com/it/happing/antica-fiera-di-san-martino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "520d184c32a6373989695f1fd203abcd4f30233501733fdd4f152c6bc1f5eedf",
+          "url": "https://www.happings.com/it/happing/chef-luigi-taglienti/"
         }
       ],
       "status": "unread"
@@ -14730,6 +15471,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a87b72ec1b7bc84e0362d014d0c6223d2eba675bd9e556c331195d2762b79139",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-premiazione-teste-tra-le-nuvole/"
         }
       ],
       "status": "unread"
@@ -14778,6 +15525,18 @@
           "observed_at": "2026-10-21",
           "sha256": "484b662c0f4d5519d94ecdb578cac5c79afa5191f730e0e0fd8488e0e0e44267",
           "url": "https://www.happings.com/it/happing/a-tu-per-tu-con-lo-chef-davide-palluda/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c0f0bead67885beb77c51e5dfe76be112c5b2feebc033ae11f54f86dafd06d34",
+          "url": "https://www.happings.com/it/happing/cena-di-gala-al-taste-lab-castello-di-roddi-il-barolo-incontra-i-vini-della-rioja/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "978bae0ac3cc181dbb9344782f70a95d8aef682161a74ef0cd57e0f6b7e116b9",
+          "url": "https://www.happings.com/it/happing/chef-davide-oldani-do/"
         }
       ],
       "status": "unread"
@@ -14868,6 +15627,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8f451f6e9ab0b73fbea8d80ebc771e2908656b4e691ea01536ed9dd96c6289d7",
+          "url": "https://www.happings.com/it/happing/cera-una-volta-un-re-omaggio-a-carlo-collodi-per-i-200-anni-dalla-nascita/"
         }
       ],
       "status": "unread"
@@ -16137,6 +16902,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "98d2e9fbd450dbffffc2dbf18e99582a8830b1839e094afea47037684d92eb58",
+          "url": "https://www.happings.com/it/happing/cena-dautunno/"
         }
       ],
       "status": "unread"
@@ -16164,6 +16935,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d998bf3abbe49960b3287e1f5353b4938e6faf46886059494a5929fac6c67608",
           "url": "https://www.happings.com/it/happing/brunch-al-taste-lab-castello-di-roddi-by-chef-luigi-taglienti/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "86751a247fccca9006e3049e4430c8dfbbb47711d148cf8ef0d6660df5369d11",
+          "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais/"
         }
       ],
       "status": "unread"
@@ -17790,6 +18567,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d29c42e587485d53b4058aecc67487d0c8858b2d4067474f6ec1eb1510825bc",
+          "url": "https://www.happings.com/it/happing/chef-luigi-taglienti-2/"
         }
       ],
       "status": "unread"
@@ -17967,6 +18750,12 @@
           "observed_at": "2026-10-24",
           "sha256": "74c0902089590be7cc9b02af72c5ccd7f70d543057367e70f73cd056e1dd942d",
           "url": "https://www.happings.com/it/happing/articoli-liberi-presenta-breve-dialogo-sulla-felicita-intervista-a-jose-mujica-il-presidente-povero-uruguaiano/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb340d3df5ea6ed030589e38e50318769c1c5e56e408b6c8ed75f8354f3b6c46",
+          "url": "https://www.happings.com/it/happing/cene-rap-pola/"
         }
       ],
       "status": "unread"
@@ -18072,6 +18861,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d29c42e587485d53b4058aecc67487d0c8858b2d4067474f6ec1eb1510825bc",
+          "url": "https://www.happings.com/it/happing/chef-luigi-taglienti-2/"
         }
       ],
       "status": "unread"
@@ -19041,6 +19836,12 @@
           "observed_at": "2026-10-24",
           "sha256": "a6effa4197d214c8d22c48b5507a670085279330da1bd14b41aa91138766ca5f",
           "url": "https://www.happings.com/it/happing/ama-la-carne/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "f464e94463e58209b5b7ceaecda98c0dec6bd6b60667f7857333992ffb94429d",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante/"
         }
       ],
       "status": "unread"
@@ -19617,6 +20418,18 @@
           "observed_at": "2026-10-20",
           "sha256": "206cd0486547e3aaee074f900c1c62554d0f6d8051e9e116613fc053b2fa0603",
           "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "68681c88578ac84d2c7f55eefb3c1eb4bcf7c32de625261ff310dd132b5ba224",
+          "url": "https://www.happings.com/it/happing/castagnata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7bc9d2b622d8fe4bb0cbae4ce2a34401b8aa879939650f75832791420ed696b6",
+          "url": "https://www.happings.com/it/happing/cena-del-maiale/"
         }
       ],
       "status": "unread"
@@ -20067,6 +20880,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6eaaee96ea2e29adbeb92a6240e5aac97958753fb4af6d8cf446f990fae0ba77",
+          "url": "https://www.happings.com/it/happing/cena-a-tema-spiriti-in-scena-dolo-vini-miti/"
         }
       ],
       "status": "unread"
@@ -20109,6 +20928,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bcaa3f3f51b37d79c4a52e4f99e0ac6171ef73834b89e407a0ea28845ca1fadf",
+          "url": "https://www.happings.com/it/happing/castledadia/"
         }
       ],
       "status": "unread"
@@ -20265,6 +21090,12 @@
           "observed_at": "2026-10-24",
           "sha256": "6ec7a9077f7a1ea88bec9a8f76d8b19ec044765c051368784b8db33b59e771f6",
           "url": "https://www.happings.com/it/happing/caccia-allindizio-per-le-vie-della-citta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9328d2e526f3c56232b77c7254b39a7134ea6b419c40917f47a96926a7af2a1b",
+          "url": "https://www.happings.com/it/happing/che-viviana-varese-passalacqua-lago-di-como/"
         }
       ],
       "status": "unread"
@@ -20655,6 +21486,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7fb0df1302a9f71bf062ee110ed6fff8ec0d8bc9becd5eab44e12e57dc23f5e4",
+          "url": "https://www.happings.com/it/happing/chef-michelangelo-mammoliti-la-rei-natura-il-boscareto-resort-spa/"
         }
       ],
       "status": "unread"
@@ -20697,6 +21534,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "520d184c32a6373989695f1fd203abcd4f30233501733fdd4f152c6bc1f5eedf",
+          "url": "https://www.happings.com/it/happing/chef-luigi-taglienti/"
         }
       ],
       "status": "unread"
@@ -20757,6 +21600,12 @@
           "observed_at": "2026-10-24",
           "sha256": "a9f1cdcf2b4d957a0daa5028c0ee6dfc1e186923d0af2b54423f369c59e91e6b",
           "url": "https://www.happings.com/it/happing/archeomudi-tour/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "61aed6ad0a25eea9a760be281c09ac9936239c3a093e7ca3818c5afebbc86d56",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante-2/"
         }
       ],
       "status": "unread"
@@ -20805,6 +21654,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "978bae0ac3cc181dbb9344782f70a95d8aef682161a74ef0cd57e0f6b7e116b9",
+          "url": "https://www.happings.com/it/happing/chef-davide-oldani-do/"
         }
       ],
       "status": "unread"
@@ -20832,6 +21687,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5c33a3f9fdf738fb7429c8b5113a33c23ef824e0969efd73513b2dd609461861",
           "url": "https://www.happings.com/it/happing/albaromatica/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6311056af5eaba1831932759dd4cec50e266a0671ff94a97eee8a204d96f72d1",
+          "url": "https://www.happings.com/it/happing/chef-fernando-tommaso-forino-osteria-arborina-arborina-relais/"
         }
       ],
       "status": "unread"
@@ -20865,6 +21726,12 @@
           "observed_at": "2026-10-24",
           "sha256": "6ec7a9077f7a1ea88bec9a8f76d8b19ec044765c051368784b8db33b59e771f6",
           "url": "https://www.happings.com/it/happing/caccia-allindizio-per-le-vie-della-citta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "61aed6ad0a25eea9a760be281c09ac9936239c3a093e7ca3818c5afebbc86d56",
+          "url": "https://www.happings.com/it/happing/chef-marco-visciola-il-marin-ristorante-2/"
         }
       ],
       "status": "unread"
@@ -20886,6 +21753,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ab51d06823be13aa425cb43d3d70aa4b06b4a2a15d13a208d452e3eeb1c62279",
+          "url": "https://www.happings.com/it/happing/chef-davide-caranchini-ristorante-materia-accademia-ferri-dal-1905/"
         }
       ],
       "status": "unread"
@@ -21069,6 +21942,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d0f592b2bdaccec1f4b20856f10a4558207fef3246ebc3f679234a32cc2ccb67",
           "url": "https://www.happings.com/it/happing/campagna-amica-day/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "cbc31213a9a7269322d9b062ac44a0737c8cb63d98120535eb5dff46dcb18bcd",
+          "url": "https://www.happings.com/it/happing/chef-federico-gallo-locanda-del-pilone/"
         }
       ],
       "status": "unread"
@@ -21117,6 +21996,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "18d6c37348078231d7aedcd2da6baa35b098ee0789dc6b5d622623356a5dfcca",
+          "url": "https://www.happings.com/it/happing/chef-flavio-costa-ristorante-21-9/"
         }
       ],
       "status": "unread"
@@ -21138,6 +22023,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bac101e3798e199d2d6ceb492a1392bbb1e2f4423b0dca8fb82ca020acc1e736",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-rossi-barbagianni/"
         }
       ],
       "status": "unread"
@@ -21159,6 +22050,18 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0e406a6221e8cec2a2a86debfedd305b5270e5e3b7b06def68886d661d71722c",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-accensione-del-82-fiammifero/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "32366fba6f62b2dcff56b1dcd82de184498dea96ae16134b4dfb4111de398c5d",
+          "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais-2/"
         }
       ],
       "status": "unread"
@@ -21207,6 +22110,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "86751a247fccca9006e3049e4430c8dfbbb47711d148cf8ef0d6660df5369d11",
+          "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais/"
         }
       ],
       "status": "unread"
@@ -21372,6 +22281,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "5afceb7d2bee9d2ac9f65f06baf360ef72563283f8bffc5be34285e0d83ae313",
+          "url": "https://www.happings.com/it/happing/chef-diego-rossi-trippa/"
         }
       ],
       "status": "unread"
@@ -21405,6 +22320,12 @@
           "observed_at": "2026-10-21",
           "sha256": "e9c56da2a49e4da05048959cbbe75875aa85d53b21da67deb6eccaf2f6b2bc14",
           "url": "https://www.happings.com/it/happing/alba-truffle-bimbi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "489dbcc35625285770f336f8d19d425fe9d51fd87e63b69dc705f54effb77d93",
+          "url": "https://www.happings.com/it/happing/chef-gilberto-rossi-pepenero/"
         }
       ],
       "status": "unread"
@@ -21603,6 +22524,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8f451f6e9ab0b73fbea8d80ebc771e2908656b4e691ea01536ed9dd96c6289d7",
+          "url": "https://www.happings.com/it/happing/cera-una-volta-un-re-omaggio-a-carlo-collodi-per-i-200-anni-dalla-nascita/"
         }
       ],
       "status": "unread"
@@ -23160,6 +24087,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5c33a3f9fdf738fb7429c8b5113a33c23ef824e0969efd73513b2dd609461861",
           "url": "https://www.happings.com/it/happing/albaromatica/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "efccc4c94b325ff66b0748756036a74c58709013342197842fc17e64330157c1",
+          "url": "https://www.happings.com/it/happing/chef-maurizio-bufi-ristorante-il-fagiano-grand-hotel-fasano/"
         }
       ],
       "status": "unread"
@@ -23208,6 +24141,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d0fe14d292877fcdb7268f6a8596130233cb88c7a319921a19ca0d72b75675f",
+          "url": "https://www.happings.com/it/happing/cenerentola-301/"
         }
       ],
       "status": "unread"
@@ -23469,6 +24408,18 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "8f451f6e9ab0b73fbea8d80ebc771e2908656b4e691ea01536ed9dd96c6289d7",
+          "url": "https://www.happings.com/it/happing/cera-una-volta-un-re-omaggio-a-carlo-collodi-per-i-200-anni-dalla-nascita/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4277c9376883e5ce7d00238d51f99ef525fdc449e3645984ec4563f839b88a74",
+          "url": "https://www.happings.com/it/happing/cercasi-artist/"
         }
       ],
       "status": "unread"
@@ -23667,6 +24618,12 @@
           "observed_at": "2026-10-20",
           "sha256": "1504f4a6346916c02a0652fc47a353654c08e90b219da389fad72e90698767f1",
           "url": "https://www.happings.com/it/happing/100-years-of-stories-braccio-di-ferro-colpisce-ancora/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "11daaeeb25a9a32890a0839c5e6fd3a94484323301c0cd06b3f8355e5f8b6419",
+          "url": "https://www.happings.com/it/happing/cerchio-per-cerchio-tessitura-circolare-dei-mandala/"
         }
       ],
       "status": "unread"
@@ -24129,6 +25086,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d49af80e9dbc624db502ca96981a40da0577b9da734c5d7c238546bc28c1d46",
+          "url": "https://www.happings.com/it/happing/cenerentola/"
         }
       ],
       "status": "unread"
@@ -24675,6 +25638,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa522f599d5d569427a6f8f5dac13e257a7e7d1844cf9116abd6ccea479ebc02",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-il-tesoro-della-cattedrale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eca42b2930c09cca48c60b941cee9befde0a201e9b2762cc3f1f4de39913193f",
+          "url": "https://www.happings.com/it/happing/chef-celso-laforgia-urban-assassineria-urbana/"
         }
       ],
       "status": "unread"
@@ -24771,6 +25740,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3bbc9b64c33c620b49647019925d3d56adf4aacca3e9c5454b2098ad03041601",
+          "url": "https://www.happings.com/it/happing/castel-rodengo-in-atmosfera-autunnale/"
         }
       ],
       "status": "unread"
@@ -24882,6 +25857,12 @@
           "observed_at": "2026-10-25",
           "sha256": "9a72873900a1b5545b88ac639138cbf30910f88137357354013bce6f0f4597d7",
           "url": "https://www.happings.com/it/happing/castagnata-festa-del-torggelen-al-podere-gaudententurm/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bcaa3f3f51b37d79c4a52e4f99e0ac6171ef73834b89e407a0ea28845ca1fadf",
+          "url": "https://www.happings.com/it/happing/castledadia/"
         }
       ],
       "status": "unread"
@@ -24903,6 +25884,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "bac101e3798e199d2d6ceb492a1392bbb1e2f4423b0dca8fb82ca020acc1e736",
+          "url": "https://www.happings.com/it/happing/chef-alessandro-rossi-barbagianni/"
         }
       ],
       "status": "unread"
@@ -24924,6 +25911,18 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9255f497430ecc4aa384e3567c51617d4a9800c525a6268826b423b36d43003",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6311056af5eaba1831932759dd4cec50e266a0671ff94a97eee8a204d96f72d1",
+          "url": "https://www.happings.com/it/happing/chef-fernando-tommaso-forino-osteria-arborina-arborina-relais/"
         }
       ],
       "status": "unread"
@@ -25266,6 +26265,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d49af80e9dbc624db502ca96981a40da0577b9da734c5d7c238546bc28c1d46",
+          "url": "https://www.happings.com/it/happing/cenerentola/"
         }
       ],
       "status": "unread"
@@ -25533,6 +26538,12 @@
           "observed_at": "2026-10-20",
           "sha256": "3df665ad38a6dab677437391ff86881ea4f83ec13fb8dd9ddd3fde1e5d061368",
           "url": "https://www.happings.com/it/happing/il-mercato-dei-produttori-agricoli-terra-viva/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "c0f0bead67885beb77c51e5dfe76be112c5b2feebc033ae11f54f86dafd06d34",
+          "url": "https://www.happings.com/it/happing/cena-di-gala-al-taste-lab-castello-di-roddi-il-barolo-incontra-i-vini-della-rioja/"
         }
       ],
       "status": "retrieved"
@@ -25929,6 +26940,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d998bf3abbe49960b3287e1f5353b4938e6faf46886059494a5929fac6c67608",
           "url": "https://www.happings.com/it/happing/brunch-al-taste-lab-castello-di-roddi-by-chef-luigi-taglienti/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "30213f0aa02cb54965ee1be25332f90770acf393ea093adec6d289631ef29b7c",
+          "url": "https://www.happings.com/it/happing/chef-andrea-nizzi-ristorante-12-monaci/"
         }
       ],
       "status": "unread"
@@ -26613,6 +27630,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "11daaeeb25a9a32890a0839c5e6fd3a94484323301c0cd06b3f8355e5f8b6419",
+          "url": "https://www.happings.com/it/happing/cerchio-per-cerchio-tessitura-circolare-dei-mandala/"
         }
       ],
       "status": "unread"
@@ -28161,6 +29184,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "09fd50964cc16f98d6f379e1866d20b63ff8c404004c6e8f091da4dfbfe8ea05",
+          "url": "https://www.happings.com/it/happing/chef-giorgia-ceccato-ristorante-philia/"
         }
       ],
       "status": "unread"
@@ -28182,6 +29211,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1fb76ddf8c2dae600cdb7f4d0fa59678926f35ca22cad7962fee73f78511e7be",
+          "url": "https://www.happings.com/it/happing/catalogo/"
         }
       ],
       "status": "unread"
@@ -28491,6 +29526,18 @@
           "observed_at": "2026-10-20",
           "sha256": "aa522f599d5d569427a6f8f5dac13e257a7e7d1844cf9116abd6ccea479ebc02",
           "url": "https://www.happings.com/it/happing/45-metri-sopra-alba-il-tesoro-della-cattedrale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3ac3e2c8f8a6318d06e6646bbd27c6e4d1eeb7931ebae421007bb647cfe84f7e",
+          "url": "https://www.happings.com/it/happing/chef-andrea-incerti-vezzani-ca-matilde/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a9255f497430ecc4aa384e3567c51617d4a9800c525a6268826b423b36d43003",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento-2/"
         }
       ],
       "status": "unread"
@@ -28881,6 +29928,12 @@
           "observed_at": "2026-10-24",
           "sha256": "96bad62c2e3343aeecdbd29b2c4d52ed30c02d2b3d9abe346b73e5c3b5f672d8",
           "url": "https://www.happings.com/it/happing/analisi-sensoriale-del-tartufo-e-visita-guidata-del-mudet/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7f1dd7a427eec4c11bd2199969ad14f3b70048e68ef81d3af1b39bb765c4d38f",
+          "url": "https://www.happings.com/it/happing/chef-enrico-marmo-momento/"
         }
       ],
       "status": "unread"
@@ -30174,6 +31227,12 @@
           "observed_at": "2026-10-20",
           "sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
           "url": "https://www.happings.com/happings_event-sitemap12.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4277c9376883e5ce7d00238d51f99ef525fdc449e3645984ec4563f839b88a74",
+          "url": "https://www.happings.com/it/happing/cercasi-artist/"
         }
       ],
       "status": "unread"
@@ -36927,6 +37986,12 @@
           "observed_at": "2026-10-24",
           "sha256": "d0f592b2bdaccec1f4b20856f10a4558207fef3246ebc3f679234a32cc2ccb67",
           "url": "https://www.happings.com/it/happing/campagna-amica-day/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3ac3e2c8f8a6318d06e6646bbd27c6e4d1eeb7931ebae421007bb647cfe84f7e",
+          "url": "https://www.happings.com/it/happing/chef-andrea-incerti-vezzani-ca-matilde/"
         }
       ],
       "status": "retrieved"
@@ -38781,6 +39846,12 @@
           "observed_at": "2026-10-21",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gubbio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "614d32f43af4363b53265bcfcfba9d142506ba7fa65567e359fe644e9198db25",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/13/"
         }
       ],
       "status": "retrieved"
@@ -44529,6 +45600,12 @@
           "observed_at": "2026-10-24",
           "sha256": "439798c3c2cb0613e5ff19e2488339ca38631306afc00ca03ee86c386d695253",
           "url": "https://www.happings.com/it/happing/campagna-amica-a-favaro-veneto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "42cff92fa747c35d124dbbeb279fd70076c06288b22abfe316b68bf17d1af34c",
+          "url": "https://www.happings.com/it/categoria-evento/mercati/page/11/"
         }
       ],
       "status": "unread"
@@ -44583,6 +45660,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eb596c6c1ecd60e980b0ae1f250682f8fac741ad3517cfc5724c2d52464bbf56",
+          "url": "https://www.happings.com/it/happing/ce-chi-urla-ce-chi-strilla-chi-comanda-a-villa-arzilla/"
         }
       ],
       "status": "unread"
@@ -44889,6 +45972,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c464fe6918fb4328bbfb457b09c6865a761e5492c34b8cafd5771cadda83f821",
           "url": "https://www.happings.com/happings_event-sitemap5.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "7d49af80e9dbc624db502ca96981a40da0577b9da734c5d7c238546bc28c1d46",
+          "url": "https://www.happings.com/it/happing/cenerentola/"
         }
       ],
       "status": "unread"
@@ -45978,6 +47067,12 @@
           "observed_at": "2026-10-24",
           "sha256": "45873196be8255ee64c43b95372b8d9a4332509d85a3ad9b413b2542c6ab040d",
           "url": "https://www.happings.com/it/happing/avventuroso-corso-darrampicata-per-tutta-la-famiglia/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1cfc74a1371e1e5b6672b03630b37eb63aa06ba640c16fabf649fbfccef62c65",
+          "url": "https://www.happings.com/it/happing/castagnata-solidale-gpl/"
         }
       ],
       "status": "unread"
@@ -46614,6 +47709,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a87b72ec1b7bc84e0362d014d0c6223d2eba675bd9e556c331195d2762b79139",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-premiazione-teste-tra-le-nuvole/"
         }
       ],
       "status": "unread"
@@ -46803,6 +47904,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "489dbcc35625285770f336f8d19d425fe9d51fd87e63b69dc705f54effb77d93",
+          "url": "https://www.happings.com/it/happing/chef-gilberto-rossi-pepenero/"
         }
       ],
       "status": "unread"
@@ -46824,6 +47931,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "ab51d06823be13aa425cb43d3d70aa4b06b4a2a15d13a208d452e3eeb1c62279",
+          "url": "https://www.happings.com/it/happing/chef-davide-caranchini-ristorante-materia-accademia-ferri-dal-1905/"
         }
       ],
       "status": "unread"
@@ -47016,6 +48129,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "9328d2e526f3c56232b77c7254b39a7134ea6b419c40917f47a96926a7af2a1b",
+          "url": "https://www.happings.com/it/happing/che-viviana-varese-passalacqua-lago-di-como/"
         }
       ],
       "status": "unread"
@@ -47796,6 +48915,12 @@
           "observed_at": "2026-10-24",
           "sha256": "7ecb398a0b2cc308fd335dcdc319649eb337b074eef1624dee1a3e1f16970072",
           "url": "https://www.happings.com/it/happing/aston-crown-combattimenti-esibizioni-e-balli-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3bbc9b64c33c620b49647019925d3d56adf4aacca3e9c5454b2098ad03041601",
+          "url": "https://www.happings.com/it/happing/castel-rodengo-in-atmosfera-autunnale/"
         }
       ],
       "status": "unread"
@@ -48048,6 +49173,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "978bae0ac3cc181dbb9344782f70a95d8aef682161a74ef0cd57e0f6b7e116b9",
+          "url": "https://www.happings.com/it/happing/chef-davide-oldani-do/"
         }
       ],
       "status": "unread"
@@ -48090,6 +49221,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "4277c9376883e5ce7d00238d51f99ef525fdc449e3645984ec4563f839b88a74",
+          "url": "https://www.happings.com/it/happing/cercasi-artist/"
         }
       ],
       "status": "unread"
@@ -48153,6 +49290,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "3bbc9b64c33c620b49647019925d3d56adf4aacca3e9c5454b2098ad03041601",
+          "url": "https://www.happings.com/it/happing/castel-rodengo-in-atmosfera-autunnale/"
         }
       ],
       "status": "unread"
@@ -48795,6 +49938,12 @@
           "observed_at": "2026-10-24",
           "sha256": "9953369d30c5078eb9359736424eb60efd8c95671702dfcdd12815bc4a47da75",
           "url": "https://www.happings.com/it/happing/assedio-di-asola-palio-delle-contrade/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "10352ca83b63bdd3948907f263551ec4c04fb03acf88a496a51adf457e02b755",
+          "url": "https://www.happings.com/it/happing/castagnata-solidale/"
         }
       ],
       "status": "unread"
@@ -49731,6 +50880,12 @@
           "observed_at": "2026-10-24",
           "sha256": "5c081c81a1b74531da181d81cab64d7bb606e8ebd100bbc15527246a12cd2481",
           "url": "https://www.happings.com/it/happing/aspettando-santa-lucia-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1cfc74a1371e1e5b6672b03630b37eb63aa06ba640c16fabf649fbfccef62c65",
+          "url": "https://www.happings.com/it/happing/castagnata-solidale-gpl/"
         }
       ],
       "status": "unread"
@@ -49917,6 +51072,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "10352ca83b63bdd3948907f263551ec4c04fb03acf88a496a51adf457e02b755",
+          "url": "https://www.happings.com/it/happing/castagnata-solidale/"
         }
       ],
       "status": "unread"
@@ -50253,6 +51414,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a612359243a6c78778bd9847d0d8f976c4857c4bdbffce8078284a0e88a37af0",
+          "url": "https://www.happings.com/it/happing/chef-massimiliano-musso-ristorante-albergo-ca-vittoria/"
         }
       ],
       "status": "unread"
@@ -50898,6 +52065,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fd940cb1e843a70179a694bd3bc130987ae8a837b6a0d8eab64080a96181acba",
+          "url": "https://www.happings.com/it/happing/chef-jacopo-chieppa-equilibrio/"
         }
       ],
       "status": "unread"
@@ -52006,6 +53179,27 @@
       ],
       "status": "unread"
     },
+    "https://www.happings.com/it/happing/spettacolo-teatrale-i-tre-orsi-polari-de/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-25",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-25",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fb340d3df5ea6ed030589e38e50318769c1c5e56e408b6c8ed75f8354f3b6c46",
+          "url": "https://www.happings.com/it/happing/cene-rap-pola/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/spettacolo-teatrale-putsch-in-lingua-tedesca/": {
       "attempts": 0,
       "discovered_at": "2026-10-20",
@@ -52125,6 +53319,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "98d2e9fbd450dbffffc2dbf18e99582a8830b1839e094afea47037684d92eb58",
+          "url": "https://www.happings.com/it/happing/cena-dautunno/"
         }
       ],
       "status": "unread"
@@ -52896,6 +54096,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "fd940cb1e843a70179a694bd3bc130987ae8a837b6a0d8eab64080a96181acba",
+          "url": "https://www.happings.com/it/happing/chef-jacopo-chieppa-equilibrio/"
         }
       ],
       "status": "unread"
@@ -53532,6 +54738,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1fb76ddf8c2dae600cdb7f4d0fa59678926f35ca22cad7962fee73f78511e7be",
+          "url": "https://www.happings.com/it/happing/catalogo/"
         }
       ],
       "status": "unread"
@@ -54927,6 +56139,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a0ddee9521926efab20a0ea44d6a18f6c9d58bee6c1b10137fe387b323db1fb2",
+          "url": "https://www.happings.com/it/happing/chef-gianluca-renzi-cannavacciuolo-le-cattedrali-relais/"
         }
       ],
       "status": "unread"
@@ -54960,6 +56178,12 @@
           "observed_at": "2026-10-24",
           "sha256": "c47f100c64e80dd8ac180aa32afdc5a4c7d3ac7881a41fddb793d3e12afb070e",
           "url": "https://www.happings.com/it/happing/asta-mondiale-del-tartufo-bianco-dalba/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "0e406a6221e8cec2a2a86debfedd305b5270e5e3b7b06def68886d661d71722c",
+          "url": "https://www.happings.com/it/happing/cerimonia-di-accensione-del-82-fiammifero/"
         }
       ],
       "status": "unread"
@@ -55041,6 +56265,12 @@
           "observed_at": "2026-10-24",
           "sha256": "723c5d9ca3fcf99402e5c23fe9104d80e72e61af4fc60a5c9856f1a2ab6cc9cb",
           "url": "https://www.happings.com/it/happing/alta-langa-aperitivo-magnum-premiere/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1e447193d887a43d9081fb1622ccae61e268f0a65e7e836d178e1df3f4b3eea5",
+          "url": "https://www.happings.com/it/happing/chef-niccolo-palumbo-paca-ristorante-tenuta-ceri/"
         }
       ],
       "status": "unread"
@@ -55164,6 +56394,12 @@
           "observed_at": "2026-10-25",
           "sha256": "ad811e2333903558a8a86157e0f129e83f6044bbcaf58a3ca9e114ea4f1e00dc",
           "url": "https://www.happings.com/it/happing/castagnata-in-frazione-san-pietro/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "68681c88578ac84d2c7f55eefb3c1eb4bcf7c32de625261ff310dd132b5ba224",
+          "url": "https://www.happings.com/it/happing/castagnata/"
         }
       ],
       "status": "unread"
@@ -55380,6 +56616,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1cfc74a1371e1e5b6672b03630b37eb63aa06ba640c16fabf649fbfccef62c65",
+          "url": "https://www.happings.com/it/happing/castagnata-solidale-gpl/"
         }
       ],
       "status": "unread"
@@ -55686,6 +56928,18 @@
           "observed_at": "2026-10-20",
           "sha256": "3df665ad38a6dab677437391ff86881ea4f83ec13fb8dd9ddd3fde1e5d061368",
           "url": "https://www.happings.com/it/happing/il-mercato-dei-produttori-agricoli-terra-viva/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "eca42b2930c09cca48c60b941cee9befde0a201e9b2762cc3f1f4de39913193f",
+          "url": "https://www.happings.com/it/happing/chef-celso-laforgia-urban-assassineria-urbana/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "78890874a18f235587df5368778ef36b34439f452069caaa7fb49f68f1fdc5cf",
+          "url": "https://www.happings.com/it/happing/chef-federico-zanasi-condividere/"
         }
       ],
       "status": "unread"
@@ -55707,6 +56961,12 @@
           "observed_at": "2026-10-20",
           "sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
           "url": "https://www.happings.com/happings_event-sitemap10.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "a0ddee9521926efab20a0ea44d6a18f6c9d58bee6c1b10137fe387b323db1fb2",
+          "url": "https://www.happings.com/it/happing/chef-gianluca-renzi-cannavacciuolo-le-cattedrali-relais/"
         }
       ],
       "status": "unread"
@@ -56010,6 +57270,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "98d2e9fbd450dbffffc2dbf18e99582a8830b1839e094afea47037684d92eb58",
+          "url": "https://www.happings.com/it/happing/cena-dautunno/"
         }
       ],
       "status": "unread"
@@ -56268,6 +57534,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "32366fba6f62b2dcff56b1dcd82de184498dea96ae16134b4dfb4111de398c5d",
+          "url": "https://www.happings.com/it/happing/chef-luca-zecchin-coltivare-agri-relais-2/"
         }
       ],
       "status": "unread"
@@ -57240,6 +58512,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e01f4428a5bc71e05e801d7cf0f4ef1d2d7affed605c4de43f3436be58e1cc53",
+          "url": "https://www.happings.com/it/happing/catwalk-champagne-more-2026/"
         }
       ],
       "status": "unread"
@@ -57261,6 +58539,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "e01f4428a5bc71e05e801d7cf0f4ef1d2d7affed605c4de43f3436be58e1cc53",
+          "url": "https://www.happings.com/it/happing/catwalk-champagne-more-2026/"
         }
       ],
       "status": "unread"
@@ -57384,6 +58668,12 @@
           "observed_at": "2026-10-20",
           "sha256": "aa3fa078dd8cb6a6b92067140c1fe43c7ca9b8071ac77c55d93326fb61783217",
           "url": "https://www.happings.com/happings_event-sitemap7.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "6eaaee96ea2e29adbeb92a6240e5aac97958753fb4af6d8cf446f990fae0ba77",
+          "url": "https://www.happings.com/it/happing/cena-a-tema-spiriti-in-scena-dolo-vini-miti/"
         }
       ],
       "status": "unread"
@@ -57981,6 +59271,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "1fb76ddf8c2dae600cdb7f4d0fa59678926f35ca22cad7962fee73f78511e7be",
+          "url": "https://www.happings.com/it/happing/catalogo/"
         }
       ],
       "status": "unread"
@@ -59292,6 +60588,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-25",
+          "sha256": "11daaeeb25a9a32890a0839c5e6fd3a94484323301c0cd06b3f8355e5f8b6419",
+          "url": "https://www.happings.com/it/happing/cerchio-per-cerchio-tessitura-circolare-dei-mandala/"
         }
       ],
       "status": "unread"

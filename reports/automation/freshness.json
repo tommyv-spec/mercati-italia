@@ -55,16 +55,16 @@
     "metrics": {
       "indirizzo:mancante": 1182,
       "indirizzo:riscontrato_data_fonte_sconosciuta": 2475,
-      "indirizzo:riscontrato_fonte_recente": 1456,
-      "indirizzo:riscontro_da_aggiornare": 97,
-      "indirizzo:senza_riscontro_documentato": 8799,
+      "indirizzo:riscontrato_fonte_recente": 1465,
+      "indirizzo:riscontro_da_aggiornare": 101,
+      "indirizzo:senza_riscontro_documentato": 8786,
       "markets": 14009,
       "markets_with_all_three_fields_source_supported": 1025,
-      "markets_with_recent_field_evidence": 1883,
-      "orario_testo:mancante": 1927,
+      "markets_with_recent_field_evidence": 1892,
+      "orario_testo:mancante": 1919,
       "orario_testo:riscontrato_data_fonte_sconosciuta": 6944,
       "orario_testo:riscontrato_fonte_recente": 1470,
-      "orario_testo:riscontro_da_aggiornare": 260,
+      "orario_testo:riscontro_da_aggiornare": 268,
       "orario_testo:senza_riscontro_documentato": 3408,
       "ricorrenza_testo:mancante": 972,
       "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 969,
@@ -352,15 +352,15 @@
       },
       {
         "indirizzo:riscontrato_data_fonte_sconosciuta": 4,
-        "indirizzo:riscontrato_fonte_recente": 68,
-        "indirizzo:riscontro_da_aggiornare": 54,
-        "indirizzo:senza_riscontro_documentato": 306,
+        "indirizzo:riscontrato_fonte_recente": 77,
+        "indirizzo:riscontro_da_aggiornare": 58,
+        "indirizzo:senza_riscontro_documentato": 293,
         "markets": 432,
-        "markets_with_recent_field_evidence": 68,
-        "orario_testo:mancante": 349,
+        "markets_with_recent_field_evidence": 77,
+        "orario_testo:mancante": 341,
         "orario_testo:riscontrato_data_fonte_sconosciuta": 3,
         "orario_testo:riscontrato_fonte_recente": 20,
-        "orario_testo:riscontro_da_aggiornare": 59,
+        "orario_testo:riscontro_da_aggiornare": 67,
         "orario_testo:senza_riscontro_documentato": 1,
         "publisher": "cosedicasa.com",
         "ricorrenza_testo:senza_riscontro_documentato": 432
@@ -766,7 +766,7 @@
   },
   "metrics": {
     "dataset_updated_not_specific_market": 1251,
-    "forecast_from_stale_or_unknown_source": 10839,
+    "forecast_from_stale_or_unknown_source": 10814,
     "import_within_30d": 184,
     "legacy_update_timestamp_without_source_date": 12561,
     "recent_dataset_only_update": 1204,
@@ -778,8 +778,8 @@
     "source_date_within_30d": 1205,
     "source_read_within_30d": 1366,
     "total": 14009,
-    "with_any_future_date": 11825,
-    "with_forecast_dates": 11658,
+    "with_any_future_date": 11801,
+    "with_forecast_dates": 11633,
     "with_import_timestamp": 184,
     "with_source_read_timestamp": 1366,
     "without_documented_verification": 14009,
@@ -873,7 +873,7 @@
     }
   ],
   "source_refresh": {
-    "conflicts": 6,
+    "conflicts": 15,
     "field_changes": 0,
     "markets_with_field_changes": 0,
     "release_safe": true,
@@ -883,10 +883,11 @@
         "content_date": "2026-01-27",
         "held_reasons": {
           "multiple_or_missing_source_venues": 47,
-          "no_single_explicit_annual_weekday": 26
+          "no_single_explicit_annual_weekday": 26,
+          "source_version_ordering_not_proven": 4
         },
         "layout_complete": true,
-        "matched_markets": 4,
+        "matched_markets": 0,
         "parser_issues": [],
         "parser_metrics": {
           "ambiguous_municipality_days": 0,
@@ -899,7 +900,7 @@
           "unique_source_row_ids": 6
         },
         "read_on": "2026-10-25",
-        "sha256": "b45cb1e968c92a4f014c66b6a7c3e0838e41a3bdbf7ed57820dd7d0744dd1195",
+        "sha256": "5a0eefa233c1829e89b26e440dcbe56b826b652aee9f9ae786f86a3d38dbbdc6",
         "source_id": "bassa-romagna-farmers",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
@@ -910,10 +911,11 @@
         "held_reasons": {
           "multiple_or_missing_source_venues": 35,
           "no_single_explicit_annual_weekday": 26,
+          "source_version_ordering_not_proven": 11,
           "venue_identity_not_established": 5
         },
         "layout_complete": true,
-        "matched_markets": 11,
+        "matched_markets": 0,
         "parser_issues": [],
         "parser_metrics": {
           "ambiguous_municipality_days": 2,
@@ -926,7 +928,7 @@
           "unique_source_row_ids": 20
         },
         "read_on": "2026-10-25",
-        "sha256": "083d01fd9c27bf99fdf2f5aa95c48a6a6719bc3b6fef6a32f88147d587b35882",
+        "sha256": "8b765c4b616d55919aa135975c5fbafc999732b90301b1da3e948d4f3e47f546",
         "source_id": "bassa-romagna-weekly",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
@@ -947,13 +949,14 @@
         "source_layout_needed": 158
       },
       "market_layout_statuses": {
-        "supported": 13515,
-        "unsupported": 494
+        "supported": 13514,
+        "unsupported": 495
       },
       "market_read_statuses": {
+        "layout_held": 1,
         "not_read": 493,
-        "not_selected": 11324,
-        "retrieved": 2189,
+        "not_selected": 11322,
+        "retrieved": 2190,
         "unavailable": 3
       },
       "markets": 14009,
@@ -1453,12 +1456,12 @@
     {
       "domain": "www.cosedicasa.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 252,
+        "forecast_from_stale_or_unknown_source": 241,
         "legacy_update_timestamp_without_source_date": 432,
         "source_date_unknown": 432,
         "total": 432,
-        "with_any_future_date": 254,
-        "with_forecast_dates": 252,
+        "with_any_future_date": 244,
+        "with_forecast_dates": 241,
         "without_documented_verification": 432,
         "without_import_timestamp": 432,
         "without_source_read_timestamp": 432
@@ -1519,12 +1522,12 @@
     {
       "domain": "www.eventiesagre.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 1223,
+        "forecast_from_stale_or_unknown_source": 1209,
         "legacy_update_timestamp_without_source_date": 2197,
         "source_date_unknown": 2197,
         "total": 2197,
-        "with_any_future_date": 1223,
-        "with_forecast_dates": 1223,
+        "with_any_future_date": 1209,
+        "with_forecast_dates": 1209,
         "without_documented_verification": 2197,
         "without_import_timestamp": 2197,
         "without_source_read_timestamp": 2197

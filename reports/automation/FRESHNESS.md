@@ -15,8 +15,8 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Fonte più vecchia del limite di 540 giorni: **52**.
 - Schede con età del contenuto della fonte non comprovata: **12,744**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,658**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,839**.
+- Schede con date future previste: **11,633**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,814**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -136,8 +136,8 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1182 | 8799 | 1456 | 2475 | 97 |
-| Orari | 1927 | 3408 | 1470 | 6944 | 260 |
+| Sede | 1182 | 8786 | 1465 | 2475 | 101 |
+| Orari | 1919 | 3408 | 1470 | 6944 | 268 |
 | Giorni | 972 | 10398 | 1650 | 969 | 20 |
 
 ## Funzionamento del recupero automatico
@@ -146,10 +146,10 @@ URL primari distinti nel catalogo: 5919. Le pagine riconosciute vengono lette un
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 4 | 0 |
-| bassa-romagna-weekly | retrieved | 11 | 0 |
+| bassa-romagna-farmers | retrieved | 0 | 0 |
+| bassa-romagna-weekly | retrieved | 0 | 0 |
 
-Conflitti mantenuti in revisione: 6.
+Conflitti mantenuti in revisione: 15.
 
 
 ## Limiti del sistema

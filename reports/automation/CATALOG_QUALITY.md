@@ -5,10 +5,10 @@ Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 - Schede: **14,009**.
-- Orari mancanti: **1,927**.
+- Orari mancanti: **1,919**.
 - Indirizzi mancanti: **1,182**.
 - Coordinate mancanti: **458**.
-- Date future mancanti: **2,184**.
+- Date future mancanti: **2,208**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,405** gruppi, **1,680** righe in eccesso potenziali.
@@ -42,18 +42,18 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Basilicata | 36 | 4 | 9 |
 | Calabria | 331 | 37 | 37 |
 | Campania | 824 | 121 | 67 |
-| Emilia-Romagna | 909 | 179 | 100 |
-| Friuli Venezia Giulia | 262 | 38 | 15 |
+| Emilia-Romagna | 909 | 178 | 100 |
+| Friuli Venezia Giulia | 262 | 37 | 15 |
 | Lazio | 1,082 | 107 | 59 |
-| Liguria | 391 | 59 | 51 |
-| Lombardia | 3,990 | 548 | 169 |
+| Liguria | 391 | 57 | 51 |
+| Lombardia | 3,990 | 545 | 169 |
 | Marche | 295 | 77 | 43 |
 | Molise | 215 | 15 | 30 |
 | Piemonte | 1,350 | 176 | 175 |
 | Puglia | 484 | 54 | 37 |
 | Sardegna | 392 | 23 | 30 |
 | Sicilia | 405 | 58 | 39 |
-| Toscana | 969 | 212 | 106 |
+| Toscana | 969 | 211 | 106 |
 | Trentino-Alto Adige | 230 | 24 | 36 |
 | Umbria | 181 | 38 | 19 |
 | Valle d'Aosta | 54 | 7 | 6 |
