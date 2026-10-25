@@ -38,6 +38,11 @@ MAX_RAW_PROFILES = 8
 MAX_NORMALIZED_PROFILES = 30
 MAX_ROWS = 6000
 MAX_PROFILE_BYTES = 65536
+# A published PDF table (one regional calendar) is larger than a CSV export.
+MAX_DOCUMENT_BYTES = 4_000_000
+MAX_PDF_PAGES = 60
+# Daily quota of publisher contracts read over the network in one run.
+MAX_ENABLED_RAW_PROFILES = 3
 MAX_MARKDOWN_EXAMPLES = 10
 MARKET_KINDS = frozenset({"market_venue", "market_venue_day"})
 OTHER_KINDS = frozenset({"stall", "concession", "historical_capacity", "aggregate"})
@@ -71,6 +76,156 @@ def _public_https(url):
                     p.port in (None,443) and not p.fragment)
     except ValueError:
         return False
+
+
+def _short_texts(values, low, high, limit):
+    return (isinstance(values,list) and 1<=len(values)<=limit
+            and all(isinstance(v,str) and low<=len(v.strip())<=high for v in values))
+
+
+def validate_multi_town_options(item):
+    """Declarative options for official calendars that list many municipalities."""
+    columns=item["schema_columns"]
+    if item.get("municipality_field") is not None and (
+            item["municipality_field"] not in columns or item.get("province") is not None):
+        raise ValueError("Row municipality column must be reviewed; ISTAT supplies its province")
+    if (item.get("format")=="PDF") != (item.get("pdf_header") is not None):
+        raise ValueError("A PDF table needs its exact reviewed header, and only PDFs have one")
+    if item.get("pdf_header") is not None and (
+            not isinstance(item["pdf_header"],list) or len(item["pdf_header"])!=len(columns)
+            or any(not isinstance(cell,str) or len(cell)>200 for cell in item["pdf_header"])):
+        raise ValueError("PDF header must name every reviewed column")
+    for flag in ("weekday_lists","new_market_requires_free_town_day"):
+        if item.get(flag,False) not in (True,False):
+            raise ValueError("Invalid boolean source option: "+flag)
+    if item.get("hours_text_format") is not None and (
+            item["hours_text_format"]!="italian_clock_range" or not item.get("hours_text_field")):
+        raise ValueError("Unknown hours text format")
+    excluded=item.get("exclude_rows_containing",{})
+    if (not isinstance(excluded,dict) or len(excluded)>4
+            or any(k not in columns or not _short_texts(v,3,40,6) for k,v in excluded.items())):
+        raise ValueError("Invalid non-market row exclusion")
+    for option,fields in (("empty_name_template",("{citta}",)),
+                          ("place_name_template",("{citta}","{nome}"))):
+        template=item.get(option)
+        if template is not None and (not isinstance(template,str) or not 8<=len(template)<=80
+                                     or any(field not in template for field in fields)):
+            raise ValueError("Invalid market name template")
+    found=item.get("resource_discovery")
+    if found is not None:
+        if (not isinstance(found,dict) or set(found)!={"link_text","href_pattern"}
+                or not isinstance(found["link_text"],str) or not 3<=len(found["link_text"])<=120
+                or not isinstance(found["href_pattern"],str) or "{year}" not in found["href_pattern"]
+                or len(found["href_pattern"])>300
+                or item.get("source_date_strategy")!="landing_page_year_v1"):
+            raise ValueError("Unreviewed yearly document discovery rule")
+        try:
+            re.compile(found["href_pattern"].replace("{year}","2026"))
+        except re.error as exc:
+            raise ValueError("Invalid yearly document link pattern") from exc
+    fill=item.get("existing_market_fill")
+    if fill is not None and (
+            not isinstance(fill,dict) or set(fill)!={"max_records_per_run"}
+            or type(fill["max_records_per_run"]) is not int
+            or not 1<=fill["max_records_per_run"]<=500
+            or item.get("row_kind") not in MARKET_KINDS):
+        raise ValueError("Invalid existing-market field fill policy")
+
+
+def pdf_table_rows(profile, blob):
+    """Read every table row of a reviewed PDF calendar (pdfplumber, MIT).
+
+    Each page must repeat the exact reviewed header with the reviewed number
+    of columns. Only blank or one-cell title rows may precede it; anything else
+    means the publisher changed the layout and the contract needs a review.
+    Rows below the header are returned as-is (totals rows fail row validation).
+    """
+    try:
+        import pdfplumber
+    except ImportError as exc:  # isolated like any unreadable source
+        raise ValueError("PDF reader unavailable: install backend/requirements.txt") from exc
+    header=[canonical(cell) for cell in profile["pdf_header"]]
+    columns=profile["schema_columns"]
+    rows=[]
+    try:
+        with pdfplumber.open(io.BytesIO(blob)) as pdf:
+            if not 1<=len(pdf.pages)<=MAX_PDF_PAGES:
+                raise ValueError("PDF page count outside the reviewed bound")
+            for page in pdf.pages:
+                headers=0
+                for table in page.extract_tables():
+                    for raw in table:
+                        cells=[" ".join(str(c or "").split()) for c in raw]
+                        if len(cells)!=len(columns):
+                            raise ValueError("Publisher changed PDF table columns")
+                        if not any(cells):
+                            continue
+                        if [canonical(c) for c in cells]==header:
+                            headers+=1
+                        elif sum(bool(c) for c in cells)<=1 and not headers:
+                            continue  # title or spacer above the header
+                        elif headers:
+                            rows.append(dict(zip(columns,cells)))
+                        else:
+                            raise ValueError("PDF data row before the reviewed header")
+                if headers!=1:
+                    raise ValueError("Every PDF page needs exactly one reviewed header")
+    except ValueError:
+        raise
+    except Exception as exc:  # malformed/hostile PDF: treat as unreadable source
+        raise ValueError("Unreadable publisher PDF: "+type(exc).__name__) from exc
+    return rows
+
+
+def weekdays(value):
+    """'martedì, venerdì' / 'lunedì e giovedì' -> (1, 4); anything else -> None."""
+    parts=[canonical(p) for p in re.split(r",|\s+e\s+",str(value or ""))]
+    if not parts or any(p not in WEEKDAYS_NORMAL for p in parts):
+        return None
+    return tuple(sorted({WEEKDAYS_NORMAL.index(p) for p in parts}))
+
+
+_CLOCK=r"([01]?\d|2[0-3])(?:\s*[.,:;]\s*([0-5]\d))?"
+_CLOCK_RANGE=re.compile(r"(?:dalle\s+(?:ore\s*)?)?"+_CLOCK+
+                        r"\s*(?:-|–|al{1,2}e\s+(?:ore\s*)?)\s*"+_CLOCK)
+
+
+def clock_range(value):
+    """'dalle ore 7,30 alle ore 13,30' / '7.30-13.30' -> '07:30–13:30'.
+
+    One complete range only: seasonal, split or qualified hours return None.
+    """
+    match=_CLOCK_RANGE.fullmatch(" ".join(str(value or "").casefold().split()))
+    if not match:
+        return None
+    h1,m1,h2,m2=(int(x or 0) for x in match.groups())
+    if (h1,m1)>=(h2,m2):
+        return None
+    return f"{h1:02d}:{m1:02d}–{h2:02d}:{m2:02d}"
+
+
+def istat_municipality(region, name):
+    """Exact ISTAT 2026 spelling and province for a municipality, or None."""
+    from catalog_quality_report import key
+    return _istat_registry().get(region,{}).get(key(name))
+
+
+def _istat_registry():
+    global _ISTAT
+    if _ISTAT is None:
+        from municipality_reconciliation import trusted_municipalities
+        _ISTAT=trusted_municipalities(json.loads(
+            (Path(__file__).resolve().parent/"data/istat-comuni-2026.json").read_text("utf-8")))
+    return _ISTAT
+
+
+_ISTAT=None
+
+
+def excluded_row(profile, row):
+    return any(canonical(token) in canonical(row.get(field))
+               for field,tokens in profile.get("exclude_rows_containing",{}).items()
+               for token in tokens)
 
 
 def validate_contracts(config):
@@ -128,9 +283,10 @@ def validate_contracts(config):
                         item.get("source_date_scope")!="dataset_not_per_market" or
                         not safe_url(item.get("resource_url")) or
                         not _public_https(item.get("attribution_url")) or
-                        item.get("format") not in ("CSV","JSON") or
+                        item.get("format") not in ("CSV","JSON","PDF") or
                         type(item.get("max_bytes")) is not int or
-                        not 100<=item["max_bytes"]<=MAX_PROFILE_BYTES or
+                        not 100<=item["max_bytes"]<=(
+                            MAX_DOCUMENT_BYTES if item.get("format")=="PDF" else MAX_PROFILE_BYTES) or
                         not isinstance(item.get("schema_columns"),list) or
                         not 1<=len(item["schema_columns"])<=100 or
                         len(set(item["schema_columns"]))!=len(item["schema_columns"]) or
@@ -138,7 +294,9 @@ def validate_contracts(config):
                         not 1<=len(item["identity_fields"])<=4 or
                         not set(item["identity_fields"]).issubset(item["schema_columns"]) or
                         item.get("catalog_slug_prefix") is None or
-                        item.get("municipality") is None or
+                        # One municipality per file, or a reviewed column that
+                        # names each row's municipality (multi-town calendars).
+                        (item.get("municipality") is None) == (item.get("municipality_field") is None) or
                         item.get("region") is None or
                         not isinstance(item.get("source_dataset_date"),str) or
                         type(item.get("max_source_age_days")) is not int or
@@ -193,6 +351,7 @@ def validate_contracts(config):
                                                "artigianato","usato","vintage_abbigliamento"}
                                    for k,v in cmap["values"].items())):
                         raise ValueError("Unreviewed market category mapping")
+                validate_multi_town_options(item)
                 for name in ("name_field","weekday_field"):
                     if item.get(name) not in item["schema_columns"]:
                         raise ValueError("Market source field missing from inspected schema")
@@ -222,6 +381,11 @@ def parse_rows(profile,blob):
     if (not isinstance(blob,bytes) or not blob or
             len(blob)>profile["max_bytes"]):
         raise ValueError("Full publisher file exceeds exact bounded size")
+    if profile["format"]=="PDF":
+        rows=pdf_table_rows(profile,blob)
+        if not profile["min_rows"]<=len(rows)<=profile["max_rows"]:
+            raise ValueError("Incomplete/expanded publisher snapshot outside source contract")
+        return rows
     try:
         decoded=blob.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
@@ -299,8 +463,22 @@ def candidate_record(profile,row,*,today,source_date=None):
             all(canonical(row.get(key))==canonical(value) for key,value in rule.items())
             for rule in typed_filters):
         return None,"not_a_market_venue",None
+    if excluded_row(profile,row):
+        return None,"not_a_market_venue",None
+    if profile.get("municipality_field"):
+        place=istat_municipality(profile["region"],row.get(profile["municipality_field"]))
+        if place is None:
+            return None,"municipality_not_in_istat",None
+        city,province=place
+    else:
+        city,province=profile["municipality"],profile["province"]
     identity=[canonical(row.get(col)) for col in profile["identity_fields"]]
     name=str(row.get(profile["name_field"]) or "").strip()
+    if not name:
+        name=str(profile.get("empty_name_template") or "").replace("{citta}",city)
+    elif profile.get("place_name_template") and "mercat" not in canonical(name):
+        # A bare locality/street ("Capoluogo", "Marsango") is not a market name.
+        name=profile["place_name_template"].replace("{citta}",city).replace("{nome}",name)
     road=" ".join(str(row.get(col) or "").strip() for col in profile.get("street_fields",[])).strip()
     if (not all(identity) or not name or not road or
             len(name)>160 or len(road)>240):
@@ -311,7 +489,12 @@ def candidate_record(profile,row,*,today,source_date=None):
         slug=profile["catalog_slug_prefix"]+digest(identity)[:18]
     if not SLUG_RE.fullmatch(slug):
         return None,"bad_publisher_identity",None
-    d=weekday(row.get(profile["weekday_field"]))
+    if profile.get("weekday_lists"):
+        days=weekdays(row.get(profile["weekday_field"]))
+        d=list(days) if days else None
+    else:
+        d=weekday(row.get(profile["weekday_field"]))
+        days=None if d is None else (d,)
     start,end=(None,None)
     if profile.get("hours_fields"):
         a,b=profile["hours_fields"]
@@ -325,12 +508,16 @@ def candidate_record(profile,row,*,today,source_date=None):
         return None,"dataset_date_in_future",None
     forecast_eligible=(d is not None and age<=profile.get(
         "max_forecast_source_age_days",profile["max_source_age_days"]))
-    recurrence="settimanale - "+WEEKDAYS[d] if forecast_eligible else "Calendario da verificare"
+    recurrence=("settimanale - "+", ".join(WEEKDAYS[x] for x in days)
+                if forecast_eligible else "Calendario da verificare")
     raw_hours=""
     if profile.get("hours_text_field"):
         raw_hours=preserve_hours_text(row.get(profile["hours_text_field"]))
+        span=clock_range(raw_hours) if profile.get("hours_text_format") else None
         match=re.fullmatch(r"((?:[01]\d|2[0-3]):[0-5]\d)\s*[-–]\s*((?:[01]\d|2[0-3]):[0-5]\d)",raw_hours)
-        if match and match.group(1)<match.group(2):
+        if span:
+            start,end=span.split("–")
+        elif match and match.group(1)<match.group(2):
             start,end=match.groups()
         elif raw_hours:
             # A separate numeric range cannot discard qualifications in the
@@ -338,6 +525,10 @@ def candidate_record(profile,row,*,today,source_date=None):
             start=end=None
     if start and end:
         hours=preserve_hours_text(start+"–"+end, qualification="(da verificare con il Comune)")
+    elif profile.get("hours_text_format"):
+        # Only one complete clock range is published; seasonal, split or
+        # damaged PDF text stays out of the card (it is still fingerprinted).
+        hours=""
     else:
         hours=preserve_hours_text(
             raw_hours, qualification="(indicazioni della fonte; da verificare con il Comune)")
@@ -346,7 +537,7 @@ def candidate_record(profile,row,*,today,source_date=None):
                    if canonical(row.get(c_map["field"]))==canonical(key)),"misto")
     venue={
         "slug":slug,"nome":name[:160],
-        "citta":profile["municipality"],"provincia":profile["province"],
+        "citta":city,"provincia":province,
         "regione":profile["region"],"indirizzo":road,
         "lat":None,"lng":None,"position_quality":"sconosciuta",
         "navigazione_sospesa_motivo":NAVIGATION_HOLD,
@@ -612,7 +803,7 @@ def run(config,catalog,*,source_dir=None,previous=None,source_status=None,
             status["existing_adapter_snapshots_inspected"]+=1
     if probe_raw:
         enabled=[p for p in config["raw_profiles"] if p.get("enabled") is True]
-        if len(enabled)>2:
+        if len(enabled)>MAX_ENABLED_RAW_PROFILES:
             raise ValueError("Unbounded daily raw source probe quota")
         for profile in enabled:
             sid=profile["id"]

@@ -249,6 +249,115 @@
       "source_date_strategy": "opendatasoft_data_processed_v1",
       "source_metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
       "source_metadata_license": "CC BY 4.0"
+    },
+    {
+      "id": "veneto-calendario-mercati",
+      "enabled": true,
+      "publisher": "Regione del Veneto – Calendario regionale dei mercati",
+      "source_id": "veneto-calendario-mercati",
+      "row_kind": "market_venue_day",
+      "resource_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+      "attribution_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+      "format": "PDF",
+      "max_bytes": 4000000,
+      "min_rows": 400,
+      "max_rows": 1500,
+      "schema_columns": [
+        "provincia",
+        "comune",
+        "luogo",
+        "denominazione",
+        "periodicita",
+        "dal_al",
+        "cadenza",
+        "giorni",
+        "orario",
+        "posteggi_alimentari",
+        "posteggi_non_alimentari",
+        "posteggi_agricoltori",
+        "posteggi_totali",
+        "assegnati_alimentari",
+        "assegnati_non_alimentari",
+        "assegnati_agricoltori",
+        "assegnati_totali",
+        "vuota"
+      ],
+      "pdf_header": [
+        "Provincia/Città Metropolitana di",
+        "Denominazione COMUNE di",
+        "Luogo di svolgimento",
+        "Denominazione del mercato",
+        "Periodicità del mercato (annuale/stagionale)",
+        "Dal (giorno di inizio) Al (giorno di conclusione)",
+        "Cadenza (mensile/settima nale/quotidiana)",
+        "Giorni di svolgimento",
+        "Orario di svolgimento (dalle ore - alle ore)",
+        "Posteggi previsti per settore alimentare",
+        "Posteggi previsti per settore NON alimentare",
+        "Posteggi previsti per imprenditori agricoli",
+        "Totale posteggi previsti per il mercato",
+        "Posteggi settore alimentare assegnati",
+        "Posteggi settore NON alimentare assegnati",
+        "Posteggi imprenditori agricoli assegnati",
+        "Totale posteggi assegnati nel mercato",
+        ""
+      ],
+      "identity_fields": [
+        "provincia",
+        "comune",
+        "luogo",
+        "giorni"
+      ],
+      "name_field": "denominazione",
+      "empty_name_template": "Mercato settimanale di {citta}",
+      "place_name_template": "Mercato di {citta} – {nome}",
+      "street_fields": [
+        "luogo"
+      ],
+      "weekday_field": "giorni",
+      "weekday_lists": true,
+      "hours_fields": [],
+      "hours_text_field": "orario",
+      "hours_text_format": "italian_clock_range",
+      "market_filters_any": [
+        {
+          "periodicita": "annuale",
+          "cadenza": "settimanale"
+        }
+      ],
+      "exclude_rows_containing": {
+        "denominazione": [
+          "isolat"
+        ],
+        "luogo": [
+          "isolat"
+        ]
+      },
+      "hold_address_contains": [
+        "temporaneam",
+        "spostato"
+      ],
+      "municipality_field": "comune",
+      "region": "Veneto",
+      "catalog_slug_prefix": "ve-calreg-",
+      "source_dataset_date": "2026-01-01",
+      "source_date_scope": "dataset_not_per_market",
+      "source_date_strategy": "landing_page_year_v1",
+      "resource_discovery": {
+        "link_text": "Calendario regionale dei mercati",
+        "href_pattern": "/documents/10713/\\d+/[^/]*{year}[^/]*\\.pdf/[0-9a-f-]{36}"
+      },
+      "max_source_age_days": 540,
+      "max_forecast_source_age_days": 450,
+      "legal_reuse_reviewed": true,
+      "publication_mode": "approved_dev_only",
+      "max_new_ids_per_run": 100,
+      "coordinates": "ignored_unless_independently_source_verified",
+      "existing_market_fill": {
+        "max_records_per_run": 500
+      },
+      "new_market_requires_free_town_day": true,
+      "notes": "Yearly regional PDF (comuni report by 15 October, file late December; file URL changes every year and is found on the landing page by link text + pattern; content date = 1 January of the calendar year). Terms https://www.regione.veneto.it/web/guest/note-legali: reuse with source citation, no commercial use (owner decision 2026-10-25: the app is not commercial). Municipality spelled/provinced by ISTAT 2026; 'posteggi isolati' are stalls, not markets. Only annual weekly rows become new markets, and only on a municipality+weekday with no existing market. Existing markets matched by unique municipality+weekday get official hours and missing streets with per-field receipts. The antiques calendar has another layout (monthly/ordinal dates) and is not covered by this contract."
     }
   ]
 }

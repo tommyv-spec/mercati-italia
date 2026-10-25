@@ -22,9 +22,10 @@ from pathlib import Path
 from catalog_quality_report import VAGUE_ADDRESSES, key as addr_key
 from lombardia_overlap import weekday_evidence
 from source_lifecycle import (
-    parse_rows, candidate_record, canonical, digest, validate_contracts,
-    weekday as source_weekday,
+    WEEKDAYS_NORMAL, parse_rows, candidate_record, canonical, digest, excluded_row,
+    istat_municipality, validate_contracts, weekday as source_weekday, weekdays as source_weekdays,
 )
+from official_enrichment import DAYPARTS, SPECIALIZED_MARKET, _shares_place_word
 from field_evidence import (
     FIELDS, MAX_READ_AGE, as_day, clean_receipts, fingerprint as evidence_fingerprint,
     make_receipt, managed_update_allowed, mark_managed_fields, valid_receipt,
@@ -37,6 +38,13 @@ MAX_STAGING_SOURCE_ROWS = 3000
 MAX_PROFILE_MAX_NEW = 250
 REPORT_EXAMPLES = 12
 FIELD_MANAGER = "source_contract_ingest"
+# Fields of OTHER publishers' markets proved by a unique municipality+weekday
+# join with a contracted multi-town calendar (never by its row ID).
+FILL_MANAGER = "source_contract_town_day"
+FILL_METHOD = "comune_provincia_giorno_univoco"
+FILL_FIELDS = ("indirizzo", "orario_testo")
+EXACT_SOURCE_HOURS = re.compile(r"(?:[01]\d|2[0-3]):[0-5]\d–(?:[01]\d|2[0-3]):[0-5]\d \(da verificare con il Comune\)")
+ORDINARY_CATEGORIES = frozenset({"misto", "alimentare"})
 IDENTITY_FIELDS = ("nome", "citta", "regione", "provincia")
 FIELD_REVIEW_REASONS = {
     "indirizzo": "source_address_changed",
@@ -182,6 +190,268 @@ def _review_reason(record, prior, candidate_day, *, allow_unlocated_city_summary
     return None
 
 
+def _town_day_taken(record, cohort, unresolved_localities):
+    """A new official venue must not duplicate a weekly market already listed.
+
+    Any visible market of the same municipality on one of its weekdays may be
+    this venue under another publisher's name or street: hold, never guess.
+    Markets filed under a locality that is no ISTAT municipality (a merged
+    town or frazione) count when the candidate's name/street names it.
+    """
+    days=weekday_evidence(record)
+    if not days:
+        return "new_market_weekday_unknown"
+    for prior in cohort:
+        if not prior.get("duplicato_di") and (weekday_evidence(prior) or set()) & days:
+            return "existing_market_same_town_day"
+    text=" "+canonical(" ".join(str(record.get(field) or "")
+                                for field in ("nome","indirizzo","citta")))+" "
+    for prior in unresolved_localities:
+        place=canonical(prior.get("citta"))
+        if (not prior.get("duplicato_di") and len(place)>=3 and " "+place+" " in text
+                and (weekday_evidence(prior) or set()) & days):
+            return "existing_market_same_locality_day"
+    return None
+
+
+def _placeholder_street(value):
+    """No usable venue: empty, a vague label or a truncated scrap ("pia")."""
+    text=addr_key(value)
+    return not text or text in VAGUE_ADDRESSES or len(text.replace(" ",""))<6
+
+
+def _replaceable_hours(current, official):
+    """Empty, or a part of the day that every official opening starts in."""
+    current=str(current or "").strip()
+    if not current:
+        return True
+    span=DAYPARTS.get(addr_key(current))
+    return bool(span and EXACT_SOURCE_HOURS.fullmatch(official or "")
+                and span[0]<=int(official[:2])<span[1])
+
+
+def _ordinary_market(row):
+    tags=row.get("tags") or []
+    text=" ".join(canonical(v) for v in [row.get("nome"),row.get("url_fonte"),
+                                         *(tags if isinstance(tags,list) else [tags])])
+    return canonical(row.get("categoria")) in ORDINARY_CATEGORIES and not SPECIALIZED_MARKET.search(text)
+
+
+def _row_days(profile, row):
+    """Weekdays a source row may run on; unknown wording competes for every day."""
+    value=row.get(profile["weekday_field"])
+    days=source_weekdays(value)
+    if days is None:
+        text=" "+canonical(value)+" "
+        days=tuple(i for i,name in enumerate(WEEKDAYS_NORMAL) if " "+name+" " in text) or tuple(range(7))
+    return days
+
+
+def _fill_link(profile):
+    return {"nome":profile["publisher"],"url":profile["attribution_url"]}
+
+
+def _with_link(row, link):
+    primary={"nome":str(row.get("fonte") or ""),"url":str(row.get("url_fonte") or "")}
+    links=[dict(item) for item in (row.get("fonti") or []) if isinstance(item,dict)]
+    if (primary["nome"] or primary["url"]) and primary not in links:
+        links.append(primary)
+    if link not in links:
+        links.append(link)
+    return links
+
+
+def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed_sha256,
+                   claimed=frozenset()):
+    """Official street/hours for OTHER publishers' markets, by municipality+weekday.
+
+    A market is joined only when, for each of its weekdays, it is the only
+    visible weekly market of its municipality in the catalog AND the complete
+    source has exactly one market row there (seasonal, daily or unparsed rows
+    compete too; non-market rows such as single stalls do not). A saved real
+    street must share a distinctive word with the official one. Only empty or
+    vague values are filled (or values this engine owns, from a newer version);
+    better data is never overwritten. Returns proofs and a reason count.
+    """
+    region=profile["region"]
+    counts=Counter()
+    competitors=defaultdict(set)
+    official={}
+    for index,row in enumerate(source):
+        if excluded_row(profile,row):
+            continue
+        place=(istat_municipality(region,row.get(profile["municipality_field"]))
+               if profile.get("municipality_field") else
+               (profile["municipality"],profile["province"]))
+        if place is None:
+            continue
+        for day in _row_days(profile,row):
+            competitors[(canonical(place[0]),day)].add(index)
+        record,issue,_=candidate_record(profile,row,today=today,source_date=source_date)
+        if record is not None and issue is None:
+            official[index]=record
+    slots=defaultdict(list)
+    for row in base:
+        if row.get("regione")==region and not row.get("duplicato_di"):
+            for day in weekday_evidence(row) or ():
+                slots[(canonical(row.get("citta")),day)].append(row["slug"])
+    link=_fill_link(profile)
+    proofs=[]
+    for target in sorted(base,key=lambda row:row["slug"]):
+        days=weekday_evidence(target)
+        if (target.get("regione")!=region or target.get("duplicato_di") or not days
+                or target["slug"].startswith(profile["catalog_slug_prefix"])
+                or target["slug"] in claimed):
+            continue
+        counts["weekly_markets_screened"]+=1
+        city=canonical(target.get("citta"))
+        place=istat_municipality(region,target.get("citta"))
+        sources={frozenset(competitors.get((city,day),())) for day in days}
+        reason=None
+        if target.get("verificato_il"):
+            reason="human_verified_market"
+        elif not _ordinary_market(target):
+            reason="market_type_not_ordinary"
+        elif place and target.get("provincia") and target["provincia"]!=place[1]:
+            reason="province_differs"
+        elif any(len(slots[(city,day)])>1 for day in days):
+            reason="several_catalog_markets_same_town_day"
+        elif frozenset() in sources:
+            reason="no_official_market_town_day"
+        elif any(len(ids)>1 for ids in sources):
+            reason="several_official_markets_same_town_day"
+        elif len(sources)!=1:
+            reason="weekdays_in_different_official_rows"
+        if reason:
+            counts["held_"+reason]+=1
+            continue
+        index=next(iter(next(iter(sources))))
+        record=official.get(index)
+        if record is None:
+            counts["held_official_market_not_annual_weekly"]+=1
+            continue
+        if not days<=(weekday_evidence(record) or set()):
+            counts["held_weekday_sets_differ"]+=1
+            continue
+        street=record["indirizzo"]
+        if not _placeholder_street(target.get("indirizzo")) and not _shares_place_word(
+                target.get("indirizzo"),street):
+            counts["held_different_street"]+=1
+            continue
+        values={"indirizzo":street}
+        if EXACT_SOURCE_HOURS.fullmatch(record["orario_testo"]):
+            values["orario_testo"]=record["orario_testo"]
+        values={k:v for k,v in values.items() if len(v)<=FIELDS[k]}
+        receipt_for=lambda row,vals:make_receipt(
+            row,values=vals,source_url=profile["resource_url"],source_name=profile["publisher"],
+            source_id=profile["id"],source_row=record["slug"],read_on=read_on,
+            source_updated_on=source_date,source_sha256=parsed_sha256,method=FILL_METHOD)
+        probe=receipt_for({**target,**values},values)
+        changes,managed={},set()
+        for field,value in values.items():
+            current=target.get(field)
+            if current==value:
+                continue
+            if managed_update_allowed(target,probe,field,manager=FILL_MANAGER,today=today):
+                managed.add(field)
+            elif not (_placeholder_street(current) and target.get("position_quality")!="precisa"
+                      if field=="indirizzo" else _replaceable_hours(current,value)):
+                counts["kept_existing_"+field]+=1
+                continue
+            changes[field]={"before":current,"after":value}
+        result=copy.deepcopy(target)
+        for field,change in changes.items():
+            result[field]=change["after"]
+        observed={k:v for k,v in values.items() if result.get(k)==v}
+        if not observed:
+            counts["matched_nothing_to_record"]+=1
+            continue
+        receipt=receipt_for(result,observed)
+        initial=set(changes)-managed
+        if initial:
+            receipt=mark_managed_fields(receipt,initial,manager=FILL_MANAGER)
+        if managed:
+            receipt=mark_managed_fields(receipt,managed,manager=FILL_MANAGER,previous=target)
+        result["fonti"]=_with_link(target,link)
+        result["riscontri_campi"]=clean_receipts(
+            [*(target.get("riscontri_campi") or []),receipt],result,today=today)
+        # A same-source reread merges with the earlier receipt (keeping its
+        # field ownership); the new read itself must survive that merge.
+        if not any(saved["valori"]==receipt["valori"] and all(
+                saved.get(k)==receipt.get(k) for k in ("fonte_id","riga_fonte","metodo","letto_il","sha256"))
+                for saved in result["riscontri_campi"]):
+            counts["held_receipt_not_retained"]+=1
+            continue
+        if result==target:
+            continue
+        counts["matched_markets"]+=1
+        for field in changes:
+            counts["filled_"+field]+=1
+        proofs.append({"slug":target["slug"],"source_row":record["slug"],
+                       "changed_fields":changes,"receipt":receipt,
+                       "before_sha256":evidence_fingerprint(target),
+                       "after_sha256":evidence_fingerprint(result)})
+    # Per-run cap on visible changes; evidence refreshes are not capped.
+    limit=profile["existing_market_fill"]["max_records_per_run"]
+    visible=[proof for proof in proofs if proof["changed_fields"]]
+    deferred={proof["slug"] for proof in visible[limit:]}
+    counts["deferred_to_next_run"]=len(deferred)
+    return [proof for proof in proofs if proof["slug"] not in deferred],dict(sorted(counts.items()))
+
+
+def apply_fill(row, proof, profile, *, today):
+    result=copy.deepcopy(row)
+    for field,change in proof["changed_fields"].items():
+        result[field]=change["after"]
+    result["fonti"]=_with_link(row,_fill_link(profile))
+    result["riscontri_campi"]=clean_receipts(
+        [*(row.get("riscontri_campi") or []),proof["receipt"]],result,today=today)
+    return result
+
+
+def verify_fill(profile, prior, result, proof, *, today, source_observations):
+    """Independently check one town/day fill: exact diff, prior gap, bound receipt."""
+    source_date=observed_source_date(profile,source_observations,today=today)
+    if (not isinstance(proof,dict) or set(proof)!={"slug","source_row","changed_fields","receipt",
+                                                    "before_sha256","after_sha256"}
+            or proof["slug"]!=prior.get("slug")
+            or proof["before_sha256"]!=evidence_fingerprint(prior)
+            or proof["after_sha256"]!=evidence_fingerprint(result)
+            or prior.get("regione")!=profile["region"] or prior.get("verificato_il")
+            or prior.get("duplicato_di")
+            or prior["slug"].startswith(profile["catalog_slug_prefix"])
+            or not str(proof["source_row"]).startswith(profile["catalog_slug_prefix"])):
+        raise ValueError("Town/day fill proof does not belong to this market or source")
+    changes,receipt=proof["changed_fields"],proof["receipt"]
+    if (not isinstance(changes,dict) or set(changes)-set(FILL_FIELDS)
+            or not isinstance(receipt,dict) or not valid_receipt(receipt,result,today=today)
+            or receipt.get("fonte_id")!=profile["id"] or receipt.get("fonte")!=profile["publisher"]
+            or receipt.get("url")!=profile["resource_url"]
+            or receipt.get("riga_fonte")!=proof["source_row"]
+            or receipt.get("metodo")!=FILL_METHOD or receipt.get("ambito")!="dataset"
+            or receipt.get("impronta_tipo")!="publisher_parsed_json"
+            or receipt.get("sha256")!=source_observations.get("source_parsed_sha256")
+            or receipt.get("letto_il")!=source_observations.get("source_read_on")
+            or receipt.get("fonte_aggiornata_il")!=source_date
+            or (changes and (receipt.get("gestore_campi")!=FILL_MANAGER
+                             or not set(changes)<=set(receipt.get("campi_gestiti") or [])))):
+        raise ValueError("Town/day fill receipt is not bound to the observed source")
+    plain={k:copy.deepcopy(v) for k,v in receipt.items()
+           if k not in {"campi_gestiti","gestore_campi","versioni_precedenti"}}
+    for field,change in changes.items():
+        before=prior.get(field)
+        if (not isinstance(change,dict) or set(change)!={"before","after"}
+                or change["before"]!=before or change["after"]!=receipt["valori"].get(field)
+                or not (managed_update_allowed(prior,plain,field,manager=FILL_MANAGER,today=today)
+                        or (field=="indirizzo" and _placeholder_street(before)
+                            and prior.get("position_quality")!="precisa")
+                        or (field=="orario_testo" and _replaceable_hours(before,change["after"])))):
+            raise ValueError("Town/day fill overwrote a value it may not replace")
+    if apply_fill(prior,proof,profile,today=today)!=result:
+        raise ValueError("Town/day fill changed an unreported field")
+    return len(changes)
+
+
 def _validate_existing(base):
     if not isinstance(base,list) or not 1<=len(base)<=100000:
         raise ValueError("Invalid complete baseline market dataset")
@@ -235,9 +505,7 @@ def _source_hours_fill_allowed(profile, prior, receipt, *, today):
             or not read or not 0<=(today-read).days<=MAX_READ_AGE
             or not canonical(prior.get("indirizzo"))
             or canonical(values.get("indirizzo"))!=canonical(prior.get("indirizzo"))
-            or any(canonical(prior.get(field))!=canonical(profile.get(setting))
-                   for field,setting in (("citta","municipality"),
-                                         ("provincia","province"),("regione","region")))
+            or not _same_contract_geography(profile, prior)
             or not str(prior.get("slug") or "").startswith(profile["catalog_slug_prefix"])
             or prior.get("url_fonte")!=profile["attribution_url"]
             or receipt.get("riga_fonte")!=prior.get("slug")
@@ -262,6 +530,16 @@ def _source_hours_fill_allowed(profile, prior, receipt, *, today):
                 or (previous_date and (not source_date or source_date<previous_date))):
             return False
     return valid_receipt(receipt,{**prior,**values},today=today)
+
+
+def _same_contract_geography(profile, row):
+    if profile.get("municipality_field"):
+        return (row.get("regione") == profile["region"]
+                and istat_municipality(profile["region"], row.get("citta"))
+                == (row.get("citta"), row.get("provincia")))
+    return not any(canonical(row.get(field))!=canonical(profile.get(setting))
+                   for field,setting in (("citta","municipality"),
+                                         ("provincia","province"),("regione","region")))
 
 
 def _hours_receipt_retained(row, receipt, *, today):
@@ -455,8 +733,11 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
     allow_city_summary=bool(floor and address_count>=floor)
     counters["publisher_distinct_address_count"]=address_count
     by_city=defaultdict(list)
+    by_province=defaultdict(list)
     for prior in base:
         by_city[(canonical(prior.get("regione")),canonical(prior.get("citta")))].append(prior)
+        if istat_municipality(prior.get("regione"),prior.get("citta")) is None:
+            by_province[(canonical(prior.get("regione")),canonical(prior.get("provincia")))].append(prior)
     for record,issue,item in source_rows:
         sid=record["slug"]
         if sid in seen:
@@ -538,6 +819,9 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
         collision=next((reason for r in cohort
                         if (reason:=_review_reason(
                             record,r,day,allow_unlocated_city_summary=allow_city_summary))),None)
+        if not collision and profile.get("new_market_requires_free_town_day"):
+            collision=_town_day_taken(record, cohort, by_province.get(
+                (canonical(record.get("regione")),canonical(record.get("provincia"))),[]))
         if collision:
             reasons[collision]+=1
             if len(examples)<REPORT_EXAMPLES:
@@ -591,12 +875,12 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
     }
     if source_date_proof is not None:
         source_facts["source_date_proof"] = copy.deepcopy(source_date_proof)
-    return candidates,source_facts,updates,retirements
+    return candidates,source_facts,updates,retirements,source
 
 
 def stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=None,
           source_date_proof=None):
-    candidates, report, _, _ = _stage(profile, raw_blob, base, today=today,
+    candidates, report, _, _, _ = _stage(profile, raw_blob, base, today=today,
                                    observed_source_sha256=observed_source_sha256, read_on=read_on,
                                    source_date_proof=source_date_proof)
     return candidates, report
@@ -668,7 +952,7 @@ def authorize(profile,source_report,admission,*,today):
 
 
 def apply_approved(profile,blob,existing,admission,*,today,read_on=None,source_date_proof=None):
-    candidates,report,updates,retirements=_stage(
+    candidates,report,updates,retirements,source=_stage(
         profile,blob,existing,today=today,read_on=read_on,source_date_proof=source_date_proof)
     try:
         authorize(profile,report,admission,today=today)
@@ -695,6 +979,16 @@ def apply_approved(profile,blob,existing,admission,*,today,read_on=None,source_d
     for row, proof in updates:
         verify_update(profile, original[row["slug"]], row, proof, today=today,
                       source_observations=report)
+    fills, fill_counts = [], {}
+    if profile.get("existing_market_fill"):
+        fills, fill_counts = town_day_fills(
+            profile, source, existing, today=today, read_on=report["source_read_on"],
+            source_date=report["publisher_dataset_date"],
+            parsed_sha256=report["source_parsed_sha256"], claimed=set(updated))
+        for proof in fills:
+            updated[proof["slug"]] = apply_fill(original[proof["slug"]], proof, profile, today=today)
+            verify_fill(profile, original[proof["slug"]], updated[proof["slug"]], proof,
+                        today=today, source_observations=report)
     rows=[*(updated.get(row["slug"],row) for row in existing),*admitted]
     certificate={
         "schema":1,"publisher_id":profile["id"],
@@ -712,6 +1006,7 @@ def apply_approved(profile,blob,existing,admission,*,today,read_on=None,source_d
         "old_ids_removed":0,"old_ids_modified":len(updates),
         "old_fields_modified":sum(len(proof["changed_fields"]) for _,proof in updates),
         "updates":[proof for _,proof in updates],
+        "fills":fills,"fill_counts":fill_counts,
         "source_observations":report,
         "verified_events_created":0,
         "geocoordinates_created":0,"new_directions_enabled":0,

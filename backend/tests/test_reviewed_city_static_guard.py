@@ -245,7 +245,7 @@ class PublishedCitySafetyTests(unittest.TestCase):
         source_file=Path(__file__).resolve().parents[1]/"data/market-source-contracts.json"
         approval_file=source_file.with_name("approved-source-admissions.json")
         def fetch(blob):
-            def read(url):
+            def read(url, **_):
                 if "bologna" in url:
                     raise OSError("Fixture source not included")
                 return blob,False
@@ -292,7 +292,7 @@ class PublishedCitySafetyTests(unittest.TestCase):
         from test_source_contract_activation import CONTRACT, ACTIVE_REGISTRY, fixture_activate
         from roma_xiii_geo_hold import git_blob_sha
 
-        def unavailable(url):
+        def unavailable(url, **_):
             raise OSError("This fixture contains only the observed Happings page")
 
         baseline, generic = fixture_activate(CONTRACT, ACTIVE_REGISTRY, self.details,

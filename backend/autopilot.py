@@ -1132,6 +1132,7 @@ def run(args):
         "original_market_ids":len(milano_rows),
         "candidate_market_ids":len(milano_rows),"new_market_ids":[],
         "updated_market_ids":[],"evidence_updated_market_ids":[],
+        "filled_market_ids":[],"filled_fields_count":0,
         "record_ids_deleted":0,"old_market_fields_changed":0,
         "new_market_openings_confirmed":0,"new_market_coordinates_created":0,
         "new_market_directions_enabled":0,
@@ -1170,6 +1171,10 @@ def run(args):
         "approved_source_contracts":generic_admission_report["source_contracts_active"],
         "new_market_ids":generic_admission_report["new_market_ids"],
         "updated_market_ids":generic_admission_report.get("updated_market_ids", []),
+        # Street/hours of other publishers' markets proved by a unique
+        # municipality+weekday join with an approved multi-town calendar.
+        "filled_markets":len(generic_admission_report.get("filled_market_ids", [])),
+        "filled_fields":generic_admission_report.get("filled_fields_count", 0),
         "market_openings_confirmed":0,
         "old_market_ids_removed":0,
     })

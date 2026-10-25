@@ -9,7 +9,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from source_growth_guard import validate_growth_source_lifecycle
 from source_lifecycle import digest
-from publisher_snapshot_date import make_snapshot_date_proof, ODS_STRATEGY
+from publisher_snapshot_date import (
+    LANDING_STRATEGY, ODS_STRATEGY, make_landing_page_proof, make_snapshot_date_proof,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACTS = json.loads((ROOT / "backend/data/market-source-contracts.json").read_text("utf-8"))
@@ -45,13 +47,22 @@ def dynamic_proof(profile, count):
         read_on=DAY.isoformat(), today=DAY)
 
 
+def landing_proof(profile):
+    """Synthetic yearly document link and body, never a claim of a live read."""
+    url = ("https://www.regione.veneto.it/documents/10713/1/Calendario+mercati+2026.pdf/"
+           "00000000-0000-0000-0000-000000000000")
+    return make_landing_page_proof(profile, b"<a>link</a>", url, 2026, b"%PDF-test",
+                                   read_on=DAY.isoformat(), today=DAY)
+
+
 def fixture():
     raw = [p for p in CONTRACTS["raw_profiles"] if p.get("enabled") is True]
     sources = {}
     for p in raw:
         observed = p["min_rows"]
-        proof = (dynamic_proof(p, observed)
-                 if p.get("source_date_strategy") == ODS_STRATEGY else None)
+        strategy = p.get("source_date_strategy")
+        proof = (dynamic_proof(p, observed) if strategy == ODS_STRATEGY
+                 else landing_proof(p) if strategy == LANDING_STRATEGY else None)
         sha = "a" * 64
         if proof is not None:
             sha = proof["snapshot_sha256"]
@@ -108,10 +119,10 @@ class SourceGrowthAuditGateTests(unittest.TestCase):
     def check(self, report):
         return validate_growth_source_lifecycle(report, MANIFEST, root=ROOT)
 
-    def test_pinned_publisher_registries_allow_two_authorized_sources(self):
+    def test_pinned_publisher_registries_allow_three_authorized_sources(self):
         report = fixture()
         result = self.check(report)
-        self.assertEqual(result["sources_checked"], 2)
+        self.assertEqual(result["sources_checked"], 3)
         self.assertEqual(result["market_ids_preserved"], MANIFEST["total"])
 
     def test_dynamic_date_advances_with_proof_and_fixed_legacy_stage_needs_none(self):
@@ -122,6 +133,8 @@ class SourceGrowthAuditGateTests(unittest.TestCase):
             staged = report["sources"][p["id"]]["source_stage"]
             if p.get("source_date_strategy") == ODS_STRATEGY:
                 self.assertGreater(staged["publisher_dataset_date"], p["source_dataset_date"])
+            elif p.get("source_date_strategy") == LANDING_STRATEGY:
+                self.assertEqual(staged["publisher_dataset_date"], "2026-01-01")
             else:
                 self.assertNotIn("source_date_proof", staged)
                 self.assertEqual(staged["publisher_dataset_date"], p["source_dataset_date"])

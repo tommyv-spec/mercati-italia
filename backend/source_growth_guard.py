@@ -14,7 +14,7 @@ from pathlib import Path
 
 from source_contract_activation import validate_admissions
 from source_contract_ingest import observed_source_date
-from source_lifecycle import digest, validate_contracts
+from source_lifecycle import MAX_ENABLED_RAW_PROFILES, digest, validate_contracts
 
 
 def _read_json(path: Path):
@@ -53,7 +53,7 @@ def validate_growth_source_lifecycle(lifecycle: dict, manifest: dict,
     validate_contracts(contracts)
     approved = validate_admissions(contracts, approvals)
     raw_profiles = {p["id"]: p for p in contracts["raw_profiles"] if p.get("enabled") is True}
-    if len(raw_profiles) > 2:
+    if len(raw_profiles) > MAX_ENABLED_RAW_PROFILES:
         raise ValueError("Source-growth audit exceeded bounded daily source quota")
     for sid, certificate in approved.items():
         profile = raw_profiles.get(sid)

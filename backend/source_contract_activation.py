@@ -21,13 +21,14 @@ from urllib.parse import urlsplit
 
 from source_contract_ingest import (
     FIELD_MANAGER, MAX_STAGING_SOURCE_ROWS, PublishedSourceDriftError, apply_approved,
-    authorize, observed_source_date, source_metadata, verify_update,
+    authorize, observed_source_date, source_metadata, verify_fill, verify_update,
 )
 from field_evidence import FIELDS, as_day, clean_receipts, fingerprint, valid_receipt
 from source_lifecycle import _public_https, digest, validate_contracts
 from source_probe import limited_fetch
 from publisher_snapshot_date import (
-    MAX_METADATA_BYTES, make_snapshot_date_proof, resolve_source_date, validate_strategy,
+    LANDING_STRATEGY, MAX_LANDING_BYTES, MAX_METADATA_BYTES, discover_document,
+    make_landing_page_proof, make_snapshot_date_proof, resolve_source_date, validate_strategy,
 )
 from reviewed_city_evidence import NAVIGATION_HOLD
 import atomic_write
@@ -64,16 +65,27 @@ def _cache_context(source_cache, config, registry, existing, today, resume):
 
 def read_source_snapshot(profile, *, fetch, read_on, today):
     """Read one complete source version, bracketing dynamic data with metadata."""
-    validate_strategy(profile)
-    dynamic = profile.get("source_date_strategy", "fixed_reviewed") != "fixed_reviewed"
+    strategy = validate_strategy(profile)
+    dynamic = strategy != "fixed_reviewed"
     if not as_day(read_on) or as_day(read_on) > today:
         raise ValueError("Real source read date is later than the requested reference date")
 
     def bounded(url, limit):
-        body, overflow = fetch(url)
+        body, overflow = (fetch(url, max_bytes=limit) if strategy == LANDING_STRATEGY
+                          else fetch(url))
         if not isinstance(body, bytes) or overflow or not 0 < len(body) <= limit:
             raise ValueError("Approved publisher full snapshot exceeded authorized byte budget")
         return body
+
+    if strategy == LANDING_STRATEGY:
+        # The stable landing page names this year's file; its URL changes yearly.
+        landing = bounded(profile["resource_url"], MAX_LANDING_BYTES)
+        document_url, year = discover_document(profile, landing, read_on=read_on)
+        blob = bounded(document_url, profile["max_bytes"])
+        proof = make_landing_page_proof(profile, landing, document_url, year, blob,
+                                        read_on=read_on, today=today)
+        resolve_source_date(profile, proof=proof, blob=blob, read_on=read_on, today=today)
+        return blob, proof
 
     before = bounded(profile["source_metadata_url"], MAX_METADATA_BYTES) if dynamic else None
     blob = bounded(profile["resource_url"], profile["max_bytes"])
@@ -196,7 +208,7 @@ def _validate_disabled_disposition(profile, source):
     if disabled != (source.get("status") == "source_contract_disabled"):
         raise ValueError("Publisher disposition differs from its reviewed enabled switch")
     if disabled and any(source.get(key) for key in (
-            "new_market_ids", "updates", "updated_fields_count", "source_observations",
+            "new_market_ids", "updates", "updated_fields_count", "source_observations", "fills",
             "source_read_on", "source_read_mode", "source_snapshot_sha256", "new_venue_evidence",
             "source_date_proof")):
         raise ValueError("Disabled publisher cannot claim reads, additions or field changes")
@@ -214,6 +226,7 @@ def activate(config,registry,existing,*,today=None,offline=False,
     cache, context = _cache_context(source_cache, config, registry, existing, today, resume)
     snapshots = {}
     claimed_updates = set()
+    claimed_fills = set()
     profiles={p["id"]:p for p in config["raw_profiles"]}
     status=Counter()
     report={}
@@ -240,17 +253,26 @@ def activate(config,registry,existing,*,today=None,offline=False,
             additions,proof=apply_approved(profile,blob,candidate,cert,today=today,read_on=observed_on,
                                           source_date_proof=date_proof)
             changed = {p["slug"] for p in proof["updates"]}
+            filled = {p["slug"] for p in proof["fills"]}
+            original_ids = {row["slug"] for row in originals}
             if (proof["old_ids_removed"] or proof["verified_events_created"]
-                    or changed & claimed_updates
-                    or any(mid not in {row["slug"] for row in originals} for mid in changed)):
+                    or (changed | filled) & (claimed_updates | claimed_fills) or changed & filled
+                    or len(filled) != len(proof["fills"])
+                    or any(mid not in original_ids for mid in changed | filled)):
                 raise ValueError("Source-level import lost or multiply claimed a prior market identity")
             source_before = {row["slug"]:row for row in candidate}
             source_after = {row["slug"]:row for row in additions}
             for update in proof["updates"]:
                 verify_update(profile, source_before[update["slug"]], source_after[update["slug"]],
                               update, today=today, source_observations=proof["source_observations"])
+            filled_fields = sum(
+                verify_fill(profile, source_before[fill["slug"]], source_after[fill["slug"]], fill,
+                            today=today, source_observations=proof["source_observations"])
+                for fill in proof["fills"])
             candidate=additions
             claimed_updates.update(changed)
+            claimed_fills.update(filled)
+            status["other_publishers_market_fields_filled"]+=filled_fields
             status["approved_sources_reconciled"]+=1
             status["new_source_venues_staged_for_DEV"]+=len(proof["new_venue_ids"])
             status["eligible_venues_deferred_to_next_run"]+=proof["deferred_candidate_count"]
@@ -261,6 +283,8 @@ def activate(config,registry,existing,*,today=None,offline=False,
                 "approval_sha256":digest(cert),
                 "source_read_mode":mode,"source_read_on":observed_on,
                 "updates":proof["updates"],"updated_fields_count":proof["old_fields_modified"],
+                "fills":proof["fills"],"filled_fields_count":filled_fields,
+                "fill_counts":proof["fill_counts"],
                 "source_observations":proof["source_observations"],
                 "new_market_ids":proof["new_venue_ids"],
                 "new_venue_evidence":proof["new_venue_evidence"],
@@ -332,6 +356,8 @@ def activate(config,registry,existing,*,today=None,offline=False,
         "updated_market_ids":sorted({p["slug"] for detail in report.values()
                                      for p in detail.get("updates",[]) if p["changed_fields"]}),
         "evidence_updated_market_ids":sorted(claimed_updates),
+        "filled_market_ids":sorted(claimed_fills),
+        "filled_fields_count":sum(detail.get("filled_fields_count",0) for detail in report.values()),
         "new_market_openings_confirmed":0,"new_market_coordinates_created":0,
         "new_market_directions_enabled":0,
         "status_counts":dict(sorted(status.items())),
@@ -396,7 +422,9 @@ def validate_release(before,after,report,config,registry):
     before_by = {row["slug"]:row for row in before}
     after_by = {row["slug"]:row for row in after}
     updated = {}
+    filled = {}
     field_count = 0
+    filled_count = 0
     new_by_source={}
     for sid in approved:
         source=report.get("per_source",{}).get(sid)
@@ -412,7 +440,7 @@ def validate_release(before,after,report,config,registry):
         new_by_source[sid]=source["new_market_ids"]
         observations=None
         if source["status"]!="source_contract_approved_staged_only":
-            if source["new_market_ids"] or (source.get("updates") and (
+            if source["new_market_ids"] or source.get("fills") or (source.get("updates") and (
                     source["status"]!="publisher_source_held_for_review" or
                     any(p.get("action")!="retire" for p in source["updates"]))):
                 raise ValueError("Unavailable/offline publisher cannot claim new market IDs or field updates")
@@ -448,11 +476,26 @@ def validate_release(before,after,report,config,registry):
         if source_fields != source.get("updated_fields_count",0):
             raise ValueError("Independent generic source field update count differs")
         field_count += source_fields
+        source_filled = 0
+        for proof in source.get("fills",[]):
+            mid = proof.get("slug") if isinstance(proof,dict) else None
+            if mid not in before_by or mid in updated or mid in filled:
+                raise ValueError("Town/day fill lost or multiply claimed an original identity")
+            source_filled += verify_fill(raw_profiles[sid], before_by[mid], after_by[mid], proof,
+                                         today=reference, source_observations=observations)
+            filled[mid] = proof
+        if source_filled != source.get("filled_fields_count",0):
+            raise ValueError("Independent town/day fill count differs")
+        filled_count += source_filled
     if (field_count != report.get("old_market_fields_changed")
             or sorted(updated) != report.get("evidence_updated_market_ids")
             or sorted(mid for mid, proof in updated.items() if proof["changed_fields"])
                != report.get("updated_market_ids")
-            or any(after_by[mid] != row for mid,row in before_by.items() if mid not in updated)):
+            or set(updated) & set(filled)
+            or sorted(filled) != report.get("filled_market_ids", [])
+            or filled_count != report.get("filled_fields_count", 0)
+            or any(after_by[mid] != row for mid,row in before_by.items()
+                   if mid not in updated and mid not in filled)):
         raise ValueError("Independent generic source diff changed unreported original fields")
     if sorted(x for values in new_by_source.values() for x in values)!=report["new_market_ids"]:
         raise ValueError("Individual source additions do not match complete publisher reports")
@@ -501,6 +544,7 @@ def validate_release(before,after,report,config,registry):
         "schema":1,"stable_original_market_ids_checked":len(before),
         "source_approved_added_venue_id_count":len(after)-len(before),
         "old_market_records_changed":len(updated),"old_market_fields_changed":field_count,
+        "other_publishers_markets_filled":len(filled),"other_publishers_fields_filled":filled_count,
         "market_openings_confirmed":0,
         "new_coordinates_created":0,"new_navigation_enabled":0,
         "source_registry_digest":report["source_registry_sha256"],

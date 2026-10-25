@@ -14,6 +14,7 @@ import ipaddress
 import json
 import re
 import socket
+import time
 import unicodedata
 from datetime import date
 from pathlib import Path
@@ -29,6 +30,8 @@ HOSTS = frozenset({
     "comune.corciano.pg.it",
     "dati.veneto.it",
     "dati.lazio.it",
+    # Regione del Veneto: only the commerce landing page and its documents.
+    "www.regione.veneto.it",
 })
 # These source IDs have a vetted adapter or completed manual source review.
 # Health is measured by the adapter, not a redundant unbounded scout.
@@ -79,7 +82,8 @@ def safe_url(url):
                 p.username or p.password or p.port not in (None,443)
                 or p.fragment):
             return False
-        if p.hostname in {"dati.veneto.it","dati.lazio.it","comune.corciano.pg.it"} and p.query:
+        if p.hostname in {"dati.veneto.it","dati.lazio.it","comune.corciano.pg.it",
+                          "www.regione.veneto.it"} and p.query:
             return False
         if p.hostname == "dati.veneto.it":
             return bool(re.fullmatch(
@@ -87,6 +91,10 @@ def safe_url(url):
         if p.hostname == "dati.lazio.it":
             return bool(re.fullmatch(
                 r"/dataset/[0-9a-f-]{36}/resource/[0-9a-f-]{36}/download/[A-Za-z0-9_.-]+\.csv",
+                p.path))
+        if p.hostname == "www.regione.veneto.it":
+            return bool(re.fullmatch(
+                r"/web/attivita-produttive/[a-z0-9-]+|/documents/10713/\d+/[^/?#]+\.pdf/[0-9a-f-]{36}",
                 p.path))
         if p.hostname == "comune.corciano.pg.it":
             return p.path == (
@@ -125,19 +133,32 @@ def ensure_public_dns(host):
             raise ValueError("non-public DNS address refused")
 
 
-def limited_fetch(url):
+POLITE_SECONDS = 3.0
+_LAST_REQUEST = {}
+
+
+def limited_fetch(url, max_bytes=MAX_BYTES):
     if not safe_url(url):
         raise ValueError("unapproved official host")
-    ensure_public_dns(urlsplit(url).hostname)
+    host = urlsplit(url).hostname
+    ensure_public_dns(host)
+    # At least POLITE_SECONDS between two requests to the same publisher.
+    wait = POLITE_SECONDS - (time.monotonic() - _LAST_REQUEST.get(host, -POLITE_SECONDS))
+    if wait > 0:
+        time.sleep(wait)
     request = Request(url, headers={
         "User-Agent": "MercatiItaliaReadOnlySchemaProbe/1.0",
-        "Range": f"bytes=0-{MAX_BYTES - 1}",
-        "Accept": "application/json,text/csv",
+        "Range": f"bytes=0-{max_bytes - 1}",
+        "Accept": ("application/json,text/csv" if max_bytes == MAX_BYTES
+                   else "application/pdf,text/html,application/json,text/csv"),
         "Accept-Encoding": "identity",
     })
-    with build_opener(NoRedirect).open(request, timeout=10) as response:
-        payload = response.read(MAX_BYTES + 1)
-        return payload[:MAX_BYTES], len(payload) > MAX_BYTES
+    try:
+        with build_opener(NoRedirect).open(request, timeout=10 if max_bytes == MAX_BYTES else 60) as response:
+            payload = response.read(max_bytes + 1)
+            return payload[:max_bytes], len(payload) > max_bytes
+    finally:
+        _LAST_REQUEST[host] = time.monotonic()
 
 
 def column_name(value):

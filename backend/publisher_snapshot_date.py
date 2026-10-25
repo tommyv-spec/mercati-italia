@@ -13,11 +13,20 @@ import hashlib
 import json
 import re
 from datetime import date, datetime, timezone
-from urllib.parse import parse_qs, urlsplit
+from html.parser import HTMLParser
+from urllib.parse import parse_qs, unquote, urljoin, urlsplit
 
 
 FIXED_STRATEGY = "fixed_reviewed"
 ODS_STRATEGY = "opendatasoft_data_processed_v1"
+# A yearly official document linked from a stable publisher page: the file
+# URL changes every year, its calendar year is the content date (1 January).
+LANDING_STRATEGY = "landing_page_year_v1"
+MAX_LANDING_BYTES = 1_000_000
+_LANDING_KEYS = frozenset({
+    "schema", "strategy", "profile_sha256", "source_url", "landing_sha256",
+    "document_url", "document_year", "snapshot_sha256", "read_on", "source_date",
+})
 MAX_METADATA_BYTES = 65_536
 _PROOF_KEYS = frozenset({
     "schema", "strategy", "profile_sha256", "source_url", "snapshot_sha256",
@@ -87,6 +96,11 @@ def validate_strategy(profile):
     _iso_date(profile.get("source_dataset_date"), "reviewed source dataset date")
     strategy = profile.get("source_date_strategy", FIXED_STRATEGY)
     if strategy == FIXED_STRATEGY:
+        return strategy
+    if strategy == LANDING_STRATEGY:
+        if profile.get("format") != "PDF" or not isinstance(profile.get("resource_discovery"), dict):
+            raise ValueError("Yearly document discovery requires a reviewed PDF calendar")
+        _https_parts(profile.get("resource_url"), "publisher landing page URL")
         return strategy
     if strategy != ODS_STRATEGY:
         raise ValueError("Unsupported source date strategy")
@@ -266,6 +280,96 @@ def _proof_metadata(proof, prefix):
     return blob
 
 
+class _Links(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.links, self._open = [], None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            self._open = [dict(attrs).get("href") or "", ""]
+
+    def handle_data(self, data):
+        if self._open is not None:
+            self._open[1] += data
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self._open is not None:
+            self.links.append(tuple(self._open))
+            self._open = None
+
+
+def _document_path_matches(profile, url, year):
+    pattern = profile["resource_discovery"]["href_pattern"].replace("{year}", str(year))
+    parts = _https_parts(url, "yearly document URL")
+    landing = _https_parts(profile["resource_url"], "publisher landing page URL")
+    return (parts.netloc == landing.netloc and not parts.query
+            and re.fullmatch(pattern, unquote(parts.path)) is not None)
+
+
+def discover_document(profile, landing_html: bytes, *, read_on: str):
+    """Find this year's document link on the landing page, else last year's.
+
+    The link needs the reviewed anchor text AND a URL matching the reviewed
+    pattern for that year. Zero or several distinct candidates fail closed.
+    """
+    if validate_strategy(profile) != LANDING_STRATEGY:
+        raise ValueError("Profile has no yearly document discovery rule")
+    if not isinstance(landing_html, bytes) or not 1 <= len(landing_html) <= MAX_LANDING_BYTES:
+        raise ValueError("Invalid or oversized publisher landing page")
+    parser = _Links()
+    parser.feed(landing_html.decode("utf-8", "replace"))
+    wanted = " ".join(profile["resource_discovery"]["link_text"].casefold().split())
+    year = _iso_date(read_on, "source read date").year
+    for candidate in (year, year - 1):
+        found = set()
+        for href, text in parser.links:
+            if " ".join(text.casefold().split()) != wanted or not href:
+                continue
+            url = urljoin(profile["resource_url"], href.strip())
+            try:
+                if _document_path_matches(profile, url, candidate):
+                    found.add(url)
+            except ValueError:
+                continue
+        if len(found) > 1:
+            raise ValueError("Several yearly documents match the reviewed link")
+        if found:
+            return found.pop(), candidate
+    raise ValueError("No current yearly document linked from the publisher page")
+
+
+def _landing_proof(profile, *, landing_sha256, document_url, document_year,
+                   snapshot_sha256, read_on, today):
+    read_date = _read_date(read_on, today)
+    if (type(document_year) is not int
+            or document_year not in (read_date.year, read_date.year - 1)
+            or not _document_path_matches(profile, document_url, document_year)):
+        raise ValueError("Yearly document is not the reviewed current publication")
+    source_date = f"{document_year:04d}-01-01"
+    if source_date < profile["source_dataset_date"]:
+        raise ValueError("Yearly document precedes the reviewed minimum")
+    for value in (landing_sha256, snapshot_sha256):
+        if not isinstance(value, str) or not _SHA256.fullmatch(value):
+            raise ValueError("Invalid yearly document SHA-256")
+    return {
+        "schema": 1, "strategy": LANDING_STRATEGY,
+        "profile_sha256": _profile_digest(profile),
+        "source_url": profile["resource_url"], "landing_sha256": landing_sha256,
+        "document_url": document_url, "document_year": document_year,
+        "snapshot_sha256": snapshot_sha256, "read_on": read_on, "source_date": source_date,
+    }
+
+
+def make_landing_page_proof(profile, landing_html: bytes, document_url: str, document_year: int,
+                            blob: bytes, *, read_on: str, today: date) -> dict:
+    if validate_strategy(profile) != LANDING_STRATEGY:
+        raise ValueError("Profile has no yearly document discovery rule")
+    return _landing_proof(profile, landing_sha256=_sha256(landing_html),
+                          document_url=document_url, document_year=document_year,
+                          snapshot_sha256=_sha256(blob), read_on=read_on, today=today)
+
+
 def resolve_source_date(profile, *, proof=None, blob=None, snapshot_sha256=None,
                         read_on=None, today: date) -> str:
     """Resolve a date only after checking the original profile and snapshot.
@@ -279,6 +383,23 @@ def resolve_source_date(profile, *, proof=None, blob=None, snapshot_sha256=None,
         if proof is not None:
             raise ValueError("A snapshot proof cannot override a fixed reviewed source date")
         return profile["source_dataset_date"]
+    if strategy == LANDING_STRATEGY:
+        if (not isinstance(proof, dict) or set(proof) != _LANDING_KEYS
+                or (read_on is not None and read_on != proof["read_on"])):
+            raise ValueError("Missing or invalid yearly document date proof")
+        if blob is not None:
+            if snapshot_sha256 is not None and snapshot_sha256 != _sha256(blob):
+                raise ValueError("Source snapshot SHA-256 does not match the body")
+            snapshot_sha256 = _sha256(blob)
+        elif snapshot_sha256 is None:
+            raise ValueError("Yearly document date requires its snapshot SHA-256")
+        expected = _landing_proof(
+            profile, landing_sha256=proof["landing_sha256"], document_url=proof["document_url"],
+            document_year=proof["document_year"], snapshot_sha256=snapshot_sha256,
+            read_on=proof["read_on"], today=today)
+        if proof != expected:
+            raise ValueError("Yearly document date proof does not match the profile or snapshot")
+        return expected["source_date"]
     if (not isinstance(proof, dict) or set(proof) != _PROOF_KEYS
             or type(proof.get("schema")) is not int or proof["schema"] != 1
             or type(proof.get("dataset_records_count")) is not int
