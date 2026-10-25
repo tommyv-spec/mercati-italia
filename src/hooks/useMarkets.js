@@ -60,6 +60,8 @@ export function adaptMarket(m, userLat, userLng) {
     lastVerified: m.verificato_il ? m.verificato_il.slice(0, 10) : '',
     dateQuality: m.date_quality || 'prevista',
     positionQuality: m.position_quality || 'sconosciuta',
+    // Street-level point looked up on OpenStreetMap (ODbL): needs its attribution.
+    positionFromOsm: m.posizione_fonte?.fonte === 'openstreetmap',
     status: m.status || 'non_confermato',
     // Hidden from lists; still opens from an old link or favourite.
     concluded: m.concluso || '',

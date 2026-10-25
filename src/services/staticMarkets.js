@@ -271,6 +271,7 @@ function normalize(m, userLat, userLng) {
     // evidence. The compact national index intentionally omits them.
     navigazione_sospesa_motivo: m.navigazione_sospesa_motivo || '',
     coordinate_sospese_motivo: m.coordinate_sospese_motivo || '',
+    posizione_fonte: m.posizione_fonte && typeof m.posizione_fonte === 'object' ? m.posizione_fonte : null,
     fonti: Array.isArray(m.fonti)
       ? m.fonti.filter(s => s && typeof s.nome === 'string' && typeof s.url === 'string')
       : [],

@@ -2040,7 +2040,12 @@ export default function App() {
               </p>
             )}
             {m.positionQuality !== 'precisa' && (
-              <div style={{ fontSize: 12, color: '#6C6255', marginTop: 6 }}>Posizione indicativa o da verificare</div>
+              <div style={{ fontSize: 12, color: '#6C6255', marginTop: 6 }}>
+                {m.positionFromOsm ? <>
+                  Posizione indicativa: la via, non il punto esatto del mercato ·{' '}
+                  <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
+                </> : 'Posizione indicativa o da verificare'}
+              </div>
             )}
             {!canNavigate && !detailLoading && (
               <div role="note" style={{ fontSize: 12, color: '#6C6255', margin: '10px 0' }}>

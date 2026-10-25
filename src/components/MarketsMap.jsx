@@ -237,7 +237,8 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
       {error && <p role="alert" style={{ fontSize: 12, marginTop: 9, color: '#AB453B' }}>{error}</p>}
       {!ready && !error && <p style={{ fontSize: 12, marginTop: 9, color: 'var(--ink-lighter)' }}>Caricamento mappa…</p>}
       <p style={{ fontSize: 11, color: 'var(--ink-lighter)', marginTop: 10 }}>
-        Mappa © OpenFreeMap e OpenStreetMap. Tocca un punto o un gruppo per esplorare.
+        Mappa © OpenFreeMap; mappa e posizioni sulle vie © OpenStreetMap contributors.
+        Tocca un punto o un gruppo per esplorare.
         Le date dei mercati possono non essere confermate.
       </p>
     </section>
