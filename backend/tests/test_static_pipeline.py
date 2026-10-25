@@ -289,10 +289,12 @@ class ExportTests(unittest.TestCase):
         rows = [market("dated", url_fonte="https://example.org/markets/1"),
                 market("weekly", url_fonte="https://example.org/markets/2", ricorrenza_testo="Ogni martedì", **past),
                 market("read", url_fonte="https://example.org/markets/3", fonte_letta_il=self.today.isoformat(), **past),
-                market("stale", url_fonte="https://example.org/markets/4", indirizzo="Via Roma 9", **past)]
+                market("stale", url_fonte="https://example.org/markets/4", indirizzo="Via Roma 9", **past),
+                # An earlier run's copy stays a copy, never also "concluded".
+                market("old-copy", url_fonte="https://example.org/markets/5", duplicato_di="dated", **past)]
         cleaned, report = prepare(rows, self.today, preserve_ids={r["slug"] for r in rows})
         self.assertEqual({r["slug"]: r.get("concluso", "") for r in cleaned},
-                         {"dated": "", "weekly": "", "read": "", "stale": "fonte_non_riletta"})
+                         {"dated": "", "weekly": "", "read": "", "stale": "fonte_non_riletta", "old-copy": ""})
         self.assertEqual(report["concluded_hidden"], {"fonte_non_riletta": 1})
 
     def test_corciano_derived_stable_id_does_not_merge_with_scraped_source(self):

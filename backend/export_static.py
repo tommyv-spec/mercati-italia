@@ -648,7 +648,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         if row["slug"] in merged:
             row["duplicato_di"] = merged[row["slug"]]
         # Hidden, never deleted: old links and favourites still open it.
-        elif reason := concluded_reason(row, today):
+        # A copy (merged now or in an earlier run) is already hidden behind its kept record.
+        elif not row.get("duplicato_di") and (reason := concluded_reason(row, today)):
             row["concluso"] = reason
     by_id = {row["slug"]: row for row in cleaned}
     for row in cleaned:
