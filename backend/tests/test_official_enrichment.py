@@ -529,6 +529,20 @@ class CompleteMunicipalityEnrichmentTests(unittest.TestCase):
                     self.assertEqual(repeated, result)
                     self.assertEqual(again["legacy_records_changed"], 0)
 
+    def test_next_day_evidence_refresh_does_not_count_against_the_change_cap(self):
+        from unittest.mock import patch
+        import official_enrichment as oe
+        raw, source = complete_snapshot()
+        first, report = enrich([old(street="", provincia="VA")], source, raw_official=raw, today=TODAY)
+        self.assertEqual(report["records_with_value_changes"], 1)
+        tomorrow = date(2026, 10, 13)
+        next_raw, next_source = complete_snapshot(read_on=tomorrow, updated_on="2026-10-13")
+        with patch.object(oe, "MAX_ENRICHED_RECORDS", 0):
+            again, report = enrich(first, next_source, raw_official=next_raw, today=tomorrow)
+        self.assertEqual(report["records_with_value_changes"], 0)
+        self.assertEqual({k: v for k, v in again[0].items() if k != "riscontri_campi"},
+                         {k: v for k, v in first[0].items() if k != "riscontri_campi"})
+
     def test_second_source_version_updates_both_owned_fields_and_keeps_history(self):
         raw, source = complete_snapshot()
         base = [old(street="", provincia="VA")]

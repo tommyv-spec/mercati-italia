@@ -1014,7 +1014,14 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None,
             counts=counts, touched=touched, record_conflict=record_conflict)
     else:
         counts["unique_town_path_without_complete_raw_context"] += 1
-    if len(touched) > MAX_ENRICHED_RECORDS:
+    # The cap bounds what visitors see. Re-reading already-linked evidence on
+    # a new day touches every linked record but changes no visible value, and
+    # grows with coverage; it must not block the daily run.
+    before = {row["slug"]: row for row in base}
+    value_changes = {sid for sid in touched if any(
+        updated[sid].get(field) != before[sid].get(field)
+        for field in set(updated[sid]) | set(before[sid]) if field != "riscontri_campi")}
+    if len(value_changes) > MAX_ENRICHED_RECORDS:
         raise ValueError("Official source enrichment exceeds per-run limit")
     return [updated[x["slug"]] for x in base], {
         "schema":1,
@@ -1024,6 +1031,7 @@ def enrich(base, held_official, *, source_id="lombardia-mercap", today=None,
         "source_rows_screened":len(held_official),
         "raw_identity_context":raw_context_report,
         "legacy_records_changed":len(touched),
+        "records_with_value_changes":len(value_changes),
         "existing_market_addresses_added":int(counts["addresses_added"]),
         "vague_market_addresses_replaced":int(counts["vague_addresses_replaced"]),
         "managed_market_addresses_updated":int(counts["managed_addresses_updated"]),
