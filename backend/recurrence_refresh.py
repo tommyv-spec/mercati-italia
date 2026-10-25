@@ -508,10 +508,10 @@ def _refresh_record_base(original: dict, today: date, horizon_days: int = MAX_LO
         # A secondary publisher can support this exact recurrence without
         # relabeling the age of the original source. Only current, matching
         # field observations qualify; addresses/hours and fresh imports do not.
-        dates = [parse_source_day(r.get("fonte_aggiornata_il")) for r in
-                 clean_receipts(record.get("riscontri_campi"), record, today=today)
-                 if r["valori"].get("ricorrenza_testo") == record.get("ricorrenza_testo")
-                 and (today - parse_source_day(r["letto_il"])).days <= MAX_READ_AGE]
+        listed = [r for r in clean_receipts(record.get("riscontri_campi"), record, today=today)
+                  if r["valori"].get("ricorrenza_testo") == record.get("ricorrenza_testo")
+                  and 0 <= (today - parse_source_day(r["letto_il"])).days <= MAX_READ_AGE]
+        dates = [parse_source_day(r.get("fonte_aggiornata_il")) for r in listed]
         dates = [d for d in dates if d and
                  0 <= (today - d).days <= min(max_stale_days, SOURCE_AGE["ricorrenza_testo"])]
         if dates:
@@ -520,6 +520,15 @@ def _refresh_record_base(original: dict, today: date, horizon_days: int = MAX_LO
             # Independent current evidence keeps its own stricter age bound;
             # an expired primary publisher does not invalidate another source.
             source_age_limit = min(max_stale_days, SOURCE_AGE["ricorrenza_testo"])
+        elif undated := [r for r in listed if not r.get("fonte_aggiornata_il")]:
+            # Owner rule (2026-10-25): a page read within MAX_READ_AGE that still
+            # lists this exact recurrence keeps predictions renewing when the page
+            # states no content date at all. A declared date keeps its own age
+            # limits above. Support lapses with the read; the expiry below then
+            # withdraws the predictions.
+            updated = max(parse_source_day(r["letto_il"]) for r in undated)
+            projection_basis = "riscontri_campi:ricorrenza_testo"
+            source_age_limit = MAX_READ_AGE
     if (record.get("proiezione_fonte") == "riscontri_campi:ricorrenza_testo"
             and projection_basis != "riscontri_campi:ricorrenza_testo"
             and (updated is None or not 0 <= (today - updated).days <= source_age_limit)

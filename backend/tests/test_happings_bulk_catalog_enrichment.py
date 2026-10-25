@@ -44,6 +44,27 @@ class BulkFieldTests(unittest.TestCase):
                             for proof in changed["riscontri_campi"]))
         self.assertEqual(changed["verificato_il"],"")
 
+    def test_each_read_restates_a_still_listed_market_without_new_ownership(self):
+        from datetime import timedelta
+        row=base_row()
+        key=bulk.catalog_key(row)
+        with patch.object(bulk,"read_weekly_source",return_value=({key:[fact()]},Counter())):
+            filled,report=bulk.enrich([row],".",today=DAY)
+        self.assertEqual(len(report["changes"]),1)
+        week=DAY+timedelta(days=7)
+        later={**fact(),"read_on":week.isoformat(),"html_sha256":"b"*64}
+        with patch.object(bulk,"read_weekly_source",return_value=({key:[later]},Counter())):
+            again,report=bulk.enrich(filled,".",today=week)
+            repeat,second=bulk.enrich(again,".",today=week)
+        self.assertEqual((report["changes"],len(report["confirmations"])),([],1))
+        proofs=[p for p in again[0]["riscontri_campi"] if p["sha256"]=="b"*64]
+        self.assertEqual(len(again[0]["riscontri_campi"]),1)
+        self.assertEqual(proofs[0]["valori"],{"indirizzo":"Via Dalmazia","orario_testo":"La mattina",
+                                              "ricorrenza_testo":"settimanale - mercoledì"})
+        self.assertEqual(proofs[0]["campi_gestiti"],["indirizzo","orario_testo"])
+        self.assertEqual({k:again[0][k] for k in bulk.FIELDS},{k:filled[0][k] for k in bulk.FIELDS})
+        self.assertEqual((repeat,second["confirmations"]),(again,[]))
+
     def test_conflicting_existing_street_is_never_overwritten(self):
         old=base_row(street="Piazza Don Gnocchi")
         blank=base_row("mercato-settimanale-di-albenga-albenga-mercoledi")

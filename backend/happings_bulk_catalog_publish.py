@@ -24,7 +24,7 @@ def build(repo, snapshot, out, *, today):
     manifest=repo/"public/data/v1/manifest.json"
     before=load_existing(manifest)
     after,report=enrich(before,snapshot,today=today)
-    if not report["changes"] and not report["duplicate_markers"]:
+    if not report["changes"] and not report["duplicate_markers"] and not report["confirmations"]:
         # Scheduled runs: an up-to-date catalog is success, not an error.
         print(json.dumps({"schema":1,"date":today.isoformat(),"no_changes":True}),flush=True)
         return {"schema":1,"date":today.isoformat(),"no_changes":True}
@@ -42,6 +42,7 @@ def build(repo, snapshot, out, *, today):
     if old_by_id.keys()!=new_by_id.keys():
         raise ValueError("Source enrichment introduced or removed market IDs")
     expected={p["id"]:p for p in report["changes"]}
+    confirmed={p["id"]:p for p in report["confirmations"]}
     markers={p["id"]:p["duplicato_di"] for p in report["duplicate_markers"]}
     actual=Counter()
     rolled=0
@@ -75,6 +76,16 @@ def build(repo, snapshot, out, *, today):
                                 for field,value in entry["after"].items())),None)
             if proof is None:
                 raise ValueError("Export lost Happings HTML source evidence: "+sid)
+        elif sid in confirmed:
+            # A still-listed proof refresh may touch only the proof itself.
+            entry=confirmed[sid]
+            if changed-{"riscontri_campi","fonti","date","duplicato_di"}:
+                unexpected.append({"id":sid,"fields":sorted(changed)})
+            elif not any(e.get("url")==entry["source"] and e.get("sha256")==entry["source_html_sha256"]
+                         and all(e.get("valori",{}).get(f)==v for f,v in entry["values"].items())
+                         for e in new.get("riscontri_campi") or []):
+                raise ValueError("Export lost a still-listed source proof: "+sid)
+            actual["still_listed_proofs_refreshed"]+=1
         elif changed-{"date","duplicato_di"}:
             unexpected.append({"id":sid,"fields":sorted(changed)})
     if unexpected:
@@ -106,6 +117,7 @@ def build(repo, snapshot, out, *, today):
         "address_fields_filled":actual["filled_indirizzo"],
         "qualitative_hour_fields_filled":actual["filled_orario_testo"],
         "cut_weekdays_repaired":actual["filled_ricorrenza_testo"],
+        "still_listed_proofs_refreshed":actual["still_listed_proofs_refreshed"],
         "duplicate_copies_marked":report["counts"]["duplicate_copies_marked"],
         "duplicate_marker_changes":len(markers),
         "existing_expired_calendar_rollovers":rolled,

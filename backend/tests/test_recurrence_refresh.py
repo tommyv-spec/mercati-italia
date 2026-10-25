@@ -718,12 +718,35 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(updated["fonte_aggiornata_il"], "")
         self.assertEqual(updated["aggiornato_il"], original["aggiornato_il"])
         self.assertEqual(updated["proiezione_fonte"], "riscontri_campi:ricorrenza_testo")
-        for field, value in (("fonte_aggiornata_il", ""), ("fonte_aggiornata_il", "2025-10-01"),
-                             ("letto_il", "2026-07-01")):
+        for field, value in (("fonte_aggiornata_il", "2025-10-01"), ("letto_il", "2026-07-01")):
             with self.subTest(field=field, value=value):
                 unproved = deepcopy(original)
                 unproved["riscontri_campi"][0][field] = value
                 self.assertEqual(refresh_record(unproved, self.now)[1], "unknown_source_age")
+
+    def test_page_still_listing_an_undated_recurrence_keeps_forecasts_renewing(self):
+        original = record(fonte_aggiornata_il="", aggiornato_il="2026-10-10",
+                          proiezione_fonte="ricorrenza_testo", proiezione_generata_il="2026-09-01")
+        def listed(read_on):
+            row = deepcopy(original)
+            row["riscontri_campi"] = [make_receipt(
+                row, values={"ricorrenza_testo": row["ricorrenza_testo"]},
+                source_url="https://www.happings.com/it/x/", source_name="Happings",
+                source_id="weekly-page", source_row="page:town:2", read_on=read_on,
+                source_updated_on="", source_sha256="c" * 64,
+                method="comune_provincia_giorno_univoco", scope="pagina", fingerprint_kind="html_bytes")]
+            return row
+        renewed, reason = refresh_record(listed((self.now - timedelta(days=45)).isoformat()), self.now)
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(renewed["proiezione_fonte"], "riscontri_campi:ricorrenza_testo")
+        self.assertEqual(renewed["date_quality"], "prevista")
+        self.assertTrue(renewed["date"] and renewed["date"][-1] <= (self.now + timedelta(days=120)).isoformat())
+        # The page stopped listing it (no read for 46 days): its forecasts lapse.
+        lapsed = listed((self.now - timedelta(days=46)).isoformat())
+        lapsed.update(date=renewed["date"], proiezione_fonte=renewed["proiezione_fonte"])
+        result, reason = refresh_record(lapsed, self.now)
+        self.assertEqual(reason, "expired_field_evidence_forecast")
+        self.assertEqual(result["date"], [])
 
     def field_supported_projection(self):
         original = record(fonte_aggiornata_il="", aggiornato_il="2024-01-01",

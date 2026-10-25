@@ -148,20 +148,20 @@ def _update(row, proposed, evidence, *, today):
                   and r["letto_il"] == proof["letto_il"]]
     if len(same_bytes) > 1:
         raise ValueError("Duplicate same-source market provenance")
+    # Only changed values are assigned (managed); values the page still states
+    # unchanged are observed, which keeps the proof - and forecasts - current.
     # Only a cut weekday (cut_weekday) is ever proposed over a nonempty
     # value; the broken text carries no claim to protect.
-    prior = {**row, "ricorrenza_testo": ""} if "ricorrenza_testo" in proposed else row
+    assigned = [field for field, value in proposed.items() if value != row.get(field)]
+    prior = {**row, "ricorrenza_testo": ""} if "ricorrenza_testo" in assigned else row
     if same_bytes:
         # A fixed parser can recover a field from the exact HTML already
         # witnessed by an older receipt. Merge that field into the SAME
         # proof; don't create a competing same-day source version.
-        merged = deepcopy(same_bytes[0])
-        merged["valori"].update(proposed)
-        managed = mark_managed_fields(
-            merged, list(proposed), manager=source.FIELD_MANAGER,previous=prior)
-    else:
-        managed = mark_managed_fields(
-            proof, list(proposed), manager=source.FIELD_MANAGER,previous=prior)
+        proof = deepcopy(same_bytes[0])
+        proof["valori"].update(proposed)
+    managed = (mark_managed_fields(proof, assigned, manager=source.FIELD_MANAGER, previous=prior)
+               if assigned else proof)
     result = deepcopy(row)
     result.update(proposed)
     kept = retire_superseded_receipts(row, managed, today=today)
@@ -223,6 +223,7 @@ def enrich(catalog, snapshot, *, today):
     output = deepcopy(catalog)
     index = {r["slug"]: i for i,r in enumerate(catalog)}
     changes = []
+    confirmations = []
     holds = Counter()
     marks = {}
     evaluated = set()
@@ -277,8 +278,16 @@ def enrich(catalog, snapshot, *, today):
                     changeset["indirizzo"] = centre
             if hours and not str(row.get("orario_testo") or "").strip():
                 changeset["orario_testo"] = hours
-            if not changeset:
-                continue
+            # Every read restates what the page still says for this row: the
+            # town on this weekday, plus its place and daypart when unchanged.
+            # One proof per page row survives, so a partial restatement would
+            # drop older proof; the weekday keeps forecasts renewing.
+            stated = {"ricorrenza_testo": row["ricorrenza_testo"]}
+            place = str(row.get("indirizzo") or "").strip()
+            if len(entries) == 1 and place and source._same_place(place, entries[0].get("place")):
+                stated["indirizzo"] = row["indirizzo"]
+            if hours and row.get("orario_testo") == hours:
+                stated["orario_testo"] = hours
             sample = entries[0]
             evidence = {
                 "source_url": url, "source_day": key[3],
@@ -286,11 +295,18 @@ def enrich(catalog, snapshot, *, today):
                 "observed_at": sample["read_on"],
             }
             index_position = index[row["slug"]]
-            updated,reason = _update(catalog[index_position], changeset, evidence, today=today)
+            updated,reason = _update(catalog[index_position], {**stated, **changeset}, evidence, today=today)
             if reason:
                 holds[reason] += 1
                 continue
+            if updated == catalog[index_position]:
+                continue
             output[index_position] = updated
+            if not changeset:
+                confirmations.append({"id":row["slug"],"source":url,
+                                      "source_html_sha256":sample["html_sha256"],"values":stated})
+                stats["still_listed_proofs_refreshed"] += 1
+                continue
             changes.append({"id":row["slug"],"fields":sorted(changeset),
                             "source":url,"source_html_sha256":sample["html_sha256"],
                             "after":changeset})
@@ -347,7 +363,8 @@ def enrich(catalog, snapshot, *, today):
                    "snapshot_pages_checked":stats["weekly_pages"],
                    "counts":dict(sorted(stats.items())),
                    "holds":dict(sorted(holds.items())),
-                   "changes":changes,"duplicate_markers":marker_changes,
+                   "changes":changes,"confirmations":confirmations,
+                   "duplicate_markers":marker_changes,
                    "existing_ids_removed":0,
                    "invented_clock_times":0,"human_openings_confirmed":0}
 
