@@ -108,8 +108,8 @@ class ExistingSourceIntegrationTests(unittest.TestCase):
             return original(*args, **kwargs)
         with patch.object(editorial, "run", side_effect=observe):
             integration.run_editorial([row(), cdc_row("bologna")],
-                **self.args(offline=True, monotonic=lambda: 100.0, deadline=250.0))
-        self.assertEqual(deadlines, {"eventiesagre.it": 250.0, CDC: 190.0})
+                **self.args(offline=True, monotonic=lambda: 100.0, deadline=500.0))
+        self.assertEqual(deadlines, {"eventiesagre.it": 500.0, CDC: 400.0})
 
     def test_global_disabled_configuration_never_reads_eligible_sources(self):
         config = integration.configuration(enabled=False)

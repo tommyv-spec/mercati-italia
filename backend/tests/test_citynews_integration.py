@@ -88,8 +88,10 @@ class CitynewsIntegrationTests(unittest.TestCase):
         self.assertEqual(before, original)
         self.assertEqual([r["slug"] for r in after], [r["slug"] for r in before])
         self.assertEqual(preserve, {r["slug"] for r in before})
-        self.assertEqual(deadlines, {"eventiesagre.it": 250.0, CDC: 190.0, "citynews": 160.0})
-        self.assertEqual(report["shared_budget_seconds"], 360)
+        cdc_limit = editorial.validate_policy(publisher=CDC)["max_seconds"]
+        self.assertEqual(deadlines, {"eventiesagre.it": 250.0, CDC: min(250.0, 100.0 + cdc_limit),
+                                     "citynews": 160.0})
+        self.assertEqual(report["shared_budget_seconds"], integration.EDITORIAL_SECONDS)
         self.assertEqual(len(calls), 6)
         self.assertEqual(after[2]["date"], ["2026-11-01"])
         self.assertEqual(after[2]["date_quality"], "riportata")

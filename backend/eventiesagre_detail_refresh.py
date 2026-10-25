@@ -47,8 +47,8 @@ POLICY_PATH = Path(__file__).resolve().parent / "data/editorial-detail-refresh-p
 USER_AGENT = "MercatiItaliaEditorialRefresh/1.0"
 MAX_RESOURCES = 6000
 MAX_STATE_BYTES = 6_000_000
-MAX_DETAILS = 64
-MAX_SECONDS = 360
+MAX_DETAILS = 128
+MAX_SECONDS = 600
 DEFAULT_POLICY = {"enabled": True, "max_details": 64, "max_seconds": 210,
                   "min_delay_seconds": 2, "overdue_after_days": 45,
                   "new_market_ids_allowed": False, "overwrite_unowned_fields": False}
@@ -61,9 +61,9 @@ CALENDAR_ISSUES = {"edition_dates_missing_or_invalid", "archive_marker_date_conf
                    "jsonld_visible_edition_conflict", "multiple_recurrence_statements",
                    "visible_edition_conflict", "narrative_calendar_incomplete"}
 PUBLISHERS = {"eventiesagre.it": {"policy_key": "eventiesagre", "stem": "eventiesagre",
-                 "manager": MANAGER, "max_details": 64, "max_seconds": 210},
+                 "manager": MANAGER, "max_details": 128, "max_seconds": 600},
               "cosedicasa.com": {"policy_key": "cosedicasa", "stem": "cosedicasa",
-                 "manager": "cosedicasa_detail", "max_details": 16, "max_seconds": 90}}
+                 "manager": "cosedicasa_detail", "max_details": 64, "max_seconds": 300}}
 STATE_SCHEMA = 2
 RETRY_DAYS = (1, 2, 4, 7)
 RETRY_EVERY = 4
@@ -541,6 +541,12 @@ def _update(row, document, *, read_on, today):
                     proposed[target] = value
     # Recurrence text is retained in facts. It is not promoted without its
     # full editorial meaning; scope alone must never authorize an expansion.
+    # A current page whose recurrence reads as exactly the market's rule only
+    # restates it (observed, never assigned), which keeps forecasts renewing.
+    if not archive and not calendar_conflicted(local["conflicts"]):
+        rule = explicit_rule(selected["recurrence"])
+        if rule is not None and rule == explicit_rule(row.get("ricorrenza_testo")):
+            proposed["ricorrenza_testo"] = row["ricorrenza_testo"]
     accepted, assigned, updated, holds = {}, [], [], []
     prior = clean_receipts(row.get("riscontri_campi"), row, today=today)
     latest = None

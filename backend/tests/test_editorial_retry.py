@@ -16,6 +16,9 @@ from urllib.error import HTTPError, URLError
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import editorial_transport as transport
 import eventiesagre_detail_refresh as reader
+
+# One second after the configured reader deadline (policy file), whatever its value.
+PAST_DEADLINE = reader.validate_policy()["max_seconds"] + 1
 from test_eventiesagre_detail_refresh import (
     TODAY, URL, html, row, cdc_row, CDC_FIXTURES, CDC_SAMPLES,
 )
@@ -156,8 +159,8 @@ class EditorialRetryTests(unittest.TestCase):
         self.assertEqual(cooling["progress"]["retry_due"], 0)
 
     def test_deadline_expiring_before_robots_does_not_claim_an_attempt(self):
-        ticks = iter([0, 0, 211])
-        _, report, _ = self.execute(monotonic=lambda:next(ticks, 211))
+        ticks = iter([0, 0, PAST_DEADLINE])
+        _, report, _ = self.execute(monotonic=lambda:next(ticks, PAST_DEADLINE))
         self.assertEqual(self.calls, [])
         self.assertEqual(report["network_requests"], 0)
         self.assertEqual(report["details_attempted"], 0)
@@ -165,7 +168,7 @@ class EditorialRetryTests(unittest.TestCase):
         self.assertFalse(report["progress"]["attempt_cycle_complete"])
 
     def test_sleep_overrun_leaves_source_unchanged_and_no_failed_http(self):
-        def oversleep(seconds): self.clock.seconds=211
+        def oversleep(seconds): self.clock.seconds=PAST_DEADLINE
         _, report, _ = self.execute(sleep=oversleep)
         self.assertEqual(self.calls, [reader.ROBOTS])
         self.assertEqual(report["network_requests"], 1)
@@ -178,7 +181,7 @@ class EditorialRetryTests(unittest.TestCase):
         def slow_write(path, value):
             write(path, value)
             if isinstance(value, dict) and value.get("attempts"):
-                self.clock.seconds = 211
+                self.clock.seconds = PAST_DEADLINE
         with patch.object(reader, "_write", side_effect=slow_write):
             _, report, _ = self.execute()
         self.assertEqual(self.calls, [reader.ROBOTS])
@@ -191,7 +194,7 @@ class EditorialRetryTests(unittest.TestCase):
     def test_deadline_after_observed_redirect_remains_inflight_and_resumes_without_http(self):
         def redirect(url, **kwargs):
             if url.endswith("robots.txt"): return ROBOTS, url
-            self.clock.seconds=211
+            self.clock.seconds=PAST_DEADLINE
             raise HTTPError(url,301,"moved",{"Location":url.replace("Mercato+Di+Esempio", "Altro+Slug")},None)
         _, report, _ = self.execute(fetcher=redirect)
         item = report["state"]["resources"][URL]

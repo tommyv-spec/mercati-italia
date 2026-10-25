@@ -23,7 +23,7 @@ from field_evidence import fingerprint
 import atomic_write
 
 SCHEMA = 1
-EDITORIAL_SECONDS = 360
+EDITORIAL_SECONDS = 600
 CDC_RESERVED_SECONDS = 90
 EDITORIAL_STATES = {
     "eventiesagre.it": "eventiesagre-detail-state.json",
