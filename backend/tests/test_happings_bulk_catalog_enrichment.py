@@ -65,6 +65,24 @@ class BulkFieldTests(unittest.TestCase):
         self.assertEqual({k:again[0][k] for k in bulk.FIELDS},{k:filled[0][k] for k in bulk.FIELDS})
         self.assertEqual((repeat,second["confirmations"]),(again,[]))
 
+    def test_one_listed_market_is_one_card_across_sources_showing_the_most_detail(self):
+        happ=base_row(street="centro"); happ["orario_testo"]="La mattina"
+        ees=base_row("mercato-settimanale-di-albenga-ees")
+        ees.update(fonte="eventiesagre.it", nome="Mercato Settimanale Di Albenga",
+                   ricorrenza_testo="Ogni mercoledì", indirizzo="Via Dalmazia", orario_testo="08:00–13:00",
+                   url_fonte="https://www.eventiesagre.it/Mercatini_Filiera+Corta/1_Mercato+Settimanale+Di+Albenga.html")
+        key=bulk.catalog_key(happ)
+        self.assertEqual(bulk.catalog_key(ees),key)
+        with patch.object(bulk,"read_weekly_source",
+                          return_value=({key:[fact(place="centro")]},Counter())):
+            candidate,report=bulk.enrich([happ,ees],".",today=DAY)
+        by={r["slug"]:r for r in candidate}
+        self.assertEqual(by[happ["slug"]].get("duplicato_di"),ees["slug"])  # real street + clock hours stay visible
+        self.assertNotIn("duplicato_di",by[ees["slug"]])
+        self.assertTrue(any(p["valori"].get("ricorrenza_testo")=="Ogni mercoledì"
+                            for p in by[ees["slug"]]["riscontri_campi"]))
+        self.assertEqual({k:by[ees["slug"]][k] for k in bulk.FIELDS},{k:ees[k] for k in bulk.FIELDS})
+
     def test_conflicting_existing_street_is_never_overwritten(self):
         old=base_row(street="Piazza Don Gnocchi")
         blank=base_row("mercato-settimanale-di-albenga-albenga-mercoledi")
@@ -105,8 +123,17 @@ class BulkFieldTests(unittest.TestCase):
         with patch.object(bulk,"read_weekly_source",
                           return_value=({key:[fact()]},Counter())):
             candidate,report=bulk.enrich([other],".",today=DAY)
-        self.assertEqual(candidate,[other])
+        # Another source's generic weekly market on a town/day the page lists once:
+        # never a field change, only the page's still-listed proof of its weekday.
+        self.assertEqual({k:candidate[0].get(k) for k in bulk.FIELDS},{k:other.get(k) for k in bulk.FIELDS})
         self.assertEqual(report["counts"].get("updated_records",0),0)
+        self.assertEqual([c["values"] for c in report["confirmations"]],[{"ricorrenza_testo":other["ricorrenza_testo"]}])
+        self.assertEqual(candidate[0]["riscontri_campi"][0]["metodo"],"sede_giorno_provincia")
+        # Two markets listed that day: no proof, nothing assumed.
+        with patch.object(bulk,"read_weekly_source",
+                          return_value=({key:[fact(),fact(place="Piazza del Popolo")]},Counter())):
+            candidate,report=bulk.enrich([other],".",today=DAY)
+        self.assertEqual(candidate,[other])
 
     def test_cut_weekday_is_repaired_only_when_the_page_leaves_one_day(self):
         cut=base_row()

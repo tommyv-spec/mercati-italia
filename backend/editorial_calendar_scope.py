@@ -261,9 +261,12 @@ def _independently_supported(row, evidence, today):
         return True
     for receipt in clean_receipts(row.get("riscontri_campi"), row, today=today):
         updated = as_day(receipt.get("fonte_aggiornata_il"))
+        # Same rule as recurrence_refresh: a dated proof keeps its age limit; an
+        # undated one counts as "still listed" while it was read recently.
         if (receipt.get("url") != evidence["primary_url"]
                 and receipt["valori"].get("ricorrenza_testo") == row.get("ricorrenza_testo")
-                and updated and 0 <= (today - updated).days <= SOURCE_AGE["ricorrenza_testo"]
+                and (not receipt.get("fonte_aggiornata_il")
+                     or updated and 0 <= (today - updated).days <= SOURCE_AGE["ricorrenza_testo"])
                 and 0 <= (today - as_day(receipt["letto_il"])).days <= MAX_READ_AGE):
             return True
     return False

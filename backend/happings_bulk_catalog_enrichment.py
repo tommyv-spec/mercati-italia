@@ -36,6 +36,7 @@ FIELDS = ("indirizzo", "orario_testo", "ricorrenza_testo")
 WEEKDAY_TEXT = ("lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica")
 CUT_WEEKLY = re.compile(r"settimanale(?: ([a-z]{1,7}))?")
 CENTRE = re.compile(r"(?:in )?centro(?: storico| paese| citta)?")
+CLOCK = re.compile(r"\b\d{1,2}[:.]\d\d\b")
 MAX_RESTORED = 50000
 
 
@@ -126,9 +127,13 @@ def cut_weekday(row, page_days):
 
 
 def kept_record(rows, street=None):
-    """The copy showing the listed street; else stable: already kept stays."""
+    """The visible card is the one that tells the visitor most: the listed street,
+    a real street, exact clock hours; then stable (already kept stays). Dates do
+    not decide: within one market they rest on the same proofs."""
     already = {r.get("duplicato_di") for r in rows}
     return max(rows, key=lambda r: (bool(street) and source._same_place(r.get("indirizzo"), street),
+                                    safe_stored_street(r.get("indirizzo")),
+                                    bool(CLOCK.search(str(r.get("orario_testo") or ""))),
                                     r["slug"] in already, data_value_score(r),
                                     r.get("lat") is not None, -len(r["slug"]), r["slug"]))
 
@@ -202,6 +207,7 @@ def enrich(catalog, snapshot, *, today):
         if not qualified(entries):
             town_days[(region, province, city)].add(day)
     targets = defaultdict(list)
+    others = defaultdict(list)
     repaired = {}
     catalog_ids = set()
     for row in catalog:
@@ -220,6 +226,8 @@ def enrich(catalog, snapshot, *, today):
                 targets[key].append(view)
                 if view is not row:
                     repaired[sid] = view["ricorrenza_testo"]
+        elif (key := catalog_key(row)) is not None:
+            others[key].append(row)
     output = deepcopy(catalog)
     index = {r["slug"]: i for i,r in enumerate(catalog)}
     changes = []
@@ -238,10 +246,19 @@ def enrich(catalog, snapshot, *, today):
         url = next(iter(urls))
         primary = [r for r in targets.get(key, [])
                    if source.record_matches_page(r, url, url)]
-        if not primary:
+        # Another source's generic weekly market ("Mercato settimanale di <town>")
+        # on a town and weekday this page lists exactly once is that same market:
+        # it gets the page's still-listed proof and joins the one-card cohort.
+        secondary = others.get(key, []) if len(entries) == 1 else []
+        if not primary and not secondary:
             holds["no_proven_happings_weekly_identity"] += 1
             continue
-        evaluated.update(r["slug"] for r in primary)
+        evaluated.update(r["slug"] for r in primary + secondary)
+        evidence = {
+            "source_url": url, "source_day": key[3],
+            "source_html_sha256": entries[0]["html_sha256"],
+            "observed_at": entries[0]["read_on"],
+        }
         precise = [e for e in entries if e.get("has_specific_location")
                    and safe_stored_street(e.get("place"))]
         unique_street = precise[0]["place"] if len(entries) == 1 and len(precise) == 1 else None
@@ -315,7 +332,19 @@ def enrich(catalog, snapshot, *, today):
                 stats["filled_" + field] += 1
         # One listed market: every matching record is that market. Several
         # listed: only records sharing one exact listed street are.
-        current = [output[index[r["slug"]]] for r in primary]
+        for row in secondary:
+            stated = {"ricorrenza_testo": row["ricorrenza_testo"]}
+            index_position = index[row["slug"]]
+            updated, reason = _update(catalog[index_position], stated, evidence, today=today)
+            if reason:
+                holds["other_source_" + reason] += 1
+                continue
+            if updated != catalog[index_position]:
+                output[index_position] = updated
+                confirmations.append({"id": row["slug"], "source": url,
+                                      "source_html_sha256": evidence["source_html_sha256"], "values": stated})
+                stats["other_source_still_listed_proofs"] += 1
+        current = [output[index[r["slug"]]] for r in primary + secondary]
         if len(entries) == 1:
             cohorts = [current]
         else:
