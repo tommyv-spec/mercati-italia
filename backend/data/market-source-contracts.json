@@ -251,6 +251,100 @@
       "source_metadata_license": "CC BY 4.0"
     },
     {
+      "id": "veneto-calendario-antiquariato",
+      "enabled": true,
+      "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+      "source_id": "veneto-calendario-antiquariato",
+      "row_kind": "market_venue_month",
+      "resource_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+      "attribution_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+      "format": "PDF",
+      "max_bytes": 2000000,
+      "min_rows": 30,
+      "max_rows": 200,
+      "schema_columns": [
+        "provincia",
+        "comune",
+        "luogo",
+        "periodicita",
+        "dal_al",
+        "cadenza",
+        "cadenza_ampia",
+        "giorni",
+        "orario",
+        "posteggi_professionali",
+        "assegnati_professionali",
+        "posteggi_hobbisti",
+        "occupati_hobbisti"
+      ],
+      "pdf_header": [
+        "Provincia/Città Metropolitana di",
+        "Denominazione COMUNE di",
+        "Luogo di svolgimento",
+        "Periodicità del mercatino (annuale/stagionale)",
+        "Dal (giorno di inizio) Al (giorno di conclusione)",
+        "Cadenza (mensile o di più ampia durata)",
+        "Cadenza di più ampia durata",
+        "Giorni di svolgimento",
+        "Orario di svolgimento (dalle ore - alle ore)",
+        "Posteggi riservati per gli operatori professionali",
+        "Posteggi assegnati agli operatori professionali",
+        "Posteggi riservati agli operatori non professionali (cd. Hobbisti)",
+        "Posteggi occupati dagli operatori non professionali (cd. Hobbisti)"
+      ],
+      "pdf_header_repeats": false,
+      "identity_fields": [
+        "provincia",
+        "comune",
+        "luogo",
+        "giorni"
+      ],
+      "empty_name_template": "Mercatino dell'antiquariato di {citta}",
+      "street_fields": [
+        "luogo"
+      ],
+      "recurrence_field": "giorni",
+      "hours_fields": [],
+      "hours_text_field": "orario",
+      "hours_text_format": "italian_clock_range",
+      "market_filters_any": [
+        {
+          "periodicita": "annuale",
+          "cadenza": "mensile"
+        }
+      ],
+      "hold_address_contains": [
+        "temporaneam",
+        "spostato"
+      ],
+      "municipality_field": "comune",
+      "region": "Veneto",
+      "category": "antiquariato",
+      "catalog_slug_prefix": "ve-calant-",
+      "source_dataset_date": "2026-01-01",
+      "source_date_scope": "dataset_not_per_market",
+      "source_date_strategy": "landing_page_year_v1",
+      "resource_discovery": {
+        "link_text": "mercatini dell'antiquariato",
+        "href_pattern": "/documents/10713/\\d+/[^/]*{year}[^/]*\\.pdf/[0-9a-f-]{36}"
+      },
+      "max_source_age_days": 540,
+      "max_forecast_source_age_days": 450,
+      "legal_reuse_reviewed": true,
+      "publication_mode": "approved_dev_only",
+      "max_new_ids_per_run": 20,
+      "coordinates": "ignored_unless_independently_source_verified",
+      "existing_market_fill": {
+        "max_records_per_run": 100,
+        "categories": [
+          "antiquariato",
+          "usato"
+        ]
+      },
+      "new_market_requires_free_town_day": true,
+      "notes": "Yearly regional PDF of antiques/collectibles markets, linked from the same landing page as the weekly calendar (link text 'mercatini dell'antiquariato' + year pattern; content date = 1 January of the calendar year). One table over 3 pages, header on page 1 only; no market name column (named by template). Same terms as the weekly calendar: reuse with source citation, no commercial use (owner decision 2026-10-25: the app is not commercial). Monthly rows (row_kind market_venue_month): the 'giorni' text must state one monthly rule and nothing else ('Prima domenica del mese'); exclusions ('escluso agosto'), month lists, Easter-relative or explicit dates, stagionale rows and cadenza other than mensile are held, never guessed (they still compete for their town). Only annual monthly rows become new markets, and only on a municipality+calendar with no existing market. Existing antiquariato/usato cards matched by unique municipality+calendar get official hours and missing streets with per-field receipts; when the card's own recurrence states that very rule the receipt also records it (still listed), dated with the calendar's content date."
+    },
+    {
       "id": "veneto-calendario-mercati",
       "enabled": true,
       "publisher": "Regione del Veneto – Calendario regionale dei mercati",

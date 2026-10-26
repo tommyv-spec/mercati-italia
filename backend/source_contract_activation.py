@@ -560,7 +560,8 @@ def verify_static(manifest_path,report,config,registry,today):
     """
     from pathlib import Path
     from merge_catalog import load_existing
-    from recurrence_refresh import explicit_rule, forecast_source_limits, refresh_record
+    from recurrence_refresh import explicit_rule, forecast_source_limits, project_dates, refresh_record
+    from source_lifecycle import MONTH_KIND
     from compact_index import index_fields, index_options, project_index
     if not isinstance(today,date):
         raise ValueError("Final publisher source check needs a reference date")
@@ -737,12 +738,14 @@ def verify_static(manifest_path,report,config,registry,today):
             raise ValueError("Generic source index restored navigation or unsafe dates")
         rule=explicit_rule(row.get("ricorrenza_testo"))
         if row.get("date_quality")=="prevista":
-            if (rule is None or rule.get("kind")!="weekly"
+            monthly=source["row_kind"]==MONTH_KIND and rule and rule["kind"]=="monthly_nth_weekday"
+            if (rule is None or rule.get("kind")!="weekly" and not monthly
                     or not row.get("date")
                     or (today-date.fromisoformat(source_date)).days>
                        source.get("max_forecast_source_age_days",source["max_source_age_days"])
                     or any(item<today.isoformat() or
-                           date.fromisoformat(item).weekday() not in rule["weekdays"]
+                           (item not in project_dates(rule,today,365) if monthly else
+                            date.fromisoformat(item).weekday() not in rule["weekdays"])
                            for item in row["date"])):
                 raise ValueError("Invalid publisher-source weekly forecast in static catalog")
             dates_predicted+=1

@@ -119,10 +119,10 @@ class SourceGrowthAuditGateTests(unittest.TestCase):
     def check(self, report):
         return validate_growth_source_lifecycle(report, MANIFEST, root=ROOT)
 
-    def test_pinned_publisher_registries_allow_three_authorized_sources(self):
+    def test_pinned_publisher_registries_allow_four_authorized_sources(self):
         report = fixture()
         result = self.check(report)
-        self.assertEqual(result["sources_checked"], 3)
+        self.assertEqual(result["sources_checked"], 4)
         self.assertEqual(result["market_ids_preserved"], MANIFEST["total"])
 
     def test_dynamic_date_advances_with_proof_and_fixed_legacy_stage_needs_none(self):
