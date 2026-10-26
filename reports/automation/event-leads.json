@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14009,
-  "baseline_market_records": 14009,
+  "baseline_market_ids_preserved": 14106,
+  "baseline_market_records": 14106,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -8,8 +8,8 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
-      "leads_found": 3,
-      "not_matching_market_scope": 120,
+      "leads_found": 0,
+      "not_matching_market_scope": 123,
       "requests": 1,
       "rows_examined": 123,
       "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
@@ -32,15 +32,48 @@
       "event_confirmations": 0,
       "id": "eventiesagre-index",
       "indexes_read": 2,
-      "links_only": 13,
+      "links_only": 3,
       "publisher_events_verified": 0,
       "requests": 3,
       "state": "discovery_leads_only"
     }
   ],
-  "fresh_official_leads": 3,
+  "fresh_official_leads": 0,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-26",
+      "id": "eventiesagre-index:21190632",
+      "last_seen": "2026-10-26",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21190632_Arti+E+Mercanti+A+Montefalco.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-26",
+      "id": "eventiesagre-index:21187037",
+      "last_seen": "2026-10-26",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21187037_Il+Mercatino+Dell+antiquariato+E+Collezionismo+A+Grottaferrata.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-26",
+      "id": "eventiesagre-index:21124967",
+      "last_seen": "2026-10-26",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21124967_Curiosando.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
     {
       "catalog_import_allowed": false,
       "city": "Firenze",
@@ -50,13 +83,11 @@
       "kind": "market_candidate",
       "last_seen": "2026-10-25",
       "opening_confirmed": false,
-      "possible_existing_market_ids": [
-        "il-mercatino-da-forte-dei-marmi-a-firenze-firenze"
-      ],
+      "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
       "start": "2026-10-25",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercato del Forte dei Marmi a Firenze"
     },
     {
@@ -72,7 +103,7 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercatino-dei-fumetti-del-disco-e-del-vintage",
       "start": "2026-10-24",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercatino dei fumetti, del disco e del vintage"
     },
     {
@@ -84,13 +115,11 @@
       "kind": "fair_review",
       "last_seen": "2026-10-25",
       "opening_confirmed": false,
-      "possible_existing_market_ids": [
-        "mercatino-antiquariato-e-usato-di-firenze-santo-spirito-in-fiera-piazza-santo-sp"
-      ],
+      "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/santo-spirito-fiera",
       "start": "2026-10-25",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Santo Spirito in Fiera"
     },
     {
@@ -102,7 +131,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21194396_Mostra+Scambio+Collezionismo+Sportivo+Figurine+Fumetti+Manifesti+Pubblicitari+E+Vinili.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -113,7 +142,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21194144_Mostra+Scambio+Giocattoli+E+Modellismo.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -124,7 +153,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191687_Il+Mercatino+Delle+Pulci+A+Bussana+Di+Sanremo.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -135,7 +164,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21191654_Il+Mercatino+Del+Collezionismo+E+Delle+Cose+Vecchie+A+Saronno.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -146,7 +175,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21180666_Il+Sogno+Antico+A+Voghera.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -157,7 +186,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21180064_Mercatino+a+Pomponesco+Mn.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -168,7 +197,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21163878_Riciclo+Recupero+Riuso.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -179,7 +208,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21157996_Mercatino+Del+Riuso+A+San+Martino+Dall+argine.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -190,7 +219,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21108484_Mercatino+Filatelico+E+Numismatico.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -201,7 +230,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21106864_Remember+Vintage.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -212,7 +241,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21079886_Antiquariato+E+Collezionismo.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -223,7 +252,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21075404_Mercatino+Dell+antiquariato.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -234,7 +263,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21044727_Mercatino+Del+Riciclo+E+Riutilizzo.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -734,11 +763,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 13,
+  "new_external_url_pointers": 3,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-25",
+  "reference_date": "2026-10-26",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
