@@ -162,6 +162,21 @@ class BulkFieldTests(unittest.TestCase):
             candidate,report=bulk.enrich([other],".",today=DAY)
         self.assertEqual(candidate,[other])
 
+    def test_several_listed_markets_prove_the_other_card_whose_street_one_row_names(self):
+        other=base_row("mercato-settimanale-di-albenga-ees",street="VIA DALMAZIA, 1")
+        other.update(fonte="eventiesagre.it",orario_testo="08:00–13:00",
+                     url_fonte="https://www.eventiesagre.it/x/1_Mercato+Settimanale+Di+Albenga.html")
+        key=bulk.catalog_key(other)
+        two={key:[fact(),fact(place="Piazza del Popolo")]}
+        with patch.object(bulk,"read_weekly_source",return_value=(two,Counter())):
+            candidate,report=bulk.enrich([other],".",today=DAY)
+            elsewhere,_=bulk.enrich([{**other,"indirizzo":"Via Roma"}],".",today=DAY)
+            afternoon,_=bulk.enrich([{**other,"orario_testo":"14:00–19:00"}],".",today=DAY)
+        self.assertEqual([c["values"] for c in report["confirmations"]],[{"ricorrenza_testo":other["ricorrenza_testo"]}])
+        self.assertEqual({k:candidate[0].get(k) for k in bulk.FIELDS},{k:other.get(k) for k in bulk.FIELDS})
+        self.assertEqual(elsewhere,[{**other,"indirizzo":"Via Roma"}])
+        self.assertEqual(afternoon,[{**other,"orario_testo":"14:00–19:00"}])
+
     def test_cut_weekday_is_repaired_only_when_the_page_leaves_one_day(self):
         cut=base_row()
         cut["ricorrenza_testo"]="settimanale - me"

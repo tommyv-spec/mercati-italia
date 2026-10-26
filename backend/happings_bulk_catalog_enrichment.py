@@ -126,20 +126,21 @@ def cut_weekday(row, page_days):
     return fits[0] if len(fits) == 1 else None
 
 
+def names_place(row, place, hours=None):
+    """Another source's card names this listed place in its own spelling, at a time
+    of day the listing doesn't contradict."""
+    page = {"indirizzo": place, "orario_testo": hours or "", "citta": row.get("citta")}
+    own, said = dayparts(row), dayparts(page)
+    return bool(place) and not (own and said and not own & said) and shares_street(row, page)
+
+
 def kept_record(rows, street=None, hours=None):
     """The visible card is the one that tells the visitor most: the listed street,
     a real street, exact clock hours; then stable (already kept stays). Dates do
     not decide: every member has upcoming ones."""
     already = {r.get("duplicato_di") for r in rows}
-    page = {"indirizzo": street, "orario_testo": hours or ""}
-    def listed(r):
-        # Another source's card may name the listed street in its own spelling,
-        # at a time of day the page doesn't contradict.
-        if not street or source._same_place(r.get("indirizzo"), street):
-            return bool(street)
-        own, said = dayparts(r), dayparts(page)
-        return (r.get("fonte") != source.PUBLISHER and not (own and said and not own & said)
-                and shares_street(r, {**page, "citta": r.get("citta")}))
+    listed = lambda r: bool(street) and (source._same_place(r.get("indirizzo"), street) or (
+        r.get("fonte") != source.PUBLISHER and names_place(r, street, hours)))
     return max(rows, key=lambda r: (listed(r),
                                     safe_stored_street(r.get("indirizzo")),
                                     bool(CLOCK.search(str(r.get("orario_testo") or ""))),
@@ -264,10 +265,15 @@ def enrich(catalog, snapshot, *, today):
         url = next(iter(urls))
         primary = [r for r in targets.get(key, [])
                    if source.record_matches_page(r, url, url)]
+        precise = [e for e in entries if e.get("has_specific_location")
+                   and safe_stored_street(e.get("place"))]
         # Another source's generic weekly market ("Mercato settimanale di <town>")
-        # on a town and weekday this page lists exactly once is that same market:
-        # it gets the page's still-listed proof and joins the one-card cohort.
-        secondary = others.get(key, []) if len(entries) == 1 else []
+        # on a town and weekday this page lists exactly once is that same market;
+        # with several listed, it is the one row whose place it names. It gets the
+        # page's still-listed proof and joins the one-card cohort.
+        secondary = (others.get(key, []) if len(entries) == 1 else
+                     [r for r in others.get(key, [])
+                      if sum(names_place(r, e["place"], DAYPART.get(e.get("daypart"))) for e in precise) == 1])
         if not primary and not secondary:
             holds["no_proven_happings_weekly_identity"] += 1
             continue
@@ -277,8 +283,6 @@ def enrich(catalog, snapshot, *, today):
             "source_html_sha256": entries[0]["html_sha256"],
             "observed_at": entries[0]["read_on"],
         }
-        precise = [e for e in entries if e.get("has_specific_location")
-                   and safe_stored_street(e.get("place"))]
         unique_street = precise[0]["place"] if len(entries) == 1 and len(precise) == 1 else None
         anchors = [r for r in primary if unique_street
                    and safe_stored_street(r.get("indirizzo"))
@@ -297,8 +301,8 @@ def enrich(catalog, snapshot, *, today):
                   and CENTRE.fullmatch(fold(entries[0].get("place")))
                   and not any(safe_stored_street(r.get("indirizzo")) for r in primary)
                   else None)
-        dayparts = {e.get("daypart") for e in entries}
-        same_daypart = next(iter(dayparts)) if len(dayparts) == 1 else None
+        listed_parts = {e.get("daypart") for e in entries}
+        same_daypart = next(iter(listed_parts)) if len(listed_parts) == 1 else None
         hours = DAYPART.get(same_daypart)
         # A source page may list multiple different venues. We only propagate a
         # shared daypart when EVERY venue in that cohort has the same text.
@@ -369,8 +373,11 @@ def enrich(catalog, snapshot, *, today):
             by_street = defaultdict(list)
             for r in current:
                 street = r.get("indirizzo")
-                if safe_stored_street(street) and any(source._same_place(street, e["place"]) for e in precise):
-                    by_street[fold(street)].append(r)
+                places = {fold(e["place"]) for e in precise if source._same_place(street, e["place"])
+                          or r.get("fonte") != source.PUBLISHER
+                          and names_place(r, e["place"], DAYPART.get(e.get("daypart")))}
+                if safe_stored_street(street) and len(places) == 1:
+                    by_street[places.pop()].append(r)
             cohorts = list(by_street.values())
         for rows in cohorts:
             # Another source's card joins only as the same venue as EVERY member with a
