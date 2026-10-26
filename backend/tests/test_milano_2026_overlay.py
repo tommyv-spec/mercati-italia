@@ -61,6 +61,17 @@ class MilanoCrossPublisherTests(unittest.TestCase):
         self.assertGreater(len(projections[0]["date"]),12)
         self.assertEqual(base,freeze)
 
+    def test_old_open_data_date_does_not_age_out_the_pdf_schedule(self):
+        # A re-read of the 2024 open-data file declares its own date on the card;
+        # the 2026 PDF proving the schedule still dates the forecast.
+        old=[{**existing(1),"fonte_aggiornata_il":"2024-05-27"}]
+        future,_=reconcile(old,PDF,GIS,today=date(2026,10,12),apply=True)
+        self.assertEqual(future[0]["fonte_aggiornata_il"],"2026-10-01")
+        projections,_=refresh_records(future,date(2026,10,12),120,540)
+        self.assertGreater(len(projections[0]["date"]),12)
+        from milano_2026_release_guard import verify
+        verify(old,future,reconcile(old,PDF,GIS,today=date(2026,10,12),apply=True)[1],PDF,GIS)
+
     def test_reported_market_is_not_new_id_and_no_fuzzy_merge(self):
         base=[existing(1),{**existing(1),"slug":"legacy-elsewhere",
                               "url_fonte":"https://other.example/market"}]
@@ -145,7 +156,7 @@ class MilanoCrossPublisherTests(unittest.TestCase):
         from milano_2026_overlay import WEEKDAYS as PUBLISHER_DAYS
         today=date(2026,10,14)
         matched,_=verified_pairs(PDF,GIS)
-        self.assertEqual(len(matched),76)
+        self.assertEqual(len(matched),77)
         reviewed=[]
         for ident,days in sorted(matched.items()):
             row=existing(ident,"settimanale - "+", ".join(PUBLISHER_DAYS[d] for d in days))
@@ -186,7 +197,7 @@ class MilanoCrossPublisherTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"contract changed"):
             verify_exported(reviewed,comparable,report,PDF,GIS,today)
         proof=verify_exported(source_cohort,comparable,report,PDF,GIS,today)
-        self.assertEqual(proof["reviewed_milan_ids"],76)
+        self.assertEqual(proof["reviewed_milan_ids"],77)
         self.assertEqual(proof["unchanged_stable_market_ids"],len(source_cohort))
         self.assertEqual(proof["confirmed_market_events_created"],0)
         self.assertTrue(proof["quality_safe"])
@@ -215,7 +226,7 @@ class MilanoCrossPublisherTests(unittest.TestCase):
         proof=verify_exported(source_cohort,[*comparable,pisa],certified,PDF,GIS,today)
         self.assertEqual(proof["separately_proved_happings_admissions"],1)
         self.assertEqual(proof["market_records_added"],0)
-        self.assertEqual(proof["reviewed_milan_ids"],76)
+        self.assertEqual(proof["reviewed_milan_ids"],77)
         tampered=copy.deepcopy(comparable)
         tampered[0]["lat"]=0
         with self.assertRaisesRegex(ValueError,"Unsafe Milan source field"):

@@ -51,6 +51,7 @@ PDF_TO_GIS_ALIAS = {
     "RIPA":"ripa pta ticinese",
     "VALVASSORI PERONI":"v. peroni",
     "PAGANO MM1":"mario pagano M1",
+    "PONTI":"ponti e.",  # GIS label "Ettore Ponti"; the only Ponti in both, Monday
 }
 # The PDF's Ciccotti street note mentions an active construction closure.
 # The excerpt's layout does not prove whether the entire market is affected.
@@ -198,6 +199,10 @@ def reconcile(rows, pdf, gis, *, today=None, apply=False):
                         elif apply:
                             nextrow["aggiornato_il"]=PDF_DATE.isoformat()
                             nextrow["aggiornamento_ambito"]="dataset"
+                            # The PDF is the content proving this schedule: an older
+                            # declared date (the 2024 open-data file) must not age it out.
+                            if str(nextrow.get("fonte_aggiornata_il") or "") < PDF_DATE.isoformat():
+                                nextrow["fonte_aggiornata_il"]=PDF_DATE.isoformat()
                             nextrow["ricorrenza_testo"]="settimanale - "+", ".join(
                                 WEEKDAYS[d] for d in newdays)
                             origin=list(nextrow.get("fonti") or [])

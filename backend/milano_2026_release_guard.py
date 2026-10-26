@@ -8,7 +8,7 @@ from milano_2026_overlay import (
 from recurrence_refresh import explicit_rule
 
 ALLOWED = frozenset({"aggiornato_il","aggiornamento_ambito",
-                     "ricorrenza_testo","fonti"})
+                     "ricorrenza_testo","fonti","fonte_aggiornata_il"})
 
 
 def verify(before, after, report, pdf, gis):
@@ -36,7 +36,8 @@ def verify(before, after, report, pdf, gis):
         if (a.get("url_fonte")!=OLD_DATASET or b.get("url_fonte")!=OLD_DATASET
                 or a.get("verificato_il") or a.get("date_quality") in ("confermata","riportata")
                 or b.get("aggiornato_il")!=PDF_DATE.isoformat()
-                or b.get("aggiornamento_ambito")!="dataset"):
+                or b.get("aggiornamento_ambito")!="dataset"
+                or "fonte_aggiornata_il" in fields and b.get("fonte_aggiornata_il")!=PDF_DATE.isoformat()):
             raise ValueError("Official source and forecast scope changed: "+slug)
         rule=explicit_rule(b.get("ricorrenza_testo"))
         if not rule or rule.get("kind")!="weekly" or rule["weekdays"]!=matches[id_]:
@@ -69,7 +70,7 @@ def verify_exported(before, after, report, pdf, gis, today):
     """Check published regional details, not merely the intermediate overlay.
 
     A valid original PDF/GIS pair does not grant new IDs or opening confirmations.
-    All 76 reviewed Milano IDs must retain PDF evidence and only forecast dates
+    All 77 reviewed Milano IDs must retain PDF evidence and only forecast dates
     when the 2026 schedule is still within the approved 540-day source window.
     """
     from datetime import date
@@ -82,7 +83,7 @@ def verify_exported(before, after, report, pdf, gis, today):
         after, separately_proved = verify_source_admission_certificate(
             before, after, admission_certificate, today)
     matched, _ = verified_pairs(pdf, gis)
-    if (len(matched) != 76 or not isinstance(before, list) or
+    if (len(matched) != 77 or not isinstance(before, list) or
             not isinstance(after, list) or len(before) != len(after) or
             report.get("schema") != 1 or report.get("enabled") is not True or
             report.get("records_total") != len(before) or
@@ -98,7 +99,7 @@ def verify_exported(before, after, report, pdf, gis, today):
 
     covered = {}
     source_modified = set(report.get("modified_ids", []))
-    if len(source_modified) > 76:
+    if len(source_modified) > 77:
         raise ValueError("Unbounded 2026 Milan schedule changes")
     for official_id, weekdays in matched.items():
         slug = "mi-mss-" + str(official_id)
