@@ -198,6 +198,12 @@ class MilanoCrossPublisherTests(unittest.TestCase):
             verify_exported(reviewed,comparable,report,PDF,GIS,today)
         proof=verify_exported(source_cohort,comparable,report,PDF,GIS,today)
         self.assertEqual(proof["reviewed_milan_ids"],77)
+        # The exporter writes 6 decimals: a longer saved point is not a moved market.
+        precise=[{**x,"lat":x["lat"]+4.4e-8} if x["slug"]=="mi-mss-56" else x for x in source_cohort]
+        self.assertTrue(verify_exported(precise,comparable,report,PDF,GIS,today)["quality_safe"])
+        moved=[{**x,"lat":x["lat"]+0.001} if x["slug"]=="mi-mss-56" else x for x in comparable]
+        with self.assertRaisesRegex(ValueError,"Unsafe Milan source field"):
+            verify_exported(source_cohort,moved,report,PDF,GIS,today)
         self.assertEqual(proof["unchanged_stable_market_ids"],len(source_cohort))
         self.assertEqual(proof["confirmed_market_events_created"],0)
         self.assertTrue(proof["quality_safe"])

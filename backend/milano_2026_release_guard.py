@@ -112,7 +112,10 @@ def verify_exported(before, after, report, pdf, gis, today):
         for field in ("slug","nome","citta","provincia","regione","indirizzo",
                       "lat","lng","position_quality","status","url_fonte",
                       "fonte","verificato_il","orario_testo","categoria"):
-            if old.get(field) != current.get(field):
+            was, now = old.get(field), current.get(field)
+            if field in ("lat","lng") and all(type(v) in (int,float) for v in (was,now)):
+                was, now = round(was,6), round(now,6)  # the exporter writes 6 decimals
+            if was != now:
                 raise ValueError("Unsafe Milan source field changed in exported JSON: "+slug)
         if (current.get("aggiornato_il") != PDF_DATE.isoformat() or
                 current.get("aggiornamento_ambito") != "dataset" or
