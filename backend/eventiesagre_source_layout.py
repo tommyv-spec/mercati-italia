@@ -65,8 +65,10 @@ CLOCK_RANGE = re.compile(r"(?<![\w:.,])(?:dalle?\s+(?:ore\s+)?|ore\s+)?"
     r"(?P<end>" + TIME + r")(?![\d.,]|:\d)", re.I)
 ACTIVITY = re.compile(r"\b(?:concert[oi]|laborator(?:io|i)|showcooking|spettacol[oi]|"
     r"degustazion[ei]|visite?\s+guidat[ae]|cena|aperitivo|prenotazion[ei]|telefono|whatsapp)\b", re.I)
+# "Informazioni sul Mercato:" heads the market's own facts (day, hours, goods), not contacts.
 STOP_SECTION = re.compile(r"^(?:programma(?:\s+e\s+men[uù])?|concerti|laboratori|"
-    r"contatti|info(?:rmazioni)?(?:\s+e\s+prenotazioni)?|prenotazioni|dove\s+dormire)\s*:?(?:\s|$)", re.I)
+    r"contatti|info(?:rmazioni)?(?!\s+sul(?:la|l[’'])?\b)(?:\s+e\s+prenotazioni)?|prenotazioni|"
+    r"dove\s+dormire)\s*:?(?:\s|$)", re.I)
 WHERE_LABEL = re.compile(r"^(?:dove(?:\s+si\s+tiene\s+l[’']evento)?|sede(?:\s+dell[’']evento)?)"
     r"\s*[:–—-]\s*(.+)$", re.I)
 MAX_NARRATIVE_ROWS = 120

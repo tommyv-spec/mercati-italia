@@ -79,6 +79,15 @@ class EventiESagreLayoutTests(unittest.TestCase):
         result = parse(hours="", body="<p><strong>Orari del Mercat</strong>o: Dalle 08:00 alle 13:00</p>")
         self.assertEqual(result["legacy_fields"]["orario_raw"], "08:00–13:00")
 
+    def test_market_information_heading_is_not_a_contacts_section(self):
+        facts = ("<p><strong>Quando si svolge</strong>: Mercoledì tutto l'anno</p>"
+                 "<p><strong>Orari del Mercat</strong>o: Dalle 08:00 alle 13:00</p>")
+        result = parse(hours="", body="<p><strong>Informazioni sul Mercato:</strong></p>" + facts)
+        self.assertEqual(result["legacy_fields"]["orario_raw"], "08:00–13:00")
+        # A contacts heading still ends the facts.
+        result = parse(hours="", body="<p><strong>Informazioni:</strong></p>" + facts)
+        self.assertEqual(result["legacy_fields"]["orario_raw"], "")
+
     def test_labelled_numeric_hour_range_without_dalle_is_read(self):
         result = parse(hours="", body="<p>Orario: 08:00 - 13:00</p>")
         self.assertEqual(result["legacy_fields"]["orario_raw"], "08:00–13:00")
