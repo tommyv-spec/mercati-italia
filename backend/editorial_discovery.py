@@ -577,11 +577,10 @@ same town with the same category, or a generic "mercato settimanale di ..."
 candidate on a weekday the town already has: a possible copy whose address
 is too vague to tell apart. The strongest matching reason is reported.
 """
-    from export_static import comparable_market_name, same_market, venue_key
+    from export_static import comparable_market_name, same_market, same_venue
     others = [row for row in town_rows if row.get("slug") != candidate["slug"]]
-    venue = venue_key(candidate)
     for row in others:
-        if same_market(row, candidate) or same_market(candidate, row) or venue and venue_key(row) == venue:
+        if same_market(row, candidate) or same_venue(row, candidate):
             return "same_venue_and_calendar", row.get("slug")
     name = comparable_market_name(candidate["nome"])
     for row in others:

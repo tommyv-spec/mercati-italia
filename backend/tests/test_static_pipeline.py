@@ -289,6 +289,35 @@ class ExportTests(unittest.TestCase):
         rows, _ = prepare([a, b, c], self.today, preserve_ids={"a", "b", "c"})
         self.assertFalse(any(r.get("duplicato_di") for r in rows))
 
+    def test_one_street_spelled_two_ways_is_one_venue(self):
+        weekly = dict(ricorrenza_testo="settimanale - giovedì")
+        a = market("a", fonte="happings.com", indirizzo="piazza G. Rossa", orario_testo="La mattina", **weekly)
+        b = market("b", fonte="eventiesagre.it", url_fonte="https://example.org/markets/2",
+                   indirizzo="Piazza Guido Rossa, 3", orario_testo="08:00–13:00", ricorrenza_testo="Ogni giovedì")
+        merged = lambda *rows: {r["slug"]: r.get("duplicato_di", "")
+                                for r in prepare(list(rows), self.today, preserve_ids={r["slug"] for r in rows})[0]}
+        self.assertEqual(sorted(merged(a, b).values()), ["", next(k for k, v in merged(a, b).items() if not v)])
+        many = {**b, "indirizzo": "Via Sorte, Piazza Guido Rossa"}
+        self.assertTrue(any(merged(a, many).values()))
+        for case in ({"indirizzo": "Via Guido Rossa"},          # another street type
+                     {"indirizzo": "Piazza Rossi"},              # another street
+                     {"orario_testo": "13:00–19:00"},            # an afternoon market
+                     {"ricorrenza_testo": "Ogni primo giovedì del mese"}):
+            with self.subTest(case):
+                self.assertFalse(any(merged(a, {**b, **case}).values()))
+        # The church square is not the square named after General Dalla Chiesa.
+        church = {**a, "indirizzo": "Piazza della Chiesa"}
+        self.assertFalse(any(merged(church, {**b, "indirizzo": "PIAZZA GENERALE CARLO ALBERTO DALLA CHIESA, 1"}).values()))
+        # A chain ("Via A" / "Via A, Via B" / "Via B") is not one venue.
+        c = market("c", fonte="cosedicasa.com", url_fonte="https://example.org/markets/3",
+                   indirizzo="Via Sorte", **weekly)
+        self.assertFalse(any(merged(a, many, c).values()))
+        # The only card with dates is never hidden behind one without.
+        old = market("old", fonte="happings.com", indirizzo="piazza G. Rossa", duplicato_di="a",
+                     url_fonte="https://example.org/markets/4", **weekly)
+        undated = {**a, "date": []}
+        self.assertEqual(merged(undated, old, b), {"a": "", "old": "a", "b": ""})
+
     def test_unscheduled_markets_are_concluded_but_kept(self):
         past = dict(date=["2025-05-01"], date_quality="prevista")
         rows = [market("dated", url_fonte="https://example.org/markets/1"),

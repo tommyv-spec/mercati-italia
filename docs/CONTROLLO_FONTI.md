@@ -14,7 +14,7 @@ Status: ⬜ to do · 🔧 building · ✅ live on DEV
 |---:|---|---|:---:|
 | A | Freshness rule | A market whose source still lists it (page read in the last 45 days, same weekday) keeps its predicted dates renewing. A source that states its own content is too old does not count. | ✅ (pilot 148/148 verified) |
 | B | Weekly proofs | Each Happings weekly read restates, for every listed market, what the page still says (weekday, place, time of day). | ✅ |
-| C | Duplicate finder | Identical records of one source, and the same town + street + weekday listed by two sources, are merged (hidden, IDs kept). | ✅ (366 + 170 copies) |
+| C | Duplicate finder | Identical records of one source, and the same town + street + calendar listed by two sources, are merged (hidden, IDs kept). The street may be spelled differently ("piazza G. Rossa" = "Piazza Guido Rossa", "Via Sorte" = "Via Sorte, Via Rampinelli"), but its type must match ("Piazza Roma" ≠ "Via Roma"), the times of day must not clash, and the card shown is the one with the most detail. A merge never hides the only card with dates. | ✅ (366 + 170 + 236 copies) |
 | D | Shared Italian reader | One reader for recurrences used by all sources: "4° domenica", "2^ domenica di ogni mese", "tutti i venerdì". Saved page text is re-read with the current reader on every run, so fixes repair old evidence. | ✅ |
 | E | Position resolver | Placeholder city-centre points are rejected; real streets are looked up once on OpenStreetMap and kept. First run: 576 markets got a street-level point, 676 fake points removed (pilot 97/97 verified). | ✅ |
 | F | Source contracts | New sources are described, not coded: PDF tables, many towns per file, Italian hours, yearly file found automatically. Veneto calendar live: 179 markets filled, 94 new (Verona pilot 46/46). Next: Liguria map, Veneto antiques. | ✅ |
@@ -22,6 +22,23 @@ Status: ⬜ to do · 🔧 building · ✅ live on DEV
 | H | Lifecycle rule | No upcoming date, no usable recurrence, and an edition shown as over or a source unread for 90 days → hidden as "no longer scheduled" (1,152 now); links still open it; it comes back when its source shows dates again. | ✅ |
 | I | Robust saving | All file saves retry when Windows briefly locks a file. Checks compare like with like (today's exporter on both sides). | ✅ |
 | — | Compliance | Citynews forbids automated reading: reading stopped. | ✅ |
+
+## Round 2 — better collection (started 2026-10-26)
+
+Ordered by how many visible markets each item helps. Checkpoint after every item: tests pass, a pilot is checked against the real source pages, then commit to DEV and note the result here.
+Status: ⬜ to do · 🔧 building · ✅ live on DEV · ⏸ parked (reason given)
+
+| # | Item | Size (visible markets) | Status | Result |
+|---:|---|---:|:---:|---|
+| R1 | Same market listed by two sites with the street spelled differently ("Piazza Guido Rossa" / "piazza G. Rossa", "Via Sorte" / "Via Sorte, Via Rampinelli") → one card, showing the version with exact hours | 246 double cards; 93 gain exact hours | ✅ | Replay on the 26 Oct data: **236 double cards → one card each** (MERCap 190, eventiesagre/cosedicasa 36, others 10). Where Happings and another site list one market, the other site's card can now be the visible one when it has exact hours (Muggiò, Campogalliano, Longare…). Markets hiding exact hours in a copy: 80 → 76; streets and dates never hidden more than before. Pilot: 20 random merges, both sources read live, 20/20 same town, weekday and street. Guards found during the pilot: never join through a held copy (Airuno, Lazzate: different street or afternoon), a Happings card keeps the page's exact street first (Rudiano, Pandino, Vilminore), "Piazza della Chiesa" ≠ "Piazza Dalla Chiesa". The "exact hours" share of cards drops 30.5% → 29.8% only because double cards had counted those hours twice. |
+| R2 | eventiesagre weekly markets with no dates: why, and can another source confirm they still run? | 258 | ⬜ | |
+| R3 | cosedicasa monthly markets with no dates: use the page's "last edited" date as the source date | 185 | ⬜ | |
+| R4 | Streets OpenStreetMap can't find as written ("PIAZZA SENATORE PIETRO GROCCO, 1") → a second, shorter lookup | ~100 without a map point | ⬜ | |
+| R5 | Regione Liguria market map (hours and map points, CC BY 4.0) as a new source contract | ~73 gain hours | ⬜ | |
+| R6 | cosafareafirenze: read its one monthly page of dated markets | ~13 gain exact dates | ⬜ | |
+| R7 | Milano: the 9 markets without dates, using MERCap as a second source | 9 | ⬜ | |
+| R8 | Veneto antiques calendar (second Regione Veneto file) | ~46 | ⬜ | |
+| R9 | Veneto: when the new yearly file arrives, pause only the rows that changed, not the whole source | robustness | ⬜ | |
 
 For every source the same four questions:
 1. How do we collect it today, and does that happen automatically?

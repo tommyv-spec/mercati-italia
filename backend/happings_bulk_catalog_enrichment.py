@@ -20,7 +20,7 @@ from copy import deepcopy
 from datetime import date, datetime
 from pathlib import Path
 
-from export_static import data_value_score, same_market
+from export_static import data_value_score, dayparts, same_market, same_venue, shares_street, venue_slot
 from field_evidence import _provenance_key, clean_receipts, mark_managed_fields, retire_superseded_receipts
 from happings_full_reconciliation import _saved_page
 from happings_weekly_layout import WEEKDAYS, fold, province_page_key
@@ -126,12 +126,21 @@ def cut_weekday(row, page_days):
     return fits[0] if len(fits) == 1 else None
 
 
-def kept_record(rows, street=None):
+def kept_record(rows, street=None, hours=None):
     """The visible card is the one that tells the visitor most: the listed street,
     a real street, exact clock hours; then stable (already kept stays). Dates do
-    not decide: within one market they rest on the same proofs."""
+    not decide: every member has upcoming ones."""
     already = {r.get("duplicato_di") for r in rows}
-    return max(rows, key=lambda r: (bool(street) and source._same_place(r.get("indirizzo"), street),
+    page = {"indirizzo": street, "orario_testo": hours or ""}
+    def listed(r):
+        # Another source's card may name the listed street in its own spelling,
+        # at a time of day the page doesn't contradict.
+        if not street or source._same_place(r.get("indirizzo"), street):
+            return bool(street)
+        own, said = dayparts(r), dayparts(page)
+        return (r.get("fonte") != source.PUBLISHER and not (own and said and not own & said)
+                and shares_street(r, {**page, "citta": r.get("citta")}))
+    return max(rows, key=lambda r: (listed(r),
                                     safe_stored_street(r.get("indirizzo")),
                                     bool(CLOCK.search(str(r.get("orario_testo") or ""))),
                                     r["slug"] in already, data_value_score(r),
@@ -228,6 +237,15 @@ def enrich(catalog, snapshot, *, today):
                     repaired[sid] = view["ricorrenza_testo"]
         elif (key := catalog_key(row)) is not None:
             others[key].append(row)
+    # Any other source's card for the same market (export_static.same_venue: town,
+    # calendar, street in either spelling) with upcoming dates may join a cohort,
+    # so the visible card is the most detailed one whichever site has it.
+    upcoming = today.isoformat()
+    venues = defaultdict(list)
+    for row in catalog:
+        if (row.get("fonte") != source.PUBLISHER and not row.get("duplicato_di")
+                and any(d >= upcoming for d in row.get("date") or []) and (slot := venue_slot(row))):
+            venues[slot].append(row)
     output = deepcopy(catalog)
     index = {r["slug"]: i for i,r in enumerate(catalog)}
     changes = []
@@ -355,8 +373,17 @@ def enrich(catalog, snapshot, *, today):
                     by_street[fold(street)].append(r)
             cohorts = list(by_street.values())
         for rows in cohorts:
+            # Another source's card joins only as the same venue as EVERY member with a
+            # real street: never through one member a page row already holds together.
+            placed = [r for r in rows if venue_slot(r)]
+            for other in venues.get(venue_slot(placed[0]), ()) if placed else ():
+                if other["slug"] not in evaluated and all(same_venue(r, other) for r in placed):
+                    rows.append(other)
+                    placed.append(other)
+                    evaluated.add(other["slug"])
+                    stats["other_source_same_venue_joined"] += 1
             if len(rows) > 1:
-                kept = kept_record(rows, unique_street)
+                kept = kept_record(rows, unique_street, hours)
                 marks.update({r["slug"]: kept["slug"] for r in rows if r is not kept})
     # Recompute markers only for records this run evaluated; others keep
     # theirs unless the kept record vanished or became a copy itself.

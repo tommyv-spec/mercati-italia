@@ -83,6 +83,33 @@ class BulkFieldTests(unittest.TestCase):
                             for p in by[ees["slug"]]["riscontri_campi"]))
         self.assertEqual({k:by[ees["slug"]][k] for k in bulk.FIELDS},{k:ees[k] for k in bulk.FIELDS})
 
+    def test_any_source_card_at_the_listed_street_joins_and_the_most_detailed_shows(self):
+        happ=base_row(street="Via Dalmazia"); happ["orario_testo"]="La mattina"
+        official=base_row("lo-mercap-1-mercoledi")
+        official.update(fonte="Regione Liguria", nome="Mercato di Albenga – Via Dalmazia",
+                        indirizzo="VIA DALMAZIA, 1", orario_testo="07:00–13:00",
+                        ricorrenza_testo="Ogni mercoledì", date=[(DAY.replace(day=28)).isoformat()],
+                        url_fonte="https://example.org/mercati.json")
+        key=bulk.catalog_key(happ)
+        with patch.object(bulk,"read_weekly_source",return_value=({key:[fact()]},Counter())):
+            candidate,report=bulk.enrich([happ,official],".",today=DAY)
+            undated,_=bulk.enrich([happ,{**official,"date":[]}],".",today=DAY)
+        by={r["slug"]:r for r in candidate}
+        self.assertEqual(by[happ["slug"]].get("duplicato_di"),official["slug"])
+        self.assertEqual(report["counts"]["other_source_same_venue_joined"],1)
+        # Never a field change or a Happings proof on the other source's card.
+        self.assertEqual(by[official["slug"]],official)
+        # A card without upcoming dates stays out: the visible card keeps its dates.
+        self.assertFalse(any(r.get("duplicato_di") for r in undated))
+        # Never through one member: a held copy at the official street does not pull the
+        # official card behind a card the page lists at another street.
+        held=base_row("mercato-settimanale-di-albenga-albenga-old",street="VIA DALMAZIA, 1")
+        held.update(orario_testo="07:00–13:00",duplicato_di=happ["slug"])
+        moved={**happ,"indirizzo":"Via Roma"}
+        with patch.object(bulk,"read_weekly_source",return_value=({key:[fact(place="Via Roma")]},Counter())):
+            candidate,_=bulk.enrich([moved,held,official],".",today=DAY)
+        self.assertNotIn("duplicato_di",{r["slug"]:r for r in candidate}[official["slug"]])
+
     def test_conflicting_existing_street_is_never_overwritten(self):
         old=base_row(street="Piazza Don Gnocchi")
         blank=base_row("mercato-settimanale-di-albenga-albenga-mercoledi")

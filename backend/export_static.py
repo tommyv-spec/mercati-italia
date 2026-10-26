@@ -19,6 +19,7 @@ import re
 import sys
 import unicodedata
 from collections import Counter, defaultdict
+from itertools import combinations
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from field_evidence import clean_receipts, clean_exceptions
@@ -34,7 +35,8 @@ from editorial_calendar_scope import (
 )
 from urllib.parse import urlsplit
 from compact_index import INDEX_SCHEMA, LEGACY_FIELDS, project_index
-from position_resolver import OWN_REASONS as RESOLVER_HOLDS, clean_position_source
+from position_resolver import (GENERIC_PLACE, OWN_REASONS as RESOLVER_HOLDS, clean_position_source,
+                               distinctive_words, street_type)
 
 CANONICAL_REGIONS = [
     "Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna",
@@ -495,8 +497,8 @@ def twin_key(row: dict) -> tuple:
             tuple(row.get("date") or []))
 
 
-def venue_key(row: dict) -> tuple | None:
-    """Town, exact real street and calendar: one market, whichever source lists it."""
+def venue_slot(row: dict) -> tuple | None:
+    """Region, town and calendar of a market at a real street (None when any is unknown)."""
     from catalog_quality_report import VAGUE_ADDRESSES, key
     from recurrence_refresh import forecast_rule
     street = str(row.get("indirizzo") or "").strip()
@@ -510,14 +512,55 @@ def venue_key(row: dict) -> tuple | None:
         if not days:
             return None
         calendar = ("dates", days, None)
-    return (row.get("regione"), str(row.get("citta") or "").casefold(), slugify(street), calendar)
+    return (row.get("regione"), slugify(row.get("citta") or ""), calendar)
+
+
+STREET_PARTS = re.compile(r"\s*(?:[,;(/]|\s-\s|\s(?:e|ed|o)\s)\s*", re.I)
+
+
+def street_names(row: dict) -> set:
+    """(type, distinctive words) of each street an address names:
+    "Via Sorte, Via Rampinelli" -> {("via", {"sorte"}), ("via", {"rampinelli"})}."""
+    town = distinctive_words(row.get("citta") or "")
+    names = set()
+    for part in STREET_PARTS.split(str(row.get("indirizzo") or "")):
+        kind, words = street_type(part.strip()), frozenset(distinctive_words(part) - town)
+        if kind and words:
+            names.add((kind, words))
+    return names
+
+
+def shares_street(a: dict, b: dict) -> bool:
+    """Both addresses name one street, spelled either way: "piazza G. Rossa" is
+    "Piazza Guido Rossa"; "Piazza Roma" is not "Via Roma", and "Piazza della Chiesa"
+    is not "Piazza Dalla Chiesa" (a shorter name must keep a real name word)."""
+    return (slugify(a.get("indirizzo") or "") == slugify(b.get("indirizzo") or "")
+            or any(ka == kb and (wa == wb or (wa < wb or wb < wa) and min(wa, wb, key=len) - GENERIC_PLACE)
+                   for ka, wa in street_names(a) for kb, wb in street_names(b)))
+
+
+def dayparts(row: dict) -> set:
+    """Parts of the day ("mattina", "pomeriggio") the hours start in or name; empty if unknown."""
+    text = str(row.get("orario_testo") or "").casefold()
+    parts = {"mattina" if int(h) < 12 else "pomeriggio"
+             for h in re.findall(r"\b(\d{1,2})[:.]\d\d", text)[::2]}
+    return parts | {part for stem, part in (("mattin", "mattina"), ("pomerigg", "pomeriggio"),
+                                            ("sera", "pomeriggio")) if stem in text}
+
+
+def same_venue(a: dict, b: dict) -> bool:
+    """Same town, calendar and street, and times of day that don't contradict each other
+    ("La mattina" vs "13:00–19:00" may be a second, afternoon market)."""
+    slot, pa, pb = venue_slot(a), dayparts(a), dayparts(b)
+    return (slot is not None and slot == venue_slot(b) and not (pa and pb and not pa & pb)
+            and shares_street(a, b))
 
 
 def same_market(kept: dict, copy: dict) -> bool:
     """The one definition of a soft-merged copy, shared by export, enrichment and checks."""
     if twin_key(kept) == twin_key(copy):
         return True
-    return kept.get("fonte") != copy.get("fonte") and venue_key(copy) is not None and venue_key(kept) == venue_key(copy)
+    return kept.get("fonte") != copy.get("fonte") and same_venue(kept, copy)
 
 
 def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
@@ -534,6 +577,8 @@ def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
                 continue
             kept = max(group, key=lambda r: (r["slug"] in kept_ids, data_value_score(r),
                                              -len(r["slug"]), r["slug"]))
+            if not kept.get("date") and any(r.get("date") for r in group):
+                continue  # never hide the only cards with upcoming dates
             markers.update({r["slug"]: kept["slug"] for r in group if r is not kept})
             kept_ids.add(kept["slug"])  # never becomes a copy later: no chains
             counts[label] += len(group) - 1
@@ -542,9 +587,21 @@ def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
         if not row.get("duplicato_di"):
             twins[twin_key(row)].append(row)
     merge(twins, "exact_twins", False)
+    slots = defaultdict(list)
     for row in rows:
-        if not row.get("duplicato_di") and row["slug"] not in markers and (venue := venue_key(row)):
-            venues[venue].append(row)
+        if not row.get("duplicato_di") and row["slug"] not in markers and (slot := venue_slot(row)):
+            slots[slot].append(row)
+    for slot, group in slots.items():
+        while group:
+            venue = [group.pop(0)]
+            for row in venue:  # grows while read: every record linked by a shared street
+                linked = [other for other in group if shares_street(row, other)]
+                venue += linked
+                group = [other for other in group if other not in linked]
+            # Only when every pair is the same venue: a chain ("Via A" / "Via A, Via B" /
+            # "Via B") or clashing times of day stay separate cards.
+            if all(same_venue(a, b) for a, b in combinations(venue, 2)):
+                venues[(slot, venue[0]["slug"])] = venue
     merge(venues, "same_venue_other_source", True)
     return markers, counts
 
