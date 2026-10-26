@@ -715,7 +715,7 @@ jobs:
                   original=street_rows
               revised=json.loads((root/'intermediate/milano-2026.json').read_text('utf-8'))
               actual=verify(original,revised,review,pdf,gis)
-              if actual!=certificate or review.get('reconciled_id_count')!=76 or review.get('enabled') is not True:
+              if actual!=certificate or review.get('reconciled_id_count')!=77 or review.get('enabled') is not True:
                   raise ValueError('Milan PDF/GIS field-level proof differs from source')
               if review.get('records_added')!=0 or review.get('verified_future_events_created')!=0:
                   raise ValueError('Milan official schedules invented a market or event')

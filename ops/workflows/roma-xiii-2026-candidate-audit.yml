@@ -136,7 +136,7 @@ jobs:
               or not final.get('release_safe') or final.get('forecast_only_markets')!=4
               or not city.get('release_safe') or city.get('navigation_routes_still_blocked')!=16
               or not rome.get('release_safe') or rome.get('current_navigation_holds')!=2
-              or not milano.get('quality_safe') or milano.get('reviewed_milan_ids')!=76
+              or not milano.get('quality_safe') or milano.get('reviewed_milan_ids')!=77
               or venues.get('records_added')!=approved
               or len(after)!=len(before)+approved):
               raise ValueError('Full Autopilot changed previously reviewed market safety or identities')
@@ -145,7 +145,7 @@ jobs:
               'new_ids':sorted(resulting-original),
               'rome_old_navigation_holds':2,
               'historical_city_navigation_holds':16,
-              'milano_forecast_market_ids':76,
+              'milano_forecast_market_ids':77,
               'predictions_not_opening_verifications':4,
               'no_publication':True
           }))

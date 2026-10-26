@@ -28,7 +28,7 @@ jobs:
       # municipal source when a newly reviewed PDF link is attached.
       - name: Build entire true Autopilot candidate, offline and no publishing
         run: python backend/autopilot.py --offline --today 2026-10-12 --output milano-pipeline-check
-      - name: Independently verify 76 source-backed forecasts and all other market IDs
+      - name: Independently verify 77 source-backed forecasts and all other market IDs
         run: |
           python - <<'PY'
           import json,sys
@@ -50,8 +50,8 @@ jobs:
           new_ids={r['slug'] for r in new}
           if (not decision['approved'] or not final['quality_safe'] or not proof['release_safe']
               or report.get('enabled') is not True
-              or final['reviewed_milan_ids']!=76
-              or final['forecast_labeled_not_confirmed']!=76
+              or final['reviewed_milan_ids']!=77
+              or final['forecast_labeled_not_confirmed']!=77
               or len(base)!=len(new) or old_ids != new_ids):
               raise ValueError('Autopilot integration deviates from official two-source proof')
           if any(x.get('date_quality')=='confermata' and not x.get('verificato_il')
