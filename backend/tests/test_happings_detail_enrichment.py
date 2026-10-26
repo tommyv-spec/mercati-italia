@@ -55,6 +55,19 @@ def existing(**changes):
 
 
 class HappingsDetailEnrichmentTests(unittest.TestCase):
+    def test_only_titles_that_are_town_fairs_count_in_the_fiere_category(self):
+        fair = lambda name, category="Fiere": enrich._category({"category": category, "name": name})
+        for name in ("507^ FIERA SAN GAUDENZIO", "ANTICA FIERA DI SAN MARTINO", "FERA DE DUGNAN",
+                     "242ESIMA FIERA DI S. CATERINA", "FIERA DELL’ANTICO NOVEMBRE"):
+            with self.subTest(name=name):
+                self.assertEqual(fair(name), "misto")
+        for name in ("DAWN TO EARTH 2026, LA FIERA PREMIA", "119^ MOSTRA DEL BITTO", "Chef Luigi Taglienti",
+                     "Fiera internazionale del tartufo bianco", "Fieramente vintage"):
+            with self.subTest(name=name):
+                self.assertIsNone(fair(name))
+        self.assertIsNone(fair("FIERA DI SAN MARTINO", category="Concerti"))
+        self.assertTrue(enrich._town_fair({"category": "Fiere", "name": "Fiera di Santa Lucia"}))
+
     def run_source(self, rows=None, *, source=None, today=TODAY, **kwargs):
         return enrich.preview(rows or [], [source or page()], today=today,
                               apply=True, admit_new=True, **kwargs)

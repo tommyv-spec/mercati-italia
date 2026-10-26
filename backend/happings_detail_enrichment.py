@@ -359,9 +359,28 @@ def stable_id(url):
     return "happings-" + name[:82].rstrip("-") + "-" + hashlib.sha256(url.encode()).hexdigest()[:12]
 
 
+# Owner decision (2026-10-26): traditional town fairs are markets. Happings files
+# them under "Fiere" next to dinners, tours and trade shows, so only an event whose
+# title IS a fair ("507^ Fiera San Gaudenzio", "Antica fiera di San Martino",
+# dialect "Fera"/"Feron") qualifies, never a show, exhibition or prize. They are
+# tagged FAIR_TAG so one filter can hide them all.
+FAIR_TAG = "fiera"
+TOWN_FAIR = re.compile(r"(?:\d+(?:a|ma|mo|esima|esimo)? )?(?:antica |grande |tradizionale |storica )?"
+                       r"(?:fiera|fera|feron|fierone)\b")
+TRADE_SHOW = re.compile(r"\b(?:mostra|expo|salone|premi\w*|internazionale|nazionale|congress\w*|convegno|b2b)\b")
+
+
+def _town_fair(event):
+    name = fold(event.get("name"))
+    return (fold(event.get("category")) == "fiere" and bool(TOWN_FAIR.match(name))
+            and not TRADE_SHOW.search(name))
+
+
 def _category(event):
     category = fold(event.get("category"))
     name = fold(event.get("name"))
+    if _town_fair(event):
+        return "misto"
     description = fold(event.get("description"))
     # These are source taxonomy labels observed in market detail templates.
     # A financial-market talk or a concert inside a Christmas market has a
@@ -421,7 +440,7 @@ def _new_market(document, geo, read_on, today):
     row = {"slug": stable_id(url), "nome": event["name"], "citta": city,
            "provincia": province, "regione": region, "indirizzo": street,
            "lat": None, "lng": None, "position_quality": "sconosciuta",
-           "categoria": category, "tags": [], "status": "non_confermato",
+           "categoria": category, "tags": [FAIR_TAG] if _town_fair(event) else [], "status": "non_confermato",
            "orario_testo": hours, "ricorrenza_testo": recurrence,
            "descrizione": str(event.get("description") or "")[:900],
            "date": [], "date_quality": "sconosciuta",
