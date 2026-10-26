@@ -20,6 +20,14 @@ class RunnerTests(unittest.TestCase):
         self.assertTrue(r.condition("${{ always() }}", ctx, default=False))
         self.assertFalse(r.condition(None, ctx, default=False))
 
+    def test_no_job_starts_in_the_last_hour_before_utc_midnight(self):
+        from datetime import datetime, timezone
+        at = lambda h, m: datetime(2026, 10, 25, h, m, tzinfo=timezone.utc)
+        self.assertEqual(r.seconds_until_safe_start(at(3, 30)), 0)
+        self.assertEqual(r.seconds_until_safe_start(at(22, 59)), 0)
+        self.assertEqual(r.seconds_until_safe_start(at(23, 52)), 13 * 60)  # resume at 00:05 UTC
+        self.assertEqual(r.seconds_until_safe_start(at(23, 0)), 65 * 60)
+
     def test_daily_and_weekly_due_rules_catch_up_missed_runs(self):
         with patch.object(r, "schedule_of", side_effect=lambda n: {"d": "17 04 * * *".split(),
                                                                      "w": "05 03 * * 1".split()}[n]):

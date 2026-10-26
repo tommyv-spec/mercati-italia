@@ -27,7 +27,7 @@ import stat
 import subprocess
 import sys
 import time
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import yaml
@@ -230,7 +230,19 @@ def run_job(run, wf, job_name, job, needs_results, mirror, env_base):
     return "failure" if failed else "success"
 
 
+def seconds_until_safe_start(now):
+    """The pipeline stamps every read with its UTC day, so a job must not cross UTC
+    midnight. Jobs take under an hour: never start one in the last UTC hour."""
+    if now.hour != 23:
+        return 0
+    return (now.replace(hour=0, minute=5, second=0, microsecond=0) + timedelta(days=1) - now).total_seconds()
+
+
 def run_workflow(name, event="schedule"):
+    wait = seconds_until_safe_start(datetime.now(timezone.utc))
+    if wait:
+        print(f"waiting {round(wait / 60)} min: no job starts in the last hour before UTC midnight", flush=True)
+        time.sleep(wait)
     wf = yaml.safe_load((WORKFLOWS / f"{name}.yml").read_text("utf-8"))
     run = Run(name, event)
     run.say(f"workflow {name} ({event}) → {run.dir}")
