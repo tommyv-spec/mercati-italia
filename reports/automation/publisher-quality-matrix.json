@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-25",
+  "as_of": "2026-10-26",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -62,10 +62,10 @@
       "publisher": "Roma Capitale",
       "record_count_measured": null,
       "review_status": "schema_sampled_review_only",
-      "schema_observation": "venue_inventory_missing_visit_days",
+      "schema_observation": "manual_schema_review_required",
       "title": "Dati sui Mercati Rionali",
       "triage_class": "market_location_candidate",
-      "triage_score_not_market_yield": 18
+      "triage_score_not_market_yield": 16
     },
     {
       "actual_market_count_estimated": null,
@@ -653,8 +653,8 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14009,
-  "catalog_source_labels_count": 87,
+  "catalog_record_count": 14106,
+  "catalog_source_labels_count": 88,
   "market_confirmations": 0,
   "market_updates": 0,
   "markets_added": 0,
@@ -667,10 +667,10 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
-        "address_generic_not_navigable": 3616,
-        "address_missing": 625,
-        "coordinates_missing": 187,
-        "future_dates_missing": 332,
+        "address_generic_not_navigable": 3611,
+        "address_missing": 623,
+        "coordinates_missing": 235,
+        "future_dates_missing": 104,
         "hours_missing": 718,
         "records": 9831,
         "source_or_import_date_unknown": 184
@@ -678,7 +678,7 @@
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 35170,
+      "priority_workload_score_not_evidence": 34906,
       "publisher": "happings.com",
       "records": 9831,
       "rights_classification": "see_existing_happings_operational_policy",
@@ -698,18 +698,18 @@
           "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "coordinates_missing": [
-          "happings-mercato-di-campagna-amica-di-atri-3d19a276a90a",
-          "happings-mercato-coperto-di-chieti-2412e0ff9a48",
-          "happings-mercato-di-campagna-amica-di-via-gobetti-4fbca6c89bc1",
-          "happings-mercato-di-campagna-amica-di-catanzaro-7751482e165f",
-          "happings-mercato-di-campagna-amica-di-melito-di-porto-salvo-175d867517a9"
+          "mercato-settimanale-a-atelena-atelena-mercoledi",
+          "mercato-settimanale-di-atelena-atelena",
+          "mercato-settimanale-di-lecce-dei-marsi-lecce-dei-marsi-lunedi",
+          "mercato-settimanale-a-secirano-secirano-lunedi",
+          "mercato-settimanale-di-secirano-secirano"
         ],
         "future_dates_missing": [
-          "mercato-settimanale-di-balsorano-balsorano",
           "mercato-settimanale-di-bussi-sul-tirino-bussi-sul-tirino",
           "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
-          "mercato-settimanale-di-cepagatti-cepagatti",
-          "mercato-settimanale-di-crognaleto-crognaleto"
+          "mercato-settimanale-di-crognaleto-crognaleto",
+          "mercato-settimanale-di-san-valentino-in-abruzzo-citeriore-mercato-settimanale-a",
+          "mercato-settimanale-di-cellino-attanasio-cellino-attanasio"
         ],
         "hours_missing": [
           "mercato-settimanale-a-balsorano-balsorano-martedi",
@@ -731,20 +731,22 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
+      "count_delta_since_last_audit": 2,
       "fields": {
         "address_generic_not_navigable": 44,
         "address_missing": 441,
-        "future_dates_missing": 988,
-        "hours_missing": 367,
-        "records": 2197
+        "coordinates_missing": 107,
+        "future_dates_missing": 1110,
+        "hours_missing": 369,
+        "records": 2199,
+        "source_or_import_date_unknown": 2
       },
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5506,
+      "priority_workload_score_not_evidence": 5634,
       "publisher": "eventiesagre.it",
-      "records": 2197,
+      "records": 2199,
       "rights_classification": "urls_only_no_bulk_content_reuse",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -761,6 +763,13 @@
           "mercato-settimanale-di-canosa-sannita-canosa-sannita",
           "mercato-settimanale-di-castellafiume-castellafiume"
         ],
+        "coordinates_missing": [
+          "mercato-settimanale-di-avellino-avellino",
+          "il-mercato-di-gramigna-a-benevento-benevento",
+          "fiera-del-prodotto-naturale-biologico-ferrara",
+          "il-cibo-e-chi-lo-fa-ferrara",
+          "il-fe-nel-baule-ferrara"
+        ],
         "future_dates_missing": [
           "mercatino-di-natale-a-massa-d-albe-massa-d-albe",
           "curiosando-alba-adriatica",
@@ -774,6 +783,10 @@
           "l-antico-in-piazza-chieti",
           "mercato-medievale-di-filetto-filetto",
           "curiosando-il-mercatino-dell-antiquariato-e-collezionismo-giulianova"
+        ],
+        "source_or_import_date_unknown": [
+          "mercato-settimanale-di-voghiera-voghiera",
+          "mercato-settimanale-di-acqualagna-acqualagna"
         ]
       }
     },
@@ -785,7 +798,7 @@
       "fields": {
         "address_generic_not_navigable": 2,
         "address_missing": 1,
-        "coordinates_missing": 216,
+        "coordinates_missing": 151,
         "future_dates_missing": 392,
         "hours_missing": 342,
         "records": 1128
@@ -810,7 +823,7 @@
           "lo-mercap-100108-venerdi",
           "lo-mercap-9991500-venerdi",
           "lo-mercap-688645-sabato",
-          "lo-mercap-80698-mercoledi"
+          "lo-mercap-530070-lunedi"
         ],
         "future_dates_missing": [
           "lo-mercap-529773-senza-giorno",
@@ -832,20 +845,21 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
+      "count_delta_since_last_audit": 1,
       "fields": {
         "address_generic_not_navigable": 6,
-        "coordinates_missing": 7,
-        "future_dates_missing": 188,
-        "hours_missing": 341,
-        "records": 432
+        "coordinates_missing": 29,
+        "future_dates_missing": 189,
+        "hours_missing": 305,
+        "records": 433,
+        "source_or_import_date_unknown": 1
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1338,
+      "priority_workload_score_not_evidence": 1268,
       "publisher": "cosedicasa.com",
-      "records": 432,
+      "records": 433,
       "rights_classification": "publisher_rights_unreviewed",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -856,18 +870,18 @@
           "mercatino-antiquariato-e-usato-di-asolo-centro-storico-asolo"
         ],
         "coordinates_missing": [
+          "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste",
+          "mercatino-antiquariato-e-usato-di-ferrara-mercatino-baurese-baura-frazione-di-fe",
           "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
           "fiumicino-parco-da-vinci-music-day-roma-fiera-del-disco-fiera-del-disco",
-          "cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita",
-          "milano-mercatino-artigianato-e-vintage-street-market-piazza-san-nazaro-in-brolo",
-          "otranto-antiqua-mercatino-dellantiquariato-e-della-creativita-otranto-antiqua"
+          "mercatino-antiquariato-e-usato-di-roma-mercatino-corte-coppede-quartiere-coppede"
         ],
         "future_dates_missing": [
           "mercatino-antiquariato-e-usato-di-chieti-l-antico-in-piazza-corso-marrucino-chie",
           "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
+          "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
           "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste",
-          "mercatino-antiquariato-e-usato-di-cava-de-tirreni-la-soffitta-in-piazza-corso-ma",
-          "mercatino-antiquariato-e-usato-di-bologna-mercato-antiquario-citta-di-bologna-pi"
+          "mercatino-antiquariato-e-usato-di-cava-de-tirreni-la-soffitta-in-piazza-corso-ma"
         ],
         "hours_missing": [
           "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
@@ -875,6 +889,43 @@
           "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
           "mercatino-antiquariato-e-usato-di-potenza-mercatino-degli-scambi-piazza-mario-pa",
           "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste"
+        ],
+        "source_or_import_date_unknown": [
+          "mercatino-antiquariato-e-usato-di-milano-piazza-sant-eustorgio-milano"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "coordinates_missing": 94,
+        "hours_missing": 7,
+        "records": 94
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 108,
+      "publisher": "Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata",
+      "records": 94,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "coordinates_missing": [
+          "ve-calreg-2ecb6f477cd012618c",
+          "ve-calreg-1077266466073fdfdd",
+          "ve-calreg-d624c2b1f7920c1a0e",
+          "ve-calreg-60718b0d4802aaea0e",
+          "ve-calreg-18dc342272366137c1"
+        ],
+        "hours_missing": [
+          "ve-calreg-0f6c523e723f73a013",
+          "ve-calreg-ea6886274b9d971e3f",
+          "ve-calreg-5193f9fe519e7f1a4b",
+          "ve-calreg-35e32853c45681de3f",
+          "ve-calreg-c12a6ae8a534db5cc1"
         ]
       }
     },
@@ -926,7 +977,7 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
-        "coordinates_missing": 2,
+        "coordinates_missing": 6,
         "future_dates_missing": 70,
         "hours_missing": 2,
         "records": 70
@@ -941,7 +992,10 @@
       "sample_id_only": {
         "coordinates_missing": [
           "casalotti-roma",
-          "irnerio-roma"
+          "irnerio-roma",
+          "metronio-roma",
+          "piscine-di-torrespaccata-roma",
+          "prati-roma"
         ],
         "future_dates_missing": [
           "belsito-roma",
@@ -1004,6 +1058,7 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
+        "coordinates_missing": 5,
         "future_dates_missing": 20,
         "hours_missing": 4,
         "records": 22
@@ -1016,6 +1071,13 @@
       "records": 22,
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
+        "coordinates_missing": [
+          "creative-factory-market-firenze",
+          "demo-brunch-shop-firenze",
+          "imarket-firenze",
+          "ricircolo-firenze",
+          "vintage-kilo-sale-firenze"
+        ],
         "future_dates_missing": [
           "mercato-a-fiesole-fiesole",
           "car-bazar-firenze",
@@ -1072,6 +1134,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 8,
+        "coordinates_missing": 1,
         "future_dates_missing": 8,
         "hours_missing": 8,
         "records": 8
@@ -1090,6 +1153,9 @@
           "calzolarissimo-calzolaro-pg",
           "artigianando-mostra-mercato-di-artigianato-e-curiositail-28-02-2026foligno-pg-fo",
           "anticamente-mostra-mercato-di-cose-d-altri-tempi-foligno-pg"
+        ],
+        "coordinates_missing": [
+          "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are"
         ],
         "future_dates_missing": [
           "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are",
@@ -1185,6 +1251,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 5,
+        "coordinates_missing": 5,
         "future_dates_missing": 7,
         "hours_missing": 7,
         "records": 7
@@ -1203,6 +1270,13 @@
           "fiera-di-san-sebastiano-2026-appuntamento-a-rapallo-con-prodotti-tipici-artigian",
           "il-celebre-mercatino-da-forte-dei-marmi-festeggia-san-valentino-a-sori-genova",
           "prima-del-2026-per-tipicamente-chiavari-il-mercatino-agroalimentare-di-eccellenz"
+        ],
+        "coordinates_missing": [
+          "appuntamento-a-sant-olcese-con-il-mercatino-da-forte-dei-marmi-dal-cashmere-alla",
+          "fiera-di-san-sebastiano-2026-appuntamento-a-rapallo-con-prodotti-tipici-artigian",
+          "market-europeo-genova",
+          "prima-del-2026-per-tipicamente-chiavari-il-mercatino-agroalimentare-di-eccellenz",
+          "vintage-fest-genova"
         ],
         "future_dates_missing": [
           "appuntamento-a-sant-olcese-con-il-mercatino-da-forte-dei-marmi-dal-cashmere-alla",
@@ -1251,6 +1325,7 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
+        "coordinates_missing": 1,
         "future_dates_missing": 7,
         "records": 7
       },
@@ -1262,6 +1337,9 @@
       "records": 7,
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
+        "coordinates_missing": [
+          "il-market-vintage-e-artigianale-dal-sapore-europeo-piu-grande-di-roma-apre-le-su"
+        ],
         "future_dates_missing": [
           "mercatino-delle-streghe-alla-citta-dellaltra-economia-citta-dell-altra-economia",
           "mostra-scambio-del-giocattolo-vintage-hotel-mercure-roma-west",
@@ -1349,6 +1427,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 4,
+        "coordinates_missing": 1,
         "future_dates_missing": 5,
         "hours_missing": 6,
         "records": 6
@@ -1366,6 +1445,9 @@
           "hippie-market-tra-gli-acquedotti-romani-roma",
           "mercatino-delle-streghe-alla-citta-dellaltra-economia-roma",
           "vintage-market-al-san-paolo-district-roma"
+        ],
+        "coordinates_missing": [
+          "mercatino-vintage-ail-roma-roma"
         ],
         "future_dates_missing": [
           "bonfire-market-caffarella",
@@ -1390,6 +1472,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 4,
+        "coordinates_missing": 2,
         "future_dates_missing": 5,
         "hours_missing": 5,
         "records": 5
@@ -1407,6 +1490,10 @@
           "il-mercatino-da-forte-dei-marmi-padenghe-sul-garda",
           "il-mercatino-da-forte-dei-marmi-rozzano",
           "cibo-street-food-music-festival-solbiate-con-cagno"
+        ],
+        "coordinates_missing": [
+          "artigiano-in-fiera-milano",
+          "creanza-market-gin-fest-varese"
         ],
         "future_dates_missing": [
           "artigiano-in-fiera-milano",
@@ -1503,6 +1590,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 4,
+        "coordinates_missing": 3,
         "future_dates_missing": 3,
         "hours_missing": 4,
         "records": 4
@@ -1517,6 +1605,11 @@
       "sample_id_only": {
         "address_missing": [
           "un-giorno-da-rigattiere-calenzano",
+          "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
+          "festa-del-tortello-e-delle-specialita-di-carne-alla-brace-firenze",
+          "pop-up-store-artigianale-a-firenze-firenze"
+        ],
+        "coordinates_missing": [
           "emporium-mercatino-d-antiquariato-in-piazza-savonarola-firenze",
           "festa-del-tortello-e-delle-specialita-di-carne-alla-brace-firenze",
           "pop-up-store-artigianale-a-firenze-firenze"
@@ -1541,6 +1634,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 3,
+        "coordinates_missing": 1,
         "future_dates_missing": 4,
         "hours_missing": 4,
         "records": 4
@@ -1557,6 +1651,9 @@
           "alla-rotonda-tornano-i-mercatopolini-il-mercatino-fatto-dai-bambini-insieme-alla",
           "modenantiquaria-a-febbraio-l-appuntamento-d-eccellenza-con-l-antico-modena",
           "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-modena"
+        ],
+        "coordinates_missing": [
+          "alla-rotonda-tornano-i-mercatopolini-il-mercatino-fatto-dai-bambini-insieme-alla"
         ],
         "future_dates_missing": [
           "alla-rotonda-tornano-i-mercatopolini-il-mercatino-fatto-dai-bambini-insieme-alla",
@@ -1747,6 +1844,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 2,
+        "coordinates_missing": 1,
         "future_dates_missing": 3,
         "hours_missing": 3,
         "records": 3
@@ -1762,6 +1860,9 @@
         "address_missing": [
           "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
           "mostra-orchidee-e-bonsai-a-mondello-laboratori-creativi-per-bambini-workshop-e-a"
+        ],
+        "coordinates_missing": [
+          "mercatini-palermo"
         ],
         "future_dates_missing": [
           "creativita-natura-artigianato-e-vintage-si-incontrano-a-palermo-torna-artgarden",
@@ -1782,6 +1883,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 2,
+        "coordinates_missing": 1,
         "future_dates_missing": 3,
         "hours_missing": 3,
         "records": 3
@@ -1796,6 +1898,9 @@
       "sample_id_only": {
         "address_missing": [
           "mercatini-la-pulce-dacqua-darsena",
+          "maccheronata-mercatini-luna-park-dj-set-e-spettacoli-per-la-festa-della-patrona"
+        ],
+        "coordinates_missing": [
           "maccheronata-mercatini-luna-park-dj-set-e-spettacoli-per-la-festa-della-patrona"
         ],
         "future_dates_missing": [
@@ -1852,6 +1957,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 1,
+        "coordinates_missing": 2,
         "future_dates_missing": 3,
         "hours_missing": 3,
         "records": 3
@@ -1865,6 +1971,10 @@
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_missing": [
+          "novara-a-marzo-torna-fiorissimo-la-mostra-mercato-di-fiori-piante-e-artigianato"
+        ],
+        "coordinates_missing": [
+          "mercati-boutique-novara",
           "novara-a-marzo-torna-fiorissimo-la-mostra-mercato-di-fiori-piante-e-artigianato"
         ],
         "future_dates_missing": [
@@ -1948,6 +2058,7 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
+        "coordinates_missing": 1,
         "hours_missing": 2,
         "records": 3
       },
@@ -1959,6 +2070,9 @@
       "records": 3,
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
+        "coordinates_missing": [
+          "l-angolo-del-collezionista-siena-domenica"
+        ],
         "hours_missing": [
           "l-angolo-del-collezionista-gaiole-in-chianti-domenica",
           "l-angolo-del-collezionista-san-gimignano-domenica"
@@ -1969,7 +2083,7 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "records": 3
       },
@@ -2088,6 +2202,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 2,
+        "coordinates_missing": 1,
         "future_dates_missing": 2,
         "hours_missing": 2,
         "records": 2
@@ -2103,6 +2218,9 @@
         "address_missing": [
           "fiera-antiquaria-arezzo",
           "mercatini-san-quirico-dorcia"
+        ],
+        "coordinates_missing": [
+          "fiera-antiquaria-arezzo"
         ],
         "future_dates_missing": [
           "fiera-antiquaria-arezzo",
@@ -2121,6 +2239,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 2,
+        "coordinates_missing": 1,
         "future_dates_missing": 2,
         "hours_missing": 2,
         "records": 2
@@ -2136,6 +2255,9 @@
         "address_missing": [
           "bonfire-market-roma",
           "i-sapori-del-parco-sabaudia"
+        ],
+        "coordinates_missing": [
+          "bonfire-market-roma"
         ],
         "future_dates_missing": [
           "bonfire-market-roma",
@@ -2187,6 +2309,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 2,
+        "coordinates_missing": 1,
         "future_dates_missing": 2,
         "hours_missing": 2,
         "records": 2
@@ -2203,6 +2326,9 @@
           "la-tua-pausa-gourmet-nella-citta-bianca-brindisi",
           "parcheggio-gratuito-dentro-ostuni-e-cibo-prelibato-ostuni"
         ],
+        "coordinates_missing": [
+          "la-tua-pausa-gourmet-nella-citta-bianca-brindisi"
+        ],
         "future_dates_missing": [
           "la-tua-pausa-gourmet-nella-citta-bianca-brindisi",
           "parcheggio-gratuito-dentro-ostuni-e-cibo-prelibato-ostuni"
@@ -2220,6 +2346,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 2,
+        "coordinates_missing": 2,
         "future_dates_missing": 2,
         "hours_missing": 2,
         "records": 2
@@ -2236,6 +2363,10 @@
           "mercatini-di-primavera-ravenna",
           "portobello-beach-mercatino-dell-usato-ravenna"
         ],
+        "coordinates_missing": [
+          "mercatini-di-primavera-ravenna",
+          "portobello-beach-mercatino-dell-usato-ravenna"
+        ],
         "future_dates_missing": [
           "mercatini-di-primavera-ravenna",
           "portobello-beach-mercatino-dell-usato-ravenna"
@@ -2253,6 +2384,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 2,
+        "coordinates_missing": 2,
         "hours_missing": 2,
         "records": 2
       },
@@ -2265,6 +2397,10 @@
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_missing": [
+          "l-agrimercato-di-grisu-ferrara-mercoledi",
+          "mercato-contadino-del-venerdi-ferrara-venerdi"
+        ],
+        "coordinates_missing": [
           "l-agrimercato-di-grisu-ferrara-mercoledi",
           "mercato-contadino-del-venerdi-ferrara-venerdi"
         ],
@@ -2455,6 +2591,7 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
+        "coordinates_missing": 2,
         "future_dates_missing": 2,
         "records": 2
       },
@@ -2466,6 +2603,10 @@
       "records": 2,
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
+        "coordinates_missing": [
+          "sagra-d-la-fuiada-sagra-d-la-fuiadatramuschio-di-mirandola",
+          "festa-dei-sapori-e-delle-tradizioni-festa-dei-sapori-e-delle-tradizioniterrassa"
+        ],
         "future_dates_missing": [
           "sagra-d-la-fuiada-sagra-d-la-fuiadatramuschio-di-mirandola",
           "festa-dei-sapori-e-delle-tradizioni-festa-dei-sapori-e-delle-tradizioniterrassa"
@@ -2532,6 +2673,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 1,
+        "coordinates_missing": 1,
         "future_dates_missing": 1,
         "hours_missing": 1,
         "records": 1
@@ -2545,6 +2687,9 @@
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_missing": [
+          "fiera-del-fischietto-in-terracotta-a-rutigliano-artigianato-visite-guidate-intra"
+        ],
+        "coordinates_missing": [
           "fiera-del-fischietto-in-terracotta-a-rutigliano-artigianato-visite-guidate-intra"
         ],
         "future_dates_missing": [
@@ -2682,6 +2827,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 1,
+        "coordinates_missing": 1,
         "future_dates_missing": 1,
         "hours_missing": 1,
         "records": 1
@@ -2695,6 +2841,9 @@
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_missing": [
+          "art-ciocc-il-tour-dei-cioccolatieri-ad-asiago-tensostruttura-riscaldata-in-piazz"
+        ],
+        "coordinates_missing": [
           "art-ciocc-il-tour-dei-cioccolatieri-ad-asiago-tensostruttura-riscaldata-in-piazz"
         ],
         "future_dates_missing": [
@@ -2712,6 +2861,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 1,
+        "coordinates_missing": 1,
         "future_dates_missing": 1,
         "hours_missing": 1,
         "records": 1
@@ -2725,6 +2875,9 @@
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_missing": [
+          "massa-in-fiera-centro-massa-fiscaglia"
+        ],
+        "coordinates_missing": [
           "massa-in-fiera-centro-massa-fiscaglia"
         ],
         "future_dates_missing": [
@@ -2892,6 +3045,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 1,
+        "coordinates_missing": 1,
         "future_dates_missing": 1,
         "hours_missing": 1,
         "records": 1
@@ -2905,6 +3059,9 @@
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_missing": [
+          "festa-del-baccala-e-del-pesce-fritto-a-taggi-di-sopra-padova"
+        ],
+        "coordinates_missing": [
           "festa-del-baccala-e-del-pesce-fritto-a-taggi-di-sopra-padova"
         ],
         "future_dates_missing": [
@@ -2922,6 +3079,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 1,
+        "coordinates_missing": 1,
         "future_dates_missing": 1,
         "hours_missing": 1,
         "records": 1
@@ -2935,6 +3093,9 @@
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_missing": [
+          "fuori-mercato-roma"
+        ],
+        "coordinates_missing": [
           "fuori-mercato-roma"
         ],
         "future_dates_missing": [
@@ -3957,7 +4118,7 @@
         "url_pattern": "/it/mercati-settimanali-a-{provincia}.html"
       },
       {
-        "catalog_records": 1150,
+        "catalog_records": 1152,
         "format_id": "eventiesagre.it--c25111abbd5a",
         "host": "eventiesagre.it",
         "open_todo_ids": [
@@ -3970,7 +4131,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "catalog_source_urls_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3994,7 +4156,7 @@
         "url_pattern": "/d/68zx-njaw"
       },
       {
-        "catalog_records": 432,
+        "catalog_records": 433,
         "format_id": "cosedicasa.com--e4978a2ff443",
         "host": "cosedicasa.com",
         "open_todo_ids": [],
@@ -4004,7 +4166,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "catalog_source_urls_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4038,10 +4201,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4058,10 +4223,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4148,6 +4315,24 @@
         "url_pattern": "/Mercatini_Enogastronomici/{id}_{slug}.html"
       },
       {
+        "catalog_records": 94,
+        "format_id": "regione.veneto.it--680458e071b3",
+        "host": "regione.veneto.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/web/attivita-produttive/al-dettaglio-su-aree-pubbliche"
+      },
+      {
         "catalog_records": 85,
         "format_id": "dati.comune.milano.it--de1e536ced97",
         "host": "dati.comune.milano.it",
@@ -4218,10 +4403,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4241,9 +4428,15 @@
           "NC-15",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/mercati-firenze/"
       },
@@ -4279,10 +4472,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4321,10 +4516,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4341,10 +4538,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4382,10 +4581,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4404,9 +4605,15 @@
           "NC-15",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/it/eventi/{slug}"
       },
@@ -4444,9 +4651,11 @@
           "NC-14"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -4466,9 +4675,15 @@
           "NC-15",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/evento/{slug}/"
       },
@@ -4506,9 +4721,13 @@
           "NC-15",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/mostre-e-mercatini/{regione}/{provincia}/{comune}/{slug}.html"
       },
@@ -4523,10 +4742,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4545,9 +4766,15 @@
           "NC-13",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
       },
@@ -4583,9 +4810,15 @@
           "NC-08",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/sagre-lombardia/"
       },
@@ -4601,9 +4834,15 @@
           "NC-08",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/fiere-mercati/"
       },
@@ -4685,9 +4924,15 @@
           "NC-11",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/{slug}-{id}.htm"
       },
@@ -4705,9 +4950,15 @@
           "NC-15",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
       },
@@ -4740,9 +4991,15 @@
           "NC-03",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/it/events/"
       },
@@ -4757,10 +5014,12 @@
         ],
         "pending_checks": [
           "field_mapping",
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -4774,9 +5033,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -4798,10 +5063,12 @@
         "pending_checks": [
           "source_sample",
           "field_mapping",
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -4819,9 +5086,15 @@
           "NC-08",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/fiere-mercati/si/"
       },
@@ -4839,9 +5112,15 @@
           "NC-12",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/it/esperienze/eventi"
       },
@@ -4855,10 +5134,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -4872,9 +5153,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -4910,10 +5197,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -4929,10 +5218,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4948,10 +5239,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -4965,9 +5258,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/tag/{tag}/"
       },
@@ -4981,9 +5280,15 @@
           "NC-03",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/tag/sagre/"
       },
@@ -4998,9 +5303,15 @@
           "NC-07",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
       },
@@ -5077,9 +5388,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5094,9 +5411,15 @@
           "NC-07",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
       },
@@ -5110,10 +5433,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5127,9 +5452,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5165,9 +5496,15 @@
           "NC-07",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi-sardegna"
       },
@@ -5185,9 +5522,15 @@
           "NC-13",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/evento/{id}/{slug}.html"
       },
@@ -5199,9 +5542,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5218,9 +5567,15 @@
           "NC-08",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/sagre_per_provincia/1/ravenna"
       },
@@ -5236,9 +5591,15 @@
           "NC-07",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/events/categories/sagra-fiere-mercati/"
       },
@@ -5252,10 +5613,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5269,9 +5632,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5289,9 +5658,15 @@
           "NC-13",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/category-evento/eventi-sagre-feste/"
       },
@@ -5303,9 +5678,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5319,10 +5700,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5336,9 +5719,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5350,9 +5739,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5366,10 +5761,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5385,10 +5782,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5404,10 +5803,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5423,10 +5824,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5440,9 +5843,15 @@
           "CNY-EDITORIAL",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/attualita/{articolo}.html"
       },
@@ -5474,9 +5883,15 @@
           "NC-07",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
       },
@@ -5491,10 +5906,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5511,10 +5928,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5531,10 +5950,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5552,9 +5973,15 @@
           "NC-09",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
       },
@@ -5566,9 +5993,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5582,10 +6015,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5599,9 +6034,13 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5613,9 +6052,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5630,10 +6075,12 @@
         ],
         "pending_checks": [
           "field_mapping",
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5650,9 +6097,15 @@
           "NC-07",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/"
       },
@@ -5664,9 +6117,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5678,9 +6137,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5696,9 +6161,15 @@
           "NC-08",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/category/eventi/sagre-e-feste/"
       },
@@ -5712,10 +6183,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5752,9 +6225,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5768,10 +6247,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5788,10 +6269,12 @@
         ],
         "pending_checks": [
           "field_mapping",
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5806,9 +6289,11 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
+          "parser_comparison",
           "storage_comparison"
         ],
         "recheck_reasons": [
+          "parser_code_changed",
           "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
@@ -5827,9 +6312,15 @@
           "NC-11",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/roma/sagre-fiere-mercatini/"
       },
@@ -5848,9 +6339,15 @@
           "NC-15",
           "NC-14"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/sagris/"
       },
@@ -5862,9 +6359,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5900,10 +6403,12 @@
           "CNY-ROUNDTRIP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5920,10 +6425,12 @@
         ],
         "pending_checks": [
           "field_mapping",
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5940,10 +6447,12 @@
         ],
         "pending_checks": [
           "field_mapping",
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5957,9 +6466,15 @@
           "CNY-DISCOVERY",
           "CNY-ROUNDTRIP"
         ],
-        "pending_checks": [],
-        "recheck_reasons": [],
-        "review_status": "reviewed_sample",
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
+        ],
+        "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/eventi/tipo/{filtri}/"
       },
@@ -5986,26 +6501,28 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-10-25",
+    "generated_for_date": "2026-10-26",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
       "auxiliary_format_units": 27,
       "catalog_records_modified": 0,
       "completed_tasks": 23,
-      "formats_requiring_recheck": 66,
+      "formats_requiring_recheck": 112,
       "formats_with_documented_source_read": 104,
       "formats_with_open_corrections": 106,
       "formats_with_sample_attempt": 110,
       "network_reads_performed": 0,
       "open_tasks": 36,
-      "partial_review_formats": 60,
-      "primary_format_units": 111,
-      "reviewed_sample_formats": 45,
-      "unreviewed_formats": 6
+      "partial_review_formats": 105,
+      "primary_format_units": 112,
+      "reviewed_sample_formats": 0,
+      "unreviewed_formats": 7
     }
   },
-  "source_labels_added_since_previous": [],
+  "source_labels_added_since_previous": [
+    "Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata"
+  ],
   "source_labels_missing_since_previous": [],
   "source_permissions_inferred": false,
   "source_snapshot_rows_reused": 0
