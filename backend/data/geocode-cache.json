@@ -86,6 +86,16 @@
    "query": "Campo Belvedere, Trieste, Italia",
    "type": "bus_stop"
   },
+  "campo san maurizio|venezia|ve": {
+   "class": "highway",
+   "lat": 45.43281,
+   "lng": 12.331679,
+   "name": "Campo San Maurizio, San Marco, Venezia-Murano-Burano, Lido, Venezia, Veneto, 30124, Italia",
+   "osm": "relation/7933178",
+   "queried_on": "2026-10-26",
+   "query": "campo San Maurizio, Venezia, Italia",
+   "type": "pedestrian"
+  },
   "campo santa maria nova|venezia|ve": {
    "class": "place",
    "lat": 45.439854,
@@ -2101,6 +2111,16 @@
    "query": "Piazza Giusti, Genova, Italia",
    "type": "tertiary"
   },
+  "piazza gramsci|castelfiorentino|fi": {
+   "class": "highway",
+   "lat": 43.606245,
+   "lng": 10.968519,
+   "name": "Piazza Antonio Gramsci, Praticelli, Castelfiorentino, Unione dei Comuni Circondario dell'Empolese Valdelsa, Firenze, Toscana, 50051, Italia",
+   "osm": "way/50138847",
+   "queried_on": "2026-10-26",
+   "query": "piazza Gramsci, Castelfiorentino, Italia",
+   "type": "tertiary"
+  },
   "piazza gran madre|torino|to": {
    "class": "highway",
    "lat": 45.062591,
@@ -3180,6 +3200,11 @@
    "queried_on": "2026-10-25",
    "query": "piazzale di Ponte Milvio, Roma, Italia",
    "type": "square"
+  },
+  "piazzale filippo micheli|terni|tr": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-26",
+   "query": "piazzale Filippo Micheli, Terni, Italia"
   },
   "piazzale fs corso crimea|alessandria|al": {
    "miss": "nessun_risultato",

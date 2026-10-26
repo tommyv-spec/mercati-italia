@@ -2,16 +2,16 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [20261026-024246-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261026-024246-market-autopilot) — UTC 2026-10-26T02:12:47.036387+00:00
+- Ultimo run: [20261026-160538-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261026-160538-market-autopilot) — UTC 2026-10-26T15:40:06.384177+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
-- Schede nel catalogo: **14,107**
-- Schede con date previste a +60 giorni: **11,648**
-- Schede con date previste a +90 giorni: **11,540**
-- Indice nazionale gzip: **449.6 KiB**
+- Schede nel catalogo: **14,115**
+- Schede con date previste a +60 giorni: **11,581**
+- Schede con date previste a +90 giorni: **11,485**
+- Indice nazionale gzip: **452.0 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **1,833**
+- Orari mancanti: **1,796**
 - Dataset pubblici candidati individuati: **43** (licenze da verificare)
 - Fonti conservate nello storico: **50**; nuove: **0**; aggiornate: **0**.
 - Possibili elenchi/sedi: **6**; statistiche storiche aggregate: **14**.
@@ -25,20 +25,19 @@
 - Protezioni ancora attive nel sito statico DEV: **16** navigazioni sospese, **7** coordinate in quarantena, **16** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
 - Roma Municipio XIII (mappa pubblicata nel 2024): **2** coordinate ancora sospese e **2** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **9** coordinate e **18** navigazioni. Nessuna apertura 2026 confermata dal documento storico.
 - Roma XIII nuove fonti comunali 2025–2026: **0** schede aggiunte in questo run, **5** sedi distinte tutelate nel sito, **4** con calendari solo previsti, **5** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.
-- Import generico tramite contratti di interi dataset: **3** fonti con licenza e identità approvate, **0** nuove schede in questo run, **0** calendari solo previsti, **0** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
+- Import generico tramite contratti di interi dataset: **4** fonti con licenza e identità approvate, **6** nuove schede in questo run, **6** calendari solo previsti, **6** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
 - Aggiornamenti generici con prove per campo: **0** valori gestiti aggiornati e **3** schede con riscontri aggiornati o ritirati; identità conservate.
-- Dettagli Happings: **1** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
+- Dettagli Happings: **2** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **1408** gruppi settimanali con possibile sovrapposizione (**1683** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **869** gruppi provati dalla stessa fonte, **1027** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14107** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1205**; oltre soglia: **52**; senza data: **12748**.
-- Aggiornamenti del solo dataset (non dei singoli mercati): **1345**, di cui recenti **1204**.
-- Date previste con origine vecchia/sconosciuta: **10708**.
-- Metadati degli enti leggibili: **2/3**.
+- Miglioramento UX reversibile: **869** gruppi provati dalla stessa fonte, **1027** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14115** ID originali preservati.
+- Fonti datate negli ultimi 30 giorni: **1206**; oltre soglia: **51**; senza data: **12750**.
+- Aggiornamenti del solo dataset (non dei singoli mercati): **1352**, di cui recenti **1205**.
+- Date previste con origine vecchia/sconosciuta: **10631**.
+- Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_content_dates_are_unproven
 - ATTENZIONE fonte: future_predictions_have_stale_or_missing_source_dates
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
-- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 - ATTENZIONE fonte: publisher_refresh_conflicting_fields
 
 ## Prossimi miglioramenti calcolati

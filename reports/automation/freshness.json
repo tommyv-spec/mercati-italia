@@ -54,23 +54,23 @@
     "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
     "metrics": {
       "indirizzo:mancante": 1177,
-      "indirizzo:riscontrato_data_fonte_sconosciuta": 7502,
-      "indirizzo:riscontrato_fonte_recente": 1724,
-      "indirizzo:riscontro_da_aggiornare": 145,
-      "indirizzo:senza_riscontro_documentato": 3559,
-      "markets": 14107,
-      "markets_with_all_three_fields_source_supported": 1047,
-      "markets_with_recent_field_evidence": 2151,
-      "orario_testo:mancante": 1833,
-      "orario_testo:riscontrato_data_fonte_sconosciuta": 7760,
-      "orario_testo:riscontrato_fonte_recente": 1502,
-      "orario_testo:riscontro_da_aggiornare": 612,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 7503,
+      "indirizzo:riscontrato_fonte_recente": 1760,
+      "indirizzo:riscontro_da_aggiornare": 165,
+      "indirizzo:senza_riscontro_documentato": 3510,
+      "markets": 14115,
+      "markets_with_all_three_fields_source_supported": 1056,
+      "markets_with_recent_field_evidence": 2188,
+      "orario_testo:mancante": 1796,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 7761,
+      "orario_testo:riscontrato_fonte_recente": 1515,
+      "orario_testo:riscontro_da_aggiornare": 643,
       "orario_testo:senza_riscontro_documentato": 2400,
       "ricorrenza_testo:mancante": 973,
-      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 9037,
-      "ricorrenza_testo:riscontrato_fonte_recente": 1682,
-      "ricorrenza_testo:riscontro_da_aggiornare": 174,
-      "ricorrenza_testo:senza_riscontro_documentato": 2241
+      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 9075,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1694,
+      "ricorrenza_testo:riscontro_da_aggiornare": 213,
+      "ricorrenza_testo:senza_riscontro_documentato": 2160
     },
     "publishers": [
       {
@@ -101,8 +101,8 @@
         "markets": 85,
         "orario_testo:riscontro_da_aggiornare": 85,
         "publisher": "Comune di Milano - Open Data (CC BY 4.0)",
-        "ricorrenza_testo:riscontro_da_aggiornare": 9,
-        "ricorrenza_testo:senza_riscontro_documentato": 76
+        "ricorrenza_testo:riscontro_da_aggiornare": 8,
+        "ricorrenza_testo:senza_riscontro_documentato": 77
       },
       {
         "indirizzo:mancante": 1,
@@ -116,6 +116,15 @@
         "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
         "ricorrenza_testo:riscontrato_fonte_recente": 1127,
         "ricorrenza_testo:senza_riscontro_documentato": 1
+      },
+      {
+        "indirizzo:riscontrato_fonte_recente": 6,
+        "markets": 6,
+        "markets_with_recent_field_evidence": 6,
+        "orario_testo:mancante": 2,
+        "orario_testo:riscontro_da_aggiornare": 4,
+        "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap",
+        "ricorrenza_testo:riscontro_da_aggiornare": 6
       },
       {
         "indirizzo:riscontrato_fonte_recente": 94,
@@ -360,24 +369,24 @@
         "ricorrenza_testo:senza_riscontro_documentato": 3
       },
       {
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 14,
-        "indirizzo:riscontrato_fonte_recente": 171,
-        "indirizzo:riscontro_da_aggiornare": 102,
-        "indirizzo:senza_riscontro_documentato": 147,
-        "markets": 434,
-        "markets_with_all_three_fields_source_supported": 20,
-        "markets_with_recent_field_evidence": 171,
-        "orario_testo:mancante": 246,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 10,
-        "orario_testo:riscontrato_fonte_recente": 50,
-        "orario_testo:riscontro_da_aggiornare": 127,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 15,
+        "indirizzo:riscontrato_fonte_recente": 200,
+        "indirizzo:riscontro_da_aggiornare": 122,
+        "indirizzo:senza_riscontro_documentato": 98,
+        "markets": 435,
+        "markets_with_all_three_fields_source_supported": 29,
+        "markets_with_recent_field_evidence": 200,
+        "orario_testo:mancante": 208,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 11,
+        "orario_testo:riscontrato_fonte_recente": 62,
+        "orario_testo:riscontro_da_aggiornare": 153,
         "orario_testo:senza_riscontro_documentato": 1,
         "publisher": "cosedicasa.com",
         "ricorrenza_testo:mancante": 1,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 5,
-        "ricorrenza_testo:riscontrato_fonte_recente": 28,
-        "ricorrenza_testo:riscontro_da_aggiornare": 60,
-        "ricorrenza_testo:senza_riscontro_documentato": 340
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 6,
+        "ricorrenza_testo:riscontrato_fonte_recente": 39,
+        "ricorrenza_testo:riscontro_da_aggiornare": 93,
+        "ricorrenza_testo:senza_riscontro_documentato": 296
       },
       {
         "indirizzo:senza_riscontro_documentato": 70,
@@ -413,20 +422,20 @@
       {
         "indirizzo:mancante": 441,
         "indirizzo:riscontrato_data_fonte_sconosciuta": 78,
-        "indirizzo:riscontrato_fonte_recente": 14,
+        "indirizzo:riscontrato_fonte_recente": 15,
         "indirizzo:senza_riscontro_documentato": 1666,
-        "markets": 2199,
-        "markets_with_recent_field_evidence": 17,
-        "orario_testo:mancante": 369,
-        "orario_testo:riscontrato_fonte_recente": 3,
-        "orario_testo:riscontro_da_aggiornare": 2,
+        "markets": 2200,
+        "markets_with_recent_field_evidence": 19,
+        "orario_testo:mancante": 368,
+        "orario_testo:riscontrato_fonte_recente": 4,
+        "orario_testo:riscontro_da_aggiornare": 3,
         "orario_testo:senza_riscontro_documentato": 1825,
         "publisher": "eventiesagre.it",
         "ricorrenza_testo:mancante": 712,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 579,
-        "ricorrenza_testo:riscontrato_fonte_recente": 3,
-        "ricorrenza_testo:riscontro_da_aggiornare": 4,
-        "ricorrenza_testo:senza_riscontro_documentato": 901
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 616,
+        "ricorrenza_testo:riscontrato_fonte_recente": 4,
+        "ricorrenza_testo:riscontro_da_aggiornare": 5,
+        "ricorrenza_testo:senza_riscontro_documentato": 863
       },
       {
         "indirizzo:senza_riscontro_documentato": 1,
@@ -781,24 +790,24 @@
     "verification": "recorded verificato_il values; this report does not authenticate their underlying proof"
   },
   "metrics": {
-    "dataset_updated_not_specific_market": 1345,
-    "forecast_from_stale_or_unknown_source": 10708,
-    "import_within_30d": 282,
+    "dataset_updated_not_specific_market": 1352,
+    "forecast_from_stale_or_unknown_source": 10631,
+    "import_within_30d": 290,
     "legacy_update_timestamp_without_source_date": 12561,
-    "recent_dataset_only_update": 1204,
+    "recent_dataset_only_update": 1205,
     "source_date_366_to_limit": 1,
-    "source_date_91_to_365d": 101,
-    "source_date_from_declared_source_content": 1359,
-    "source_date_outside_limit": 52,
-    "source_date_unknown": 12748,
-    "source_date_within_30d": 1205,
-    "source_read_within_30d": 1464,
-    "total": 14107,
-    "with_any_future_date": 11898,
-    "with_forecast_dates": 11621,
-    "with_import_timestamp": 282,
-    "with_source_read_timestamp": 1464,
-    "without_documented_verification": 14107,
+    "source_date_91_to_365d": 107,
+    "source_date_from_declared_source_content": 1365,
+    "source_date_outside_limit": 51,
+    "source_date_unknown": 12750,
+    "source_date_within_30d": 1206,
+    "source_read_within_30d": 1472,
+    "total": 14115,
+    "with_any_future_date": 11874,
+    "with_forecast_dates": 11551,
+    "with_import_timestamp": 290,
+    "with_source_read_timestamp": 1472,
+    "without_documented_verification": 14115,
     "without_import_timestamp": 13825,
     "without_source_read_timestamp": 12643
   },
@@ -818,11 +827,11 @@
       "status": "metadata_checked"
     },
     {
-      "last_publisher_data_change": null,
-      "license_comparison": "not_evaluated",
+      "last_publisher_data_change": "2022-07-04",
+      "license_comparison": "publisher_claim_missing_review_required",
       "market_records_verified_by_metadata": 0,
       "publisher": "Roma Capitale",
-      "status": "needs_review"
+      "status": "metadata_checked"
     }
   ],
   "reference_date": "2026-10-26",
@@ -831,12 +840,12 @@
   "snapshot_measurement_not_event_verification": true,
   "source_content_age_states": {
     "future": 0,
-    "historical": 154,
-    "recent": 1205,
-    "unknown": 12748
+    "historical": 159,
+    "recent": 1206,
+    "unknown": 12750
   },
   "source_date_unknown_reasons": {
-    "source_content_date_unproven": 12748
+    "source_content_date_unproven": 12750
   },
   "source_domains_top": [
     {
@@ -844,7 +853,7 @@
       "domain": "www.happings.com"
     },
     {
-      "count": 2199,
+      "count": 2200,
       "domain": "www.eventiesagre.it"
     },
     {
@@ -852,11 +861,11 @@
       "domain": "www.dati.lombardia.it"
     },
     {
-      "count": 434,
+      "count": 435,
       "domain": "www.cosedicasa.com"
     },
     {
-      "count": 94,
+      "count": 100,
       "domain": "www.regione.veneto.it"
     },
     {
@@ -916,7 +925,7 @@
           "unique_source_row_ids": 6
         },
         "read_on": "2026-10-26",
-        "sha256": "5c51aa6aba1cc26686b88b5c3cde6ae4823494a8fee50a674de5e6c48b921a57",
+        "sha256": "d183cb20cb0902a44069b156103210ab3e918f9d5335e71e68eaf3571ad9c477",
         "source_id": "bassa-romagna-farmers",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
@@ -944,7 +953,7 @@
           "unique_source_row_ids": 20
         },
         "read_on": "2026-10-26",
-        "sha256": "96940b2f02180baa8052f50e9cabe6ad4c4ec6bdf949b9cff84d5b6cad925bc7",
+        "sha256": "95e536738c85e2dc3373089b4f9d03e7ae3c726bd0f08de031cd1ec4776cd810",
         "source_id": "bassa-romagna-weekly",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
@@ -954,30 +963,29 @@
       "hosts": 73,
       "market_dispositions": {
         "citynews_existing_detail": 62,
-        "cosedicasa_existing_detail": 434,
-        "eventiesagre_existing_detail": 2199,
+        "cosedicasa_existing_detail": 435,
+        "eventiesagre_existing_detail": 2200,
         "happings_event_detail": 166,
         "happings_province_index": 9330,
         "happings_source_scope_unproven": 335,
         "official_adapter": 1220,
         "roma_d881_existing_inventory": 70,
-        "source_contract_active": 133,
+        "source_contract_active": 139,
         "source_layout_needed": 158
       },
       "market_layout_statuses": {
         "disabled": 62,
-        "supported": 13552,
+        "supported": 13560,
         "unsupported": 493
       },
       "market_read_statuses": {
         "disabled": 62,
-        "not_observed": 2633,
+        "not_observed": 2635,
         "not_read": 493,
         "not_selected": 8472,
-        "retrieved": 2362,
-        "unavailable": 85
+        "retrieved": 2453
       },
-      "markets": 14107,
+      "markets": 14115,
       "schema": 1,
       "secondary_corroboration": {
         "counts_describe": "comparison_eligibility",
@@ -992,7 +1000,7 @@
       },
       "source_admission_registry": "valid",
       "source_contract_configuration": "valid",
-      "unique_primary_urls": 5924
+      "unique_primary_urls": 5926
     }
   },
   "source_summaries": [
@@ -1042,15 +1050,15 @@
     {
       "domain": "dati.comune.milano.it",
       "metrics": {
-        "dataset_updated_not_specific_market": 76,
-        "recent_dataset_only_update": 76,
+        "dataset_updated_not_specific_market": 77,
+        "recent_dataset_only_update": 77,
         "source_date_from_declared_source_content": 85,
-        "source_date_outside_limit": 9,
-        "source_date_within_30d": 76,
+        "source_date_outside_limit": 8,
+        "source_date_within_30d": 77,
         "source_read_within_30d": 9,
         "total": 85,
-        "with_any_future_date": 76,
-        "with_forecast_dates": 76,
+        "with_any_future_date": 77,
+        "with_forecast_dates": 77,
         "with_source_read_timestamp": 9,
         "without_documented_verification": 85,
         "without_import_timestamp": 85,
@@ -1075,6 +1083,23 @@
         "without_source_read_timestamp": 1
       },
       "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)"
+    },
+    {
+      "domain": "www.regione.veneto.it",
+      "metrics": {
+        "dataset_updated_not_specific_market": 6,
+        "import_within_30d": 6,
+        "source_date_91_to_365d": 6,
+        "source_date_from_declared_source_content": 6,
+        "source_read_within_30d": 6,
+        "total": 6,
+        "with_any_future_date": 6,
+        "with_forecast_dates": 6,
+        "with_import_timestamp": 6,
+        "with_source_read_timestamp": 6,
+        "without_documented_verification": 6
+      },
+      "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap"
     },
     {
       "domain": "www.regione.veneto.it",
@@ -1490,17 +1515,17 @@
     {
       "domain": "www.cosedicasa.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 93,
-        "import_within_30d": 2,
+        "forecast_from_stale_or_unknown_source": 48,
+        "import_within_30d": 3,
         "legacy_update_timestamp_without_source_date": 432,
-        "source_date_unknown": 434,
-        "source_read_within_30d": 2,
-        "total": 434,
+        "source_date_unknown": 435,
+        "source_read_within_30d": 3,
+        "total": 435,
         "with_any_future_date": 203,
-        "with_forecast_dates": 93,
-        "with_import_timestamp": 2,
-        "with_source_read_timestamp": 2,
-        "without_documented_verification": 434,
+        "with_forecast_dates": 48,
+        "with_import_timestamp": 3,
+        "with_source_read_timestamp": 3,
+        "without_documented_verification": 435,
         "without_import_timestamp": 432,
         "without_source_read_timestamp": 432
       },
@@ -1560,17 +1585,17 @@
     {
       "domain": "www.eventiesagre.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 1023,
-        "import_within_30d": 2,
+        "forecast_from_stale_or_unknown_source": 991,
+        "import_within_30d": 3,
         "legacy_update_timestamp_without_source_date": 2197,
-        "source_date_unknown": 2199,
-        "source_read_within_30d": 2,
-        "total": 2199,
-        "with_any_future_date": 1025,
-        "with_forecast_dates": 1023,
-        "with_import_timestamp": 2,
-        "with_source_read_timestamp": 2,
-        "without_documented_verification": 2199,
+        "source_date_unknown": 2200,
+        "source_read_within_30d": 3,
+        "total": 2200,
+        "with_any_future_date": 994,
+        "with_forecast_dates": 991,
+        "with_import_timestamp": 3,
+        "with_source_read_timestamp": 3,
+        "without_documented_verification": 2200,
         "without_import_timestamp": 2197,
         "without_source_read_timestamp": 2197
       },
@@ -2155,7 +2180,6 @@
     "source_content_dates_are_unproven",
     "future_predictions_have_stale_or_missing_source_dates",
     "source_data_older_than_allowed_forecast_window",
-    "publisher_metadata_unavailable_or_changed",
     "publisher_refresh_conflicting_fields"
   ]
 }

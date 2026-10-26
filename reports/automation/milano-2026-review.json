@@ -2,7 +2,7 @@
   "confirmed_dates_created": 0,
   "coordinates_changed": 0,
   "counts": {
-    "current_two_source_weekday_facts_applied": 76
+    "current_two_source_weekday_facts_applied": 77
   },
   "enabled": true,
   "evidence": {
@@ -10,14 +10,12 @@
     "counts": {
       "held_missing_or_conflicting_weekdays": 2,
       "held_possible_temporary_closure": 1,
-      "matched_weekday_rows": 83,
-      "municipal_market_ids_with_two_source_day_agreement": 76,
-      "pdf_names_without_exact_or_approved_alias": 1
+      "matched_weekday_rows": 84,
+      "municipal_market_ids_with_two_source_day_agreement": 77
     },
     "future_events_confirmed": 0,
     "gis_market_ids": 84,
     "held_examples": [
-      "ponti",
       "osoppo: GIS [3, 5] versus PDF [3]",
       "de predis: GIS [0, 3] versus PDF [3]"
     ],
@@ -70,6 +68,7 @@
       52,
       53,
       55,
+      56,
       57,
       58,
       59,
@@ -113,21 +112,106 @@
             "event": {
               "archive_marker": false,
               "calendar_complete": true,
-              "calendar_rules": [
+              "calendar_rules": [],
+              "calendar_scope": "edition_bounds",
+              "conditions": [],
+              "date_intervals": [],
+              "edition_intervals": [
                 {
-                  "evidence": [
-                    "#post-content .mercatini-mostre-times"
-                  ],
-                  "excluded_months": [],
-                  "included_months": [],
-                  "kind": "monthly_ordinal",
-                  "ordinal": 1,
-                  "relative_day_offsets": [
-                    0
-                  ],
-                  "weekday": 6
+                  "end": "2026-11-12",
+                  "start": "2026-11-12"
                 }
               ],
+              "forecast_rule": {
+                "kind": "weekly",
+                "weekdays": [
+                  3
+                ]
+              },
+              "hours_intervals": [],
+              "hours_text": "08:00–13:00",
+              "location": {
+                "address": "",
+                "city": "Castelletto Monferrato",
+                "province": "AL",
+                "region": "Piemonte"
+              },
+              "name": "Mercato Settimanale Di Castelletto Monferrato",
+              "occurrences": [
+                {
+                  "date": "2026-11-12",
+                  "end_time": null,
+                  "evidence": [
+                    "visible event card Dal/Al"
+                  ],
+                  "start_time": null,
+                  "status": "source_listed"
+                }
+              ],
+              "recurrence_text": "Giovedì tutto l'anno",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": []
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "#schedaEvento Dal/Al and #eventopassato"
+              },
+              "hours": {
+                "selector": "#contenuto > h3; scoped Orario blocks"
+              },
+              "identity": {
+                "selector": "#schedaEvento Numero Evento; #contenuto > h1",
+                "value": "21182816"
+              },
+              "location": {
+                "selector": "#schedaEvento .SX; scoped Luogo/Indirizzo blocks"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 50717,
+              "canonical_url": null,
+              "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+              "hash_basis": "http_response_bytes",
+              "html_sha256": "0af7b8b8a656204416a4396a46ab4cd646b8ca57858d234ee1fa6a22ba26add6",
+              "modified_at": "2026-08-20",
+              "published_at": null,
+              "publisher": "eventiesagre.it",
+              "redirect_observed": false,
+              "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+              "source_id": "21182816"
+            },
+            "status": "parsed",
+            "warnings": []
+          },
+          "read_on": "2026-10-26"
+        },
+        "market_id": "mercato-settimanale-di-castelletto-monferrato-castelletto-monferrato",
+        "source_page": {
+          "bytes": 50717,
+          "canonical_url": null,
+          "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+          "hash_basis": "http_response_bytes",
+          "html_sha256": "0af7b8b8a656204416a4396a46ab4cd646b8ca57858d234ee1fa6a22ba26add6",
+          "modified_at": "2026-08-20",
+          "published_at": null,
+          "publisher": "eventiesagre.it",
+          "read_on": "2026-10-26",
+          "redirect_observed": false,
+          "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+          "source_id": "21182816",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
               "calendar_scope": "explicit_visible_list",
               "conditions": [],
               "date_intervals": [],
@@ -140,23 +224,23 @@
               "forecast_rule": null,
               "hours_intervals": [
                 {
-                  "end": "18:00",
-                  "start": "09:00"
+                  "end": "13:00",
+                  "start": "07:30"
                 }
               ],
-              "hours_text": "09:00–18:00; Si chiama \"Curiosando\" il mercatino che si svolge ogni prima domenica del mese, dalle ore 9 alle 18.",
+              "hours_text": "07:30–13:00; Ogni prima domenica, agosto escluso, dalle ore 7,30 alle 13.",
               "location": {
-                "address": "\"Curiosando\", piazza Gramsci",
-                "city": "Castelfiorentino",
-                "province": "FI",
-                "region": "Toscana"
+                "address": "“Mercatino del Riuso”, via della Giustizia",
+                "city": "Lonate Ceppino",
+                "province": "VA",
+                "region": "Lombardia"
               },
-              "name": "Mercatino antiquariato e usato di Castelfiorentino, \"Curiosando\", piazza Gramsci",
+              "name": "Lonate Ceppino, “Mercatino del Riuso”",
               "observed_location": {
-                "address": "\"Curiosando\", piazza Gramsci",
-                "city": "Castelfiorentino",
-                "province": "Firenze",
-                "region": "Toscana"
+                "address": "“Mercatino del Riuso”, via della Giustizia",
+                "city": "Lonate Ceppino",
+                "province": "Varese",
+                "region": "Lombardia"
               },
               "occurrences": [
                 {
@@ -176,7 +260,7 @@
                     "#post-content .mercatini-mostre-times"
                   ],
                   "kind": "hours_qualification",
-                  "text": "Si chiama \"Curiosando\" il mercatino che si svolge ogni prima domenica del mese, dalle ore 9 alle 18."
+                  "text": "Ogni prima domenica, agosto escluso, dalle ore 7,30 alle 13."
                 }
               ],
               "source_rows": [
@@ -185,56 +269,56 @@
                     "#post-content .mercatini-mostre-content-title"
                   ],
                   "field": "location.city",
-                  "value": "Castelfiorentino (Firenze)"
+                  "value": "Lonate Ceppino (Varese)"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-address"
                   ],
                   "field": "location.address",
-                  "value": "\"Curiosando\", piazza Gramsci"
+                  "value": "“Mercatino del Riuso”, via della Giustizia"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-region"
                   ],
                   "field": "location.region",
-                  "value": "Toscana"
+                  "value": "Lombardia"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-performer"
                   ],
                   "field": "organizer",
-                  "value": "Associazione Culturale Pinocchio 3000 in collaborazione con il Comune di Castelfiorentino"
+                  "value": "Associazione Del Seprio Aps"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-phone"
                   ],
                   "field": "phone",
-                  "value": "0572/1913547; 328/5924115"
+                  "value": "351/5190130"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-contacts"
                   ],
                   "field": "contacts",
-                  "value": "infopinocchio3000@gmail.com"
+                  "value": "info@associazionedelseprio.it"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-website"
                   ],
                   "field": "website",
-                  "value": "Toscana Quando - Home | Facebook"
+                  "value": "www.associazionedelseprio.it"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-expo"
                   ],
                   "field": "exhibitors",
-                  "value": "50"
+                  "value": "70"
                 },
                 {
                   "evidence": [
@@ -242,8 +326,8 @@
                   ],
                   "field": "publisher_geo",
                   "value": {
-                    "latitude": "43.607146",
-                    "longitude": "10.969217",
+                    "latitude": "45.706383",
+                    "longitude": "8.878762",
                     "precision": "publisher_point_unverified"
                   }
                 },
@@ -256,13 +340,36 @@
                 },
                 {
                   "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+                  ],
+                  "field": "suspensions",
+                  "value": "Dall'1 agosto al 31 agosto"
+                },
+                {
+                  "evidence": [
                     "#post-content .mercatini-mostre-suspension:label=Prossime date"
                   ],
                   "field": "next_dates",
                   "value": "1 novembre 2026"
                 }
               ],
-              "suspensions": []
+              "suspensions": [
+                {
+                  "end": {
+                    "day": 31,
+                    "month": 8,
+                    "year": null
+                  },
+                  "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+                  ],
+                  "start": {
+                    "day": 1,
+                    "month": 8,
+                    "year": null
+                  }
+                }
+              ]
             },
             "field_evidence": {
               "calendar": [
@@ -310,23 +417,26 @@
               "recurrence_text": [
                 "#post-content .mercatini-mostre-date-big:row[1]"
               ],
+              "suspensions": [
+                "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+              ],
               "website": [
                 "#post-content .mercatini-mostre-website"
               ]
             },
             "schema": 1,
             "source": {
-              "bytes": 614813,
-              "canonical_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-              "final_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+              "bytes": 612001,
+              "canonical_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+              "final_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
               "hash_basis": "http_response_bytes",
-              "html_sha256": "08649c0474790fc2bfd9e290820f3f98b9d5c27f8a45c2592163d2e0e05d6252",
-              "modified_at": "2026-09-22T14:45:00+00:00",
+              "html_sha256": "f86b836e4fc52c130f8cf060457611ea0a2736a784fe272c49ab887fd0d4cd85",
+              "modified_at": null,
               "published_at": null,
               "publisher": "cosedicasa.com",
               "redirect_observed": false,
-              "requested_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-              "source_id": "castelfiorentino-curiosando"
+              "requested_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+              "source_id": "lonate-ceppino-mercatino-del-riuso"
             },
             "status": "parsed",
             "warnings": [
@@ -335,36 +445,38 @@
           },
           "read_on": "2026-10-26"
         },
-        "market_id": "mercatino-antiquariato-e-usato-di-castelfiorentino-curiosando-piazza-gramsci-cas",
+        "market_id": "lonate-ceppino-mercatino-del-riuso-lonate-ceppino",
         "source_page": {
-          "bytes": 614813,
-          "canonical_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-          "final_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+          "bytes": 612001,
+          "canonical_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+          "final_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
           "hash_basis": "http_response_bytes",
-          "html_sha256": "08649c0474790fc2bfd9e290820f3f98b9d5c27f8a45c2592163d2e0e05d6252",
-          "modified_at": "2026-09-22T14:45:00+00:00",
+          "html_sha256": "f86b836e4fc52c130f8cf060457611ea0a2736a784fe272c49ab887fd0d4cd85",
+          "modified_at": null,
           "published_at": null,
           "publisher": "cosedicasa.com",
           "read_on": "2026-10-26",
           "redirect_observed": false,
-          "requested_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-          "source_id": "castelfiorentino-curiosando",
+          "requested_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+          "source_id": "lonate-ceppino-mercatino-del-riuso",
           "status": "parsed"
         }
       }
     ],
     "date": "2026-10-26",
-    "max_new": 1,
+    "max_new": 2,
     "publisher": "later-sources",
     "schema": 1
   },
-  "modified_ids": [],
+  "modified_ids": [
+    "mi-mss-56"
+  ],
   "primary_sources_changed": 0,
   "publisher_report_date": "2026-10-01",
-  "reconciled_id_count": 76,
+  "reconciled_id_count": 77,
   "records_added": 0,
   "records_deleted": 0,
-  "records_total": 14106,
+  "records_total": 14107,
   "review_only": false,
   "schema": 1,
   "source_age_days": 25,

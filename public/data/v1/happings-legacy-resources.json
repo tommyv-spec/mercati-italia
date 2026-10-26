@@ -551,13 +551,13 @@
       "status": "pending"
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "city_keys": [
         "fiorenzuola d arda"
       ],
       "first_seen_on": "2026-10-20",
       "last_attempt_on": "2026-10-26",
-      "last_error": null,
+      "last_error": "HTTPStatus404",
       "last_success_on": null,
       "next_url": "https://www.happings.com/it/mercato-settimanale-a-fiorenzuola-d-arda--p-zza-cavour-/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-fiorenzuola-d-arda--p-zza-cavour-.html",
@@ -572,7 +572,7 @@
         }
       ],
       "region": "emilia romagna",
-      "status": "redirect_observed"
+      "status": "unavailable"
     },
     {
       "attempts": 0,
@@ -967,21 +967,28 @@
       "status": "pending"
     },
     {
-      "attempts": 0,
+      "attempts": 1,
       "city_keys": [
         "ostellato"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-26",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-ostellato--rovereto-.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-ostellato--rovereto-/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-ostellato--rovereto-.html",
       "proof": null,
       "province": "FE",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-ostellato--rovereto-/",
+          "observed_on": "2026-10-26",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-ostellato--rovereto-.html",
+          "status_code": 301
+        }
+      ],
       "region": "emilia romagna",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,

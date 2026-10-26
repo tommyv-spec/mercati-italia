@@ -1,32 +1,21 @@
 {
-  "candidate_market_ids": 14106,
+  "candidate_market_ids": 14113,
   "enabled": true,
   "evidence_updated_market_ids": [
     "pg-corciano-mercato-di-ellera",
     "pg-corciano-mercato-di-mantignana",
     "pg-corciano-mercato-di-san-mariano"
   ],
-  "filled_fields_count": 19,
+  "filled_fields_count": 4,
   "filled_market_ids": [
-    "mercato-settimanale-di-albaredo-d-adige-albaredo-d-adige-venerdi",
-    "mercato-settimanale-di-arcugnano-arcugnano",
-    "mercato-settimanale-di-cadoneghe-cadoneghe",
-    "mercato-settimanale-di-campolongo-maggiore-campolongo-maggiore-lunedi",
-    "mercato-settimanale-di-caprino-veronese-caprino-veronese-sabato",
-    "mercato-settimanale-di-casale-di-scodosia-casale-di-scodosia-lunedi",
-    "mercato-settimanale-di-codevigo-codevigo",
-    "mercato-settimanale-di-fontanelle-fontanelle-giovedi",
-    "mercato-settimanale-di-istrana-istrana-giovedi",
-    "mercato-settimanale-di-marano-vicentino-marano-vicentino-venerdi",
-    "mercato-settimanale-di-montebello-vicentino-montebello-vicentino-mercoledi",
-    "mercato-settimanale-di-montecchio-maggiore-montecchio-maggiore-venerdi",
-    "mercato-settimanale-di-recoaro-terme-recoaro-terme-giovedi",
-    "mercato-settimanale-di-sanguinetto-sanguinetto-mercoledi",
-    "mercato-settimanale-di-sovizzo-sovizzo",
-    "mercato-settimanale-di-stienta-stienta-venerdi",
-    "mercato-settimanale-di-valeggio-sul-mincio-valeggio-sul-mincio-sabato",
-    "mercato-settimanale-di-zero-branco-zero-branco-sabato",
-    "mercato-settimanale-di-zevio-zevio-domenica"
+    "il-mercatino-dell-antiquariato-a-bardolino-bardolino",
+    "mercatino-antiquariato-e-usato-di-brugine-mercatino-di-villa-roberti-villa-rober",
+    "mercatino-antiquariato-e-usato-di-cittadella-via-roma-centro-storico-dentro-le-m",
+    "mercatino-antiquariato-e-usato-di-marostica-piazza-castello-marostica",
+    "mercatino-antiquariato-e-usato-di-polesella-soffitte-in-piazza-piazza-matteotti",
+    "mercatino-antiquariato-e-usato-di-soave-corso-vittorio-emanuele-via-roma-centro",
+    "mercatino-antiquariato-e-usato-di-spresiano-piazza-luciano-rigo-spresiano",
+    "mercatino-antiquariato-e-usato-di-verona-verona-antiquaria-piazza-san-zeno-piazz"
   ],
   "happings_detail_admission_certificate": {
     "admissions": [
@@ -37,21 +26,106 @@
             "event": {
               "archive_marker": false,
               "calendar_complete": true,
-              "calendar_rules": [
+              "calendar_rules": [],
+              "calendar_scope": "edition_bounds",
+              "conditions": [],
+              "date_intervals": [],
+              "edition_intervals": [
                 {
-                  "evidence": [
-                    "#post-content .mercatini-mostre-times"
-                  ],
-                  "excluded_months": [],
-                  "included_months": [],
-                  "kind": "monthly_ordinal",
-                  "ordinal": 1,
-                  "relative_day_offsets": [
-                    0
-                  ],
-                  "weekday": 6
+                  "end": "2026-11-12",
+                  "start": "2026-11-12"
                 }
               ],
+              "forecast_rule": {
+                "kind": "weekly",
+                "weekdays": [
+                  3
+                ]
+              },
+              "hours_intervals": [],
+              "hours_text": "08:00–13:00",
+              "location": {
+                "address": "",
+                "city": "Castelletto Monferrato",
+                "province": "AL",
+                "region": "Piemonte"
+              },
+              "name": "Mercato Settimanale Di Castelletto Monferrato",
+              "occurrences": [
+                {
+                  "date": "2026-11-12",
+                  "end_time": null,
+                  "evidence": [
+                    "visible event card Dal/Al"
+                  ],
+                  "start_time": null,
+                  "status": "source_listed"
+                }
+              ],
+              "recurrence_text": "Giovedì tutto l'anno",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": []
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "#schedaEvento Dal/Al and #eventopassato"
+              },
+              "hours": {
+                "selector": "#contenuto > h3; scoped Orario blocks"
+              },
+              "identity": {
+                "selector": "#schedaEvento Numero Evento; #contenuto > h1",
+                "value": "21182816"
+              },
+              "location": {
+                "selector": "#schedaEvento .SX; scoped Luogo/Indirizzo blocks"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 50717,
+              "canonical_url": null,
+              "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+              "hash_basis": "http_response_bytes",
+              "html_sha256": "0af7b8b8a656204416a4396a46ab4cd646b8ca57858d234ee1fa6a22ba26add6",
+              "modified_at": "2026-08-20",
+              "published_at": null,
+              "publisher": "eventiesagre.it",
+              "redirect_observed": false,
+              "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+              "source_id": "21182816"
+            },
+            "status": "parsed",
+            "warnings": []
+          },
+          "read_on": "2026-10-26"
+        },
+        "market_id": "mercato-settimanale-di-castelletto-monferrato-castelletto-monferrato",
+        "source_page": {
+          "bytes": 50717,
+          "canonical_url": null,
+          "final_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+          "hash_basis": "http_response_bytes",
+          "html_sha256": "0af7b8b8a656204416a4396a46ab4cd646b8ca57858d234ee1fa6a22ba26add6",
+          "modified_at": "2026-08-20",
+          "published_at": null,
+          "publisher": "eventiesagre.it",
+          "read_on": "2026-10-26",
+          "redirect_observed": false,
+          "requested_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182816_Mercato+Settimanale+Di+Castelletto+Monferrato.html",
+          "source_id": "21182816",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
               "calendar_scope": "explicit_visible_list",
               "conditions": [],
               "date_intervals": [],
@@ -64,23 +138,23 @@
               "forecast_rule": null,
               "hours_intervals": [
                 {
-                  "end": "18:00",
-                  "start": "09:00"
+                  "end": "13:00",
+                  "start": "07:30"
                 }
               ],
-              "hours_text": "09:00–18:00; Si chiama \"Curiosando\" il mercatino che si svolge ogni prima domenica del mese, dalle ore 9 alle 18.",
+              "hours_text": "07:30–13:00; Ogni prima domenica, agosto escluso, dalle ore 7,30 alle 13.",
               "location": {
-                "address": "\"Curiosando\", piazza Gramsci",
-                "city": "Castelfiorentino",
-                "province": "FI",
-                "region": "Toscana"
+                "address": "“Mercatino del Riuso”, via della Giustizia",
+                "city": "Lonate Ceppino",
+                "province": "VA",
+                "region": "Lombardia"
               },
-              "name": "Mercatino antiquariato e usato di Castelfiorentino, \"Curiosando\", piazza Gramsci",
+              "name": "Lonate Ceppino, “Mercatino del Riuso”",
               "observed_location": {
-                "address": "\"Curiosando\", piazza Gramsci",
-                "city": "Castelfiorentino",
-                "province": "Firenze",
-                "region": "Toscana"
+                "address": "“Mercatino del Riuso”, via della Giustizia",
+                "city": "Lonate Ceppino",
+                "province": "Varese",
+                "region": "Lombardia"
               },
               "occurrences": [
                 {
@@ -100,7 +174,7 @@
                     "#post-content .mercatini-mostre-times"
                   ],
                   "kind": "hours_qualification",
-                  "text": "Si chiama \"Curiosando\" il mercatino che si svolge ogni prima domenica del mese, dalle ore 9 alle 18."
+                  "text": "Ogni prima domenica, agosto escluso, dalle ore 7,30 alle 13."
                 }
               ],
               "source_rows": [
@@ -109,56 +183,56 @@
                     "#post-content .mercatini-mostre-content-title"
                   ],
                   "field": "location.city",
-                  "value": "Castelfiorentino (Firenze)"
+                  "value": "Lonate Ceppino (Varese)"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-address"
                   ],
                   "field": "location.address",
-                  "value": "\"Curiosando\", piazza Gramsci"
+                  "value": "“Mercatino del Riuso”, via della Giustizia"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-region"
                   ],
                   "field": "location.region",
-                  "value": "Toscana"
+                  "value": "Lombardia"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-performer"
                   ],
                   "field": "organizer",
-                  "value": "Associazione Culturale Pinocchio 3000 in collaborazione con il Comune di Castelfiorentino"
+                  "value": "Associazione Del Seprio Aps"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-phone"
                   ],
                   "field": "phone",
-                  "value": "0572/1913547; 328/5924115"
+                  "value": "351/5190130"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-contacts"
                   ],
                   "field": "contacts",
-                  "value": "infopinocchio3000@gmail.com"
+                  "value": "info@associazionedelseprio.it"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-website"
                   ],
                   "field": "website",
-                  "value": "Toscana Quando - Home | Facebook"
+                  "value": "www.associazionedelseprio.it"
                 },
                 {
                   "evidence": [
                     "#post-content .mercatini-mostre-expo"
                   ],
                   "field": "exhibitors",
-                  "value": "50"
+                  "value": "70"
                 },
                 {
                   "evidence": [
@@ -166,8 +240,8 @@
                   ],
                   "field": "publisher_geo",
                   "value": {
-                    "latitude": "43.607146",
-                    "longitude": "10.969217",
+                    "latitude": "45.706383",
+                    "longitude": "8.878762",
                     "precision": "publisher_point_unverified"
                   }
                 },
@@ -180,13 +254,36 @@
                 },
                 {
                   "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+                  ],
+                  "field": "suspensions",
+                  "value": "Dall'1 agosto al 31 agosto"
+                },
+                {
+                  "evidence": [
                     "#post-content .mercatini-mostre-suspension:label=Prossime date"
                   ],
                   "field": "next_dates",
                   "value": "1 novembre 2026"
                 }
               ],
-              "suspensions": []
+              "suspensions": [
+                {
+                  "end": {
+                    "day": 31,
+                    "month": 8,
+                    "year": null
+                  },
+                  "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+                  ],
+                  "start": {
+                    "day": 1,
+                    "month": 8,
+                    "year": null
+                  }
+                }
+              ]
             },
             "field_evidence": {
               "calendar": [
@@ -234,23 +331,26 @@
               "recurrence_text": [
                 "#post-content .mercatini-mostre-date-big:row[1]"
               ],
+              "suspensions": [
+                "#post-content .mercatini-mostre-suspension:label=Sospensioni"
+              ],
               "website": [
                 "#post-content .mercatini-mostre-website"
               ]
             },
             "schema": 1,
             "source": {
-              "bytes": 614813,
-              "canonical_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-              "final_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+              "bytes": 612001,
+              "canonical_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+              "final_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
               "hash_basis": "http_response_bytes",
-              "html_sha256": "08649c0474790fc2bfd9e290820f3f98b9d5c27f8a45c2592163d2e0e05d6252",
-              "modified_at": "2026-09-22T14:45:00+00:00",
+              "html_sha256": "f86b836e4fc52c130f8cf060457611ea0a2736a784fe272c49ab887fd0d4cd85",
+              "modified_at": null,
               "published_at": null,
               "publisher": "cosedicasa.com",
               "redirect_observed": false,
-              "requested_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-              "source_id": "castelfiorentino-curiosando"
+              "requested_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+              "source_id": "lonate-ceppino-mercatino-del-riuso"
             },
             "status": "parsed",
             "warnings": [
@@ -259,35 +359,42 @@
           },
           "read_on": "2026-10-26"
         },
-        "market_id": "mercatino-antiquariato-e-usato-di-castelfiorentino-curiosando-piazza-gramsci-cas",
+        "market_id": "lonate-ceppino-mercatino-del-riuso-lonate-ceppino",
         "source_page": {
-          "bytes": 614813,
-          "canonical_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-          "final_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+          "bytes": 612001,
+          "canonical_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+          "final_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
           "hash_basis": "http_response_bytes",
-          "html_sha256": "08649c0474790fc2bfd9e290820f3f98b9d5c27f8a45c2592163d2e0e05d6252",
-          "modified_at": "2026-09-22T14:45:00+00:00",
+          "html_sha256": "f86b836e4fc52c130f8cf060457611ea0a2736a784fe272c49ab887fd0d4cd85",
+          "modified_at": null,
           "published_at": null,
           "publisher": "cosedicasa.com",
           "read_on": "2026-10-26",
           "redirect_observed": false,
-          "requested_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
-          "source_id": "castelfiorentino-curiosando",
+          "requested_url": "https://www.cosedicasa.com/mercatini/lonate-ceppino-mercatino-del-riuso",
+          "source_id": "lonate-ceppino-mercatino-del-riuso",
           "status": "parsed"
         }
       }
     ],
     "date": "2026-10-26",
-    "max_new": 1,
+    "max_new": 2,
     "publisher": "later-sources",
     "schema": 1
   },
   "new_market_coordinates_created": 0,
   "new_market_directions_enabled": 0,
-  "new_market_ids": [],
+  "new_market_ids": [
+    "ve-calant-2b9cdeae2eb9a25777",
+    "ve-calant-70283be3cc6e369c7f",
+    "ve-calant-947b9833bb3a991e66",
+    "ve-calant-c1f08a28d2a26b1601",
+    "ve-calant-e60ffc57ed880c4928",
+    "ve-calant-eeb98c1c06f6cd9405"
+  ],
   "new_market_openings_confirmed": 0,
   "old_market_fields_changed": 0,
-  "original_market_ids": 14106,
+  "original_market_ids": 14107,
   "per_source": {
     "bologna-generic-venues": {
       "approval_sha256": "7f90f3fe516fb3378e7cd1fce9474cada818f7258c559fed7a39eb980c0744e1",
@@ -301,11 +408,11 @@
       "new_market_ids": [],
       "new_navigation_enabled": 0,
       "new_venue_evidence": {},
-      "old_market_ids_preserved": 14106,
+      "old_market_ids_preserved": 14107,
       "schema": 1,
       "source_eligible_candidates": 0,
       "source_observations": {
-        "base_catalog_records": 14106,
+        "base_catalog_records": 14107,
         "counts": {
           "already_in_catalog_exact_source_id": 39,
           "informational_schedule_unknown": 12,
@@ -398,11 +505,11 @@
       "new_market_ids": [],
       "new_navigation_enabled": 0,
       "new_venue_evidence": {},
-      "old_market_ids_preserved": 14106,
+      "old_market_ids_preserved": 14107,
       "schema": 1,
       "source_eligible_candidates": 0,
       "source_observations": {
-        "base_catalog_records": 14106,
+        "base_catalog_records": 14107,
         "counts": {
           "already_in_catalog_exact_source_id": 3,
           "publisher_distinct_address_count": 4,
@@ -760,761 +867,727 @@
       ],
       "verified_market_openings_created": 0
     },
+    "veneto-calendario-antiquariato": {
+      "approval_sha256": "4020b8d2814001f0c337dedc15dfdc76ac306d8e54ab7c7f25ab212faefc9cbc",
+      "deferred_candidate_count": 0,
+      "deferred_candidate_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "fill_counts": {
+        "deferred_to_next_run": 0,
+        "filled_indirizzo": 1,
+        "filled_orario_testo": 3,
+        "held_market_type_not_in_contract": 23,
+        "held_no_official_market_town_calendar": 15,
+        "held_official_calendar_qualified": 7,
+        "held_official_market_not_annual_monthly": 1,
+        "held_several_catalog_markets_same_town_calendar": 21,
+        "kept_existing_indirizzo": 7,
+        "kept_existing_orario_testo": 2,
+        "matched_markets": 8,
+        "monthly_markets_screened": 75,
+        "recurrence_still_listed": 8
+      },
+      "filled_fields_count": 4,
+      "fills": [
+        {
+          "after_sha256": "73627e394b32c6a824253e1bc909964a1b22a35049ff42a208938b640cdb0a5a",
+          "before_sha256": "00b5dd3acfcaaa0ff9bc9e9d77d5d5590903b72af0923cd8945e24cfab8bcd43",
+          "changed_fields": {
+            "indirizzo": {
+              "after": "Lungolago Riva Cornicello",
+              "before": ""
+            },
+            "orario_testo": {
+              "after": "08:00–18:00 (da verificare con il Comune)",
+              "before": ""
+            }
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "indirizzo",
+              "orario_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_town_day",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Bardolino",
+              "provincia": "VR",
+              "regione": "Veneto",
+              "slug": "il-mercatino-dell-antiquariato-a-bardolino-bardolino"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-abbade0797b223575c",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "indirizzo": "Lungolago Riva Cornicello",
+              "orario_testo": "08:00–18:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "ogni terza domenica del mese"
+            }
+          },
+          "slug": "il-mercatino-dell-antiquariato-a-bardolino-bardolino",
+          "source_row": "ve-calant-abbade0797b223575c"
+        },
+        {
+          "after_sha256": "fcc44caed07406590f540308ee5dab91813eefb0ec238b6af6e9787fcda8c97f",
+          "before_sha256": "1b00f148f1ac760f75023eced3ac5a950ce50563451d0d1e6dedce91276bef9a",
+          "changed_fields": {},
+          "receipt": {
+            "ambito": "dataset",
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Brugine",
+              "provincia": "",
+              "regione": "Veneto",
+              "slug": "mercatino-antiquariato-e-usato-di-brugine-mercatino-di-villa-roberti-villa-rober"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-17b42b806e353d5240",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "ricorrenza_testo": "mensile - prima domenica del mese"
+            }
+          },
+          "slug": "mercatino-antiquariato-e-usato-di-brugine-mercatino-di-villa-roberti-villa-rober",
+          "source_row": "ve-calant-17b42b806e353d5240"
+        },
+        {
+          "after_sha256": "7f89b479073931f247fb7fe0955671539836455cba23d4d5fb011102c48a2613",
+          "before_sha256": "654961db60fe619aa97921608b8eba0ec451d72f2b54ad7955c6da4eb1ecf3fe",
+          "changed_fields": {
+            "orario_testo": {
+              "after": "08:00–20:00 (da verificare con il Comune)",
+              "before": ""
+            }
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "orario_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_town_day",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Cittadella",
+              "provincia": "",
+              "regione": "Veneto",
+              "slug": "mercatino-antiquariato-e-usato-di-cittadella-via-roma-centro-storico-dentro-le-m"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-9fb02ab981bb5bbacc",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "orario_testo": "08:00–20:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "mensile - terza domenica del mese"
+            }
+          },
+          "slug": "mercatino-antiquariato-e-usato-di-cittadella-via-roma-centro-storico-dentro-le-m",
+          "source_row": "ve-calant-9fb02ab981bb5bbacc"
+        },
+        {
+          "after_sha256": "3445d0f78592d495536ce060630d18b9295c41f27b60859f0e8c0d52021a5d12",
+          "before_sha256": "b7d8b4ef25a661e06be75f255881257b2d518aebde883cf4f7ab896e68972003",
+          "changed_fields": {},
+          "receipt": {
+            "ambito": "dataset",
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Marostica",
+              "provincia": "",
+              "regione": "Veneto",
+              "slug": "mercatino-antiquariato-e-usato-di-marostica-piazza-castello-marostica"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-b4d05ada2d3735979e",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "ricorrenza_testo": "mensile - prima domenica del mese"
+            }
+          },
+          "slug": "mercatino-antiquariato-e-usato-di-marostica-piazza-castello-marostica",
+          "source_row": "ve-calant-b4d05ada2d3735979e"
+        },
+        {
+          "after_sha256": "0af1d2dd9ed8832f454efa3c05c5bfa7a0bc2adbcf7280710f9b30fd912e67f3",
+          "before_sha256": "4e3d6dc85542923a6ee79f31cfe0ce904db42702986500ebabf484c3910c6f2b",
+          "changed_fields": {},
+          "receipt": {
+            "ambito": "dataset",
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Polesella",
+              "provincia": "",
+              "regione": "Veneto",
+              "slug": "mercatino-antiquariato-e-usato-di-polesella-soffitte-in-piazza-piazza-matteotti"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-f602e619727460d2b7",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "ricorrenza_testo": "mensile - terza domenica del mese"
+            }
+          },
+          "slug": "mercatino-antiquariato-e-usato-di-polesella-soffitte-in-piazza-piazza-matteotti",
+          "source_row": "ve-calant-f602e619727460d2b7"
+        },
+        {
+          "after_sha256": "f01bd68a4b357b51831bb43ebdcb8a13e88965cd8692bbdeb543b4fd2d62656b",
+          "before_sha256": "1f9e99fd7f2d00ab35e7beb8df9d1855776360c4c5eccb85b58708816d3fbf27",
+          "changed_fields": {
+            "orario_testo": {
+              "after": "09:00–19:00 (da verificare con il Comune)",
+              "before": ""
+            }
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "orario_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_town_day",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Soave",
+              "provincia": "",
+              "regione": "Veneto",
+              "slug": "mercatino-antiquariato-e-usato-di-soave-corso-vittorio-emanuele-via-roma-centro"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-9e7e0f2ae2065cae18",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "orario_testo": "09:00–19:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "mensile - terza domenica del mese"
+            }
+          },
+          "slug": "mercatino-antiquariato-e-usato-di-soave-corso-vittorio-emanuele-via-roma-centro",
+          "source_row": "ve-calant-9e7e0f2ae2065cae18"
+        },
+        {
+          "after_sha256": "00aaf54dc04be156cab2710da6f42b9fbf468df1fb854fa8ed47b204fe60de41",
+          "before_sha256": "5717218abe07bfbc71ac90d2fc864f0b96e2f848f37caba6eda88d46473e7f8d",
+          "changed_fields": {},
+          "receipt": {
+            "ambito": "dataset",
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Spresiano",
+              "provincia": "",
+              "regione": "Veneto",
+              "slug": "mercatino-antiquariato-e-usato-di-spresiano-piazza-luciano-rigo-spresiano"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-82333b97d6d95d2690",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "ricorrenza_testo": "mensile - ultima domenica del mese"
+            }
+          },
+          "slug": "mercatino-antiquariato-e-usato-di-spresiano-piazza-luciano-rigo-spresiano",
+          "source_row": "ve-calant-82333b97d6d95d2690"
+        },
+        {
+          "after_sha256": "7a73f39412dfcc02b6d54e121efad6a039eb10d704a90a7bc90ce3c90d4f9932",
+          "before_sha256": "508fa9d42660b43045c663a0d96bbb6dcd4256a44e66e2b1c43e3903a5bf17c0",
+          "changed_fields": {},
+          "receipt": {
+            "ambito": "dataset",
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Verona",
+              "provincia": "VR",
+              "regione": "Veneto",
+              "slug": "mercatino-antiquariato-e-usato-di-verona-verona-antiquaria-piazza-san-zeno-piazz"
+            },
+            "metodo": "comune_provincia_ricorrenza_univoca",
+            "riga_fonte": "ve-calant-422ed43fd3d8fa1e50",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "ricorrenza_testo": "mensile - prima domenica del mese"
+            }
+          },
+          "slug": "mercatino-antiquariato-e-usato-di-verona-verona-antiquaria-piazza-san-zeno-piazz",
+          "source_row": "ve-calant-422ed43fd3d8fa1e50"
+        }
+      ],
+      "independent_static_validation_required": true,
+      "new_geocodes_created": 0,
+      "new_market_ids": [
+        "ve-calant-2b9cdeae2eb9a25777",
+        "ve-calant-70283be3cc6e369c7f",
+        "ve-calant-947b9833bb3a991e66",
+        "ve-calant-c1f08a28d2a26b1601",
+        "ve-calant-e60ffc57ed880c4928",
+        "ve-calant-eeb98c1c06f6cd9405"
+      ],
+      "new_navigation_enabled": 0,
+      "new_venue_evidence": {
+        "ve-calant-2b9cdeae2eb9a25777": {
+          "fields": {
+            "indirizzo": "Via San Giovanni, via degli Estensi, piazza V. Emanuele, piazza G. Marconi, via Don Manzoni",
+            "orario_testo": "08:00–20:00 (da verificare con il Comune)",
+            "ricorrenza_testo": "mensile - secondo sabato del mese"
+          },
+          "identity": {
+            "citta": "Badia Polesine",
+            "nome": "Mercatino dell'antiquariato di Badia Polesine",
+            "provincia": "RO",
+            "regione": "Veneto",
+            "slug": "ve-calant-2b9cdeae2eb9a25777"
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "indirizzo",
+              "orario_testo",
+              "ricorrenza_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_ingest",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Badia Polesine",
+              "provincia": "RO",
+              "regione": "Veneto",
+              "slug": "ve-calant-2b9cdeae2eb9a25777"
+            },
+            "metodo": "id_fonte",
+            "riga_fonte": "ve-calant-2b9cdeae2eb9a25777",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "indirizzo": "Via San Giovanni, via degli Estensi, piazza V. Emanuele, piazza G. Marconi, via Don Manzoni",
+              "orario_testo": "08:00–20:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "mensile - secondo sabato del mese"
+            }
+          }
+        },
+        "ve-calant-70283be3cc6e369c7f": {
+          "fields": {
+            "indirizzo": "Via dell'Indusria Est",
+            "orario_testo": "07:00–19:00 (da verificare con il Comune)",
+            "ricorrenza_testo": "mensile - primo sabato del mese"
+          },
+          "identity": {
+            "citta": "Calto",
+            "nome": "Mercatino dell'antiquariato di Calto",
+            "provincia": "RO",
+            "regione": "Veneto",
+            "slug": "ve-calant-70283be3cc6e369c7f"
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "indirizzo",
+              "orario_testo",
+              "ricorrenza_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_ingest",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Calto",
+              "provincia": "RO",
+              "regione": "Veneto",
+              "slug": "ve-calant-70283be3cc6e369c7f"
+            },
+            "metodo": "id_fonte",
+            "riga_fonte": "ve-calant-70283be3cc6e369c7f",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "indirizzo": "Via dell'Indusria Est",
+              "orario_testo": "07:00–19:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "mensile - primo sabato del mese"
+            }
+          }
+        },
+        "ve-calant-947b9833bb3a991e66": {
+          "fields": {
+            "indirizzo": "Piazza Mazzini",
+            "orario_testo": "07:00–19:00 (da verificare con il Comune)",
+            "ricorrenza_testo": "mensile - prima domenica del mese"
+          },
+          "identity": {
+            "citta": "Camponogara",
+            "nome": "Mercatino dell'antiquariato di Camponogara",
+            "provincia": "VE",
+            "regione": "Veneto",
+            "slug": "ve-calant-947b9833bb3a991e66"
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "indirizzo",
+              "orario_testo",
+              "ricorrenza_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_ingest",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Camponogara",
+              "provincia": "VE",
+              "regione": "Veneto",
+              "slug": "ve-calant-947b9833bb3a991e66"
+            },
+            "metodo": "id_fonte",
+            "riga_fonte": "ve-calant-947b9833bb3a991e66",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "indirizzo": "Piazza Mazzini",
+              "orario_testo": "07:00–19:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "mensile - prima domenica del mese"
+            }
+          }
+        },
+        "ve-calant-c1f08a28d2a26b1601": {
+          "fields": {
+            "indirizzo": "Piazza IV Novembre",
+            "orario_testo": "",
+            "ricorrenza_testo": "mensile - prima domenica del mese"
+          },
+          "identity": {
+            "citta": "Noventa Vicentina",
+            "nome": "Mercatino dell'antiquariato di Noventa Vicentina",
+            "provincia": "VI",
+            "regione": "Veneto",
+            "slug": "ve-calant-c1f08a28d2a26b1601"
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "indirizzo",
+              "ricorrenza_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_ingest",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Noventa Vicentina",
+              "provincia": "VI",
+              "regione": "Veneto",
+              "slug": "ve-calant-c1f08a28d2a26b1601"
+            },
+            "metodo": "id_fonte",
+            "riga_fonte": "ve-calant-c1f08a28d2a26b1601",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "indirizzo": "Piazza IV Novembre",
+              "ricorrenza_testo": "mensile - prima domenica del mese"
+            }
+          }
+        },
+        "ve-calant-e60ffc57ed880c4928": {
+          "fields": {
+            "indirizzo": "Dalla sede Municipale di via Roma all'intersezione con via del Santo",
+            "orario_testo": "08:00–18:00 (da verificare con il Comune)",
+            "ricorrenza_testo": "mensile - prima domenica del mese"
+          },
+          "identity": {
+            "citta": "Limena",
+            "nome": "Mercatino dell'antiquariato di Limena",
+            "provincia": "PD",
+            "regione": "Veneto",
+            "slug": "ve-calant-e60ffc57ed880c4928"
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "indirizzo",
+              "orario_testo",
+              "ricorrenza_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_ingest",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Limena",
+              "provincia": "PD",
+              "regione": "Veneto",
+              "slug": "ve-calant-e60ffc57ed880c4928"
+            },
+            "metodo": "id_fonte",
+            "riga_fonte": "ve-calant-e60ffc57ed880c4928",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "indirizzo": "Dalla sede Municipale di via Roma all'intersezione con via del Santo",
+              "orario_testo": "08:00–18:00 (da verificare con il Comune)",
+              "ricorrenza_testo": "mensile - prima domenica del mese"
+            }
+          }
+        },
+        "ve-calant-eeb98c1c06f6cd9405": {
+          "fields": {
+            "indirizzo": "Piazza V. Emanuele II",
+            "orario_testo": "",
+            "ricorrenza_testo": "mensile - prima domenica del mese"
+          },
+          "identity": {
+            "citta": "Rovigo",
+            "nome": "Mercatino dell'antiquariato di Rovigo",
+            "provincia": "RO",
+            "regione": "Veneto",
+            "slug": "ve-calant-eeb98c1c06f6cd9405"
+          },
+          "receipt": {
+            "ambito": "dataset",
+            "campi_gestiti": [
+              "indirizzo",
+              "ricorrenza_testo"
+            ],
+            "fonte": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+            "fonte_aggiornata_il": "2026-01-01",
+            "fonte_id": "veneto-calendario-antiquariato",
+            "gestore_campi": "source_contract_ingest",
+            "impronta_tipo": "publisher_parsed_json",
+            "letto_il": "2026-10-26",
+            "mercato": {
+              "citta": "Rovigo",
+              "provincia": "RO",
+              "regione": "Veneto",
+              "slug": "ve-calant-eeb98c1c06f6cd9405"
+            },
+            "metodo": "id_fonte",
+            "riga_fonte": "ve-calant-eeb98c1c06f6cd9405",
+            "schema": 1,
+            "sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+            "valori": {
+              "indirizzo": "Piazza V. Emanuele II",
+              "ricorrenza_testo": "mensile - prima domenica del mese"
+            }
+          }
+        }
+      },
+      "old_market_ids_preserved": 14107,
+      "schema": 1,
+      "source_eligible_candidates": 6,
+      "source_observations": {
+        "base_catalog_records": 14107,
+        "counts": {
+          "informational_schedule_unknown": 14,
+          "publisher_distinct_address_count": 37,
+          "raw_rows_scanned": 46,
+          "source_market_identities": 38,
+          "source_only_unambiguous_candidate_not_verified_event": 6
+        },
+        "directions_enabled": 0,
+        "evidence_refreshes_proposed": 0,
+        "examples_hashed": [
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "f22eed8649e65dfe49c3f23b698c9a59c2011bcb7304016cb2396249cbe8717b"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "new_market_calendar_unknown",
+            "source_identity_sha256": "0f332d889b841d5a33716f06790c1b5af0af522ac400aba6bc0254172bd7ae5c"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "e3bd64c931ce55be974c8fe794c49f3e23bf3f79a7ec47dcdef2b0d1a215c645"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "generic_city_market_day",
+            "source_identity_sha256": "b5504b9bbc6bdcac51df24c3e591dda7c6e50cd0329f18e259af0e6e6926f867"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "2250952d09e118cbd886b1c13b04c297ee5ebd659e1b895645321bad81363564"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "new_market_calendar_unknown",
+            "source_identity_sha256": "b0f70eb46734355c8b66b6ce5abcaf3327cdfa30e159de0350c04ee28deee4fc"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "56c75ebaaa69f8f2b32edeabcb34aa26b9271f22b80c13474bea9db5ee58cd6d"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "28be24cd680756a9e805f0b9d79d1968bae45ca9c18474aa15ace98839e2d356"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "generic_city_market_day",
+            "source_identity_sha256": "90385d1385d1f1a29c7cb9fe47fd285e44587312974c01996df7de254a5a8aea"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "new_market_calendar_unknown",
+            "source_identity_sha256": "876ceae943d54f962cc6756a0615a13cbe2f46c152905648dc204bf78df495fc"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "2f57e6370212ff53bc300616b329c4e6051846a6af2bf719d6c96aeef1b89efa"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "f4029213dbfd31012167c0cfe3bc39e6c3d2784c27b74386d8323fe638f79503"
+          }
+        ],
+        "existing_market_identities_deleted": 0,
+        "existing_market_ids_modified": 0,
+        "field_audit_counts": {
+          "indirizzo:new_source_value": 6,
+          "orario_testo:new_source_value": 4,
+          "orario_testo:source_value_unavailable": 2,
+          "ricorrenza_testo:new_source_value": 6
+        },
+        "managed_fields_proposed": 0,
+        "precise_coordinates_created": 0,
+        "profile_sha256": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
+        "publication_enabled": false,
+        "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+        "publisher_dataset_date": "2026-01-01",
+        "review_reason_counts": {
+          "existing_market_same_town_calendar": 7,
+          "existing_same_type_market_calendar_unknown": 1,
+          "generic_city_market_day": 6,
+          "new_market_calendar_unknown": 8,
+          "not_a_market_venue": 8,
+          "same_named_market_in_city": 8,
+          "venue_at_same_street_day": 2
+        },
+        "safe_candidates_not_published": 6,
+        "schema": 1,
+        "source_date_proof": {
+          "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+mercatini+usato+2026.pdf/7ca1a502-6de9-4e5e-a247-4ec2f3e6cf3d",
+          "document_year": 2026,
+          "landing_sha256": "249865681d4152d34e8b501b9eb4053d60b6f5585f4fd9cc8a4fa0c13f96d1e8",
+          "profile_sha256": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
+          "read_on": "2026-10-26",
+          "schema": 1,
+          "snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
+          "source_date": "2026-01-01",
+          "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+          "strategy": "landing_page_year_v1"
+        },
+        "source_id": "veneto-calendario-antiquariato",
+        "source_kind": "market_venue_month",
+        "source_license_automatically_verified": false,
+        "source_parsed_sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+        "source_read_on": "2026-10-26",
+        "source_schema_readonly": true,
+        "source_snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
+        "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+        "verified_openings_created": 0
+      },
+      "source_read_mode": "retrieved",
+      "source_read_on": "2026-10-26",
+      "status": "source_contract_approved_staged_only",
+      "updated_fields_count": 0,
+      "updates": [],
+      "verified_market_openings_created": 0
+    },
     "veneto-calendario-mercati": {
       "approval_sha256": "2810c921f1ca59d7f97486dbc22615a3334935c5f5b9e4ed2944ebdee7454a41",
       "deferred_candidate_count": 0,
       "deferred_candidate_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "fill_counts": {
         "deferred_to_next_run": 0,
-        "filled_orario_testo": 19,
-        "held_different_street": 61,
-        "held_market_type_not_ordinary": 154,
-        "held_no_official_market_town_day": 136,
+        "held_different_street": 56,
+        "held_market_type_not_ordinary": 161,
+        "held_no_official_market_town_day": 134,
         "held_official_market_not_annual_weekly": 15,
-        "held_several_catalog_markets_same_town_day": 86,
+        "held_several_catalog_markets_same_town_day": 83,
         "held_several_official_markets_same_town_day": 41,
         "kept_existing_indirizzo": 137,
-        "matched_markets": 19,
         "matched_nothing_to_record": 5,
-        "weekly_markets_screened": 691
+        "weekly_markets_screened": 688
       },
-      "filled_fields_count": 19,
-      "fills": [
-        {
-          "after_sha256": "a81012238d506e9e8efc76dae9d09a7303e801f223322dc71e6876328d0aa075",
-          "before_sha256": "4568d9f68e013fa42758cf1d38897a3e3c5c4be74045dfb13b9462628c3587f5",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:30–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Albaredo d'Adige",
-              "provincia": "VR",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-albaredo-d-adige-albaredo-d-adige-venerdi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-ab75d42d1285699f8d",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:30–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-albaredo-d-adige-albaredo-d-adige-venerdi",
-          "source_row": "ve-calreg-ab75d42d1285699f8d"
-        },
-        {
-          "after_sha256": "a130d9f65b7c4310faabb92c4de1b5a576fe55c5176001ddf651efe9306d516a",
-          "before_sha256": "14274930a99fc6fd6ecff66427ada53b3f591da7111065068438915065964988",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "07:30–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Arcugnano",
-              "provincia": "VI",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-arcugnano-arcugnano"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-e3eb2366c4f8f102d4",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "07:30–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-arcugnano-arcugnano",
-          "source_row": "ve-calreg-e3eb2366c4f8f102d4"
-        },
-        {
-          "after_sha256": "d6dd85c49ad0c4bd57eaf812a1b563cf932be85c520eba7801e82eefa6e73a41",
-          "before_sha256": "177a159b9afef00b34c5f39930b87ea50dd85cc98a17881f79c1f01ca5fb3187",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–14:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Cadoneghe",
-              "provincia": "PD",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-cadoneghe-cadoneghe"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-94dc977398d6e8c648",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–14:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-cadoneghe-cadoneghe",
-          "source_row": "ve-calreg-94dc977398d6e8c648"
-        },
-        {
-          "after_sha256": "e0c8d45bdaf0f47e48d84d7cf104f061f4f35cb93e3a2d1c576b073a24462643",
-          "before_sha256": "44a83f7a29798e758311bd5135d5b3b00c566748edf6d3bdb6d8a24a3c8c4e58",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–14:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Campolongo Maggiore",
-              "provincia": "VE",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-campolongo-maggiore-campolongo-maggiore-lunedi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-97f5cefc1dec174876",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–14:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-campolongo-maggiore-campolongo-maggiore-lunedi",
-          "source_row": "ve-calreg-97f5cefc1dec174876"
-        },
-        {
-          "after_sha256": "57a1ed3aa83151c78ef5d2cde71288a81dd13d67773add0be46e91d2ebe736d4",
-          "before_sha256": "0227489944703314b5ee983af9e038c51dabd2319d58d1bf6632975ccbcd0af4",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Caprino Veronese",
-              "provincia": "VR",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-caprino-veronese-caprino-veronese-sabato"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-52ed9e1a5346ef92fc",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-caprino-veronese-caprino-veronese-sabato",
-          "source_row": "ve-calreg-52ed9e1a5346ef92fc"
-        },
-        {
-          "after_sha256": "3583fab3e2b7dec6105b13fb1e02cbe3a1628e104059065b7b10ae0870e8d8d8",
-          "before_sha256": "d6cd0fe56a1f9b459a497943b07fafa021af8c296a1a87db0e5417f79c58733e",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Casale di Scodosia",
-              "provincia": "PD",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-casale-di-scodosia-casale-di-scodosia-lunedi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-048fb492941cb360c5",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-casale-di-scodosia-casale-di-scodosia-lunedi",
-          "source_row": "ve-calreg-048fb492941cb360c5"
-        },
-        {
-          "after_sha256": "9dde260e7fc7e71ca72103539a18a10f8d4c0f8c76e68508a892f9e113eaecda",
-          "before_sha256": "f5a620d9583ac1da88472e1ff63869ff5c606e71840d20189945db28d8507d17",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–14:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Codevigo",
-              "provincia": "PD",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-codevigo-codevigo"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-f6b2769fc2c1b4aea4",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–14:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-codevigo-codevigo",
-          "source_row": "ve-calreg-f6b2769fc2c1b4aea4"
-        },
-        {
-          "after_sha256": "140280d0950166e4b1b766dc532a03e263acb57e118ac262e91460d3d1af9f6d",
-          "before_sha256": "f18466e67500611a8c94552ee30b8c3b967e8b3b852a02b6956f88d5dac2b725",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "07:30–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Fontanelle",
-              "provincia": "TV",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-fontanelle-fontanelle-giovedi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-701adab418e9347314",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "07:30–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-fontanelle-fontanelle-giovedi",
-          "source_row": "ve-calreg-701adab418e9347314"
-        },
-        {
-          "after_sha256": "7fb076198cad66d1dd043176a0e63e90d0b162792078a026cf66907242f9b136",
-          "before_sha256": "a8b3b776489d7cfebb6843e3bc90cb41c9e8a9c80802c06977ed16b04cd6de96",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Istrana",
-              "provincia": "TV",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-istrana-istrana-giovedi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-dae2748dd356bbd8de",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-istrana-istrana-giovedi",
-          "source_row": "ve-calreg-dae2748dd356bbd8de"
-        },
-        {
-          "after_sha256": "54f78172c752957e44a50e7e016a9352c5748f69558ac8b2fb2252b7d1444f97",
-          "before_sha256": "89551646908958fccfde7d8dbce556a9a94340e93cd61c72c372c076c37c4217",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "07:30–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Marano Vicentino",
-              "provincia": "VI",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-marano-vicentino-marano-vicentino-venerdi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-cac2ca45552f6c71e1",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "indirizzo": "Piazza Silva",
-              "orario_testo": "07:30–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-marano-vicentino-marano-vicentino-venerdi",
-          "source_row": "ve-calreg-cac2ca45552f6c71e1"
-        },
-        {
-          "after_sha256": "521dbd478df0f02bd9cc521446abaf6429c233ae618da741b19c0bb811ae73a9",
-          "before_sha256": "b493515031a039f25d67d5b3c9e1f13d5c8c51477f28082c73560393dffae622",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Montebello Vicentino",
-              "provincia": "VI",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-montebello-vicentino-montebello-vicentino-mercoledi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-8485fb84741f58a41e",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-montebello-vicentino-montebello-vicentino-mercoledi",
-          "source_row": "ve-calreg-8485fb84741f58a41e"
-        },
-        {
-          "after_sha256": "7b2a00442c7b8a054b513f04c77ebe9dd8aba56b14d9d1a65ecb5ed3a4b56fb7",
-          "before_sha256": "d70262b0c1f45f842eef81ccee1afdb7e8f4230ff453947cab8ad873c63c06f8",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "06:30–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Montecchio Maggiore",
-              "provincia": "VI",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-montecchio-maggiore-montecchio-maggiore-venerdi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-ebeb8a4bc42ae3bfa2",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "06:30–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-montecchio-maggiore-montecchio-maggiore-venerdi",
-          "source_row": "ve-calreg-ebeb8a4bc42ae3bfa2"
-        },
-        {
-          "after_sha256": "21dad4e808cd5f29f73bd88660610740072ce620d77ac1855ae35e0275641d77",
-          "before_sha256": "d38f1fa5dab9950322b02fa2372d3902a41bf11bdf9f9ddf1adb1ea5b75f09b6",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "06:30–13:30 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Recoaro Terme",
-              "provincia": "VI",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-recoaro-terme-recoaro-terme-giovedi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-94e5e5d6b1180d374e",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "06:30–13:30 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-recoaro-terme-recoaro-terme-giovedi",
-          "source_row": "ve-calreg-94e5e5d6b1180d374e"
-        },
-        {
-          "after_sha256": "832f307af66fc249601773b4df79a679c3a1a5425a9b6a72f83932f59550631d",
-          "before_sha256": "38bdf54319cc3aaa58ac98a72305152cddd5e37fcb8d85fc07dd9e9421479fc0",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:30 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Sanguinetto",
-              "provincia": "VR",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-sanguinetto-sanguinetto-mercoledi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-0a5817ba23a7ef9f71",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "indirizzo": "Piazza Nascimbeni",
-              "orario_testo": "08:00–13:30 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-sanguinetto-sanguinetto-mercoledi",
-          "source_row": "ve-calreg-0a5817ba23a7ef9f71"
-        },
-        {
-          "after_sha256": "1228ffe0b933d9d632f38aaf612b89f2973b94369cbcd9a4b8c69774c0efe856",
-          "before_sha256": "9998d0b6a1f98e329a73072128a61fb16b26ec65363ef948ee5c3d405ba70989",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Sovizzo",
-              "provincia": "VI",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-sovizzo-sovizzo"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-053ea6149188745f04",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-sovizzo-sovizzo",
-          "source_row": "ve-calreg-053ea6149188745f04"
-        },
-        {
-          "after_sha256": "e62982237c9034f8859e42d5c81dba9e694587cc07de1578afcce44f6e5073b3",
-          "before_sha256": "60cc06cf2ba3d63a4ea97e718ef1d55f85ea67a9750cbdcb0c7ed3fe52dd1de5",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Stienta",
-              "provincia": "RO",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-stienta-stienta-venerdi"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-095d40bdafebc46776",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-stienta-stienta-venerdi",
-          "source_row": "ve-calreg-095d40bdafebc46776"
-        },
-        {
-          "after_sha256": "c101109e346f733b625c9c974dd443d8485232af977a9f727b166d0419c10ec9",
-          "before_sha256": "b150263aa040bd00413235474b0c91b8b16a1b8de0ea9256476271e2775b4f11",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–14:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Valeggio sul Mincio",
-              "provincia": "VR",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-valeggio-sul-mincio-valeggio-sul-mincio-sabato"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-8954ed14583720af4e",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–14:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-valeggio-sul-mincio-valeggio-sul-mincio-sabato",
-          "source_row": "ve-calreg-8954ed14583720af4e"
-        },
-        {
-          "after_sha256": "44c7217819181e3572e3730e7bea59d3c6561c840fddebed8fb5bcc3a45781e7",
-          "before_sha256": "eb9940b698b2064cbe4d22f2e05bd2947e68729bf4a8aaa045710b19bbd52b5f",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "08:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Zero Branco",
-              "provincia": "TV",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-zero-branco-zero-branco-sabato"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-014fd50bbeab2e02ed",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "08:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-zero-branco-zero-branco-sabato",
-          "source_row": "ve-calreg-014fd50bbeab2e02ed"
-        },
-        {
-          "after_sha256": "1560c415847f90aa2a468d9d938d2d7f2bfe67ed541aa9c229f532ec86cdbd10",
-          "before_sha256": "dd160fe18c4c290e36bc7a3a1e444f62d566792a0f1d6584055125628186b17c",
-          "changed_fields": {
-            "orario_testo": {
-              "after": "07:00–13:00 (da verificare con il Comune)",
-              "before": "La mattina"
-            }
-          },
-          "receipt": {
-            "ambito": "dataset",
-            "campi_gestiti": [
-              "orario_testo"
-            ],
-            "fonte": "Regione del Veneto – Calendario regionale dei mercati",
-            "fonte_aggiornata_il": "2026-01-01",
-            "fonte_id": "veneto-calendario-mercati",
-            "gestore_campi": "source_contract_town_day",
-            "impronta_tipo": "publisher_parsed_json",
-            "letto_il": "2026-10-26",
-            "mercato": {
-              "citta": "Zevio",
-              "provincia": "VR",
-              "regione": "Veneto",
-              "slug": "mercato-settimanale-di-zevio-zevio-domenica"
-            },
-            "metodo": "comune_provincia_giorno_univoco",
-            "riga_fonte": "ve-calreg-321145081f46000560",
-            "schema": 1,
-            "sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-            "url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
-            "valori": {
-              "orario_testo": "07:00–13:00 (da verificare con il Comune)"
-            }
-          },
-          "slug": "mercato-settimanale-di-zevio-zevio-domenica",
-          "source_row": "ve-calreg-321145081f46000560"
-        }
-      ],
+      "filled_fields_count": 0,
+      "fills": [],
       "independent_static_validation_required": true,
       "new_geocodes_created": 0,
       "new_market_ids": [],
       "new_navigation_enabled": 0,
       "new_venue_evidence": {},
-      "old_market_ids_preserved": 14106,
+      "old_market_ids_preserved": 14113,
       "schema": 1,
       "source_eligible_candidates": 0,
       "source_observations": {
-        "base_catalog_records": 14106,
+        "base_catalog_records": 14113,
         "counts": {
           "already_in_catalog_exact_source_id": 94,
           "informational_schedule_unknown": 1,
@@ -1603,7 +1676,7 @@
         "review_reason_counts": {
           "duplicate_publisher_identity": 2,
           "existing_market_same_locality_day": 13,
-          "existing_market_same_town_day": 231,
+          "existing_market_same_town_day": 230,
           "generic_city_market_day": 42,
           "incomplete_venue_identity": 4,
           "municipality_not_in_istat": 5,
@@ -1611,14 +1684,14 @@
           "not_a_market_venue": 116,
           "same_named_market_in_city": 78,
           "temporary_location_unreconciled": 3,
-          "venue_at_same_street_day": 109
+          "venue_at_same_street_day": 110
         },
         "safe_candidates_not_published": 0,
         "schema": 1,
         "source_date_proof": {
           "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+regionale+marcati+2026.pdf/be79e5c1-ceae-4e76-8207-3b49630ae080",
           "document_year": 2026,
-          "landing_sha256": "bd2b81d797575cefae9ac9df13c888142eb44f3501d9785a40f894416c13f5ed",
+          "landing_sha256": "249865681d4152d34e8b501b9eb4053d60b6f5585f4fd9cc8a4fa0c13f96d1e8",
           "profile_sha256": "fec52e1016df400237911fd1c85bdaa5a155cf08d97e53d9ea18a47598098a4d",
           "read_on": "2026-10-26",
           "schema": 1,
@@ -1650,17 +1723,17 @@
   "reference_date": "2026-10-26",
   "requires_independent_release_qa": true,
   "schema": 1,
-  "source_contract_sha256": "00c6a13db73452eee615d1df6e908d06037e7a4ad10350cbadf74566cc97aef0",
-  "source_contracts_active": 3,
-  "source_contracts_approved": 3,
-  "source_registry_sha256": "a32f24aaadca24b12dbe0786a09ffe4af6dca3de86f518fcafa9c3380792d878",
+  "source_contract_sha256": "9fe8b56d4c0940ef5d9ba9d7e88e14bcf52300e8611a815e94815fcec8d7ab43",
+  "source_contracts_active": 4,
+  "source_contracts_approved": 4,
+  "source_registry_sha256": "26078852b33237b82b87ca9da8391af9941712d94d91755f65737e02198e8ee9",
   "status_counts": {
-    "approved_sources_reconciled": 3,
+    "approved_sources_reconciled": 4,
     "eligible_venues_deferred_to_next_run": 0,
     "existing_source_evidence_refreshed": 3,
     "existing_source_fields_updated": 0,
-    "new_source_venues_staged_for_DEV": 0,
-    "other_publishers_market_fields_filled": 19
+    "new_source_venues_staged_for_DEV": 6,
+    "other_publishers_market_fields_filled": 4
   },
   "updated_market_ids": []
 }
