@@ -7,16 +7,18 @@ Coordinates can veto a join; they never establish market identity.
 No forecast, human verification, original source, or identity changed.
 
 - Held official rows screened: **1360**
-- Existing market cards with added information: **0**
-- Missing hours supplied from official regional source: **0**
-- Missing/vague venues supplied from the complete source: **0**
+- Existing market cards with added information: **664**
+- Missing hours supplied from official regional source: **2**
+- Missing/vague venues supplied from the complete source: **2**
 - Managed venues updated from the same source ID: **0**
-- Official source attributions attached: **0**
-- exact_matches: 150
-- existing_hours_differ_from_official: 2
-- existing_hours_preserved: 150
-- held_unique_town_coordinates_conflict: 59
-- held_unique_town_daypart_or_place_disagrees: 39
+- Official source attributions attached: **4**
+- addresses_added: 2
+- exact_matches: 152
+- existing_hours_differ_from_official: 4
+- existing_hours_preserved: 152
+- field_observation_records_updated: 662
+- held_unique_town_coordinates_conflict: 56
+- held_unique_town_daypart_or_place_disagrees: 40
 - held_unique_town_existing_venue_evidence: 1390
 - held_unique_town_multiple_eligible_sources: 34
 - held_unique_town_no_eligible_source: 175
@@ -24,10 +26,12 @@ No forecast, human verification, original source, or identity changed.
 - held_unique_town_raw_unknown_weekday_competitor: 22
 - held_unique_town_target_identity_incomplete: 60
 - held_unique_town_unmanaged_indirizzo: 273
-- municipality_day_unique_matches: 512
-- observed_spelling_matches: 25
-- skipped_coordinates_conflict: 30
-- skipped_legacy_without_explicit_annual_weekday: 295
+- hours_added: 2
+- municipality_day_unique_matches: 514
+- observed_spelling_matches: 26
+- official_source_attributions_added: 4
+- skipped_coordinates_conflict: 28
+- skipped_legacy_without_explicit_annual_weekday: 296
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
 - skipped_no_exact_legacy_market: 638
@@ -35,6 +39,7 @@ No forecast, human verification, original source, or identity changed.
 - skipped_official_raw_identity_unproved_or_conflicting: 56
 - skipped_official_without_explicit_annual_weekday: 523
 - unique_town_targets_screened: 2303
+- vague_hours_replaced: 2
 
 ## Example exact matches
 

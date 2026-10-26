@@ -3,7 +3,7 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-25**.
+- Data della misura: **2026-10-26**.
 - Schede totali: **14,106**.
 - Fonti misurate (nome e dominio): **89**.
 - Importazione registrata entro 30 giorni: **281**.
@@ -15,8 +15,8 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Fonte più vecchia del limite di 540 giorni: **52**.
 - Schede con età del contenuto della fonte non comprovata: **12,747**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,782**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,869**.
+- Schede con date future previste: **11,594**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,681**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,7 +25,6 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
-- Da correggere: publisher_metadata_unavailable_or_changed
 - Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
@@ -34,7 +33,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 |---|---|---|
 | Comune di Bologna | metadata_checked | 2025-04-02 |
 | Regione Lombardia | metadata_checked | 2026-10-20 |
-| Roma Capitale | needs_review | non disponibile |
+| Roma Capitale | metadata_checked | 2022-07-04 |
 
 ## Copertura di tutte le fonti del catalogo
 
@@ -138,9 +137,9 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1181 | 3659 | 1663 | 7485 | 118 |
-| Orari | 1892 | 2280 | 1479 | 7896 | 559 |
-| Giorni | 973 | 2813 | 1658 | 8522 | 140 |
+| Sede | 1177 | 3567 | 1703 | 7528 | 131 |
+| Orari | 1857 | 2743 | 1495 | 7432 | 579 |
+| Giorni | 973 | 2739 | 1675 | 8561 | 158 |
 
 ## Funzionamento del recupero automatico
 
@@ -148,10 +147,10 @@ URL primari distinti nel catalogo: 5923. Le pagine riconosciute vengono lette un
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 0 | 0 |
-| bassa-romagna-weekly | retrieved | 0 | 0 |
+| bassa-romagna-farmers | retrieved | 4 | 0 |
+| bassa-romagna-weekly | retrieved | 11 | 0 |
 
-Conflitti mantenuti in revisione: 15.
+Conflitti mantenuti in revisione: 6.
 
 
 ## Limiti del sistema

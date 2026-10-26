@@ -6,9 +6,9 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 
 - Schede originali: **14.106**.
 - ID originali preservati: **14.106**.
-- Gruppi supportati da prove forti: **872**.
-- Pulsanti ripetuti evitati nella vista delle sedi: **1030**.
-- Schede originali ancora apribili dietro tali gruppi: **1902**.
+- Gruppi supportati da prove forti: **873**.
+- Pulsanti ripetuti evitati nella vista delle sedi: **1031**.
+- Schede originali ancora apribili dietro tali gruppi: **1904**.
 - Campi città evidentemente malformati protetti nella UI: **2**.
 - Eventi o verifiche dichiarati confermati: **0**.
 
@@ -18,7 +18,7 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 |---|---:|---:|
 | Emilia-Romagna | 4 | 6 |
 | Liguria | 27 | 32 |
-| Lombardia | 616 | 675 |
+| Lombardia | 617 | 676 |
 | Piemonte | 100 | 155 |
 | Sicilia | 1 | 2 |
 | Toscana | 44 | 63 |

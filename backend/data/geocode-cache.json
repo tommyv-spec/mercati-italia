@@ -1696,6 +1696,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA DIVISIONE AQUI, Erbusco, Italia"
   },
+  "piazza domenico peranni|palermo|pa": {
+   "class": "highway",
+   "lat": 38.114816,
+   "lng": 13.352803,
+   "name": "Piazza Domenico Peranni, Il Capo, I Circoscrizione, Palermo, Sicilia, 90134, Italia",
+   "osm": "way/40631060",
+   "queried_on": "2026-10-26",
+   "query": "piazza Domenico Peranni, Palermo, Italia",
+   "type": "pedestrian"
+  },
   "piazza don bosco|bolzano|bz": {
    "class": "highway",
    "lat": 46.48875,
@@ -1940,6 +1950,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA Generale Sacconi, Bibbiena, Italia",
    "type": "square"
+  },
+  "piazza ghiaia|parma|pr": {
+   "class": "highway",
+   "lat": 44.802742,
+   "lng": 10.324652,
+   "name": "Piazza Ghiaia, Parma Centro, Parma, Emilia-Romagna, 43121, Italia",
+   "osm": "way/26326362",
+   "queried_on": "2026-10-26",
+   "query": "piazza Ghiaia, Parma, Italia",
+   "type": "pedestrian"
   },
   "piazza ghiberti|firenze|fi": {
    "class": "shop",
@@ -2386,6 +2406,16 @@
    "query": "piazza Massari, Bari, Italia",
    "type": "residential"
   },
+  "piazza mattei|acqualagna|pu": {
+   "class": "place",
+   "lat": 43.616928,
+   "lng": 12.670722,
+   "name": "Piazza Enrico Mattei, Fossato, Acqualagna, Pesaro e Urbino, Marche, Italia",
+   "osm": "way/977510791",
+   "queried_on": "2026-10-26",
+   "query": "Piazza Mattei, Acqualagna, Italia",
+   "type": "square"
+  },
   "piazza matteotti|palmi|rc": {
    "class": "highway",
    "lat": 38.357996,
@@ -2780,6 +2810,21 @@
    "queried_on": "2026-10-25",
    "query": "Piazza Sandro Pertini, Siena, Italia",
    "type": "square"
+  },
+  "piazza sandro pertini|voghiera|fe": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-10-26",
+   "query": "Piazza Sandro Pertini, Voghiera, Italia"
+  },
+  "piazza sant eustorgio|milano|mi": {
+   "class": "highway",
+   "lat": 45.453653,
+   "lng": 9.180762,
+   "name": "Piazza Sant'Eustorgio, Vetra, Ticinese, Municipio 1, Milano, Rodano, Milano, Lombardia, 20122, Italia",
+   "osm": "relation/3516830",
+   "queried_on": "2026-10-26",
+   "query": "piazza Sant'Eustorgio, Milano, Italia",
+   "type": "pedestrian"
   },
   "piazza santa croce|firenze|fi": {
    "class": "highway",
@@ -4771,6 +4816,16 @@
    "query": "VIA PER INCIRANO, Nova Milanese, Italia",
    "type": "tertiary"
   },
+  "via pertini|pistoia|pt": {
+   "class": "highway",
+   "lat": 43.927194,
+   "lng": 10.913335,
+   "name": "Via Sandro Pertini, Roccon Rosso, Bonelle, Pistoia, Toscana, 51100, Italia",
+   "osm": "way/231530115",
+   "queried_on": "2026-10-26",
+   "query": "via Pertini, Pistoia, Italia",
+   "type": "secondary"
+  },
   "via pesa del lino|monza|mb": {
    "class": "highway",
    "lat": 45.584755,
@@ -5231,6 +5286,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA Thaon de Revel, Parabiago, Italia"
   },
+  "via tirino|pescara|pe": {
+   "class": "highway",
+   "lat": 42.439116,
+   "lng": 14.206814,
+   "name": "Via Tirino, Fontanelle, Pescara, Abruzzo, 65131, Italia",
+   "osm": "way/820132581",
+   "queried_on": "2026-10-26",
+   "query": "via Tirino, Pescara, Italia",
+   "type": "tertiary"
+  },
   "via tito speri|bagolino|bs": {
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
@@ -5685,6 +5750,11 @@
    "queried_on": "2026-10-25",
    "query": "Viale Spartaco Lavagnini, Firenze, Italia",
    "type": "primary"
+  },
+  "viale tirreno|grosseto|gr": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-10-26",
+   "query": "viale Tirreno, Grosseto, Italia"
   },
   "viale umberto i|atri|te": {
    "class": "highway",

@@ -204,21 +204,34 @@
       "status": "pending"
     },
     {
-      "attempts": 0,
+      "attempts": 2,
       "city_keys": [
         "campobasso"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-26",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-campobasso--via-e--gammieri-.html",
+      "next_url": "https://www.happings.com/it/mercati-settimanali-a-campobasso-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-campobasso--via-e--gammieri-.html",
       "proof": null,
       "province": "CB",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-campobasso--via-e--gammieri-/",
+          "observed_on": "2026-10-26",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-campobasso--via-e--gammieri-.html",
+          "status_code": 301
+        },
+        {
+          "location_url": "https://www.happings.com/it/mercati-settimanali-a-campobasso-e-provincia/",
+          "observed_on": "2026-10-26",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-campobasso--via-e--gammieri-/",
+          "status_code": 301
+        }
+      ],
       "region": "molise",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,

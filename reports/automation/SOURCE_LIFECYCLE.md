@@ -4,7 +4,7 @@ Le fonti hanno un contratto per schema, identità, formato, granularità, data e
 Nessuna riga di venditore, concessione o testo grezzo viene persistita qui.
 La data di lettura non prova che un mercato abbia aperto oggi.
 
-- Schede nazionali confrontate: **14,009**
+- Schede nazionali confrontate: **14,106**
 - Fonti controllate: **3**
 - Record di mercato importati da questo audit: **0**
 - Aperture individuali verificate: **0**

@@ -39,10 +39,10 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-10-25",
-      "column_fingerprint": null,
-      "status": "needs_review",
-      "viability": "manual_schema_review_required"
+      "checked_date": "2026-10-26",
+      "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
+      "status": "schema_preview_only",
+      "viability": "venue_inventory_missing_visit_days"
     },
     "2e41941b-80fb-4ded-8330-427383f725f8": {
       "checked_date": "2026-10-12",
@@ -75,7 +75,7 @@
       "viability": "manual_schema_review_required"
     },
     "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7": {
-      "checked_date": "2026-10-25",
+      "checked_date": "2026-10-26",
       "column_fingerprint": null,
       "status": "needs_review",
       "viability": "manual_schema_review_required"
@@ -141,7 +141,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "bf96174b-98d8-4c43-ae26-b6ba24403f05": {
-      "checked_date": "2026-10-17",
+      "checked_date": "2026-10-26",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -225,7 +225,7 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-25",
+  "reference_date": "2026-10-26",
   "reports": [
     {
       "adapter_enabled": false,
@@ -250,78 +250,102 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "4c43a70b-81ab-4a65-815a-993f52767166",
+      "id": "bf96174b-98d8-4c43-ae26-b6ba24403f05",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 57656,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/db18408f-27c6-40c8-87f9-ab3dcba465df.csv",
+      "sample_bytes": 682,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b5ad98f6-8b75-4c46-8654-eee0512004ac.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Noventa Padovana",
+      "title": "Fiere e mercati - Comune di Rovere Veronese",
       "truncated": false
     },
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
-        "municipality": [
-          "comune"
+        "address": [
+          "INDIRIZZO"
         ],
-        "statistics_count": [
-          "mercati",
-          "attivazioni",
-          "cessazioni"
+        "district": [
+          "Municipio"
         ],
-        "statistics_year": [
-          "anno"
+        "hours": [
+          "Apertura_Lunedi",
+          "Chiusura_Lunedi",
+          "Apertura_Martedi",
+          "Chiusura_Martedi",
+          "Apertura_Mercoledi",
+          "Chiusura_Mercoledi"
+        ],
+        "market_type": [
+          "TIPOLOGIA"
+        ],
+        "name": [
+          "Nome_Mercato"
+        ],
+        "notes": [
+          "Altre_indicazioni",
+          "Note_mercato"
         ]
       },
       "fields": [
-        "comune",
-        "provincia",
-        "anno",
-        "mercati",
-        "totale",
-        "attivazioni",
-        "cessazioni",
-        "posteggi",
-        "alimentare_totale",
-        "alimentare_attivazioni",
-        "alimentare_cessazioni",
-        "nonalimentare_totale",
-        "nonalimentare_attivazioni",
-        "nonalimentare_cessazioni",
-        "produttori_totale",
-        "produttori_attivazioni",
-        "produttori_cessazioni"
+        "Municipio",
+        "Nome_Mercato",
+        "INDIRIZZO",
+        "Civico",
+        "Esp_Civico",
+        "Altre_indicazioni",
+        "CAP",
+        "TIPOLOGIA",
+        "Note_mercato",
+        "POSTEGGI_TOTALI",
+        "POSTEGGI_OCCUPATI",
+        "NUMERO_OPERATORI",
+        "POSTEGGI_ALIMENTARI",
+        "POSTEGGI_NON_ALIMENTARI",
+        "Apertura_Lunedi",
+        "Chiusura_Lunedi",
+        "Apertura_Martedi",
+        "Chiusura_Martedi",
+        "Apertura_Mercoledi",
+        "Chiusura_Mercoledi",
+        "Apertura_Giovedi",
+        "Chiusura_Giovedi",
+        "Apertura_Venedi",
+        "Chiusura_Venedi",
+        "Apertura_Sabato",
+        "Chiusura_Sabato",
+        "Note_orari",
+        "AGGIORNATO"
       ],
       "format": "CSV",
-      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
+      "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
       "review_blockers": [
-        "explicit_market_name_missing"
+        "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
-      "schema_viability": "historical_aggregate_not_venues",
+      "sample_bytes": 38408,
+      "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
+      "schema_viability": "venue_inventory_missing_visit_days",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati mensili",
-      "truncated": true
+      "title": "Dati sui Mercati Rionali",
+      "truncated": false
     },
     {
       "adapter_enabled": false,
-      "error": "TimeoutError: The read operation timed out",
+      "error": "HTTPError: HTTP Error 500: INTERNAL SERVER ERROR",
       "events_confirmed": 0,
       "field_hints": {},
       "fields": [],
       "format": "CSV",
-      "id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
-      "sample_url": "https://dati.comune.roma.it/catalog/it/dataset/e2e30174-ba7f-4319-bf4a-c13f80278c0c/resource/61ae5f8b-8ac5-44c0-ad82-6d342d0c45d6/download/mercati_rionali_giugno_2022.csv",
+      "id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
+      "sample_url": "https://dati.lazio.it/dataset/5cb467ed-a783-4507-a36a-c0a0f6a7d9a7/resource/97f6ae01-f57f-49e7-a713-349d8fce8160/download/oscomercatigiornalieri.csv",
       "source_license_verified": false,
       "status": "needs_review",
-      "title": "Dati sui Mercati Rionali"
+      "title": "Censimento dei mercati giornalieri"
     }
   ],
   "schema": 1,
