@@ -22,6 +22,7 @@ MAX_NODES = 60_000
 MAX_FIELD = 20_000
 MAX_DATES = 600
 PREFIX = "#post-content .mercatini-mostre-"
+SERVED_STAMP_DAYS = 7  # cached pages carry the day they were built; seen up to 2 days old
 MONTHS = dict(zip(("gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
                    "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"), range(1, 13)))
 MONTH = "(?:" + "|".join(MONTHS) + ")"
@@ -225,10 +226,14 @@ def _bound_ranges(value, *, evidence):
 
 
 def _explicit_text_dates(value):
-    """Parse only a complete single date or a same-month, explicit-year range."""
+    """Parse only a complete single date, a same-month explicit-year range, or two
+    complete dates ("31 ottobre 2026 - 1 novembre 2026")."""
     day = _italian_day(value)
     if day:
         return [(day, day)]
+    ends = [_italian_day(part) for part in re.split(r"\s+[-–—]\s+", _clean(value))]
+    if len(ends) == 2 and all(ends):
+        return [tuple(ends)] if ends[0] <= ends[1] else []
     match = re.fullmatch(r"(\d{1,2})\s*[-–—]\s*(\d{1,2})\s+(" + MONTH + r")\s+(\d{4})", _clean(value), re.I)
     if match:
         try:
@@ -553,9 +558,10 @@ def parse_detail(html, *, requested_url, final_url=None, read_on=None):
     elif event["calendar_rules"]:
         event["calendar_scope"] = "recurring_statement_only"
     schema_start, schema_end = _iso_day(schema.get("startDate")), _iso_day(schema.get("endDate"))
+    # The stamp is the day the (possibly cached, up to a few days old) page was built.
     served_day = bool(read_on and schema_start and schema_start == schema_end
                       and (schema_start, schema_end) not in pairs
-                      and abs((date.fromisoformat(schema_start) - read_on).days) <= 1)
+                      and -SERVED_STAMP_DAYS <= (date.fromisoformat(schema_start) - read_on).days <= 1)
     if served_day:
         warnings.append("schema_date_is_read_day")
     elif schema_start and schema_end:

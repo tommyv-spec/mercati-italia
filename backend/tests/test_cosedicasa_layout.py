@@ -71,13 +71,13 @@ class CoseDiCasaLayoutTests(unittest.TestCase):
         sample = SAMPLES["todi"]
         read = lambda day: parse_detail(html("todi"), requested_url=sample["requested_url"],
                                         final_url=sample["final_url"], read_on=day)
-        for day in (date(2026, 10, 20), date(2026, 10, 21)):
+        for day in (date(2026, 10, 20), date(2026, 10, 21), date(2026, 10, 22)):  # a cached copy too
             parsed = read(day)
             self.assertEqual(parsed["status"], "parsed")
             self.assertEqual(parsed["conflicts"], [])
             self.assertIn("schema_date_is_read_day", parsed["warnings"])
             self.assertEqual([o["date"] for o in parsed["event"]["occurrences"]], ["2027-03-21"])
-        codes = {c["code"] for c in read(date(2026, 10, 25))["conflicts"]}
+        codes = {c["code"] for c in read(date(2026, 11, 5))["conflicts"]}
         self.assertIn("schema_dates_not_visible_calendar", codes)
         bologna = parse_detail(html("bologna"), requested_url=SAMPLES["bologna"]["requested_url"],
                                read_on=date(2026, 10, 20))
@@ -266,6 +266,13 @@ class CoseDiCasaLayoutTests(unittest.TestCase):
         self.assertIn("08:30–18:00", parsed["event"]["hours_text"])
         self.assertIn("solo il sabato", parsed["event"]["hours_text"])
         self.assertTrue(any(v["kind"] == "hours_qualification" for v in parsed["event"]["scope_statements"]))
+
+    def test_next_dates_written_as_two_complete_dates_are_one_range(self):
+        from cosedicasa_layout import _explicit_text_dates as read
+        self.assertEqual(read("31 ottobre 2026 - 1 novembre 2026"), [("2026-10-31", "2026-11-01")])
+        self.assertEqual(read("5-6 ottobre 2026"), [("2026-10-05", "2026-10-06")])
+        self.assertEqual(read("1 novembre 2026 - 31 ottobre 2026"), [])
+        self.assertEqual(read("31 ottobre - 1 novembre"), [])  # no year: never guessed
 
     def test_missing_or_duplicate_primary_wrapper_is_unsupported(self):
         for markup in (html("bologna").replace('id="post-content"', 'id="other-content"'),
