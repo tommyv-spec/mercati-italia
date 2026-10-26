@@ -19,6 +19,14 @@ from merge_catalog import load_existing
 from validate_static import validate
 
 
+def expected_marker(sid, baseline, markers):
+    """The release carries exactly the reported marker (today's exporter may already
+    derive the same one from the unchanged input), else the baseline's. A record the
+    enrichment made the visible card of a swapped pair carries none."""
+    want=markers.get(sid,baseline.get("duplicato_di",""))
+    return "" if sid not in markers and want and markers.get(want)==sid else want
+
+
 def build(repo, snapshot, out, *, today):
     repo,snapshot,out=Path(repo),Path(snapshot),Path(out)
     manifest=repo/"public/data/v1/manifest.json"
@@ -64,8 +72,7 @@ def build(repo, snapshot, out, *, today):
             rolled+=1
         got=new.get("duplicato_di","")
         exact_twin=bool(got) and got in new_by_id and same_market(new_by_id[got],new)
-        if (sid in markers and "duplicato_di" not in changed) or (
-                got!=markers.get(sid,old.get("duplicato_di","")) and not exact_twin):
+        if got!=expected_marker(sid,old,markers) and not exact_twin:
             raise ValueError("Duplicate marker differs from the enrichment report: "+sid)
         entry=expected.get(sid)
         if entry:
