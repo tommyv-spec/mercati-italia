@@ -4,19 +4,19 @@
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
 - Data della misura: **2026-10-26**.
-- Schede totali: **14,106**.
+- Schede totali: **14,107**.
 - Fonti misurate (nome e dominio): **89**.
-- Importazione registrata entro 30 giorni: **281**.
-- Lettura della fonte registrata entro 30 giorni: **1,463**.
+- Importazione registrata entro 30 giorni: **282**.
+- Lettura della fonte registrata entro 30 giorni: **1,464**.
 - Fonte datata entro 30 giorni: **1,205**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,204**.
 - Schede con aggiornamento soltanto del dataset: **1,345**.
 - Fonte datata tra 31 e 365 giorni: **101**.
 - Fonte più vecchia del limite di 540 giorni: **52**.
-- Schede con età del contenuto della fonte non comprovata: **12,747**.
+- Schede con età del contenuto della fonte non comprovata: **12,748**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,594**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,681**.
+- Schede con date future previste: **11,621**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,708**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,6 +25,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
+- Da correggere: publisher_metadata_unavailable_or_changed
 - Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
@@ -33,7 +34,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 |---|---|---|
 | Comune di Bologna | metadata_checked | 2025-04-02 |
 | Regione Lombardia | metadata_checked | 2026-10-20 |
-| Roma Capitale | metadata_checked | 2022-07-04 |
+| Roma Capitale | needs_review | non disponibile |
 
 ## Copertura di tutte le fonti del catalogo
 
@@ -79,7 +80,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | citynews_vicenzatoday.it | www.vicenzatoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | cosafareafirenze.it | www.cosafareafirenze.it | 22 | 0 | 0 | 22 | 0 |
-| cosedicasa.com | www.cosedicasa.com | 433 | 0 | 0 | 433 | 1 |
+| cosedicasa.com | www.cosedicasa.com | 434 | 0 | 0 | 434 | 2 |
 | dati.comune.roma.it | dati.comune.roma.it | 70 | 0 | 0 | 70 | 0 |
 | emiliaromagnaturismo.it | emiliaromagnaturismo.it | 8 | 0 | 0 | 8 | 0 |
 | enjoysicilia.it | www.enjoysicilia.it | 3 | 0 | 0 | 3 | 0 |
@@ -137,20 +138,20 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1177 | 3567 | 1703 | 7528 | 131 |
-| Orari | 1857 | 2743 | 1495 | 7432 | 579 |
-| Giorni | 973 | 2739 | 1675 | 8561 | 158 |
+| Sede | 1177 | 3559 | 1724 | 7502 | 145 |
+| Orari | 1833 | 2400 | 1502 | 7760 | 612 |
+| Giorni | 973 | 2241 | 1682 | 9037 | 174 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 5923. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 5924. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 4 | 0 |
-| bassa-romagna-weekly | retrieved | 11 | 0 |
+| bassa-romagna-farmers | retrieved | 0 | 0 |
+| bassa-romagna-weekly | retrieved | 0 | 0 |
 
-Conflitti mantenuti in revisione: 6.
+Conflitti mantenuti in revisione: 15.
 
 
 ## Limiti del sistema

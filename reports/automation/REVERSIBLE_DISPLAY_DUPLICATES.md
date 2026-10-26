@@ -4,11 +4,11 @@
 Confronta soltanto sede e giorno identici con la stessa URL di fonte
 e orari, coordinate, categoria e ricorrenze compatibili.
 
-- Schede originali: **14.106**.
-- ID originali preservati: **14.106**.
-- Gruppi supportati da prove forti: **873**.
-- Pulsanti ripetuti evitati nella vista delle sedi: **1031**.
-- Schede originali ancora apribili dietro tali gruppi: **1904**.
+- Schede originali: **14.107**.
+- ID originali preservati: **14.107**.
+- Gruppi supportati da prove forti: **869**.
+- Pulsanti ripetuti evitati nella vista delle sedi: **1027**.
+- Schede originali ancora apribili dietro tali gruppi: **1896**.
 - Campi città evidentemente malformati protetti nella UI: **2**.
 - Eventi o verifiche dichiarati confermati: **0**.
 
@@ -23,7 +23,7 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 | Sicilia | 1 | 2 |
 | Toscana | 44 | 63 |
 | Trentino-Alto Adige | 12 | 13 |
-| Veneto | 68 | 84 |
+| Veneto | 64 | 80 |
 
 ## Esempi reali
 

@@ -104,6 +104,260 @@
     "pdf_weekday_rows": 87,
     "schema": 1
   },
+  "happings_detail_admission_certificate": {
+    "admissions": [
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-times"
+                  ],
+                  "excluded_months": [],
+                  "included_months": [],
+                  "kind": "monthly_ordinal",
+                  "ordinal": 1,
+                  "relative_day_offsets": [
+                    0
+                  ],
+                  "weekday": 6
+                }
+              ],
+              "calendar_scope": "explicit_visible_list",
+              "conditions": [],
+              "date_intervals": [],
+              "edition_intervals": [
+                {
+                  "end": "2026-11-01",
+                  "start": "2026-11-01"
+                }
+              ],
+              "forecast_rule": null,
+              "hours_intervals": [
+                {
+                  "end": "18:00",
+                  "start": "09:00"
+                }
+              ],
+              "hours_text": "09:00–18:00; Si chiama \"Curiosando\" il mercatino che si svolge ogni prima domenica del mese, dalle ore 9 alle 18.",
+              "location": {
+                "address": "\"Curiosando\", piazza Gramsci",
+                "city": "Castelfiorentino",
+                "province": "FI",
+                "region": "Toscana"
+              },
+              "name": "Mercatino antiquariato e usato di Castelfiorentino, \"Curiosando\", piazza Gramsci",
+              "observed_location": {
+                "address": "\"Curiosando\", piazza Gramsci",
+                "city": "Castelfiorentino",
+                "province": "Firenze",
+                "region": "Toscana"
+              },
+              "occurrences": [
+                {
+                  "date": "2026-11-01",
+                  "end_time": null,
+                  "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Prossime date"
+                  ],
+                  "start_time": null,
+                  "status": "source_listed"
+                }
+              ],
+              "recurrence_text": "Prima domenica del mese",
+              "scope_statements": [
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-times"
+                  ],
+                  "kind": "hours_qualification",
+                  "text": "Si chiama \"Curiosando\" il mercatino che si svolge ogni prima domenica del mese, dalle ore 9 alle 18."
+                }
+              ],
+              "source_rows": [
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-content-title"
+                  ],
+                  "field": "location.city",
+                  "value": "Castelfiorentino (Firenze)"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-address"
+                  ],
+                  "field": "location.address",
+                  "value": "\"Curiosando\", piazza Gramsci"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-region"
+                  ],
+                  "field": "location.region",
+                  "value": "Toscana"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-performer"
+                  ],
+                  "field": "organizer",
+                  "value": "Associazione Culturale Pinocchio 3000 in collaborazione con il Comune di Castelfiorentino"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-phone"
+                  ],
+                  "field": "phone",
+                  "value": "0572/1913547; 328/5924115"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-contacts"
+                  ],
+                  "field": "contacts",
+                  "value": "infopinocchio3000@gmail.com"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-website"
+                  ],
+                  "field": "website",
+                  "value": "Toscana Quando - Home | Facebook"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-expo"
+                  ],
+                  "field": "exhibitors",
+                  "value": "50"
+                },
+                {
+                  "evidence": [
+                    "self Event.location.geo"
+                  ],
+                  "field": "publisher_geo",
+                  "value": {
+                    "latitude": "43.607146",
+                    "longitude": "10.969217",
+                    "precision": "publisher_point_unverified"
+                  }
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-date-big:row[1]"
+                  ],
+                  "field": "recurrence_text",
+                  "value": "Prima domenica del mese"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Prossime date"
+                  ],
+                  "field": "next_dates",
+                  "value": "1 novembre 2026"
+                }
+              ],
+              "suspensions": []
+            },
+            "field_evidence": {
+              "calendar": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ],
+              "contacts": [
+                "#post-content .mercatini-mostre-contacts"
+              ],
+              "exhibitors": [
+                "#post-content .mercatini-mostre-expo"
+              ],
+              "hours_text": [
+                "#post-content .mercatini-mostre-times: main market schedule"
+              ],
+              "location.address": [
+                "#post-content .mercatini-mostre-address",
+                "self Event.location.address"
+              ],
+              "location.city": [
+                "#post-content .mercatini-mostre-content-title",
+                "self Event.location.address"
+              ],
+              "location.province": [
+                "self Event.location.address"
+              ],
+              "location.region": [
+                "#post-content .mercatini-mostre-region",
+                "self Event.location.address"
+              ],
+              "name": [
+                "#content h1"
+              ],
+              "next_dates": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ],
+              "organizer": [
+                "#post-content .mercatini-mostre-performer"
+              ],
+              "phone": [
+                "#post-content .mercatini-mostre-phone"
+              ],
+              "publisher_geo": [
+                "self Event.location.geo"
+              ],
+              "recurrence_text": [
+                "#post-content .mercatini-mostre-date-big:row[1]"
+              ],
+              "website": [
+                "#post-content .mercatini-mostre-website"
+              ]
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 614813,
+              "canonical_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+              "final_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+              "hash_basis": "http_response_bytes",
+              "html_sha256": "08649c0474790fc2bfd9e290820f3f98b9d5c27f8a45c2592163d2e0e05d6252",
+              "modified_at": "2026-09-22T14:45:00+00:00",
+              "published_at": null,
+              "publisher": "cosedicasa.com",
+              "redirect_observed": false,
+              "requested_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+              "source_id": "castelfiorentino-curiosando"
+            },
+            "status": "parsed",
+            "warnings": [
+              "schema_date_is_read_day"
+            ]
+          },
+          "read_on": "2026-10-26"
+        },
+        "market_id": "mercatino-antiquariato-e-usato-di-castelfiorentino-curiosando-piazza-gramsci-cas",
+        "source_page": {
+          "bytes": 614813,
+          "canonical_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+          "final_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+          "hash_basis": "http_response_bytes",
+          "html_sha256": "08649c0474790fc2bfd9e290820f3f98b9d5c27f8a45c2592163d2e0e05d6252",
+          "modified_at": "2026-09-22T14:45:00+00:00",
+          "published_at": null,
+          "publisher": "cosedicasa.com",
+          "read_on": "2026-10-26",
+          "redirect_observed": false,
+          "requested_url": "https://www.cosedicasa.com/mercatini/castelfiorentino-curiosando",
+          "source_id": "castelfiorentino-curiosando",
+          "status": "parsed"
+        }
+      }
+    ],
+    "date": "2026-10-26",
+    "max_new": 1,
+    "publisher": "later-sources",
+    "schema": 1
+  },
   "modified_ids": [],
   "primary_sources_changed": 0,
   "publisher_report_date": "2026-10-01",

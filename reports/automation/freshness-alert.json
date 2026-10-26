@@ -1,19 +1,21 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,106\n- Senza verifica documentata: 14,106\n- Fonte vecchia oltre soglia: 52\n- Fonte senza data: 12,747\n- Date previste da fonte vecchia/sconosciuta: 10,681\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: nessuno\n- Conflitti fra valori esistenti e nuove letture: 6\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 245c0880581452fd",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,107\n- Senza verifica documentata: 14,107\n- Fonte vecchia oltre soglia: 52\n- Fonte senza data: 12,748\n- Date previste da fonte vecchia/sconosciuta: 10,708\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: Roma Capitale\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: nessuno\n- Conflitti fra valori esistenti e nuove letture: 15\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: f960062dc4327b36",
   "problems": {
-    "automatic_field_conflicts": 6,
+    "automatic_field_conflicts": 15,
     "automatic_page_refresh_held": [],
     "municipal_csv_changed": [],
     "publisher_new_data_claims": [],
-    "publisher_unavailable": [],
-    "stale_forecast": 10681,
+    "publisher_unavailable": [
+      "Roma Capitale"
+    ],
+    "stale_forecast": 10708,
     "stale_source": 52,
-    "total": 14106,
-    "unknown_source_date": 12747,
+    "total": 14107,
+    "unknown_source_date": 12748,
     "unsupported_confirmation": 0,
-    "without_verification": 14106
+    "without_verification": 14107
   },
-  "signature": "245c0880581452fd",
+  "signature": "f960062dc4327b36",
   "title": "[Mercati autopilot] Dati da verificare"
 }

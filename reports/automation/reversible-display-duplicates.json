@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14106,
-    "ids_retained": 14106,
+    "original_records": 14107,
+    "ids_retained": 14107,
     "generic_weekly_with_specific_venue": 5783,
     "malformed_source_city_labels_guarded_in_ui": 2,
     "venue_groups_examined": 3640,
-    "highly_supported_same_source_visit_groups": 873,
-    "suppressed_repeat_buttons_only": 1031,
-    "original_records_in_reversible_groups": 1904,
+    "highly_supported_same_source_visit_groups": 869,
+    "suppressed_repeat_buttons_only": 1027,
+    "original_records_in_reversible_groups": 1896,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -54,8 +54,8 @@
     },
     {
       "region": "Veneto",
-      "groups": 68,
-      "extra_display_entries": 84
+      "groups": 64,
+      "extra_display_entries": 80
     }
   ],
   "examples": [

@@ -4,17 +4,17 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,106**.
-- Orari mancanti: **1,857**.
+- Schede: **14,107**.
+- Orari mancanti: **1,833**.
 - Indirizzi mancanti: **1,177**.
-- Coordinate mancanti: **705**.
-- Date future mancanti: **2,267**.
+- Coordinate mancanti: **702**.
+- Date future mancanti: **2,209**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,408** gruppi, **1,683** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,106**.
+- Verifiche umane documentate mancanti: **14,107**.
 - Gate qualità: **APPROVATO**.
-- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **1** righe potenziali in **1** gruppi; restano tutte nel conteggio da rivedere.
+- Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
 
 ## Fonte di provenienza (primi editori)
@@ -24,7 +24,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | happings.com | 9,831 |
 | eventiesagre.it | 2,199 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
-| cosedicasa.com | 433 |
+| cosedicasa.com | 434 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
@@ -42,19 +42,19 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Basilicata | 36 | 3 | 9 |
 | Calabria | 331 | 37 | 37 |
 | Campania | 824 | 121 | 67 |
-| Emilia-Romagna | 910 | 173 | 100 |
-| Friuli Venezia Giulia | 262 | 34 | 15 |
-| Lazio | 1,082 | 106 | 59 |
-| Liguria | 391 | 54 | 51 |
-| Lombardia | 3,991 | 533 | 166 |
+| Emilia-Romagna | 910 | 170 | 100 |
+| Friuli Venezia Giulia | 262 | 33 | 15 |
+| Lazio | 1,082 | 98 | 59 |
+| Liguria | 391 | 52 | 51 |
+| Lombardia | 3,991 | 529 | 166 |
 | Marche | 296 | 76 | 43 |
 | Molise | 215 | 15 | 30 |
-| Piemonte | 1,350 | 172 | 175 |
+| Piemonte | 1,350 | 170 | 175 |
 | Puglia | 484 | 50 | 37 |
 | Sardegna | 392 | 23 | 30 |
 | Sicilia | 405 | 55 | 39 |
-| Toscana | 969 | 196 | 106 |
-| Trentino-Alto Adige | 230 | 22 | 36 |
+| Toscana | 970 | 193 | 106 |
+| Trentino-Alto Adige | 230 | 21 | 36 |
 | Umbria | 181 | 35 | 19 |
 | Valle d'Aosta | 54 | 7 | 6 |
 | Veneto | 1,308 | 121 | 120 |

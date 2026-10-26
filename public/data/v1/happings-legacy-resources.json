@@ -204,13 +204,13 @@
       "status": "pending"
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "city_keys": [
         "campobasso"
       ],
       "first_seen_on": "2026-10-20",
       "last_attempt_on": "2026-10-26",
-      "last_error": null,
+      "last_error": "SourceCityDayAbsent",
       "last_success_on": null,
       "next_url": "https://www.happings.com/it/mercati-settimanali-a-campobasso-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-campobasso--via-e--gammieri-.html",
@@ -231,7 +231,7 @@
         }
       ],
       "region": "molise",
-      "status": "redirect_observed"
+      "status": "source_city_day_absent"
     },
     {
       "attempts": 0,
@@ -551,21 +551,28 @@
       "status": "pending"
     },
     {
-      "attempts": 0,
+      "attempts": 1,
       "city_keys": [
         "fiorenzuola d arda"
       ],
       "first_seen_on": "2026-10-20",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-26",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-fiorenzuola-d-arda--p-zza-cavour-.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-fiorenzuola-d-arda--p-zza-cavour-/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-fiorenzuola-d-arda--p-zza-cavour-.html",
       "proof": null,
       "province": "PC",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-fiorenzuola-d-arda--p-zza-cavour-/",
+          "observed_on": "2026-10-26",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-fiorenzuola-d-arda--p-zza-cavour-.html",
+          "status_code": 301
+        }
+      ],
       "region": "emilia romagna",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,
