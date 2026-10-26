@@ -3,13 +3,13 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 14009,
+  "catalog_market_ids_preserved": 14106,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 4936,
-  "municipalities_without_catalog_listings": 2958,
-  "represented_percent": 62.5,
+  "municipalities_with_catalog_listings": 4964,
+  "municipalities_without_catalog_listings": 2930,
+  "represented_percent": 62.9,
   "regions": [
     {
       "region": "Piemonte",
@@ -114,23 +114,6 @@
       ]
     },
     {
-      "region": "Veneto",
-      "istat_municipalities": 559,
-      "with_at_least_one_catalog_market": 431,
-      "without_catalog_market": 128,
-      "represented_percent": 77.1,
-      "unrepresented_examples_for_source_search": [
-        "Bagnolo di Po",
-        "Gaiba",
-        "Giacciano con Baruchella",
-        "Povegliano",
-        "San Nicolò di Comelico",
-        "Tambre",
-        "Val Liona",
-        "Veggiano"
-      ]
-    },
-    {
       "region": "Liguria",
       "istat_municipalities": 234,
       "with_at_least_one_catalog_market": 107,
@@ -201,9 +184,9 @@
     {
       "region": "Marche",
       "istat_municipalities": 225,
-      "with_at_least_one_catalog_market": 113,
-      "without_catalog_market": 112,
-      "represented_percent": 50.2,
+      "with_at_least_one_catalog_market": 114,
+      "without_catalog_market": 111,
+      "represented_percent": 50.7,
       "unrepresented_examples_for_source_search": [
         "Cagli",
         "Monte Cerignone",
@@ -233,6 +216,23 @@
       ]
     },
     {
+      "region": "Veneto",
+      "istat_municipalities": 559,
+      "with_at_least_one_catalog_market": 457,
+      "without_catalog_market": 102,
+      "represented_percent": 81.8,
+      "unrepresented_examples_for_source_search": [
+        "Bagnolo di Po",
+        "Canda",
+        "Erbè",
+        "Gaiba",
+        "Giacciano con Baruchella",
+        "Rivoli Veronese",
+        "Salcedo",
+        "San Nicolò di Comelico"
+      ]
+    },
+    {
       "region": "Lazio",
       "istat_municipalities": 378,
       "with_at_least_one_catalog_market": 306,
@@ -252,9 +252,9 @@
     {
       "region": "Emilia-Romagna",
       "istat_municipalities": 330,
-      "with_at_least_one_catalog_market": 276,
-      "without_catalog_market": 54,
-      "represented_percent": 83.6,
+      "with_at_least_one_catalog_market": 277,
+      "without_catalog_market": 53,
+      "represented_percent": 83.9,
       "unrepresented_examples_for_source_search": [
         "Bertinoro",
         "Cerignale",

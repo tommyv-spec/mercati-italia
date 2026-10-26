@@ -4,9 +4,9 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **4,936** (62.5%).
-- Comuni senza schede in catalogo: **2,958**.
-- Schede esistenti conservate: **14,009**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **4,964** (62.9%).
+- Comuni senza schede in catalogo: **2,930**.
+- Schede esistenti conservate: **14,106**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
@@ -16,15 +16,15 @@ I risultati indicano dove cercare fonti comunali o regionali affidabili.
 | Sicilia | 391 | 201 | 190 | 51.4% |
 | Sardegna | 377 | 199 | 178 | 52.8% |
 | Trentino-Alto Adige | 282 | 104 | 178 | 36.9% |
-| Veneto | 559 | 431 | 128 | 77.1% |
 | Liguria | 234 | 107 | 127 | 45.7% |
 | Abruzzo | 305 | 190 | 115 | 62.3% |
 | Campania | 550 | 435 | 115 | 79.1% |
 | Basilicata | 131 | 18 | 113 | 13.7% |
-| Marche | 225 | 113 | 112 | 50.2% |
+| Marche | 225 | 114 | 111 | 50.7% |
 | Friuli Venezia Giulia | 215 | 107 | 108 | 49.8% |
+| Veneto | 559 | 457 | 102 | 81.8% |
 | Lazio | 378 | 306 | 72 | 81.0% |
-| Emilia-Romagna | 330 | 276 | 54 | 83.6% |
+| Emilia-Romagna | 330 | 277 | 53 | 83.9% |
 | Valle d'Aosta | 74 | 27 | 47 | 36.5% |
 | Toscana | 273 | 227 | 46 | 83.2% |
 | Puglia | 257 | 227 | 30 | 88.3% |
@@ -41,13 +41,13 @@ Esempi selezionati stabilmente per regione (non sono mercati identificati).
 - **Sicilia:** Altavilla Milicia, Castelmola, Montagnareale, Porto Empedocle, San Filippo del Mela, Sperlinga, Torretta, Valderice
 - **Sardegna:** Berchidda, Giba, Lunamatrona, Mores, Oschiri, Triei, Turri, Villamassargia
 - **Trentino-Alto Adige:** Castel Ivano, Croviana, Falzes, Luson, Martello, Nogaredo, Sarnonico, Selva dei Molini
-- **Veneto:** Bagnolo di Po, Gaiba, Giacciano con Baruchella, Povegliano, San Nicolò di Comelico, Tambre, Val Liona, Veggiano
 - **Liguria:** Costarainera, Olivetta San Michele, Ortovero, Plodio, Pornassio, Riomaggiore, Testico, Zuccarello
 - **Abruzzo:** Castel Castagna, Civitella Messer Raimondo, Crecchio, Montebello sul Sangro, Pennadomo, San Pio delle Camere, Vicoli, Villalago
 - **Campania:** Agerola, Contrada, Cuccaro Vetere, Domicella, Laureana Cilento, Letino, Morigerati, Prata di Principato Ultra
 - **Basilicata:** Albano di Lucania, Episcopia, Irsina, Oliveto Lucano, Rapone, Rivello, Venosa, Vietri di Potenza
 - **Marche:** Cagli, Monte Cerignone, Petritoli, Pioraco, Poggio San Marcello, San Lorenzo in Campo, Vallefoglia, Visso
 - **Friuli Venezia Giulia:** Artegna, Colloredo di Monte Albano, Malborghetto Valbruna, Remanzacco, Romans d'Isonzo, Torreano, Tramonti di Sotto, Villesse
+- **Veneto:** Bagnolo di Po, Canda, Erbè, Gaiba, Giacciano con Baruchella, Rivoli Veronese, Salcedo, San Nicolò di Comelico
 - **Lazio:** Frasso Sabino, Micigliano, Montenero Sabino, Poggio San Lorenzo, Rocca Canterano, Roccagiovine, Saracinesco, Turania
 - **Emilia-Romagna:** Bertinoro, Cerignale, Dovadola, Longiano, Montecopiolo, Pellegrino Parmense, Prignano sulla Secchia, Santa Sofia
 - **Valle d'Aosta:** Antey-Saint-André, Arnad, Arvier, Brusson, Cogne, Issime, Rhêmes-Saint-Georges, Verrayes
