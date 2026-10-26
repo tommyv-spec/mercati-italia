@@ -500,13 +500,13 @@ def twin_key(row: dict) -> tuple:
 def venue_slot(row: dict) -> tuple | None:
     """Region, town and calendar of a market at a real street (None when any is unknown)."""
     from catalog_quality_report import VAGUE_ADDRESSES, key
-    from recurrence_refresh import forecast_rule
+    from recurrence_refresh import calendar_key, forecast_rule
     street = str(row.get("indirizzo") or "").strip()
     if not street or key(street) in VAGUE_ADDRESSES or len(slugify(street)) < 6:
         return None
     rule = forecast_rule(row)
     if rule:
-        calendar = (rule["kind"], tuple(rule.get("weekdays") or [rule.get("weekday")]), rule.get("ordinal"))
+        calendar = calendar_key(rule)
     else:
         days = tuple(sorted({date.fromisoformat(d).weekday() for d in row.get("date") or []}))
         if not days:

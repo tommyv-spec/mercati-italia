@@ -181,9 +181,13 @@ def parse_source_day(value: Any) -> date | None:
     return as_day(value)
 
 
-def explicit_rule(value: Any) -> dict | None:
-    text = NUMERIC_ORDINAL.sub(lambda m: ("", "prima ", "seconda ", "terza ", "quarta ")[int(m[1])],
+def _spelled_ordinals(value: Any) -> str:
+    return NUMERIC_ORDINAL.sub(lambda m: ("", "prima ", "seconda ", "terza ", "quarta ")[int(m[1])],
                                text_key(value))
+
+
+def explicit_rule(value: Any) -> dict | None:
+    text = _spelled_ordinals(value)
     days = [WEEKDAYS.index(day) for day in dict.fromkeys(DAYS_PATTERN.findall(text))]
     if not days:
         return None
@@ -208,6 +212,22 @@ def explicit_rule(value: Any) -> dict | None:
     if ORDINAL_PATTERN.search(text):
         return None
     return {"kind": "weekly", "weekdays": sorted(set(days))}
+
+
+def complete_monthly_rule(value: Any) -> dict | None:
+    """The rule of a text that states one monthly rule and nothing else.
+
+    "Prima domenica del mese" / "Ogni 2a domenica del mese" -> its rule.
+    "... ad esclusione di agosto", "... dei mesi giugno, luglio" or any other
+    qualifier -> None: the rule cannot carry it, so it must not be dropped.
+    """
+    text = _spelled_ordinals(value)
+    return explicit_rule(text) if FULL_MONTHLY_RECURRENCE.fullmatch(text) else None
+
+
+def calendar_key(rule: dict) -> tuple:
+    """Calendar part of "same market": (kind, weekdays, ordinal); month masks aside."""
+    return (rule["kind"], tuple(rule.get("weekdays") or [rule.get("weekday")]), rule.get("ordinal"))
 
 
 def _month_numbers(first: str, last: str) -> list[int]:

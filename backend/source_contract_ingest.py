@@ -21,9 +21,11 @@ from pathlib import Path
 
 from catalog_quality_report import VAGUE_ADDRESSES, key as addr_key
 from lombardia_overlap import weekday_evidence
+from recurrence_refresh import calendar_key, complete_monthly_rule, explicit_rule, forecast_rule
 from source_lifecycle import (
-    WEEKDAYS_NORMAL, parse_rows, candidate_record, canonical, digest, excluded_row,
-    istat_municipality, validate_contracts, weekday as source_weekday, weekdays as source_weekdays,
+    MARKET_KINDS, MONTH_KIND, WEEKDAYS_NORMAL, parse_rows, candidate_record, canonical, digest,
+    excluded_row, istat_municipality, validate_contracts, weekday as source_weekday,
+    weekdays as source_weekdays,
 )
 from official_enrichment import DAYPARTS, SPECIALIZED_MARKET, _shares_place_word
 from field_evidence import (
@@ -42,6 +44,8 @@ FIELD_MANAGER = "source_contract_ingest"
 # join with a contracted multi-town calendar (never by its row ID).
 FILL_MANAGER = "source_contract_town_day"
 FILL_METHOD = "comune_provincia_giorno_univoco"
+# Monthly calendars join on municipality + calendar ("prima domenica del mese").
+FILL_METHOD_MONTH = "comune_provincia_ricorrenza_univoca"
 FILL_FIELDS = ("indirizzo", "orario_testo")
 EXACT_SOURCE_HOURS = re.compile(r"(?:[01]\d|2[0-3]):[0-5]\d–(?:[01]\d|2[0-3]):[0-5]\d \(da verificare con il Comune\)")
 ORDINARY_CATEGORIES = frozenset({"misto", "alimentare"})
@@ -98,7 +102,7 @@ def validate_format(profile):
                               not 2<=len(prefix.strip())<=30 or
                               not prefix.endswith(" ")):
         raise ValueError("Unreviewed presentation name prefix")
-    if profile.get("row_kind") not in ("market_venue","market_venue_day"):
+    if profile.get("row_kind") not in MARKET_KINDS:
         raise ValueError("Administrative concessions/statistics cannot be admitted as markets")
     # Validate extraction separately from the reviewed release certificate.
     shadow=copy.deepcopy(profile)
@@ -158,14 +162,33 @@ def _tokens(value):
                          "di","a","del","della","dei","delle","il","la","al","in"}]
 
 
-def _review_reason(record, prior, candidate_day, *, allow_unlocated_city_summary=False):
+def _market_calendar(row):
+    """(kind, weekdays, ordinal) of a market's recurrence, or None: the export's venue_slot key."""
+    rule=forecast_rule(row)
+    return calendar_key(rule) if rule else None
+
+
+def _market_slots(profile, row):
+    """Slots a catalog market occupies: its weekdays, or its one monthly calendar."""
+    if profile["row_kind"]!=MONTH_KIND:
+        return weekday_evidence(row)
+    key=_market_calendar(row)
+    return {key} if key and key[0]=="monthly_nth_weekday" else None
+
+
+def _review_reason(record, prior, candidate_day, *, allow_unlocated_city_summary=False,
+                   calendar=None):
     # A source with no reliable street/day or a generic city listing cannot
     # automatically disambiguate a new venue from a legacy public calendar.
     if (canonical(prior.get("citta"))!=canonical(record.get("citta"))
             or canonical(prior.get("regione"))!=canonical(record.get("regione"))):
         return None
     previous_days=weekday_evidence(prior)
-    if candidate_day is not None and previous_days is not None:
+    if calendar is not None:
+        # A monthly venue: another known calendar is another market.
+        if _market_calendar(prior) not in (None, calendar):
+            return None
+    elif candidate_day is not None and previous_days is not None:
         if candidate_day not in previous_days:
             return None
     # Unknown calendar is *more* ambiguous, never evidence of a distinct day.
@@ -190,27 +213,35 @@ def _review_reason(record, prior, candidate_day, *, allow_unlocated_city_summary
     return None
 
 
-def _town_day_taken(record, cohort, unresolved_localities):
-    """A new official venue must not duplicate a weekly market already listed.
+def _town_day_taken(record, cohort, unresolved_localities, profile=None):
+    """A new official venue must not duplicate a market already listed.
 
-    Any visible market of the same municipality on one of its weekdays may be
-    this venue under another publisher's name or street: hold, never guess.
+    Any visible market of the same municipality on one of its weekdays (on
+    its monthly calendar, for a monthly source) may be this venue under
+    another publisher's name or street: hold, never guess.
     Markets filed under a locality that is no ISTAT municipality (a merged
     town or frazione) count when the candidate's name/street names it.
     """
-    days=weekday_evidence(record)
+    monthly=profile is not None and profile["row_kind"]==MONTH_KIND
+    slots=(lambda row:_market_slots(profile,row)) if monthly else weekday_evidence
+    unit="calendar" if monthly else "day"
+    days=slots(record)
     if not days:
-        return "new_market_weekday_unknown"
+        return "new_market_calendar_unknown" if monthly else "new_market_weekday_unknown"
     for prior in cohort:
-        if not prior.get("duplicato_di") and (weekday_evidence(prior) or set()) & days:
-            return "existing_market_same_town_day"
+        if not prior.get("duplicato_di") and (slots(prior) or set()) & days:
+            return "existing_market_same_town_"+unit
+        # An antiques card with no readable calendar may be this very market.
+        if (monthly and not prior.get("duplicato_di") and _market_calendar(prior) is None
+                and _fill_target_type(profile,prior)):
+            return "existing_same_type_market_calendar_unknown"
     text=" "+canonical(" ".join(str(record.get(field) or "")
                                 for field in ("nome","indirizzo","citta")))+" "
     for prior in unresolved_localities:
         place=canonical(prior.get("citta"))
         if (not prior.get("duplicato_di") and len(place)>=3 and " "+place+" " in text
-                and (weekday_evidence(prior) or set()) & days):
-            return "existing_market_same_locality_day"
+                and (slots(prior) or set()) & days):
+            return "existing_market_same_locality_"+unit
     return None
 
 
@@ -247,6 +278,21 @@ def _row_days(profile, row):
     return days
 
 
+def _row_slots(profile, row):
+    """Slots a source row may hold; a monthly row with no monthly rule holds them all ("*")."""
+    if profile["row_kind"]!=MONTH_KIND:
+        return _row_days(profile,row)
+    # The bare rule, even when exclusions follow it: such a row still is that market.
+    rule=explicit_rule(row.get(profile["recurrence_field"]))
+    return (calendar_key(rule),) if rule and rule["kind"]=="monthly_nth_weekday" else ("*",)
+
+
+def _fill_target_type(profile, row):
+    """Weekly calendars fill ordinary markets; others the categories their contract names."""
+    categories=profile["existing_market_fill"].get("categories")
+    return row.get("categoria") in categories if categories else _ordinary_market(row)
+
+
 def _fill_link(profile):
     return {"nome":profile["publisher"],"url":profile["attribution_url"]}
 
@@ -272,11 +318,21 @@ def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed
     street must share a distinctive word with the official one. Only empty or
     vague values are filled (or values this engine owns, from a newer version);
     better data is never overwritten. Returns proofs and a reason count.
+
+    A monthly calendar (row_kind market_venue_month) joins the same way on
+    municipality + calendar ("prima domenica del mese", the export's
+    same-market key) and fills markets of the categories its contract names.
+    Its row must state the rule and nothing else (no exclusions it can't
+    carry). When the card's own recurrence text states exactly that rule, the
+    receipt also records it: the calendar still lists this market.
     """
     region=profile["region"]
+    monthly=profile["row_kind"]==MONTH_KIND
+    unit="calendar" if monthly else "day"
     counts=Counter()
     competitors=defaultdict(set)
     official={}
+    qualified=set()
     for index,row in enumerate(source):
         if excluded_row(profile,row):
             continue
@@ -285,41 +341,44 @@ def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed
                (profile["municipality"],profile["province"]))
         if place is None:
             continue
-        for day in _row_days(profile,row):
+        for day in _row_slots(profile,row):
             competitors[(canonical(place[0]),day)].add(index)
         record,issue,_=candidate_record(profile,row,today=today,source_date=source_date)
         if record is not None and issue is None:
             official[index]=record
+        elif record is not None and issue=="schedule_unknown":
+            qualified.add(index)
     slots=defaultdict(list)
     for row in base:
         if row.get("regione")==region and not row.get("duplicato_di"):
-            for day in weekday_evidence(row) or ():
+            for day in _market_slots(profile,row) or ():
                 slots[(canonical(row.get("citta")),day)].append(row["slug"])
     link=_fill_link(profile)
     proofs=[]
     for target in sorted(base,key=lambda row:row["slug"]):
-        days=weekday_evidence(target)
+        days=_market_slots(profile,target)
         if (target.get("regione")!=region or target.get("duplicato_di") or not days
                 or target["slug"].startswith(profile["catalog_slug_prefix"])
                 or target["slug"] in claimed):
             continue
-        counts["weekly_markets_screened"]+=1
+        counts[("monthly" if monthly else "weekly")+"_markets_screened"]+=1
         city=canonical(target.get("citta"))
         place=istat_municipality(region,target.get("citta"))
-        sources={frozenset(competitors.get((city,day),())) for day in days}
+        sources={frozenset(competitors.get((city,day),set())|competitors.get((city,"*"),set()))
+                 for day in days}
         reason=None
         if target.get("verificato_il"):
             reason="human_verified_market"
-        elif not _ordinary_market(target):
-            reason="market_type_not_ordinary"
+        elif not _fill_target_type(profile,target):
+            reason="market_type_not_in_contract" if monthly else "market_type_not_ordinary"
         elif place and target.get("provincia") and target["provincia"]!=place[1]:
             reason="province_differs"
         elif any(len(slots[(city,day)])>1 for day in days):
-            reason="several_catalog_markets_same_town_day"
+            reason="several_catalog_markets_same_town_"+unit
         elif frozenset() in sources:
-            reason="no_official_market_town_day"
+            reason="no_official_market_town_"+unit
         elif any(len(ids)>1 for ids in sources):
-            reason="several_official_markets_same_town_day"
+            reason="several_official_markets_same_town_"+unit
         elif len(sources)!=1:
             reason="weekdays_in_different_official_rows"
         if reason:
@@ -328,9 +387,10 @@ def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed
         index=next(iter(next(iter(sources))))
         record=official.get(index)
         if record is None:
-            counts["held_official_market_not_annual_weekly"]+=1
+            counts["held_official_calendar_qualified" if monthly and index in qualified else
+                   "held_official_market_not_annual_"+("monthly" if monthly else "weekly")]+=1
             continue
-        if not days<=(weekday_evidence(record) or set()):
+        if not days<=(_market_slots(profile,record) or set()):
             counts["held_weekday_sets_differ"]+=1
             continue
         street=record["indirizzo"]
@@ -341,11 +401,16 @@ def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed
         values={"indirizzo":street}
         if EXACT_SOURCE_HOURS.fullmatch(record["orario_testo"]):
             values["orario_testo"]=record["orario_testo"]
+        if monthly and (complete_monthly_rule(target.get("ricorrenza_testo"))
+                        ==complete_monthly_rule(record["ricorrenza_testo"])):
+            # Still listed: the card's own words, never the calendar's.
+            values["ricorrenza_testo"]=target["ricorrenza_testo"]
         values={k:v for k,v in values.items() if len(v)<=FIELDS[k]}
+        method=FILL_METHOD_MONTH if monthly else FILL_METHOD
         receipt_for=lambda row,vals:make_receipt(
             row,values=vals,source_url=profile["resource_url"],source_name=profile["publisher"],
             source_id=profile["id"],source_row=record["slug"],read_on=read_on,
-            source_updated_on=source_date,source_sha256=parsed_sha256,method=FILL_METHOD)
+            source_updated_on=source_date,source_sha256=parsed_sha256,method=method)
         probe=receipt_for({**target,**values},values)
         changes,managed={},set()
         for field,value in values.items():
@@ -387,6 +452,8 @@ def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed
         counts["matched_markets"]+=1
         for field in changes:
             counts["filled_"+field]+=1
+        if "ricorrenza_testo" in receipt["valori"]:
+            counts["recurrence_still_listed"]+=1
         proofs.append({"slug":target["slug"],"source_row":record["slug"],
                        "changed_fields":changes,"receipt":receipt,
                        "before_sha256":evidence_fingerprint(target),
@@ -428,7 +495,9 @@ def verify_fill(profile, prior, result, proof, *, today, source_observations):
             or receipt.get("fonte_id")!=profile["id"] or receipt.get("fonte")!=profile["publisher"]
             or receipt.get("url")!=profile["resource_url"]
             or receipt.get("riga_fonte")!=proof["source_row"]
-            or receipt.get("metodo")!=FILL_METHOD or receipt.get("ambito")!="dataset"
+            or receipt.get("metodo")!=(FILL_METHOD_MONTH if profile["row_kind"]==MONTH_KIND
+                                       else FILL_METHOD)
+            or receipt.get("ambito")!="dataset"
             or receipt.get("impronta_tipo")!="publisher_parsed_json"
             or receipt.get("sha256")!=source_observations.get("source_parsed_sha256")
             or receipt.get("letto_il")!=source_observations.get("source_read_on")
@@ -471,7 +540,7 @@ def _source_values(record):
               if isinstance(record.get(field), str) and record[field].strip()
               and len(record[field]) <= limit}
     # A parser fallback describes uncertainty, not a publisher weekday.
-    if not values.get("ricorrenza_testo", "").startswith("settimanale - "):
+    if not values.get("ricorrenza_testo", "").startswith(("settimanale - ", "mensile - ")):
         values.pop("ricorrenza_testo", None)
     return values
 
@@ -814,14 +883,17 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
             if result != prior:
                 updates.append((result, proof))
             continue
-        day=source_weekday(item.get(profile["weekday_field"]))
+        monthly=profile["row_kind"]==MONTH_KIND
+        day=None if monthly else source_weekday(item.get(profile["weekday_field"]))
+        calendar=_market_calendar(record) if monthly else None
         cohort=by_city[(canonical(record.get("regione")),canonical(record.get("citta")))]
         collision=next((reason for r in cohort
                         if (reason:=_review_reason(
-                            record,r,day,allow_unlocated_city_summary=allow_city_summary))),None)
+                            record,r,day,allow_unlocated_city_summary=allow_city_summary,
+                            calendar=calendar))),None)
         if not collision and profile.get("new_market_requires_free_town_day"):
             collision=_town_day_taken(record, cohort, by_province.get(
-                (canonical(record.get("regione")),canonical(record.get("provincia"))),[]))
+                (canonical(record.get("regione")),canonical(record.get("provincia"))),[]), profile)
         if collision:
             reasons[collision]+=1
             if len(examples)<REPORT_EXAMPLES:

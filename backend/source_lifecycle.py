@@ -27,7 +27,7 @@ from urllib.parse import urlsplit, parse_qs
 
 from merge_catalog import load_existing
 from source_dispositions import reconcile as reconcile_reviewed_source_ids
-from recurrence_refresh import WEEKDAYS, explicit_rule
+from recurrence_refresh import WEEKDAYS, complete_monthly_rule, explicit_rule
 from source_probe import limited_fetch, safe_url
 from reviewed_city_evidence import NAVIGATION_HOLD
 from publisher_snapshot_date import resolve_source_date, validate_strategy
@@ -42,9 +42,15 @@ MAX_PROFILE_BYTES = 65536
 MAX_DOCUMENT_BYTES = 4_000_000
 MAX_PDF_PAGES = 60
 # Daily quota of publisher contracts read over the network in one run.
-MAX_ENABLED_RAW_PROFILES = 3
+MAX_ENABLED_RAW_PROFILES = 4
 MAX_MARKDOWN_EXAMPLES = 10
-MARKET_KINDS = frozenset({"market_venue", "market_venue_day"})
+# market_venue_month: one row = one venue on one monthly calendar
+# ("Prima domenica del mese"), read from recurrence_field.
+MONTH_KIND = "market_venue_month"
+MARKET_KINDS = frozenset({"market_venue", "market_venue_day", MONTH_KIND})
+CATEGORIES = frozenset({"misto","alimentare","antiquariato","artigianato","usato","vintage_abbigliamento"})
+MONTHLY_ORDINALS = {1: ("primo", "prima"), 2: ("secondo", "seconda"), 3: ("terzo", "terza"),
+                    4: ("quarto", "quarta"), -1: ("ultimo", "ultima")}
 OTHER_KINDS = frozenset({"stall", "concession", "historical_capacity", "aggregate"})
 WEEKDAYS_NORMAL = ("lunedi","martedi","mercoledi","giovedi",
                    "venerdi","sabato","domenica")
@@ -95,9 +101,11 @@ def validate_multi_town_options(item):
             not isinstance(item["pdf_header"],list) or len(item["pdf_header"])!=len(columns)
             or any(not isinstance(cell,str) or len(cell)>200 for cell in item["pdf_header"])):
         raise ValueError("PDF header must name every reviewed column")
-    for flag in ("weekday_lists","new_market_requires_free_town_day"):
+    for flag in ("weekday_lists","new_market_requires_free_town_day","pdf_header_repeats"):
         if item.get(flag,False) not in (True,False):
             raise ValueError("Invalid boolean source option: "+flag)
+    if "pdf_header_repeats" in item and item.get("pdf_header") is None:
+        raise ValueError("Only a PDF table has a header to repeat")
     if item.get("hours_text_format") is not None and (
             item["hours_text_format"]!="italian_clock_range" or not item.get("hours_text_field")):
         raise ValueError("Unknown hours text format")
@@ -124,11 +132,18 @@ def validate_multi_town_options(item):
         except re.error as exc:
             raise ValueError("Invalid yearly document link pattern") from exc
     fill=item.get("existing_market_fill")
+    if item.get("row_kind")==MONTH_KIND and fill is None:
+        raise ValueError("A monthly calendar names the market categories it is about")
+    # A monthly calendar names which markets it may fill (antiques, not farmers).
     if fill is not None and (
-            not isinstance(fill,dict) or set(fill)!={"max_records_per_run"}
+            not isinstance(fill,dict) or "max_records_per_run" not in fill
+            or set(fill)-{"max_records_per_run","categories"}
             or type(fill["max_records_per_run"]) is not int
             or not 1<=fill["max_records_per_run"]<=500
-            or item.get("row_kind") not in MARKET_KINDS):
+            or item.get("row_kind") not in MARKET_KINDS
+            or ("categories" in fill or item.get("row_kind")==MONTH_KIND) and (
+                not isinstance(fill.get("categories"),list) or not fill["categories"]
+                or not set(fill["categories"])<=CATEGORIES)):
         raise ValueError("Invalid existing-market field fill policy")
 
 
@@ -139,6 +154,8 @@ def pdf_table_rows(profile, blob):
     of columns. Only blank or one-cell title rows may precede it; anything else
     means the publisher changed the layout and the contract needs a review.
     Rows below the header are returned as-is (totals rows fail row validation).
+    With "pdf_header_repeats": false the header is printed on the first page
+    only; later pages continue its table and may not print it again.
     """
     try:
         import pdfplumber
@@ -146,13 +163,14 @@ def pdf_table_rows(profile, blob):
         raise ValueError("PDF reader unavailable: install backend/requirements.txt") from exc
     header=[canonical(cell) for cell in profile["pdf_header"]]
     columns=profile["schema_columns"]
+    repeats=profile.get("pdf_header_repeats",True)
     rows=[]
     try:
         with pdfplumber.open(io.BytesIO(blob)) as pdf:
             if not 1<=len(pdf.pages)<=MAX_PDF_PAGES:
                 raise ValueError("PDF page count outside the reviewed bound")
-            for page in pdf.pages:
-                headers=0
+            for number,page in enumerate(pdf.pages):
+                headers=0 if repeats or number==0 else 1
                 for table in page.extract_tables():
                     for raw in table:
                         cells=[" ".join(str(c or "").split()) for c in raw]
@@ -347,13 +365,21 @@ def validate_contracts(config):
                             or not isinstance(cmap.get("values"),dict)
                             or len(cmap["values"])>12
                             or any(not isinstance(k,str) or not k
-                                   or v not in {"misto","alimentare","antiquariato",
-                                               "artigianato","usato","vintage_abbigliamento"}
+                                   or v not in CATEGORIES
                                    for k,v in cmap["values"].items())):
                         raise ValueError("Unreviewed market category mapping")
+                if item.get("category","misto") not in CATEGORIES:
+                    raise ValueError("Unreviewed market category")
                 validate_multi_town_options(item)
-                for name in ("name_field","weekday_field"):
-                    if item.get(name) not in item["schema_columns"]:
+                monthly=item.get("row_kind")==MONTH_KIND
+                if monthly and (item.get("weekday_field") is not None
+                                or item.get("recurrence_field") not in item["identity_fields"]):
+                    raise ValueError("A monthly calendar row needs its recurrence in stable identity")
+                for name in ("name_field","recurrence_field" if monthly else "weekday_field"):
+                    # No name column: every row is named by the reviewed template.
+                    if item.get(name) not in item["schema_columns"] and not (
+                            name=="name_field" and item.get(name) is None
+                            and item.get("empty_name_template")):
                         raise ValueError("Market source field missing from inspected schema")
                 for field in item.get("street_fields",[])+item.get("hours_fields",[]):
                     if field not in item["schema_columns"]:
@@ -473,7 +499,7 @@ def candidate_record(profile,row,*,today,source_date=None):
     else:
         city,province=profile["municipality"],profile["province"]
     identity=[canonical(row.get(col)) for col in profile["identity_fields"]]
-    name=str(row.get(profile["name_field"]) or "").strip()
+    name=str(row.get(profile.get("name_field")) or "").strip()
     if not name:
         name=str(profile.get("empty_name_template") or "").replace("{citta}",city)
     elif profile.get("place_name_template") and "mercat" not in canonical(name):
@@ -489,7 +515,12 @@ def candidate_record(profile,row,*,today,source_date=None):
         slug=profile["catalog_slug_prefix"]+digest(identity)[:18]
     if not SLUG_RE.fullmatch(slug):
         return None,"bad_publisher_identity",None
-    if profile.get("weekday_lists"):
+    monthly=profile["row_kind"]==MONTH_KIND
+    if monthly:
+        # Exclusions, month lists or dates the rule can't carry: no calendar.
+        rule=complete_monthly_rule(row.get(profile["recurrence_field"]))
+        d=rule["weekday"] if rule else None
+    elif profile.get("weekday_lists"):
         days=weekdays(row.get(profile["weekday_field"]))
         d=list(days) if days else None
     else:
@@ -508,8 +539,14 @@ def candidate_record(profile,row,*,today,source_date=None):
         return None,"dataset_date_in_future",None
     forecast_eligible=(d is not None and age<=profile.get(
         "max_forecast_source_age_days",profile["max_source_age_days"]))
-    recurrence=("settimanale - "+", ".join(WEEKDAYS[x] for x in days)
-                if forecast_eligible else "Calendario da verificare")
+    if not forecast_eligible:
+        recurrence="Calendario da verificare"
+    elif monthly:
+        # domenica is the only feminine weekday: "prima domenica", "primo sabato".
+        recurrence=("mensile - "+MONTHLY_ORDINALS[rule["ordinal"]][d==6]+" "
+                    +WEEKDAYS[d]+" del mese")
+    else:
+        recurrence="settimanale - "+", ".join(WEEKDAYS[x] for x in days)
     raw_hours=""
     if profile.get("hours_text_field"):
         raw_hours=preserve_hours_text(row.get(profile["hours_text_field"]))
@@ -534,7 +571,8 @@ def candidate_record(profile,row,*,today,source_date=None):
             raw_hours, qualification="(indicazioni della fonte; da verificare con il Comune)")
     c_map=profile.get("category_map") or {}
     category=next((value for key,value in c_map.get("values",{}).items()
-                   if canonical(row.get(c_map["field"]))==canonical(key)),"misto")
+                   if canonical(row.get(c_map["field"]))==canonical(key)),
+                  profile.get("category","misto"))
     venue={
         "slug":slug,"nome":name[:160],
         "citta":city,"provincia":province,
@@ -558,6 +596,8 @@ def candidate_record(profile,row,*,today,source_date=None):
     facts={"name":canonical(name),"address":canonical(road),
            "day":d,"start":start,"end":end,
            "publisher_dataset_date":updated.isoformat()}
+    if monthly:
+        facts["ordinal"]=rule["ordinal"] if rule else None
     if raw_hours and not (start and end):
         facts["hours_text"]=raw_hours
     facthash=digest(facts)
