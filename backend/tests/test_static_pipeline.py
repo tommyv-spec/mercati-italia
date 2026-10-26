@@ -244,6 +244,11 @@ class ExportTests(unittest.TestCase):
         rows, _ = prepare([kept, copy], self.today)
         index = {r[0]: r[-1] for r in project_index(rows, schema=7, today=self.today)}
         self.assertEqual(index, {"kept": "", "copy": "kept"})
+        spelled = market("spelled", citta="Torre De'Passeri", url_fonte="https://example.org/markets/9")
+        respelled = market("respelled", citta="Torre De' Passeri", url_fonte="https://example.org/markets/8",
+                           duplicato_di="spelled")
+        rows, _ = prepare([spelled, respelled], self.today)
+        self.assertEqual({r["slug"]: r.get("duplicato_di", "") for r in rows}, {"spelled": "", "respelled": "spelled"})
         for bad in (market("lost", duplicato_di="missing"),
                     market("chain", url_fonte="https://example.org/markets/3", duplicato_di="copy"),
                     market("far", citta="Milano", regione="Lombardia", duplicato_di="kept")):

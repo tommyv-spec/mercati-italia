@@ -677,7 +677,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         kept = by_id.get(row["duplicato_di"])
         if (kept is None or "duplicato_di" in kept
                 or kept["regione"] != row["regione"]
-                or kept["citta"].casefold() != row["citta"].casefold()):
+                # Same town, whichever source's spelling ("Torre De' Passeri" / "Torre De'Passeri").
+                or slugify(kept["citta"]) != slugify(row["citta"])):
             raise ValueError("Soft-merged copy must point to a kept record in its town: " + row["slug"])
     for row in cleaned:
         if (row.get("riscontri_campi") and
