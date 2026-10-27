@@ -1236,7 +1236,7 @@ def run(args):
     editorial_rows, discovery_report, discovery_ids = editorial_discovery.run(
         editorial_rows, out=out, state_dir=manifest_path.parent, today=args.today,
         baseline_signature=baseline_id, policy_digest=policy_id, config=discovery_config,
-        offline=args.offline, resume=args.resume, deadline=start + 20 * 60,
+        offline=args.offline, resume=args.resume, deadline=start + 45 * 60,
     )
     save_json(out / "intermediate/editorial-discovery-admitted.json", editorial_rows)
     checkpoint(out, "editorial_discovery", discovery_report["summary"])

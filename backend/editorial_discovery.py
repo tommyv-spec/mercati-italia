@@ -44,10 +44,10 @@ MAX_INDEXES = 2000
 MAX_CANDIDATES = 8000
 MAX_LINKS = 20_000
 MAX_STATE_BYTES = 4_000_000
-MAX_INDEX_REQUESTS = 12
-MAX_CANDIDATE_READS = 24
-MAX_NEW = 16
-MAX_SECONDS = 180
+MAX_INDEX_REQUESTS = 40
+MAX_CANDIDATE_READS = 80
+MAX_NEW = 32
+MAX_SECONDS = 600
 UNAVAILABLE_RETRY_DAYS = 2
 POLICY_KEYS = {"publisher", "enabled", "new_market_ids_allowed", "reuse_permission_verified",
                "owner_decision", "index_format", "seed_urls", "follow_pattern", "category_rules",

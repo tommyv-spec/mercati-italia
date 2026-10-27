@@ -69,10 +69,10 @@
           "misto"
         ]
       ],
-      "max_index_requests": 6,
-      "max_candidate_reads": 12,
-      "max_new": 16,
-      "max_seconds": 120,
+      "max_index_requests": 30,
+      "max_candidate_reads": 60,
+      "max_new": 32,
+      "max_seconds": 420,
       "min_delay_seconds": 2,
       "recheck_after_days": 30
     },
@@ -114,10 +114,10 @@
           "misto"
         ]
       ],
-      "max_index_requests": 3,
-      "max_candidate_reads": 12,
-      "max_new": 16,
-      "max_seconds": 120,
+      "max_index_requests": 9,
+      "max_candidate_reads": 60,
+      "max_new": 32,
+      "max_seconds": 420,
       "min_delay_seconds": 2,
       "recheck_after_days": 30
     }

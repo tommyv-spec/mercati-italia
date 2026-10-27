@@ -93,7 +93,8 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(state["candidates"]["https://www.eventiesagre.it/Mercatini_Vari/5_Y.html"]["status"],
                          "robots_denied")
         self.assertEqual([p["requested_url"] for p in pages], [URL])
-        self.assertEqual(report["index_pages_read"], policy["max_index_requests"])
+        self.assertEqual(report["index_pages_read"],
+                         min(policy["max_index_requests"], len(policy["seed_urls"])))
         self.assertLessEqual(report["candidates_attempted"], 2)
         # A second run the same day never re-reads what it already attempted.
         again = discovery.next_candidates(state, today=TODAY, limit=5, recheck_after_days=30)
