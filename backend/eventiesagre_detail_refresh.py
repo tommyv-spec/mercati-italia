@@ -29,7 +29,7 @@ from editorial_calendar_scope import (
     blank_province_venue_or_title, clean_editorial_evidence, geography_matches,
     istat_geography, source_identity, text_key, valid_editorial_reported_dates,
 )
-from eventiesagre_source_layout import MAX_BYTES, parse_eventiesagre_html
+from eventiesagre_source_layout import DEFAULT_MARKET_HOURS, MAX_BYTES, parse_eventiesagre_html
 from editorial_transport import ERROR_CODES, fetch as _http, failure_code
 from field_evidence import (
     FIELDS, as_day, clean_receipts, fingerprint, make_receipt,
@@ -551,6 +551,10 @@ def _update(row, document, *, read_on, today):
                 if not any(c.get("field") == ("address" if target == "indirizzo" else "hours")
                            for c in local["conflicts"]):
                     proposed[target] = value
+    elif selected["hours"] == "La mattina" and row.get("orario_testo") == DEFAULT_MARKET_HOURS:
+        # Undoing the import's copy of the site's default clock range certifies
+        # nothing new, so an old edition may still say what it really states.
+        proposed["orario_testo"] = "La mattina"
     # Recurrence text is retained in facts. It is not promoted without its
     # full editorial meaning; scope alone must never authorize an expansion.
     # A current page whose recurrence reads as exactly the market's rule only
@@ -595,9 +599,13 @@ def _update(row, document, *, read_on, today):
                 result[field] = value
                 accepted[field] = value
                 updated.append(field)
-            elif field == "ricorrenza_testo" and extends_rule:
-                # The truncated value came from the old import, owned by no engine:
-                # the page's full rule is this engine's first assignment.
+            elif (field == "ricorrenza_testo" and extends_rule
+                  or field == "orario_testo" and current == DEFAULT_MARKET_HOURS
+                  and value == "La mattina" and publisher == PUBLISHER
+                  and not any(field in r["valori"] for r in prior)):
+                # The truncated rule or the site's default clock range came from the
+                # old import, owned by no engine: the page's own statement is this
+                # engine's first assignment.
                 result[field] = value
                 accepted[field] = value
                 assigned.append(field)

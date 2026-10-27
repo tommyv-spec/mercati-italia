@@ -333,6 +333,18 @@ class HappingsOfflineLayoutTests(unittest.TestCase):
         self.assertEqual(result["counts"]["more_than_one_source_venue_on_city_day"],1)
         self.assertEqual(result["counts"].get("saved_market_missing_source_location",0),0)
 
+    def test_numbered_markets_of_one_town_are_that_town_and_stay_separate(self):
+        numbered=HTML.replace(
+            b'<li>a Dolo, in Piazza San Valentino (la mattina)</li>',
+            b'<li>a Spinea 1, in centro (la mattina)</li><li>a Spinea 2, in centro (la mattina)</li>',
+        )
+        rows=[r for r in parse(numbered,source_url=VENICE_NEW).rows if r["weekday"]==2]
+        self.assertEqual([(r["city"],r["city_label"]) for r in rows if r["city_label"].startswith("Spinea ")],
+                         [("Spinea","Spinea 1"),("Spinea","Spinea 2")])
+        result=compare_saved_markets([market("spinea-no-street")],numbered,
+                                    source_url=VENICE_NEW,today=TODAY)
+        self.assertEqual(result["counts"]["more_than_one_source_venue_on_city_day"],1)
+
     def test_wrong_city_weekday_and_foreign_source_cannot_join(self):
         rows=[
             market("wrong-city",city="Mirano"),

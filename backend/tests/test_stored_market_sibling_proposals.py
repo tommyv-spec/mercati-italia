@@ -157,3 +157,13 @@ class StoredPublisherSiblingAuditTests(unittest.TestCase):
 
 if __name__=="__main__":
     unittest.main()
+
+
+class GenericVenueNameTests(unittest.TestCase):
+    def test_publisher_numbering_is_still_the_town_generic_market(self):
+        from stored_market_sibling_proposals import same_generic_venue
+        for name in ("Mercato settimanale a Ancona", "Mercato settimanale di Ancona 11"):
+            self.assertTrue(same_generic_venue({"nome": name, "citta": "Ancona"}))
+        for name in ("Mercato settimanale di Ancona centro", "Mercato settimanale di Ancona 2026",
+                     "Mercatino di Ancona 1"):
+            self.assertFalse(same_generic_venue({"nome": name, "citta": "Ancona"}))

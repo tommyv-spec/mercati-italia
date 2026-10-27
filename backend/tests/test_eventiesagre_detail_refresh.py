@@ -361,6 +361,30 @@ class PageRuleExtensionTests(unittest.TestCase):
                 self.assertFalse(_adds_weeks(page, rule(card)))
 
 
+class DefaultHoursTests(unittest.TestCase):
+    PAGE = ("<p><strong>Informazioni sul Mercato:</strong></p><p>Quando si svolge: Lunedì tutto l'anno</p>"
+            "<p><strong>Orari del Mercat</strong>o: Dalle 08:00 alle 13:00</p>")
+
+    def test_imported_site_default_becomes_what_even_an_old_edition_states(self):
+        old_edition = html(hours="", body=self.PAGE, start="03/10/2024", end="03/10/2024")
+        output, report = preview([row(orario_testo="08:00–13:00")], [document(old_edition)], today=TODAY)
+        self.assertEqual(output[0]["orario_testo"], "La mattina")
+        self.assertEqual(output[0]["riscontri_campi"][0]["campi_gestiti"], ["orario_testo"])
+        self.assertTrue(verify_exported(output, report, today=TODAY)["release_safe"])
+
+    def test_default_backed_by_another_receipt_or_hours_never_set_are_left_alone(self):
+        old_edition = html(hours="", body=self.PAGE, start="03/10/2024", end="03/10/2024")
+        stated = row(orario_testo="08:00–13:00")
+        stated["riscontri_campi"] = [make_receipt(stated, values={"orario_testo": "08:00–13:00"},
+            source_url="https://example.org/calendario", source_name="Comune", source_id="comune:1",
+            source_row="1", read_on="2026-10-01", source_updated_on="2026-09-01",
+            source_sha256="a" * 64, scope="pagina", method="pagina_primaria_revisionata")]
+        for card in (stated, row(orario_testo="")):
+            with self.subTest(hours=card["orario_testo"]):
+                output, _ = preview([card], [document(old_edition)], today=TODAY)
+                self.assertEqual(output[0]["orario_testo"], card["orario_testo"])
+
+
 class ProvinceNameTests(unittest.TestCase):
     def test_province_names_with_hyphens_and_typed_accents_resolve(self):
         from eventiesagre_detail_refresh import _normalized_location as place

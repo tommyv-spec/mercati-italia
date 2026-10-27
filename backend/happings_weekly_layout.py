@@ -190,6 +190,9 @@ def _source_row(city, place, weekday):
         place=place[:suffix.start()].strip()
     place_label=place
     city,city_qualifiers=_calendar_qualifiers(city.strip(),"city")
+    # "Ancona 11": the publisher numbers several markets of one town; no comune
+    # name ends in a number. city_label keeps the published text.
+    city=re.sub(r"\s+\d{1,2}$","",city.strip())
     place,place_qualifiers=_calendar_qualifiers(place,"place")
     qualifiers=city_qualifiers+place_qualifiers
     if not 2<=len(city.strip())<=120 or not 3<=len(place)<=240:
