@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 1176,
-    "coordinates_missing": 719,
-    "future_dates_missing": 2253,
-    "hours_missing": 1794,
+    "coordinates_missing": 741,
+    "future_dates_missing": 2278,
+    "hours_missing": 1833,
     "review_only_duplicate_groups": 1408,
     "review_only_potential_extra_rows": 1683,
     "suspicious_city": 2,
-    "total": 14139,
-    "without_individual_verification": 14139
+    "total": 14175,
+    "without_individual_verification": 14175
   },
   "per_region": [
     {
@@ -29,11 +29,11 @@
       "markets": 36,
       "hours_missing": 3,
       "address_missing": 9,
-      "future_dates_missing": 9
+      "future_dates_missing": 13
     },
     {
       "region": "Calabria",
-      "markets": 332,
+      "markets": 333,
       "hours_missing": 37,
       "address_missing": 37,
       "future_dates_missing": 33,
@@ -42,22 +42,22 @@
     {
       "region": "Campania",
       "markets": 824,
-      "hours_missing": 121,
+      "hours_missing": 153,
       "address_missing": 67,
-      "future_dates_missing": 70,
+      "future_dates_missing": 74,
       "coordinates_missing": 26
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 910,
-      "hours_missing": 169,
+      "markets": 912,
+      "hours_missing": 170,
       "future_dates_missing": 305,
       "address_missing": 100,
-      "coordinates_missing": 76
+      "coordinates_missing": 78
     },
     {
       "region": "Friuli Venezia Giulia",
-      "markets": 263,
+      "markets": 264,
       "future_dates_missing": 85,
       "hours_missing": 30,
       "address_missing": 15,
@@ -73,15 +73,15 @@
     },
     {
       "region": "Liguria",
-      "markets": 395,
+      "markets": 396,
       "hours_missing": 51,
       "future_dates_missing": 101,
       "address_missing": 51,
-      "coordinates_missing": 18
+      "coordinates_missing": 17
     },
     {
       "region": "Lombardia",
-      "markets": 3999,
+      "markets": 4002,
       "future_dates_missing": 611,
       "hours_missing": 521,
       "address_missing": 166,
@@ -92,7 +92,7 @@
       "markets": 297,
       "future_dates_missing": 53,
       "hours_missing": 76,
-      "coordinates_missing": 15,
+      "coordinates_missing": 14,
       "address_missing": 43
     },
     {
@@ -104,26 +104,26 @@
     },
     {
       "region": "Piemonte",
-      "markets": 1355,
+      "markets": 1356,
       "hours_missing": 157,
       "future_dates_missing": 172,
-      "coordinates_missing": 36,
+      "coordinates_missing": 34,
       "address_missing": 175
     },
     {
       "region": "Puglia",
-      "markets": 484,
+      "markets": 486,
       "hours_missing": 50,
       "address_missing": 37,
       "future_dates_missing": 50,
-      "coordinates_missing": 14
+      "coordinates_missing": 16
     },
     {
       "region": "Sardegna",
-      "markets": 392,
+      "markets": 393,
       "future_dates_missing": 25,
-      "hours_missing": 23,
-      "coordinates_missing": 3,
+      "hours_missing": 24,
+      "coordinates_missing": 4,
       "address_missing": 30
     },
     {
@@ -132,30 +132,30 @@
       "hours_missing": 53,
       "address_missing": 39,
       "future_dates_missing": 51,
-      "coordinates_missing": 7
+      "coordinates_missing": 6
     },
     {
       "region": "Toscana",
       "markets": 972,
       "hours_missing": 190,
-      "future_dates_missing": 207,
+      "future_dates_missing": 221,
       "address_missing": 106,
-      "coordinates_missing": 74
+      "coordinates_missing": 72
     },
     {
       "region": "Trentino-Alto Adige",
-      "markets": 232,
-      "hours_missing": 21,
-      "future_dates_missing": 48,
-      "address_missing": 36,
-      "coordinates_missing": 5
+      "markets": 252,
+      "coordinates_missing": 25,
+      "hours_missing": 22,
+      "future_dates_missing": 51,
+      "address_missing": 36
     },
     {
       "region": "Umbria",
-      "markets": 181,
+      "markets": 182,
       "hours_missing": 31,
       "address_missing": 19,
-      "coordinates_missing": 6,
+      "coordinates_missing": 7,
       "future_dates_missing": 39
     },
     {
@@ -167,18 +167,18 @@
     },
     {
       "region": "Veneto",
-      "markets": 1315,
+      "markets": 1318,
       "future_dates_missing": 136,
       "address_missing": 119,
-      "coordinates_missing": 143,
-      "hours_missing": 118,
+      "coordinates_missing": 146,
+      "hours_missing": 122,
       "suspicious_city": 2
     }
   ],
   "top_sources": [
     {
       "source": "happings.com",
-      "records": 9848
+      "records": 9870
     },
     {
       "source": "eventiesagre.it",
@@ -213,15 +213,15 @@
       "records": 22
     },
     {
+      "source": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata",
+      "records": 14
+    },
+    {
       "source": "trentino.com",
       "records": 9
     },
     {
       "source": "emiliaromagnaturismo.it",
-      "records": 8
-    },
-    {
-      "source": "eventi.bergamo.it",
       "records": 8
     }
   ],
@@ -705,17 +705,17 @@
     "source_supported_revealed_extra_rows": 0,
     "source_supported_revealed_groups": 0,
     "examples": [],
-    "baseline_records": 14115,
+    "baseline_records": 14139,
     "baseline_potential_extra_rows": 1683,
     "positive_group_growth": 0,
     "unexplained_group_growth": 0
   },
   "baseline_delta": {
-    "total": 24,
-    "hours_missing": -2,
-    "address_missing": -1,
-    "coordinates_missing": 23,
-    "future_dates_missing": 12,
+    "total": 36,
+    "hours_missing": 39,
+    "address_missing": 0,
+    "coordinates_missing": 22,
+    "future_dates_missing": 25,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0

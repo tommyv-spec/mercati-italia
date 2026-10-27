@@ -596,6 +596,11 @@
    "queried_on": "2026-10-25",
    "query": "LODOVICO PAVONI, Alfianello, Italia"
   },
+  "lungolago europa|bellagio|co": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-10-27",
+   "query": "LUNGOLAGO EUROPA, Bellagio, Italia"
+  },
   "lungomare dante alighieri|trapani|tp": {
    "class": "highway",
    "lat": 38.018392,
@@ -911,6 +916,16 @@
    "queried_on": "2026-10-25",
    "query": "Parcheggio scambiatore, Pisa, Italia"
   },
+  "parco centrale|follonica|gr": {
+   "class": "leisure",
+   "lat": 42.924822,
+   "lng": 10.766005,
+   "name": "Parco centrale, Follonica, Grosseto, Toscana, Italia",
+   "osm": "relation/6065849",
+   "queried_on": "2026-10-27",
+   "query": "PARCO Centrale, Follonica, Italia",
+   "type": "park"
+  },
   "parco novi sad|modena|mo": {
    "class": "highway",
    "lat": 44.651119,
@@ -920,6 +935,11 @@
    "queried_on": "2026-10-25",
    "query": "Parco Novi Sad, Modena, Italia",
    "type": "pedestrian"
+  },
+  "parco porta spinola|mariano comense|co": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-27",
+   "query": "PARCO Porta Spinola, Mariano Comense, Italia"
   },
   "parco santa lucia|assemini|ca": {
    "miss": "nessun_risultato",
@@ -1200,6 +1220,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA Cavour, Castelfiorentino, Italia",
    "type": "service"
+  },
+  "piazza cavour|favara|ag": {
+   "class": "place",
+   "lat": 37.314535,
+   "lng": 13.659954,
+   "name": "Piazza Camillo Benso Conte di Cavour, Favara Ovest, Favara, Agrigento, Sicilia, 92026, Italia",
+   "osm": "way/247597649",
+   "queried_on": "2026-10-27",
+   "query": "PIAZZA Cavour, Favara, Italia",
+   "type": "square"
   },
   "piazza cavour|la spezia|sp": {
    "class": "place",
@@ -1516,6 +1546,11 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA DEL MUNICIPIO, Romagnese, Italia"
   },
+  "piazza del paese|santo stefano al mare|im": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-27",
+   "query": "piazza del paese, Santo Stefano al Mare, Italia"
+  },
   "piazza del pesce|prato|po": {
    "class": "amenity",
    "lat": 43.881147,
@@ -1560,6 +1595,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
    "query": "Piazza della Chiesa, Cercivento, Italia"
+  },
+  "piazza della liberta|alessandria|al": {
+   "class": "place",
+   "lat": 44.913385,
+   "lng": 8.616157,
+   "name": "Piazza della Libertà, Alessandria, Piemonte, Italia",
+   "osm": "way/1199314518",
+   "queried_on": "2026-10-27",
+   "query": "PIAZZA della Libertà, Alessandria, Italia",
+   "type": "square"
   },
   "piazza della liberta|bardolino|vr": {
    "miss": "nessun_risultato",
@@ -1930,6 +1975,16 @@
    "queried_on": "2026-10-25",
    "query": "piazza Garibaldi, Alessandria, Italia",
    "type": "bus_stop"
+  },
+  "piazza garibaldi|orzinuovi|bs": {
+   "class": "place",
+   "lat": 45.403883,
+   "lng": 9.924444,
+   "name": "Piazza Giuseppe Garibaldi, Orzinuovi, Unione dei Comuni Bassa Bresciana Occidentale, Brescia, Lombardia, Italia",
+   "osm": "way/75727647",
+   "queried_on": "2026-10-27",
+   "query": "PIAZZA GARIBALDI, Orzinuovi, Italia",
+   "type": "square"
   },
   "piazza garibaldi|ravenna|ra": {
    "class": "amenity",
@@ -3346,6 +3401,16 @@
    "queried_on": "2026-10-25",
    "query": "Strada Cà Balbi, Vicenza, Italia"
   },
+  "strada provinciale|codevilla|pv": {
+   "class": "highway",
+   "lat": 44.967948,
+   "lng": 9.058009,
+   "name": "Strada Provinciale Bressana - Salice Terme, Cascina San Martino, Codevilla, Pavia, Lombardia, 27054, Italia",
+   "osm": "way/500125658",
+   "queried_on": "2026-10-27",
+   "query": "Strada Provinciale, Codevilla, Italia",
+   "type": "secondary"
+  },
   "teatro cartiere carrara|firenze|fi": {
    "class": "amenity",
    "lat": 43.76657,
@@ -3611,6 +3676,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA Cappuccini, Tirano, Italia"
   },
+  "via carroccio|erba|co": {
+   "class": "highway",
+   "lat": 45.804562,
+   "lng": 9.225072,
+   "name": "Via Carroccio, Incino, Erba, Como, Lombardia, 22036, Italia",
+   "osm": "way/176157898",
+   "queried_on": "2026-10-27",
+   "query": "VIA Carroccio, Erba, Italia",
+   "type": "unclassified"
+  },
   "via casazza|brescia|bs": {
    "class": "highway",
    "lat": 45.57318,
@@ -3700,6 +3775,16 @@
    "queried_on": "2026-10-25",
    "query": "Via Chiana, Roma, Italia",
    "type": "tertiary"
+  },
+  "via cimabue|grosseto|gr": {
+   "class": "highway",
+   "lat": 42.755748,
+   "lng": 11.100349,
+   "name": "Via Cimabue, Gorarella, Grosseto, Toscana, 58100, Italia",
+   "osm": "way/241333868",
+   "queried_on": "2026-10-27",
+   "query": "VIA Cimabue, Grosseto, Italia",
+   "type": "secondary"
   },
   "via conca d oro|roma|rm": {
    "class": "highway",
@@ -4441,6 +4526,11 @@
    "query": "Via Grazia Deledda, Roma, Italia",
    "type": "residential"
   },
+  "via gromlongo|palazzago|bg": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-10-27",
+   "query": "VIA GROMLONGO, Palazzago, Italia"
+  },
   "via guglielmo marconi|gazoldo degli ippoliti|mn": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -4475,6 +4565,11 @@
    "queried_on": "2026-10-25",
    "query": "Via Hugo von Taufers, Campo Tures, Italia",
    "type": "residential"
+  },
+  "via j kravogl|lana|bz": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-27",
+   "query": "Via J. Kravogl, Lana, Italia"
   },
   "via jacopo della quercia|monticello brianza|lc": {
    "class": "highway",
@@ -4671,6 +4766,16 @@
    "query": "VIA MARTIRI DELLA RESISTENZA, Ancona, Italia",
    "type": "primary"
   },
+  "via mazzini|sarzana|sp": {
+   "class": "highway",
+   "lat": 44.112447,
+   "lng": 9.961022,
+   "name": "Via Giuseppe Mazzini, Sarzana, La Spezia, Liguria, 19038, Italia",
+   "osm": "way/48560609",
+   "queried_on": "2026-10-27",
+   "query": "via Mazzini, Sarzana, Italia",
+   "type": "pedestrian"
+  },
   "via medaglie olimpiche mandellesi|mandello del lario|lc": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -4800,6 +4905,11 @@
    "queried_on": "2026-10-25",
    "query": "Via Orazio dello Sbirro, Roma, Italia",
    "type": "residential"
+  },
+  "via p p rainer|san candido|bz": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-27",
+   "query": "Via P.-P.-Rainer, San Candido, Italia"
   },
   "via p r giuliani|cavaria con premezzo|va": {
    "miss": "nessun_risultato",
@@ -4955,6 +5065,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA PLACIDO PIANTONI, Colere, Italia",
    "type": "tertiary"
+  },
+  "via pozzuolo|udine|ud": {
+   "class": "highway",
+   "lat": 46.050793,
+   "lng": 13.225532,
+   "name": "Via Pozzuolo, San Paolo, Sant'Osvaldo, Cormôr Alto, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "osm": "way/103852233",
+   "queried_on": "2026-10-27",
+   "query": "VIA Pozzuolo, Udine, Italia",
+   "type": "primary"
   },
   "via pre zaneto|porpetto|ud": {
    "miss": "comune_diverso",
@@ -5146,6 +5266,16 @@
    "query": "via Roma, Ragusa, Italia",
    "type": "residential"
   },
+  "via roma|san lorenzo al mare|im": {
+   "class": "highway",
+   "lat": 43.853033,
+   "lng": 7.963509,
+   "name": "Via Roma, San Lorenzo al Mare, Provincia di Imperia, Liguria, 18017, Italia",
+   "osm": "way/32810185",
+   "queried_on": "2026-10-27",
+   "query": "via Roma, San Lorenzo al Mare, Italia",
+   "type": "pedestrian"
+  },
   "via roma|settimo torinese|to": {
    "class": "highway",
    "lat": 45.138677,
@@ -5276,6 +5406,16 @@
    "query": "VIA Santa Maria Goretti, Cagliari, Italia",
    "type": "residential"
   },
+  "via sbarre centrali|reggio di calabria|rc": {
+   "class": "highway",
+   "lat": 38.095729,
+   "lng": 15.643365,
+   "name": "Via Sbarre Centrali, Ravagnese, Reggio di Calabria, Reggio Calabria, Calabria, 89129, Italia",
+   "osm": "way/314980763",
+   "queried_on": "2026-10-27",
+   "query": "VIA Sbarre Centrali, Reggio di Calabria, Italia",
+   "type": "tertiary"
+  },
   "via scardona|rovigo|ro": {
    "class": "highway",
    "lat": 45.077687,
@@ -5305,6 +5445,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA SILVIO PELLICO, Casalmaggiore, Italia",
    "type": "unclassified"
+  },
+  "via simoncelli|pesaro|pu": {
+   "class": "highway",
+   "lat": 43.900013,
+   "lng": 12.904129,
+   "name": "Via Alessandro Simoncelli, Miralfiore, Pantano, Pesaro, Pesaro e Urbino, Marche, 61121, Italia",
+   "osm": "way/60185695",
+   "queried_on": "2026-10-27",
+   "query": "VIA Simoncelli, Pesaro, Italia",
+   "type": "residential"
   },
   "via somaini|lomazzo|co": {
    "miss": "nessun_risultato",
@@ -5496,6 +5646,16 @@
    "query": "VIA Vittorio Veneto, Bresso, Italia",
    "type": "secondary"
   },
+  "via vittorio|bra|cn": {
+   "class": "highway",
+   "lat": 44.701131,
+   "lng": 7.848101,
+   "name": "Via Vittorio Emanuele II, Bra, Cuneo, Piemonte, 12042, Italia",
+   "osm": "way/377041083",
+   "queried_on": "2026-10-27",
+   "query": "via Vittorio, Bra, Italia",
+   "type": "residential"
+  },
   "via volta inzino|gardone val trompia|bs": {
    "class": "highway",
    "lat": 45.704588,
@@ -5525,6 +5685,11 @@
    "queried_on": "2026-10-25",
    "query": "via XX Settembre, Lecce, Italia",
    "type": "residential"
+  },
+  "via xx settembre|novi ligure|al": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-27",
+   "query": "VIA XX Settembre, Novi Ligure, Italia"
   },
   "via xx settembre|pavia|pv": {
    "class": "highway",
@@ -5740,6 +5905,16 @@
    "queried_on": "2026-10-25",
    "query": "Viale Matteotti, Pavia, Italia",
    "type": "tertiary"
+  },
+  "viale oliva|valenza|al": {
+   "class": "highway",
+   "lat": 45.010536,
+   "lng": 8.644882,
+   "name": "Viale Luciano Oliva, Sant'Antonio, Fontanile, Valenza, Alessandria, Piemonte, 15048, Italia",
+   "osm": "way/80509849",
+   "queried_on": "2026-10-27",
+   "query": "VIALE Oliva, Valenza, Italia",
+   "type": "residential"
   },
   "viale oslavia|mantova|mn": {
    "class": "highway",

@@ -5,22 +5,22 @@
   "daily_detailed_tasks_saved_in_git": false,
   "daily_shard": 8,
   "daily_worklist_count": 472,
-  "distinct_source_labels": 89,
-  "incomplete_market_records_retained": 14139,
+  "distinct_source_labels": 90,
+  "incomplete_market_records_retained": 14175,
   "market_fields_changed": 0,
-  "market_identities_preserved": 14139,
-  "market_records_scanned": 14139,
+  "market_identities_preserved": 14175,
+  "market_records_scanned": 14175,
   "market_rows_added": 0,
   "market_rows_removed": 0,
   "may_enable_source_crawlers": false,
   "may_grant_source_reuse_rights": false,
   "missing_by_field": {
-    "coordinates": 14050,
-    "date": 2253,
-    "indirizzo": 4839,
-    "individual_edition_confirmation": 14139,
-    "orario_testo": 1794,
-    "ricorrenza_testo": 984
+    "coordinates": 14086,
+    "date": 2278,
+    "indirizzo": 4838,
+    "individual_edition_confirmation": 14175,
+    "orario_testo": 1833,
+    "ricorrenza_testo": 988
   },
   "official_join_results": {
     "city_weekday_only_unconfirmed_venue": 45,
@@ -28,14 +28,14 @@
     "exact_field_evidence_candidates": 0,
     "many_market_places_on_same_city_day": 14,
     "multiple_official_venues_on_same_street_day": 2,
-    "no_usable_source_match": 12928,
+    "no_usable_source_match": 12964,
     "review_only_field_candidates": 47,
     "same_source_id": 789,
     "unique_city_province_street_weekday": 377
   },
   "official_source_records": 1360,
   "official_source_status": "fresh_dataset_not_market_confirmation",
-  "original_market_ids_sha256": "8ddfb51f983b61c23c8a1eb294b4bb02c43946949c3538cf6d991137fc02c9ad",
+  "original_market_ids_sha256": "67c44415cdb36a8854e24c9304505f2919cfca39df65e424d6e4709e0ef00ee8",
   "publisher_copyright_permissions_inferred": false,
   "report_only": true,
   "schema": 1,
@@ -57,16 +57,16 @@
       },
       "bulk_scrape_allowed": true,
       "missing_fields": {
-        "coordinates": 9848,
+        "coordinates": 9870,
         "date": 104,
-        "indirizzo": 4230,
-        "individual_edition_confirmation": 9848,
-        "orario_testo": 718,
-        "ricorrenza_testo": 43
+        "indirizzo": 4229,
+        "individual_edition_confirmation": 9870,
+        "orario_testo": 752,
+        "ricorrenza_testo": 47
       },
       "next_automation": "existing_happings_weekly_index_adapter_then_official_cross_match",
       "publisher": "happings.com",
-      "records": 9848,
+      "records": 9870,
       "reuse_status": "project_owner_authorized",
       "source_family": "happings-weekly-or-detail",
       "source_rows_removed": 0
@@ -76,7 +76,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2200,
-        "date": 1231,
+        "date": 1253,
         "indirizzo": 485,
         "individual_edition_confirmation": 2200,
         "orario_testo": 368,
@@ -199,6 +199,22 @@
       "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "cosafareafirenze.it",
       "records": 22,
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
+      "source_rows_removed": 0
+    },
+    {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
+      "missing_fields": {
+        "coordinates": 14,
+        "date": 3,
+        "individual_edition_confirmation": 14,
+        "orario_testo": 1
+      },
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
+      "publisher": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata",
+      "records": 14,
       "reuse_status": "not_resolved_by_this_worklist",
       "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
@@ -960,6 +976,7 @@
         "coordinates": 2,
         "date": 2,
         "individual_edition_confirmation": 2,
+        "orario_testo": 2,
         "ricorrenza_testo": 2
       },
       "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
@@ -1289,6 +1306,7 @@
         "coordinates": 1,
         "date": 1,
         "individual_edition_confirmation": 1,
+        "orario_testo": 1,
         "ricorrenza_testo": 1
       },
       "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
@@ -1465,6 +1483,7 @@
         "coordinates": 1,
         "indirizzo": 1,
         "individual_edition_confirmation": 1,
+        "orario_testo": 1,
         "ricorrenza_testo": 1
       },
       "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",

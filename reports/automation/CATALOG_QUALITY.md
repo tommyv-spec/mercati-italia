@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,139**.
-- Orari mancanti: **1,794**.
+- Schede: **14,175**.
+- Orari mancanti: **1,833**.
 - Indirizzi mancanti: **1,176**.
-- Coordinate mancanti: **719**.
-- Date future mancanti: **2,253**.
+- Coordinate mancanti: **741**.
+- Date future mancanti: **2,278**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,408** gruppi, **1,683** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,139**.
+- Verifiche umane documentate mancanti: **14,175**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -21,7 +21,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Fonte | Schede |
 |---|---:|
-| happings.com | 9,848 |
+| happings.com | 9,870 |
 | eventiesagre.it | 2,200 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
 | cosedicasa.com | 442 |
@@ -30,9 +30,9 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | dati.comune.roma.it | 70 |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 |
 | cosafareafirenze.it | 22 |
+| Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | 14 |
 | trentino.com | 9 |
 | emiliaromagnaturismo.it | 8 |
-| eventi.bergamo.it | 8 |
 
 ## Regioni
 
@@ -40,24 +40,24 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 |---|---:|---:|---:|
 | Abruzzo | 395 | 24 | 32 |
 | Basilicata | 36 | 3 | 9 |
-| Calabria | 332 | 37 | 37 |
-| Campania | 824 | 121 | 67 |
-| Emilia-Romagna | 910 | 169 | 100 |
-| Friuli Venezia Giulia | 263 | 30 | 15 |
+| Calabria | 333 | 37 | 37 |
+| Campania | 824 | 153 | 67 |
+| Emilia-Romagna | 912 | 170 | 100 |
+| Friuli Venezia Giulia | 264 | 30 | 15 |
 | Lazio | 1,082 | 97 | 59 |
-| Liguria | 395 | 51 | 51 |
-| Lombardia | 3,999 | 521 | 166 |
+| Liguria | 396 | 51 | 51 |
+| Lombardia | 4,002 | 521 | 166 |
 | Marche | 297 | 76 | 43 |
 | Molise | 215 | 15 | 30 |
-| Piemonte | 1,355 | 157 | 175 |
-| Puglia | 484 | 50 | 37 |
-| Sardegna | 392 | 23 | 30 |
+| Piemonte | 1,356 | 157 | 175 |
+| Puglia | 486 | 50 | 37 |
+| Sardegna | 393 | 24 | 30 |
 | Sicilia | 406 | 53 | 39 |
 | Toscana | 972 | 190 | 106 |
-| Trentino-Alto Adige | 232 | 21 | 36 |
-| Umbria | 181 | 31 | 19 |
+| Trentino-Alto Adige | 252 | 22 | 36 |
+| Umbria | 182 | 31 | 19 |
 | Valle d'Aosta | 54 | 7 | 6 |
-| Veneto | 1,315 | 118 | 119 |
+| Veneto | 1,318 | 122 | 119 |
 
 ## Località da verificare (campione limitato)
 

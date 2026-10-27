@@ -54,23 +54,23 @@
     "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
     "metrics": {
       "indirizzo:mancante": 1176,
-      "indirizzo:riscontrato_data_fonte_sconosciuta": 7525,
-      "indirizzo:riscontrato_fonte_recente": 1767,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 7545,
+      "indirizzo:riscontrato_fonte_recente": 1784,
       "indirizzo:riscontro_da_aggiornare": 166,
-      "indirizzo:senza_riscontro_documentato": 3505,
-      "markets": 14139,
-      "markets_with_all_three_fields_source_supported": 1058,
-      "markets_with_recent_field_evidence": 2195,
-      "orario_testo:mancante": 1794,
-      "orario_testo:riscontrato_data_fonte_sconosciuta": 7649,
-      "orario_testo:riscontrato_fonte_recente": 1521,
-      "orario_testo:riscontro_da_aggiornare": 645,
-      "orario_testo:senza_riscontro_documentato": 2530,
-      "ricorrenza_testo:mancante": 984,
-      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 9087,
-      "ricorrenza_testo:riscontrato_fonte_recente": 1696,
+      "indirizzo:senza_riscontro_documentato": 3504,
+      "markets": 14175,
+      "markets_with_all_three_fields_source_supported": 1072,
+      "markets_with_recent_field_evidence": 2219,
+      "orario_testo:mancante": 1833,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 7665,
+      "orario_testo:riscontrato_fonte_recente": 1544,
+      "orario_testo:riscontro_da_aggiornare": 699,
+      "orario_testo:senza_riscontro_documentato": 2434,
+      "ricorrenza_testo:mancante": 988,
+      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 9104,
+      "ricorrenza_testo:riscontrato_fonte_recente": 1712,
       "ricorrenza_testo:riscontro_da_aggiornare": 215,
-      "ricorrenza_testo:senza_riscontro_documentato": 2157
+      "ricorrenza_testo:senza_riscontro_documentato": 2156
     },
     "publishers": [
       {
@@ -103,6 +103,16 @@
         "publisher": "Comune di Milano - Open Data (CC BY 4.0)",
         "ricorrenza_testo:riscontro_da_aggiornare": 8,
         "ricorrenza_testo:senza_riscontro_documentato": 77
+      },
+      {
+        "indirizzo:riscontrato_fonte_recente": 14,
+        "markets": 14,
+        "markets_with_all_three_fields_source_supported": 13,
+        "markets_with_recent_field_evidence": 14,
+        "orario_testo:mancante": 1,
+        "orario_testo:riscontrato_fonte_recente": 13,
+        "publisher": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata",
+        "ricorrenza_testo:riscontrato_fonte_recente": 14
       },
       {
         "indirizzo:mancante": 1,
@@ -422,25 +432,26 @@
       {
         "indirizzo:mancante": 441,
         "indirizzo:riscontrato_data_fonte_sconosciuta": 80,
-        "indirizzo:riscontrato_fonte_recente": 15,
-        "indirizzo:senza_riscontro_documentato": 1664,
+        "indirizzo:riscontrato_fonte_recente": 16,
+        "indirizzo:senza_riscontro_documentato": 1663,
         "markets": 2200,
-        "markets_with_recent_field_evidence": 19,
+        "markets_with_all_three_fields_source_supported": 1,
+        "markets_with_recent_field_evidence": 23,
         "orario_testo:mancante": 368,
-        "orario_testo:riscontrato_fonte_recente": 4,
-        "orario_testo:riscontro_da_aggiornare": 3,
-        "orario_testo:senza_riscontro_documentato": 1825,
+        "orario_testo:riscontrato_fonte_recente": 8,
+        "orario_testo:riscontro_da_aggiornare": 57,
+        "orario_testo:senza_riscontro_documentato": 1767,
         "publisher": "eventiesagre.it",
         "ricorrenza_testo:mancante": 712,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 616,
-        "ricorrenza_testo:riscontrato_fonte_recente": 4,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 615,
+        "ricorrenza_testo:riscontrato_fonte_recente": 6,
         "ricorrenza_testo:riscontro_da_aggiornare": 5,
-        "ricorrenza_testo:senza_riscontro_documentato": 863
+        "ricorrenza_testo:senza_riscontro_documentato": 862
       },
       {
         "indirizzo:senza_riscontro_documentato": 1,
         "markets": 1,
-        "orario_testo:senza_riscontro_documentato": 1,
+        "orario_testo:mancante": 1,
         "publisher": "eventiinsardegna.it",
         "ricorrenza_testo:mancante": 1
       },
@@ -496,20 +507,20 @@
       },
       {
         "indirizzo:mancante": 619,
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 7428,
-        "indirizzo:riscontrato_fonte_recente": 316,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 7448,
+        "indirizzo:riscontrato_fonte_recente": 318,
         "indirizzo:senza_riscontro_documentato": 1485,
-        "markets": 9848,
+        "markets": 9870,
         "markets_with_all_three_fields_source_supported": 241,
-        "markets_with_recent_field_evidence": 739,
-        "orario_testo:mancante": 718,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 7637,
-        "orario_testo:riscontrato_fonte_recente": 663,
+        "markets_with_recent_field_evidence": 745,
+        "orario_testo:mancante": 752,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 7653,
+        "orario_testo:riscontrato_fonte_recente": 669,
         "orario_testo:riscontro_da_aggiornare": 197,
-        "orario_testo:senza_riscontro_documentato": 633,
+        "orario_testo:senza_riscontro_documentato": 599,
         "publisher": "happings.com",
-        "ricorrenza_testo:mancante": 43,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 8463,
+        "ricorrenza_testo:mancante": 47,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 8481,
         "ricorrenza_testo:riscontrato_fonte_recente": 524,
         "ricorrenza_testo:senza_riscontro_documentato": 818
       },
@@ -619,7 +630,7 @@
       {
         "indirizzo:mancante": 1,
         "markets": 1,
-        "orario_testo:senza_riscontro_documentato": 1,
+        "orario_testo:mancante": 1,
         "publisher": "riminitoday.it",
         "ricorrenza_testo:mancante": 1
       },
@@ -725,7 +736,7 @@
       {
         "indirizzo:senza_riscontro_documentato": 2,
         "markets": 2,
-        "orario_testo:senza_riscontro_documentato": 2,
+        "orario_testo:mancante": 2,
         "publisher": "trevisotoday.it",
         "ricorrenza_testo:mancante": 2
       },
@@ -790,24 +801,24 @@
     "verification": "recorded verificato_il values; this report does not authenticate their underlying proof"
   },
   "metrics": {
-    "dataset_updated_not_specific_market": 1352,
-    "forecast_from_stale_or_unknown_source": 10603,
-    "import_within_30d": 314,
+    "dataset_updated_not_specific_market": 1366,
+    "forecast_from_stale_or_unknown_source": 10580,
+    "import_within_30d": 350,
     "legacy_update_timestamp_without_source_date": 12561,
-    "recent_dataset_only_update": 1205,
+    "recent_dataset_only_update": 1219,
     "source_date_366_to_limit": 1,
     "source_date_91_to_365d": 107,
-    "source_date_from_declared_source_content": 1365,
+    "source_date_from_declared_source_content": 1379,
     "source_date_outside_limit": 51,
-    "source_date_unknown": 12774,
-    "source_date_within_30d": 1206,
-    "source_read_within_30d": 1496,
-    "total": 14139,
-    "with_any_future_date": 11886,
-    "with_forecast_dates": 11536,
-    "with_import_timestamp": 314,
-    "with_source_read_timestamp": 1496,
-    "without_documented_verification": 14139,
+    "source_date_unknown": 12796,
+    "source_date_within_30d": 1220,
+    "source_read_within_30d": 1532,
+    "total": 14175,
+    "with_any_future_date": 11897,
+    "with_forecast_dates": 11524,
+    "with_import_timestamp": 350,
+    "with_source_read_timestamp": 1532,
+    "without_documented_verification": 14175,
     "without_import_timestamp": 13825,
     "without_source_read_timestamp": 12643
   },
@@ -841,15 +852,15 @@
   "source_content_age_states": {
     "future": 0,
     "historical": 159,
-    "recent": 1206,
-    "unknown": 12774
+    "recent": 1220,
+    "unknown": 12796
   },
   "source_date_unknown_reasons": {
-    "source_content_date_unproven": 12774
+    "source_content_date_unproven": 12796
   },
   "source_domains_top": [
     {
-      "count": 9848,
+      "count": 9870,
       "domain": "www.happings.com"
     },
     {
@@ -885,20 +896,20 @@
       "domain": "www.cosafareafirenze.it"
     },
     {
+      "count": 14,
+      "domain": "opendatahub.com"
+    },
+    {
       "count": 13,
       "domain": "www.romatoday.it"
     },
     {
       "count": 9,
       "domain": "www.genovatoday.it"
-    },
-    {
-      "count": 8,
-      "domain": "emiliaromagnaturismo.it"
     }
   ],
   "source_refresh": {
-    "conflicts": 6,
+    "conflicts": 15,
     "field_changes": 0,
     "markets_with_field_changes": 0,
     "release_safe": true,
@@ -908,10 +919,11 @@
         "content_date": "2026-01-27",
         "held_reasons": {
           "multiple_or_missing_source_venues": 47,
-          "no_single_explicit_annual_weekday": 26
+          "no_single_explicit_annual_weekday": 26,
+          "source_version_ordering_not_proven": 4
         },
         "layout_complete": true,
-        "matched_markets": 4,
+        "matched_markets": 0,
         "parser_issues": [],
         "parser_metrics": {
           "ambiguous_municipality_days": 0,
@@ -924,7 +936,7 @@
           "unique_source_row_ids": 6
         },
         "read_on": "2026-10-27",
-        "sha256": "3a598dc400a36142124e64ad6239fdd3670c6a62c7549d71afb7fe5d9bfeaf18",
+        "sha256": "d440651f27ec786359e177deac8d55c2615e83e066dbfd1b5b42e77a4aa0fbd6",
         "source_id": "bassa-romagna-farmers",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
@@ -935,10 +947,11 @@
         "held_reasons": {
           "multiple_or_missing_source_venues": 35,
           "no_single_explicit_annual_weekday": 26,
+          "source_version_ordering_not_proven": 11,
           "venue_identity_not_established": 5
         },
         "layout_complete": true,
-        "matched_markets": 11,
+        "matched_markets": 0,
         "parser_issues": [],
         "parser_metrics": {
           "ambiguous_municipality_days": 2,
@@ -951,39 +964,39 @@
           "unique_source_row_ids": 20
         },
         "read_on": "2026-10-27",
-        "sha256": "71bcb075eeb5d223df9796e85dfa6ce6864134e5e7eae890676f0c749d561c6f",
+        "sha256": "cecedb3ada38537df8237fdd5b9602c645587e7e513f514e30659216be6469d5",
         "source_id": "bassa-romagna-weekly",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
       }
     ],
     "source_url_coverage": {
-      "hosts": 73,
+      "hosts": 74,
       "market_dispositions": {
         "citynews_existing_detail": 62,
         "cosedicasa_existing_detail": 442,
         "eventiesagre_existing_detail": 2200,
-        "happings_event_detail": 183,
-        "happings_province_index": 9330,
-        "happings_source_scope_unproven": 335,
+        "happings_event_detail": 205,
+        "happings_province_index": 9353,
+        "happings_source_scope_unproven": 312,
         "official_adapter": 1220,
         "roma_d881_existing_inventory": 70,
-        "source_contract_active": 139,
+        "source_contract_active": 153,
         "source_layout_needed": 158
       },
       "market_layout_statuses": {
         "disabled": 62,
-        "supported": 13584,
-        "unsupported": 493
+        "supported": 13643,
+        "unsupported": 470
       },
       "market_read_statuses": {
         "disabled": 62,
-        "not_read": 493,
-        "not_selected": 11283,
-        "retrieved": 2256,
-        "unavailable": 45
+        "not_read": 470,
+        "not_selected": 11312,
+        "retrieved": 2197,
+        "unavailable": 134
       },
-      "markets": 14139,
+      "markets": 14175,
       "schema": 1,
       "secondary_corroboration": {
         "counts_describe": "comparison_eligibility",
@@ -998,7 +1011,7 @@
       },
       "source_admission_registry": "valid",
       "source_contract_configuration": "valid",
-      "unique_primary_urls": 5950
+      "unique_primary_urls": 5973
     }
   },
   "source_summaries": [
@@ -1063,6 +1076,24 @@
         "without_source_read_timestamp": 76
       },
       "publisher": "Comune di Milano - Open Data (CC BY 4.0)"
+    },
+    {
+      "domain": "opendatahub.com",
+      "metrics": {
+        "dataset_updated_not_specific_market": 14,
+        "import_within_30d": 14,
+        "recent_dataset_only_update": 14,
+        "source_date_from_declared_source_content": 14,
+        "source_date_within_30d": 14,
+        "source_read_within_30d": 14,
+        "total": 14,
+        "with_any_future_date": 11,
+        "with_forecast_dates": 11,
+        "with_import_timestamp": 14,
+        "with_source_read_timestamp": 14,
+        "without_documented_verification": 14
+      },
+      "publisher": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata"
     },
     {
       "domain": "www.dati.lombardia.it",
@@ -1583,14 +1614,14 @@
     {
       "domain": "www.eventiesagre.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 966,
+        "forecast_from_stale_or_unknown_source": 943,
         "import_within_30d": 3,
         "legacy_update_timestamp_without_source_date": 2197,
         "source_date_unknown": 2200,
         "source_read_within_30d": 3,
         "total": 2200,
-        "with_any_future_date": 969,
-        "with_forecast_dates": 966,
+        "with_any_future_date": 947,
+        "with_forecast_dates": 943,
         "with_import_timestamp": 3,
         "with_source_read_timestamp": 3,
         "without_documented_verification": 2200,
@@ -1705,18 +1736,18 @@
       "domain": "www.happings.com",
       "metrics": {
         "forecast_from_stale_or_unknown_source": 9562,
-        "import_within_30d": 201,
+        "import_within_30d": 223,
         "legacy_update_timestamp_without_source_date": 9647,
         "source_date_from_declared_source_content": 1,
-        "source_date_unknown": 9847,
+        "source_date_unknown": 9869,
         "source_date_within_30d": 1,
-        "source_read_within_30d": 201,
-        "total": 9848,
-        "with_any_future_date": 9744,
+        "source_read_within_30d": 223,
+        "total": 9870,
+        "with_any_future_date": 9766,
         "with_forecast_dates": 9562,
-        "with_import_timestamp": 201,
-        "with_source_read_timestamp": 201,
-        "without_documented_verification": 9848,
+        "with_import_timestamp": 223,
+        "with_source_read_timestamp": 223,
+        "without_documented_verification": 9870,
         "without_import_timestamp": 9647,
         "without_source_read_timestamp": 9647
       },

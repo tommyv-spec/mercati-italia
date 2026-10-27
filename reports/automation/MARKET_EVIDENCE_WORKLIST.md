@@ -3,8 +3,8 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14139**
-- Etichette di fonte: **89**
+- ID controllati e conservati: **14175**
+- Etichette di fonte: **90**
 - Casi nel lotto di lavoro del giorno: **472**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
@@ -12,18 +12,18 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **14050**
-- date: **2253**
-- indirizzo: **4839**
-- individual_edition_confirmation: **14139**
-- orario_testo: **1794**
-- ricorrenza_testo: **984**
+- coordinates: **14086**
+- date: **2278**
+- indirizzo: **4838**
+- individual_edition_confirmation: **14175**
+- orario_testo: **1833**
+- ricorrenza_testo: **988**
 
 ## Origini ordinate per numero di schede
 
 | Origine | Schede | Orari | Sedi | Trattamento |
 |---|---:|---:|---:|---|
-| happings.com | 9848 | 718 | 4230 | happings-weekly-or-detail |
+| happings.com | 9870 | 752 | 4229 | happings-weekly-or-detail |
 | eventiesagre.it | 2200 | 368 | 485 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 3 | lombardia-mercap |
 | cosedicasa.com | 442 | 206 | 6 | cosedicasa-editorial-calendar |
@@ -32,6 +32,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | source-family-not-resolved-by-this-worklist |
 | cosafareafirenze.it | 22 | 4 | 0 | source-family-not-resolved-by-this-worklist |
+| Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | 14 | 1 | 0 | source-family-not-resolved-by-this-worklist |
 | trentino.com | 9 | 1 | 9 | source-family-not-resolved-by-this-worklist |
 | emiliaromagnaturismo.it | 8 | 8 | 4 | source-family-not-resolved-by-this-worklist |
 | eventi.bergamo.it | 8 | 1 | 0 | source-family-not-resolved-by-this-worklist |
@@ -76,7 +77,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | pugliainfesta.it | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
 | sagreinromagna.it | 2 | 2 | 2 | source-family-not-resolved-by-this-worklist |
 | terredipisa.it | 2 | 0 | 2 | source-family-not-resolved-by-this-worklist |
-| trevisotoday.it | 2 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| trevisotoday.it | 2 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | varesenews.it | 2 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | arezzonotizie.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 | baritoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
@@ -96,7 +97,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | citynews_trevisotoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
 | citynews_vicenzatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 | citynews_viterbotoday.it | 1 | 0 | 0 | source-family-not-resolved-by-this-worklist |
-| eventiinsardegna.it | 1 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| eventiinsardegna.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
 | ferraratoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 | forlitoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 | frosinonetoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
@@ -106,7 +107,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | monzatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 | napolidavivere.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
 | padovatoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
-| riminitoday.it | 1 | 0 | 1 | source-family-not-resolved-by-this-worklist |
+| riminitoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 | romapop.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
 | salernotoday.it | 1 | 1 | 0 | source-family-not-resolved-by-this-worklist |
 | torinotoday.it | 1 | 1 | 1 | source-family-not-resolved-by-this-worklist |
@@ -120,7 +121,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 14
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 12928
+- no_usable_source_match: 12964
 - review_only_field_candidates: 47
 - same_source_id: 789
 - unique_city_province_street_weekday: 377

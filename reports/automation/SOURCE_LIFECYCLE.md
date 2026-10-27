@@ -4,17 +4,15 @@ Le fonti hanno un contratto per schema, identità, formato, granularità, data e
 Nessuna riga di venditore, concessione o testo grezzo viene persistita qui.
 La data di lettura non prova che un mercato abbia aperto oggi.
 
-- Schede nazionali confrontate: **14,115**
-- Fonti controllate: **4**
+- Schede nazionali confrontate: **14,139**
+- Fonti controllate: **2**
 - Record di mercato importati da questo audit: **0**
 - Aperture individuali verificate: **0**
 
 | Fonte | Stato | ID fonte fuori catalogo (non nuovi mercati) | Già trattenuti dal controllo sovrapposizioni | Residui senza esito del filtro | Proposte in staging | Collisioni da valutare | Fatti cambiati | ID non più visti (non chiusi) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | corciano | sola verifica, non apertura confermata | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
-| firenze | sola verifica, non apertura confermata | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| lombardia | sola verifica, non apertura confermata | 233 | 233 | 0 | 0 | 0 | 14 | 0 |
-| milano | sola verifica, non apertura confermata | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| lombardia | sola verifica, non apertura confermata | 233 | 233 | 0 | 0 | 0 | 0 | 0 |
 
 ## Aggiunta di nuove fonti (senza nuovi script per Comune)
 
