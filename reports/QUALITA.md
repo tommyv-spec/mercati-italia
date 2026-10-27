@@ -1,35 +1,34 @@
-# Qualità dei dati — 2026-10-26
+# Qualità dei dati — 2026-10-27
 
-Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo precedente (2026-10-25).
+Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo precedente (2026-10-26).
 
 ## Semaforo
 
-🔴 **Da guardare:**
+🟢 Tutto regolare.
 
-- **Date nei prossimi 30 giorni** è sceso da 90.3% a 88.1%.
 
 | Job automatico | Esito | Quando |
 |---|---|---|
 | data-expansion-audit | ✅ | 2026-10-26T00:14+00:00 |
 | event-leads-daily | ✅ | 2026-10-26T00:18+00:00 |
 | happings-weekly-fields | ✅ | 2026-10-26T14:04+00:00 |
-| market-autopilot | ✅ | 2026-10-26T15:40+00:00 |
+| market-autopilot | ✅ | 2026-10-27T01:31+00:00 |
 | official-source-output-qa | ✅ | 2026-10-26T00:27+00:00 |
 | publisher-quality-daily | ✅ | 2026-10-26T00:24+00:00 |
 | regional-field-reconciliation | ✅ | 2026-10-26T00:21+00:00 |
 
 ## Cosa vede chi usa l'app
 
-**9,028** mercati visibili (3,944 copie doppie unite e nascoste; 1,143 non più in programma, nascosti).
+**9,052** mercati visibili (3,944 copie doppie unite e nascoste; 1,143 non più in programma, nascosti).
 
 | Dato | Mercati |
 |---|---:|
-| Orari esatti | 30.3% (+1.2) |
-| Solo mattina/pomeriggio | 55.7% (-0.8) |
-| Via precisa | 67.1% (+0.8) |
-| Solo «centro» | 25.9% (-1.0) |
-| Date nei prossimi 30 giorni | 88.1% (-2.2) |
-| Posizione sulla mappa | 94.3% (-0.4) |
+| Orari esatti | 30.5% (+0.2) |
+| Solo mattina/pomeriggio | 55.6% (-0.1) |
+| Via precisa | 67.2% (+0.1) |
+| Solo «centro» | 25.8% (-0.1) |
+| Date nei prossimi 30 giorni | 88.1% (+0.0) |
+| Posizione sulla mappa | 94.1% (-0.2) |
 
 ## Per fonte
 
@@ -37,11 +36,11 @@ Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo
 
 | Fonte | Mercati | Orari esatti | Via precisa | Date 30 gg | Riletti 30 gg | Ultima lettura |
 |---|---:|---:|---:|---:|---:|---|
-| happings.com | 6,308 | 10.4% | 57.1% | 99.6% | 90.2% | 2026-10-26 |
-| eventiesagre.it | 1,043 | 88.4% | 77.8% | 68.0% | 54.4% | 2026-10-26 |
-| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 974 | 65.0% | 99.7% | 59.9% | 100.0% | 2026-10-26 |
-| cosedicasa.com | 371 | 58.0% | 98.4% | 47.2% | 98.7% | 2026-10-26 |
-| Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 92.6% | 100.0% | 100.0% | 100.0% | 2026-10-26 |
-| Comune di Milano - Open Data (CC BY 4.0) | 85 | 100.0% | 88.2% | 90.6% | 100.0% | 2026-10-26 |
-| dati.comune.roma.it | 68 | 100.0% | 100.0% | 0.0% | 100.0% | 2026-10-26 |
-| Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 100.0% | 100.0% | 0.0% | 100.0% | 2026-10-26 |
+| happings.com | 6,325 | 10.7% | 57.2% | 99.5% | 90.2% | 2026-10-27 |
+| eventiesagre.it | 1,043 | 88.4% | 77.8% | 66.7% | 58.5% | 2026-10-27 |
+| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 974 | 65.0% | 99.7% | 61.2% | 100.0% | 2026-10-27 |
+| cosedicasa.com | 378 | 59.3% | 98.4% | 47.4% | 99.5% | 2026-10-27 |
+| Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 92.6% | 100.0% | 100.0% | 100.0% | 2026-10-27 |
+| Comune di Milano - Open Data (CC BY 4.0) | 85 | 100.0% | 88.2% | 90.6% | 100.0% | 2026-10-27 |
+| dati.comune.roma.it | 68 | 100.0% | 100.0% | 0.0% | 100.0% | 2026-10-27 |
+| Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 100.0% | 100.0% | 0.0% | 100.0% | 2026-10-27 |
