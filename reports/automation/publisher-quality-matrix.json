@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-26",
+  "as_of": "2026-10-27",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -62,10 +62,10 @@
       "publisher": "Roma Capitale",
       "record_count_measured": null,
       "review_status": "schema_sampled_review_only",
-      "schema_observation": "manual_schema_review_required",
+      "schema_observation": "venue_inventory_missing_visit_days",
       "title": "Dati sui Mercati Rionali",
       "triage_class": "market_location_candidate",
-      "triage_score_not_market_yield": 16
+      "triage_score_not_market_yield": 18
     },
     {
       "actual_market_count_estimated": null,
@@ -653,8 +653,8 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14106,
-  "catalog_source_labels_count": 88,
+  "catalog_record_count": 14139,
+  "catalog_source_labels_count": 89,
   "market_confirmations": 0,
   "market_updates": 0,
   "markets_added": 0,
@@ -665,22 +665,22 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
+      "count_delta_since_last_audit": 17,
       "fields": {
         "address_generic_not_navigable": 3611,
-        "address_missing": 623,
-        "coordinates_missing": 235,
+        "address_missing": 619,
+        "coordinates_missing": 244,
         "future_dates_missing": 104,
         "hours_missing": 718,
-        "records": 9831,
-        "source_or_import_date_unknown": 184
+        "records": 9848,
+        "source_or_import_date_unknown": 201
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 34906,
+      "priority_workload_score_not_evidence": 34911,
       "publisher": "happings.com",
-      "records": 9831,
+      "records": 9848,
       "rights_classification": "see_existing_happings_operational_policy",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -731,22 +731,22 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 2,
+      "count_delta_since_last_audit": 1,
       "fields": {
         "address_generic_not_navigable": 44,
         "address_missing": 441,
-        "coordinates_missing": 107,
-        "future_dates_missing": 1110,
-        "hours_missing": 369,
-        "records": 2199,
-        "source_or_import_date_unknown": 2
+        "coordinates_missing": 104,
+        "future_dates_missing": 1231,
+        "hours_missing": 368,
+        "records": 2200,
+        "source_or_import_date_unknown": 3
       },
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5634,
+      "priority_workload_score_not_evidence": 5754,
       "publisher": "eventiesagre.it",
-      "records": 2199,
+      "records": 2200,
       "rights_classification": "urls_only_no_bulk_content_reuse",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -786,7 +786,8 @@
         ],
         "source_or_import_date_unknown": [
           "mercato-settimanale-di-voghiera-voghiera",
-          "mercato-settimanale-di-acqualagna-acqualagna"
+          "mercato-settimanale-di-acqualagna-acqualagna",
+          "mercato-settimanale-di-castelletto-monferrato-castelletto-monferrato"
         ]
       }
     },
@@ -799,14 +800,14 @@
         "address_generic_not_navigable": 2,
         "address_missing": 1,
         "coordinates_missing": 151,
-        "future_dates_missing": 392,
+        "future_dates_missing": 379,
         "hours_missing": 342,
         "records": 1128
       },
       "kind": "regional_open_data_adapter",
       "layout": "one_market_id_per_weekday",
       "next_action": "Run source-row identity and town+street+weekday checks from the approved official MERCap adapter. Quarantine conflicting venue/day.",
-      "priority_workload_score_not_evidence": 2219,
+      "priority_workload_score_not_evidence": 2206,
       "publisher": "Regione Lombardia – MERCap (CC0 1.0 dichiarata)",
       "records": 1128,
       "rights_classification": "existing_adapter_source_scope",
@@ -845,21 +846,21 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 9,
       "fields": {
         "address_generic_not_navigable": 6,
-        "coordinates_missing": 29,
-        "future_dates_missing": 189,
-        "hours_missing": 305,
-        "records": 433,
-        "source_or_import_date_unknown": 1
+        "coordinates_missing": 30,
+        "future_dates_missing": 232,
+        "hours_missing": 206,
+        "records": 442,
+        "source_or_import_date_unknown": 10
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1268,
+      "priority_workload_score_not_evidence": 1122,
       "publisher": "cosedicasa.com",
-      "records": 433,
+      "records": 442,
       "rights_classification": "publisher_rights_unreviewed",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -874,24 +875,28 @@
           "mercatino-antiquariato-e-usato-di-ferrara-mercatino-baurese-baura-frazione-di-fe",
           "fiumicino-parco-da-vinci-mercatino-artigianale-da-vinci-sessantotto-village",
           "fiumicino-parco-da-vinci-music-day-roma-fiera-del-disco-fiera-del-disco",
-          "mercatino-antiquariato-e-usato-di-roma-mercatino-corte-coppede-quartiere-coppede"
+          "mercatino-antiquariato-e-usato-di-roma-mercatino-di-testaccio-piazza-s-maria-lib"
         ],
         "future_dates_missing": [
           "mercatino-antiquariato-e-usato-di-chieti-l-antico-in-piazza-corso-marrucino-chie",
           "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
           "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
-          "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste",
-          "mercatino-antiquariato-e-usato-di-cava-de-tirreni-la-soffitta-in-piazza-corso-ma"
-        ],
-        "hours_missing": [
-          "mercatino-antiquariato-e-usato-di-pescara-caccia-all-affare-centro-fiera-via-tir",
-          "mercatino-antiquariato-e-usato-di-pescara-mercantico-area-stazione-di-pescara-po",
-          "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
           "mercatino-antiquariato-e-usato-di-potenza-mercatino-degli-scambi-piazza-mario-pa",
           "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste"
         ],
+        "hours_missing": [
+          "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
+          "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste",
+          "mercatino-antiquariato-e-usato-di-san-lorenzello-mercantico-via-roma-e-centro-st",
+          "mercatino-antiquariato-e-usato-di-alfonsine-mercatino-dell-usato-piazza-della-re",
+          "mercatino-antiquariato-e-usato-di-castel-di-casio-la-soffitta-della-torre-centro"
+        ],
         "source_or_import_date_unknown": [
-          "mercatino-antiquariato-e-usato-di-milano-piazza-sant-eustorgio-milano"
+          "mercatino-antiquariato-e-usato-di-san-lorenzo-al-mare-collezionismo-e-antiquaria",
+          "mercatino-antiquariato-e-usato-di-santo-stefano-al-mare-piazza-del-paese-santo-s",
+          "santo-stefano-al-mare-mercatino-dellartigianato-santo-stefano-al-mare",
+          "mercatino-antiquariato-e-usato-di-sarzana-il-mercato-della-soffitta-centro-stori",
+          "mercatino-antiquariato-e-usato-di-codevilla-sbaracchiamo-tucano-fiere-strada-pro"
         ]
       }
     },
@@ -899,7 +904,7 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": null,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "coordinates_missing": 94,
         "hours_missing": 7,
@@ -936,14 +941,14 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 10,
-        "future_dates_missing": 9,
+        "future_dates_missing": 8,
         "records": 85,
-        "stored_source_or_import_date_older_than_540d": 9
+        "stored_source_or_import_date_older_than_540d": 8
       },
       "kind": "municipal_open_data_adapter",
       "layout": "one_venue_with_weekdays",
       "next_action": "Check adapter source-row schema, stable venue IDs, source freshness and accurate address/day mapping before applying any allowed fields.",
-      "priority_workload_score_not_evidence": 142,
+      "priority_workload_score_not_evidence": 139,
       "publisher": "Comune di Milano - Open Data (CC BY 4.0)",
       "records": 85,
       "rights_classification": "existing_adapter_source_scope",
@@ -1134,7 +1139,7 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 8,
-        "coordinates_missing": 1,
+        "coordinates_missing": 2,
         "future_dates_missing": 8,
         "hours_missing": 8,
         "records": 8
@@ -1155,7 +1160,8 @@
           "anticamente-mostra-mercato-di-cose-d-altri-tempi-foligno-pg"
         ],
         "coordinates_missing": [
-          "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are"
+          "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are",
+          "anticamente-mostra-mercato-di-cose-d-altri-tempiil-15-02-2026orvieto-tr-anticame"
         ],
         "future_dates_missing": [
           "fiera-del-disco-fumetti-e-collezionismodal-07-03-2026-al-08-03-2026arezzo-ar-are",
@@ -1469,10 +1475,41 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "coordinates_missing": 6,
+        "hours_missing": 2,
+        "records": 6
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 10,
+      "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap",
+      "records": 6,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "coordinates_missing": [
+          "ve-calant-2b9cdeae2eb9a25777",
+          "ve-calant-70283be3cc6e369c7f",
+          "ve-calant-947b9833bb3a991e66",
+          "ve-calant-e60ffc57ed880c4928",
+          "ve-calant-c1f08a28d2a26b1601"
+        ],
+        "hours_missing": [
+          "ve-calant-c1f08a28d2a26b1601",
+          "ve-calant-eeb98c1c06f6cd9405"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 4,
-        "coordinates_missing": 2,
+        "coordinates_missing": 1,
         "future_dates_missing": 5,
         "hours_missing": 5,
         "records": 5
@@ -1492,8 +1529,7 @@
           "cibo-street-food-music-festival-solbiate-con-cagno"
         ],
         "coordinates_missing": [
-          "artigiano-in-fiera-milano",
-          "creanza-market-gin-fest-varese"
+          "artigiano-in-fiera-milano"
         ],
         "future_dates_missing": [
           "artigiano-in-fiera-milano",
@@ -4118,7 +4154,7 @@
         "url_pattern": "/it/mercati-settimanali-a-{provincia}.html"
       },
       {
-        "catalog_records": 1152,
+        "catalog_records": 1153,
         "format_id": "eventiesagre.it--c25111abbd5a",
         "host": "eventiesagre.it",
         "open_todo_ids": [
@@ -4128,10 +4164,12 @@
           "EES-HISTORICAL-RECURRENCE-DEDUP"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
           "parser_code_changed",
+          "sample_catalog_fields_changed",
           "catalog_source_urls_changed"
         ],
         "review_status": "partial_review",
@@ -4156,7 +4194,7 @@
         "url_pattern": "/d/68zx-njaw"
       },
       {
-        "catalog_records": 433,
+        "catalog_records": 442,
         "format_id": "cosedicasa.com--e4978a2ff443",
         "host": "cosedicasa.com",
         "open_todo_ids": [],
@@ -4235,6 +4273,22 @@
         "url_pattern": "/Mercatini_Antiquariato/{id}_{slug}.html"
       },
       {
+        "catalog_records": 183,
+        "format_id": "happings.com--795abb069b70",
+        "host": "happings.com",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "parser_code_changed"
+        ],
+        "review_status": "partial_review",
+        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
+        "url_pattern": "/it/happing/{slug}/"
+      },
+      {
         "catalog_records": 173,
         "format_id": "eventiesagre.it--7b2012e05e04",
         "host": "eventiesagre.it",
@@ -4255,22 +4309,6 @@
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
         "url_pattern": "/Mercatini_Artigianato/{id}_{slug}.html"
-      },
-      {
-        "catalog_records": 166,
-        "format_id": "happings.com--795abb069b70",
-        "host": "happings.com",
-        "open_todo_ids": [],
-        "pending_checks": [
-          "parser_comparison",
-          "storage_comparison"
-        ],
-        "recheck_reasons": [
-          "parser_code_changed"
-        ],
-        "review_status": "partial_review",
-        "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
-        "url_pattern": "/it/happing/{slug}/"
       },
       {
         "catalog_records": 151,
@@ -4315,7 +4353,7 @@
         "url_pattern": "/Mercatini_Enogastronomici/{id}_{slug}.html"
       },
       {
-        "catalog_records": 94,
+        "catalog_records": 100,
         "format_id": "regione.veneto.it--680458e071b3",
         "host": "regione.veneto.it",
         "open_todo_ids": [],
@@ -4722,10 +4760,12 @@
           "NC-14"
         ],
         "pending_checks": [
-          "parser_comparison"
+          "parser_comparison",
+          "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_catalog_fields_changed"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6501,7 +6541,7 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-10-26",
+    "generated_for_date": "2026-10-27",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
@@ -6521,7 +6561,7 @@
     }
   },
   "source_labels_added_since_previous": [
-    "Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata"
+    "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap"
   ],
   "source_labels_missing_since_previous": [],
   "source_permissions_inferred": false,
