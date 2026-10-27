@@ -72,7 +72,8 @@ def same_generic_venue(row):
     name=norm(row.get("nome"))
     city=norm(row.get("citta"))
     if not city:return False
-    return bool(re.fullmatch(r"mercato settimanale (?:a|di|del|della) "+re.escape(city),name))
+    # "... a Ancona 11": the publisher's own numbering of one town's markets.
+    return bool(re.fullmatch(r"mercato settimanale (?:a|di|del|della) "+re.escape(city)+r"(?: \d{1,2})?",name))
 
 
 def safe_stored_street(value):
