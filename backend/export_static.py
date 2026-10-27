@@ -280,7 +280,10 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     identity = retained_identity(raw)
     if identity is not None:
         result["identita_fonte"] = identity
-    if scope_filtered:
+    # No upcoming date left (e.g. a season just ended): no projection either, or
+    # the next night's forecast gate sees a projected record that is not "prevista".
+    # The rule itself stays in ricorrenza_testo and is re-derived every night.
+    if scope_filtered or not future_dates:
         result["proiezione_regola"] = None
         result["proiezione_generata_il"] = ""
         result["proiezione_fonte"] = ""
