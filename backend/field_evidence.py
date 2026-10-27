@@ -14,6 +14,8 @@ import re
 from collections import Counter, defaultdict
 from copy import deepcopy
 from datetime import date
+from functools import lru_cache
+from pathlib import Path
 from urllib.parse import urlsplit
 from source_hours import MAX_HOURS_TEXT_LENGTH
 
@@ -51,6 +53,24 @@ def as_day(value):
         return date.fromisoformat(value)
     except ValueError:
         return None
+
+
+@lru_cache(maxsize=1)
+def yearly_calendar_ids():
+    """Contract sources that publish one official calendar per year."""
+    path = Path(__file__).resolve().parent / "data/market-source-contracts.json"
+    return frozenset(p["id"] for p in json.loads(path.read_text("utf-8"))["raw_profiles"]
+                     if p.get("source_date_strategy") == "landing_page_year_v1")
+
+
+def receipt_age_limit(receipt, field):
+    """Days a receipt's content date stays current for one field."""
+    day = as_day(receipt.get("fonte_aggiornata_il"))
+    # Owner rule (2026-10-27): a yearly official calendar is dated 1 January
+    # of the year it covers and stays current until that year ends.
+    if day and (day.month, day.day) == (1, 1) and receipt.get("fonte_id") in yearly_calendar_ids():
+        return max(SOURCE_AGE[field], (date(day.year, 12, 31) - day).days)
+    return SOURCE_AGE[field]
 
 
 def safe_url(value):
@@ -446,7 +466,7 @@ def field_states(row, *, today):
             continue
         recent = [r for r in evidence if (today - as_day(r["letto_il"])).days <= MAX_READ_AGE]
         current = [r for r in recent if as_day(r["fonte_aggiornata_il"]) and
-                   (today - as_day(r["fonte_aggiornata_il"])).days <= SOURCE_AGE[field]]
+                   (today - as_day(r["fonte_aggiornata_il"])).days <= receipt_age_limit(r, field)]
         states[field] = ("riscontrato_fonte_recente" if current else
                          "riscontrato_data_fonte_sconosciuta" if any(
                              not r["fonte_aggiornata_il"] for r in recent) else

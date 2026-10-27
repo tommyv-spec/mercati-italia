@@ -180,6 +180,24 @@ class ResolveTests(unittest.TestCase):
         self.assertFalse(any(call.startswith(("Via Ostiense", "Via Tiburtina", "Via Appia", "Via Nomentana"))
                              for call in lookup.calls))
 
+    def test_official_listing_gets_a_street_pin_but_keeps_directions_off(self):
+        hold = "indirizzo_e_punto_sorgente_non_riconciliati"
+        listed = market("bo-open-x", "Via Corinto", lat=None, lng=None, position_quality="sconosciuta",
+                        navigazione_sospesa_motivo=hold,
+                        url_fonte="https://opendata.comune.bologna.it/explore/dataset/mercati-e-fiere/")
+        reviewed = dict(listed, slug="reviewed-x")  # same hold from a reviewed-city check
+        lookup = Lookup({"Via Corinto": [found("Via Corinto")]})
+        out, _, cache = run([listed, reviewed], lookup=lookup)
+        self.assertEqual((out[0]["lat"], out[0]["position_quality"], out[0]["navigazione_sospesa_motivo"]),
+                         (41.95, pr.QUALITY, hold))
+        self.assertEqual(out[1], reviewed)
+        self.assertEqual(len(lookup.calls), 1)
+        # The next run recomputes the same pin, and both release checks accept it.
+        again, _, _ = run(out, cache=cache)
+        self.assertEqual(again, out)
+        pr.verify_diff([listed, reviewed], out)
+        pr.verify_static(out, cache, today=TODAY, istat=ISTAT)
+
     def test_second_run_reuses_cache_and_changes_nothing(self):
         lookup = Lookup({"Via Corinto": [found("Via Corinto")]})
         first, _, cache = run(STACK, lookup=lookup)

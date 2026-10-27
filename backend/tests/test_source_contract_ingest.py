@@ -315,6 +315,20 @@ class GenericMunicipalContractTests(unittest.TestCase):
                            first,_approval(profile),today=TODAY+timedelta(days=1))
         self.assertEqual(first,frozen)
 
+    def test_our_own_street_pin_never_blocks_the_source_moving_the_market(self):
+        profile=_approved_profile()
+        first,_=apply_approved(profile,BLOB,[{"slug":"other"}],_approval(profile),today=TODAY)
+        target=next(r for r in first if r["slug"]=="pg-corciano-mercato-di-corciano")
+        # The position step looks the pin up again from the new street on the same run.
+        target.update({"lat":43.1,"lng":12.2,"position_quality":"approssimata","posizione_fonte":{
+            "fonte":"openstreetmap","licenza":"ODbL-1.0","attribuzione":"© OpenStreetMap contributors",
+            "osm":"way/1","tipo":"highway/residential","trovato":"Via Caduti, Corciano",
+            "chiave":"via caduti|corciano|PG","cercato_il":"2026-10-25","lat":43.1,"lng":12.2}})
+        result,_=apply_approved(profile,BLOB.replace(b";CADUTI;",b";NUOVA SEDE;"),
+                                first,_approval(profile),today=TODAY+timedelta(days=1))
+        moved=next(r for r in result if r["slug"]=="pg-corciano-mercato-di-corciano")
+        self.assertNotEqual(moved["indirizzo"],target["indirizzo"])
+
     def test_unknown_publisher_weekday_is_neither_evidence_nor_a_replacement(self):
         profile=_approved_profile()
         first,_=apply_approved(profile,BLOB,[{"slug":"other"}],_approval(profile),today=TODAY)

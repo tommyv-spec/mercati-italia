@@ -146,13 +146,26 @@ def rounded(p) -> bool:
     return p is not None and round(p[0], 2) == p[0] and round(p[1], 2) == p[1]
 
 
+def official_listing_only(row) -> bool:
+    """A card an official file created (Regione calendar, Comune dataset): it lists the
+    venue but doesn't confirm the market open, so directions stay off. Owner rule
+    (2026-10-27): it may still get a street-level pin like any other card."""
+    from recurrence_refresh import forecast_source_limits
+    from reviewed_city_evidence import NAVIGATION_HOLD
+    own = restore(row)  # the card without this step's own earlier pin
+    return (own.get("navigazione_sospesa_motivo") == NAVIGATION_HOLD
+            and point(own) is None and not own.get("coordinate_sospese_motivo")
+            and any(str(own.get("slug")).startswith(prefix) and own.get("url_fonte") == url
+                    for prefix, url, _ in forecast_source_limits()))
+
+
 def excluded(row, held_ids=frozenset()) -> str | None:
     """Records another reviewed step owns, or that must stay as their source gave them today."""
     if row.get("slug") in held_ids:
         return "tenuto_invariato_oggi"
     if row.get("position_quality") == "precisa":
         return "posizione_precisa"
-    if row.get("navigazione_sospesa_motivo"):
+    if row.get("navigazione_sospesa_motivo") and not official_listing_only(row):
         return "navigazione_sospesa_da_altra_verifica"
     if row.get("coordinate_sospese_motivo") and row["coordinate_sospese_motivo"] not in OWN_REASONS:
         return "coordinate_sospese_da_altra_verifica"

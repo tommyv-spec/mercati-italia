@@ -219,16 +219,17 @@ class MonthlyFillTests(unittest.TestCase):
         target = card("mercatino-antiquariato-brugine", "Brugine", "mensile - prima domenica del mese",
                       date=[], date_quality="sconosciuta")
         source = [row("BRUGINE", "Villa Roberti", "Prima domenica del mese")]
-        for day, renewed in ((date(2026, 3, 1), True), (date(2026, 10, 26), False)):
+        # Owner rule (2026-10-27): the yearly calendar counts until its year ends.
+        for day, first in ((date(2026, 3, 1), ["2026-03-01", "2026-04-05"]),
+                           (date(2026, 10, 26), ["2026-11-01", "2026-12-06"]), (date(2027, 1, 1), None)):
             with self.subTest(day=day):
                 (fill,), _ = self.run_fill([target], source, today=day)
                 after = apply_fill(target, fill, profile(), today=day)
                 projected, reason = refresh_record(after, day, source_limits=())
-                if renewed:  # 59 days after the 1 January content date
+                if first:
                     self.assertEqual((reason, projected["proiezione_fonte"], projected["date"][:2]),
-                                     ("renewed", "riscontri_campi:ricorrenza_testo",
-                                      ["2026-03-01", "2026-04-05"]))
-                else:  # 298 days: past the 180-day recurrence age limit, nothing renews
+                                     ("renewed", "riscontri_campi:ricorrenza_testo", first))
+                else:  # the 2026 calendar no longer covers 2027: nothing renews
                     self.assertNotEqual(reason, "renewed")
                     self.assertEqual(projected["date"], [])
 

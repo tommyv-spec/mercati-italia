@@ -16,7 +16,7 @@ from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from field_evidence import MAX_READ_AGE, SOURCE_AGE, as_day, clean_receipts, identity
+from field_evidence import MAX_READ_AGE, as_day, clean_receipts, identity, receipt_age_limit
 
 KEY = "evidenza_editoriale"
 MANAGER = "editorial-detail"
@@ -266,7 +266,8 @@ def _independently_supported(row, evidence, today):
         if (receipt.get("url") != evidence["primary_url"]
                 and receipt["valori"].get("ricorrenza_testo") == row.get("ricorrenza_testo")
                 and (not receipt.get("fonte_aggiornata_il")
-                     or updated and 0 <= (today - updated).days <= SOURCE_AGE["ricorrenza_testo"])
+                     or updated and 0 <= (today - updated).days
+                     <= receipt_age_limit(receipt, "ricorrenza_testo"))
                 and 0 <= (today - as_day(receipt["letto_il"])).days <= MAX_READ_AGE):
             return True
     return False

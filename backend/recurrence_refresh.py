@@ -33,7 +33,7 @@ from urllib.parse import unquote, urlsplit
 
 from source_freshness import as_day, source_date_evidence, source_url_domain
 from source_calendar import refresh_source_calendar
-from field_evidence import clean_receipts, MAX_READ_AGE, SOURCE_AGE
+from field_evidence import clean_receipts, MAX_READ_AGE, receipt_age_limit
 from lombardia_calendar_scope import calendar_scope, filter_dates, within_bounds
 from editorial_calendar_scope import apply_editorial_scope
 
@@ -576,15 +576,14 @@ def _refresh_record_base(original: dict, today: date, horizon_days: int = MAX_LO
         listed = [r for r in clean_receipts(record.get("riscontri_campi"), record, today=today)
                   if r["valori"].get("ricorrenza_testo") == record.get("ricorrenza_testo")
                   and 0 <= (today - parse_source_day(r["letto_il"])).days <= MAX_READ_AGE]
-        dates = [parse_source_day(r.get("fonte_aggiornata_il")) for r in listed]
-        dates = [d for d in dates if d and
-                 0 <= (today - d).days <= min(max_stale_days, SOURCE_AGE["ricorrenza_testo"])]
+        dates = [(parse_source_day(r.get("fonte_aggiornata_il")),
+                  min(max_stale_days, receipt_age_limit(r, "ricorrenza_testo"))) for r in listed]
+        dates = [(d, limit) for d, limit in dates if d and 0 <= (today - d).days <= limit]
         if dates:
-            updated = max(dates)
-            projection_basis = "riscontri_campi:ricorrenza_testo"
             # Independent current evidence keeps its own stricter age bound;
             # an expired primary publisher does not invalidate another source.
-            source_age_limit = min(max_stale_days, SOURCE_AGE["ricorrenza_testo"])
+            updated, source_age_limit = max(dates)
+            projection_basis = "riscontri_campi:ricorrenza_testo"
         elif undated := [r for r in listed if not r.get("fonte_aggiornata_il")]:
             # Owner rule (2026-10-25): a page read within MAX_READ_AGE that still
             # lists this exact recurrence keeps predictions renewing when the page

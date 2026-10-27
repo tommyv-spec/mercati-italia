@@ -245,6 +245,14 @@ def _town_day_taken(record, cohort, unresolved_localities, profile=None):
     return None
 
 
+def _source_point(row):
+    """A map point some source gave. Our OpenStreetMap street pin is not one: it is
+    looked up again from the address every run, so it never blocks a street fix."""
+    from position_resolver import clean_position_source
+    return ((row.get("lat") is not None or row.get("lng") is not None)
+            and clean_position_source(row.get("posizione_fonte"), row) is None)
+
+
 def _placeholder_street(value):
     """No usable venue: empty, a vague label or a truncated scrap ("pia")."""
     text=addr_key(value)
@@ -729,8 +737,7 @@ def verify_update(profile, prior, result, proof, *, today, source_observations=N
                                                 manager=FIELD_MANAGER, today=today)
                         or (field=="orario_testo" and
                             _source_hours_fill_allowed(profile,prior,plain,today=today)))
-                or (field == "indirizzo" and
-                    (prior.get("lat") is not None or prior.get("lng") is not None))):
+                or (field == "indirizzo" and _source_point(prior))):
             raise ValueError("Independent generic source update lacks previous field ownership")
     expected_receipt = (mark_managed_fields(plain, changes, manager=FIELD_MANAGER, previous=prior)
                         if changes else plain)
@@ -862,8 +869,7 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
                                                manager=FIELD_MANAGER, today=today)
                        or (field=="orario_testo" and
                            _source_hours_fill_allowed(profile,prior,receipt,today=today)))
-                      and not (field == "indirizzo" and
-                               (prior.get("lat") is not None or prior.get("lng") is not None))):
+                      and not (field == "indirizzo" and _source_point(prior))):
                     changes[field] = {"before": prior.get(field), "after": incoming}
                     field_audit[field + ":managed_update_proposed"] += 1
                 else:

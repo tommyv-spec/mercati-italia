@@ -740,6 +740,27 @@ class RefreshTests(unittest.TestCase):
                 unproved["riscontri_campi"][0][field] = value
                 self.assertEqual(refresh_record(unproved, self.now)[1], "unknown_source_age")
 
+    def test_yearly_official_calendar_stays_current_until_its_year_ends(self):
+        original = record(fonte_aggiornata_il="", aggiornato_il="2026-10-10")
+        def listed(source_id, published, today):
+            row = deepcopy(original)
+            row["riscontri_campi"] = [make_receipt(
+                row, values={"ricorrenza_testo": row["ricorrenza_testo"]},
+                source_url="https://www.regione.veneto.it/calendario.pdf",
+                source_name="Regione del Veneto", source_id=source_id, source_row="ve-calant-x",
+                read_on=today.isoformat(), source_updated_on=published, source_sha256="d" * 64,
+                method="id_fonte", scope="dataset", fingerprint_kind="publisher_parsed_json")]
+            return refresh_record(row, today)[1]
+        # The 2026 calendar is dated 1 January: past the 180-day limit, still current.
+        self.assertEqual(listed("veneto-calendario-antiquariato", "2026-01-01", self.now), "renewed")
+        self.assertEqual(listed("veneto-calendario-antiquariato", "2026-01-01", date(2026, 12, 31)), "renewed")
+        for source_id, published, today in (
+                ("veneto-calendario-antiquariato", "2026-01-01", date(2027, 1, 1)),
+                ("veneto-calendario-antiquariato", "2026-01-02", self.now),
+                ("independent-other-page", "2026-01-01", self.now)):
+            with self.subTest(source_id=source_id, published=published, today=today):
+                self.assertEqual(listed(source_id, published, today), "unknown_source_age")
+
     def test_page_still_listing_an_undated_recurrence_keeps_forecasts_renewing(self):
         original = record(fonte_aggiornata_il="", aggiornato_il="2026-10-10",
                           proiezione_fonte="ricorrenza_testo", proiezione_generata_il="2026-09-01")
