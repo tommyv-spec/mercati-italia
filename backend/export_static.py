@@ -51,6 +51,7 @@ VALID_CATEGORIES = {
     "usato", "artigianato", "misto",
 }
 VALID_DATE_QUALITY = {"confermata", "riportata", "prevista", "sconosciuta"}
+HOURS_CONTENT = re.compile(r"\d|mattin|pomerigg|sera|giorn|nott", re.I)
 MAX_SINGLE_BYTES = 750_000
 MAX_MARKET_BYTES = 24_000_000
 MAX_FUTURE_DAYS = 550
@@ -230,11 +231,16 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         if primary not in clean_sources:
             clean_sources.append(primary)
     clean_sources = sorted(clean_sources, key=lambda record: (record["nome"], record["url"]))
+    hours = preserve_hours_text(raw.get("orario_testo"))
+    # No time and no part of the day: another column's value ("NA" = the Napoli
+    # province code, "Gratis"), not hours.
+    if not HOURS_CONTENT.search(hours):
+        hours = ""
     completeness = 25  # name + city + valid Italian region
     completeness += 15 if raw.get("indirizzo") else 0
     completeness += 15 if lat is not None and position_quality == "precisa" else (5 if lat is not None else 0)
     completeness += 15 if future_dates else 0
-    completeness += 10 if raw.get("orario_testo") else 0
+    completeness += 10 if hours else 0
     completeness += 15 if source_url else 0
     completeness += 5 if raw.get("verificato_il") else 0
 
@@ -243,7 +249,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "regione": regione, "indirizzo": safe_string(raw.get("indirizzo"), 300),
         "lat": lat, "lng": lng, "position_quality": position_quality,
         "categoria": category, "tags": tags, "status": status,
-        "orario_testo": preserve_hours_text(raw.get("orario_testo")),
+        "orario_testo": hours,
         "ricorrenza_testo": safe_string(raw.get("ricorrenza_testo"), 180),
         "descrizione": safe_string(raw.get("descrizione"), 900),
         "date": future_dates,

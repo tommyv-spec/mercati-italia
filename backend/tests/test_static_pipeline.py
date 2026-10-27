@@ -161,6 +161,13 @@ class ExportTests(unittest.TestCase):
         self.assertIsNone(result["lat"])
         self.assertEqual(result["position_quality"], "sconosciuta")
 
+    def test_hours_without_a_time_or_part_of_day_are_another_columns_value(self):
+        for hours, expected in (("NA", ""), ("Gratis", ""), ("La mattina", "La mattina"),
+                                ("Il pomeriggio", "Il pomeriggio"), ("08:00–13:00", "08:00–13:00")):
+            with self.subTest(hours=hours):
+                result, _ = normalize(market(orario_testo=hours), self.today)
+                self.assertEqual(result["orario_testo"], expected)
+
     def test_does_not_misclassify_sagre_as_markets(self):
         result, reason = normalize(market(categoria="sagra"), self.today)
         self.assertIsNone(result)
