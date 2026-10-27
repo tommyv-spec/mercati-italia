@@ -33,6 +33,7 @@ from reviewed_city_evidence import NAVIGATION_HOLD
 from publisher_snapshot_date import resolve_source_date, validate_strategy
 from source_hours import preserve_hours_text
 import opendatahub_events
+import trentino_calendar
 
 SCHEMA = 1
 MAX_RAW_PROFILES = 8
@@ -43,7 +44,7 @@ MAX_PROFILE_BYTES = 65536
 MAX_DOCUMENT_BYTES = 4_000_000
 MAX_PDF_PAGES = 60
 # Daily quota of publisher contracts read over the network in one run.
-MAX_ENABLED_RAW_PROFILES = 5
+MAX_ENABLED_RAW_PROFILES = 6
 MAX_MARKDOWN_EXAMPLES = 10
 # market_venue_month: one row = one venue on one monthly calendar
 # ("Prima domenica del mese"), read from recurrence_field.
@@ -306,7 +307,8 @@ def validate_contracts(config):
                         type(item.get("max_bytes")) is not int or
                         not 100<=item["max_bytes"]<=(
                             MAX_DOCUMENT_BYTES if item.get("format")=="PDF"
-                            or item.get("json_container")==opendatahub_events.CONTAINER
+                            or item.get("json_container") in (opendatahub_events.CONTAINER,
+                                                              trentino_calendar.CONTAINER)
                             else MAX_PROFILE_BYTES) or
                         not isinstance(item.get("schema_columns"),list) or
                         not 1<=len(item["schema_columns"])<=100 or
@@ -331,6 +333,8 @@ def validate_contracts(config):
                     raise ValueError("Forecast age exceeds reviewed source date quality")
                 if item.get("json_container")==opendatahub_events.CONTAINER:
                     opendatahub_events.validate_profile(item)
+                elif item.get("json_container")==trentino_calendar.CONTAINER:
+                    trentino_calendar.validate_profile(item)
                 elif item.get("json_container") is not None:
                     if (item["format"]!="JSON"
                             or item["json_container"]!="opendatasoft_v1"
@@ -463,8 +467,10 @@ def parse_rows(profile,blob):
                      if col!="recordid"}
                 row["recordid"]=item["recordid"]
                 rows.append(row)
-        elif profile.get("json_container")==opendatahub_events.CONTAINER:
-            rows=opendatahub_events.rows(
+        elif profile.get("json_container") in (opendatahub_events.CONTAINER,trentino_calendar.CONTAINER):
+            reader=(opendatahub_events if profile["json_container"]==opendatahub_events.CONTAINER
+                    else trentino_calendar)
+            rows=reader.rows(
                 raw,lambda name:istat_municipality(profile["region"],name) is not None)
         else:
             if isinstance(raw,dict):

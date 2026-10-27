@@ -69,10 +69,10 @@ def catalog():
 
 
 class DeclarativeSourceLifecycleTests(unittest.TestCase):
-    def test_contracts_cover_five_existing_adapters_and_five_raw_sources(self):
+    def test_contracts_cover_five_existing_adapters_and_six_raw_sources(self):
         c=validate_contracts(FULL_CFG)
         self.assertEqual(len(c["normalized_profiles"]),5)
-        self.assertEqual(len(c["raw_profiles"]),5)
+        self.assertEqual(len(c["raw_profiles"]),6)
         self.assertEqual(RAW["source_date_scope"],"dataset_not_per_market")
         self.assertEqual(RAW["publication_mode"],"approved_dev_only")
         self.assertEqual(RAW["max_new_ids_per_run"],2)

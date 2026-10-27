@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from source_growth_guard import validate_growth_source_lifecycle
 from source_lifecycle import digest
 from publisher_snapshot_date import (
-    LANDING_STRATEGY, ODH_STRATEGY, ODS_STRATEGY, make_event_change_proof,
+    LANDING_STRATEGY, ODH_STRATEGY, ODS_STRATEGY, TRENTINO_STRATEGY, make_event_change_proof,
     make_landing_page_proof, make_snapshot_date_proof,
 )
 from opendatahub_events import FIELDS as ODH_FIELDS
@@ -66,6 +66,15 @@ def event_change_proof(profile):
     return make_event_change_proof(profile, body, read_on=DAY.isoformat(), today=DAY)
 
 
+def calendar_proof(profile):
+    """Synthetic one-market calendar snapshot, never a claim of a live read."""
+    body = json.dumps({"schema": 1, "read_on": DAY.isoformat(), "window": ["2026-10-12", "2026-11-09"],
+                       "events": [{"slug": "mercato-di-prova", "title": "Mercato di prova", "place": "Trento",
+                                   "address": "Trento, centro",
+                                   "dates": [["2026-10-15", "", ""], ["2026-10-22", "", ""]]}]}).encode("utf-8")
+    return make_event_change_proof(profile, body, read_on=DAY.isoformat(), today=DAY)
+
+
 def fixture():
     raw = [p for p in CONTRACTS["raw_profiles"] if p.get("enabled") is True]
     sources = {}
@@ -74,7 +83,8 @@ def fixture():
         strategy = p.get("source_date_strategy")
         proof = (dynamic_proof(p, observed) if strategy == ODS_STRATEGY
                  else landing_proof(p) if strategy == LANDING_STRATEGY
-                 else event_change_proof(p) if strategy == ODH_STRATEGY else None)
+                 else event_change_proof(p) if strategy == ODH_STRATEGY
+                 else calendar_proof(p) if strategy == TRENTINO_STRATEGY else None)
         sha = "a" * 64
         if proof is not None:
             sha = proof["snapshot_sha256"]
@@ -131,10 +141,10 @@ class SourceGrowthAuditGateTests(unittest.TestCase):
     def check(self, report):
         return validate_growth_source_lifecycle(report, MANIFEST, root=ROOT)
 
-    def test_pinned_publisher_registries_allow_five_authorized_sources(self):
+    def test_pinned_publisher_registries_allow_six_authorized_sources(self):
         report = fixture()
         result = self.check(report)
-        self.assertEqual(result["sources_checked"], 5)
+        self.assertEqual(result["sources_checked"], 6)
         self.assertEqual(result["market_ids_preserved"], MANIFEST["total"])
 
     def test_dynamic_date_advances_with_proof_and_fixed_legacy_stage_needs_none(self):
@@ -149,6 +159,8 @@ class SourceGrowthAuditGateTests(unittest.TestCase):
                 self.assertEqual(staged["publisher_dataset_date"], "2026-01-01")
             elif p.get("source_date_strategy") == ODH_STRATEGY:
                 self.assertEqual(staged["publisher_dataset_date"], "2026-10-18")
+            elif p.get("source_date_strategy") == TRENTINO_STRATEGY:
+                self.assertEqual(staged["publisher_dataset_date"], "2026-10-15")
             else:
                 self.assertNotIn("source_date_proof", staged)
                 self.assertEqual(staged["publisher_dataset_date"], p["source_dataset_date"])

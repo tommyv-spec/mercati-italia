@@ -27,11 +27,12 @@ from field_evidence import FIELDS, as_day, clean_receipts, fingerprint, valid_re
 from source_lifecycle import _public_https, digest, validate_contracts
 from source_probe import limited_fetch
 from publisher_snapshot_date import (
-    LANDING_STRATEGY, MAX_LANDING_BYTES, MAX_METADATA_BYTES, ODH_STRATEGY, discover_document,
-    make_event_change_proof, make_landing_page_proof, make_snapshot_date_proof,
+    LANDING_STRATEGY, MAX_LANDING_BYTES, MAX_METADATA_BYTES, ODH_STRATEGY, TRENTINO_STRATEGY,
+    discover_document, make_event_change_proof, make_landing_page_proof, make_snapshot_date_proof,
     resolve_source_date, validate_strategy,
 )
 from opendatahub_events import request_url
+import trentino_calendar
 from reviewed_city_evidence import NAVIGATION_HOLD
 import atomic_write
 
@@ -73,7 +74,8 @@ def read_source_snapshot(profile, *, fetch, read_on, today):
         raise ValueError("Real source read date is later than the requested reference date")
 
     def bounded(url, limit):
-        body, overflow = (fetch(url, max_bytes=limit) if strategy in (LANDING_STRATEGY, ODH_STRATEGY)
+        body, overflow = (fetch(url, max_bytes=limit)
+                          if strategy in (LANDING_STRATEGY, ODH_STRATEGY, TRENTINO_STRATEGY)
                           else fetch(url))
         if not isinstance(body, bytes) or overflow or not 0 < len(body) <= limit:
             raise ValueError("Approved publisher full snapshot exceeded authorized byte budget")
@@ -89,9 +91,16 @@ def read_source_snapshot(profile, *, fetch, read_on, today):
         resolve_source_date(profile, proof=proof, blob=blob, read_on=read_on, today=today)
         return blob, proof
 
-    if strategy == ODH_STRATEGY:
-        # Events still running or ended within the lookback: the begin date follows the read day.
-        blob = bounded(request_url(profile, read_on), profile["max_bytes"])
+    if strategy in (ODH_STRATEGY, TRENTINO_STRATEGY):
+        if strategy == ODH_STRATEGY:
+            # Events still running or ended within the lookback: the begin date follows the read day.
+            blob = bounded(request_url(profile, read_on), profile["max_bytes"])
+        else:
+            # Every search page of the window, then each market's page: one compact snapshot.
+            blob = trentino_calendar.snapshot(
+                profile, lambda url: bounded(url, trentino_calendar.MAX_PAGE_BYTES), read_on)
+            if len(blob) > profile["max_bytes"]:
+                raise ValueError("Approved publisher full snapshot exceeded authorized byte budget")
         proof = make_event_change_proof(profile, blob, read_on=read_on, today=today)
         resolve_source_date(profile, proof=proof, blob=blob, read_on=read_on, today=today)
         return blob, proof
