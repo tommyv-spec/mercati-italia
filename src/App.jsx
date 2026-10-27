@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense } fro
 import { useMarkets } from "./hooks/useMarkets";
 import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup } from './lib/marketGrouping';
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
-import { UNKNOWN_CITY_HELP } from './lib/locationQuality';
+import { UNKNOWN_CITY_HELP, VENUE_UNCONFIRMED_HELP } from './lib/locationQuality';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
 import { sourceCalendarView, sourceContacts, sourceHoursForDate } from './lib/sourceCalendar.js';
 import { editorialSummaryView } from './lib/editorialEvidence.js';
@@ -2032,7 +2032,7 @@ export default function App() {
             ))}
             {m.locationReviewRequired && (
               <p role="note" style={{ color: '#857660', fontSize: 12, lineHeight: 1.5, margin: '9px 0' }}>
-                {UNKNOWN_CITY_HELP} Le indicazioni stradali per questa scheda sono disabilitate.
+                {m.cityUncertain ? UNKNOWN_CITY_HELP : VENUE_UNCONFIRMED_HELP} Le indicazioni stradali per questa scheda sono disabilitate.
               </p>
             )}
             {m.concluded && (

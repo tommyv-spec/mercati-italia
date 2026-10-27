@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { isSuspiciousCityName, safeCityLabel, UNKNOWN_CITY_HELP } from '../src/lib/locationQuality.js'
+import { isSuspiciousCityName, safeCityLabel, UNKNOWN_CITY_HELP, VENUE_UNCONFIRMED_HELP } from '../src/lib/locationQuality.js'
 
 test('actual national catalog corrupt scraped city labels are not exposed as municipalities', () => {
   const malformed = [
@@ -17,6 +17,7 @@ test('actual national catalog corrupt scraped city labels are not exposed as mun
     assert.equal(safeCityLabel(label),'Località da verificare')
   }
   assert.match(UNKNOWN_CITY_HELP,/Comune/)
+  assert.doesNotMatch(VENUE_UNCONFIRMED_HELP,/Comune/)
 })
 
 test('valid Italian municipalities are not confused with generic street words', () => {

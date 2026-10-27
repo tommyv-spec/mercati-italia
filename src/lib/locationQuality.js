@@ -28,3 +28,7 @@ export function safeCityLabel(city) {
 
 export const UNKNOWN_CITY_HELP =
   'La località riportata dalla fonte non identifica con sicurezza un Comune. Controlla la fonte originale prima di spostarti.'
+
+// The Comune is known (e.g. an official calendar lists the venue), the opening and the exact spot are not.
+export const VENUE_UNCONFIRMED_HELP =
+  'Sede indicata dalla fonte; apertura e punto esatto non sono confermati. Controlla la fonte originale prima di spostarti.'

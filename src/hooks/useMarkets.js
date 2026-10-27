@@ -34,6 +34,9 @@ export function adaptMarket(m, userLat, userLng) {
   const categoryLabel = CATEGORY_LABELS[m.categoria] || m.categoria || 'Misto'
   const locationReviewRequired = isSuspiciousCityName(m.citta) ||
     m.navigazione_sospesa_motivo === 'indirizzo_e_punto_sorgente_non_riconciliati'
+  // Only picks the warning text: a repaired town (citta_originale) also started as a
+  // place no Comune matched; otherwise the Comune is known and the venue isn't confirmed.
+  const cityUncertain = isSuspiciousCityName(m.citta) || Boolean(m.citta_originale)
   const market = {
     id: m.id,
     name: m.nome,
@@ -41,6 +44,7 @@ export function adaptMarket(m, userLat, userLng) {
     originalCity: m.citta,
     province: m.provincia || '',
     locationReviewRequired,
+    cityUncertain,
     region: m.regione,
     address: m.indirizzo || '',
     lat: m.lat, lng: m.lng,

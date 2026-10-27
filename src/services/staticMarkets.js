@@ -232,6 +232,7 @@ function normalize(m, userLat, userLng) {
     id: m.slug,
     nome: m.nome || '',
     citta: m.citta || '',
+    citta_originale: m.citta_originale || '',
     provincia: m.provincia || '',
     regione: m.regione || '',
     indirizzo: m.indirizzo || '',
