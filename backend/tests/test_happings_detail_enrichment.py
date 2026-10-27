@@ -413,6 +413,14 @@ class HappingsDetailEnrichmentTests(unittest.TestCase):
             with self.subTest(title=title, category=category):
                 self.assertIsNone(enrich._category({"name": title, "category": category}))
 
+    def test_town_fair_the_exporter_would_drop_is_held_not_admitted(self):
+        doc = document()
+        doc["event"]["name"], doc["event"]["category"] = "242esima Fiera di S. Caterina", "Fiere"
+        with patch("happings_detail_layout.parse_detail", return_value=doc):
+            rows, report = self.run_source()
+        self.assertEqual(rows, [])
+        self.assertEqual(report["outcomes"][0]["reason"], "export_rejects_generic_without_market_evidence")
+
     def test_false_friend_market_talk_is_not_admitted(self):
         rows, report = self.run_source(source=observed_page("notizia_fumetti"))
         self.assertEqual(rows, [])

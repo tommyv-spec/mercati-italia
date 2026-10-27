@@ -469,6 +469,11 @@ def _new_market(document, geo, read_on, today):
     values = {field: row[field] for field in FIELDS if row.get(field)}
     receipt = mark_managed_fields(_receipt(row, values, detail), values, manager=MANAGER)
     row["riscontri_campi"] = [receipt]
+    # Ask the exporter too: an admitted card it would drop stops the whole release.
+    from export_static import normalize
+    _, error = normalize(row, today)
+    if error:
+        return None, "export_rejects_" + error
     return row, None
 
 

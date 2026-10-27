@@ -729,7 +729,9 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         cleaned.append(result)
 
     if protected - by_slug.keys():
-        raise ValueError("Export normalization removed or changed protected market identifiers")
+        lost = sorted(protected - by_slug.keys())
+        raise ValueError("Export normalization removed or changed protected market identifiers: "
+                         + ", ".join(lost[:10]) + f" ({len(lost)}; skipped: {dict(skipped)})")
     cleaned, safe_merged = combine_safe_source_duplicates(cleaned, preserve_ids=protected)
     merged, merge_counts = soft_merge_markers(cleaned)
     source_reads = {}
