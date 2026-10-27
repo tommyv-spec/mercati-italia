@@ -52,7 +52,7 @@ MAX_SNAPSHOT_BYTES = 4_000_000
 HASH_BASIS = "browser_captured_record"
 TEXT_KEYS = ("name", "city", "region", "address", "schedule_notes", "frequency", "start_date",
              "start_time", "end_time", "organizer", "website", "instagram", "price_info",
-             "description", "verified_on")
+             "description", "verified_on", "status", "tips")
 CARD_KEYS = {"id", "url", "read_on", "record", "unconfirmed", "tags", *TEXT_KEYS}
 MONTHS = ("gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
           "settembre", "ottobre", "novembre", "dicembre")
@@ -70,6 +70,16 @@ QUALIFIER = re.compile(r"\b(?:(?:19|20)\d{2}|\d{1,2}\s+" + MONTH + r"|anticipat\
                        r"eventual\w*|alcun\w*|più|piu|nei mesi|salvo|sospes\w*|annullat\w*|rinviat\w*|"
                        r"straordinar\w*|alternat\w*|tranne\s+(?:il|la|i|le|in caso)|meteo|maltempo|pioggia)\b", re.I)
 NEXT_DATES = re.compile(r"^prossim[ae] dat[ae]\s*:\s*(.+)$", re.I)
+# Several places in "Dove" (alternatives, a list, a touring event): not one market.
+MULTI_VENUE = re.compile(r";|\balternativ|\boccasional|\(o |\boppure\b|\bitinerant", re.I)
+# Dates written in prose: "domenica 22 novembre 2026", "Edizione 2026: 14-16 agosto",
+# "Sabato 10 e domenica 11 ottobre 2026". A sentence that hedges them is not read.
+WEEKDAY_WORD = r"(?:luned[iì]|marted[iì]|mercoled[iì]|gioved[iì]|venerd[iì]|sabato|domenica)"
+DAY_ITEMS = (r"(\d{1,2})°?(?:\s*-\s*(\d{1,2}))?((?:\s*(?:,|\be\b|/)\s*(?:" + WEEKDAY_WORD
+             + r"\s+)?\d{1,2}°?(?:\s*-\s*\d{1,2})?)*)")
+DATED = re.compile(DAY_ITEMS + r"\s+(" + MONTH + r")(?:\s+(20\d{2}))?", re.I)
+YEAR_SCOPE = re.compile(r"\b(20\d{2})\s*:", re.I)
+HEDGED = re.compile(r"cambio (?:di )?sede|altra sede|trasferit|indicativ|prevista|non conferm|da conferm|circa|esempi|forse|probabil|da annunciare", re.I)
 DATE_GROUP = re.compile(r"((?:\d{1,2}\s*(?:,|\be\b)?\s*)+)\s+(" + MONTH + r")\s+(\d{4})", re.I)
 
 
@@ -124,24 +134,113 @@ def normalize_capture(raw):
         card = {k: "" for k in TEXT_KEYS}
         card.update(id=key, url=rec["url"], read_on=read_on, unconfirmed=False, tags=[],
                     record=bool(rec.get("id") == key and not rec.get("parse_error")))
+        card["tags"] = [clean(t, 40) for t in rec.get("tags") or [] if clean(t, 40)][:12]
         if card["record"]:
             for k in ("name", "city", "region", "address", "schedule_notes", "frequency",
                       "organizer", "website", "instagram", "price_info"):
                 card[k] = clean(rec.get(k), 600)
             card["description"] = clean(rec.get("description"), 900)
+            card["tips"] = clean(rec.get("tips"), 900)
             card["start_date"] = _iso(rec.get("start_date"))
             card["start_time"], card["end_time"] = clean(rec.get("start_time"), 5), clean(rec.get("end_time"), 5)
             card["unconfirmed"] = rec.get("unconfirmed") is True
-            card["tags"] = [clean(t, 40) for t in rec.get("tags") or [] if clean(t, 40)][:12]
+            card["status"] = "Data da confermare" if card["unconfirmed"] else ""
             card["verified_on"] = verified_day(rec.get("verified"), read_on)
+        elif (page := page_card(rec, read_on)) is not None:
+            # Undated pages carry no record; their visible labels give the same fields.
+            card.update(page, record=True)
         else:
-            # Undated "date annunciate di volta in volta" pages carry no record: counted, never admitted.
             card["name"] = clean(str(rec.get("title") or "").split(" — ")[0], 160)
+            skipped["page_without_market_fields"] += 1
         cards.append(card)
     days = [c["read_on"] for c in cards]
     snapshot = {"schema": 1, "publisher": PUBLISHER, "index": INDEX_URL,
                 "read_from": min(days), "read_to": max(days), "cards": cards}
     return validate_snapshot(snapshot), dict(skipped)
+
+
+def page_card(rec, read_on):
+    """The card fields of an undated page from its visible text, or None.
+
+The text has fixed labels: breadcrumb "Mercatini/<Regione>/…", header "<name> <town>,
+<Regione>", "Prossima apertura<status>", "Scheda verificata il <d mese>", "Orario",
+"Ingresso", "Dove", "Organizzatore", "Orari e cadenza", "Il mercato", "Consiglio pratico".
+A "Categoria generale" page is a category, not a market."""
+    text = " ".join(str(rec.get("page_text") or "").split())
+    text = text.split("No, grazie", 1)[-1]
+    title = re.sub(r"(?:,| —) orari e date \| Vintagery$", "", clean(rec.get("title"), 300))
+    crumb = re.search(r"Mercatini/([^/]{3,40})/", text)
+    if not title or not crumb or "ategoria generale" in text:
+        return None
+    region = crumb[1]
+    # The header repeats the name, then "<town>, <Regione>"; a name may itself hold " — ".
+    parts = title.split(" — ")
+    for name in (" — ".join(parts[:k]) for k in range(len(parts), 0, -1)):
+        header = re.search(re.escape(name) + r"\s+([^,()]{2,60}?),\s*" + re.escape(region), text)
+        if header:
+            break
+    else:
+        return None
+    name = clean(name, 160)
+
+    def between(start, end):
+        found = re.search(start + r"(.*?)(?:" + end + r")", text)
+        return clean(found[1], 900) if found else ""
+
+    hours = re.fullmatch(r"([01]\d|2[0-3]):([0-5]\d)–([01]\d|2[0-3]|24):([0-5]\d)",
+                         between(r"Come arrivare\s*Orario", r"Ingresso"))
+    tips = between(r"Consiglio pratico", r"Recensioni|Organizzi tu|$")
+    for tag in sorted(rec.get("tags") or [], key=len, reverse=True):
+        tips = tips.removesuffix(tag)
+    if not tips.endswith((".", "!", ")")):
+        # The kept page text stops at 4,000 characters: keep whole sentences only.
+        tips = tips[:tips.rfind(". ") + 1] if ". " in tips else ""
+    return {"name": name, "city": clean(header[1], 60), "region": clean(region, 40),
+            "address": between(r"Dove", r"Indicazioni"),
+            "schedule_notes": between(r"Orari e cadenza", r"Il mercato"),
+            "description": between(r"Il mercato", r"Questo weekend|La newsletter|Consiglio pratico|Recensioni|$"),
+            "tips": tips,
+            "price_info": between(r"Ingresso", r"Dove"),
+            "organizer": between(r"Indicazioni\s*Organizzat(?:ore|rice|ori)", r" Orari e cadenza|Il mercato"),
+            "start_time": f"{hours[1]}:{hours[2]}" if hours else "",
+            "end_time": f"{hours[3]}:{hours[4]}" if hours else "",
+            "status": between(r"Prossima apertura", r"Scheda |Come arrivare"),
+            "verified_on": verified_day(between(r"Scheda verificata il ", r" Come arrivare|Come arrivare"), read_on)}
+
+
+def written_dates(notes, read_on):
+    """Future days the text states outright: "domenica 22 novembre 2026", "Edizione 2026:
+    14-16 agosto" (a run of up to 7 days), "2026: 7 e 21 agosto". A span across months is a
+    season, not dates; a hedged sentence ("indicativamente", "esempio") gives none."""
+    found = set()
+    for sentence in _sentences(notes):
+        if HEDGED.search(sentence):
+            continue
+        scope = YEAR_SCOPE.search(sentence)
+        for match in DATED.finditer(sentence):
+            # The end or start of a span across months ("1° giugno - 15 ottobre"): a season.
+            if (re.search(r"(?:[-–]|\bal|\bfino a)\s*$", sentence[:match.start()])
+                    or re.match(r"\s*[-–]\s*\d", sentence[match.end():])):
+                continue
+            year = match[5] or (scope[1] if scope and scope.start() < match.start() else None)
+            if not year:
+                continue
+            month = MONTHS.index(match[4].casefold()) + 1
+            items = [match[1] + ("-" + match[2] if match[2] else "")]
+            items += re.findall(r"\d{1,2}°?(?:\s*-\s*\d{1,2})?", match[3])
+            for item in items:
+                first, _, last = item.replace("°", "").replace(" ", "").partition("-")
+                low, high = int(first), int(last or first)
+                if not 1 <= low <= high <= 31 or high - low > 6:
+                    continue
+                for day in range(low, high + 1):
+                    try:
+                        value = date(int(year), month, day).isoformat()
+                    except ValueError:
+                        continue
+                    if value >= read_on:
+                        found.add(value)
+    return sorted(found)
 
 
 def validate_snapshot(snapshot):
@@ -211,6 +310,39 @@ def street_and_province(address, city, region=""):
     return text, province
 
 
+# The official long names of two towns everyone writes short.
+TOWN_ALIASES = {"reggio emilia": "reggio nell emilia", "reggio calabria": "reggio di calabria"}
+
+
+def resolve_town(city, region, address, province):
+    """(comune, province, frazione) for the card's town, or the input unchanged.
+
+A town that is one ISTAT comune in its region wins over the page's province code
+(Olbia is OT since 2025, the page still says SS). A frazione ("Marina di Carrara",
+"Seano") becomes the one comune of that region the address names ("…, Carrara (MS)"),
+the frazione staying in the street, as trentino.com's reader does."""
+    from editorial_calendar_scope import istat_geography, text_key
+    from editorial_discovery import _istat_regions
+    official = {(text_key(name), text_key(reg)): name for reg, towns in _istat_regions().items() for name in towns}
+    regions = {text_key(region)}
+    plain = re.sub(r"\s*\(.*?\)\s*", " ", city).strip()
+    key = TOWN_ALIASES.get(text_key(plain), text_key(plain))
+    found = [g for g in istat_geography() if g[0] == key and g[2] in regions]
+    if len(found) == 1:
+        return official[found[0][0], found[0][2]], found[0][1], ""
+    if found:
+        return city, province, ""
+    words = " " + text_key(address) + " "
+    hits = {g for g in istat_geography() if g[2] in regions and " " + g[0] + " " in words}
+    codes = set(re.findall(r"\(([A-Z]{2})\)", address))
+    hits = {h for h in hits if not codes or h[1] in codes}
+    hits = {h for h in hits if not any(h[0] != o[0] and " " + h[0] + " " in " " + o[0] + " " for o in hits)}
+    if len(hits) == 1:
+        (name, code, reg), = hits
+        return official[name, reg], code, plain
+    return city, province, ""
+
+
 def _clock(hour, minute):
     return f"{int(hour):02d}:{int(minute or 0):02d}"
 
@@ -231,6 +363,11 @@ def hours_text(card):
     if SEASONAL_HOURS.search(notes) or stated - {start, end}:
         return None, "hours_seasonal_or_per_edition"
     return start + "–" + end, None
+
+
+def text_key_local(value):
+    from editorial_calendar_scope import text_key
+    return text_key(value)
 
 
 def _sentences(notes):
@@ -272,7 +409,8 @@ def _rule_fits_dates(rule, card):
     "da confermare" estimate included, falls on the rule; else (None, reason)."""
     from recurrence_refresh import forecast_rule, project_dates
     read = date.fromisoformat(card["read_on"])
-    dates = [d for d in [card["start_date"], *(next_dates(card["schedule_notes"]) or [])] if d and d >= card["read_on"]]
+    dates = [d for d in [card["start_date"], *(next_dates(card["schedule_notes"]) or []),
+                         *written_dates(card["schedule_notes"], card["read_on"])] if d and d >= card["read_on"]]
     if not dates:
         return rule, None
     horizon = (date.fromisoformat(max(dates)) - read).days
@@ -308,7 +446,13 @@ def parse_detail(blob, *, requested_url):
             or not identity or identity[1] != card["id"] or not card["record"]):
         raise ValueError("Vintagery card has no usable record")
     conflicts, warnings = [], []
+    if MULTI_VENUE.search(card["address"]) or re.search(r"\bitinerant", card["schedule_notes"], re.I):
+        conflicts.append({"field": "identity", "code": "several_places_not_one_market",
+                          "values": [card["address"][:200]]})
     street, province = street_and_province(card["address"], card["city"], card["region"])
+    city, province, frazione = resolve_town(card["city"], card["region"], card["address"], province)
+    if frazione and text_key_local(frazione) not in text_key_local(street):
+        street = ", ".join(p for p in (street, frazione) if p)
     hours, reason = hours_text(card)
     if reason:
         warnings.append(reason)
@@ -333,7 +477,8 @@ def parse_detail(blob, *, requested_url):
             if listed and card["start_date"] >= card["read_on"] and card["start_date"] not in listed:
                 conflicts.append({"field": "calendar", "code": "next_date_not_in_listed_dates",
                                   "values": [card["start_date"], listed]})
-        days = sorted(set(days) | set(listed))
+        written = written_dates(card["schedule_notes"], card["read_on"])
+        days = sorted(d for d in set(days) | set(listed) | set(written) if d >= card["read_on"])
     start_time, end_time = (hours.split("–") if hours else (None, None))
     evidence = ["vintagery.it card record (browser capture)"]
     rows = [{"field": field, "value": card[field], "evidence": ["record." + field]}
@@ -348,7 +493,7 @@ def parse_detail(blob, *, requested_url):
         # "Antiquariato alle Rondinelle — Roncadelle": the town is not part of the name.
         "event": {"name": re.sub(r"\s+[—–-]\s+" + re.escape(card["city"]) + r"$", "", card["name"])
                   if card["city"] else card["name"],
-                  "location": {"city": card["city"], "province": province, "region": card["region"],
+                  "location": {"city": city, "province": province, "region": card["region"],
                                "address": street if len(street) <= 300 else ""},
                   "hours_text": hours, "hours_intervals": [{"start": start_time, "end": end_time}] if hours else [],
                   "recurrence_text": rule, "archive_marker": False,
@@ -358,13 +503,17 @@ def parse_detail(blob, *, requested_url):
                   "date_intervals": [], "calendar_complete": bool(days or rule) and not conflicts,
                   "calendar_scope": "explicit_visible_list" if days else
                   "recurring_statement_only" if rule else "unknown",
-                  "scope_statements": [], "conditions": [], "calendar_rules": [], "suspensions": [],
+                  "scope_statements": [], "calendar_rules": [], "suspensions": [],
+                  # What Vintagery shows when it has no date: "Torna a luglio", "Date annunciate…".
+                  "conditions": [{"kind": "publisher_status", "text": "Prossima apertura: " + card["status"],
+                                  "evidence": ["Prossima apertura"]}] if card["status"] else [],
                   "source_rows": rows, "description": card["description"],
-                  "observed_location": {"city": card["city"], "province": province,
+                  "entry": card["price_info"], "tips": card["tips"], "tags": card["tags"],
+                  "observed_location": {"city": city, "province": province,
                                         "region": card["region"], "address": card["address"]}},
         "conflicts": conflicts, "warnings": warnings,
         "field_evidence": {"identity": {"selector": "record.id", "value": card["id"]},
-                           "calendar": {"selector": "record.start_date; schedule_notes 'Prossime date'"},
+                           "calendar": {"selector": "record.start_date; schedule_notes dates"},
                            "hours": {"selector": "record.start_time/end_time"},
                            "location": {"selector": "record.city/region/address"}},
     }
@@ -391,7 +540,10 @@ def pages(rows, *, today, limit, snapshot=None):
               if source_identity(r["url"])}
     candidates = [c for c in current_cards(snapshot, today)
                   if (PUBLISHER, c["id"]) not in known and c["url"] not in proved]
-    candidates.sort(key=lambda c: hashlib.sha256(c["url"].encode()).hexdigest())
+    # Cards with a next date go first (their date passes while they wait), then a fixed order.
+    salt = today.isoformat()
+    candidates.sort(key=lambda c: (c["unconfirmed"] or not c["start_date"] > salt,
+                                   hashlib.sha256(c["url"].encode()).hexdigest()))
     if len(candidates) > limit:
         start = today.toordinal() * limit % len(candidates)
         candidates = (candidates + candidates)[start:start + limit]
@@ -422,6 +574,7 @@ module's verify_changes/verify_exported rebuild it from the saved page facts."""
 
 # ---------------------------------------------------------------- markets other sources have
 
+EXTRA_FIELDS = ("ingresso", "consigli", "tags")
 FILL_MANAGER = "vintagery_fill"
 FILL_METHOD = "nome_sede_comune_univoco"
 FILL_FIELDS = ("indirizzo", "orario_testo", "ricorrenza_testo")
@@ -556,15 +709,50 @@ or restated value carries a receipt naming the Vintagery page and its read day."
     return result, report
 
 
+def extras(rows, filled, *, today, snapshot):
+    """Entry price, tips and tags (Vintagery's own text) on its own cards and on the one
+    market another source has. Only Vintagery writes ingresso/consigli; tags are added."""
+    by_url = {c["url"]: c for c in current_cards(snapshot, today)}
+    targets = {}
+    for row in rows:
+        if row.get("fonte") == PUBLISHER and row.get("url_fonte") in by_url:
+            targets.setdefault(row["slug"], by_url[row["url_fonte"]])
+    for outcome in filled["outcomes"]:
+        if outcome.get("market_id") and (outcome["status"] == "changed" or outcome["reason"] in {
+                "already_current", "nothing_to_fill_or_restate", "receipt_slots_full"}):
+            targets.setdefault(outcome["market_id"], by_url[outcome["url"]])
+    result, changed = deepcopy(rows), []
+    for row in result:
+        card = targets.get(row["slug"])
+        if card is None or row.get("verificato_il"):
+            continue
+        before = {k: row.get(k) for k in EXTRA_FIELDS}
+        for field, value in (("ingresso", clean(card["price_info"], 160)), ("consigli", clean(card["tips"], 900))):
+            if value:
+                row[field] = value
+            else:
+                row.pop(field, None)
+        row["tags"] = sorted(set(row.get("tags") or []) | set(card["tags"]))
+        if {k: row.get(k) for k in EXTRA_FIELDS} != before:
+            changed.append({"market_id": row["slug"], "url": card["url"],
+                            **{k: row.get(k) for k in EXTRA_FIELDS}})
+    return result, changed
+
+
 def apply(rows, *, today, snapshot=None):
-    """The nightly step after editorial discovery: re-read own cards, then fill() the others."""
+    """The nightly step after editorial discovery: re-read own cards, fill() the others,
+    then their extra fields (extras())."""
     snapshot = load_snapshot() if snapshot is None else snapshot
     reread_rows, proof = reread(rows, today=today, snapshot=snapshot)
-    result, filled = fill(reread_rows, today=today, snapshot=snapshot)
+    filled_rows, filled = fill(reread_rows, today=today, snapshot=snapshot)
+    result, extra = extras(filled_rows, filled, today=today, snapshot=snapshot)
     summary = {"snapshot_read_to": snapshot["read_to"] if snapshot else None,
                "own_cards_reread": len(proof["documents"]), "own_cards_changed": len(proof["changed_existing_ids"]),
-               **filled["summary"]}
-    return result, {"schema": 1, "date": today.isoformat(), "reread": proof, "fill": filled, "summary": summary}
+               **filled["summary"], "extra_fields_changed": len(extra),
+               "with_ingresso": sum(bool(r.get("ingresso")) for r in result),
+               "with_consigli": sum(bool(r.get("consigli")) for r in result)}
+    return result, {"schema": 1, "date": today.isoformat(), "reread": proof, "fill": filled,
+                    "extras": extra, "summary": summary}
 
 
 def verify(before, after, report, *, today, snapshot=None):
@@ -575,7 +763,7 @@ def verify(before, after, report, *, today, snapshot=None):
         raise ValueError("Vintagery step cannot be rebuilt from the committed snapshot")
     middle, _ = reread(before, today=today, snapshot=snapshot)
     editorial.verify_changes(before, middle, report["reread"], today=today)
-    allowed = set(FILL_FIELDS) | {"riscontri_campi"}
+    allowed = set(FILL_FIELDS) | set(EXTRA_FIELDS) | {"riscontri_campi"}
     for old, new in zip(middle, after):
         if {k for k in set(old) | set(new) if old.get(k) != new.get(k)} - allowed:
             raise ValueError("Vintagery fill changed a field it does not fill")
@@ -602,26 +790,105 @@ def verify_exported(rows, report, *, today):
             if row.get(field) == value and not any(r["valori"].get(field) == value for r in receipts):
                 raise ValueError("A Vintagery-filled field lost its receipt")
         checked += 1
+    for item in report.get("extras", []):
+        row = by_id.get(item["market_id"])
+        if row is not None and any(row.get(k) != item.get(k) for k in ("ingresso", "consigli")):
+            raise ValueError("A Vintagery entry/tips value did not survive export")
     return {"release_safe": True, "own_cards_checked": len(report["reread"]["outcomes"]),
-            "filled_ids_checked": checked}
+            "filled_ids_checked": checked, "extra_fields_checked": len(report.get("extras", []))}
+
+
+# ---------------------------------------------------------------- monitoring
+
+# The sitemap's <lastmod> is the time the sitemap was built (one value for every card,
+# checked 27 Oct 2026), not when a card changed: it proves nothing about a card. So a card
+# is renewed only by reading it again. Each day reads the sitemap (new and removed cards)
+# and re-reads PER_DAY cards, passed next dates and the oldest reads first: every card is
+# re-read about weekly, far inside the 45-day read window.
+PER_DAY = 120
+
+
+def plan(snapshot, *, today, per_day=PER_DAY):
+    """Today's read for collect.js: the ids we hold (8-character prefixes, to spot new
+    cards) and the ones to re-read."""
+    day = today.isoformat()
+    cards = snapshot["cards"] if snapshot else []
+    due = sorted(cards, key=lambda c: (not (c["start_date"] and c["start_date"] < day), c["read_on"], c["id"]))
+    return {"day": day, "known": sorted(c["id"][:8] for c in cards),
+            "fetch": [c["id"][:8] for c in due[:per_day]]}
+
+
+def merge_download(snapshot, download):
+    """A daily download ({"schema": 2, "listing_day", "listing": [ids], "cards": {id: record}})
+    merged into the snapshot: re-read cards replaced (their new read day), new cards added,
+    cards no longer in the sitemap dropped, every other card kept with its own read day."""
+    if (not isinstance(download, dict) or download.get("schema") != 2 or download.get("mode") != "daily"
+            or not _iso(download.get("listing_day")) or not isinstance(download.get("listing"), list)
+            or not isinstance(download.get("cards"), dict)):
+        raise ValueError("Not a daily Vintagery download")
+    listing = set(download["listing"])
+    old = {c["id"]: c for c in snapshot["cards"]} if snapshot else {}
+    if not listing or old and len(listing & set(old)) < len(old) // 2:
+        # A blocked or partial sitemap read must not empty the snapshot.
+        raise ValueError("The day's sitemap listing is missing or lists under half our cards")
+    fetched, skipped = (normalize_capture(download["cards"]) if download["cards"]
+                        else ({"cards": []}, {}))
+    fetched = {c["id"]: c for c in fetched["cards"] if c["id"] in listing}
+    counts = Counter()
+    cards = []
+    for key in sorted(listing):
+        if key in fetched:
+            counts["re_read" if key in old else "new"] += 1
+            cards.append(fetched[key])
+        elif key in old:
+            counts["kept"] += 1
+            cards.append(old[key])
+        else:
+            counts["listed_not_read"] += 1
+    counts["gone"] = len(set(old) - listing)
+    days = [c["read_on"] for c in cards]
+    merged = {"schema": 1, "publisher": PUBLISHER, "index": INDEX_URL,
+              "read_from": min(days), "read_to": max(days), "cards": cards}
+    return validate_snapshot(merged), {**dict(sorted(counts.items())), "skipped": skipped}
 
 
 # ---------------------------------------------------------------- CLI
 
-def main(argv=None):
-    parser = argparse.ArgumentParser(description="Turn a Vintagery browser download into the committed snapshot.")
-    parser.add_argument("download", type=Path, help="vintagery_cards.json saved by ops/vintagery/collect.js")
-    parser.add_argument("--out", type=Path, default=SNAPSHOT_PATH)
-    args = parser.parse_args(argv)
-    snapshot, skipped = normalize_capture(json.loads(args.download.read_text("utf-8")))
+def _write_snapshot(snapshot, out):
     text = json.dumps(snapshot, ensure_ascii=False, sort_keys=True, indent=0) + "\n"
     if len(text.encode("utf-8")) > MAX_SNAPSHOT_BYTES:
         raise SystemExit("Snapshot exceeds its byte bound")
-    args.out.write_text(text, "utf-8", newline="\n")
+    out.write_text(text, "utf-8", newline="\n")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Vintagery snapshot: import a browser download, or plan today's read.")
+    parser.add_argument("download", type=Path, nargs="?",
+                        help="vintagery_cards*.json saved by ops/vintagery/collect.js (full or daily)")
+    parser.add_argument("--out", type=Path, default=SNAPSHOT_PATH)
+    parser.add_argument("--plan", type=Path, help="write today's read plan for collect.js (window.__vgPlan)")
+    parser.add_argument("--per-day", type=int, default=PER_DAY)
+    parser.add_argument("--today", type=date.fromisoformat, default=date.today())
+    args = parser.parse_args(argv)
+    if args.plan:
+        today_plan = plan(load_snapshot(args.out), today=args.today, per_day=args.per_day)
+        args.plan.write_text("window.__vgPlan = " + json.dumps(today_plan) + ";\n", "utf-8", newline="\n")
+        print(json.dumps({"plan": str(args.plan), "known": len(today_plan["known"]), "fetch": len(today_plan["fetch"])}))
+        return 0
+    if args.download is None:
+        parser.error("give a download to import, or --plan")
+    raw = json.loads(args.download.read_text("utf-8"))
+    if isinstance(raw, dict) and raw.get("schema") == 2:
+        snapshot, report = merge_download(load_snapshot(args.out), raw)
+    else:
+        snapshot, skipped = normalize_capture(raw)
+        report = {"full_read": len(snapshot["cards"]), "skipped": skipped}
+    _write_snapshot(snapshot, args.out)
     cards = snapshot["cards"]
-    print(json.dumps({"cards": len(cards), "with_record": sum(c["record"] for c in cards),
-                      "unconfirmed": sum(c["unconfirmed"] for c in cards), "skipped": skipped,
+    print(json.dumps({**report, "cards": len(cards), "with_record": sum(c["record"] for c in cards),
+                      "unconfirmed": sum(c["unconfirmed"] for c in cards),
                       "read_from": snapshot["read_from"], "read_to": snapshot["read_to"]}))
+    return 0
 
 
 if __name__ == "__main__":

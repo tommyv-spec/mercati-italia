@@ -105,6 +105,9 @@ test('an ordinary legacy row without bound scope preserves its existing display'
 
 test('a source stall count reaches the detail only as a positive whole number', () => {
   assert.equal(adaptMarket({id: current[0], posteggi: 52}).stalls, 52)
+  const detail = adaptMarket({id: current[0], ingresso: ' Gratuito ', consigli: 'Arrivare presto.'})
+  assert.deepEqual([detail.entry, detail.tips], ['Gratuito', 'Arrivare presto.'])
+  assert.deepEqual([adaptMarket({id: current[0]}).entry, adaptMarket({id: current[0], consigli: 3}).tips], ['', ''])
   for (const posteggi of [undefined, 0, -3, 2.5, '52']) {
     assert.equal(adaptMarket({id: current[0], posteggi}).stalls, null)
   }

@@ -1953,6 +1953,8 @@ export default function App() {
               <p key={note + i} className="source-calendar-note">{note}</p>
             ))}
             {m.stalls && <p className="source-calendar-note" data-stalls>Circa {m.stalls} banchi secondo la fonte.</p>}
+            {m.entry && <p className="source-calendar-note" data-entry>Ingresso: {m.entry}</p>}
+            {m.tips && <p className="source-calendar-note" data-tips>Consiglio: {m.tips}</p>}
             {sourceSchedule.rows.length > 0 && (
               <details className="source-calendar" key={m.id}
                 open={sourceSchedule.hasVariations || sourceSchedule.rows.length <= 3}>

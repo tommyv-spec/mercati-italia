@@ -327,6 +327,11 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         value = safe_string(raw.get(field), 35)
         if value:
             result[field] = value
+    # Entry price and practical tips the source states (vintagery.it); detail only.
+    for field, limit in (("ingresso", 160), ("consigli", 900)):
+        value = safe_string(raw.get(field), limit)
+        if value:
+            result[field] = value
     content_date = source_date_evidence(raw)
     if content_date["value"]:
         result["fonte_aggiornata_il"] = content_date["value"]

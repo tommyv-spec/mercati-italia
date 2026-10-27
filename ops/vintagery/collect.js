@@ -2,21 +2,29 @@
 // javascript_tool, or the DevTools console). Scripts outside a browser get Vercel's Security
 // Checkpoint (HTTP 429); this never tries to get past it, it reads pages as the browser does.
 //
-// What it does: sitemap index /sitemap.xml -> /sitemap/mercatini-*.xml -> every
-// /mercatini/<uuid> page, one at a time, >= 3.5 s apart. Each page embeds its card record in
-// the Next.js payload (self.__next_f.push); the record plus tags, "Scheda verificata il" and
-// "Data da confermare" are kept in localStorage (key vg_cards_v1), so a reload or a stop
-// resumes where it was. Three blocked replies in a row (429 / checkpoint page) stop it.
-// When every card is read it downloads vintagery_cards.json (one file, about 1 MB).
+// Two modes:
+// - full (default): every card listed in /sitemap/mercatini-*.xml.
+// - daily: when window.__vgPlan = {day, known: [8-char id prefixes], fetch: [prefixes]} is
+//   set first (`python backend/vintagery_source.py --plan plan.js`): the sitemap listing,
+//   then only the cards we don't hold yet and the ones the plan asks to re-read.
+//   The sitemap's <lastmod> is when the sitemap was built, not when a card changed, so
+//   it is never used to skip a card.
 //
-// Progress: window.__vgState. Start again later: just run this file again.
-// Then: python backend/vintagery_source.py <Downloads>/vintagery_cards.json
-(async () => {
-  const KEY = 'vg_cards_v1'
+// Each page embeds its card record in the Next.js payload (self.__next_f.push); the record
+// plus tags, "Scheda verificata il" and "Data da confermare" are kept. A page without a record
+// (undated cards) keeps its visible text (4,000 characters) for the importer's page reader.
+// Pages are read one at a time, 3.5 s apart; progress stays in localStorage, so running the
+// file again resumes. Three blocked replies in a row (429 / checkpoint page) stop it.
+// At the end Chrome downloads vintagery_cards[_<day>].json. Progress: window.__vgState.
+// Then: python backend/vintagery_source.py <Downloads>/vintagery_cards*.json
+window.__vgCollect = async () => {
+  const plan = window.__vgPlan && typeof window.__vgPlan === 'object' ? window.__vgPlan : null
+  const KEY = plan ? 'vg_daily_' + plan.day : 'vg_cards_v1'
   const PAUSE_MS = 3500
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}') } catch { return {} } }
   const save = cards => localStorage.setItem(KEY, JSON.stringify(cards))
   const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
+  const state = window.__vgState = { mode: plan ? 'daily' : 'full', total: 0, done: 0, blocked: 0, errors: 0, running: true, last: '' }
 
   function record(text) {
     // The card record is the JSON object around "schedule_notes" in the joined payload.
@@ -38,16 +46,21 @@
   const index = await (await fetch('/sitemap.xml')).text()
   const maps = [...index.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => new URL(m[1]).pathname)
     .filter(path => /^\/sitemap\/mercatini-\d+\.xml$/.test(path))
-  const urls = []
+  const listed = []
   for (const path of maps) {
     const body = await (await fetch(path)).text()
-    urls.push(...(body.match(/https:\/\/vintagery\.it\/mercatini\/[0-9a-f-]{36}/g) || []))
+    listed.push(...(body.match(/https:\/\/vintagery\.it\/mercatini\/[0-9a-f-]{36}/g) || []))
     await wait(1500)
   }
-  const unique = [...new Set(urls)]
-  const state = window.__vgState = { total: unique.length, done: Object.keys(load()).length, blocked: 0, errors: 0, running: true, last: '' }
+  const unique = [...new Set(listed)]
+  if (!unique.length) { state.running = false; state.last = 'stopped: empty sitemap (blocked?)'; return }
+  const known = new Set(plan ? plan.known : [])
+  const asked = new Set(plan ? plan.fetch : [])
+  const todo = plan ? unique.filter(url => !known.has(url.slice(-36, -28)) || asked.has(url.slice(-36, -28))) : unique
+  state.total = todo.length
+  state.done = Object.keys(load()).length
   let strikes = 0
-  for (const url of unique) {
+  for (const url of todo) {
     const id = url.slice(-36)
     if (load()[id]) continue
     try {
@@ -77,7 +90,10 @@
       const card = {}
       if (found && typeof found === 'object') {
         for (const [key, value] of Object.entries(found)) if (value !== '$undefined' && key !== 'icsTable') card[key] = value
-      } else card.parse_error = true
+      } else {
+        card.parse_error = true
+        card.page_text = page.body.textContent.slice(0, 4000)
+      }
       Object.assign(card, {
         url, title, tags,
         verified: (visible.match(/Scheda verificata il ([0-9]{1,2} [a-z]+(?: [0-9]{4})?)/) || [])[1] || '',
@@ -91,8 +107,12 @@
     await wait(PAUSE_MS)
   }
   state.running = false; state.last = 'finished'
+  const payload = plan
+    ? JSON.stringify({ schema: 2, mode: 'daily', listing_day: plan.day, listing: unique.map(url => url.slice(-36)), cards: load() })
+    : localStorage.getItem(KEY)
   const link = document.createElement('a')
-  link.href = URL.createObjectURL(new Blob([localStorage.getItem(KEY)], { type: 'application/json' }))
-  link.download = 'vintagery_cards.json'
+  link.href = URL.createObjectURL(new Blob([payload], { type: 'application/json' }))
+  link.download = plan ? 'vintagery_cards_' + plan.day + '.json' : 'vintagery_cards.json'
   document.body.appendChild(link); link.click(); link.remove()
-})()
+}
+window.__vgCollect(); 'collector started'

@@ -40,6 +40,9 @@ POLICY_PATH = editorial.POLICY_PATH
 PUBLISHERS = {"eventiesagre.it": "eventiesagre", "cosedicasa.com": "cosedicasa", "vintagery.it": "vintagery"}
 # Read from a committed browser snapshot instead of the publisher's index pages.
 SNAPSHOT_PUBLISHERS = {"vintagery.it"}
+# A page with no upcoming date may still enter when it shows its own status
+# ("Torna a luglio", "Date annunciate di volta in volta"): no date is invented.
+UNDATED_PUBLISHERS = {"vintagery.it"}
 ORDER = tuple(PUBLISHERS)
 REPORT_FILENAME = "editorial-discovery.json"
 MAX_INDEXES = 2000
@@ -541,6 +544,11 @@ function of the observed page, so a verifier rebuilds exactly the same row.
         # A page reader may carry the page's own description (vintagery_source does).
         "descrizione": " ".join(str(event.get("description") or "").split())[:900],
         "fonte_letta_il": read_on, "importato_il": today.isoformat()}
+    # ... and its entry price, tips and tags (vintagery_source).
+    extras = {"ingresso": " ".join(str(event.get("entry") or "").split())[:160],
+              "consigli": " ".join(str(event.get("tips") or "").split())[:900],
+              "tags": sorted({" ".join(t.split())[:40] for t in event.get("tags") or [] if isinstance(t, str) and t.strip()})[:12]}
+    skeleton.update({k: v for k, v in extras.items() if v})
     # The re-read path binds the page, builds its evidence and field receipts,
     # assigns address/hours it can prove and limits the calendar to the page.
     row, outcome = editorial._update(skeleton, local, read_on=read_on, today=today)
@@ -554,7 +562,9 @@ function of the observed page, so a verifier rebuilds exactly the same row.
     if error:
         return None, "export_rejects_" + error
     # A date after today: a page whose only date is today would be hidden tomorrow.
-    if not any(d > today.isoformat() for d in normalized["date"]) or concluded_reason(normalized, today):
+    status = any(c.get("kind") == "publisher_status" for c in event.get("conditions") or [] if isinstance(c, dict))
+    if concluded_reason(normalized, today) or not any(d > today.isoformat() for d in normalized["date"]) and not (
+            publisher in UNDATED_PUBLISHERS and status):
         return None, "no_upcoming_date"
     return row, normalized
 
