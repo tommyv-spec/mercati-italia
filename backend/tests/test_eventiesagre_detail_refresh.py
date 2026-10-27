@@ -347,6 +347,20 @@ class EditorialBindingTests(unittest.TestCase):
         self.assertEqual(clean_editorial_evidence(altered[KEY], altered, today=TODAY)["facts"]["forecast_rule"], honest)
 
 
+class PageRuleExtensionTests(unittest.TestCase):
+    def test_only_more_weeks_of_the_same_weekday_extend_a_card_rule(self):
+        from eventiesagre_detail_refresh import _adds_weeks
+        from recurrence_refresh import explicit_rule as rule
+        page = rule("Prima e terza domenica del mese")
+        self.assertTrue(_adds_weeks(page, rule("mensile - terza domenica del mese")))
+        for card in ("mensile - seconda domenica del mese",   # not one of the page's weeks
+                     "mensile - terzo sabato del mese",       # another weekday
+                     "Prima e terza domenica del mese",       # nothing to add
+                     "Ogni domenica"):                         # weekly is not monthly
+            with self.subTest(card=card):
+                self.assertFalse(_adds_weeks(page, rule(card)))
+
+
 class EditorialQueueTests(unittest.TestCase):
     def setUp(self):
         self.folder = tempfile.TemporaryDirectory()

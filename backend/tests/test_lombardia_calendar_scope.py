@@ -125,6 +125,25 @@ class LombardiaCalendarScopeTests(unittest.TestCase):
         self.assertEqual(result["aggiornato_il"], "2026-10-13")
         self.assertEqual(result["verificato_il"], "")
 
+    def test_named_fortnight_weeks_renew_only_on_those_weeks(self):
+        # MERCap Menaggio: "VENERDÌ", "QUINDICINALE", weeks "2^ e 4^", venue "MERCATO QUINDICINALE".
+        base = {**self.payload["rows"][-1], "codice_id": "799001", "descom": "COMUNE DI PROVA",
+                "ubicazione": "MERCATO QUINDICINALE", "indirizzi": "VIA STOPPANI",
+                "periodicita_tipo": "QUINDICINALE", "giorno": "VENERDÌ", "dal": None, "al": None,
+                "mesi_svolgimento": "GENNAIO, FEBBRAIO, MARZO, APRILE, MAGGIO, GIUGNO, LUGLIO, "
+                                    "AGOSTO, SETTEMBRE, OTTOBRE, NOVEMBRE, DICEMBRE"}
+        def converted(**changes):
+            rows = self.payload["rows"][:-1] + [{**base, **changes}]
+            return {r["slug"]: r for r in convert({**self.payload, "rows": rows}, today=TODAY)}["lo-mercap-799001-venerdi"]
+        row = converted(frequenza_settimanale="2^ e 4^")
+        self.assertEqual(row["ricorrenza_testo"], "mensile - 2° e 4° venerdì del mese")
+        result, reason = refresh_record(row, TODAY)
+        self.assertEqual(reason, "renewed")
+        self.assertEqual(result["date"][:4], ["2026-10-23", "2026-11-13", "2026-11-27", "2026-12-11"])
+        # Without the named weeks "quindicinale" stays an unrepresented interval.
+        self.assertEqual(refresh_record(converted(frequenza_settimanale=None), TODAY)[1],
+                         "interval_scope_unrepresented")
+
     def test_absent_and_full_year_limits_preserve_year_round_behavior(self):
         row = self.row("100361", "sabato")
         row["ricorrenza_testo"] = "Ogni sabato"

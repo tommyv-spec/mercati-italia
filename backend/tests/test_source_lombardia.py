@@ -108,7 +108,11 @@ class LombardiaTests(unittest.TestCase):
                 self.assertEqual(details[key], source.get(key))
             self.assertEqual(normalized["categoria"], "misto")
             self.assertEqual(normalized["verificato_il"], "")
-        self.assertEqual(out["38846"]["date"], [])
+        # A fortnightly row that names its weeks is a monthly rule on exactly those weeks.
+        self.assertEqual(out["38846"]["ricorrenza_testo"], "mensile - 1° e 3° giovedì del mese")
+        self.assertTrue(out["38846"]["date"])
+        self.assertTrue(all(date.fromisoformat(d).weekday() == 3 and (date.fromisoformat(d).day - 1) // 7 in (0, 2)
+                            for d in out["38846"]["date"]))
         self.assertEqual(out["76670"]["date"], [])
         self.assertEqual(out["100370"]["ricorrenza_testo"], "Ogni sabato")
 

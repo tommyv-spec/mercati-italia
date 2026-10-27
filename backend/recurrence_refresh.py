@@ -46,6 +46,11 @@ ORDINAL_INDEX = {"primo": 1, "prima": 1, "secondo": 2, "seconda": 2,
 # "4° domenica", "3a domenica", "2^ sabato" are the same ordinals in digits.
 # ° and ^ always mark an ordinal ("2^ e 4^" stays two ordinals, never one).
 NUMERIC_ORDINAL = re.compile(r"\b([1-4])\s*(?:°|\^|[ao](?=\s+(?:" + "|".join(WEEKDAYS) + r")\b))\s*")
+# "primo e terzo sabato del mese", "1^ e 3^ sabato" (read as "prima e terza sabato"):
+# several weeks of the month, written next to each other before ONE weekday.
+_ORDINAL_WORD = r"(?:prim[oa]|second[oa]|terz[oa]|quart[oa]|ultim[oa])"
+JOINED_ORDINALS = re.compile(r"\b" + _ORDINAL_WORD + r"(?:\s*(?:,|\be\b)\s*" + _ORDINAL_WORD +
+                             r")+\s+(?:" + "|".join(WEEKDAYS) + r")\b")
 EVERY_WEEKDAY = re.compile(r"tutti i (?:" + "|".join(WEEKDAYS) + r")(?:\s*(?:,|\be\b)\s*(?:" +
                            "|".join(WEEKDAYS) + r"))*")
 # "Mercoledì tutto l'anno": the weekday(s) every week of the year.
@@ -197,10 +202,18 @@ def explicit_rule(value: Any) -> dict | None:
     monthly = "mensil" in text or "del mese" in text or "al mese" in text or "ogni mese" in text
     if monthly:
         ordinals = [m.group(0) for m in ORDINAL_PATTERN.finditer(text)]
-        if len(ordinals) != 1 or len(days) != 1:
+        if len(days) != 1 or not ordinals:
             return None
-        return {"kind": "monthly_nth_weekday", "weekday": days[0],
-                "ordinal": ORDINAL_INDEX[ordinals[0]]}
+        if len(ordinals) == 1:
+            return {"kind": "monthly_nth_weekday", "weekday": days[0],
+                    "ordinal": ORDINAL_INDEX[ordinals[0]]}
+        # Several weeks only when they are all written together before the day.
+        joined = JOINED_ORDINALS.search(text)
+        weeks = sorted({ORDINAL_INDEX[o] for o in ordinals}, key=lambda n: (n == -1, n))
+        if not joined or len(ORDINAL_PATTERN.findall(joined.group(0))) != len(ordinals) \
+                or len(weeks) != len(ordinals):
+            return None
+        return {"kind": "monthly_nth_weekday", "weekday": days[0], "ordinals": weeks}
 
     # An occurrence has to say *every* named weekday or declare a weekly
     # cadence. Avoid picking unrelated weekdays from prose descriptions.
@@ -227,7 +240,8 @@ def complete_monthly_rule(value: Any) -> dict | None:
 
 def calendar_key(rule: dict) -> tuple:
     """Calendar part of "same market": (kind, weekdays, ordinal); month masks aside."""
-    return (rule["kind"], tuple(rule.get("weekdays") or [rule.get("weekday")]), rule.get("ordinal"))
+    return (rule["kind"], tuple(rule.get("weekdays") or [rule.get("weekday")]),
+            tuple(rule["ordinals"]) if rule.get("ordinals") else rule.get("ordinal"))
 
 
 def _month_numbers(first: str, last: str) -> list[int]:
@@ -257,6 +271,11 @@ def _complete_month_rule(value: Any) -> dict | None:
     return {**rule, "active_months": _month_numbers(match["first"], match["last"])}
 
 
+def rule_core(rule: dict) -> dict:
+    """The cadence itself, without a source's month or day/month limits."""
+    return {k: v for k, v in rule.items() if k in ("kind", "weekdays", "weekday", "ordinal", "ordinals")}
+
+
 def forecast_rule(record: dict) -> dict | None:
     """Derive forecast scope from complete text, never a saved metadata flag."""
     scope = calendar_scope(record)
@@ -265,8 +284,7 @@ def forecast_rule(record: dict) -> dict | None:
         declared = explicit_rule(record.get("ricorrenza_testo"))
         # Raw boundaries cannot authorize a cadence that contradicts the
         # normalized schedule or an unsupported week-of-month qualifier.
-        if rule and (declared is None or declared == {
-                "kind": "weekly", "weekdays": rule["weekdays"]}):
+        if rule and (declared is None or declared == rule_core(rule)):
             return rule
         return None
     return (_complete_month_rule(record.get("ricorrenza_testo"))
@@ -292,7 +310,7 @@ def temporal_scope_hold(record: dict) -> str | None:
         return "source_calendar_scope_unrepresented"
     if source_scope and source_scope.get("rule"):
         declared = explicit_rule(record.get("ricorrenza_testo"))
-        if ((declared and declared != {"kind": "weekly", "weekdays": source_scope["rule"]["weekdays"]})
+        if ((declared and declared != rule_core(source_scope["rule"]))
                 or not declared and re.search(r"\bmensile\b", text_key(record.get("ricorrenza_testo")))):
             return "source_calendar_scope_unrepresented"
     represented_rule = (forecast_rule(record) if source_scope
@@ -354,7 +372,14 @@ def temporal_scope_hold(record: dict) -> str | None:
             if not (source_scope and source_scope.get("limited") and represented_rule
                     and all(term in {"stagionale", "stagionali"} for term in seasonal_terms)):
                 return "seasonal_scope_unrepresented"
-        if INTERVAL_SCOPE.search(text):
+        interval_terms = [m.group(0) for m in INTERVAL_SCOPE.finditer(text)]
+        # "quindicinale" is represented when the publisher names its weeks
+        # ("1^ e 3^") and the rule was built from exactly those weeks.
+        named_fortnight = bool(source_scope and represented_rule
+                               and (source_scope.get("rule") or {}).get("kind") == "monthly_nth_weekday"
+                               and represented_rule == source_scope["rule"])
+        if interval_terms and not (named_fortnight and all(
+                term.startswith("quindicinal") for term in interval_terms)):
             return "interval_scope_unrepresented"
         for match in COUNTED_INTERVAL.finditer(text):
             number, unit = match.groups()
@@ -422,19 +447,19 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
             candidates = [date(y, m, d)
                           for d in range(1, calendar.monthrange(y, m)[1] + 1)
                           if date(y, m, d).weekday() == rule["weekday"]]
-            ordinal = rule["ordinal"]
-            if ordinal == -1:
-                candidate = candidates[-1]
-            elif len(candidates) >= ordinal:
-                candidate = candidates[ordinal - 1]
-            else:
-                continue
-            if (today <= candidate <= end and (active_months is None or candidate.month in active_months)
-                    and (bounds is None or within_bounds(candidate, bounds))):
-                results.append(candidate.isoformat())
+            for ordinal in rule.get("ordinals") or [rule["ordinal"]]:
+                if ordinal == -1:
+                    candidate = candidates[-1]
+                elif len(candidates) >= ordinal:
+                    candidate = candidates[ordinal - 1]
+                else:
+                    continue
+                if (today <= candidate <= end and (active_months is None or candidate.month in active_months)
+                        and (bounds is None or within_bounds(candidate, bounds))):
+                    results.append(candidate.isoformat())
             if date(y, m, 1) > end:
                 break
-        return results
+        return sorted(set(results))  # "quarto e ultimo" can be one day
     raise ValueError("Unrecognized recurrence kind")
 
 

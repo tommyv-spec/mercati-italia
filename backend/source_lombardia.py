@@ -18,7 +18,7 @@ from pathlib import Path
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from lombardia_calendar_scope import (
-    IDENTITY_FIELDS, calendar_scope, filter_dates, scope_label, source_identity,
+    IDENTITY_FIELDS, calendar_scope, filter_dates, named_weeks, scope_label, source_identity,
 )
 
 DATASET_ID = "68zx-njaw"
@@ -194,6 +194,15 @@ def projected_dates(day, months, today, limit=120):
     ]
 
 
+def monthly_weeks(record, day, months):
+    """A fortnightly/monthly row that names its weeks ("1^ e 3^") all year:
+    "mensile - 1° e 3° sabato del mese", else None."""
+    weeks = named_weeks(record)
+    if not weeks or day is None or len(months or ()) != 12:
+        return None
+    return "mensile - " + " e ".join(f"{week}°" for week in weeks) + " " + DAY_LABELS[day] + " del mese"
+
+
 def convert(payload, today=None):
     today = today or date.today()
     if (not isinstance(payload, dict) or payload.get("dataset_id") != DATASET_ID
@@ -237,7 +246,12 @@ def convert(payload, today=None):
                      and day is not None and bool(months)
                      and 0 <= source_age <= MAX_EXPECTED_SOURCE_AGE_DAYS)
         dates = projected_dates(day, months, today) if supported else []
-        if dates and len(months) == 12:
+        monthly = monthly_weeks(record, day, months) if 0 <= source_age <= MAX_EXPECTED_SOURCE_AGE_DAYS else None
+        if monthly:
+            from recurrence_refresh import explicit_rule, project_dates
+            dates = project_dates(explicit_rule(monthly), today, 120)
+            recurrence = monthly
+        elif dates and len(months) == 12:
             recurrence = "Ogni " + DAY_LABELS[day]
         elif dates:
             recurrence = "Giorno dichiarato " + DAY_LABELS[day] + "; mesi di attività limitati"

@@ -500,6 +500,15 @@ def _bound_document(document, selected):
     return local
 
 
+def _adds_weeks(page_rule, card_rule):
+    """The page names the card's monthly weekday on more weeks, including the card's."""
+    weeks = lambda rule: set(rule.get("ordinals") or [rule.get("ordinal")])
+    return bool(page_rule and card_rule
+                and page_rule["kind"] == card_rule["kind"] == "monthly_nth_weekday"
+                and page_rule["weekday"] == card_rule["weekday"]
+                and weeks(card_rule) < weeks(page_rule))
+
+
 def _update(row, document, *, read_on, today):
     selected, match = _select(row, document)
     if selected is None:
@@ -543,10 +552,19 @@ def _update(row, document, *, read_on, today):
     # full editorial meaning; scope alone must never authorize an expansion.
     # A current page whose recurrence reads as exactly the market's rule only
     # restates it (observed, never assigned), which keeps forecasts renewing.
+    extends_rule = False
     if not archive and not calendar_conflicted(local["conflicts"]):
         rule = explicit_rule(selected["recurrence"])
         if rule is not None and rule == explicit_rule(row.get("ricorrenza_testo")):
             proposed["ricorrenza_testo"] = row["ricorrenza_testo"]
+        elif (_adds_weeks(rule, explicit_rule(row.get("ricorrenza_testo")))
+              or rule and rule["kind"] == "monthly_nth_weekday"
+              and text_key(row.get("ricorrenza_testo")) in ("", "mensile")):
+            # The card's own page states the full rule ("prima e terza domenica")
+            # where an old import kept one week ("terza domenica") or just
+            # "mensile": adopt it.
+            proposed["ricorrenza_testo"] = selected["recurrence"]
+            extends_rule = True
     accepted, assigned, updated, holds = {}, [], [], []
     prior = clean_receipts(row.get("riscontri_campi"), row, today=today)
     latest = None
@@ -574,6 +592,12 @@ def _update(row, document, *, read_on, today):
                 result[field] = value
                 accepted[field] = value
                 updated.append(field)
+            elif field == "ricorrenza_testo" and extends_rule:
+                # The truncated value came from the old import, owned by no engine:
+                # the page's full rule is this engine's first assignment.
+                result[field] = value
+                accepted[field] = value
+                assigned.append(field)
             else:
                 holds.append({"field": field, "reason": "existing_field_not_owned_or_conflicting"})
         kept = retire_superseded_receipts(row, latest, today=today)

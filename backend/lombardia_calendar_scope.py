@@ -92,6 +92,15 @@ def within_bounds(value, bounds):
     return first <= current <= last if first <= last else current >= first or current <= last
 
 
+def named_weeks(details):
+    """[1, 3] for a fortnightly/monthly row that names its weeks ("1^ e 3^"), else None."""
+    match = re.fullmatch(r"\s*([1-4])\s*\^?(?:\s*e\s*([1-4])\s*\^?)?\s*",
+                         str(details.get("frequenza_settimanale") or ""))
+    if not match or textkey(details.get("periodicita_tipo")) not in {"quindicinale", "mensile"}:
+        return None
+    return sorted({int(week) for week in match.groups() if week})
+
+
 def calendar_scope(record):
     """Reconstruct scope from this exact publisher identity, not saved flags.
 
@@ -132,6 +141,10 @@ def calendar_scope(record):
                  and details.get("frequenza_settimanale") in (None, "")
                  and weekday in DAYS and bool(months))
     rule = {"kind": "weekly", "weekdays": [DAYS.index(weekday)]} if supported else None
+    weeks = named_weeks(details)
+    if rule is None and weeks and weekday in DAYS and len(months) == 12:
+        rule = {"kind": "monthly_nth_weekday", "weekday": DAYS.index(weekday),
+                **({"ordinal": weeks[0]} if len(weeks) == 1 else {"ordinals": weeks})}
     if rule is not None and len(months) < 12:
         rule["active_months"] = months
     if rule is not None and bounds:
