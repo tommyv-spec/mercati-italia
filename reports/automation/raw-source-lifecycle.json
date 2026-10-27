@@ -1,22 +1,22 @@
 {
-  "catalog_count": 14106,
-  "checked_source_profiles": 3,
+  "catalog_count": 14139,
+  "checked_source_profiles": 4,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-10-26",
-  "registry_sha256": "00c6a13db73452eee615d1df6e908d06037e7a4ad10350cbadf74566cc97aef0",
+  "reference_date": "2026-10-27",
+  "registry_sha256": "9fe8b56d4c0940ef5d9ba9d7e88e14bcf52300e8611a815e94815fcec8d7ab43",
   "schema": 1,
   "source_checks": {
-    "source_level_raw_profiles_checked": 3,
-    "source_only_stage_reviews": 3
+    "source_level_raw_profiles_checked": 4,
+    "source_only_stage_reviews": 4
   },
   "source_contract_schema": 1,
   "sources": {
     "bologna-generic-venues": {
-      "catalog_records_compared": 14106,
+      "catalog_records_compared": 14139,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -54,8 +54,13 @@
         },
         {
           "publication_permission": "none",
-          "review_state": "possible_existing_venue",
-          "stable_identity_hash": "e70d9b8f9617bb51"
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "2ab6ecc2db0df2ea"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "b9d74e9ce4514bdc"
         },
         {
           "publication_permission": "none",
@@ -64,13 +69,8 @@
         },
         {
           "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "2ab6ecc2db0df2ea"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "b9d74e9ce4514bdc"
+          "review_state": "possible_existing_venue",
+          "stable_identity_hash": "e70d9b8f9617bb51"
         },
         {
           "publication_permission": "none",
@@ -141,7 +141,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
       "publisher": "Comune di Bologna",
-      "publisher_data_age_days": 572,
+      "publisher_data_age_days": 573,
       "publisher_dataset_date": "2025-04-02",
       "review_required": true,
       "row_kind": "market_venue",
@@ -158,20 +158,20 @@
         "dataset_records_count": 249,
         "metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
         "profile_sha256": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
-        "read_on": "2026-10-26",
+        "read_on": "2026-10-27",
         "schema": 1,
         "snapshot_records_count": 79,
-        "snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
+        "snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
         "source_date": "2025-04-02",
         "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
         "strategy": "opendatasoft_data_processed_v1"
       },
       "source_id": "bologna-generic-venues",
-      "source_read_on": "2026-10-26",
+      "source_read_on": "2026-10-27",
       "source_schema_columns_sha256": "d9ffe7fa29cd5cf5d3f933b16a8c0ca46f526dcc8958ae55529f61d84675b424",
-      "source_snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
+      "source_snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
       "source_stage": {
-        "base_catalog_records": 14106,
+        "base_catalog_records": 14139,
         "counts": {
           "already_in_catalog_exact_source_id": 39,
           "informational_schedule_unknown": 12,
@@ -181,7 +181,7 @@
           "source_market_identities": 41
         },
         "directions_enabled": 0,
-        "evidence_refreshes_proposed": 39,
+        "evidence_refreshes_proposed": 0,
         "examples_hashed": [
           {
             "new_market_created": false,
@@ -227,10 +227,10 @@
           "dataset_records_count": 249,
           "metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
           "profile_sha256": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
-          "read_on": "2026-10-26",
+          "read_on": "2026-10-27",
           "schema": 1,
           "snapshot_records_count": 79,
-          "snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
+          "snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
           "source_date": "2025-04-02",
           "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
           "strategy": "opendatasoft_data_processed_v1"
@@ -239,16 +239,16 @@
         "source_kind": "market_venue",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-        "source_read_on": "2026-10-26",
+        "source_read_on": "2026-10-27",
         "source_schema_readonly": true,
-        "source_snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
+        "source_snapshot_sha256": "21a95c15245929cc3586cce24d47b2864451d60730f952200b4750837294b73a",
         "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
         "verified_openings_created": 0
       },
       "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento"
     },
     "corciano-generic-shadow": {
-      "catalog_records_compared": 14106,
+      "catalog_records_compared": 14139,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -285,7 +285,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
       "publisher": "Comune di Corciano",
-      "publisher_data_age_days": 292,
+      "publisher_data_age_days": 293,
       "publisher_dataset_date": "2026-01-07",
       "review_required": true,
       "row_kind": "market_venue",
@@ -293,11 +293,11 @@
       "source_data_marked_current_by_fetch_time": false,
       "source_data_scope": "dataset_not_per_market",
       "source_id": "corciano-generic-shadow",
-      "source_read_on": "2026-10-26",
+      "source_read_on": "2026-10-27",
       "source_schema_columns_sha256": "2afea7e535523faf2cb891263244e6c9c0d08f728788bb158f320676b9ae5fb7",
       "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
       "source_stage": {
-        "base_catalog_records": 14106,
+        "base_catalog_records": 14139,
         "counts": {
           "already_in_catalog_exact_source_id": 3,
           "publisher_distinct_address_count": 4,
@@ -305,7 +305,7 @@
           "source_market_identities": 4
         },
         "directions_enabled": 0,
-        "evidence_refreshes_proposed": 3,
+        "evidence_refreshes_proposed": 0,
         "examples_hashed": [
           {
             "new_market_created": false,
@@ -335,7 +335,7 @@
         "source_kind": "market_venue",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
-        "source_read_on": "2026-10-26",
+        "source_read_on": "2026-10-27",
         "source_schema_readonly": true,
         "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
         "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
@@ -343,8 +343,273 @@
       },
       "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv"
     },
+    "veneto-calendario-antiquariato": {
+      "catalog_records_compared": 14139,
+      "catalog_records_imported": 0,
+      "catalog_records_modified": 0,
+      "counts": {
+        "already_in_catalog_exact_source_id": 6,
+        "distinct_market_identities": 38,
+        "identity_not_in_existing_catalog": 32,
+        "needs_review_schedule_unknown": 14,
+        "not_a_market_venue": 8,
+        "possible_same_street_other_publisher": 4,
+        "rows_observed": 46
+      },
+      "diff": {
+        "added_source_identities_since_last_scan": 0,
+        "changed_source_identities_since_last_scan": 0,
+        "first_observation": true,
+        "missing_source_identities_since_last_scan": 0,
+        "same_source_identities_since_last_scan": 0
+      },
+      "examples_hashes_only": [
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "9c14836eed1b0da2"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "d1de292ee5927a49"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "719ff4745eabbfda"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "7b70c1405b08ccdb"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "c9ded2b69583cd3d"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "4dfc261b3094f6fa"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "382e71809b5a1790"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "possible_existing_venue",
+          "stable_identity_hash": "5e22c39272ae470b"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "59bff348e23497ab"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "deeeab637868b545"
+        }
+      ],
+      "existing_record_ids_deleted": 0,
+      "fingerprints": {
+        "01fc45821f66a4da56d3e6e3d90da06f1e35cd5077e105b4fe2087a91f3677d5": "cbc4c27c8aba0dbd3e82a0d1fb1f4aba12a7a2e24815fcaa25eb485ea0b4c0f3",
+        "04b604f44b06744f27443fabf123f931558ac6c44329584d4a93ef82db738cda": "0c880f58570c0153314e422e520ec513341327cf9312745509e7b7a7f8f5e953",
+        "04d9a4c59141a5ae42d87242fd346027a65895049b163eb64a0fcce99bfdf97a": "ae0a2f2ea2b92a0e1ad65b6b4557887dc20c93129066d1125f8b14a1dfcd0cf5",
+        "1bf779e52ea9884507ae0b1a0016f9bb04e6e6e695c25af775d89bc82ba65591": "89897c215bbd02f0abe3588c5a7a6cccb0b380e4e8ab51e65183bc65f9d08a01",
+        "1bf9c7211fbb5723a111cea678ca2e8af5f9293c3dc07ac4b506c937d51b774e": "c74fc3446b0b3994489897d0613dc03509def18c189f1fa7b2c9ec6bc395e2d8",
+        "382e71809b5a179008a5ecbdcee5c53455a8f7677a13b94344a491dc0bdc4a02": "019a904e434267807f235f29de27cbc95abceff6d1aea589d7399b6f39dd57da",
+        "4dfc261b3094f6fa8dc76028c4395af6fe8e5fdf932f26745cc1879c0bd4f0a9": "9f0d1a387e70ffc7d3a042c8e94cd130c5908cf2de6e782189ce5da7b6ce75aa",
+        "56f934b485e301549bc4cba7934dfd87b56e1bcfad7a047ba4da52821ed4a071": "b01f3b01bab8c0abd29130b226446c8b169c5ad7cc75e4362a78c4c227dff3dc",
+        "59bff348e23497ab5fb3cce9bd36e93c4ce6433104ebaddde4909cdb3633d115": "2a5b0b9a4eb49098024841d2a6f368788baec62a81314fb0e23d3b88f1821bf6",
+        "5e22c39272ae470b71f2bc74954c38b840156069b78eae4e676a6bd784704632": "a383b3d51cafd915887db3ab8f68a5200a9c2e216daf01381dda63cdd57235e9",
+        "626e4e371debd1faeead1f724e0d01b010251939bfce831e16ea2c3e4b1a27dd": "4ac597b98e834f59017426403aad4e06e9c1d462899e7d0c9bd61d899e54897d",
+        "719ff4745eabbfda47445a6647a105669c265b8efdef0a95808cf7facb1390dc": "581c7ef2092efc134ef1107d7e1dfc2b960245b71fa90d63928cc096ec165623",
+        "7b70c1405b08ccdbfb3d9e1abde29e72686b41860eb068f6af01b705d156022a": "af697e79a34c1a1068bd96f89c8165c6fa28e905540a8ebb25a6d8f05fc611bf",
+        "7e6e14b3a2528755c60b7435de2c90c1dbf78cb2d6657d69064b4d05a459459b": "3df8fbfd716c89e39e95d0a971f0d27895cacab3fe5cae4a38f8c1c8499932cf",
+        "8d631bbbf8972b97f0f90ecff82c416d18dafe2cc2469fc80f5e61bff7a06dea": "19b104ec30caf5ddad0b1a4929e1850530284134f2b5577bfb16e05f3a106aa7",
+        "91304b199093edf822ca78d3af13f18bd96f8c25dfec4e25e37abbd708853123": "b5ea6ad46a1c53d5cd9bd6cb2d900e13bdff7f7db4f2866825dba0c0d8f3d95e",
+        "9ab3ea542fe4b9779061aed63b44de79e963c49930fdc350ea83c6d598258daa": "11b27ca7fdbd554e792fc7c54af17afb881d3ca2b3cebd79a085883d13b8b6e7",
+        "9c14836eed1b0da2241861dfebddce1d6a69632981101f6f02ed6dd1fecbb384": "daaf299ccac4e7ae3ae2f537bbeabd1ba27edee5b8b89477833579b305bcb1f5",
+        "a08881ba52b4c961c26441df39131e6ff70d574915fff96ed177e28c224c7757": "45832ff6f6b07cc063f291386000123a1aefe7235d4df05c52309b26c3114d7b",
+        "a0eca6e94ac1e4596d2e412f86a2c42df4613c67541e38206eeba840bf7abedf": "9a22230c148c53740030e5b703cd9652f470204f5c5da286fbc6951bf1e13fe2",
+        "a910c5b19307090a7f8237ffdbcb2beb376a0d752f6877036cf90c5769a11244": "1bf3781bc611ade402f5211e3f335bbdd6ca3ad20d4af1d0ab5528f927294673",
+        "ab9a1769051f1372570c4fe04a4e67c670562be633b68f2e824e1c8e1dec7164": "ea7cda500b3ba5788ee413424be8a10007138634ef9655a25ffdc54e58c0402c",
+        "c4a3b246fc24c0d2136f0dc205406da680823736160e0da0e12792b9026572d0": "5d0fa27269af45ac0a1c5a99de0f23e74543db466dbee5d2952e43fbca414d2b",
+        "c6719ce1aed2e0f32f49a2a56f783513ab2831932a10b93a1da48b1bdb19c67a": "6d26a717aac932a8de9c315bf045f6ff549400ed2987889aac06e4b302cc2915",
+        "c9ded2b69583cd3d3214578c416d2c783a589376004b9179783d3ee986cf09db": "a85a03d644a0f56863f9e88f3f913b2a0d93797288242a88521113201c6055b7",
+        "d1b4347f890fefc90c62cb467ca12edefd618bb0cacc4c9be7f2c8370cc45eda": "c80e66289a6c399640e001cc08a61c304ecdf3bc441f132b863e1a8af7c96029",
+        "d1de292ee5927a490bc8c9086cd0a30d8017d4d83080f89f45612c5937c29c58": "4d87a5502c4adbdbbfdd101633ef77f9abca1a997dd1f233da2d467669e5775a",
+        "d60d8366966a286fa191201bd541410ac6d77ac3efd73a5b27094ef9f03c8ab8": "a3769745d2b5cde787d3089a8e0eb2b6589914948d2700317544ed5ce2bc561e",
+        "dd017966624157fb83f510b416b932ac4dd64f794700ac433332485e032ec665": "854f1779d4b10a07927fc09770a1e2bf3fa6451ce63254af3d98cfdb733b2f2c",
+        "deeeab637868b54595511bb9372abef285336b4a9beab0a85604ea00c83e0159": "dc910c244127b20f32a39e57f7bd144a51475c1312817342ff8c84e96fb6567f",
+        "df55d353beb4def2a55e806f2f2ec3200139a5990ade0ba39412baea27b4b07e": "2d03d83eeae8ca4f810d22e47a8e102fb4ab9c63a90ea978628abab76b609828",
+        "e9e8bfda29538865099f1902fc651ff9acd9c3b8aacb1c486fc253939acf7a00": "421c16f22bec7cc7ef106ff6813e4e3b562ff7abab80aec1873045e60d82ff53",
+        "ef26ece8004ddb060205a33ee990666de1b9c92ae61da87f1d626cc8fe52c4b2": "7815b01399df22013822c99c2403c17b49e9cdcfef681b9f79bf5994aa2341d1",
+        "f01b88024f45a8a5c41e47d0fb693cbb66c4399a9f1351f641b609838c1e8282": "7de3a361680f5de2d60ae73054452a7970b657311275e39d69ece7729c71ab67",
+        "f03a0260d346c95408863f54e1669bee63e03c2db928951181a70f27e8f80523": "afe68bcd71c118d92cdd2ed83e092019393fd868c91ddf4883753f4aacfbafa5",
+        "f24f33b000c28a2be6622b26b59a85f72144753005217f05d2ad6f287d5eb80b": "ab8b938ca4e6e064e59c09fdf1ce13e0df3a7aaf865038243424f5f35e2914c6",
+        "f5ed82202c1ef26983c7dedfaa223f4297dc3b1e9a9e5e045276bd3f64cdd82e": "25288997a14f08eb2df45f297a4c10455c30eec385cfc82a21807461691dd8ea",
+        "fc38218ba3b1d1ac5491dbe49566e72ab46b2c3580ff700a8ac34c4af37d5efb": "3d4be819b0823a62ce7a69af912f16e171df65396a57072ca0a1564273a14a77"
+      },
+      "individual_market_openings_verified": 0,
+      "license_reviewed_for_automatic_publication": false,
+      "market_names_distinct_not_new_events": 37,
+      "new_directions_enabled": 0,
+      "new_precise_coordinates": 0,
+      "profile_fingerprint": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
+      "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+      "publisher_data_age_days": 299,
+      "publisher_dataset_date": "2026-01-01",
+      "review_required": true,
+      "row_kind": "market_venue_month",
+      "schema": 1,
+      "source_data_marked_current_by_fetch_time": false,
+      "source_data_scope": "dataset_not_per_market",
+      "source_date_proof": {
+        "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+mercatini+usato+2026.pdf/7ca1a502-6de9-4e5e-a247-4ec2f3e6cf3d",
+        "document_year": 2026,
+        "landing_sha256": "3a81670cb0e5c7e46d1ea2eb692eac5e78b7902de05435c4cb60219888f53441",
+        "profile_sha256": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
+        "read_on": "2026-10-27",
+        "schema": 1,
+        "snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
+        "source_date": "2026-01-01",
+        "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+        "strategy": "landing_page_year_v1"
+      },
+      "source_id": "veneto-calendario-antiquariato",
+      "source_read_on": "2026-10-27",
+      "source_schema_columns_sha256": "92b1ad9e83bad920e396ef032bf6d0ecac90a216681873bda13227b86cdc2e66",
+      "source_snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
+      "source_stage": {
+        "base_catalog_records": 14139,
+        "counts": {
+          "already_in_catalog_exact_source_id": 6,
+          "informational_schedule_unknown": 14,
+          "publisher_distinct_address_count": 37,
+          "raw_rows_scanned": 46,
+          "source_market_identities": 38
+        },
+        "directions_enabled": 0,
+        "evidence_refreshes_proposed": 0,
+        "examples_hashed": [
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "f22eed8649e65dfe49c3f23b698c9a59c2011bcb7304016cb2396249cbe8717b"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "new_market_calendar_unknown",
+            "source_identity_sha256": "0f332d889b841d5a33716f06790c1b5af0af522ac400aba6bc0254172bd7ae5c"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "e3bd64c931ce55be974c8fe794c49f3e23bf3f79a7ec47dcdef2b0d1a215c645"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "generic_city_market_day",
+            "source_identity_sha256": "b5504b9bbc6bdcac51df24c3e591dda7c6e50cd0329f18e259af0e6e6926f867"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "2250952d09e118cbd886b1c13b04c297ee5ebd659e1b895645321bad81363564"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "new_market_calendar_unknown",
+            "source_identity_sha256": "b0f70eb46734355c8b66b6ce5abcaf3327cdfa30e159de0350c04ee28deee4fc"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "56c75ebaaa69f8f2b32edeabcb34aa26b9271f22b80c13474bea9db5ee58cd6d"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "28be24cd680756a9e805f0b9d79d1968bae45ca9c18474aa15ace98839e2d356"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "generic_city_market_day",
+            "source_identity_sha256": "90385d1385d1f1a29c7cb9fe47fd285e44587312974c01996df7de254a5a8aea"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "new_market_calendar_unknown",
+            "source_identity_sha256": "876ceae943d54f962cc6756a0615a13cbe2f46c152905648dc204bf78df495fc"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "existing_market_same_town_calendar",
+            "source_identity_sha256": "2f57e6370212ff53bc300616b329c4e6051846a6af2bf719d6c96aeef1b89efa"
+          },
+          {
+            "new_market_created": false,
+            "review_reason": "same_named_market_in_city",
+            "source_identity_sha256": "f4029213dbfd31012167c0cfe3bc39e6c3d2784c27b74386d8323fe638f79503"
+          }
+        ],
+        "existing_market_identities_deleted": 0,
+        "existing_market_ids_modified": 0,
+        "field_audit_counts": {
+          "indirizzo:observed_identical": 6,
+          "orario_testo:observed_identical": 4,
+          "orario_testo:source_value_unavailable": 2,
+          "ricorrenza_testo:observed_identical": 6
+        },
+        "managed_fields_proposed": 0,
+        "precise_coordinates_created": 0,
+        "profile_sha256": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
+        "publication_enabled": false,
+        "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
+        "publisher_dataset_date": "2026-01-01",
+        "review_reason_counts": {
+          "existing_market_same_town_calendar": 7,
+          "existing_same_type_market_calendar_unknown": 1,
+          "generic_city_market_day": 6,
+          "new_market_calendar_unknown": 8,
+          "not_a_market_venue": 8,
+          "same_named_market_in_city": 7,
+          "venue_at_same_street_day": 3
+        },
+        "safe_candidates_not_published": 0,
+        "schema": 1,
+        "source_date_proof": {
+          "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+mercatini+usato+2026.pdf/7ca1a502-6de9-4e5e-a247-4ec2f3e6cf3d",
+          "document_year": 2026,
+          "landing_sha256": "3a81670cb0e5c7e46d1ea2eb692eac5e78b7902de05435c4cb60219888f53441",
+          "profile_sha256": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
+          "read_on": "2026-10-27",
+          "schema": 1,
+          "snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
+          "source_date": "2026-01-01",
+          "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+          "strategy": "landing_page_year_v1"
+        },
+        "source_id": "veneto-calendario-antiquariato",
+        "source_kind": "market_venue_month",
+        "source_license_automatically_verified": false,
+        "source_parsed_sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
+        "source_read_on": "2026-10-27",
+        "source_schema_readonly": true,
+        "source_snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
+        "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
+        "verified_openings_created": 0
+      },
+      "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche"
+    },
     "veneto-calendario-mercati": {
-      "catalog_records_compared": 14106,
+      "catalog_records_compared": 14139,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -356,16 +621,16 @@
         "municipality_not_in_istat": 5,
         "needs_review_schedule_unknown": 1,
         "not_a_market_venue": 116,
-        "possible_same_street_other_publisher": 119,
+        "possible_same_street_other_publisher": 120,
         "rejected_identity_collisions": 1,
         "rows_observed": 698
       },
       "diff": {
         "added_source_identities_since_last_scan": 0,
         "changed_source_identities_since_last_scan": 0,
-        "first_observation": true,
+        "first_observation": false,
         "missing_source_identities_since_last_scan": 0,
-        "same_source_identities_since_last_scan": 0
+        "same_source_identities_since_last_scan": 572
       },
       "examples_hashes_only": [
         {
@@ -1001,7 +1266,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "fec52e1016df400237911fd1c85bdaa5a155cf08d97e53d9ea18a47598098a4d",
       "publisher": "Regione del Veneto – Calendario regionale dei mercati",
-      "publisher_data_age_days": 298,
+      "publisher_data_age_days": 299,
       "publisher_dataset_date": "2026-01-01",
       "review_required": true,
       "row_kind": "market_venue_day",
@@ -1011,9 +1276,9 @@
       "source_date_proof": {
         "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+regionale+marcati+2026.pdf/be79e5c1-ceae-4e76-8207-3b49630ae080",
         "document_year": 2026,
-        "landing_sha256": "7d5bae8eaf35d4cdec2499a9d3c21aff72905eac80af21d718953d4e7c33d9a5",
+        "landing_sha256": "1b024e225d6f41ebb53ba51189f8fd42822e6b2db08ec18f0c61ee6d0f5123ff",
         "profile_sha256": "fec52e1016df400237911fd1c85bdaa5a155cf08d97e53d9ea18a47598098a4d",
-        "read_on": "2026-10-26",
+        "read_on": "2026-10-27",
         "schema": 1,
         "snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
         "source_date": "2026-01-01",
@@ -1021,11 +1286,11 @@
         "strategy": "landing_page_year_v1"
       },
       "source_id": "veneto-calendario-mercati",
-      "source_read_on": "2026-10-26",
+      "source_read_on": "2026-10-27",
       "source_schema_columns_sha256": "dbdd165f016b119e164552e9c4593bda7fc3357697c3fd9d61d1e7f870c50fd9",
       "source_snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
       "source_stage": {
-        "base_catalog_records": 14106,
+        "base_catalog_records": 14139,
         "counts": {
           "already_in_catalog_exact_source_id": 94,
           "informational_schedule_unknown": 1,
@@ -1034,7 +1299,7 @@
           "source_market_identities": 568
         },
         "directions_enabled": 0,
-        "evidence_refreshes_proposed": 94,
+        "evidence_refreshes_proposed": 0,
         "examples_hashed": [
           {
             "new_market_created": false,
@@ -1129,9 +1394,9 @@
         "source_date_proof": {
           "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+regionale+marcati+2026.pdf/be79e5c1-ceae-4e76-8207-3b49630ae080",
           "document_year": 2026,
-          "landing_sha256": "7d5bae8eaf35d4cdec2499a9d3c21aff72905eac80af21d718953d4e7c33d9a5",
+          "landing_sha256": "1b024e225d6f41ebb53ba51189f8fd42822e6b2db08ec18f0c61ee6d0f5123ff",
           "profile_sha256": "fec52e1016df400237911fd1c85bdaa5a155cf08d97e53d9ea18a47598098a4d",
-          "read_on": "2026-10-26",
+          "read_on": "2026-10-27",
           "schema": 1,
           "snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
           "source_date": "2026-01-01",
@@ -1142,7 +1407,7 @@
         "source_kind": "market_venue_day",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-        "source_read_on": "2026-10-26",
+        "source_read_on": "2026-10-27",
         "source_schema_readonly": true,
         "source_snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
         "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",

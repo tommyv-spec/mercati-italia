@@ -21,7 +21,7 @@
     {
       "actual_rows_examined": null,
       "candidate_status": "not_sampled",
-      "dataset_date_declared": "",
+      "dataset_date_declared": "2022-07-04",
       "individual_events_confirmed": 0,
       "license_needs_review": true,
       "market_entries_added": 0,
@@ -29,7 +29,7 @@
       "possible_distinct_venues": null,
       "priority": 64,
       "publisher": "Roma Capitale",
-      "schema_type": "manual_schema_review_required",
+      "schema_type": "venue_inventory_missing_visit_days",
       "source_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
       "source_type": "market_location_candidate",
       "stage": "historical_hours_lead",
@@ -887,11 +887,11 @@
       "strong": []
     },
     "schema": 1,
-    "source_age_days": 572,
+    "source_age_days": 573,
     "source_ids_sha256": "c045561fc022bba002e2cc3252d75550c8d0b0669cbc7ed911e2886d5c788471"
   },
-  "catalog_market_ids_retained": 14106,
-  "date": "2026-10-26",
+  "catalog_market_ids_retained": 14139,
+  "date": "2026-10-27",
   "location_conflicts_documented": 1,
   "location_conflicts_source_sha256": "985b6705ef852f2dbf5ecab4aec8459d1945e7183df299a4d1a6fda198d9d6bc",
   "market_events_confirmed": 0,
@@ -920,7 +920,7 @@
     {
       "actual_rows_examined": null,
       "candidate_status": "not_sampled",
-      "dataset_date_declared": "",
+      "dataset_date_declared": "2022-07-04",
       "individual_events_confirmed": 0,
       "license_needs_review": true,
       "market_entries_added": 0,
@@ -928,7 +928,7 @@
       "possible_distinct_venues": null,
       "priority": 64,
       "publisher": "Roma Capitale",
-      "schema_type": "manual_schema_review_required",
+      "schema_type": "venue_inventory_missing_visit_days",
       "source_id": "2d7352f7-7d9f-4be7-927b-de1b760993c3",
       "source_type": "market_location_candidate",
       "stage": "historical_hours_lead",
@@ -1007,5 +1007,5 @@
   "schema": 1,
   "sources_checked": 50,
   "sources_imported": 0,
-  "unrepresented_municipalities_are_not_market_claims": 2930
+  "unrepresented_municipalities_are_not_market_claims": 2926
 }
