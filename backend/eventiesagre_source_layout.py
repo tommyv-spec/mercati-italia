@@ -72,6 +72,14 @@ STOP_SECTION = re.compile(r"^(?:programma(?:\s+e\s+men[uù])?|concerti|laborator
 WHERE_LABEL = re.compile(r"^(?:dove(?:\s+si\s+tiene\s+l[’']evento)?|sede(?:\s+dell[’']evento)?)"
     r"\s*[:–—-]\s*(.+)$", re.I)
 MAX_NARRATIVE_ROWS = 120
+# The card's right column: "Contatti" (event links, phone lines) and "Fonte" (who sent
+# it). Fonte is often a person's first name or the site itself, so it is the organiser
+# only when it names an organisation.
+CONTACT_PHONE = re.compile(r"^(?:tel(?:efono)?|cell(?:ulare)?)\.?\s*:?\s*(\+?\d[\d ./-]{4,30}\d)", re.I)
+ORGANISATION = re.compile(r"\b(?:comune|associazion[ei]|ass\.|pro\s*loco|proloco|ufficio|consorzio|"
+    r"circolo|gruppo|fondazione|parrocchia|cooperativa|coop|aps|odv|iat|ente|comitato|club|"
+    r"confcommercio|confesercenti|ascom|cna|coldiretti|mercatin[oi]|mercato|parco|museo|"
+    r"biblioteca|stampa|regione|provincia)\b", re.I)
 # The site's weekly-market pages fill "Orari del Mercato" with one default: 93% of
 # them say 08:00-13:00 (22-30% in the MERCap and Regione Veneto calendars), next to
 # the same boilerplate goods list. Alone it only says the market is in the morning.
@@ -532,6 +540,40 @@ def _locality(card):
     return values
 
 
+def _contacts(card):
+    """Organiser and contact rows in the shape cosedicasa's reader uses."""
+    right = [n for n in card.children if isinstance(n, _Node) and "DX" in _classes(n)]
+    if len(right) != 1:
+        return []
+    values, heading = {}, None
+    for node in right[0].children:
+        if not isinstance(node, _Node) or node.attrs.get("id") in EXCLUDED_IDS:
+            continue
+        text = _text(node)
+        if "grassetto" in _classes(node) and _key(text) in ("contatti", "fonte"):
+            heading = _key(text)
+            continue
+        if heading == "contatti":
+            links = [x for x in _walk(node) if x.tag == "a"]
+            for link in links:
+                href = _clean(link.attrs.get("href"))
+                parts = urlsplit(href)
+                host = (parts.hostname or "").removeprefix("www.")
+                if parts.scheme == "mailto" and re.fullmatch(r"[^\s@?]+@[^\s@?]+\.\w+", parts.path):
+                    values.setdefault("contacts", []).append(parts.path)
+                elif parts.scheme in ("http", "https") and host and not host.endswith("eventiesagre.it"):
+                    kind = ("facebook" if host.endswith("facebook.com") else
+                            "instagram" if host.endswith("instagram.com") else "website")
+                    values.setdefault(kind, []).append(href)
+            if not links and (m := CONTACT_PHONE.match(text)):
+                values.setdefault("phone", []).append(m.group(1))
+        elif heading == "fonte" and text and ORGANISATION.search(text) and len(text) <= 120:
+            values.setdefault("organizer", []).append(text)
+    return [{"field": field, "value": "; ".join(list(dict.fromkeys(items))[:5])[:600],
+             "evidence": ["#schedaEvento .DX " + ("Fonte" if field == "organizer" else "Contatti")]}
+            for field, items in values.items()]
+
+
 def _jsonld(root, source_id, issues):
     events = []
     invalid = 0
@@ -784,6 +826,6 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
             "explicit_occurrences": narrative["occurrences"],
             "hours_qualifications": narrative["qualifications"],
             "narrative_field_evidence": narrative["field_evidence"],
-            "source_rows": unique_rows, "issues": sorted(set(issues)),
+            "source_rows": unique_rows, "contact_rows": _contacts(card), "issues": sorted(set(issues)),
             "legacy_fields": legacy, "description_text": " ".join(body_lines),
             "market_openings_verified": False, "network_requests": 0}
