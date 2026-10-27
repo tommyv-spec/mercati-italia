@@ -452,6 +452,86 @@
       },
       "new_market_requires_free_town_day": true,
       "notes": "Yearly regional PDF (comuni report by 15 October, file late December; file URL changes every year and is found on the landing page by link text + pattern; content date = 1 January of the calendar year). Terms https://www.regione.veneto.it/web/guest/note-legali: reuse with source citation, no commercial use (owner decision 2026-10-25: the app is not commercial). Municipality spelled/provinced by ISTAT 2026; 'posteggi isolati' are stalls, not markets. Only annual weekly rows become new markets, and only on a municipality+weekday with no existing market. Existing markets matched by unique municipality+weekday get official hours and missing streets with per-field receipts. The antiques calendar has another layout (monthly/ordinal dates) and is not covered by this contract."
+    },
+    {
+      "id": "altoadige-odh-mercati",
+      "enabled": true,
+      "publisher": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0",
+      "source_id": "altoadige-odh-mercati",
+      "row_kind": "market_venue_day",
+      "resource_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate={begindate}&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
+      "resource_begindate_days_before_read": 60,
+      "attribution_url": "https://opendatahub.com/datasets/",
+      "format": "JSON",
+      "json_container": "opendatahub_event_v1",
+      "max_bytes": 2000000,
+      "min_rows": 20,
+      "max_rows": 600,
+      "schema_columns": [
+        "denominazione",
+        "comune",
+        "luogo",
+        "giorni",
+        "orario",
+        "periodicita",
+        "dal",
+        "al",
+        "aggiornato"
+      ],
+      "identity_fields": [
+        "comune",
+        "luogo",
+        "giorni",
+        "denominazione"
+      ],
+      "name_field": "denominazione",
+      "street_fields": [
+        "luogo"
+      ],
+      "weekday_field": "giorni",
+      "hours_fields": [],
+      "hours_text_field": "orario",
+      "hours_text_format": "italian_clock_range",
+      "market_filters_any": [
+        {
+          "periodicita": "annuale"
+        },
+        {
+          "periodicita": "stagionale"
+        }
+      ],
+      "new_market_filters_any": [
+        {
+          "periodicita": "annuale"
+        }
+      ],
+      "exclude_rows_containing": {
+        "denominazione": [
+          "natal",
+          "tour",
+          "escursion",
+          "guidat",
+          "pulci",
+          "laborator"
+        ]
+      },
+      "municipality_field": "comune",
+      "region": "Trentino-Alto Adige",
+      "catalog_slug_prefix": "bz-odh-",
+      "source_dataset_date": "2026-01-01",
+      "source_date_scope": "dataset_not_per_market",
+      "source_date_strategy": "opendatahub_last_change_v1",
+      "max_source_age_days": 120,
+      "max_forecast_source_age_days": 120,
+      "legal_reuse_reviewed": true,
+      "publication_mode": "approved_dev_only",
+      "max_new_ids_per_run": 40,
+      "coordinates": "ignored_unless_independently_source_verified",
+      "existing_market_fill": {
+        "max_records_per_run": 100
+      },
+      "new_market_requires_free_town_day": true,
+      "notes": "Open Data Hub tourism Event API (NOI Techpark; LTS = South Tyrol tourism associations), every item checked CC0 + Source lts. One query: events whose Italian title says 'mercat' or German title 'markt', with a date on or after the read day minus 60 days (bridges the year change, when LTS re-publishes each market as a new event: same title+municipality+street = one market, dates joined). One row per weekday held weekly (>=8 dates on >=80% of the weeks between first and last), 'annuale' when those dates fall in all 12 months, else 'stagionale'; other weekdays held >=3 times are 'irregolare' rows that only compete in the town+weekday join. Municipality: the event's town when it is an ISTAT comune, else ODH's municipality (ODH files the Merano station market under Lagundo; 'Caldaro al Lago', 'Siusi' are frazioni). Only 'annuale' rows with a street become new markets, on a free municipality+weekday; 'stagionale' rows only fill hours/street of the one market there. Christmas markets, tours, guided visits, flea markets and workshops excluded. Content date = newest LastChange of the market events in the snapshot (never the read time). GPS ignored."
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "publication_channel": "dev-only",
-  "description": "DEV-only publisher-level contracts: Corciano weekly markets, Bologna official venue inventory, the Regione Veneto yearly market calendar and its yearly antiques/collectibles calendar. Historical publisher schedules are NOT current event confirmations. Ambiguous legacy overlaps and multi-day source repeats remain held.",
+  "description": "DEV-only publisher-level contracts: Corciano weekly markets, Bologna official venue inventory, the Regione Veneto yearly market calendar and its yearly antiques/collectibles calendar, and the Open Data Hub Alto Adige / Südtirol market events (CC0). Historical publisher schedules are NOT current event confirmations. Ambiguous legacy overlaps and multi-day source repeats remain held.",
   "user_event_confirmations_allowed": false,
   "approvals": [
     {
@@ -50,6 +50,18 @@
       "reviewed_on": "2026-10-26",
       "max_new_ids": 20,
       "source_record_kind": "market_venue_month",
+      "source_specific_geo_approval": false
+    },
+    {
+      "schema": 1,
+      "mode": "approved_dev_only",
+      "source_id": "altoadige-odh-mercati",
+      "reviewed_profile_sha256": "c37b470a358758d02c8ff6fe40126379dc91660021f08276aebe934b64445bdb",
+      "publisher_license_evidence_url": "https://opendatahub.com/datasets/",
+      "identity_granularity": "market_venue_day",
+      "reviewed_on": "2026-10-27",
+      "max_new_ids": 40,
+      "source_record_kind": "market_venue_day",
       "source_specific_geo_approval": false
     }
   ]

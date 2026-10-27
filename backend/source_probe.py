@@ -32,6 +32,8 @@ HOSTS = frozenset({
     "dati.lazio.it",
     # Regione del Veneto: only the commerce landing page and its documents.
     "www.regione.veneto.it",
+    # Open Data Hub Alto Adige / Südtirol: only the tourism Event query.
+    "tourism.api.opendatahub.com",
 })
 # These source IDs have a vetted adapter or completed manual source review.
 # Health is measured by the adapter, not a redundant unbounded scout.
@@ -100,6 +102,8 @@ def safe_url(url):
             return p.path == (
                 "/download/oggetto_documenti/372/"
                 "1O__Oelenco-mercati-settinamanali-comune-corciano.csv")
+        if p.hostname == "tourism.api.opendatahub.com":
+            return p.path == "/v1/Event" and bool(p.query)
         return True
     except ValueError:
         return False

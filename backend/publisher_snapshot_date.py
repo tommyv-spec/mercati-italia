@@ -16,8 +16,17 @@ from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from urllib.parse import parse_qs, unquote, urljoin, urlsplit
 
+import opendatahub_events
+
 
 FIXED_STRATEGY = "fixed_reviewed"
+# Open Data Hub events: the newest LastChange among the market events of the
+# exact snapshot (never the read time); the query's begin date follows the read day.
+ODH_STRATEGY = opendatahub_events.DATE_STRATEGY
+_ODH_KEYS = frozenset({
+    "schema", "strategy", "profile_sha256", "source_url", "request_url",
+    "snapshot_sha256", "read_on", "source_date",
+})
 ODS_STRATEGY = "opendatasoft_data_processed_v1"
 # A yearly official document linked from a stable publisher page: the file
 # URL changes every year, its calendar year is the content date (1 January).
@@ -101,6 +110,11 @@ def validate_strategy(profile):
         if profile.get("format") != "PDF" or not isinstance(profile.get("resource_discovery"), dict):
             raise ValueError("Yearly document discovery requires a reviewed PDF calendar")
         _https_parts(profile.get("resource_url"), "publisher landing page URL")
+        return strategy
+    if strategy == ODH_STRATEGY:
+        if profile.get("json_container") != opendatahub_events.CONTAINER:
+            raise ValueError("Event change dates require the reviewed Open Data Hub format")
+        _https_parts(profile.get("resource_url"), "source resource URL")
         return strategy
     if strategy != ODS_STRATEGY:
         raise ValueError("Unsupported source date strategy")
@@ -370,6 +384,33 @@ def make_landing_page_proof(profile, landing_html: bytes, document_url: str, doc
                           snapshot_sha256=_sha256(blob), read_on=read_on, today=today)
 
 
+def _event_change_proof(profile, *, snapshot_sha256, source_date, read_on, today):
+    read_date = _read_date(read_on, today)
+    changed = _iso_date(source_date, "event change date")
+    if not _iso_date(profile["source_dataset_date"], "reviewed source dataset date") <= changed <= read_date:
+        raise ValueError("Event change date is future or precedes the reviewed minimum")
+    if not isinstance(snapshot_sha256, str) or not _SHA256.fullmatch(snapshot_sha256):
+        raise ValueError("Invalid source snapshot SHA-256")
+    return {
+        "schema": 1, "strategy": ODH_STRATEGY, "profile_sha256": _profile_digest(profile),
+        "source_url": profile["resource_url"],
+        "request_url": opendatahub_events.request_url(profile, read_on),
+        "snapshot_sha256": snapshot_sha256, "read_on": read_on, "source_date": source_date,
+    }
+
+
+def _event_change_date(profile, blob):
+    return opendatahub_events.last_change(_json_bytes(blob, profile["max_bytes"], "source snapshot"))
+
+
+def make_event_change_proof(profile, blob: bytes, *, read_on: str, today: date) -> dict:
+    if validate_strategy(profile) != ODH_STRATEGY:
+        raise ValueError("Profile has no event change date rule")
+    return _event_change_proof(profile, snapshot_sha256=_sha256(blob),
+                               source_date=_event_change_date(profile, blob),
+                               read_on=read_on, today=today)
+
+
 def resolve_source_date(profile, *, proof=None, blob=None, snapshot_sha256=None,
                         read_on=None, today: date) -> str:
     """Resolve a date only after checking the original profile and snapshot.
@@ -383,6 +424,22 @@ def resolve_source_date(profile, *, proof=None, blob=None, snapshot_sha256=None,
         if proof is not None:
             raise ValueError("A snapshot proof cannot override a fixed reviewed source date")
         return profile["source_dataset_date"]
+    if strategy == ODH_STRATEGY:
+        if (not isinstance(proof, dict) or set(proof) != _ODH_KEYS
+                or (read_on is not None and read_on != proof["read_on"])):
+            raise ValueError("Missing or invalid event change date proof")
+        source_date = proof["source_date"]
+        if blob is not None:
+            if snapshot_sha256 is not None and snapshot_sha256 != _sha256(blob):
+                raise ValueError("Source snapshot SHA-256 does not match the body")
+            snapshot_sha256, source_date = _sha256(blob), _event_change_date(profile, blob)
+        elif snapshot_sha256 is None:
+            raise ValueError("Event change date requires its snapshot SHA-256")
+        expected = _event_change_proof(profile, snapshot_sha256=snapshot_sha256,
+                                       source_date=source_date, read_on=proof["read_on"], today=today)
+        if proof != expected:
+            raise ValueError("Event change date proof does not match the profile or snapshot")
+        return source_date
     if strategy == LANDING_STRATEGY:
         if (not isinstance(proof, dict) or set(proof) != _LANDING_KEYS
                 or (read_on is not None and read_on != proof["read_on"])):

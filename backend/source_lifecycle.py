@@ -32,6 +32,7 @@ from source_probe import limited_fetch, safe_url
 from reviewed_city_evidence import NAVIGATION_HOLD
 from publisher_snapshot_date import resolve_source_date, validate_strategy
 from source_hours import preserve_hours_text
+import opendatahub_events
 
 SCHEMA = 1
 MAX_RAW_PROFILES = 8
@@ -42,7 +43,7 @@ MAX_PROFILE_BYTES = 65536
 MAX_DOCUMENT_BYTES = 4_000_000
 MAX_PDF_PAGES = 60
 # Daily quota of publisher contracts read over the network in one run.
-MAX_ENABLED_RAW_PROFILES = 4
+MAX_ENABLED_RAW_PROFILES = 5
 MAX_MARKDOWN_EXAMPLES = 10
 # market_venue_month: one row = one venue on one monthly calendar
 # ("Prima domenica del mese"), read from recurrence_field.
@@ -304,7 +305,9 @@ def validate_contracts(config):
                         item.get("format") not in ("CSV","JSON","PDF") or
                         type(item.get("max_bytes")) is not int or
                         not 100<=item["max_bytes"]<=(
-                            MAX_DOCUMENT_BYTES if item.get("format")=="PDF" else MAX_PROFILE_BYTES) or
+                            MAX_DOCUMENT_BYTES if item.get("format")=="PDF"
+                            or item.get("json_container")==opendatahub_events.CONTAINER
+                            else MAX_PROFILE_BYTES) or
                         not isinstance(item.get("schema_columns"),list) or
                         not 1<=len(item["schema_columns"])<=100 or
                         len(set(item["schema_columns"]))!=len(item["schema_columns"]) or
@@ -326,7 +329,9 @@ def validate_contracts(config):
                 if (type(forecast_age) is not int
                         or not 0<=forecast_age<=item["max_source_age_days"]):
                     raise ValueError("Forecast age exceeds reviewed source date quality")
-                if item.get("json_container") is not None:
+                if item.get("json_container")==opendatahub_events.CONTAINER:
+                    opendatahub_events.validate_profile(item)
+                elif item.get("json_container") is not None:
                     if (item["format"]!="JSON"
                             or item["json_container"]!="opendatasoft_v1"
                             or not re.fullmatch(r"[a-z0-9-]{3,80}",str(item.get("api_dataset_id") or ""))
@@ -340,13 +345,16 @@ def validate_contracts(config):
                             or any(f not in item["schema_columns"] for f in fields)
                             or len(set(fields))!=len(fields)):
                         raise ValueError("Unreviewed physical venue key")
-                market_rules=item.get("market_filters_any",[])
-                if (not isinstance(market_rules,list) or len(market_rules)>8
-                        or any(not isinstance(r,dict) or not r or len(r)>4 or
-                               any(k not in item["schema_columns"]
-                                   or not isinstance(v,str) or not 1<=len(v)<=80
-                                   for k,v in r.items()) for r in market_rules)):
-                    raise ValueError("Unreviewed explicit market type filter")
+                # new_market_filters_any: rows that may become NEW markets; the
+                # other market rows only fill or update (seasonal calendars).
+                for rules_key in ("market_filters_any","new_market_filters_any"):
+                    market_rules=item.get(rules_key,[])
+                    if (not isinstance(market_rules,list) or len(market_rules)>8
+                            or any(not isinstance(r,dict) or not r or len(r)>4 or
+                                   any(k not in item["schema_columns"]
+                                       or not isinstance(v,str) or not 1<=len(v)<=80
+                                       for k,v in r.items()) for r in market_rules)):
+                        raise ValueError("Unreviewed explicit market type filter")
                 held=item.get("hold_address_contains",[])
                 if (not isinstance(held,list) or len(held)>6
                         or any(not isinstance(s,str) or not 3<=len(s)<=80 for s in held)):
@@ -450,6 +458,9 @@ def parse_rows(profile,blob):
                      if col!="recordid"}
                 row["recordid"]=item["recordid"]
                 rows.append(row)
+        elif profile.get("json_container")==opendatahub_events.CONTAINER:
+            rows=opendatahub_events.rows(
+                raw,lambda name:istat_municipality(profile["region"],name) is not None)
         else:
             if isinstance(raw,dict):
                 raw=raw.get("records")
