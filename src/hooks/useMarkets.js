@@ -57,6 +57,9 @@ export function adaptMarket(m, userLat, userLng) {
     description: m.descrizione || '',
     // Stalls the source states (MERCap pitches, cosedicasa exhibitors); detail only.
     stalls: Number.isInteger(m.posteggi) && m.posteggi > 0 ? m.posteggi : null,
+    // Entry price and practical tips the source states (Vintagery); detail only.
+    entry: typeof m.ingresso === 'string' ? m.ingresso.trim() : '',
+    tips: typeof m.consigli === 'string' ? m.consigli.trim() : '',
     source: m.fonte || '',
     confidence: m.confidence ?? 0,
     dataCompleteness: m.completezza ?? 0,

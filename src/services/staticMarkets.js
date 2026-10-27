@@ -244,6 +244,8 @@ function normalize(m, userLat, userLng) {
     ricorrenza_testo: m.ricorrenza_testo || '',
     descrizione: m.descrizione || '',
     posteggi: Number.isInteger(m.posteggi) && m.posteggi > 0 ? m.posteggi : null,
+    ingresso: typeof m.ingresso === 'string' ? m.ingresso : '',
+    consigli: typeof m.consigli === 'string' ? m.consigli : '',
     date: m.date || [],
     prossima_data: getNextDate(m.date),
     confidence: m.confidence ?? 0,
