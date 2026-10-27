@@ -4,15 +4,16 @@ Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo
 
 ## Semaforo
 
-🟢 Tutto regolare.
+🔴 **Da guardare:**
 
+- Il job **market-autopilot** non è andato a buon fine (ultimo tentativo 2026-10-27T04:16+00:00).
 
 | Job automatico | Esito | Quando |
 |---|---|---|
 | data-expansion-audit | ✅ | 2026-10-27T03:34+00:00 |
 | event-leads-daily | ✅ | 2026-10-27T03:38+00:00 |
 | happings-weekly-fields | ✅ | 2026-10-26T14:04+00:00 |
-| market-autopilot | ✅ | 2026-10-27T01:31+00:00 |
+| market-autopilot | ❌ | 2026-10-27T04:16+00:00 |
 | official-source-output-qa | ✅ | 2026-10-27T03:48+00:00 |
 | publisher-quality-daily | ✅ | 2026-10-27T03:44+00:00 |
 | regional-field-reconciliation | ✅ | 2026-10-27T03:40+00:00 |
