@@ -287,20 +287,36 @@ class MonitoringTests(unittest.TestCase):
                   "a65ea088-44eb-4504-aacf-346d2d7f113b")
 
     def raw(self, key, read_at):
-        return {"id": key, "url": "https://vintagery.it/mercatini/" + key, "name": "M", "city": "Bologna",
-                "region": "Emilia-Romagna", "read_at": read_at + "T10:00:00Z", "start_date": "2026-11-15"}
+        return {"id": key, "url": "https://vintagery.it/mercatini/" + key, "slug": "slug-" + key[:4],
+                "name": "M", "city": "Bologna", "region": "Emilia-Romagna", "read_at": read_at + "T10:00:00Z",
+                "start_date": "2026-11-15"}
 
     def test_a_daily_read_replaces_adds_drops_and_never_renews_unread_cards(self):
         old = snapshot(*[card(id=k, url="https://vintagery.it/mercatini/" + k) for k in (self.A, self.B, self.C)])
-        download = {"schema": 2, "mode": "daily", "listing_day": "2026-10-28", "listing": [self.A, self.B, self.D],
+        old["slugs"] = {k: "slug-" + k[:4] for k in (self.A, self.B, self.C)}
+        listing = ["slug-" + k[:4] for k in (self.A, self.B, self.D)]
+        download = {"schema": 2, "mode": "daily", "listing_day": "2026-10-28", "listing": listing,
                     "cards": {self.A: self.raw(self.A, "2026-10-28"), self.D: self.raw(self.D, "2026-10-28")}}
         merged, report = vg.merge_download(old, download)
         reads = {c["id"]: c["read_on"] for c in merged["cards"]}
         self.assertEqual(reads, {self.A: "2026-10-28", self.B: "2026-10-20", self.D: "2026-10-28"})
         self.assertEqual({k: report[k] for k in ("re_read", "new", "kept", "gone")},
                          {"re_read": 1, "new": 1, "kept": 1, "gone": 1})
+        self.assertEqual(set(merged["slugs"]), {self.A, self.B, self.D})
         with self.assertRaises(ValueError):  # a blocked sitemap read never empties the snapshot
-            vg.merge_download(old, {**download, "listing": [self.D]})
+            vg.merge_download(old, {**download, "listing": ["slug-" + self.D[:4]]})
+
+    def test_before_its_slug_is_known_a_card_is_kept_not_dropped(self):
+        # The sitemap lists slugs since 27 Oct 2026; the snapshot learns each card's slug
+        # when the card is read (its id address redirects to the slug).
+        old = snapshot(*[card(id=k, url="https://vintagery.it/mercatini/" + k) for k in (self.A, self.B, self.C)])
+        download = {"schema": 2, "mode": "daily", "listing_day": "2026-10-28",
+                    "listing": ["slug-" + self.A[:4], "other-1", "other-2"],
+                    "cards": {self.A: self.raw(self.A, "2026-10-28")}}
+        merged, report = vg.merge_download(old, download)
+        self.assertEqual(len(merged["cards"]), 3)
+        self.assertEqual((report["re_read"], report["kept_slug_unknown"], report.get("gone", 0)), (1, 2, 0))
+        self.assertEqual(merged["slugs"], {self.A: "slug-" + self.A[:4]})
 
     def test_the_plan_rereads_passed_dates_then_the_oldest_reads(self):
         cards = [card(id=self.A, url="https://vintagery.it/mercatini/" + self.A, read_on="2026-10-20"),
@@ -308,11 +324,13 @@ class MonitoringTests(unittest.TestCase):
                       start_date="2026-10-25", verified_on="2026-10-20"),
                  card(id=self.C, url="https://vintagery.it/mercatini/" + self.C, read_on="2026-10-22")]
         today_plan = vg.plan(snapshot(*cards), today=date(2026, 10, 28), per_day=2)
-        self.assertEqual(today_plan, {"day": "2026-10-28", "fetch": [self.B[:8], self.A[:8]]})
-        # A card the last sitemap listing named that we don't hold yet goes first.
-        today_plan = vg.plan(snapshot(*cards), today=date(2026, 10, 28), per_day=2,
-                             listing=[self.A, self.D, self.C])
-        self.assertEqual(today_plan["fetch"], [self.D[:8], self.B[:8]])
+        self.assertEqual(today_plan, {"day": "2026-10-28", "fetch": [self.B, self.A]})
+        # A slug the last sitemap listing named that no card maps to goes first (a quarter at most).
+        held = snapshot(*cards)
+        held["slugs"] = {self.A: "slug-a", self.C: "slug-c"}
+        today_plan = vg.plan(held, today=date(2026, 10, 28), per_day=3,
+                             listing=["slug-a", "slug-new", "slug-c", "slug-new-2"])
+        self.assertEqual(today_plan["fetch"], ["slug-new", self.B, self.A])
 
 
 if __name__ == "__main__":

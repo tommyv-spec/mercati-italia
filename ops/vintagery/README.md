@@ -32,6 +32,12 @@ A test run that reads and merges a few cards but commits nothing:
 
     powershell -NoProfile -ExecutionPolicy Bypass -File ops\vintagery\refresh-daily.ps1 -PerDay 3 -DryRun
 
+Addresses: since the 27 Oct 2026 evening rebuild the sitemap lists `/mercatini/<slug>`
+(readable names). The old `/mercatini/<uuid>` address still redirects there, so a card keeps
+its uuid as identity (record `id`, or the `og:image` `/og/mercatino/<uuid>` every page has)
+and the snapshot's `slugs` map learns each card's slug when it is read. Until a card's slug
+is known it is never dropped; a card is dropped only when its known slug leaves the sitemap.
+
 Why not the sitemap's `<lastmod>`: it is the time the sitemap was built (the same value for
 all 840 cards, checked 27 Oct 2026), so it cannot tell which card changed. A card is renewed
 only by reading it again.

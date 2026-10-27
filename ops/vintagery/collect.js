@@ -4,12 +4,15 @@
 //
 // Two modes:
 // - full (default): every card listed in /sitemap/mercatini-*.xml.
-// - daily: when window.__vgPlan = {day, fetch: [8-char id prefixes]} is set first
+// - daily: when window.__vgPlan = {day, fetch: [paths after /mercatini/]} is set first
 //   (`python backend/vintagery_source.py --plan plan.js`): the sitemap listing, then only
-//   the cards the plan names (new ones from the previous listing, then the oldest reads).
+//   the cards the plan names (slugs of new cards, then ids of the oldest reads).
 //   The sitemap's <lastmod> is when the sitemap was built, not when a card changed, so
 //   it is never used to skip a card.
 //
+// Since 27 Oct 2026 the sitemap lists /mercatini/<slug>; the old /mercatini/<uuid> address
+// redirects there. A card is kept under its uuid (record id, or the og:image
+// /og/mercatino/<uuid> every page carries) with url /mercatini/<uuid> and its slug.
 // Each page embeds its card record in the Next.js payload (self.__next_f.push); the record
 // plus tags, "Scheda verificata il" and "Data da confermare" are kept. A page without a record
 // (undated cards) keeps its visible text (4,000 characters) for the importer's page reader.
@@ -49,22 +52,22 @@ window.__vgCollect = async () => {
   const listed = []
   for (const path of maps) {
     const body = await (await fetch(path)).text()
-    listed.push(...(body.match(/https:\/\/vintagery\.it\/mercatini\/[0-9a-f-]{36}/g) || []))
+    for (const m of body.matchAll(/<loc>https:\/\/vintagery\.it\/mercatini\/([a-z0-9-]+)<\/loc>/g)) listed.push(m[1])
     await wait(1500)
   }
   const unique = [...new Set(listed)]
   if (!unique.length) { state.running = false; state.last = 'stopped: empty sitemap (blocked?)'; return }
-  const asked = new Set(plan ? plan.fetch : [])
-  const todo = plan ? unique.filter(url => asked.has(url.slice(-36, -28))) : unique
+  const todo = plan ? [...new Set(plan.fetch)] : unique
   state.total = todo.length
   state.done = Object.keys(load()).length
+  const read = new Set(Object.values(load()).map(card => card.entry))
   let strikes = 0
-  for (const url of todo) {
-    const id = url.slice(-36)
-    if (load()[id]) continue
+  for (const entry of todo) {
+    if (read.has(entry)) continue
     try {
-      const response = await fetch(url)
+      const response = await fetch('/mercatini/' + entry)
       const html = await response.text()
+      if (response.status === 404) { state.missing = (state.missing || 0) + 1; await wait(PAUSE_MS); continue }
       if (response.status !== 200 || /Security Checkpoint/.test(html) || !html.includes('__next_f')) {
         state.blocked++; state.last = 'blocked ' + response.status
         if (++strikes >= 3) { state.running = false; state.last = 'stopped: blocked 3 times, run again later'; return }
@@ -86,6 +89,10 @@ window.__vgCollect = async () => {
       const title = page.title
       page.querySelectorAll('script,style,svg').forEach(node => node.remove())
       const visible = page.body.textContent.replace(/\s+/g, ' ')
+      const UUID = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+      const id = found && new RegExp('^' + UUID + '$').test(found.id) ? found.id
+        : (html.match(new RegExp('/og/mercatino/(' + UUID + ')')) || [])[1]
+      if (!id) throw new Error('no card id on ' + entry)
       const card = {}
       if (found && typeof found === 'object') {
         for (const [key, value] of Object.entries(found)) if (value !== '$undefined' && key !== 'icsTable') card[key] = value
@@ -94,7 +101,8 @@ window.__vgCollect = async () => {
         card.page_text = page.body.textContent.slice(0, 4000)
       }
       Object.assign(card, {
-        url, title, tags,
+        url: 'https://vintagery.it/mercatini/' + id, slug: new URL(response.url).pathname.split('/').pop(),
+        entry, title, tags,
         verified: (visible.match(/Scheda verificata il ([0-9]{1,2} [a-z]+(?: [0-9]{4})?)/) || [])[1] || '',
         unconfirmed: /Data da confermare/.test(visible.slice(0, visible.indexOf('Prossima apertura') + 50)),
         not_verified: /Scheda non (ancora )?verificata/i.test(visible),
@@ -107,7 +115,7 @@ window.__vgCollect = async () => {
   }
   state.running = false; state.last = 'finished'
   const payload = plan
-    ? JSON.stringify({ schema: 2, mode: 'daily', listing_day: plan.day, listing: unique.map(url => url.slice(-36)), cards: load() })
+    ? JSON.stringify({ schema: 2, mode: 'daily', listing_day: plan.day, listing: unique, cards: load() })
     : localStorage.getItem(KEY)
   const link = document.createElement('a')
   link.href = URL.createObjectURL(new Blob([payload], { type: 'application/json' }))

@@ -47,6 +47,9 @@ PUBLISHER = "vintagery.it"
 SNAPSHOT_PATH = Path(__file__).resolve().parent / "data/vintagery-snapshot.json"
 INDEX_URL = "https://vintagery.it/sitemap/mercatini-0.xml"
 URL = re.compile(r"https://vintagery\.it/mercatini/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})")
+# Since 27 Oct 2026 the sitemap lists /mercatini/<slug>; the /mercatini/<uuid> address we
+# keep as the card's identity still redirects there. The snapshot maps id -> slug.
+SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 MAX_CARDS = 3000
 MAX_SNAPSHOT_BYTES = 4_000_000
 HASH_BASIS = "browser_captured_record"
@@ -124,7 +127,7 @@ def normalize_capture(raw):
     """The browser download ({id: record}) as the compact committed snapshot."""
     if not isinstance(raw, dict) or not 1 <= len(raw) <= MAX_CARDS:
         raise ValueError("Vintagery capture is not a bounded {id: card} object")
-    cards, skipped = [], Counter()
+    cards, skipped, slugs = [], Counter(), {}
     for key, rec in sorted(raw.items()):
         identity = source_identity(rec.get("url")) if isinstance(rec, dict) else None
         read_on = _iso(str((rec or {}).get("read_at") or "")[:10]) if isinstance(rec, dict) else ""
@@ -153,9 +156,11 @@ def normalize_capture(raw):
             card["name"] = clean(str(rec.get("title") or "").split(" — ")[0], 160)
             skipped["page_without_market_fields"] += 1
         cards.append(card)
+        if SLUG.fullmatch(slug := clean(rec.get("slug"), 200)) and slug != key:
+            slugs[key] = slug
     days = [c["read_on"] for c in cards]
     snapshot = {"schema": 1, "publisher": PUBLISHER, "index": INDEX_URL,
-                "read_from": min(days), "read_to": max(days), "cards": cards}
+                "read_from": min(days), "read_to": max(days), "cards": cards, "slugs": slugs}
     return validate_snapshot(snapshot), dict(skipped)
 
 
@@ -244,10 +249,15 @@ def written_dates(notes, read_on):
 
 
 def validate_snapshot(snapshot):
-    if (not isinstance(snapshot, dict) or set(snapshot) != {"schema", "publisher", "index", "read_from", "read_to", "cards"}
+    keys = {"schema", "publisher", "index", "read_from", "read_to", "cards"}
+    if (not isinstance(snapshot, dict) or set(snapshot) - {"slugs"} != keys
             or snapshot["schema"] != 1 or snapshot["publisher"] != PUBLISHER or snapshot["index"] != INDEX_URL
             or not isinstance(snapshot["cards"], list) or not 1 <= len(snapshot["cards"]) <= MAX_CARDS):
         raise ValueError("Invalid Vintagery snapshot")
+    slugs = snapshot.get("slugs", {})
+    if (not isinstance(slugs, dict) or not set(slugs) <= {c.get("id") for c in snapshot["cards"] if isinstance(c, dict)}
+            or any(not isinstance(s, str) or len(s) > 200 or not SLUG.fullmatch(s) for s in slugs.values())):
+        raise ValueError("Invalid Vintagery snapshot slugs")
     seen = set()
     for card in snapshot["cards"]:
         if (not isinstance(card, dict) or set(card) != CARD_KEYS or card["id"] in seen
@@ -809,47 +819,54 @@ PER_DAY = 120
 
 
 def plan(snapshot, *, today, per_day=PER_DAY, listing=()):
-    """Today's read for collect.js (8-character id prefixes): the cards the last daily
-    sitemap listing named that we don't hold yet, then passed next dates and the oldest
-    reads. The plan stays small: Claude in Chrome copies it into the page every day."""
+    """Today's read for collect.js, as /mercatini/<entry> paths: up to a quarter for slugs
+    the last daily sitemap listing named that no card maps to yet (new cards; in the first
+    week also known cards whose slug we haven't learned), then passed next dates and the
+    oldest reads by id (the id address redirects). Claude in Chrome copies it every day."""
     day = today.isoformat()
     cards = snapshot["cards"] if snapshot else []
-    new = sorted(set(listing) - {c["id"] for c in cards})
+    known = set((snapshot or {}).get("slugs", {}).values())
+    unknown = sorted(set(listing) - known)[:max(1, per_day // 4)]
     due = sorted(cards, key=lambda c: (not (c["start_date"] and c["start_date"] < day), c["read_on"], c["id"]))
-    return {"day": day, "fetch": [key[:8] for key in [*new, *(c["id"] for c in due)][:per_day]]}
+    return {"day": day, "fetch": [*unknown, *(c["id"] for c in due)][:per_day]}
 
 
 def merge_download(snapshot, download):
-    """A daily download ({"schema": 2, "listing_day", "listing": [ids], "cards": {id: record}})
+    """A daily download ({"schema": 2, "listing_day", "listing": [slugs], "cards": {id: record}})
     merged into the snapshot: re-read cards replaced (their new read day), new cards added,
-    cards no longer in the sitemap dropped, every other card kept with its own read day."""
+    a card whose slug is no longer in the sitemap dropped, every other card kept with its own
+    read day (a card whose slug we don't know yet is kept until it is read)."""
     if (not isinstance(download, dict) or download.get("schema") != 2 or download.get("mode") != "daily"
             or not _iso(download.get("listing_day")) or not isinstance(download.get("listing"), list)
             or not isinstance(download.get("cards"), dict)):
         raise ValueError("Not a daily Vintagery download")
     listing = set(download["listing"])
     old = {c["id"]: c for c in snapshot["cards"]} if snapshot else {}
-    if not listing or old and len(listing & set(old)) < len(old) // 2:
+    slugs = dict((snapshot or {}).get("slugs", {}))
+    known = {slugs[k] for k in old if k in slugs}
+    if not listing or len(listing) < len(old) // 2 or len(listing & known) < len(known) // 2:
         # A blocked or partial sitemap read must not empty the snapshot.
         raise ValueError("The day's sitemap listing is missing or lists under half our cards")
     fetched, skipped = (normalize_capture(download["cards"]) if download["cards"]
-                        else ({"cards": []}, {}))
-    fetched = {c["id"]: c for c in fetched["cards"] if c["id"] in listing}
+                        else ({"cards": [], "slugs": {}}, {}))
+    slugs.update(fetched["slugs"])
+    fetched = {c["id"]: c for c in fetched["cards"]}
     counts = Counter()
     cards = []
-    for key in sorted(listing):
-        if key in fetched:
+    for key in sorted(set(old) | set(fetched)):
+        if key in slugs and slugs[key] not in listing:
+            counts["gone"] += 1
+        elif key in fetched:
             counts["re_read" if key in old else "new"] += 1
             cards.append(fetched[key])
-        elif key in old:
-            counts["kept"] += 1
-            cards.append(old[key])
         else:
-            counts["listed_not_read"] += 1
-    counts["gone"] = len(set(old) - listing)
+            counts["kept" if key in slugs else "kept_slug_unknown"] += 1
+            cards.append(old[key])
+    ids = {c["id"] for c in cards}
+    counts["listed_not_held"] = len(listing - {slugs[k] for k in ids if k in slugs})
     days = [c["read_on"] for c in cards]
-    merged = {"schema": 1, "publisher": PUBLISHER, "index": INDEX_URL,
-              "read_from": min(days), "read_to": max(days), "cards": cards}
+    merged = {"schema": 1, "publisher": PUBLISHER, "index": INDEX_URL, "read_from": min(days),
+              "read_to": max(days), "cards": cards, "slugs": {k: v for k, v in slugs.items() if k in ids}}
     return validate_snapshot(merged), {**dict(sorted(counts.items())), "skipped": skipped}
 
 
