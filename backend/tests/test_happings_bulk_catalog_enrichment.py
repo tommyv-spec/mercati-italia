@@ -247,3 +247,18 @@ class BulkFieldTests(unittest.TestCase):
 
 if __name__=="__main__":
     unittest.main()
+
+
+class CutStreetTests(unittest.TestCase):
+    def test_a_cut_street_takes_the_one_listed_place_it_begins(self):
+        from happings_bulk_catalog_enrichment import cut_place
+        card = lambda street: {"indirizzo": street}
+        self.assertEqual(cut_place(card("cen"), ["centro"]), "centro")
+        self.assertEqual(cut_place(card("Pi"), ["Piazza Vittorio Emanuele", "Via Mazzini"]), "Piazza Vittorio Emanuele")
+        for street, places in (("Via Roma", ["Via Roma 12"]),          # a real street is never "cut"
+                               ("centro", ["centro storico"]),          # nor the town centre
+                               ("Pi", ["Piazza Italia", "Piazza Duomo"]),  # two places fit
+                               ("P", ["Piazza Italia", "Via Mazzini"]),    # one letter among several
+                               ("Via", ["Mercato Nord"])):              # nothing fits
+            with self.subTest(street=street):
+                self.assertIsNone(cut_place(card(street), places))
