@@ -59,7 +59,7 @@ def validate(manifest_path: Path) -> dict:
     kept = {m["slug"] for m in all_markets if not m.get("duplicato_di")}
     if any(m.get("duplicato_di") and m["duplicato_di"] not in kept for m in all_markets):
         raise ValueError("Soft-merged copy points to a missing or merged record")
-    if any(m.get("concluso") not in (None, "edizione_conclusa", "fonte_non_riletta")
+    if any(m.get("concluso") not in (None, "edizione_conclusa", "fonte_non_riletta", "non_piu_elencato")
            or m.get("concluso") and m.get("duplicato_di") for m in all_markets):
         raise ValueError("Unknown concluded-market reason, or a concluded soft-merged copy")
     from position_resolver import clean_position_source

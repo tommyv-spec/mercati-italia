@@ -148,7 +148,8 @@ def _source_pages_for_guard(out, report):
     The caller supplies its known output directory, never a report-supplied
     arbitrary path. Old reports without editorial warnings need no sidecar.
     """
-    if not report.get("evidence", {}).get("editorial_documents"):
+    evidence = report.get("evidence", {})
+    if not (evidence.get("editorial_documents") or evidence.get("weekday_conflicts")):
         return None
     if out is None:
         raise ValueError("Editorial field warnings require the original checkpoint at the final guard")
@@ -560,11 +561,13 @@ def _verify_weekly_changes(before, after, report, *, source_pages=None):
     proposals = {p["market_id"]: p for p in evidence["proposals"]}
     observations = {p["market_id"]: p for p in evidence["observations"]}
     retirements = {p["market_id"]: p for p in evidence["retirements"]}
-    address_conflicts = {p["market_id"]: p for p in evidence.get("address_conflicts", [])}
+    address_conflicts = {p["market_id"]: p for p in [*evidence.get("address_conflicts", []),
+                                                     *evidence.get("weekday_conflicts", [])]}
     if (len(proposals) != len(evidence["proposals"])
             or len(observations) != len(evidence["observations"])
             or len(retirements) != len(evidence["retirements"])
-            or len(address_conflicts) != len(evidence.get("address_conflicts", []))):
+            or len(address_conflicts) != len(evidence.get("address_conflicts", []))
+            + len(evidence.get("weekday_conflicts", []))):
         raise ValueError("Happings repeated a field proposal or observation")
     observed_on = date.fromisoformat(report["date"])
     changed, address_changed = [], []
@@ -618,7 +621,8 @@ def _weekly_rows(before, report):
     proposals = {p["market_id"]: p for p in evidence["proposals"]}
     observations = {p["market_id"]: p for p in evidence["observations"]}
     retirements = {p["market_id"]: p for p in evidence["retirements"]}
-    address_conflicts = {p["market_id"]: p for p in evidence.get("address_conflicts", [])}
+    address_conflicts = {p["market_id"]: p for p in [*evidence.get("address_conflicts", []),
+                                                     *evidence.get("weekday_conflicts", [])]}
     day = date.fromisoformat(report["date"])
     return [source.expected_record(row, proposal=proposals.get(row["slug"]),
                                    observation=observations.get(row["slug"]),
