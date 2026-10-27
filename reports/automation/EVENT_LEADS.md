@@ -1,23 +1,23 @@
 # Mercati Italia — scoperta automatica eventi: solo segnali
 
-Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-26**.
+Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-27**.
 Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 
-- Schede di mercato esistenti conservate: **14106**
+- Schede di mercato esistenti conservate: **14139**
 - Segnali ufficiali nell'ultima scansione: **0**
-- Collegamenti esterni, non dati riutilizzabili: **3**
+- Collegamenti esterni, non dati riutilizzabili: **0**
 
 | Fonte | Stato | Richieste |
 |---|---|---:|
-| firenze-feelflorence | discovery_leads_only | 1 |
+| firenze-feelflorence | source_unavailable_or_schema_review | 0 |
 | bologna-agenda | discovery_leads_only | 1 |
-| eventiesagre-index | discovery_leads_only | 3 |
+| eventiesagre-index | source_unavailable_or_schema_review | 0 |
 
 ## Segnali da verificare presso Comune o organizzatore
 
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21190632_Arti+E+Mercanti+A+Montefalco.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21187037_Il+Mercatino+Dell+antiquariato+E+Collezionismo+A+Grottaferrata.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21124967_Curiosando.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21190632_Arti+E+Mercanti+A+Montefalco.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21187037_Il+Mercatino+Dell+antiquariato+E+Collezionismo+A+Grottaferrata.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21124967_Curiosando.html — stato: not_seen_again_not_a_market_closure
 - Mercato del Forte dei Marmi a Firenze — https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze — stato: not_seen_again_not_a_market_closure
 - Mercatino dei fumetti, del disco e del vintage — https://www.feelflorence.it/it/eventi/mercatino-dei-fumetti-del-disco-e-del-vintage — stato: not_seen_again_not_a_market_closure
 - Santo Spirito in Fiera — https://www.feelflorence.it/it/eventi/santo-spirito-fiera — stato: not_seen_again_not_a_market_closure

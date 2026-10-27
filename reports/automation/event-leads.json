@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14106,
-  "baseline_market_records": 14106,
+  "baseline_market_ids_preserved": 14139,
+  "baseline_market_records": 14139,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -8,12 +8,9 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
-      "leads_found": 0,
-      "not_matching_market_scope": 123,
-      "requests": 1,
-      "rows_examined": 123,
-      "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
-      "state": "discovery_leads_only"
+      "reason_class": "URLError",
+      "requests": 0,
+      "state": "source_unavailable_or_schema_review"
     },
     {
       "catalog_market_imports": 0,
@@ -28,14 +25,11 @@
     },
     {
       "catalog_market_imports": 0,
-      "descriptions_copied": 0,
       "event_confirmations": 0,
       "id": "eventiesagre-index",
-      "indexes_read": 2,
-      "links_only": 3,
-      "publisher_events_verified": 0,
-      "requests": 3,
-      "state": "discovery_leads_only"
+      "reason_class": "ValueError",
+      "requests": 0,
+      "state": "source_unavailable_or_schema_review"
     }
   ],
   "fresh_official_leads": 0,
@@ -50,7 +44,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21190632_Arti+E+Mercanti+A+Montefalco.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -61,7 +55,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21187037_Il+Mercatino+Dell+antiquariato+E+Collezionismo+A+Grottaferrata.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -72,7 +66,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21124967_Curiosando.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -763,11 +757,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 3,
+  "new_external_url_pointers": 0,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-26",
+  "reference_date": "2026-10-27",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
