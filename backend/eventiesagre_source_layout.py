@@ -72,6 +72,10 @@ STOP_SECTION = re.compile(r"^(?:programma(?:\s+e\s+men[uù])?|concerti|laborator
 WHERE_LABEL = re.compile(r"^(?:dove(?:\s+si\s+tiene\s+l[’']evento)?|sede(?:\s+dell[’']evento)?)"
     r"\s*[:–—-]\s*(.+)$", re.I)
 MAX_NARRATIVE_ROWS = 120
+# The site's weekly-market pages fill "Orari del Mercato" with one default: 93% of
+# them say 08:00-13:00 (22-30% in the MERCap and Regione Veneto calendars), next to
+# the same boilerplate goods list. Alone it only says the market is in the morning.
+DEFAULT_MARKET_HOURS = "08:00–13:00"
 
 
 def _clean(value):
@@ -730,6 +734,9 @@ def parse_eventiesagre_html(blob, source_url, *, today=None):
     hours = hour_options[0] if len(hour_options) == 1 and not multiple_locations else ""
     if len(hour_options) > 1 and not multiple_locations:
         issues.append("visible_hours_conflict")
+    if hours == DEFAULT_MARKET_HOURS and not header_hours:
+        hours = "La mattina"
+        issues.append("publisher_default_hours")
     if not hour_options and not multiple_locations:
         starts = list(dict.fromkeys(_clock(m.group(1)) for line in header_lines
                                     if (m := START_ONLY.search(line))))

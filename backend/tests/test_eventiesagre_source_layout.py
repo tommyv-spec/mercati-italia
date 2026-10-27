@@ -71,26 +71,38 @@ class EventiESagreLayoutTests(unittest.TestCase):
     def test_body_is_not_limited_to_first_ten_paragraphs(self):
         result = parse(address="", hours="", body="<p>Nota</p>" * 12 +
                        "<p>Dove fanno il mercato settimanale: Via della Fonte, 4</p>"
-                       "<p>Orari del Mercato: Dalle 08:00 alle 13:00</p>")
+                       "<p>Orari del Mercato: Dalle 07:30 alle 12:30</p>")
         self.assertEqual(result["legacy_fields"]["indirizzo"], "Via della Fonte, 4")
-        self.assertEqual(result["legacy_fields"]["orario_raw"], "08:00–13:00")
+        self.assertEqual(result["legacy_fields"]["orario_raw"], "07:30–12:30")
 
     def test_split_inline_words_keep_labels_readable(self):
-        result = parse(hours="", body="<p><strong>Orari del Mercat</strong>o: Dalle 08:00 alle 13:00</p>")
-        self.assertEqual(result["legacy_fields"]["orario_raw"], "08:00–13:00")
+        result = parse(hours="", body="<p><strong>Orari del Mercat</strong>o: Dalle 07:30 alle 12:30</p>")
+        self.assertEqual(result["legacy_fields"]["orario_raw"], "07:30–12:30")
 
     def test_market_information_heading_is_not_a_contacts_section(self):
         facts = ("<p><strong>Quando si svolge</strong>: Mercoledì tutto l'anno</p>"
-                 "<p><strong>Orari del Mercat</strong>o: Dalle 08:00 alle 13:00</p>")
+                 "<p><strong>Orari del Mercat</strong>o: Dalle 07:30 alle 12:30</p>")
         result = parse(hours="", body="<p><strong>Informazioni sul Mercato:</strong></p>" + facts)
-        self.assertEqual(result["legacy_fields"]["orario_raw"], "08:00–13:00")
+        self.assertEqual(result["legacy_fields"]["orario_raw"], "07:30–12:30")
         # A contacts heading still ends the facts.
         result = parse(hours="", body="<p><strong>Informazioni:</strong></p>" + facts)
         self.assertEqual(result["legacy_fields"]["orario_raw"], "")
 
     def test_labelled_numeric_hour_range_without_dalle_is_read(self):
-        result = parse(hours="", body="<p>Orario: 08:00 - 13:00</p>")
-        self.assertEqual(result["legacy_fields"]["orario_raw"], "08:00–13:00")
+        result = parse(hours="", body="<p>Orario: 07:30 - 12:30</p>")
+        self.assertEqual(result["legacy_fields"]["orario_raw"], "07:30–12:30")
+
+    def test_site_default_hours_alone_only_say_morning(self):
+        # 93% of the site's weekly pages carry this one default in the facts block.
+        facts = ("<p><strong>Informazioni sul Mercato:</strong></p>"
+                 "<p><strong>Orari del Mercat</strong>o: Dalle 08:00 alle 13:00</p>")
+        result = parse(hours="", body=facts)
+        self.assertEqual(result["legacy_fields"]["orario_raw"], "La mattina")
+        self.assertIn("publisher_default_hours", result["issues"])
+        # Any other clock range, or the same one in the event card header, is kept.
+        self.assertEqual(parse(hours="", body=facts.replace("08:00", "07:30"))["legacy_fields"]["orario_raw"],
+                         "07:30–13:00")
+        self.assertEqual(parse()["legacy_fields"]["orario_raw"], "08:00–13:00")
 
     def test_short_hours_and_decimal_variants_are_explicit(self):
         for value, expected in [("Dalle ore 8 alle 19", "08:00–19:00"),
