@@ -1952,6 +1952,7 @@ export default function App() {
             {sourceSchedule.notes.map((note, i) => (
               <p key={note + i} className="source-calendar-note">{note}</p>
             ))}
+            {m.stalls && <p className="source-calendar-note" data-stalls>Circa {m.stalls} banchi secondo la fonte.</p>}
             {sourceSchedule.rows.length > 0 && (
               <details className="source-calendar" key={m.id}
                 open={sourceSchedule.hasVariations || sourceSchedule.rows.length <= 3}>

@@ -55,6 +55,8 @@ export function adaptMarket(m, userLat, userLng) {
     indexHoursScope: m.ambito_orari || '',
     recurrence: m.ricorrenza_testo || '',
     description: m.descrizione || '',
+    // Stalls the source states (MERCap pitches, cosedicasa exhibitors); detail only.
+    stalls: Number.isInteger(m.posteggi) && m.posteggi > 0 ? m.posteggi : null,
     source: m.fonte || '',
     confidence: m.confidence ?? 0,
     dataCompleteness: m.completezza ?? 0,

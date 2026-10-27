@@ -6,7 +6,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from source_lombardia import (DATASET_ID, API_URL, METADATA_URL, download,
-    convert, weekday, months_of_operation, point, hour_span, projected_dates)
+    convert, weekday, months_of_operation, months_label, point, hour_span, projected_dates)
+from recurrence_refresh import _complete_month_rule
 
 
 def row(id, day="VENERDÌ", freq="SETTIMANALE", city="POGLIANO MILANESE",
@@ -82,9 +83,42 @@ class LombardiaTests(unittest.TestCase):
         output = convert(payload(items, date_str="2026-06-25"), today=date(2026, 7, 1))
         self.assertTrue(output[0]["date"])
         self.assertTrue(all(int(d[5:7]) in (7,8) for d in output[0]["date"]))
-        self.assertNotIn("Ogni ", output[0]["ricorrenza_testo"])
+        # The text never reads as all year: it names the months, as the shared reader reads them.
+        self.assertEqual(output[0]["ricorrenza_testo"], "Ogni venerdì, da luglio ad agosto")
+        self.assertEqual(_complete_month_rule(output[0]["ricorrenza_testo"]),
+                         {"kind": "weekly", "weekdays": [4], "active_months": [7, 8]})
         self.assertEqual(months_of_operation("GENNAIO, MAGGIO"),{1,5})
         self.assertEqual(months_of_operation("GENNAIO, TBD"),set())
+
+    def test_seasonal_row_is_its_weekday_within_its_months(self):
+        # MERCap 100140-style summer rows (Aprica: Wednesdays, July and August).
+        items = [row(30000+i) for i in range(1097)]
+        items += [row(76670, day="SABATO", freq="STAGIONALE", months="LUGLIO, AGOSTO"),
+                  row(76671, day="VENERDÌ", freq="STAGIONALE", months=(
+                      "GENNAIO, FEBBRAIO, MARZO, APRILE, MAGGIO, GIUGNO, SETTEMBRE, "
+                      "OTTOBRE, NOVEMBRE, DICEMBRE")),
+                  row(76672, day="DOMENICA", freq="STAGIONALE", months="NOVEMBRE")]
+        out = {x["id_fonte"]: x for x in convert(payload(items), today=self.now)}
+        self.assertEqual(out["76670"]["ricorrenza_testo"], "Ogni sabato, da luglio ad agosto")
+        self.assertEqual(out["76670"]["date"], [])  # October: out of season, nothing invented
+        self.assertEqual(out["76671"]["ricorrenza_testo"], "Ogni venerdì, da settembre a giugno")
+        self.assertTrue(out["76671"]["date"])
+        self.assertTrue(all(date.fromisoformat(d).weekday() == 4 and d[5:7] not in ("07", "08")
+                            for d in out["76671"]["date"]))
+        # One month alone reads as a yearly fair, not every Sunday of November.
+        self.assertEqual(out["76672"]["date"], [])
+        self.assertTrue(out["76672"]["ricorrenza_testo"].startswith("Periodicità: STAGIONALE"))
+        summer = convert(payload(items, date_str="2026-06-25"), today=date(2026, 7, 1))
+        summer = next(x for x in summer if x["id_fonte"] == "76670")
+        self.assertTrue(summer["date"] and all(date.fromisoformat(d).weekday() == 5
+                                               and d[5:7] in ("07", "08") for d in summer["date"]))
+
+    def test_months_label_is_one_range_or_the_months_left_out(self):
+        self.assertEqual(months_label({5, 6, 7, 8, 9, 10}), "da maggio a ottobre")
+        self.assertEqual(months_label({7, 8}), "da luglio ad agosto")
+        self.assertEqual(months_label({11, 12, 1, 2}), "da novembre a febbraio")
+        self.assertEqual(months_label({1, 2, 5}), "escluso marzo, aprile, giugno, luglio, agosto, "
+                                                  "settembre, ottobre, novembre e dicembre")
 
     def test_raw_identity_qualifiers_survive_without_public_reclassification(self):
         items = [row(30000+i) for i in range(1097)]

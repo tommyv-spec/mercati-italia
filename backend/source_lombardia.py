@@ -194,6 +194,18 @@ def projected_dates(day, months, today, limit=120):
     ]
 
 
+def months_label(months):
+    """"da luglio ad agosto" for one run of months (it may cross the new year),
+    else "escluso <the others>": both forms the shared recurrence reader reads."""
+    for start in sorted(months):
+        run = [(start - 1 + i) % 12 + 1 for i in range(len(months))]
+        if set(run) == set(months):
+            last = MONTHS[run[-1] - 1]
+            return f"da {MONTHS[start - 1]} {'ad' if last[0] == 'a' else 'a'} {last}"
+    others = [MONTHS[m - 1] for m in range(1, 13) if m not in months]
+    return "escluso " + ", ".join(others[:-1]) + " e " + others[-1]
+
+
 def monthly_weeks(record, day, months):
     """A fortnightly/monthly row that names its weeks ("1^ e 3^") all year:
     "mensile - 1° e 3° sabato del mese", else None."""
@@ -242,8 +254,12 @@ def convert(payload, today=None):
         seen.add(slug)
         freq = textkey(record.get("periodicita_tipo"))
         months = months_of_operation(record.get("mesi_svolgimento"))
-        supported = (freq in ("settimanale", "giornaliero")
+        # A seasonal row names one weekday and its months: that weekday every
+        # week, only in those months (Aprica: Wednesdays, July and August).
+        # One month alone reads as a yearly fair (Inveruno, November), not weekly.
+        supported = (freq in ("settimanale", "giornaliero", "stagionale")
                      and day is not None and bool(months)
+                     and (freq != "stagionale" or 2 <= len(months) < 12)
                      and 0 <= source_age <= MAX_EXPECTED_SOURCE_AGE_DAYS)
         dates = projected_dates(day, months, today) if supported else []
         monthly = monthly_weeks(record, day, months) if 0 <= source_age <= MAX_EXPECTED_SOURCE_AGE_DAYS else None
@@ -251,10 +267,11 @@ def convert(payload, today=None):
             from recurrence_refresh import explicit_rule, project_dates
             dates = project_dates(explicit_rule(monthly), today, 120)
             recurrence = monthly
-        elif dates and len(months) == 12:
+        elif supported and len(months) == 12:
             recurrence = "Ogni " + DAY_LABELS[day]
-        elif dates:
-            recurrence = "Giorno dichiarato " + DAY_LABELS[day] + "; mesi di attività limitati"
+        elif supported:
+            # Stated whether or not a date falls in the next 120 days.
+            recurrence = "Ogni " + DAY_LABELS[day] + ", " + months_label(months)
         else:
             recurrence = ("Periodicità: " + str(record.get("periodicita_tipo") or "da verificare")
                           + ("; giorno indicato " + DAY_LABELS[day] if day is not None else "")

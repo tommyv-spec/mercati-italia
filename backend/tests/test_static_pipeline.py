@@ -177,6 +177,18 @@ class ExportTests(unittest.TestCase):
                 result, _ = normalize(market(descrizione=text), self.today)
                 self.assertEqual(result["descrizione"], expected)
 
+    def test_stalls_come_only_from_the_sources_own_count(self):
+        from export_static import stall_count
+        exhibitors = lambda value: {"evidenza_editoriale": {"facts": {"source_rows": [
+            {"field": "exhibitors", "value": value}]}}}
+        self.assertEqual(stall_count({"identita_fonte": {"n_post_tot": "52"}}), 52)
+        self.assertEqual(stall_count(exhibitors("120")), 120)
+        for unread in ({"identita_fonte": {"n_post_tot": "0"}}, {"identita_fonte": {"n_post_tot": None}},
+                       {"identita_fonte": {"n_post_tot": "40", "scope_invalid": True}},
+                       exhibitors("1.100"), exhibitors("3o"), exhibitors("140 espositori"), {}):
+            with self.subTest(card=unread):
+                self.assertIsNone(stall_count(unread))
+
     def test_does_not_misclassify_sagre_as_markets(self):
         result, reason = normalize(market(categoria="sagra"), self.today)
         self.assertIsNone(result)
