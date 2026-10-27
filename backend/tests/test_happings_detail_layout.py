@@ -56,6 +56,28 @@ def parsed(**kw):
     return parse_detail(sample(**kw), requested_url=URL)
 
 
+class WeekdayHoursSummaryTests(unittest.TestCase):
+    def test_sidebar_first_start_last_end_is_a_summary_of_weekday_hours(self):
+        # Happings shows "15:00 - 13:00" for "martedì 15:00–19:00; ... sabato 08:30–13:00".
+        schema = {"@type": "Event", "name": "Mercato esempio", "url": URL,
+                  "startDate": "2026-10-27T15:00:00+01:00", "endDate": "2026-10-27T19:00:00+01:00",
+                  "eventStatus": "https://schema.org/EventScheduled",
+                  "location": {"@type": "Place", "name": "Piazza del mercato",
+                               "address": {"@type": "PostalAddress", "streetAddress": "Via Esempio 2",
+                                           "addressLocality": "Pisa", "addressRegion": "Toscana",
+                                           "addressCountry": "IT"}}}
+        page = lambda hours: parse_detail(sample(
+            schema=schema, hours=hours, date_label="27 Ottobre 2026",
+            performances=["27 Ottobre 2026 · 15:00", "29 Ottobre 2026 · 08:30", "31 Ottobre 2026 · 08:30"],
+            description="Orari: martedì 15:00–19:00; giovedì 08:30–13:00; sabato 08:30–13:00."), requested_url=URL)
+        summary = page("15:00 - 13:00")
+        self.assertEqual(summary["conflicts"], [])
+        self.assertIn("sidebar_hours_summarize_weekday_hours", summary["warnings"])
+        self.assertNotIn("15:00 - 13:00", summary["event"]["hours_text"])
+        # Any other sidebar still disagrees with the schema: held as before.
+        self.assertEqual([c["code"] for c in page("16:00 - 13:00")["conflicts"]], ["schema_sidebar_hours_mismatch"])
+
+
 class CapturedDetailTests(unittest.TestCase):
     def test_lucca_weekends_keep_boundaries_without_daily_or_overnight_hours(self):
         raw, meta = fixture("lucca_antiquario")

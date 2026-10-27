@@ -299,7 +299,7 @@ def parse_detail(html, *, requested_url, final_url=None):
     document.feed(raw.decode("utf-8-sig", "replace"))
     document.close()
     root = document.root
-    conflicts, warnings, evidence = [], [], {}
+    conflicts, warnings, evidence, schema_pairs = [], [], {}, []
 
     def conflict(field_name, code, values):
         item = {"field": field_name, "code": code, "values": values}
@@ -675,9 +675,10 @@ def parse_detail(html, *, requested_url, final_url=None):
                                     "evidence": ["Event.startDate/endDate"]})
                 proven("occurrences", "Event.startDate/endDate")
             if start["time"] and end and end["date"] == schema_date and end["time"]:
-                pair = {"start": start["time"], "end": end["time"]}
-                if event["hours_intervals"] and pair not in event["hours_intervals"]:
-                    conflict("hours_text", "schema_sidebar_hours_mismatch", [pair, event["hours_intervals"]])
+                # Compared once the description's per-day hours are merged (below);
+                # until then the sidebar hours are the reference, as always.
+                schema_pairs.append(({"start": start["time"], "end": end["time"]},
+                                     list(event["hours_intervals"])))
 
     if "data" in sidebar_fields:
         visible_date = _date(sidebar_fields["data"][0])
@@ -805,12 +806,25 @@ def parse_detail(html, *, requested_url, final_url=None):
                     proven("occurrences", ".happings-event-description-card date-specific hours")
     if event["hours_qualifications"]:
         event["hours_qualifications"] = list(dict.fromkeys(event["hours_qualifications"]))
+        # A sidebar "15:00 - 13:00" beside "martedì 15:00–19:00; giovedì 08:30–13:00"
+        # is the first listed start and the last listed end: a summary, not hours.
+        per_day = [i for line in event["hours_qualifications"] if WEEKDAYS.search(line)
+                   for i in _intervals(line)]
+        sidebar = _intervals(event["hours_text"])
+        if (len(per_day) > 1 and len(sidebar) == 1
+                and sidebar[0] == {"start": per_day[0]["start"], "end": per_day[-1]["end"]}):
+            warnings.append("sidebar_hours_summarize_weekday_hours")
+            event["hours_text"] = None
+            schema_pairs = [(pair, per_day) for pair, _ in schema_pairs]
         event["hours_text"] = "\n".join(([event["hours_text"]] if event["hours_text"] else [])
                                          + event["hours_qualifications"])
         # Keep these intervals explicitly qualified by their text. Callers must
         # never choose the first pair as one universal schedule.
         event["hours_intervals"] = _intervals(event["hours_text"])
         proven("hours_text", ".happings-event-description-card hour qualifications")
+    for pair, reference in schema_pairs:
+        if reference and pair not in reference:
+            conflict("hours_text", "schema_sidebar_hours_mismatch", [pair, reference])
     # Some pages put a workshop into the same generic "performances" list.
     # Remove that start from the market schedule only when the body explicitly
     # names the ancillary activity, exactly one date is possible, and the time

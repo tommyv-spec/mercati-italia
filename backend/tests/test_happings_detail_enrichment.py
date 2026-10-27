@@ -68,6 +68,19 @@ class HappingsDetailEnrichmentTests(unittest.TestCase):
         self.assertIsNone(fair("FIERA DI SAN MARTINO", category="Concerti"))
         self.assertTrue(enrich._town_fair({"category": "Fiere", "name": "Fiera di Santa Lucia"}))
 
+    def test_same_organiser_on_other_days_at_another_street_is_another_market(self):
+        # The Pisa page is a Saturday market in VIA del Chiassatello.
+        tuesday = dict(ricorrenza_testo="settimanale - martedì")
+        rows, report = self.run_source([existing(indirizzo="VIA Roma, 1", **tuesday)])
+        self.assertEqual(report["outcomes"][0]["status"], "new_venue_admitted")
+        self.assertEqual(len(rows), 2)
+        # Same street (or a card with dates on the same weekday) stays one market.
+        _, report = self.run_source([existing(**tuesday)])
+        self.assertEqual(report["outcomes"][0]["reason"], "ambiguous_existing_identity")
+        _, report = self.run_source([existing(indirizzo="VIA Roma, 1", ricorrenza_testo="",
+                                              date=["2026-10-24", "2026-10-31"])])
+        self.assertEqual(report["outcomes"][0]["reason"], "ambiguous_existing_identity")
+
     def run_source(self, rows=None, *, source=None, today=TODAY, **kwargs):
         return enrich.preview(rows or [], [source or page()], today=today,
                               apply=True, admit_new=True, **kwargs)

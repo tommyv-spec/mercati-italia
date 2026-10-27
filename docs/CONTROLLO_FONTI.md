@@ -42,6 +42,15 @@ Status: ⬜ to do · 🔧 building · ✅ live on DEV · ⏸ parked (reason give
 | R10 | eventiesagre reader: the "Informazioni sul Mercato:" heading was taken for a contacts section, so the day/hours/goods under it were thrown away | every weekly page | ✅ | Found while checking why 347 of 352 re-read weekly pages showed "no hours": the page says "Orari del Mercato: Dalle 08:00 alle 13:00". Fixed the heading rule only. Live check, 40 pages old vs new reader: 11 weekly pages now read their stated hours (11/11 equal to the page), 29 unchanged. Effect: re-reads now confirm the hours of ~970 weekly cards, and newly discovered eventiesagre markets arrive with hours. **Caveat:** 970 of 1,093 eventiesagre weekly pages state exactly 08:00–13:00: probably the site's default, so treat those hours as approximate. |
 | — | Friuli Venezia Giulia open data (2 datasets found by the round-1 search) | — | ⏸ | Checked: stall statistics per quarter (frequency, number of stalls), no weekday, hours or street. Not useful. |
 
+## Round 3 — complete extraction, source by source (started 2026-10-27)
+
+Owner request: inspect each platform properly, extract everything it publishes, and turn every finding into the nightly scripts (never a one-off import).
+
+| # | Source | What the platform exposes (inspected) | Finding | Automated by | Status |
+|---:|---|---|---|---|:---:|
+| S1 | happings.com | (1) 107 weekly province pages: plain text "a Town, in place (la mattina)", no link per market, no map data, old per-town URLs redirect to the province page; (2) event pages `/it/happing/…` (address, map point, times, every date; listed in 14 sitemaps and in the "Mercati" category archive, 260 events); (3) a map feed (POST `happings_map_data`, small radius) with the same event fields; (4) WordPress API with no market data. | Weekly pages are fully extracted: they publish no clock hours or exact street. Of the 260 "Mercati" events, 113 were missing: 63 pass every rule and come due 27–28 Oct (≤32 new per night), 11 more were wrongly held → fixed below, 50 rightly held (one-offs already over, vague place only, real contradictions on the page). | Event reader: a sidebar "15:00 - 13:00" that is the first listed start + last listed end of per-weekday hours is a summary, not a contradiction (covered Campagna Amica markets in Gorizia, Bari, Pavia, Varese, Vicenza, Brescia, Genova fish market). Matching: same organiser name on other weekdays at another real street is another market (Avellino, Pontedera). Street types: calata, lungolago, lungarno, lungotevere, salita, galleria, calle, fondamenta, riva, emiciclo, bastioni, circonvallazione. All 11 checked against their pages. | ✅ |
+| S1b | happings.com — open | An event page that describes our vague weekly card ("centro", "La mattina") should fill it (Fiè allo Sciliar, Aulla, Teramo); needs the event card to become the visible card over the weekly one (two steps own those fields). German town names (Kastelruth = Castelrotto): 2 events. | | ⬜ |
+
 For every source the same four questions:
 1. How do we collect it today, and does that happen automatically?
 2. How complete is it (hours, street, upcoming dates, map position)?

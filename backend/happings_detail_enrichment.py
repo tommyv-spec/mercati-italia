@@ -162,6 +162,14 @@ def _matches(base, document, geo, today):
         same_name = _name(row.get("nome_originale") or row.get("nome")) == _name(event.get("name"))
         same_street = _street_same(row.get("indirizzo"), street)
         row_days = _days(row)
+        # Same organiser name, other weekdays AND another real street: another
+        # market (Campagna Amica runs several per town), never this one. A card
+        # listing explicit dates has the weekdays of those dates.
+        held_days = row_days or {as_day(d).weekday() for d in row.get("date") or [] if as_day(d)}
+        if (not mentions_url and not _page_identity(row, url) and held_days and days
+                and not held_days & days and _specific_address(street)
+                and _specific_address(row.get("indirizzo")) and not same_street):
+            continue
         compatible_days = bool(nominal_days and row_days and nominal_days <= row_days)
         generic_names = (not _distinctive_name(row.get("nome"), city)
                          and not _distinctive_name(event.get("name"), city))

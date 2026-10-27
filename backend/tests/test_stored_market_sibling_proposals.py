@@ -109,6 +109,14 @@ class StoredPublisherSiblingAuditTests(unittest.TestCase):
         self.assertTrue(safe_stored_street("Piazza Fermi"))
         self.assertTrue(safe_stored_street("Villaggio dei Fiori"))
         self.assertTrue(safe_stored_street("Via Roma"))
+        # Real Italian street types beyond via/piazza (Genova quays, lakefronts, Sassari's square).
+        for address in ("CALATA Vignoso", "Lungolago Riva Cornicello", "EMICICLO Garibaldi",
+                        "Salita San Francesco", "Bastioni, 39031 Brunico"):
+            with self.subTest(address=address):
+                self.assertTrue(safe_stored_street(address))
+        for address in ("Zona Industriale", "Località Bosco", "Centro paese"):
+            with self.subTest(address=address):
+                self.assertFalse(safe_stored_street(address))
 
     def test_no_false_weekday_join_if_slug_disagrees(self):
         wrong=market("di-spinea-spinea-sabato",address="")
