@@ -308,8 +308,11 @@ class MonitoringTests(unittest.TestCase):
                       start_date="2026-10-25", verified_on="2026-10-20"),
                  card(id=self.C, url="https://vintagery.it/mercatini/" + self.C, read_on="2026-10-22")]
         today_plan = vg.plan(snapshot(*cards), today=date(2026, 10, 28), per_day=2)
-        self.assertEqual(today_plan["fetch"], [self.B[:8], self.A[:8]])
-        self.assertEqual(len(today_plan["known"]), 3)
+        self.assertEqual(today_plan, {"day": "2026-10-28", "fetch": [self.B[:8], self.A[:8]]})
+        # A card the last sitemap listing named that we don't hold yet goes first.
+        today_plan = vg.plan(snapshot(*cards), today=date(2026, 10, 28), per_day=2,
+                             listing=[self.A, self.D, self.C])
+        self.assertEqual(today_plan["fetch"], [self.D[:8], self.B[:8]])
 
 
 if __name__ == "__main__":

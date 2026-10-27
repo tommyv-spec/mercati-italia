@@ -12,7 +12,9 @@
 # nightly then keeps using the older snapshot (cards stop counting 45 days after their read).
 param(
     [int]$PerDay = 120,
-    [int]$WaitRunnerMinutes = 90
+    [int]$WaitRunnerMinutes = 90,
+    # Read and merge, but commit and push nothing (a test run).
+    [switch]$DryRun
 )
 $ErrorActionPreference = 'Stop'
 $Root = Join-Path $env:LOCALAPPDATA 'mercati-italia\vintagery'
@@ -40,31 +42,37 @@ try {
     Invoke-Checked 'fetch DEV' { git -C $Repo fetch -q $Remote $Dev }
     Invoke-Checked 'reset to DEV' { git -C $Repo reset -q --hard FETCH_HEAD }
 
-    # 2. Plan + collector as one script.
+    # 2. Today's plan (new cards from the last archived listing, then the oldest reads).
     $Day = Get-Date -Format 'yyyy-MM-dd'
     $Plan = Join-Path $Root 'plan.js'
-    $Page = Join-Path $Root 'page.js'
-    Invoke-Checked 'plan' { python (Join-Path $Repo 'backend\vintagery_source.py') --plan $Plan --per-day $PerDay --today $Day --out (Join-Path $Repo $Snapshot) }
-    (Get-Content $Plan -Raw -Encoding utf8) + (Get-Content (Join-Path $Repo 'ops\vintagery\collect.js') -Raw -Encoding utf8) |
-        Out-File -FilePath $Page -Encoding utf8
+    $Listing = @(Get-ChildItem -Path $Archive -Filter 'vintagery_cards_*.json' | Sort-Object LastWriteTime -Descending |
+        Select-Object -First 1 | ForEach-Object { '--listing'; $_.FullName })
+    Invoke-Checked 'plan' { python (Join-Path $Repo 'backend\vintagery_source.py') --plan $Plan --per-day $PerDay --today $Day --out (Join-Path $Repo $Snapshot) @Listing }
+    $Script = (Get-Content $Plan -Raw -Encoding utf8) + (Get-Content (Join-Path $Repo 'ops\vintagery\collect.js') -Raw -Encoding utf8)
 
-    # 3. Claude in Chrome reads the pages in the owner's Chrome.
+    # 3. Claude in Chrome reads the pages in the owner's Chrome. The prompt goes in on stdin:
+    # Windows PowerShell 5.1 breaks a program argument that holds double quotes.
     $Started = Get-Date
     $Prompt = @"
 You run the daily Vintagery read in the user's Chrome. Do exactly this, nothing else:
 1. Call tabs_context_mcp with createIfEmpty true, then tabs_create_mcp, and navigate the new tab to https://vintagery.it/ .
 2. If the tab title stays "Vercel Security Checkpoint" after waiting 20 seconds (computer action wait), reply exactly BLOCKED and stop. Never try to get past it.
-3. Read the file $Page with the Read tool and run its whole content once with javascript_tool in that tab (it returns 'collector started').
+3. Run the script between BEGIN SCRIPT and END SCRIPT below once with javascript_tool in that tab, copied exactly and whole (it returns 'collector started').
 4. Every 60 seconds (computer action wait, 10 s at a time) run javascript_tool with: JSON.stringify(window.__vgState)
    until "running" is false, at most 40 minutes.
 5. If "last" starts with "stopped", reply BLOCKED: <last>. If it is "finished", wait 10 seconds for the download, close the tab with tabs_close_mcp and reply DONE <done>.
 If the Chrome extension is not connected or a browser tool fails twice, reply NOT_CONNECTED and stop.
+
+BEGIN SCRIPT
+$Script
+END SCRIPT
 "@
     $Tools = @('mcp__claude-in-chrome__tabs_context_mcp', 'mcp__claude-in-chrome__tabs_create_mcp',
                'mcp__claude-in-chrome__navigate', 'mcp__claude-in-chrome__javascript_tool',
-               'mcp__claude-in-chrome__computer', 'mcp__claude-in-chrome__tabs_close_mcp', 'Read')
+               'mcp__claude-in-chrome__computer', 'mcp__claude-in-chrome__tabs_close_mcp')
+    $OutputEncoding = New-Object System.Text.UTF8Encoding $false
     # No 2>&1 on programs: in Windows PowerShell it turns stderr lines into errors.
-    $Answer = & claude -p $Prompt --chrome --allowedTools $Tools | Out-String
+    $Answer = $Prompt | & claude -p --chrome --allowedTools $Tools | Out-String
     Write-Log ('claude: ' + $Answer.Trim())
     if ($LASTEXITCODE -ne 0 -or $Answer -notmatch '\bDONE\b') { throw "Claude in Chrome read did not finish: $($Answer.Trim())" }
 
@@ -78,9 +86,10 @@ If the Chrome extension is not connected or a browser tool fails twice, reply NO
     Move-Item -Force $File.FullName (Join-Path $Archive $File.Name)
 
     # 5. Publish the snapshot alone.
+    if ($DryRun) { Write-Log 'dry run: nothing committed'; exit 0 }
     if (-not (git -C $Repo status --porcelain -- $Snapshot)) { Write-Log 'snapshot unchanged'; exit 0 }
     $Deadline = (Get-Date).AddMinutes($WaitRunnerMinutes)
-    while (Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'runner\.py|autopilot' }) {
+    while (Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'run-daily|runner\.py|autopilot' }) {
         if ((Get-Date) -gt $Deadline) { throw 'Nightly runner still busy: snapshot not pushed today' }
         Start-Sleep -Seconds 60
     }

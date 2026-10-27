@@ -808,14 +808,15 @@ def verify_exported(rows, report, *, today):
 PER_DAY = 120
 
 
-def plan(snapshot, *, today, per_day=PER_DAY):
-    """Today's read for collect.js: the ids we hold (8-character prefixes, to spot new
-    cards) and the ones to re-read."""
+def plan(snapshot, *, today, per_day=PER_DAY, listing=()):
+    """Today's read for collect.js (8-character id prefixes): the cards the last daily
+    sitemap listing named that we don't hold yet, then passed next dates and the oldest
+    reads. The plan stays small: Claude in Chrome copies it into the page every day."""
     day = today.isoformat()
     cards = snapshot["cards"] if snapshot else []
+    new = sorted(set(listing) - {c["id"] for c in cards})
     due = sorted(cards, key=lambda c: (not (c["start_date"] and c["start_date"] < day), c["read_on"], c["id"]))
-    return {"day": day, "known": sorted(c["id"][:8] for c in cards),
-            "fetch": [c["id"][:8] for c in due[:per_day]]}
+    return {"day": day, "fetch": [key[:8] for key in [*new, *(c["id"] for c in due)][:per_day]]}
 
 
 def merge_download(snapshot, download):
@@ -869,11 +870,14 @@ def main(argv=None):
     parser.add_argument("--plan", type=Path, help="write today's read plan for collect.js (window.__vgPlan)")
     parser.add_argument("--per-day", type=int, default=PER_DAY)
     parser.add_argument("--today", type=date.fromisoformat, default=date.today())
+    parser.add_argument("--listing", type=Path, help="the last daily download: its sitemap listing names new cards")
     args = parser.parse_args(argv)
     if args.plan:
-        today_plan = plan(load_snapshot(args.out), today=args.today, per_day=args.per_day)
-        args.plan.write_text("window.__vgPlan = " + json.dumps(today_plan) + ";\n", "utf-8", newline="\n")
-        print(json.dumps({"plan": str(args.plan), "known": len(today_plan["known"]), "fetch": len(today_plan["fetch"])}))
+        listing = json.loads(args.listing.read_text("utf-8")).get("listing") or [] if args.listing else []
+        today_plan = plan(load_snapshot(args.out), today=args.today, per_day=args.per_day, listing=listing)
+        # One id per line: the page script must have no line the Read tool would cut.
+        args.plan.write_text("window.__vgPlan = " + json.dumps(today_plan, indent=0) + ";\n", "utf-8", newline="\n")
+        print(json.dumps({"plan": str(args.plan), "fetch": len(today_plan["fetch"])}))
         return 0
     if args.download is None:
         parser.error("give a download to import, or --plan")

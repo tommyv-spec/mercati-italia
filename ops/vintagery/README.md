@@ -10,10 +10,11 @@ Windows task `MercatiItalia-Vintagery`, every day at 03:30 (before the 04:30 nig
 while the owner is logged in. It runs `refresh-daily.ps1`:
 
 1. resets its own DEV checkout (`%LOCALAPPDATA%\mercati-italia\vintagery\repo`);
-2. writes today's plan: the sitemap is read for new and removed cards, and 120 cards are
-   re-read (passed next dates first, then the oldest reads), so every card is re-read about
-   weekly;
-3. `claude -p --chrome` opens vintagery.it in a new tab, runs the plan + `collect.js`, waits;
+2. writes today's plan, 120 cards: those the previous day's sitemap listing named that we
+   don't hold yet, then passed next dates, then the oldest reads, so every card is re-read
+   about weekly (the sitemap itself is read every day, for new and removed cards);
+3. `claude -p --chrome` (prompt on stdin, the plan + `collect.js` inside it) opens
+   vintagery.it in a new tab, runs the script, waits;
 4. the downloaded `vintagery_cards_<day>.json` is merged into
    `backend/data/vintagery-snapshot.json` and moved to `...\vintagery\archive\`;
 5. if the snapshot changed: waits for the nightly runner to be idle, commits only the
@@ -26,6 +27,10 @@ nightly keeps using the older snapshot; a card stops counting 45 days after its 
 Install (the owner, once, from any up-to-date checkout of DEV):
 
     powershell -NoProfile -ExecutionPolicy Bypass -File ops\vintagery\install-task.ps1
+
+A test run that reads and merges a few cards but commits nothing:
+
+    powershell -NoProfile -ExecutionPolicy Bypass -File ops\vintagery\refresh-daily.ps1 -PerDay 3 -DryRun
 
 Why not the sitemap's `<lastmod>`: it is the time the sitemap was built (the same value for
 all 840 cards, checked 27 Oct 2026), so it cannot tell which card changed. A card is renewed

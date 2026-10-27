@@ -4,9 +4,9 @@
 //
 // Two modes:
 // - full (default): every card listed in /sitemap/mercatini-*.xml.
-// - daily: when window.__vgPlan = {day, known: [8-char id prefixes], fetch: [prefixes]} is
-//   set first (`python backend/vintagery_source.py --plan plan.js`): the sitemap listing,
-//   then only the cards we don't hold yet and the ones the plan asks to re-read.
+// - daily: when window.__vgPlan = {day, fetch: [8-char id prefixes]} is set first
+//   (`python backend/vintagery_source.py --plan plan.js`): the sitemap listing, then only
+//   the cards the plan names (new ones from the previous listing, then the oldest reads).
 //   The sitemap's <lastmod> is when the sitemap was built, not when a card changed, so
 //   it is never used to skip a card.
 //
@@ -54,9 +54,8 @@ window.__vgCollect = async () => {
   }
   const unique = [...new Set(listed)]
   if (!unique.length) { state.running = false; state.last = 'stopped: empty sitemap (blocked?)'; return }
-  const known = new Set(plan ? plan.known : [])
   const asked = new Set(plan ? plan.fetch : [])
-  const todo = plan ? unique.filter(url => !known.has(url.slice(-36, -28)) || asked.has(url.slice(-36, -28))) : unique
+  const todo = plan ? unique.filter(url => asked.has(url.slice(-36, -28))) : unique
   state.total = todo.length
   state.done = Object.keys(load()).length
   let strikes = 0
