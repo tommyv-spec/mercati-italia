@@ -95,6 +95,7 @@ from existing_source_refresh import (
     STATE_FILENAMES as EXISTING_SOURCE_STATES, EDITORIAL_SECONDS,
 )
 import editorial_discovery
+import vintagery_source
 from official_source_output_gate import inspect as inspect_official_source_output
 from municipality_release_guard import (
     check as check_municipality_changes,
@@ -112,7 +113,7 @@ from municipality_reconciliation import (
 
 SCHEMA = 1
 PHASES = ("baseline", "sources", "enrichment", "merge", "municipalities",
-          "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "publisher_pages", "editorial_sources", "editorial_discovery", "forecast",
+          "source_lifecycle", "reviewed_cities", "milano_streets", "milano_2026", "roma_2026_venues", "generic_admission", "publisher_pages", "editorial_sources", "editorial_discovery", "vintagery", "forecast",
           "reviewed_publishers", "roma_geo_hold", "roma_d881", "happings_enrichment", "positions", "export", "quality")
 SOURCE_FUNCTIONS = {
     "milano": (source_milano.download, source_milano.convert),
@@ -1240,6 +1241,15 @@ def run(args):
     )
     save_json(out / "intermediate/editorial-discovery-admitted.json", editorial_rows)
     checkpoint(out, "editorial_discovery", discovery_report["summary"])
+    # Vintagery's committed browser snapshot (the site blocks scripts): its own cards are
+    # re-read from a newer snapshot, and markets other sources have get their empty
+    # street/hours filled and a matching rule restated, each with a receipt.
+    vintagery_before = editorial_rows
+    editorial_rows, vintagery_report = vintagery_source.apply(editorial_rows, today=args.today)
+    vintagery_source.verify(vintagery_before, editorial_rows, vintagery_report, today=args.today)
+    del vintagery_before
+    save_json(out / "vintagery.json", vintagery_report)
+    checkpoint(out, "vintagery", vintagery_report["summary"])
 
     projected, forecast_stats = refresh_records(
         editorial_rows, args.today, policy["forecast"]["days"],
@@ -1461,6 +1471,8 @@ def run(args):
     discovery_static_guard = editorial_discovery.verify_exported(
         new_rows, discovery_report, today=args.today, state_dir=dest)
     save_json(out / "editorial-discovery-static-guard.json", discovery_static_guard)
+    vintagery_static_guard = vintagery_source.verify_exported(new_rows, vintagery_report, today=args.today)
+    save_json(out / "vintagery-static-guard.json", vintagery_static_guard)
     happings_admissions = happings_report.get("details", {}).get("evidence", {})
     if happings_admissions.get("new_market_ids") or discovery_ids:
         # Existing external QA imports these shared source guards. Carry
@@ -1625,6 +1637,7 @@ def run(args):
         "state_changed": discovery_state_changed,
         "release_safe": discovery_static_guard["release_safe"],
     }
+    findings["vintagery"] = {**vintagery_report["summary"], "release_safe": vintagery_static_guard["release_safe"]}
     findings["publisher_refresh"] = {
         "selected_pages": page_report["selected_pages"],
         "field_changes": page_report["field_changes"],

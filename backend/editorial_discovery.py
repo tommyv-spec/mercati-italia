@@ -37,7 +37,9 @@ import atomic_write
 
 SCHEMA = 1
 POLICY_PATH = editorial.POLICY_PATH
-PUBLISHERS = {"eventiesagre.it": "eventiesagre", "cosedicasa.com": "cosedicasa"}
+PUBLISHERS = {"eventiesagre.it": "eventiesagre", "cosedicasa.com": "cosedicasa", "vintagery.it": "vintagery"}
+# Read from a committed browser snapshot instead of the publisher's index pages.
+SNAPSHOT_PUBLISHERS = {"vintagery.it"}
 ORDER = tuple(PUBLISHERS)
 REPORT_FILENAME = "editorial-discovery.json"
 MAX_INDEXES = 2000
@@ -57,7 +59,7 @@ INDEX_KEYS = {"first_seen", "last_checked", "lastmod", "status", "links", "error
 INDEX_STATUSES = {"unread", "read", "unavailable", "robots_denied"}
 CANDIDATE_KEYS = {"first_seen", "last_attempt", "attempts", "lastmod", "status", "reason"}
 CANDIDATE_STATUSES = {"pending", "held", "unavailable", "robots_denied"}
-NO_NEW_STATE = {"disabled", "offline_skipped", "resume_missing_evidence"}
+NO_NEW_STATE = {"disabled", "offline_skipped", "resume_missing_evidence", "snapshot"}
 LOC = re.compile(r"<(url|sitemap)>(.*?)</\1>", re.S | re.I)
 HREF = re.compile(r"""\bhref\s*=\s*["']([^"'<>]{1,700})["']""", re.I)
 
@@ -528,10 +530,12 @@ function of the observed page, so a verifier rebuilds exactly the same row.
         "regione": place["region"], "indirizzo": "", "lat": None, "lng": None,
         "position_quality": "sconosciuta", "categoria": category, "tags": [],
         "status": "non_confermato", "orario_testo": "", "ricorrenza_testo": recurrence,
-        "descrizione": "", "date": [], "date_quality": "sconosciuta",
+        "date": [], "date_quality": "sconosciuta",
         "proiezione_regola": None, "proiezione_generata_il": "", "proiezione_fonte": "",
         "confidence": 0, "fonte": publisher, "url_fonte": url,
         "fonti": [{"nome": publisher, "url": url}], "verificato_il": "", "aggiornato_il": "",
+        # A page reader may carry the page's own description (vintagery_source does).
+        "descrizione": " ".join(str(event.get("description") or "").split())[:900],
         "fonte_letta_il": read_on, "importato_il": today.isoformat()}
     # The re-read path binds the page, builds its evidence and field receipts,
     # assigns address/hours it can prove and limits the calendar to the page.
@@ -817,6 +821,12 @@ same market cannot both add it. Returns (rows, report, admitted ids).
         checkpoint = _checkpoint(out, publisher)
         if not _active(config, publisher):
             return previous, [], {"status": "disabled", "network_requests": 0}
+        if publisher in SNAPSHOT_PUBLISHERS:
+            # The committed snapshot is the source: no queue and no HTTP, the same on resume.
+            import vintagery_source
+            pages = vintagery_source.pages(rows, today=today, limit=policy["max_candidate_reads"])
+            return previous, pages, {"status": "snapshot", "network_requests": 0,
+                                     "candidate_pages_read": len(pages)}
         if resume:
             if not checkpoint.is_file():
                 return previous, [], {"status": "resume_missing_evidence", "network_requests": 0}

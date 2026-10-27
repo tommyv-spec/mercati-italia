@@ -101,6 +101,9 @@ def source_identity(url):
             match = re.fullmatch(r"/mercatini/([a-z0-9]+(?:-[a-z0-9]+)*)/?", parsed.path)
             if match:
                 return "cosedicasa.com", match[1]
+        if parsed.netloc == "vintagery.it":
+            from vintagery_source import source_identity as vintagery_identity
+            return vintagery_identity(url)
     except ValueError:
         pass
     # A narrow existing-detail adapter owns its reviewed origins and exact
@@ -156,7 +159,8 @@ def clean_editorial_evidence(value, row, *, today):
             or not re.fullmatch(r"[0-9a-f]{64}", str(value.get("source_sha256") or ""))
             or type(value.get("source_bytes")) is not int
             or not 100 <= value["source_bytes"] <= 2_500_000
-            or value.get("hash_basis") not in {"http_response_bytes", "connector_utf8_text"}):
+            or value.get("hash_basis") not in {"http_response_bytes", "connector_utf8_text",
+                                               "browser_captured_record"}):
         return None
     read = as_day(value.get("read_on"))
     if not read or read > today:

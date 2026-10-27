@@ -79,7 +79,8 @@ def discovery_index_url(url, *, accept=None, discovery=None):
                 or value.password or value.port not in (None, 443)):
             return False
         for policy in discovery.values():
-            if (isinstance(policy, dict) and value.netloc == "www." + str(policy.get("publisher"))
+            if (isinstance(policy, dict)
+                    and value.netloc in ("www." + str(policy.get("publisher")), str(policy.get("publisher")))
                     and (accept is None or INDEX_ACCEPT.get(policy.get("index_format")) == accept)
                     and (url in (policy.get("seed_urls") or [])
                          or re.fullmatch(str(policy.get("follow_pattern")), url))):

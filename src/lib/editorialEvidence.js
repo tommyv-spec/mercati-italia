@@ -31,6 +31,10 @@ function sourceIdentity(value) {
         (match = url.pathname.match(/^\/(?:Mercatini|Eventi)_[A-Za-z+]+\/(\d+)_[^/]+\.html$/))) {
       return ['eventiesagre.it', match[1]]
     }
+    if (url.host === 'vintagery.it' &&
+        (match = url.pathname.match(/^\/mercatini\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/))) {
+      return ['vintagery.it', match[1]]
+    }
   } catch { /* A malformed URL is not displayable evidence. */ }
   return citynewsSourceIdentity(value)
 }
@@ -147,9 +151,10 @@ export function editorialEvidenceView(market, now = new Date()) {
   return {
     title: historical ? 'Edizione passata descritta dalla fonte' : 'Dettagli dell’edizione nella fonte',
     sourceName: proof.publisher === 'cosedicasa.com' ? 'Cose di Casa'
-      : proof.publisher === 'eventiesagre.it' ? 'Eventi e Sagre' : `Citynews · ${proof.publisher}`,
+      : proof.publisher === 'eventiesagre.it' ? 'Eventi e Sagre'
+        : proof.publisher === 'vintagery.it' ? 'Vintagery' : `Citynews · ${proof.publisher}`,
     sourceUrl: proof.final_url, readOn: dateLabel(proof.read_on),
-    editorialDate: proof.modified_on ? `Modifica dichiarata: ${dateLabel(proof.modified_on)}`
+    editorialDate: proof.modified_on ? `${proof.publisher === 'vintagery.it' ? 'Scheda verificata' : 'Modifica dichiarata'}: ${dateLabel(proof.modified_on)}`
       : proof.published_on ? `Pubblicazione dichiarata: ${dateLabel(proof.published_on)}` : 'Data dei contenuti non dichiarata',
     historical, calendarConflict, notes: [...new Set(notes)], rows,
     hours: fields.has('hours') ? '' : text(facts.hours_text),

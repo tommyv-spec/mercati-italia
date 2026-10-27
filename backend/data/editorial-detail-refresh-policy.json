@@ -120,6 +120,51 @@
       "max_seconds": 420,
       "min_delay_seconds": 2,
       "recheck_after_days": 30
+    },
+    "vintagery": {
+      "publisher": "vintagery.it",
+      "enabled": true,
+      "new_market_ids_allowed": true,
+      "reuse_permission_verified": false,
+      "owner_decision": "Owner decision 2026-10-27: Vintagery is the owner's own app (backend access lost) - include its markets. The site blocks scripts (Vercel checkpoint), so pages come from the committed browser snapshot backend/data/vintagery-snapshot.json, never over HTTP.",
+      "index_format": "sitemap_xml",
+      "seed_urls": [
+        "https://vintagery.it/sitemap/mercatini-0.xml"
+      ],
+      "follow_pattern": "https://vintagery\\.it/sitemap/mercatini-[0-9]{1,2}\\.xml",
+      "category_rules": [
+        [
+          "name",
+          "antiquar|antic|modernariato|collezion|brocant|robivecch|cose vecchie|cianfrusagl|rigatt",
+          "antiquariato"
+        ],
+        [
+          "name",
+          "usato|pulci|baratto|svuota|stock|second",
+          "usato"
+        ],
+        [
+          "name",
+          "artigian|hobbis|creativ|ingegno",
+          "artigianato"
+        ],
+        [
+          "name",
+          "vintage",
+          "vintage_abbigliamento"
+        ],
+        [
+          "url",
+          "^https://vintagery\\.it/mercatini/",
+          "antiquariato"
+        ]
+      ],
+      "max_index_requests": 1,
+      "max_candidate_reads": 80,
+      "max_new": 32,
+      "max_seconds": 10,
+      "min_delay_seconds": 4,
+      "recheck_after_days": 30
     }
   }
 }

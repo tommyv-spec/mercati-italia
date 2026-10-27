@@ -64,7 +64,10 @@ CALENDAR_ISSUES = {"edition_dates_missing_or_invalid", "archive_marker_date_conf
 PUBLISHERS = {"eventiesagre.it": {"policy_key": "eventiesagre", "stem": "eventiesagre",
                  "manager": MANAGER, "max_details": 128, "max_seconds": 600},
               "cosedicasa.com": {"policy_key": "cosedicasa", "stem": "cosedicasa",
-                 "manager": "cosedicasa_detail", "max_details": 64, "max_seconds": 300}}
+                 "manager": "cosedicasa_detail", "max_details": 64, "max_seconds": 300},
+              # Read from the committed browser snapshot, never over HTTP (vintagery_source).
+              "vintagery.it": {"policy_key": "vintagery", "stem": "vintagery",
+                 "manager": "vintagery_detail", "max_details": 1000, "max_seconds": 60}}
 STATE_SCHEMA = 2
 RETRY_DAYS = (1, 2, 4, 7)
 RETRY_EVERY = 4
@@ -319,6 +322,17 @@ def parse_document(blob, *, requested_url, final_url=None, today):
             or (source_identity(final_url) or (None,))[0] != expected[0]
             or expected[0] == PUBLISHER and source_identity(final_url) != expected):
         raise ValueError("Editorial redirect changed the numeric source identity")
+    if expected[0] == "vintagery.it":
+        from vintagery_source import parse_detail
+        document = parse_detail(blob, requested_url=requested_url)
+        normalized = _normalized_location(document["event"]["location"])
+        if normalized is None:
+            document["conflicts"].append({"field": "identity", "code": "istat_geography_unresolved"})
+            document["status"] = "held"
+        else:
+            document["event"]["location"] = normalized
+        document["event"]["forecast_rule"] = None
+        return document
     if expected[0] == "cosedicasa.com":
         from cosedicasa_layout import parse_detail, street_only
         document = parse_detail(blob, requested_url=requested_url, final_url=final_url, read_on=today)
@@ -651,7 +665,8 @@ def _update(row, document, *, read_on, today):
                 source_row=selected["source_row_id"], read_on=read_on,
                 source_updated_on=evidence["modified_on"], source_sha256=evidence["source_sha256"],
                 scope="pagina", method="pagina_primaria_revisionata",
-                fingerprint_kind="web_extracted_text" if evidence["hash_basis"] == "connector_utf8_text" else "html_bytes")
+                fingerprint_kind={"connector_utf8_text": "web_extracted_text",
+                                  "browser_captured_record": "publisher_parsed_json"}.get(evidence["hash_basis"], "html_bytes"))
         except ValueError:
             # One page's unusable value holds that card; it never stops the run.
             return row, {"slug": row["slug"], "status": "held", "reason": "source_values_not_receiptable", "fields": []}
