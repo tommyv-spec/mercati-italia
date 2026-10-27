@@ -177,6 +177,21 @@ class ExportTests(unittest.TestCase):
                 result, _ = normalize(market(descrizione=text), self.today)
                 self.assertEqual(result["descrizione"], expected)
 
+    def test_season_end_drops_the_projection_with_the_last_date(self):
+        from datetime import timedelta
+        from recurrence_refresh import refresh_records
+        past = (self.today - timedelta(days=1)).isoformat()
+        rule = {"active_months": [6, 7, 8, 9, 10], "kind": "weekly", "weekdays": [1]}
+        result, _ = normalize(market(date=[past], date_quality="prevista",
+                                     ricorrenza_testo="settimanale - martedi, da giugno a ottobre",
+                                     proiezione_regola=rule, proiezione_fonte="ricorrenza_testo",
+                                     proiezione_generata_il=past), self.today)
+        self.assertEqual((result["date"], result["date_quality"]), ([], "sconosciuta"))
+        self.assertEqual((result["proiezione_regola"], result["proiezione_fonte"],
+                          result["proiezione_generata_il"]), (None, "", ""))
+        _, report = refresh_records([result], self.today + timedelta(days=1))
+        self.assertTrue(report["all_dates_marked_forecast"])
+
     def test_stalls_come_only_from_the_sources_own_count(self):
         from export_static import stall_count
         exhibitors = lambda value: {"evidenza_editoriale": {"facts": {"source_rows": [
