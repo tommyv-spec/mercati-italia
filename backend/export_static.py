@@ -628,11 +628,20 @@ def concluded_reason(row: dict, today: date, source_reads=None) -> str:
     """Why a market is no longer scheduled ("" if it still is). Same rule for every source:
     no upcoming date, no recurrence that can produce one, and either its own source shows
     the edition is over or nobody has re-read that source for CONCLUDED_UNREAD_DAYS.
+    No upcoming date and its own complete weekly page listing the town only on other
+    weekdays (field_conflicts.delisted_weekday) is "non_piu_elencato".
     An official dataset entry counts as unread only while the dataset itself is still
     read for other markets (it dropped this one); a dataset nobody re-reads keeps its
     venues. source_reads: {fonte: last day any of its markets was read}."""
     from recurrence_refresh import forecast_rule
-    if any(str(d) >= today.isoformat() for d in row.get("date") or []) or forecast_rule(row):
+    from field_conflicts import delisted_weekday
+    if any(str(d) >= today.isoformat() for d in row.get("date") or []):
+        return ""
+    # Its own complete weekly page lists the town only on other days: the
+    # weekday text can no longer produce a date.
+    if not row.get("verificato_il") and delisted_weekday(row, today=today):
+        return "non_piu_elencato"
+    if forecast_rule(row):
         return ""
     evidence = row.get(EDITORIAL_EVIDENCE) if isinstance(row.get(EDITORIAL_EVIDENCE), dict) else {}
     facts = evidence.get("facts") if isinstance(evidence.get("facts"), dict) else {}

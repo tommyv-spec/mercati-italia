@@ -169,6 +169,66 @@ def propose(base, documents, *, today, apply_authorized, rights_gate_passed):
     return result
 
 
+def propose_weekday_conflicts(base, pages, *, today, apply_authorized, rights_gate_passed):
+    """A complete province page lists a card's town, but only on other weekdays.
+
+    Only cards the page owns (record_matches_page) and towns whose listed rows
+    carry no calendar qualifier; a town missing from the page proves nothing.
+    """
+    import happings_source_enrichment as weekly
+    from happings_weekly_layout import parse
+    from field_conflicts import make_weekday_conflict
+    if (not isinstance(pages, list) or len(pages) > weekly.MAX_REQUESTS_PER_RUN
+            or type(apply_authorized) is not bool or type(rights_gate_passed) is not bool
+            or apply_authorized and not rights_gate_passed):
+        raise ValueError("Invalid Happings negative-evidence scope")
+    result = []
+    for page in pages:
+        try:
+            parsed = parse(page["html"], source_url=page["final_url"], observed_on=today)
+        except ValueError:
+            continue
+        listed, scoped = defaultdict(set), set()
+        for row in parsed.rows:
+            listed[row["city_key"]].add(row["weekday"])
+            if row.get("calendar_scope"):
+                scoped.add(row["city_key"])
+        for card in base:
+            city = fold(card.get("citta"))
+            if (city not in listed or city in scoped
+                    or not weekly.record_matches_page(card, page["requested_url"], page["final_url"])):
+                continue
+            day = weekly._weekly_day(card)
+            if day in listed[city]:
+                continue
+            try:
+                conflict = make_weekday_conflict(
+                    card, listed_days=sorted(listed[city]), source_day=day,
+                    requested_url=page["requested_url"], final_url=page["final_url"],
+                    read_on=today.isoformat(), html_sha256=hashlib.sha256(page["html"]).hexdigest(),
+                    source_bytes=len(page["html"]), today=today)
+            except ValueError:
+                continue
+            item = {"market_id": card["slug"], "conflict": conflict,
+                    "source_url": page["final_url"], "source_requested_url": page["requested_url"],
+                    "source_html_sha256": conflict["sha256"], "source_relation": "primary",
+                    **({"page_metadata": parsed.page_metadata} if parsed.page_metadata is not None else {}),
+                    "source_city": card["citta"], "source_province": card["provincia"],
+                    "source_region": card["regione"], "source_day": day,
+                    "source_value": conflict["valore_fonte"], "observed_at": today.isoformat(),
+                    "apply_authorized": apply_authorized, "rights_gate_passed": rights_gate_passed,
+                    "individually_confirmed": False, "published_opening_verified": False,
+                    "coordinate_added": False}
+            permitted = apply_conflict(card, {**item, "apply_authorized": True,
+                                              "rights_gate_passed": True}, today=today)
+            if conflict not in permitted.get("conflitti_campi", []):
+                continue
+            result.append(item)
+    if len({item["market_id"] for item in result}) != len(result):
+        raise ValueError("Repeated Happings negative-evidence identity")
+    return result
+
+
 def apply_conflict(before, item, *, today):
     result = deepcopy(before)
     if item is None:

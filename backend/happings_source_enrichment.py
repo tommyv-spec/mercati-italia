@@ -842,8 +842,12 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
     verify_source_pages(editorial_documents,pages,today=today)
     address_conflicts=propose_address_conflicts(base,editorial_documents,today=today,
         apply_authorized=bool(apply and rights_verified),rights_gate_passed=bool(rights_verified))
-    by_conflict={item["market_id"]:item for item in address_conflicts}
-    if set(by_conflict)&(set(by_proposal)|set(by_observation)):
+    from happings_weekly_conflicts import propose_weekday_conflicts
+    weekday_conflicts=propose_weekday_conflicts(base,pages,today=today,
+        apply_authorized=bool(apply and rights_verified),rights_gate_passed=bool(rights_verified))
+    by_conflict={item["market_id"]:item for item in [*address_conflicts,*weekday_conflicts]}
+    if (len(by_conflict)!=len(address_conflicts)+len(weekday_conflicts)
+            or set(by_conflict)&(set(by_proposal)|set(by_observation))):
         raise ValueError("Address conflict overlaps a positive Happings assignment")
     updated=[expected_record(r,by_proposal.get(r["slug"]),by_observation.get(r["slug"]),today=today,
                              retirement=by_retirement.get(r["slug"]),address_conflict=by_conflict.get(r["slug"])) for r in base]
@@ -867,6 +871,8 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
         "editorial_rights_gate_passed":bool(rights_verified),
         "address_conflicts":address_conflicts,
         "address_conflict_ids":sorted(item["market_id"] for item in address_conflicts if item["apply_authorized"]),
+        "weekday_conflicts":weekday_conflicts,
+        "weekday_conflict_ids":sorted(item["market_id"] for item in weekday_conflicts if item["apply_authorized"]),
         "source_copyright_copying_not_required":True,
         "market_rows_deleted":0,"market_rows_inserted":0,
         "market_openings_verified":0,"new_geographic_points":0,"source_primary_links_replaced":0,
@@ -936,16 +942,18 @@ def safe_report(report,base,*,source_pages=None):
     observations=report.get("observations",[])
     retirements=report.get("retirements",[])
     address_conflicts=report.get("address_conflicts",[])
+    weekday_conflicts=report.get("weekday_conflicts",[])
     page_receipts=report.get("source_pages",[])
     if (not isinstance(proposals,list) or not isinstance(observations,list) or not isinstance(retirements,list)
-            or not isinstance(address_conflicts,list)
+            or not isinstance(address_conflicts,list) or not isinstance(weekday_conflicts,list)
             or len(by_id)!=len(base) or len(page_receipts)!=report.get("pages_evaluated")
             or len(page_receipts)>MAX_REQUESTS_PER_RUN or len(proposals)>MAX_UPDATES_PER_RUN
-            or any(not isinstance(p,dict) for p in [*proposals,*observations,*retirements,*address_conflicts])
+            or any(not isinstance(p,dict) for p in [*proposals,*observations,*retirements,*address_conflicts,*weekday_conflicts])
             or len({p.get("market_id") for p in proposals})!=len(proposals)
             or len({p.get("market_id") for p in observations})!=len(observations)
             or len({p.get("market_id") for p in retirements})!=len(retirements)
-            or len({p.get("market_id") for p in address_conflicts})!=len(address_conflicts)):
+            or len({p.get("market_id") for p in address_conflicts})!=len(address_conflicts)
+            or len({p.get("market_id") for p in weekday_conflicts})!=len(weekday_conflicts)):
         raise ValueError("Publisher report has repeated or missing evidence identities")
     observed_pages={}
     seen_provinces=set()
@@ -988,7 +996,18 @@ def safe_report(report,base,*,source_pages=None):
         rights_gate_passed=report.get("editorial_rights_gate_passed",False))
     if expected_conflicts!=address_conflicts:
         raise ValueError("Address conflicts differ from exact unique source replacements")
-    for item in [*proposals,*observations,*retirements,*address_conflicts]:
+    if weekday_conflicts:
+        if not isinstance(source_pages,list) or not 1<=len(source_pages)<=MAX_REQUESTS_PER_RUN:
+            raise ValueError("Weekday warnings require their captured source pages at the release guard")
+        if any(observed_pages.get((page.get("requested_url"),page.get("final_url")),{}).get("source_html_sha256")
+               !=hashlib.sha256(page["html"]).hexdigest() for page in source_pages):
+            raise ValueError("Weekday warning pages differ from the observed pages")
+    from happings_weekly_conflicts import propose_weekday_conflicts
+    if propose_weekday_conflicts(base,source_pages if weekday_conflicts else [],today=today,
+            apply_authorized=report.get("editorial_apply_authorized",False),
+            rights_gate_passed=report.get("editorial_rights_gate_passed",False))!=weekday_conflicts:
+        raise ValueError("Weekday warnings differ from the exact captured town listings")
+    for item in [*proposals,*observations,*retirements,*address_conflicts,*weekday_conflicts]:
         target=by_id.get(item.get("market_id"))
         source=observed_pages.get((item.get("source_requested_url"),item.get("source_url")))
         if (item.get("individually_confirmed") is not False
@@ -1007,13 +1026,14 @@ def safe_report(report,base,*,source_pages=None):
                 or item.get("source_region")!=target.get("regione")
                 or item.get("source_day")!=_weekly_day(target)
                 or item.get("observed_at")!=report["date"]
-                or not safe_stored_street(item.get("source_value"))):
+                or item not in weekday_conflicts and not safe_stored_street(item.get("source_value"))):
             raise ValueError("Publisher proposal lost its exact source and target evidence")
     by_proposal={p["market_id"]:p for p in proposals}
     by_observation={p["market_id"]:p for p in observations}
     by_retirement={p["market_id"]:p for p in retirements}
-    by_conflict={p["market_id"]:p for p in address_conflicts}
+    by_conflict={p["market_id"]:p for p in [*address_conflicts,*weekday_conflicts]}
     if (not set(by_proposal)<=set(by_observation) or set(by_retirement)&set(by_observation)
+            or len(by_conflict)!=len(address_conflicts)+len(weekday_conflicts)
             or set(by_conflict)&(set(by_proposal)|set(by_observation))):
         raise ValueError("Publisher address proposal has no source observation")
     address_changes=[]
@@ -1033,7 +1053,8 @@ def safe_report(report,base,*,source_pages=None):
                       if o["apply_authorized"] and o["source_relation"]=="secondary")!=report.get("secondary_observed_ids")
             or sorted(o["market_id"] for o in retirements if o["apply_authorized"])!=report.get("retired_ids")):
         raise ValueError("Publisher changes do not match explicitly authorized proposals")
-    if sorted(item["market_id"] for item in address_conflicts if item["apply_authorized"])!=report.get("address_conflict_ids",[]):
+    if (sorted(item["market_id"] for item in address_conflicts if item["apply_authorized"])!=report.get("address_conflict_ids",[])
+            or sorted(item["market_id"] for item in weekday_conflicts if item["apply_authorized"])!=report.get("weekday_conflict_ids",[])):
         raise ValueError("Publisher negative evidence lost its applied identities")
     return True
 
