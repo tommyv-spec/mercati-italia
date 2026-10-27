@@ -35,6 +35,109 @@ PROJECTION_FIELDS = {"proiezione_regola": None, "proiezione_generata_il": "", "p
 # window (vintagery.it: rule + next date + "Scheda verificata il"). Their predictions
 # follow the general freshness rules instead of an edition window.
 RULE_PAGE_PUBLISHERS = frozenset({"vintagery.it"})
+# An hours sentence ("dalle 8 alle 13, la domenica fino alle 19") may also say WHICH days
+# the market runs: whole months it excludes or one month range are read below; any other
+# calendar word, a year or a month named otherwise leaves the sentence unresolved.
+MONTH_NAMES = ("gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
+               "settembre", "ottobre", "novembre", "dicembre")
+_MONTH = "(?:" + "|".join(MONTH_NAMES) + ")"
+_MONTHS = _MONTH + r"(?:\s+(?:ed?\s+)?" + _MONTH + ")*"
+_EXCLUDED = re.compile(r"\b(?:esclus[ioae]|eccetto|tranne)\s+(?:(?:i|il)\s+mes[ei]\s+di\s+)?(" + _MONTHS + r")\b"
+                       r"|\b(" + _MONTHS + r")\s+esclus[ioae]\b")
+_RANGE = re.compile(r"\bda(?:l mese di)?\s+(" + _MONTH + r")\s+a(?:l mese di)?\s+(" + _MONTH + r")\b")
+_OTHER_CALENDAR = re.compile(r"\b(?:" + _MONTH + r"|esclus\w*|tranne|eccett\w*|festiv\w*|estat\w*|estiv\w*|"
+                             r"invern\w*|primaver\w*|autunn\w*|stagion\w*|sospes\w*|annullat\w*|rinviat\w*|"
+                             r"anticipat\w*|posticipat\w*|natal\w*|pasqu\w*|ferragost\w*|(?:19|20)\d{2})\b")
+
+
+def statement_months(text):
+    """Months an hours sentence lets the market run in: None = it names none, a list =
+    the months it allows, False = calendar wording it cannot resolve."""
+    text = text_key(text)
+    ranges, excluded = _RANGE.findall(text), set()
+    for match in _EXCLUDED.finditer(text):
+        excluded |= {MONTH_NAMES.index(m) + 1 for m in re.findall(_MONTH, match[1] or match[2])}
+    if len(ranges) > 1 or _OTHER_CALENDAR.search(_EXCLUDED.sub(" ", _RANGE.sub(" ", text))):
+        return False
+    if not ranges and not excluded:
+        return None
+    active = set(range(1, 13))
+    if ranges:
+        start, end = (MONTH_NAMES.index(m) + 1 for m in ranges[0])
+        active = {(start - 1 + i) % 12 + 1 for i in range((end - start) % 12 + 1)}
+    return sorted(active - excluded) or False
+
+
+@lru_cache(maxsize=1)
+def rule_current_publishers():
+    """Publishers whose page, re-read in the last MAX_READ_AGE days and still stating the
+    card's whole rule, keeps that rule current whatever the page's own edit date.
+
+    Owner decision 2026-10-27: cosedicasa ("rule_current_while_read" in the editorial
+    policy). The predictions stay "prevista" and lapse with the read."""
+    from eventiesagre_detail_refresh import POLICY_PATH, PUBLISHERS
+    policy = json.loads(POLICY_PATH.read_text("utf-8"))
+    return frozenset(host for host, limits in PUBLISHERS.items()
+                     if (policy.get(limits["policy_key"]) or {}).get("rule_current_while_read") is True)
+
+
+def rule_current_receipt(receipt):
+    """A re-read page's own receipt from such a publisher (it restates the card's rule)."""
+    from eventiesagre_detail_refresh import PUBLISHERS
+    host = receipt.get("fonte")
+    return bool(host in rule_current_publishers() and receipt.get("ambito") == "pagina"
+                and receipt.get("metodo") == "pagina_primaria_revisionata"
+                and str(receipt.get("fonte_id") or "").startswith(PUBLISHERS[host]["stem"] + "-detail:"))
+
+
+def current_rule_hold(row, evidence, *, today):
+    """None while the re-read page still states the card's whole rule, else the reason.
+
+    Whole rule: the same rule; any whole-month pause or month range the page gives is
+    carried by the card's rule; no wording that changes which days it runs; every date
+    the page lists falls on that rule; read in the last MAX_READ_AGE days."""
+    from eventiesagre_detail_refresh import _page_months
+    from recurrence_refresh import explicit_rule, forecast_rule, project_dates
+    facts = evidence["facts"]
+    if facts["archive_marker"]:
+        return "archived_edition_forecast_held"
+    if calendar_conflicted(evidence["conflicts"]):
+        return "conflicting_editorial_calendar_held"
+    if any(not isinstance(r, dict) or r.get("kind") != "monthly_ordinal" for r in facts.get("calendar_rules") or []):
+        return "unresolved_editorial_calendar_qualifications"
+    page, card = explicit_rule(facts.get("recurrence_text")), forecast_rule(row)
+    if not page:
+        return "editorial_recurrence_not_proven"
+    if not card or page != explicit_rule(row.get("ricorrenza_testo")):
+        return "editorial_recurrence_conflicts_with_catalog"
+    months = _page_months(facts)
+    if months is False:
+        return "unresolved_editorial_calendar_qualifications"
+    if months != card.get("active_months"):
+        return "editorial_page_months_not_in_rule"
+    for statement in facts.get("scope_statements") or []:
+        said = (statement_months(statement.get("text")) if isinstance(statement, dict)
+                and statement.get("kind") == "hours_qualification" else False)
+        # Never predict in a month a sentence of the page leaves out.
+        if said is False or said and not set(months or range(1, 13)) <= set(said):
+            return "unresolved_editorial_calendar_qualifications"
+    read = as_day(evidence["read_on"])
+    if (today - read).days > MAX_READ_AGE:
+        return "editorial_rule_page_not_current"
+    listed = {v["date"] for v in facts["occurrences"] if v["status"] in {"source_listed", "rescheduled"}}
+    for interval in facts.get("date_intervals") or []:
+        if interval.get("status") not in {"source_listed", "rescheduled"}:
+            continue
+        day, last = as_day(interval["start"]), as_day(interval["end"])
+        while day and last and day <= last and len(listed) < 400:
+            listed.add(day.isoformat())
+            day += timedelta(days=1)
+    listed = {d for d in listed if d >= read.isoformat()}
+    if listed:
+        horizon = (as_day(max(listed)) - read).days
+        if horizon > 365 or listed - set(project_dates(card, read, max(7, horizon))):
+            return "editorial_listed_date_not_on_rule"
+    return None
 
 
 def text_key(value):
@@ -316,8 +419,14 @@ stored scope is held rather than silently falling back to an old forecast.
     if _independently_supported(row, evidence, today):
         return result, "independent_calendar_preserved"
     facts = evidence["facts"]
+    current_rule = evidence["publisher"] in rule_current_publishers()
     if evidence["calendar_mode"] == "reported_explicit":
-        result["date"] = _reported_dates(row, evidence, today)
+        reported = _reported_dates(row, evidence, today)
+        if (not reported and current_rule and row.get("date_quality") == "prevista" and row.get("date")
+                and current_rule_hold(row, evidence, today=today) is None):
+            # Every date the page listed has passed: its rule, still current, gives the dates.
+            return result, "editorial_rule_page_current"
+        result["date"] = reported
         result["date_quality"] = "riportata" if result["date"] else "sconosciuta"
         for key, empty in PROJECTION_FIELDS.items():
             if key in result:
@@ -330,6 +439,8 @@ stored scope is held rather than silently falling back to an old forecast.
         reason = "archived_edition_forecast_held"
     elif calendar_conflicted(evidence["conflicts"]):
         reason = "conflicting_editorial_calendar_held"
+    elif current_rule:
+        reason = current_rule_hold(row, evidence, today=today) or "editorial_rule_page_current"
     elif facts.get("scope_statements") or facts.get("suspensions") or facts.get("calendar_rules"):
         reason = "unresolved_editorial_calendar_qualifications"
     elif not facts.get("forecast_rule") or not facts["calendar_complete"]:

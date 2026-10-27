@@ -35,7 +35,7 @@ from source_freshness import as_day, source_date_evidence, source_url_domain
 from source_calendar import refresh_source_calendar
 from field_evidence import clean_receipts, MAX_READ_AGE, receipt_age_limit
 from lombardia_calendar_scope import calendar_scope, filter_dates, within_bounds
-from editorial_calendar_scope import apply_editorial_scope
+from editorial_calendar_scope import apply_editorial_scope, rule_current_receipt
 
 WEEKDAYS = ("lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica")
 DAYS_PATTERN = re.compile(r"\b(?:lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)\b")
@@ -645,12 +645,13 @@ def _refresh_record_base(original: dict, today: date, horizon_days: int = MAX_LO
             # an expired primary publisher does not invalidate another source.
             updated, source_age_limit = max(dates)
             projection_basis = "riscontri_campi:ricorrenza_testo"
-        elif undated := [r for r in listed if not r.get("fonte_aggiornata_il")]:
+        elif undated := [r for r in listed if not r.get("fonte_aggiornata_il") or rule_current_receipt(r)]:
             # Owner rule (2026-10-25): a page read within MAX_READ_AGE that still
             # lists this exact recurrence keeps predictions renewing when the page
             # states no content date at all. A declared date keeps its own age
             # limits above. Support lapses with the read; the expiry below then
-            # withdraws the predictions.
+            # withdraws the predictions. Owner rule (2026-10-27): the same for a
+            # rule_current_while_read publisher's page whatever its edit date.
             updated = max(parse_source_day(r["letto_il"]) for r in undated)
             projection_basis = "riscontri_campi:ricorrenza_testo"
             source_age_limit = MAX_READ_AGE

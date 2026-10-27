@@ -10,7 +10,8 @@
     "min_delay_seconds": 2,
     "overdue_after_days": 45,
     "new_market_ids_allowed": false,
-    "overwrite_unowned_fields": false
+    "overwrite_unowned_fields": false,
+    "rule_current_while_read": false
   },
   "cosedicasa": {
     "enabled": true,
@@ -19,7 +20,8 @@
     "min_delay_seconds": 2,
     "overdue_after_days": 45,
     "new_market_ids_allowed": false,
-    "overwrite_unowned_fields": false
+    "overwrite_unowned_fields": false,
+    "rule_current_while_read": true
   },
   "discovery": {
     "purpose": "Find market pages the catalog does not have yet in each publisher's own sitemap or listing pages, read them with the existing page reader and admit only those that pass the general admission rules. Configured per publisher, never per market.",

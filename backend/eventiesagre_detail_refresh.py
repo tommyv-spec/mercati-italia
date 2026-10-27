@@ -52,7 +52,11 @@ MAX_DETAILS = 128
 MAX_SECONDS = 600
 DEFAULT_POLICY = {"enabled": True, "max_details": 64, "max_seconds": 210,
                   "min_delay_seconds": 2, "overdue_after_days": 45,
-                  "new_market_ids_allowed": False, "overwrite_unowned_fields": False}
+                  "new_market_ids_allowed": False, "overwrite_unowned_fields": False,
+                  # Owner decision 2026-10-27 (cosedicasa): a page re-read in the last
+                  # MAX_READ_AGE days that still states the card's rule keeps it current,
+                  # whatever the page's own edit date (editorial_calendar_scope).
+                  "rule_current_while_read": False}
 STATUSES = {"unread", "inflight", "retrieved", "layout_held", "unavailable", "robots_denied"}
 MUTABLE = set(FIELDS) | {KEY, "riscontri_campi", "fonti", "date", "date_quality",
                        "proiezione_regola", "proiezione_generata_il", "proiezione_fonte"}
@@ -101,7 +105,8 @@ def validate_policy(policy=None, *, publisher=PUBLISHER):
             or type(policy["min_delay_seconds"]) is not int or not 2 <= policy["min_delay_seconds"] <= 30
             or type(policy["overdue_after_days"]) is not int or not 1 <= policy["overdue_after_days"] <= 45
             or policy["new_market_ids_allowed"] is not False
-            or policy["overwrite_unowned_fields"] is not False):
+            or policy["overwrite_unowned_fields"] is not False
+            or type(policy["rule_current_while_read"]) is not bool):
         raise ValueError("Unreviewed editorial request or update policy")
     return deepcopy(policy)
 
