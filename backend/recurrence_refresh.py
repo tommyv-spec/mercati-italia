@@ -39,16 +39,23 @@ from editorial_calendar_scope import apply_editorial_scope
 
 WEEKDAYS = ("lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica")
 DAYS_PATTERN = re.compile(r"\b(?:lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica)\b")
-ORDINAL_PATTERN = re.compile(r"\b(?:prim[oa]|second[oa]|terz[oa]|quart[oa]|ultim[oa])\b")
+# "quinta" counts only right before a weekday: "la quinta edizione" is not a week.
+# A fifth weekday exists in some months only; the projection skips the others.
+ORDINAL_PATTERN = re.compile(r"\b(?:prim[oa]|second[oa]|terz[oa]|quart[oa]|ultim[oa]|quint[oa](?=\s+(?:"
+                             + "|".join(WEEKDAYS) + r")\b))\b")
 ORDINAL_INDEX = {"primo": 1, "prima": 1, "secondo": 2, "seconda": 2,
                  "terzo": 3, "terza": 3, "quarto": 4, "quarta": 4,
-                 "ultimo": -1, "ultima": -1}
+                 "quinto": 5, "quinta": 5, "ultimo": -1, "ultima": -1}
 # "4° domenica", "3a domenica", "2^ sabato" are the same ordinals in digits.
 # ° and ^ always mark an ordinal ("2^ e 4^" stays two ordinals, never one).
-NUMERIC_ORDINAL = re.compile(r"\b([1-4])\s*(?:°|\^|[ao](?=\s+(?:" + "|".join(WEEKDAYS) + r")\b))\s*")
+NUMERIC_ORDINAL = re.compile(r"\b([1-5])\s*(?:°|\^|[ao](?=\s+(?:" + "|".join(WEEKDAYS) + r")\b))\s*")
+# "Primi sabato e domenica del mese": the month's Nth Sunday and the Saturday before it
+# (31 Oct + 1 Nov for November), as the publisher's own next dates show.
+WEEKEND_PLURALS = {"primi": 1, "secondi": 2, "terzi": 3, "quarti": 4, "ultimi": -1}
+MONTHLY_WEEKEND = re.compile(r"\b(" + "|".join(WEEKEND_PLURALS) + r") sabato e domenica del mese\b")
 # "primo e terzo sabato del mese", "1^ e 3^ sabato" (read as "prima e terza sabato"):
 # several weeks of the month, written next to each other before ONE weekday.
-_ORDINAL_WORD = r"(?:prim[oa]|second[oa]|terz[oa]|quart[oa]|ultim[oa])"
+_ORDINAL_WORD = r"(?:prim[oa]|second[oa]|terz[oa]|quart[oa]|ultim[oa]|quint[oa])"
 JOINED_ORDINALS = re.compile(r"\b" + _ORDINAL_WORD + r"(?:\s*(?:,|\be\b)\s*" + _ORDINAL_WORD +
                              r")+\s+(?:" + "|".join(WEEKDAYS) + r")\b")
 EVERY_WEEKDAY = re.compile(r"tutti i (?:" + "|".join(WEEKDAYS) + r")(?:\s*(?:,|\be\b)\s*(?:" +
@@ -84,8 +91,9 @@ FULL_WEEKLY_RECURRENCE = re.compile(
     r")(?:\s*(?:,|\be\b)\s*(?:" + "|".join(WEEKDAYS) + r"))*"
 )
 FULL_MONTHLY_RECURRENCE = re.compile(
-    r"(?:(?:mensile(?:\s*[-:]\s*|\s+))|ogni\s+)?(?:" +
+    r"(?:(?:mensile(?:\s*[-:]\s*|\s+))|ogni\s+)?(?:(?:" +
     "|".join(ORDINAL_INDEX) + r") (?:" + "|".join(WEEKDAYS) + r") (?:del|al|di ogni) mese"
+    r"|(?:" + "|".join(WEEKEND_PLURALS) + r") sabato e domenica del mese)"
 )
 SEASONAL_SCOPE = re.compile(
     r"\b(?:estiv[oaie]|invernal[ei]|primaveril[ei]|autunnal[ei]|stagional[ei])\b"
@@ -197,7 +205,7 @@ def parse_source_day(value: Any) -> date | None:
 
 
 def _spelled_ordinals(value: Any) -> str:
-    return NUMERIC_ORDINAL.sub(lambda m: ("", "prima ", "seconda ", "terza ", "quarta ")[int(m[1])],
+    return NUMERIC_ORDINAL.sub(lambda m: ("", "prima ", "seconda ", "terza ", "quarta ", "quinta ")[int(m[1])],
                                text_key(value))
 
 
@@ -212,6 +220,10 @@ def explicit_rule(value: Any) -> dict | None:
     monthly = "mensil" in text or "del mese" in text or "al mese" in text or "ogni mese" in text
     if monthly:
         ordinals = [m.group(0) for m in ORDINAL_PATTERN.finditer(text)]
+        weekend = MONTHLY_WEEKEND.findall(text)
+        if len(weekend) == 1 and days == [5, 6] and not ordinals:
+            return {"kind": "monthly_nth_weekday", "weekday": 6,
+                    "ordinal": WEEKEND_PLURALS[weekend[0]], "day_offsets": [-1, 0]}
         if len(days) != 1 or not ordinals:
             return None
         if len(ordinals) == 1:
@@ -271,6 +283,8 @@ def month_scope_text(rule: dict) -> str:
 
 def calendar_key(rule: dict) -> tuple:
     """Calendar part of "same market": (kind, weekdays, ordinal); month masks aside."""
+    # A weekend ("terzi sabato e domenica") contains its Sunday: the same market as a
+    # listing that names only that Sunday, like a month mask is.
     return (rule["kind"], tuple(rule.get("weekdays") or [rule.get("weekday")]),
             tuple(rule["ordinals"]) if rule.get("ordinals") else rule.get("ordinal"))
 
@@ -311,7 +325,8 @@ def _complete_month_rule(value: Any) -> dict | None:
 
 def rule_core(rule: dict) -> dict:
     """The cadence itself, without a source's month or day/month limits."""
-    return {k: v for k, v in rule.items() if k in ("kind", "weekdays", "weekday", "ordinal", "ordinals")}
+    return {k: v for k, v in rule.items()
+            if k in ("kind", "weekdays", "weekday", "ordinal", "ordinals", "day_offsets")}
 
 
 def forecast_rule(record: dict) -> dict | None:
@@ -495,9 +510,14 @@ def project_dates(rule: dict, today: date, horizon_days: int) -> list[str]:
                     candidate = candidates[ordinal - 1]
                 else:
                     continue
-                if (today <= candidate <= end and (active_months is None or candidate.month in active_months)
-                        and (bounds is None or within_bounds(candidate, bounds))):
-                    results.append(candidate.isoformat())
+                # A weekend belongs to its Sunday's month, also for months and bounds.
+                if (active_months is not None and candidate.month not in active_months
+                        or bounds is not None and not within_bounds(candidate, bounds)):
+                    continue
+                for offset in rule.get("day_offsets") or [0]:
+                    day = candidate + timedelta(days=offset)
+                    if today <= day <= end:
+                        results.append(day.isoformat())
             if date(y, m, 1) > end:
                 break
         return sorted(set(results))  # "quarto e ultimo" can be one day

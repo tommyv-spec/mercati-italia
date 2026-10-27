@@ -47,6 +47,16 @@ def _key(value):
     return " ".join(re.findall(r"[a-z0-9]+", "".join(c for c in value if not unicodedata.combining(c))))
 
 
+def street_only(address, title):
+    """The address field opens with the market's own quoted name when the title carries
+    it too ('"I Ricordi della Soffitta", Lungolago Caduti di Nassiria'); the place is
+    what follows. A quoted name later in the text can be the venue and stays."""
+    match = re.fullmatch(r'\s*["“«]([^"“”«»]+)["”»]\s*,?\s*([^\W\d_].*)', str(address or ""), re.S)
+    if match and _key(match[1]) and _key(match[1]) in _key(title):
+        return match[2].strip()
+    return address
+
+
 def source_url(value):
     """Validate an observed URL; no canonical slug is manufactured."""
     if not isinstance(value, str) or len(value) > 700:

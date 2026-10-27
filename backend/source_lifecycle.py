@@ -541,6 +541,9 @@ def candidate_record(profile,row,*,today,source_date=None):
     if monthly:
         # Exclusions, month lists or dates the rule can't carry: no calendar.
         rule=complete_monthly_rule(row.get(profile["recurrence_field"]))
+        # The card text below names one week and one day: a weekend or fifth week stays held.
+        if rule and (rule.get("day_offsets") or rule.get("ordinal") not in MONTHLY_ORDINALS):
+            rule=None
         d=rule["weekday"] if rule else None
     elif profile.get("weekday_lists"):
         days=weekdays(row.get(profile["weekday_field"]))

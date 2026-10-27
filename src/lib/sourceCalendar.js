@@ -166,3 +166,12 @@ export function sourceContacts(detail) {
   })
   return { organizer, links }
 }
+
+/** One contacts box from several sources: the first organiser, each link once. */
+export function mergeContacts(...all) {
+  const seen = new Set()
+  return {
+    organizer: all.map(item => item.organizer).find(Boolean) || null,
+    links: all.flatMap(item => item.links).filter(item => !seen.has(item.href) && seen.add(item.href)),
+  }
+}

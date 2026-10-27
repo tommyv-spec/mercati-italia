@@ -59,6 +59,36 @@ class ExplicitRules(unittest.TestCase):
         last=project_dates(explicit_rule("ultima domenica del mese"),d,120)
         self.assertEqual(last[:3], ["2026-10-25","2026-11-29","2026-12-27"])
 
+    def test_monthly_weekend_is_the_sunday_and_the_saturday_before(self):
+        # Cose di Casa's own next dates (27 Oct 2026): "Primi" 31 ottobre - 1 novembre,
+        # "Secondi" 7-8, "Terzi" 14-15, "Quarti" 21-22 novembre.
+        today = date(2026, 10, 27)
+        for text, first in (("Primi sabato e domenica del mese", ["2026-10-31", "2026-11-01"]),
+                            ("Secondi sabato e domenica del mese", ["2026-11-07", "2026-11-08"]),
+                            ("mensile - terzi sabato e domenica del mese", ["2026-11-14", "2026-11-15"]),
+                            ("Quarti sabato e domenica del mese", ["2026-11-21", "2026-11-22"]),
+                            ("Ultimi sabato e domenica del mese", ["2026-11-28", "2026-11-29"])):
+            with self.subTest(text=text):
+                self.assertEqual(project_dates(explicit_rule(text), today, 120)[:2], first)
+        # The weekend belongs to its Sunday's month: 31 Jul 2027 goes with an excluded August.
+        rule = forecast_rule({"ricorrenza_testo": "Primi sabato e domenica del mese, esclusi luglio e agosto"})
+        self.assertEqual(project_dates(rule, date(2027, 6, 1), 120),
+                         ["2027-06-05", "2027-06-06", "2027-09-04", "2027-09-05"])
+        # Other day pairs and mixed rules stay unread.
+        for text in ("Quarti mercoledì e giovedì del mese", "primo sabato e domenica del mese",
+                     "primi sabato e domenica del mese e la terza domenica"):
+            with self.subTest(text=text):
+                self.assertIsNone(explicit_rule(text))
+
+    def test_fifth_weekday_only_in_months_that_have_one(self):
+        rule = explicit_rule("Quinta domenica del mese")
+        self.assertEqual(rule, {"kind": "monthly_nth_weekday", "weekday": 6, "ordinal": 5})
+        self.assertEqual(project_dates(rule, date(2026, 10, 27), 120), ["2026-11-29", "2027-01-31"])
+        self.assertEqual(explicit_rule("5^ domenica del mese"), rule)
+        # "la quinta edizione" is not a week of the month.
+        self.assertEqual(explicit_rule("la quinta edizione, ogni prima domenica del mese"),
+                         {"kind": "monthly_nth_weekday", "weekday": 6, "ordinal": 1})
+
     def test_weekly_horizon(self):
         dates=project_dates(explicit_rule("settimanale - sabato"),date(2026,10,11),120)
         self.assertEqual(dates[0],"2026-10-17")

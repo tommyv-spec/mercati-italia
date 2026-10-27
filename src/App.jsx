@@ -4,8 +4,8 @@ import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyG
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 import { UNKNOWN_CITY_HELP, VENUE_UNCONFIRMED_HELP } from './lib/locationQuality';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
-import { sourceCalendarView, sourceContacts, sourceHoursForDate } from './lib/sourceCalendar.js';
-import { editorialSummaryView } from './lib/editorialEvidence.js';
+import { mergeContacts, sourceCalendarView, sourceContacts, sourceHoursForDate } from './lib/sourceCalendar.js';
+import { editorialContacts, editorialSummaryView } from './lib/editorialEvidence.js';
 import { addressConflictView } from './lib/sourceFieldConflicts.js';
 import { destinationForMarket } from './lib/marketDirections.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
@@ -1875,7 +1875,7 @@ export default function App() {
     const sourceSchedule = sourceCalendarView(m);
     const summary = editorialSummaryView(m);
     const editorial = summary.evidence;
-    const contacts = sourceContacts(m.sourceDetail);
+    const contacts = mergeContacts(sourceContacts(m.sourceDetail), editorialContacts(m));
     const addressConflicts = addressConflictView(m);
 
     return (

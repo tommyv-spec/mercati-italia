@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { editorialEvidenceView, editorialHoursForDate, editorialSummaryView } from '../src/lib/editorialEvidence.js'
-import { sourceHoursForDate } from '../src/lib/sourceCalendar.js'
+import { editorialContacts, editorialEvidenceView, editorialHoursForDate, editorialSummaryView } from '../src/lib/editorialEvidence.js'
+import { mergeContacts, sourceHoursForDate } from '../src/lib/sourceCalendar.js'
 
 const TODAY = new Date(2026, 9, 20, 12)
 const URL = 'https://www.cosedicasa.com/mercatini/bologna-piazza-s-stefano'
@@ -207,4 +207,27 @@ test('missing or unbound historical evidence cannot change the general summary',
     assert.equal(summary.hours, record.hours)
     assert.equal(summary.recurrence, record.recurrence)
   }
+})
+
+test('the organiser, phones, emails and websites on the page become contact links', () => {
+  const rows = [
+    {field: 'organizer', value: 'Associazione mON! snc'},
+    {field: 'phone', value: '346/0430009; 0322/231111'},
+    {field: 'contacts', value: 'mon.mercatino@gmail.com'},
+    {field: 'website', value: 'http://m-on.info/; www.comune.arona.no.it'},
+    {field: 'facebook', value: 'https://www.facebook.com/lasoffittainpiazza/'},
+    {field: 'exhibitors', value: '100'},
+    {field: 'website', value: 'javascript:alert(1)'},
+  ]
+  const contacts = editorialContacts(market({source_rows: rows}), TODAY)
+  assert.deepEqual(contacts.organizer, {label: 'Associazione mON! snc', href: ''})
+  assert.deepEqual(contacts.links.map(item => item.href), [
+    'tel:3460430009', 'tel:0322231111', 'mailto:mon.mercatino@gmail.com',
+    'http://m-on.info/', 'https://www.comune.arona.no.it/', 'https://www.facebook.com/lasoffittainpiazza/'])
+  assert.equal(contacts.links[3].label, 'm-on.info')
+  // Evidence bound to another market shows nothing.
+  assert.deepEqual(editorialContacts({...market({source_rows: rows}), id: 'other'}, TODAY), {organizer: null, links: []})
+  const merged = mergeContacts({organizer: null, links: [{label: 'x', href: 'tel:3460430009'}]}, contacts)
+  assert.equal(merged.organizer.label, 'Associazione mON! snc')
+  assert.equal(merged.links.length, 6)
 })

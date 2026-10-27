@@ -173,6 +173,36 @@ export function editorialSummaryView(market, now = new Date()) {
   }
 }
 
+function sourceRow(facts, field) {
+  return list(facts.source_rows).filter(item => item?.field === field).map(item => text(item.value)).join('; ')
+}
+
+function webLink(value) {
+  try {
+    const url = new URL(/^https?:\/\//i.test(value) ? value : 'https://' + value)
+    if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password || !url.hostname.includes('.')) return null
+    return { label: url.hostname.replace(/^www\./, '') + url.pathname.replace(/\/$/, ''), href: url.href }
+  } catch { return null }
+}
+
+/** Organiser, phone, email and websites the bound source page prints, as sourceContacts() returns them. */
+export function editorialContacts(market, now = new Date()) {
+  const proof = boundEvidence(market, localDateISO(now))
+  if (!proof) return { organizer: null, links: [] }
+  const facts = proof.facts
+  const organizer = sourceRow(facts, 'organizer').slice(0, 200)
+  const phones = sourceRow(facts, 'phone').split(/\s*[;,]\s*|\s+-\s+|\s+(?:e|oppure|o)\s+/)
+    .filter(value => /^[+\d() ./-]{5,40}$/.test(value) && (value.match(/\d/g) || []).length >= 6)
+    .map(value => ({ label: value, href: 'tel:' + value.replace(/[^\d+]/g, '') }))
+  const emails = (sourceRow(facts, 'contacts').match(/[^\s;,:<>()"']+@[^\s;,:<>()"']+\.[a-z]{2,}/gi) || [])
+    .map(value => ({ label: value, href: 'mailto:' + value }))
+  const sites = ['website', 'facebook', 'instagram'].flatMap(field => sourceRow(facts, field).split(/[\s;,]+/))
+    .filter(value => /\w\.\w/.test(value) && !value.includes('@')).map(webLink).filter(Boolean)
+  const seen = new Set()
+  const links = [...phones, ...emails, ...sites].filter(item => !seen.has(item.href) && seen.add(item.href)).slice(0, 12)
+  return { organizer: organizer ? { label: organizer, href: '' } : null, links }
+}
+
 /** General editorial hours never supply the missing hours of an explicit date. */
 export function editorialHoursForDate(market, day, now = new Date()) {
   const proof = boundEvidence(market, localDateISO(now))

@@ -8,6 +8,7 @@ the diff guard and remain attributable after a later offline refresh.
 from __future__ import annotations
 
 import base64
+import calendar
 import gzip
 import hashlib
 import io
@@ -35,7 +36,7 @@ from field_evidence import (
     FIELDS, as_day, clean_receipts, fingerprint, make_receipt,
     managed_update_allowed, mark_managed_fields, retire_superseded_receipts,
 )
-from recurrence_refresh import explicit_rule
+from recurrence_refresh import explicit_rule, forecast_rule, month_scope_text
 import atomic_write
 
 PUBLISHER = "eventiesagre.it"
@@ -319,7 +320,7 @@ def parse_document(blob, *, requested_url, final_url=None, today):
             or expected[0] == PUBLISHER and source_identity(final_url) != expected):
         raise ValueError("Editorial redirect changed the numeric source identity")
     if expected[0] == "cosedicasa.com":
-        from cosedicasa_layout import parse_detail
+        from cosedicasa_layout import parse_detail, street_only
         document = parse_detail(blob, requested_url=requested_url, final_url=final_url, read_on=today)
         if document["status"] == "unsupported":
             raise ValueError("Cose di Casa detail layout changed")
@@ -336,6 +337,9 @@ def parse_document(blob, *, requested_url, final_url=None, today):
             document["status"] = "held"
         else:
             document["event"]["location"] = normalized
+        # observed_location keeps the address as printed; the card gets the place alone.
+        location = document["event"]["location"]
+        location["address"] = street_only(location.get("address"), document["event"].get("name"))
         document["event"]["forecast_rule"] = None
         return document
     parsed = parse_eventiesagre_html(blob, final_url, today=today)
@@ -457,6 +461,10 @@ def _select(row, document):
         return None, "missing_province_requires_exact_venue_or_specific_title"
     address = str(place.get("address") or "")
     incoming = text_key(address)
+    # An old import copied the address as printed, market name included: same venue.
+    printed = text_key((event.get("observed_location") or {}).get("address"))
+    if original and printed == original:
+        original = incoming
     if original and incoming and original != incoming:
         # A later managed single-venue address may move, but identity still
         # needs the same title and source card. Ownership is checked below.
@@ -512,6 +520,41 @@ def _adds_weeks(page_rule, card_rule):
                 and weeks(card_rule) < weeks(page_rule))
 
 
+def _adds_saturday(page_rule, card_rule):
+    """The page names the card's monthly Sunday plus the Saturday before it."""
+    return bool(page_rule and card_rule and page_rule.get("day_offsets") == [-1, 0]
+                and not card_rule.get("day_offsets")
+                and {k: v for k, v in page_rule.items() if k != "day_offsets"} == card_rule)
+
+
+def _page_months(event):
+    """Months a page's monthly rule runs in: None = every month, False = a pause the
+    rule cannot carry (part of a month, or a dated year). Whole months come from the
+    "Sospensioni" row ("Dall'1 luglio al 31 agosto") and the times text ("esclusi
+    luglio e agosto", "da marzo a ottobre")."""
+    rules = [r for r in event.get("calendar_rules") or [] if r.get("kind") == "monthly_ordinal"]
+    if len(rules) > 1:
+        return False
+    active = set(rules[0].get("included_months") or range(1, 13)) if rules else set(range(1, 13))
+    active -= set(rules[0].get("excluded_months") or []) if rules else set()
+    for pause in event.get("suspensions") or []:
+        start, end = pause.get("start") or {}, pause.get("end") or {}
+        if not 1 <= (end.get("month") or 0) <= 12 or not 1 <= (start.get("month") or 0) <= 12:
+            return False
+        month_end = {calendar.monthrange(2027, end["month"])[1], calendar.monthrange(2028, end["month"])[1]}
+        if start.get("year") or end.get("year") or start.get("day") != 1 or end.get("day") not in month_end:
+            return False
+        month = start["month"]
+        while True:
+            active.discard(month)
+            if month == end["month"]:
+                break
+            month = month % 12 + 1
+    if not active:
+        return False
+    return None if len(active) == 12 else sorted(active)
+
+
 def _update(row, document, *, read_on, today):
     selected, match = _select(row, document)
     if selected is None:
@@ -562,17 +605,36 @@ def _update(row, document, *, read_on, today):
     extends_rule = False
     if not archive and not calendar_conflicted(local["conflicts"]):
         rule = explicit_rule(selected["recurrence"])
-        if rule is not None and rule == explicit_rule(row.get("ricorrenza_testo")):
+        card_text = row.get("ricorrenza_testo") or ""
+        card_rule = explicit_rule(card_text)
+        months = _page_months(event) if rule and rule["kind"] == "monthly_nth_weekday" else None
+        page_full = {**rule, "active_months": months} if months else rule
+        # The card's rule with any months it already names ("..., escluso agosto").
+        card_full = forecast_rule({"ricorrenza_testo": card_text})
+        adopt = (_adds_weeks(rule, card_rule) or _adds_saturday(rule, card_rule)
+                 or rule and rule["kind"] == "monthly_nth_weekday"
+                 and text_key(card_text) in ("", "mensile"))
+        if months is False or not months:
+            if rule is not None and rule == card_rule and (months is False or card_full == rule):
+                proposed["ricorrenza_testo"] = row["ricorrenza_testo"]
+            elif adopt and card_full == card_rule:
+                # The card's own page states the full rule ("prima e terza domenica",
+                # "primi sabato e domenica") where an old import kept one week or day
+                # ("terza domenica") or just "mensile": adopt it.
+                proposed["ricorrenza_testo"] = selected["recurrence"]
+                extends_rule = True
+        elif card_full == page_full:
             proposed["ricorrenza_testo"] = row["ricorrenza_testo"]
-        elif (_adds_weeks(rule, explicit_rule(row.get("ricorrenza_testo")))
-              or rule and rule["kind"] == "monthly_nth_weekday"
-              and text_key(row.get("ricorrenza_testo")) in ("", "mensile")):
-            # The card's own page states the full rule ("prima e terza domenica")
-            # where an old import kept one week ("terza domenica") or just
-            # "mensile": adopt it.
-            proposed["ricorrenza_testo"] = selected["recurrence"]
-            extends_rule = True
+        elif card_full == card_rule and (rule == card_rule or adopt):
+            # The page pauses whole months ("Sospensioni: dall'1 agosto al 31 agosto"):
+            # the rule carries them, so renewed dates skip those months.
+            base = card_text if rule == card_rule else selected["recurrence"]
+            value = base.rstrip(" .,") + month_scope_text({"active_months": months})
+            if forecast_rule({"ricorrenza_testo": value}) == page_full and len(value) <= FIELDS["ricorrenza_testo"]:
+                proposed["ricorrenza_testo"] = value
+                extends_rule = True
     accepted, assigned, updated, holds = {}, [], [], []
+    printed = text_key((event.get("observed_location") or {}).get("address"))
     prior = clean_receipts(row.get("riscontri_campi"), row, today=today)
     latest = None
     if proposed:
@@ -602,10 +664,12 @@ def _update(row, document, *, read_on, today):
             elif (field == "ricorrenza_testo" and extends_rule
                   or field == "orario_testo" and current == DEFAULT_MARKET_HOURS
                   and value == "La mattina" and publisher == PUBLISHER
-                  and not any(field in r["valori"] for r in prior)):
-                # The truncated rule or the site's default clock range came from the
-                # old import, owned by no engine: the page's own statement is this
-                # engine's first assignment.
+                  and not any(field in r["valori"] for r in prior)
+                  or field == "indirizzo" and printed and text_key(current) == printed
+                  and printed.endswith(text_key(value))):
+                # The truncated rule, the site's default clock range or the address as
+                # printed (market name in front) came from the old import, owned by no
+                # engine: the page's own statement is this engine's first assignment.
                 result[field] = value
                 accepted[field] = value
                 assigned.append(field)

@@ -21,11 +21,11 @@ from editorial_calendar_scope import (
 from eventiesagre_detail_refresh import (
     DEFAULT_POLICY, ROBOTS, STATE_FILENAME, catalog_urls, parse_document, preview,
     progress, run, seed_state, state_filename, validate_policy, validate_state,
-    validate_redirects, verify_changes, verify_exported,
+    validate_redirects, verify_changes, verify_exported, _page_months,
 )
 from export_static import normalize
 from field_evidence import fingerprint, make_receipt
-from recurrence_refresh import refresh_record
+from recurrence_refresh import forecast_rule, project_dates, refresh_record
 
 TODAY = date(2026, 10, 20)
 
@@ -625,10 +625,62 @@ class CoseDiCasaBridgeTests(unittest.TestCase):
         self.assertTrue(verify_exported(after, report, today=TODAY)["release_safe"])
 
     def test_actual_todi_address_difference_stays_held_despite_matching_title(self):
-        before = cdc_row("todi", indirizzo="Giardini Oberdan (all'arrivo dell'ascensore del parcheggio)")
+        before = cdc_row("todi", indirizzo="Piazza del Popolo")
         after, report = preview([before], [cdc_document("todi")], today=TODAY, publisher=CDC)
         self.assertEqual(after, [before])
         self.assertEqual(report["outcomes"][0]["reason"], "existing_venue_conflict")
+
+    def test_whole_month_pauses_are_written_into_the_rule(self):
+        # Todi: "Terza domenica del mese", paused 1 Jan - 28 Feb and 1 Nov - 31 Dec.
+        before = cdc_row("todi", ricorrenza_testo="mensile - terza domenica del mese")
+        after, report = preview([before], [cdc_document("todi")], today=TODAY, publisher=CDC)
+        self.assertEqual(after[0]["ricorrenza_testo"],
+                         "mensile - terza domenica del mese, esclusi gennaio, febbraio, novembre e dicembre")
+        self.assertEqual(forecast_rule(after[0])["active_months"], list(range(3, 11)))
+        # Read again: the card already says it, so the page only restates it.
+        again, report = preview(after, [cdc_document("todi")], today=TODAY, publisher=CDC)
+        self.assertEqual(again[0]["ricorrenza_testo"], after[0]["ricorrenza_testo"])
+        # A card naming other months is not overwritten.
+        other = cdc_row("todi", ricorrenza_testo="mensile - terza domenica del mese, escluso agosto")
+        kept, _ = preview([other], [cdc_document("todi")], today=TODAY, publisher=CDC)
+        self.assertEqual(kept[0]["ricorrenza_testo"], other["ricorrenza_testo"])
+
+    def test_page_months_only_from_whole_recurring_months(self):
+        pause = lambda d1, m1, d2, m2, year=None: {"start": {"day": d1, "month": m1, "year": year},
+                                                   "end": {"day": d2, "month": m2, "year": year}}
+        self.assertIsNone(_page_months({"calendar_rules": [], "suspensions": []}))
+        self.assertEqual(_page_months({"suspensions": [pause(1, 11, 28, 2)]}), list(range(3, 11)))
+        self.assertEqual(_page_months({"suspensions": [pause(1, 8, 31, 8)],
+            "calendar_rules": [{"kind": "monthly_ordinal", "excluded_months": [7]}]}),
+            [1, 2, 3, 4, 5, 6, 9, 10, 11, 12])
+        for held in ([pause(15, 7, 31, 8)], [pause(1, 8, 30, 8)], [pause(1, 8, 31, 8, 2026)]):
+            with self.subTest(held=held):
+                self.assertIs(_page_months({"suspensions": held}), False)
+
+    def test_page_naming_the_saturday_before_the_sunday_completes_the_rule(self):
+        document = deepcopy(cdc_document("bologna"))
+        document["parsed"]["conflicts"], document["parsed"]["status"] = [], "parsed"
+        before = cdc_row("bologna", ricorrenza_testo="mensile - seconda domenica del mese")
+        after, _ = preview([before], [document], today=TODAY, publisher=CDC)
+        self.assertEqual(after[0]["ricorrenza_testo"], "Secondi sabato e domenica del mese, esclusi luglio e agosto")
+        self.assertEqual(project_dates(forecast_rule(after[0]), date(2026, 10, 27), 60),
+                         ["2026-11-07", "2026-11-08", "2026-12-12", "2026-12-13"])
+
+    def test_the_market_name_printed_before_the_street_is_not_part_of_the_address(self):
+        # The page prints '"CreativaMente, Mostra Mercato della Creatività", Giardini Oberdan (...)';
+        # the old import copied it whole. The street is assigned, and owned from then on.
+        street = "Giardini Oberdan (all'arrivo dell'ascensore del parcheggio)"
+        printed = cdc_row("todi")
+        self.assertTrue(printed["indirizzo"].startswith('"CreativaMente'))
+        after, report = preview([printed], [cdc_document("todi")], today=TODAY, publisher=CDC)
+        self.assertEqual(after[0]["indirizzo"], street)
+        self.assertIn("indirizzo", report["outcomes"][0]["fields"])
+        managed = [r for r in after[0]["riscontri_campi"] if "indirizzo" in r.get("campi_gestiti", [])]
+        self.assertEqual(len(managed), 1)
+        # A card that already says only the street is the same venue.
+        again, report = preview([cdc_row("todi", indirizzo=street)], [cdc_document("todi")], today=TODAY, publisher=CDC)
+        self.assertEqual(report["outcomes"][0]["reason"], "exact_existing_source_identity")
+        self.assertEqual(again[0]["indirizzo"], street)
 
     def test_canonical_changed_slug_without_actual_http_redirect_never_binds(self):
         sample = CDC_SAMPLES["cernobbio"]
