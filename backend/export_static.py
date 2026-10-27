@@ -52,6 +52,9 @@ VALID_CATEGORIES = {
 }
 VALID_DATE_QUALITY = {"confermata", "riportata", "prevista", "sconosciuta"}
 HOURS_CONTENT = re.compile(r"\d|mattin|pomerigg|sera|giorn|nott", re.I)
+# eventiesagre's page footer ("Eventiesagre.it (D) é un marchio depositato ...")
+# was read into descriptions; everything from it on is the site's, not the market's.
+SITE_FOOTER = re.compile(r"\s*(?:Eventiesagre\.\s*i\s*t?\s*)?\(D\)\s*é\s+un\s+marchio.*", re.I | re.S)
 MAX_SINGLE_BYTES = 750_000
 MAX_MARKET_BYTES = 24_000_000
 MAX_FUTURE_DAYS = 550
@@ -251,7 +254,7 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         "categoria": category, "tags": tags, "status": status,
         "orario_testo": hours,
         "ricorrenza_testo": safe_string(raw.get("ricorrenza_testo"), 180),
-        "descrizione": safe_string(raw.get("descrizione"), 900),
+        "descrizione": SITE_FOOTER.sub("", safe_string(raw.get("descrizione"), 900)),
         "date": future_dates,
         "date_quality": quality,
         "proiezione_regola": raw.get("proiezione_regola") if isinstance(raw.get("proiezione_regola"), dict) else None,

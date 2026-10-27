@@ -168,6 +168,15 @@ class ExportTests(unittest.TestCase):
                 result, _ = normalize(market(orario_testo=hours), self.today)
                 self.assertEqual(result["orario_testo"], expected)
 
+    def test_publisher_footer_is_not_part_of_the_description(self):
+        footer = ("Eventiesagre. i t (D) é un marchio depositato ogni suo utilizzo non "
+                  "autorizzato non é ammesso Eventiesagre. i Responsabile Sito:")
+        for text, expected in (("Ogni domenica a Casoria. " + footer, "Ogni domenica a Casoria."),
+                               (footer, ""), ("Mercato in piazza.", "Mercato in piazza.")):
+            with self.subTest(text=text):
+                result, _ = normalize(market(descrizione=text), self.today)
+                self.assertEqual(result["descrizione"], expected)
+
     def test_does_not_misclassify_sagre_as_markets(self):
         result, reason = normalize(market(categoria="sagra"), self.today)
         self.assertIsNone(result)
