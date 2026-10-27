@@ -9,7 +9,7 @@ Un dato publisher vecchio o mancante NON conferma chiusura o aperture.
 | lombardia | superato | 1360 | 1359 | 889 | 1129 | 2026-10-20 |
 | milano | publisher_unavailable_or_mapping_contract_changed | — | — | — | — | — |
 | bologna | superato | 48 | 47 | 48 | 48 | 2025-04-02 |
-| firenze | superato | 4 | 4 | 4 | 4 | 2023-03-03 |
+| firenze | publisher_unavailable_or_mapping_contract_changed | — | — | — | — | — |
 | corciano | superato | 4 | 4 | 4 | 4 | 2026-01-07 |
 
 I numeri della data sono quelli del **dataset**, non

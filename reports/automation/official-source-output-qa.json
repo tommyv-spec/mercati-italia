@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-26",
+  "as_of": "2026-10-27",
   "catalog_updates": 0,
   "full_catalog_source_labels_covered_separately": true,
   "market_openings_confirmed": 0,
@@ -8,8 +8,8 @@
   "new_precise_market_positions_inferred": 0,
   "research_only": true,
   "schema": 1,
-  "source_batches_passed": 4,
-  "source_batches_unavailable_or_changed": 1,
+  "source_batches_passed": 3,
+  "source_batches_unavailable_or_changed": 2,
   "source_dataset_date_is_not_market_verification": true,
   "sources": [
     {
@@ -17,7 +17,7 @@
         "catalog_updates": 0,
         "dates_projected_not_confirmed": true,
         "field_coverage": {
-          "forecasted_records": 836,
+          "forecasted_records": 850,
           "nonempty_address": 1359,
           "nonempty_hours": 889,
           "source_coordinates_present": 1129
@@ -34,16 +34,16 @@
         "source_prefix": "lo-mercap-",
         "source_raw_rows_persisted": false
       },
-      "last_good_as_of": "2026-10-26",
+      "last_good_as_of": "2026-10-27",
       "new_market_coordinates_created": 0,
       "new_market_openings_confirmed": 0,
       "rows_loaded_into_catalog": 0,
-      "source_checked_as_of": "2026-10-26",
+      "source_checked_as_of": "2026-10-27",
       "source_id": "lombardia",
       "status": "source_output_passed"
     },
     {
-      "failure_class": "TimeoutError",
+      "failure_class": "URLError",
       "last_good_as_of": "2026-10-25",
       "last_good_publisher_gate": {
         "catalog_updates": 0,
@@ -69,7 +69,7 @@
       "new_market_coordinates_created": 0,
       "new_market_openings_confirmed": 0,
       "rows_loaded_into_catalog": 0,
-      "source_checked_as_of": "2026-10-26",
+      "source_checked_as_of": "2026-10-27",
       "source_id": "milano",
       "status": "publisher_unavailable_or_mapping_contract_changed"
     },
@@ -95,16 +95,18 @@
         "source_prefix": "bo-open-",
         "source_raw_rows_persisted": false
       },
-      "last_good_as_of": "2026-10-26",
+      "last_good_as_of": "2026-10-27",
       "new_market_coordinates_created": 0,
       "new_market_openings_confirmed": 0,
       "rows_loaded_into_catalog": 0,
-      "source_checked_as_of": "2026-10-26",
+      "source_checked_as_of": "2026-10-27",
       "source_id": "bologna",
       "status": "source_output_passed"
     },
     {
-      "current_publisher_gate": {
+      "failure_class": "URLError",
+      "last_good_as_of": "2026-10-26",
+      "last_good_publisher_gate": {
         "catalog_updates": 0,
         "dates_projected_not_confirmed": true,
         "field_coverage": {
@@ -125,13 +127,12 @@
         "source_prefix": "fi-feelflorence-",
         "source_raw_rows_persisted": false
       },
-      "last_good_as_of": "2026-10-26",
       "new_market_coordinates_created": 0,
       "new_market_openings_confirmed": 0,
       "rows_loaded_into_catalog": 0,
-      "source_checked_as_of": "2026-10-26",
+      "source_checked_as_of": "2026-10-27",
       "source_id": "firenze",
-      "status": "source_output_passed"
+      "status": "publisher_unavailable_or_mapping_contract_changed"
     },
     {
       "current_publisher_gate": {
@@ -155,11 +156,11 @@
         "source_prefix": "pg-corciano-",
         "source_raw_rows_persisted": false
       },
-      "last_good_as_of": "2026-10-26",
+      "last_good_as_of": "2026-10-27",
       "new_market_coordinates_created": 0,
       "new_market_openings_confirmed": 0,
       "rows_loaded_into_catalog": 0,
-      "source_checked_as_of": "2026-10-26",
+      "source_checked_as_of": "2026-10-27",
       "source_id": "corciano",
       "status": "source_output_passed"
     }
