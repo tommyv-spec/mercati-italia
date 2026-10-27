@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-26**.
-- Schede totali: **14,115**.
+- Data della misura: **2026-10-27**.
+- Schede totali: **14,139**.
 - Fonti misurate (nome e dominio): **90**.
-- Importazione registrata entro 30 giorni: **290**.
-- Lettura della fonte registrata entro 30 giorni: **1,472**.
+- Importazione registrata entro 30 giorni: **314**.
+- Lettura della fonte registrata entro 30 giorni: **1,496**.
 - Fonte datata entro 30 giorni: **1,206**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,205**.
 - Schede con aggiornamento soltanto del dataset: **1,352**.
 - Fonte datata tra 31 e 365 giorni: **107**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **12,750**.
+- Schede con età del contenuto della fonte non comprovata: **12,774**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,551**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,631**.
+- Schede con date future previste: **11,536**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,603**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -80,7 +80,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | citynews_vicenzatoday.it | www.vicenzatoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | cosafareafirenze.it | www.cosafareafirenze.it | 22 | 0 | 0 | 22 | 0 |
-| cosedicasa.com | www.cosedicasa.com | 435 | 0 | 0 | 435 | 3 |
+| cosedicasa.com | www.cosedicasa.com | 442 | 0 | 0 | 442 | 10 |
 | dati.comune.roma.it | dati.comune.roma.it | 70 | 0 | 0 | 70 | 0 |
 | emiliaromagnaturismo.it | emiliaromagnaturismo.it | 8 | 0 | 0 | 8 | 0 |
 | enjoysicilia.it | www.enjoysicilia.it | 3 | 0 | 0 | 3 | 0 |
@@ -94,7 +94,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
-| happings.com | www.happings.com | 9831 | 1 | 0 | 9830 | 184 |
+| happings.com | www.happings.com | 9848 | 1 | 0 | 9847 | 201 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -138,20 +138,20 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1177 | 3510 | 1760 | 7503 | 165 |
-| Orari | 1796 | 2400 | 1515 | 7761 | 643 |
-| Giorni | 973 | 2160 | 1694 | 9075 | 213 |
+| Sede | 1176 | 3505 | 1767 | 7525 | 166 |
+| Orari | 1794 | 2530 | 1521 | 7649 | 645 |
+| Giorni | 984 | 2157 | 1696 | 9087 | 215 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 5926. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 5950. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 0 | 0 |
-| bassa-romagna-weekly | retrieved | 0 | 0 |
+| bassa-romagna-farmers | retrieved | 4 | 0 |
+| bassa-romagna-weekly | retrieved | 11 | 0 |
 
-Conflitti mantenuti in revisione: 15.
+Conflitti mantenuti in revisione: 6.
 
 
 ## Limiti del sistema

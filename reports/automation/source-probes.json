@@ -39,7 +39,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-10-26",
+      "checked_date": "2026-10-27",
       "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
       "status": "schema_preview_only",
       "viability": "venue_inventory_missing_visit_days"
@@ -135,7 +135,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "af3c0b6f-c409-45d7-b7a8-40b77cebad4f": {
-      "checked_date": "2026-10-18",
+      "checked_date": "2026-10-27",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -213,7 +213,7 @@
       "viability": "historical_aggregate_not_venues"
     },
     "f4407fb8-5e36-4311-8422-02d463741780": {
-      "checked_date": "2026-10-25",
+      "checked_date": "2026-10-27",
       "column_fingerprint": "e4f54283ac5b9a78b0b91e16f489d17769814f3d53625f14a483545b636de3c8",
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
@@ -225,7 +225,7 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-26",
+  "reference_date": "2026-10-27",
   "reports": [
     {
       "adapter_enabled": false,
@@ -250,16 +250,16 @@
         "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "ad990da5-1c55-4394-a0b1-a5b27913f857",
+      "id": "af3c0b6f-c409-45d7-b7a8-40b77cebad4f",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3457,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/aef03b7d-d4bc-4554-ad58-3585109e965e.csv",
+      "sample_bytes": 6607,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/55199dd5-e68c-43fb-b602-abfa7c1febbd.csv",
       "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Fiere e mercati - Comune di Pianiga",
+      "title": "Fiere e mercati - Comune di Marcon",
       "truncated": false
     },
     {
@@ -270,7 +270,6 @@
           "comune"
         ],
         "statistics_count": [
-          "mercati",
           "attivazioni",
           "cessazioni"
         ],
@@ -282,11 +281,9 @@
         "comune",
         "provincia",
         "anno",
-        "mercati",
         "totale",
         "attivazioni",
         "cessazioni",
-        "posteggi",
         "alimentare_totale",
         "alimentare_attivazioni",
         "alimentare_cessazioni",
@@ -298,16 +295,16 @@
         "produttori_cessazioni"
       ],
       "format": "CSV",
-      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
+      "id": "f4407fb8-5e36-4311-8422-02d463741780",
       "review_blockers": [
         "explicit_market_name_missing"
       ],
       "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
-      "schema_viability": "historical_aggregate_not_venues",
+      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati quindicinali",
+      "title": "Censimento dei mercati itineranti",
       "truncated": true
     },
     {

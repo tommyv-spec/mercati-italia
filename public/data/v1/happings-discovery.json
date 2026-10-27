@@ -2,16 +2,16 @@
   "publisher": "happings.com",
   "resources": {
     "https://www.happings.com/happings_event-sitemap.xml": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
-      "failures": 0,
+      "failures": 1,
       "kind": "sitemap",
-      "last_attempt": "2026-10-20",
-      "last_error": null,
+      "last_attempt": "2026-10-27",
+      "last_error": "TimeoutError",
       "last_sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
       "last_success": "2026-10-20",
       "last_success_at": "2026-10-20T15:36:00.586113+00:00",
-      "next_due": "2026-10-27",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20,19 +20,19 @@
           "url": "https://www.happings.com/it/sitemap_index.xml"
         }
       ],
-      "status": "retrieved"
+      "status": "unavailable"
     },
     "https://www.happings.com/happings_event-sitemap10.xml": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
-      "failures": 0,
+      "failures": 1,
       "kind": "sitemap",
-      "last_attempt": "2026-10-20",
-      "last_error": null,
+      "last_attempt": "2026-10-27",
+      "last_error": "TimeoutError",
       "last_sha256": "5c9d9586e9c885c38ecc66b9c9e9e06e71661190a6284775bd41cd3b54f91830",
       "last_success": "2026-10-20",
       "last_success_at": "2026-10-20T15:38:26.466389+00:00",
-      "next_due": "2026-10-27",
+      "next_due": "2026-10-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -41,7 +41,7 @@
           "url": "https://www.happings.com/it/sitemap_index.xml"
         }
       ],
-      "status": "retrieved"
+      "status": "unavailable"
     },
     "https://www.happings.com/happings_event-sitemap11.xml": {
       "attempts": 1,
@@ -1166,16 +1166,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/1-corso-mascherato-di-apertura/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1b751e6df7f59337040530c18393c6cff01e63737a9b8cf06020ac35d47c6f0f",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:40.578156+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "2ef9c8c46ba5dfced08e533bc52f50cf20f050be77e9eabdc02070a67d668398",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:25.841895+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1205,16 +1205,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/100-years-of-stories-braccio-di-ferro-colpisce-ancora/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1504f4a6346916c02a0652fc47a353654c08e90b219da389fad72e90698767f1",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:19.134478+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "81e3bbf395161bd71ca08721a405cd993bb3df149ef0c92029058f0874b6096f",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:12.836134+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1227,21 +1227,27 @@
           "observed_at": "2026-10-20",
           "sha256": "1504f4a6346916c02a0652fc47a353654c08e90b219da389fad72e90698767f1",
           "url": "https://www.happings.com/it/happing/100-years-of-stories-braccio-di-ferro-colpisce-ancora/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "81e3bbf395161bd71ca08721a405cd993bb3df149ef0c92029058f0874b6096f",
+          "url": "https://www.happings.com/it/happing/100-years-of-stories-braccio-di-ferro-colpisce-ancora/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/10a-festa-della-tradizione-e-del-gusto-a-prato/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "0ec0eed33732d3936798f8b21992fa8ffdc993c2fb5bf76ec7a4507329aba4da",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:57.653552+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "f9fa0f2172f6606bcdebdf77e0464eaeee5fac134585e978d7d12d3ba0c1c89e",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:02.361467+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1260,21 +1266,27 @@
           "observed_at": "2026-10-25",
           "sha256": "3c43f72e29f0de1d3c8f27587ade87baaa210557bd3b7ea12a3e5fef8aa8e1f9",
           "url": "https://www.happings.com/it/happing/castagnata-alla-fontana-di-naturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f9fa0f2172f6606bcdebdf77e0464eaeee5fac134585e978d7d12d3ba0c1c89e",
+          "url": "https://www.happings.com/it/happing/10a-festa-della-tradizione-e-del-gusto-a-prato/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/119-mostra-del-bitto/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "f08dbbb4a75d735bd5860aefc0ef85b040972f6f885d8c54e78c86b89bb12f2f",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:11:36.583294+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "64164a22eac9bcdb195b0632fd5cc55a46164bf89eed0a74f0657546beb35a4c",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:55.774945+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1304,16 +1316,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/11a-via-della-lana/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "d27994900aa1fd2468fc9dca243e31914c0b28e6bf3c18b23c59711ce895ad0e",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:16.293603+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "7c2bb6b8f1b6391c38e4376756a77ba31bca9ab75935987aef2e282623fb671e",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:46.743494+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1343,16 +1355,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/120-chili-di-jazz/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "e5593e3e454fa156a3c9342522eee72ffab4d17e9c9f1ab633bdb49a723a6e0e",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:56.752481+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "16f46883b2d15e65222b4fe834e7b9ffd61fb35cf929a9daef7efee19cb6872c",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:36.411889+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -1371,6 +1383,12 @@
           "observed_at": "2026-10-25",
           "sha256": "3541a4d24115963dfc8aa03b344f672896ff1ef42c1182a8625d95f2f53194a9",
           "url": "https://www.happings.com/it/happing/dante-e-il-cosmo-dellimmaginazione/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "16f46883b2d15e65222b4fe834e7b9ffd61fb35cf929a9daef7efee19cb6872c",
+          "url": "https://www.happings.com/it/happing/120-chili-di-jazz/"
         }
       ],
       "status": "retrieved"
@@ -1403,16 +1421,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/14a-passeggiata-meranese-del-vino/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "286a0af94a32fea73787ed770d6e38019156c993a63d16c31902f42e58488bd4",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:13:37.742260+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "40d4dd4436aae2179380778260da8bdbeba6549c84e9f5691aaff35b379dfe94",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:30.593365+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -2001,6 +2019,12 @@
           "observed_at": "2026-10-20",
           "sha256": "1f7a9527499b3e0f38be2d140df7b61a637659d935eee68a99536ed235cba75d",
           "url": "https://www.happings.com/it/happing/45-giorni-a-natale-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e2bd94d6d19cefd293db892450b62b02dc1f53822415c4f28158695a785f5890",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-a-valas/"
         }
       ],
       "status": "retrieved"
@@ -3300,6 +3324,12 @@
           "observed_at": "2026-10-25",
           "sha256": "1e51e2ce8049933f8c9d2b939de23e1115400e3b2c37ecdddd3ddc23e6ff78ac",
           "url": "https://www.happings.com/it/happing/castagnata-1/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "b8ff7a3ba0da470899eea1b4b9dd73d26ca42784ca09ebf5b44e3cb0cbd46a85",
+          "url": "https://www.happings.com/it/happing/festa-del-torggelen-della-banda-musicale-di-prissiano/"
         }
       ],
       "status": "retrieved"
@@ -3332,16 +3362,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-campagna-amica-di-novi/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "a54741c4b33732cdeeb1d18cdb08d75f16036055cfbda7ff0b459fb46c42ca66",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:28.273347+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "beb18d16756f69e017eebd6dba9aa862bf5a537e18c3d20cf55be12cf16e7e72",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:20:50.416385+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3371,16 +3401,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-coperto-di-campagna-amica-di-reggio-calabria/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "3b741a6bd25a56f6bd74f3c5478fa9e6f8efbae0dc69e39bd34fd96a07d24709",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:32.356195+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "dc50da36dcb1c98013ed88a847a674de7f7b15620e1b72f15e4ae0ccb79f47f9",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:01.843819+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3410,16 +3440,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-campagna-amica-di-favara/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "13738b9b293337bc475721e99b318c56a75170b757c51bff855d67b7ddcde02d",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:36.481098+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "ece0406476c502cedf40fa230150daf3ab41dfd598251d9a8578f3d76c15582f",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:06.567690+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3449,16 +3479,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-campagna-amica-di-piazza-della-liberta-alessandria/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "5f711c2e9a469038c42b05bbfbcdb9c363c38fd164dbd7740d8582dd1bb036be",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:44.726558+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "e62fafd46bb816766442c4a26054f8e1b3b3370879bffb71a0a8b0d4dcc5d900",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:16.309255+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3488,16 +3518,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-erba/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "34dd6c5ec29810945ee5e4b750baaa359b7c2f195db775590348f77f598a398d",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:48.840280+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "3d239292f728fa22db0c4e51b393c8101605dfde87b72625c4b7c51fa02c8054",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:20.980454+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3527,16 +3557,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-follonica/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "ebc42cce47700ec37750a398c8bcc5579da5e829f72684acd76b97a9461d1930",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:53.999287+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "04c6820b8eba7c70172ed03b5023d72d4383c24b69a4684e290cd650e703044f",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:31.204476+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3566,16 +3596,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-mariano-comense/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "9db7c1f0156efc44bda4811b0c8016c63b257acb2060f5bbf8773b5c1365deea",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:09:58.128648+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "6219056f4e2ad69011c925dd240923347f1a0cbba73faeef5daeb332ad4825f4",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:37.086441+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3605,16 +3635,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-piazzale-leonardo-da-vinci/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "e1863b6e41f3cf51c8b288672dbd81609abe99e1fc72abb7223d132aad4b1039",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:02.304348+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "f86940704bc0243e665233684148408b19bb2267dc96556139f83477668970f1",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:47.778173+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3644,16 +3674,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-valenza/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "41bad551c31df42f8ff8f79fef62842573df036ed8c3a5e0bce5d7b4d10631b8",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:06.458797+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "88371ed6e04d0cbc64dc73f761a9657405a8f3b6c2c3e3558fd77ef5e45a3444",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:52.580872+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3683,16 +3713,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/agrimercato-di-via-simoncelli-stadio-benelli-a-pesaro/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "282d6f09b2a7ddef2ef1c7967a1098817b040082097ea2b209b2acf2dd1e0770",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:10.619645+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "2767dce5f8cb254800a216013f2ed8038eccfe9a03112a340e31bb19fb895d66",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:03.274217+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -3810,6 +3840,12 @@
           "observed_at": "2026-10-25",
           "sha256": "0f2c706c3c9df4a8052f6ce20baf2700a1aa7f0744d4c236a5aa19c684af7e35",
           "url": "https://www.happings.com/it/happing/concerto-michelangeli/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "422211dbc3cc6e866e691dfed12c5bd5638862031c234297fa733531d7adbc41",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-sax-royal-un-ensemble-di-sassofoni-fuori-dagli-schemi/"
         }
       ],
       "status": "retrieved"
@@ -5541,6 +5577,12 @@
           "observed_at": "2026-10-24",
           "sha256": "dc82875a86f4f381534e275fc662d9c9d4776e44f971c6879f8bab17a5f22fb0",
           "url": "https://www.happings.com/it/happing/apertura-straordinaria-delle-rovine-di-castelforte/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "092209f605a715873735e4ceb8e20a2b0d35b47dd00eed06e7a3ca2e16ae3ffa",
+          "url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/"
         }
       ],
       "status": "retrieved"
@@ -6135,6 +6177,12 @@
           "observed_at": "2026-10-24",
           "sha256": "625a9eb9edb8f89408f7c6f6b0bd197985a9b2cade31d33212f405bca6d5b00a",
           "url": "https://www.happings.com/it/happing/aspettando-il-natale-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e7797ec62f843e195b7906d74847e37dec338c6b465b77df496e8403c551d437",
+          "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-hello-we-are-lit/"
         }
       ],
       "status": "retrieved"
@@ -7137,6 +7185,18 @@
           "observed_at": "2026-10-24",
           "sha256": "f6c229ec62c1795cd393ed2d49e9cf2b48a2560fabe3aed1039137d5334a62c2",
           "url": "https://www.happings.com/it/happing/autunno-in-ghedi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "8f3ead0128642e5cf4000010e35ac0faebe42c3d54dab9f1e3b13803afe4aaab",
+          "url": "https://www.happings.com/it/happing/mercatino-di-dicembre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "cc9de98b35c2cf239a15cac93d1ced0fe3f66bceab12fe8e75adf079eab4db42",
+          "url": "https://www.happings.com/it/happing/mercatino-di-novembre/"
         }
       ],
       "status": "retrieved"
@@ -7170,6 +7230,12 @@
           "observed_at": "2026-10-24",
           "sha256": "09d7062386823025eb837c7333eaa90dae2bf19ac3c105858d42322c3d991c12",
           "url": "https://www.happings.com/it/happing/autunno-nelle-frazioni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "8f3ead0128642e5cf4000010e35ac0faebe42c3d54dab9f1e3b13803afe4aaab",
+          "url": "https://www.happings.com/it/happing/mercatino-di-dicembre/"
         }
       ],
       "status": "retrieved"
@@ -7218,6 +7284,12 @@
           "observed_at": "2026-10-25",
           "sha256": "3d7bb38b3da63724534ce174fc42d9ff4a5f0b160210cb74db3bf1522c25bf56",
           "url": "https://www.happings.com/it/happing/liachtzeit-zommekemm-im-advent-mercatino-di-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "4be3c94baffabcffca9155cac26561de9b05b0348867bf617afebbae631bb37f",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/"
         }
       ],
       "status": "unread"
@@ -8358,6 +8430,12 @@
           "observed_at": "2026-10-25",
           "sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
           "url": "https://www.happings.com/it/happing/castagnata-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "217e713433302a128ce3e3d9018d37132777b725784cc6579e3e65e432e06355",
+          "url": "https://www.happings.com/it/happing/festa-della-vendemmia/"
         }
       ],
       "status": "retrieved"
@@ -9513,6 +9591,12 @@
           "observed_at": "2026-10-25",
           "sha256": "1e51e2ce8049933f8c9d2b939de23e1115400e3b2c37ecdddd3ddc23e6ff78ac",
           "url": "https://www.happings.com/it/happing/castagnata-1/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "49d394f8701c139cad7ec73a4c96657782c4bc19f33b94ee5895ff9a13e5b6fc",
+          "url": "https://www.happings.com/it/happing/festa-dell-solidarieta/"
         }
       ],
       "status": "retrieved"
@@ -9723,6 +9807,12 @@
           "observed_at": "2026-10-25",
           "sha256": "c452a89a6c5d2960ac38d05e916a5a43cf25f292ad53287f4fea4fe7f849d12c",
           "url": "https://www.happings.com/it/happing/castagnata-4-evento-9781/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e6dffc9e9cb9eaaaec7fef02b5b014b13fb340e9e43d6e5f04252971e3e6f237",
+          "url": "https://www.happings.com/it/happing/festa-dellalbero/"
         }
       ],
       "status": "retrieved"
@@ -9828,6 +9918,12 @@
           "observed_at": "2026-10-25",
           "sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
           "url": "https://www.happings.com/it/happing/castagnata-4/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f9fa0f2172f6606bcdebdf77e0464eaeee5fac134585e978d7d12d3ba0c1c89e",
+          "url": "https://www.happings.com/it/happing/10a-festa-della-tradizione-e-del-gusto-a-prato/"
         }
       ],
       "status": "retrieved"
@@ -9993,6 +10089,12 @@
           "observed_at": "2026-10-25",
           "sha256": "3c43f72e29f0de1d3c8f27587ade87baaa210557bd3b7ea12a3e5fef8aa8e1f9",
           "url": "https://www.happings.com/it/happing/castagnata-alla-fontana-di-naturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ee18cfe5cac2ff4a3d418f49931e27a55e741e39675733488102888eab3890c0",
+          "url": "https://www.happings.com/it/happing/festa-patronale-e-mercatini-2025/"
         }
       ],
       "status": "retrieved"
@@ -10467,6 +10569,12 @@
           "observed_at": "2026-10-25",
           "sha256": "68681c88578ac84d2c7f55eefb3c1eb4bcf7c32de625261ff310dd132b5ba224",
           "url": "https://www.happings.com/it/happing/castagnata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "fcdd55a950398cab89c372f9e550d9d15e60b74840a95215a472f7d96254babd",
+          "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
         }
       ],
       "status": "retrieved"
@@ -11139,6 +11247,12 @@
           "observed_at": "2026-10-25",
           "sha256": "8fc3577f5935b606e197fde479498ed8e6d524882bce4a2e7fc664e8db2d2a61",
           "url": "https://www.happings.com/it/happing/cibo-2050-dal-roero-al-mondo-le-sfide-che-ci-attendono/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "64164a22eac9bcdb195b0632fd5cc55a46164bf89eed0a74f0657546beb35a4c",
+          "url": "https://www.happings.com/it/happing/119-mostra-del-bitto/"
         }
       ],
       "status": "retrieved"
@@ -12207,6 +12321,12 @@
           "observed_at": "2026-10-25",
           "sha256": "a612359243a6c78778bd9847d0d8f976c4857c4bdbffce8078284a0e88a37af0",
           "url": "https://www.happings.com/it/happing/chef-massimiliano-musso-ristorante-albergo-ca-vittoria/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "64164a22eac9bcdb195b0632fd5cc55a46164bf89eed0a74f0657546beb35a4c",
+          "url": "https://www.happings.com/it/happing/119-mostra-del-bitto/"
         }
       ],
       "status": "retrieved"
@@ -13092,6 +13212,12 @@
           "observed_at": "2026-10-25",
           "sha256": "5d5bd6081903a35122a9e945da0610f67a82da2128212ac9c8eb1edb87cd3ca5",
           "url": "https://www.happings.com/it/happing/cinema-the-social-reckoning/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "81e3bbf395161bd71ca08721a405cd993bb3df149ef0c92029058f0874b6096f",
+          "url": "https://www.happings.com/it/happing/100-years-of-stories-braccio-di-ferro-colpisce-ancora/"
         }
       ],
       "status": "retrieved"
@@ -14478,6 +14604,12 @@
           "observed_at": "2026-10-25",
           "sha256": "0b274b9ccd30e33d5591936601386ee8403a6764594bdc9424d95d3cb50a442a",
           "url": "https://www.happings.com/it/happing/concerto-di-natale-2-evento-10318/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "5aafe95699c09ef43ac31be1c272dc7378367b8435f5651e2eedd88011251e4e",
+          "url": "https://www.happings.com/it/happing/marce-da-nade-mercatino-di-natale/"
         }
       ],
       "status": "retrieved"
@@ -18759,6 +18891,12 @@
           "observed_at": "2026-10-26",
           "sha256": "aaaf7fdc18719730d2331c2709fced8c94f88fc4a6c5a328e7bb4a4fb05b4a45",
           "url": "https://www.happings.com/it/happing/festa-dautunno-alluntereggerhof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "3efbe8766c380edcbedd78a51a5b6d7ae8aea5455ef37cc2c12bf64a216cf664",
+          "url": "https://www.happings.com/it/happing/festa-della-basilica/"
         }
       ],
       "status": "retrieved"
@@ -19950,6 +20088,12 @@
           "observed_at": "2026-10-26",
           "sha256": "05fc4431e84909e9c35d80b1fcdf5afbc1b769e50e31f6e75f004925055a2a9b",
           "url": "https://www.happings.com/it/happing/eroico-rosso-sforzato-wine-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "fcdd55a950398cab89c372f9e550d9d15e60b74840a95215a472f7d96254babd",
+          "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
         }
       ],
       "status": "retrieved"
@@ -20346,6 +20490,12 @@
           "observed_at": "2026-10-26",
           "sha256": "0d8e408d91548f5a98bedd72261f8c02121d3e9e371faeef8cae97e8e0d7fa00",
           "url": "https://www.happings.com/it/happing/escursione-e-degustazione-di-vini-biologici-al-lehengut/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "40d4dd4436aae2179380778260da8bdbeba6549c84e9f5691aaff35b379dfe94",
+          "url": "https://www.happings.com/it/happing/14a-passeggiata-meranese-del-vino/"
         }
       ],
       "status": "retrieved"
@@ -23031,6 +23181,12 @@
           "observed_at": "2026-10-26",
           "sha256": "aaaf7fdc18719730d2331c2709fced8c94f88fc4a6c5a328e7bb4a4fb05b4a45",
           "url": "https://www.happings.com/it/happing/festa-dautunno-alluntereggerhof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "b107d5e7c35fec62181462ae7844d1f87984fe6b0546c54bfb04da433db074b9",
+          "url": "https://www.happings.com/it/happing/festa-del-torggelen-a-san-martino-in-passiria/"
         }
       ],
       "status": "retrieved"
@@ -23360,16 +23516,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-del-contadino-con-mercatino-a-tiso/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "f6d0bf3f0336109cce821b09fed3d88667365d512c8d02ac4949814e8a987792",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:14.827213+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "ce1bd7e0e768f45bc336ef441354a0e456a0660c86906ef0d4a6dc8db24a52eb",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:07.964509+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23388,6 +23544,12 @@
           "observed_at": "2026-10-25",
           "sha256": "bf398823f0917dcb557755b8b1076ac54586a5ec25dc98bec8dfbb9f4a6c83d7",
           "url": "https://www.happings.com/it/happing/castagnata-5/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ce1bd7e0e768f45bc336ef441354a0e456a0660c86906ef0d4a6dc8db24a52eb",
+          "url": "https://www.happings.com/it/happing/festa-del-contadino-con-mercatino-a-tiso/"
         }
       ],
       "status": "retrieved"
@@ -23420,16 +23582,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-del-mercato/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "ad69a0594f9c6dafa6486f1eb214b3a3a5d3c7792c150f95043bb4c266ef145d",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:23.359284+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "0a0376200ddad23e961cbe3da3d493d43875b0445f38ef20d49acb0be4736075",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:18.360060+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23666,79 +23828,103 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-del-torggelen-a-colsano/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "359834c7780f11cec35d7f4c5cf10594e4e677d3dba5eb37489bfd57ac63c42c",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:20:56.721888+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "359834c7780f11cec35d7f4c5cf10594e4e677d3dba5eb37489bfd57ac63c42c",
+          "url": "https://www.happings.com/it/happing/festa-del-torggelen-a-colsano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-del-torggelen-a-san-martino-in-passiria/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b107d5e7c35fec62181462ae7844d1f87984fe6b0546c54bfb04da433db074b9",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:11.828647+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "b107d5e7c35fec62181462ae7844d1f87984fe6b0546c54bfb04da433db074b9",
+          "url": "https://www.happings.com/it/happing/festa-del-torggelen-a-san-martino-in-passiria/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "35547e8e9aec718fe63ca832ba2ee1b5c111ca82cf09367d7485d16ee642c215",
+          "url": "https://www.happings.com/it/happing/festa-della-castagnata/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-del-torggelen-della-banda-musicale-di-prissiano/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "b8ff7a3ba0da470899eea1b4b9dd73d26ca42784ca09ebf5b44e3cb0cbd46a85",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:42.710319+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "b8ff7a3ba0da470899eea1b4b9dd73d26ca42784ca09ebf5b44e3cb0cbd46a85",
+          "url": "https://www.happings.com/it/happing/festa-del-torggelen-della-banda-musicale-di-prissiano/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-dell-solidarieta/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "49d394f8701c139cad7ec73a4c96657782c4bc19f33b94ee5895ff9a13e5b6fc",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:21:58.461490+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23757,42 +23943,66 @@
           "observed_at": "2026-10-26",
           "sha256": "a58550ff7f93e5bb847bc49ccd89645cd7b71ca7256c0a0d1f4ca664debd9ca6",
           "url": "https://www.happings.com/it/happing/festa-autunnale-a-velturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "49d394f8701c139cad7ec73a4c96657782c4bc19f33b94ee5895ff9a13e5b6fc",
+          "url": "https://www.happings.com/it/happing/festa-dell-solidarieta/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-della-basilica/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "3efbe8766c380edcbedd78a51a5b6d7ae8aea5455ef37cc2c12bf64a216cf664",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:30.346883+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "0a0376200ddad23e961cbe3da3d493d43875b0445f38ef20d49acb0be4736075",
+          "url": "https://www.happings.com/it/happing/festa-del-mercato/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "3efbe8766c380edcbedd78a51a5b6d7ae8aea5455ef37cc2c12bf64a216cf664",
+          "url": "https://www.happings.com/it/happing/festa-della-basilica/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f2d379ef64492da78df77ae85d6ef8320a4e8928941e83b5f20703e4fb26459d",
+          "url": "https://www.happings.com/it/happing/festa-della-castagna-della-banda-musicale-di-lana/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-della-castagna-della-banda-musicale-di-lana/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "f2d379ef64492da78df77ae85d6ef8320a4e8928941e83b5f20703e4fb26459d",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:45.848990+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23805,21 +24015,27 @@
           "observed_at": "2026-10-25",
           "sha256": "6b7b8eca0fad25904721cd8a0cfd4ee7b11f3894474755d017b4765a25d3dea0",
           "url": "https://www.happings.com/it/happing/castagnata-2-evento-9327/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f2d379ef64492da78df77ae85d6ef8320a4e8928941e83b5f20703e4fb26459d",
+          "url": "https://www.happings.com/it/happing/festa-della-castagna-della-banda-musicale-di-lana/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-della-castagnata/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "35547e8e9aec718fe63ca832ba2ee1b5c111ca82cf09367d7485d16ee642c215",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:19.535413+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23838,21 +24054,27 @@
           "observed_at": "2026-10-25",
           "sha256": "4b2b3431629b25d01abe053917a2c666b5572839817d86ea7ff033b83d7a16e6",
           "url": "https://www.happings.com/it/happing/castagnata-del-circolo-di-travino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "35547e8e9aec718fe63ca832ba2ee1b5c111ca82cf09367d7485d16ee642c215",
+          "url": "https://www.happings.com/it/happing/festa-della-castagnata/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-della-transumanza-a-san-genesio/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e904d587b9ecc5ecd89da441af316c3fef6292396aeac632d48eb60943a9dbe7",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:40.270382+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23865,21 +24087,27 @@
           "observed_at": "2026-10-25",
           "sha256": "a9b2677c669c3548a3f4a4a45362f7fe9e73827a0ff7fded5883666afd496033",
           "url": "https://www.happings.com/it/happing/castagnata-2026/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e904d587b9ecc5ecd89da441af316c3fef6292396aeac632d48eb60943a9dbe7",
+          "url": "https://www.happings.com/it/happing/festa-della-transumanza-a-san-genesio/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-della-transumanza/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "1b4885078cd2396744b17465d2f73773015c56dcb5d62900c538912f119d3193",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:14.202994+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23906,19 +24134,19 @@
           "url": "https://www.happings.com/it/happing/chef-paolo-griffa-al-caffe-nazionale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-della-vendemmia/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "217e713433302a128ce3e3d9018d37132777b725784cc6579e3e65e432e06355",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:31.328568+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23931,21 +24159,27 @@
           "observed_at": "2026-10-25",
           "sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
           "url": "https://www.happings.com/it/happing/castagnata-4/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "217e713433302a128ce3e3d9018d37132777b725784cc6579e3e65e432e06355",
+          "url": "https://www.happings.com/it/happing/festa-della-vendemmia/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-dellagricoltura/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "9933d57b6235fc9b3cbcfea3b11b926858e798492f95a52b50a5b2b674770a84",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:02.911281+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23964,21 +24198,27 @@
           "observed_at": "2026-10-26",
           "sha256": "a58550ff7f93e5bb847bc49ccd89645cd7b71ca7256c0a0d1f4ca664debd9ca6",
           "url": "https://www.happings.com/it/happing/festa-autunnale-a-velturno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "9933d57b6235fc9b3cbcfea3b11b926858e798492f95a52b50a5b2b674770a84",
+          "url": "https://www.happings.com/it/happing/festa-dellagricoltura/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-dellalbero/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "e6dffc9e9cb9eaaaec7fef02b5b014b13fb340e9e43d6e5f04252971e3e6f237",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:20.201995+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23991,72 +24231,96 @@
           "observed_at": "2026-10-20",
           "sha256": "f6d0bf3f0336109cce821b09fed3d88667365d512c8d02ac4949814e8a987792",
           "url": "https://www.happings.com/it/happing/festa-del-contadino-con-mercatino-a-tiso/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e6dffc9e9cb9eaaaec7fef02b5b014b13fb340e9e43d6e5f04252971e3e6f237",
+          "url": "https://www.happings.com/it/happing/festa-dellalbero/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-delle-castagne-a-nalles/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "a65461792cf39fd0b0558397a301f40d4fb14fac7ed712bc3427251e49df18ed",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:54.020430+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "a65461792cf39fd0b0558397a301f40d4fb14fac7ed712bc3427251e49df18ed",
+          "url": "https://www.happings.com/it/happing/festa-delle-castagne-a-nalles/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-dellimmacolata-la-magia-del-natale/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "42ea4bd1cf9dac1c4bc387dee0ca96e05093424c3ab810ac7b3ae173a9268edf",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:14.217254+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "42ea4bd1cf9dac1c4bc387dee0ca96e05093424c3ab810ac7b3ae173a9268edf",
+          "url": "https://www.happings.com/it/happing/festa-dellimmacolata-la-magia-del-natale/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-delluva-e-del-vino-di-cantrina/": {
-      "attempts": 0,
+      "attempts": 1,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": null,
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": null,
-      "last_success": null,
-      "last_success_at": null,
-      "next_due": "2026-10-20",
+      "last_sha256": "d3bd587967f20a78cba47c24f1bc76b26bd63d8b56f71a7e4e84194dd2aeec3f",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:48.429728+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "d3bd587967f20a78cba47c24f1bc76b26bd63d8b56f71a7e4e84194dd2aeec3f",
+          "url": "https://www.happings.com/it/happing/festa-delluva-e-del-vino-di-cantrina/"
         }
       ],
-      "status": "unread"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/happing/festa-delluva-evento-10123/": {
       "attempts": 0,
@@ -24150,6 +24414,12 @@
           "observed_at": "2026-10-25",
           "sha256": "1493c0b9de5ee4d18a963a4f20ffb1e17b2d8fbe72db43a9d27b419064724c4e",
           "url": "https://www.happings.com/it/happing/castagnata-4-evento-9816/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "a65461792cf39fd0b0558397a301f40d4fb14fac7ed712bc3427251e49df18ed",
+          "url": "https://www.happings.com/it/happing/festa-delle-castagne-a-nalles/"
         }
       ],
       "status": "unread"
@@ -24312,6 +24582,39 @@
           "observed_at": "2026-10-26",
           "sha256": "9a4af4dde78d6d5ba575e0f5fef3b523752698ab676e8def3edcc7fba3cf1806",
           "url": "https://www.happings.com/it/happing/essere-consum-attori-si-puo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ce1bd7e0e768f45bc336ef441354a0e456a0660c86906ef0d4a6dc8db24a52eb",
+          "url": "https://www.happings.com/it/happing/festa-del-contadino-con-mercatino-a-tiso/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "3efbe8766c380edcbedd78a51a5b6d7ae8aea5455ef37cc2c12bf64a216cf664",
+          "url": "https://www.happings.com/it/happing/festa-della-basilica/"
+        }
+      ],
+      "status": "unread"
+    },
+    "https://www.happings.com/it/happing/festa-di-primavera/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-27",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-27",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "a65461792cf39fd0b0558397a301f40d4fb14fac7ed712bc3427251e49df18ed",
+          "url": "https://www.happings.com/it/happing/festa-delle-castagne-a-nalles/"
         }
       ],
       "status": "unread"
@@ -24375,6 +24678,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f9fa0f2172f6606bcdebdf77e0464eaeee5fac134585e978d7d12d3ba0c1c89e",
+          "url": "https://www.happings.com/it/happing/10a-festa-della-tradizione-e-del-gusto-a-prato/"
         }
       ],
       "status": "unread"
@@ -24423,6 +24732,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "35547e8e9aec718fe63ca832ba2ee1b5c111ca82cf09367d7485d16ee642c215",
+          "url": "https://www.happings.com/it/happing/festa-della-castagnata/"
         }
       ],
       "status": "unread"
@@ -24846,6 +25161,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "d3bd587967f20a78cba47c24f1bc76b26bd63d8b56f71a7e4e84194dd2aeec3f",
+          "url": "https://www.happings.com/it/happing/festa-delluva-e-del-vino-di-cantrina/"
         }
       ],
       "status": "unread"
@@ -25104,6 +25425,12 @@
           "observed_at": "2026-10-20",
           "sha256": "9e4ae56783cb414eb8621835aa11b5ea3d0b0583f34a6a213086ee2e8a797a48",
           "url": "https://www.happings.com/happings_event-sitemap3.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "49d394f8701c139cad7ec73a4c96657782c4bc19f33b94ee5895ff9a13e5b6fc",
+          "url": "https://www.happings.com/it/happing/festa-dell-solidarieta/"
         }
       ],
       "status": "unread"
@@ -25131,6 +25458,12 @@
           "observed_at": "2026-10-25",
           "sha256": "0862a19dc09afabb5467d36aadfc77633875f8884b44f218a8b2ab3f1d8c9427",
           "url": "https://www.happings.com/it/happing/castagnata-4/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "217e713433302a128ce3e3d9018d37132777b725784cc6579e3e65e432e06355",
+          "url": "https://www.happings.com/it/happing/festa-della-vendemmia/"
         }
       ],
       "status": "unread"
@@ -25256,16 +25589,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/festa-patronale-e-mercatini-2025/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "565ba4558dae3fb26393334ecb69b6db729069a09cae85d961e33d8812fddb4c",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:27.561654+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "ee18cfe5cac2ff4a3d418f49931e27a55e741e39675733488102888eab3890c0",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:23.575343+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -25284,6 +25617,12 @@
           "observed_at": "2026-10-21",
           "sha256": "ca51658c21c0eeffcca1db56210b39cf60009fd7f853736f12540317ff73d48b",
           "url": "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ee18cfe5cac2ff4a3d418f49931e27a55e741e39675733488102888eab3890c0",
+          "url": "https://www.happings.com/it/happing/festa-patronale-e-mercatini-2025/"
         }
       ],
       "status": "retrieved"
@@ -25662,6 +26001,12 @@
           "observed_at": "2026-10-25",
           "sha256": "7fb0df1302a9f71bf062ee110ed6fff8ec0d8bc9becd5eab44e12e57dc23f5e4",
           "url": "https://www.happings.com/it/happing/chef-michelangelo-mammoliti-la-rei-natura-il-boscareto-resort-spa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "64164a22eac9bcdb195b0632fd5cc55a46164bf89eed0a74f0657546beb35a4c",
+          "url": "https://www.happings.com/it/happing/119-mostra-del-bitto/"
         }
       ],
       "status": "unread"
@@ -26007,6 +26352,12 @@
           "observed_at": "2026-10-25",
           "sha256": "0b274b9ccd30e33d5591936601386ee8403a6764594bdc9424d95d3cb50a442a",
           "url": "https://www.happings.com/it/happing/concerto-di-natale-2-evento-10318/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ad969be853fddd4b3e46d55184afbaa8e73f90bf7252559e33024110789014dc",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/"
         }
       ],
       "status": "unread"
@@ -26241,6 +26592,12 @@
           "observed_at": "2026-10-25",
           "sha256": "bac101e3798e199d2d6ceb492a1392bbb1e2f4423b0dca8fb82ca020acc1e736",
           "url": "https://www.happings.com/it/happing/chef-alessandro-rossi-barbagianni/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "9170498b73f9d373c62941ff8e37f9c028b68acaf290733548d7ce3223b703c1",
+          "url": "https://www.happings.com/it/happing/mercatini-dellimmacolata/"
         }
       ],
       "status": "unread"
@@ -26595,6 +26952,12 @@
           "observed_at": "2026-10-21",
           "sha256": "5909afaee7800b377da39388755b4d69fabbf7fe46822b653d654a8becc6b471",
           "url": "https://www.happings.com/it/happing/a-tu-per-tu-con-lo-chef-matteo-baronetto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "9170498b73f9d373c62941ff8e37f9c028b68acaf290733548d7ce3223b703c1",
+          "url": "https://www.happings.com/it/happing/mercatini-dellimmacolata/"
         }
       ],
       "status": "unread"
@@ -26643,6 +27006,12 @@
           "observed_at": "2026-10-20",
           "sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
           "url": "https://www.happings.com/happings_event-sitemap9.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "d3bd587967f20a78cba47c24f1bc76b26bd63d8b56f71a7e4e84194dd2aeec3f",
+          "url": "https://www.happings.com/it/happing/festa-delluva-e-del-vino-di-cantrina/"
         }
       ],
       "status": "unread"
@@ -28377,6 +28746,12 @@
           "observed_at": "2026-10-20",
           "sha256": "208b777a9058c4da7ef619e8b1000c3527363ea8e2eceb881566ced85db9b788",
           "url": "https://www.happings.com/happings_event-sitemap8.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "d3bd587967f20a78cba47c24f1bc76b26bd63d8b56f71a7e4e84194dd2aeec3f",
+          "url": "https://www.happings.com/it/happing/festa-delluva-e-del-vino-di-cantrina/"
         }
       ],
       "status": "unread"
@@ -28761,6 +29136,12 @@
           "observed_at": "2026-10-24",
           "sha256": "a1c67860e2dca519bc4be291273546e264fcfb83748c64cbe383e9021769f13d",
           "url": "https://www.happings.com/it/happing/blauer-schnipsel-etica-ed-estetica-del-riuso/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "092209f605a715873735e4ceb8e20a2b0d35b47dd00eed06e7a3ca2e16ae3ffa",
+          "url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/"
         }
       ],
       "status": "unread"
@@ -28923,6 +29304,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "16f46883b2d15e65222b4fe834e7b9ffd61fb35cf929a9daef7efee19cb6872c",
+          "url": "https://www.happings.com/it/happing/120-chili-di-jazz/"
         }
       ],
       "status": "unread"
@@ -29252,16 +29639,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "206cd0486547e3aaee074f900c1c62554d0f6d8051e9e116613fc053b2fa0603",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:31.802881+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "fcdd55a950398cab89c372f9e550d9d15e60b74840a95215a472f7d96254babd",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:35.447583+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -29273,6 +29660,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "206cd0486547e3aaee074f900c1c62554d0f6d8051e9e116613fc053b2fa0603",
+          "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "fcdd55a950398cab89c372f9e550d9d15e60b74840a95215a472f7d96254babd",
           "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
         }
       ],
@@ -30402,6 +30795,12 @@
           "observed_at": "2026-10-25",
           "sha256": "3bbc9b64c33c620b49647019925d3d56adf4aacca3e9c5454b2098ad03041601",
           "url": "https://www.happings.com/it/happing/castel-rodengo-in-atmosfera-autunnale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "092209f605a715873735e4ceb8e20a2b0d35b47dd00eed06e7a3ca2e16ae3ffa",
+          "url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/"
         }
       ],
       "status": "unread"
@@ -31205,16 +31604,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "9055fe122811577a60cddee2286fd2cd5baa2742ea60ef951e1dbb5f5565c429",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:36.026750+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "092209f605a715873735e4ceb8e20a2b0d35b47dd00eed06e7a3ca2e16ae3ffa",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:40.164157+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -31233,21 +31632,27 @@
           "observed_at": "2026-10-24",
           "sha256": "406a20dd8e258fb672e1629263bec1cbd7279df7c6190b9a92307b73c0378c73",
           "url": "https://www.happings.com/it/happing/alice-cascherina/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "092209f605a715873735e4ceb8e20a2b0d35b47dd00eed06e7a3ca2e16ae3ffa",
+          "url": "https://www.happings.com/it/happing/il-mercato-dei-fumetti-nel-2026-tra-assestamento-e-crescita/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/il-mercato-dei-produttori-agricoli-terra-viva/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "3df665ad38a6dab677437391ff86881ea4f83ec13fb8dd9ddd3fde1e5d061368",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:10:40.296090+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "a2fc4bc216bcc3c389dff35bc6b9c003936d36a38901f98c62ca465461258e60",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:50.602939+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -31266,6 +31671,12 @@
           "observed_at": "2026-10-25",
           "sha256": "c0f0bead67885beb77c51e5dfe76be112c5b2feebc033ae11f54f86dafd06d34",
           "url": "https://www.happings.com/it/happing/cena-di-gala-al-taste-lab-castello-di-roddi-il-barolo-incontra-i-vini-della-rioja/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "a2fc4bc216bcc3c389dff35bc6b9c003936d36a38901f98c62ca465461258e60",
+          "url": "https://www.happings.com/it/happing/il-mercato-dei-produttori-agricoli-terra-viva/"
         }
       ],
       "status": "retrieved"
@@ -31466,16 +31877,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-santosvaldo-a-udine/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "a0e636cd5ffc0a4a62737f042def987c64818254b01b8375f6baf09a24128ac7",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:11:10.541306+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "7c2d2bbf85b39721fd813a9ad1992c64328f19d6540072082d69c4cf047d2968",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:22:56.590991+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -31608,6 +32019,12 @@
           "observed_at": "2026-10-20",
           "sha256": "f412fdf14f702542ae69a17a3517b189483517f7398caeea9eb16be384d38e9c",
           "url": "https://www.happings.com/it/happing/mercato-agricolo-evento-10542/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "a2fc4bc216bcc3c389dff35bc6b9c003936d36a38901f98c62ca465461258e60",
+          "url": "https://www.happings.com/it/happing/il-mercato-dei-produttori-agricoli-terra-viva/"
         }
       ],
       "status": "unread"
@@ -33069,6 +33486,12 @@
           "observed_at": "2026-10-26",
           "sha256": "a221558ee872cd77276dba3643f437eefd35085ddb3b9bd1896df4703492665d",
           "url": "https://www.happings.com/it/happing/festa-dautunno-4-evento-9612/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "b107d5e7c35fec62181462ae7844d1f87984fe6b0546c54bfb04da433db074b9",
+          "url": "https://www.happings.com/it/happing/festa-del-torggelen-a-san-martino-in-passiria/"
         }
       ],
       "status": "unread"
@@ -33300,6 +33723,12 @@
           "observed_at": "2026-10-26",
           "sha256": "98b91cee9b3c555edea17e65e95e6a750b8d2317268f67fb9ad8fcc1304a230b",
           "url": "https://www.happings.com/it/happing/dio-salvi-i-rockers/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ee18cfe5cac2ff4a3d418f49931e27a55e741e39675733488102888eab3890c0",
+          "url": "https://www.happings.com/it/happing/festa-patronale-e-mercatini-2025/"
         }
       ],
       "status": "unread"
@@ -34170,6 +34599,12 @@
           "observed_at": "2026-10-24",
           "sha256": "84b75aa636636a8e699c284d4e6c73c6ae9821273c9f0a800ec116e4fe4306ac",
           "url": "https://www.happings.com/it/happing/babbo-natale-in-piazza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "c18639b20368eeb9843a1c6e8e3a800dd0e699a9d95043fb47f1e74b64a3a1db",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-3/"
         }
       ],
       "status": "unread"
@@ -35814,6 +36249,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "81e3bbf395161bd71ca08721a405cd993bb3df149ef0c92029058f0874b6096f",
+          "url": "https://www.happings.com/it/happing/100-years-of-stories-braccio-di-ferro-colpisce-ancora/"
         }
       ],
       "status": "unread"
@@ -35883,6 +36324,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "a65461792cf39fd0b0558397a301f40d4fb14fac7ed712bc3427251e49df18ed",
+          "url": "https://www.happings.com/it/happing/festa-delle-castagne-a-nalles/"
         }
       ],
       "status": "unread"
@@ -35937,6 +36384,12 @@
           "observed_at": "2026-10-26",
           "sha256": "44660fa007bad0ca7563af879f23e0be0f82500195d3b746644b7ab775139a85",
           "url": "https://www.happings.com/it/happing/ensemble-suoni-riflessi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "422211dbc3cc6e866e691dfed12c5bd5638862031c234297fa733531d7adbc41",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-sax-royal-un-ensemble-di-sassofoni-fuori-dagli-schemi/"
         }
       ],
       "status": "unread"
@@ -36383,16 +36836,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/liertner-dorfmarktl-mercato-del-paese/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "9275c53c6b8d5e21487891c8281dd6c3a9194160e5ac37394573382b097913c7",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:11:14.873355+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "6497a9ed25f72cbb6b719f3bdaf4da378610e084265b21cbb4d48c2c044ec39d",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:07.868376+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37607,16 +38060,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/marce-da-nade-mercatino-di-natale/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "ba443d753f66cd8e692a1f226ce6e91f5c4dec3efb5a8c0c2ecf0bb2f4b222ab",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:11:19.168955+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "5aafe95699c09ef43ac31be1c272dc7378367b8435f5651e2eedd88011251e4e",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:13.300221+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37646,16 +38099,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/marce-da-pasca-mercatino-di-pasqua/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "02c479e8b597945a9d2f1cb7ea3f240f8f39b4dc7df41917e7748fa827b5ba9f",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:11:23.514603+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "0aaabc1ac0271df432192ad6036dae92eff52b6c860ee451110f1c85cc9149f3",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:25.964405+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -37667,6 +38120,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "02c479e8b597945a9d2f1cb7ea3f240f8f39b4dc7df41917e7748fa827b5ba9f",
+          "url": "https://www.happings.com/it/happing/marce-da-pasca-mercatino-di-pasqua/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "0aaabc1ac0271df432192ad6036dae92eff52b6c860ee451110f1c85cc9149f3",
           "url": "https://www.happings.com/it/happing/marce-da-pasca-mercatino-di-pasqua/"
         }
       ],
@@ -37869,6 +38328,12 @@
           "observed_at": "2026-10-26",
           "sha256": "742396a973d60f0445e26895939b5123369f7ab83be40de0f12a3a34024b77f5",
           "url": "https://www.happings.com/it/happing/enrico-pieranunzi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "8380fcef29d4d2ffd625cf44bf47c2b724ebc1a00f923186badedd80f8058b2f",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-concerto-di-san-silvest-ladies-in-dress/"
         }
       ],
       "status": "unread"
@@ -38591,16 +39056,16 @@
       "status": "unread"
     },
     "https://www.happings.com/it/happing/mercatini-dellimmacolata/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1cf0a40805be9c3a153303c4c7270c5a3f8691512bef4d2e1444755aeae8b841",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:11:27.827023+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "9170498b73f9d373c62941ff8e37f9c028b68acaf290733548d7ce3223b703c1",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:32.991513+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -38612,6 +39077,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "1cf0a40805be9c3a153303c4c7270c5a3f8691512bef4d2e1444755aeae8b841",
+          "url": "https://www.happings.com/it/happing/mercatini-dellimmacolata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "9170498b73f9d373c62941ff8e37f9c028b68acaf290733548d7ce3223b703c1",
           "url": "https://www.happings.com/it/happing/mercatini-dellimmacolata/"
         }
       ],
@@ -38813,16 +39284,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-3/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "64df136383d553701469729e21a9d5c7666ac97444cc9badd4bae01c585b08b2",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:11:58.548459+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "c18639b20368eeb9843a1c6e8e3a800dd0e699a9d95043fb47f1e74b64a3a1db",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:45.589214+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -38852,16 +39323,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-4-evento-9746/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "72d498180cfec53e2fc9388285d47b5dbb58e760fc153fcee43deb642823c07a",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:02.948449+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "265bce5488920daac85e3975b64f63d4bcecaab55f82f6f90ea25cfbdd1accc5",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:23:50.571937+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -38930,16 +39401,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-5/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "174aca5d79b4f9f4546a4504609b0d9daff9da00cf6453c05eda3b0116ab4ea8",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:11.840632+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "6a72af680a9e9904c8b592dbe4f5befaa0114f7796e4db4097995ee5eccae051",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:00.756162+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39008,16 +39479,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-a-vestone/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1d2747e308117762c0a8d25704cf0a70d74903d2b980dd0c6216d3c80bbe542d",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:25.400245+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "5ef11d527dce3104d7e9a0d016ff8e5aae019c197be4359c841f17f15b46fa86",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:06.995433+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39047,16 +39518,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-di-urgnano/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "423a8fc1d2f8ab3c54528f14e74add48eddd5edb8b9a4336c65bf65ec2b7b107",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:29.848579+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "3c1956aa02289af3911b134acbd87811c059ee65ba2a1e0e2b32c08de8cdfa1b",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:19.340347+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39086,16 +39557,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-le-sa-nedal/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "cf209f0eb876e4dcba05087484ef02a4cc8650a56a127b8a0499c11282cdd95d",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:34.325190+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "78b27b9a8f3d93e4db491ebd129020b85572fd9cb98b004e6400090a3bccea9c",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:24.781594+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39114,6 +39585,12 @@
           "observed_at": "2026-10-20",
           "sha256": "95c8d11a08dad05fe98567d1c9c60d98c7b77e775c3bf18a5722176f316dddcf",
           "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-una-tenera-e-buffa-storia-di-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "78b27b9a8f3d93e4db491ebd129020b85572fd9cb98b004e6400090a3bccea9c",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-le-sa-nedal/"
         }
       ],
       "status": "retrieved"
@@ -39158,16 +39635,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-villaggio-babbo-natale-26/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "d1c28248f9b821f3c067ab562a8476b1763465d715b485ae31334b4131b07f8c",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:12:43.273084+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "c9f33571b09c6b9cc1a239e86a3b95af3db72b1da0fa602b40b23abb507987ca",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:36.708877+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39314,16 +39791,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-antiquariato-forte-dei-marmi-novembre-dicembre-2026/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "a27c13c1fbdd9b6699fb137daf0f9c40222e27da9bf9386d37e6e21293af3907",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:13:05.829674+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "e3c8ffa0897bf510c10880ff0408867f249b82e7d63316b1bb078994e890dcec",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:41.680801+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39587,16 +40064,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-delle-pulci-a-terlano/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "02a03f285d39268794cef124d1048c83e51a51ed27243516f11e5ed9bbdbd863",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:13:42.314482+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "b99572097442f6ffbb4b8b865dc0533472f295fb3ed86a843eec9534f934edfb",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:51.689500+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39665,16 +40142,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-delle-pulci-di-bressanone/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "4b2211af92d4d3a6c6ee751c4928505aa211d332c6781526547d09e9fe1f8994",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:13:51.752104+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "5e2df0b9cb15ae90e1cc3bb305ecc6351679d05a81fa08dcffb4926d0b980367",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:24:56.935299+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39743,16 +40220,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-delle-pulci-per-bambini/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "5f44710731d314a4c0885a759fafdd0580c3faa659e1adf781b493275cc6db2e",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:00.998334+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "08b0700a3e513993ec1c712576357e8ca7c65e1858f22a31589c74d0fe2a1ddf",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:08.133196+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39782,16 +40259,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-dicembre/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1b8d335efd7fa055c54f93f94bc3114cf7346fadee5da38cc706580827925697",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:05.643823+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "8f3ead0128642e5cf4000010e35ac0faebe42c3d54dab9f1e3b13803afe4aaab",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:13.389519+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39854,16 +40331,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-natale-a-valas/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1fb380485bae73b807817ced1aca0a94d37e31b538aacfadcfeba082c753fc65",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:10.417294+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "e2bd94d6d19cefd293db892450b62b02dc1f53822415c4f28158695a785f5890",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:25.615557+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39893,16 +40370,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1d17b6f7644cd8a4c0b5da6f3bf0740ce4375b974dd9f2171e26960d3673f475",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:15.077344+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "4be3c94baffabcffca9155cac26561de9b05b0348867bf617afebbae631bb37f",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:31.040026+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39915,21 +40392,33 @@
           "observed_at": "2026-10-20",
           "sha256": "1d17b6f7644cd8a4c0b5da6f3bf0740ce4375b974dd9f2171e26960d3673f475",
           "url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "4be3c94baffabcffca9155cac26561de9b05b0348867bf617afebbae631bb37f",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ad969be853fddd4b3e46d55184afbaa8e73f90bf7252559e33024110789014dc",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-concerto-di-san-silvest-ladies-in-dress/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "aeb01fb671eba03175dfce67c0cc0a277bf52289cbdce9443b7f944100c6fcd4",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:24.395840+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "8380fcef29d4d2ffd625cf44bf47c2b724ebc1a00f923186badedd80f8058b2f",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:41.782816+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39948,21 +40437,27 @@
           "observed_at": "2026-10-25",
           "sha256": "eb9ec4c5ae823c097ced1b9c25facbd8d5cdf3a051dfa4f5f1082e3f474a332d",
           "url": "https://www.happings.com/it/happing/concerto-di-natale-4-evento-15506/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "8380fcef29d4d2ffd625cf44bf47c2b724ebc1a00f923186badedd80f8058b2f",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-concerto-di-san-silvest-ladies-in-dress/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-jingle-bells-rock/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "79184f955059eb6a61736178e095a691d81fb70886268f67ebc17dbe9fbafbc0",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:29.077413+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "ad969be853fddd4b3e46d55184afbaa8e73f90bf7252559e33024110789014dc",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:25:47.237086+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -39981,21 +40476,27 @@
           "observed_at": "2026-10-24",
           "sha256": "7b711265ccde536e80a6299bf6e4fa9bf0cbcb52f102e70a541e5f51ee203e58",
           "url": "https://www.happings.com/it/happing/arti-e-mestieri-del-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "5ef11d527dce3104d7e9a0d016ff8e5aae019c197be4359c841f17f15b46fa86",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-a-vestone/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-natale-sax-royal-un-ensemble-di-sassofoni-fuori-dagli-schemi/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "fe8d6bc4cbd76e3fe345901e84f14e2ec8d96fe3413d22f1b7f9032a1c04437e",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:33.787353+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "422211dbc3cc6e866e691dfed12c5bd5638862031c234297fa733531d7adbc41",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:00.865173+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40007,6 +40508,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "fe8d6bc4cbd76e3fe345901e84f14e2ec8d96fe3413d22f1b7f9032a1c04437e",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-sax-royal-un-ensemble-di-sassofoni-fuori-dagli-schemi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "422211dbc3cc6e866e691dfed12c5bd5638862031c234297fa733531d7adbc41",
           "url": "https://www.happings.com/it/happing/mercatino-di-natale-sax-royal-un-ensemble-di-sassofoni-fuori-dagli-schemi/"
         }
       ],
@@ -40041,21 +40548,27 @@
           "observed_at": "2026-10-20",
           "sha256": null,
           "url": "https://www.happings.com/it/happing/mercatino-di-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "c18639b20368eeb9843a1c6e8e3a800dd0e699a9d95043fb47f1e74b64a3a1db",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-3/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-novembre/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "050b3ddc42e37861589c7bd5b93522dff42c63509779b030d9ee415b49eda2a6",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:43.224278+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "cc9de98b35c2cf239a15cac93d1ced0fe3f66bceab12fe8e75adf079eab4db42",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:07.332521+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40085,16 +40598,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-ottobre/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "983b72aa5a2546c10148d70a591f484d0150c8bbde994d05e4f7060c219e16a8",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:47.931044+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "0d4f85b6e74630023c26bee4d46e6ce387deb6b325576dcfa35de331232a4727",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:19.829581+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40113,21 +40626,27 @@
           "observed_at": "2026-10-20",
           "sha256": "983b72aa5a2546c10148d70a591f484d0150c8bbde994d05e4f7060c219e16a8",
           "url": "https://www.happings.com/it/happing/mercatino-di-ottobre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "0d4f85b6e74630023c26bee4d46e6ce387deb6b325576dcfa35de331232a4727",
+          "url": "https://www.happings.com/it/happing/mercatino-di-ottobre/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-tutti-i-santi-a-lana/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "1bb367e99ea597067e1ed909574ef27e7278a00ae6a8aff05729c1af55f25640",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:52.675948+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "558c35d127cc990adc114ab2cfba5162c5c085ab99e6bc882630fcb7315ba831",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:25.184297+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40157,16 +40676,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-natale-piazza-napoleone-lucca-2026-2027/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "6b88c3cda7291989d43269de423ffdcdac942d7342dfbc99c780b21111c30689",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:14:57.416208+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "e93d87f334dd204672025158a20aa633c1f35d18199514c69c1209fe3954cab0",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:36.184744+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40196,16 +40715,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-natalizio-sotterraneo/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "9988ccaa67751fc6cbceaefe8178600355a565c91cfa5366ab62b8d000088b4d",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:15:07.062578+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "8a6e02b251d4ff743b99671051ec6273bd47417b200678c8ea10b90092d908b8",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:41.919363+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40235,16 +40754,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-big-band-della-burgerkapelle-lana/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "436cb3822ffb96d90284b9dee50a849e24969d60f53d30e0488013fdfe686b81",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:15:11.993572+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "224b3935e08324268143a7eea95af63b3093e9ccff29df1ff04c4ba0c66f112d",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:54.177785+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40274,16 +40793,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-hello-we-are-lit/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-20",
+      "last_attempt": "2026-10-27",
       "last_error": null,
-      "last_sha256": "05fc66a0f99341d48ee74af60dbcc3e01e9f17c388179f9b2d15c5def1f5c946",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T18:15:17.050588+00:00",
-      "next_due": "2026-10-27",
+      "last_sha256": "e7797ec62f843e195b7906d74847e37dec338c6b465b77df496e8403c551d437",
+      "last_success": "2026-10-27",
+      "last_success_at": "2026-10-27T01:26:59.601271+00:00",
+      "next_due": "2026-11-03",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42924,6 +43443,12 @@
           "observed_at": "2026-10-25",
           "sha256": "eb14b56a0f0d8bc70dd276a57bc6027cdfd5e04689d2fdbe433975ba04ab7a6f",
           "url": "https://www.happings.com/it/categoria-evento/mercati/page/5/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e62fafd46bb816766442c4a26054f8e1b3b3370879bffb71a0a8b0d4dcc5d900",
+          "url": "https://www.happings.com/it/happing/agrimercato-di-campagna-amica-di-piazza-della-liberta-alessandria/"
         }
       ],
       "status": "retrieved"
@@ -43497,6 +44022,12 @@
           "observed_at": "2026-10-20",
           "sha256": "daf2cd45dfbbd50f081f68e608f245bf85309689033ecb84a49b75554962efba",
           "url": "https://www.happings.com/it/happing/mercato-del-pane-e-dello-strudel-a-bressanone/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "40d4dd4436aae2179380778260da8bdbeba6549c84e9f5691aaff35b379dfe94",
+          "url": "https://www.happings.com/it/happing/14a-passeggiata-meranese-del-vino/"
         }
       ],
       "status": "retrieved"
@@ -49822,6 +50353,27 @@
       ],
       "status": "unread"
     },
+    "https://www.happings.com/it/happing/montags-feschtl-festa-in-piazza-festa-a-barbiano/": {
+      "attempts": 0,
+      "discovered_at": "2026-10-27",
+      "failures": 0,
+      "kind": "detail",
+      "last_attempt": null,
+      "last_error": null,
+      "last_sha256": null,
+      "last_success": null,
+      "last_success_at": null,
+      "next_due": "2026-10-27",
+      "origins": [
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f2d379ef64492da78df77ae85d6ef8320a4e8928941e83b5f20703e4fb26459d",
+          "url": "https://www.happings.com/it/happing/festa-della-castagna-della-banda-musicale-di-lana/"
+        }
+      ],
+      "status": "unread"
+    },
     "https://www.happings.com/it/happing/montalbano-la-forma-dellacqua/": {
       "attempts": 0,
       "discovered_at": "2026-10-20",
@@ -50100,6 +50652,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4069dfd1a32c80b4ba77831fbf114ab923a3c3f1a7366931173de8a37b0a01ee",
           "url": "https://www.happings.com/happings_event-sitemap13.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "5aafe95699c09ef43ac31be1c272dc7378367b8435f5651e2eedd88011251e4e",
+          "url": "https://www.happings.com/it/happing/marce-da-nade-mercatino-di-natale/"
         }
       ],
       "status": "unread"
@@ -50619,6 +51177,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "265bce5488920daac85e3975b64f63d4bcecaab55f82f6f90ea25cfbdd1accc5",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-4-evento-9746/"
         }
       ],
       "status": "unread"
@@ -50685,6 +51249,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4d93eeb5c6afc77e7914d16a8eb117bcef0df40461ab5c04db6334c5f2322a35",
           "url": "https://www.happings.com/it/happing/mercatino-santa-lucia-aspettando-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "265bce5488920daac85e3975b64f63d4bcecaab55f82f6f90ea25cfbdd1accc5",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-4-evento-9746/"
         }
       ],
       "status": "unread"
@@ -50880,6 +51450,12 @@
           "observed_at": "2026-10-25",
           "sha256": "0c339fdbe9fa2c9409393402789d122625753672d900787d933f49ed1c052e3f",
           "url": "https://www.happings.com/it/happing/consegna-letterine-a-babbo-natale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "78b27b9a8f3d93e4db491ebd129020b85572fd9cb98b004e6400090a3bccea9c",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-le-sa-nedal/"
         }
       ],
       "status": "unread"
@@ -50922,6 +51498,18 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "4be3c94baffabcffca9155cac26561de9b05b0348867bf617afebbae631bb37f",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-di-parcines/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "8a6e02b251d4ff743b99671051ec6273bd47417b200678c8ea10b90092d908b8",
+          "url": "https://www.happings.com/it/happing/mercatino-natalizio-sotterraneo/"
         }
       ],
       "status": "unread"
@@ -50988,6 +51576,12 @@
           "observed_at": "2026-10-20",
           "sha256": "174aca5d79b4f9f4546a4504609b0d9daff9da00cf6453c05eda3b0116ab4ea8",
           "url": "https://www.happings.com/it/happing/mercatini-di-natale-5/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e7797ec62f843e195b7906d74847e37dec338c6b465b77df496e8403c551d437",
+          "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-hello-we-are-lit/"
         }
       ],
       "status": "unread"
@@ -51447,6 +52041,12 @@
           "observed_at": "2026-10-26",
           "sha256": "fef673295cfcd6f82d68dc52c6f26582b5a45a7960c96b22fe0ab00ef58c6d23",
           "url": "https://www.happings.com/it/happing/festa-del-ringraziamento-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "359834c7780f11cec35d7f4c5cf10594e4e677d3dba5eb37489bfd57ac63c42c",
+          "url": "https://www.happings.com/it/happing/festa-del-torggelen-a-colsano/"
         }
       ],
       "status": "unread"
@@ -52491,6 +53091,18 @@
           "observed_at": "2026-10-20",
           "sha256": "1fb380485bae73b807817ced1aca0a94d37e31b538aacfadcfeba082c753fc65",
           "url": "https://www.happings.com/it/happing/mercatino-di-natale-a-valas/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "265bce5488920daac85e3975b64f63d4bcecaab55f82f6f90ea25cfbdd1accc5",
+          "url": "https://www.happings.com/it/happing/mercatini-di-natale-4-evento-9746/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e7797ec62f843e195b7906d74847e37dec338c6b465b77df496e8403c551d437",
+          "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-hello-we-are-lit/"
         }
       ],
       "status": "unread"
@@ -53493,6 +54105,12 @@
           "observed_at": "2026-10-24",
           "sha256": "f6c229ec62c1795cd393ed2d49e9cf2b48a2560fabe3aed1039137d5334a62c2",
           "url": "https://www.happings.com/it/happing/autunno-in-ghedi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "0d4f85b6e74630023c26bee4d46e6ce387deb6b325576dcfa35de331232a4727",
+          "url": "https://www.happings.com/it/happing/mercatino-di-ottobre/"
         }
       ],
       "status": "unread"
@@ -53628,6 +54246,12 @@
           "observed_at": "2026-10-25",
           "sha256": "dbb116537f932e3d890304b710fad6f96791a3392aca6d25d29ee5ddb55cf95c",
           "url": "https://www.happings.com/it/happing/concerto-della-banda-e-processione-di-ringraziamento/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "224b3935e08324268143a7eea95af63b3093e9ccff29df1ff04c4ba0c66f112d",
+          "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-big-band-della-burgerkapelle-lana/"
         }
       ],
       "status": "unread"
@@ -53649,6 +54273,12 @@
           "observed_at": "2026-10-20",
           "sha256": "14fd799424617e49a3f53251d38c34acca34f54c1833afb896993505dd84cc59",
           "url": "https://www.happings.com/happings_event-sitemap6.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "224b3935e08324268143a7eea95af63b3093e9ccff29df1ff04c4ba0c66f112d",
+          "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-big-band-della-burgerkapelle-lana/"
         }
       ],
       "status": "unread"
@@ -53880,6 +54510,12 @@
           "observed_at": "2026-10-26",
           "sha256": "4e1de72f36cd7285dc95896b936a6453b33ae26c3935e326f1057a18380cb4ec",
           "url": "https://www.happings.com/it/happing/die-windschnuren-touren-a-castel-prosels/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "422211dbc3cc6e866e691dfed12c5bd5638862031c234297fa733531d7adbc41",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-sax-royal-un-ensemble-di-sassofoni-fuori-dagli-schemi/"
         }
       ],
       "status": "unread"
@@ -55359,6 +55995,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "49d394f8701c139cad7ec73a4c96657782c4bc19f33b94ee5895ff9a13e5b6fc",
+          "url": "https://www.happings.com/it/happing/festa-dell-solidarieta/"
         }
       ],
       "status": "unread"
@@ -55788,6 +56430,12 @@
           "observed_at": "2026-10-26",
           "sha256": "7576f036141e1cd25d2aefbb11be94a2f2b0974051865b3f6e206c7d1b354c20",
           "url": "https://www.happings.com/it/happing/festa-dautunno-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "0a0376200ddad23e961cbe3da3d493d43875b0445f38ef20d49acb0be4736075",
+          "url": "https://www.happings.com/it/happing/festa-del-mercato/"
         }
       ],
       "status": "unread"
@@ -56745,6 +57393,12 @@
           "observed_at": "2026-10-24",
           "sha256": "f6c229ec62c1795cd393ed2d49e9cf2b48a2560fabe3aed1039137d5334a62c2",
           "url": "https://www.happings.com/it/happing/autunno-in-ghedi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "8f3ead0128642e5cf4000010e35ac0faebe42c3d54dab9f1e3b13803afe4aaab",
+          "url": "https://www.happings.com/it/happing/mercatino-di-dicembre/"
         }
       ],
       "status": "unread"
@@ -57381,6 +58035,12 @@
           "observed_at": "2026-10-24",
           "sha256": "cb8dacf873a2330418700f354543fea264050f546fbb9b35855858f0141c9198",
           "url": "https://www.happings.com/it/happing/butterfly-music-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f2d379ef64492da78df77ae85d6ef8320a4e8928941e83b5f20703e4fb26459d",
+          "url": "https://www.happings.com/it/happing/festa-della-castagna-della-banda-musicale-di-lana/"
         }
       ],
       "status": "unread"
@@ -57648,6 +58308,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "fcdd55a950398cab89c372f9e550d9d15e60b74840a95215a472f7d96254babd",
+          "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
         }
       ],
       "status": "unread"
@@ -57830,6 +58496,12 @@
           "kind": "html_link",
           "observed_at": "2026-10-20",
           "sha256": "02c479e8b597945a9d2f1cb7ea3f240f8f39b4dc7df41917e7748fa827b5ba9f",
+          "url": "https://www.happings.com/it/happing/marce-da-pasca-mercatino-di-pasqua/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "0aaabc1ac0271df432192ad6036dae92eff52b6c860ee451110f1c85cc9149f3",
           "url": "https://www.happings.com/it/happing/marce-da-pasca-mercatino-di-pasqua/"
         }
       ],
@@ -58134,6 +58806,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "3efbe8766c380edcbedd78a51a5b6d7ae8aea5455ef37cc2c12bf64a216cf664",
+          "url": "https://www.happings.com/it/happing/festa-della-basilica/"
         }
       ],
       "status": "unread"
@@ -58209,6 +58887,12 @@
           "observed_at": "2026-10-21",
           "sha256": "752e267e3202e7eaecb1ad696561367426dd754d2f7ad008f1e3ad587510d833",
           "url": "https://www.happings.com/it/happing/addio-anno-vecchio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e904d587b9ecc5ecd89da441af316c3fef6292396aeac632d48eb60943a9dbe7",
+          "url": "https://www.happings.com/it/happing/festa-della-transumanza-a-san-genesio/"
         }
       ],
       "status": "unread"
@@ -58392,6 +59076,12 @@
           "observed_at": "2026-10-20",
           "sha256": "c20658cc8cf0224ed44854901f00ebbd0e013d6891027c2b6c33c1a281574879",
           "url": "https://www.happings.com/happings_event-sitemap2.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "0a0376200ddad23e961cbe3da3d493d43875b0445f38ef20d49acb0be4736075",
+          "url": "https://www.happings.com/it/happing/festa-del-mercato/"
         }
       ],
       "status": "unread"
@@ -59214,6 +59904,12 @@
           "observed_at": "2026-10-26",
           "sha256": "5355ffabff8bab5a5a35f054937fc775a0fc6f243ab0daa3c2f9345931c7e7d3",
           "url": "https://www.happings.com/it/happing/festa-dautunno-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "9933d57b6235fc9b3cbcfea3b11b926858e798492f95a52b50a5b2b674770a84",
+          "url": "https://www.happings.com/it/happing/festa-dellagricoltura/"
         }
       ],
       "status": "unread"
@@ -60285,6 +60981,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e904d587b9ecc5ecd89da441af316c3fef6292396aeac632d48eb60943a9dbe7",
+          "url": "https://www.happings.com/it/happing/festa-della-transumanza-a-san-genesio/"
         }
       ],
       "status": "unread"
@@ -60345,6 +61047,12 @@
           "observed_at": "2026-10-25",
           "sha256": "98d2e9fbd450dbffffc2dbf18e99582a8830b1839e094afea47037684d92eb58",
           "url": "https://www.happings.com/it/happing/cena-dautunno/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "ce1bd7e0e768f45bc336ef441354a0e456a0660c86906ef0d4a6dc8db24a52eb",
+          "url": "https://www.happings.com/it/happing/festa-del-contadino-con-mercatino-a-tiso/"
         }
       ],
       "status": "unread"
@@ -60393,6 +61101,12 @@
           "observed_at": "2026-10-20",
           "sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
           "url": "https://www.happings.com/happings_event-sitemap.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "217e713433302a128ce3e3d9018d37132777b725784cc6579e3e65e432e06355",
+          "url": "https://www.happings.com/it/happing/festa-della-vendemmia/"
         }
       ],
       "status": "unread"
@@ -60753,6 +61467,12 @@
           "observed_at": "2026-10-25",
           "sha256": "f55daf30f6d69bb2816a405870e81facf7009cad6d210c17ef81ee1bc64f2274",
           "url": "https://www.happings.com/it/happing/concerto-della-banda-musicale-di-worb-a-scena/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "8380fcef29d4d2ffd625cf44bf47c2b724ebc1a00f923186badedd80f8058b2f",
+          "url": "https://www.happings.com/it/happing/mercatino-di-natale-polvere-di-stelle-concerto-di-san-silvest-ladies-in-dress/"
         }
       ],
       "status": "unread"
@@ -62496,6 +63216,12 @@
           "observed_at": "2026-10-20",
           "sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
           "url": "https://www.happings.com/happings_event-sitemap11.xml"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "81e3bbf395161bd71ca08721a405cd993bb3df149ef0c92029058f0874b6096f",
+          "url": "https://www.happings.com/it/happing/100-years-of-stories-braccio-di-ferro-colpisce-ancora/"
         }
       ],
       "status": "unread"
@@ -62934,6 +63660,12 @@
           "observed_at": "2026-10-26",
           "sha256": "e137cd0da09e96f34e829c08bdb6c5707b4aa42d747851b583e39398691ecb2b",
           "url": "https://www.happings.com/it/happing/eco-festa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "e904d587b9ecc5ecd89da441af316c3fef6292396aeac632d48eb60943a9dbe7",
+          "url": "https://www.happings.com/it/happing/festa-della-transumanza-a-san-genesio/"
         }
       ],
       "status": "unread"
@@ -63828,6 +64560,12 @@
           "observed_at": "2026-10-25",
           "sha256": "c00859993f67cb1931a1ea637a3791fa8269d37fee76888f59c125d3efa7e9af",
           "url": "https://www.happings.com/it/happing/castagnata-2026-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "f9fa0f2172f6606bcdebdf77e0464eaeee5fac134585e978d7d12d3ba0c1c89e",
+          "url": "https://www.happings.com/it/happing/10a-festa-della-tradizione-e-del-gusto-a-prato/"
         }
       ],
       "status": "unread"
@@ -65298,6 +66036,12 @@
           "observed_at": "2026-10-26",
           "sha256": "2e810cacc1843dccca76b4cd0589b8203704e6b1815ea2e923293fc29a97ed93",
           "url": "https://www.happings.com/it/happing/festa-dautunno-presso-la-vecchia-vite-a-magre/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "40d4dd4436aae2179380778260da8bdbeba6549c84e9f5691aaff35b379dfe94",
+          "url": "https://www.happings.com/it/happing/14a-passeggiata-meranese-del-vino/"
         }
       ],
       "status": "unread"
@@ -65352,6 +66096,12 @@
           "observed_at": "2026-10-20",
           "sha256": "f9b7788ad089571645605ccdd4399e2e62c31fd44824af3c17e802fcc2863137",
           "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-le-donne-contadine-cucinano-sulla-stufa-a-legna/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "5aafe95699c09ef43ac31be1c272dc7378367b8435f5651e2eedd88011251e4e",
+          "url": "https://www.happings.com/it/happing/marce-da-nade-mercatino-di-natale/"
         }
       ],
       "status": "unread"
@@ -67530,6 +68280,12 @@
           "observed_at": "2026-10-25",
           "sha256": "7ce5d907875e11bd17203973919d4ab30af14a736633d47b32657f693feb3588",
           "url": "https://www.happings.com/it/happing/concerto-davvento/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-10-27",
+          "sha256": "224b3935e08324268143a7eea95af63b3093e9ccff29df1ff04c4ba0c66f112d",
+          "url": "https://www.happings.com/it/happing/mercatino-polvere-di-stelle-big-band-della-burgerkapelle-lana/"
         }
       ],
       "status": "unread"
