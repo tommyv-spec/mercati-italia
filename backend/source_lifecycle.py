@@ -27,7 +27,7 @@ from urllib.parse import urlsplit, parse_qs
 
 from merge_catalog import load_existing
 from source_dispositions import reconcile as reconcile_reviewed_source_ids
-from recurrence_refresh import WEEKDAYS, complete_monthly_rule, explicit_rule, forecast_rule
+from recurrence_refresh import WEEKDAYS, complete_monthly_rule, explicit_rule, forecast_rule, month_scope_text
 from source_probe import limited_fetch, safe_url
 from reviewed_city_evidence import NAVIGATION_HOLD
 from publisher_snapshot_date import resolve_source_date, validate_strategy
@@ -565,8 +565,9 @@ def candidate_record(profile,row,*,today,source_date=None):
         recurrence="Calendario da verificare"
     elif monthly:
         # domenica is the only feminine weekday: "prima domenica", "primo sabato".
+        # "escluso agosto" stays in the card, so forecasts skip that month.
         recurrence=("mensile - "+MONTHLY_ORDINALS[rule["ordinal"]][d==6]+" "
-                    +WEEKDAYS[d]+" del mese")
+                    +WEEKDAYS[d]+" del mese"+month_scope_text(rule))
     else:
         recurrence="settimanale - "+", ".join(WEEKDAYS[x] for x in days)
         months=str(row.get(profile["season_field"]) or "").strip() if profile.get("season_field") else ""
@@ -628,6 +629,8 @@ def candidate_record(profile,row,*,today,source_date=None):
            "publisher_dataset_date":updated.isoformat()}
     if monthly:
         facts["ordinal"]=rule["ordinal"] if rule else None
+        if rule and rule.get("active_months"):
+            facts["active_months"]=rule["active_months"]
     if profile.get("season_field") and row.get(profile["season_field"]):
         facts["months"]=canonical(row[profile["season_field"]])
     if raw_hours and not (start and end):

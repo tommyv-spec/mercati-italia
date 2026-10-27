@@ -166,11 +166,30 @@ class TemporalScopeForecastGuards(unittest.TestCase):
                 self.assertEqual(updated, original)
                 self.assertNotIn("proiezione_generata_il", updated)
 
+    def test_months_a_rule_excludes_are_never_forecast(self):
+        today = date(2026, 7, 1)
+        for recurrence, months in (("Ogni sabato tranne agosto", [8]),
+                                   ("settimanale - sabato, esclusi luglio e agosto", [7, 8]),
+                                   ("Ogni sabato (escluso il mese di agosto)", [8])):
+            with self.subTest(recurrence=recurrence):
+                original = record(ricorrenza_testo=recurrence, fonte_aggiornata_il="2026-06-01", date=[])
+                updated, reason = refresh_record(original, today)
+                self.assertEqual(reason, "renewed")
+                self.assertTrue(updated["date"])
+                self.assertFalse([d for d in updated["date"] if int(d[5:7]) in months])
+                self.assertTrue(all(date.fromisoformat(d).weekday() == 5 for d in updated["date"]))
+                self.assertEqual(updated["proiezione_regola"]["active_months"],
+                                 [m for m in range(1, 13) if m not in months])
+                # The next run reads the same rule: the saved month mask is not a new claim.
+                self.assertEqual(refresh_record(updated, today)[1], "renewed")
+
     def test_calendar_exception_and_date_range_retire_even_with_unparseable_or_unknown_age(self):
         for recurrence, expected in (
             ("quindicinale", "interval_scope_unrepresented"),
             ("Ogni sabato, esclusi i festivi", "calendar_exception_scope_unrepresented"),
-            ("Ogni sabato tranne agosto", "calendar_exception_scope_unrepresented"),
+            ("Ogni sabato tranne il 15 agosto", "calendar_exception_scope_unrepresented"),
+            ("Ogni sabato tranne agosto e i festivi", "calendar_exception_scope_unrepresented"),
+            ("Ogni sabato ad esclusione del mese di agosto 2026", "calendar_exception_scope_unrepresented"),
             ("Ogni sabato da giugno a settembre 2026", "date_range_scope_unrepresented"),
             ("Ogni sabato dal 1 giugno al 31 agosto", "date_range_scope_unrepresented"),
             ("Ogni sabato dal 01/06 al 31/08", "date_range_scope_unrepresented"),

@@ -21,7 +21,8 @@ from pathlib import Path
 
 from catalog_quality_report import VAGUE_ADDRESSES, key as addr_key
 from lombardia_overlap import weekday_evidence
-from recurrence_refresh import calendar_key, complete_monthly_rule, explicit_rule, forecast_rule
+from recurrence_refresh import (calendar_key, complete_monthly_rule, explicit_rule, forecast_rule,
+                                month_scope_text, rule_core)
 from source_lifecycle import (
     MARKET_KINDS, MONTH_KIND, WEEKDAYS_NORMAL, parse_rows, candidate_record, canonical, digest,
     excluded_row, istat_municipality, validate_contracts, weekday as source_weekday,
@@ -46,7 +47,7 @@ FILL_MANAGER = "source_contract_town_day"
 FILL_METHOD = "comune_provincia_giorno_univoco"
 # Monthly calendars join on municipality + calendar ("prima domenica del mese").
 FILL_METHOD_MONTH = "comune_provincia_ricorrenza_univoca"
-FILL_FIELDS = ("indirizzo", "orario_testo")
+FILL_FIELDS = ("indirizzo", "orario_testo", "ricorrenza_testo")
 EXACT_SOURCE_HOURS = re.compile(r"(?:[01]\d|2[0-3]):[0-5]\d–(?:[01]\d|2[0-3]):[0-5]\d \(da verificare con il Comune\)")
 ORDINARY_CATEGORIES = frozenset({"misto", "alimentare"})
 IDENTITY_FIELDS = ("nome", "citta", "regione", "provincia")
@@ -269,6 +270,14 @@ def _replaceable_hours(current, official):
                 and span[0]<=int(official[:2])<span[1])
 
 
+def _months_added(current, value):
+    """The card's own monthly rule, word for word, plus the months the official
+    calendar says it skips ("..., esclusi luglio e agosto"): it only removes dates."""
+    old,new=complete_monthly_rule(current),complete_monthly_rule(value)
+    return bool(old and new and not old.get("active_months") and new.get("active_months")
+                and rule_core(new)==old and value==str(current).rstrip(" .,")+month_scope_text(new))
+
+
 def _ordinary_market(row):
     tags=row.get("tags") or []
     text=" ".join(canonical(v) for v in [row.get("nome"),row.get("url_fonte"),
@@ -409,10 +418,17 @@ def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed
         values={"indirizzo":street}
         if EXACT_SOURCE_HOURS.fullmatch(record["orario_testo"]):
             values["orario_testo"]=record["orario_testo"]
-        if monthly and (complete_monthly_rule(target.get("ricorrenza_testo"))
-                        ==complete_monthly_rule(record["ricorrenza_testo"])):
+        official_rule=complete_monthly_rule(record["ricorrenza_testo"]) if monthly else None
+        if monthly and complete_monthly_rule(target.get("ricorrenza_testo"))==official_rule:
             # Still listed: the card's own words, never the calendar's.
             values["ricorrenza_testo"]=target["ricorrenza_testo"]
+        elif monthly and official_rule.get("active_months") and _months_added(
+                target.get("ricorrenza_testo"),
+                str(target.get("ricorrenza_testo")).rstrip(" .,")+month_scope_text(official_rule)):
+            # Same rule, but the calendar names months it skips ("escluso agosto"):
+            # the card keeps its words and gains those months.
+            values["ricorrenza_testo"]=(str(target["ricorrenza_testo"]).rstrip(" .,")
+                                        +month_scope_text(official_rule))
         values={k:v for k,v in values.items() if len(v)<=FIELDS[k]}
         method=FILL_METHOD_MONTH if monthly else FILL_METHOD
         receipt_for=lambda row,vals:make_receipt(
@@ -428,7 +444,8 @@ def town_day_fills(profile, source, base, *, today, read_on, source_date, parsed
             if managed_update_allowed(target,probe,field,manager=FILL_MANAGER,today=today):
                 managed.add(field)
             elif not (_placeholder_street(current) and target.get("position_quality")!="precisa"
-                      if field=="indirizzo" else _replaceable_hours(current,value)):
+                      if field=="indirizzo" else _months_added(current,value)
+                      if field=="ricorrenza_testo" else _replaceable_hours(current,value)):
                 counts["kept_existing_"+field]+=1
                 continue
             changes[field]={"before":current,"after":value}
@@ -522,7 +539,9 @@ def verify_fill(profile, prior, result, proof, *, today, source_observations):
                 or not (managed_update_allowed(prior,plain,field,manager=FILL_MANAGER,today=today)
                         or (field=="indirizzo" and _placeholder_street(before)
                             and prior.get("position_quality")!="precisa")
-                        or (field=="orario_testo" and _replaceable_hours(before,change["after"])))):
+                        or (field=="orario_testo" and _replaceable_hours(before,change["after"]))
+                        or (field=="ricorrenza_testo" and profile["row_kind"]==MONTH_KIND
+                            and _months_added(before,change["after"])))):
             raise ValueError("Town/day fill overwrote a value it may not replace")
     if apply_fill(prior,proof,profile,today=today)!=result:
         raise ValueError("Town/day fill changed an unreported field")

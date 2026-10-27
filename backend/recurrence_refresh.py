@@ -69,13 +69,23 @@ COMPLETE_MONTH_RANGE = re.compile(
     r") a (?P<last>" + MONTH_NAMES + r")"
 )
 NAMED_MONTH_RANGE = re.compile(r"da (" + MONTH_NAMES + r") a (" + MONTH_NAMES + r")")
+_MONTH_LIST = r"(?:" + MONTH_NAMES + r")(?:\s*(?:,|\be\b|\bed\b)\s*(?:" + MONTH_NAMES + r"))*"
+# "<rule> escluso agosto", "<rule> (esclusi i mesi di luglio e agosto)", "<rule> - ad
+# esclusione del mese di agosto", "<rule> tranne luglio ed agosto": the rule in every
+# other month. Anything after the months (a year, "a dicembre si svolge ...") fails.
+COMPLETE_MONTH_EXCLUSION = re.compile(
+    r"(?P<recurrence>.+?)\s*(?:,|-|\()?\s*"
+    r"(?:esclus[oaie]|tranne|eccetto|(?:ad|con) esclusione|ad eccezione)"
+    r"(?: (?:di|del|dei|delle))?(?: (?:i|il|la|le))?(?: mes[ei])?(?: di)? "
+    r"(?P<months>" + _MONTH_LIST + r")\s*\)?\.?"
+)
 FULL_WEEKLY_RECURRENCE = re.compile(
     r"(?:settimanale(?:\s*[-:]\s*|\s+)|ogni\s+)(?:" + "|".join(WEEKDAYS) +
     r")(?:\s*(?:,|\be\b)\s*(?:" + "|".join(WEEKDAYS) + r"))*"
 )
 FULL_MONTHLY_RECURRENCE = re.compile(
     r"(?:(?:mensile(?:\s*[-:]\s*|\s+))|ogni\s+)?(?:" +
-    "|".join(ORDINAL_INDEX) + r") (?:" + "|".join(WEEKDAYS) + r") (?:del|al) mese"
+    "|".join(ORDINAL_INDEX) + r") (?:" + "|".join(WEEKDAYS) + r") (?:del|al|di ogni) mese"
 )
 SEASONAL_SCOPE = re.compile(
     r"\b(?:estiv[oaie]|invernal[ei]|primaveril[ei]|autunnal[ei]|stagional[ei])\b"
@@ -98,8 +108,8 @@ COUNTED_INTERVAL = re.compile(
 CALENDAR_EXCEPTION_SCOPE = re.compile(
     r"\b(?:sospes[oaie]|annullat[oaie])\b|\bnon si svolge\b"
     r"|\bmercato (?:temporaneamente )?chiuso\b"
-    r"|\b(?:tranne|eccetto|esclus[oaie]|salvo|ad eccezione) "
-    r"(?:(?:i|il|la|le|gli|dei|del|della|giorni|mesi|di) ){0,3}"
+    r"|\b(?:tranne|eccetto|esclus[oaie]|salvo|ad eccezione|(?:ad|con) esclusione) "
+    r"(?:(?:i|il|la|le|gli|dei|del|della|giorni|mese|mesi|di|\d{1,2}) ){0,3}"
     r"(?:festiv[oi]|festivita|natale|pasqua|capodanno|ferragosto|" +
     "|".join(WEEKDAYS) + "|" + MONTH_NAMES + r")\b"
     r"|\bchius[oaie] (?:in|a|nel mese di) (?:" + MONTH_NAMES +
@@ -231,11 +241,32 @@ def complete_monthly_rule(value: Any) -> dict | None:
     """The rule of a text that states one monthly rule and nothing else.
 
     "Prima domenica del mese" / "Ogni 2a domenica del mese" -> its rule.
-    "... ad esclusione di agosto", "... dei mesi giugno, luglio" or any other
-    qualifier -> None: the rule cannot carry it, so it must not be dropped.
+    "... ad esclusione di agosto" -> the rule in the other months (active_months).
+    "... dei mesi giugno, luglio" or any other qualifier -> None: the rule cannot
+    carry it, so it must not be dropped.
     """
     text = _spelled_ordinals(value)
-    return explicit_rule(text) if FULL_MONTHLY_RECURRENCE.fullmatch(text) else None
+    if FULL_MONTHLY_RECURRENCE.fullmatch(text):
+        return explicit_rule(text)
+    rule = _complete_month_rule(value)
+    return rule if rule and rule["kind"] == "monthly_nth_weekday" else None
+
+
+def month_scope_text(rule: dict) -> str:
+    """", esclusi luglio e agosto" or ", da marzo a ottobre": a rule's months, as
+    _complete_month_rule reads them back ("" when it runs every month)."""
+    names = MONTH_NAMES.split("|")
+    active = rule.get("active_months") or list(range(1, 13))
+    out = [m for m in range(1, 13) if m not in active]
+    if not out:
+        return ""
+    starts = [m for m in active if (m - 2) % 12 + 1 not in active]
+    if len(out) > len(active) and len(starts) == 1:  # one season: say where it starts and ends
+        last = next(m for m in active if m % 12 + 1 not in active)
+        return ", da " + names[starts[0] - 1] + " a " + names[last - 1]
+    out = [names[m - 1] for m in out]
+    return ", " + ("escluso " + out[0] if len(out) == 1 else
+                   "esclusi " + ", ".join(out[:-1]) + " e " + out[-1])
 
 
 def calendar_key(rule: dict) -> tuple:
@@ -258,17 +289,24 @@ def _complete_month_rule(value: Any) -> dict | None:
     silently discarded. Keep the general explicit_rule parser unchanged for
     readers that use its existing schema to recognize possible cohorts.
     """
-    match = COMPLETE_MONTH_RANGE.fullmatch(text_key(value))
-    if not match:
+    text = _spelled_ordinals(value)
+    if match := COMPLETE_MONTH_RANGE.fullmatch(text):
+        months = _month_numbers(match["first"], match["last"])
+    elif ((match := COMPLETE_MONTH_EXCLUSION.fullmatch(text))
+          and text.count("(") == text.count(")") <= 1):
+        # Owner rule (2026-10-27): "escluso agosto" is the rule in the other months.
+        excluded = {MONTH_NUMBERS[m] for m in re.findall(MONTH_NAMES, match["months"])}
+        months = [m for m in range(1, 13) if m not in excluded]
+    else:
         return None
     body = match["recurrence"]
     if not (FULL_WEEKLY_RECURRENCE.fullmatch(body)
             or FULL_MONTHLY_RECURRENCE.fullmatch(body)):
         return None
     rule = explicit_rule(body)
-    if not rule:
+    if not rule or not months:
         return None
-    return {**rule, "active_months": _month_numbers(match["first"], match["last"])}
+    return {**rule, "active_months": months}
 
 
 def rule_core(rule: dict) -> dict:
@@ -398,7 +436,10 @@ def temporal_scope_hold(record: dict) -> str | None:
             )
             if not compatible:
                 return "interval_scope_unrepresented"
-        if CALENDAR_EXCEPTION_SCOPE.search(text):
+        if CALENDAR_EXCEPTION_SCOPE.search(text) and not (
+                # "escluso agosto" that the forecast rule itself carries.
+                calendar_prose and represented_months
+                and (_complete_month_rule(value) or {}).get("active_months") == represented_months):
             return "calendar_exception_scope_unrepresented"
         # Bare number ranges can be opening hours. Require a month/year or
         # explicit day/month slash notation; 08:00 and 8.30 can be hours.

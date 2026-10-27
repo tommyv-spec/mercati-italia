@@ -71,11 +71,23 @@ class MonthlyRuleTests(unittest.TestCase):
             with self.subTest(text=text):
                 found = complete_monthly_rule(text)
                 self.assertEqual((found["weekday"], found["ordinal"]), rule)
-        for text in ("Seconda domenica del mese ad esclusione del mese di agosto",
-                     "Terza domenica di ogni mese tranne luglio ed agosto",
-                     "Quarta domenica dei mesi giugno, luglio, agosto, settembre",
-                     "Seconda domenica prima di Pasqua", "sabato", "26 luglio e 14 agosto",
-                     "mensile - terza domenica del mese, da marzo a ottobre"):
+        # Months the rule skips are part of it (owner rule 2026-10-27).
+        for text, rule, months in (
+                ("Seconda domenica del mese ad esclusione del mese di agosto", (6, 2), {8}),
+                ("Terza domenica di ogni mese tranne luglio ed agosto", (6, 3), {7, 8}),
+                ("prima domenica del mese (ad eccezione dei mesi di gennaio ed agosto)", (6, 1), {1, 8}),
+                ("Seconda domenica del mese con esclusione dei mesi di aprile, luglio ed agosto",
+                 (6, 2), {4, 7, 8}),
+                ("mensile - terza domenica del mese, da marzo a ottobre", (6, 3), {1, 2, 11, 12})):
+            with self.subTest(text=text):
+                found = complete_monthly_rule(text)
+                self.assertEqual((found["weekday"], found["ordinal"]), rule)
+                self.assertEqual(set(range(1, 13)) - set(found["active_months"]), months)
+        for text in ("Quarta domenica dei mesi giugno, luglio, agosto, settembre",
+                     "Prima domenica del mese, esclusi i mesi di luglio, agosto, aprile 2026",
+                     "Ultimo sabato del mese ad eccezione del mese di settembre - a dicembre si svolge "
+                     "il sabato prima di Natale", "prima domenica del mese escluso agosto e festivi",
+                     "Seconda domenica prima di Pasqua", "sabato", "26 luglio e 14 agosto"):
             with self.subTest(text=text):
                 self.assertIsNone(complete_monthly_rule(text))
 
@@ -96,9 +108,15 @@ class MonthlyRowTests(unittest.TestCase):
                          ("Mercatino dell'antiquariato di Brugine", "Brugine", "PD", "antiquariato"))
         self.assertEqual(record["ricorrenza_testo"], "mensile - prima domenica del mese")
         self.assertEqual(record["orario_testo"], "08:00–18:00 (da verificare con il Comune)")
-        # Exclusions the rule can't carry: no calendar, never a shortened one.
-        held, issue, _ = candidate_record(p, row("PADOVA", "Prato della Valle",
-                                                 "Terza domenica del mese ad esclusione di agosto"),
+        # Skipped months stay in the card; anything else the rule can't carry: no calendar.
+        skips, issue, _ = candidate_record(p, row("PADOVA", "Prato della Valle",
+                                                  "Terza domenica del mese ad esclusione di agosto"),
+                                           today=TODAY, source_date="2026-01-01")
+        self.assertEqual((issue, skips["ricorrenza_testo"]),
+                         (None, "mensile - terza domenica del mese, escluso agosto"))
+        held, issue, _ = candidate_record(p, row("SAN DONA' DI PIAVE", "Piazza Indipendenza",
+                                                 "Ultimo sabato del mese ad eccezione del mese di settembre"
+                                                 " - a dicembre si svolge il sabato prima di Natale"),
                                           today=TODAY, source_date="2026-01-01")
         self.assertEqual((issue, held["ricorrenza_testo"]), ("schedule_unknown", "Calendario da verificare"))
         for other in (row("ASIAGO", "Piazza Carli", "Terza domenica del mese", periodicita="stagionale"),
@@ -209,11 +227,44 @@ class MonthlyFillTests(unittest.TestCase):
                 ([dict(one, indirizzo="Piazza Garibaldi")], [], "held_different_street")):
             with self.subTest(reason=reason):
                 self.assertEqual(self.run_fill(base, source + extra)[1][reason], len(base))
-        for text, reason in (("Prima domenica del mese escluso agosto", "held_official_calendar_qualified"),
+        for text, reason in (("Prima domenica del mese escluso agosto e festivi",
+                              "held_official_calendar_qualified"),
                              ("Prima domenica del mese", "held_official_market_not_annual_monthly")):
             seasonal = "stagionale" if reason.endswith("monthly") else "annuale"
             counts = self.run_fill([one], [row("BRUGINE", "Villa Roberti", text, periodicita=seasonal)])[1]
             self.assertEqual(counts[reason], 1)
+
+    def test_months_the_calendar_skips_join_the_card_rule_and_its_forecast(self):
+        target = card("mercatino-antiquariato-brugine", "Brugine", "Ogni Prima Domenica Del Mese",
+                      indirizzo="Villa Roberti", orario_testo="08:00–18:00 (da verificare con il Comune)",
+                      date=[], date_quality="sconosciuta")
+        source = [row("BRUGINE", "Villa Roberti", "Prima domenica del mese (esclusi luglio e agosto)")]
+        day = date(2026, 6, 1)
+        (fill,), counts = self.run_fill([target], source, today=day)
+        changed = "Ogni Prima Domenica Del Mese, esclusi luglio e agosto"
+        self.assertEqual(fill["changed_fields"], {
+            "ricorrenza_testo": {"before": "Ogni Prima Domenica Del Mese", "after": changed}})
+        self.assertEqual((fill["receipt"]["valori"]["ricorrenza_testo"], counts["recurrence_still_listed"]),
+                         (changed, 1))
+        after = apply_fill(target, fill, profile(), today=day)
+        observations = {"source_parsed_sha256": "b" * 64, "source_read_on": day.isoformat()}
+        with unittest.mock.patch("source_contract_ingest.observed_source_date", return_value="2026-01-01"):
+            self.assertEqual(verify_fill(profile(), target, after, fill, today=day,
+                                         source_observations=observations), 1)
+            # Only the card's own words plus exactly the calendar's months.
+            for value in ("Ogni Prima Domenica Del Mese, escluso agosto", "Ogni seconda domenica del mese"):
+                with self.subTest(value=value), self.assertRaises(ValueError):
+                    bad = copy.deepcopy(fill)
+                    bad["changed_fields"]["ricorrenza_testo"]["after"] = value
+                    verify_fill(profile(), target, dict(after, ricorrenza_testo=value), bad, today=day,
+                                source_observations=observations)
+        projected, reason = refresh_record(after, day, source_limits=())
+        self.assertEqual((reason, projected["date"]), ("renewed", ["2026-06-07", "2026-09-06"]))
+        # A card with its own months is another statement: nothing is attested or changed.
+        own = dict(target, ricorrenza_testo="mensile - prima domenica del mese, da marzo a ottobre")
+        proofs, _ = self.run_fill([own], source, today=day)
+        self.assertFalse(any("ricorrenza_testo" in p["changed_fields"] or
+                             "ricorrenza_testo" in p["receipt"]["valori"] for p in proofs))
 
     def test_still_listed_recurrence_renews_only_within_its_age_limit(self):
         target = card("mercatino-antiquariato-brugine", "Brugine", "mensile - prima domenica del mese",
@@ -253,12 +304,12 @@ class MonthlyNewMarketTests(unittest.TestCase):
                                        source_date_proof=proof)
         self.assertEqual([(c["citta"], c["ricorrenza_testo"], c["categoria"]) for c in candidates], [
             ("Limena", "mensile - prima domenica del mese", "antiquariato"),
-            ("Calto", "mensile - primo sabato del mese", "antiquariato")])
+            ("Calto", "mensile - primo sabato del mese", "antiquariato"),
+            ("Adria", "mensile - secondo sabato del mese, escluso agosto", "antiquariato")])
         # Calto's other monthly calendar is another market; Rovigo's antiques card
         # with no readable calendar may be this very one.
         self.assertEqual(report["review_reason_counts"], {
-            "existing_market_same_town_calendar": 1, "existing_same_type_market_calendar_unknown": 1,
-            "new_market_calendar_unknown": 1})
+            "existing_market_same_town_calendar": 1, "existing_same_type_market_calendar_unknown": 1})
 
 
 @unittest.skipUnless(HAS_PDF, "pdfplumber not installed")
