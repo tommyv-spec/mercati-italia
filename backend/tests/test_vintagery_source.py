@@ -149,6 +149,15 @@ class AdmissionTests(unittest.TestCase):
         self.assertIsNone(document["event"]["recurrence_text"])
         self.assertIn("listed_date_not_on_rule", document["warnings"])
 
+    def test_a_bounded_read_rotates_through_every_card(self):
+        cards = [card(id=u, url="https://vintagery.it/mercatini/" + u) for u in (
+            UUID, "8abfcc97-a7d4-40b0-bdf2-4d94262c1189", "b42af7e2-8c19-437e-9ee8-337deffe8697")]
+        snap = snapshot(*cards)
+        seen = {p["requested_url"] for day in (TODAY, date(2026, 10, 21))
+                for p in vg.pages([elsewhere()], today=day, limit=2, snapshot=snap)}
+        self.assertEqual(seen, {c["url"] for c in cards})
+        self.assertEqual(len(vg.pages([elsewhere()], today=TODAY, limit=1000, snapshot=snap)), 3)
+
     def test_unconfirmed_dates_and_known_markets_are_held(self):
         # "Da confermare": the date is dropped, the stated rule still predicts.
         result, report = admitted(snapshot(card(unconfirmed=True)))

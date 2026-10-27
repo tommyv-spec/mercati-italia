@@ -160,7 +160,7 @@
         ]
       ],
       "max_index_requests": 1,
-      "max_candidate_reads": 80,
+      "max_candidate_reads": 1000,
       "max_new": 32,
       "max_seconds": 10,
       "min_delay_seconds": 4,

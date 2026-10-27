@@ -16,8 +16,8 @@ the owner's Chrome, driven by Claude in Chrome on the owner's PC.
    writes `backend/data/vintagery-snapshot.json` (structured fields, no HTML). Commit it.
 
 The nightly then uses the snapshot by itself:
-- new markets enter through editorial discovery (at most 32 a night, same rules as the
-  other editorial publishers);
+- new markets enter through editorial discovery: every current card is checked each
+  night, at most 32 are added (same rules as the other editorial publishers);
 - Vintagery's own cards are re-read from the newer snapshot;
 - markets other sources already have get empty street/hours filled and a matching rule
   restated, each with a receipt naming the Vintagery page (`vintagery_source.fill`).

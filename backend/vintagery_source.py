@@ -379,9 +379,10 @@ def page(card):
 # ---------------------------------------------------------------- new markets
 
 def pages(rows, *, today, limit, snapshot=None):
-    """At most `limit` current cards the catalog lacks: dated ones first, in an order that
-    changes daily, so every card is tried within a few nights. A card already restated
-    on another market by fill() is that market, not a candidate."""
+    """At most `limit` current cards the catalog lacks. They rotate: in a fixed order, each
+    night reads the next `limit` cards, so every card is tried within a few nights (a
+    queue sorted by date would let held cards take every night's reads). A card already
+    restated on another market by fill() is that market, not a candidate."""
     from editorial_discovery import catalog_identities
     from field_evidence import clean_receipts
     snapshot = load_snapshot() if snapshot is None else snapshot
@@ -390,10 +391,11 @@ def pages(rows, *, today, limit, snapshot=None):
               if source_identity(r["url"])}
     candidates = [c for c in current_cards(snapshot, today)
                   if (PUBLISHER, c["id"]) not in known and c["url"] not in proved]
-    salt = today.isoformat()
-    candidates.sort(key=lambda c: (c["unconfirmed"] or not c["start_date"] or c["start_date"] <= salt,
-                                   hashlib.sha256((salt + c["url"]).encode()).hexdigest()))
-    return [page(c) for c in candidates[:limit]]
+    candidates.sort(key=lambda c: hashlib.sha256(c["url"].encode()).hexdigest())
+    if len(candidates) > limit:
+        start = today.toordinal() * limit % len(candidates)
+        candidates = (candidates + candidates)[start:start + limit]
+    return [page(c) for c in candidates]
 
 
 # ---------------------------------------------------------------- Vintagery's own cards

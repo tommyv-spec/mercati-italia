@@ -48,6 +48,9 @@ MAX_LINKS = 20_000
 MAX_STATE_BYTES = 4_000_000
 MAX_INDEX_REQUESTS = 40
 MAX_CANDIDATE_READS = 80
+# A snapshot publisher's pages are a local file: every current card is read each night
+# (admission stays capped by max_new). ponytail: raise if a snapshot outgrows it.
+MAX_SNAPSHOT_READS = 1000
 MAX_NEW = 32
 MAX_SECONDS = 600
 UNAVAILABLE_RETRY_DAYS = 2
@@ -112,7 +115,8 @@ def validate_policy(policy=None, *, publisher):
             or not isinstance(policy["follow_pattern"], str) or not 10 <= len(policy["follow_pattern"]) <= 400
             or not isinstance(policy["category_rules"], list) or not 1 <= len(policy["category_rules"]) <= 30
             or not bounded("max_index_requests", 1, MAX_INDEX_REQUESTS)
-            or not bounded("max_candidate_reads", 1, MAX_CANDIDATE_READS)
+            or not bounded("max_candidate_reads", 1,
+                           MAX_SNAPSHOT_READS if publisher in SNAPSHOT_PUBLISHERS else MAX_CANDIDATE_READS)
             or not bounded("max_new", 1, MAX_NEW)
             or not bounded("max_seconds", 10, MAX_SECONDS)
             or not bounded("min_delay_seconds", 2, 30)
@@ -670,7 +674,8 @@ def verify_admissions(before, after, report, *, today, config):
             or report.get("coordinates_assigned") != 0 or report.get("individual_openings_confirmed") != 0
             or report.get("authenticated_publisher_reuse_claimed") is not False
             or not isinstance(report.get("documents"), list)
-            or len(report["documents"]) > len(PUBLISHERS) * MAX_CANDIDATE_READS):
+            or len(report["documents"]) > (len(PUBLISHERS) - len(SNAPSHOT_PUBLISHERS)) * MAX_CANDIDATE_READS
+            + len(SNAPSHOT_PUBLISHERS) * MAX_SNAPSHOT_READS):
         raise ValueError("Invalid editorial discovery admission proof")
     expected, replay = admit(before, report["documents"], today=today, config=config)
     if expected != after or any(replay[k] != report.get(k) for k in ("outcomes", "new_market_ids", "counts")):
