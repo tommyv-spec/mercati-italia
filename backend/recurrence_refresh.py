@@ -480,6 +480,16 @@ def _refresh_record_base(original: dict, today: date, horizon_days: int = MAX_LO
         return record, "non_projected_source_date"
     if record.get("date_quality") not in {None, "", "prevista", "sconosciuta"}:
         return record, "unrecognized_date_quality"
+    from field_conflicts import delisted_weekday
+    if not record.get("verificato_il") and delisted_weekday(record, today=today):
+        # Its own complete weekly page now lists the town only on other days.
+        if record.get("date_quality") == "prevista" or record.get("date"):
+            record["date"] = []
+            record["date_quality"] = "sconosciuta"
+            record["proiezione_regola"] = None
+            record["proiezione_generata_il"] = ""
+            record["proiezione_fonte"] = ""
+        return record, "source_lists_town_on_other_weekdays"
 
     source_scope = calendar_scope(record)
     scope_hold = temporal_scope_hold(record)

@@ -14,7 +14,7 @@ from pathlib import Path
 from audit_dataset import audit
 from autopilot import compare_candidates
 from export_static import export, parse_dates, prepare, same_market
-from happings_bulk_catalog_enrichment import enrich
+from happings_bulk_catalog_enrichment import cut_street, enrich
 from merge_catalog import load_existing
 from validate_static import validate
 
@@ -77,8 +77,9 @@ def build(repo, snapshot, out, *, today):
         entry=expected.get(sid)
         if entry:
             for field,value in entry["after"].items():
-                # A cut weekday is the one nonempty value repaired here.
-                if new.get(field)!=value or (field!="ricorrenza_testo" and str(old.get(field) or "").strip()):
+                # A cut weekday or cut street is the one nonempty value repaired here.
+                if new.get(field)!=value or (field!="ricorrenza_testo" and str(old.get(field) or "").strip()
+                                             and not (field=="indirizzo" and cut_street(old.get(field),value))):
                     raise ValueError("An enriched field was not preserved: "+sid+" "+field)
                 actual["filled_"+field]+=1
             if "riscontri_campi" not in changed:

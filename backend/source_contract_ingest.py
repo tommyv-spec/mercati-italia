@@ -883,6 +883,12 @@ def _stage(profile,raw_blob,base,*,today,observed_source_sha256=None,read_on=Non
             if result != prior:
                 updates.append((result, proof))
             continue
+        # Rows outside new_market_filters_any (a seasonal market) only fill/update.
+        new_rules=profile.get("new_market_filters_any")
+        if new_rules and not any(all(canonical(item.get(k))==canonical(v) for k,v in rule.items())
+                                 for rule in new_rules):
+            reasons["not_eligible_as_new_market"]+=1
+            continue
         monthly=profile["row_kind"]==MONTH_KIND
         day=None if monthly else source_weekday(item.get(profile["weekday_field"]))
         calendar=_market_calendar(record) if monthly else None

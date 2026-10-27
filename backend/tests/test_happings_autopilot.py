@@ -492,6 +492,20 @@ class HappingsAutopilotTests(unittest.TestCase):
         self.assertEqual(len(repeated), 2)
         self.assertTrue(phase.verify_exported(after, again, repeated, noop, today=TODAY)["release_safe"])
 
+    def test_dropped_weekday_warning_passes_the_phase_and_export_guards(self):
+        # The page lists Spinea on Wednesday and Saturday only.
+        base = [{**market("spinea-lunedi"), "ricorrenza_testo": "settimanale - lunedì"}]
+        after, report, protected = self.run_phase(base=base)
+        self.assertEqual(report["evidence"]["weekday_conflict_ids"], ["spinea-lunedi"])
+        self.assertEqual(after[0]["conflitti_campi"][0]["campo"], "ricorrenza_testo")
+        self.assertTrue(phase.verify_changes(base, after, report, source_pages=pages()))
+        exported, _ = prepare(after, TODAY, preserve_ids=protected)
+        proof = phase.verify_exported(base, after, exported, report, today=TODAY,
+                                      source_checkpoint_dir=self.root / "output")
+        self.assertTrue(proof["release_safe"])
+        with self.assertRaises(ValueError):
+            phase.verify_exported(base, after, exported, report, today=TODAY)
+
     def test_final_export_guard_rejects_missing_ids_and_other_field_changes(self):
         after, report, protected = self.run_phase()
         exported, _ = prepare(after, TODAY, preserve_ids=protected)

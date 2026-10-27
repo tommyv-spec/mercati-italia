@@ -32,6 +32,16 @@ SAMPLE=b"""
 <ul><li>a Spinea, in Piazza Fermi (la mattina)</li></ul>
 </div></body></html>"""
 
+def without_weekday_warning(rows):
+    """Drop only weekday warnings; any other field change still fails the test."""
+    result=[]
+    for item in rows:
+        kept=[c for c in item.get("conflitti_campi",[]) if c["campo"]!="ricorrenza_testo"]
+        clean={k:v for k,v in item.items() if k!="conflitti_campi"}
+        result.append({**clean,"conflitti_campi":kept} if kept else clean)
+    return result
+
+
 def row(slug,*,city="Spinea",day="mercoledì",street="",url=VENICE_OLD,
         province="VE",region="Veneto"):
     return {
@@ -206,7 +216,8 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
             with self.subTest(market=market):
                 candidate,report=preview([market],feed(),today=TODAY,apply=True,rights_verified=True)
                 self.assertEqual(report["field_candidates"],0)
-                self.assertEqual(candidate,[market])
+                # Spinea listed on other days only: a weekday warning, never a location.
+                self.assertEqual(without_weekday_warning(candidate),[market])
 
     def test_monthly_or_duplicate_dates_do_not_prove_a_weekly_market(self):
         for recurrence,dates in (("mensile - primo mercoledì del mese",["2026-10-21"]),
@@ -711,7 +722,7 @@ class HappingsSourceEnrichmentTests(unittest.TestCase):
         for pages in variants:
             with self.subTest(pages=len(pages)):
                 after,report=preview(first,pages,today=TODAY+timedelta(days=7),apply=True,rights_verified=True)
-                self.assertEqual(after,first)
+                self.assertEqual(without_weekday_warning(after),first)
                 self.assertEqual(report["retirements"],[])
 
     def test_same_day_or_older_contradiction_does_not_retire_source_support(self):

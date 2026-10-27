@@ -126,6 +126,21 @@ def cut_weekday(row, page_days):
     return fits[0] if len(fits) == 1 else None
 
 
+def cut_street(stored, place):
+    """A stored street that is only the cut-off start of the page's place ("cen", "Pia")."""
+    old, new = fold(stored), fold(place)
+    return bool(old) and new.startswith(old) and new != old and not (
+        safe_stored_street(stored) or CENTRE.fullmatch(old))
+
+
+def cut_place(row, places):
+    """The one listed place a cut stored street begins, else None."""
+    fits = [p for p in places if cut_street(row.get("indirizzo"), p)]
+    if len(fits) != 1 or len(places) > 1 and len(fold(row.get("indirizzo"))) < 2:
+        return None
+    return fits[0]
+
+
 def names_place(row, place, hours=None):
     """Another source's card names this listed place in its own spelling, at a time
     of day the listing doesn't contradict."""
@@ -165,10 +180,10 @@ def _update(row, proposed, evidence, *, today):
         raise ValueError("Duplicate same-source market provenance")
     # Only changed values are assigned (managed); values the page still states
     # unchanged are observed, which keeps the proof - and forecasts - current.
-    # Only a cut weekday (cut_weekday) is ever proposed over a nonempty
-    # value; the broken text carries no claim to protect.
+    # Only a cut weekday (cut_weekday) or cut street (cut_place) is ever proposed
+    # over a nonempty value; the broken text carries no claim to protect.
     assigned = [field for field, value in proposed.items() if value != row.get(field)]
-    prior = {**row, "ricorrenza_testo": ""} if "ricorrenza_testo" in assigned else row
+    prior = {**row, **{field: "" for field in ("ricorrenza_testo", "indirizzo") if field in assigned}}
     if same_bytes:
         # A fixed parser can recover a field from the exact HTML already
         # witnessed by an older receipt. Merge that field into the SAME
@@ -315,6 +330,8 @@ def enrich(catalog, snapshot, *, today):
                     changeset["indirizzo"] = unique_street
                 elif centre:
                     changeset["indirizzo"] = centre
+            elif full := cut_place(row, [e["place"] for e in entries]):
+                changeset["indirizzo"] = full
             if hours and not str(row.get("orario_testo") or "").strip():
                 changeset["orario_testo"] = hours
             # Every read restates what the page still says for this row: the
