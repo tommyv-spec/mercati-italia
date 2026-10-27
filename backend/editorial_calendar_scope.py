@@ -16,7 +16,7 @@ from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from field_evidence import MAX_READ_AGE, as_day, clean_receipts, identity, receipt_age_limit
+from field_evidence import MAX_READ_AGE, SOURCE_AGE, as_day, clean_receipts, identity, receipt_age_limit
 
 KEY = "evidenza_editoriale"
 MANAGER = "editorial-detail"
@@ -31,6 +31,10 @@ EVENT_FIELDS = {
 }
 CALENDAR_FIELDS = {"calendar", "recurrence", "edition", "occurrences", "suspensions"}
 PROJECTION_FIELDS = {"proiezione_regola": None, "proiezione_generata_il": "", "proiezione_fonte": ""}
+# Publishers whose page states the market's rule as its calendar, with no edition
+# window (vintagery.it: rule + next date + "Scheda verificata il"). Their predictions
+# follow the general freshness rules instead of an edition window.
+RULE_PAGE_PUBLISHERS = frozenset({"vintagery.it"})
 
 
 def text_key(value):
@@ -330,6 +334,18 @@ stored scope is held rather than silently falling back to an old forecast.
         reason = "unresolved_editorial_calendar_qualifications"
     elif not facts.get("forecast_rule") or not facts["calendar_complete"]:
         reason = "editorial_recurrence_not_proven"
+    elif evidence["publisher"] in RULE_PAGE_PUBLISHERS:
+        # Same limits as any rule proof: a page checked in the last 180 days
+        # (its own check date) and read in the last 45 days.
+        from recurrence_refresh import explicit_rule
+        checked, read = as_day(evidence["modified_on"]), as_day(evidence["read_on"])
+        if facts["forecast_rule"] != explicit_rule(row.get("ricorrenza_testo")):
+            reason = "editorial_recurrence_conflicts_with_catalog"
+        elif (not checked or (today - checked).days > SOURCE_AGE["ricorrenza_testo"]
+              or (today - read).days > MAX_READ_AGE):
+            reason = "editorial_rule_page_not_current"
+        else:
+            reason = "editorial_rule_page_current"
     elif not intervals:
         reason = "editorial_edition_scope_missing"
     else:
@@ -339,8 +355,8 @@ stored scope is held rather than silently falling back to an old forecast.
                   else "editorial_recurrence_conflicts_with_catalog")
     old_dates = list(row.get("date") or [])
     kept = [d for d in old_dates if isinstance(d, str) and as_day(d) and as_day(d) >= today
-            and any(i["start"] <= d <= i["end"] for i in intervals)] \
-        if reason == "editorial_edition_scope_filtered" else []
+            and (reason == "editorial_rule_page_current" or any(i["start"] <= d <= i["end"] for i in intervals))] \
+        if reason in ("editorial_edition_scope_filtered", "editorial_rule_page_current") else []
     result["date"] = kept
     if not kept:
         result["date_quality"] = "sconosciuta"

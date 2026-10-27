@@ -26,14 +26,14 @@ from urllib.parse import urljoin, urlsplit
 from urllib.robotparser import RobotFileParser
 
 from editorial_calendar_scope import (
-    KEY, apply_editorial_scope, build_evidence, calendar_conflicted,
+    KEY, RULE_PAGE_PUBLISHERS, apply_editorial_scope, build_evidence, calendar_conflicted,
     blank_province_venue_or_title, clean_editorial_evidence, geography_matches,
     istat_geography, source_identity, text_key, valid_editorial_reported_dates,
 )
 from eventiesagre_source_layout import DEFAULT_MARKET_HOURS, MAX_BYTES, parse_eventiesagre_html
 from editorial_transport import ERROR_CODES, fetch as _http, failure_code
 from field_evidence import (
-    FIELDS, as_day, clean_receipts, fingerprint, make_receipt,
+    FIELDS, SOURCE_AGE, as_day, clean_receipts, fingerprint, make_receipt,
     managed_update_allowed, mark_managed_fields, retire_superseded_receipts,
 )
 from recurrence_refresh import explicit_rule, forecast_rule, month_scope_text
@@ -518,7 +518,8 @@ def _bound_document(document, selected):
     event["selected_row_id"] = selected["source_row_id"]
     event["location"]["address"] = selected["address"]
     event["hours_text"], event["recurrence_text"] = selected["hours"], selected["recurrence"]
-    event["forecast_rule"] = explicit_rule(selected["recurrence"]) if publisher == PUBLISHER else None
+    event["forecast_rule"] = (explicit_rule(selected["recurrence"])
+                              if publisher == PUBLISHER or publisher in RULE_PAGE_PUBLISHERS else None)
     source_rows = [v for v in event.get("source_rows") or [] if isinstance(v, dict)
                    and {"address", "hours", "recurrence"} <= set(v)]
     if len(source_rows) > 1:
@@ -583,7 +584,12 @@ def _update(row, document, *, read_on, today):
     if row.get(KEY) is not None and previous is None:
         return row, {"slug": row["slug"], "status": "held", "reason": "invalid_previous_editorial_evidence", "fields": []}
     mode = "limit_forecasts"
-    if (event.get("occurrences") and event["calendar_complete"] and not event["archive_marker"]
+    # A rule page's listed date is the rule's next date: the rule is the calendar, while
+    # the page's own check date was at most 180 days old when it was read.
+    checked = as_day(str(document["source"].get("modified_at") or "")[:10])
+    rule_page = (publisher in RULE_PAGE_PUBLISHERS and event.get("forecast_rule") is not None
+                 and checked is not None and (as_day(read_on) - checked).days <= SOURCE_AGE["ricorrenza_testo"])
+    if (not rule_page and event.get("occurrences") and event["calendar_complete"] and not event["archive_marker"]
             and not calendar_conflicted(local["conflicts"])
             and not row.get("verificato_il") and not row.get("calendario_fonte")
             and (row.get("date_quality") not in {"confermata", "riportata"}
@@ -630,7 +636,10 @@ def _update(row, document, *, read_on, today):
         adopt = (_adds_weeks(rule, card_rule) or _adds_saturday(rule, card_rule)
                  or rule and rule["kind"] == "monthly_nth_weekday"
                  and text_key(card_text) in ("", "mensile"))
-        if months is False or not months:
+        if rule_page and card_full and card_full == forecast_rule({"ricorrenza_testo": selected["recurrence"]}):
+            # The page states the card's whole rule, months included.
+            proposed["ricorrenza_testo"] = row["ricorrenza_testo"]
+        elif months is False or not months:
             if rule is not None and rule == card_rule and (months is False or card_full == rule):
                 proposed["ricorrenza_testo"] = row["ricorrenza_testo"]
             elif adopt and card_full == card_rule and len(selected["recurrence"]) <= FIELDS["ricorrenza_testo"]:

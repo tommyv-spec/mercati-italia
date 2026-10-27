@@ -22,10 +22,14 @@ Three uses, all through the shared editorial machinery (never per market):
   empty street/hours filled and a rule that reads the same restated, each with a
   receipt (fill()). verify() rebuilds the step; verify_exported() checks the export.
 
-Facts kept: the stated rule (only when the shared reader reads the whole sentence and
-nothing else on the page qualifies it), the next date unless Vintagery marks it "da
-confermare", other listed "Prossime date", clock hours unless the page gives seasonal or
-per-edition hours, organiser/website/Instagram, description. No coordinates.
+Facts kept: the stated rule (only when the shared reader reads the whole sentence,
+nothing else on the page qualifies it and every date the page gives falls on it), the
+next date unless Vintagery marks it "da confermare", other listed "Prossime date", clock
+hours unless the page gives seasonal or per-edition hours, organiser/website/Instagram,
+description. No coordinates. A kept rule is the card's calendar: predicted dates
+("prevista", the usual horizon) while the page's check date is at most 180 days old and
+its read at most 45 days old (editorial_calendar_scope.RULE_PAGE_PUBLISHERS); otherwise
+only the listed dates count.
 """
 from __future__ import annotations
 
@@ -263,6 +267,19 @@ def rule_text(notes):
     return rule, None
 
 
+def _rule_fits_dates(rule, card):
+    """(rule, None) when every date the page gives from its read day on, Vintagery's own
+    "da confermare" estimate included, falls on the rule; else (None, reason)."""
+    from recurrence_refresh import forecast_rule, project_dates
+    read = date.fromisoformat(card["read_on"])
+    dates = [d for d in [card["start_date"], *(next_dates(card["schedule_notes"]) or [])] if d and d >= card["read_on"]]
+    if not dates:
+        return rule, None
+    horizon = (date.fromisoformat(max(dates)) - read).days
+    projected = set(project_dates(forecast_rule({"ricorrenza_testo": rule}), read, max(7, horizon))) if horizon <= 365 else set()
+    return (rule, None) if set(dates) <= projected else (None, "listed_date_not_on_rule")
+
+
 def next_dates(notes):
     """['2026-11-08', ...] from a 'Prossime date: 8 novembre 2026, ...' sentence; None if unreadable."""
     found = []
@@ -298,6 +315,10 @@ def parse_detail(blob, *, requested_url):
     rule, reason = rule_text(card["schedule_notes"])
     if reason:
         warnings.append(reason)
+    if rule:
+        rule, reason = _rule_fits_dates(rule, card)
+        if reason:
+            warnings.append(reason)
     listed = next_dates(card["schedule_notes"])
     if listed is None:
         conflicts.append({"field": "calendar", "code": "unparsed_next_dates", "values": [card["schedule_notes"][:300]]})
@@ -334,7 +355,7 @@ def parse_detail(blob, *, requested_url):
                   "edition_intervals": [{"start": d, "end": d} for d in days],
                   "occurrences": [{"date": d, "start_time": start_time, "end_time": end_time,
                                    "status": "source_listed", "evidence": evidence} for d in days],
-                  "date_intervals": [], "calendar_complete": bool(days) and not conflicts,
+                  "date_intervals": [], "calendar_complete": bool(days or rule) and not conflicts,
                   "calendar_scope": "explicit_visible_list" if days else
                   "recurring_statement_only" if rule else "unknown",
                   "scope_statements": [], "conditions": [], "calendar_rules": [], "suspensions": [],

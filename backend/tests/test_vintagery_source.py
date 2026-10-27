@@ -125,13 +125,36 @@ class AdmissionTests(unittest.TestCase):
         self.assertEqual(new[KEY]["hash_basis"], vg.HASH_BASIS)
         self.assertIn({"field": "organizer", "value": "Associazione Prova", "evidence": ["record.organizer"]},
                       new[KEY]["facts"]["source_rows"])
+        # The page's rule is its calendar: predicted dates, the listed one among them.
         exported = normalize(refresh_record(new, TODAY)[0], TODAY)[0]
-        self.assertEqual((exported["date"], exported["date_quality"]), (["2026-11-15"], "riportata"))
+        self.assertEqual((exported["date"], exported["date_quality"]),
+                         (["2026-11-15", "2026-12-20", "2027-01-17"], "prevista"))
         observed = report["documents"][0]
         discovery.check_exported_admission(exported, observed, new["slug"], today=TODAY, others=[exported])
 
+    def test_predictions_follow_the_check_and_read_ages(self):
+        result, _ = admitted(snapshot(card()))
+        projected = refresh_record(result[-1], TODAY)[0]
+        dates = lambda day: refresh_record(projected, day)[0]["date"]
+        self.assertEqual(dates(date(2026, 12, 4))[:2], ["2026-12-20", "2027-01-17"])
+        # Read 46 days ago: the page no longer supports predictions.
+        self.assertEqual(dates(date(2026, 12, 5)), [])
+        # A check date already over 180 days old at the read: only the listed date counts.
+        result, _ = admitted(snapshot(card(verified_on="2026-04-01")))
+        exported = normalize(refresh_record(result[-1], TODAY)[0], TODAY)[0]
+        self.assertEqual((exported["date"], exported["date_quality"]), (["2026-11-15"], "riportata"))
+
+    def test_a_date_off_the_rule_means_the_rule_is_not_taken(self):
+        document = parsed(card(start_date="2026-11-22"))
+        self.assertIsNone(document["event"]["recurrence_text"])
+        self.assertIn("listed_date_not_on_rule", document["warnings"])
+
     def test_unconfirmed_dates_and_known_markets_are_held(self):
-        _, report = admitted(snapshot(card(unconfirmed=True)))
+        # "Da confermare": the date is dropped, the stated rule still predicts.
+        result, report = admitted(snapshot(card(unconfirmed=True)))
+        self.assertEqual(report["counts"], {"admitted": 1})
+        self.assertEqual(normalize(refresh_record(result[-1], TODAY)[0], TODAY)[0]["date"][:1], ["2026-11-15"])
+        _, report = admitted(snapshot(card(unconfirmed=True, schedule_notes="Date variabili")))
         self.assertEqual(report["counts"], {"no_upcoming_date": 1})
         same = row(slug="prova-bologna", nome="Mercatino dell'Antiquariato di Prova", ricorrenza_testo="",
                    url_fonte="https://www.eventiesagre.it/Mercatini_Vari/2_Prova.html", categoria="antiquariato")
@@ -151,7 +174,7 @@ class AdmissionTests(unittest.TestCase):
         self.assertEqual([o["date"] for o in revised[-1][KEY]["facts"]["occurrences"]], ["2026-12-20"])
         exported = [normalize(refresh_record(r, later)[0], later)[0] for r in revised]
         self.assertTrue(vg.verify_exported(exported, report, today=later)["release_safe"])
-        self.assertEqual(exported[-1]["date"], ["2026-12-20"])
+        self.assertEqual(exported[-1]["date"][:2], ["2026-11-15", "2026-12-20"])
 
 
 class FillTests(unittest.TestCase):
