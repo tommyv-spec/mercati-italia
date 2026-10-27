@@ -137,9 +137,11 @@ def calendar_scope(record):
     months = sorted({MONTHS.index(token) + 1 for token in tokens if token in MONTHS})
     if not months or len(months) != len(tokens):
         months = []
-    supported = (textkey(details.get("periodicita_tipo")) in {"settimanale", "giornaliero"}
-                 and details.get("frequenza_settimanale") in (None, "")
-                 and weekday in DAYS and bool(months))
+    kind = textkey(details.get("periodicita_tipo"))
+    # A seasonal row is its weekday every week within its months (2 to 11; one
+    # month alone reads as a yearly fair).
+    supported = (kind in {"settimanale", "giornaliero"} or kind == "stagionale" and 2 <= len(months) < 12) \
+        and details.get("frequenza_settimanale") in (None, "") and weekday in DAYS and bool(months)
     rule = {"kind": "weekly", "weekdays": [DAYS.index(weekday)]} if supported else None
     weeks = named_weeks(details)
     if rule is None and weeks and weekday in DAYS and len(months) == 12:

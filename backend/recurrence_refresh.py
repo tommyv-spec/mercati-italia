@@ -73,9 +73,9 @@ MONTH_NAMES = ("gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|"
 MONTH_NUMBERS = {name: i for i, name in enumerate(MONTH_NAMES.split("|"), 1)}
 COMPLETE_MONTH_RANGE = re.compile(
     r"(?P<recurrence>.+?)(?:,\s*|\s+)da (?P<first>" + MONTH_NAMES +
-    r") a (?P<last>" + MONTH_NAMES + r")"
+    r") ad? (?P<last>" + MONTH_NAMES + r")"
 )
-NAMED_MONTH_RANGE = re.compile(r"da (" + MONTH_NAMES + r") a (" + MONTH_NAMES + r")")
+NAMED_MONTH_RANGE = re.compile(r"da (" + MONTH_NAMES + r") ad? (" + MONTH_NAMES + r")")
 _MONTH_LIST = r"(?:" + MONTH_NAMES + r")(?:\s*(?:,|\be\b|\bed\b)\s*(?:" + MONTH_NAMES + r"))*"
 # "<rule> escluso agosto", "<rule> (esclusi i mesi di luglio e agosto)", "<rule> - ad
 # esclusione del mese di agosto", "<rule> tranne luglio ed agosto": the rule in every
@@ -126,7 +126,7 @@ CALENDAR_EXCEPTION_SCOPE = re.compile(
 DATE_SCOPE_ATOM = (r"(?:\d{1,4}(?: \d{1,4}){0,2}(?: (?:" + MONTH_NAMES +
                    r")(?: \d{4})?)?|(?:" + MONTH_NAMES + r")(?: \d{4})?)")
 DATE_RANGE_SCOPE = re.compile(
-    r"\b(?:da|dal|dall) " + DATE_SCOPE_ATOM + r" (?:fino )?(?:a|al|all) " +
+    r"\b(?:da|dal|dall) " + DATE_SCOPE_ATOM + r" (?:fino )?(?:a|ad|al|all) " +
     DATE_SCOPE_ATOM + r"\b|\b(?:solo|soltanto|esclusivamente) (?:nel mese di |a |in )?"
     r"(?:" + MONTH_NAMES + r")\b"
 )

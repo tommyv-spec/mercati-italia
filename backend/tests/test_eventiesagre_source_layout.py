@@ -20,7 +20,7 @@ def html(*, body="", address="Via della Fonte, 4", hours="dalle ore 08:00 alle o
          start="02/11/2026", end="02/11/2026", archived=False,
          modified="2026-10-10 12:30:00", heading=True, jsonld=None,
          extra_card="", after="", event_id="12345", card_name="Mercato Di Esempio",
-         heading_city="Esempio (BO)"):
+         heading_city="Esempio (BO)", contacts=""):
     ld = '<script type="application/ld+json">' + jsonld + '</script>' if jsonld else ""
     source_dates = f'<div><span>Dal:</span> <span>{start}</span></div><div>Al: {end}</div>' if start or end else ""
     venue = f'<div class="recapito">{address}</div>' if address else ""
@@ -34,7 +34,7 @@ def html(*, body="", address="Via della Fonte, 4", hours="dalle ore 08:00 alle o
        {source_dates}<div class="recapito grassetto">Dove:</div>{venue}
        <div class="recapito titolo"><a href="https://www.eventiesagre.it/cerca/cat/sez/mesi/Emilia+Romagna/BO/Esempio/rilib">Esempio</a></div>
        <div>Emilia Romagna - Italia</div>{extra_card}
-      </div><div class="DX"><div id="condividi">{marker}</div></div></div>
+      </div><div class="DX">{contacts}<div id="condividi">{marker}</div></div></div>
       <div id="contenuto">{title}<div>{body}</div>
        <hr><div id="correlati"><h3>Evento vicino</h3><a>Altrove (RM)</a>
        <p>Orario: dalle 14 alle 22. Dal: 25/12/2026</p><p>Via Falsa, 99</p></div>
@@ -270,6 +270,42 @@ class EventiESagreLayoutTests(unittest.TestCase):
                 parse_eventiesagre_html(html(), url, today=TODAY)
         with self.assertRaises(ValueError):
             parse_eventiesagre_html(b"x" * (MAX_BYTES + 1), URL, today=TODAY)
+
+
+class ContactColumnTests(unittest.TestCase):
+    @staticmethod
+    def column(links="", fonte="Eventi e Sagre"):
+        return ('<div class="recapito grassetto">Contatti</div>' + links +
+                '<div class="spacer10"></div><div class="recapito grassetto">Fonte</div>'
+                f'<div class="recapito corsivo">{fonte}</div>')
+
+    @staticmethod
+    def link(href, label):
+        return f'<div class="recapito titolo"><a href="{href}">{label}</a></div>'
+
+    def test_links_phone_and_organisation_become_contact_rows(self):
+        links = (self.link("http://www.carpidiem.it", "Sito Web")
+                 + self.link("http://www.comune.carpi.mo.it", "Sito Web Comune")
+                 + self.link("https://www.facebook.com/mercatino", "Pagina Facebook")
+                 + self.link("mailto:info@mercatino.it", "Email")
+                 + self.link("https://www.eventiesagre.it/cerca/x", "Altri eventi")
+                 + '<div class="recapito titolo allignsx">Cell.: 346 8682904 </div>')
+        rows = parse(contacts=self.column(links, "Comune di Carpi"))["contact_rows"]
+        self.assertEqual({r["field"]: r["value"] for r in rows}, {
+            "website": "http://www.carpidiem.it; http://www.comune.carpi.mo.it",
+            "facebook": "https://www.facebook.com/mercatino",
+            "contacts": "info@mercatino.it", "phone": "346 8682904",
+            "organizer": "Comune di Carpi"})
+
+    def test_a_person_or_the_site_itself_is_not_an_organiser(self):
+        for fonte in ("Silvia", "Massimo Pozzi", "Eventi e Sagre", "Redazione"):
+            with self.subTest(fonte=fonte):
+                self.assertEqual(parse(contacts=self.column(fonte=fonte))["contact_rows"], [])
+
+    def test_contact_rows_never_count_as_venues(self):
+        result = parse(contacts=self.column(self.link("http://www.carpidiem.it", "Sito Web")))
+        self.assertEqual(result["legacy_fields"]["indirizzo"], "Via della Fonte, 4")
+        self.assertNotIn("multiple_market_rows_require_separate_identity", result["issues"])
 
 
 if __name__ == "__main__":

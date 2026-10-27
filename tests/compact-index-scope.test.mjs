@@ -102,3 +102,10 @@ test('an ordinary legacy row without bound scope preserves its existing display'
   assert.equal(sourceHoursForDate(ordinary, '2026-10-27'), '07:00–13:00')
   assert.equal(editorialSummaryView(ordinary).recurrence, 'Ogni martedì')
 })
+
+test('a source stall count reaches the detail only as a positive whole number', () => {
+  assert.equal(adaptMarket({id: current[0], posteggi: 52}).stalls, 52)
+  for (const posteggi of [undefined, 0, -3, 2.5, '52']) {
+    assert.equal(adaptMarket({id: current[0], posteggi}).stalls, null)
+  }
+})

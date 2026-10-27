@@ -361,6 +361,20 @@ class PageRuleExtensionTests(unittest.TestCase):
                 self.assertFalse(_adds_weeks(page, rule(card)))
 
 
+class LongRuleSentenceTests(unittest.TestCase):
+    def test_a_rule_sentence_past_the_field_limit_holds_the_rule_not_the_run(self):
+        sentence = ("Ogni mese, la quarta domenica, il mercatino si svolge in piazza con espositori "
+                    "di vintage, usato e piccolo antiquariato, un appuntamento sempre più amato da "
+                    "appassionati e famiglie.a dicembre solo l'8 dicembre")  # no space: one sentence
+        self.assertGreater(len(sentence), 180)
+        page = html(body=f"<p>{sentence}</p>", start="01/03/2026", end="08/12/2026")
+        card = row(ricorrenza_testo="", ricorrenza="", date=[], date_quality="sconosciuta",
+                   proiezione_regola=None, proiezione_generata_il="", proiezione_fonte="")
+        result, report = preview([card], [document(page)], today=TODAY)
+        self.assertEqual(result[0]["ricorrenza_testo"], "")
+        self.assertNotIn("ricorrenza_testo", report["outcomes"][0].get("accepted_fields", {}))
+
+
 class DefaultHoursTests(unittest.TestCase):
     PAGE = ("<p><strong>Informazioni sul Mercato:</strong></p><p>Quando si svolge: Lunedì tutto l'anno</p>"
             "<p><strong>Orari del Mercat</strong>o: Dalle 08:00 alle 13:00</p>")

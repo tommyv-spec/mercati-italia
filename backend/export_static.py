@@ -343,7 +343,26 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
     if source_detail:
         result["dettaglio_fonte"] = source_detail
     result = retain_editorial_evidence(raw, result, today=today)
+    stalls = stall_count(result)
+    if stalls:
+        result["posteggi"] = stalls
     return result, None
+
+
+def stall_count(result: dict) -> int | None:
+    """Stalls the source states, read from its own data already kept on the card:
+    MERCap's licensed pitches (n_post_tot) or cosedicasa's exhibitors."""
+    identity = result.get("identita_fonte") or {}
+    facts = (result.get(EDITORIAL_EVIDENCE) or {}).get("facts") or {}
+    values = [] if identity.get("scope_invalid") is True else [identity.get("n_post_tot")]
+    values += [row.get("value") for row in facts.get("source_rows") or []
+               if isinstance(row, dict) and row.get("field") == "exhibitors"]
+    for value in values:
+        text = str(value or "").strip()
+        # Only a plain count: "1.100" or "3o" is not read as a number.
+        if re.fullmatch(r"\d{1,4}", text) and 0 < int(text) <= 2000:
+            return int(text)
+    return None
 
 
 def comparable_market_name(value: str) -> str:

@@ -372,7 +372,9 @@ def parse_document(blob, *, requested_url, final_url=None, today):
             "calendar_scope": "explicit_visible_list" if narrative_occurrences else "edition_bounds",
             "calendar_rules": [], "suspensions": [],
             "scope_statements": deepcopy(parsed["scope_statements"]), "conditions": [],
-            "source_rows": deepcopy(parsed["source_rows"]),
+            # Venue rows (address/hours/recurrence) plus contact rows (field/value),
+            # the same contact shape cosedicasa's reader stores.
+            "source_rows": deepcopy(parsed["source_rows"] + parsed["contact_rows"]),
             "forecast_rule": explicit_rule(recurrence)},
         "conflicts": conflicts,
         "warnings": [v for v in issues if _conflict(v) is None],
@@ -617,7 +619,9 @@ def _update(row, document, *, read_on, today):
         if months is False or not months:
             if rule is not None and rule == card_rule and (months is False or card_full == rule):
                 proposed["ricorrenza_testo"] = row["ricorrenza_testo"]
-            elif adopt and card_full == card_rule:
+            elif adopt and card_full == card_rule and len(selected["recurrence"]) <= FIELDS["ricorrenza_testo"]:
+                # A whole sentence past the field limit (Castelvetro: the rule plus
+                # "a dicembre solo l'8 dicembre") is not the rule: it stays in facts.
                 # The card's own page states the full rule ("prima e terza domenica",
                 # "primi sabato e domenica") where an old import kept one week or day
                 # ("terza domenica") or just "mensile": adopt it.
@@ -641,12 +645,16 @@ def _update(row, document, *, read_on, today):
         receipt_id = PUBLISHERS[publisher]["stem"] + "-detail:" + document["source"]["source_id"]
         if len(receipt_id) > 100:
             receipt_id = PUBLISHERS[publisher]["stem"] + "-detail:" + fingerprint(document["source"]["source_id"])
-        latest = make_receipt({**row, **proposed}, values=proposed,
-            source_url=row["url_fonte"], source_name=publisher, source_id=receipt_id,
-            source_row=selected["source_row_id"], read_on=read_on,
-            source_updated_on=evidence["modified_on"], source_sha256=evidence["source_sha256"],
-            scope="pagina", method="pagina_primaria_revisionata",
-            fingerprint_kind="web_extracted_text" if evidence["hash_basis"] == "connector_utf8_text" else "html_bytes")
+        try:
+            latest = make_receipt({**row, **proposed}, values=proposed,
+                source_url=row["url_fonte"], source_name=publisher, source_id=receipt_id,
+                source_row=selected["source_row_id"], read_on=read_on,
+                source_updated_on=evidence["modified_on"], source_sha256=evidence["source_sha256"],
+                scope="pagina", method="pagina_primaria_revisionata",
+                fingerprint_kind="web_extracted_text" if evidence["hash_basis"] == "connector_utf8_text" else "html_bytes")
+        except ValueError:
+            # One page's unusable value holds that card; it never stops the run.
+            return row, {"slug": row["slug"], "status": "held", "reason": "source_values_not_receiptable", "fields": []}
         for field, value in proposed.items():
             current = row.get(field) or ""
             if current == value:

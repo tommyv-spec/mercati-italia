@@ -243,6 +243,7 @@ function normalize(m, userLat, userLng) {
     ambito_orari: HOURS_SCOPES.has(m.ambito_orari) ? m.ambito_orari : '',
     ricorrenza_testo: m.ricorrenza_testo || '',
     descrizione: m.descrizione || '',
+    posteggi: Number.isInteger(m.posteggi) && m.posteggi > 0 ? m.posteggi : null,
     date: m.date || [],
     prossima_data: getNextDate(m.date),
     confidence: m.confidence ?? 0,
