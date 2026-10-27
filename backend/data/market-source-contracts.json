@@ -474,6 +474,7 @@
         "giorni",
         "orario",
         "periodicita",
+        "mesi",
         "dal",
         "al",
         "aggiornato"
@@ -498,11 +499,17 @@
         },
         {
           "periodicita": "stagionale"
+        },
+        {
+          "periodicita": "stagionale_spezzata"
         }
       ],
       "new_market_filters_any": [
         {
           "periodicita": "annuale"
+        },
+        {
+          "periodicita": "stagionale"
         }
       ],
       "exclude_rows_containing": {
@@ -531,7 +538,8 @@
         "max_records_per_run": 100
       },
       "new_market_requires_free_town_day": true,
-      "notes": "Open Data Hub tourism Event API (NOI Techpark; LTS = South Tyrol tourism associations), every item checked CC0 + Source lts. One query: events whose Italian title says 'mercat' or German title 'markt', with a date on or after the read day minus 60 days (bridges the year change, when LTS re-publishes each market as a new event: same title+municipality+street = one market, dates joined). One row per weekday held weekly (>=8 dates on >=80% of the weeks between first and last), 'annuale' when those dates fall in all 12 months, else 'stagionale'; other weekdays held >=3 times are 'irregolare' rows that only compete in the town+weekday join. Municipality: the event's town when it is an ISTAT comune, else ODH's municipality (ODH files the Merano station market under Lagundo; 'Caldaro al Lago', 'Siusi' are frazioni). Only 'annuale' rows with a street become new markets, on a free municipality+weekday; 'stagionale' rows only fill hours/street of the one market there. Christmas markets, tours, guided visits, flea markets and workshops excluded. Content date = newest LastChange of the market events in the snapshot (never the read time). GPS ignored."
+      "notes": "Open Data Hub tourism Event API (NOI Techpark; LTS = South Tyrol tourism associations), every item checked CC0 + Source lts. One query: events whose Italian title says 'mercat' or German title 'markt', with a date on or after the read day minus 60 days (bridges the year change, when LTS re-publishes each market as a new event: same title+municipality+street = one market, dates joined). One row per weekday held weekly (>=8 dates on >=80% of the weeks between first and last), 'annuale' when those dates fall in all 12 months, 'stagionale' when their months form one continuous range (written into the recurrence: 'settimanale - venerdi, da marzo a ottobre', so forecasts stay inside the season), else 'stagionale_spezzata'; other weekdays held >=3 times are 'irregolare' rows that only compete in the town+weekday join. Municipality: the event's town when it is an ISTAT comune, else ODH's municipality (ODH files the Merano station market under Lagundo; 'Caldaro al Lago', 'Siusi' are frazioni). 'annuale' and 'stagionale' rows with a street become new markets, on a free municipality+weekday; 'stagionale_spezzata' rows only fill hours/street of the one market there. Christmas markets, tours, guided visits, flea markets and workshops excluded. Content date = newest LastChange of the market events in the snapshot (never the read time). GPS ignored.",
+      "season_field": "mesi"
     }
   ]
 }

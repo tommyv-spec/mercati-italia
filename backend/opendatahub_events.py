@@ -8,7 +8,10 @@ Each event is turned into one row per weekday it is held on:
 - weekly ("annuale" / "stagionale"): at least MIN_WEEKLY_DATES distinct dates
   on that weekday, on at least MIN_WEEKLY_SHARE of the weeks between its first
   and last date (the real data splits cleanly: weekly markets >= 0.87, the
-  rest <= 0.64). "annuale" only when those dates fall in all 12 months;
+  rest <= 0.64). "annuale" when those dates fall in all 12 months;
+  "stagionale" when their months form one continuous range, written in
+  "mesi" as the forecast reader expects ("da marzo a ottobre"); any other
+  month pattern is "stagionale_spezzata" (it may only fill other cards);
 - "irregolare": a weekday held a few times but not weekly (Brennero's 34
   scattered Monday-Saturday dates, monthly flea markets). These rows are never
   markets themselves; they only compete in the town+weekday join.
@@ -41,8 +44,10 @@ FIELDS = (
     "EventDate.[*].From", "EventDate.[*].To", "EventDate.[*].Begin", "EventDate.[*].End",
 )
 COLUMNS = ("denominazione", "comune", "luogo", "giorni", "orario",
-           "periodicita", "dal", "al", "aggiornato")
+           "periodicita", "mesi", "dal", "al", "aggiornato")
 WEEKDAYS = ("lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica")
+MONTHS = ("gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio",
+          "agosto", "settembre", "ottobre", "novembre", "dicembre")
 MIN_WEEKLY_DATES = 8
 MIN_WEEKLY_SHARE = 0.8
 MIN_COMPETING_DATES = 3
@@ -120,6 +125,18 @@ def last_change(raw):
     return max(days)
 
 
+def season(months):
+    """(periodicita, mesi) of a weekly market's months: one range or none."""
+    if len(months) == 12:
+        return "annuale", ""
+    # One continuous (possibly year-crossing) range has exactly one first month.
+    first = [m for m in months if (m - 2) % 12 + 1 not in months]
+    last = [m for m in months if m % 12 + 1 not in months]
+    if len(first) != 1 or len(last) != 1:
+        return "stagionale_spezzata", ""
+    return "stagionale", f"da {MONTHS[first[0] - 1]} a {MONTHS[last[0] - 1]}"
+
+
 def rows(raw, is_municipality):
     """Market rows (COLUMNS) of one complete snapshot; see the module docstring."""
     groups = defaultdict(lambda: {"dates": set(), "hours": set(), "changed": "", "names": None})
@@ -157,13 +174,13 @@ def rows(raw, is_municipality):
         weekly = len(days) >= MIN_WEEKLY_DATES and len(days) >= MIN_WEEKLY_SHARE * weeks
         hours = next(iter(group["hours"])) if len(group["hours"]) == 1 else None
         title, town, street = group["names"]
+        kind, months = season({d.month for d in days}) if weekly else ("irregolare", "")
         result.append({
             "denominazione": title, "comune": town, "luogo": street,
             "giorni": WEEKDAYS[weekday],
             "orario": f"{hours[0]} - {hours[1]}" if hours and hours[0] < hours[1]
                       and hours != ("00:00", "23:59") else "",
-            "periodicita": ("annuale" if len({d.month for d in days}) == 12 else "stagionale")
-                           if weekly else "irregolare",
+            "periodicita": kind, "mesi": months,
             "dal": days[0].isoformat(), "al": days[-1].isoformat(),
             "aggiornato": group["changed"],
         })

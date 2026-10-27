@@ -8,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import opendatahub_events as odh
 from publisher_snapshot_date import make_event_change_proof, resolve_source_date
+from recurrence_refresh import forecast_rule, project_dates
 from source_lifecycle import candidate_record, istat_municipality, parse_rows, validate_contracts
 
 CONTRACTS = json.loads((Path(__file__).resolve().parents[1] / "data/market-source-contracts.json")
@@ -95,6 +96,9 @@ class OpenDataHubContractTests(unittest.TestCase):
             event("Mercato settimanale ad Ora", "Ora", weekly(date(2026, 1, 7), 52), uid="A"),
             event("Mercato dei contadini a Brunico", "Brunico", weekly(date(2026, 3, 6), 35), uid="B"),
             event("Mercatino di Natale a Ora", "Ora", weekly(date(2026, 1, 7), 52), uid="C"),
+            # Weekly but closed in August: two seasons, no single month range.
+            event("Mercato contadino di Tesimo", "Tesimo",
+                  weekly(date(2026, 4, 1), 18) + weekly(date(2026, 9, 2), 9), uid="D"),
         )).encode("utf-8")
 
     def test_contract_validates_and_needs_its_query(self):
@@ -104,16 +108,25 @@ class OpenDataHubContractTests(unittest.TestCase):
             odh.validate_profile(changed)
         self.assertIn("begindate=2026-08-28&", odh.request_url(PROFILE, "2026-10-27"))
 
-    def test_seasonal_rows_fill_only_and_christmas_markets_are_excluded(self):
+    def test_seasonal_markets_carry_their_months_and_christmas_markets_are_excluded(self):
         profile = {**PROFILE, "min_rows": 1}  # the real bound is 20 rows
-        records = {r["denominazione"]: candidate_record(profile, r, today=TODAY, source_date="2026-10-20")
-                   for r in parse_rows(profile, self.blob())}
+        rows = {r["denominazione"]: r for r in parse_rows(profile, self.blob())}
+        records = {name: candidate_record(profile, r, today=TODAY, source_date="2026-10-20")
+                   for name, r in rows.items()}
         ora, issue, _ = records["Mercato settimanale ad Ora"]
         self.assertIsNone(issue)
         self.assertEqual(ora["ricorrenza_testo"], "settimanale - mercoledi")
         self.assertEqual(ora["orario_testo"], "08:00–13:00 (da verificare con il Comune)")
-        self.assertIsNotNone(records["Mercato dei contadini a Brunico"][0])  # a market row: may fill
-        self.assertNotIn({"periodicita": "stagionale"}, PROFILE["new_market_filters_any"])
+        brunico = records["Mercato dei contadini a Brunico"][0]
+        self.assertEqual(brunico["ricorrenza_testo"], "settimanale - venerdi, da marzo a ottobre")
+        # No forecast outside the season: none in November-February.
+        dates = project_dates(forecast_rule(brunico), TODAY, 120)
+        self.assertEqual(dates, ["2026-10-30"])
+        self.assertIn({"periodicita": "stagionale"}, PROFILE["new_market_filters_any"])
+        # Two seasons a year: a market row that may fill, never a new card.
+        self.assertEqual(rows["Mercato contadino di Tesimo"]["periodicita"], "stagionale_spezzata")
+        self.assertIsNotNone(records["Mercato contadino di Tesimo"][0])
+        self.assertNotIn({"periodicita": "stagionale_spezzata"}, PROFILE["new_market_filters_any"])
         self.assertIsNone(records["Mercatino di Natale a Ora"][0])
 
     def test_content_date_is_newest_market_change_not_read_time(self):

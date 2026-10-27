@@ -27,7 +27,7 @@ from urllib.parse import urlsplit, parse_qs
 
 from merge_catalog import load_existing
 from source_dispositions import reconcile as reconcile_reviewed_source_ids
-from recurrence_refresh import WEEKDAYS, complete_monthly_rule, explicit_rule
+from recurrence_refresh import WEEKDAYS, complete_monthly_rule, explicit_rule, forecast_rule
 from source_probe import limited_fetch, safe_url
 from reviewed_city_evidence import NAVIGATION_HOLD
 from publisher_snapshot_date import resolve_source_date, validate_strategy
@@ -363,6 +363,11 @@ def validate_contracts(config):
                 if type(city_floor) is not int or not 0<=city_floor<=100 or (
                         city_floor and city_floor<10):
                     raise ValueError("Generic city override requires many official venues")
+                # season_field: a weekly row's months ("da marzo a ottobre").
+                if item.get("season_field") is not None and (
+                        item["season_field"] not in item["schema_columns"]
+                        or item.get("row_kind")==MONTH_KIND):
+                    raise ValueError("Unreviewed market season field")
                 if item.get("hours_text_field") is not None and (
                         item["hours_text_field"] not in item["schema_columns"]):
                     raise ValueError("Unreviewed source hour text field")
@@ -558,6 +563,14 @@ def candidate_record(profile,row,*,today,source_date=None):
                     +WEEKDAYS[d]+" del mese")
     else:
         recurrence="settimanale - "+", ".join(WEEKDAYS[x] for x in days)
+        months=str(row.get(profile["season_field"]) or "").strip() if profile.get("season_field") else ""
+        if months:
+            # A seasonal market: the forecaster must read these weekdays within these months.
+            recurrence+=", "+months
+            season_rule=forecast_rule({"ricorrenza_testo":recurrence})
+            if (not season_rule or season_rule.get("weekdays")!=list(days)
+                    or not season_rule.get("active_months")):
+                return None,"season_not_readable",None
     raw_hours=""
     if profile.get("hours_text_field"):
         raw_hours=preserve_hours_text(row.get(profile["hours_text_field"]))
@@ -609,6 +622,8 @@ def candidate_record(profile,row,*,today,source_date=None):
            "publisher_dataset_date":updated.isoformat()}
     if monthly:
         facts["ordinal"]=rule["ordinal"] if rule else None
+    if profile.get("season_field") and row.get(profile["season_field"]):
+        facts["months"]=canonical(row[profile["season_field"]])
     if raw_hours and not (start and end):
         facts["hours_text"]=raw_hours
     facthash=digest(facts)
