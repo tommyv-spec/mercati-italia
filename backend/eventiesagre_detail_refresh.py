@@ -280,16 +280,19 @@ def _geography():
 
 def _normalized_location(location):
     """Resolve only an observed municipality/province/region via ISTAT."""
-    city = text_key(location.get("city"))
+    # "Forli'" / "Cantu'": a final apostrophe typed for the accented vowel.
+    accent = lambda value: re.sub(r"(?<=[aeiouAEIOU])['’](?=$|[\s\-–—/,])", "", str(value or ""))
+    city = text_key(accent(location.get("city")))
     region = text_key(location.get("region"))
-    province = str(location.get("province") or "")
+    province = accent(location.get("province"))
     candidates = [v for v in _geography() if v[0] == city and (not region or v[2] == region)]
     if province:
         if re.fullmatch(r"[A-Za-z]{2}", province):
             candidates = [v for v in candidates if v[1] == province.upper()]
         else:
-            named = text_key(re.sub(r"^(?:provincia|città metropolitana)\s+di\s+", "", province, flags=re.I))
-            parts = [text_key(p) for p in re.split(r"[-–—/]\s*|\s+e\s+", named) if p.strip()]
+            named = re.sub(r"^(?:provincia|città metropolitana)\s+di\s+", "", province, flags=re.I)
+            # Split "Forlì-Cesena" / "Pesaro e Urbino" before normalizing drops the hyphen.
+            parts = [text_key(p) for p in re.split(r"\s*[-–—/]\s*|\s+e\s+", named) if p.strip()]
             candidates = [v for v in candidates if all((part, v[1], v[2]) in _geography() for part in parts)]
     if len(candidates) != 1:
         return None

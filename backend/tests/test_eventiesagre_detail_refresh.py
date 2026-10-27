@@ -361,6 +361,18 @@ class PageRuleExtensionTests(unittest.TestCase):
                 self.assertFalse(_adds_weeks(page, rule(card)))
 
 
+class ProvinceNameTests(unittest.TestCase):
+    def test_province_names_with_hyphens_and_typed_accents_resolve(self):
+        from eventiesagre_detail_refresh import _normalized_location as place
+        for city, province, code in (("Forlimpopoli", "Forli'-Cesena", "FC"), ("Pesaro", "Pesaro e Urbino", "PU"),
+                                     ("Barletta", "Barletta-Andria-Trani", "BT"), ("Forli'", "FC", "FC"),
+                                     ("Cantu'", "Como", "CO")):
+            with self.subTest(city=city, province=province):
+                self.assertEqual(place({"city": city, "province": province})["province"], code)
+        # A frazione or an abbreviated name is never guessed.
+        self.assertIsNone(place({"city": "Genzano", "province": "Roma"}))
+
+
 class EditorialQueueTests(unittest.TestCase):
     def setUp(self):
         self.folder = tempfile.TemporaryDirectory()
