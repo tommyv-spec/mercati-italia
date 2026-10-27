@@ -540,6 +540,97 @@
       "new_market_requires_free_town_day": true,
       "notes": "Open Data Hub tourism Event API (NOI Techpark; LTS = South Tyrol tourism associations), every item checked CC0 + Source lts. One query: events whose Italian title says 'mercat' or German title 'markt', with a date on or after the read day minus 60 days (bridges the year change, when LTS re-publishes each market as a new event: same title+municipality+street = one market, dates joined). One row per weekday held weekly (>=8 dates on >=80% of the weeks between first and last), 'annuale' when those dates fall in all 12 months, 'stagionale' when their months form one continuous range (written into the recurrence: 'settimanale - venerdi, da marzo a ottobre', so forecasts stay inside the season), else 'stagionale_spezzata'; other weekdays held >=3 times are 'irregolare' rows that only compete in the town+weekday join. Municipality: the event's town when it is an ISTAT comune, else ODH's municipality (ODH files the Merano station market under Lagundo; 'Caldaro al Lago', 'Siusi' are frazioni). 'annuale' and 'stagionale' rows with a street become new markets, on a free municipality+weekday; 'stagionale_spezzata' rows only fill hours/street of the one market there. Christmas markets, tours, guided visits, flea markets and workshops excluded. Content date = newest LastChange of the market events in the snapshot (never the read time). GPS ignored.",
       "season_field": "mesi"
+    },
+    {
+      "id": "trentino-com-mercati",
+      "enabled": true,
+      "publisher": "trentino.com — calendario eventi (APT e Comuni del Trentino)",
+      "source_id": "trentino-com-mercati",
+      "row_kind": "market_venue_day",
+      "resource_url": "https://www.trentino.com/it/manifestazioni/results/",
+      "search_days_before_read": 7,
+      "search_days_after_read": 21,
+      "max_search_pages": 60,
+      "max_event_pages": 80,
+      "attribution_url": "https://www.trentino.com/it/manifestazioni/",
+      "format": "JSON",
+      "json_container": "trentino_calendar_v1",
+      "max_bytes": 1000000,
+      "min_rows": 15,
+      "max_rows": 300,
+      "schema_columns": [
+        "denominazione",
+        "comune",
+        "luogo",
+        "giorni",
+        "orario",
+        "periodicita",
+        "mesi",
+        "dal",
+        "al",
+        "aggiornato"
+      ],
+      "identity_fields": [
+        "comune",
+        "luogo",
+        "giorni",
+        "denominazione"
+      ],
+      "name_field": "denominazione",
+      "street_fields": [
+        "luogo"
+      ],
+      "weekday_field": "giorni",
+      "hours_fields": [],
+      "hours_text_field": "orario",
+      "hours_text_format": "italian_clock_range",
+      "market_filters_any": [
+        {
+          "periodicita": "annuale"
+        },
+        {
+          "periodicita": "stagionale"
+        },
+        {
+          "periodicita": "stagionale_spezzata"
+        }
+      ],
+      "new_market_filters_any": [
+        {
+          "periodicita": "annuale"
+        },
+        {
+          "periodicita": "stagionale"
+        }
+      ],
+      "exclude_rows_containing": {
+        "denominazione": [
+          "natal",
+          "tour",
+          "escursion",
+          "guidat",
+          "pulci",
+          "laborator"
+        ]
+      },
+      "municipality_field": "comune",
+      "region": "Trentino-Alto Adige",
+      "catalog_slug_prefix": "tn-tcom-",
+      "source_dataset_date": "2026-10-01",
+      "source_date_scope": "dataset_not_per_market",
+      "source_date_strategy": "trentino_listed_dates_v1",
+      "max_source_age_days": 45,
+      "max_forecast_source_age_days": 45,
+      "legal_reuse_reviewed": true,
+      "publication_mode": "approved_dev_only",
+      "max_new_ids_per_run": 40,
+      "coordinates": "ignored_unless_independently_source_verified",
+      "existing_market_fill": {
+        "max_records_per_run": 100
+      },
+      "new_market_requires_free_town_day": true,
+      "season_field": "mesi",
+      "notes": "trentino.com (Peer Media House tourism portal; event data from the APT tourist boards and Comuni). Owner decision 2026-10-27: reuse like eventiesagre/cosedicasa ('expand'); robots.txt allows /it/manifestazioni/results/ and /it/calendario/dettagli/ (never /api/ or /map/). One read: every page of the calendar search for topic 15 'Fiere, mercati e shopping' from 7 days before to 21 days after the read day (plain GET, sid = base64 'tpc:15;d:<from>,<to>'), then the page of each event whose title says 'mercat' (exclusions skipped up front), >=3 s between requests. Each event page lists every date of its series with clock times (schema.org microdata) and the address 'Comune, [frazione,] street'; the snapshot kept is compact JSON (no HTML). Rows come from the Open Data Hub row builder: one row per weekday held weekly (>=8 dates on >=80% of the weeks), 'annuale' / 'stagionale' (months in the recurrence) / 'stagionale_spezzata'; fortnightly and monthly markets (Predazzo 1st+3rd Tuesday, Cles 1st Monday) are 'irregolare' rows that only compete in the town+weekday join. 'nel paese', 'in centro', 'centro storico' name no street: 'centro'. Content date = the newest listed market date on or before the read day, only while a later date is listed. GPS ignored."
     }
   ]
 }

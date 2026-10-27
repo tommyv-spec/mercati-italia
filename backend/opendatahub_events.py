@@ -139,7 +139,7 @@ def season(months):
 
 def rows(raw, is_municipality):
     """Market rows (COLUMNS) of one complete snapshot; see the module docstring."""
-    groups = defaultdict(lambda: {"dates": set(), "hours": set(), "changed": "", "names": None})
+    events = []
     for item in _items(raw):
         title = _title(item)
         if not title:
@@ -153,18 +153,33 @@ def rows(raw, is_municipality):
         dates = [_list(item["EventDate.[*]." + part]) for part in ("From", "To", "Begin", "End")]
         if len({len(values) for values in dates}) != 1:
             continue  # misaligned projection: these dates can't be read safely
+        days = []
         for start, end, begin, close in zip(*dates):
             if (not isinstance(start, str) or not isinstance(end, str)
                     or start[:10] != end[:10] or not _DAY.fullmatch(start[:10])):
                 continue  # a multi-day span is a festival period, not a market day
-            day = date.fromisoformat(start[:10])
+            days.append((date.fromisoformat(start[:10]), begin, close))
+        events.append((title, town, street, _changed(item), days))
+    return market_rows(events)
+
+
+def market_rows(events):
+    """One row per (market, weekday) of dated events, shared by every event calendar.
+
+    events: (title, town, street, changed, [(day, begin, end)]); the same title,
+    town and street are one market (yearly re-publications are joined) and the
+    newest "changed" names it. Begin/end are published clock times or empty.
+    """
+    groups = defaultdict(lambda: {"dates": set(), "hours": set(), "changed": "", "names": None})
+    for title, town, street, changed, days in events:
+        for day, begin, close in days:
             group = groups[(_key(title), _key(town), _key(street), day.weekday())]
             group["dates"].add(day)
             group["hours"].add((str(begin or "")[:5], str(close or "")[:5])
                                if _CLOCK.fullmatch(str(begin or "")) and _CLOCK.fullmatch(str(close or ""))
                                else None)
-            if _changed(item) >= group["changed"]:
-                group["changed"], group["names"] = _changed(item), (title, town, street)
+            if changed >= group["changed"]:
+                group["changed"], group["names"] = changed, (title, town, street)
     result = []
     for (*_, weekday), group in groups.items():
         days = sorted(group["dates"])

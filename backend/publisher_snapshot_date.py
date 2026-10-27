@@ -17,12 +17,17 @@ from html.parser import HTMLParser
 from urllib.parse import parse_qs, unquote, urljoin, urlsplit
 
 import opendatahub_events
+import trentino_calendar
 
 
 FIXED_STRATEGY = "fixed_reviewed"
 # Open Data Hub events: the newest LastChange among the market events of the
 # exact snapshot (never the read time); the query's begin date follows the read day.
 ODH_STRATEGY = opendatahub_events.DATE_STRATEGY
+# trentino.com calendar: the newest listed market date on or before the read day.
+TRENTINO_STRATEGY = trentino_calendar.DATE_STRATEGY
+# Event calendars: each module gives CONTAINER, request_url() and last_change().
+EVENT_SOURCES = {ODH_STRATEGY: opendatahub_events, TRENTINO_STRATEGY: trentino_calendar}
 _ODH_KEYS = frozenset({
     "schema", "strategy", "profile_sha256", "source_url", "request_url",
     "snapshot_sha256", "read_on", "source_date",
@@ -111,9 +116,9 @@ def validate_strategy(profile):
             raise ValueError("Yearly document discovery requires a reviewed PDF calendar")
         _https_parts(profile.get("resource_url"), "publisher landing page URL")
         return strategy
-    if strategy == ODH_STRATEGY:
-        if profile.get("json_container") != opendatahub_events.CONTAINER:
-            raise ValueError("Event change dates require the reviewed Open Data Hub format")
+    if isinstance(strategy, str) and strategy in EVENT_SOURCES:
+        if profile.get("json_container") != EVENT_SOURCES[strategy].CONTAINER:
+            raise ValueError("Event change dates require the reviewed event calendar format")
         _https_parts(profile.get("resource_url"), "source resource URL")
         return strategy
     if strategy != ODS_STRATEGY:
@@ -392,19 +397,20 @@ def _event_change_proof(profile, *, snapshot_sha256, source_date, read_on, today
     if not isinstance(snapshot_sha256, str) or not _SHA256.fullmatch(snapshot_sha256):
         raise ValueError("Invalid source snapshot SHA-256")
     return {
-        "schema": 1, "strategy": ODH_STRATEGY, "profile_sha256": _profile_digest(profile),
-        "source_url": profile["resource_url"],
-        "request_url": opendatahub_events.request_url(profile, read_on),
+        "schema": 1, "strategy": profile["source_date_strategy"],
+        "profile_sha256": _profile_digest(profile), "source_url": profile["resource_url"],
+        "request_url": EVENT_SOURCES[profile["source_date_strategy"]].request_url(profile, read_on),
         "snapshot_sha256": snapshot_sha256, "read_on": read_on, "source_date": source_date,
     }
 
 
 def _event_change_date(profile, blob):
-    return opendatahub_events.last_change(_json_bytes(blob, profile["max_bytes"], "source snapshot"))
+    return EVENT_SOURCES[profile["source_date_strategy"]].last_change(
+        _json_bytes(blob, profile["max_bytes"], "source snapshot"))
 
 
 def make_event_change_proof(profile, blob: bytes, *, read_on: str, today: date) -> dict:
-    if validate_strategy(profile) != ODH_STRATEGY:
+    if validate_strategy(profile) not in EVENT_SOURCES:
         raise ValueError("Profile has no event change date rule")
     return _event_change_proof(profile, snapshot_sha256=_sha256(blob),
                                source_date=_event_change_date(profile, blob),
@@ -424,7 +430,7 @@ def resolve_source_date(profile, *, proof=None, blob=None, snapshot_sha256=None,
         if proof is not None:
             raise ValueError("A snapshot proof cannot override a fixed reviewed source date")
         return profile["source_dataset_date"]
-    if strategy == ODH_STRATEGY:
+    if strategy in EVENT_SOURCES:
         if (not isinstance(proof, dict) or set(proof) != _ODH_KEYS
                 or (read_on is not None and read_on != proof["read_on"])):
             raise ValueError("Missing or invalid event change date proof")

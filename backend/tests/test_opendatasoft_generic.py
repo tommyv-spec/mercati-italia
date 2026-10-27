@@ -111,9 +111,9 @@ def generic_baseline():
 
 
 class OpendatasoftReusableSourceTests(unittest.TestCase):
-    def test_source_registry_enables_exactly_five_reviewed_publishers(self):
+    def test_source_registry_enables_exactly_six_reviewed_publishers(self):
         self.assertTrue(validate_contracts(CONFIG))
-        self.assertEqual(len(REGISTRY["approvals"]),5)
+        self.assertEqual(len(REGISTRY["approvals"]),6)
         self.assertEqual(BO["catalog_slug_prefix"],"bo-open-")
         self.assertEqual(BO["max_forecast_source_age_days"],365)
         self.assertEqual(BO["source_dataset_date"],"2025-04-02")
