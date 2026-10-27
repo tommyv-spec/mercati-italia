@@ -1844,9 +1844,10 @@ export default function App() {
           {canUseDistance && (
             <span className="card-info-item card-distance">
               {market.positionQuality === 'precisa' && Number.isFinite(market.distance)
-                ? 'a ' + Math.round(market.distance) + ' km'
+                ? (market.distance < 1 ? 'a meno di 1 km' : 'a ' + Math.round(market.distance) + ' km')
                 : market.positionQuality === 'approssimata' && Number.isFinite(market.distance)
-                  ? 'circa ' + Math.round(market.distance) + ' km (stimati)'
+                  ? (market.distance < 1 ? 'meno di 1 km (stimati)'
+                    : 'circa ' + Math.round(market.distance) + ' km (stimati)')
                   : 'Posizione da verificare'}
             </span>
           )}
