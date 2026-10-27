@@ -15,8 +15,8 @@ from urllib.error import HTTPError
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from test_eventiesagre_source_layout import html as source_html, URL
 from editorial_calendar_scope import (
-    KEY, apply_editorial_scope, clean_editorial_evidence, retain_editorial_evidence,
-    valid_editorial_reported_dates,
+    KEY, apply_editorial_scope, clean_editorial_evidence, current_rule_hold, retain_editorial_evidence,
+    rule_current_publishers, statement_months, valid_editorial_reported_dates,
 )
 from eventiesagre_detail_refresh import (
     DEFAULT_POLICY, ROBOTS, STATE_FILENAME, catalog_urls, parse_document, preview,
@@ -670,6 +670,95 @@ class CoseDiCasaBridgeTests(unittest.TestCase):
         for held in ([pause(15, 7, 31, 8)], [pause(1, 8, 30, 8)], [pause(1, 8, 31, 8, 2026)]):
             with self.subTest(held=held):
                 self.assertIs(_page_months({"suspensions": held}), False)
+
+    def bologna_after_read(self, document=None, **changes):
+        # Bologna's page was last edited on 7 Jan 2025; the card's own source date is as old.
+        if document is None:
+            document = deepcopy(cdc_document("bologna"))
+            document["parsed"]["conflicts"], document["parsed"]["status"] = [], "parsed"
+        before = cdc_row("bologna", **{"ricorrenza_testo": "mensile - seconda domenica del mese",
+                         "fonte_aggiornata_il": "2025-01-07", "date": [], "date_quality": "sconosciuta",
+                         "proiezione_regola": None, "proiezione_generata_il": "", "proiezione_fonte": "",
+                         **changes})
+        return preview([before], [document], today=TODAY, publisher=CDC)[0][0]
+
+    def test_a_reread_page_stating_the_rule_predicts_whatever_its_edit_date(self):
+        # Owner decision 2026-10-27: cosedicasa only; eventiesagre keeps the 180-day page age.
+        self.assertEqual(rule_current_publishers(), frozenset({CDC}))
+        self.assertFalse(validate_policy(publisher="eventiesagre.it")["rule_current_while_read"])
+        after = self.bologna_after_read()
+        renewed, reason = refresh_record(after, TODAY)
+        self.assertEqual(reason, "renewed")
+        # The listed weekend (7-8 Nov) is the first prediction; July and August stay out.
+        self.assertEqual(normalize(renewed, TODAY)[0]["date"][:5],
+                         ["2026-11-07", "2026-11-08", "2026-12-12", "2026-12-13", "2027-01-09"])
+        self.assertEqual((renewed["date_quality"], renewed["proiezione_fonte"]),
+                         ("prevista", "riscontri_campi:ricorrenza_testo"))
+        self.assertEqual(refresh_record(renewed, TODAY + timedelta(days=45))[0]["date"][:1], ["2026-12-12"])
+        lapsed = refresh_record(renewed, TODAY + timedelta(days=46))[0]
+        self.assertEqual((lapsed["date"], lapsed["date_quality"], lapsed["proiezione_fonte"]), ([], "sconosciuta", ""))
+
+    def test_a_page_rule_that_is_not_the_cards_or_a_date_off_the_rule_predicts_nothing(self):
+        after = self.bologna_after_read()
+        evidence = clean_editorial_evidence(after[KEY], after, today=TODAY)
+        self.assertIsNone(current_rule_hold(after, evidence, today=TODAY))
+        no_months = {**after, "ricorrenza_testo": "Secondi sabato e domenica del mese"}
+        self.assertEqual(current_rule_hold(no_months, evidence, today=TODAY), "editorial_page_months_not_in_rule")
+        weekly = self.bologna_after_read(ricorrenza_testo="settimanale - domenica")
+        self.assertEqual(weekly["ricorrenza_testo"], "settimanale - domenica")
+        self.assertEqual(refresh_record(weekly, TODAY)[0]["date"], [])
+        document = deepcopy(cdc_document("bologna"))
+        document["parsed"]["conflicts"], document["parsed"]["status"] = [], "parsed"
+        document["parsed"]["event"]["date_intervals"][0].update(start="2026-11-14", end="2026-11-15")
+        document["parsed"]["event"]["edition_intervals"] = [{"start": "2026-11-14", "end": "2026-11-15"}]
+        third = self.bologna_after_read(document)
+        self.assertEqual(refresh_record(third, TODAY), (
+            {**refresh_record(third, TODAY)[0], "date": [], "date_quality": "sconosciuta"},
+            "editorial_listed_date_not_on_rule"))
+
+    def test_hours_sentences_may_only_narrow_months_the_rule_already_leaves_out(self):
+        self.assertIsNone(statement_months("dalle 9 alle 18, la domenica fino alle 19"))
+        self.assertEqual(statement_months("ogni prima domenica, luglio e agosto esclusi, dalle 9"),
+                         [1, 2, 3, 4, 5, 6, 9, 10, 11, 12])
+        self.assertEqual(statement_months("il terzo sabato del mese, da gennaio a luglio, dalle 8 alle 20"),
+                         list(range(1, 8)))
+        self.assertEqual(statement_months("eccetto giugno, luglio e agosto, dalle 8 alle 17"), [1, 2, 3, 4, 5, 9, 10, 11, 12])
+        for unresolved in ("dalle 9 alle 18, esclusi i festivi", "Nel mese di agosto 2026 ogni sera dalle 18",
+                           "da aprile a ottobre dalle 8 alle 19, da novembre a marzo dalle 9 alle 17"):
+            with self.subTest(unresolved=unresolved):
+                self.assertIs(statement_months(unresolved), False)
+        # Bologna's rule leaves out July and August: a sentence also leaving out June holds it.
+        after = self.bologna_after_read()
+        evidence = clean_editorial_evidence(after[KEY], after, today=TODAY)
+        for text, hold in (("dalle 8:30 alle 18, esclusi luglio e agosto", None),
+                           ("dalle 8:30 alle 18, esclusi giugno, luglio e agosto",
+                            "unresolved_editorial_calendar_qualifications")):
+            said = deepcopy(evidence)
+            said["facts"]["scope_statements"] = [{"kind": "hours_qualification", "text": text, "evidence": []}]
+            with self.subTest(text=text):
+                self.assertEqual(current_rule_hold(after, said, today=TODAY), hold)
+
+    def test_listed_dates_stay_reported_then_the_rule_takes_over(self):
+        document = deepcopy(cdc_document("bologna"))
+        document["parsed"]["conflicts"], document["parsed"]["status"] = [], "parsed"
+        event = document["parsed"]["event"]
+        event["calendar_complete"] = True
+        event["occurrences"] = [{"date": day, "start_time": None, "end_time": None, "status": "source_listed",
+                                 "evidence": interval["evidence"]}
+                                for interval in event["date_intervals"] for day in (interval["start"], interval["end"])]
+        after = self.bologna_after_read(document)
+        self.assertEqual(after[KEY]["calendar_mode"], "reported_explicit")
+        shown = normalize(refresh_record(after, TODAY)[0], TODAY)[0]
+        self.assertEqual((shown["date"], shown["date_quality"]), (["2026-11-07", "2026-11-08"], "riportata"))
+        # The night after the listed weekend: nothing listed is left, the rule gives the dates.
+        day = date(2026, 11, 9)
+        passed = {**after, **{k: shown[k] for k in ("date", "date_quality")}}
+        passed = {**passed, **{k: v for k, v in normalize(passed, day)[0].items()
+                               if k in ("date", "date_quality", "proiezione_regola", "proiezione_fonte")}}
+        renewed, reason = refresh_record(passed, day)
+        self.assertEqual((reason, renewed["date"][:2], renewed["date_quality"]),
+                         ("renewed", ["2026-12-12", "2026-12-13"], "prevista"))
+        self.assertEqual(normalize(renewed, day)[0]["date"][:2], ["2026-12-12", "2026-12-13"])
 
     def test_page_naming_the_saturday_before_the_sunday_completes_the_rule(self):
         document = deepcopy(cdc_document("bologna"))
