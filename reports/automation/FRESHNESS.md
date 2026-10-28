@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-27**.
-- Schede totali: **14,175**.
-- Fonti misurate (nome e dominio): **91**.
-- Importazione registrata entro 30 giorni: **350**.
-- Lettura della fonte registrata entro 30 giorni: **1,532**.
-- Fonte datata entro 30 giorni: **1,220**.
-- Di cui solo aggiornamento dataset, non del singolo mercato: **1,219**.
-- Schede con aggiornamento soltanto del dataset: **1,366**.
-- Fonte datata tra 31 e 365 giorni: **107**.
+- Data della misura: **2026-10-28**.
+- Schede totali: **14,223**.
+- Fonti misurate (nome e dominio): **93**.
+- Importazione registrata entro 30 giorni: **398**.
+- Lettura della fonte registrata entro 30 giorni: **1,580**.
+- Fonte datata entro 30 giorni: **1,225**.
+- Di cui solo aggiornamento dataset, non del singolo mercato: **1,224**.
+- Schede con aggiornamento soltanto del dataset: **1,373**.
+- Fonte datata tra 31 e 365 giorni: **109**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **12,796**.
+- Schede con età del contenuto della fonte non comprovata: **12,837**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,524**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,580**.
+- Schede con date future previste: **11,506**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,557**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,6 +25,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
+- Da correggere: publisher_metadata_unavailable_or_changed
 - Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
@@ -33,7 +34,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 |---|---|---|
 | Comune di Bologna | metadata_checked | 2025-04-02 |
 | Regione Lombardia | metadata_checked | 2026-10-20 |
-| Roma Capitale | metadata_checked | 2022-07-04 |
+| Roma Capitale | needs_review | non disponibile |
 
 ## Copertura di tutte le fonti del catalogo
 
@@ -47,7 +48,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | Comune di Milano - Open Data (CC BY 4.0) | dati.comune.milano.it | 85 | 77 | 8 | 0 | 9 |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | opendatahub.com | 14 | 14 | 0 | 0 | 14 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1128 | 1128 | 0 | 0 | 1127 |
-| Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | www.regione.veneto.it | 6 | 0 | 6 | 0 | 6 |
+| Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | www.regione.veneto.it | 8 | 0 | 8 | 0 | 8 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | www.regione.veneto.it | 94 | 0 | 94 | 0 | 94 |
 | Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata) | www.comune.roma.it | 5 | 0 | 5 | 0 | 0 |
 | algherohospitality.it | www.algherohospitality.it | 7 | 0 | 0 | 7 | 0 |
@@ -95,7 +96,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
-| happings.com | www.happings.com | 9870 | 1 | 0 | 9869 | 223 |
+| happings.com | www.happings.com | 9879 | 1 | 0 | 9878 | 232 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -125,11 +126,13 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | torinotoday.it | www.torinotoday.it | 1 | 0 | 0 | 1 | 0 |
 | trentino.com | trentino.com | 1 | 0 | 0 | 1 | 0 |
 | trentino.com | www.trentino.com | 8 | 0 | 0 | 8 | 0 |
+| trentino.com — calendario eventi (APT e Comuni del Trentino) — dati ufficiali; apertura non conferma | www.trentino.com | 5 | 5 | 0 | 0 | 5 |
 | trevisotoday.it | www.trevisotoday.it | 2 | 0 | 0 | 2 | 0 |
 | umbriaeventi.com | www.umbriaeventi.com | 8 | 0 | 0 | 8 | 0 |
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 0 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
+| vintagery.it | vintagery.it | 32 | 0 | 0 | 32 | 32 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -139,20 +142,20 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1176 | 3504 | 1784 | 7545 | 166 |
-| Orari | 1833 | 2434 | 1544 | 7665 | 699 |
-| Giorni | 988 | 2156 | 1712 | 9104 | 215 |
+| Sede | 1174 | 3457 | 1823 | 7602 | 167 |
+| Orari | 1827 | 2897 | 1887 | 7167 | 445 |
+| Giorni | 1015 | 2049 | 1864 | 9189 | 106 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 5973. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6015. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 0 | 0 |
-| bassa-romagna-weekly | retrieved | 0 | 0 |
+| bassa-romagna-farmers | retrieved | 4 | 0 |
+| bassa-romagna-weekly | retrieved | 11 | 0 |
 
-Conflitti mantenuti in revisione: 15.
+Conflitti mantenuti in revisione: 6.
 
 
 ## Limiti del sistema

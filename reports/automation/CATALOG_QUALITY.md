@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,175**.
-- Orari mancanti: **1,833**.
-- Indirizzi mancanti: **1,176**.
-- Coordinate mancanti: **741**.
-- Date future mancanti: **2,278**.
+- Schede: **14,223**.
+- Orari mancanti: **1,827**.
+- Indirizzi mancanti: **1,174**.
+- Coordinate mancanti: **687**.
+- Date future mancanti: **2,292**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,408** gruppi, **1,683** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,175**.
+- Verifiche umane documentate mancanti: **14,223**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -21,7 +21,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Fonte | Schede |
 |---|---:|
-| happings.com | 9,870 |
+| happings.com | 9,879 |
 | eventiesagre.it | 2,200 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
 | cosedicasa.com | 442 |
@@ -29,10 +29,10 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 |
+| vintagery.it | 32 |
 | cosafareafirenze.it | 22 |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | 14 |
 | trentino.com | 9 |
-| emiliaromagnaturismo.it | 8 |
 
 ## Regioni
 
@@ -41,23 +41,23 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Abruzzo | 395 | 24 | 32 |
 | Basilicata | 36 | 3 | 9 |
 | Calabria | 333 | 37 | 37 |
-| Campania | 824 | 153 | 67 |
-| Emilia-Romagna | 912 | 170 | 100 |
-| Friuli Venezia Giulia | 264 | 30 | 15 |
-| Lazio | 1,082 | 97 | 59 |
-| Liguria | 396 | 51 | 51 |
-| Lombardia | 4,002 | 521 | 166 |
-| Marche | 297 | 76 | 43 |
+| Campania | 825 | 153 | 67 |
+| Emilia-Romagna | 916 | 168 | 100 |
+| Friuli Venezia Giulia | 264 | 29 | 15 |
+| Lazio | 1,084 | 98 | 58 |
+| Liguria | 399 | 51 | 52 |
+| Lombardia | 4,009 | 520 | 167 |
+| Marche | 299 | 76 | 44 |
 | Molise | 215 | 15 | 30 |
-| Piemonte | 1,356 | 157 | 175 |
-| Puglia | 486 | 50 | 37 |
-| Sardegna | 393 | 24 | 30 |
-| Sicilia | 406 | 53 | 39 |
-| Toscana | 972 | 190 | 106 |
-| Trentino-Alto Adige | 252 | 22 | 36 |
-| Umbria | 182 | 31 | 19 |
-| Valle d'Aosta | 54 | 7 | 6 |
-| Veneto | 1,318 | 122 | 119 |
+| Piemonte | 1,359 | 158 | 174 |
+| Puglia | 487 | 47 | 37 |
+| Sardegna | 393 | 23 | 30 |
+| Sicilia | 406 | 52 | 39 |
+| Toscana | 981 | 189 | 106 |
+| Trentino-Alto Adige | 259 | 23 | 34 |
+| Umbria | 183 | 31 | 19 |
+| Valle d'Aosta | 55 | 7 | 6 |
+| Veneto | 1,325 | 123 | 118 |
 
 ## Località da verificare (campione limitato)
 

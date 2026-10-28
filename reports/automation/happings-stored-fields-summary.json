@@ -1,17 +1,17 @@
 {
   "all_proposals_review_only": true,
-  "as_of": "2026-10-27",
+  "as_of": "2026-10-28",
   "catalog_fields_updated": 0,
-  "catalog_markets": 14175,
+  "catalog_markets": 14223,
   "counts": {
     "address_already_saved_in_related_source_card": 151,
-    "multiple_or_missing_unique_venue_proofs": 3948
+    "multiple_or_missing_unique_venue_proofs": 3944
   },
   "eligible_identity_groups": 6862,
   "field_sibling_candidates": 151,
   "full_market_evidence_in_temporary_qa_artifact": true,
-  "legacy_publisher_records_examined": 9870,
-  "market_identities_preserved": 14175,
+  "legacy_publisher_records_examined": 9879,
+  "market_identities_preserved": 14223,
   "market_openings_confirmed": 0,
   "new_map_coordinates_added": 0,
   "original_market_records_deleted": 0,
@@ -20,14 +20,14 @@
   "source_automation_consent_inferred": false,
   "source_url_layouts": {
     "other_historical_layout": {
-      "records": 205
+      "records": 214
     },
     "province_index_canonical": {
       "records": 18
     },
     "province_index_old_a": {
-      "address_missing": 550,
-      "address_not_specific": 2662,
+      "address_missing": 548,
+      "address_not_specific": 2660,
       "hours_missing": 385,
       "records": 4487
     },

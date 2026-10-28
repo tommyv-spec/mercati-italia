@@ -43,17 +43,32 @@
       "status": "pending"
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "city_keys": [
         "altavilla irpina"
       ],
       "first_seen_on": "2026-10-27",
-      "last_attempt_on": "2026-10-27",
+      "last_attempt_on": "2026-10-28",
       "last_error": null,
-      "last_success_on": null,
+      "last_success_on": "2026-10-28",
       "next_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-altavilla-irpina-1.html",
-      "proof": null,
+      "proof": {
+        "canonical_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "final_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "matched_city_days": [
+          {
+            "city_key": "altavilla irpina",
+            "weekday": 4
+          }
+        ],
+        "observed_on": "2026-10-28",
+        "province_heading": "avellino",
+        "requested_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "resource_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "source_html_sha256": "44247bb5b68e1747f7bdcd2169dc7d81e46e76f0f8dd46edfac100c10ac02855",
+        "source_rows": 110
+      },
       "province": "AV",
       "redirects": [
         {
@@ -70,24 +85,31 @@
         }
       ],
       "region": "campania",
-      "status": "redirect_observed"
+      "status": "resolved"
     },
     {
-      "attempts": 0,
+      "attempts": 1,
       "city_keys": [
         "altavilla irpina"
       ],
       "first_seen_on": "2026-10-27",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-28",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-altavilla-irpina-2.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-altavilla-irpina-2/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-altavilla-irpina-2.html",
       "proof": null,
       "province": "AV",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-altavilla-irpina-2/",
+          "observed_on": "2026-10-28",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-altavilla-irpina-2.html",
+          "status_code": 301
+        }
+      ],
       "region": "campania",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,

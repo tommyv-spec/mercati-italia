@@ -3,50 +3,52 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14175**
-- Etichette di fonte: **90**
-- Casi nel lotto di lavoro del giorno: **472**
+- ID controllati e conservati: **14223**
+- Etichette di fonte: **92**
+- Casi nel lotto di lavoro del giorno: **445**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **14086**
-- date: **2278**
+- coordinates: **14134**
+- date: **2292**
 - indirizzo: **4838**
-- individual_edition_confirmation: **14175**
-- orario_testo: **1833**
-- ricorrenza_testo: **988**
+- individual_edition_confirmation: **14223**
+- orario_testo: **1827**
+- ricorrenza_testo: **1015**
 
 ## Origini ordinate per numero di schede
 
 | Origine | Schede | Orari | Sedi | Trattamento |
 |---|---:|---:|---:|---|
-| happings.com | 9870 | 752 | 4229 | happings-weekly-or-detail |
-| eventiesagre.it | 2200 | 368 | 485 | eventiesagre-event-index |
+| happings.com | 9879 | 752 | 4225 | happings-weekly-or-detail |
+| eventiesagre.it | 2200 | 362 | 482 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 3 | lombardia-mercap |
-| cosedicasa.com | 442 | 206 | 6 | cosedicasa-editorial-calendar |
+| cosedicasa.com | 442 | 196 | 7 | cosedicasa-editorial-calendar |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | source-family-not-resolved-by-this-worklist |
+| vintagery.it | 32 | 10 | 6 | source-family-not-resolved-by-this-worklist |
 | cosafareafirenze.it | 22 | 4 | 0 | source-family-not-resolved-by-this-worklist |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | 14 | 1 | 0 | source-family-not-resolved-by-this-worklist |
-| trentino.com | 9 | 1 | 9 | source-family-not-resolved-by-this-worklist |
+| trentino.com | 9 | 1 | 6 | source-family-not-resolved-by-this-worklist |
+| Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | 8 | 2 | 0 | source-family-not-resolved-by-this-worklist |
 | emiliaromagnaturismo.it | 8 | 8 | 4 | source-family-not-resolved-by-this-worklist |
 | eventi.bergamo.it | 8 | 1 | 0 | source-family-not-resolved-by-this-worklist |
 | umbriaeventi.com | 8 | 8 | 8 | source-family-not-resolved-by-this-worklist |
 | algherohospitality.it | 7 | 1 | 0 | source-family-not-resolved-by-this-worklist |
 | citynews_romatoday.it | 7 | 0 | 0 | source-family-not-resolved-by-this-worklist |
 | genovatoday.it | 7 | 7 | 5 | source-family-not-resolved-by-this-worklist |
-| solosagre.it | 7 | 4 | 0 | source-family-not-resolved-by-this-worklist |
-| Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | 6 | 2 | 0 | source-family-not-resolved-by-this-worklist |
+| solosagre.it | 7 | 3 | 0 | source-family-not-resolved-by-this-worklist |
 | romatoday.it | 6 | 6 | 4 | source-family-not-resolved-by-this-worklist |
 | sagretorino.it | 6 | 6 | 6 | source-family-not-resolved-by-this-worklist |
 | Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata) | 5 | 5 | 0 | source-family-not-resolved-by-this-worklist |
 | milanopocket.it | 5 | 5 | 4 | source-family-not-resolved-by-this-worklist |
 | sagreumbre.it | 5 | 5 | 0 | source-family-not-resolved-by-this-worklist |
+| trentino.com — calendario eventi (APT e Comuni del Trentino) — dati ufficiali; apertura non conferma | 5 | 1 | 3 | source-family-not-resolved-by-this-worklist |
 | Comune di Firenze - FeelFlorence (CC BY 4.0) | 4 | 0 | 0 | source-family-not-resolved-by-this-worklist |
 | firenzetoday.it | 4 | 4 | 4 | source-family-not-resolved-by-this-worklist |
 | modenatoday.it | 4 | 4 | 3 | source-family-not-resolved-by-this-worklist |
@@ -116,13 +118,13 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
 ## Riscontri ufficiali per singola scheda
 
-- city_weekday_only_unconfirmed_venue: 45
+- city_weekday_only_unconfirmed_venue: 44
 - coordinates_disagree: 19
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 14
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 12964
-- review_only_field_candidates: 47
+- no_usable_source_match: 13013
+- review_only_field_candidates: 46
 - same_source_id: 789
 - unique_city_province_street_weekday: 377
 
