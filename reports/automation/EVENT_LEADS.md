@@ -1,9 +1,9 @@
 # Mercati Italia — scoperta automatica eventi: solo segnali
 
-Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-27**.
+Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-28**.
 Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 
-- Schede di mercato esistenti conservate: **14139**
+- Schede di mercato esistenti conservate: **14175**
 - Segnali ufficiali nell'ultima scansione: **0**
 - Collegamenti esterni, non dati riutilizzabili: **0**
 
