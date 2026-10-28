@@ -529,6 +529,40 @@ class CompleteMunicipalityEnrichmentTests(unittest.TestCase):
                     self.assertEqual(repeated, result)
                     self.assertEqual(again["legacy_records_changed"], 0)
 
+    def test_an_indicative_weekly_venue_and_an_unverified_pin_do_not_block_official_hours(self):
+        from happings_source_enrichment import SOURCE_EVIDENCE_NAME
+        from field_evidence import mark_managed_fields
+        import official_enrichment as oe
+        self.assertIn(SOURCE_EVIDENCE_NAME, oe.INDICATIVE_VENUE_SOURCES)
+        raw, source = complete_snapshot()
+        exact = "08:00–13:00 (fonte comunale, da verificare)"
+
+        def weekly(source_name, **changes):
+            row = old(hours="La mattina", provincia="VA", **changes)
+            receipt = make_receipt(row, values={"indirizzo": row["indirizzo"], "orario_testo": "La mattina"},
+                source_url="https://www.happings.com/it/mercati-settimanali-a-varese-e-provincia/",
+                source_name=source_name, source_id="happings-weekly-varese", source_row="varese:albizzate:1",
+                read_on="2026-10-11", source_updated_on="", source_sha256="a" * 64, scope="pagina",
+                method=UNIQUE_TOWN_METHOD, fingerprint_kind="html_bytes")
+            row["riscontri_campi"] = [mark_managed_fields(receipt, ["orario_testo"], manager="happings-weekly-index")]
+            return row
+        cases = {"indicative": (weekly(SOURCE_EVIDENCE_NAME), exact),
+                 "venue-proved-elsewhere": (weekly("eventiesagre.it"), "La mattina"),
+                 # the same square, our unverified pin 8 km away (Abbiategrasso, 6.4 km)
+                 "unverified-pin": (weekly(SOURCE_EVIDENCE_NAME, lat=45.80), exact),
+                 "verified-pin": (weekly(SOURCE_EVIDENCE_NAME, lat=45.80, position_quality="precisa"), "La mattina"),
+                 "other-place": (weekly(SOURCE_EVIDENCE_NAME, lat=45.80, street="Via Roma"), "La mattina")}
+        for name, (row, hours) in cases.items():
+            with self.subTest(name):
+                result, _ = enrich([row], source, raw_official=raw, today=TODAY)
+                self.assertEqual(result[0]["orario_testo"], hours)
+                self.assertEqual(result[0]["indirizzo"], row["indirizzo"])
+                if hours == exact:
+                    self.assertTrue(all(valid_receipt(r, result[0], today=TODAY)
+                                        for r in result[0]["riscontri_campi"]))
+                    repeated, again = enrich(result, source, raw_official=raw, today=TODAY)
+                    self.assertEqual((repeated, again["legacy_records_changed"]), (result, 0))
+
     def test_next_day_evidence_refresh_does_not_count_against_the_change_cap(self):
         from unittest.mock import patch
         import official_enrichment as oe

@@ -53,6 +53,10 @@ MAX_SOURCE_ROWS = 3000
 MAX_ENRICHED_RECORDS = 500
 MAX_DISTANCE_KM = 0.6
 FIELD_MANAGER = "official_enrichment"
+# happings_source_enrichment.SOURCE_EVIDENCE_NAME (importing it here is circular)
+INDICATIVE_VENUE_SOURCES = frozenset({
+    "Happings — elenco settimanale (sede indicativa; apertura non verificata)",
+})
 UNIQUE_TOWN_METHOD = "comune_provincia_giorno_univoco"
 # Every field used to authorize a join or a transfer must be reproduced from
 # the complete raw payload, independently of its stored normalized checkpoint.
@@ -543,9 +547,11 @@ def _enrich_unique_town(base, official, updated, context, spec, *, today,
                 or not re.fullmatch(r"[A-Z]{2}", province)):
             counts["held_unique_town_target_identity_incomplete"] += 1
             continue
+        # A weekly list that declares its venue indicative (Happings) proves no
+        # venue: such a card still needs the agreeing daypart and place below.
         if not bindings and (old.get("verificato_il") or any(
-                "indirizzo" in receipt["valori"] for receipt in
-                clean_receipts(old.get("riscontri_campi"), old, today=today))):
+                "indirizzo" in receipt["valori"] and receipt.get("fonte") not in INDICATIVE_VENUE_SOURCES
+                for receipt in clean_receipts(old.get("riscontri_campi"), old, today=today))):
             counts["held_unique_town_existing_venue_evidence"] += 1
             continue
         day = next(iter(days))
@@ -584,7 +590,11 @@ def _enrich_unique_town(base, official, updated, context, spec, *, today,
             record_conflict(old, source, "bound_source_identity_changed")
             continue
         gap = distance_km(old, source)
-        if gap is not None and gap > MAX_DISTANCE_KM:
+        # A pin nobody verified cannot contradict two sources naming the same place.
+        unverified_same_place = (old.get("position_quality") in (None, "non_verificata", "sconosciuta")
+                                 and not replacing_placeholder
+                                 and _shares_place_word(old.get("indirizzo"), source.get("indirizzo")))
+        if gap is not None and gap > MAX_DISTANCE_KM and not unverified_same_place:
             counts["held_unique_town_coordinates_conflict"] += 1
             record_conflict(old, source, "coordinates_conflict")
             continue
