@@ -4,8 +4,8 @@
 presenti nel catalogo e, separatamente, le fonti ufficiali candidate.
 Nessun dato viene riletto o ripubblicato dal sito terzo.
 
-- Schede controllate: **14139**
-- Fonti distinte nelle schede: **89**
+- Schede controllate: **14175**
+- Fonti distinte nelle schede: **90**
 - Dataset ufficiali candidati: **50**
 - Nuovi eventi certificati: **0**; schede modificate: **0**
 
@@ -13,15 +13,16 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 
 | Fonte | Record | Orari vuoti | Indirizzi vuoti | Coordinate vuote | Data fonte/import >540gg | Contraddizioni giorni | Modello |
 |---|---:|---:|---:|---:|---:|---:|---|
-| happings.com | 9848 | 718 | 619 | 244 | 0 | 0 | weekly_area_index_and_event_details |
+| happings.com | 9870 | 752 | 619 | 256 | 0 | 0 | weekly_area_index_and_event_details |
 | eventiesagre.it | 2200 | 368 | 441 | 104 | 0 | 0 | regional_listing_and_details |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 1 | 151 | 0 | 0 | one_market_id_per_weekday |
-| cosedicasa.com | 442 | 206 | 0 | 30 | 0 | 0 | monthly_recurrence_with_exceptions |
+| cosedicasa.com | 442 | 206 | 0 | 26 | 0 | 0 | monthly_recurrence_with_exceptions |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | 94 | 0 | 0 | unclassified_source_page |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | 0 | 8 | 0 | one_venue_with_weekdays |
 | dati.comune.roma.it | 70 | 2 | 0 | 6 | 0 | 0 | unclassified_source_page |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | 39 | 39 | 0 | market_venues_mixed_with_fairs |
 | cosafareafirenze.it | 22 | 4 | 0 | 5 | 0 | 0 | unclassified_source_page |
+| Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | 14 | 1 | 0 | 14 | 0 | 0 | unclassified_source_page |
 | trentino.com | 9 | 1 | 9 | 0 | 0 | 0 | unclassified_source_page |
 | umbriaeventi.com | 8 | 8 | 8 | 2 | 0 | 0 | unclassified_source_page |
 | emiliaromagnaturismo.it | 8 | 8 | 4 | 0 | 0 | 0 | unclassified_source_page |
@@ -51,7 +52,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | vicenzatoday.it | 3 | 3 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | sagretoscane.com | 3 | 2 | 0 | 1 | 0 | 0 | unclassified_source_page |
 | Comune di Corciano, open data CC BY 4.0 (licenza dichiarata) | 3 | 0 | 0 | 0 | 0 | 0 | unclassified_source_page |
-| trevisotoday.it | 2 | 0 | 0 | 2 | 0 | 0 | unclassified_source_page |
+| trevisotoday.it | 2 | 2 | 0 | 2 | 0 | 0 | unclassified_source_page |
 | brindisireport.it | 2 | 2 | 2 | 0 | 0 | 0 | unclassified_source_page |
 | cittadellaspezia.com | 2 | 2 | 2 | 0 | 0 | 0 | unclassified_source_page |
 | eventiintoscana.it | 2 | 2 | 2 | 1 | 0 | 0 | unclassified_source_page |
@@ -86,6 +87,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | torinotoday.it | 1 | 1 | 1 | 0 | 0 | 0 | unclassified_source_page |
 | viterbotoday.it | 1 | 1 | 1 | 0 | 0 | 0 | unclassified_source_page |
 | wwwservizi.regione.emilia-romagna.it | 1 | 1 | 1 | 0 | 0 | 0 | unclassified_source_page |
+| riminitoday.it | 1 | 1 | 1 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_bresciatoday.it | 1 | 0 | 1 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_modenatoday.it | 1 | 0 | 1 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_cagliaritoday.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
@@ -93,19 +95,18 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | citynews_forlitoday.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_torinotoday.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_trevisotoday.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
+| eventiinsardegna.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | milanotoday.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | napolidavivere.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
-| riminitoday.it | 1 | 0 | 1 | 0 | 0 | 0 | unclassified_source_page |
 | salernotoday.it | 1 | 1 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_baritoday.it | 1 | 0 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_ferraratoday.it | 1 | 0 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_parmatoday.it | 1 | 0 | 0 | 0 | 0 | 0 | unclassified_source_page |
 | citynews_viterbotoday.it | 1 | 0 | 0 | 0 | 0 | 0 | unclassified_source_page |
-| eventiinsardegna.it | 1 | 0 | 0 | 0 | 0 | 0 | unclassified_source_page |
 
 ## 2. Interventi sulle fonti più grandi
 
-### happings.com — 9848 schede
+### happings.com — 9870 schede
 - Carenze strutturali: **non** prova che il dato originale sia scorretto.
 - Licenze: see_existing_happings_operational_policy
 - Prossimo passo: Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scra
@@ -207,7 +208,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 
 ## Formati delle fonti: avanzamento dei controlli
 
-Unità primarie: **112**; campioni confrontati: **0**; parziali: **105**; non esaminati: **7**.
+Unità primarie: **113**; campioni confrontati: **0**; parziali: **105**; non esaminati: **8**.
 
 Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna il registro dal catalogo senza nuove richieste alle fonti. Prove e TODO completi in `backend/data/source-format-review-ledger.json` e `reports/automation/SOURCE_FORMAT_CHECKLIST.md`.
 
@@ -221,7 +222,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | happings.com--3d81fd9e0a91 | 414 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | — |
 | eventiesagre.it--5130dde4763c | 267 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | eventiesagre.it--86b2ab982276 | 205 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
-| happings.com--795abb069b70 | 183 | parser_comparison, storage_comparison | parser_code_changed | — |
+| happings.com--795abb069b70 | 205 | parser_comparison, storage_comparison | parser_code_changed | — |
 | eventiesagre.it--7b2012e05e04 | 173 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | eventiesagre.it--85894968edb7 | 151 | parser_comparison | parser_code_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | eventiesagre.it--f3b997a2f09a | 142 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
@@ -234,6 +235,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | happings.com--311686cb6f8d | 18 | source_sample, field_mapping, parser_comparison, storage_comparison | parser_code_changed | HAPP-FORMAT-04, HAPP-FORMAT-06 |
 | eventiesagre.it--eb4c1e3b925a | 17 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | eventiesagre.it--91f1a4b8c538 | 16 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
+| opendatahub.com--7479817aefc6 | 14 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | eventiesagre.it--1e35acf83ff0 | 13 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | eventiesagre.it--895ca733a723 | 13 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | romatoday.it--d53004dedb50 | 10 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |

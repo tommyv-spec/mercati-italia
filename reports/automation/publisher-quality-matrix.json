@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-10-27",
+  "as_of": "2026-10-28",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -653,8 +653,8 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14139,
-  "catalog_source_labels_count": 89,
+  "catalog_record_count": 14175,
+  "catalog_source_labels_count": 90,
   "market_confirmations": 0,
   "market_updates": 0,
   "markets_added": 0,
@@ -665,22 +665,22 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 17,
+      "count_delta_since_last_audit": 22,
       "fields": {
-        "address_generic_not_navigable": 3611,
+        "address_generic_not_navigable": 3610,
         "address_missing": 619,
-        "coordinates_missing": 244,
+        "coordinates_missing": 256,
         "future_dates_missing": 104,
-        "hours_missing": 718,
-        "records": 9848,
-        "source_or_import_date_unknown": 201
+        "hours_missing": 752,
+        "records": 9870,
+        "source_or_import_date_unknown": 223
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 34911,
+      "priority_workload_score_not_evidence": 34995,
       "publisher": "happings.com",
-      "records": 9848,
+      "records": 9870,
       "rights_classification": "see_existing_happings_operational_policy",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -723,7 +723,7 @@
           "happings-mercato-coperto-di-chieti-2412e0ff9a48",
           "happings-mercato-di-campagna-amica-di-via-gobetti-4fbca6c89bc1",
           "happings-mercato-di-campagna-amica-di-catanzaro-7751482e165f",
-          "happings-mercato-di-campagna-amica-di-melito-di-porto-salvo-175d867517a9"
+          "happings-mercato-coperto-di-campagna-amica-di-cosenza-e83bcd538fef"
         ]
       }
     },
@@ -731,12 +731,12 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 44,
         "address_missing": 441,
         "coordinates_missing": 104,
-        "future_dates_missing": 1231,
+        "future_dates_missing": 1253,
         "hours_missing": 368,
         "records": 2200,
         "source_or_import_date_unknown": 3
@@ -744,7 +744,7 @@
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5754,
+      "priority_workload_score_not_evidence": 5776,
       "publisher": "eventiesagre.it",
       "records": 2200,
       "rights_classification": "urls_only_no_bulk_content_reuse",
@@ -846,10 +846,10 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 9,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 6,
-        "coordinates_missing": 30,
+        "coordinates_missing": 26,
         "future_dates_missing": 232,
         "hours_missing": 206,
         "records": 442,
@@ -1095,6 +1095,42 @@
           "mercato-in-centro-firenze",
           "only-usato-market-firenze",
           "vintage-kilo-sale-firenze"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": null,
+      "fields": {
+        "coordinates_missing": 14,
+        "future_dates_missing": 3,
+        "hours_missing": 1,
+        "records": 14
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 19,
+      "publisher": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata",
+      "records": 14,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "coordinates_missing": [
+          "bz-odh-a67d0c37b0bdc0e21f",
+          "bz-odh-41ab523fae42fd99ab",
+          "bz-odh-13c9dc17c7e6ba89cb",
+          "bz-odh-e781a711149973b867",
+          "bz-odh-3d29cac5101c5c15e2"
+        ],
+        "future_dates_missing": [
+          "bz-odh-41ab523fae42fd99ab",
+          "bz-odh-a399ed6f2801e7b321",
+          "bz-odh-19d5a94c41496d1fd7"
+        ],
+        "hours_missing": [
+          "bz-odh-bd6142f32a6e751e28"
         ]
       }
     },
@@ -1475,7 +1511,7 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": null,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "coordinates_missing": 6,
         "hours_missing": 2,
@@ -2140,13 +2176,14 @@
       "fields": {
         "coordinates_missing": 2,
         "future_dates_missing": 2,
+        "hours_missing": 2,
         "records": 2,
         "suspicious_city": 2
       },
       "kind": "other_legacy_or_publisher",
       "layout": "unclassified_source_page",
       "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 24,
+      "priority_workload_score_not_evidence": 28,
       "publisher": "trevisotoday.it",
       "records": 2,
       "rights_classification": "source_rights_and_structure_require_review",
@@ -2156,6 +2193,10 @@
           "mercatini-stoffaday-na"
         ],
         "future_dates_missing": [
+          "mercatini-piazza-del-baratto-na",
+          "mercatini-stoffaday-na"
+        ],
+        "hours_missing": [
           "mercatini-piazza-del-baratto-na",
           "mercatini-stoffaday-na"
         ],
@@ -3239,6 +3280,32 @@
       "count_delta_since_last_audit": 0,
       "fields": {
         "address_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 6,
+      "publisher": "riminitoday.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "address_missing": [
+          "l-estate-live-allalba-giardini-dell-alba"
+        ],
+        "hours_missing": [
+          "l-estate-live-allalba-giardini-dell-alba"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": 0,
+      "fields": {
+        "address_missing": 1,
         "future_dates_missing": 1,
         "records": 1
       },
@@ -3428,6 +3495,32 @@
       "layout": "unclassified_source_page",
       "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
       "priority_workload_score_not_evidence": 4,
+      "publisher": "eventiinsardegna.it",
+      "records": 1,
+      "rights_classification": "source_rights_and_structure_require_review",
+      "sample_id_only": {
+        "future_dates_missing": [
+          "primavera-nel-cuore-della-sardegna-baunei"
+        ],
+        "hours_missing": [
+          "primavera-nel-cuore-della-sardegna-baunei"
+        ]
+      }
+    },
+    {
+      "actual_individual_market_validations": 0,
+      "automatic_import_authorized_by_this_audit": false,
+      "automatic_source_row_reuse_authorized_by_this_audit": false,
+      "count_delta_since_last_audit": 0,
+      "fields": {
+        "future_dates_missing": 1,
+        "hours_missing": 1,
+        "records": 1
+      },
+      "kind": "other_legacy_or_publisher",
+      "layout": "unclassified_source_page",
+      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
+      "priority_workload_score_not_evidence": 4,
       "publisher": "milanotoday.it",
       "records": 1,
       "rights_classification": "source_rights_and_structure_require_review",
@@ -3463,28 +3556,6 @@
         ],
         "hours_missing": [
           "festa-del-pescato-di-paranza-santa-maria-di-castellabate"
-        ]
-      }
-    },
-    {
-      "actual_individual_market_validations": 0,
-      "automatic_import_authorized_by_this_audit": false,
-      "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
-      "fields": {
-        "address_missing": 1,
-        "records": 1
-      },
-      "kind": "other_legacy_or_publisher",
-      "layout": "unclassified_source_page",
-      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 4,
-      "publisher": "riminitoday.it",
-      "records": 1,
-      "rights_classification": "source_rights_and_structure_require_review",
-      "sample_id_only": {
-        "address_missing": [
-          "l-estate-live-allalba-giardini-dell-alba"
         ]
       }
     },
@@ -3599,28 +3670,6 @@
       "sample_id_only": {
         "future_dates_missing": [
           "mercatino-dell-antico-a-viterbo-centro-storico"
-        ]
-      }
-    },
-    {
-      "actual_individual_market_validations": 0,
-      "automatic_import_authorized_by_this_audit": false,
-      "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
-      "fields": {
-        "future_dates_missing": 1,
-        "records": 1
-      },
-      "kind": "other_legacy_or_publisher",
-      "layout": "unclassified_source_page",
-      "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 2,
-      "publisher": "eventiinsardegna.it",
-      "records": 1,
-      "rights_classification": "source_rights_and_structure_require_review",
-      "sample_id_only": {
-        "future_dates_missing": [
-          "primavera-nel-cuore-della-sardegna-baunei"
         ]
       }
     }
@@ -4273,7 +4322,7 @@
         "url_pattern": "/Mercatini_Antiquariato/{id}_{slug}.html"
       },
       {
-        "catalog_records": 183,
+        "catalog_records": 205,
         "format_id": "happings.com--795abb069b70",
         "host": "happings.com",
         "open_todo_ids": [],
@@ -4542,6 +4591,24 @@
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
         "url_pattern": "/Mercatini_Collezionismo/{id}_{slug}.html"
+      },
+      {
+        "catalog_records": 14,
+        "format_id": "opendatahub.com--7479817aefc6",
+        "host": "opendatahub.com",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/datasets/"
       },
       {
         "catalog_records": 13,
@@ -6541,27 +6608,27 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-10-27",
+    "generated_for_date": "2026-10-28",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
       "auxiliary_format_units": 27,
       "catalog_records_modified": 0,
       "completed_tasks": 23,
-      "formats_requiring_recheck": 112,
+      "formats_requiring_recheck": 113,
       "formats_with_documented_source_read": 104,
       "formats_with_open_corrections": 106,
       "formats_with_sample_attempt": 110,
       "network_reads_performed": 0,
       "open_tasks": 36,
       "partial_review_formats": 105,
-      "primary_format_units": 112,
+      "primary_format_units": 113,
       "reviewed_sample_formats": 0,
-      "unreviewed_formats": 7
+      "unreviewed_formats": 8
     }
   },
   "source_labels_added_since_previous": [
-    "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap"
+    "Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata"
   ],
   "source_labels_missing_since_previous": [],
   "source_permissions_inferred": false,
