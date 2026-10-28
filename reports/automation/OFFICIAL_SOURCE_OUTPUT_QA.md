@@ -10,7 +10,7 @@ Un dato publisher vecchio o mancante NON conferma chiusura o aperture.
 | milano | publisher_unavailable_or_mapping_contract_changed | — | — | — | — | — |
 | bologna | superato | 48 | 47 | 48 | 48 | 2025-04-02 |
 | firenze | publisher_unavailable_or_mapping_contract_changed | — | — | — | — | — |
-| corciano | superato | 4 | 4 | 4 | 4 | 2026-01-07 |
+| corciano | publisher_unavailable_or_mapping_contract_changed | — | — | — | — | — |
 
 I numeri della data sono quelli del **dataset**, non
 una conferma dell'apertura del singolo mercato.
