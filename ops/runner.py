@@ -47,7 +47,7 @@ HOME = Path(os.environ.get("MERCATI_RUNNER_HOME")
             or Path(os.environ.get("LOCALAPPDATA") or Path.home()) / "mercati-italia" / "runner")
 GIT_BASH = Path(r"C:\Program Files\Git\bin\bash.exe")
 BASH = os.environ.get("MERCATI_BASH") or (str(GIT_BASH) if GIT_BASH.exists() else shutil.which("bash"))
-KEEP_RUNS = 3
+KEEP_RUNS = 10  # one night is ~7 workflows: a failed run's files survive until the next night
 EXPR = re.compile(r"\$\{\{\s*(.*?)\s*\}\}", re.S)
 
 

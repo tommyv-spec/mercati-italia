@@ -608,12 +608,14 @@ def _match(candidate, town_rows):
     return next(iter(found.values())), None
 
 
-def fill(rows, *, today, snapshot=None, limit=MAX_FILLS):
+def fill(rows, *, today, snapshot=None, limit=MAX_FILLS, protected=frozenset()):
     """Fill empty fields of markets other sources already have; restate a matching rule.
 
 Only one exact match per card, only cards no publisher field engine owns, never a
 human-verified card, never a different value (held, counted by field). Every assigned
-or restated value carries a receipt naming the Vintagery page and its read day."""
+or restated value carries a receipt naming the Vintagery page and its read day.
+`protected`: markets an official source added or updated in this same run; their only
+evidence must stay that source's (source_contract_activation.verify_static)."""
     import eventiesagre_detail_refresh as editorial
     from editorial_discovery import _canonical_place, _town
     from field_evidence import (FIELDS, MAX_RECEIPTS, clean_receipts, make_receipt, mark_managed_fields)
@@ -649,6 +651,9 @@ or restated value carries a receipt naming the Vintagery page and its read day."
             continue
         row = result[index[match["slug"]]]
         outcome["market_id"] = row["slug"]
+        if row["slug"] in protected:
+            outcome["reason"] = "official_source_today"
+            continue
         if row.get("fonte") == PUBLISHER or row["slug"] in touched:
             outcome["reason"] = "own_card_or_already_filled"
             continue
@@ -749,12 +754,12 @@ def extras(rows, filled, *, today, snapshot):
     return result, changed
 
 
-def apply(rows, *, today, snapshot=None):
+def apply(rows, *, today, snapshot=None, protected=frozenset()):
     """The nightly step after editorial discovery: re-read own cards, fill() the others,
     then their extra fields (extras())."""
     snapshot = load_snapshot() if snapshot is None else snapshot
     reread_rows, proof = reread(rows, today=today, snapshot=snapshot)
-    filled_rows, filled = fill(reread_rows, today=today, snapshot=snapshot)
+    filled_rows, filled = fill(reread_rows, today=today, snapshot=snapshot, protected=protected)
     result, extra = extras(filled_rows, filled, today=today, snapshot=snapshot)
     summary = {"snapshot_read_to": snapshot["read_to"] if snapshot else None,
                "own_cards_reread": len(proof["documents"]), "own_cards_changed": len(proof["changed_existing_ids"]),
@@ -765,10 +770,10 @@ def apply(rows, *, today, snapshot=None):
                     "extras": extra, "summary": summary}
 
 
-def verify(before, after, report, *, today, snapshot=None):
+def verify(before, after, report, *, today, snapshot=None, protected=frozenset()):
     """Rebuild the whole step from the committed snapshot; only owned and filled fields may differ."""
     import eventiesagre_detail_refresh as editorial
-    expected, replay = apply(before, today=today, snapshot=snapshot)
+    expected, replay = apply(before, today=today, snapshot=snapshot, protected=protected)
     if expected != after or replay != report:
         raise ValueError("Vintagery step cannot be rebuilt from the committed snapshot")
     middle, _ = reread(before, today=today, snapshot=snapshot)

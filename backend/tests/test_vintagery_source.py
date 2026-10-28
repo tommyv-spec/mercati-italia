@@ -223,6 +223,13 @@ class FillTests(unittest.TestCase):
         after, report = vg.fill(twins, today=TODAY, snapshot=snapshot(card()))
         self.assertEqual((after, report["summary"]["held_by_reason"]), (twins, {"several_matches": 1}))
 
+    def test_a_market_an_official_source_wrote_tonight_is_left_alone(self):
+        before, official = [self.market(), elsewhere()], {"prova-bologna"}
+        after, report = vg.apply(before, today=TODAY, snapshot=snapshot(card()), protected=official)
+        vg.verify(before, after, report, today=TODAY, snapshot=snapshot(card()), protected=official)
+        self.assertEqual(after, before)
+        self.assertEqual(report["fill"]["summary"]["held_by_reason"], {"official_source_today": 1})
+
 
 PAGE = ("Salta al contenutoVintagery … No, grazie Mercatini/Toscana/CarraraantiquariatoMercatino di Prova "
         "Carrara, Toscana Torna a luglioRicordameloProssima aperturaTorna a luglioScheda verificata il 17 ottobre "

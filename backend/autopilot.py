@@ -1244,9 +1244,14 @@ def run(args):
     # Vintagery's committed browser snapshot (the site blocks scripts): its own cards are
     # re-read from a newer snapshot, and markets other sources have get their empty
     # street/hours filled and a matching rule restated, each with a receipt.
+    # Markets an official source added or updated tonight keep only that source's evidence.
+    official_today = (set(generic_admission_report["new_market_ids"])
+                      | set(generic_admission_report.get("evidence_updated_market_ids", [])))
     vintagery_before = editorial_rows
-    editorial_rows, vintagery_report = vintagery_source.apply(editorial_rows, today=args.today)
-    vintagery_source.verify(vintagery_before, editorial_rows, vintagery_report, today=args.today)
+    editorial_rows, vintagery_report = vintagery_source.apply(
+        editorial_rows, today=args.today, protected=official_today)
+    vintagery_source.verify(vintagery_before, editorial_rows, vintagery_report,
+                            today=args.today, protected=official_today)
     del vintagery_before
     save_json(out / "vintagery.json", vintagery_report)
     checkpoint(out, "vintagery", vintagery_report["summary"])
