@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-28**.
-- Schede totali: **14,223**.
+- Data della misura: **2026-10-29**.
+- Schede totali: **14,273**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **398**.
-- Lettura della fonte registrata entro 30 giorni: **1,580**.
+- Importazione registrata entro 30 giorni: **448**.
+- Lettura della fonte registrata entro 30 giorni: **1,630**.
 - Fonte datata entro 30 giorni: **1,225**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,224**.
 - Schede con aggiornamento soltanto del dataset: **1,373**.
 - Fonte datata tra 31 e 365 giorni: **109**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **12,837**.
+- Schede con età del contenuto della fonte non comprovata: **12,887**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,506**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,557**.
+- Schede con date future previste: **11,460**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,511**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -96,7 +96,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
-| happings.com | www.happings.com | 9879 | 1 | 0 | 9878 | 232 |
+| happings.com | www.happings.com | 9897 | 1 | 0 | 9896 | 250 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -132,7 +132,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 0 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
-| vintagery.it | vintagery.it | 32 | 0 | 0 | 32 | 32 |
+| vintagery.it | vintagery.it | 64 | 0 | 0 | 64 | 64 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -142,13 +142,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1174 | 3457 | 1823 | 7602 | 167 |
-| Orari | 1827 | 2897 | 1887 | 7167 | 445 |
-| Giorni | 1015 | 2049 | 1864 | 9189 | 106 |
+| Sede | 1171 | 3121 | 1846 | 7968 | 167 |
+| Orari | 1777 | 1784 | 2021 | 8161 | 530 |
+| Giorni | 1042 | 1971 | 1983 | 9152 | 125 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6015. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6065. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|

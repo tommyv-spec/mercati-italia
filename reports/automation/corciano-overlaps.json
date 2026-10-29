@@ -1,13 +1,34 @@
 {
-  "accepted": 0,
-  "counts": {},
+  "accepted": 3,
+  "counts": {
+    "existing_official_source_id": 3,
+    "quarantined_same_market_name_and_weekday": 1
+  },
   "deleted_existing_records": 0,
   "market_confirmations": 0,
-  "quarantined": 0,
-  "quarantined_examples": [],
+  "quarantined": 1,
+  "quarantined_examples": [
+    {
+      "day": [
+        2
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-corciano-corciano",
+        "mercato-settimanale-di-corciano-corciano-mercoledi"
+      ],
+      "existing_sources": [
+        "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185824_Mercato+Settimanale+Di+Corciano.html"
+      ],
+      "name": "Mercato Di Corciano",
+      "official_slug": "pg-corciano-mercato-di-corciano",
+      "reason": "same_market_name_and_weekday"
+    }
+  ],
   "region": "Umbria",
   "review_only": true,
   "schema": 1,
+  "source_csv_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
   "source_prefix": "pg-corciano-",
-  "source_total": 0
+  "source_total": 4,
+  "source_update_scope": "national_catalog_declared_dataset_date"
 }
