@@ -194,6 +194,14 @@ jobs:
             --out autopilot-output/happings-sibling-evidence.json \
             --summary autopilot-output/HAPPINGS_STORED_FIELDS.md
           cat autopilot-output/HAPPINGS_STORED_FIELDS.md >> "$GITHUB_STEP_SUMMARY"
+      - name: List facts the sources state that the shown cards miss (read-only report)
+        if: success()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python backend/missed_facts.py --out-dir autopilot-output --json autopilot-output/missed-facts.json --report autopilot-output/MISSED_FACTS.md
+          cat autopilot-output/MISSED_FACTS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Discover new municipal structured sources (read-only, no auto-import)
         if: success()
         env:
