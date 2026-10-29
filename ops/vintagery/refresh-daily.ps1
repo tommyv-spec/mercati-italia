@@ -8,11 +8,12 @@
 #  4. the newest ~/Downloads/vintagery_cards*.json is merged into the snapshot, then archived;
 #  5. if the snapshot changed: wait until the nightly runner is idle, fetch DEV, commit ONLY
 #     backend/data/vintagery-snapshot.json, push via SSH.
-# Chrome or the extension not connected, Vercel blocking, no download: log, exit 1. The
-# nightly then keeps using the older snapshot (cards stop counting 45 days after their read).
+# Chrome or the extension not connected, Vercel blocking, no download: log, exit 1 and open
+# the nightly runner's GitHub issue alarm (closed on the next good day). The nightly then
+# keeps using the older snapshot (cards stop counting 45 days after their read).
 param(
     [int]$PerDay = 120,
-    [int]$WaitRunnerMinutes = 90,
+    [int]$WaitRunnerMinutes = 180,
     # Read and merge, but commit and push nothing (a test run).
     [switch]$DryRun
 )
@@ -30,6 +31,16 @@ function Write-Log([string]$Message) { "$(Get-Date -Format s) $Message" | Out-Fi
 function Invoke-Checked([string]$What, [scriptblock]$Command) {
     & $Command
     if ($LASTEXITCODE -ne 0) { throw "$What failed (exit $LASTEXITCODE)" }
+}
+# Same alarm as the nightly runner (ops/runner.py notify): one GitHub issue while failing.
+function Send-Alarm([bool]$Ok) {
+    try {
+        $Ops = Join-Path $Repo 'ops'
+        if (-not (Test-Path (Join-Path $Ops 'runner.py'))) { return }
+        $Code = 'import sys, types; sys.path.insert(0, sys.argv[1]); import runner; ' +
+                'runner.notify(''vintagery-daily'', sys.argv[2] == ''1'', types.SimpleNamespace(id=sys.argv[3], log_path=sys.argv[4]))'
+        & python -c $Code $Ops ([int]$Ok) ('vintagery-' + (Get-Date -Format 'yyyy-MM-dd')) $Log
+    } catch { Write-Log ('alarm unavailable: ' + $_) }
 }
 $env:PYTHONUTF8 = '1'
 
@@ -87,9 +98,13 @@ END SCRIPT
 
     # 5. Publish the snapshot alone.
     if ($DryRun) { Write-Log 'dry run: nothing committed'; exit 0 }
-    if (-not (git -C $Repo status --porcelain -- $Snapshot)) { Write-Log 'snapshot unchanged'; exit 0 }
+    if (-not (git -C $Repo status --porcelain -- $Snapshot)) { Write-Log 'snapshot unchanged'; Send-Alarm $true; exit 0 }
+    # The nightly runner holds runner.lock while it runs (ops/runner.py lock(), stale after 8 h).
+    # Not process names: "autopilot" also matched the unrelated KavenoAutopilotExecutor and
+    # lost the 2026-10-29 read.
+    $Lock = Join-Path $env:LOCALAPPDATA 'mercati-italia\runner\runner.lock'
     $Deadline = (Get-Date).AddMinutes($WaitRunnerMinutes)
-    while (Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'run-daily|runner\.py|autopilot' }) {
+    while ((Test-Path $Lock) -and (Get-Item $Lock).LastWriteTime -gt (Get-Date).AddHours(-8)) {
         if ((Get-Date) -gt $Deadline) { throw 'Nightly runner still busy: snapshot not pushed today' }
         Start-Sleep -Seconds 60
     }
@@ -101,8 +116,10 @@ END SCRIPT
     if (($Changed | Where-Object { $_ -ne $Snapshot })) { throw "Refusing to push files other than the snapshot: $Changed" }
     Invoke-Checked 'push' { git -C $Repo push -q $Remote "HEAD:refs/heads/$Dev" }
     Write-Log 'pushed'
+    Send-Alarm $true
     exit 0
 } catch {
     Write-Log ('FAILED: ' + $_)
+    Send-Alarm $false
     exit 1
 }

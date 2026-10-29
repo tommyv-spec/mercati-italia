@@ -1,0 +1,29 @@
+# Weekly, read-only: has ISTAT published new comuni lists? A change fails the run and the
+# local runner opens its alarm issue: rebuild the pinned lists, then review S31's town rules
+# (a comune missing from the pinned list must not be "corrected" into an old one).
+name: ISTAT comuni lists - weekly check against the pinned copies
+
+on:
+  schedule:
+    - cron: '41 04 * * 3'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Compare ISTAT's published lists with the pinned copies
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: improve/data-quality-security-performance-2026-10-11
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Download ISTAT's three files and compare checksums
+        shell: bash
+        run: python backend/build_istat_former_comuni.py --check
