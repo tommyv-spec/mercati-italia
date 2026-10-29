@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14223,
-    "ids_retained": 14223,
-    "generic_weekly_with_specific_venue": 5790,
+    "original_records": 14273,
+    "ids_retained": 14273,
+    "generic_weekly_with_specific_venue": 6027,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3647,
-    "highly_supported_same_source_visit_groups": 869,
-    "suppressed_repeat_buttons_only": 1027,
-    "original_records_in_reversible_groups": 1896,
+    "venue_groups_examined": 3734,
+    "highly_supported_same_source_visit_groups": 937,
+    "suppressed_repeat_buttons_only": 1102,
+    "original_records_in_reversible_groups": 2039,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -24,18 +24,18 @@
     },
     {
       "region": "Liguria",
-      "groups": 27,
-      "extra_display_entries": 32
+      "groups": 40,
+      "extra_display_entries": 47
     },
     {
       "region": "Lombardia",
-      "groups": 617,
-      "extra_display_entries": 676
+      "groups": 640,
+      "extra_display_entries": 701
     },
     {
       "region": "Piemonte",
-      "groups": 100,
-      "extra_display_entries": 155
+      "groups": 110,
+      "extra_display_entries": 166
     },
     {
       "region": "Sicilia",
@@ -44,8 +44,8 @@
     },
     {
       "region": "Toscana",
-      "groups": 44,
-      "extra_display_entries": 63
+      "groups": 49,
+      "extra_display_entries": 70
     },
     {
       "region": "Trentino-Alto Adige",
@@ -54,8 +54,8 @@
     },
     {
       "region": "Veneto",
-      "groups": 64,
-      "extra_display_entries": 80
+      "groups": 81,
+      "extra_display_entries": 97
     }
   ],
   "examples": [
@@ -123,6 +123,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Andora",
+      "address": "Piazza Caduti di Nassiriya",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-andora-andora-lunedi",
+      "original_ids": [
+        "mercato-settimanale-di-andora-andora",
+        "mercato-settimanale-di-andora-andora-lunedi"
+      ],
+      "date": "2026-11-02"
+    },
+    {
+      "region": "Liguria",
       "city": "Arcola",
       "address": "Via Aurelia",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-la-spezia.html",
@@ -131,7 +143,7 @@
         "mercato-settimanale-di-arcola-arcola",
         "mercato-settimanale-di-arcola-arcola-mercoledi"
       ],
-      "date": "2026-10-28"
+      "date": "2026-11-04"
     },
     {
       "region": "Liguria",
@@ -180,7 +192,7 @@
         "mercato-settimanale-di-camogli-camogli",
         "mercato-settimanale-di-camogli-camogli-mercoledi"
       ],
-      "date": "2026-10-28"
+      "date": "2026-11-04"
     },
     {
       "region": "Liguria",
@@ -192,7 +204,7 @@
         "mercato-settimanale-di-carcare-carcare",
         "mercato-settimanale-di-carcare-carcare-mercoledi"
       ],
-      "date": "2026-10-28"
+      "date": "2026-11-04"
     },
     {
       "region": "Liguria",
@@ -220,6 +232,30 @@
     },
     {
       "region": "Liguria",
+      "city": "Cervo",
+      "address": "Piazzale Stazione",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-di-cervo-cervo-giovedi",
+      "original_ids": [
+        "mercato-settimanale-di-cervo-cervo",
+        "mercato-settimanale-di-cervo-cervo-giovedi"
+      ],
+      "date": "2026-10-29"
+    },
+    {
+      "region": "Liguria",
+      "city": "Dego",
+      "address": "Piazza Panevino",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-dego-dego-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-di-dego-dego",
+        "mercato-settimanale-di-dego-dego-mercoledi"
+      ],
+      "date": "2026-11-04"
+    },
+    {
+      "region": "Liguria",
       "city": "Dolcedo",
       "address": "Piazza don Minzoni",
       "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
@@ -229,7 +265,19 @@
         "mercato-settimanale-di-dolcedo-dolcedo",
         "mercato-settimanale-di-dolcedo-dolcedo-mercoledi"
       ],
-      "date": "2026-10-28"
+      "date": "2026-11-04"
+    },
+    {
+      "region": "Liguria",
+      "city": "Follo",
+      "address": "Capoluogo",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-la-spezia.html",
+      "visible_id": "mercato-settimanale-di-follo-follo-lunedi",
+      "original_ids": [
+        "mercato-settimanale-di-follo-follo",
+        "mercato-settimanale-di-follo-follo-lunedi"
+      ],
+      "date": "2026-11-02"
     },
     {
       "region": "Liguria",
@@ -245,6 +293,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Loano",
+      "address": "Piazza S. Francesco",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-loano-loano-lunedi",
+      "original_ids": [
+        "mercato-settimanale-di-loano-loano",
+        "mercato-settimanale-di-loano-loano-lunedi"
+      ],
+      "date": "2026-11-02"
+    },
+    {
+      "region": "Liguria",
       "city": "Mallare",
       "address": "Piazza Odorico del Carretto",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
@@ -252,6 +312,19 @@
       "original_ids": [
         "mercato-settimanale-di-mallare-mallare",
         "mercato-settimanale-di-mallare-mallare-martedi"
+      ],
+      "date": "2026-11-03"
+    },
+    {
+      "region": "Liguria",
+      "city": "Mele",
+      "address": "Capoluogo",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-di-mele-mele-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-mele-mele-martedi",
+        "mercato-settimanale-di-mele-mele",
+        "mercato-settimanale-di-mele-mele-martedi"
       ],
       "date": "2026-11-03"
     },
@@ -293,6 +366,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Pegli",
+      "address": "Lungomare di Pegli",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-pegli-pegli-giovedi",
+      "original_ids": [
+        "mercato-settimanale-a-pegli-pegli-giovedi",
+        "mercato-settimanale-di-pegli-pegli"
+      ],
+      "date": "2026-10-29"
+    },
+    {
+      "region": "Liguria",
       "city": "Perinaldo",
       "address": "Piazza Santa Croce",
       "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
@@ -301,7 +386,20 @@
         "mercato-settimanale-a-perinaldo-perinaldo-mercoledi",
         "mercato-settimanale-di-perinaldo-perinaldo"
       ],
-      "date": "2026-10-28"
+      "date": "2026-11-04"
+    },
+    {
+      "region": "Liguria",
+      "city": "Pigna",
+      "address": "Piazza xx settembre",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-di-pigna-pigna-sabato",
+      "original_ids": [
+        "mercato-settimanale-a-pigna-pigna-sabato",
+        "mercato-settimanale-di-pigna-pigna",
+        "mercato-settimanale-di-pigna-pigna-sabato"
+      ],
+      "date": "2026-10-31"
     },
     {
       "region": "Liguria",
@@ -313,7 +411,31 @@
         "mercato-settimanale-di-pignone-pignone",
         "mercato-settimanale-di-pignone-pignone-mercoledi"
       ],
-      "date": "2026-10-28"
+      "date": "2026-11-04"
+    },
+    {
+      "region": "Liguria",
+      "city": "Prato",
+      "address": "Via Struppa",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-prato-prato-venerdi",
+      "original_ids": [
+        "mercato-settimanale-a-prato-prato-venerdi",
+        "mercato-settimanale-di-prato-prato"
+      ],
+      "date": "2026-10-30"
+    },
+    {
+      "region": "Liguria",
+      "city": "Prà",
+      "address": "Piazza Sciesa",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-pra-pra-mercoledi",
+      "original_ids": [
+        "mercato-settimanale-a-pra-pra-mercoledi",
+        "mercato-settimanale-di-pra-pra"
+      ],
+      "date": "2026-11-04"
     },
     {
       "region": "Liguria",
@@ -341,6 +463,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Recco",
+      "address": "Via XXV Aprile",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-recco-recco-lunedi",
+      "original_ids": [
+        "mercato-settimanale-a-recco-recco-lunedi",
+        "mercato-settimanale-di-recco-recco"
+      ],
+      "date": "2026-11-02"
+    },
+    {
+      "region": "Liguria",
       "city": "Soldano",
       "address": "Piazza Vecchia",
       "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
@@ -351,6 +485,18 @@
         "mercato-settimanale-di-soldano-soldano-venerdi"
       ],
       "date": "2026-10-30"
+    },
+    {
+      "region": "Liguria",
+      "city": "Sori",
+      "address": "Via Sauli",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-sori-sori-giovedi",
+      "original_ids": [
+        "mercato-settimanale-a-sori-sori-giovedi",
+        "mercato-settimanale-di-sori-sori"
+      ],
+      "date": "2026-10-29"
     },
     {
       "region": "Liguria",
@@ -366,6 +512,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Urbe",
+      "address": "piazza S. Pietro",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-urbe-urbe-giovedi",
+      "original_ids": [
+        "mercato-settimanale-di-urbe-urbe",
+        "mercato-settimanale-di-urbe-urbe-giovedi"
+      ],
+      "date": "2026-10-29"
+    },
+    {
+      "region": "Liguria",
       "city": "Uscio",
       "address": "Piazza Resistenza",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
@@ -375,7 +533,7 @@
         "mercato-settimanale-di-uscio-uscio",
         "mercato-settimanale-di-uscio-uscio-mercoledi"
       ],
-      "date": "2026-10-28"
+      "date": "2026-11-04"
     },
     {
       "region": "Liguria",
@@ -388,164 +546,6 @@
         "mercato-settimanale-di-vallebona-vallebona"
       ],
       "date": "2026-11-03"
-    },
-    {
-      "region": "Liguria",
-      "city": "Varazze",
-      "address": "Piazza Gen. C.A. Dalla Chiesa",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
-      "visible_id": "mercato-settimanale-di-varazze-varazze-sabato",
-      "original_ids": [
-        "mercato-settimanale-di-varazze-varazze",
-        "mercato-settimanale-di-varazze-varazze-sabato"
-      ],
-      "date": "2026-10-31"
-    },
-    {
-      "region": "Liguria",
-      "city": "Vernazza",
-      "address": "Via Roma",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-la-spezia.html",
-      "visible_id": "mercato-settimanale-di-vernazza-vernazza-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-vernazza-vernazza",
-        "mercato-settimanale-di-vernazza-vernazza-martedi"
-      ],
-      "date": "2026-11-03"
-    },
-    {
-      "region": "Liguria",
-      "city": "Voltri",
-      "address": "Piazza Gaggero",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
-      "visible_id": "mercato-settimanale-di-voltri-voltri-martedi",
-      "original_ids": [
-        "mercato-settimanale-a-voltri-voltri-martedi",
-        "mercato-settimanale-di-voltri-voltri",
-        "mercato-settimanale-di-voltri-voltri-martedi"
-      ],
-      "date": "2026-11-03"
-    },
-    {
-      "region": "Liguria",
-      "city": "Zoagli",
-      "address": "Piazza XXVII Dicembre",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
-      "visible_id": "mercato-settimanale-di-zoagli-zoagli-martedi",
-      "original_ids": [
-        "mercato-settimanale-a-zoagli-zoagli-martedi",
-        "mercato-settimanale-di-zoagli-zoagli-martedi"
-      ],
-      "date": "2026-11-03"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Acquafredda",
-      "address": "Piazza della repubblica",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-acquafredda.html",
-      "visible_id": "mercato-settimanale-di-acquafredda-acquafredda-martedi",
-      "original_ids": [
-        "mercato-settimanale-di-acquafredda-acquafredda",
-        "mercato-settimanale-di-acquafredda-acquafredda-martedi"
-      ],
-      "date": "2026-11-03"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Acquanegra sul Chiese",
-      "address": "Piazza XXV Aprile",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-acquanegra-sul-chiese.html",
-      "visible_id": "mercato-settimanale-di-acquanegra-sul-chiese-acquanegra-sul-chiese-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-di-acquanegra-sul-chiese-acquanegra-sul-chiese",
-        "mercato-settimanale-di-acquanegra-sul-chiese-acquanegra-sul-chiese-mercoledi"
-      ],
-      "date": "2026-10-28"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Agnadello",
-      "address": "Via Vailate",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-agnadello.html",
-      "visible_id": "mercato-settimanale-di-agnadello-agnadello-giovedi",
-      "original_ids": [
-        "mercato-settimanale-di-agnadello-agnadello",
-        "mercato-settimanale-di-agnadello-agnadello-giovedi"
-      ],
-      "date": "2026-10-29"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Agnosine",
-      "address": "Piazzale Pace",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-brescia.html",
-      "visible_id": "mercato-settimanale-di-agnosine-agnosine-giovedi",
-      "original_ids": [
-        "mercato-settimanale-di-agnosine-agnosine",
-        "mercato-settimanale-di-agnosine-agnosine-giovedi"
-      ],
-      "date": "2026-10-29"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Agrate Brianza",
-      "address": "Viale Trivulzio",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-agrate-brianza.html",
-      "visible_id": "mercato-settimanale-di-agrate-brianza-agrate-brianza-lunedi",
-      "original_ids": [
-        "mercato-settimanale-di-agrate-brianza-agrate-brianza",
-        "mercato-settimanale-di-agrate-brianza-agrate-brianza-lunedi"
-      ],
-      "date": "2026-11-02"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Aicurzio",
-      "address": "Piazza della Chiesa",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
-      "visible_id": "mercato-settimanale-di-aicurzio-aicurzio-martedi",
-      "original_ids": [
-        "mercato-settimanale-a-aicurzio-aicurzio-martedi",
-        "mercato-settimanale-di-aicurzio-aicurzio",
-        "mercato-settimanale-di-aicurzio-aicurzio-martedi"
-      ],
-      "date": "2026-11-03"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albairate",
-      "address": "Via Donatori del Sangue",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-albairate.html",
-      "visible_id": "mercato-settimanale-di-albairate-albairate-giovedi",
-      "original_ids": [
-        "mercato-settimanale-di-albairate-albairate",
-        "mercato-settimanale-di-albairate-albairate-giovedi"
-      ],
-      "date": "2026-10-29"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albano Sant'Alessandro",
-      "address": "Piazza dell'Alpino",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-albano-sant-alessandro.html",
-      "visible_id": "mercato-settimanale-di-albano-sant-alessandro-albano-sant-alessandro-venerdi",
-      "original_ids": [
-        "mercato-settimanale-di-albano-sant-alessandro-albano-sant-alessandro",
-        "mercato-settimanale-di-albano-sant-alessandro-albano-sant-alessandro-venerdi"
-      ],
-      "date": "2026-10-30"
-    },
-    {
-      "region": "Lombardia",
-      "city": "Albaredo per San Marco",
-      "address": "Piazza San Marco",
-      "source_url": "https://www.happings.com/it/mercato-settimanale-a-albaredo-per-san-marco.html",
-      "visible_id": "mercato-settimanale-di-albaredo-per-san-marco-albaredo-per-san-marco-venerdi",
-      "original_ids": [
-        "mercato-settimanale-di-albaredo-per-san-marco-albaredo-per-san-marco",
-        "mercato-settimanale-di-albaredo-per-san-marco-albaredo-per-san-marco-venerdi"
-      ],
-      "date": "2026-10-30"
     }
   ],
   "suspicious_city_examples": [

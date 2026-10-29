@@ -4,18 +4,18 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **4,973** (63.0%).
-- Comuni senza schede in catalogo: **2,921**.
-- Schede esistenti conservate: **14,175**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **4,977** (63.0%).
+- Comuni senza schede in catalogo: **2,917**.
+- Schede esistenti conservate: **14,273**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
 | Piemonte | 1180 | 529 | 651 | 44.8% |
-| Lombardia | 1501 | 1076 | 425 | 71.7% |
+| Lombardia | 1501 | 1077 | 424 | 71.8% |
 | Calabria | 404 | 179 | 225 | 44.3% |
 | Sicilia | 391 | 201 | 190 | 51.4% |
 | Sardegna | 377 | 199 | 178 | 52.8% |
-| Trentino-Alto Adige | 282 | 110 | 172 | 39.0% |
+| Trentino-Alto Adige | 282 | 112 | 170 | 39.7% |
 | Liguria | 234 | 107 | 127 | 45.7% |
 | Abruzzo | 305 | 190 | 115 | 62.3% |
 | Campania | 550 | 435 | 115 | 79.1% |
@@ -24,7 +24,7 @@ I risultati indicano dove cercare fonti comunali o regionali affidabili.
 | Friuli Venezia Giulia | 215 | 107 | 108 | 49.8% |
 | Veneto | 559 | 457 | 102 | 81.8% |
 | Lazio | 378 | 306 | 72 | 81.0% |
-| Emilia-Romagna | 330 | 277 | 53 | 83.9% |
+| Emilia-Romagna | 330 | 278 | 52 | 84.2% |
 | Valle d'Aosta | 74 | 27 | 47 | 36.5% |
 | Toscana | 273 | 227 | 46 | 83.2% |
 | Puglia | 257 | 227 | 30 | 88.3% |

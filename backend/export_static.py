@@ -22,7 +22,7 @@ from collections import Counter, defaultdict
 from itertools import combinations
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from field_evidence import clean_receipts, clean_exceptions
+from field_evidence import PUBLISHED_TOWN_FIXES, as_published, clean_receipts, clean_exceptions
 from field_conflicts import KEY as FIELD_CONFLICTS, clean_conflicts
 from source_calendar import clean_source_calendar, clean_source_detail, source_calendar_dates
 from source_freshness import source_date_evidence
@@ -289,7 +289,8 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["proiezione_fonte"] = ""
     # Retain provenance when repairing only the displayed municipality
     # against the official ISTAT register. Never imply the event was verified.
-    if raw.get("localita_ricostruita_da") == "ISTAT comuni 2026-02-21; nome fonte e provincia":
+    if raw.get("localita_ricostruita_da") in ("ISTAT comuni 2026-02-21; nome fonte e provincia",
+                                             *PUBLISHED_TOWN_FIXES.values()):
         result["localita_ricostruita_da"] = raw["localita_ricostruita_da"]
         result["citta_originale"] = safe_string(raw.get("citta_originale"), 160)
     province_proof = retained_province_proof(raw, result)
@@ -394,6 +395,7 @@ def specific_market_address(value: str) -> str:
 
 
 def source_duplicate_group(market: dict) -> tuple | None:
+    market = as_published(market)  # duplicates are found on the source's own town and title
     url = market.get("url_fonte") or ""
     name = comparable_market_name(market.get("nome", ""))
     if not url or len(name) < 12:
@@ -526,6 +528,7 @@ def combine_safe_source_duplicates(records: list[dict], *, preserve_ids=None) ->
 
 def twin_key(row: dict) -> tuple:
     """Records with equal keys are the same market from the same source row."""
+    row = as_published(row)
     return (row.get("fonte"), row.get("url_fonte"), row.get("id_fonte") or "",
             row.get("regione"), str(row.get("citta") or "").casefold(),
             comparable_market_name(str(row.get("nome") or "")), slugify(row.get("indirizzo") or ""),
@@ -541,6 +544,7 @@ def venue_slot(row: dict) -> tuple | None:
     if not street or key(street) in VAGUE_ADDRESSES or len(slugify(street)) < 6:
         return None
     rule = forecast_rule(row)
+    row = as_published(row)
     if rule:
         calendar = calendar_key(rule)
     else:
@@ -557,7 +561,7 @@ STREET_PARTS = re.compile(r"\s*(?:[,;(/]|\s-\s|\s(?:e|ed|o)\s)\s*", re.I)
 def street_names(row: dict) -> set:
     """(type, distinctive words) of each street an address names:
     "Via Sorte, Via Rampinelli" -> {("via", {"sorte"}), ("via", {"rampinelli"})}."""
-    town = distinctive_words(row.get("citta") or "")
+    town = distinctive_words(as_published(row).get("citta") or "")
     names = set()
     for part in STREET_PARTS.split(str(row.get("indirizzo") or "")):
         kind, words = street_type(part.strip()), frozenset(distinctive_words(part) - town)
@@ -782,7 +786,7 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         if (kept is None or "duplicato_di" in kept
                 or kept["regione"] != row["regione"]
                 # Same town, whichever source's spelling ("Torre De' Passeri" / "Torre De'Passeri").
-                or slugify(kept["citta"]) != slugify(row["citta"])):
+                or slugify(as_published(kept)["citta"]) != slugify(as_published(row)["citta"])):
             raise ValueError("Soft-merged copy must point to a kept record in its town: " + row["slug"])
     for row in cleaned:
         if (row.get("riscontri_campi") and

@@ -23,6 +23,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from catalog_quality_report import VAGUE_ADDRESSES, key as addr_key
+from field_evidence import as_published
 from merge_catalog import load_existing
 from recurrence_refresh import explicit_rule
 from source_reconciliation_audit import _unambiguous_day
@@ -69,6 +70,7 @@ def publisher_url_family(url):
 
 def same_generic_venue(row):
     """Named festivals and differently themed venues must NOT be joined."""
+    row=as_published(row)
     name=norm(row.get("nome"))
     city=norm(row.get("citta"))
     if not city:return False

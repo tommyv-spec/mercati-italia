@@ -12,6 +12,7 @@ import re
 import unicodedata
 from collections import Counter
 from pathlib import Path
+from field_evidence import as_published
 from source_freshness import source_date_evidence, as_day, source_url_domain
 
 _WEEKDAY_NAMES = "lunedi|martedi|mercoledi|giovedi|venerdi|sabato|domenica"
@@ -55,6 +56,7 @@ def _name(text):
 
 
 def _location_key(record):
+    record = as_published(record)
     addr = _name(record.get("indirizzo", ""))
     return (_name(record.get("regione", "")), _name(record.get("citta", "")),
             _name(record.get("nome", "")), addr)

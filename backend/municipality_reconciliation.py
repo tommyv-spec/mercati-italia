@@ -13,13 +13,15 @@ never project either weekday from that content without new evidence.
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from copy import deepcopy
 from pathlib import Path
 
 from catalog_quality_report import key, suspicious_city
+from field_evidence import PUBLISHED_TOWN_FIXES
 from merge_catalog import load_existing
 from province_reconciliation import supplement as reconcile_provinces
 
@@ -31,6 +33,15 @@ PROJECTION_WARNING = "Calendario da verificare: testo origine con mercati/locali
 MAX_SUGGESTIONS = 100
 MAX_AUTOMATIC_FIXES = 60
 MAX_FORECAST_QUARANTINE = 80
+# Town rules for cards whose source town is not itself a comune (S31). Only
+# happings.com: its steps read the card as published (field_evidence.as_published).
+FORMER_REFERENCE = Path(__file__).resolve().parent / "data" / "istat-comuni-soppressi.json"
+PUBLISHED_TOWN_SOURCE = "happings.com"
+ROME_INVENTORY_SOURCE = "dati.comune.roma.it"  # Roma Capitale's own market list (d881)
+SPELLING_CUTOFF = 0.85
+CITY_FIX_BUDGET = 60  # town changes a night allowed by Autopilot and the release guard
+TOTAL_CHANGE_BUDGET = 80  # province_reconciliation.MAX_TOTAL_CHANGES
+RULE_ORDER = ("spelling", "former", "hamlet", "rome")
 ALIASES = {
     "Valle d'Aosta/Vallée d'Aoste": "Valle d'Aosta",
     "Friuli-Venezia Giulia": "Friuli Venezia Giulia",
@@ -73,6 +84,79 @@ def trusted_municipalities(data):
     if len(names)!=20 or sum(map(len,names.values()))!=7894:
         raise ValueError("Incomplete nationwide ISTAT reference")
     return names
+
+
+def former_links(data):
+    """Old name -> names it became: ISTAT merges (back to 1861) and renames (since 1991)."""
+    if (not isinstance(data, dict) or data.get("schema") != 1
+            or not isinstance(data.get("links"), list) or len(data["links"]) < 2500):
+        raise ValueError("Unrecognized ISTAT former-comuni list")
+    links = defaultdict(set)
+    for old, new, kind in data["links"]:
+        if kind not in ("soppresso", "rinominato"):
+            raise ValueError("Unknown ISTAT comune change")
+        links[key(old)].add(key(new))
+    return links
+
+
+def _today(name, links, current, seen=()):
+    """Today's comuni an old name leads to, through later merges and renames."""
+    found = set()
+    for nxt in links.get(name, ()):
+        if nxt not in seen:
+            found |= {nxt} if nxt in current else _today(nxt, links, current, seen + (name,))
+    return found
+
+
+def published_town_proposal(record, official, former, rome_markets):
+    """(rule, comune) for a happings.com town that is not a comune of its region.
+
+    former:   a merged or renamed comune, followed to today's (Nibbiano -> Alta Val Tidone);
+    hamlet:   "<comune> <more words>" (Africo Nuovo), or the start of exactly one
+              current or former comune (Celle -> Celle Ligure; "Sestri" stays: Ponente
+              was a comune too);
+    rome:     a Roma Capitale market name, or a capitals-only label on a Rome card
+              (Happings copies Roma Capitale's list, which writes names in capitals);
+    spelling: exactly one comune of the province, and no former one, within a typo.
+    Every rule looks only inside the card's province.
+    """
+    registry = official.get(record.get("regione"))
+    town = str(record.get("citta") or "").strip()
+    name = key(town)
+    province = str(record.get("provincia") or "").strip().upper()
+    # Scraper text gluing two markets together is the title rule's case, never ours.
+    if (record.get("fonte") != PUBLISHED_TOWN_SOURCE or not registry or not name
+            or name in registry or not re.fullmatch(r"[A-Z]{2}", province)
+            or suspicious_city(town)):
+        return None
+    # A province code of another region contradicts the card: it waits (province rule).
+    pool = {n: v for n, v in registry.items() if v[1] == province}
+    if not pool:
+        return None
+
+    def leads(old):
+        return former.get(old, set()) & pool.keys()
+    numbered = re.fullmatch(r".+\s\d{1,2}", town)  # S15: the publisher's numbering
+    found = leads(name)
+    if found:
+        return ("former", pool[next(iter(found))][0]) if len(found) == 1 else None
+    if not numbered:
+        heads = [n for n in pool if name.startswith(n + " ")]
+        if heads:
+            return "hamlet", pool[max(heads, key=len)][0]
+        starts = ({n for n in pool if n.startswith(name + " ")}
+                  | {old for old in former if old.startswith(name + " ") and leads(old)})
+        if starts:
+            only = next(iter(starts))
+            return ("hamlet", pool[only][0]) if len(starts) == 1 and only in pool else None
+    if province == "RM" and "roma" in pool and (name in rome_markets or town.upper() == town):
+        return "rome", pool["roma"][0]
+    if numbered:
+        return None
+    close = difflib.get_close_matches(name, list(pool), n=2, cutoff=SPELLING_CUTOFF)
+    rivals = difflib.get_close_matches(name, [old for old in former if leads(old)], n=1,
+                                       cutoff=SPELLING_CUTOFF)
+    return ("spelling", pool[close[0]][0]) if len(close) == 1 and not rivals else None
 
 
 def source_city_cross_contamination(raw):
@@ -139,7 +223,7 @@ def municipality_proposals(market, official):
     return candidates[:4]
 
 
-def reconcile(rows, official_reference, *, apply=False):
+def reconcile(rows, official_reference, *, apply=False, former_reference=None):
     if not isinstance(rows,list) or not 1<=len(rows)<=100_000:
         raise ValueError("Unbounded market catalog")
     if apply is not True and apply is not False:
@@ -227,6 +311,8 @@ def reconcile(rows, official_reference, *, apply=False):
     if (counts["city_candidates_istat_province_title"]>MAX_AUTOMATIC_FIXES
             or counts["unsafe_future_calendar_candidates"]>MAX_FORECAST_QUARANTINE):
         raise ValueError("Unexpected municipality anomaly growth; manual source review")
+    fix_published_towns(rows, result, official, cases, counts, apply=apply,
+                        former_reference=former_reference)
     result, province_report = reconcile_provinces(
         rows, result, official_reference, apply=apply)
     counts.update({
@@ -254,6 +340,61 @@ def reconcile(rows, official_reference, *, apply=False):
     return result,report
 
 
+def fix_published_towns(rows, result, official, cases, counts, *, apply, former_reference=None):
+    """Show the official comune of a source town (S31), keeping the source's spelling.
+
+    Bounded by the nightly budgets the guard enforces; the rest waits for later nights.
+    """
+    links = former_links(former_reference if former_reference is not None
+                         else json.loads(FORMER_REFERENCE.read_text(encoding="utf-8")))
+    current = {name for registry in official.values() for name in registry}
+    former = {old: _today(old, links, current) for old in links}
+    rome_markets = {re.sub(r"\s+[ivx]+$", "", key(row.get("nome")))
+                    for row in rows if row.get("fonte") == ROME_INVENTORY_SOURCE}
+    ours = set(PUBLISHED_TOWN_FIXES.values())
+    proposals = []
+    for index, row in enumerate(result):
+        if row.get("localita_ricostruita_da") not in (None, "", *ours):
+            continue
+        found = published_town_proposal(row, official, former, rome_markets)
+        if not found:
+            continue
+        if row.get("verificato_il") or row.get("date_quality") == "confermata":
+            counts["published_town_protected"] += 1
+            continue
+        # Visible cards first; duplicates and concluded markets wait.
+        hidden = bool(row.get("duplicato_di") or row.get("concluso"))
+        proposals.append(((hidden, RULE_ORDER.index(found[0]), row["slug"]), index, *found))
+    proposals.sort()
+    touched = sum(before != after for before, after in zip(rows, result))
+    budget = max(0, min(CITY_FIX_BUDGET - counts["city_fixed"], TOTAL_CHANGE_BUDGET - touched))
+    selected = proposals[:budget] if apply else []
+    counts["published_town_candidates"] = len(proposals)
+    counts["published_town_pending"] = len(proposals) - len(selected)
+    for _, index, rule, city in selected:
+        row = dict(result[index])
+        slug = row["slug"]
+        old_city, old_name = str(row.get("citta") or ""), str(row.get("nome") or "")
+        row["citta"] = city
+        row["citta_originale"] = str(row.get("citta_originale") or old_city)[:160]
+        row["localita_ricostruita_da"] = PUBLISHED_TOWN_FIXES[rule]
+        if rule == "spelling" and key(old_name) in (
+                "mercato settimanale di " + key(old_city), "mercato settimanale a " + key(old_city)):
+            row["nome_originale"] = old_name[:160]
+            row["nome"] = "Mercato settimanale di " + city
+            counts["source_titles_respelled"] += 1
+        result[index] = row
+        counts["city_fixed"] += 1
+        counts["published_town_" + rule] += 1
+        cases.append({
+            "slug": slug, "original_city": old_city[:160], "source": str(row.get("url_fonte") or "")[:500],
+            "region": row.get("regione"), "province": row.get("provincia"), "method": rule,
+            "label": row["localita_ricostruita_da"], "suggested_city": city,
+            "calendar_cross_contaminated": False,
+            "future_dates_before": len(row.get("date") or []), "changed": True,
+        })
+
+
 def markdown(report):
     counts=report["counts"]
     text=[
@@ -269,6 +410,8 @@ def markdown(report):
         f"- Da verificare manualmente: {counts.get('needs_manual_municipality_review',0)}",
         f"- Calendari potenzialmente confusi fra mercati diversi: {counts.get('unsafe_future_calendar_candidates',0)}",
         f"- Comuni corretti in DEV: {counts.get('city_fixed',0)}",
+        f"- Località della fonte ricondotte al comune ISTAT (S31): {counts.get('published_town_candidates',0)}, "
+        f"in attesa entro il tetto notturno: {counts.get('published_town_pending',0)}",
         f"- Record con date previste sospese: {counts.get('records_calendar_quarantined',0)}",
         f"- Province riconciliate con Comune e regione ISTAT: {counts.get('province_fixed',0)}",
         f"- Province in attesa del prossimo ciclo entro il tetto complessivo di 80 modifiche: {counts.get('province_pending',0)}",

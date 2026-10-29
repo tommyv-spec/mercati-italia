@@ -17,7 +17,7 @@ from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from field_evidence import (FIELDS, as_day, clean_receipts, identity, make_receipt,
+from field_evidence import (FIELDS, as_day, as_published, clean_receipts, identity, make_receipt,
                             managed_update_allowed, mark_managed_fields,
                             retire_superseded_receipts)
 from source_calendar import (DETAIL_FIELDS, MANAGER, clean_source_calendar,
@@ -151,15 +151,16 @@ def _matches(base, document, geo, today):
     source_category = _category(event)
     exact, possible = [], []
     for row in base:
+        view = as_published(row)
         source_links = row.get("fonti") if isinstance(row.get("fonti"), list) else []
         mentions_url = (_page_identity(row, url) or any(
             isinstance(link, dict) and link.get("url") == url for link in source_links))
-        if (fold(row.get("citta")) != fold(city) or row.get("provincia") != province
+        if (fold(view.get("citta")) != fold(city) or row.get("provincia") != province
                 or fold(row.get("regione")) != fold(region)):
             if mentions_url:
                 possible.append(row)
             continue
-        same_name = _name(row.get("nome_originale") or row.get("nome")) == _name(event.get("name"))
+        same_name = _name(view.get("nome_originale") or view.get("nome")) == _name(event.get("name"))
         same_street = _street_same(row.get("indirizzo"), street)
         row_days = _days(row)
         # Same organiser name, other weekdays AND another real street: another
@@ -171,7 +172,7 @@ def _matches(base, document, geo, today):
                 and _specific_address(row.get("indirizzo")) and not same_street):
             continue
         compatible_days = bool(nominal_days and row_days and nominal_days <= row_days)
-        generic_names = (not _distinctive_name(row.get("nome"), city)
+        generic_names = (not _distinctive_name(view.get("nome"), city)
                          and not _distinctive_name(event.get("name"), city))
         same_generic = generic_names and same_street and compatible_days
         # Weak overlap may block admitting a duplicate, but never permits
@@ -183,7 +184,7 @@ def _matches(base, document, geo, today):
             r"\b" + re.escape(source_street_key) + r"\b", fold(row.get("indirizzo"))))
         same_type = bool(source_category and source_category != "misto" and
                          (row.get("categoria") == source_category or
-                          source_category == "antiquariato" and "antiquar" in fold(row.get("nome"))))
+                          source_category == "antiquariato" and "antiquar" in fold(view.get("nome"))))
         observed_page = _page_identity(row, url) and (
             row.get("url_fonte") == url or clean_source_detail(row.get("dettaglio_fonte"), row, today=today))
         if (mentions_url or observed_page or same_name or same_street and bool(days & row_days)

@@ -46,7 +46,8 @@ from recurrence_refresh import explicit_rule, temporal_scope_hold
 from merge_catalog import load_existing
 from municipality_reconciliation import trusted_municipalities
 from field_evidence import (clean_receipts, make_receipt, managed_update_allowed,
-                            mark_managed_fields, retire_superseded_receipts, safe_url)
+                            mark_managed_fields, published_town, retire_superseded_receipts,
+                            safe_url)
 
 SCHEMA=1
 PUBLISHER="happings.com"
@@ -186,7 +187,7 @@ def _catalog_geography_matches(row, source_url):
     municipalities,page_areas=_official_geography()
     region=fold(row.get("regione"))
     province=str(row.get("provincia") or "").strip().upper()
-    city=fold(row.get("citta"))
+    city=fold(published_town(row))
     key=province_page_key(source_url)
     expected=page_areas.get(key,set())
     if len(expected)!=1:
@@ -359,13 +360,13 @@ def _town_url_matches(row):
         if not match:
             return False
         slug=match[1]
-        if fold(slug.replace("-"," "))==fold(row.get("citta")):
+        if fold(slug.replace("-"," "))==fold(published_town(row)):
             return True
         if "--" not in slug:
             return False
         province=str(row.get("provincia") or "").upper()
         return (_reviewed_old_town_slugs().get(
-            (fold(row.get("regione")),province,slug))==fold(row.get("citta")))
+            (fold(row.get("regione")),province,slug))==fold(published_town(row)))
     except ValueError:
         return False
 
@@ -492,7 +493,7 @@ def _blocked_source_cohort(rows,source_city,weekday):
     stored={
         fold(r.get("indirizzo"))
         for r in rows
-        if fold(r.get("citta"))==source_city and _cohort_weekly_day(r)==weekday
+        if fold(published_town(r))==source_city and _cohort_weekly_day(r)==weekday
         and safe_stored_street(r.get("indirizzo"))
     }
     return stored
@@ -531,7 +532,7 @@ def _field_receipt(row, values, evidence):
         {**row, **values}, values=values, source_url=evidence["source_url"],
         source_name=SOURCE_EVIDENCE_NAME,
         source_id="happings-weekly-"+province_page_key(evidence["source_url"]),
-        source_row=province_page_key(evidence["source_url"])+":"+fold(row["citta"])+":"+str(evidence["source_day"]),
+        source_row=province_page_key(evidence["source_url"])+":"+fold(published_town(row))+":"+str(evidence["source_day"]),
         read_on=evidence["observed_at"], source_updated_on="",
         source_sha256=evidence["source_html_sha256"], scope="pagina",
         method=("comune_provincia_giorno_univoco" if row.get("fonte")==PUBLISHER
@@ -741,7 +742,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
             if day is None:
                 counters["identity_weekday_unproven"]+=1
                 continue
-            groups[(fold(record.get("citta")),day)].append(record)
+            groups[(fold(published_town(record)),day)].append(record)
         for pair,matching_rows in groups.items():
             entries=source.get(pair,[])
             if len(entries)!=1:
@@ -767,7 +768,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                     "source_html_sha256":page_receipt["source_html_sha256"],
                     **({"page_metadata":page_receipt["page_metadata"]}
                        if "page_metadata" in page_receipt else {}),
-                    "source_city":row["citta"],"source_province":row["provincia"],
+                    "source_city":published_town(row),"source_province":row["provincia"],
                     "source_region":row["regione"],"source_day":pair[1],
                     "source_value":street,"observed_at":today.isoformat(),
                     "source_relation":"primary" if row.get("fonte")==PUBLISHER else "secondary",
@@ -782,7 +783,7 @@ def preview(base, pages, *, today=None, apply=False, rights_verified=False):
                 }
             conflicting=False
             for existing in cohort:
-                if (fold(existing.get("citta"))!=pair[0] or _cohort_weekly_day(existing)!=pair[1]
+                if (fold(published_town(existing))!=pair[0] or _cohort_weekly_day(existing)!=pair[1]
                         or not safe_stored_street(existing.get("indirizzo"))
                         or _same_place(existing["indirizzo"],street)):
                     continue
@@ -1021,7 +1022,7 @@ def safe_report(report,base,*,source_pages=None):
                     secondary_routes.get(target["slug"]),item.get("source_requested_url"),item.get("source_url")))
                 or item.get("source_html_sha256")!=source["source_html_sha256"]
                 or item.get("page_metadata")!=source.get("page_metadata")
-                or item.get("source_city")!=target.get("citta")
+                or item.get("source_city")!=published_town(target)
                 or item.get("source_province")!=target.get("provincia")
                 or item.get("source_region")!=target.get("regione")
                 or item.get("source_day")!=_weekly_day(target)

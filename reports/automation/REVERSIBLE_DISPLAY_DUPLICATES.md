@@ -4,11 +4,11 @@
 Confronta soltanto sede e giorno identici con la stessa URL di fonte
 e orari, coordinate, categoria e ricorrenze compatibili.
 
-- Schede originali: **14.223**.
-- ID originali preservati: **14.223**.
-- Gruppi supportati da prove forti: **869**.
-- Pulsanti ripetuti evitati nella vista delle sedi: **1027**.
-- Schede originali ancora apribili dietro tali gruppi: **1896**.
+- Schede originali: **14.273**.
+- ID originali preservati: **14.273**.
+- Gruppi supportati da prove forti: **937**.
+- Pulsanti ripetuti evitati nella vista delle sedi: **1102**.
+- Schede originali ancora apribili dietro tali gruppi: **2039**.
 - Campi città evidentemente malformati protetti nella UI: **2**.
 - Eventi o verifiche dichiarati confermati: **0**.
 
@@ -17,13 +17,13 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 | Regione | Gruppi supportati | Pulsanti ripetuti evitati |
 |---|---:|---:|
 | Emilia-Romagna | 4 | 6 |
-| Liguria | 27 | 32 |
-| Lombardia | 617 | 676 |
-| Piemonte | 100 | 155 |
+| Liguria | 40 | 47 |
+| Lombardia | 640 | 701 |
+| Piemonte | 110 | 166 |
 | Sicilia | 1 | 2 |
-| Toscana | 44 | 63 |
+| Toscana | 49 | 70 |
 | Trentino-Alto Adige | 12 | 13 |
-| Veneto | 64 | 80 |
+| Veneto | 81 | 97 |
 
 ## Esempi reali
 
@@ -32,6 +32,7 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 - Emilia-Romagna · Modena · Parco Novi Sad · 3 schede originali · https://www.happings.com/it/mercati-settimanali-a-modena.html
 - Emilia-Romagna · Soliera · piazza F.lli Sassi, piazza Lusvardi, via Garibaldi, via IV Novembre · 3 schede originali · https://www.happings.com/it/mercati-settimanali-a-modena.html
 - Liguria · Altare · Via Restagno · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
+- Liguria · Andora · Piazza Caduti di Nassiriya · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 - Liguria · Arcola · Via Aurelia · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-la-spezia.html
 - Liguria · Arenzano · piazza Allende · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
 - Liguria · Bogliasco · Piazza 26 Aprile · 3 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
@@ -40,18 +41,17 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 - Liguria · Carcare · piazza Caravadossi · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 - Liguria · Cengio · Piazza San Giuseppe · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 - Liguria · Ceriale · Lungomare A. Diaz · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
+- Liguria · Cervo · Piazzale Stazione · 2 schede originali · https://www.happings.com/it/mercati-settimanali-ad-imperia.html
+- Liguria · Dego · Piazza Panevino · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 - Liguria · Dolcedo · Piazza don Minzoni · 3 schede originali · https://www.happings.com/it/mercati-settimanali-ad-imperia.html
+- Liguria · Follo · Capoluogo · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-la-spezia.html
 - Liguria · Isolabona · Via Roma piazza S. Lucia · 2 schede originali · https://www.happings.com/it/mercati-settimanali-ad-imperia.html
+- Liguria · Loano · Piazza S. Francesco · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 - Liguria · Mallare · Piazza Odorico del Carretto · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
+- Liguria · Mele · Capoluogo · 3 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
 - Liguria · Millesimo · Piazza italia · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 - Liguria · Molassana · Via Isola del Vescovo · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
 - Liguria · Oregina · Via Maculano · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
-- Liguria · Perinaldo · Piazza Santa Croce · 2 schede originali · https://www.happings.com/it/mercati-settimanali-ad-imperia.html
-- Liguria · Pignone · Piazza Marconi · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-la-spezia.html
-- Liguria · Quiliano · Via Roma · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
-- Liguria · Rapallo · Lungomare, Rotonda Marconi, Giardini G.Verdi · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
-- Liguria · Soldano · Piazza Vecchia · 3 schede originali · https://www.happings.com/it/mercati-settimanali-ad-imperia.html
-- Liguria · Toirano · Parco Rosciano · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 
 Le date restano previste, non confermate. Gruppi diversi o
 incerti restano separati. Per aprire tutte le schede originali

@@ -20,6 +20,7 @@ from urllib.parse import urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 import happings_source_enrichment as source
+from field_evidence import published_town
 from happings_weekly_layout import NON_CONTENT_TAGS, VOID_TAGS, fold, parse, province_page_key
 
 SCHEMA = 1
@@ -104,7 +105,7 @@ def catalog_context(markets):
     municipalities = source._official_geography()[0]
     found = {}
     for row in markets:
-        city, region = fold(row.get("citta")), fold(row.get("regione"))
+        city, region = fold(published_town(row)), fold(row.get("regione"))
         province = str(row.get("provincia") or "").strip().upper()
         if (row["slug"] in routed or row.get("fonte") != source.PUBLISHER
                 or not legacy_url(row.get("url_fonte")) or not source.same_generic_venue(row)
@@ -201,7 +202,7 @@ def seed_state(markets, *, state=None, today, catalog=None):
     catalog = catalog or catalog_context(markets)
     for url, rows in catalog["origins"].items():
         region, province = fold(rows[0]["regione"]), rows[0]["provincia"].upper()
-        city_keys = sorted({fold(row["citta"]) for row in rows})
+        city_keys = sorted({fold(published_town(row)) for row in rows})
         if url in entries:
             if (entries[url]["region"], entries[url]["province"], entries[url]["city_keys"]) != (region, province, city_keys):
                 raise ValueError("Legacy origin changed its catalog geography")
@@ -222,7 +223,7 @@ def known_resources(state, markets, *, today, catalog=None):
     return sorted({item["proof"]["resource_url"] for item in state["resources"]
                    if item["proof"] and item["origin_url"] in origins
                    and any(source._catalog_geography_matches(row, item["proof"]["resource_url"])
-                           and {"city_key": fold(row["citta"]), "weekday": source._weekly_day(row)}
+                           and {"city_key": fold(published_town(row)), "weekday": source._weekly_day(row)}
                            in item["proof"]["matched_city_days"] for row in origins[item["origin_url"]])})
 
 
@@ -315,7 +316,7 @@ def prove_resource(item, requested_url, raw, rows, *, today):
     if not document.provinces or set(document.provinces) != {label}:
         return None, "scope_mismatch"
     parsed = parse(raw, source_url=resource_url)
-    wanted = {(fold(row["citta"]), source._weekly_day(row)) for row in rows}
+    wanted = {(fold(published_town(row)), source._weekly_day(row)) for row in rows}
     found = sorted({(row["city_key"], row["weekday"]) for row in parsed.rows} & wanted)
     if not found:
         return None, "source_city_day_absent"
