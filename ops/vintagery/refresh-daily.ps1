@@ -13,6 +13,9 @@
 # keeps using the older snapshot (cards stop counting 45 days after their read).
 param(
     [int]$PerDay = 120,
+    # Keep both under the task's ExecutionTimeLimit (install-task.ps1), so the script always
+    # ends by itself and reports, instead of being killed silently.
+    [int]$ReadMinutes = 60,
     [int]$WaitRunnerMinutes = 180,
     # Read and merge, but commit and push nothing (a test run).
     [switch]$DryRun
@@ -81,11 +84,23 @@ END SCRIPT
     $Tools = @('mcp__claude-in-chrome__tabs_context_mcp', 'mcp__claude-in-chrome__tabs_create_mcp',
                'mcp__claude-in-chrome__navigate', 'mcp__claude-in-chrome__javascript_tool',
                'mcp__claude-in-chrome__computer', 'mcp__claude-in-chrome__tabs_close_mcp')
-    $OutputEncoding = New-Object System.Text.UTF8Encoding $false
-    # No 2>&1 on programs: in Windows PowerShell it turns stderr lines into errors.
-    $Answer = $Prompt | & claude -p --chrome --allowedTools $Tools | Out-String
-    Write-Log ('claude: ' + $Answer.Trim())
-    if ($LASTEXITCODE -ne 0 -or $Answer -notmatch '\bDONE\b') { throw "Claude in Chrome read did not finish: $($Answer.Trim())" }
+    # Prompt and answer go through files so the read has its own time limit: on 2026-10-29
+    # `claude -p` stalled at startup on an overloaded PC until the task's limit killed it,
+    # which left no log line and no alarm.
+    $PromptFile = Join-Path $Root 'prompt.txt'
+    $AnswerFile = Join-Path $Root 'answer.txt'
+    [IO.File]::WriteAllText($PromptFile, $Prompt)   # UTF-8 without BOM
+    $Claude = Start-Process -FilePath (Get-Command claude).Source -NoNewWindow -PassThru `
+        -ArgumentList (@('-p', '--chrome', '--allowedTools') + $Tools) `
+        -RedirectStandardInput $PromptFile -RedirectStandardOutput $AnswerFile
+    $null = $Claude.Handle   # keeps ExitCode readable after the exit
+    if (-not $Claude.WaitForExit($ReadMinutes * 60000)) {
+        & taskkill /T /F /PID $Claude.Id | Out-Null
+        throw "Claude in Chrome read gave no answer within $ReadMinutes minutes"
+    }
+    $Answer = "$(Get-Content $AnswerFile -Raw -Encoding utf8)".Trim()
+    Write-Log ('claude: ' + $Answer)
+    if ($Claude.ExitCode -ne 0 -or $Answer -notmatch '\bDONE\b') { throw "Claude in Chrome read did not finish: $Answer" }
 
     # 4. Merge the newest download, then archive it.
     $File = Get-ChildItem -Path $Downloads -Filter 'vintagery_cards*.json' |

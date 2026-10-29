@@ -12,7 +12,9 @@ Copy-Item -Force (Join-Path $PSScriptRoot 'refresh-daily.ps1') $Script
 $Action = New-ScheduledTaskAction -Execute 'powershell.exe' `
     -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$Script`""
 $Trigger = New-ScheduledTaskTrigger -Daily -At '03:30'
-$Settings = New-ScheduledTaskSettingsSet -WakeToRun -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 2)
+# Above the script's own limits (read 60 min + nightly wait 180 min): a task killed by
+# Windows leaves no log line and no alarm.
+$Settings = New-ScheduledTaskSettingsSet -WakeToRun -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 5)
 $Principal = New-ScheduledTaskPrincipal -UserId ([Security.Principal.WindowsIdentity]::GetCurrent().Name) -LogonType Interactive
 Register-ScheduledTask -TaskName 'MercatiItalia-Vintagery' -Action $Action -Trigger $Trigger `
     -Settings $Settings -Principal $Principal -Force | Out-Null
