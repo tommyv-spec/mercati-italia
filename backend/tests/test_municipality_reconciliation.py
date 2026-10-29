@@ -9,7 +9,8 @@ from municipality_reconciliation import (
     reconcile, municipality_proposals, source_city_cross_contamination,
     trusted_municipalities, PROJECTION_WARNING
 )
-from export_static import normalize
+from export_static import normalize, same_market
+from merge_catalog import _location_key
 from field_evidence import PUBLISHED_TOWN_FIXES, clean_receipts, identity, make_receipt, published_town
 from municipality_reconciliation import CITY_FIX_BUDGET
 from municipality_release_guard import check
@@ -250,6 +251,13 @@ class PublishedTownTests(unittest.TestCase):
         # The weekly page still lists "Atelena": the renamed card blocks a duplicate.
         self.assertTrue(_possible_existing(out, "Atelena", "Abruzzo", "AQ", 1))
         self.assertFalse(_possible_existing(out, "Ateleta", "Abruzzo", "AQ", 1))
+
+    def test_a_hidden_copy_still_matches_its_renamed_kept_card(self):
+        # Visible cards are renamed first: for some nights the copy keeps the old town.
+        kept, _ = self.fixed(happings("Atelena", "AQ", "Abruzzo", slug="kept"))
+        copy_ = {**happings("Atelena", "AQ", "Abruzzo", slug="copy"), "duplicato_di": "kept"}
+        self.assertTrue(same_market(kept, copy_))
+        self.assertEqual(_location_key(kept), _location_key(copy_))
 
     def test_nightly_budget_fixes_visible_cards_first_and_replays_unchanged(self):
         rows = [{**happings("Atelena", "AQ", "Abruzzo", slug=f"a-{i:02}"),
