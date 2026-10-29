@@ -5,8 +5,8 @@ Le coordinate sono marker della mappa, NON punti per navigazione verificati.
 Nessuna scheda nazionale è stata modificata, creata o confermata.
 
 - Sedi sulla mappa: **9**
-- Schede Roma nel catalogo: **132**
-- Fonte vecchia di **681 giorni**; nessun calendario 2026 dichiarato confermato.
+- Schede Roma nel catalogo: **133**
+- Fonte vecchia di **682 giorni**; nessun calendario 2026 dichiarato confermato.
 
 | Sede sorgente | Tipo | Giorni | Matching | Schede candidate |
 |---|---|---|---|---:|

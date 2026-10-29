@@ -1,20 +1,22 @@
 # Mercati Italia — scoperta automatica eventi: solo segnali
 
-Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-28**.
+Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-10-29**.
 Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 
-- Schede di mercato esistenti conservate: **14175**
-- Segnali ufficiali nell'ultima scansione: **0**
+- Schede di mercato esistenti conservate: **14273**
+- Segnali ufficiali nell'ultima scansione: **2**
 - Collegamenti esterni, non dati riutilizzabili: **0**
 
 | Fonte | Stato | Richieste |
 |---|---|---:|
-| firenze-feelflorence | source_unavailable_or_schema_review | 0 |
+| firenze-feelflorence | discovery_leads_only | 1 |
 | bologna-agenda | discovery_leads_only | 1 |
 | eventiesagre-index | source_unavailable_or_schema_review | 0 |
 
 ## Segnali da verificare presso Comune o organizzatore
 
+- Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: source_lead_unverified
+- Fiera di Ognissanti - Parco delle Cascine — https://www.feelflorence.it/it/eventi/fiera-di-ognissanti-parco-delle-cascine — stato: source_lead_unverified
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21190632_Arti+E+Mercanti+A+Montefalco.html — stato: not_seen_again_not_a_market_closure
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21187037_Il+Mercatino+Dell+antiquariato+E+Collezionismo+A+Grottaferrata.html — stato: not_seen_again_not_a_market_closure
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21124967_Curiosando.html — stato: not_seen_again_not_a_market_closure
@@ -48,8 +50,6 @@ Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21079231_Mercatini+delle+pulci+e+antiquariato+a+Dobbiaco.html — stato: not_seen_again_not_a_market_closure
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21053906_Artigianalmente.html — stato: not_seen_again_not_a_market_closure
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21022464_Mercato+dell+artigianato+artistico.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/13667_Mercatini+delle+pulci+e+antiquariato+a+Villabassa.html — stato: not_seen_again_not_a_market_closure
 
 Non importare contenuti di EventiESagre: si raccolgono solo URL e ID.
 Non usare le date generiche di inizio/fine come apertura verificata.

@@ -4,7 +4,7 @@
   "market_imports": 0,
   "max_response_bytes_per_source": 300000,
   "offline": false,
-  "reference_date": "2026-10-28",
+  "reference_date": "2026-10-29",
   "schema": 1,
   "source_evidence": [
     {
@@ -40,7 +40,7 @@
         "coverage",
         "modified_newer_than_data_without_auto_update"
       ],
-      "source_data_age_days": 574,
+      "source_data_age_days": 575,
       "source_data_age_label": "dataset_metadata_over_365d",
       "source_id": "0bb2a3cb-a3d0-44ef-9053-061006c8cd50",
       "status": "metadata_checked"
@@ -65,7 +65,7 @@
       "publisher_license_reference": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
       "publisher_metadata_updated_at": "2026-10-27",
       "publisher_metadata_url": "https://www.dati.lombardia.it/api/views/68zx-njaw.json",
-      "publisher_response_sha256": "5b041a76aea773e27b843b24f929586b0b683754c73cb1531d440adb5f9174ec",
+      "publisher_response_sha256": "449ae7cde310da94dc74caac4544b0ee9d19ac54f74225b58ea398f8bf18cb92",
       "record_level_freshness_verified": false,
       "review_required": [
         "license_terms",
@@ -74,7 +74,7 @@
         "operating_dates",
         "coverage"
       ],
-      "source_data_age_days": 8,
+      "source_data_age_days": 9,
       "source_data_age_label": "dataset_updated_within_365d",
       "source_id": "2e41941b-80fb-4ded-8330-427383f725f8",
       "status": "metadata_checked"

@@ -1,17 +1,17 @@
 {
   "all_proposals_review_only": true,
-  "as_of": "2026-10-28",
+  "as_of": "2026-10-29",
   "catalog_fields_updated": 0,
-  "catalog_markets": 14223,
+  "catalog_markets": 14273,
   "counts": {
-    "address_already_saved_in_related_source_card": 151,
-    "multiple_or_missing_unique_venue_proofs": 3944
+    "address_already_saved_in_related_source_card": 141,
+    "multiple_or_missing_unique_venue_proofs": 4077
   },
-  "eligible_identity_groups": 6862,
-  "field_sibling_candidates": 151,
+  "eligible_identity_groups": 6865,
+  "field_sibling_candidates": 141,
   "full_market_evidence_in_temporary_qa_artifact": true,
-  "legacy_publisher_records_examined": 9879,
-  "market_identities_preserved": 14223,
+  "legacy_publisher_records_examined": 9897,
+  "market_identities_preserved": 14273,
   "market_openings_confirmed": 0,
   "new_map_coordinates_added": 0,
   "original_market_records_deleted": 0,
@@ -20,27 +20,27 @@
   "source_automation_consent_inferred": false,
   "source_url_layouts": {
     "other_historical_layout": {
-      "records": 214
+      "records": 232
     },
     "province_index_canonical": {
       "records": 18
     },
     "province_index_old_a": {
-      "address_missing": 548,
-      "address_not_specific": 2660,
-      "hours_missing": 385,
+      "address_missing": 543,
+      "address_not_specific": 2456,
+      "hours_missing": 361,
       "records": 4487
     },
     "province_index_old_ad": {
-      "address_missing": 54,
-      "address_not_specific": 347,
-      "hours_missing": 65,
+      "address_missing": 48,
+      "address_not_specific": 335,
+      "hours_missing": 39,
       "records": 414
     },
     "town_detail_legacy": {
       "address_missing": 15,
-      "address_not_specific": 2066,
-      "hours_missing": 302,
+      "address_not_specific": 2064,
+      "hours_missing": 292,
       "records": 4746
     }
   }

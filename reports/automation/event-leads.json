@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14175,
-  "baseline_market_records": 14175,
+  "baseline_market_ids_preserved": 14273,
+  "baseline_market_records": 14273,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -8,9 +8,12 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
-      "reason_class": "URLError",
-      "requests": 0,
-      "state": "source_unavailable_or_schema_review"
+      "leads_found": 2,
+      "not_matching_market_scope": 117,
+      "requests": 1,
+      "rows_examined": 119,
+      "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
+      "state": "discovery_leads_only"
     },
     {
       "catalog_market_imports": 0,
@@ -32,9 +35,41 @@
       "state": "source_unavailable_or_schema_review"
     }
   ],
-  "fresh_official_leads": 0,
+  "fresh_official_leads": 2,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-12-20",
+      "first_seen": "2026-10-29",
+      "id": "firenze-feelflorence:114",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-29",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
+      "start": "2026-11-14",
+      "status": "source_lead_unverified",
+      "title": "Mercato di Natale in Piazza Santa Croce"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-11-01",
+      "first_seen": "2026-10-20",
+      "id": "firenze-feelflorence:109",
+      "kind": "fair_review",
+      "last_seen": "2026-10-29",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/fiera-di-ognissanti-parco-delle-cascine",
+      "start": "2026-11-01",
+      "status": "source_lead_unverified",
+      "title": "Fiera di Ognissanti - Parco delle Cascine"
+    },
     {
       "catalog_import_allowed": false,
       "first_seen": "2026-10-26",
@@ -468,22 +503,6 @@
     },
     {
       "catalog_import_allowed": false,
-      "city": "Firenze",
-      "end": "2026-10-25",
-      "first_seen": "2026-10-20",
-      "id": "firenze-feelflorence:109",
-      "kind": "market_candidate",
-      "last_seen": "2026-10-20",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "firenze-feelflorence",
-      "source_url": "https://www.feelflorence.it/it/eventi/mercato-del-forte-dei-marmi-firenze",
-      "start": "2026-10-25",
-      "status": "not_seen_again_not_a_market_closure",
-      "title": "Mercato del Forte dei Marmi a Firenze"
-    },
-    {
-      "catalog_import_allowed": false,
       "first_seen": "2026-10-19",
       "id": "eventiesagre-index:21193739",
       "last_seen": "2026-10-19",
@@ -761,7 +780,7 @@
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-28",
+  "reference_date": "2026-10-29",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
