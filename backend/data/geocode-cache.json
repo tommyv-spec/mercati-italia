@@ -231,6 +231,16 @@
    "query": "Corso bolzano, Torino, Italia",
    "type": "residential"
   },
+  "corso cavour|orvieto|tr": {
+   "class": "highway",
+   "lat": 42.719195,
+   "lng": 12.116076,
+   "name": "Corso Cavour, Quartiere S. Maria della Stella, Case Maggi, Orvieto Scalo, Orvieto, Terni, Umbria, 05018, Italia",
+   "osm": "way/88504104",
+   "queried_on": "2026-10-29",
+   "query": "Corso Cavour, Orvieto, Italia",
+   "type": "residential"
+  },
   "corso dante|cles|tn": {
    "class": "highway",
    "lat": 46.364868,
@@ -261,6 +271,16 @@
    "query": "corso del Popolo, Venezia, Italia",
    "type": "tertiary"
   },
+  "corso europa|rho|mi": {
+   "class": "highway",
+   "lat": 45.537553,
+   "lng": 9.020709,
+   "name": "Corso Europa, Stellanda, San Paolo-Capuana, Castellazzo, Rho, Milano, Lombardia, 20017, Italia",
+   "osm": "way/214845550",
+   "queried_on": "2026-10-29",
+   "query": "CORSO Europa, Rho, Italia",
+   "type": "secondary"
+  },
   "corso garibaldi|ancona|an": {
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
@@ -285,6 +305,16 @@
    "queried_on": "2026-10-25",
    "query": "Corso Garibaldi, Lucca, Italia",
    "type": "residential"
+  },
+  "corso indipendenza|rivarolo canavese|to": {
+   "class": "highway",
+   "lat": 45.345161,
+   "lng": 7.707874,
+   "name": "Corso Indipendenza, Vesignano, Rivarolo Canavese, Torino, Piemonte, 10083, Italia",
+   "osm": "way/450295900",
+   "queried_on": "2026-10-29",
+   "query": "CORSO Indipendenza, Rivarolo Canavese, Italia",
+   "type": "primary"
   },
   "corso marconi|torino|to": {
    "class": "highway",
@@ -390,6 +420,16 @@
    "miss": "solo_localita",
    "queried_on": "2026-10-25",
    "query": "Donatello, Cuneo, Italia"
+  },
+  "emiciclo garibaldi|sassari|ss": {
+   "class": "highway",
+   "lat": 40.723637,
+   "lng": 8.56142,
+   "name": "Emiciclo Giuseppe Garibaldi, Cappuccini, Tàttari/Sassari, Sardigna/Sardegna, 07100, Italia",
+   "osm": "way/118189630",
+   "queried_on": "2026-10-29",
+   "query": "EMICICLO Garibaldi, Sassari, Italia",
+   "type": "residential"
   },
   "galleria del centro cittadino|imola|bo": {
    "miss": "nessun_risultato",
@@ -666,6 +706,11 @@
    "queried_on": "2026-10-27",
    "query": "LUNGOLAGO EUROPA, Bellagio, Italia"
   },
+  "lungomare cristoforo colombo|castrignano del capo|le": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-10-29",
+   "query": "Lungomare Cristoforo Colombo, Castrignano del Capo, Italia"
+  },
   "lungomare dante alighieri|trapani|tp": {
    "class": "highway",
    "lat": 38.018392,
@@ -685,6 +730,16 @@
    "queried_on": "2026-10-25",
    "query": "MANGERI, Asola, Italia",
    "type": "square"
+  },
+  "marina garibaldi|milazzo|me": {
+   "class": "highway",
+   "lat": 38.223121,
+   "lng": 15.243222,
+   "name": "Marina Garibaldi, Milazzo, Messina, Sicilia, 98057, Italia",
+   "osm": "relation/1984474",
+   "queried_on": "2026-10-29",
+   "query": "Marina Garibaldi, Milazzo, Italia",
+   "type": "pedestrian"
   },
   "mercatino del centro storico|saronno|va": {
    "miss": "nessun_risultato",
@@ -1121,6 +1176,16 @@
    "queried_on": "2026-10-25",
    "query": "piazza Alfieri, Asti, Italia"
   },
+  "piazza almerico da schio|schio|vi": {
+   "class": "highway",
+   "lat": 45.715753,
+   "lng": 11.358357,
+   "name": "Piazza Almerico da Schio, Magrè, Schio, Vicenza, Veneto, 36015, Italia",
+   "osm": "way/258099638",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Almerico Da Schio, Schio, Italia",
+   "type": "pedestrian"
+  },
   "piazza antelminelli di finaco alla cattedrale|lucca|lu": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -1180,6 +1245,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
    "query": "Piazza Barbato, Padova, Italia"
+  },
+  "piazza basilica|tirano|so": {
+   "class": "highway",
+   "lat": 46.217866,
+   "lng": 10.15544,
+   "name": "Piazza della Basilica, Madonna, Roncaiola, Tirano, Comunità montana della Valtellina di Tirano, Sondrio, Lombardia, 23037, Italia",
+   "osm": "way/1512615025",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Basilica, Tirano, Italia",
+   "type": "pedestrian"
   },
   "piazza berlinguer|ferrara|fe": {
    "class": "highway",
@@ -1316,6 +1391,26 @@
    "query": "Piazza Carlo Mazzaresi, Roma, Italia",
    "type": "residential"
   },
+  "piazza carmine|reggio di calabria|rc": {
+   "class": "highway",
+   "lat": 38.10437,
+   "lng": 15.641519,
+   "name": "Piazza Carmine, Reggio di Calabria, Reggio Calabria, Calabria, 89127, Italia",
+   "osm": "way/443887807",
+   "queried_on": "2026-10-29",
+   "query": "PIAZZA Carmine, Reggio di Calabria, Italia",
+   "type": "pedestrian"
+  },
+  "piazza castello|benevento|bn": {
+   "class": "highway",
+   "lat": 41.129069,
+   "lng": 14.78288,
+   "name": "Piazza Castello, Trappeto, Ponticelli, Benevento, Campania, 82100, Italia",
+   "osm": "way/345713691",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Castello, Benevento, Italia",
+   "type": "pedestrian"
+  },
   "piazza castello|lodi|lo": {
    "class": "place",
    "lat": 45.312303,
@@ -1390,6 +1485,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA Cavour, Castelfiorentino, Italia",
    "type": "service"
+  },
+  "piazza cavour|cocconato|at": {
+   "class": "place",
+   "lat": 45.086101,
+   "lng": 8.040294,
+   "name": "Piazza Cavour, Bonvino, Cocconato, Asti, Piemonte, Italia",
+   "osm": "way/544508157",
+   "queried_on": "2026-10-29",
+   "query": "Piazza cavour, Cocconato, Italia",
+   "type": "square"
   },
   "piazza cavour|favara|ag": {
    "class": "place",
@@ -1776,6 +1881,16 @@
    "query": "Piazza del Carmine, Lucca, Italia",
    "type": "square"
   },
+  "piazza del carmine|pavia|pv": {
+   "class": "highway",
+   "lat": 45.187337,
+   "lng": 9.152426,
+   "name": "Piazza del Carmine, Borgo Ticino, Pavia, Lombardia, 27100, Italia",
+   "osm": "way/466977129",
+   "queried_on": "2026-10-29",
+   "query": "PIAZZA del Carmine, Pavia, Italia",
+   "type": "pedestrian"
+  },
   "piazza del comune|cremona|cr": {
    "class": "highway",
    "lat": 45.133389,
@@ -1880,6 +1995,16 @@
    "queried_on": "2026-10-29",
    "query": "PIAZZA della Costituzione, Cuneo, Italia",
    "type": "pedestrian"
+  },
+  "piazza della costituzione|san vincenzo|li": {
+   "class": "place",
+   "lat": 43.09756,
+   "lng": 10.539304,
+   "name": "Piazza della Costituzione, San Vincenzo, Livorno, Toscana, Italia",
+   "osm": "relation/18943122",
+   "queried_on": "2026-10-29",
+   "query": "Piazza della Costituzione, San Vincenzo, Italia",
+   "type": "square"
   },
   "piazza della liberta|alessandria|al": {
    "class": "place",
@@ -2020,6 +2145,11 @@
    "queried_on": "2026-10-25",
    "query": "Piazza Della Santissima Annunziata, Firenze, Italia",
    "type": "pedestrian"
+  },
+  "piazza della stazione|pontedera|pi": {
+   "miss": "via_diversa",
+   "queried_on": "2026-10-29",
+   "query": "PIAZZA della Stazione, Pontedera, Italia"
   },
   "piazza della vittoria|abbasanta|or": {
    "class": "place",
@@ -2165,6 +2295,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Donatori di Sangue, Cerea, Italia",
    "type": "parking"
+  },
+  "piazza donatori di sangue|gambara|bs": {
+   "class": "highway",
+   "lat": 45.253721,
+   "lng": 10.292052,
+   "name": "Piazza Donatori di Sangue, Gambara, Brescia, Lombardia, 25020, Italia",
+   "osm": "way/235650312",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Donatori di sangue, Gambara, Italia",
+   "type": "pedestrian"
   },
   "piazza donatori di sangue|mogliano veneto|tv": {
    "miss": "nessun_risultato",
@@ -2366,6 +2506,16 @@
    "queried_on": "2026-10-27",
    "query": "piazza G. Marconi, Val Liona, Italia"
   },
+  "piazza gabbin|preganziol|tv": {
+   "class": "highway",
+   "lat": 45.602027,
+   "lng": 12.235329,
+   "name": "Piazza Giuseppe Gabbin, Case Torresan, Preganziol, Treviso, Veneto, 31022, Italia",
+   "osm": "way/42403258",
+   "queried_on": "2026-10-29",
+   "query": "PIAZZA Gabbin, Preganziol, Italia",
+   "type": "pedestrian"
+  },
   "piazza galvaligi|gazzada schianno|va": {
    "class": "highway",
    "lat": 45.77795,
@@ -2416,6 +2566,11 @@
    "query": "piazza Garibaldi, Ravenna, Italia",
    "type": "parking"
   },
+  "piazza garibaldi|trevi|pg": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Garibaldi, Trevi, Italia"
+  },
   "piazza garzetti|trento|tn": {
    "class": "place",
    "lat": 46.065919,
@@ -2465,6 +2620,16 @@
    "queried_on": "2026-10-25",
    "query": "piazza Ghiberti, Firenze, Italia",
    "type": "estate_agent"
+  },
+  "piazza giacomo manzu|clusone|bg": {
+   "class": "highway",
+   "lat": 45.888845,
+   "lng": 9.94395,
+   "name": "Piazza Giacomo Manzù, Clusone, Comunità Montana della Valle Seriana, Bergamo, Lombardia, 24023, Italia",
+   "osm": "way/454671076",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Giacomo Manzù, Clusone, Italia",
+   "type": "pedestrian"
   },
   "piazza giacomo matteotti|genova|ge": {
    "class": "highway",
@@ -3146,6 +3311,16 @@
    "query": "PIAZZA Micellone, San Giorio di Susa, Italia",
    "type": "service"
   },
+  "piazza montebello|saluzzo|cn": {
+   "class": "highway",
+   "lat": 44.647266,
+   "lng": 7.485543,
+   "name": "Piazza Montebello, Saluzzo, Cuneo, Piemonte, 12037, Italia",
+   "osm": "way/158325007",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Montebello, Saluzzo, Italia",
+   "type": "residential"
+  },
   "piazza municipio|angiari|vr": {
    "class": "highway",
    "lat": 45.217976,
@@ -3361,10 +3536,30 @@
    "query": "PIAZZA Regina Elena, Avola, Italia",
    "type": "square"
   },
+  "piazza riolfatti|villa lagarina|tn": {
+   "class": "place",
+   "lat": 45.915782,
+   "lng": 11.030999,
+   "name": "Piazza Giovanni Battista Riolfatti, 6, Villa Lagarina, Comunità della Vallagarina, Provincia di Trento, Trentino-Alto Adige/Südtirol, Italia",
+   "osm": "way/48747310",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Riolfatti, Villa Lagarina, Italia",
+   "type": "square"
+  },
   "piazza risorgimento|gazzuolo|mn": {
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
    "query": "PIAZZA RISORGIMENTO, Gazzuolo, Italia"
+  },
+  "piazza risorgimento|quarrata|pt": {
+   "class": "highway",
+   "lat": 43.847504,
+   "lng": 10.977687,
+   "name": "Piazza Risorgimento, Valenzatico, Quarrata, Pistoia, Toscana, 51039, Italia",
+   "osm": "way/176667821",
+   "queried_on": "2026-10-29",
+   "query": "PIAZZA Risorgimento, Quarrata, Italia",
+   "type": "pedestrian"
   },
   "piazza risorgimento|san giorgio del sannio|bn": {
    "class": "place",
@@ -3471,6 +3666,16 @@
    "query": "Piazza San Costanzo, Badia Polesine, Italia",
    "type": "pedestrian"
   },
+  "piazza san fedele|como|co": {
+   "class": "place",
+   "lat": 45.809476,
+   "lng": 9.084134,
+   "name": "Piazza San Fedele, Città murata, Sant'Agostino, Como, Lombardia, Italia",
+   "osm": "way/25071121",
+   "queried_on": "2026-10-29",
+   "query": "Piazza San Fedele, Como, Italia",
+   "type": "square"
+  },
   "piazza san francesco della croce|dairago|mi": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -3546,6 +3751,16 @@
    "query": "Piazza San Marco, Pieve del Grappa, Italia",
    "type": "secondary"
   },
+  "piazza san martino|lucca|lu": {
+   "class": "place",
+   "lat": 43.840805,
+   "lng": 10.505053,
+   "name": "Piazza San Martino, Sant'Anna, Monte San Quirico, Lucca, Toscana, Italia",
+   "osm": "way/35980467",
+   "queried_on": "2026-10-29",
+   "query": "Piazza San Martino, Lucca, Italia",
+   "type": "square"
+  },
   "piazza san mauro|paese|tv": {
    "class": "highway",
    "lat": 45.689366,
@@ -3585,6 +3800,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "Piazza San Rocco-Via Del Pratello, Bologna, Italia"
+  },
+  "piazza san sebastiano|limone piemonte|cn": {
+   "class": "highway",
+   "lat": 44.199237,
+   "lng": 7.576896,
+   "name": "Piazza San Sebastiano, Limone Piemonte, Cuneo, Piemonte, 12015, Italia",
+   "osm": "way/94339087",
+   "queried_on": "2026-10-29",
+   "query": "Piazza san sebastiano, Limone Piemonte, Italia",
+   "type": "residential"
   },
   "piazza san siro|sanremo|im": {
    "class": "place",
@@ -3966,6 +4191,16 @@
    "query": "Piazza Vittorio Emanuele III, Arcade, Italia",
    "type": "secondary"
   },
+  "piazza vittorio emanuele ii|rieti|ri": {
+   "class": "place",
+   "lat": 42.402439,
+   "lng": 12.860465,
+   "name": "Piazza Vittorio Emanuele II, Centro storico, Regina Pacis, Rieti, Lazio, Italia",
+   "osm": "relation/1599169",
+   "queried_on": "2026-10-29",
+   "query": "Piazza Vittorio Emanuele II, Rieti, Italia",
+   "type": "square"
+  },
   "piazza vittorio veneto|sona|vr": {
    "class": "highway",
    "lat": 45.453159,
@@ -3985,6 +4220,11 @@
    "queried_on": "2026-10-25",
    "query": "piazza Vittorio Veneto, Torino, Italia",
    "type": "square"
+  },
+  "piazza wojtyla|porto sant elpidio|fm": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-29",
+   "query": "PIAZZA Wojtyla, Porto Sant'Elpidio, Italia"
   },
   "piazza xx settembre|melara|ro": {
    "miss": "nessun_risultato",
@@ -4060,6 +4300,11 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
    "query": "Piazzale Dei Caduti, Viterbo, Italia"
+  },
+  "piazzale dell autoscuola|villanterio|pv": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-29",
+   "query": "Piazzale dell'autoscuola, Villanterio, Italia"
   },
   "piazzale della scienza|bergamo|bg": {
    "class": "highway",
@@ -4195,6 +4440,11 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "PIAZZETTA Cremona, Brescia, Italia"
+  },
+  "piazzetta di roges|rende|cs": {
+   "miss": "via_diversa",
+   "queried_on": "2026-10-29",
+   "query": "PIAZZETTA di Roges, Rende, Italia"
   },
   "piazzetta don antonio gavinelli|bologna|bo": {
    "class": "highway",
@@ -4696,6 +4946,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA Cappuccini, Tirano, Italia"
   },
+  "via carlo alberto dalla chiesa|cologno monzese|mi": {
+   "class": "highway",
+   "lat": 45.530157,
+   "lng": 9.285427,
+   "name": "Via Carlo Alberto Dalla Chiesa, San Giuliano Monzese, Cologno Monzese, Rodano, Milano, Lombardia, 20093, Italia",
+   "osm": "way/1024654426",
+   "queried_on": "2026-10-29",
+   "query": "Via Carlo Alberto Dalla Chiesa, Cologno Monzese, Italia",
+   "type": "unclassified"
+  },
   "via carroccio|erba|co": {
    "class": "highway",
    "lat": 45.804562,
@@ -4945,6 +5205,16 @@
    "queried_on": "2026-10-25",
    "query": "Via Dameta, Roma, Italia",
    "type": "tertiary"
+  },
+  "via de carlo|pavia|pv": {
+   "class": "highway",
+   "lat": 45.202287,
+   "lng": 9.130773,
+   "name": "Via De Carlo, Cravino, Pavia, Lombardia, 27100, Italia",
+   "osm": "way/1290222943",
+   "queried_on": "2026-10-29",
+   "query": "VIA De Carlo, Pavia, Italia",
+   "type": "residential"
   },
   "via de zorzi|sesto san giovanni|mi": {
    "class": "highway",
@@ -5521,6 +5791,16 @@
    "query": "via Galata, Genova, Italia",
    "type": "residential"
   },
+  "via galliera|bologna|bo": {
+   "class": "highway",
+   "lat": 44.500223,
+   "lng": 11.342986,
+   "name": "Via Galliera, Pioggia, Marconi, Porto-Saragozza, Bologna, Emilia-Romagna, 40121, Italia",
+   "osm": "way/782187382",
+   "queried_on": "2026-10-29",
+   "query": "VIA Galliera, Bologna, Italia",
+   "type": "residential"
+  },
   "via garavaglia piazza spadolini|bologna|bo": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
@@ -5770,6 +6050,11 @@
    "queried_on": "2026-10-25",
    "query": "VIA JACOPO DELLA QUERCIA, Monticello Brianza, Italia",
    "type": "unclassified"
+  },
+  "via jakobi 1 a|terlano|bz": {
+   "miss": "solo_localita",
+   "queried_on": "2026-10-29",
+   "query": "Via Jakobi 1/A, Terlano, Italia"
   },
   "via johann kravogl|lana|bz": {
    "class": "highway",
@@ -6266,6 +6551,16 @@
    "query": "VIA PAPA GIOVANNI XXIII, Motta Visconti, Italia",
    "type": "residential"
   },
+  "via papa giovanni xxiii|prato|po": {
+   "class": "highway",
+   "lat": 43.87475,
+   "lng": 11.118801,
+   "name": "Via Papa Giovanni XXIII, I lecci, Prato, Toscana, 59100, Italia",
+   "osm": "way/23707697",
+   "queried_on": "2026-10-29",
+   "query": "VIA Papa Giovanni XXIII, Prato, Italia",
+   "type": "residential"
+  },
   "via papa giovanni xxiii|sesto san giovanni|mi": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-29",
@@ -6284,6 +6579,26 @@
    "osm": "way/48585804",
    "queried_on": "2026-10-25",
    "query": "Via Pasquale II, Roma, Italia",
+   "type": "tertiary"
+  },
+  "via pasquale paoli|milano|mi": {
+   "class": "highway",
+   "lat": 45.45042,
+   "lng": 9.171889,
+   "name": "Via Pasquale Paoli, Navigli, Municipio 6, Milano, Rodano, Milano, Lombardia, 20143, Italia",
+   "osm": "way/4604803",
+   "queried_on": "2026-10-29",
+   "query": "via Pasquale Paoli, Milano, Italia",
+   "type": "residential"
+  },
+  "via pastrengo|pavia|pv": {
+   "class": "highway",
+   "lat": 45.190811,
+   "lng": 9.186697,
+   "name": "Via Pastrengo, Villa Serafina, Vallone, Pavia, Lombardia, 27100, Italia",
+   "osm": "way/766463211",
+   "queried_on": "2026-10-29",
+   "query": "VIA Pastrengo, Pavia, Italia",
    "type": "tertiary"
   },
   "via per camaiore|lucca|lu": {
@@ -6406,6 +6721,16 @@
    "query": "Via Pieve Di Cadore, Bologna, Italia",
    "type": "residential"
   },
+  "via pitz e serra|quartu sant elena|ca": {
+   "class": "highway",
+   "lat": 39.240529,
+   "lng": 9.2187,
+   "name": "Via Pitz'e Serra, Claru Bidda, Mràxini Arrùbiu/Margine Rosso, Quartu Sant'Aleni/Quartu Sant'Elena, Casteddu/Cagliari, Sardigna/Sardegna, 09045, Italia",
+   "osm": "way/878770540",
+   "queried_on": "2026-10-29",
+   "query": "VIA Pitz'e Serra, Quartu Sant'Elena, Italia",
+   "type": "tertiary"
+  },
   "via pizzigoni|san miniato|pi": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -6470,6 +6795,16 @@
    "queried_on": "2026-10-25",
    "query": "Via Prosperi, La Spezia, Italia",
    "type": "residential"
+  },
+  "via provinciale|isola del giglio|gr": {
+   "class": "highway",
+   "lat": 42.372164,
+   "lng": 10.88551,
+   "name": "Via Provinciale di Campese, Villaggio Grotte, Giglio Campese, Isola del Giglio, Grosseto, Toscana, 58012, Italia",
+   "osm": "way/306643473",
+   "queried_on": "2026-10-29",
+   "query": "Via Provinciale, Isola del Giglio, Italia",
+   "type": "secondary"
   },
   "via provinciale|mello|so": {
    "class": "highway",
@@ -6665,6 +7000,11 @@
    "queried_on": "2026-10-25",
    "query": "via Roma, Ragusa, Italia",
    "type": "residential"
+  },
+  "via roma|reggio nell emilia|re": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-10-29",
+   "query": "Via Roma, Reggio nell'Emilia, Italia"
   },
   "via roma|roncade|tv": {
    "class": "highway",
@@ -7321,6 +7661,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA ZANICA AREA BOCCIODROMO COMUNALE, Grassobbio, Italia"
   },
+  "via zarini|prato|po": {
+   "class": "highway",
+   "lat": 43.868227,
+   "lng": 11.104366,
+   "name": "Via Adriano Zarini, Centro Direzionale, Prato, Toscana, 59100, Italia",
+   "osm": "way/29092500",
+   "queried_on": "2026-10-29",
+   "query": "VIA Zarini, Prato, Italia",
+   "type": "tertiary"
+  },
   "viale adriatico|roma|rm": {
    "class": "highway",
    "lat": 41.937663,
@@ -7545,6 +7895,16 @@
    "queried_on": "2026-10-27",
    "query": "Viale Margherita, Portobuffolè, Italia",
    "type": "unclassified"
+  },
+  "viale matteotti|fiorenzuola d arda|pc": {
+   "class": "highway",
+   "lat": 44.930779,
+   "lng": 9.907735,
+   "name": "Viale Matteotti, Fiorenzuola d'Arda, Piacenza, Emilia-Romagna, 29017, Italia",
+   "osm": "way/609549052",
+   "queried_on": "2026-10-29",
+   "query": "Viale Matteotti, Fiorenzuola d'Arda, Italia",
+   "type": "secondary"
   },
   "viale matteotti|pavia|pv": {
    "class": "highway",

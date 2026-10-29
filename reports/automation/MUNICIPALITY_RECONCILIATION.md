@@ -4,12 +4,13 @@ Fonte: https://www.istat.it/classificazione/codici-dei-comuni-delle-province-e-d
 File originale ISTAT aggiornato al 21 febbraio 2026, licenza CC BY 4.0.
 Questo controllo non dimostra che un mercato sia aperto.
 
-- Record analizzati: 14223
+- Record analizzati: 14273
 - Località già sospette: 2
 - Proposte supportate da Comune/provincia ISTAT e titolo: 0
 - Da verificare manualmente: 2
 - Calendari potenzialmente confusi fra mercati diversi: 0
-- Comuni corretti in DEV: 0
+- Comuni corretti in DEV: 60
+- Località della fonte ricondotte al comune ISTAT (S31): 634, in attesa entro il tetto notturno: 574
 - Record con date previste sospese: 0
 - Province riconciliate con Comune e regione ISTAT: 0
 - Province in attesa del prossimo ciclo entro il tetto complessivo di 80 modifiche: 0

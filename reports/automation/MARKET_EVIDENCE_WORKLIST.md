@@ -3,34 +3,34 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14273**
+- ID controllati e conservati: **14321**
 - Etichette di fonte: **92**
-- Casi nel lotto di lavoro del giorno: **468**
+- Casi nel lotto di lavoro del giorno: **470**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **14184**
-- date: **2317**
-- indirizzo: **4969**
-- individual_edition_confirmation: **14273**
-- orario_testo: **1777**
-- ricorrenza_testo: **1042**
+- coordinates: **14232**
+- date: **2341**
+- indirizzo: **4982**
+- individual_edition_confirmation: **14321**
+- orario_testo: **1787**
+- ricorrenza_testo: **1067**
 
 ## Origini ordinate per numero di schede
 
 | Origine | Schede | Orari | Sedi | Trattamento |
 |---|---:|---:|---:|---|
-| happings.com | 9897 | 692 | 4344 | happings-weekly-or-detail |
+| happings.com | 9913 | 692 | 4344 | happings-weekly-or-detail |
 | eventiesagre.it | 2200 | 362 | 482 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 3 | lombardia-mercap |
-| cosedicasa.com | 442 | 195 | 11 | cosedicasa-editorial-calendar |
+| cosedicasa.com | 442 | 194 | 16 | cosedicasa-editorial-calendar |
+| vintagery.it | 96 | 32 | 22 | source-family-not-resolved-by-this-worklist |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
-| vintagery.it | 64 | 21 | 14 | source-family-not-resolved-by-this-worklist |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 | 0 | 0 | source-family-not-resolved-by-this-worklist |
 | cosafareafirenze.it | 22 | 4 | 0 | source-family-not-resolved-by-this-worklist |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | 14 | 1 | 0 | source-family-not-resolved-by-this-worklist |
@@ -123,7 +123,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 12
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 13064
+- no_usable_source_match: 13112
 - review_only_field_candidates: 42
 - same_source_id: 789
 - unique_city_province_street_weekday: 380

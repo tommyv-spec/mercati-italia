@@ -4,23 +4,23 @@
   "coordinates_created": 0,
   "daily_detailed_tasks_saved_in_git": false,
   "daily_shard": 10,
-  "daily_worklist_count": 468,
+  "daily_worklist_count": 470,
   "distinct_source_labels": 92,
-  "incomplete_market_records_retained": 14273,
+  "incomplete_market_records_retained": 14321,
   "market_fields_changed": 0,
-  "market_identities_preserved": 14273,
-  "market_records_scanned": 14273,
+  "market_identities_preserved": 14321,
+  "market_records_scanned": 14321,
   "market_rows_added": 0,
   "market_rows_removed": 0,
   "may_enable_source_crawlers": false,
   "may_grant_source_reuse_rights": false,
   "missing_by_field": {
-    "coordinates": 14184,
-    "date": 2317,
-    "indirizzo": 4969,
-    "individual_edition_confirmation": 14273,
-    "orario_testo": 1777,
-    "ricorrenza_testo": 1042
+    "coordinates": 14232,
+    "date": 2341,
+    "indirizzo": 4982,
+    "individual_edition_confirmation": 14321,
+    "orario_testo": 1787,
+    "ricorrenza_testo": 1067
   },
   "official_join_results": {
     "city_weekday_only_unconfirmed_venue": 40,
@@ -28,14 +28,14 @@
     "exact_field_evidence_candidates": 0,
     "many_market_places_on_same_city_day": 12,
     "multiple_official_venues_on_same_street_day": 2,
-    "no_usable_source_match": 13064,
+    "no_usable_source_match": 13112,
     "review_only_field_candidates": 42,
     "same_source_id": 789,
     "unique_city_province_street_weekday": 380
   },
   "official_source_records": 1360,
   "official_source_status": "fresh_dataset_not_market_confirmation",
-  "original_market_ids_sha256": "5eacd39be10623198fc2b704609c1ef9c3df6c1fa7078082d82439c62797df7d",
+  "original_market_ids_sha256": "43823c131ec1cca23d8a28dd894bcbdbfe0ac90e6055b1fd749e8d445fc2784d",
   "publisher_copyright_permissions_inferred": false,
   "report_only": true,
   "schema": 1,
@@ -57,16 +57,16 @@
       },
       "bulk_scrape_allowed": true,
       "missing_fields": {
-        "coordinates": 9897,
-        "date": 173,
+        "coordinates": 9913,
+        "date": 200,
         "indirizzo": 4344,
-        "individual_edition_confirmation": 9897,
+        "individual_edition_confirmation": 9913,
         "orario_testo": 692,
         "ricorrenza_testo": 47
       },
       "next_automation": "existing_happings_weekly_index_adapter_then_official_cross_match",
       "publisher": "happings.com",
-      "records": 9897,
+      "records": 9913,
       "reuse_status": "project_owner_authorized",
       "source_family": "happings-weekly-or-detail",
       "source_rows_removed": 0
@@ -76,7 +76,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2200,
-        "date": 1277,
+        "date": 1305,
         "indirizzo": 482,
         "individual_edition_confirmation": 2200,
         "orario_testo": 362,
@@ -111,10 +111,10 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 442,
-        "date": 176,
-        "indirizzo": 11,
+        "date": 145,
+        "indirizzo": 16,
         "individual_edition_confirmation": 442,
-        "orario_testo": 195,
+        "orario_testo": 194,
         "ricorrenza_testo": 7
       },
       "next_automation": "check_page_schema_read_only_then_find_primary_organizer",
@@ -122,6 +122,23 @@
       "records": 442,
       "reuse_status": "no_verified_bulk_reuse_permission",
       "source_family": "cosedicasa-editorial-calendar",
+      "source_rows_removed": 0
+    },
+    {
+      "authorization": null,
+      "bulk_scrape_allowed": false,
+      "missing_fields": {
+        "coordinates": 96,
+        "indirizzo": 22,
+        "individual_edition_confirmation": 96,
+        "orario_testo": 32,
+        "ricorrenza_testo": 79
+      },
+      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
+      "publisher": "vintagery.it",
+      "records": 96,
+      "reuse_status": "not_resolved_by_this_worklist",
+      "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
     },
     {
@@ -167,23 +184,6 @@
       "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "dati.comune.roma.it",
       "records": 70,
-      "reuse_status": "not_resolved_by_this_worklist",
-      "source_family": "source-family-not-resolved-by-this-worklist",
-      "source_rows_removed": 0
-    },
-    {
-      "authorization": null,
-      "bulk_scrape_allowed": false,
-      "missing_fields": {
-        "coordinates": 64,
-        "indirizzo": 14,
-        "individual_edition_confirmation": 64,
-        "orario_testo": 21,
-        "ricorrenza_testo": 54
-      },
-      "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
-      "publisher": "vintagery.it",
-      "records": 64,
       "reuse_status": "not_resolved_by_this_worklist",
       "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0

@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14273,
-    "ids_retained": 14273,
-    "generic_weekly_with_specific_venue": 6027,
+    "original_records": 14321,
+    "ids_retained": 14321,
+    "generic_weekly_with_specific_venue": 6024,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3734,
+    "venue_groups_examined": 3733,
     "highly_supported_same_source_visit_groups": 937,
-    "suppressed_repeat_buttons_only": 1102,
-    "original_records_in_reversible_groups": 2039,
+    "suppressed_repeat_buttons_only": 1101,
+    "original_records_in_reversible_groups": 2038,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -29,13 +29,13 @@
     },
     {
       "region": "Lombardia",
-      "groups": 640,
-      "extra_display_entries": 701
+      "groups": 641,
+      "extra_display_entries": 702
     },
     {
       "region": "Piemonte",
-      "groups": 110,
-      "extra_display_entries": 166
+      "groups": 109,
+      "extra_display_entries": 164
     },
     {
       "region": "Sicilia",

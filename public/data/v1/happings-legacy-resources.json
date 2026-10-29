@@ -133,21 +133,34 @@
       "status": "resolved"
     },
     {
-      "attempts": 0,
+      "attempts": 2,
       "city_keys": [
         "avellino"
       ],
       "first_seen_on": "2026-10-27",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-10-29",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-1.html",
+      "next_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-1.html",
       "proof": null,
       "province": "AV",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-1/",
+          "observed_on": "2026-10-29",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-1.html",
+          "status_code": 301
+        },
+        {
+          "location_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+          "observed_on": "2026-10-29",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-1/",
+          "status_code": 301
+        }
+      ],
       "region": "campania",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,
