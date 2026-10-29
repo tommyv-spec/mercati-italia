@@ -92,7 +92,7 @@ from existing_source_refresh import (
     run_editorial as refresh_existing_editorial_sources,
     persist_editorial_states, verify_editorial_export,
     run_roma as refresh_roma_d881, verify_roma_fields,
-    STATE_FILENAMES as EXISTING_SOURCE_STATES, EDITORIAL_SECONDS,
+    STATE_FILENAMES as EXISTING_SOURCE_STATES,
 )
 import editorial_discovery
 import vintagery_source
@@ -1219,11 +1219,9 @@ def run(args):
         page_rows, out=out, state_dir=manifest_path.parent, today=args.today,
         baseline_signature=baseline_id, policy_digest=policy_id,
         config=existing_source_config, offline=args.offline, resume=args.resume,
-        # MAIN's existing 20-minute job is not extended. Concurrent readers
-        # also retain their shorter publisher allowances (Citynews: 60 s).
-        # Discovery of new pages gets its share of the same editorial window.
-        deadline=min(start + 20 * 60, time.monotonic() + EDITORIAL_SECONDS
-                     - editorial_discovery.reserved_seconds(discovery_config)),
+        # Each concurrent reader gets its own whole allowance (Citynews: 60 s). It used
+        # to give discovery 420 of the 600 s to fit the old 20-minute GitHub job, so the
+        # re-reads ran ~3 minutes a night; discovery has its own deadline below.
     )
     save_json(out / "intermediate/editorial-source-refreshed.json", editorial_rows)
     checkpoint(out, "editorial_sources", {

@@ -580,7 +580,7 @@ class EditorialQueueTests(unittest.TestCase):
 
     def test_request_policy_cannot_enable_new_ids_or_increase_limits(self):
         self.assertEqual(validate_policy()["max_seconds"], 600)
-        for key, value in (("max_details", 129), ("max_seconds", 601),
+        for key, value in (("max_details", 257), ("max_seconds", 601),
                            ("new_market_ids_allowed", True), ("overwrite_unowned_fields", True),
                            ("min_delay_seconds", 0)):
             with self.subTest(key=key), self.assertRaises(ValueError):
@@ -839,8 +839,8 @@ class CoseDiCasaBridgeTests(unittest.TestCase):
 
     def test_cdc_quota_is_independent_and_cannot_borrow_ees_time(self):
         policy = validate_policy(publisher=CDC)
-        self.assertEqual((policy["max_details"], policy["max_seconds"]), (64, 300))
-        for change in ({"max_details": 65}, {"max_seconds": 301}):
+        self.assertEqual((policy["max_details"], policy["max_seconds"]), (128, 600))
+        for change in ({"max_details": 129}, {"max_seconds": 601}):
             with self.assertRaises(ValueError):
                 validate_policy({**policy, **change}, publisher=CDC)
 

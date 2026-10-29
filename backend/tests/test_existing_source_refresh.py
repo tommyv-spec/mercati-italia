@@ -106,10 +106,12 @@ class ExistingSourceIntegrationTests(unittest.TestCase):
         def observe(*args, **kwargs):
             deadlines[kwargs["publisher"]] = kwargs["deadline"]
             return original(*args, **kwargs)
+        config = deepcopy(self.config)
+        config["editorial"][CDC]["max_seconds"] = 250   # a host allowance shorter than the window
         with patch.object(editorial, "run", side_effect=observe):
             integration.run_editorial([row(), cdc_row("bologna")],
-                **self.args(offline=True, monotonic=lambda: 100.0, deadline=500.0))
-        self.assertEqual(deadlines, {"eventiesagre.it": 500.0, CDC: 400.0})
+                **self.args(offline=True, monotonic=lambda: 100.0, deadline=500.0, config=config))
+        self.assertEqual(deadlines, {"eventiesagre.it": 500.0, CDC: 350.0})
 
     def test_global_disabled_configuration_never_reads_eligible_sources(self):
         config = integration.configuration(enabled=False)

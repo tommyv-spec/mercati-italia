@@ -148,8 +148,8 @@
     },
     "details": {
       "enabled": true,
-      "max_requests": 128,
-      "max_seconds": 420,
+      "max_requests": 256,
+      "max_seconds": 1500,
       "admit_new": true,
       "max_new": 32,
       "home_navigation": true

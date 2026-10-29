@@ -353,7 +353,7 @@ class HappingsDetailDiscoveryTests(unittest.TestCase):
         self.assertEqual(len(pages), 128)
         self.assertEqual(report["pending_detail_urls"], 1)
         self.assertEqual(report["budget_stop"], "request_limit")
-        self.assertEqual(report["max_seconds"], 420)
+        self.assertEqual(report["max_seconds"], 1500)
 
     def test_robots_denial_never_calls_fetcher(self):
         state = discovery.seed_state(seed_urls=[PISA], observed_at=TODAY)
@@ -394,11 +394,11 @@ class HappingsDetailDiscoveryTests(unittest.TestCase):
                     acquire(item, fetcher=Mock())
 
     def test_budget_bounds_do_not_allow_bool_or_unbounded_values(self):
-        for value in (-1, 129, True, "3"):
+        for value in (-1, 257, True, "3"):
             with self.subTest(value=value):
                 with self.assertRaises(ValueError):
                     acquire(discovery.empty_state(), max_requests=value, fetcher=Mock())
-        for value in (0, 421, True, "420"):
+        for value in (0, 1501, True, "420"):
             with self.subTest(max_seconds=value), self.assertRaises(ValueError):
                 acquire(discovery.empty_state(), max_seconds=value, fetcher=Mock())
 

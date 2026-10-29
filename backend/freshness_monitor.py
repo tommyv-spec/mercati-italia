@@ -13,8 +13,10 @@ from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
+from export_static import own_source_last_read
 from field_evidence import audit as audit_field_evidence
 from merge_catalog import load_existing
+from quality_scorecard import page_reads as detail_page_reads
 from source_freshness import as_day, source_date_evidence, source_url_domain
 
 SCHEMA = 1
@@ -26,7 +28,7 @@ def days_since(value, today):
     return None if parsed is None else (today - parsed).days
 
 
-def analyze(records, today, publisher_evidence=None, max_source_age_days=540):
+def analyze(records, today, publisher_evidence=None, max_source_age_days=540, page_reads=None):
     if not isinstance(records, list) or max_source_age_days < 1:
         raise ValueError("Invalid catalog or freshness policy")
     counts = Counter()
@@ -84,9 +86,11 @@ def analyze(records, today, publisher_evidence=None, max_source_age_days=540):
             if age > max_source_age_days:
                 row_counts["source_date_outside_limit"] += 1
 
-        for field, metric in (("importato_il", "import"),
-                              ("fonte_letta_il", "source_read")):
-            timestamp_age = days_since(row.get(field), today)
+        # A read is the last read of the market's OWN source, the publishers' page
+        # re-read cycles included (they do not rewrite fonte_letta_il on every card).
+        for field, metric, value in (("importato_il", "import", row.get("importato_il")),
+                                     ("fonte_letta_il", "source_read", own_source_last_read(row, page_reads))):
+            timestamp_age = days_since(value, today)
             if timestamp_age is None:
                 row_counts["without_" + metric + "_timestamp"] += 1
                 if row.get(field):
@@ -338,7 +342,7 @@ def main():
     evidence = json.loads(args.publisher_evidence.read_text("utf-8")) if (
         args.publisher_evidence and args.publisher_evidence.is_file()) else None
     result = analyze(load_existing(args.manifest), args.today, evidence,
-                     args.max_source_age_days)
+                     args.max_source_age_days, detail_page_reads(args.manifest.parent))
     refresh_decision = args.out.parent / "release-decision.json"
     if refresh_decision.is_file():
         add_refresh_evidence(result, json.loads(refresh_decision.read_text("utf-8")),

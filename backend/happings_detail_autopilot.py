@@ -45,7 +45,7 @@ def validate_policy(policy):
             or type(policy.get("max_requests", DEFAULT_POLICY["max_requests"])) is not int
             or not 1 <= policy.get("max_requests", DEFAULT_POLICY["max_requests"]) <= discovery.MAX_REQUESTS
             or type(policy.get("max_seconds", DEFAULT_POLICY["max_seconds"])) is not int
-            or not 1 <= policy.get("max_seconds", DEFAULT_POLICY["max_seconds"]) <= 420
+            or not 1 <= policy.get("max_seconds", DEFAULT_POLICY["max_seconds"]) <= discovery.MAX_SECONDS
             or type(policy.get("max_new", 32)) is not int
             or not 1 <= policy.get("max_new", 32) <= 32):
         raise ValueError("Unreviewed Happings detail policy")

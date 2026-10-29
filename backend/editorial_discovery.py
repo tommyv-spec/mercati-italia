@@ -159,11 +159,6 @@ def _active(config, publisher):
     return config["enabled"] and config["publishers"][publisher]["enabled"]
 
 
-def reserved_seconds(config):
-    """Wall-clock time the daily job keeps aside for discovery."""
-    return max((config["publishers"][p]["max_seconds"] for p in ORDER if _active(config, p)), default=0)
-
-
 def _caps(config):
     return {p: config["publishers"][p]["max_new"]
             if _active(config, p) and config["publishers"][p]["new_market_ids_allowed"] is True else 0

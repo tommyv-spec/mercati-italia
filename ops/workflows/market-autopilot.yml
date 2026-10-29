@@ -100,7 +100,7 @@ jobs:
     needs: prune_old_qa_artifacts
     name: Source → merge → recurrence → export → quality gates
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 120
     permissions:
       contents: read
     steps:

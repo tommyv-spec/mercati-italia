@@ -48,7 +48,7 @@ POLICY_PATH = Path(__file__).resolve().parent / "data/editorial-detail-refresh-p
 USER_AGENT = "MercatiItaliaEditorialRefresh/1.0"
 MAX_RESOURCES = 6000
 MAX_STATE_BYTES = 6_000_000
-MAX_DETAILS = 128
+MAX_DETAILS = 256
 MAX_SECONDS = 600
 DEFAULT_POLICY = {"enabled": True, "max_details": 64, "max_seconds": 210,
                   "min_delay_seconds": 2, "overdue_after_days": 45,
@@ -66,9 +66,9 @@ CALENDAR_ISSUES = {"edition_dates_missing_or_invalid", "archive_marker_date_conf
                    "jsonld_visible_edition_conflict", "multiple_recurrence_statements",
                    "visible_edition_conflict", "narrative_calendar_incomplete"}
 PUBLISHERS = {"eventiesagre.it": {"policy_key": "eventiesagre", "stem": "eventiesagre",
-                 "manager": MANAGER, "max_details": 128, "max_seconds": 600},
+                 "manager": MANAGER, "max_details": 256, "max_seconds": 600},
               "cosedicasa.com": {"policy_key": "cosedicasa", "stem": "cosedicasa",
-                 "manager": "cosedicasa_detail", "max_details": 64, "max_seconds": 300},
+                 "manager": "cosedicasa_detail", "max_details": 128, "max_seconds": 600},
               # Read from the committed browser snapshot, never over HTTP (vintagery_source).
               "vintagery.it": {"policy_key": "vintagery", "stem": "vintagery",
                  "manager": "vintagery_detail", "max_details": 1000, "max_seconds": 60}}

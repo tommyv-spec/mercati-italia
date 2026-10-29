@@ -27,6 +27,7 @@ import stat
 import subprocess
 import sys
 import time
+from types import SimpleNamespace
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -291,7 +292,7 @@ def record(name, ok, run):
     path.write_text(json.dumps(state, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def notify(name, ok, run):
+def notify(name, ok, run, intro=None):
     """One open issue per failing workflow; closed again when it recovers."""
     title = f"[Automazione locale] {name} — verifica richiesta"
     try:
@@ -300,8 +301,9 @@ def notify(name, ok, run):
              "--json", "number,title"], capture_output=True, text=True, check=True).stdout)
         issue = next((i["number"] for i in found if i["title"] == title), None)
         tail = "".join(open(run.log_path, encoding="utf-8", errors="replace").readlines()[-40:])
-        body = (f"Esecuzione `{run.id}` sul computer dell'automazione non riuscita. Nessun dato parziale "
-                f"viene pubblicato.\n\nUltime righe del log (`{run.log_path}`):\n\n```\n{tail[-6000:]}\n```")
+        intro = intro or (f"Esecuzione `{run.id}` sul computer dell'automazione non riuscita. "
+                          "Nessun dato parziale viene pubblicato.")
+        body = f"{intro}\n\nUltime righe del log (`{run.log_path}`):\n\n```\n{tail[-6000:]}\n```"
         if ok and issue:
             subprocess.run(["gh", "issue", "close", str(issue), "-R", REPO, "-c", f"Ripristinato: `{run.id}`"],
                            check=True, capture_output=True)
@@ -353,8 +355,14 @@ def scorecard():
     set_origin(work)
     state = HOME / "state.json"
     env = {**os.environ, "PYTHONUTF8": "1"}
-    subprocess.run([sys.executable, "backend/quality_scorecard.py", "--jobs", str(state)],
-                   cwd=work, env=env, check=True)
+    out = subprocess.run([sys.executable, "backend/quality_scorecard.py", "--jobs", str(state)],
+                         cwd=work, env=env, check=True, stdout=subprocess.PIPE, text=True).stdout
+    # Its red flags (a source no longer re-read, a figure that dropped, a failed job) open the
+    # same issue alarm as a failed job, and close it when the report is clean again.
+    flags = json.loads(out.strip().splitlines()[-1])["red_flags"]
+    notify("qualita-dati", flags == 0,
+           SimpleNamespace(id=f"qualita-{date.today()}", log_path=work / "reports/QUALITA.md"),
+           intro="Il controllo qualità dei dati segnala problemi (sezione «Semaforo»).")
     git("add", "reports/QUALITA.md", "reports/quality-history.json", cwd=work)
     if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=work).returncode:
         git("-c", "user.name=mercati-runner", "-c", "user.email=runner@mercati.local",

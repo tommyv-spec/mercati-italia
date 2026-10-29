@@ -193,8 +193,8 @@ class HappingsDetailAutopilotTests(unittest.TestCase):
         self.assertTrue((folder / phase.STATE_FILENAME).is_file())
 
     def test_detail_policy_requires_bounded_integer_limits(self):
-        for change in ({"max_requests": 129}, {"max_requests": True}, {"max_new": 0},
-                       {"max_seconds": 421}, {"max_seconds": 0}, {"max_seconds": True},
+        for change in ({"max_requests": 257}, {"max_requests": True}, {"max_new": 0},
+                       {"max_seconds": 1501}, {"max_seconds": 0}, {"max_seconds": True},
                        {"admit_new": 1}, {"enabled": "true"}, {"unreviewed": True}):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 phase.validate_policy({**POLICY, **change})

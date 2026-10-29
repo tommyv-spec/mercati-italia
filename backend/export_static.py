@@ -647,7 +647,10 @@ def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
 
 
 def _host(url) -> str:
-    return urlsplit(str(url or "")).netloc.lower().removeprefix("www.")
+    try:
+        return urlsplit(str(url or "")).netloc.lower().removeprefix("www.")
+    except ValueError:  # a malformed source URL ("http://[") has no host
+        return ""
 
 
 def own_source_last_read(row: dict, page_reads=None) -> str:

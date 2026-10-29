@@ -3,6 +3,10 @@
 Started 2026-10-25. One line per source (or group of small sources), biggest first.
 "Markets" = markets a visitor sees in the app (copies merged away are not counted).
 
+**Objective (owner, 2026-10-29): capture everything each source says.** What a source gives is accurate as
+given: a source that only says "la mattina" or "centro" is not wrong, just less detailed. A gap is a fact the
+source publishes that we failed to capture, and that is what the nightly must close.
+
 Status: ⬜ to check · 🔎 checking now · ✅ checked
 
 ## General method (no per-market fixes)
@@ -21,6 +25,8 @@ Status: ⬜ to do · 🔧 building · ✅ live on DEV
 | G | Discovery and re-reading | All 107 Happings pages in the daily rotation ✅. eventiesagre/cosedicasa re-read ~3× faster, and a page that states the same recurrence keeps dates renewing ✅. New markets from sitemaps and listing pages ✅ (first run: 96 candidates, 3 admitted, the rest held). | ✅ |
 | H | Lifecycle rule | No upcoming date, no usable recurrence, and an edition shown as over or a source unread for 90 days → hidden as "no longer scheduled" (1,152 now); links still open it; it comes back when its source shows dates again. | ✅ |
 | I | Robust saving | All file saves retry when Windows briefly locks a file. Checks compare like with like (today's exporter on both sides). | ✅ |
+| J | Reading time | The page re-readers were given ~3 minutes a night: the 10-minute window gave 7 minutes to discovery, which runs after it anyway (left from the 20-minute GitHub job). Now each reader has its whole allowance: eventiesagre 10 min / 256 pages, cosedicasa 10 min / 128, Happings event pages 25 min / 256 (same pause between pages, no site asks for a slower pace). The reading job's limit is 120 min. Backlog on 29 Oct: Happings 1,207 event pages (~5 nights), eventiesagre 581 never read (~3 nights). | ✅ (first night 30 Oct) |
+| K | Alarms on real problems | The quality page's red flags (a source not re-read for 8 days, a figure down more than 2 points, a failed job) open the GitHub issue "[Automazione locale] qualita-dati", closed when the page is clean. The freshness report counts the page re-reads too (12,835 markets read in 30 days, not 1,678). The old "[Mercati autopilot] Dati da verificare" issue came from the GitHub workflow; the local runner skips that step, so nothing updated it after 24 Oct. | ✅ |
 | — | Compliance | Citynews forbids automated reading: reading stopped. | ✅ |
 
 ## Round 2 — better collection (started 2026-10-26)
