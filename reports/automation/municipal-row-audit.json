@@ -4,8 +4,8 @@
   "offline": false,
   "imports": 0,
   "verified_events": 0,
-  "reference_date": "2026-10-28",
-  "catalog_total": null,
+  "reference_date": "2026-10-29",
+  "catalog_total": 87,
   "sample_limit": 3,
   "history": {
     "25177cb0-f763-44ca-8c30-dd8111c58cc3": {
@@ -205,10 +205,117 @@
       "resource_last_modified": "2026-10-07T08:51:11.878151",
       "status": "sampled_complete_csv",
       "kind": "concessions_not_market_visits"
+    },
+    "2bfa5deb-2478-4c87-b975-b87c969aaacc": {
+      "checked_on": "2026-10-29",
+      "resource_last_modified": "2026-10-07T08:05:48.718924",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "2f01dad4-1756-478e-9817-7b7a9efcc48b": {
+      "checked_on": "2026-10-29",
+      "resource_last_modified": "2026-10-07T10:57:30.807752",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "3aa6fda4-dedb-4b2b-ade5-a125e1618979": {
+      "checked_on": "2026-10-29",
+      "resource_last_modified": "2026-10-07T08:53:17.648284",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
     }
   },
-  "sources": [],
-  "errors": [
-    "URLError: <urlopen error _ssl.c:1011: The handshake operation timed out>"
-  ]
+  "sources": [
+    {
+      "id": "2bfa5deb-2478-4c87-b975-b87c969aaacc",
+      "title": "Posteggi mercati e fiere - GIAVERA DEL MONTELLO",
+      "publisher": "Comune di Giavera del Montello",
+      "source_modified_claim": "",
+      "resource_id": "42a450e8-a778-424d-9651-1e4e6cdd54b7",
+      "resource_last_modified": "2026-10-07T08:05:48.718924",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "bb2b9b9b985f7b50374042030da4c3652cc91bafb01a59a794119fc814ee1997",
+      "source_rows_read": 28,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 28,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 28,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    },
+    {
+      "id": "2f01dad4-1756-478e-9817-7b7a9efcc48b",
+      "title": "Posteggi mercati e fiere - MARANO VICENTINO",
+      "publisher": "Comune di Marano Vicentino",
+      "source_modified_claim": "",
+      "resource_id": "e4d6b40d-a7a4-4cb1-880c-92edf5daa6e6",
+      "resource_last_modified": "2026-10-07T10:57:30.807752",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "032c2efca0adec36f0e20044cfeeea2cf392bb045b661c2a99d9ef1217ca7249",
+      "source_rows_read": 7,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 1,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 7,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    },
+    {
+      "id": "3aa6fda4-dedb-4b2b-ade5-a125e1618979",
+      "title": "Posteggi mercati e fiere - NOGAROLE ROCCA",
+      "publisher": "Comune di Nogarole Rocca",
+      "source_modified_claim": "",
+      "resource_id": "16634d3a-5cc6-4ec3-a325-a3c4912fa65b",
+      "resource_last_modified": "2026-10-07T08:53:17.648284",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "0c438842a8e4110b6eb222ddc62b67eef0c4f86edeb3d703059ce03c2674ed4f",
+      "source_rows_read": 3,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 3,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 3,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    }
+  ],
+  "errors": []
 }
