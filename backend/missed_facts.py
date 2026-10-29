@@ -27,8 +27,7 @@ from collections import Counter, defaultdict
 from datetime import date, timedelta
 from pathlib import Path
 
-from eventiesagre_source_layout import DEFAULT_MARKET_HOURS
-from export_static import CONCLUDED_UNREAD_DAYS, own_source_last_read
+from export_static import CONCLUDED_UNREAD_DAYS, exact_hours, own_source_last_read
 from merge_catalog import load_existing
 from quality_scorecard import CLOCK, page_reads
 from stored_market_sibling_proposals import ADDRESS_PREFIX
@@ -124,8 +123,7 @@ def lost_in_merge(rows, by_slug):
         shown = by_slug.get(copy.get("duplicato_di"))
         if not shown or shown.get("concluso"):
             continue
-        template = copy.get("fonte") == "eventiesagre.it" and copy.get("orario_testo") == DEFAULT_MARKET_HOURS
-        if clock(copy.get("orario_testo")) and not clock(shown.get("orario_testo")) and not template:
+        if exact_hours(copy) and not exact_hours(shown):
             lost.append({"field": "orario", "slug": shown["slug"], "shown": shown.get("orario_testo"),
                          "copy": copy["slug"], "copy_source": copy.get("fonte"), "read": copy.get("orario_testo")})
         if street(copy.get("indirizzo")) and not street(shown.get("indirizzo")):

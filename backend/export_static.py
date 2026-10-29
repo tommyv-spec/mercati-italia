@@ -22,6 +22,7 @@ from collections import Counter, defaultdict
 from itertools import combinations
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from eventiesagre_source_layout import DEFAULT_MARKET_HOURS
 from field_evidence import PUBLISHED_TOWN_FIXES, as_published, clean_receipts, clean_exceptions
 from field_conflicts import KEY as FIELD_CONFLICTS, clean_conflicts
 from source_calendar import clean_source_calendar, clean_source_detail, source_calendar_dates
@@ -603,6 +604,43 @@ def same_market(kept: dict, copy: dict) -> bool:
     return kept.get("fonte") != copy.get("fonte") and same_venue(kept, copy)
 
 
+def exact_hours(row: dict) -> bool:
+    """Clock times in the hours; eventiesagre's template 08:00–13:00 is not one (CONTROLLO_FONTI S13)."""
+    hours = str(row.get("orario_testo") or "")
+    return bool(re.search(r"\b\d{1,2}[:.]\d\d\b", hours)) and not (
+        row.get("fonte") == "eventiesagre.it" and hours == DEFAULT_MARKET_HOURS)
+
+
+def prefer_exact_hours(rows: list[dict], merged: dict[str, str], hidden) -> int:
+    """A shown card without clock hours gives its place to its one copy that has them, so
+    hours a source states (an official calendar's, filled on a hidden twin) are not hidden
+    behind "La mattina". Same group and IDs; never by a copy without the shown card's dates
+    or street; only visible groups, and never by a copy that would itself be hidden."""
+    by_id = {row["slug"]: row for row in rows}
+    groups = defaultdict(list)
+    for row in rows:
+        if kept := merged.get(row["slug"], row.get("duplicato_di")):
+            groups[kept].append(row["slug"])
+    swaps = 0
+    for kept_id, copies in groups.items():
+        kept = by_id.get(kept_id)
+        if kept is None or kept.get("duplicato_di") or exact_hours(kept) or hidden(kept):
+            continue
+        better = [by_id[c] for c in copies if exact_hours(by_id[c])]
+        if (len(better) != 1 or kept.get("date") and not better[0].get("date") or hidden(better[0])
+                or specific_market_address(kept.get("indirizzo", ""))
+                and not specific_market_address(better[0].get("indirizzo", ""))):
+            continue  # trading a date or a street for hours is not a gain
+        new = better[0]
+        for slug in [kept_id] + copies:
+            if slug != new["slug"]:
+                merged[slug] = new["slug"]
+        merged.pop(new["slug"], None)
+        new.pop("duplicato_di", None)
+        swaps += 1
+    return swaps
+
+
 def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
     """{copy: kept} for every source: identical records, then the same venue and
     calendar listed by different sources. IDs stay; the app shows the kept one."""
@@ -774,6 +812,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
     source_reads = {}
     for row in cleaned:
         source_reads[row["fonte"]] = max(source_reads.get(row["fonte"], ""), own_source_last_read(row))
+    merge_counts["shown_copy_with_exact_hours"] = prefer_exact_hours(
+        cleaned, merged, lambda row: concluded_reason(row, today, source_reads))
     for row in cleaned:
         if row["slug"] in merged:
             row["duplicato_di"] = merged[row["slug"]]
