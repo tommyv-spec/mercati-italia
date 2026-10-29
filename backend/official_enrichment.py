@@ -27,7 +27,7 @@ from urllib.parse import unquote_plus
 
 from lombardia_overlap import location_key, norm
 from merge_catalog import load_existing
-from field_evidence import (transfer_receipts, managed_update_allowed,
+from field_evidence import (as_published, transfer_receipts, managed_update_allowed,
                             mark_managed_fields, clean_receipts,
                             retire_superseded_receipts, fingerprint, identity,
                             MAX_READ_AGE, SOURCE_AGE)
@@ -181,6 +181,7 @@ def _street_conflict_keys(value):
 
 
 def _generic_weekly_market(record):
+    record = as_published(record)
     city = norm(record.get("citta"))
     name = norm(record.get("nome"))
     return bool(city and re.fullmatch(

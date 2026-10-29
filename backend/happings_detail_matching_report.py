@@ -12,6 +12,7 @@ from datetime import date
 from pathlib import Path
 
 import happings_detail_enrichment as matching
+from field_evidence import published_town
 from happings_full_reconciliation import _saved_page
 from merge_catalog import load_existing
 
@@ -36,7 +37,7 @@ def audit(catalog, snapshot, *, today):
             raise ValueError("Catalog identity is missing or repeated")
         market_ids.add(sid)
         key = (matching.fold(row.get("regione")), str(row.get("provincia") or "").upper(),
-               matching.fold(row.get("citta")))
+               matching.fold(published_town(row)))
         by_city[key].append(row)
         links = {row.get("url_fonte")}
         for link in row.get("fonti") or []:

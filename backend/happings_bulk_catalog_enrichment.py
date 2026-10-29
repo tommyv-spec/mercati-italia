@@ -21,7 +21,8 @@ from datetime import date, datetime
 from pathlib import Path
 
 from export_static import data_value_score, dayparts, same_market, same_venue, shares_street, venue_slot
-from field_evidence import _provenance_key, clean_receipts, mark_managed_fields, retire_superseded_receipts
+from field_evidence import (_provenance_key, as_published, clean_receipts, mark_managed_fields,
+                            published_town, retire_superseded_receipts)
 from happings_full_reconciliation import _saved_page
 from happings_weekly_layout import WEEKDAYS, fold, province_page_key
 from merge_catalog import load_existing
@@ -101,7 +102,7 @@ def catalog_key(row):
     if day is None or not same_generic_venue(row):
         return None
     return (fold(row.get("regione")),str(row.get("provincia") or "").upper(),
-            fold(row.get("citta")),day)
+            fold(published_town(row)),day)
 
 
 def same_weekly_venue(rows):
@@ -109,7 +110,7 @@ def same_weekly_venue(rows):
     if not rows:
         return False
     def market_name(row):
-        return fold(row.get("nome")).replace("mercato settimanale a ", "mercato settimanale di ")
+        return fold(as_published(row).get("nome")).replace("mercato settimanale a ", "mercato settimanale di ")
     return (len({market_name(r) for r in rows}) == 1
             and len({fold(r.get("ricorrenza_testo")) for r in rows}) == 1
             and all(r.get("fonte") == source.PUBLISHER for r in rows))
@@ -144,7 +145,7 @@ def cut_place(row, places):
 def names_place(row, place, hours=None):
     """Another source's card names this listed place in its own spelling, at a time
     of day the listing doesn't contradict."""
-    page = {"indirizzo": place, "orario_testo": hours or "", "citta": row.get("citta")}
+    page = {"indirizzo": place, "orario_testo": hours or "", "citta": published_town(row)}
     own, said = dayparts(row), dayparts(page)
     return bool(place) and not (own and said and not own & said) and shares_street(row, page)
 
@@ -244,7 +245,7 @@ def enrich(catalog, snapshot, *, today):
             # Match a cut weekday under the day its page proves; the
             # repaired text is proposed below with the same page receipt.
             day = cut_weekday(row, town_days.get((fold(row.get("regione")),
-                str(row.get("provincia") or "").upper(), fold(row.get("citta"))), ()))
+                str(row.get("provincia") or "").upper(), fold(published_town(row))), ()))
             view = row if day is None else {**row, "ricorrenza_testo": "settimanale - " + WEEKDAY_TEXT[day]}
             key = catalog_key(view)
             if key is not None:

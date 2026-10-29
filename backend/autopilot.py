@@ -26,7 +26,7 @@ from pathlib import Path
 
 from audit_dataset import audit
 from export_static import export
-from field_evidence import attach_feed_observations, audit as audit_field_evidence
+from field_evidence import PUBLISHED_TOWN_FIXES, attach_feed_observations, audit as audit_field_evidence
 from publisher_refresh import (run as refresh_publisher_pages,
                                validate_contracts as validate_publisher_contracts,
                                verify_exported as verify_publisher_page_export,
@@ -388,8 +388,8 @@ def compare_candidates(old_rows: list, new_rows: list, old_report: dict, new_rep
                 and before.get("regione") == after.get("regione")
                 and before.get("citta") != after.get("citta")
                 and after.get("citta_originale") == str(before.get("citta") or "")[:160]
-                and after.get("localita_ricostruita_da") ==
-                    "ISTAT comuni 2026-02-21; nome fonte e provincia"
+                and after.get("localita_ricostruita_da") in (
+                    "ISTAT comuni 2026-02-21; nome fonte e provincia", *PUBLISHED_TOWN_FIXES.values())
                 and after.get("provincia") == before.get("provincia")
             )
             if approved:

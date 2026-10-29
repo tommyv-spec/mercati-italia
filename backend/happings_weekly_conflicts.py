@@ -15,6 +15,7 @@ import json
 import re
 
 from happings_weekly_layout import fold, WEEKDAYS, MAX_PUBLISHER_ITEMS
+from field_evidence import as_published, published_town
 from happings_editorial_weekly_layout import (CURRENT_HEADING, NARRATIVE, APPOINTMENT,
     DAY_PATTERN, _clock)
 
@@ -86,7 +87,7 @@ def _current_replacement(row):
 def _possible_days(row):
     # Ambiguous catalog weekdays also compete. A second card saying Wed in
     # its name and Thu in its recurrence cannot be dropped to prove uniqueness.
-    text = fold(" ".join(str(row.get(key) or "") for key in ("nome", "slug", "ricorrenza_testo")))
+    text = fold(" ".join(str(as_published(row).get(key) or "") for key in ("nome", "slug", "ricorrenza_testo")))
     return {index for index, day in enumerate(WEEKDAYS) if re.search(r"\b" + day + r"\b", text)}
 
 
@@ -102,7 +103,7 @@ def propose(base, documents, *, today, apply_authorized, rights_gate_passed):
     catalog = defaultdict(list)
     for row in base:
         for day in _possible_days(row):
-            catalog[(fold(row.get("citta")), str(row.get("provincia") or "").upper(), day)].append(row)
+            catalog[(fold(published_town(row)), str(row.get("provincia") or "").upper(), day)].append(row)
     result = []
     for document in documents:
         if (not isinstance(document, dict) or set(document) != DOCUMENT_KEYS or document.get("schema") != 1
@@ -127,7 +128,7 @@ def propose(base, documents, *, today, apply_authorized, rights_gate_passed):
             if previous_places is None:
                 continue
             candidates = [row for row in base if row.get("fonte") == weekly.PUBLISHER
-                          and fold(row.get("citta")) == pair[0] and weekly._weekly_day(row) == pair[1]
+                          and fold(published_town(row)) == pair[0] and weekly._weekly_day(row) == pair[1]
                           and weekly.record_matches_page(row, document["requested_url"], document["final_url"])]
             if len(candidates) != 1:
                 continue
@@ -151,7 +152,7 @@ def propose(base, documents, *, today, apply_authorized, rights_gate_passed):
                            "source_url": document["final_url"], "source_requested_url": document["requested_url"],
                            "source_html_sha256": document["source_html_sha256"], "source_relation": "primary",
                            **({"page_metadata": document["page_metadata"]} if document["page_metadata"] is not None else {}),
-                           "source_city": target["citta"], "source_province": target["provincia"],
+                           "source_city": published_town(target), "source_province": target["provincia"],
                            "source_region": target["regione"], "source_day": pair[1],
                            "source_value": src["place"], "observed_at": today.isoformat(),
                            "apply_authorized": apply_authorized, "rights_gate_passed": rights_gate_passed,
@@ -194,7 +195,7 @@ def propose_weekday_conflicts(base, pages, *, today, apply_authorized, rights_ga
             if row.get("calendar_scope"):
                 scoped.add(row["city_key"])
         for card in base:
-            city = fold(card.get("citta"))
+            city = fold(published_town(card))
             if (city not in listed or city in scoped
                     or not weekly.record_matches_page(card, page["requested_url"], page["final_url"])):
                 continue
@@ -213,7 +214,7 @@ def propose_weekday_conflicts(base, pages, *, today, apply_authorized, rights_ga
                     "source_url": page["final_url"], "source_requested_url": page["requested_url"],
                     "source_html_sha256": conflict["sha256"], "source_relation": "primary",
                     **({"page_metadata": parsed.page_metadata} if parsed.page_metadata is not None else {}),
-                    "source_city": card["citta"], "source_province": card["provincia"],
+                    "source_city": published_town(card), "source_province": card["provincia"],
                     "source_region": card["regione"], "source_day": day,
                     "source_value": conflict["valore_fonte"], "observed_at": today.isoformat(),
                     "apply_authorized": apply_authorized, "rights_gate_passed": rights_gate_passed,

@@ -18,7 +18,7 @@ import re
 from copy import deepcopy
 from datetime import date
 
-from field_evidence import as_day, safe_url
+from field_evidence import as_day, as_published, safe_url
 from happings_weekly_layout import WEEKDAYS, fold, province_page_key
 from stored_market_sibling_proposals import safe_stored_street
 
@@ -56,6 +56,7 @@ def _text(value, limit):
 
 def conflict_identity(row):
     """Exact saved identity, including the original primary source and name."""
+    row = as_published(row)
     return {key: row.get(key) for key in IDENTITY_LIMITS}
 
 

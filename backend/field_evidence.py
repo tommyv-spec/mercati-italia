@@ -42,7 +42,30 @@ def fingerprint(value):
                                      separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
+# Town fixes that show the official comune but keep the source's own town and
+# title in citta_originale/nome_originale (municipality_reconciliation).
+PUBLISHED_TOWN_FIXES = {
+    "spelling": "ISTAT comuni 2026-02-21; grafia della fonte corretta",
+    "former": "ISTAT comuni soppressi o rinominati; comune di oggi",
+    "hamlet": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
+    "rome": "Roma Capitale, mercati rionali; comune di Roma",
+}
+
+
+def as_published(row):
+    """The card as its source wrote it: pages, receipts and matching use that spelling."""
+    if row.get("localita_ricostruita_da") not in PUBLISHED_TOWN_FIXES.values():
+        return row
+    return {**row, "citta": row.get("citta_originale") or row.get("citta"),
+            "nome": row.get("nome_originale") or row.get("nome")}
+
+
+def published_town(row):
+    return as_published(row).get("citta")
+
+
 def identity(row):
+    row = as_published(row)
     return {k: str(row.get(k) or "") for k in ("slug", "citta", "provincia", "regione")}
 
 

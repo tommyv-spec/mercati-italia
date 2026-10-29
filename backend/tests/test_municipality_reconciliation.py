@@ -10,11 +10,17 @@ from municipality_reconciliation import (
     trusted_municipalities, PROJECTION_WARNING
 )
 from export_static import normalize
+from field_evidence import PUBLISHED_TOWN_FIXES, clean_receipts, identity, make_receipt, published_town
+from municipality_reconciliation import CITY_FIX_BUDGET
+from municipality_release_guard import check
+from stored_market_sibling_proposals import same_generic_venue
+from happings_weekly_admission import _possible_existing
 
 REFERENCE=json.loads((Path(__file__).resolve().parents[1]/
                       "data/istat-comuni-2026.json").read_text(encoding="utf-8"))
 OFFICIAL=trusted_municipalities(REFERENCE)
 TODAY=date(2026,10,12)
+TODAY_RECEIPT=date(2026,10,29)
 
 
 def market(slug,city,province,region,title,day="settimanale - martedì",dates=None):
@@ -170,6 +176,101 @@ class OfficialMunicipalityTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Repeated or missing"):
             r=market("duplicate","NA","NA","Campania","Mercato a Somma Vesuviana")
             reconcile([r,r],REFERENCE)
+
+
+def happings(city, province, region, title=None, slug=None, **extra):
+    row = market(slug or "card-" + city.lower().replace(" ", "-"), city, province, region,
+                 title or "Mercato settimanale di " + city)
+    return {**row, "indirizzo": "Piazza Roma", **extra}
+
+
+class PublishedTownTests(unittest.TestCase):
+    """S31: a source town that is not a comune shows the official one, as published elsewhere."""
+
+    def fixed(self, row):
+        out, report = reconcile([row], REFERENCE, apply=True)
+        return out[0], report
+
+    def test_each_rule_on_real_source_names(self):
+        cases = [
+            (happings("Atelena", "AQ", "Abruzzo"), "Ateleta", "spelling"),
+            (happings("Nibbiano", "PC", "Emilia-Romagna"), "Alta Val Tidone", "former"),
+            (happings("Ortonovo", "SP", "Liguria"), "Luni", "former"),  # renamed 2017
+            (happings("Sestri Ponente", "GE", "Liguria"), "Genova", "former"),
+            (happings("Africo Nuovo", "RC", "Calabria"), "Africo", "hamlet"),
+            (happings("Celle", "SV", "Liguria"), "Celle Ligure", "hamlet"),
+            # Capitals on a Rome card: Roma Capitale's market, not the town of Gerano.
+            (happings("GRANO", "RM", "Lazio"), "Roma", "rome"),
+            (happings("Limbade", "VV", "Calabria"), "Limbadi", "spelling"),
+        ]
+        for row, city, rule in cases:
+            with self.subTest(row["citta"]):
+                out, report = self.fixed(row)
+                self.assertEqual(out["citta"], city)
+                self.assertEqual(out["citta_originale"], row["citta"])
+                self.assertEqual(out["localita_ricostruita_da"], PUBLISHED_TOWN_FIXES[rule])
+                self.assertEqual(report["counts"]["published_town_" + rule], 1)
+                self.assertEqual((out["slug"], out["lat"], out["date"]), (row["slug"], row["lat"], row["date"]))
+        out, _ = self.fixed(happings("Atelena", "AQ", "Abruzzo"))
+        self.assertEqual((out["nome"], out["nome_originale"]),
+                         ("Mercato settimanale di Ateleta", "Mercato settimanale di Atelena"))
+        out, _ = self.fixed(happings("Nibbiano", "PC", "Emilia-Romagna"))
+        self.assertEqual(out["nome"], "Mercato settimanale di Nibbiano")  # still names the place
+
+    def test_unclear_names_stay_as_published(self):
+        rows = [
+            happings("Sestri", "GE", "Liguria"),         # Sestri Levante or Sestri Ponente
+            happings("Cecchina", "RM", "Lazio"),         # hamlet of Albano Laziale, not Rome
+            happings("Forio 3", "NA", "Campania"),       # S15: the publisher's numbering
+            happings("Genzano", "", "Lazio"),            # no province to narrow it
+            happings("Capristrano", "VB", "Calabria"),   # VB is Piemonte's code: it waits
+            {**happings("Atelena", "AQ", "Abruzzo", slug="other-source"), "fonte": "eventiesagre.it"},
+            {**happings("Atelena", "AQ", "Abruzzo", slug="verified"), "verificato_il": "2026-10-01"},
+        ]
+        out, report = reconcile(copy.deepcopy(rows), REFERENCE, apply=True)
+        self.assertEqual(out, rows)
+        self.assertEqual(report["counts"]["published_town_protected"], 1)
+
+    def test_receipts_and_happings_matching_see_the_published_card(self):
+        row = happings("Atelena", "AQ", "Abruzzo")
+        row["riscontri_campi"] = [make_receipt(
+            row, values={"indirizzo": "Piazza Roma"}, source_url=row["url_fonte"],
+            source_name="happings.com", source_id="happings-weekly", source_row="atelena:0",
+            read_on="2026-10-28", source_updated_on="", source_sha256="a" * 64)]
+        out, _ = self.fixed(row)
+        self.assertNotEqual(out["citta"], row["citta"])
+        self.assertEqual(identity(out), identity(row))
+        self.assertEqual(clean_receipts(out["riscontri_campi"], out, today=TODAY_RECEIPT),
+                         clean_receipts(row["riscontri_campi"], row, today=TODAY_RECEIPT))
+        self.assertEqual(len(clean_receipts(out["riscontri_campi"], out, today=TODAY_RECEIPT)), 1)
+        self.assertTrue(same_generic_venue(out))
+        self.assertEqual(published_town(out), "Atelena")
+        rome, _ = self.fixed(happings("CRATI", "RM", "Lazio"))
+        self.assertTrue(same_generic_venue(rome))
+        # The weekly page still lists "Atelena": the renamed card blocks a duplicate.
+        self.assertTrue(_possible_existing(out, "Atelena", "Abruzzo", "AQ", 1))
+        self.assertFalse(_possible_existing(out, "Ateleta", "Abruzzo", "AQ", 1))
+
+    def test_nightly_budget_fixes_visible_cards_first_and_replays_unchanged(self):
+        rows = [{**happings("Atelena", "AQ", "Abruzzo", slug=f"a-{i:02}"),
+                 **({"duplicato_di": "x"} if i < 10 else {})} for i in range(70)]
+        out, report = reconcile(rows, REFERENCE, apply=True)
+        fixed = [r["slug"] for r in out if r["citta"] == "Ateleta"]
+        self.assertEqual(len(fixed), CITY_FIX_BUDGET)
+        self.assertEqual(report["counts"]["published_town_pending"], 10)
+        self.assertTrue(all(int(slug[2:]) >= 10 for slug in fixed))
+        self.assertEqual(check(rows, out, report)["city_replacements"], CITY_FIX_BUDGET)
+        again, report = reconcile(out, REFERENCE, apply=True)
+        self.assertEqual(sum(r["citta"] == "Ateleta" for r in again), 70)
+        self.assertEqual(report["counts"]["published_town_pending"], 0)
+
+    def test_guard_rejects_a_town_fix_with_another_label(self):
+        row = happings("Africo Nuovo", "RC", "Calabria")
+        out, report = reconcile([row], REFERENCE, apply=True)
+        check([row], out, report)
+        out[0]["localita_ricostruita_da"] = PUBLISHED_TOWN_FIXES["rome"]
+        with self.assertRaisesRegex(ValueError, "provenance missing"):
+            check([row], out, report)
 
 
 if __name__=="__main__":

@@ -23,6 +23,7 @@ from pathlib import Path
 
 import happings_source_enrichment as source
 from happings_bulk_snapshot import valid_queue
+from field_evidence import published_town
 from happings_weekly_layout import fold, province_page_key
 from merge_catalog import load_existing
 from stored_market_sibling_proposals import same_generic_venue, safe_stored_street
@@ -81,7 +82,7 @@ def _base_catalog(markets):
             raise ValueError("Catalog has missing market identity")
         area = (fold(row.get("regione")),
                 str(row.get("provincia") or "").strip().upper(),
-                fold(row.get("citta")))
+                fold(published_town(row)))
         day = source._cohort_weekly_day(row)
         if day is None:
             uncertain[area].append(row)

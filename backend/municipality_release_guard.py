@@ -11,6 +11,7 @@ import argparse
 import json
 from pathlib import Path
 
+from field_evidence import PUBLISHED_TOWN_FIXES
 from municipality_reconciliation import (
     ISTAT_SHA, SOURCE_DATE, PROJECTION_WARNING,
     source_city_cross_contamination,
@@ -21,6 +22,7 @@ from province_reconciliation import (
 )
 
 MAX_CHANGED = MAX_TOTAL_CHANGES
+ISTAT_TITLE_FIX = "ISTAT comuni 2026-02-21; nome fonte e provincia"
 MAX_CITY_FIXES = 60
 MAX_QUARANTINES = 80
 ALLOWED = frozenset({
@@ -85,9 +87,10 @@ def check(original, revised, report):
             case = approved.get(slug)
             if not case or case.get("suggested_city") != after.get("citta"):
                 raise ValueError("Municipality city change lacks approved ISTAT example: " + slug)
+            label = case.get("label", ISTAT_TITLE_FIX)
             if (after.get("citta_originale") != str(before.get("citta") or "")[:160]
-                    or after.get("localita_ricostruita_da") !=
-                        "ISTAT comuni 2026-02-21; nome fonte e provincia"):
+                    or label not in (ISTAT_TITLE_FIX, *PUBLISHED_TOWN_FIXES.values())
+                    or after.get("localita_ricostruita_da") != label):
                 raise ValueError("Official ISTAT city correction provenance missing: " + slug)
             cities += 1
         elif changes.intersection({"citta_originale","localita_ricostruita_da"}):
@@ -127,7 +130,7 @@ def check(original, revised, report):
     for label, observed in (
         ("city_fixed", cities),
         ("province_fixed", provinces),
-        ("contaminated_market_titles_fixed", names),
+        ("contaminated_market_titles_fixed", names - counts.get("source_titles_respelled", 0)),
         ("records_calendar_quarantined", calendar_quarantined),
         ("forecast_days_quarantined", calendar_days_cleared),
     ):

@@ -22,7 +22,7 @@ from collections import Counter, defaultdict
 from itertools import combinations
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from field_evidence import clean_receipts, clean_exceptions
+from field_evidence import PUBLISHED_TOWN_FIXES, clean_receipts, clean_exceptions
 from field_conflicts import KEY as FIELD_CONFLICTS, clean_conflicts
 from source_calendar import clean_source_calendar, clean_source_detail, source_calendar_dates
 from source_freshness import source_date_evidence
@@ -289,7 +289,8 @@ def normalize(raw: dict, today: date) -> tuple[dict | None, str | None]:
         result["proiezione_fonte"] = ""
     # Retain provenance when repairing only the displayed municipality
     # against the official ISTAT register. Never imply the event was verified.
-    if raw.get("localita_ricostruita_da") == "ISTAT comuni 2026-02-21; nome fonte e provincia":
+    if raw.get("localita_ricostruita_da") in ("ISTAT comuni 2026-02-21; nome fonte e provincia",
+                                             *PUBLISHED_TOWN_FIXES.values()):
         result["localita_ricostruita_da"] = raw["localita_ricostruita_da"]
         result["citta_originale"] = safe_string(raw.get("citta_originale"), 160)
     province_proof = retained_province_proof(raw, result)

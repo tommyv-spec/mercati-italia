@@ -30,6 +30,7 @@ from urllib.parse import urlsplit
 from source_reconciliation_audit import _unambiguous_day
 from stored_market_sibling_proposals import safe_stored_street
 from happings_page_metadata import parse_page_metadata
+from field_evidence import published_town
 
 MAX_HTML_BYTES=2_600_000
 MAX_PUBLISHER_ITEMS=2200
@@ -396,7 +397,7 @@ def compare_saved_markets(original_rows,html_bytes,*,source_url,today=None):
         if day is None:
             counts["cannot_prove_catalog_weekday"]+=1
             continue
-        lookup=by_city_day.get((fold(row.get("citta")),day),[])
+        lookup=by_city_day.get((fold(published_town(row)),day),[])
         compared_ids.append(sid)
         if len(lookup)==0:
             counts["no_matching_city_day_on_page"]+=1

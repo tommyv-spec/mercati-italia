@@ -15,7 +15,7 @@ from datetime import date
 
 import happings_source_enrichment as source
 from happings_weekly_layout import parse, fold, WEEKDAYS, province_page_key
-from field_evidence import clean_receipts, mark_managed_fields
+from field_evidence import clean_receipts, mark_managed_fields, published_town
 from export_static import canonical_region
 from stored_market_sibling_proposals import safe_stored_street
 
@@ -47,7 +47,7 @@ def stable_id(region, province, city, day):
 
 
 def _possible_existing(row, city, region, province, day):
-    if (fold(row.get("citta")) != fold(city)
+    if (fold(published_town(row)) != fold(city)
             or fold(row.get("regione")) != fold(region)
             or str(row.get("provincia") or "").upper() != province):
         return False
@@ -126,7 +126,7 @@ def preview(base, pages, *, today, apply=False, max_new=MAX_NEW):
     for row in base:
         area_key = (fold(row.get("regione")),
                     str(row.get("provincia") or "").strip().upper(),
-                    fold(row.get("citta")))
+                    fold(published_town(row)))
         by_city[area_key].append((row,source._cohort_weekly_day(row)))
 
     for page in pages:
