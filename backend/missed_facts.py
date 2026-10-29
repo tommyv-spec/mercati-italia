@@ -64,7 +64,8 @@ def time_range(text: str):
 
 
 def clock(value) -> bool:
-    return bool(CLOCK.search(str(value or "")))
+    """Hours stated as times: "08:00–13:00", or the page's own words ("Dalle ore 9 alle 18")."""
+    return bool(CLOCK.search(str(value or ""))) or time_range(str(value or "")) is not None
 
 
 def street(value) -> bool:

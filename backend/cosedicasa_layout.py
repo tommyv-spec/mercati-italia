@@ -30,7 +30,7 @@ WEEKDAYS = {name: i for i, name in enumerate(("lunedi", "martedi", "mercoledi", 
 ORDINALS = {"prima": 1, "primo": 1, "seconda": 2, "secondo": 2,
             "terza": 3, "terzo": 3, "quarta": 4, "quarto": 4, "ultima": -1, "ultimo": -1}
 CLOCK = r"(?:[01]?\d|2[0-3])(?:[:,.]\d{2})?|24(?::00|,00|\.00)?"
-HOURS = re.compile(r"\bdalle?\s+(?:ore\s+)?(?P<start>" + CLOCK + r")\s+(?:alle|al|a)\s+(?:ore\s+)?(?P<end>" + CLOCK + r"|tramonto)\b", re.I)
+HOURS = re.compile(r"\b(?:dalle?|dale)\s+(?:ore\s+)?(?P<start>" + CLOCK + r")\s+(?:fino\s+)?(?:alle|al|a)\s+(?:ore\s+)?(?P<end>" + CLOCK + r"|tramonto)\b", re.I)
 VOID = frozenset({"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"})
 IGNORED = frozenset({"script", "style", "noscript", "nav", "footer", "aside", "form", "button", "svg", "template"})
 
@@ -438,13 +438,13 @@ def parse_detail(html, *, requested_url, final_url=None, read_on=None):
     body_key = _key(body)
     event["archive_marker"] = bool(re.search(r"\b(?:evento passato|edizione conclusa|manifestazione conclusa)\b", body_key))
     sentences = re.split(r"(?<=[.!?])\s+(?=[A-ZÀ-Ü“\"'])", body)
-    hour_claims = []
+    hour_claims, hour_sentences = [], []
     for sentence in sentences:
         matches = list(HOURS.finditer(sentence))
         if not matches:
             continue
         key = _key(sentence)
-        auxiliary = bool(re.search(r"\b(?:percorso|laboratorio|giochi dei nonni|concerto|musica live|spettacolo|spettacoli|dj set)\b", key))
+        auxiliary = bool(re.search(r"\b(?:percorso|laboratorio|giochi dei nonni|concerto|musica live|spettacolo|spettacoli|dj set|iscrizion\w*|noleggi\w*|lezion\w*|pattin\w*|per loro)\b", key))
         if auxiliary and not re.search(r"\bmercat(?:o|ino|ini)\b", key):
             warnings.append("auxiliary_activity_hours_not_market_hours")
             continue
@@ -456,6 +456,8 @@ def parse_detail(html, *, requested_url, final_url=None, read_on=None):
             claim = {"start": start, "end": end}
             if claim not in hour_claims:
                 hour_claims.append(claim)
+                if sentence not in hour_sentences:
+                    hour_sentences.append(sentence)
         if re.search(r"\b(?:fino|solo|tranne|eccetto|esclus|sabato|domenica|festiv|ferial)\w*\b", key):
             event["scope_statements"].append({"kind": "hours_qualification", "text": sentence, "evidence": [PREFIX + "times"]})
     if len(hour_claims) == 1 and not any(c["field"] == "hours" for c in conflicts):
@@ -467,8 +469,13 @@ def parse_detail(html, *, requested_url, final_url=None, read_on=None):
         if qualifications:
             event["hours_text"] += "; " + " ".join(dict.fromkeys(qualifications))
         evidence["hours_text"] = [PREFIX + "times: main market schedule"]
-    elif len(hour_claims) > 1:
-        conflict("hours", "multiple_market_hour_claims_require_scope", hour_claims)
+    elif len(hour_claims) > 1 and not any(c["field"] == "hours" for c in conflicts):
+        # Several ranges ("Dalle ore 9 alle 18. Nei mesi di giugno e luglio ... dalle ore 9 alle
+        # 23"): the page's own sentences, word for word. No range is picked as the main one and no
+        # single interval is claimed, but the rest of the page is no longer held for it.
+        event["hours_text"] = " ".join(hour_sentences)
+        evidence["hours_text"] = [PREFIX + "times: several ranges, as the page states them"]
+        warnings.append("several_hour_ranges_as_text")
     for sentence in sentences:
         if re.search(r"\b(?:maltempo|annullat|sospes|straordinari|esclus|variabil)\w*\b", _key(sentence)):
             if "maltempo" in _key(sentence):

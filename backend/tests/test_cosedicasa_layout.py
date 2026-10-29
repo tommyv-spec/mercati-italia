@@ -254,11 +254,20 @@ class CoseDiCasaLayoutTests(unittest.TestCase):
         self.assertIsNone(parsed["event"]["hours_text"])
         self.assertIn("invalid_market_clock_interval", parsed["warnings"])
 
-    def test_multiple_hour_claims_are_held_without_picking_the_first(self):
+    def test_multiple_hour_claims_keep_the_pages_sentences_without_picking_one(self):
         markup = html("bologna").replace("Dalle ore 8,30 alle 18.", "Dalle ore 8,30 alle 18. Dalle ore 10 alle 15.")
         parsed = parse("bologna", markup)
-        self.assertIsNone(parsed["event"]["hours_text"])
-        self.assertIn("multiple_market_hour_claims_require_scope", {c["code"] for c in parsed["conflicts"]})
+        self.assertEqual(parsed["event"]["hours_text"], "Dalle ore 8,30 alle 18. Dalle ore 10 alle 15.")
+        self.assertEqual(parsed["event"]["hours_intervals"], [])
+        self.assertFalse([c for c in parsed["conflicts"] if c["field"] == "hours"])
+
+    def test_hours_as_pages_write_them_and_side_activity_hours_left_out(self):
+        for text, hours in (("Dale ore 8 alle 19.", "08:00–19:00"),                  # a real page typo
+                            ("Si svolge dalle ore 7 fino alle 14.", "07:00–14:00"),
+                            ("Dalle ore 8,30 alle 18. Le iscrizioni si ricevono dalle 16 alle 18.", "08:30–18:00")):
+            with self.subTest(text=text):
+                parsed = parse("bologna", html("bologna").replace("Dalle ore 8,30 alle 18.", text))
+                self.assertEqual(parsed["event"]["hours_text"].split(";")[0], hours)
 
     def test_hour_qualification_survives_the_public_hours_value(self):
         markup = html("bologna").replace("Dalle ore 8,30 alle 18.", "Dalle ore 8,30 alle 18 solo il sabato.")
