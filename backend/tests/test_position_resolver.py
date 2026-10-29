@@ -321,5 +321,58 @@ class CacheAndGuardTests(unittest.TestCase):
             pr.verify_static(out, pr.empty_cache(), today=TODAY, istat=ISTAT)
 
 
+class OutlyingPointTests(unittest.TestCase):
+    """A point in another province's area is a same-named town elsewhere (Agna PD found in Puglia)."""
+    ISTAT = {"provinces_by_region": {
+        "Veneto": {"Padova": "PD", "Agna": "PD"}, "Puglia": {"Bari": "BA"},
+        "Sicilia": {"Agrigento": "AG", "Lampedusa e Linosa": "AG"}, "Piemonte": {"Verbania": "VB"},
+        "Calabria": {"Vibo Valentia": "VV"}}}
+
+    def rows(self, agna_street="centro"):
+        town = lambda city, region, prov, lat, lng: [
+            market(f"{city}-{i}", f"Via {i}", city=city, region=region, provincia=prov,
+                   lat=lat + i / 100, lng=lng + i / 100) for i in range(5)]
+        return (town("Padova", "Veneto", "PD", 45.40, 11.87) + town("Bari", "Puglia", "BA", 41.11, 16.86)
+                + town("Agrigento", "Sicilia", "AG", 37.31, 13.57) + town("Verbania", "Piemonte", "VB", 45.92, 8.55)
+                + [market("agna", agna_street, city="Agna", region="Veneto", provincia="PD", lat=40.649, lng=16.62),
+                   market("lampedusa", "centro", city="Lampedusa e Linosa", region="Sicilia", provincia="AG",
+                          lat=35.507, lng=12.603),
+                   # an old VB written for Vibo Valentia: the point is right, the code is not
+                   market("brattiro", "centro", city="Brattirò", region="Calabria", provincia="VB",
+                          lat=38.64, lng=15.89)])
+
+    def resolve(self, rows, lookup=None, cache=None):
+        cache = cache if cache is not None else pr.empty_cache()
+        out, report = pr.resolve(rows, cache, today=TODAY, istat=self.ISTAT, lookup=lookup, sleep=lambda s: None)
+        return out, report, cache
+
+    def test_a_point_in_another_province_is_withdrawn_islands_and_wrong_codes_are_not(self):
+        rows = self.rows()
+        with self.assertRaises(ValueError):
+            pr.verify_static(rows, pr.empty_cache(), today=TODAY, istat=self.ISTAT)
+        out, report, cache = self.resolve(rows)
+        by = {row["slug"]: row for row in out}
+        self.assertEqual(report["far_points_withdrawn"], 1)
+        self.assertEqual((by["agna"]["lat"], by["agna"]["coordinate_sospese_motivo"]), (None, pr.FAR_REASON))
+        self.assertEqual(by["agna"]["coordinate_originali"], {"lat": 40.649, "lng": 16.62})
+        for slug in ("lampedusa", "brattiro"):
+            self.assertEqual(by[slug], rows[[r["slug"] for r in rows].index(slug)])
+        pr.verify_diff(rows, out)
+        pr.verify_static(out, cache, today=TODAY, istat=self.ISTAT)
+        again, _, _ = self.resolve(out, cache=cache)
+        self.assertEqual(again, out)
+
+    def test_a_withdrawn_point_with_a_real_street_gets_a_street_point_in_its_own_town(self):
+        hit = found("Via Roma", city="Agna", province="IT-PD", lat=45.17, lng=11.95)
+        out, report, cache = self.resolve(self.rows("Via Roma"), lookup=Lookup({"Via Roma": [hit]}))
+        agna = next(row for row in out if row["slug"] == "agna")
+        self.assertEqual(report["accepted"]["far_point"], 1)
+        self.assertEqual((agna["lat"], agna["lng"], agna["position_quality"]), (45.17, 11.95, pr.QUALITY))
+        self.assertEqual(agna["coordinate_sospese_motivo"], pr.FAR_REASON)
+        pr.verify_static(out, cache, today=TODAY, istat=self.ISTAT)
+        again, _, _ = self.resolve(out, cache=cache)
+        self.assertEqual(again, out)
+
+
 if __name__ == "__main__":
     unittest.main()

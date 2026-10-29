@@ -6,6 +6,8 @@ Same steps for every source and town, no per-market or per-city cases:
    MIN_SHARED_VENUES or more different venues is a placeholder (a town or
    province centre reused for many markets). It is withdrawn: unknown is
    better than wrong. The old point stays in `coordinate_originali` for audit.
+   So is a point over MAX_PROVINCE_KM from the middle of its province's points:
+   an old town-only lookup that found a same-named place in another region.
 2. A visible market with a real street (or a named venue) and no point, a
    placeholder or a rounded point is looked up on OpenStreetMap Nominatim with
    one free-text query ("street, town, Italia"): at most one request per
@@ -26,6 +28,7 @@ from __future__ import annotations
 import json
 import math
 import re
+import statistics
 import time
 import unicodedata
 from datetime import date, timedelta
@@ -45,7 +48,14 @@ ATTRIBUTION = "© OpenStreetMap contributors"
 LICENSE = "ODbL-1.0"
 PLACEHOLDER_REASON = "punto_segnaposto_condiviso"
 ROUNDED_REASON = "punto_arrotondato_sostituito_da_via"
-OWN_REASONS = frozenset({PLACEHOLDER_REASON, ROUNDED_REASON})
+FAR_REASON = "punto_fuori_provincia"
+OWN_REASONS = frozenset({PLACEHOLDER_REASON, ROUNDED_REASON, FAR_REASON})
+WITHDRAWN = frozenset({PLACEHOLDER_REASON, FAR_REASON})  # taken away until a street is found
+# Measured on DEV 2026-10-29 against the middle (median) of each province's points: real
+# edge towns reach 80 km (Ponte di Legno, Vieste, Bardonecchia); every point checked beyond
+# 100 km was a same-named place elsewhere (Agna PD in Puglia, Trevi PG at the Rome fountain).
+MAX_PROVINCE_KM = 100.0
+MIN_PROVINCE_POINTS = 5
 QUALITY = "approssimata"
 # Measured on the DEV catalog 2026-10-25: 3 venues flag the city/province centres
 # (Rome 41.9/12.5 with 97 venues, Florence, Milan, Turin, ...). 2 would also hide
@@ -189,7 +199,7 @@ def restore(row) -> dict:
         out.pop("coordinate_sospese_motivo")
         original = point(out.pop("coordinate_originali", None) or {})
     current = point(out)
-    shown_by_us = (current is None and reason == PLACEHOLDER_REASON) or (
+    shown_by_us = (current is None and reason in WITHDRAWN) or (
         ours and current == (src.get("lat"), src.get("lng")))
     if shown_by_us and out.get("position_quality") != "precisa":
         out["lat"], out["lng"] = original if original else (None, None)
@@ -215,6 +225,35 @@ def placeholder_points(rows, today: date, min_venues=MIN_SHARED_VENUES) -> set:
         if rounded(p) and visible(row, today):
             venues.setdefault(p, set()).add(venue(row))
     return {p for p, found in venues.items() if len(found) >= min_venues}
+
+
+def outlying_points(rows, istat: dict) -> set:
+    """Slugs whose point lies over MAX_PROVINCE_KM from the middle of their province's points:
+    a same-named town elsewhere, found by an old town-only lookup.
+
+    The province is the ISTAT one of the card's town, else the card's own code only when it
+    belongs to the card's region: old imports wrote VB for Vibo Valentia and CR for Crotone,
+    and a right point must not be judged against the wrong province."""
+    towns = istat_provinces(istat)
+    codes = {region: set(found.values()) for region, found in istat["provinces_by_region"].items()}
+
+    def province(row):
+        code = towns.get((row.get("regione"), fold(row.get("citta"))))
+        return code or (row.get("provincia") if row.get("provincia") in codes.get(row.get("regione"), ()) else None)
+    placed = [(row, p, province(row)) for row in rows if (p := point(row)) is not None]
+    by_province = {}
+    for _, p, code in placed:
+        if code:
+            by_province.setdefault(code, []).append(p)
+    middle = {code: (statistics.median(a for a, _ in found), statistics.median(b for _, b in found))
+              for code, found in by_province.items() if len(found) >= MIN_PROVINCE_POINTS}
+
+    def elsewhere(p, code):
+        # Far AND nearer another province's markets: an island town (Lampedusa, Pantelleria)
+        # is far from its province's middle yet still nearest to it.
+        own = point_distance_km(p, middle[code])
+        return own > MAX_PROVINCE_KM and any(point_distance_km(p, m) < own for m in middle.values())
+    return {row["slug"] for row, p, code in placed if code in middle and elsewhere(p, code)}
 
 
 # ----------------------------------------------------------------- cache
@@ -408,14 +447,16 @@ def resolve(rows, cache, *, today: date, istat: dict, lookup=None, held_ids=froz
     # earlier edit (also when another reviewed step now owns it), then is recomputed.
     rows = [row if row.get("slug") in held_ids else restore(row) for row in rows]
     placeholders = placeholder_points(rows, today)
+    far = outlying_points(rows, istat)
     report = {
         "schema": 1, "today": today.isoformat(), "source": NOMINATIM, "attribution": ATTRIBUTION,
         "min_shared_venues": MIN_SHARED_VENUES, "max_distance_km": MAX_DISTANCE_KM,
         "max_lookups": max_lookups, "status": "offline_cache_only" if lookup is None else "complete",
         "records": len(rows), "excluded": {}, "placeholder_points": len(placeholders),
-        "placeholders_withdrawn": 0, "needing_position": 0, "no_street": 0, "town_not_istat": 0,
+        "placeholders_withdrawn": 0, "far_points_withdrawn": 0, "max_province_km": MAX_PROVINCE_KM,
+        "needing_position": 0, "no_street": 0, "town_not_istat": 0,
         "keys_needed": 0, "lookups": 0, "cache_hits": 0, "cache_misses_reused": 0,
-        "accepted": {"placeholder": 0, "no_point": 0, "rounded_point": 0}, "rejected": {},
+        "accepted": {"placeholder": 0, "far_point": 0, "no_point": 0, "rounded_point": 0}, "rejected": {},
         "errors": 0, "accepted_examples": [],
     }
     work = []  # (row index, kind, old point, cache key, query text, province)
@@ -425,15 +466,16 @@ def resolve(rows, cache, *, today: date, istat: dict, lookup=None, held_ids=froz
             _count(report["excluded"], reason)
             continue
         p = point(row)
-        if p is not None and not rounded(p):
+        if p is not None and not rounded(p) and row["slug"] not in far:
             continue
-        kind = "no_point" if p is None else ("placeholder" if p in placeholders else "rounded_point")
+        kind = ("no_point" if p is None else "placeholder" if p in placeholders
+                else "far_point" if row["slug"] in far else "rounded_point")
         report["needing_position"] += 1
-        if kind == "placeholder":
+        if kind in ("placeholder", "far_point"):
             rows[index] = row = {**row, "lat": None, "lng": None, "position_quality": "sconosciuta",
                                  "coordinate_originali": {"lat": p[0], "lng": p[1]},
-                                 "coordinate_sospese_motivo": PLACEHOLDER_REASON}
-            report["placeholders_withdrawn"] += 1
+                                 "coordinate_sospese_motivo": PLACEHOLDER_REASON if kind == "placeholder" else FAR_REASON}
+            report["placeholders_withdrawn" if kind == "placeholder" else "far_points_withdrawn"] += 1
         name, text, province = lookup_key(row, provinces)
         if name is None:
             report[text] += 1
@@ -446,7 +488,7 @@ def resolve(rows, cache, *, today: date, istat: dict, lookup=None, held_ids=froz
         if "miss" not in entry and not same_street(name.split("|")[0], entry, name.split("|")[1]):
             entries[name] = {"queried_on": entry["queried_on"], "miss": "via_diversa", "query": entry["query"]}
     stale = (today - timedelta(days=RETRY_MISS_DAYS)).isoformat()
-    priority = {"placeholder": 0, "no_point": 1, "rounded_point": 2}
+    priority = {"placeholder": 0, "far_point": 0, "no_point": 1, "rounded_point": 2}
     queue = {}
     for index, kind, _, name, text, province, shown in work:
         entry = entries.get(name)
@@ -558,11 +600,13 @@ def _consistent(row) -> bool:
     """A row this step touched is in exactly one of its three end states."""
     src, reason = row.get("posizione_fonte"), row.get("coordinate_sospese_motivo")
     original = point(row.get("coordinate_originali") or {})
+    # A placeholder or rounded original is on the 2-decimal grid; an outlying one can be any point.
+    kept = original is not None and (reason == FAR_REASON or rounded(original))
     if src is not None:
         return (clean_position_source(src, row) == src
                 and (reason is None and original is None
-                     or reason in OWN_REASONS and rounded(original)))
-    return (reason == PLACEHOLDER_REASON and rounded(original)
+                     or reason in OWN_REASONS and kept))
+    return (reason in WITHDRAWN and kept
             and row.get("lat") is None and row.get("lng") is None
             and row.get("position_quality") == "sconosciuta")
 
@@ -614,10 +658,15 @@ def verify_static(rows, cache, *, today: date, istat: dict, held_ids=frozenset()
              and not excluded(row, held_ids)]
     if leaks:
         raise ValueError("A visible market still shows a shared placeholder point: " + leaks[0])
+    far = outlying_points(rows, istat)
+    leaks = [row["slug"] for row in rows
+             if row["slug"] in far and visible(row, today) and not excluded(row, held_ids)]
+    if leaks:
+        raise ValueError("A visible market still shows a point outside its province: " + leaks[0])
     return {"schema": 1, "release_safe": True, "records_checked": len(rows),
             "records_with_resolver_fields": owned,
             "osm_positions": sum(1 for row in rows if row.get("posizione_fonte")),
-            "placeholder_points_still_shown": 0, "precise_claims_created": 0}
+            "placeholder_points_still_shown": 0, "far_points_still_shown": 0, "precise_claims_created": 0}
 
 
 def main(argv=None) -> int:
