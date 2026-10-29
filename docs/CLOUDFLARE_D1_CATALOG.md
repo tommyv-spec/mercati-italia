@@ -52,3 +52,38 @@ python backend/d1_incremental.py import --manifest <CANDIDATO>/public/data/v1/ma
 **Correzione collaterale del controllo qualità:** sei falsi rifiuti sul DEV di ottobre derivavano dalla lettura implicita di `istat-comuni-2026.json` col codec predefinito Windows. Il riferimento ISTAT era corretto. La lettura è ora esplicitamente UTF-8 in `backend/editorial_calendar_scope.py`, senza modificare il dataset ISTAT o le schede.
 
 La sincronizzazione incrementale periodica non è ancora agganciata all'Autopilot: finché non lo sarà, `import` si esegue esplicitamente dopo una prova QA completata. Nessuno di questi passaggi abilita PROD o cambia il sito.
+
+
+## Mirror di una versione DEV già pubblicata
+
+Il programma backend/d1_dev_sync.py replica nel D1 esistente solamente una
+versione che abbia passato le verifiche del workflow GitHub Autopilot.
+Non modifica il sito, PROD, Functions o servizi a pagamento.
+
+Servono i rapporti release-decision.json e catalog-quality.json della stessa
+esecuzione GitHub, completata con successo. Il codice verifica sulla piattaforma
+GitHub anche che siano riusciti i tre job: raccolta, QA mobile e pubblicazione DEV.
+Verifica quindi la firma della vecchia versione D1, il commit Git del catalogo
+pubblicato, i diritti sulle fonti e i controlli di sicurezza.
+
+Esecuzione manuale, prima in sola lettura:
+
+    python backend/d1_dev_sync.py --repo DEV_CHECKOUT --decision QA/release-decision.json --quality QA/catalog-quality.json
+
+Solo quando il piano risulta approvato:
+
+    python backend/d1_dev_sync.py --repo DEV_CHECKOUT --decision QA/release-decision.json --quality QA/catalog-quality.json --import-dev
+
+Se il publisher ha aggiunto nuove schede dopo la fase candidata, serve anche il
+parametro --admission con l'esatto documento happings-weekly-admission.json
+della pubblicazione e il Git SHA finale. Nessuna supposizione basata sul numero
+di mercati basta al posto di quella prova.
+
+I commit che cambiano solo codice o report ma non i dati vengono riconosciuti
+come already_mirrored: il confronto rilegge tutti gli hash degli ID riferiti al
+Git SHA originale già conservato in D1.
+
+Se sono state perse versioni intermedie, il programma si ferma invece di
+promuovere una fotografia non riconciliata. L'aggancio allo scheduler Windows
+richiede un recupero attendibile di tutti i verbali di pubblicazione.
+La presente versione NON abilita ancora un aggiornamento programmato.
