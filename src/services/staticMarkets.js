@@ -6,6 +6,7 @@
  * Browser Cache-Control handles subsequent visits and refreshes.
  */
 import { cleanAddressConflicts } from '../lib/sourceFieldConflicts.js'
+import { fallbackIsEvent } from '../lib/cadence.js'
 
 const BASE_URL = import.meta.env?.BASE_URL || '/'
 export const CATALOG_CHECK_INTERVAL_MS = 30 * 60 * 1000
@@ -48,6 +49,28 @@ export function decodeIndexRecords(records, manifest) {
     }
     return Object.fromEntries(columns.map((key, i) => [key, record[i]]))
   })
+}
+
+const EVENT_FIELDS = ['indirizzo', 'ricorrenza_testo', 'descrizione', 'ingresso', 'consigli']
+
+// data/v1/eventi-{hash}.json -> Map(slug -> rich fields). null when the file is unusable.
+export function decodeEventRows(data) {
+  if (!data || data.schema !== 1 || !Array.isArray(data.markets)) return null
+  const map = new Map()
+  for (const row of data.markets) {
+    if (!Array.isArray(row) || row.length !== EVENT_FIELDS.length + 1 || typeof row[0] !== 'string') return null
+    map.set(row[0], Object.fromEntries(EVENT_FIELDS.map((key, i) => [key, typeof row[i + 1] === 'string' ? row[i + 1] : ''])))
+  }
+  return map
+}
+
+export function mergeEventFields(record, events) {
+  if (!events) return { ...record, isEvent: fallbackIsEvent(record) }
+  const rich = events.get(record.slug)
+  if (!rich) return { ...record, isEvent: false }
+  const merged = { ...record, isEvent: true }
+  for (const key of EVENT_FIELDS) if (!merged[key]) merged[key] = rich[key]
+  return merged
 }
 
 function staticURL(path) {
@@ -118,7 +141,11 @@ async function loadCatalogFromManifest(manifest) {
       if (!record.slug || ids.has(record.slug)) throw new Error('Indice duplicato o non valido')
       ids.add(record.slug)
     }
-    return { manifest, ...splitDuplicates(markets) }
+    let events = null
+    if (typeof manifest.events === 'string' && manifest.events_schema === 1) {
+      events = decodeEventRows(await loadJSON(manifest.events, true).catch(() => null))
+    }
+    return { manifest, events, ...splitDuplicates(markets) }
   }
 
   let parts
@@ -269,6 +296,7 @@ function normalize(m, userLat, userLng) {
     position_quality: m.position_quality || 'sconosciuta',
     status: m.status || 'non_confermato',
     concluso: m.concluso || '',
+    isEvent: m.isEvent === true,
     fonte: m.fonte || '',
     url_fonte: m.url_fonte || '',
     // Full regional details carry publisher-side safety holds and source
@@ -286,8 +314,8 @@ function normalize(m, userLat, userLng) {
 }
 
 export async function fetchMarkets({ userLat = null, userLng = null } = {}) {
-  const { markets } = await fetchCatalog()
-  return markets.map(m => normalize(m, userLat, userLng))
+  const { markets, events = null } = await fetchCatalog()
+  return markets.map(m => normalize(mergeEventFields(m, events), userLat, userLng))
 }
 
 /** Shared links and favourites may name a soft-merged copy: use its kept record. */

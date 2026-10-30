@@ -887,6 +887,51 @@ def small_index(markets: list[dict], *, schema=5, today=None) -> list[list]:
     return project_index(markets, schema=schema, today=today)
 
 
+# Rich fields for the non-weekly markets only ("eventi"): the national index stays
+# small; the home shows address, cadence, a short description, entry and tips
+# without downloading a 10 MB regional file.
+EVENTS_SCHEMA = 1
+EVENTS_FIELDS = ("slug", "indirizzo", "ricorrenza_testo", "descrizione", "ingresso", "consigli")
+WEEKLY_TAGS = {"settimanale", "mercato settimanale", "mercato comunale", "MERCAP"}
+
+
+def is_weekly_market(market: dict) -> bool:
+    rule = market.get("proiezione_regola")
+    if isinstance(rule, dict) and rule.get("kind") == "weekly":
+        return True
+    return bool(WEEKLY_TAGS & set(market.get("tags") or []))
+
+
+def short_description(text, limit: int = 240) -> str:
+    text = " ".join(str(text or "").split())
+    if len(text) <= limit:
+        return text
+    cut = text[:limit]
+    sentence = max(cut.rfind(". "), cut.rfind("! "), cut.rfind("? "))
+    if sentence >= limit // 2:
+        return cut[:sentence + 1] + "…"
+    word = cut.rfind(" ")
+    if word >= limit // 2:
+        return cut[:word] + "…"
+    return cut + "…"
+
+
+def events_rows(markets: list[dict]) -> list[list]:
+    rows = []
+    for market in markets:
+        if market.get("concluso") or market.get("duplicato_di") or is_weekly_market(market):
+            continue
+        rows.append([
+            market.get("slug") or "",
+            str(market.get("indirizzo") or ""),
+            str(market.get("ricorrenza_testo") or ""),
+            short_description(market.get("descrizione")),
+            str(market.get("ingresso") or ""),
+            str(market.get("consigli") or ""),
+        ])
+    return rows
+
+
 
 def _write_asset(output: Path, relative: str, markets: list[dict]):
     body = compact_json({"schema": 1, "markets": markets})
@@ -922,7 +967,9 @@ def export(records: list, out: Path, today: date | None = None,
             and previous.get("index_schema") == INDEX_SCHEMA
             and previous.get("index_as_of") == now.isoformat()
             and previous.get("index")
-            and (out.parent.parent / previous["index"]).is_file()):
+            and (out.parent.parent / previous["index"]).is_file()
+            and previous.get("events")
+            and (out.parent.parent / previous["events"]).is_file()):
         return {"unchanged": True, "stats": stats, "manifest": previous}
     if dry_run:
         return {"unchanged": False, "stats": stats, "manifest": None}
@@ -946,11 +993,13 @@ def export(records: list, out: Path, today: date | None = None,
     # One lightweight global index fetch on page load; full regional datasets
     # are immutable and fetched only when a market detail is opened.
     index_path = _write_asset(out, "index-{hash}.json", small_index(markets, schema=INDEX_SCHEMA, today=now))
+    events_path = _write_asset(out, "eventi-{hash}.json", events_rows(markets))
 
     manifest = {
         "schema": 1, "layout": layout, "total": len(markets),
         "index": index_path,
         "index_schema": INDEX_SCHEMA,
+        "events": events_path, "events_schema": EVENTS_SCHEMA,
         "index_as_of": now.isoformat(),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "content_signature": signature,

@@ -50,6 +50,7 @@ export function adaptMarket(m, userLat, userLng) {
     lat: m.lat, lng: m.lng,
     category: categoryLabel,
     tags: m.tags || [],
+    isEvent: m.isEvent === true,
     dates: m.date || [],
     hours: m.orario_testo || '',
     indexHoursScope: m.ambito_orari || '',
