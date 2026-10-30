@@ -1,12 +1,7 @@
-import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense, Fragment } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useMarkets } from "./hooks/useMarkets";
-import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup, italianKey } from './lib/marketGrouping';
+import { displayEntries, weekdayFromISO } from './lib/marketGrouping';
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
-import { UNKNOWN_CITY_HELP, VENUE_UNCONFIRMED_HELP } from './lib/locationQuality';
-import { marketDateDisclosure } from './lib/dateDisclosure.js';
-import { mergeContacts, sourceCalendarView, sourceContacts, sourceHoursForDate } from './lib/sourceCalendar.js';
-import { editorialContacts, editorialSummaryView } from './lib/editorialEvidence.js';
-import { addressConflictView } from './lib/sourceFieldConflicts.js';
 import { destinationForMarket } from './lib/marketDirections.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
 import Home from './screens/Home.jsx';
@@ -21,9 +16,7 @@ import More from './screens/More.jsx';
 import TabBar from './ui/TabBar.jsx';
 import { weekendOf, inWeekend } from './lib/weekend.js';
 import Icon from './ui/Icon.jsx';
-import { CATEGORY_COLORS, localISO, TODAY, todayStr, formatDateIT, getDateBadge, dateQualityLabel, dateLeaf, dayHeaderLabel, getNextDate, uniqueByName } from './lib/display.js';
-import { downloadCalendarEvent } from './lib/calendarFile.js';
-import { reportUrl } from './lib/report.js';
+import { CATEGORY_COLORS, localISO, TODAY, todayStr, getNextDate } from './lib/display.js';
 import { haversine } from './services/staticMarkets.js';
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
@@ -32,15 +25,8 @@ const CATEGORIES = ["Alimentare", "Antiquariato", "Vintage e abbigliamento", "Us
 const REGIONS = [];
 const CITIES = [];
 
-const CATEGORY_ICONS = {
-  "Alimentare": "🍅", "Antiquariato": "🏺", "Vintage e abbigliamento": "👗",
-  "Usato": "📦", "Artigianato": "🎨", "Misto": "🎪"
-};
 
 
-// User position (Firenze as default)
-const USER_LAT = 43.7696;
-const USER_LNG = 11.2558;
 
 
 // ─── Main App ───────────────────────────────────────────────
@@ -107,8 +93,6 @@ export default function App() {
   const [manualCity, setManualCity] = useState("");
 
   // Map state
-  const [hoveredPin, setHoveredPin] = useState(null);
-  const mapRef = useRef(null);
 
   // Day headers stick right under the search bar, whatever its rendered height.
   const headerRef = useRef(null);
@@ -123,7 +107,6 @@ export default function App() {
 
   // Bridge: use hook's categories/colors/icons, falling back to local constants
   const CATS = hookCategories.length > 0 ? hookCategories : CATEGORIES;
-  const CAT_ICONS = Object.keys(hookCatIcons).length > 0 ? hookCatIcons : CATEGORY_ICONS;
   const CAT_COLORS = Object.keys(hookCatColors).length > 0 ? hookCatColors : CATEGORY_COLORS;
   const REGS = hookRegions.length > 0 ? hookRegions : REGIONS;
   const CTS = hookCities.length > 0 ? hookCities : CITIES;
@@ -274,13 +257,6 @@ export default function App() {
     setSortBy('data');
   };
 
-  // One tap on a category chip filters by that category alone; a second tap clears it.
-  const setCategoryQuick = (cat) => {
-    const next = filterCategories.length === 1 && filterCategories[0] === cat ? [] : [cat];
-    setFilterCategories(next);
-    setActiveFilterCount(Number(next.length > 0) + Number(Boolean(filterRegion)) +
-      Number(Boolean(filterCity)) + Number(canUseDistance && filterDistance < 100));
-  };
 
   // "Vedi tutti i mercati a <città>" from a card: every card of that town, any date.
   const showCity = (city) => {
@@ -552,7 +528,7 @@ export default function App() {
   // Map tab: the list's markets, around the chosen city when there is one and no GPS.
   const mapMarkets = useMemo(() => homeCenter && !canUseDistance
     ? filteredMarkets.filter(m => Number.isFinite(m.lat) && Number.isFinite(m.lng) && haversine(homeCenter.lat, homeCenter.lng, m.lat, m.lng) <= 50)
-    : filteredMarkets, [filteredMarkets, homeCenter, canUseDistance]);
+    : canUseDistance ? filteredMarkets : filteredMarkets.filter(m => m.isEvent), [filteredMarkets, homeCenter, canUseDistance]);
   const renderMap = () => (
     <MapScreen markets={mapMarkets} userLat={userLat} userLng={userLng} onSelect={openMarket}
       label={`${mapMarkets.length.toLocaleString('it-IT')} mercati sulla mappa${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : homeCenter ? ' · ' + homeCenter.label : ''}`}
