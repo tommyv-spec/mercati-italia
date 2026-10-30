@@ -895,11 +895,21 @@ EVENTS_FIELDS = ("slug", "indirizzo", "ricorrenza_testo", "descrizione", "ingres
 WEEKLY_TAGS = {"settimanale", "mercato settimanale", "mercato comunale", "MERCAP"}
 
 
+_WEEKDAY = r"(?:lunedì|martedì|mercoledì|giovedì|venerdì|sabat[oi]|domenic[ah]e?)"
+# "venerdì 15:30-20:00; sabato 08:30-13:00." / "Ogni martedì mattina" / "tutti i sabati":
+# weekdays with hours or an "every <weekday>" phrase and no monthly qualifier.
+_WEEKDAY_ONLY = re.compile(r"^(?:" + _WEEKDAY + r"\b[^a-zà-ü]*)(?:;\s*" + _WEEKDAY + r"\b[^a-zà-ü]*)*\.?$", re.I)
+_EVERY_WEEKDAY = re.compile(r"^(?:ogni|tutti i|tutte le)\s+" + _WEEKDAY + r"\b(?!.*\bmese\b)", re.I)
+
+
 def is_weekly_market(market: dict) -> bool:
     rule = market.get("proiezione_regola")
     if isinstance(rule, dict) and rule.get("kind") == "weekly":
         return True
-    return bool(WEEKLY_TAGS & set(market.get("tags") or []))
+    if WEEKLY_TAGS & set(market.get("tags") or []):
+        return True
+    recurrence = " ".join(str(market.get("ricorrenza_testo") or "").split())
+    return bool(recurrence) and bool(_WEEKDAY_ONLY.match(recurrence) or _EVERY_WEEKDAY.match(recurrence))
 
 
 def short_description(text, limit: int = 240) -> str:

@@ -15,6 +15,16 @@ class EventsFileTests(unittest.TestCase):
         self.assertFalse(is_weekly_market({"proiezione_regola": {"kind": "monthly_nth_weekday"}, "tags": ["antiquariato"]}))
         self.assertFalse(is_weekly_market({"categoria": "misto"}))
 
+    def test_weekday_only_recurrence_is_weekly(self):
+        # Farmers' markets list their weekdays and hours: weekly in all but name.
+        self.assertTrue(is_weekly_market({"ricorrenza_testo": "venerdì 15:30–20:00; sabato 08:30–13:00."}))
+        self.assertTrue(is_weekly_market({"ricorrenza_testo": "martedì 08:00–20:00; giovedì 08:00–20:00; sabato 08:00–14:00."}))
+        self.assertTrue(is_weekly_market({"ricorrenza_testo": "Ogni martedì mattina"}))
+        self.assertTrue(is_weekly_market({"ricorrenza_testo": "tutti i sabati"}))
+        self.assertFalse(is_weekly_market({"ricorrenza_testo": "Ogni prima domenica del mese"}))
+        self.assertFalse(is_weekly_market({"ricorrenza_testo": "sabato 31 ottobre e domenica 1 novembre"}))
+        self.assertFalse(is_weekly_market({"ricorrenza_testo": ""}))
+
     def test_short_description_cuts_on_sentence_then_word(self):
         self.assertEqual(short_description("Breve."), "Breve.")
         long_text = "Prima frase lunga. " * 10 + "Seconda frase che non entra."
