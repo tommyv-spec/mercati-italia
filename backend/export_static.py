@@ -654,6 +654,56 @@ def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
     return markers, counts
 
 
+def visitor_facts(row: dict, today: date) -> set:
+    """What a card tells a visitor: an upcoming date, a real street, clock hours,
+    a precise position, a human verification."""
+    return {fact for fact, present in (
+        ("data", any(str(d) >= today.isoformat() for d in row.get("date") or [])),
+        ("via", bool(specific_market_address(row.get("indirizzo", "")))),
+        ("orario", exact_hours(row)),
+        ("posizione", row.get("position_quality") == "precisa"),
+        ("verificato", bool(row.get("verificato_il"))),
+    ) if present}
+
+
+def relead_copies(rows: list[dict], today: date) -> tuple[list[dict], dict[str, str]]:
+    """Copy groups are frozen once linked, but a hidden copy can later learn more than
+    the shown card. It takes the shown card's place when it tells the visitor every fact
+    the shown card does and more (losing no upcoming date), and is the same market as
+    every member: the shown card only ever gains. IDs stay; no chains.
+    Returns the rows and {old kept: new kept}."""
+    by_slug = {r["slug"]: r for r in rows}
+    groups = defaultdict(list)
+    for row in rows:
+        if row.get("duplicato_di") in by_slug:
+            groups[row["duplicato_di"]].append(row)
+    upcoming = lambda r: {str(d) for d in r.get("date") or [] if str(d) >= today.isoformat()}
+    moves = {}
+    for kept_id, copies in groups.items():
+        kept = by_slug[kept_id]
+        if kept.get("duplicato_di"):
+            continue  # a chain is not a group this step understands
+        shown = visitor_facts(kept, today)
+        richer = [c for c in copies if visitor_facts(c, today) > shown and upcoming(c) >= upcoming(kept)]
+        if not richer:
+            continue
+        best = max(richer, key=lambda r: (len(visitor_facts(r, today)), data_value_score(r),
+                                          -len(r["slug"]), r["slug"]))
+        members = [kept, *copies]
+        if ("data" in visitor_facts(best, today) or not any("data" in visitor_facts(m, today) for m in members)) \
+                and all(same_market(best, m) for m in members if m is not best):
+            moves[kept_id] = best["slug"]
+    out = []
+    for row in rows:
+        group = row["slug"] if row["slug"] in moves else row.get("duplicato_di")
+        if group in moves:
+            row = {k: v for k, v in row.items() if k != "duplicato_di"}
+            if row["slug"] != moves[group]:
+                row["duplicato_di"] = moves[group]
+        out.append(row)
+    return out, moves
+
+
 def _host(url) -> str:
     try:
         return urlsplit(str(url or "")).netloc.lower().removeprefix("www.")

@@ -361,6 +361,32 @@ class ExportTests(unittest.TestCase):
         undated = {**a, "date": []}
         self.assertEqual(merged(undated, old, b), {"a": "", "old": "a", "b": ""})
 
+    def test_a_hidden_copy_that_learned_more_becomes_the_shown_card(self):
+        from export_static import relead_copies
+        weekly = dict(ricorrenza_testo="settimanale - martedì")
+        # Shown: eventiesagre's template hours and no upcoming date. Hidden: Happings, with dates.
+        shown = market("ees", fonte="eventiesagre.it", indirizzo="Piazza Vittorio Veneto", date=[],
+                       orario_testo="08:00–13:00", ricorrenza_testo="Ogni martedì")
+        richer = market("happ", fonte="happings.com", url_fonte="https://example.org/markets/2",
+                        indirizzo="piazza vittorio veneto", orario_testo="07:30–13:00", duplicato_di="ees",
+                        date=["2026-10-13"], **weekly)
+        twin = {**shown, "slug": "ees-martedi", "duplicato_di": "ees"}
+        rows, moves = relead_copies([shown, richer, twin], self.today)
+        self.assertEqual(moves, {"ees": "happ"})
+        self.assertEqual({r["slug"]: r.get("duplicato_di", "") for r in rows},
+                         {"ees": "happ", "happ": "", "ees-martedi": "happ"})
+        self.assertEqual([{k: v for k, v in r.items() if k != "duplicato_di"} for r in rows],
+                         [{k: v for k, v in r.items() if k != "duplicato_di"} for r in (shown, richer, twin)])
+        for case, why in (({"date": ["2026-10-20"]}, "the shown card would lose its 20 Oct date"),
+                          ({"indirizzo": "Via Roma 5"}, "another street: not the same market"),
+                          ({"fonte": "eventiesagre.it"}, "one source, two records: ambiguous")):
+            with self.subTest(why):
+                held = {**shown, **case} if "date" in case else shown
+                copy = richer if "date" in case else {**richer, **case}
+                self.assertEqual(relead_copies([held, copy], self.today)[1], {})
+        # Once the richer card is shown, nothing moves again.
+        self.assertEqual(relead_copies(rows, self.today), (rows, {}))
+
     def test_unscheduled_markets_are_concluded_but_kept(self):
         past = dict(date=["2025-05-01"], date_quality="prevista")
         rows = [market("dated", url_fonte="https://example.org/markets/1"),

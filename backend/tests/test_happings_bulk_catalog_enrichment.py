@@ -83,6 +83,20 @@ class BulkFieldTests(unittest.TestCase):
                             for p in by[ees["slug"]]["riscontri_campi"]))
         self.assertEqual({k:by[ees["slug"]][k] for k in bulk.FIELDS},{k:ees[k] for k in bulk.FIELDS})
 
+    def test_a_card_with_upcoming_dates_shows_over_one_with_none_left(self):
+        # eventiesagre's template hours are not clock hours (CONTROLLO_FONTI S13) and its card
+        # has no upcoming date left: the Happings card at the same street stays visible.
+        happ=base_row(street="Via Dalmazia"); happ.update(orario_testo="La mattina",date=["2026-10-29"])
+        ees=base_row("mercato-settimanale-di-albenga-ees")
+        ees.update(fonte="eventiesagre.it",nome="Mercato Settimanale Di Albenga",ricorrenza_testo="Ogni mercoledì",
+                   indirizzo="Via Dalmazia",orario_testo="08:00–13:00",date=[],
+                   url_fonte="https://www.eventiesagre.it/Mercatini_Filiera+Corta/1_Mercato+Settimanale+Di+Albenga.html")
+        with patch.object(bulk,"read_weekly_source",return_value=({bulk.catalog_key(happ):[fact()]},Counter())):
+            candidate,_=bulk.enrich([happ,ees],".",today=DAY)
+        by={r["slug"]:r for r in candidate}
+        self.assertEqual(by[ees["slug"]].get("duplicato_di"),happ["slug"])
+        self.assertNotIn("duplicato_di",by[happ["slug"]])
+
     def test_any_source_card_at_the_listed_street_joins_and_the_most_detailed_shows(self):
         happ=base_row(street="Via Dalmazia"); happ["orario_testo"]="La mattina"
         official=base_row("lo-mercap-1-mercoledi")

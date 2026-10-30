@@ -20,7 +20,8 @@ from copy import deepcopy
 from datetime import date, datetime
 from pathlib import Path
 
-from export_static import data_value_score, dayparts, same_market, same_venue, shares_street, venue_slot
+from export_static import (data_value_score, dayparts, exact_hours, same_market, same_venue, shares_street,
+                           venue_slot, visitor_facts)
 from field_evidence import (_provenance_key, as_published, clean_receipts, mark_managed_fields,
                             published_town, retire_superseded_receipts)
 from happings_full_reconciliation import _saved_page
@@ -37,7 +38,6 @@ FIELDS = ("indirizzo", "orario_testo", "ricorrenza_testo")
 WEEKDAY_TEXT = ("lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica")
 CUT_WEEKLY = re.compile(r"settimanale(?: ([a-z]{1,7}))?")
 CENTRE = re.compile(r"(?:in )?centro(?: storico| paese| citta)?")
-CLOCK = re.compile(r"\b\d{1,2}[:.]\d\d\b")
 MAX_RESTORED = 50000
 
 
@@ -150,16 +150,18 @@ def names_place(row, place, hours=None):
     return bool(place) and not (own and said and not own & said) and shares_street(row, page)
 
 
-def kept_record(rows, street=None, hours=None):
+def kept_record(rows, today, street=None, hours=None):
     """The visible card is the one that tells the visitor most: the listed street,
-    a real street, exact clock hours; then stable (already kept stays). Dates do
-    not decide: every member has upcoming ones."""
+    a real street, upcoming dates (another source's card may have none left), exact
+    clock hours (not eventiesagre's template, CONTROLLO_FONTI S13); then stable
+    (already kept stays). Agrees with export_static.relead_copies, so the weekly and
+    nightly jobs never flip a group back and forth."""
     already = {r.get("duplicato_di") for r in rows}
     listed = lambda r: bool(street) and (source._same_place(r.get("indirizzo"), street) or (
         r.get("fonte") != source.PUBLISHER and names_place(r, street, hours)))
     return max(rows, key=lambda r: (listed(r),
                                     safe_stored_street(r.get("indirizzo")),
-                                    bool(CLOCK.search(str(r.get("orario_testo") or ""))),
+                                    "data" in visitor_facts(r, today), exact_hours(r),
                                     r["slug"] in already, data_value_score(r),
                                     r.get("lat") is not None, -len(r["slug"]), r["slug"]))
 
@@ -408,7 +410,7 @@ def enrich(catalog, snapshot, *, today):
                     evaluated.add(other["slug"])
                     stats["other_source_same_venue_joined"] += 1
             if len(rows) > 1:
-                kept = kept_record(rows, unique_street, hours)
+                kept = kept_record(rows, today, unique_street, hours)
                 marks.update({r["slug"]: kept["slug"] for r in rows if r is not kept})
     # Recompute markers only for records this run evaluated; others keep
     # theirs unless the kept record vanished or became a copy itself.

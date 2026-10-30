@@ -25,7 +25,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 from audit_dataset import audit
-from export_static import export
+from export_static import export, relead_copies
 from field_evidence import PUBLISHED_TOWN_FIXES, attach_feed_observations, audit as audit_field_evidence
 from publisher_refresh import (run as refresh_publisher_pages,
                                validate_contracts as validate_publisher_contracts,
@@ -1370,7 +1370,12 @@ def run(args):
     # the final address: shared placeholder points are withdrawn, and markets with
     # a real street get a street-level OpenStreetMap point (bounded, cached, fail-closed).
     # New IDs and official publishers that are down today stay exactly as they are.
-    resolved = projected
+    # Before it, a hidden copy that learned more than its group's shown card takes its
+    # place: after every reading step (their saved reads stay bound to their own input),
+    # and the checks below receive it as part of the final rows.
+    relead, copy_leaders = relead_copies(projected, args.today)
+    save_json(out / "copy-leaders.json", copy_leaders)
+    resolved = relead
     position_cache = None
     position_held = frozenset(
         ({row["slug"] for row in projected} - {row["slug"] for row in old_rows})
@@ -1386,12 +1391,12 @@ def run(args):
             resumed_cache if args.resume and resumed_cache.is_file()
             else Path(__file__).resolve().parent / "data" / "geocode-cache.json")
         resolved, position_report = position_resolver.resolve(
-            projected, position_cache, today=args.today, istat=istat_register,
+            relead, position_cache, today=args.today, istat=istat_register,
             lookup=None if args.offline else position_resolver.nominatim, held_ids=position_held,
             max_lookups=position_policy["max_lookups"], max_seconds=position_policy["max_seconds"])
         position_report["enabled"] = True
         position_report["held_ids"] = sorted(position_held)
-        position_report["diff_guard"] = position_resolver.verify_diff(projected, resolved, held_ids=position_held)
+        position_report["diff_guard"] = position_resolver.verify_diff(relead, resolved, held_ids=position_held)
         position_resolver.save_cache(out / "geocode-cache.json", position_cache)
     save_json(out / "position-resolver.json", position_report)
     checkpoint(out, "positions", {key: position_report.get(key) for key in (
@@ -1448,6 +1453,7 @@ def run(args):
         "index_schema": result_manifest["index_schema"],
         "unchanged": bool(exported["unchanged"]),
         "content_signature": result_manifest["content_signature"],
+        "copy_leaders_changed": len(copy_leaders),
     })
 
     from validate_static import validate
