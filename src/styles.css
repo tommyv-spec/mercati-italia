@@ -1547,3 +1547,4 @@ body {
 .detail-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 22px 20px 0; font-size: 12px; color: var(--ink-lighter); }
 .provenance { padding: 22px 20px 0; font-size: 13px; line-height: 1.6; color: var(--ink-lighter); }
 .provenance a, .provenance .link { color: var(--terracotta); font-size: 13px; }
+.near .d { flex-basis: 66px; font-size: 11px; }
