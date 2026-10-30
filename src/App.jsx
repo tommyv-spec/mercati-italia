@@ -1,6 +1,6 @@
-import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef, lazy, Suspense, Fragment } from "react";
 import { useMarkets } from "./hooks/useMarkets";
-import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup } from './lib/marketGrouping';
+import { displayEntries, weekdayFromISO, WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup, italianKey } from './lib/marketGrouping';
 import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
 import { UNKNOWN_CITY_HELP, VENUE_UNCONFIRMED_HELP } from './lib/locationQuality';
 import { marketDateDisclosure } from './lib/dateDisclosure.js';
@@ -42,24 +42,85 @@ function formatDateIT(dateStr) {
     : d.toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' });
 }
 
-function getDateBadge(dates = [], quality = 'prevista') {
-  const confirmed = quality === 'confermata';
-  const suffix = confirmed ? '' : ' · da verificare';
+// "Oggi", "Domani" or "Weekend" for the next date; the date quality is shown
+// separately as quiet text, never as a loud "da verificare" pill on every card.
+function getDateBadge(dates = []) {
   const now = new Date();
   const today = localISO(now);
   const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
   const satDate = new Date(now); satDate.setDate(satDate.getDate() + ((6 - now.getDay() + 7) % 7));
   const sunDate = new Date(satDate); sunDate.setDate(sunDate.getDate() + 1);
-  if (dates.includes(today)) return { label: 'Oggi' + suffix, color: confirmed ? '#B94439' : '#81796D' };
-  if (dates.includes(localISO(tomorrow))) return { label: 'Domani' + suffix, color: confirmed ? '#B94439' : '#81796D' };
+  if (dates.includes(today)) return { label: 'Oggi', tone: 'today' };
+  if (dates.includes(localISO(tomorrow))) return { label: 'Domani', tone: 'today' };
   if (dates.includes(localISO(satDate)) || dates.includes(localISO(sunDate))) {
-    return { label: 'Weekend' + suffix, color: confirmed ? '#446E47' : '#81796D' };
+    return { label: 'Questo weekend', tone: 'weekend' };
   }
   return null;
 }
 
+function dateQualityLabel(quality) {
+  return quality === 'confermata' ? 'Data confermata'
+    : quality === 'riportata' ? 'Riportata dalla fonte' : 'Data prevista, da verificare';
+}
+
+// Calendar-leaf pieces for a card: day number plus "dom nov".
+function dateLeaf(dateStr) {
+  const d = dateStr ? new Date(dateStr + 'T12:00:00') : null;
+  if (!d || Number.isNaN(d.getTime())) return { day: '–', month: 'n.d.' };
+  return {
+    day: String(d.getDate()),
+    month: d.toLocaleDateString('it-IT', { weekday: 'short' }) + ' ' + d.toLocaleDateString('it-IT', { month: 'short' }),
+  };
+}
+
+function dayHeaderLabel(dateStr) {
+  if (!dateStr) return 'Senza una data prossima';
+  const tomorrow = new Date(TODAY); tomorrow.setDate(tomorrow.getDate() + 1);
+  const long = new Date(dateStr + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
+  const label = long.charAt(0).toUpperCase() + long.slice(1);
+  return dateStr === todayStr ? 'Oggi · ' + label : dateStr === localISO(tomorrow) ? 'Domani · ' + label : label;
+}
+
 function getNextDate(dates = []) {
   return dates.filter(d => d >= localISO()).sort()[0] || null;
+}
+
+// Generic weekly records of one town repeat the same name per weekday: show the first (earliest) only.
+function uniqueByName(items, pick = item => item) {
+  const seen = new Set();
+  return items.filter(item => {
+    const key = italianKey(pick(item).city) + '|' + italianKey(pick(item).name);
+    return seen.has(key) ? false : seen.add(key);
+  });
+}
+
+// All-day calendar event for the next date: hours stay as text in the description.
+function downloadCalendarEvent(market, dateStr, hours) {
+  const esc = s => String(s || '').replace(/\\/g, '\\\\').replace(/[,;]/g, m => '\\' + m).replace(/\r?\n/g, '\\n');
+  const day = dateStr.replace(/-/g, '');
+  const next = new Date(dateStr + 'T12:00:00'); next.setDate(next.getDate() + 1);
+  const url = new URL(window.location.href); url.hash = 'mercato=' + encodeURIComponent(market.id);
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Fuori//Mercatini d Italia//IT', 'BEGIN:VEVENT',
+    'UID:' + market.id + '@fuori-mercatini.com',
+    'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
+    'DTSTART;VALUE=DATE:' + day, 'DTEND;VALUE=DATE:' + localISO(next).replace(/-/g, ''),
+    'SUMMARY:' + esc(market.name),
+    'LOCATION:' + esc([market.address, market.city].filter(Boolean).join(', ')),
+    'DESCRIPTION:' + esc((hours ? 'Orari: ' + hours + '. ' : '') + 'Data prevista, controlla la fonte prima di partire. ' + url),
+    'URL:' + url, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+  link.download = market.id + '.ics';
+  document.body.appendChild(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(link.href), 10000);
+}
+
+// ponytail: visitors report a wrong card through a prefilled GitHub issue (no backend);
+// swap REPORT_URL for a form or mailbox when one exists.
+function reportUrl(market) {
+  const title = 'Scheda da correggere: ' + market.name + ' (' + market.city + ')';
+  const body = 'Scheda: ' + market.id + '\nFonte: ' + (market.sourceUrl || 'n.d.') + '\n\nCosa non torna:\n';
+  return 'https://github.com/tommyv-spec/mercati-italia/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
 }
 
 function haversine(lat1, lng1, lat2, lng2) {
@@ -190,17 +251,17 @@ body {
   min-height: 100vh;
   background: var(--cream);
   position: relative;
-  overflow: hidden;
+  /* clip, not hidden: hidden would turn the container into the scrollport and break sticky */
+  overflow-x: clip;
 }
 
-/* ─── Header ─── */
+/* ─── Header: only the title and the search stay on screen while scrolling ─── */
 .header {
-  background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 90%, transparent 100%);
-  padding: 16px 20px 8px;
+  background: var(--cream);
+  padding: 12px 20px 10px;
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(12px);
 }
 
 .header-title {
@@ -208,9 +269,9 @@ body {
   font-size: 28px;
   color: var(--ink);
   letter-spacing: -0.3px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
 }
 
@@ -218,10 +279,23 @@ body {
   color: var(--terracotta);
 }
 
+.header-sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-lighter);
+}
+
+.toolbar {
+  padding: 0 20px;
+}
+
 /* ─── Search ─── */
 .search-container {
   position: relative;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 .search-input {
@@ -290,6 +364,29 @@ body {
   background: var(--ink);
   color: var(--cream);
   border-color: var(--ink);
+}
+
+.chip.chip-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  font-size: 13px;
+}
+
+/* ─── Day headers: stick just under the search while the list scrolls ─── */
+.day-header {
+  position: sticky;
+  top: var(--header-h, 96px);
+  z-index: 40;
+  background: var(--cream);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--ink);
+  padding: 10px 0 6px;
+  margin-bottom: -4px;
+  border-bottom: 1px solid var(--beige-dark);
 }
 
 /* ─── Controls Row ─── */
@@ -436,41 +533,68 @@ body {
   border-radius: 4px 0 0 4px;
 }
 
-.card-top {
+/* Card: date leaf on the left, place + name + facts on the right (Vintagery order). */
+.card-row {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  gap: 12px;
 }
 
-.card-badges {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  align-items: center;
+.card-date {
+  flex-shrink: 0;
+  min-width: 54px;
+  padding: 8px 4px 7px;
+  border-radius: 10px;
+  text-align: center;
+  background: var(--beige);
+  color: var(--ink);
 }
 
-.category-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+.card-date.today { background: var(--terracotta); color: white; }
+.card-date.weekend { background: var(--olive); color: white; }
+
+.card-date-day {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1;
 }
 
-.date-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  border-radius: 100px;
+.card-date-month {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.card-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-eyebrow {
   font-size: 11px;
-  font-weight: 600;
-  color: white;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-lighter);
+  margin-bottom: 3px;
 }
+
+.card-eyebrow .card-city { color: var(--ink-light); }
+
+.card-status {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ink-lighter);
+}
+
+.card-status .today { color: var(--terracotta); font-weight: 700; }
+.card-status .weekend { color: var(--olive); font-weight: 700; }
+.card-status .confirmed { color: var(--olive); font-weight: 600; }
 
 .fav-btn {
   position: relative;
@@ -507,6 +631,15 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+/* Long opening-hours text is clamped on the card; the detail page shows it in full. */
+.card-hours {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  align-items: flex-start;
 }
 
 .card-distance {
@@ -862,9 +995,6 @@ body {
 }
 
 .detail-provenance {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   padding: 14px 16px;
   background: var(--beige);
   border-radius: var(--radius-md);
@@ -872,19 +1002,46 @@ body {
   color: var(--ink-lighter);
 }
 
-.confidence-bar {
-  height: 4px;
-  background: var(--beige-dark);
-  border-radius: 2px;
-  width: 60px;
-  overflow: hidden;
+.detail-lead {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
 }
 
-.confidence-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 0.5s ease;
+.detail-next {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
+
+.detail-next .card-date { min-width: 64px; }
+.detail-next .card-date-day { font-size: 30px; }
+.detail-next-label { font-size: 17px; font-weight: 600; color: var(--ink); }
+.detail-next-sub { font-size: 13px; color: var(--ink-light); margin-top: 2px; }
+
+/* Rows that open another card: nearby this week, other markets in town. */
+.link-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 2px;
+  border: 0;
+  border-top: 1px solid var(--beige-dark);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 46px;
+}
+
+.link-row:first-of-type { border-top: 0; }
+.link-row-date { min-width: 78px; font-size: 13px; font-weight: 700; }
+.link-row-main { flex: 1; min-width: 0; font-size: 14px; line-height: 1.3; }
+.link-row-main small { display: block; color: var(--ink-lighter); font-size: 12px; margin-top: 2px; }
+.link-row-arrow { color: var(--terracotta); font-size: 22px; line-height: 1; }
 
 /* ─── Mini Map in Detail ─── */
 .detail-minimap {
@@ -1477,6 +1634,17 @@ export default function App() {
   const [hoveredPin, setHoveredPin] = useState(null);
   const mapRef = useRef(null);
 
+  // Day headers stick right under the search bar, whatever its rendered height.
+  const headerRef = useRef(null);
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const observer = new ResizeObserver(() =>
+      document.documentElement.style.setProperty('--header-h', el.offsetHeight + 'px'));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [tab]);
+
   // Bridge: use hook's categories/colors/icons, falling back to local constants
   const CATS = hookCategories.length > 0 ? hookCategories : CATEGORIES;
   const CAT_ICONS = Object.keys(hookCatIcons).length > 0 ? hookCatIcons : CATEGORY_ICONS;
@@ -1627,6 +1795,28 @@ export default function App() {
     setFilterDistance(100);
     setActiveFilterCount(Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
     setSortBy('data');
+  };
+
+  // One tap on a category chip filters by that category alone; a second tap clears it.
+  const setCategoryQuick = (cat) => {
+    const next = filterCategories.length === 1 && filterCategories[0] === cat ? [] : [cat];
+    setFilterCategories(next);
+    setActiveFilterCount(Number(next.length > 0) + Number(Boolean(filterRegion)) +
+      Number(Boolean(filterCity)) + Number(canUseDistance && filterDistance < 100));
+  };
+
+  // "Vedi tutti i mercati a <città>" from a card: every card of that town, any date.
+  const showCity = (city) => {
+    setFilterRegion('');
+    setFilterCity(city);
+    setSearchQuery('');
+    setDateFilter(null);
+    setDateFilterExplicit(true);
+    setActiveFilterCount(1 + Number(filterCategories.length > 0));
+    setTab('esplora');
+    setViewMode('lista');
+    closeMarket();
+    window.scrollTo(0, 0);
   };
 
   // Use hook's markets (already have distances computed)
@@ -1791,8 +1981,9 @@ export default function App() {
   // ─── Render Functions ─────────────────────────
 
   const renderMarketCard = (market, index) => {
-    const badge = getDateBadge(market.dates, market.dateQuality);
+    const badge = getDateBadge(market.dates);
     const nextDate = getNextDate(market.dates);
+    const leaf = dateLeaf(nextDate);
     const catColor = CAT_COLORS[market.category] || "#888";
     const isFav = favorites.has(market.id);
 
@@ -1806,16 +1997,42 @@ export default function App() {
           aria-label={'Apri i dettagli di ' + market.name + ', ' + market.city}
           onClick={() => openMarket(market)} />
         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: catColor, borderRadius: '4px 0 0 4px' }} />
-        <div className="card-top">
-          <div className="card-badges">
-            <span className="category-badge" style={{ background: catColor + '14', color: catColor }}>
-              {CAT_ICONS[market.category]} {market.category}
-            </span>
-            {badge && (
-              <span className="date-badge" style={{ background: badge.color }}>
-                {badge.label}
+        <div className="card-row">
+          <div className={`card-date ${badge ? badge.tone : ''}`}>
+            <span className="card-date-day">{leaf.day}</span>
+            <span className="card-date-month">{leaf.month}</span>
+          </div>
+          <div className="card-main">
+            <div className="card-eyebrow">
+              <span className="card-city">{market.city}</span>
+              {market.region && <span> · {market.region}</span>}
+            </div>
+            <div className="card-name">{market.name}</div>
+            <div className="card-info">
+              <span className="card-info-item card-hours">
+                <Icon name="clock" size={14} color="#6C6255" />
+                {sourceHoursForDate(market, nextDate)}
               </span>
-            )}
+              <span className="card-info-item" style={{ color: catColor, fontWeight: 600 }}>
+                <span aria-hidden="true">{CAT_ICONS[market.category]}</span> {market.category}
+              </span>
+              {canUseDistance && (
+                <span className="card-info-item card-distance">
+                  {market.positionQuality === 'precisa' && Number.isFinite(market.distance)
+                    ? (market.distance < 1 ? 'a meno di 1 km' : 'a ' + Math.round(market.distance) + ' km')
+                    : market.positionQuality === 'approssimata' && Number.isFinite(market.distance)
+                      ? (market.distance < 1 ? 'meno di 1 km (stimati)'
+                        : 'circa ' + Math.round(market.distance) + ' km (stimati)')
+                      : 'Posizione da verificare'}
+                </span>
+              )}
+            </div>
+            <div className="card-status">
+              {badge && <span className={badge.tone}>{badge.label} · </span>}
+              <span className={market.dateQuality === 'confermata' ? 'confirmed' : ''}>
+                {nextDate ? dateQualityLabel(market.dateQuality) : 'Data da verificare'}
+              </span>
+            </div>
           </div>
           <button
             className={`fav-btn ${isFav ? 'active' : ''}`}
@@ -1824,33 +2041,6 @@ export default function App() {
           >
             <Icon name={isFav ? "heartFilled" : "heart"} size={20} />
           </button>
-        </div>
-
-        <div className="card-name">{market.name}</div>
-
-        <div className="card-info">
-          <span className="card-info-item">
-            <Icon name="calendar" size={14} color="#6C6255" />
-            {formatDateIT(nextDate)}
-          </span>
-          <span className="card-info-item">
-            <Icon name="clock" size={14} color="#6C6255" />
-            {sourceHoursForDate(market, nextDate)}
-          </span>
-          <span className="card-info-item">
-            <Icon name="mapPin" size={14} color="#6C6255" />
-            {market.city}
-          </span>
-          {canUseDistance && (
-            <span className="card-info-item card-distance">
-              {market.positionQuality === 'precisa' && Number.isFinite(market.distance)
-                ? (market.distance < 1 ? 'a meno di 1 km' : 'a ' + Math.round(market.distance) + ' km')
-                : market.positionQuality === 'approssimata' && Number.isFinite(market.distance)
-                  ? (market.distance < 1 ? 'meno di 1 km (stimati)'
-                    : 'circa ' + Math.round(market.distance) + ' km (stimati)')
-                  : 'Posizione da verificare'}
-            </span>
-          )}
         </div>
       </div>
     );
@@ -1871,6 +2061,19 @@ export default function App() {
     const catColor = CAT_COLORS[m.category] || "#888";
     const isFav = favorites.has(m.id);
     const futureDates = m.dates.filter(d => d >= todayStr).sort();
+    const nextDate = futureDates[0] || null;
+    const nextBadge = getDateBadge(m.dates);
+    // Other cards within 30 km with a date in the next seven days, nearest first.
+    const weekAhead = (() => { const d = new Date(TODAY); d.setDate(d.getDate() + 7); return localISO(d); })();
+    const nearby = Number.isFinite(m.lat) && Number.isFinite(m.lng) ? uniqueByName(allMarkets
+      .filter(x => x.id !== m.id && Number.isFinite(x.lat) && Number.isFinite(x.lng) &&
+        x.dates.some(d => d >= todayStr && d <= weekAhead))
+      .map(x => ({ market: x, km: haversine(m.lat, m.lng, x.lat, x.lng) }))
+      .filter(x => x.km <= 30).sort((a, b) => a.km - b.km), item => item.market).slice(0, 4) : [];
+    const sameCity = m.locationReviewRequired ? [] : uniqueByName(allMarkets
+      .filter(x => x.id !== m.id && x.city === m.city && !x.locationReviewRequired &&
+        italianKey(x.name) !== italianKey(m.name))
+      .sort((a, b) => (getNextDate(a.dates) || '9999').localeCompare(getNextDate(b.dates) || '9999')));
     const canNavigate = !detailLoading && !detailError && Boolean(destinationForMarket(m));
     const sourceSchedule = sourceCalendarView(m);
     const summary = editorialSummaryView(m);
@@ -1909,36 +2112,68 @@ export default function App() {
           <div className="detail-city">
             <Icon name="mapPin" size={14} color={catColor} strokeWidth={2} /> {m.city}, {m.region}
           </div>
+          {(summary.recurrence || summary.hours) && (
+            <div className="detail-lead">
+              {[summary.recurrence, summary.hours].filter(Boolean).join(' · ')}
+            </div>
+          )}
         </div>
 
         <div className="detail-body">
-          {/* Dates */}
+          {/* Next date first; the full list of predicted dates is folded away */}
           <div className="detail-section" style={{ animationDelay: '0.05s' }}>
             <div className="detail-section-title">
-              <Icon name="calendar" size={18} color={catColor} /> Prossime date
+              <Icon name="calendar" size={18} color={catColor} /> Prossima apertura
             </div>
-            <div className="detail-dates-chips">
-              {futureDates.length === 0 && <span className="date-chip">Date da verificare</span>}
-              {futureDates.map(d => {
-                const isToday = d === todayStr;
-                const dayOfWeek = new Date(d + "T00:00:00").getDay();
-                const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-                return (
-                  <span key={d} className={`date-chip ${isToday ? 'today' : isWeekend ? 'weekend' : ''}`}
-                    title={sourceHoursForDate(m, d)}>
-                    {formatDateIT(d)}
-                  </span>
-                );
-              })}
-            </div>
-            {summary.recurrence && (
-              <div className="detail-recurrence">{summary.recurrence}</div>
+            {nextDate ? (
+              <div className="detail-next">
+                <div className={`card-date ${nextBadge ? nextBadge.tone : ''}`}>
+                  <span className="card-date-day">{dateLeaf(nextDate).day}</span>
+                  <span className="card-date-month">{dateLeaf(nextDate).month}</span>
+                </div>
+                <div>
+                  <div className="detail-next-label">{dayHeaderLabel(nextDate)}</div>
+                  <div className="detail-next-sub">
+                    {sourceHoursForDate(m, nextDate)} · {dateQualityLabel(m.dateQuality)}
+                  </div>
+                </div>
+              </div>
+            ) : <span className="date-chip">Date da verificare</span>}
+            {futureDates.length > 1 && (
+              <details className="source-calendar">
+                <summary>Tutte le date previste ({futureDates.length})</summary>
+                <div className="detail-dates-chips">
+                  {futureDates.map(d => {
+                    const isToday = d === todayStr;
+                    const dayOfWeek = new Date(d + "T00:00:00").getDay();
+                    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                    return (
+                      <span key={d} className={`date-chip ${isToday ? 'today' : isWeekend ? 'weekend' : ''}`}
+                        title={sourceHoursForDate(m, d)}>
+                        {formatDateIT(d)}
+                      </span>
+                    );
+                  })}
+                </div>
+              </details>
             )}
             {marketDateDisclosure(m.dates, m.dateQuality) && (
               <div style={{ fontSize: 12, color: '#6C6255', marginTop: 8 }}>
                 {marketDateDisclosure(m.dates, m.dateQuality)}
               </div>
             )}
+            <div className="detail-address-actions" style={{ marginTop: 14 }}>
+              <button className={isFav ? 'btn-primary' : 'btn-secondary'} onClick={() => toggleFav(m.id)}>
+                <Icon name={isFav ? 'heartFilled' : 'heart'} size={16} color={isFav ? 'white' : 'currentColor'} />
+                {isFav ? 'In Agenda' : 'Salva in Agenda'}
+              </button>
+              {nextDate && (
+                <button className="btn-secondary"
+                  onClick={() => downloadCalendarEvent(m, nextDate, sourceHoursForDate(m, nextDate))}>
+                  <Icon name="calendar" size={16} /> Aggiungi al calendario
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Hours */}
@@ -2072,6 +2307,27 @@ export default function App() {
             </div>
           </div>
 
+          {nearby.length > 0 && (
+            <div className="detail-section" style={{ animationDelay: '0.18s' }}>
+              <div className="detail-section-title">
+                <Icon name="compass" size={18} color={catColor} /> Nei prossimi 7 giorni, qui vicino
+              </div>
+              {nearby.map(({ market, km }) => (
+                <button type="button" className="link-row" key={market.id} onClick={() => openMarket(market)}>
+                  <span className="link-row-date">{formatDateIT(getNextDate(market.dates))}</span>
+                  <span className="link-row-main">
+                    {market.name}
+                    <small>{market.city} · circa {Math.max(1, Math.round(km))} km</small>
+                  </span>
+                  <span className="link-row-arrow" aria-hidden="true">›</span>
+                </button>
+              ))}
+              <p className="source-calendar-note">
+                Distanze indicative tra i punti sulla mappa, non tra gli ingressi dei mercati.
+              </p>
+            </div>
+          )}
+
           {/* Description */}
           {m.description && (
             <div className="detail-section" style={{ animationDelay: '0.2s' }}>
@@ -2158,20 +2414,37 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 11, marginBottom: 4 }}>Completezza dati</div>
-                <div className="confidence-bar">
-                  <div className="confidence-fill" style={{
-                    width: `${m.dataCompleteness}%`,
-                    background: m.dataCompleteness > 80 ? '#446E47' : m.dataCompleteness > 55 ? '#805B08' : '#B94439'
-                  }} />
-                </div>
-                <div style={{ fontSize: 10, maxWidth: 135, marginTop: 5 }}>
-                  Campi compilati, non verifica delle informazioni
-                </div>
+              <div style={{ marginTop: 10 }}>
+                Informazioni non corrette?{' '}
+                <a href={reportUrl(m)} target="_blank" rel="noopener noreferrer">Segnala un errore</a>
               </div>
             </div>
           </div>
+
+          {sameCity.length > 0 && (
+            <div className="detail-section" style={{ animationDelay: '0.35s' }}>
+              <div className="detail-section-title">
+                <Icon name="mapPin" size={18} color={catColor} /> Altri mercati a {m.city}
+              </div>
+              {sameCity.slice(0, 5).map(market => (
+                <button type="button" className="link-row" key={market.id} onClick={() => openMarket(market)}>
+                  <span className="link-row-date">{formatDateIT(getNextDate(market.dates))}</span>
+                  <span className="link-row-main">
+                    {market.name}
+                    <small>{market.category}{market.hours ? ' · ' + market.hours : ''}</small>
+                  </span>
+                  <span className="link-row-arrow" aria-hidden="true">›</span>
+                </button>
+              ))}
+              {sameCity.length > 5 && (
+                <div className="detail-address-actions" style={{ marginTop: 10 }}>
+                  <button className="btn-secondary" onClick={() => showCity(m.city)}>
+                    Vedi tutti i {sameCity.length + 1} mercati a {m.city}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
           <div style={{ height: 40 }} />
         </div>
@@ -2265,9 +2538,9 @@ export default function App() {
 
   const renderExplore = () => (
     <>
-      <div className="header">
+      <div className="header" ref={headerRef}>
         <div className="header-title">
-          <span className="accent">Mercati</span> d'Italia
+          <span className="accent">Fuori</span> <span className="header-sub">Mercatini d'Italia</span>
         </div>
 
         <div className="search-container">
@@ -2279,8 +2552,16 @@ export default function App() {
             onChange={e => setSearchQuery(e.target.value)}
           />
         </div>
+      </div>
 
-        <div className="chips-row">
+      <div className="toolbar">
+        <div className="chips-row" style={{ paddingTop: 8 }}>
+          <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
+            disabled={positionStatus === 'requesting'}>
+            <Icon name="mapPin" size={13} />
+            {positionStatus === 'ready' ? (includeEstimatedNearby ? 'Vicino a me · posizioni indicative' : 'Vicino a me · 50 km, posizioni precise') :
+             positionStatus === 'requesting' ? 'Cerco la posizione…' : 'Mercati vicino a me'}
+          </button>
           {[
             { key: "oggi", label: "Oggi" },
             { key: "weekend", label: "Questo weekend" },
@@ -2294,6 +2575,22 @@ export default function App() {
               }}
             >{label}</button>
           ))}
+        </div>
+        {positionError && <div role="alert" style={{ fontSize: 12, color: '#A5443D', margin: '0 0 8px' }}>{positionError}</div>}
+
+        <div className="chips-row" aria-label="Filtra per categoria" style={{ paddingTop: 0 }}>
+          {CATS.map(cat => {
+            const active = filterCategories.length === 1 && filterCategories[0] === cat;
+            const color = CAT_COLORS[cat];
+            return (
+              <button key={cat} type="button" aria-pressed={active}
+                className={`chip chip-cat ${active ? 'active' : ''}`}
+                style={active ? { background: color, borderColor: color, color: 'white' } : undefined}
+                onClick={() => setCategoryQuick(cat)}>
+                <span aria-hidden="true">{CAT_ICONS[cat]}</span>{cat}
+              </button>
+            );
+          })}
         </div>
 
         {viewMode === 'lista' && (
@@ -2320,30 +2617,6 @@ export default function App() {
           </div>
         )}
 
-        {viewMode === 'lista' && !canUseDistance && !filterCity && !filterRegion && !searchQuery.trim() && (
-          <div role="note" style={{
-            background: '#F0EEE8', borderRadius: 12, padding: '12px 14px',
-            margin: '6px 0 12px', fontSize: 12, lineHeight: 1.5,
-            color: 'var(--ink-light)',
-          }}>
-            <strong style={{ display: 'block', marginBottom: 3, fontSize: 13, color: 'var(--ink)' }}>
-              Stai esplorando tutta Italia
-            </strong>
-            Cerca la tua città nella barra sopra, oppure usa la posizione per trovare
-            mercati nella tua zona. Le date automatiche non sono conferme degli organizzatori.
-            <div style={{ display: 'flex', gap: 6, marginTop: 9, flexWrap: 'wrap' }}>
-              {['Firenze', 'Roma', 'Milano'].map(city => (
-                <button key={city} type="button" className="chip"
-                  onClick={() => {
-                    setFilterRegion('');
-                    setFilterCity(city);
-                    setActiveFilterCount(1);
-                    setViewMode('lista');
-                  }}>{city}</button>
-              ))}
-            </div>
-          </div>
-        )}
         {(filterCity || filterRegion || filterCategories.length > 0) && (
           <div className="chips-row" style={{ gap: 8, alignItems: 'center', margin: '2px 0 8px' }}>
             {filterCity && (
@@ -2367,16 +2640,6 @@ export default function App() {
             <button className="chip" onClick={resetAllFilters}>Azzera filtri</button>
           </div>
         )}
-        <div className="chips-row" style={{ marginTop: 8, alignItems: 'center' }}>
-          <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
-            disabled={positionStatus === 'requesting'}>
-            <Icon name="mapPin" size={13} />
-            {positionStatus === 'ready' ? (includeEstimatedNearby ? 'Vicino a me · posizioni indicative' : 'Vicino a me · 50 km, posizioni precise') :
-             positionStatus === 'requesting' ? 'Cerco la posizione…' : 'Mercati vicino a me'}
-          </button>
-          {positionError && <span role="alert" style={{ fontSize: 12, color: '#A5443D' }}>{positionError}</span>}
-        </div>
-
         {canUseDistance && filterDistance < 100 && (
           <div role="note" style={{ fontSize: 12, lineHeight: 1.5, color: '#7D7267', margin: '4px 20px 10px' }}>
             {includeEstimatedNearby
@@ -2471,14 +2734,24 @@ export default function App() {
         <div className="markets-list">
           {groupedList.length > 0 ? (
             <>
-              {groupedList.slice(0, visibleCount).map((entry, i) =>
-                entry.kind === 'group'
-                  ? <WeeklyCityGroup key={entry.key} group={entry}
-                      loadMarket={getMarketDetails} onOpenMarket={openMarket}
-                      selectedWeekday={weekdayFilter}
-                      autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdayFilter, filterCity, searchQuery)} />
-                  : renderMarketCard(entry.market, i)
-              )}
+              {groupedList.slice(0, visibleCount).map((entry, i, shown) => {
+                // A day header opens each new date; the list is already sorted by next date.
+                const dayOf = e => e.kind === 'group'
+                  ? e.markets.map(x => getNextDate(x.dates)).filter(Boolean).sort()[0] || null
+                  : getNextDate(e.market.dates);
+                const showDay = sortBy !== 'distanza' && (i === 0 || dayOf(entry) !== dayOf(shown[i - 1]));
+                return (
+                  <Fragment key={entry.key}>
+                    {showDay && <h2 className="day-header">{dayHeaderLabel(dayOf(entry))}</h2>}
+                    {entry.kind === 'group'
+                      ? <WeeklyCityGroup group={entry}
+                          loadMarket={getMarketDetails} onOpenMarket={openMarket}
+                          selectedWeekday={weekdayFilter}
+                          autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdayFilter, filterCity, searchQuery)} />
+                      : renderMarketCard(entry.market, i)}
+                  </Fragment>
+                );
+              })}
               {visibleCount < groupedList.length && (
                 <button className="btn-secondary" onClick={() => setVisibleCount(n => n + 60)}
                   style={{ margin: '18px auto 30px', padding: '12px 24px', display: 'block' }}>
@@ -2676,9 +2949,9 @@ export default function App() {
 
         <div className="app-version">
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 16, marginBottom: 4 }}>
-            <span style={{ color: 'var(--terracotta)' }}>Mercati</span> d'Italia
+            <span style={{ color: 'var(--terracotta)' }}>Fuori</span> · Mercatini d'Italia
           </div>
-          Versione 1.1 · Catalogo statico (lettura gratuita)
+          Versione 1.2 · Catalogo statico (lettura gratuita)
         </div>
       </div>
     </>
