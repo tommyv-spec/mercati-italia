@@ -1505,3 +1505,4 @@ body {
 .weekly-screen h1 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.1; color: var(--ink); margin: 8px 0 6px; }
 .weekly-screen h2 { font-family: var(--font-display); font-weight: 400; font-size: 20px; color: var(--ink); margin: 22px 0 4px; }
 .weekly-screen .weekly-row, .weekly-screen .weekly-row:last-of-type { border-bottom: 1px solid var(--beige-dark); }
+.weekly-row .hours { white-space: normal; text-align: right; flex: 0 1 46%; font-size: 14px; line-height: 1.35; }
