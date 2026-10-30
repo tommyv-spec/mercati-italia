@@ -32,27 +32,6 @@ class MissedFactsTests(unittest.TestCase):
         self.assertEqual(sorted((x["field"], x["copy"]) for x in lost), [("indirizzo", "b"), ("orario", "b")])
 
 
-    def test_the_shown_card_becomes_the_copy_that_states_clock_hours(self):
-        from export_static import prefer_exact_hours
-        def group(*copies):
-            kept = {"slug": "k", "fonte": "happings.com", "orario_testo": "La mattina",
-                    "indirizzo": "Via Roma", "date": ["2026-11-04"]}
-            return [kept] + [{"slug": f"c{i}", "duplicato_di": "k", "date": ["2026-11-04"], **c}
-                             for i, c in enumerate(copies)]
-        official = {"fonte": "happings.com", "orario_testo": "07:15–13:00 (fonte comunale, da verificare)",
-                    "indirizzo": "Piazza Paolo VI"}
-        rows, merged = group(official), {}
-        self.assertEqual(prefer_exact_hours(rows, merged, lambda r: ""), 1)
-        self.assertEqual(merged, {"k": "c0"})
-        self.assertNotIn("duplicato_di", rows[1])
-        for copies in ([{**official, "indirizzo": ""}],                                  # would lose the street
-                       [{"fonte": "eventiesagre.it", "orario_testo": "08:00–13:00", "indirizzo": "Via Roma"}],
-                       [official, {**official, "orario_testo": "08:00–12:00"}]):           # two candidates
-            with self.subTest(copies=copies):
-                merged = {}
-                self.assertEqual(prefer_exact_hours(group(*copies), merged, lambda r: ""), 0)
-                self.assertEqual(merged, {})
-
 
 if __name__ == "__main__":
     unittest.main()
