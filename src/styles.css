@@ -1506,3 +1506,44 @@ body {
 .weekly-screen h2 { font-family: var(--font-display); font-weight: 400; font-size: 20px; color: var(--ink); margin: 22px 0 4px; }
 .weekly-screen .weekly-row, .weekly-screen .weekly-row:last-of-type { border-bottom: 1px solid var(--beige-dark); }
 .weekly-row .hours { white-space: normal; text-align: right; flex: 0 1 46%; font-size: 14px; line-height: 1.35; }
+
+/* ─── Rivista: market page ─────────────────────────────────────────────── */
+.detail-page.rivista { background: var(--cream); color: var(--ink); padding: 0 0 calc(var(--tab-h) + 40px); }
+.detail-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px 0; }
+.detail-bar-actions { display: flex; gap: 8px; }
+.detail-page.rivista .detail-back { position: static; width: 44px; height: 44px; margin: 0; padding: 0; }
+.ico-btn.on { color: var(--terracotta); border-color: var(--terracotta); }
+.detail-head { padding: 18px 20px 0; display: flex; flex-direction: column; gap: 8px; }
+.detail-title { font-family: var(--font-display); font-weight: 400; font-size: 32px; line-height: 1.1; margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+.detail-place { font-size: 15px; margin: 0; }
+.detail-place .muted, .detail-page.rivista .muted { color: var(--ink-lighter); }
+.next-panel { margin: 18px 20px 0; background: var(--beige); border-radius: 16px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; }
+.next-day { font-family: var(--font-display); font-size: 26px; line-height: 1.1; }
+.next-second, .next-hours { font-size: 15px; }
+.next-panel .ok { font-size: 13px; }
+.next-panel .note, .detail-page.rivista .note { font-size: 13px; line-height: 1.5; color: var(--ink-lighter); margin: 0; }
+.next-actions { display: flex; gap: 10px; margin-top: 6px; }
+.next-actions .btn-primary, .next-actions .btn-secondary { flex: 1; margin: 0; height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-primary:disabled, .btn-secondary:disabled { opacity: .5; cursor: default; }
+.next-panel .link { align-self: flex-start; min-height: 32px; text-decoration: none; font-weight: 600; font-size: 14px; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; padding: 22px 20px 0; }
+.fact { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-top: 1px solid var(--beige-dark); }
+.fact b { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-lighter); }
+.fact span { font-size: 15px; line-height: 1.4; color: var(--ink); overflow-wrap: anywhere; }
+.detail-notes { padding: 6px 20px 0; display: flex; flex-direction: column; gap: 6px; }
+.detail-notes .link { align-self: flex-start; min-height: 32px; font-size: 14px; font-weight: 600; text-decoration: none; }
+.detail-block { padding: 22px 20px 0; }
+.detail-block h2 { font-family: var(--font-display); font-weight: 400; font-size: 21px; margin: 0 0 8px; color: var(--ink); }
+.detail-block p { font-size: 15px; line-height: 1.5; margin: 0 0 6px; }
+.detail-block .link { min-height: 32px; font-size: 14px; font-weight: 600; text-decoration: none; }
+.detail-block .btn-secondary { width: 100%; }
+.tip { margin: 22px 20px 0; background: var(--white); border: 1px solid var(--beige-dark); border-radius: 14px; padding: 14px 16px; }
+.tip p { margin: 6px 0 0; font-size: 15px; line-height: 1.5; }
+.near { display: flex; gap: 12px; align-items: flex-start; width: 100%; padding: 12px 0; border: 0; border-top: 1px solid var(--beige-dark); background: none; text-align: left; font: inherit; color: var(--ink); cursor: pointer; }
+.near .d { flex: 0 0 60px; font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--ink-lighter); text-transform: uppercase; letter-spacing: .04em; padding-top: 2px; }
+.near .t { font-size: 15px; font-weight: 600; line-height: 1.3; display: block; }
+.near .s { font-size: 13px; color: var(--ink-lighter); margin-top: 2px; display: block; }
+.clamp { display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.detail-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 22px 20px 0; font-size: 12px; color: var(--ink-lighter); }
+.provenance { padding: 22px 20px 0; font-size: 13px; line-height: 1.6; color: var(--ink-lighter); }
+.provenance a, .provenance .link { color: var(--terracotta); font-size: 13px; }
