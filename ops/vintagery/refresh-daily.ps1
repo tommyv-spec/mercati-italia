@@ -69,6 +69,10 @@ try {
     $Started = Get-Date
     $Prompt = @"
 You run the daily Vintagery read in the user's Chrome. Do exactly this, nothing else:
+0. Call list_connected_browsers. Use only the browser on THIS Windows computer: onThisComputer true, or isLocal true
+   with a Windows osPlatform. Never use a browser on another computer (the owner's Mac is connected to the same
+   account): if none is on this computer, reply exactly NOT_CONNECTED: no browser on this computer, and stop.
+   Unless that browser is already inUse, call select_browser with its deviceId.
 1. Call tabs_context_mcp with createIfEmpty true, then tabs_create_mcp, and navigate the new tab to https://vintagery.it/ .
 2. If the tab title stays "Vercel Security Checkpoint" after waiting 20 seconds (computer action wait), reply exactly BLOCKED and stop. Never try to get past it.
 3. Run the script between BEGIN SCRIPT and END SCRIPT below once with javascript_tool in that tab, copied exactly and whole (it returns 'collector started').
@@ -81,7 +85,8 @@ BEGIN SCRIPT
 $Script
 END SCRIPT
 "@
-    $Tools = @('mcp__claude-in-chrome__tabs_context_mcp', 'mcp__claude-in-chrome__tabs_create_mcp',
+    $Tools = @('mcp__claude-in-chrome__list_connected_browsers', 'mcp__claude-in-chrome__select_browser',
+               'mcp__claude-in-chrome__tabs_context_mcp', 'mcp__claude-in-chrome__tabs_create_mcp',
                'mcp__claude-in-chrome__navigate', 'mcp__claude-in-chrome__javascript_tool',
                'mcp__claude-in-chrome__computer', 'mcp__claude-in-chrome__tabs_close_mcp')
     # Prompt and answer go through files so the read has its own time limit: on 2026-10-29
