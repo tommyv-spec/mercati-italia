@@ -118,9 +118,9 @@ function downloadCalendarEvent(market, dateStr, hours) {
 // ponytail: visitors report a wrong card through a prefilled GitHub issue (no backend);
 // swap REPORT_URL for a form or mailbox when one exists.
 function reportUrl(market) {
-  const title = 'Scheda da correggere: ' + market.name + ' (' + market.city + ')';
-  const body = 'Scheda: ' + market.id + '\nFonte: ' + (market.sourceUrl || 'n.d.') + '\n\nCosa non torna:\n';
-  return 'https://github.com/tommyv-spec/mercati-italia/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+  const subject = 'Segnalazione Fuori Mercatini: ' + market.name + ' (' + market.city + ')';
+  const body = 'Ciao! Nella scheda di ' + market.name + ' (' + market.city + ') non torna:\n\n\n\nScheda: ' + market.id + '\nFonte: ' + (market.sourceUrl || 'n.d.') + '\n';
+  return 'mailto:fuori.mercatini.sagre@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 }
 
 function haversine(lat1, lng1, lat2, lng2) {
@@ -2416,7 +2416,7 @@ export default function App() {
               </div>
               <div style={{ marginTop: 10 }}>
                 Informazioni non corrette?{' '}
-                <a href={reportUrl(m)} target="_blank" rel="noopener noreferrer">Segnala un errore</a>
+                <a href={reportUrl(m)}>Segnala un errore</a>
               </div>
             </div>
           </div>
