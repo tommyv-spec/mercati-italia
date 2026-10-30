@@ -41,7 +41,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-10-29",
+      "checked_date": "2026-10-30",
       "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
       "status": "schema_preview_only",
       "viability": "venue_inventory_missing_visit_days"
@@ -71,7 +71,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "4f23a0e0-c0c7-4735-a1f9-fbf9a40c52ef": {
-      "checked_date": "2026-10-18",
+      "checked_date": "2026-10-30",
       "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
@@ -215,7 +215,7 @@
       "viability": "historical_aggregate_not_venues"
     },
     "f4407fb8-5e36-4311-8422-02d463741780": {
-      "checked_date": "2026-10-27",
+      "checked_date": "2026-10-30",
       "column_fingerprint": "e4f54283ac5b9a78b0b91e16f489d17769814f3d53625f14a483545b636de3c8",
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
@@ -227,7 +227,7 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-29",
+  "reference_date": "2026-10-30",
   "reports": [
     {
       "adapter_enabled": false,
@@ -253,30 +253,62 @@
         "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "23edf989-5a91-47ff-a6b1-fb0a9cce061d",
+      "id": "4f23a0e0-c0c7-4735-a1f9-fbf9a40c52ef",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 464,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/b1082935-69d0-4a77-8bbe-022a4a86bfe8.csv",
+      "sample_bytes": 189,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/ed829a8d-5ad0-4bef-a340-6899bef244f2.csv",
       "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Sona",
+      "title": "Posteggi mercati e fiere - Comune di Sarego",
       "truncated": false
     },
     {
       "adapter_enabled": false,
-      "error": "HTTPError: HTTP Error 503: Service Temporarily Unavailable",
       "events_confirmed": 0,
-      "field_hints": {},
-      "fields": [],
+      "field_hints": {
+        "municipality": [
+          "comune"
+        ],
+        "statistics_count": [
+          "attivazioni",
+          "cessazioni"
+        ],
+        "statistics_year": [
+          "anno"
+        ]
+      },
+      "fields": [
+        "comune",
+        "provincia",
+        "anno",
+        "totale",
+        "attivazioni",
+        "cessazioni",
+        "alimentare_totale",
+        "alimentare_attivazioni",
+        "alimentare_cessazioni",
+        "nonalimentare_totale",
+        "nonalimentare_attivazioni",
+        "nonalimentare_cessazioni",
+        "produttori_totale",
+        "produttori_attivazioni",
+        "produttori_cessazioni"
+      ],
       "format": "CSV",
-      "id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
-      "sample_url": "https://dati.lazio.it/dataset/5cb467ed-a783-4507-a36a-c0a0f6a7d9a7/resource/97f6ae01-f57f-49e7-a713-349d8fce8160/download/oscomercatigiornalieri.csv",
+      "id": "f4407fb8-5e36-4311-8422-02d463741780",
+      "review_blockers": [
+        "explicit_market_name_missing"
+      ],
+      "sample_bytes": 65536,
+      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
-      "status": "needs_review",
-      "title": "Censimento dei mercati giornalieri"
+      "status": "schema_preview_only",
+      "title": "Censimento dei mercati itineranti",
+      "truncated": true
     },
     {
       "adapter_enabled": false,

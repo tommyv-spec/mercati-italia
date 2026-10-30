@@ -1,26 +1,26 @@
 {
-  "as_of": "2026-10-29",
+  "as_of": "2026-10-30",
   "confirmed_openings_added": 0,
   "coordinates_created": 0,
   "daily_detailed_tasks_saved_in_git": false,
-  "daily_shard": 10,
-  "daily_worklist_count": 470,
+  "daily_shard": 11,
+  "daily_worklist_count": 453,
   "distinct_source_labels": 92,
-  "incomplete_market_records_retained": 14321,
+  "incomplete_market_records_retained": 14353,
   "market_fields_changed": 0,
-  "market_identities_preserved": 14321,
-  "market_records_scanned": 14321,
+  "market_identities_preserved": 14353,
+  "market_records_scanned": 14353,
   "market_rows_added": 0,
   "market_rows_removed": 0,
   "may_enable_source_crawlers": false,
   "may_grant_source_reuse_rights": false,
   "missing_by_field": {
-    "coordinates": 14232,
-    "date": 2341,
-    "indirizzo": 4982,
-    "individual_edition_confirmation": 14321,
-    "orario_testo": 1787,
-    "ricorrenza_testo": 1067
+    "coordinates": 14264,
+    "date": 2393,
+    "indirizzo": 4993,
+    "individual_edition_confirmation": 14353,
+    "orario_testo": 1792,
+    "ricorrenza_testo": 1093
   },
   "official_join_results": {
     "city_weekday_only_unconfirmed_venue": 40,
@@ -28,14 +28,14 @@
     "exact_field_evidence_candidates": 0,
     "many_market_places_on_same_city_day": 12,
     "multiple_official_venues_on_same_street_day": 2,
-    "no_usable_source_match": 13112,
+    "no_usable_source_match": 13144,
     "review_only_field_candidates": 42,
     "same_source_id": 789,
     "unique_city_province_street_weekday": 380
   },
   "official_source_records": 1360,
   "official_source_status": "fresh_dataset_not_market_confirmation",
-  "original_market_ids_sha256": "43823c131ec1cca23d8a28dd894bcbdbfe0ac90e6055b1fd749e8d445fc2784d",
+  "original_market_ids_sha256": "820e484f3e1e05e32a92ac01ee91355abb6f4cdab9229aed5d968fa893197d99",
   "publisher_copyright_permissions_inferred": false,
   "report_only": true,
   "schema": 1,
@@ -47,7 +47,7 @@
         "adapter_scope": "happings_weekly_province_index",
         "authorized": true,
         "basis": "explicit_project_owner_instruction",
-        "checked_on": "2026-10-29",
+        "checked_on": "2026-10-30",
         "granted_by_this_report": false,
         "publication_channel": "dev-only",
         "record_sha256": "512250e027cd43a3b86a41294b842a896d5bbac6cdc0696e1f3eba0237b01d72",
@@ -59,7 +59,7 @@
       "missing_fields": {
         "coordinates": 9913,
         "date": 200,
-        "indirizzo": 4344,
+        "indirizzo": 4342,
         "individual_edition_confirmation": 9913,
         "orario_testo": 692,
         "ricorrenza_testo": 47
@@ -76,10 +76,10 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2200,
-        "date": 1305,
+        "date": 1381,
         "indirizzo": 482,
         "individual_edition_confirmation": 2200,
-        "orario_testo": 362,
+        "orario_testo": 361,
         "ricorrenza_testo": 712
       },
       "next_automation": "use_existing_event_lead_url_id_pipeline_then_official_cross_match",
@@ -111,10 +111,10 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 442,
-        "date": 145,
-        "indirizzo": 16,
+        "date": 108,
+        "indirizzo": 19,
         "individual_edition_confirmation": 442,
-        "orario_testo": 194,
+        "orario_testo": 186,
         "ricorrenza_testo": 7
       },
       "next_automation": "check_page_schema_read_only_then_find_primary_organizer",
@@ -128,15 +128,16 @@
       "authorization": null,
       "bulk_scrape_allowed": false,
       "missing_fields": {
-        "coordinates": 96,
-        "indirizzo": 22,
-        "individual_edition_confirmation": 96,
-        "orario_testo": 32,
-        "ricorrenza_testo": 79
+        "coordinates": 128,
+        "date": 11,
+        "indirizzo": 32,
+        "individual_edition_confirmation": 128,
+        "orario_testo": 46,
+        "ricorrenza_testo": 105
       },
       "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "vintagery.it",
-      "records": 96,
+      "records": 128,
       "reuse_status": "not_resolved_by_this_worklist",
       "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
@@ -225,7 +226,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 14,
-        "date": 5,
+        "date": 6,
         "individual_edition_confirmation": 14,
         "orario_testo": 1
       },
@@ -479,6 +480,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 5,
+        "date": 1,
         "indirizzo": 3,
         "individual_edition_confirmation": 5,
         "orario_testo": 1

@@ -5,31 +5,32 @@
     "exact_matches": 152,
     "existing_hours_differ_from_official": 4,
     "existing_hours_preserved": 152,
+    "field_observation_records_updated": 770,
     "held_unique_town_coordinates_conflict": 104,
     "held_unique_town_daypart_or_place_disagrees": 206,
     "held_unique_town_multiple_eligible_sources": 40,
     "held_unique_town_no_eligible_source": 1196,
     "held_unique_town_raw_same_city_day_competitor": 30,
     "held_unique_town_raw_unknown_weekday_competitor": 45,
-    "held_unique_town_target_identity_incomplete": 62,
+    "held_unique_town_target_identity_incomplete": 64,
     "held_unique_town_unmanaged_indirizzo": 380,
     "municipality_day_unique_matches": 622,
     "observed_spelling_matches": 25,
     "skipped_coordinates_conflict": 3,
-    "skipped_legacy_without_explicit_annual_weekday": 322,
+    "skipped_legacy_without_explicit_annual_weekday": 328,
     "skipped_market_type_unproved_or_conflicting": 2,
     "skipped_multiple_official_markets_same_venue_day": 2,
     "skipped_no_exact_legacy_market": 649,
     "skipped_no_exact_location_or_day": 548,
     "skipped_official_raw_identity_unproved_or_conflicting": 56,
     "skipped_official_without_explicit_annual_weekday": 523,
-    "unique_town_targets_screened": 2305
+    "unique_town_targets_screened": 2307
   },
   "enabled": true,
   "exact_matches": 152,
   "existing_market_addresses_added": 0,
   "existing_market_hours_added": 0,
-  "field_observation_records_updated": 0,
+  "field_observation_records_updated": 770,
   "field_updates": [],
   "identity_conflicts": [
     {
@@ -10426,6 +10427,43 @@
       "official_street": "VIA OSSANESGA",
       "published_id": "mercato-settimanale-di-paladina-paladina-mercoledi",
       "reason": "official_recurrence_not_explicit_annual_weekly",
+      "source_updated_on": "2026-10-20",
+      "source_url": "https://www.dati.lombardia.it/d/68zx-njaw"
+    },
+    {
+      "action": "held_without_evidence_transfer",
+      "existing_category": "antiquariato",
+      "existing_hours": "",
+      "existing_recurrence": "Secondo sabato del mese (escluso giugno)",
+      "existing_source_url": "https://vintagery.it/mercatini/138cfaec-67c0-4c9f-a2e0-79811d05a3c3",
+      "existing_street": "Piazza della Libertà",
+      "official_category": "misto",
+      "official_hours": "07:00–13:00 (fonte comunale, da verificare)",
+      "official_id": "101354",
+      "official_raw_identity": {
+        "al": null,
+        "codice_id": "101354",
+        "dal": null,
+        "descom": "PONTE SAN PIETRO",
+        "despro": "BG",
+        "frequenza_settimanale": null,
+        "giorno": "VENERDÌ",
+        "indirizzi": "PIAZZA DELLA LIBERTA'",
+        "istat": "16170",
+        "mesi_svolgimento": "GENNAIO, FEBBRAIO, MARZO, APRILE, MAGGIO, GIUGNO, LUGLIO, AGOSTO, SETTEMBRE, OTTOBRE, NOVEMBRE, DICEMBRE",
+        "n_post_alim": "32",
+        "n_post_non_alim": "76",
+        "n_post_tot": "108",
+        "periodicita_tipo": "SETTIMANALE",
+        "schema": 1,
+        "scope_schema": 1,
+        "ubicazione": "P.ZA DELLA LIBERTA' - VIA MOIOLI - VIA S.ANNA"
+      },
+      "official_recurrence": "Ogni venerdì",
+      "official_slug": "lo-mercap-101354-venerdi",
+      "official_street": "PIAZZA DELLA LIBERTA'",
+      "published_id": "fumetti-e-collezionismo-ponte-san-pietro",
+      "reason": "legacy_recurrence_not_explicit_annual_weekly",
       "source_updated_on": "2026-10-20",
       "source_url": "https://www.dati.lombardia.it/d/68zx-njaw"
     },
@@ -23638,7 +23676,7 @@
     }
   ],
   "individual_market_verifications": 0,
-  "legacy_records_changed": 0,
+  "legacy_records_changed": 770,
   "managed_market_addresses_updated": 0,
   "managed_market_hours_updated": 0,
   "municipality_day_unique_matches": 622,
@@ -23656,7 +23694,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Abbiategrasso",
           "provincia": "MI",
@@ -23741,7 +23779,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Abbiategrasso",
           "provincia": "MI",
@@ -23827,7 +23865,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Abbiategrasso",
           "provincia": "MI",
@@ -23913,7 +23951,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albano Sant'Alessandro",
           "provincia": "BG",
@@ -23999,7 +24037,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albano Sant'Alessandro",
           "provincia": "BG",
@@ -24085,7 +24123,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albaredo per San Marco",
           "provincia": "SO",
@@ -24171,7 +24209,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albaredo per San Marco",
           "provincia": "SO",
@@ -24257,7 +24295,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albavilla",
           "provincia": "CO",
@@ -24343,7 +24381,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albavilla",
           "provincia": "CO",
@@ -24429,7 +24467,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albese con Cassano",
           "provincia": "CO",
@@ -24515,7 +24553,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albese con Cassano",
           "provincia": "CO",
@@ -24601,7 +24639,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albiate",
           "provincia": "MB",
@@ -24687,7 +24725,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albino",
           "provincia": "BG",
@@ -24773,7 +24811,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Albino",
           "provincia": "BG",
@@ -24859,7 +24897,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Alzano Lombardo",
           "provincia": "BG",
@@ -24945,7 +24983,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Alzate Brianza",
           "provincia": "CO",
@@ -25031,7 +25069,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Alzate Brianza",
           "provincia": "CO",
@@ -25117,7 +25155,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Annicco",
           "provincia": "CR",
@@ -25203,7 +25241,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Arcene",
           "provincia": "BG",
@@ -25289,7 +25327,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Arcore",
           "provincia": "MB",
@@ -25375,7 +25413,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ardesio",
           "provincia": "BG",
@@ -25461,7 +25499,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Arese",
           "provincia": "MI",
@@ -25551,7 +25589,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Arese",
           "provincia": "MI",
@@ -25641,7 +25679,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Arluno",
           "provincia": "MI",
@@ -25727,7 +25765,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Barzago",
           "provincia": "LC",
@@ -25813,7 +25851,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Barzana",
           "provincia": "BG",
@@ -25899,7 +25937,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Basiano",
           "provincia": "MI",
@@ -25985,7 +26023,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Bergamo",
           "provincia": "BG",
@@ -26071,7 +26109,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Besana in Brianza",
           "provincia": "MB",
@@ -26157,7 +26195,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Besana in Brianza",
           "provincia": "MB",
@@ -26243,7 +26281,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Binago",
           "provincia": "CO",
@@ -26329,7 +26367,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Boffalora Sopra Ticino",
           "provincia": "MI",
@@ -26415,7 +26453,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Boffalora Sopra Ticino",
           "provincia": "MI",
@@ -26501,7 +26539,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Bollate",
           "provincia": "MI",
@@ -26586,7 +26624,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Bollate",
           "provincia": "MI",
@@ -26672,7 +26710,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Borghetto Lodigiano",
           "provincia": "LO",
@@ -26758,7 +26796,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Borghetto Lodigiano",
           "provincia": "LO",
@@ -26844,7 +26882,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Borgosatollo",
           "provincia": "BS",
@@ -26930,7 +26968,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Borgosatollo",
           "provincia": "BS",
@@ -27016,7 +27054,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Botticino",
           "provincia": "BS",
@@ -27102,7 +27140,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Botticino",
           "provincia": "BS",
@@ -27188,7 +27226,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Brebbia",
           "provincia": "VA",
@@ -27274,7 +27312,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Brembate",
           "provincia": "BG",
@@ -27360,7 +27398,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Brescia",
           "provincia": "BS",
@@ -27446,7 +27484,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Broni",
           "provincia": "PV",
@@ -27531,7 +27569,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Bussero",
           "provincia": "MI",
@@ -27617,7 +27655,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Busto Arsizio",
           "provincia": "VA",
@@ -27703,7 +27741,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Busto Garolfo",
           "provincia": "MI",
@@ -27789,7 +27827,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Busto Garolfo",
           "provincia": "MI",
@@ -27875,7 +27913,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Calolziocorte",
           "provincia": "LC",
@@ -27961,7 +27999,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Calolziocorte",
           "provincia": "LC",
@@ -28047,7 +28085,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Canegrate",
           "provincia": "MI",
@@ -28133,7 +28171,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Canegrate",
           "provincia": "MI",
@@ -28219,7 +28257,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Canneto sull'Oglio",
           "provincia": "MN",
@@ -28305,7 +28343,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Canneto sull'Oglio",
           "provincia": "MN",
@@ -28391,7 +28429,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cantello",
           "provincia": "VA",
@@ -28477,7 +28515,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Canzo",
           "provincia": "CO",
@@ -28563,7 +28601,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Capralba",
           "provincia": "CR",
@@ -28649,7 +28687,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Capralba",
           "provincia": "CR",
@@ -28735,7 +28773,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caprino Bergamasco",
           "provincia": "BG",
@@ -28821,7 +28859,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caprino Bergamasco",
           "provincia": "BG",
@@ -28907,7 +28945,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Carate Brianza",
           "provincia": "MB",
@@ -28992,7 +29030,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Carate Brianza",
           "provincia": "MB",
@@ -29078,7 +29116,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caravaggio",
           "provincia": "BG",
@@ -29163,7 +29201,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caravaggio",
           "provincia": "BG",
@@ -29249,7 +29287,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Carnate",
           "provincia": "MB",
@@ -29335,7 +29373,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caronno Pertusella",
           "provincia": "VA",
@@ -29421,7 +29459,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caronno Pertusella",
           "provincia": "VA",
@@ -29507,7 +29545,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caronno Varesino",
           "provincia": "VA",
@@ -29593,7 +29631,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Caronno Varesino",
           "provincia": "VA",
@@ -29679,7 +29717,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Carpenedolo",
           "provincia": "BS",
@@ -29765,7 +29803,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Carpenedolo",
           "provincia": "BS",
@@ -29851,7 +29889,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casaletto Ceredano",
           "provincia": "CR",
@@ -29937,7 +29975,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casaletto Ceredano",
           "provincia": "CR",
@@ -30023,7 +30061,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casalmaggiore",
           "provincia": "CR",
@@ -30109,7 +30147,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casalmaggiore",
           "provincia": "CR",
@@ -30195,7 +30233,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casatenovo",
           "provincia": "LC",
@@ -30281,7 +30319,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casatenovo",
           "provincia": "LC",
@@ -30367,7 +30405,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casirate d'Adda",
           "provincia": "BG",
@@ -30453,7 +30491,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casirate d'Adda",
           "provincia": "BG",
@@ -30539,7 +30577,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casorate Sempione",
           "provincia": "VA",
@@ -30625,7 +30663,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casorate Sempione",
           "provincia": "VA",
@@ -30711,7 +30749,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cassano d'Adda",
           "provincia": "MI",
@@ -30797,7 +30835,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cassano d'Adda",
           "provincia": "MI",
@@ -30883,7 +30921,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castano Primo",
           "provincia": "MI",
@@ -30968,7 +31006,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casteggio",
           "provincia": "PV",
@@ -31053,7 +31091,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casteggio",
           "provincia": "PV",
@@ -31139,7 +31177,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Casteggio",
           "provincia": "PV",
@@ -31225,7 +31263,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castegnato",
           "provincia": "BS",
@@ -31311,7 +31349,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castegnato",
           "provincia": "BS",
@@ -31397,7 +31435,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castel Rozzone",
           "provincia": "BG",
@@ -31483,7 +31521,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castel Rozzone",
           "provincia": "BG",
@@ -31569,7 +31607,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castelcovati",
           "provincia": "BS",
@@ -31655,7 +31693,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castelcovati",
           "provincia": "BS",
@@ -31741,7 +31779,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castellucchio",
           "provincia": "MN",
@@ -31827,7 +31865,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castellucchio",
           "provincia": "MN",
@@ -31913,7 +31951,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Castelnuovo Bocca d'Adda",
           "provincia": "LO",
@@ -31999,7 +32037,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cava Manara",
           "provincia": "PV",
@@ -32085,7 +32123,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cavriana",
           "provincia": "MN",
@@ -32171,7 +32209,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cavriana",
           "provincia": "MN",
@@ -32257,7 +32295,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cazzago San Martino",
           "provincia": "BS",
@@ -32342,7 +32380,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cedegolo",
           "provincia": "BS",
@@ -32432,7 +32470,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cene",
           "provincia": "BG",
@@ -32522,7 +32560,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cene",
           "provincia": "BG",
@@ -32608,7 +32646,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ceresara",
           "provincia": "MN",
@@ -32694,7 +32732,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cernobbio",
           "provincia": "CO",
@@ -32780,7 +32818,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cernusco sul Naviglio",
           "provincia": "MI",
@@ -32865,7 +32903,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cernusco sul Naviglio",
           "provincia": "MI",
@@ -32951,7 +32989,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cesana Brianza",
           "provincia": "LC",
@@ -33037,7 +33075,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cesana Brianza",
           "provincia": "LC",
@@ -33123,7 +33161,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cesano Boscone",
           "provincia": "MI",
@@ -33208,7 +33246,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cesano Boscone",
           "provincia": "MI",
@@ -33294,7 +33332,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cesano Boscone",
           "provincia": "MI",
@@ -33380,7 +33418,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Chiari",
           "provincia": "BS",
@@ -33466,7 +33504,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Chiari",
           "provincia": "BS",
@@ -33552,7 +33590,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Chiari",
           "provincia": "BS",
@@ -33638,7 +33676,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Chiavenna",
           "provincia": "SO",
@@ -33724,7 +33762,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Chiavenna",
           "provincia": "SO",
@@ -33810,7 +33848,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Chiuduno",
           "provincia": "BG",
@@ -33896,7 +33934,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Chiuduno",
           "provincia": "BG",
@@ -33982,7 +34020,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cinisello Balsamo",
           "provincia": "MI",
@@ -34067,7 +34105,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cinisello Balsamo",
           "provincia": "MI",
@@ -34153,7 +34191,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cinisello Balsamo",
           "provincia": "MI",
@@ -34239,7 +34277,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cinisello Balsamo",
           "provincia": "MI",
@@ -34325,7 +34363,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cinisello Balsamo",
           "provincia": "MI",
@@ -34410,7 +34448,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cisano Bergamasco",
           "provincia": "BG",
@@ -34500,7 +34538,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Clusone",
           "provincia": "BG",
@@ -34585,7 +34623,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Clusone",
           "provincia": "BG",
@@ -34671,7 +34709,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Codogno",
           "provincia": "LO",
@@ -34756,7 +34794,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Codogno",
           "provincia": "LO",
@@ -34842,7 +34880,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Codogno",
           "provincia": "LO",
@@ -34928,7 +34966,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Colico",
           "provincia": "LC",
@@ -35014,7 +35052,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cologno al Serio",
           "provincia": "BG",
@@ -35100,7 +35138,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cologno al Serio",
           "provincia": "BG",
@@ -35186,7 +35224,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Concesio",
           "provincia": "BS",
@@ -35276,7 +35314,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Concesio",
           "provincia": "BS",
@@ -35362,7 +35400,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Concesio",
           "provincia": "BS",
@@ -35448,7 +35486,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Corsico",
           "provincia": "MI",
@@ -35534,7 +35572,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Corsico",
           "provincia": "MI",
@@ -35620,7 +35658,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Corsico",
           "provincia": "MI",
@@ -35706,7 +35744,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Curno",
           "provincia": "BG",
@@ -35792,7 +35830,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Curtatone",
           "provincia": "MN",
@@ -35878,7 +35916,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Curtatone",
           "provincia": "MN",
@@ -35964,7 +36002,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Cuveglio",
           "provincia": "VA",
@@ -36050,7 +36088,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Darfo Boario Terme",
           "provincia": "BS",
@@ -36135,7 +36173,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Darfo Boario Terme",
           "provincia": "BS",
@@ -36221,7 +36259,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Darfo Boario Terme",
           "provincia": "BS",
@@ -36307,7 +36345,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Dello",
           "provincia": "BS",
@@ -36393,7 +36431,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Dello",
           "provincia": "BS",
@@ -36479,7 +36517,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Dervio",
           "provincia": "LC",
@@ -36565,7 +36603,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Desenzano del Garda",
           "provincia": "BS",
@@ -36651,7 +36689,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Desenzano del Garda",
           "provincia": "BS",
@@ -36737,7 +36775,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Dolzago",
           "provincia": "LC",
@@ -36823,7 +36861,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Endine Gaiano",
           "provincia": "BG",
@@ -36909,7 +36947,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Endine Gaiano",
           "provincia": "BG",
@@ -36995,7 +37033,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Erba",
           "provincia": "CO",
@@ -37085,7 +37123,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Erba",
           "provincia": "CO",
@@ -37175,7 +37213,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Figino Serenza",
           "provincia": "CO",
@@ -37261,7 +37299,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Figino Serenza",
           "provincia": "CO",
@@ -37347,7 +37385,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Filago",
           "provincia": "BG",
@@ -37433,7 +37471,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Filago",
           "provincia": "BG",
@@ -37519,7 +37557,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Fonteno",
           "provincia": "BG",
@@ -37605,7 +37643,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gaggiano",
           "provincia": "MI",
@@ -37691,7 +37729,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gaggiano",
           "provincia": "MI",
@@ -37777,7 +37815,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Galbiate",
           "provincia": "LC",
@@ -37862,7 +37900,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gambara",
           "provincia": "BS",
@@ -37948,7 +37986,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gandino",
           "provincia": "BG",
@@ -38034,7 +38072,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Garlasco",
           "provincia": "PV",
@@ -38120,7 +38158,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gazzaniga",
           "provincia": "BG",
@@ -38206,7 +38244,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gazzaniga",
           "provincia": "BG",
@@ -38292,7 +38330,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gerenzano",
           "provincia": "VA",
@@ -38378,7 +38416,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gerenzano",
           "provincia": "VA",
@@ -38464,7 +38502,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ghedi",
           "provincia": "BS",
@@ -38550,7 +38588,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gianico",
           "provincia": "BS",
@@ -38636,7 +38674,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gonzaga",
           "provincia": "MN",
@@ -38722,7 +38760,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gorgonzola",
           "provincia": "MI",
@@ -38807,7 +38845,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gorgonzola",
           "provincia": "MI",
@@ -38893,7 +38931,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Graffignana",
           "provincia": "LO",
@@ -38979,7 +39017,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Graffignana",
           "provincia": "LO",
@@ -39065,7 +39103,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gropello Cairoli",
           "provincia": "PV",
@@ -39151,7 +39189,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gropello Cairoli",
           "provincia": "PV",
@@ -39237,7 +39275,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Gussago",
           "provincia": "BS",
@@ -39323,7 +39361,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Imbersago",
           "provincia": "LC",
@@ -39409,7 +39447,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Imbersago",
           "provincia": "LC",
@@ -39495,7 +39533,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Inverigo",
           "provincia": "CO",
@@ -39581,7 +39619,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Inverigo",
           "provincia": "CO",
@@ -39667,7 +39705,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Inverigo",
           "provincia": "CO",
@@ -39753,7 +39791,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Jerago con Orago",
           "provincia": "VA",
@@ -39839,7 +39877,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Jerago con Orago",
           "provincia": "VA",
@@ -39925,7 +39963,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lavena Ponte Tresa",
           "provincia": "VA",
@@ -40011,7 +40049,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lecco",
           "provincia": "LC",
@@ -40097,7 +40135,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lecco",
           "provincia": "LC",
@@ -40183,7 +40221,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lecco",
           "provincia": "LC",
@@ -40269,7 +40307,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Leffe",
           "provincia": "BG",
@@ -40355,7 +40393,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lissone",
           "provincia": "MB",
@@ -40445,7 +40483,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lissone",
           "provincia": "MB",
@@ -40535,7 +40573,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lissone",
           "provincia": "MB",
@@ -40621,7 +40659,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lodi",
           "provincia": "LO",
@@ -40707,7 +40745,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lodi Vecchio",
           "provincia": "LO",
@@ -40793,7 +40831,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lodi Vecchio",
           "provincia": "LO",
@@ -40879,7 +40917,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lodrino",
           "provincia": "BS",
@@ -40969,7 +41007,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lomello",
           "provincia": "PV",
@@ -41055,7 +41093,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lurago d'Erba",
           "provincia": "CO",
@@ -41141,7 +41179,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Lurago d'Erba",
           "provincia": "CO",
@@ -41227,7 +41265,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Macherio",
           "provincia": "MB",
@@ -41317,7 +41355,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Macherio",
           "provincia": "MB",
@@ -41407,7 +41445,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Macherio",
           "provincia": "MB",
@@ -41493,7 +41531,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Magenta",
           "provincia": "MI",
@@ -41579,7 +41617,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mantova",
           "provincia": "MN",
@@ -41664,7 +41702,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mariano Comense",
           "provincia": "CO",
@@ -41750,7 +41788,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mariano Comense",
           "provincia": "CO",
@@ -41836,7 +41874,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Marmirolo",
           "provincia": "MN",
@@ -41922,7 +41960,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Marmirolo",
           "provincia": "MN",
@@ -42008,7 +42046,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mazzano",
           "provincia": "BS",
@@ -42094,7 +42132,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mede",
           "provincia": "PV",
@@ -42184,7 +42222,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Melegnano",
           "provincia": "MI",
@@ -42269,7 +42307,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Melegnano",
           "provincia": "MI",
@@ -42355,7 +42393,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Melegnano",
           "provincia": "MI",
@@ -42441,7 +42479,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Melzo",
           "provincia": "MI",
@@ -42531,7 +42569,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mezzana Bigli",
           "provincia": "PV",
@@ -42617,7 +42655,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mezzana Bigli",
           "provincia": "PV",
@@ -42703,7 +42741,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Misano di Gera d'Adda",
           "provincia": "BG",
@@ -42789,7 +42827,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Misano di Gera d'Adda",
           "provincia": "BG",
@@ -42875,7 +42913,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Misinto",
           "provincia": "MB",
@@ -42961,7 +42999,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Montano Lucino",
           "provincia": "CO",
@@ -43047,7 +43085,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Montano Lucino",
           "provincia": "CO",
@@ -43133,7 +43171,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Monte Marenzo",
           "provincia": "LC",
@@ -43219,7 +43257,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Monte Marenzo",
           "provincia": "LC",
@@ -43305,7 +43343,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Monticello Brianza",
           "provincia": "LC",
@@ -43391,7 +43429,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Monticello Brianza",
           "provincia": "LC",
@@ -43477,7 +43515,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Montodine",
           "provincia": "CR",
@@ -43563,7 +43601,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Montodine",
           "provincia": "CR",
@@ -43649,7 +43687,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Monza",
           "provincia": "MB",
@@ -43735,7 +43773,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Morengo",
           "provincia": "BG",
@@ -43821,7 +43859,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mortara",
           "provincia": "PV",
@@ -43907,7 +43945,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mozzanica",
           "provincia": "BG",
@@ -43993,7 +44031,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Mozzanica",
           "provincia": "BG",
@@ -44079,7 +44117,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Nave",
           "provincia": "BS",
@@ -44169,7 +44207,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Nave",
           "provincia": "BS",
@@ -44259,7 +44297,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Nave",
           "provincia": "BS",
@@ -44349,7 +44387,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Nerviano",
           "provincia": "MI",
@@ -44435,7 +44473,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Nova Milanese",
           "provincia": "MB",
@@ -44520,7 +44558,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Nova Milanese",
           "provincia": "MB",
@@ -44606,7 +44644,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Nova Milanese",
           "provincia": "MB",
@@ -44692,7 +44730,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Oggiono",
           "provincia": "LC",
@@ -44778,7 +44816,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ostiano",
           "provincia": "CR",
@@ -44864,7 +44902,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Paderno Franciacorta",
           "provincia": "BS",
@@ -44950,7 +44988,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Paderno Franciacorta",
           "provincia": "BS",
@@ -45036,7 +45074,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pagnona",
           "provincia": "LC",
@@ -45122,7 +45160,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Paitone",
           "provincia": "BS",
@@ -45208,7 +45246,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Paitone",
           "provincia": "BS",
@@ -45294,7 +45332,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Palazzolo sull'Oglio",
           "provincia": "BS",
@@ -45380,7 +45418,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Palazzolo sull'Oglio",
           "provincia": "BS",
@@ -45466,7 +45504,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Parabiago",
           "provincia": "MI",
@@ -45552,7 +45590,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pavia",
           "provincia": "PV",
@@ -45642,7 +45680,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pavia",
           "provincia": "PV",
@@ -45727,7 +45765,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pavia",
           "provincia": "PV",
@@ -45812,7 +45850,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pedrengo",
           "provincia": "BG",
@@ -45898,7 +45936,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pegognaga",
           "provincia": "MN",
@@ -45983,7 +46021,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pegognaga",
           "provincia": "MN",
@@ -46069,7 +46107,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pegognaga",
           "provincia": "MN",
@@ -46155,7 +46193,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pero",
           "provincia": "MI",
@@ -46245,7 +46283,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Peschiera Borromeo",
           "provincia": "MI",
@@ -46330,7 +46368,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pessano con Bornago",
           "provincia": "MI",
@@ -46416,7 +46454,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pessano con Bornago",
           "provincia": "MI",
@@ -46502,7 +46540,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pianengo",
           "provincia": "CR",
@@ -46588,7 +46626,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Piazza Brembana",
           "provincia": "BG",
@@ -46674,7 +46712,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Piazza Brembana",
           "provincia": "BG",
@@ -46760,7 +46798,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pieve del Cairo",
           "provincia": "PV",
@@ -46846,7 +46884,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pieve del Cairo",
           "provincia": "PV",
@@ -46932,7 +46970,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pisogne",
           "provincia": "BS",
@@ -47022,7 +47060,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pisogne",
           "provincia": "BS",
@@ -47112,7 +47150,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pisogne",
           "provincia": "BS",
@@ -47198,7 +47236,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Polpenazze del Garda",
           "provincia": "BS",
@@ -47284,7 +47322,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ponte Nossa",
           "provincia": "BG",
@@ -47369,7 +47407,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ponte Nossa",
           "provincia": "BG",
@@ -47454,7 +47492,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ponte San Pietro",
           "provincia": "BG",
@@ -47540,7 +47578,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ponte di Legno",
           "provincia": "BS",
@@ -47626,7 +47664,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ponte di Legno",
           "provincia": "BS",
@@ -47712,7 +47750,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ponteranica",
           "provincia": "BG",
@@ -47798,7 +47836,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Ponteranica",
           "provincia": "BG",
@@ -47884,7 +47922,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pontevico",
           "provincia": "BS",
@@ -47970,7 +48008,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pontevico",
           "provincia": "BS",
@@ -48056,7 +48094,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pontoglio",
           "provincia": "BS",
@@ -48142,7 +48180,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Pontoglio",
           "provincia": "BS",
@@ -48228,7 +48266,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Porto Mantovano",
           "provincia": "MN",
@@ -48314,7 +48352,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Porto Mantovano",
           "provincia": "MN",
@@ -48400,7 +48438,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Prevalle",
           "provincia": "BS",
@@ -48486,7 +48524,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Provaglio d'Iseo",
           "provincia": "BS",
@@ -48571,7 +48609,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Provaglio d'Iseo",
           "provincia": "BS",
@@ -48657,7 +48695,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Quinzano d'Oglio",
           "provincia": "BS",
@@ -48743,7 +48781,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Quinzano d'Oglio",
           "provincia": "BS",
@@ -48829,7 +48867,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rezzato",
           "provincia": "BS",
@@ -48919,7 +48957,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rezzato",
           "provincia": "BS",
@@ -49009,7 +49047,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rivanazzano",
           "provincia": "PV",
@@ -49095,7 +49133,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rivanazzano",
           "provincia": "PV",
@@ -49181,7 +49219,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rivolta d'Adda",
           "provincia": "CR",
@@ -49267,7 +49305,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rivolta d'Adda",
           "provincia": "CR",
@@ -49353,7 +49391,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Roncadelle",
           "provincia": "BS",
@@ -49438,7 +49476,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rovato",
           "provincia": "BS",
@@ -49524,7 +49562,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Rozzano",
           "provincia": "MI",
@@ -49610,7 +49648,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Bassano",
           "provincia": "CR",
@@ -49696,7 +49734,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Bassano",
           "provincia": "CR",
@@ -49782,7 +49820,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Colombano al Lambro",
           "provincia": "MI",
@@ -49868,7 +49906,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Colombano al Lambro",
           "provincia": "MI",
@@ -49954,7 +49992,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Donato Milanese",
           "provincia": "MI",
@@ -50040,7 +50078,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Donato Milanese",
           "provincia": "MI",
@@ -50126,7 +50164,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Giovanni Bianco",
           "provincia": "BG",
@@ -50212,7 +50250,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "San Giovanni Bianco",
           "provincia": "BG",
@@ -50298,7 +50336,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Santa Maria della Versa",
           "provincia": "PV",
@@ -50384,7 +50422,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Santa Maria della Versa",
           "provincia": "PV",
@@ -50469,7 +50507,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sarezzo",
           "provincia": "BS",
@@ -50559,7 +50597,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sarezzo",
           "provincia": "BS",
@@ -50645,7 +50683,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sarezzo",
           "provincia": "BS",
@@ -50731,7 +50769,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Scanzorosciate",
           "provincia": "BG",
@@ -50817,7 +50855,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Scanzorosciate",
           "provincia": "BG",
@@ -50903,7 +50941,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Segrate",
           "provincia": "MI",
@@ -50989,7 +51027,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Senago",
           "provincia": "MI",
@@ -51075,7 +51113,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Seriate",
           "provincia": "BG",
@@ -51165,7 +51203,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Seriate",
           "provincia": "BG",
@@ -51251,7 +51289,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Seriate",
           "provincia": "BG",
@@ -51337,7 +51375,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sesto San Giovanni",
           "provincia": "MI",
@@ -51422,7 +51460,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Settimo Milanese",
           "provincia": "MI",
@@ -51507,7 +51545,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Settimo Milanese",
           "provincia": "MI",
@@ -51593,7 +51631,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Settimo Milanese",
           "provincia": "MI",
@@ -51679,7 +51717,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Settimo Milanese",
           "provincia": "MI",
@@ -51765,7 +51803,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sirmione",
           "provincia": "BS",
@@ -51851,7 +51889,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Somaglia",
           "provincia": "LO",
@@ -51937,7 +51975,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Somaglia",
           "provincia": "LO",
@@ -52023,7 +52061,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Somaglia",
           "provincia": "LO",
@@ -52109,7 +52147,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Somma Lombardo",
           "provincia": "VA",
@@ -52195,7 +52233,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Somma Lombardo",
           "provincia": "VA",
@@ -52281,7 +52319,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sondrio",
           "provincia": "SO",
@@ -52367,7 +52405,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sondrio",
           "provincia": "SO",
@@ -52453,7 +52491,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sondrio",
           "provincia": "SO",
@@ -52539,7 +52577,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Sorisole",
           "provincia": "BG",
@@ -52625,7 +52663,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Spirano",
           "provincia": "BG",
@@ -52711,7 +52749,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Stezzano",
           "provincia": "BG",
@@ -52797,7 +52835,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Stradella",
           "provincia": "PV",
@@ -52882,7 +52920,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Stradella",
           "provincia": "PV",
@@ -52968,7 +53006,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Stradella",
           "provincia": "PV",
@@ -53053,7 +53091,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Suzzara",
           "provincia": "MN",
@@ -53138,7 +53176,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Suzzara",
           "provincia": "MN",
@@ -53223,7 +53261,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Talamona",
           "provincia": "SO",
@@ -53309,7 +53347,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Talamona",
           "provincia": "SO",
@@ -53395,7 +53433,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Torbole Casaglia",
           "provincia": "BS",
@@ -53481,7 +53519,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Torbole Casaglia",
           "provincia": "BS",
@@ -53567,7 +53605,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Torre Boldone",
           "provincia": "BG",
@@ -53653,7 +53691,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Torre Boldone",
           "provincia": "BG",
@@ -53739,7 +53777,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Tradate",
           "provincia": "VA",
@@ -53825,7 +53863,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Trescore Balneario",
           "provincia": "BG",
@@ -53911,7 +53949,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Trescore Balneario",
           "provincia": "BG",
@@ -53997,7 +54035,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Trigolo",
           "provincia": "CR",
@@ -54083,7 +54121,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Trigolo",
           "provincia": "CR",
@@ -54169,7 +54207,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Uboldo",
           "provincia": "VA",
@@ -54255,7 +54293,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Uboldo",
           "provincia": "VA",
@@ -54341,7 +54379,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Usmate Velate",
           "provincia": "MB",
@@ -54427,7 +54465,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Usmate Velate",
           "provincia": "MB",
@@ -54513,7 +54551,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Venegono Superiore",
           "provincia": "VA",
@@ -54599,7 +54637,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Venegono Superiore",
           "provincia": "VA",
@@ -54685,7 +54723,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Verdellino",
           "provincia": "BG",
@@ -54771,7 +54809,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Verdellino",
           "provincia": "BG",
@@ -54857,7 +54895,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Verolavecchia",
           "provincia": "BS",
@@ -54943,7 +54981,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Verolavecchia",
           "provincia": "BS",
@@ -55029,7 +55067,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Villa Cortese",
           "provincia": "MI",
@@ -55115,7 +55153,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Villa Cortese",
           "provincia": "MI",
@@ -55201,7 +55239,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Villa d'Adda",
           "provincia": "BG",
@@ -55287,7 +55325,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Villa d'Adda",
           "provincia": "BG",
@@ -55373,7 +55411,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Vilminore di Scalve",
           "provincia": "BG",
@@ -55458,7 +55496,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Vimercate",
           "provincia": "MB",
@@ -55548,7 +55586,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Vimercate",
           "provincia": "MB",
@@ -55634,7 +55672,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Vimodrone",
           "provincia": "MI",
@@ -55719,7 +55757,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Vimodrone",
           "provincia": "MI",
@@ -55805,7 +55843,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Vimodrone",
           "provincia": "MI",
@@ -55891,7 +55929,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Voghera",
           "provincia": "PV",
@@ -55976,7 +56014,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Volta Mantovana",
           "provincia": "MN",
@@ -56062,7 +56100,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Volta Mantovana",
           "provincia": "MN",
@@ -56148,7 +56186,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Zelbio",
           "provincia": "CO",
@@ -56238,7 +56276,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Zinasco",
           "provincia": "PV",
@@ -56328,7 +56366,7 @@
         "fonte_aggiornata_il": "2026-10-20",
         "fonte_id": "lombardia",
         "impronta_tipo": "publisher_parsed_json",
-        "letto_il": "2026-10-29",
+        "letto_il": "2026-10-30",
         "mercato": {
           "citta": "Zinasco",
           "provincia": "PV",
@@ -56416,7 +56454,7 @@
           "fonte_aggiornata_il": "2026-10-20",
           "fonte_id": "lombardia",
           "impronta_tipo": "publisher_parsed_json",
-          "letto_il": "2026-10-29",
+          "letto_il": "2026-10-30",
           "mercato": {
             "citta": "Bergamo",
             "provincia": "BG",
@@ -56479,7 +56517,7 @@
           "fonte_aggiornata_il": "2026-10-20",
           "fonte_id": "lombardia",
           "impronta_tipo": "publisher_parsed_json",
-          "letto_il": "2026-10-29",
+          "letto_il": "2026-10-30",
           "mercato": {
             "citta": "Ispra",
             "provincia": "VA",
@@ -56544,7 +56582,7 @@
           "fonte_aggiornata_il": "2026-10-20",
           "fonte_id": "lombardia",
           "impronta_tipo": "publisher_parsed_json",
-          "letto_il": "2026-10-29",
+          "letto_il": "2026-10-30",
           "mercato": {
             "citta": "Ossimo",
             "provincia": "BS",
@@ -56608,7 +56646,7 @@
           "fonte_aggiornata_il": "2026-10-20",
           "fonte_id": "lombardia",
           "impronta_tipo": "publisher_parsed_json",
-          "letto_il": "2026-10-29",
+          "letto_il": "2026-10-30",
           "mercato": {
             "citta": "Ossimo",
             "provincia": "BS",
@@ -56667,7 +56705,7 @@
     "non_normalized_rows_still_screened": 93,
     "normalized_rows_reproduced": 1360,
     "raw_rows_screened": 1453,
-    "read_on": "2026-10-29",
+    "read_on": "2026-10-30",
     "sha256": "f74cafac2406bc4047a6bb17288ed81a547c7bd7324a3c263d8dcf847a0f8892",
     "source_updated_on": "2026-10-20",
     "status": "complete"

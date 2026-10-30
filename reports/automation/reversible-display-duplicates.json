@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14321,
-    "ids_retained": 14321,
-    "generic_weekly_with_specific_venue": 6024,
+    "original_records": 14353,
+    "ids_retained": 14353,
+    "generic_weekly_with_specific_venue": 5984,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3733,
-    "highly_supported_same_source_visit_groups": 937,
-    "suppressed_repeat_buttons_only": 1101,
-    "original_records_in_reversible_groups": 2038,
+    "venue_groups_examined": 3715,
+    "highly_supported_same_source_visit_groups": 925,
+    "suppressed_repeat_buttons_only": 1084,
+    "original_records_in_reversible_groups": 2009,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -24,13 +24,13 @@
     },
     {
       "region": "Liguria",
-      "groups": 40,
-      "extra_display_entries": 47
+      "groups": 41,
+      "extra_display_entries": 48
     },
     {
       "region": "Lombardia",
-      "groups": 641,
-      "extra_display_entries": 702
+      "groups": 633,
+      "extra_display_entries": 690
     },
     {
       "region": "Piemonte",
@@ -44,18 +44,18 @@
     },
     {
       "region": "Toscana",
-      "groups": 49,
-      "extra_display_entries": 70
+      "groups": 48,
+      "extra_display_entries": 68
     },
     {
       "region": "Trentino-Alto Adige",
-      "groups": 12,
-      "extra_display_entries": 13
+      "groups": 11,
+      "extra_display_entries": 12
     },
     {
       "region": "Veneto",
-      "groups": 81,
-      "extra_display_entries": 97
+      "groups": 78,
+      "extra_display_entries": 94
     }
   ],
   "examples": [
@@ -240,7 +240,7 @@
         "mercato-settimanale-di-cervo-cervo",
         "mercato-settimanale-di-cervo-cervo-giovedi"
       ],
-      "date": "2026-10-29"
+      "date": "2026-11-05"
     },
     {
       "region": "Liguria",
@@ -374,7 +374,7 @@
         "mercato-settimanale-a-pegli-pegli-giovedi",
         "mercato-settimanale-di-pegli-pegli"
       ],
-      "date": "2026-10-29"
+      "date": "2026-11-05"
     },
     {
       "region": "Liguria",
@@ -451,6 +451,18 @@
     },
     {
       "region": "Liguria",
+      "city": "Quinto",
+      "address": "Via Gianelli",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
+      "visible_id": "mercato-settimanale-a-quinto-quinto-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-quinto-quinto-martedi",
+        "mercato-settimanale-di-quinto-quinto"
+      ],
+      "date": "2026-11-03"
+    },
+    {
+      "region": "Liguria",
       "city": "Rapallo",
       "address": "Lungomare, Rotonda Marconi, Giardini G.Verdi",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
@@ -459,7 +471,7 @@
         "mercato-settimanale-di-rapallo-rapallo",
         "mercato-settimanale-di-rapallo-rapallo-giovedi"
       ],
-      "date": "2026-10-29"
+      "date": "2026-11-05"
     },
     {
       "region": "Liguria",
@@ -496,7 +508,7 @@
         "mercato-settimanale-a-sori-sori-giovedi",
         "mercato-settimanale-di-sori-sori"
       ],
-      "date": "2026-10-29"
+      "date": "2026-11-05"
     },
     {
       "region": "Liguria",
@@ -508,7 +520,7 @@
         "mercato-settimanale-di-toirano-toirano",
         "mercato-settimanale-di-toirano-toirano-giovedi"
       ],
-      "date": "2026-10-29"
+      "date": "2026-11-05"
     },
     {
       "region": "Liguria",
@@ -520,7 +532,7 @@
         "mercato-settimanale-di-urbe-urbe",
         "mercato-settimanale-di-urbe-urbe-giovedi"
       ],
-      "date": "2026-10-29"
+      "date": "2026-11-05"
     },
     {
       "region": "Liguria",
@@ -534,18 +546,6 @@
         "mercato-settimanale-di-uscio-uscio-mercoledi"
       ],
       "date": "2026-11-04"
-    },
-    {
-      "region": "Liguria",
-      "city": "Vallebona",
-      "address": "Piazza Libertà",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
-      "visible_id": "mercato-settimanale-a-vallebona-vallebona-martedi",
-      "original_ids": [
-        "mercato-settimanale-a-vallebona-vallebona-martedi",
-        "mercato-settimanale-di-vallebona-vallebona"
-      ],
-      "date": "2026-11-03"
     }
   ],
   "suspicious_city_examples": [

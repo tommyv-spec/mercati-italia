@@ -2,16 +2,16 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [20261029-161935-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261029-161935-market-autopilot) — UTC 2026-10-29T16:06:57.810251+00:00
+- Ultimo run: [20261030-121306-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261030-121306-market-autopilot) — UTC 2026-10-30T12:11:30.643314+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
-- Schede nel catalogo: **14,321**
-- Schede con date previste a +60 giorni: **11,392**
-- Schede con date previste a +90 giorni: **11,331**
-- Indice nazionale gzip: **466.3 KiB**
+- Schede nel catalogo: **14,353**
+- Schede con date previste a +60 giorni: **11,329**
+- Schede con date previste a +90 giorni: **11,277**
+- Indice nazionale gzip: **469.1 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **1,787**
+- Orari mancanti: **1,792**
 - Dataset pubblici candidati individuati: **43** (licenze da verificare)
 - Fonti conservate nello storico: **50**; nuove: **0**; aggiornate: **0**.
 - Possibili elenchi/sedi: **6**; statistiche storiche aggregate: **14**.
@@ -26,13 +26,13 @@
 - Roma Municipio XIII (mappa pubblicata nel 2024): **2** coordinate ancora sospese e **2** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **9** coordinate e **18** navigazioni. Nessuna apertura 2026 confermata dal documento storico.
 - Roma XIII nuove fonti comunali 2025–2026: **0** schede aggiunte in questo run, **5** sedi distinte tutelate nel sito, **4** con calendari solo previsti, **5** con indicazioni sospese. Fogaccia martedì (un operatore) e trasferimento Urbano II non importati.
 - Import generico tramite contratti di interi dataset: **6** fonti con licenza e identità approvate, **0** nuove schede in questo run, **0** calendari solo previsti, **0** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
-- Aggiornamenti generici con prove per campo: **0** valori gestiti aggiornati e **17** schede con riscontri aggiornati o ritirati; identità conservate.
-- Dettagli Happings: **48** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
-- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **1524** gruppi settimanali con possibile sovrapposizione (**1826** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **937** gruppi provati dalla stessa fonte, **1101** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14321** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1225**; oltre soglia: **51**; senza data: **12935**.
+- Aggiornamenti generici con prove per campo: **0** valori gestiti aggiornati e **163** schede con riscontri aggiornati o ritirati; identità conservate.
+- Dettagli Happings: **32** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
+- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **1509** gruppi settimanali con possibile sovrapposizione (**1807** righe candidate, non cancellate).
+- Miglioramento UX reversibile: **925** gruppi provati dalla stessa fonte, **1084** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14353** ID originali preservati.
+- Fonti datate negli ultimi 30 giorni: **1225**; oltre soglia: **51**; senza data: **12967**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1373**, di cui recenti **1224**.
-- Date previste con origine vecchia/sconosciuta: **10466**.
+- Date previste con origine vecchia/sconosciuta: **10396**.
 - Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_content_dates_are_unproven
