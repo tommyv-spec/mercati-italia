@@ -1,4 +1,4 @@
-import { Fragment, Suspense, lazy } from 'react'
+import { Fragment } from 'react'
 import Icon from '../ui/Icon.jsx'
 import SearchField from '../ui/SearchField.jsx'
 import Pill from '../ui/Pill.jsx'
@@ -8,7 +8,6 @@ import WeeklyCityGroup from '../components/WeeklyCityGroup.jsx'
 import { WEEKDAY_LABELS, shouldAutoExpandWeeklyGroup } from '../lib/marketGrouping.js'
 import { getNextDate, dayHeaderLabel } from '../lib/display.js'
 
-const MarketsMap = lazy(() => import('../components/MarketsMap.jsx'))
 const DATE_PILLS = [['oggi', 'Oggi'], ['weekend', 'Questo weekend'], ['7giorni', 'Prossimi 7 giorni']]
 const WEEKDAY_LONG = ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica']
 
@@ -65,8 +64,6 @@ export default function List({
             </div>
           )}
         </div>
-        <Pill active={viewMode === 'lista'} onClick={() => setViewMode('lista')}><Icon name="list" size={13} />{' '}Lista</Pill>
-        <Pill active={viewMode === 'mappa'} onClick={() => setViewMode('mappa')}><Icon name="map" size={13} />{' '}Mappa</Pill>
       </div>
 
       <div className="list-tools">
@@ -79,17 +76,15 @@ export default function List({
       </div>
       {positionError && <div role="alert" className="list-note" style={{ color: '#A5443D' }}>{positionError}</div>}
 
-      {viewMode === 'lista' && (
-        <div className="weekday-row" aria-label="Filtra per giorno della settimana">
-          {WEEKDAY_LABELS.map((day, i) => (
-            <button key={day} type="button" aria-pressed={weekdayFilter === i} aria-label={'Mostra mercati del ' + WEEKDAY_LONG[i]}
-              className={'pill' + (weekdayFilter === i ? ' active' : '')} onClick={() => onWeekday(i)}>{day}</button>
-          ))}
-          {weekdayFilter !== null && (
-            <button type="button" className="pill" onClick={onClearWeekday} aria-label="Togli filtro giorno">×</button>
-          )}
-        </div>
-      )}
+      <div className="weekday-row" aria-label="Filtra per giorno della settimana">
+        {WEEKDAY_LABELS.map((day, i) => (
+          <button key={day} type="button" aria-pressed={weekdayFilter === i} aria-label={'Mostra mercati del ' + WEEKDAY_LONG[i]}
+            className={'pill' + (weekdayFilter === i ? ' active' : '')} onClick={() => onWeekday(i)}>{day}</button>
+        ))}
+        {weekdayFilter !== null && (
+          <button type="button" className="pill" onClick={onClearWeekday} aria-label="Togli filtro giorno">×</button>
+        )}
+      </div>
 
       {(filterCity || filterRegion || filterCategories.length > 0 || eventsOnly) && (
         <div className="active-chips">
@@ -124,7 +119,7 @@ export default function List({
 
       {loading ? (
         <div className="markets-list rivista"><Skeleton rows={3} /></div>
-      ) : viewMode === 'lista' ? (
+      ) : (
         <div className="markets-list rivista">
           {groupedList.length > 0 ? (
             <>
@@ -164,10 +159,6 @@ export default function List({
             </div>
           )}
         </div>
-      ) : (
-        <Suspense fallback={<div role="status" className="list-note" style={{ padding: 22 }}>Caricamento mappa interattiva…</div>}>
-          <MarketsMap markets={filteredMarkets} userLat={userLat} userLng={userLng} onSelect={onOpen} />
-        </Suspense>
       )}
     </div>
   )

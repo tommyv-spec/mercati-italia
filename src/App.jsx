@@ -15,6 +15,10 @@ import Weekly from './screens/Weekly.jsx';
 import FilterSheet from './ui/FilterSheet.jsx';
 import EventRow from './ui/EventRow.jsx';
 import Detail from './screens/Detail.jsx';
+import MapScreen from './screens/MapScreen.jsx';
+import Agenda from './screens/Agenda.jsx';
+import More from './screens/More.jsx';
+import TabBar from './ui/TabBar.jsx';
 import { weekendOf, inWeekend } from './lib/weekend.js';
 import Icon from './ui/Icon.jsx';
 import { CATEGORY_COLORS, localISO, TODAY, todayStr, formatDateIT, getDateBadge, dateQualityLabel, dateLeaf, dayHeaderLabel, getNextDate, uniqueByName } from './lib/display.js';
@@ -340,7 +344,7 @@ export default function App() {
       query={searchQuery} onQuery={homeQuery} weekendOffset={weekendOffset} onWeekend={setWeekendOffset}
       onSeeAll={homeSeeAll} onCategory={homeCategory} onRegion={homeRegion}
       onNearby={activateNearby} onAllItaly={disableLocation} positionStatus={positionStatus} canUseDistance={canUseDistance} center={homeCenter}
-      cityForToday={cityForToday} onWeeklyCity={openWeekly} onChooseCity={() => setTab('impostazioni')}
+      cityForToday={cityForToday} onWeeklyCity={openWeekly} onChooseCity={() => setTab('altro')}
       onOpen={openMarket} favorites={favorites} onToggleFav={toggleFav} />
   );
 
@@ -545,183 +549,32 @@ export default function App() {
       onReset={resetFilters} onApply={applyFilters} />
   );
 
-  const renderFavorites = () => {
-    const favMarkets = marketsWithDistance.filter(m => favorites.has(m.id));
-    return (
-      <>
-        <div className="header">
-          <div className="header-title">Preferiti</div>
-        </div>
-        <div className="page-content">
-          {favMarkets.length > 0 ? (
-            <div className="markets-list" style={{ padding: 0 }}>
-              {favMarkets.map(m => <EventRow key={m.id} market={m} when="" onOpen={openMarket} onToggleFav={toggleFav} isFav={favorites.has(m.id)} />)}
-            </div>
-          ) : (
-            <div className="empty-state">
-              <div className="empty-icon">❤️</div>
-              <div className="empty-title">Nessun preferito</div>
-              <div className="empty-text">Salva i mercati che ti interessano per ritrovarli qui.</div>
-            </div>
-          )}
-        </div>
-      </>
-    );
-  };
-
-  const renderNotifications = () => {
-    const savedMarkets = marketsWithDistance.filter(market => favorites.has(market.id));
-    const scheduled = savedMarkets
-      .map(market => ({ market, next: getNextDate(market.dates) }))
-      .filter(item => item.next)
-      .sort((left, right) => left.next.localeCompare(right.next))
-      .slice(0, 30);
-    const missingDates = savedMarkets.filter(market => !getNextDate(market.dates));
-
-    return (
-      <>
-        <div className="header">
-          <div className="header-title">Agenda preferiti</div>
-        </div>
-        <div className="page-content">
-          <div className="setting-card">
-            <div className="setting-label">I prossimi mercati che hai salvato</div>
-            <div className="setting-sublabel">
-              Qui trovi le date disponibili. Le notifiche push automatiche non sono ancora attive.
-              Controlla sempre se la data è confermata prima di partire.
-            </div>
-          </div>
-          {savedMarkets.length === 0 ? (
-            <div className="empty-state">
-              <div className="empty-icon">♡</div>
-              <div className="empty-title">Nessun mercato salvato</div>
-              <div className="empty-text">Salva un mercato dalla ricerca per vederlo qui.</div>
-              <button className="btn-primary" style={{ padding: '10px 20px', marginTop: 12 }}
-                onClick={() => setTab('esplora')}>Cerca mercati</button>
-            </div>
-          ) : (
-            <>
-              {scheduled.length > 0 ? (
-                <div className="markets-list" style={{ padding: 0 }}>
-                  {scheduled.map(({ market, next }, index) => (
-                    <button key={market.id} className="setting-card" style={{
-                      display: 'flex', width: '100%', textAlign: 'left', gap: 12,
-                      alignItems: 'center', cursor: 'pointer', border: 'none',
-                    }} onClick={() => openMarket(market)}>
-                      <span style={{ minWidth: 85, fontWeight: 700 }}>{formatDateIT(next)}</span>
-                      <span style={{ flex: 1 }}>
-                        <strong>{market.name}</strong>
-                        <span style={{ display: 'block', fontSize: 12, opacity: 0.75 }}>
-                          {market.city} · {market.dateQuality === 'confermata' ? 'Confermata'
-                            : market.dateQuality === 'riportata' ? 'Riportata dalla fonte' : 'Prevista, da verificare'}
-                        </span>
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="setting-card">Nessuna data futura disponibile per i tuoi preferiti.</div>
-              )}
-              {missingDates.length > 0 && (
-                <div className="setting-card" style={{ marginTop: 12 }}>
-                  <div className="setting-label">{missingDates.length} preferiti senza prossima data</div>
-                  <div className="setting-sublabel">Li trovi nella sezione Preferiti. Verifica la fonte ufficiale.</div>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </>
-    );
-  };
-
-  const renderSettings = () => (
-    <>
-      <div className="header">
-        <div className="header-title">Impostazioni</div>
-      </div>
-      <div className="page-content">
-        <div className="setting-card">
-          <div className="setting-label" style={{ marginBottom: 4 }}>Posizione</div>
-          <div className="setting-sublabel">Scegli come trovare i mercati vicino a te</div>
-          <div className="location-options">
-            <button
-              className={`location-option ${locationMode === 'auto' ? 'active' : ''}`}
-              onClick={activateNearby}
-            >
-              <div className="icon-circle"><Icon name="compass" size={18} /></div>
-              <div>
-                <div style={{ fontWeight: 600 }}>Usa la mia posizione</div>
-                <div style={{ fontSize: 12, color: '#6C6255', marginTop: 1 }}>
-                  {positionStatus === 'ready' ? 'Posizione attiva' :
-                   positionStatus === 'requesting' ? 'Richiesta in corso…' : 'Richiede il tuo consenso'}
-                </div>
-              </div>
-            </button>
-            <button
-              className={`location-option ${locationMode === 'manual' ? 'active' : ''}`}
-              onClick={() => setLocationMode('manual')}
-            >
-              <div className="icon-circle"><Icon name="mapPin" size={18} /></div>
-              <div>
-                <div style={{ fontWeight: 600 }}>Scegli una città</div>
-                <div style={{ fontSize: 12, color: '#6C6255', marginTop: 1 }}>Inserisci manualmente</div>
-              </div>
-            </button>
-            <button
-              className={`location-option ${locationMode === 'none' ? 'active' : ''}`}
-              onClick={disableLocation}
-            >
-              <div className="icon-circle"><Icon name="x" size={18} /></div>
-              <div>
-                <div style={{ fontWeight: 600 }}>Non ora</div>
-                <div style={{ fontSize: 12, color: '#6C6255', marginTop: 1 }}>Naviga senza posizione</div>
-              </div>
-            </button>
-          </div>
-
-          {positionError && <div role="alert" className="setting-sublabel" style={{ marginTop: 12 }}>{positionError}</div>}
-          {canUseDistance && (
-            <div className="setting-sublabel" style={{ marginTop: 10 }}>
-              Distanze calcolate rispetto alla tua posizione. Alcuni mercati hanno solo coordinate indicative.
-            </div>
-          )}
-          {locationMode === 'manual' && (
-            <>
-              <div className="manual-city-input">
-                <input list="available-market-cities" placeholder="Es. Firenze" value={manualCity}
-                  onChange={e => setManualCity(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter') confirmManualCity(); }} />
-                <datalist id="available-market-cities">
-                  {CTS.map(city => <option key={city} value={city} />)}
-                </datalist>
-                <button onClick={confirmManualCity}>Filtra città</button>
-              </div>
-              <div className="setting-sublabel">
-                La città selezionata filtra i risultati. Non equivale alla posizione GPS.
-              </div>
-            </>
-          )}
-        </div>
-
-        <div className="app-version">
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: 16, marginBottom: 4 }}>
-            <span style={{ color: 'var(--terracotta)' }}>Fuori</span> · Mercatini d'Italia
-          </div>
-          Versione 1.2 · Catalogo statico (lettura gratuita)
-        </div>
-      </div>
-    </>
+  // Map tab: the list's markets, around the chosen city when there is one and no GPS.
+  const mapMarkets = useMemo(() => homeCenter && !canUseDistance
+    ? filteredMarkets.filter(m => Number.isFinite(m.lat) && Number.isFinite(m.lng) && haversine(homeCenter.lat, homeCenter.lng, m.lat, m.lng) <= 50)
+    : filteredMarkets, [filteredMarkets, homeCenter, canUseDistance]);
+  const renderMap = () => (
+    <MapScreen markets={mapMarkets} userLat={userLat} userLng={userLng} onSelect={openMarket}
+      label={`${mapMarkets.length.toLocaleString('it-IT')} mercati sulla mappa${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : homeCenter ? ' · ' + homeCenter.label : ''}`}
+      onList={() => { setTab('esplora'); setView('list'); setViewMode('lista'); }} />
+  );
+  const renderAgenda = () => (
+    <Agenda markets={allMarkets} favorites={favorites} onOpen={openMarket} onToggleFav={toggleFav}
+      onExplore={() => { setTab('esplora'); setView('home'); }} />
+  );
+  const renderMore = () => (
+    <More locationMode={locationMode} positionStatus={positionStatus} positionError={positionError} canUseDistance={canUseDistance}
+      manualCity={manualCity} setManualCity={setManualCity} cities={CTS}
+      onUseGps={activateNearby} onChooseCity={() => setLocationMode('manual')} onNoLocation={disableLocation} onConfirmCity={confirmManualCity} />
   );
 
   return (
     <>
       <div className="app-container" onClick={() => showSort && setShowSort(false)}>
         {tab === "esplora" && (view === "home" ? renderHome() : view === "weekly" ? renderWeekly() : renderList())}
-        {tab === "mappa" && renderList()}
-        {tab === "preferiti" && renderFavorites()}
-        {tab === "notifiche" && renderNotifications()}
-        {tab === "impostazioni" && renderSettings()}
+        {tab === "mappa" && renderMap()}
+        {tab === "agenda" && renderAgenda()}
+        {tab === "altro" && renderMore()}
 
         {showFilters && renderFilterSheet()}
         {selectedMarket && (
@@ -732,20 +585,7 @@ export default function App() {
         )}
         {toast && <div className="toast">{toast}</div>}
 
-        <nav className="bottom-tabs">
-          {[
-            { id: "esplora", label: "Esplora", icon: "compass" },
-            { id: "preferiti", label: "Preferiti", icon: "heart" },
-            { id: "notifiche", label: "Agenda", icon: "calendar" },
-            { id: "impostazioni", label: "Impostazioni", icon: "settings" },
-          ].map(t => (
-            <button key={t.id} className={`tab-btn ${tab === t.id ? 'active' : ''}`}
-              onClick={() => { setTab(t.id); if (t.id === 'esplora') { setViewMode('lista'); setView('home'); } }}>
-              <Icon name={t.icon} size={22} strokeWidth={tab === t.id ? 2 : 1.6} />
-              {t.label}
-            </button>
-          ))}
-        </nav>
+        <TabBar tab={tab} onTab={id => { setTab(id); if (id === 'esplora') { setViewMode('lista'); setView('home'); } }} />
       </div>
     </>
   );

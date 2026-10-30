@@ -160,7 +160,7 @@ try {
   await assertCards()
 
   // Manual city selection filters actual results, not a cosmetic toast.
-  await page.locator('.bottom-tabs').getByRole('button', { name: 'Impostazioni' }).click()
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Altro' }).click()
   await page.getByRole('button', { name: /Scegli una città/ }).click()
   await page.locator('.manual-city-input input').fill('Firenze')
   await page.getByRole('button', { name: 'Filtra città' }).click()
@@ -218,7 +218,7 @@ try {
   // Albizzate: Happings lists ONE Tuesday market (Piazzale Sefro); the three
   // imported copies are soft-merged in the data ("duplicato_di"). The visitor
   // sees one market, and a link shared for a merged copy opens the kept one.
-  await page.locator('.bottom-tabs').getByRole('button', { name: 'Impostazioni' }).click()
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Altro' }).click()
   await page.getByRole('button', { name: /Scegli una città/ }).click()
   await page.locator('.manual-city-input input').fill('Albizzate')
   await page.getByRole('button', { name: 'Filtra città' }).click()

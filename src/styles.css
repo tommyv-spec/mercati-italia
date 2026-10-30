@@ -1548,3 +1548,31 @@ body {
 .provenance { padding: 22px 20px 0; font-size: 13px; line-height: 1.6; color: var(--ink-lighter); }
 .provenance a, .provenance .link { color: var(--terracotta); font-size: 13px; }
 .near .d { flex-basis: 66px; font-size: 11px; }
+
+/* ─── Rivista: map tab, agenda, altro, tab bar ─────────────────────────── */
+.screen-head { padding: 18px 20px 0; }
+.screen-head h1 { font-family: var(--font-display); font-weight: 400; font-size: 30px; line-height: 1.1; margin: 0 0 6px; color: var(--ink); }
+.screen-head .note { font-size: 14px; line-height: 1.5; color: var(--ink-lighter); margin: 0; }
+.agenda-screen, .more-screen { background: var(--cream); min-height: 100%; padding-bottom: calc(var(--tab-h) + 24px); }
+.agenda-item { position: relative; }
+.agenda-cal { display: inline-flex; min-height: 32px; margin: -6px 0 6px; font-size: 14px; font-weight: 600; text-decoration: none; }
+.panel { margin: 18px 20px 0; background: var(--beige); border-radius: 16px; padding: 16px 18px; }
+.panel .eyebrow { display: block; margin-bottom: 6px; }
+.panel p { font-size: 15px; line-height: 1.5; margin: 0 0 8px; }
+.panel p:last-child { margin-bottom: 0; }
+.panel .note { font-size: 13px; color: var(--ink-lighter); }
+.panel a { color: var(--terracotta); }
+.loc-options { display: flex; flex-direction: column; gap: 8px; margin: 10px 0 4px; }
+.loc-option { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 6px 10px 6px 6px; border: 1px solid var(--beige-dark); border-radius: var(--radius-md); background: var(--white); font: inherit; font-size: 15px; color: var(--ink); text-align: left; cursor: pointer; }
+.loc-option .sub { display: block; font-size: 13px; color: var(--ink-lighter); }
+.loc-option.active { border-color: var(--ink); }
+.loc-option.active .ico-btn { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.more-screen .manual-city-input { display: flex; gap: 8px; margin: 12px 0 8px; }
+.more-screen .manual-city-input input { flex: 1; min-width: 0; height: 44px; border: 1px solid var(--sand); border-radius: var(--radius-md); background: var(--white); font: inherit; font-size: 15px; padding: 0 12px; color: var(--ink); }
+.more-screen .manual-city-input .btn-primary { height: 44px; }
+.more-screen .version { text-align: center; padding: 28px 20px 0; font-size: 13px; color: var(--ink-lighter); }
+.map-screen { background: var(--cream); min-height: 100%; padding-bottom: calc(var(--tab-h) + 24px); }
+.map-bar { display: flex; align-items: center; gap: 12px; padding: 12px 20px 4px; }
+.map-bar .pill { height: 34px; font-size: 13px; gap: 4px; }
+.map-bar .note { font-size: 13px; color: var(--ink-lighter); }
+.bottom-tabs .tab-btn.active { color: var(--terracotta); }
