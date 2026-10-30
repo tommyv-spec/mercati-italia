@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Fuori · Home · direzione A Rivista</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#B94439}a:hover{color:#8F342C}
+.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6C6255}
+.row{display:flex;flex-direction:column;gap:6px;padding:16px 0;border-top:1px solid #E8E0D4}
+.title{font-family:'DM Serif Display',Georgia,serif;font-size:21px;line-height:1.2;color:#2C2416;margin:0}
+.meta{font-size:14px;line-height:1.4;color:#2C2416}
+.desc{font-size:14px;line-height:1.45;color:#5C513F;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.foot{display:flex;align-items:center;gap:8px;font-size:12px;color:#6C6255;flex-wrap:wrap}
+.tag{padding:2px 8px;border:1px solid #E8E0D4;border-radius:999px}
+.ok{display:inline-flex;align-items:center;gap:4px;color:#446E47;font-weight:600}
+.pill{display:inline-flex;align-items:center;height:36px;padding:0 14px;border:1px solid #D4C5A9;border-radius:999px;font-size:14px;font-weight:500;color:#2C2416;text-decoration:none;white-space:nowrap;background:#FFFFFF}
+.region{display:block;padding:11px 0;border-bottom:1px solid #E8E0D4;font-size:15px;color:#2C2416;text-decoration:none}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1 1 0;min-height:44px;font-size:11px;font-weight:600;color:#6C6255;text-decoration:none;background:none;border:0;padding:6px 0;font-family:inherit}
+.tab.on{color:#B94439}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</helmet>
+<div style="width: 390px; height: 1640px; box-sizing: border-box; position: relative; background: #FDFBF7; color: #2C2416; font-family: 'Source Sans 3', -apple-system, sans-serif; overflow: hidden">
+
+  <div style="background: #2C2416; color: #FDFBF7; padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between">
+      <span class="serif" style="font-size: 30px; line-height: 1">Fuori</span>
+      <span class="eyebrow" style="color: #D4C5A9">Mercatini d'Italia</span>
+    </div>
+    <label style="display: flex; align-items: center; gap: 10px; background: #FDFBF7; border-radius: 12px; height: 46px; padding: 0 14px; color: #6C6255">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      <span class="sr">Cerca</span>
+      <input type="search" placeholder="Cerca città, mercatino o regione" style="flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; color: #2C2416; outline: none">
+    </label>
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 4px">
+      <button type="button" aria-label="Weekend precedente" style="width: 44px; height: 44px; border: 1px solid #5C513F; border-radius: 999px; background: transparent; color: #FDFBF7; display: inline-flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg></button>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center">
+        <span class="serif" style="font-size: 26px; line-height: 1.1">Questo weekend</span>
+        <span style="font-size: 13px; color: #D4C5A9">sabato 31 ottobre · domenica 1 novembre</span>
+      </div>
+      <button type="button" aria-label="Weekend successivo" style="width: 44px; height: 44px; border: 1px solid #5C513F; border-radius: 999px; background: transparent; color: #FDFBF7; display: inline-flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg></button>
+    </div>
+    <div style="display: flex; justify-content: center; gap: 6px; font-size: 13px; color: #D4C5A9">
+      <span><strong style="color: #FDFBF7; font-weight: 600">598</strong> mercatini ed eventi in Italia</span>
+      <span>·</span>
+      <a href="#vicino" style="color: #FDFBF7; font-weight: 600">Vicino a me</a>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 8px; padding: 16px 20px 6px; overflow: hidden">
+    <a class="pill" href="#tipo">Antiquariato</a>
+    <a class="pill" href="#tipo">Vintage e usato</a>
+    <a class="pill" href="#tipo">Artigianato</a>
+    <a class="pill" href="#tipo">Alimentare</a>
+    <a class="pill" href="#tipo">Settimanali</a>
+  </div>
+
+  <div style="padding: 10px 20px 0">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 8px 0 10px">
+      <h2 class="serif" style="font-size: 22px; margin: 0">Questo weekend</h2>
+      <a href="#weekend" style="font-size: 13px; font-weight: 600; text-decoration: none">Vedi tutti i 598 ›</a>
+    </div>
+
+    <article class="row">
+      <span class="eyebrow">Sab 31 ott – dom 1 nov · Arezzo, Toscana</span>
+      <h3 class="title">Fiera Antiquaria di Arezzo</h3>
+      <p class="meta" style="margin: 0">Piazza Grande · tutto il giorno · <span style="color: #446E47; font-weight: 600">Ingresso gratuito</span></p>
+      <p class="desc">La più grande fiera d'antiquariato d'Italia, nata nel 1968 per intuizione di Ivan Bruschi. Il cuore è Piazza Grande, con le Logge del Vasari.</p>
+      <div class="foot"><span class="ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>Data confermata dalla fonte</span><span class="tag">antiquariato</span><span class="tag">collezionismo</span></div>
+    </article>
+
+    <article class="row">
+      <span class="eyebrow">Dom 1 nov · Roma, Lazio</span>
+      <h3 class="title">Vintage Market Roma Garbatella</h3>
+      <p class="meta" style="margin: 0">Via Ignazio Persico 82 · 10:00–20:00 · ogni prima domenica del mese</p>
+      <p class="desc">Il parcheggio del Carrefour Market Garbatella si trasforma nel vintage market della capitale: abbigliamento, dischi e modernariato.</p>
+      <div class="foot"><span>Data prevista dalla cadenza</span><span class="tag">vintage</span><span class="tag">dischi</span></div>
+    </article>
+
+    <article class="row">
+      <span class="eyebrow">Dom 1 nov · Aviano, Friuli Venezia Giulia</span>
+      <h3 class="title">Anticamente ad Aviano</h3>
+      <p class="meta" style="margin: 0">Piazza Duomo · dalle 9:00 · <span style="color: #446E47; font-weight: 600">Ingresso gratuito</span></p>
+      <p class="desc">Mostra mercato dell'antiquariato che dal 2004 porta ad Aviano migliaia di visitatori ogni prima domenica del mese, agosto incluso.</p>
+      <div class="foot"><span>Data prevista dalla cadenza</span><span class="tag">antiquariato</span><span class="tag">brocantage</span></div>
+    </article>
+
+    <article class="row">
+      <span class="eyebrow">Dom 1 nov · Modena, Emilia-Romagna</span>
+      <h3 class="title">Le Bancarelle · Little Market</h3>
+      <p class="meta" style="margin: 0">Parcheggio La Rotonda, Strada Morane 500 · 9:00–13:00 · <span style="color: #446E47; font-weight: 600">Ingresso libero</span></p>
+      <p class="desc">Mercatino di economia circolare dell'associazione Scoiattoli in Città: scambio e riuso, non solo vendita, in cicli stagionali.</p>
+      <div class="foot"><span class="ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>Data confermata dalla fonte</span><span class="tag">usato</span><span class="tag">vintage</span></div>
+    </article>
+  </div>
+
+  <div id="vicino" style="padding: 22px 20px 0">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 0 0 10px">
+      <h2 class="serif" style="font-size: 22px; margin: 0">Il mercato oggi</h2>
+      <span style="font-size: 13px; color: #6C6255">venerdì 30 ottobre · Milano</span>
+    </div>
+    <div style="background: #F5F0E8; border-radius: 14px; padding: 6px 16px">
+      <a href="#m1" style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 8px 0; border-bottom: 1px solid #E8E0D4; color: #2C2416; text-decoration: none; font-size: 15px"><span style="font-weight: 600">Mercato di Bonola</span><span style="color: #6C6255">7:30–14:00</span></a>
+      <a href="#m2" style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 8px 0; border-bottom: 1px solid #E8E0D4; color: #2C2416; text-decoration: none; font-size: 15px"><span style="font-weight: 600">Mercato di Canaletto</span><span style="color: #6C6255">7:30–14:00</span></a>
+      <a href="#m3" style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 8px 0; color: #2C2416; text-decoration: none; font-size: 15px"><span style="font-weight: 600">Mercato di Carbonia</span><span style="color: #6C6255">7:30–14:00</span></a>
+      <a href="#oggi" style="display: block; padding: 10px 0 12px; font-size: 14px; font-weight: 600; text-decoration: none">Tutti i 32 mercati di oggi a Milano ›</a>
+    </div>
+    <p style="margin: 10px 0 0; font-size: 13px; color: #6C6255">Mercati comunali settimanali, raggruppati per città. <a href="#pos">Cambia città</a></p>
+  </div>
+
+  <div style="padding: 24px 20px 0">
+    <h2 class="serif" style="font-size: 22px; margin: 0 0 4px">Per regione</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px">
+      <a class="region" href="#r">Lombardia</a><a class="region" href="#r">Lazio</a>
+      <a class="region" href="#r">Emilia-Romagna</a><a class="region" href="#r">Piemonte</a>
+      <a class="region" href="#r">Toscana</a><a class="region" href="#r">Veneto</a>
+      <a class="region" href="#r">Campania</a><a class="region" href="#r">Puglia</a>
+      <a class="region" href="#r">Sicilia</a><a class="region" href="#r">Liguria</a>
+    </div>
+    <a href="#regioni" style="display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 600; text-decoration: none">Tutte le 20 regioni ›</a>
+  </div>
+
+  <nav aria-label="Sezioni" style="position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: stretch; background: #FDFBF7; border-top: 1px solid #E8E0D4">
+    <a class="tab on" href="Main.dc.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m15 9-2 5-4 1 2-5z"></path></svg>Esplora</a>
+    <a class="tab" href="#mappa"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"></path><path d="M9 4v14M15 6v14"></path></svg>Mappa</a>
+    <a class="tab" href="#agenda"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Agenda</a>
+    <a class="tab" href="#altro"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="12" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle><circle cx="19" cy="12" r="1.5"></circle></svg>Altro</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
