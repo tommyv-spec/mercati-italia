@@ -76,7 +76,11 @@ export default function Home({
       if (picked.length === HOME_FEATURED) break
     }
     for (const m of sorted) { if (picked.length >= HOME_FEATURED) break; if (!picked.includes(m)) picked.push(m) }
-    return picked
+    // Neighbouring tiles differ in colour: deal the picks out one category at a time.
+    const groups = [...new Set(picked.map(m => m.category))].map(c => picked.filter(m => m.category === c))
+    const dealt = []
+    while (dealt.length < picked.length) for (const g of groups) if (g.length) dealt.push(g.shift())
+    return dealt
   }, [events])
   const byDay = useMemo(() => {
     const picked = new Set(featured.map(m => m.id))
