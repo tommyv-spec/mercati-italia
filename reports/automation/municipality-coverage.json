@@ -3,20 +3,20 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 14273,
+  "catalog_market_ids_preserved": 14321,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 4977,
-  "municipalities_without_catalog_listings": 2917,
-  "represented_percent": 63.0,
+  "municipalities_with_catalog_listings": 5011,
+  "municipalities_without_catalog_listings": 2883,
+  "represented_percent": 63.5,
   "regions": [
     {
       "region": "Piemonte",
       "istat_municipalities": 1180,
-      "with_at_least_one_catalog_market": 529,
-      "without_catalog_market": 651,
-      "represented_percent": 44.8,
+      "with_at_least_one_catalog_market": 532,
+      "without_catalog_market": 648,
+      "represented_percent": 45.1,
       "unrepresented_examples_for_source_search": [
         "Crova",
         "Faule",
@@ -48,16 +48,16 @@
     {
       "region": "Calabria",
       "istat_municipalities": 404,
-      "with_at_least_one_catalog_market": 179,
-      "without_catalog_market": 225,
-      "represented_percent": 44.3,
+      "with_at_least_one_catalog_market": 187,
+      "without_catalog_market": 217,
+      "represented_percent": 46.3,
       "unrepresented_examples_for_source_search": [
         "Brancaleone",
         "Fiumara",
         "Laino Castello",
         "Marcedusa",
-        "Montebello Jonico",
         "Paterno Calabro",
+        "Roccaforte del Greco",
         "San Basile",
         "Tortora"
       ]
@@ -116,9 +116,9 @@
     {
       "region": "Liguria",
       "istat_municipalities": 234,
-      "with_at_least_one_catalog_market": 107,
-      "without_catalog_market": 127,
-      "represented_percent": 45.7,
+      "with_at_least_one_catalog_market": 108,
+      "without_catalog_market": 126,
+      "represented_percent": 46.2,
       "unrepresented_examples_for_source_search": [
         "Costarainera",
         "Olivetta San Michele",
@@ -133,9 +133,9 @@
     {
       "region": "Abruzzo",
       "istat_municipalities": 305,
-      "with_at_least_one_catalog_market": 190,
-      "without_catalog_market": 115,
-      "represented_percent": 62.3,
+      "with_at_least_one_catalog_market": 191,
+      "without_catalog_market": 114,
+      "represented_percent": 62.6,
       "unrepresented_examples_for_source_search": [
         "Castel Castagna",
         "Civitella Messer Raimondo",
@@ -145,23 +145,6 @@
         "San Pio delle Camere",
         "Vicoli",
         "Villalago"
-      ]
-    },
-    {
-      "region": "Campania",
-      "istat_municipalities": 550,
-      "with_at_least_one_catalog_market": 435,
-      "without_catalog_market": 115,
-      "represented_percent": 79.1,
-      "unrepresented_examples_for_source_search": [
-        "Agerola",
-        "Contrada",
-        "Cuccaro Vetere",
-        "Domicella",
-        "Laureana Cilento",
-        "Letino",
-        "Morigerati",
-        "Prata di Principato Ultra"
       ]
     },
     {
@@ -216,11 +199,28 @@
       ]
     },
     {
+      "region": "Campania",
+      "istat_municipalities": 550,
+      "with_at_least_one_catalog_market": 448,
+      "without_catalog_market": 102,
+      "represented_percent": 81.5,
+      "unrepresented_examples_for_source_search": [
+        "Agerola",
+        "Castel di Sasso",
+        "Contrada",
+        "Cuccaro Vetere",
+        "Domicella",
+        "Laureana Cilento",
+        "Letino",
+        "Morigerati"
+      ]
+    },
+    {
       "region": "Veneto",
       "istat_municipalities": 559,
-      "with_at_least_one_catalog_market": 457,
-      "without_catalog_market": 102,
-      "represented_percent": 81.8,
+      "with_at_least_one_catalog_market": 458,
+      "without_catalog_market": 101,
+      "represented_percent": 81.9,
       "unrepresented_examples_for_source_search": [
         "Bagnolo di Po",
         "Canda",
@@ -286,9 +286,9 @@
     {
       "region": "Toscana",
       "istat_municipalities": 273,
-      "with_at_least_one_catalog_market": 227,
-      "without_catalog_market": 46,
-      "represented_percent": 83.2,
+      "with_at_least_one_catalog_market": 228,
+      "without_catalog_market": 45,
+      "represented_percent": 83.5,
       "unrepresented_examples_for_source_search": [
         "Abbadia San Salvatore",
         "Londa",
@@ -298,23 +298,6 @@
         "Radicondoli",
         "Vagli Sotto",
         "Villa Collemandina"
-      ]
-    },
-    {
-      "region": "Puglia",
-      "istat_municipalities": 257,
-      "with_at_least_one_catalog_market": 227,
-      "without_catalog_market": 30,
-      "represented_percent": 88.3,
-      "unrepresented_examples_for_source_search": [
-        "Celle di San Vito",
-        "Fragagnano",
-        "Panni",
-        "Poggio Imperiale",
-        "San Giorgio Ionico",
-        "San Paolo di Civitate",
-        "Troia",
-        "Vico del Gargano"
       ]
     },
     {
@@ -335,11 +318,28 @@
       ]
     },
     {
+      "region": "Puglia",
+      "istat_municipalities": 257,
+      "with_at_least_one_catalog_market": 232,
+      "without_catalog_market": 25,
+      "represented_percent": 90.3,
+      "unrepresented_examples_for_source_search": [
+        "Castri di Lecce",
+        "Celle di San Vito",
+        "Mattinata",
+        "Panni",
+        "Poggio Imperiale",
+        "San Nicandro Garganico",
+        "Troia",
+        "Vico del Gargano"
+      ]
+    },
+    {
       "region": "Molise",
       "istat_municipalities": 136,
-      "with_at_least_one_catalog_market": 121,
-      "without_catalog_market": 15,
-      "represented_percent": 89.0,
+      "with_at_least_one_catalog_market": 122,
+      "without_catalog_market": 14,
+      "represented_percent": 89.7,
       "unrepresented_examples_for_source_search": [
         "Castelpizzuto",
         "Guardialfiera",
@@ -363,15 +363,7 @@
     },
     {
       "region": "Abruzzo",
-      "reported_city": "Atelena"
-    },
-    {
-      "region": "Abruzzo",
       "reported_city": "Cassinetta Di Lugagnano"
-    },
-    {
-      "region": "Abruzzo",
-      "reported_city": "Lecce dei Marsi"
     },
     {
       "region": "Abruzzo",
@@ -402,16 +394,24 @@
       "reported_city": "TE"
     },
     {
-      "region": "Basilicata",
-      "reported_city": "BRINDISI DI MONTEGNA"
+      "region": "Calabria",
+      "reported_city": "Africo Nuovo"
     },
     {
-      "region": "Basilicata",
-      "reported_city": "BRINDISI DI MONTEGNA"
+      "region": "Calabria",
+      "reported_city": "Amantea Campora S.G:"
     },
     {
-      "region": "Basilicata",
-      "reported_city": "Brindisi di Montagna"
+      "region": "Calabria",
+      "reported_city": "Belvedere Spinello"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Brattirò"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Capristrano"
     }
   ],
   "interpretation": "absence of a listing is NOT evidence a municipality has any active market"
