@@ -33,8 +33,22 @@ Poi pubblica `reports/QUALITA.md`, la pagina unica sulla qualità dei dati.
 python ops/runner.py plan                 # cosa verrebbe eseguito oggi e perché
 python ops/runner.py run market-autopilot # un lavoro subito
 python ops/runner.py daily                # tutto ciò che è in scadenza
+python ops/runner.py rehearse --code <cartella>   # prova generale di una modifica, senza pubblicare
 powershell -ExecutionPolicy Bypass -File ops/install-windows.ps1   # (re)installa l'attività
 ```
+
+## Prova generale prima di pubblicare una modifica
+
+`rehearse` rigioca l'ultimo giro di `market-autopilot` di oggi (giorno UTC) con le modifiche da
+provare: il codice e il catalogo di quella notte, più i commit della cartella `--code` che DEV non
+ha ancora. Le fonti non vengono rilette: si riusano le letture salvate quella notte
+(`--offline --resume`). Girano tutti i controlli dei job che leggono soltanto, poi l'ammissione
+Happings del job di pubblicazione **senza** pubblicare. Ogni job clona una copia usa-e-getta del
+repository e può spingere solo lì; `state.json` e gli allarmi non vengono toccati.
+
+Il risultato è nel log (`…-market-autopilot-rehearsal.log`): `rehearsal PASSED` o `FAILED`, e
+`catalog-diff.json` nella cartella del giro, con ogni scheda che cambia rispetto a quella notte.
+Senza `--code` è un collaudo della prova stessa: deve passare con zero differenze.
 
 Requisiti sul computer: Python 3.13 con PyYAML, Node 22, Git (con Git Bash su Windows), una chiave
 SSH con permesso di scrittura sul repository e il comando `gh` collegato a un account GitHub
