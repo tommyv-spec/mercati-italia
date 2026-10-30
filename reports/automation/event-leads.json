@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14273,
-  "baseline_market_records": 14273,
+  "baseline_market_ids_preserved": 14321,
+  "baseline_market_records": 14321,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -9,9 +9,9 @@
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
       "leads_found": 2,
-      "not_matching_market_scope": 117,
+      "not_matching_market_scope": 125,
       "requests": 1,
-      "rows_examined": 119,
+      "rows_examined": 127,
       "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
       "state": "discovery_leads_only"
     },
@@ -28,16 +28,172 @@
     },
     {
       "catalog_market_imports": 0,
+      "descriptions_copied": 0,
       "event_confirmations": 0,
       "id": "eventiesagre-index",
-      "reason_class": "ValueError",
-      "requests": 0,
-      "state": "source_unavailable_or_schema_review"
+      "indexes_read": 2,
+      "links_only": 11,
+      "publisher_events_verified": 0,
+      "requests": 3,
+      "state": "discovery_leads_only"
     }
   ],
   "fresh_official_leads": 2,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-12-20",
+      "first_seen": "2026-10-19",
+      "id": "firenze-feelflorence:112",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
+      "start": "2026-11-14",
+      "status": "source_lead_unverified",
+      "title": "Mercato di Natale in Piazza Santa Croce"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-11-01",
+      "first_seen": "2026-10-30",
+      "id": "firenze-feelflorence:107",
+      "kind": "fair_review",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/fiera-di-ognissanti-parco-delle-cascine",
+      "start": "2026-11-01",
+      "status": "source_lead_unverified",
+      "title": "Fiera di Ognissanti - Parco delle Cascine"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21193381",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21193381_Il+Mercatino+Del+Riuso+A+Belgirate.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21192115",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21192115_Grande+Mercato+Dell+usato+Dei+Creatori.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21191281",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191281_Il+Mercatino+Dell+usato+A+Alpignano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21187361",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21187361_Il+Mercatino+Dell+usato+A+Collegno.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21187270",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21187270_Il+Mercatino+Dell+usato+A+Castellamonte.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21159014",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21159014_Fiera+Del+Disco.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21135023",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21135023_Cirie+il+Mercatino+dell+usato+del+collezionismo+e+del+piccolo+antiquariato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21109205",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21109205_Mercatini+E+Curiosita.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21100718",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21100718_Mercatino+Dell+Usato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21095883",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21095883_Roba+Vegia.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-30",
+      "id": "eventiesagre-index:21081250",
+      "last_seen": "2026-10-30",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21081250_Mercatino+Dell+Usato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
     {
       "catalog_import_allowed": false,
       "city": "Firenze",
@@ -51,7 +207,7 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
       "start": "2026-11-14",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercato di Natale in Piazza Santa Croce"
     },
     {
@@ -67,7 +223,7 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/fiera-di-ognissanti-parco-delle-cascine",
       "start": "2026-11-01",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Fiera di Ognissanti - Parco delle Cascine"
     },
     {
@@ -134,22 +290,6 @@
       "start": "2026-10-24",
       "status": "not_seen_again_not_a_market_closure",
       "title": "Mercatino dei fumetti, del disco e del vintage"
-    },
-    {
-      "catalog_import_allowed": false,
-      "city": "Firenze",
-      "end": "2026-10-25",
-      "first_seen": "2026-10-19",
-      "id": "firenze-feelflorence:112",
-      "kind": "fair_review",
-      "last_seen": "2026-10-25",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "firenze-feelflorence",
-      "source_url": "https://www.feelflorence.it/it/eventi/santo-spirito-fiera",
-      "start": "2026-10-25",
-      "status": "not_seen_again_not_a_market_closure",
-      "title": "Santo Spirito in Fiera"
     },
     {
       "catalog_import_allowed": false,
@@ -776,11 +916,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 0,
+  "new_external_url_pointers": 11,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-29",
+  "reference_date": "2026-10-30",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
