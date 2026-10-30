@@ -603,7 +603,11 @@ class SourceAdmissionCertificateTests(unittest.TestCase):
         self.assertEqual(enrich.verify_source_admission_certificate([], exported, certificate, TODAY),
                          ([], 1))
         with self.assertRaisesRegex(ValueError, "Invalid Happings detail batch"):
-            enrich.preview([], pages + pages[:63], today=TODAY, apply=True, admit_new=True)
+            enrich.preview([], (pages * 4)[:enrich.MAX_PAGES + 1], today=TODAY, apply=True, admit_new=True)
+
+    def test_one_nights_reads_fit_in_one_batch(self):
+        import happings_detail_discovery as discovery
+        self.assertLessEqual(discovery.MAX_REQUESTS, enrich.MAX_PAGES)
 
     def fixture(self):
         from export_static import normalize

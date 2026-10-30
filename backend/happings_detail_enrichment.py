@@ -25,7 +25,8 @@ from source_calendar import (DETAIL_FIELDS, MANAGER, clean_source_calendar,
 
 PUBLISHER = "happings.com"
 SOURCE_NAME = "Happings — scheda evento (informazioni riportate dalla fonte)"
-MAX_PAGES = 128
+# Must stay >= happings_detail_discovery.MAX_REQUESTS: one night's reads arrive as one batch.
+MAX_PAGES = 256
 MAX_MARKETS = 100_000
 MAX_NEW_MARKETS = 64
 MAX_CHANGED_MARKETS = 2000
