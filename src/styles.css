@@ -1464,3 +1464,44 @@ body {
 .event-row .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .event-row .top .eyebrow { line-height: 1.4; }
 .event-row .top .row-fav { margin: -12px -12px -12px 0; flex: 0 0 44px; }
+
+/* ─── Rivista: list, filter sheet, weekly screen ───────────────────────── */
+.list-screen { background: var(--cream); min-height: 100%; padding-bottom: calc(var(--tab-h) + 24px); }
+.band.band-compact { position: sticky; top: 0; z-index: 50; padding: 10px 20px 14px; gap: 8px; }
+.band-compact .back-home { color: var(--cream); padding: 0; }
+.list-tools { display: flex; gap: 8px; padding: 12px 20px 0; overflow-x: auto; scrollbar-width: none; align-items: center; }
+.list-tools::-webkit-scrollbar { display: none; }
+.list-tools .pill { height: 34px; font-size: 13px; gap: 4px; }
+.pill:disabled { opacity: .6; cursor: default; }
+.sort-wrap { position: relative; flex: 0 0 auto; }
+.weekday-row { display: flex; gap: 6px; padding: 10px 20px 0; overflow-x: auto; scrollbar-width: none; }
+.weekday-row::-webkit-scrollbar { display: none; }
+.weekday-row .pill { height: 30px; min-width: 40px; padding: 0 10px; font-size: 12px; justify-content: center; }
+.active-chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 20px 0; }
+.active-chips .pill { height: 32px; font-size: 13px; }
+.list-note { font-size: 12px; line-height: 1.5; color: var(--ink-lighter); margin: 10px 20px 0; }
+.list-note .pill { margin-top: 8px; }
+.list-screen .results-count { font-size: 13px; color: var(--ink-lighter); padding: 12px 20px 0; margin: 0; background: none; border: 0; display: flex; justify-content: space-between; align-items: center; }
+.markets-list.rivista { padding: 0 20px; }
+.markets-list.rivista .day-header { position: sticky; top: var(--header-h, 110px); z-index: 40; background: var(--cream); font-family: var(--font-display); font-weight: 400; font-size: 18px; color: var(--ink); margin: 0; padding: 14px 0 8px; border-bottom: 1px solid var(--beige-dark); }
+.markets-list.rivista .market-card.event-row { border-top: 0; border-bottom: 1px solid var(--beige-dark); }
+.list-screen .empty-state { padding: 40px 20px; text-align: center; color: var(--ink-light); }
+.list-screen .empty-title { font-family: var(--font-display); font-size: 22px; color: var(--ink); margin-bottom: 6px; }
+.list-screen .empty-text { font-size: 15px; line-height: 1.5; }
+.sheet-backdrop { position: fixed; inset: 0; background: rgba(44, 36, 22, .4); z-index: 90; }
+.sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 91; background: var(--cream); border-radius: 16px 16px 0 0; max-height: 85vh; overflow: auto; padding: 16px 20px calc(var(--tab-h) + 20px); display: flex; flex-direction: column; gap: 18px; }
+.sheet-head { display: flex; justify-content: space-between; align-items: center; }
+.sheet-head h2 { font-family: var(--font-display); font-weight: 400; font-size: 22px; margin: 0; color: var(--ink); }
+.sheet .eyebrow { margin-bottom: 8px; display: block; }
+.sheet-cats { display: flex; flex-wrap: wrap; gap: 8px; }
+.sheet select { width: 100%; height: 44px; border: 1px solid var(--sand); border-radius: var(--radius-md); background: var(--white); font: inherit; font-size: 15px; padding: 0 12px; color: var(--ink); }
+.sheet-range { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-lighter); margin-bottom: 6px; }
+.sheet input[type=range] { width: 100%; accent-color: var(--ink); }
+.sheet .note { margin-top: 8px; }
+.sheet-foot { display: flex; gap: 10px; }
+.sheet-foot .btn-secondary, .sheet-foot .btn-primary { flex: 1; margin: 0; }
+.ico-btn { width: 44px; height: 44px; border: 1px solid var(--sand); border-radius: 999px; background: var(--white); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.weekly-screen { background: var(--cream); min-height: 100%; padding: 8px 20px calc(var(--tab-h) + 24px); }
+.weekly-screen h1 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.1; color: var(--ink); margin: 8px 0 6px; }
+.weekly-screen h2 { font-family: var(--font-display); font-weight: 400; font-size: 20px; color: var(--ink); margin: 22px 0 4px; }
+.weekly-screen .weekly-row, .weekly-screen .weekly-row:last-of-type { border-bottom: 1px solid var(--beige-dark); }

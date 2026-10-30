@@ -10,13 +10,16 @@ import { addressConflictView } from './lib/sourceFieldConflicts.js';
 import { destinationForMarket } from './lib/marketDirections.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
 import Home from './screens/Home.jsx';
+import List from './screens/List.jsx';
+import Weekly from './screens/Weekly.jsx';
+import FilterSheet from './ui/FilterSheet.jsx';
+import EventRow from './ui/EventRow.jsx';
 import { weekendOf, inWeekend } from './lib/weekend.js';
 import Icon from './ui/Icon.jsx';
 import { CATEGORY_COLORS, localISO, TODAY, todayStr, formatDateIT, getDateBadge, dateQualityLabel, dateLeaf, dayHeaderLabel, getNextDate, uniqueByName } from './lib/display.js';
 import { downloadCalendarEvent } from './lib/calendarFile.js';
 import { reportUrl } from './lib/report.js';
 import { haversine } from './services/staticMarkets.js';
-const MarketsMap = lazy(() => import('./components/MarketsMap.jsx'));
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
 // Market records come from the versioned static catalog, not bundled fixtures.
@@ -60,6 +63,7 @@ export default function App() {
   const [view, setView] = useState("home");        // esplora: home | list | weekly
   const [weekendOffset, setWeekendOffset] = useState(0);
   const [weeklyCity, setWeeklyCity] = useState("");
+  const [eventsOnly, setEventsOnly] = useState(false);   // list opened from the home events
   const [viewMode, setViewMode] = useState("lista");
   const [searchQuery, setSearchQuery] = useState("");
   // Prioritize visits people can actually plan; deselect to browse undated markets.
@@ -110,7 +114,7 @@ export default function App() {
       document.documentElement.style.setProperty('--header-h', el.offsetHeight + 'px'));
     observer.observe(el);
     return () => observer.disconnect();
-  }, [tab]);
+  }, [tab, view]);
 
   // Bridge: use hook's categories/colors/icons, falling back to local constants
   const CATS = hookCategories.length > 0 ? hookCategories : CATEGORIES;
@@ -303,6 +307,7 @@ export default function App() {
   const goList = () => { setView('list'); setViewMode('lista'); window.scrollTo(0, 0); };
   const homeQuery = (q) => { setSearchQuery(q); if (q.trim()) goList(); };
   const homeCategory = (cats) => {
+    setEventsOnly(false);
     setFilterCategories(cats);
     setActiveFilterCount(countFilters(cats, filterRegion, filterCity));
     setDateFilter(cats.includes('Misto') ? '7giorni' : 'weekend');
@@ -310,6 +315,7 @@ export default function App() {
     goList();
   };
   const homeRegion = (name) => {
+    setEventsOnly(true);
     setFilterRegion(name);
     setFilterCity('');
     setActiveFilterCount(countFilters(filterCategories, name, ''));
@@ -317,13 +323,23 @@ export default function App() {
     setDateFilterExplicit(true);
     goList();
   };
-  const homeSeeAll = () => { setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
+  const homeSeeAll = () => { setEventsOnly(true); setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
+  // Where the home looks from: the visitor (GPS) or the chosen city (centre of its precise points).
+  const homeCenter = useMemo(() => {
+    if (canUseDistance) return { lat: userLat, lng: userLng, label: 'vicino a te' };
+    if (!filterCity) return null;
+    const points = allMarkets.filter(m => m.city === filterCity && Number.isFinite(m.lat) && Number.isFinite(m.lng));
+    if (!points.length) return null;
+    return { lat: points.reduce((sum, m) => sum + m.lat, 0) / points.length,
+      lng: points.reduce((sum, m) => sum + m.lng, 0) / points.length, label: 'vicino a ' + filterCity };
+  }, [canUseDistance, userLat, userLng, filterCity, allMarkets]);
+  const openWeekly = (city) => { setWeeklyCity(city); setView('weekly'); window.scrollTo(0, 0); };
   const renderHome = () => (
     <Home markets={allMarkets} loading={marketsLoading} error={marketsError} onRetry={() => window.location.reload()}
       query={searchQuery} onQuery={homeQuery} weekendOffset={weekendOffset} onWeekend={setWeekendOffset}
       onSeeAll={homeSeeAll} onCategory={homeCategory} onRegion={homeRegion}
-      onNearby={activateNearby} onAllItaly={disableLocation} positionStatus={positionStatus} canUseDistance={canUseDistance}
-      cityForToday={cityForToday} onWeeklyCity={showCity} onChooseCity={() => setTab('impostazioni')}
+      onNearby={activateNearby} onAllItaly={disableLocation} positionStatus={positionStatus} canUseDistance={canUseDistance} center={homeCenter}
+      cityForToday={cityForToday} onWeeklyCity={openWeekly} onChooseCity={() => setTab('impostazioni')}
       onOpen={openMarket} favorites={favorites} onToggleFav={toggleFav} />
   );
 
@@ -347,6 +363,8 @@ export default function App() {
         m.tags.some(t => t.toLowerCase().includes(q))
       );
     }
+
+    if (eventsOnly) result = result.filter(m => m.isEvent);
 
     // Date filter
     if (activeDateFilter === "oggi") {
@@ -416,7 +434,7 @@ export default function App() {
     }
 
     return result;
-  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekendOffset]);
+  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekendOffset, eventsOnly]);
 
   // Group generic city-wide weekly listings only for presentation. The
   // map and the underlying dataset retain every individually sourced record.
@@ -461,6 +479,7 @@ export default function App() {
   };
 
   const resetAllFilters = () => {
+    setEventsOnly(false);
     setFilterCategories([]);
     setFilterRegion("");
     setFilterCity("");
@@ -482,81 +501,6 @@ export default function App() {
   }, []);
 
   // ─── Render Functions ─────────────────────────
-
-  const renderMarketCard = (market, index) => {
-    const badge = getDateBadge(market.dates);
-    const nextDate = getNextDate(market.dates);
-    const leaf = dateLeaf(nextDate);
-    const catColor = CAT_COLORS[market.category] || "#888";
-    const isFav = favorites.has(market.id);
-
-    return (
-      <div
-        key={market.id}
-        className="market-card"
-        style={{ animationDelay: `${Math.min(index, 12) * 50}ms`, '--cat-color': catColor }}
-      >
-        <button type="button" className="market-card-open"
-          aria-label={'Apri i dettagli di ' + market.name + ', ' + market.city}
-          onClick={() => openMarket(market)} />
-        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: catColor, borderRadius: '4px 0 0 4px' }} />
-        <div className="card-row">
-          <div className={`card-date ${badge ? badge.tone : ''}`}>
-            <span className="card-date-day">{leaf.day}</span>
-            <span className="card-date-month">{leaf.month}</span>
-          </div>
-          <div className="card-main">
-            <div className="card-eyebrow">
-              <span className="card-city">{market.city}</span>
-              {market.region && <span> · {market.region}</span>}
-            </div>
-            <div className="card-name">{market.name}</div>
-            <div className="card-info">
-              <span className="card-info-item card-hours">
-                <Icon name="clock" size={14} color="#6C6255" />
-                {sourceHoursForDate(market, nextDate)}
-              </span>
-              <span className="card-info-item" style={{ color: catColor, fontWeight: 600 }}>
-                <span aria-hidden="true">{CAT_ICONS[market.category]}</span> {market.category}
-              </span>
-              {canUseDistance && (
-                <span className="card-info-item card-distance">
-                  {market.positionQuality === 'precisa' && Number.isFinite(market.distance)
-                    ? (market.distance < 1 ? 'a meno di 1 km' : 'a ' + Math.round(market.distance) + ' km')
-                    : market.positionQuality === 'approssimata' && Number.isFinite(market.distance)
-                      ? (market.distance < 1 ? 'meno di 1 km (stimati)'
-                        : 'circa ' + Math.round(market.distance) + ' km (stimati)')
-                      : 'Posizione da verificare'}
-                </span>
-              )}
-            </div>
-            <div className="card-status">
-              {badge && <span className={badge.tone}>{badge.label} · </span>}
-              <span className={market.dateQuality === 'confermata' ? 'confirmed' : ''}>
-                {nextDate ? dateQualityLabel(market.dateQuality) : 'Data da verificare'}
-              </span>
-            </div>
-          </div>
-          <button
-            className={`fav-btn ${isFav ? 'active' : ''}`}
-            onClick={(e) => toggleFav(market.id, e)}
-            aria-label={isFav ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
-          >
-            <Icon name={isFav ? "heartFilled" : "heart"} size={20} />
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const renderMapView = () => (
-    <Suspense fallback={<div role="status" style={{
-      margin: '22px 18px 110px', padding: 22, background: 'var(--white)',
-      borderRadius: 12, color: 'var(--ink-lighter)' }}>Caricamento mappa interattiva…</div>}>
-      <MarketsMap markets={filteredMarkets} userLat={userLat} userLng={userLng}
-        onSelect={openMarket} />
-    </Suspense>
-  );
 
   const renderDetail = () => {
     if (!selectedMarket) return null;
@@ -955,341 +899,46 @@ export default function App() {
     );
   };
 
-  const renderFilterPanel = () => (
-    <>
-      <div className="filter-overlay" onClick={() => setShowFilters(false)} />
-      <div className="filter-panel">
-        <div className="filter-header">
-          <span className="filter-title">Filtri</span>
-          <button className="filter-close" onClick={() => setShowFilters(false)}>
-            <Icon name="x" size={18} />
-          </button>
-        </div>
-        <div className="filter-body">
-          {/* Categories */}
-          <div className="filter-section">
-            <div className="filter-section-label">Categoria</div>
-            <div className="filter-categories">
-              {CATS.map(cat => {
-                const active = pendingCats.includes(cat);
-                const color = CAT_COLORS[cat];
-                return (
-                  <button key={cat}
-                    className={`filter-cat-chip ${active ? 'active' : ''}`}
-                    style={active ? { borderColor: color, color, background: color + '10' } : {}}
-                    onClick={() => {
-                      setPendingCats(prev =>
-                        prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
-                      );
-                    }}
-                  >
-                    {CAT_ICONS[cat]} {cat}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Region */}
-          <div className="filter-section">
-            <div className="filter-section-label">Regione</div>
-            <select className="filter-select" value={pendingRegion}
-              onChange={e => { setPendingRegion(e.target.value); setPendingCity(""); }}>
-              <option value="">Tutte le regioni</option>
-              {REGS.map(r => <option key={r} value={r}>{r}</option>)}
-            </select>
-          </div>
-
-          {/* City */}
-          <div className="filter-section">
-            <div className="filter-section-label">Città</div>
-            <select className="filter-select" value={pendingCity}
-              onChange={e => setPendingCity(e.target.value)}>
-              <option value="">Tutte le città</option>
-              {CTS.filter(c => !pendingRegion || allMarkets.find(m => m.city === c)?.region === pendingRegion)
-                .map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
-          </div>
-
-          {/* Distance */}
-          <div className="filter-section">
-            <div className="filter-section-label">Distanza massima</div>
-            <div className="range-container">
-              <div className="range-label">
-                <span>0 km</span>
-                <span className="range-value">{pendingDist} km</span>
-              </div>
-              <input type="range" className="range-input"
-                min={5} max={100} step={5} value={pendingDist}
-                disabled={!canUseDistance}
-                onChange={e => setPendingDist(Number(e.target.value))} />
-              {!canUseDistance && (
-                <div className="setting-sublabel">
-                  Per usare il raggio, attiva la posizione in Impostazioni.
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-        <div className="filter-footer">
-          <button className="filter-reset" onClick={resetFilters}>Reimposta filtri</button>
-          <button className="filter-apply" onClick={applyFilters}>Applica filtri</button>
-        </div>
-      </div>
-    </>
+  const renderList = () => (
+    <List
+      headerRef={headerRef} query={searchQuery} onQuery={setSearchQuery} onHome={goHome}
+      loading={marketsLoading} error={marketsError}
+      filteredMarkets={filteredMarkets} groupedList={groupedList} visibleCount={visibleCount}
+      onMore={() => setVisibleCount(n => n + 60)}
+      activeDateFilter={activeDateFilter}
+      onDateFilter={key => { setDateFilter(activeDateFilter === key ? null : key); setDateFilterExplicit(true); }}
+      weekdayFilter={weekdayFilter}
+      onWeekday={i => { setWeekdayFilter(v => v === i ? null : i); if (weekdayFilter !== i) setDateFilter('7giorni'); }}
+      onClearWeekday={() => setWeekdayFilter(null)}
+      filterCity={filterCity} filterRegion={filterRegion} filterCategories={filterCategories}
+      onRemoveCity={() => { setFilterCity(''); setActiveFilterCount(Math.max(0, activeFilterCount - 1)); }}
+      onRemoveRegion={() => { setFilterRegion(''); setActiveFilterCount(Math.max(0, activeFilterCount - 1)); }}
+      onRemoveCategories={() => { setFilterCategories([]); setActiveFilterCount(Math.max(0, activeFilterCount - 1)); }}
+      onResetAll={resetAllFilters} activeFilterCount={activeFilterCount} onOpenFilters={openFilters}
+      canUseDistance={canUseDistance} filterDistance={filterDistance} includeEstimatedNearby={includeEstimatedNearby}
+      onToggleEstimated={() => setIncludeEstimatedNearby(prev => !prev)}
+      positionStatus={positionStatus} positionError={positionError} onNearby={activateNearby}
+      sortBy={sortBy} onSort={setSortBy} showSort={showSort} setShowSort={setShowSort}
+      viewMode={viewMode} setViewMode={setViewMode}
+      userLat={userLat} userLng={userLng}
+      favorites={favorites} onToggleFav={toggleFav} onOpen={openMarket}
+      getMarketDetails={getMarketDetails} dataMode={dataMode}
+      eventsOnly={eventsOnly} onToggleEventsOnly={() => setEventsOnly(v => !v)}
+    />
   );
 
-  const renderExplore = () => (
-    <>
-      <div className="header" ref={headerRef}>
-        <div className="header-title">
-          <span className="accent">Fuori</span> <span className="header-sub">Mercatini d'Italia</span>
-        </div>
+  const renderWeekly = () => (
+    <Weekly city={weeklyCity} markets={allMarkets} onOpen={openMarket} onBack={goHome} />
+  );
 
-        <div className="search-container">
-          <span className="search-icon"><Icon name="search" size={18} /></span>
-          <input
-            className="search-input"
-            placeholder="Cerca città, mercato o parola chiave"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-          />
-        </div>
-      </div>
-
-      <div className="toolbar">
-        <button type="button" className="back-home" onClick={goHome}><Icon name="chevronLeft" size={16} strokeWidth={2.2} /> Home</button>
-        <div className="chips-row" style={{ paddingTop: 0 }}>
-          <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
-            disabled={positionStatus === 'requesting'}>
-            <Icon name="mapPin" size={13} />
-            {positionStatus === 'ready' ? (includeEstimatedNearby ? 'Vicino a me · posizioni indicative' : 'Vicino a me · 50 km, posizioni precise') :
-             positionStatus === 'requesting' ? 'Cerco la posizione…' : 'Mercati vicino a me'}
-          </button>
-          {[
-            { key: "oggi", label: "Oggi" },
-            { key: "weekend", label: "Questo weekend" },
-            { key: "7giorni", label: "Prossimi 7 giorni" },
-          ].map(({ key, label }) => (
-            <button key={key}
-              className={`chip ${activeDateFilter === key ? 'active' : ''}`}
-              onClick={() => {
-                setDateFilter(activeDateFilter === key ? null : key);
-                setDateFilterExplicit(true);
-              }}
-            >{label}</button>
-          ))}
-        </div>
-        {positionError && <div role="alert" style={{ fontSize: 12, color: '#A5443D', margin: '0 0 8px' }}>{positionError}</div>}
-
-        <div className="chips-row" aria-label="Filtra per categoria" style={{ paddingTop: 0 }}>
-          {CATS.map(cat => {
-            const active = filterCategories.length === 1 && filterCategories[0] === cat;
-            const color = CAT_COLORS[cat];
-            return (
-              <button key={cat} type="button" aria-pressed={active}
-                className={`chip chip-cat ${active ? 'active' : ''}`}
-                style={active ? { background: color, borderColor: color, color: 'white' } : undefined}
-                onClick={() => setCategoryQuick(cat)}>
-                <span aria-hidden="true">{CAT_ICONS[cat]}</span>{cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {viewMode === 'lista' && (
-          <div className="chips-row" aria-label="Filtra per giorno della settimana"
-            style={{ gap: 5, marginTop: 3, paddingBottom: 5, flexWrap: 'nowrap',
-              overflowX: 'auto', scrollbarWidth: 'thin' }}>
-            {WEEKDAY_LABELS.map((day, i) => (
-              <button key={day} type="button" aria-pressed={weekdayFilter === i}
-                aria-label={'Mostra mercati del ' + ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'][i]}
-                className={`chip ${weekdayFilter === i ? 'active' : ''}`}
-                style={{ flexShrink: 0, minWidth: 39, padding: '7px 10px', fontSize: 12 }}
-                onClick={() => {
-                  setWeekdayFilter(v => v === i ? null : i);
-                  // Clicking a weekday asks for the next occurrence, not only today's.
-                  if (weekdayFilter !== i) setDateFilter('7giorni');
-                }}>
-                {day}
-              </button>
-            ))}
-            {weekdayFilter !== null && (
-              <button type="button" className="chip" style={{ flexShrink: 0, padding: '7px 9px' }}
-                onClick={() => setWeekdayFilter(null)} aria-label="Togli filtro giorno">×</button>
-            )}
-          </div>
-        )}
-
-        {(filterCity || filterRegion || filterCategories.length > 0) && (
-          <div className="chips-row" style={{ gap: 8, alignItems: 'center', margin: '2px 0 8px' }}>
-            {filterCity && (
-              <button className="chip active" onClick={() => {
-                setFilterCity('');
-                setActiveFilterCount(Math.max(0, activeFilterCount - 1));
-              }} aria-label={'Rimuovi filtro città ' + filterCity}>Città: {filterCity} ×</button>
-            )}
-            {filterRegion && (
-              <button className="chip active" onClick={() => {
-                setFilterRegion('');
-                setActiveFilterCount(Math.max(0, activeFilterCount - 1));
-              }} aria-label={'Rimuovi filtro regione ' + filterRegion}>Regione: {filterRegion} ×</button>
-            )}
-            {filterCategories.length > 0 && (
-              <button className="chip active" onClick={() => {
-                setFilterCategories([]);
-                setActiveFilterCount(Math.max(0, activeFilterCount - 1));
-              }}>Categorie ×</button>
-            )}
-            <button className="chip" onClick={resetAllFilters}>Azzera filtri</button>
-          </div>
-        )}
-        {canUseDistance && filterDistance < 100 && (
-          <div role="note" style={{ fontSize: 12, lineHeight: 1.5, color: '#7D7267', margin: '4px 20px 10px' }}>
-            {includeEstimatedNearby
-              ? 'Mostriamo anche mercati con coordinate non verificate. Alcuni possono non essere davvero vicini.'
-              : 'Nel raggio mostriamo solo mercati con posizione precisa. Altri mercati possono mancare.'}
-            <button className="chip" style={{ display: 'block', marginTop: 8 }}
-              onClick={() => setIncludeEstimatedNearby(prev => !prev)}>
-              {includeEstimatedNearby ? 'Escludi posizioni indicative' : 'Mostra anche posizioni indicative'}
-            </button>
-          </div>
-        )}
-        <div className="controls-row">
-          <div className="view-toggle">
-            <button className={viewMode === "lista" ? "active" : ""} onClick={() => setViewMode("lista")}>
-              <Icon name="list" size={14} /> Lista
-            </button>
-            <button className={viewMode === "mappa" ? "active" : ""} onClick={() => setViewMode("mappa")}>
-              <Icon name="map" size={14} /> Mappa
-            </button>
-          </div>
-
-          <div style={{ position: 'relative' }}>
-            <button className="sort-btn" onClick={() => setShowSort(!showSort)}>
-              <Icon name="sort" size={14} /> Ordina
-            </button>
-            {showSort && (
-              <div className="sort-dropdown">
-                {[
-                  { key: "data", label: "Data", icon: "calendar" },
-                  { key: "distanza", label: "Distanza", icon: "mapPin" },
-                ].map(({ key, label, icon }) => (
-                  <button key={key}
-                    className={`sort-option ${sortBy === key ? 'active' : ''}`}
-                    disabled={key === 'distanza' && !canUseDistance}
-                    title={key === 'distanza' && !canUseDistance ? 'Attiva la posizione per ordinare per distanza' : ''}
-                    onClick={() => { setSortBy(key); setShowSort(false); }}
-                  >
-                    <Icon name={icon} size={16} /> {label}
-                    {sortBy === key && <Icon name="check" size={16} color="#B94439" />}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <button className={`filter-btn ${activeFilterCount > 0 ? 'has-filters' : ''}`}
-            onClick={openFilters}>
-            <Icon name="filter" size={14} /> Filtri
-            {activeFilterCount > 0 && <span className="filter-count">{activeFilterCount}</span>}
-          </button>
-        </div>
-      </div>
-
-      <div className="results-count" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span>
-          {marketsLoading
-            ? 'Caricamento mercati statici...'
-            : `${filteredMarkets.length.toLocaleString('it-IT')} ${activeDateFilter ? 'appuntament' + (filteredMarkets.length === 1 ? 'o' : 'i') + ' ' + (activeDateFilter === 'oggi' ? 'previsti oggi' : activeDateFilter === 'weekend' ? 'previsti nel weekend' : 'previsti nei prossimi 7 giorni') : 'sched' + (filteredMarkets.length === 1 ? 'a' : 'e') + ' nel catalogo'}${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : !canUseDistance ? ' · Italia' : ''}`
-          }
-          {viewMode === 'lista' && groupedList.length < filteredMarkets.length && !marketsLoading &&
-            ` · ${groupedList.length.toLocaleString('it-IT')} schede`}
-        </span>
-        {dataMode === 'demo' && (
-          <span style={{
-            fontSize: 10, fontWeight: 700, letterSpacing: '0.05em',
-            padding: '2px 8px', borderRadius: 100, 
-            background: 'var(--sand)', color: 'var(--ink-lighter)',
-          }}>DEMO</span>
-        )}
-      </div>
-
-      {marketsError && !marketsLoading && (
-        <div role="alert" className="empty-state">
-          <div className="empty-title">Catalogo temporaneamente non disponibile</div>
-          <div className="empty-text">{marketsError}</div>
-        </div>
-      )}
-
-      {marketsLoading ? (
-        <div className="markets-list">
-          {[1, 2, 3].map(i => (
-            <div key={i} className="market-card" style={{
-              height: 120, animation: 'none',
-              background: 'linear-gradient(90deg, var(--white) 25%, var(--beige) 50%, var(--white) 75%)',
-              backgroundSize: '200% 100%',
-              animationName: 'shimmer', animationDuration: '1.5s',
-              animationIterationCount: 'infinite', animationTimingFunction: 'linear',
-            }} />
-          ))}
-        </div>
-      ) : viewMode === "lista" ? (
-        <div className="markets-list">
-          {groupedList.length > 0 ? (
-            <>
-              {groupedList.slice(0, visibleCount).map((entry, i, shown) => {
-                // A day header opens each new date; the list is already sorted by next date.
-                const dayOf = e => e.kind === 'group'
-                  ? e.markets.map(x => getNextDate(x.dates)).filter(Boolean).sort()[0] || null
-                  : getNextDate(e.market.dates);
-                const showDay = sortBy !== 'distanza' && (i === 0 || dayOf(entry) !== dayOf(shown[i - 1]));
-                return (
-                  <Fragment key={entry.key}>
-                    {showDay && <h2 className="day-header">{dayHeaderLabel(dayOf(entry))}</h2>}
-                    {entry.kind === 'group'
-                      ? <WeeklyCityGroup group={entry}
-                          loadMarket={getMarketDetails} onOpenMarket={openMarket}
-                          selectedWeekday={weekdayFilter}
-                          autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdayFilter, filterCity, searchQuery)} />
-                      : renderMarketCard(entry.market, i)}
-                  </Fragment>
-                );
-              })}
-              {visibleCount < groupedList.length && (
-                <button className="btn-secondary" onClick={() => setVisibleCount(n => n + 60)}
-                  style={{ margin: '18px auto 30px', padding: '12px 24px', display: 'block' }}>
-                  Mostra altre schede ({Math.min(visibleCount, groupedList.length)} di {groupedList.length})
-                </button>
-              )}
-            </>
-          ) : (
-            <div className="empty-state">
-              <div className="empty-icon">🔍</div>
-              <div className="empty-title">Nessun mercato trovato</div>
-              <div className="empty-text">
-                {canUseDistance && filterDistance < 100 && !includeEstimatedNearby
-                  ? 'Nessun mercato con posizione precisa in questo raggio e periodo. Puoi includere quelli con posizione indicativa.'
-                  : 'Prova a cambiare data, distanza, città o categoria.'}
-              </div>
-              {canUseDistance && filterDistance < 100 && !includeEstimatedNearby && (
-                <button className="btn-secondary" style={{ padding: '10px 18px', marginTop: 12 }}
-                  onClick={() => setIncludeEstimatedNearby(true)}>Mostra posizioni indicative</button>
-              )}
-              <button style={{
-                marginTop: 16, padding: '10px 24px', background: 'var(--terracotta)',
-                color: 'white', border: 'none', borderRadius: 100, fontFamily: 'var(--font-body)',
-                fontSize: 14, fontWeight: 600, cursor: 'pointer'
-              }} onClick={resetAllFilters}>
-                Reimposta
-              </button>
-            </div>
-          )}
-        </div>
-      ) : (
-        renderMapView()
-      )}
-    </>
+  const renderFilterSheet = () => (
+    <FilterSheet onClose={() => setShowFilters(false)} cats={CATS} catColors={CAT_COLORS}
+      pendingCats={pendingCats} setPendingCats={setPendingCats}
+      regions={REGS} pendingRegion={pendingRegion} setPendingRegion={setPendingRegion}
+      cities={CTS.filter(c => !pendingRegion || allMarkets.find(m => m.city === c)?.region === pendingRegion)}
+      pendingCity={pendingCity} setPendingCity={setPendingCity}
+      pendingDist={pendingDist} setPendingDist={setPendingDist} canUseDistance={canUseDistance}
+      onReset={resetFilters} onApply={applyFilters} />
   );
 
   const renderFavorites = () => {
@@ -1302,7 +951,7 @@ export default function App() {
         <div className="page-content">
           {favMarkets.length > 0 ? (
             <div className="markets-list" style={{ padding: 0 }}>
-              {favMarkets.map((m, i) => renderMarketCard(m, i))}
+              {favMarkets.map(m => <EventRow key={m.id} market={m} when="" onOpen={openMarket} onToggleFav={toggleFav} isFav={favorites.has(m.id)} />)}
             </div>
           ) : (
             <div className="empty-state">
@@ -1464,13 +1113,13 @@ export default function App() {
   return (
     <>
       <div className="app-container" onClick={() => showSort && setShowSort(false)}>
-        {tab === "esplora" && (view === "home" ? renderHome() : renderExplore())}
-        {tab === "mappa" && renderExplore()}
+        {tab === "esplora" && (view === "home" ? renderHome() : view === "weekly" ? renderWeekly() : renderList())}
+        {tab === "mappa" && renderList()}
         {tab === "preferiti" && renderFavorites()}
         {tab === "notifiche" && renderNotifications()}
         {tab === "impostazioni" && renderSettings()}
 
-        {showFilters && renderFilterPanel()}
+        {showFilters && renderFilterSheet()}
         {selectedMarket && renderDetail()}
         {toast && <div className="toast">{toast}</div>}
 

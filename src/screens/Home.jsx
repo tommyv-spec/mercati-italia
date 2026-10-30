@@ -9,6 +9,7 @@ import Skeleton from '../ui/Skeleton.jsx'
 import { weekendOf, inWeekend } from '../lib/weekend.js'
 import { TODAY, todayStr } from '../lib/display.js'
 import { italianKey } from '../lib/marketGrouping.js'
+import { haversine } from '../services/staticMarkets.js'
 
 const CATEGORY_PILLS = [
   ['Antiquariato', ['Antiquariato']],
@@ -30,7 +31,7 @@ const rank = m => (m.dateQuality === 'riportata' || m.dateQuality === 'confermat
 
 export default function Home({
   markets, loading, error, onRetry, query, onQuery, weekendOffset, onWeekend, onSeeAll, onCategory, onRegion,
-  onNearby, onAllItaly, positionStatus, canUseDistance, cityForToday, onWeeklyCity, onChooseCity,
+  onNearby, onAllItaly, positionStatus, canUseDistance, center, cityForToday, onWeeklyCity, onChooseCity,
   onOpen, favorites, onToggleFav,
 }) {
   const weekend = useMemo(() => weekendOf(TODAY, weekendOffset), [weekendOffset])
@@ -38,14 +39,15 @@ export default function Home({
 
   const events = useMemo(() => {
     let list = live.filter(m => m.isEvent && inWeekend(m.dates, weekend))
-    if (canUseDistance) {
-      list = list.filter(m => Number.isFinite(m.distance) && m.distance <= NEARBY_KM)
-      list.sort((a, b) => a.distance - b.distance)
+    if (center) {
+      // Around the visitor (GPS) or around the chosen city: nearest first, 50 km.
+      list = list.map(m => ({ m, d: Number.isFinite(m.lat) && Number.isFinite(m.lng) ? haversine(center.lat, center.lng, m.lat, m.lng) : Infinity }))
+        .filter(x => x.d <= NEARBY_KM).sort((a, b) => a.d - b.d).map(x => x.m)
     } else {
       list.sort((a, b) => rank(b) - rank(a) || a.name.localeCompare(b.name, 'it'))
     }
     return list
-  }, [live, weekend, canUseDistance])
+  }, [live, weekend, center])
 
   const todayWeekly = useMemo(() => {
     if (!cityForToday) return []
@@ -65,7 +67,7 @@ export default function Home({
     return days.map(shortDay).join(' · ')
   }
   const todayLabel = TODAY.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
-  const scope = canUseDistance ? 'vicino a te' : 'in Italia'
+  const scope = center ? center.label : 'in Italia'
 
   return (
     <div className="home">

@@ -24,6 +24,9 @@ class EventsFileTests(unittest.TestCase):
         self.assertFalse(is_weekly_market({"ricorrenza_testo": "Ogni prima domenica del mese"}))
         self.assertFalse(is_weekly_market({"ricorrenza_testo": "sabato 31 ottobre e domenica 1 novembre"}))
         self.assertFalse(is_weekly_market({"ricorrenza_testo": ""}))
+        # No recurrence sentence, but the hours field spells out a weekly timetable.
+        self.assertTrue(is_weekly_market({"ricorrenza_testo": "", "orario_testo": "lunedì 08:00–12:00; lunedì 15:00–18:00; martedì 08:00–12:00."}))
+        self.assertFalse(is_weekly_market({"ricorrenza_testo": "", "orario_testo": "09:00–19:00"}))
 
     def test_short_description_cuts_on_sentence_then_word(self):
         self.assertEqual(short_description("Breve."), "Breve.")

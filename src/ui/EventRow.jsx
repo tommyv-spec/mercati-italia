@@ -4,8 +4,8 @@ import { getDateBadge, dateQualityLabel } from '../lib/display.js'
 // One market in a magazine list: eyebrow (when · where), name, facts line, two-line
 // description, quiet quality line. Class names .market-card / .card-name / .card-city /
 // .card-distance / .market-card-open are the DOM contract of the nightly UI tests.
-export default function EventRow({ market, when, onOpen, onToggleFav, isFav }) {
-  const badge = getDateBadge(market.dates)
+export default function EventRow({ market, when, onOpen, onToggleFav, isFav, showBadge = true }) {
+  const badge = showBadge ? getDateBadge(market.dates) : null
   const confirmed = market.dateQuality === 'confermata' || market.dateQuality === 'riportata'
   const facts = [market.address, market.hours].filter(Boolean).join(' · ')
   const km = Number.isFinite(market.distance) && market.distance >= 0.5 ? Math.round(market.distance) : null
@@ -29,7 +29,7 @@ export default function EventRow({ market, when, onOpen, onToggleFav, isFav }) {
         <p className="meta">
           {facts}
           {market.entry && <>{facts ? ' · ' : ''}<span className="free">{market.entry}</span></>}
-          {km !== null && <span className="card-distance">{facts || market.entry ? ' · ' : ''}circa {km} km</span>}
+          {km !== null && <span className="card-distance">{facts || market.entry ? ' · ' : ''}circa {km} km{market.positionQuality !== 'precisa' ? ' (stimati)' : ''}</span>}
         </p>
       )}
       {market.description && <p className="desc">{market.description}</p>}

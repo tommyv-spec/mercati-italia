@@ -908,8 +908,11 @@ def is_weekly_market(market: dict) -> bool:
         return True
     if WEEKLY_TAGS & set(market.get("tags") or []):
         return True
-    recurrence = " ".join(str(market.get("ricorrenza_testo") or "").split())
-    return bool(recurrence) and bool(_WEEKDAY_ONLY.match(recurrence) or _EVERY_WEEKDAY.match(recurrence))
+    for field in ("ricorrenza_testo", "orario_testo"):
+        text = " ".join(str(market.get(field) or "").split())
+        if text and (_WEEKDAY_ONLY.match(text) or _EVERY_WEEKDAY.match(text)):
+            return True
+    return False
 
 
 def short_description(text, limit: int = 240) -> str:
