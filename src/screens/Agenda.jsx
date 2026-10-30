@@ -34,7 +34,7 @@ export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExpl
 
   const row = ({ market, next }) => (
     <div key={market.id} className="agenda-item">
-      <EventRow market={market} when={next ? shortDay(next) : ''} showBadge={false} onOpen={onOpen} onToggleFav={onToggleFav} isFav />
+      <EventRow market={market} date={next} onOpen={onOpen} onToggleFav={onToggleFav} isFav />
       {next && (
         <button type="button" className="link agenda-cal" onClick={() => downloadCalendarEvent(market, next, sourceHoursForDate(market, next))}>
           Aggiungi al calendario
@@ -58,7 +58,7 @@ export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExpl
           </div>
           {suggestions.length > 0 && (
             <Section title="Da salvare questo weekend">
-              {suggestions.map(m => <EventRow key={m.id} market={m} when={shortDay(m.dates.includes(weekend.sat) ? weekend.sat : weekend.sun)} onOpen={onOpen} onToggleFav={onToggleFav} isFav={false} />)}
+              {suggestions.map(m => <EventRow key={m.id} market={m} date={m.dates.includes(weekend.sat) ? weekend.sat : weekend.sun} onOpen={onOpen} onToggleFav={onToggleFav} isFav={false} />)}
             </Section>
           )}
         </>

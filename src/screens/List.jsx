@@ -132,7 +132,7 @@ export default function List({
                       ? <WeeklyCityGroup group={entry} loadMarket={getMarketDetails} onOpenMarket={onOpen}
                           selectedWeekday={weekdayFilter}
                           autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdayFilter, filterCity, query)} />
-                      : <EventRow market={entry.market} when="" showBadge={false} onOpen={onOpen}
+                      : <EventRow market={entry.market} date={getNextDate(entry.market.dates)} hot={false} onOpen={onOpen}
                           onToggleFav={onToggleFav} isFav={favorites.has(entry.market.id)} />}
                   </Fragment>
                 )

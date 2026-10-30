@@ -3,6 +3,7 @@ import SearchField from '../ui/SearchField.jsx'
 import Pill from '../ui/Pill.jsx'
 import Section from '../ui/Section.jsx'
 import EventRow from '../ui/EventRow.jsx'
+import FeaturedTile from '../ui/FeaturedTile.jsx'
 import WeeklyRow from '../ui/WeeklyRow.jsx'
 import WeekendStepper from '../ui/WeekendStepper.jsx'
 import Skeleton from '../ui/Skeleton.jsx'
@@ -19,15 +20,17 @@ const CATEGORY_PILLS = [
   ['Settimanali', ['Misto']],
 ]
 const NEARBY_KM = 50
-const HOME_EVENTS = 8
+const HOME_EVENTS = 10
+const HOME_FEATURED = 4
 const HOME_WEEKLY = 3
 const HOME_REGIONS = 10
 
-const shortDay = iso => {
-  const d = new Date(iso + 'T12:00:00')
-  return d.toLocaleDateString('it-IT', { weekday: 'short' }) + ' ' + d.getDate() + ' ' + d.toLocaleDateString('it-IT', { month: 'short' })
+const longDay = iso => {
+  const s = new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
+  return s.charAt(0).toUpperCase() + s.slice(1)
 }
-const rank = m => (m.dateQuality === 'riportata' || m.dateQuality === 'confermata' ? 10 : 0) + (m.description ? 3 : 0) + (m.address ? 1 : 0)
+const rank = m => (m.dateQuality === 'riportata' || m.dateQuality === 'confermata' ? 10 : 0) + (m.description ? 3 : 0) +
+  (/gratuit|libero/i.test(m.entry || '') ? 2 : 0) + (m.address ? 1 : 0)
 
 export default function Home({
   markets, loading, error, onRetry, query, onQuery, weekendOffset, onWeekend, onSeeAll, onCategory, onRegion,
@@ -62,10 +65,29 @@ export default function Home({
     return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'it')).slice(0, HOME_REGIONS)
   }, [live])
 
-  const whenOf = m => {
-    const days = [weekend.sat, weekend.sun].filter(d => m.dates.includes(d))
-    return days.map(shortDay).join(' · ')
-  }
+  // Four poster tiles for the richest events, then everyone else by day.
+  const featured = useMemo(() => {
+    const sorted = [...events].filter(m => m.description).sort((a, b) => rank(b) - rank(a) || a.name.localeCompare(b.name, 'it'))
+    // Mix the colours: at most two tiles per category, then fill up.
+    const perCat = new Map(); const picked = []
+    for (const m of sorted) {
+      if ((perCat.get(m.category) || 0) >= 2) continue
+      perCat.set(m.category, (perCat.get(m.category) || 0) + 1); picked.push(m)
+      if (picked.length === HOME_FEATURED) break
+    }
+    for (const m of sorted) { if (picked.length >= HOME_FEATURED) break; if (!picked.includes(m)) picked.push(m) }
+    return picked
+  }, [events])
+  const byDay = useMemo(() => {
+    const picked = new Set(featured.map(m => m.id))
+    const rest = events.filter(m => !picked.has(m.id)).slice(0, HOME_EVENTS)
+    return [
+      [weekend.sat, rest.filter(m => m.dates.includes(weekend.sat))],
+      [weekend.sun, rest.filter(m => !m.dates.includes(weekend.sat))],
+    ].filter(([, list]) => list.length > 0)
+  }, [events, featured, weekend])
+  const firstDay = m => m.dates.includes(weekend.sat) ? weekend.sat : weekend.sun
+  const bothDays = m => m.dates.includes(weekend.sat) && m.dates.includes(weekend.sun)
   const todayLabel = TODAY.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
   const scope = center ? center.label : 'in Italia'
 
@@ -106,9 +128,24 @@ export default function Home({
             Nessun evento in programma {weekend.label === 'Questo weekend' ? 'questo weekend' : 'in quel weekend'} {scope}.
             {weekendOffset < 8 && <><br /><button type="button" className="btn-secondary" onClick={() => onWeekend(weekendOffset + 1)}>Prova il weekend dopo</button></>}
           </div>
-        ) : events.slice(0, HOME_EVENTS).map(m => (
-          <EventRow key={m.id} market={m} when={whenOf(m)} onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(m.id)} />
-        ))}
+        ) : (
+          <>
+            {featured.length > 0 && (
+              <div className="feat-row" aria-label="In evidenza">
+                {featured.map(m => <FeaturedTile key={m.id} market={m} date={firstDay(m)} onOpen={onOpen} />)}
+              </div>
+            )}
+            {byDay.map(([day, list]) => (
+              <div key={day}>
+                <h3 className="day-sub">{longDay(day)}<span className="day-sub-n">{list.length}</span></h3>
+                {list.map(m => (
+                  <EventRow key={m.id} market={m} date={firstDay(m)} twoDays={bothDays(m)} hot={false}
+                    onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(m.id)} />
+                ))}
+              </div>
+            ))}
+          </>
+        )}
       </Section>
 
       <Section title="Il mercato oggi" aside={<span className="eyebrow">{todayLabel}{cityForToday ? ' · ' + cityForToday : ''}</span>}>

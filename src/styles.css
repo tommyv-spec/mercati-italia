@@ -1576,3 +1576,27 @@ body {
 .map-bar .pill { height: 34px; font-size: 13px; gap: 4px; }
 .map-bar .note { font-size: 13px; color: var(--ink-lighter); }
 .bottom-tabs .tab-btn.active { color: var(--terracotta); }
+
+/* ─── Rivista v2: date leaf, category colour, featured tiles, day sub-heads ── */
+.market-card.event-row { flex-direction: row; gap: 14px; align-items: flex-start; padding: 16px 0; }
+.event-row .body { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1 1 auto; }
+.event-row .leaf { flex: 0 0 46px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 2px; color: var(--ink); }
+.event-row .leaf-day { font-family: var(--font-display); font-size: 28px; line-height: 1; }
+.event-row .leaf-mon { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-lighter); margin-top: 4px; white-space: nowrap; }
+.event-row .leaf-empty { color: var(--sand); padding-top: 6px; }
+.event-row .cat { font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+.event-row .cat .dot { width: 7px; height: 7px; border-radius: 999px; display: inline-block; }
+.event-row .card-name { font-size: 20px; }
+.feat-row { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 4px -20px 14px; padding: 0 20px 6px; }
+.feat-row::-webkit-scrollbar { display: none; }
+.feat { position: relative; overflow: hidden; flex: 0 0 236px; min-height: 184px; border: 0; border-radius: 16px; padding: 16px 16px 14px; color: var(--cream); text-align: left; display: flex; flex-direction: column; gap: 6px; scroll-snap-align: start; cursor: pointer; font-family: inherit; }
+.feat-num { position: absolute; right: 8px; bottom: -22px; font-family: var(--font-display); font-size: 128px; line-height: 1; opacity: .16; pointer-events: none; }
+.feat-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+.feat-title { font-family: var(--font-display); font-size: 22px; line-height: 1.12; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.feat-sub { font-size: 13px; line-height: 1.35; opacity: .9; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.feat-foot { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; flex-wrap: wrap; }
+.feat-pill { padding: 3px 8px; border-radius: 999px; background: rgba(253, 251, 247, .22); letter-spacing: 0; text-transform: none; font-size: 12px; }
+.day-sub { font-family: var(--font-display); font-weight: 400; font-size: 18px; color: var(--ink); margin: 14px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--ink); display: flex; align-items: baseline; gap: 8px; }
+.day-sub-n { font-family: var(--font-body); font-size: 12px; font-weight: 600; color: var(--ink-lighter); }
+.day-sub + .market-card.event-row { border-top: 0; }
+.event-row .meta { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
