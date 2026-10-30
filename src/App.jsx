@@ -9,6 +9,8 @@ import { editorialContacts, editorialSummaryView } from './lib/editorialEvidence
 import { addressConflictView } from './lib/sourceFieldConflicts.js';
 import { destinationForMarket } from './lib/marketDirections.js';
 import { effectiveDateFilter } from './lib/searchDateFilter.js';
+import Home from './screens/Home.jsx';
+import { weekendOf, inWeekend } from './lib/weekend.js';
 import Icon from './ui/Icon.jsx';
 import { CATEGORY_COLORS, localISO, TODAY, todayStr, formatDateIT, getDateBadge, dateQualityLabel, dateLeaf, dayHeaderLabel, getNextDate, uniqueByName } from './lib/display.js';
 import { downloadCalendarEvent } from './lib/calendarFile.js';
@@ -55,6 +57,9 @@ export default function App() {
   } = useMarkets();
 
   const [tab, setTab] = useState("esplora");
+  const [view, setView] = useState("home");        // esplora: home | list | weekly
+  const [weekendOffset, setWeekendOffset] = useState(0);
+  const [weeklyCity, setWeeklyCity] = useState("");
   const [viewMode, setViewMode] = useState("lista");
   const [searchQuery, setSearchQuery] = useState("");
   // Prioritize visits people can actually plan; deselect to browse undated markets.
@@ -247,6 +252,7 @@ export default function App() {
     setSortBy('data');
     setActiveFilterCount(1);
     setTab('esplora');
+    setView('list');
     showToast('Filtra per città: ' + match);
   };
 
@@ -277,9 +283,49 @@ export default function App() {
     setActiveFilterCount(1 + Number(filterCategories.length > 0));
     setTab('esplora');
     setViewMode('lista');
+    setView('list');
     closeMarket();
     window.scrollTo(0, 0);
   };
+
+  // Home -> list hand-offs (the list keeps today's filter engine).
+  const cityForToday = useMemo(() => {
+    if (filterCity) return filterCity;
+    if (!canUseDistance) return '';
+    const nearest = allMarkets
+      .filter(m => Number.isFinite(m.distance) && m.distance <= 15 && m.positionQuality === 'precisa')
+      .sort((a, b) => a.distance - b.distance)[0];
+    return nearest ? nearest.city : '';
+  }, [filterCity, canUseDistance, allMarkets]);
+  const countFilters = (cats, region, city) => Number(cats.length > 0) + Number(Boolean(region)) +
+    Number(Boolean(city)) + Number(canUseDistance && filterDistance < 100);
+  const goHome = () => { setView('home'); window.scrollTo(0, 0); };
+  const goList = () => { setView('list'); setViewMode('lista'); window.scrollTo(0, 0); };
+  const homeQuery = (q) => { setSearchQuery(q); if (q.trim()) goList(); };
+  const homeCategory = (cats) => {
+    setFilterCategories(cats);
+    setActiveFilterCount(countFilters(cats, filterRegion, filterCity));
+    setDateFilter(cats.includes('Misto') ? '7giorni' : 'weekend');
+    setDateFilterExplicit(true);
+    goList();
+  };
+  const homeRegion = (name) => {
+    setFilterRegion(name);
+    setFilterCity('');
+    setActiveFilterCount(countFilters(filterCategories, name, ''));
+    setDateFilter('weekend');
+    setDateFilterExplicit(true);
+    goList();
+  };
+  const homeSeeAll = () => { setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
+  const renderHome = () => (
+    <Home markets={allMarkets} loading={marketsLoading} error={marketsError} onRetry={() => window.location.reload()}
+      query={searchQuery} onQuery={homeQuery} weekendOffset={weekendOffset} onWeekend={setWeekendOffset}
+      onSeeAll={homeSeeAll} onCategory={homeCategory} onRegion={homeRegion}
+      onNearby={activateNearby} onAllItaly={disableLocation} positionStatus={positionStatus} canUseDistance={canUseDistance}
+      cityForToday={cityForToday} onWeeklyCity={showCity} onChooseCity={() => setTab('impostazioni')}
+      onOpen={openMarket} favorites={favorites} onToggleFav={toggleFav} />
+  );
 
   // Use hook's markets (already have distances computed)
   const marketsWithDistance = allMarkets;
@@ -306,13 +352,8 @@ export default function App() {
     if (activeDateFilter === "oggi") {
       result = result.filter(m => m.dates.includes(todayStr));
     } else if (activeDateFilter === "weekend") {
-      const dayOfWeek = TODAY.getDay();
-      const satOffset = dayOfWeek === 0 ? -1 : 6 - dayOfWeek;
-      const sat = new Date(TODAY); sat.setDate(sat.getDate() + satOffset);
-      const sun = new Date(sat); sun.setDate(sun.getDate() + 1);
-      const satStr = localISO(sat);
-      const sunStr = localISO(sun);
-      result = result.filter(m => m.dates.includes(satStr) || m.dates.includes(sunStr));
+      const weekend = weekendOf(TODAY, weekendOffset);
+      result = result.filter(m => inWeekend(m.dates, weekend));
     } else if (activeDateFilter === "7giorni") {
       const end = new Date(TODAY); end.setDate(end.getDate() + 7);
       const endStr = localISO(end);
@@ -375,7 +416,7 @@ export default function App() {
     }
 
     return result;
-  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby]);
+  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekendOffset]);
 
   // Group generic city-wide weekly listings only for presentation. The
   // map and the underlying dataset retain every individually sourced record.
@@ -1017,7 +1058,8 @@ export default function App() {
       </div>
 
       <div className="toolbar">
-        <div className="chips-row" style={{ paddingTop: 8 }}>
+        <button type="button" className="back-home" onClick={goHome}><Icon name="chevronLeft" size={16} strokeWidth={2.2} /> Home</button>
+        <div className="chips-row" style={{ paddingTop: 0 }}>
           <button className={`chip ${canUseDistance ? 'active' : ''}`} onClick={activateNearby}
             disabled={positionStatus === 'requesting'}>
             <Icon name="mapPin" size={13} />
@@ -1422,7 +1464,7 @@ export default function App() {
   return (
     <>
       <div className="app-container" onClick={() => showSort && setShowSort(false)}>
-        {tab === "esplora" && renderExplore()}
+        {tab === "esplora" && (view === "home" ? renderHome() : renderExplore())}
         {tab === "mappa" && renderExplore()}
         {tab === "preferiti" && renderFavorites()}
         {tab === "notifiche" && renderNotifications()}
@@ -1440,7 +1482,7 @@ export default function App() {
             { id: "impostazioni", label: "Impostazioni", icon: "settings" },
           ].map(t => (
             <button key={t.id} className={`tab-btn ${tab === t.id ? 'active' : ''}`}
-              onClick={() => { setTab(t.id); if (t.id === 'esplora') setViewMode('lista'); }}>
+              onClick={() => { setTab(t.id); if (t.id === 'esplora') { setViewMode('lista'); setView('home'); } }}>
               <Icon name={t.icon} size={22} strokeWidth={tab === t.id ? 2 : 1.6} />
               {t.label}
             </button>
