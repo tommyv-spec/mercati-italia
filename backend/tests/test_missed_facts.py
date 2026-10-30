@@ -1,5 +1,6 @@
 import sys
 import unittest
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -28,8 +29,15 @@ class MissedFactsTests(unittest.TestCase):
                 {"slug": "b", "duplicato_di": "a", "fonte": "happings.com",
                  "orario_testo": "07:15–13:00 (fonte comunale, da verificare)", "indirizzo": "Piazza Roma"},
                 {"slug": "c", "duplicato_di": "a", "fonte": "eventiesagre.it", "orario_testo": "08:00–13:00"}]
-        lost = lost_in_merge(rows, {r["slug"]: r for r in rows})
+        lost = lost_in_merge(rows, {r["slug"]: r for r in rows}, date(2026, 10, 30))
         self.assertEqual(sorted((x["field"], x["copy"]) for x in lost), [("indirizzo", "b"), ("orario", "b")])
+
+    def test_a_hidden_copy_with_the_next_date_is_a_loss_but_a_past_date_is_not(self):
+        shown = {"slug": "a", "date": ["2026-10-04"]}
+        rows = [shown, {"slug": "b", "duplicato_di": "a", "date": ["2026-11-01"]},
+                {"slug": "c", "duplicato_di": "a", "date": ["2026-10-11"]}]
+        lost = lost_in_merge(rows, {r["slug"]: r for r in rows}, date(2026, 10, 30))
+        self.assertEqual([(x["field"], x["copy"]) for x in lost], [("date", "b")])
 
 
 

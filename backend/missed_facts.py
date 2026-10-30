@@ -8,7 +8,8 @@ downloaded (autopilot-output/sources/*-detail-pages.json), the readers' own repo
 the candidate catalog. Four kinds of gap:
   parser_missed    the page text states a time range the reader did not read as hours
   read_not_used    the reader read hours, a street or future dates; the shown card lacks them
-  lost_in_merge    a hidden copy of the market has clock hours or a street the shown card lacks
+  lost_in_merge    a hidden copy of the market has clock hours, a street or upcoming dates the
+                   shown card lacks
   hidden_but_read  hidden as "fonte_non_riletta" although its own page was read in the
                    last CONCLUDED_UNREAD_DAYS days: the reader held the page, so nothing
                    reached the card (tonight's pages show what they state under read_not_used)
@@ -95,7 +96,12 @@ def editorial_gaps(out: Path, by_url, by_slug, today):
             doc = docs.get(url) or {}
             event = doc.get("event") or {}
             outcome = outcomes.get(url) or {}
-            reason = outcome.get("reason") or "; ".join(map(str, outcome.get("field_holds") or [])) or "—"
+            # The real hold, not the match reason ("exact_existing_source_identity" means matched).
+            holds = (["historical_edition"] if outcome.get("historical_edition") else []) + [
+                str(h) for h in outcome.get("field_holds") or []]
+            if cards[0] is not card:
+                holds.insert(0, "on_hidden_copy " + cards[0]["slug"])
+            reason = "; ".join(holds) or outcome.get("reason") or "—"
             base = {"url": url, "slug": card["slug"], "reason": reason}
             read_clock = bool(event.get("hours_intervals")) or clock(event.get("hours_text"))
             if not read_clock and not clock(card.get("orario_testo")) \
@@ -110,15 +116,17 @@ def editorial_gaps(out: Path, by_url, by_slug, today):
                 found["read_not_used"].append({**base, "field": "indirizzo", "read": address})
             future = sorted(o["date"] for o in event.get("occurrences") or [] if str(o.get("date")) >= today.isoformat())
             if future and not any(str(d) >= today.isoformat() for d in card.get("date") or []):
-                found["read_not_used"].append({**base, "field": "date", "read": future[:3]})
+                found["read_not_used"].append({**base, "field": "date", "read": future[:3],
+                                               "reason": "; ".join(holds + [outcome["calendar_disposition"]]) if outcome.get("calendar_disposition") else reason})
     for kind, items in found.items():
         for item in items:
             counts[next(p for p in EDITORIAL if p in item["url"])][kind] += 1
     return found, counts
 
 
-def lost_in_merge(rows, by_slug):
-    """A hidden copy states clock hours or a street that its shown card lacks."""
+def lost_in_merge(rows, by_slug, today):
+    """A hidden copy states clock hours, a street or upcoming dates that its shown card lacks."""
+    upcoming = lambda row: [d for d in row.get("date") or [] if str(d) >= today.isoformat()]
     lost = []
     for copy in rows:
         shown = by_slug.get(copy.get("duplicato_di"))
@@ -130,6 +138,9 @@ def lost_in_merge(rows, by_slug):
         if street(copy.get("indirizzo")) and not street(shown.get("indirizzo")):
             lost.append({"field": "indirizzo", "slug": shown["slug"], "shown": shown.get("indirizzo"),
                          "copy": copy["slug"], "copy_source": copy.get("fonte"), "read": copy.get("indirizzo")})
+        if upcoming(copy) and not upcoming(shown):
+            lost.append({"field": "date", "slug": shown["slug"], "shown": "nessuna data",
+                         "copy": copy["slug"], "copy_source": copy.get("fonte"), "read": upcoming(copy)[:3]})
     return lost
 
 
@@ -168,7 +179,7 @@ def run(out: Path, today: date):
     happings, happings_examples = happings_gaps(out)
     return {"date": today.isoformat(), "editorial": {p: dict(c) for p, c in counts.items()},
             "editorial_gaps": dict(found), "happings_fields": happings, "happings_examples": happings_examples,
-            "lost_in_merge": lost_in_merge(rows, by_slug),
+            "lost_in_merge": lost_in_merge(rows, by_slug, today),
             "hidden_but_read": hidden_but_read(rows, page_reads(catalog), today)}
 
 
@@ -185,8 +196,9 @@ def markdown(result) -> str:
                      f"{d.get('source_present_parsed_held', 0) + d.get('source_present_parsed_identity_unresolved', 0)} |")
     merge, hidden = result["lost_in_merge"], result["hidden_but_read"]
     by_source = Counter(h["source"] for h in hidden)
-    lines += ["", f"- **Persi nell'unione dei doppioni**: {sum(m['field'] == 'orario' for m in merge)} orari e "
-              f"{sum(m['field'] == 'indirizzo' for m in merge)} vie che una copia nascosta ha e la scheda mostrata no.",
+    lines += ["", f"- **Persi nell'unione dei doppioni**: {sum(m['field'] == 'orario' for m in merge)} orari, "
+              f"{sum(m['field'] == 'indirizzo' for m in merge)} vie e "
+              f"{sum(m['field'] == 'date' for m in merge)} prossime date che una copia nascosta ha e la scheda mostrata no.",
               f"- **Nascoste come «fonte non riletta» ma con pagina letta negli ultimi {CONCLUDED_UNREAD_DAYS} giorni**: "
               f"{len(hidden)} ({', '.join(f'{s} {n}' for s, n in by_source.most_common(5)) or '—'}). Il lettore ha "
               "trattenuto la pagina: per quelle lette stanotte, cosa dice e il motivo sono sotto «Letto dal lettore»."]
