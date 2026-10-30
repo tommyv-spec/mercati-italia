@@ -9,6 +9,8 @@ A failed workflow opens (or comments on) one GitHub issue; success closes it.
     python ops/runner.py daily            # everything due today (scheduler entry)
     python ops/runner.py run <workflow>   # one workflow now, e.g. market-autopilot
     python ops/runner.py plan             # what "daily" would run, and why
+    python ops/runner.py rehearse --code <checkout>   # today's market-autopilot run
+                                          # replayed with that checkout's new commits; nothing published
 
 Supported subset (all the project uses): checkout, setup-python/-node (the
 machine's own Python 3.13 and Node 22), upload/download-artifact, github-script
@@ -38,10 +40,10 @@ REPO_SSH = f"git@github.com:{REPO}.git"
 REPO_HTTPS = f"https://github.com/{REPO}.git"
 
 
-def set_origin(repo_dir):
+def set_origin(repo_dir, push=REPO_SSH):
     # Same origin as actions/checkout (scripts verify it); push over SSH.
     git("remote", "set-url", "origin", REPO_HTTPS, cwd=repo_dir)
-    git("remote", "set-url", "--push", "origin", REPO_SSH, cwd=repo_dir)
+    git("remote", "set-url", "--push", "origin", push, cwd=repo_dir)
 DEV = "improve/data-quality-security-performance-2026-10-11"
 WORKFLOWS = Path(__file__).resolve().parent / "workflows"
 HOME = Path(os.environ.get("MERCATI_RUNNER_HOME")
@@ -114,6 +116,7 @@ class Run:
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
         self.artifacts.mkdir(parents=True, exist_ok=True)
         self.log = open(self.log_path, "a", encoding="utf-8", errors="replace")
+        self.rehearsal, self.inputs = None, Ctx()
 
     def say(self, text):
         line = f"[{datetime.now():%H:%M:%S}] {text}"
@@ -182,7 +185,7 @@ def run_job(run, wf, job_name, job, needs_results, mirror, env_base):
     started, failed = time.monotonic(), False
     summary = run.dir / (job_name + "-summary.md")
     for index, step in enumerate(job.get("steps") or []):
-        ctx = Ctx(env=Ctx(env_base), needs=needs_results, inputs=Ctx(), secrets=Ctx(),
+        ctx = Ctx(env=Ctx(env_base), needs=needs_results, inputs=run.inputs, secrets=Ctx(),
                   github=Ctx(run_id=run.id, run_number=run.id, event_name=run.event, repository=REPO),
                   always=lambda: True, success=lambda: not failed, failure=lambda: failed,
                   cancelled=lambda: False)
@@ -197,7 +200,12 @@ def run_job(run, wf, job_name, job, needs_results, mirror, env_base):
             if uses == "actions/checkout":
                 git("clone", "-q", "-c", "core.autocrlf=false", mirror, job_dir)
                 git("checkout", "-q", expand(spec.get("ref") or "main", ctx), cwd=job_dir)
-                set_origin(job_dir)
+                set_origin(job_dir, push=run.rehearsal.origin if run.rehearsal else REPO_SSH)
+                if run.rehearsal and job_name == "candidate":
+                    # The replayed night's saved reads, for --resume; not its finished catalog.
+                    saved = run.rehearsal.saved
+                    shutil.copytree(saved, job_dir / "autopilot-output",
+                                    ignore=lambda d, names: ["candidate"] if Path(d) == saved else [])
             elif uses in ("actions/setup-python", "actions/setup-node", "actions/github-script"):
                 pass  # the machine's own interpreters; notifications are the runner's job
             elif uses == "actions/upload-artifact":
@@ -239,15 +247,17 @@ def seconds_until_safe_start(now):
     return (now.replace(hour=0, minute=5, second=0, microsecond=0) + timedelta(days=1) - now).total_seconds()
 
 
-def run_workflow(name, event="schedule"):
+def run_workflow(name, event="schedule", rehearsal=None):
     wait = seconds_until_safe_start(datetime.now(timezone.utc))
     if wait:
         print(f"waiting {round(wait / 60)} min: no job starts in the last hour before UTC midnight", flush=True)
         time.sleep(wait)
     wf = yaml.safe_load((WORKFLOWS / f"{name}.yml").read_text("utf-8"))
-    run = Run(name, event)
+    run = Run(name + ("-rehearsal" if rehearsal else ""), event)
     run.say(f"workflow {name} ({event}) → {run.dir}")
-    mirror = update_mirror()
+    if rehearsal:
+        run.rehearsal, run.inputs = rehearsal, Ctx(offline="true", resume="true")
+    mirror = rehearsal.origin if rehearsal else update_mirror()
     results = Ctx()
     github = Ctx(run_id=run.id, run_number=run.id, event_name=event, repository=REPO)
     env_base = {k: expand(v, Ctx(github=github, env=Ctx())) for k, v in (wf.get("env") or {}).items()}
@@ -267,17 +277,23 @@ def run_workflow(name, event="schedule"):
             results[job_name] = Ctx(result="skipped")
             run.say(f"job {job_name}: skipped")
             continue
+        if rehearsal and (job.get("permissions") or {}).get("contents") == "write":
+            results[job_name] = Ctx(result="skipped")
+            run.say(f"job {job_name}: skipped (rehearsal: it writes to the repository)")
+            continue
         run.say(f"job {job_name}")
         results[job_name] = Ctx(result=run_job(run, wf, job_name, job, results, mirror, env_base))
         run.say(f"job {job_name}: {results[job_name].result}")
     ok = all(r.result in ("success", "skipped") for r in results.values()) and any(
         r.result == "success" for r in results.values())
     run.say(f"workflow {name}: {'OK' if ok else 'FAILED'}")
+    if rehearsal:
+        return ok, run  # invisible to the schedule and the alarms
     run.log.close()
     record(name, ok, run)
     notify(name, ok, run)
     prune_runs()
-    return ok
+    return ok, run
 
 
 def record(name, ok, run):
@@ -370,6 +386,90 @@ def scorecard():
         git("push", "-q", "origin", f"HEAD:{DEV}", cwd=work)
 
 
+CATALOG = "candidate/public/data/v1/manifest.json"
+CATALOG_DIFF = """
+import json, sys
+sys.path.insert(0, "backend")
+from collections import Counter
+from pathlib import Path
+from merge_catalog import load_existing
+old, new = ({r["slug"]: r for r in load_existing(Path(p))} for p in sys.argv[1:3])
+diff = {s: {k: [old[s].get(k), new[s].get(k)] for k in sorted(set(old[s]) | set(new[s]))
+            if old[s].get(k) != new[s].get(k)} for s in sorted(old.keys() & new.keys())}
+diff = {s: d for s, d in diff.items() if d}
+report = {"added": sorted(new.keys() - old.keys()), "removed": sorted(old.keys() - new.keys()),
+          "changed": len(diff), "fields": dict(Counter(k for d in diff.values() for k in d).most_common())}
+open(sys.argv[3], "w", encoding="utf-8").write(json.dumps({**report, "records": diff}, ensure_ascii=False, indent=1))
+print(json.dumps({**report, "added": len(report["added"]), "removed": len(report["removed"])}))
+"""
+
+
+def replay_source(run_id=None):
+    """The saved reads of today's latest market-autopilot run: --resume only accepts the same day."""
+    today = datetime.now(timezone.utc).date().isoformat()
+    for run_dir in sorted((HOME / "runs").glob(run_id or "*-market-autopilot"), reverse=True):
+        saved = run_dir / "artifacts" / f"mercati-checkpoints-{run_dir.name}"
+        baseline = saved / "checkpoints" / "baseline.json"
+        if ((saved / CATALOG).is_file() and baseline.is_file()
+                and json.loads(baseline.read_text("utf-8"))["result"]["today"] == today):
+            return saved
+    raise SystemExit(f"no market-autopilot run of {today} (UTC) with a finished catalog to replay")
+
+
+def rehearse(code=None, replay=None):
+    """Replay today's nightly run with new commits: that night's code and catalog plus the
+    commits of `code` that DEV lacks, fed the source reads it saved (offline + resume).
+    Runs the jobs that only read the repository, then the publish job's Happings admission
+    without publishing, and writes how the catalog differs from that night's. Every job
+    clones a throwaway copy and pushes only into it; state.json and the alarms are untouched."""
+    saved = replay_source(replay)
+    for old in (HOME / "runs").glob("*-rehearsal"):
+        rmtree(old)  # one at a time, so rehearsals never prune the night they replay
+    work = HOME / "rehearsal"
+    rmtree(work)
+    origin, tree = work / "origin.git", work / "tree"
+    git("clone", "-q", "--bare", update_mirror(), origin)
+    git("clone", "-q", "-c", "core.autocrlf=false", origin, tree)
+    git("checkout", "-q", "-B", DEV, (saved / "dev-source-sha.txt").read_text().strip(), cwd=tree)
+    tested = []
+    if code:
+        git("fetch", "-q", Path(code).resolve(), "HEAD", cwd=tree)
+        tested = subprocess.run(["git", "rev-list", "--reverse", "--no-merges", f"origin/{DEV}..FETCH_HEAD"],
+                                cwd=tree, check=True, capture_output=True, text=True).stdout.split()
+        picked = subprocess.run(["git", "-c", "user.name=mercati-runner", "-c", "user.email=runner@mercati.local",
+                                 "cherry-pick", *tested], cwd=tree, capture_output=True, text=True) if tested else None
+        if picked and picked.returncode:
+            raise SystemExit("the tested commits do not apply to that night's code:\n" + picked.stderr[-2000:])
+    git("push", "-q", "-f", "origin", f"HEAD:refs/heads/{DEV}", cwd=tree)
+    ok, run = run_workflow("market-autopilot", "workflow_dispatch", Ctx(origin=origin, saved=saved))
+    run.say(f"rehearsal of {saved.parent.parent.name} with {len(tested)} tested commit(s): {' '.join(tested) or '-'}")
+    env = {**os.environ, "PYTHONUTF8": "1", "TZ": "UTC0"}
+    if ok:
+        mine = run.artifacts / f"mercati-checkpoints-{run.id}"
+        summary = subprocess.run([sys.executable, "-c", CATALOG_DIFF, saved / CATALOG, mine / CATALOG,
+                                  run.dir / "catalog-diff.json"], cwd=tree, env=env, check=True,
+                                 capture_output=True, text=True).stdout.strip()
+        run.say(f"catalog vs that night ({run.dir / 'catalog-diff.json'}): {summary}")
+        # The publish job copies the catalog into DEV, then runs this admission with --publish-dev.
+        rmtree(tree / "public/data/v1")
+        shutil.copytree(mine / "candidate/public/data/v1", tree / "public/data/v1")
+        set_origin(tree, push=origin)
+        (tree / ".happings-dedicated-checkout").write_text("rehearsal, never published\n", encoding="utf-8")
+        # ponytail: page/new limits copied from the publish step; keep them in step with it.
+        admitted = subprocess.run([sys.executable, "-X", "utf8", "backend/happings_weekly_dev_admission.py",
+                                   "--repo", ".", "--from-autopilot-output", mine, "--out", run.dir / "admission",
+                                   "--max-pages", "16", "--max-new", "32"],
+                                  cwd=tree, env=env, stdout=run.log, stderr=subprocess.STDOUT)
+        report = run.dir / "admission" / "happings-weekly-admission.json"
+        status = json.loads(report.read_text("utf-8"))["status"] if report.is_file() else "no report"
+        ok = admitted.returncode == 0 and status in (
+            "qa_approved", "no_eligible_source_pages", "no_new_admissible_markets")
+        run.say(f"Happings admission without publishing: {status}")
+    run.say(f"rehearsal {'PASSED' if ok else 'FAILED'}; log {run.log_path}")
+    run.log.close()
+    return ok
+
+
 def lock():
     HOME.mkdir(parents=True, exist_ok=True)
     path = HOME / "runner.lock"
@@ -388,6 +488,9 @@ def main():
     sub.add_parser("plan")
     one = sub.add_parser("run")
     one.add_argument("workflow")
+    rh = sub.add_parser("rehearse")
+    rh.add_argument("--code", help="a local checkout: its commits that DEV lacks are tested")
+    rh.add_argument("--replay", help="run id to replay (default: today's latest market-autopilot)")
     args = p.parse_args()
     names = sorted((p.stem for p in WORKFLOWS.glob("*.yml") if schedule_of(p.stem)),
                    key=lambda n: (schedule_of(n)[1].zfill(2), schedule_of(n)[0].zfill(2)))
@@ -401,8 +504,10 @@ def main():
     held = lock()
     try:
         if args.cmd == "run":
-            sys.exit(0 if run_workflow(args.workflow, event="workflow_dispatch") else 1)
-        failures = [n for n in names if due(n, state, date.today())[0] and not run_workflow(n)]
+            sys.exit(0 if run_workflow(args.workflow, event="workflow_dispatch")[0] else 1)
+        if args.cmd == "rehearse":
+            sys.exit(0 if rehearse(args.code, args.replay) else 1)
+        failures = [n for n in names if due(n, state, date.today())[0] and not run_workflow(n)[0]]
         scorecard()
         sys.exit(1 if failures else 0)
     finally:

@@ -397,9 +397,8 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
         directory_path = Path(out) / "sources" / "happings-directory.json"
         available = policy["max_pages"] - consumed
         if directory_policy["enabled"]:
-            if offline:
-                directory_report["status"] = "offline_skipped"
-            elif resume:
+            # Resume first, as every other phase: with both flags a saved read is replayed.
+            if resume:
                 if directory_path.is_file():
                     if directory_path.stat().st_size > 250_000:
                         raise ValueError("Unbounded Happings directory checkpoint")
@@ -422,6 +421,8 @@ def _run_weekly(base, *, policy, out, today, baseline_signature, pipeline_policy
                     directory_report = {**directory_report, "resumed_checkpoint": True}
                 else:
                     directory_report["status"] = "resume_missing_evidence"
+            elif offline:
+                directory_report["status"] = "offline_skipped"
             elif available < 2:
                 directory_report["status"] = "insufficient_shared_budget"
             else:

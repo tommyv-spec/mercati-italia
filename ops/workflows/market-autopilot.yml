@@ -47,6 +47,11 @@ on:
         required: false
         default: false
         description: 'Use existing sources only; no external official feed download'
+      resume:
+        type: boolean
+        required: false
+        default: false
+        description: 'Replay the source reads already saved in autopilot-output (ops/runner.py rehearse)'
 
 concurrency:
   # Serialize the catalog publish and the read-only research report writer.
@@ -123,11 +128,13 @@ jobs:
       - name: Run fail-closed Autopilot with checkpoint persistence
         env:
           AUTOPILOT_OFFLINE: ${{ github.event_name == 'workflow_dispatch' && inputs.offline || 'false' }}
+          AUTOPILOT_RESUME: ${{ github.event_name == 'workflow_dispatch' && inputs.resume || 'false' }}
         shell: bash
         run: |
           set -euo pipefail
           args=()
           if [[ "$AUTOPILOT_OFFLINE" == "true" ]]; then args+=(--offline); fi
+          if [[ "$AUTOPILOT_RESUME" == "true" ]]; then args+=(--resume); fi
           python backend/autopilot.py --output autopilot-output "${args[@]}"
       - name: Record Happings homepage and full-directory crawl progress
         if: success()
