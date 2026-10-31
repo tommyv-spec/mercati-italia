@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14321,
-  "baseline_market_records": 14321,
+  "baseline_market_ids_preserved": 14385,
+  "baseline_market_records": 14385,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -8,10 +8,10 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
-      "leads_found": 2,
-      "not_matching_market_scope": 125,
+      "leads_found": 4,
+      "not_matching_market_scope": 119,
       "requests": 1,
-      "rows_examined": 127,
+      "rows_examined": 123,
       "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
       "state": "discovery_leads_only"
     },
@@ -32,15 +32,233 @@
       "event_confirmations": 0,
       "id": "eventiesagre-index",
       "indexes_read": 2,
-      "links_only": 11,
+      "links_only": 14,
       "publisher_events_verified": 0,
       "requests": 3,
       "state": "discovery_leads_only"
     }
   ],
-  "fresh_official_leads": 2,
+  "fresh_official_leads": 4,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2027-03-01",
+      "first_seen": "2026-10-31",
+      "id": "firenze-feelflorence:123",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti",
+      "start": "2026-12-03",
+      "status": "source_lead_unverified",
+      "title": "Magnifico 1492. Collezionismo mediceo a Palazzo Pitti"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-11-01",
+      "first_seen": "2026-10-31",
+      "id": "firenze-feelflorence:122",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/artour-il-bello-piazza-artigianato-artistico-e-tradizionale-piazza-strozzi",
+      "start": "2026-10-30",
+      "status": "source_lead_unverified",
+      "title": "ARTour il bello in piazza - Artigianato artistico e tradizionale in Piazza Strozzi"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-12-20",
+      "first_seen": "2026-10-30",
+      "id": "firenze-feelflorence:107",
+      "kind": "market_candidate",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
+      "start": "2026-11-14",
+      "status": "source_lead_unverified",
+      "title": "Mercato di Natale in Piazza Santa Croce"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2026-11-01",
+      "first_seen": "2026-10-31",
+      "id": "firenze-feelflorence:103",
+      "kind": "fair_review",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/fiera-di-ognissanti-parco-delle-cascine",
+      "start": "2026-11-01",
+      "status": "source_lead_unverified",
+      "title": "Fiera di Ognissanti - Parco delle Cascine"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21195183",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21195183_Il+Mercato+Del+Collezionismo+A+Lido+Di+Camaiore.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21194762",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21194762_Mostra+Mercato+Del+Giocattolo+D+epoca.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21193821",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21193821_Il+Mercatino+Dell+usato+A+Bari.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21192602",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21192602_Mostra+Mercato+Del+Giocattolo+D+epoca+A+Pisa.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21191810",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191810_Curiosando+E+Riciclando+A+Borgo+A+Buggiano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21191736",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191736_Curiosando+E+Riciclando.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21191413",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21191413_Il+Mondo+Del+Giocattolo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21189625",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21189625_Di+Mano+In+Mano+A+Borgo+A+Mozzano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21189621",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21189621_L+angolo+Del+Collezionista+A+Grosseto.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21175688",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21175688_Piazza+Del+Baratto+E+Mercatino+Dell+usato+A+Veglie.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21174557",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21174557_Baratto+Del+Giocattolo+Usato+A+Veglie.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21151890",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21151890_Piazza+Del+Baratto.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:21065298",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21065298_Collezionare+A+Firenze+Artigianarte+Giugno+2023.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-31",
+      "id": "eventiesagre-index:18340",
+      "last_seen": "2026-10-31",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/18340_Mercatino+del+Collezionismo+a+Vicopisano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
     {
       "catalog_import_allowed": false,
       "city": "Firenze",
@@ -54,24 +272,8 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
       "start": "2026-11-14",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Mercato di Natale in Piazza Santa Croce"
-    },
-    {
-      "catalog_import_allowed": false,
-      "city": "Firenze",
-      "end": "2026-11-01",
-      "first_seen": "2026-10-30",
-      "id": "firenze-feelflorence:107",
-      "kind": "fair_review",
-      "last_seen": "2026-10-30",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "firenze-feelflorence",
-      "source_url": "https://www.feelflorence.it/it/eventi/fiera-di-ognissanti-parco-delle-cascine",
-      "start": "2026-11-01",
-      "status": "source_lead_unverified",
-      "title": "Fiera di Ognissanti - Parco delle Cascine"
     },
     {
       "catalog_import_allowed": false,
@@ -82,7 +284,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21193381_Il+Mercatino+Del+Riuso+A+Belgirate.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -93,7 +295,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21192115_Grande+Mercato+Dell+usato+Dei+Creatori.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -104,7 +306,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191281_Il+Mercatino+Dell+usato+A+Alpignano.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -115,7 +317,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21187361_Il+Mercatino+Dell+usato+A+Collegno.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -126,7 +328,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21187270_Il+Mercatino+Dell+usato+A+Castellamonte.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -137,7 +339,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21159014_Fiera+Del+Disco.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -148,7 +350,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21135023_Cirie+il+Mercatino+dell+usato+del+collezionismo+e+del+piccolo+antiquariato.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -159,7 +361,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21109205_Mercatini+E+Curiosita.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -170,7 +372,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21100718_Mercatino+Dell+Usato.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -181,7 +383,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21095883_Roba+Vegia.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -192,7 +394,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21081250_Mercatino+Dell+Usato.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -916,11 +1118,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 11,
+  "new_external_url_pointers": 14,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-10-30",
+  "reference_date": "2026-10-31",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
