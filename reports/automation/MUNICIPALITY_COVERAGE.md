@@ -4,29 +4,29 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **5,011** (63.5%).
-- Comuni senza schede in catalogo: **2,883**.
-- Schede esistenti conservate: **14,321**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **5,037** (63.8%).
+- Comuni senza schede in catalogo: **2,857**.
+- Schede esistenti conservate: **14,385**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
-| Piemonte | 1180 | 532 | 648 | 45.1% |
-| Lombardia | 1501 | 1077 | 424 | 71.8% |
-| Calabria | 404 | 187 | 217 | 46.3% |
+| Piemonte | 1180 | 535 | 645 | 45.3% |
+| Lombardia | 1501 | 1078 | 423 | 71.8% |
+| Calabria | 404 | 188 | 216 | 46.5% |
 | Sicilia | 391 | 201 | 190 | 51.4% |
 | Sardegna | 377 | 199 | 178 | 52.8% |
-| Trentino-Alto Adige | 282 | 112 | 170 | 39.7% |
-| Liguria | 234 | 108 | 126 | 46.2% |
-| Abruzzo | 305 | 191 | 114 | 62.6% |
+| Trentino-Alto Adige | 282 | 117 | 165 | 41.5% |
+| Liguria | 234 | 109 | 125 | 46.6% |
+| Abruzzo | 305 | 192 | 113 | 63.0% |
 | Basilicata | 131 | 18 | 113 | 13.7% |
-| Marche | 225 | 114 | 111 | 50.7% |
+| Marche | 225 | 116 | 109 | 51.6% |
 | Friuli Venezia Giulia | 215 | 107 | 108 | 49.8% |
-| Campania | 550 | 448 | 102 | 81.5% |
-| Veneto | 559 | 458 | 101 | 81.9% |
+| Campania | 550 | 450 | 100 | 81.8% |
+| Veneto | 559 | 460 | 99 | 82.3% |
 | Lazio | 378 | 306 | 72 | 81.0% |
-| Emilia-Romagna | 330 | 278 | 52 | 84.2% |
+| Emilia-Romagna | 330 | 282 | 48 | 85.5% |
 | Valle d'Aosta | 74 | 27 | 47 | 36.5% |
-| Toscana | 273 | 228 | 45 | 83.5% |
+| Toscana | 273 | 232 | 41 | 85.0% |
 | Umbria | 92 | 66 | 26 | 71.7% |
 | Puglia | 257 | 232 | 25 | 90.3% |
 | Molise | 136 | 122 | 14 | 89.7% |

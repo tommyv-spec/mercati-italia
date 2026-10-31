@@ -3,20 +3,20 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 14321,
+  "catalog_market_ids_preserved": 14385,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 5011,
-  "municipalities_without_catalog_listings": 2883,
-  "represented_percent": 63.5,
+  "municipalities_with_catalog_listings": 5037,
+  "municipalities_without_catalog_listings": 2857,
+  "represented_percent": 63.8,
   "regions": [
     {
       "region": "Piemonte",
       "istat_municipalities": 1180,
-      "with_at_least_one_catalog_market": 532,
-      "without_catalog_market": 648,
-      "represented_percent": 45.1,
+      "with_at_least_one_catalog_market": 535,
+      "without_catalog_market": 645,
+      "represented_percent": 45.3,
       "unrepresented_examples_for_source_search": [
         "Crova",
         "Faule",
@@ -31,8 +31,8 @@
     {
       "region": "Lombardia",
       "istat_municipalities": 1501,
-      "with_at_least_one_catalog_market": 1077,
-      "without_catalog_market": 424,
+      "with_at_least_one_catalog_market": 1078,
+      "without_catalog_market": 423,
       "represented_percent": 71.8,
       "unrepresented_examples_for_source_search": [
         "Carbonate",
@@ -48,9 +48,9 @@
     {
       "region": "Calabria",
       "istat_municipalities": 404,
-      "with_at_least_one_catalog_market": 187,
-      "without_catalog_market": 217,
-      "represented_percent": 46.3,
+      "with_at_least_one_catalog_market": 188,
+      "without_catalog_market": 216,
+      "represented_percent": 46.5,
       "unrepresented_examples_for_source_search": [
         "Brancaleone",
         "Fiumara",
@@ -99,9 +99,9 @@
     {
       "region": "Trentino-Alto Adige",
       "istat_municipalities": 282,
-      "with_at_least_one_catalog_market": 112,
-      "without_catalog_market": 170,
-      "represented_percent": 39.7,
+      "with_at_least_one_catalog_market": 117,
+      "without_catalog_market": 165,
+      "represented_percent": 41.5,
       "unrepresented_examples_for_source_search": [
         "Castel Ivano",
         "Croviana",
@@ -116,9 +116,9 @@
     {
       "region": "Liguria",
       "istat_municipalities": 234,
-      "with_at_least_one_catalog_market": 108,
-      "without_catalog_market": 126,
-      "represented_percent": 46.2,
+      "with_at_least_one_catalog_market": 109,
+      "without_catalog_market": 125,
+      "represented_percent": 46.6,
       "unrepresented_examples_for_source_search": [
         "Costarainera",
         "Olivetta San Michele",
@@ -133,9 +133,9 @@
     {
       "region": "Abruzzo",
       "istat_municipalities": 305,
-      "with_at_least_one_catalog_market": 191,
-      "without_catalog_market": 114,
-      "represented_percent": 62.6,
+      "with_at_least_one_catalog_market": 192,
+      "without_catalog_market": 113,
+      "represented_percent": 63.0,
       "unrepresented_examples_for_source_search": [
         "Castel Castagna",
         "Civitella Messer Raimondo",
@@ -167,9 +167,9 @@
     {
       "region": "Marche",
       "istat_municipalities": 225,
-      "with_at_least_one_catalog_market": 114,
-      "without_catalog_market": 111,
-      "represented_percent": 50.7,
+      "with_at_least_one_catalog_market": 116,
+      "without_catalog_market": 109,
+      "represented_percent": 51.6,
       "unrepresented_examples_for_source_search": [
         "Cagli",
         "Monte Cerignone",
@@ -201,9 +201,9 @@
     {
       "region": "Campania",
       "istat_municipalities": 550,
-      "with_at_least_one_catalog_market": 448,
-      "without_catalog_market": 102,
-      "represented_percent": 81.5,
+      "with_at_least_one_catalog_market": 450,
+      "without_catalog_market": 100,
+      "represented_percent": 81.8,
       "unrepresented_examples_for_source_search": [
         "Agerola",
         "Castel di Sasso",
@@ -218,9 +218,9 @@
     {
       "region": "Veneto",
       "istat_municipalities": 559,
-      "with_at_least_one_catalog_market": 458,
-      "without_catalog_market": 101,
-      "represented_percent": 81.9,
+      "with_at_least_one_catalog_market": 460,
+      "without_catalog_market": 99,
+      "represented_percent": 82.3,
       "unrepresented_examples_for_source_search": [
         "Bagnolo di Po",
         "Canda",
@@ -252,9 +252,9 @@
     {
       "region": "Emilia-Romagna",
       "istat_municipalities": 330,
-      "with_at_least_one_catalog_market": 278,
-      "without_catalog_market": 52,
-      "represented_percent": 84.2,
+      "with_at_least_one_catalog_market": 282,
+      "without_catalog_market": 48,
+      "represented_percent": 85.5,
       "unrepresented_examples_for_source_search": [
         "Bertinoro",
         "Cerignale",
@@ -286,9 +286,9 @@
     {
       "region": "Toscana",
       "istat_municipalities": 273,
-      "with_at_least_one_catalog_market": 228,
-      "without_catalog_market": 45,
-      "represented_percent": 83.5,
+      "with_at_least_one_catalog_market": 232,
+      "without_catalog_market": 41,
+      "represented_percent": 85.0,
       "unrepresented_examples_for_source_search": [
         "Abbadia San Salvatore",
         "Londa",
@@ -371,10 +371,6 @@
     },
     {
       "region": "Abruzzo",
-      "reported_city": "Popoli"
-    },
-    {
-      "region": "Abruzzo",
       "reported_city": "Scorzè"
     },
     {
@@ -412,6 +408,10 @@
     {
       "region": "Calabria",
       "reported_city": "Capristrano"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Caria"
     }
   ],
   "interpretation": "absence of a listing is NOT evidence a municipality has any active market"
