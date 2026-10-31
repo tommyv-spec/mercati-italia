@@ -1,12 +1,12 @@
 {
-  "catalog_count": 14321,
+  "catalog_count": 14353,
   "checked_source_profiles": 4,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-10-30",
+  "reference_date": "2026-10-31",
   "registry_sha256": "80605db324a99f822a1f41c167c04f66fa91d12efc77257f6654e7d84653d32d",
   "schema": 1,
   "source_checks": {
@@ -16,7 +16,7 @@
   "source_contract_schema": 1,
   "sources": {
     "corciano": {
-      "catalog_records_compared": 14321,
+      "catalog_records_compared": 14353,
       "confirmed_events_created": 0,
       "counts": {
         "address_present": 4,
@@ -60,7 +60,7 @@
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "firenze": {
-      "catalog_records_compared": 14321,
+      "catalog_records_compared": 14353,
       "confirmed_events_created": 0,
       "counts": {
         "address_present": 4,
@@ -100,7 +100,7 @@
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "lombardia": {
-      "catalog_records_compared": 14321,
+      "catalog_records_compared": 14353,
       "confirmed_events_created": 0,
       "counts": {
         "address_present": 1359,
@@ -1500,7 +1500,7 @@
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "milano": {
-      "catalog_records_compared": 14321,
+      "catalog_records_compared": 14353,
       "confirmed_events_created": 0,
       "counts": {
         "coordinates_not_opening_proof": 85,

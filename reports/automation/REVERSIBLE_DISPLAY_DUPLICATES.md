@@ -4,11 +4,11 @@
 Confronta soltanto sede e giorno identici con la stessa URL di fonte
 e orari, coordinate, categoria e ricorrenze compatibili.
 
-- Schede originali: **14.353**.
-- ID originali preservati: **14.353**.
-- Gruppi supportati da prove forti: **925**.
-- Pulsanti ripetuti evitati nella vista delle sedi: **1084**.
-- Schede originali ancora apribili dietro tali gruppi: **2009**.
+- Schede originali: **14.385**.
+- ID originali preservati: **14.385**.
+- Gruppi supportati da prove forti: **915**.
+- Pulsanti ripetuti evitati nella vista delle sedi: **1071**.
+- Schede originali ancora apribili dietro tali gruppi: **1986**.
 - Campi città evidentemente malformati protetti nella UI: **2**.
 - Eventi o verifiche dichiarati confermati: **0**.
 
@@ -17,13 +17,13 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 | Regione | Gruppi supportati | Pulsanti ripetuti evitati |
 |---|---:|---:|
 | Emilia-Romagna | 4 | 6 |
-| Liguria | 41 | 48 |
-| Lombardia | 633 | 690 |
-| Piemonte | 109 | 164 |
+| Liguria | 38 | 45 |
+| Lombardia | 629 | 684 |
+| Piemonte | 108 | 163 |
 | Sicilia | 1 | 2 |
-| Toscana | 48 | 68 |
+| Toscana | 48 | 67 |
 | Trentino-Alto Adige | 11 | 12 |
-| Veneto | 78 | 94 |
+| Veneto | 76 | 92 |
 
 ## Esempi reali
 
@@ -50,8 +50,8 @@ e orari, coordinate, categoria e ricorrenze compatibili.
 - Liguria · Mallare · Piazza Odorico del Carretto · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
 - Liguria · Mele · Capoluogo · 3 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
 - Liguria · Millesimo · Piazza italia · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-savona.html
-- Liguria · Molassana · Via Isola del Vescovo · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
 - Liguria · Oregina · Via Maculano · 2 schede originali · https://www.happings.com/it/mercati-settimanali-a-genova.html
+- Liguria · Perinaldo · Piazza Santa Croce · 2 schede originali · https://www.happings.com/it/mercati-settimanali-ad-imperia.html
 
 Le date restano previste, non confermate. Gruppi diversi o
 incerti restano separati. Per aprire tutte le schede originali

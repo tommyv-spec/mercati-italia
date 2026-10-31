@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14353,
-    "ids_retained": 14353,
-    "generic_weekly_with_specific_venue": 5984,
+    "original_records": 14385,
+    "ids_retained": 14385,
+    "generic_weekly_with_specific_venue": 5948,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3715,
-    "highly_supported_same_source_visit_groups": 925,
-    "suppressed_repeat_buttons_only": 1084,
-    "original_records_in_reversible_groups": 2009,
+    "venue_groups_examined": 3695,
+    "highly_supported_same_source_visit_groups": 915,
+    "suppressed_repeat_buttons_only": 1071,
+    "original_records_in_reversible_groups": 1986,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -24,18 +24,18 @@
     },
     {
       "region": "Liguria",
-      "groups": 41,
-      "extra_display_entries": 48
+      "groups": 38,
+      "extra_display_entries": 45
     },
     {
       "region": "Lombardia",
-      "groups": 633,
-      "extra_display_entries": 690
+      "groups": 629,
+      "extra_display_entries": 684
     },
     {
       "region": "Piemonte",
-      "groups": 109,
-      "extra_display_entries": 164
+      "groups": 108,
+      "extra_display_entries": 163
     },
     {
       "region": "Sicilia",
@@ -45,7 +45,7 @@
     {
       "region": "Toscana",
       "groups": 48,
-      "extra_display_entries": 68
+      "extra_display_entries": 67
     },
     {
       "region": "Trentino-Alto Adige",
@@ -54,8 +54,8 @@
     },
     {
       "region": "Veneto",
-      "groups": 78,
-      "extra_display_entries": 94
+      "groups": 76,
+      "extra_display_entries": 92
     }
   ],
   "examples": [
@@ -119,7 +119,7 @@
         "mercato-settimanale-di-altare-altare",
         "mercato-settimanale-di-altare-altare-venerdi"
       ],
-      "date": "2026-10-30"
+      "date": "2026-11-06"
     },
     {
       "region": "Liguria",
@@ -155,7 +155,7 @@
         "mercato-settimanale-di-arenzano-arenzano",
         "mercato-settimanale-di-arenzano-arenzano-venerdi"
       ],
-      "date": "2026-10-30"
+      "date": "2026-11-06"
     },
     {
       "region": "Liguria",
@@ -342,18 +342,6 @@
     },
     {
       "region": "Liguria",
-      "city": "Molassana",
-      "address": "Via Isola del Vescovo",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
-      "visible_id": "mercato-settimanale-a-molassana-molassana-lunedi",
-      "original_ids": [
-        "mercato-settimanale-a-molassana-molassana-lunedi",
-        "mercato-settimanale-di-molassana-molassana"
-      ],
-      "date": "2026-11-02"
-    },
-    {
-      "region": "Liguria",
       "city": "Oregina",
       "address": "Via Maculano",
       "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
@@ -362,19 +350,7 @@
         "mercato-settimanale-a-oregina-oregina-venerdi",
         "mercato-settimanale-di-oregina-oregina"
       ],
-      "date": "2026-10-30"
-    },
-    {
-      "region": "Liguria",
-      "city": "Pegli",
-      "address": "Lungomare di Pegli",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
-      "visible_id": "mercato-settimanale-a-pegli-pegli-giovedi",
-      "original_ids": [
-        "mercato-settimanale-a-pegli-pegli-giovedi",
-        "mercato-settimanale-di-pegli-pegli"
-      ],
-      "date": "2026-11-05"
+      "date": "2026-11-06"
     },
     {
       "region": "Liguria",
@@ -423,19 +399,7 @@
         "mercato-settimanale-a-prato-prato-venerdi",
         "mercato-settimanale-di-prato-prato"
       ],
-      "date": "2026-10-30"
-    },
-    {
-      "region": "Liguria",
-      "city": "Prà",
-      "address": "Piazza Sciesa",
-      "source_url": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
-      "visible_id": "mercato-settimanale-a-pra-pra-mercoledi",
-      "original_ids": [
-        "mercato-settimanale-a-pra-pra-mercoledi",
-        "mercato-settimanale-di-pra-pra"
-      ],
-      "date": "2026-11-04"
+      "date": "2026-11-06"
     },
     {
       "region": "Liguria",
@@ -496,7 +460,7 @@
         "mercato-settimanale-di-soldano-soldano",
         "mercato-settimanale-di-soldano-soldano-venerdi"
       ],
-      "date": "2026-10-30"
+      "date": "2026-11-06"
     },
     {
       "region": "Liguria",
@@ -546,6 +510,42 @@
         "mercato-settimanale-di-uscio-uscio-mercoledi"
       ],
       "date": "2026-11-04"
+    },
+    {
+      "region": "Liguria",
+      "city": "Vallebona",
+      "address": "Piazza Libertà",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
+      "visible_id": "mercato-settimanale-a-vallebona-vallebona-martedi",
+      "original_ids": [
+        "mercato-settimanale-a-vallebona-vallebona-martedi",
+        "mercato-settimanale-di-vallebona-vallebona"
+      ],
+      "date": "2026-11-03"
+    },
+    {
+      "region": "Liguria",
+      "city": "Varazze",
+      "address": "Piazza Gen. C.A. Dalla Chiesa",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
+      "visible_id": "mercato-settimanale-di-varazze-varazze-sabato",
+      "original_ids": [
+        "mercato-settimanale-di-varazze-varazze",
+        "mercato-settimanale-di-varazze-varazze-sabato"
+      ],
+      "date": "2026-10-31"
+    },
+    {
+      "region": "Liguria",
+      "city": "Vernazza",
+      "address": "Via Roma",
+      "source_url": "https://www.happings.com/it/mercati-settimanali-a-la-spezia.html",
+      "visible_id": "mercato-settimanale-di-vernazza-vernazza-martedi",
+      "original_ids": [
+        "mercato-settimanale-di-vernazza-vernazza",
+        "mercato-settimanale-di-vernazza-vernazza-martedi"
+      ],
+      "date": "2026-11-03"
     }
   ],
   "suspicious_city_examples": [

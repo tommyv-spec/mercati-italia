@@ -41,7 +41,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-10-30",
+      "checked_date": "2026-10-31",
       "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
       "status": "schema_preview_only",
       "viability": "venue_inventory_missing_visit_days"
@@ -95,7 +95,7 @@
       "viability": "manual_schema_review_required"
     },
     "74600cc1-0adb-4ae3-8255-30556e03e932": {
-      "checked_date": "2026-10-28",
+      "checked_date": "2026-10-31",
       "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
       "status": "schema_preview_only",
       "viability": "historical_aggregate_not_venues"
@@ -221,13 +221,13 @@
       "viability": "manual_schema_review_required"
     },
     "fcdebbfc-16d5-47fd-908b-8cba7e88be53": {
-      "checked_date": "2026-10-18",
+      "checked_date": "2026-10-31",
       "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-10-30",
+  "reference_date": "2026-10-31",
   "reports": [
     {
       "adapter_enabled": false,
@@ -253,16 +253,16 @@
         "TOTALE POSTEGGI"
       ],
       "format": "CSV",
-      "id": "4f23a0e0-c0c7-4735-a1f9-fbf9a40c52ef",
+      "id": "fcdebbfc-16d5-47fd-908b-8cba7e88be53",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 189,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/ed829a8d-5ad0-4bef-a340-6899bef244f2.csv",
+      "sample_bytes": 1055,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/ac3375d7-47f3-447e-a97c-f2e0d30d026e.csv",
       "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Sarego",
+      "title": "Posteggi mercati e fiere - Comune di Nogara",
       "truncated": false
     },
     {
@@ -273,6 +273,7 @@
           "comune"
         ],
         "statistics_count": [
+          "mercati",
           "attivazioni",
           "cessazioni"
         ],
@@ -284,9 +285,11 @@
         "comune",
         "provincia",
         "anno",
+        "mercati",
         "totale",
         "attivazioni",
         "cessazioni",
+        "posteggi",
         "alimentare_totale",
         "alimentare_attivazioni",
         "alimentare_cessazioni",
@@ -298,16 +301,16 @@
         "produttori_cessazioni"
       ],
       "format": "CSV",
-      "id": "f4407fb8-5e36-4311-8422-02d463741780",
+      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
       "review_blockers": [
         "explicit_market_name_missing"
       ],
       "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
-      "schema_viability": "manual_schema_review_required",
+      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
+      "schema_viability": "historical_aggregate_not_venues",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati itineranti",
+      "title": "Censimento dei mercati mensili",
       "truncated": true
     },
     {

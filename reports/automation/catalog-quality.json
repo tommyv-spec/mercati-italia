@@ -5,30 +5,30 @@
   "market_confirmations_created": 0,
   "market_identities_deleted": 0,
   "metrics": {
-    "address_missing": 1187,
-    "coordinates_missing": 826,
-    "future_dates_missing": 2393,
-    "hours_missing": 1792,
-    "review_only_duplicate_groups": 1509,
-    "review_only_potential_extra_rows": 1807,
+    "address_missing": 1190,
+    "coordinates_missing": 843,
+    "future_dates_missing": 2476,
+    "hours_missing": 1794,
+    "review_only_duplicate_groups": 1500,
+    "review_only_potential_extra_rows": 1793,
     "suspicious_city": 2,
-    "total": 14353,
-    "without_individual_verification": 14353
+    "total": 14385,
+    "without_individual_verification": 14385
   },
   "per_region": [
     {
       "region": "Abruzzo",
       "markets": 397,
-      "future_dates_missing": 35,
+      "future_dates_missing": 40,
       "hours_missing": 25,
-      "coordinates_missing": 8,
+      "coordinates_missing": 7,
       "address_missing": 33
     },
     {
       "region": "Basilicata",
       "markets": 36,
       "address_missing": 9,
-      "future_dates_missing": 12,
+      "future_dates_missing": 11,
       "hours_missing": 3
     },
     {
@@ -37,61 +37,61 @@
       "hours_missing": 38,
       "address_missing": 37,
       "future_dates_missing": 45,
-      "coordinates_missing": 16
+      "coordinates_missing": 15
     },
     {
       "region": "Campania",
-      "markets": 828,
-      "hours_missing": 117,
+      "markets": 830,
+      "hours_missing": 119,
       "address_missing": 61,
-      "future_dates_missing": 80,
-      "coordinates_missing": 31
+      "future_dates_missing": 82,
+      "coordinates_missing": 32
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 930,
-      "hours_missing": 172,
-      "future_dates_missing": 339,
+      "markets": 932,
+      "hours_missing": 170,
+      "future_dates_missing": 340,
       "address_missing": 103,
-      "coordinates_missing": 64
+      "coordinates_missing": 65
     },
     {
       "region": "Friuli Venezia Giulia",
       "markets": 267,
-      "hours_missing": 28,
-      "future_dates_missing": 75,
+      "hours_missing": 27,
+      "future_dates_missing": 77,
       "address_missing": 17,
-      "coordinates_missing": 22
+      "coordinates_missing": 21
     },
     {
       "region": "Lazio",
-      "markets": 1089,
+      "markets": 1090,
       "address_missing": 59,
-      "future_dates_missing": 225,
-      "hours_missing": 99,
+      "future_dates_missing": 228,
+      "hours_missing": 97,
       "coordinates_missing": 75
     },
     {
       "region": "Liguria",
-      "markets": 403,
-      "hours_missing": 54,
-      "future_dates_missing": 87,
+      "markets": 405,
+      "hours_missing": 56,
+      "future_dates_missing": 95,
       "address_missing": 53,
-      "coordinates_missing": 28
+      "coordinates_missing": 32
     },
     {
       "region": "Lombardia",
-      "markets": 4031,
-      "hours_missing": 522,
+      "markets": 4033,
+      "hours_missing": 519,
       "address_missing": 169,
-      "future_dates_missing": 637,
-      "coordinates_missing": 243
+      "future_dates_missing": 654,
+      "coordinates_missing": 244
     },
     {
       "region": "Marche",
-      "markets": 301,
-      "future_dates_missing": 69,
-      "coordinates_missing": 18,
+      "markets": 302,
+      "future_dates_missing": 72,
+      "coordinates_missing": 19,
       "hours_missing": 52,
       "address_missing": 40
     },
@@ -100,23 +100,23 @@
       "markets": 215,
       "address_missing": 30,
       "hours_missing": 15,
-      "future_dates_missing": 22
+      "future_dates_missing": 25
     },
     {
       "region": "Piemonte",
-      "markets": 1366,
+      "markets": 1369,
       "hours_missing": 161,
-      "future_dates_missing": 167,
-      "coordinates_missing": 40,
-      "address_missing": 176
+      "future_dates_missing": 175,
+      "coordinates_missing": 43,
+      "address_missing": 177
     },
     {
       "region": "Puglia",
-      "markets": 491,
-      "hours_missing": 47,
-      "address_missing": 37,
-      "future_dates_missing": 42,
-      "coordinates_missing": 22
+      "markets": 497,
+      "hours_missing": 50,
+      "address_missing": 39,
+      "future_dates_missing": 51,
+      "coordinates_missing": 25
     },
     {
       "region": "Sardegna",
@@ -128,50 +128,50 @@
     },
     {
       "region": "Sicilia",
-      "markets": 412,
+      "markets": 414,
       "hours_missing": 55,
       "address_missing": 40,
-      "future_dates_missing": 66,
-      "coordinates_missing": 10
+      "future_dates_missing": 68,
+      "coordinates_missing": 9
     },
     {
       "region": "Toscana",
-      "markets": 997,
-      "hours_missing": 190,
-      "future_dates_missing": 212,
+      "markets": 998,
+      "hours_missing": 191,
+      "future_dates_missing": 219,
       "address_missing": 107,
-      "coordinates_missing": 81
+      "coordinates_missing": 79
     },
     {
       "region": "Trentino-Alto Adige",
-      "markets": 264,
-      "future_dates_missing": 55,
-      "hours_missing": 24,
+      "markets": 266,
+      "future_dates_missing": 57,
+      "hours_missing": 26,
       "address_missing": 36,
-      "coordinates_missing": 27
+      "coordinates_missing": 29
     },
     {
       "region": "Umbria",
-      "markets": 189,
+      "markets": 191,
       "hours_missing": 32,
       "address_missing": 20,
-      "coordinates_missing": 13,
-      "future_dates_missing": 38
+      "coordinates_missing": 15,
+      "future_dates_missing": 41
     },
     {
       "region": "Valle d'Aosta",
-      "markets": 56,
+      "markets": 58,
       "hours_missing": 8,
       "address_missing": 7,
-      "future_dates_missing": 10,
-      "coordinates_missing": 4
+      "future_dates_missing": 12,
+      "coordinates_missing": 6
     },
     {
       "region": "Veneto",
-      "markets": 1347,
-      "future_dates_missing": 139,
+      "markets": 1351,
+      "future_dates_missing": 146,
       "address_missing": 123,
-      "coordinates_missing": 112,
+      "coordinates_missing": 115,
       "hours_missing": 126,
       "suspicious_city": 2
     }
@@ -195,7 +195,7 @@
     },
     {
       "source": "vintagery.it",
-      "records": 128
+      "records": 160
     },
     {
       "source": "Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata",
@@ -346,19 +346,6 @@
         "mercato-settimanale-a-mele-mele-martedi",
         "mercato-settimanale-di-mele-mele",
         "mercato-settimanale-di-mele-mele-martedi"
-      ]
-    },
-    {
-      "region": "Liguria",
-      "city": "Molassana",
-      "address": "Via Isola del Vescovo",
-      "weekday": 0,
-      "records": 3,
-      "source_count": 1,
-      "examples": [
-        "mercato-settimanale-a-molassana-molassana-lunedi",
-        "mercato-settimanale-di-molassana-molassana",
-        "mercato-settimanale-di-molassana-molassana-lunedi"
       ]
     },
     {
@@ -675,6 +662,19 @@
     },
     {
       "region": "Lombardia",
+      "city": "Borgo Mantovano",
+      "address": "Piazza Aldo Moro",
+      "weekday": 5,
+      "records": 3,
+      "source_count": 2,
+      "examples": [
+        "mercato-settimanale-di-pieve-di-coriano-borgo-mantovano",
+        "mercato-settimanale-di-pieve-di-coriano-borgo-mantovano-sabato",
+        "mercato-settimanale-di-pieve-di-coriano-pieve-di-coriano"
+      ]
+    },
+    {
+      "region": "Lombardia",
       "city": "Borno",
       "address": "Via Moren",
       "weekday": 2,
@@ -703,35 +703,23 @@
   "potential_duplicates_are_not_confirmed": true,
   "overlap_growth_review": {
     "status": "compared_to_baseline_records",
-    "source_supported_revealed_extra_rows": 1,
-    "source_supported_revealed_groups": 1,
-    "examples": [
-      {
-        "region": "Liguria",
-        "city": "Quinto",
-        "address": "Via Gianelli",
-        "weekday": 1,
-        "revealed_extra_rows": 1,
-        "retained_ids": [
-          "mercato-settimanale-a-quinto-quinto-martedi",
-          "mercato-settimanale-di-quinto-quinto"
-        ]
-      }
-    ],
-    "baseline_records": 14321,
-    "baseline_potential_extra_rows": 1826,
-    "positive_group_growth": 4,
-    "unexplained_group_growth": 3
+    "source_supported_revealed_extra_rows": 0,
+    "source_supported_revealed_groups": 0,
+    "examples": [],
+    "baseline_records": 14353,
+    "baseline_potential_extra_rows": 1807,
+    "positive_group_growth": 2,
+    "unexplained_group_growth": 2
   },
   "baseline_delta": {
     "total": 32,
-    "hours_missing": 5,
-    "address_missing": 8,
-    "coordinates_missing": 3,
-    "future_dates_missing": 52,
+    "hours_missing": 2,
+    "address_missing": 3,
+    "coordinates_missing": 17,
+    "future_dates_missing": 83,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
-    "review_only_potential_extra_rows": -19
+    "review_only_potential_extra_rows": -14
   },
   "quality_regressions": [],
   "quality_release_safe": true,

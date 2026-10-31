@@ -61,6 +61,11 @@
    "query": "borgo Dora, Torino, Italia",
    "type": "platform"
   },
+  "borgo murato di filetto|villafranca in lunigiana|ms": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-31",
+   "query": "Borgo murato di Filetto, Villafranca in Lunigiana, Italia"
+  },
   "borgo s sergio|trieste|ts": {
    "class": "highway",
    "lat": 45.618356,
@@ -286,6 +291,16 @@
    "queried_on": "2026-10-25",
    "query": "Corso Garibaldi, Ancona, Italia"
   },
+  "corso garibaldi|ariccia|rm": {
+   "class": "highway",
+   "lat": 41.720567,
+   "lng": 12.67155,
+   "name": "Corso Giuseppe Garibaldi, Monte Gentile, Ariccia, Roma Capitale, Lazio, 00041, Italia",
+   "osm": "way/42769053",
+   "queried_on": "2026-10-31",
+   "query": "Corso Garibaldi, Ariccia, Italia",
+   "type": "residential"
+  },
   "corso garibaldi|brindisi|br": {
    "class": "highway",
    "lat": 40.638142,
@@ -315,6 +330,16 @@
    "queried_on": "2026-10-29",
    "query": "CORSO Indipendenza, Rivarolo Canavese, Italia",
    "type": "primary"
+  },
+  "corso italia|piombino|li": {
+   "class": "highway",
+   "lat": 42.926937,
+   "lng": 10.529721,
+   "name": "Corso Italia, Porta a Terra, Piombino, Livorno, Toscana, 57025, Italia",
+   "osm": "way/42455992",
+   "queried_on": "2026-10-31",
+   "query": "Corso Italia, Piombino, Italia",
+   "type": "residential"
   },
   "corso marconi|torino|to": {
    "class": "highway",
@@ -465,6 +490,11 @@
    "queried_on": "2026-10-25",
    "query": "GARIBALDI, San Martino Dall'Argine, Italia",
    "type": "secondary"
+  },
+  "giardini oasi|barcellona pozzo di gotto|me": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-31",
+   "query": "Giardini Oasi, Barcellona Pozzo di Gotto, Italia"
   },
   "giardino dell orticoltura|firenze|fi": {
    "class": "leisure",
@@ -730,6 +760,26 @@
    "queried_on": "2026-10-25",
    "query": "LUNGOMARE Dante Alighieri, Trapani, Italia",
    "type": "tertiary"
+  },
+  "lungomare federico ii di svevia|gela|cl": {
+   "class": "highway",
+   "lat": 37.069844,
+   "lng": 14.222617,
+   "name": "Lungomare Federico Secondo di Svevia, Scavone, Macchitella, Gela, Caltanissetta, Sicilia, 93012, Italia",
+   "osm": "way/619684547",
+   "queried_on": "2026-10-31",
+   "query": "Lungomare Federico II di Svevia, Gela, Italia",
+   "type": "tertiary"
+  },
+  "lungomare starita|bari|ba": {
+   "class": "highway",
+   "lat": 41.139669,
+   "lng": 16.844992,
+   "name": "Lungomare Giambattista e Pietro Starita, San Cataldo, Municipio 3, Bari, Puglia, 70123, Italia",
+   "osm": "way/180465483",
+   "queried_on": "2026-10-31",
+   "query": "Lungomare Starita, Bari, Italia",
+   "type": "secondary"
   },
   "mangeri|asola|mn": {
    "class": "place",
@@ -1074,6 +1124,16 @@
    "osm": "relation/6065849",
    "queried_on": "2026-10-27",
    "query": "PARCO Centrale, Follonica, Italia",
+   "type": "park"
+  },
+  "parco ermanno olmi|bergamo|bg": {
+   "class": "leisure",
+   "lat": 45.686617,
+   "lng": 9.671648,
+   "name": "Parco Ermanno Olmi, Malpensata, Bergamo, Lombardia, Italia",
+   "osm": "way/35174434",
+   "queried_on": "2026-10-31",
+   "query": "Parco Ermanno Olmi, Bergamo, Italia",
    "type": "park"
   },
   "parco novi sad|modena|mo": {
@@ -1691,6 +1751,16 @@
    "query": "Piazza Cortesini, Orbetello, Italia",
    "type": "residential"
   },
+  "piazza cota|piano di sorrento|na": {
+   "class": "highway",
+   "lat": 40.632974,
+   "lng": 14.411762,
+   "name": "Piazza Cota, Mortora, Piano di Sorrento, Napoli, Campania, 80063, Italia",
+   "osm": "way/255963509",
+   "queried_on": "2026-10-31",
+   "query": "Piazza Cota, Piano di Sorrento, Italia",
+   "type": "residential"
+  },
   "piazza d armi|chivasso|to": {
    "miss": "via_diversa",
    "queried_on": "2026-10-29",
@@ -2066,6 +2136,16 @@
    "query": "Piazza della Costituzione, San Vincenzo, Italia",
    "type": "square"
   },
+  "piazza della liberta|agordo|bl": {
+   "class": "highway",
+   "lat": 46.281881,
+   "lng": 12.035196,
+   "name": "Piazza della Libertà, Villalta, Agordo, Belluno, Veneto, 32021, Italia",
+   "osm": "way/266888202",
+   "queried_on": "2026-10-31",
+   "query": "Piazza della Libertà, Agordo, Italia",
+   "type": "residential"
+  },
   "piazza della liberta|alessandria|al": {
    "class": "place",
    "lat": 44.913385,
@@ -2336,6 +2416,11 @@
    "query": "Piazza Diaz, Milano, Italia",
    "type": "bus_stop"
   },
+  "piazza dimore|bergamo|bg": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-31",
+   "query": "Piazza DiMore+, Bergamo, Italia"
+  },
   "piazza divisione aqui|erbusco|bs": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -2495,6 +2580,16 @@
    "queried_on": "2026-10-25",
    "query": "Piazza Eroi, Sanremo, Italia",
    "type": "secondary"
+  },
+  "piazza esperanto|grosseto|gr": {
+   "class": "amenity",
+   "lat": 42.75882,
+   "lng": 11.11567,
+   "name": "Piazza Esperanto, Via dei Lavatoi, Porta Vecchia, Centro, Grosseto, Toscana, 58100, Italia",
+   "osm": "relation/13081793",
+   "queried_on": "2026-10-31",
+   "query": "Piazza Esperanto, Grosseto, Italia",
+   "type": "parking"
   },
   "piazza europa|collecchio|pr": {
    "class": "place",
@@ -3196,6 +3291,16 @@
    "query": "Piazza Lucio Dalla, Bologna, Italia",
    "type": "square"
   },
+  "piazza luigi rossi|catanzaro|cz": {
+   "class": "place",
+   "lat": 38.907944,
+   "lng": 16.591411,
+   "name": "Piazza Luigi Rossi, Siano, Catanzaro, Calabria, 88100, Italia",
+   "osm": "way/1263311831",
+   "queried_on": "2026-10-31",
+   "query": "Piazza Luigi Rossi, Catanzaro, Italia",
+   "type": "square"
+  },
   "piazza madonna della luna|turbigo|mi": {
    "class": "place",
    "lat": 45.529192,
@@ -3270,6 +3375,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Maria Borgato Soti, Saonara, Italia",
    "type": "garden"
+  },
+  "piazza marina|palermo|pa": {
+   "class": "place",
+   "lat": 38.117775,
+   "lng": 13.368638,
+   "name": "Piazza Marina, Kalsa, I Circoscrizione, Palermo, Sicilia, Italia",
+   "osm": "way/739764754",
+   "queried_on": "2026-10-31",
+   "query": "piazza Marina, Palermo, Italia",
+   "type": "square"
   },
   "piazza mario pagano|potenza|pz": {
    "class": "place",
@@ -4111,6 +4226,16 @@
    "query": "Piazza Savonarola, Firenze, Italia",
    "type": "pedestrian"
   },
+  "piazza sciesa|genova|ge": {
+   "class": "place",
+   "lat": 44.427078,
+   "lng": 8.789875,
+   "name": "Piazza Amatore Sciesa, Borgo Foce, Pra', Ponente, Genova, Liguria, Italia",
+   "osm": "way/268963420",
+   "queried_on": "2026-10-31",
+   "query": "Piazza Sciesa, Genova, Italia",
+   "type": "square"
+  },
   "piazza scipione ammirato|roma|rm": {
    "class": "highway",
    "lat": 41.874209,
@@ -4270,6 +4395,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA Trieste, Pontedera, Italia",
    "type": "service"
+  },
+  "piazza umberto i|copertino|le": {
+   "class": "highway",
+   "lat": 40.272171,
+   "lng": 18.048923,
+   "name": "Piazza Umberto I, Copertino, Lecce, Puglia, 73043, Italia",
+   "osm": "way/455727269",
+   "queried_on": "2026-10-31",
+   "query": "Piazza Umberto I, Copertino, Italia",
+   "type": "tertiary"
   },
   "piazza umberto i|marcaria|mn": {
    "class": "highway",
@@ -5471,6 +5606,16 @@
    "query": "Via degli Olivi, Roma, Italia",
    "type": "residential"
   },
+  "via degli schioppettieri|palermo|pa": {
+   "class": "highway",
+   "lat": 38.116198,
+   "lng": 13.363362,
+   "name": "Via degli Schioppettieri, La Loggia, I Circoscrizione, Palermo, Sicilia, 90133, Italia",
+   "osm": "way/362417078",
+   "queried_on": "2026-10-31",
+   "query": "Via degli Schioppettieri, Palermo, Italia",
+   "type": "residential"
+  },
   "via degli scuter|schilpario|bg": {
    "class": "highway",
    "lat": 46.008978,
@@ -6526,6 +6671,11 @@
    "query": "VIA MARTIRI DELLA RESISTENZA, Ancona, Italia",
    "type": "primary"
   },
+  "via martiri di nassiria|casale monferrato|al": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-10-31",
+   "query": "via Martiri di Nassiria, Casale Monferrato, Italia"
+  },
   "via matteotti localita megliadino san fidenzio|borgo veneto|pd": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
@@ -6705,6 +6855,16 @@
    "queried_on": "2026-10-25",
    "query": "Via Nazionale, Gargazzone, Italia",
    "type": "secondary"
+  },
+  "via nazionale|trieste|ts": {
+   "class": "highway",
+   "lat": 45.684458,
+   "lng": 13.784546,
+   "name": "Via Nazionale, Sottomonte, Altipiano Est, Opicina / Opčine, Trieste, Friuli-Venezia Giulia, 34135, Italia",
+   "osm": "way/9328765",
+   "queried_on": "2026-10-31",
+   "query": "Via Nazionale, Trieste, Italia",
+   "type": "primary"
   },
   "via nuova collegiata|rivoli|to": {
    "class": "highway",

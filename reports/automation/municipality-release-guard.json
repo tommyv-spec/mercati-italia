@@ -1,7 +1,7 @@
 {
   "calendar_sources_quarantined": 0,
   "changes": 60,
-  "checked_ids": 14321,
+  "checked_ids": 14353,
   "city_replacements": 60,
   "contaminated_titles_repaired": 0,
   "forecast_dates_removed": 0,
@@ -17,9 +17,19 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
+      "new_city": "Popoli Terme",
+      "old_city": "Popoli",
+      "slug": "mercato-settimanale-di-popoli-popoli"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
       "new_city": "Corigliano-Rossano",
-      "old_city": "Corigliano Calabro",
-      "slug": "mercato-settimanale-di-corigliano-calabro-corigliano-calabro-martedi"
+      "old_city": "Rossano",
+      "slug": "mercato-settimanale-di-rossano-rossano-mercoledi"
     },
     {
       "changes": [
@@ -27,9 +37,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Capaccio Paestum",
-      "old_city": "Capaccio",
-      "slug": "mercato-settimanale-di-capaccio-capaccio"
+      "new_city": "Montoro",
+      "old_city": "Montoro Inferiore",
+      "slug": "mercato-settimanale-di-montoro-inferiore-montoro-inferiore-venerdi"
     },
     {
       "changes": [
@@ -37,9 +47,39 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Capaccio Paestum",
-      "old_city": "Capaccio",
-      "slug": "mercato-settimanale-di-capaccio-capaccio-venerdi"
+      "new_city": "Montoro",
+      "old_city": "Montoro Superiore",
+      "slug": "mercato-settimanale-di-montoro-superiore-montoro-superiore-giovedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Fiscaglia",
+      "old_city": "Migliaro",
+      "slug": "mercato-settimanale-di-migliaro-migliaro-martedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Terre del Reno",
+      "old_city": "Mirabello",
+      "slug": "mercato-settimanale-di-mirabello-mirabello-mercoledi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Montescudo-Monte Colombo",
+      "old_city": "Montescudo",
+      "slug": "mercato-settimanale-di-montescudo-montescudo-domenica"
     },
     {
       "changes": [
@@ -48,8 +88,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Valsamoggia",
-      "old_city": "Bazzano",
-      "slug": "mercato-settimanale-di-bazzano-bazzano-sabato"
+      "old_city": "Monteveglio",
+      "slug": "mercato-settimanale-di-monteveglio-monteveglio-giovedi"
     },
     {
       "changes": [
@@ -57,9 +97,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Riva del Po",
-      "old_city": "Berra",
-      "slug": "mercato-settimanale-di-berra-berra"
+      "new_city": "Alta Val Tidone",
+      "old_city": "Nibbiano",
+      "slug": "mercato-settimanale-di-nibbiano-nibbiano-martedi"
     },
     {
       "changes": [
@@ -67,19 +107,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Valsamoggia",
-      "old_city": "Castello di Serravalle",
-      "slug": "mercato-settimanale-di-castello-di-serravalle-castello-di-serravalle-lunedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Canossa",
-      "old_city": "Ciano d'Enza",
-      "slug": "mercato-settimanale-di-canossa-ciano-d-enza-ciano-d-enza-sabato"
+      "new_city": "Alto Reno Terme",
+      "old_city": "Porretta Terme",
+      "slug": "mercato-settimanale-di-porretta-terme-porretta-terme-sabato"
     },
     {
       "changes": [
@@ -88,8 +118,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Ventasso",
-      "old_city": "Collagna",
-      "slug": "mercato-settimanale-di-collagna-collagna-venerdi"
+      "old_city": "Ramiseto",
+      "slug": "mercato-settimanale-di-ramiseto-ramiseto-sabato"
     },
     {
       "changes": [
@@ -97,9 +127,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Valsamoggia",
-      "old_city": "Crespellano",
-      "slug": "mercato-settimanale-di-crespellano-crespellano-mercoledi"
+      "new_city": "Ventasso",
+      "old_city": "Ramiseto",
+      "slug": "mercato-settimanale-di-ramiseto-estivo-ramiseto-giovedi"
     },
     {
       "changes": [
@@ -107,9 +137,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Tresignana",
-      "old_city": "Formignana",
-      "slug": "mercato-settimanale-di-formignana-formignana-giovedi"
+      "new_city": "Riva del Po",
+      "old_city": "Ro",
+      "slug": "mercato-settimanale-di-ro-ro"
     },
     {
       "changes": [
@@ -117,9 +147,19 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Fiscaglia",
-      "old_city": "Massa Fiscaglia",
-      "slug": "mercato-settimanale-di-massa-fiscaglia-massa-fiscaglia-lunedi"
+      "new_city": "Terre del Reno",
+      "old_city": "Sant'Agostino",
+      "slug": "mercato-settimanale-di-sant-agostino-sant-agostino-venerdi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Terre del Reno",
+      "old_city": "Sant'Agostino",
+      "slug": "mercato-settimanale-di-sant-agostino-san-carlo-sant-agostino-domenica"
     },
     {
       "changes": [
@@ -128,8 +168,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Sorbolo Mezzani",
-      "old_city": "Mezzani",
-      "slug": "mercato-settimanale-di-mezzani-mezzani"
+      "old_city": "Sorbolo",
+      "slug": "mercato-settimanale-di-sorbolo-sorbolo"
     },
     {
       "changes": [
@@ -137,9 +177,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Fiscaglia",
-      "old_city": "Migliarino",
-      "slug": "mercato-settimanale-di-migliarino-migliarino-sabato"
+      "new_city": "Genova",
+      "old_city": "Molassana",
+      "slug": "mercato-settimanale-di-molassana-molassana"
     },
     {
       "changes": [
@@ -147,9 +187,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Valvasone Arzene",
-      "old_city": "Arzene",
-      "slug": "mercato-settimanale-di-arzene-arzene-mercoledi"
+      "new_city": "Luni",
+      "old_city": "Ortonovo",
+      "slug": "mercato-settimanale-di-ortonovo-ortonovo-mercoledi"
     },
     {
       "changes": [
@@ -157,9 +197,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Borgo Virgilio",
-      "old_city": "Borgoforte",
-      "slug": "mercato-settimanale-di-borgoforte-borgoforte"
+      "new_city": "Genova",
+      "old_city": "Pegli",
+      "slug": "mercato-settimanale-di-pegli-pegli"
     },
     {
       "changes": [
@@ -167,9 +207,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Val Brembilla",
-      "old_city": "Brembilla",
-      "slug": "mercato-settimanale-di-brembilla-brembilla"
+      "new_city": "Genova",
+      "old_city": "Pontedecimo",
+      "slug": "mercato-settimanale-di-pontedecimo-pontedecimo-venerdi"
     },
     {
       "changes": [
@@ -177,9 +217,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Solbiate con Cagno",
-      "old_city": "Cagno",
-      "slug": "mercato-settimanale-di-cagno-cagno"
+      "new_city": "Genova",
+      "old_city": "Prà",
+      "slug": "mercato-settimanale-di-pra-pra"
     },
     {
       "changes": [
@@ -187,9 +227,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Borgocarbonara",
-      "old_city": "Carbonara di Po",
-      "slug": "mercato-settimanale-di-carbonara-di-po-carbonara-di-po"
+      "new_city": "Genova",
+      "old_city": "Sestri Ponente",
+      "slug": "mercato-settimanale-di-sestri-ponente-sestri-ponente-mercoledi"
     },
     {
       "changes": [
@@ -197,9 +237,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Castelgerundo",
-      "old_city": "Cavacurta",
-      "slug": "mercato-settimanale-di-cavacurta-cavacurta"
+      "new_city": "Piadena Drizzona",
+      "old_city": "Piadena",
+      "slug": "mercato-settimanale-di-piadena-piadena"
     },
     {
       "changes": [
@@ -207,9 +247,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "San Fermo della Battaglia",
-      "old_city": "Cavallasca",
-      "slug": "mercato-settimanale-di-cavallasca-cavallasca"
+      "new_city": "Borgo Mantovano",
+      "old_city": "Pieve di Coriano",
+      "slug": "mercato-settimanale-di-pieve-di-coriano-pieve-di-coriano"
     },
     {
       "changes": [
@@ -217,9 +257,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Bellagio",
-      "old_city": "Civenna",
-      "slug": "mercato-settimanale-di-civenna-civenna"
+      "new_city": "Borgo Mantovano",
+      "old_city": "Pieve di Coriano",
+      "slug": "mercato-settimanale-di-pieve-di-coriano-pieve-di-coriano-venerdi"
     },
     {
       "changes": [
@@ -227,9 +267,39 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Colverde",
-      "old_city": "Drezzo",
-      "slug": "mercato-settimanale-di-drezzo-drezzo"
+      "new_city": "Borgo Mantovano",
+      "old_city": "Revere",
+      "slug": "mercato-settimanale-di-revere-revere"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Rivanazzano Terme",
+      "old_city": "Rivanazzano",
+      "slug": "mercato-settimanale-di-rivanazzano-rivanazzano"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Uggiate con Ronago",
+      "old_city": "Ronago",
+      "slug": "mercato-settimanale-di-ronago-ronago"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "San Giorgio Bigarello",
+      "old_city": "San Giorgio di Mantova",
+      "slug": "mercato-settimanale-di-san-giorgio-di-mantova-san-giorgio-di-mantova"
     },
     {
       "changes": [
@@ -238,78 +308,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Sermide e Felonica",
-      "old_city": "Felonica",
-      "slug": "mercato-settimanale-di-felonica-felonica"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Colverde",
-      "old_city": "Gironico",
-      "slug": "mercato-settimanale-di-gironico-gironico"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Godiasco Salice Terme",
-      "old_city": "Godiasco",
-      "slug": "mercato-settimanale-di-godiasco-godiasco"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Godiasco Salice Terme",
-      "old_city": "Godiasco",
-      "slug": "mercato-settimanale-di-godiasco-godiasco-sabato"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Tremezzina",
-      "old_city": "Lenno",
-      "slug": "mercato-settimanale-di-lenno-lenno"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Lonato del Garda",
-      "old_city": "Lonato",
-      "slug": "mercato-settimanale-di-lonato-lonato"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Maccagno con Pino e Veddasca",
-      "old_city": "Maccagno",
-      "slug": "mercato-settimanale-di-maccagno-maccagno"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Gattico-Veruno",
-      "old_city": "Gattico",
-      "slug": "mercato-settimanale-di-gattico-gattico"
+      "old_city": "Sermide",
+      "slug": "mercato-settimanale-di-sermide-sermide"
     }
   ],
   "schema": 1,
