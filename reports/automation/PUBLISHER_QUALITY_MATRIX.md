@@ -4,7 +4,7 @@
 presenti nel catalogo e, separatamente, le fonti ufficiali candidate.
 Nessun dato viene riletto o ripubblicato dal sito terzo.
 
-- Schede controllate: **14321**
+- Schede controllate: **14385**
 - Fonti distinte nelle schede: **92**
 - Dataset ufficiali candidati: **50**
 - Nuovi eventi certificati: **0**; schede modificate: **0**
@@ -13,11 +13,11 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 
 | Fonte | Record | Orari vuoti | Indirizzi vuoti | Coordinate vuote | Data fonte/import >540gg | Contraddizioni giorni | Modello |
 |---|---:|---:|---:|---:|---:|---:|---|
-| happings.com | 9913 | 692 | 606 | 356 | 0 | 0 | weekly_area_index_and_event_details |
-| eventiesagre.it | 2200 | 362 | 438 | 107 | 0 | 0 | regional_listing_and_details |
+| happings.com | 9913 | 692 | 604 | 347 | 0 | 0 | weekly_area_index_and_event_details |
+| eventiesagre.it | 2200 | 361 | 438 | 106 | 0 | 0 | regional_listing_and_details |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1128 | 342 | 1 | 151 | 0 | 0 | one_market_id_per_weekday |
-| cosedicasa.com | 442 | 194 | 0 | 25 | 0 | 0 | monthly_recurrence_with_exceptions |
-| vintagery.it | 96 | 32 | 22 | 60 | 0 | 0 | unclassified_source_page |
+| cosedicasa.com | 442 | 173 | 0 | 24 | 0 | 0 | monthly_recurrence_with_exceptions |
+| vintagery.it | 160 | 61 | 35 | 91 | 0 | 0 | unclassified_source_page |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | 44 | 0 | 0 | unclassified_source_page |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | 0 | 8 | 0 | one_venue_with_weekdays |
 | dati.comune.roma.it | 70 | 2 | 0 | 6 | 0 | 0 | unclassified_source_page |
@@ -128,7 +128,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 - Licenze: publisher_rights_unreviewed
 - Prossimo passo: Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail
 
-### vintagery.it — 96 schede
+### vintagery.it — 160 schede
 - Carenze strutturali: **non** prova che il dato originale sia scorretto.
 - Licenze: source_rights_and_structure_require_review
 - Prossimo passo: Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.
@@ -210,7 +210,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 
 ## Formati delle fonti: avanzamento dei controlli
 
-Unità primarie: **210**; campioni confrontati: **0**; parziali: **105**; non esaminati: **105**.
+Unità primarie: **274**; campioni confrontati: **0**; parziali: **105**; non esaminati: **169**.
 
 Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna il registro dal catalogo senza nuove richieste alle fonti. Prove e TODO completi in `backend/data/source-format-review-ledger.json` e `reports/automation/SOURCE_FORMAT_CHECKLIST.md`.
 
@@ -226,7 +226,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | happings.com--795abb069b70 | 248 | parser_comparison, storage_comparison | parser_code_changed | — |
 | eventiesagre.it--86b2ab982276 | 205 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | eventiesagre.it--7b2012e05e04 | 173 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
-| eventiesagre.it--85894968edb7 | 151 | parser_comparison | parser_code_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
+| eventiesagre.it--85894968edb7 | 151 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | eventiesagre.it--f3b997a2f09a | 142 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | EES-URL-DISCOVERY-INVENTORY, EES-NAMED-AND-MULTI-VENUES, EES-NARRATIVE-DATE-LISTS, EES-HISTORICAL-RECURRENCE-DEDUP |
 | regione.veneto.it--680458e071b3 | 102 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | dati.comune.milano.it--de1e536ced97 | 85 | parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | OFF-MI-01, OFF-MI-02, OFF-MI-03 |
@@ -329,6 +329,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vicenzatoday.it--711d824754df | 1 | field_mapping, parser_comparison, storage_comparison | parser_code_changed, sample_catalog_fields_changed | CNY-DETAIL, CNY-EDITORIAL, CNY-ROUNDTRIP |
 | vintagery.it--0110717b4763 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--01c0ac14ebb1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--04de146c2b00 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--086064ac0e34 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0a14b0c17c39 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0d863079e55c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -336,89 +337,152 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--0f95eed1992a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0fcbcdb5cfe7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--14c1ebc6d293 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--15633598948f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--15c177a3dff1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--15f3f3da3adb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--168d3d303f7d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--17a6f4f4ea48 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--1909c631c429 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--193460c667b0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--1ec3445f77ce | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--204adf212cfd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--21911235a3c4 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--21e00d4a8f39 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--23bc2fe595b9 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--2427f97a09a9 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--269d4d421146 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--2c9f8e69d4c7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--2d9e604a4f43 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--30a9c0b3ecc7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--31f3a42ba426 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--357a94d1851d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--35a1735377e7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--35a3ae553dfb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--3605b1edc151 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3751a2f122d5 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--38de9d272a90 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--3acba2d4c66b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3b94c2d6a75b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3bd9110d0618 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3be242d28377 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3d6125c8fc98 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--407d7687396e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--42c62904bc21 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--447d1f917a24 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--44982456cf3a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--45ddc031d02d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--48a493321411 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--49a61267a43a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4a0d879649b2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4b61dbc0ce7e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4cb83d63f9e1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4ce0eecaa289 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4d035cdfa211 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--4f01cec8906f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4f0283e6570e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--511667f26931 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--52b2cd7159aa | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--53ae3f16da02 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--5430b76fc5dd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--558b691a2f58 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--5a0d0f3a5cac | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--5d5569040e33 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--5e84ccec0975 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--6039529e22f3 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--62d3d79169f9 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--632075fed71e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--641e7913447a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--647c540c2fce | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--653508672ed3 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--660fa4e9dd11 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6682796bf1ab | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--68e5b98c38eb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--69225d5628a0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--6929d2525289 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--69a184ab923c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--6b03bee2e088 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6b613166992e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--6d61da8eb47d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6dfffd17b448 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--7005810c9152 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--70a10b023bd1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--70e66c9584ba | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7168c9d6c24d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--720dc250a90b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--731beace05c1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7520b2293d86 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--75e1ba1b13c7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7748bc7f01ea | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7d41357ac131 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--810b2e6a8c28 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--8190b3314e1e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--85ca47e9b08c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--88f71ce5b763 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--89221809189a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--894786ce71d5 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--8a8d197e1f67 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--8c37038d6a52 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--8e4ea3de8b1a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--8f28840e989c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--910cb6b72ff0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--918a7af43163 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--9765b4bbc1b5 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--993507a9d2d1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--9ab74384f64f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--9d5008cfcfd0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--9e7f24aead40 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--9f6607f3c0ad | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--a140a12f73d6 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--a5707f061e10 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--a5b8e14fa252 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--ab38a592f72a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--aca41ecc2df2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--ad30b49bfb35 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--aedc93c909f3 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--b09cc6bc8f55 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--b19a68f98daa | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b1f3c47107bc | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--b2ba928936fc | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b7cde1e002b0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--b8574775b2f8 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b8b8ca9d8013 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b8baddb6e647 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b8f72e57206c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--bc358bd3ac88 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--bd5dd56c768d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--befda1ffc84b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--c17a18431001 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--c29019f91b42 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--c712d47f05dc | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--c8dfe33ee907 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--c9f47efa86d2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--cca3ae24c82f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--d1b1aef0e53a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--d2f6e68726d7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--d4fe0d4823b7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--d5bed7102326 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--d9b566fd5eae | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--de0b9c0c1e82 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--de39936ae072 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--decb352e2e2c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--e5d8d516c056 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--e5fcf869c7fb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--e7e1aad33b26 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--eb8f8b0e8c73 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--ed1d2929c032 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f147802d3627 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f263a145a979 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f2a4e476c92b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--f2fb21db6a17 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f325d9630799 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f3d995a48a69 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f54426c57410 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f568cde3e2f3 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f752f25b4aad | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--f80075a72c7a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--f8647c905a5f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fb4b590ba082 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--fbac2f2c9072 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fbc081ce0da2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fc55181b403e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fc9808633532 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
