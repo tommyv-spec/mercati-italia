@@ -248,13 +248,15 @@ class EditorialTransportTests(unittest.TestCase):
     def test_blocked_worker_is_killed_and_reaped_with_no_network(self):
         original_popen=subprocess.Popen; processes=[]
         def blocked(*args,**kwargs):
-            process=original_popen([sys.executable,"-c","import time; time.sleep(30)"],
+            process=original_popen([sys.executable,"-c","import time; time.sleep(120)"],
                 stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL)
             processes.append(process);return process
         started=time.monotonic()
         with patch.object(transport.subprocess,"Popen",side_effect=blocked), self.assertRaises(TimeoutError) as failure:
             transport.fetch(URL,timeout=.1,max_bytes=500,accept="text/html")
-        self.assertLess(time.monotonic()-started,2)
+        # Killed, not waited for: far below the worker's 120 s. A busy PC needs seconds
+        # just to start Python (1 Nov 05:41: 29 s), so the bound is not "fast".
+        self.assertLess(time.monotonic()-started,60)
         self.assertIsNotNone(processes[0].returncode)
         self.assertEqual(transport.failure_code(failure.exception),"deadline_exceeded")
 

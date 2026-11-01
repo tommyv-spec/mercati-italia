@@ -269,14 +269,16 @@ class QueueTests(unittest.TestCase):
             self.assertTrue(argv[1].endswith("citynews_transport.py"))
             self.assertEqual(argv[2:], ["--http-worker"])
             self.assertIs(kwargs["shell"], False)
-            process = original_popen([sys.executable, "-c", "import time; time.sleep(30)"], **kwargs)
+            process = original_popen([sys.executable, "-c", "import time; time.sleep(120)"], **kwargs)
             processes.append(process)
             return process
         started = time.monotonic()
         with patch("citynews_transport.subprocess.Popen", side_effect=blocked):
             with self.assertRaises(TimeoutError):
                 bounded_transport(URL, timeout=.1, max_bytes=MAX_BYTES, accept="text/html")
-        self.assertLess(time.monotonic() - started, 2)
+        # Killed, not waited for: far below the worker's 120 s (a busy PC needs seconds
+        # just to start Python; 1 Nov 05:39 took 7 s).
+        self.assertLess(time.monotonic() - started, 60)
         self.assertEqual(len(processes), 1)
         self.assertIsNotNone(processes[0].returncode)
 
