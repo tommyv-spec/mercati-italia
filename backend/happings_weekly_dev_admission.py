@@ -243,9 +243,16 @@ def verify_catalog(before, after, evidence, *, today):
             or any(not _same_protected_market_or_date_rollover(
                 row, candidate[sid], today=today) for sid,row in original.items())):
         raise ValueError("Weekly candidate changed protected identity or source fields")
-    for sid in additions:
-        row=candidate[sid]
-        if (row.get("status") != "non_confermato" or row.get("verificato_il")
+    if any(claims_beyond_page(candidate[sid]) for sid in additions):
+        raise ValueError("Weekly source claimed unverified opening, date or coordinates")
+    return sorted(additions)
+
+
+def claims_beyond_page(row):
+    """A new weekly venue states only what its page lists: no verification, date or
+    point, and at most the page's part of the day, receipted from that page.
+    The one rule for admission and for the post-release audit."""
+    return bool(row.get("status") != "non_confermato" or row.get("verificato_il")
                 or row.get("date") or row.get("date_quality") != "sconosciuta"
                 or row.get("lat") is not None or row.get("lng") is not None
                 or row.get("orario_testo") not in ("", "La mattina", "Il pomeriggio")
@@ -254,9 +261,7 @@ def verify_catalog(before, after, evidence, *, today):
                 or (row.get("orario_testo") and not any(
                     receipt.get("valori", {}).get("orario_testo") == row["orario_testo"]
                     and receipt.get("url") == row.get("url_fonte")
-                    for receipt in row["riscontri_campi"]))):
-            raise ValueError("Weekly source claimed unverified opening, date or coordinates")
-    return sorted(additions)
+                    for receipt in row["riscontri_campi"])))
 
 
 def stage_candidate(repo, base, pages, *, today, max_new, tmp_root):

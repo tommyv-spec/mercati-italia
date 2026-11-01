@@ -17,7 +17,7 @@ from pathlib import Path
 
 from export_static import matches_export, normalize, parse_dates
 from happings_weekly_admission import preview, verify_changes, MAX_NEW
-from happings_weekly_dev_admission import pages_from_autopilot
+from happings_weekly_dev_admission import claims_beyond_page, pages_from_autopilot
 from happings_bulk_snapshot import write_json
 
 REF = re.compile(r"(?:[a-f0-9]{7,40}|HEAD(?:\^[0-9]?)?)\Z")
@@ -132,13 +132,9 @@ def verify_cohort(before, after, admission, publisher_pages, *, today):
         normalized,error=normalize(row,today)
         if error or not matches_export(normalized,after.get(row["slug"]),after):
             raise ValueError("A newly committed market differs from its source-reproduced fields")
-    for sid in added:
-        record=after[sid]
-        if (record.get("status")!="non_confermato" or record.get("verificato_il")
-                or record.get("date") or record.get("orario_testo")
-                or record.get("date_quality")!="sconosciuta"
-                or record.get("lat") is not None or record.get("lng") is not None):
-            raise ValueError("New weekly venue claims an unverified opening or invented date/coordinate")
+    # Same rule as the admission: the page's part of the day ("La mattina") is allowed.
+    if any(claims_beyond_page(after[sid]) for sid in added):
+        raise ValueError("New weekly venue claims an unverified opening or invented date/coordinate")
     return {
         "schema":1,"publisher":"happings.com","release_safe":True,
         "source_html_pages_replayed":len(publisher_pages),

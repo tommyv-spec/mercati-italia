@@ -18,11 +18,11 @@ DAY=date(2026,10,21)
 HTML=b"observed publisher html"*25
 
 
-def inputs():
+def inputs(**event):
     old={"slug":"other-friuli","nome":"Mercatino diverso","citta":"Udine",
          "regione":"Friuli Venezia Giulia","provincia":"UD",
          "fonte":"other"}
-    raw=_new_row({"city":"Aquileia","weekday":1,"place":"Piazza San Giovanni"},
+    raw=_new_row({"city":"Aquileia","weekday":1,"place":"Piazza San Giovanni",**event},
             region="friuli venezia giulia",province="UD",source_url=URL,
             read_on=DAY,page_hash=hashlib.sha256(HTML).hexdigest(),
             page_metadata=None)
@@ -52,6 +52,22 @@ class PostreleaseTests(unittest.TestCase):
         self.assertEqual(summary["published_new_market_ids"],1)
         self.assertEqual(summary["existing_record_content_changes"],0)
         verifier.assert_called_once()
+
+    def test_the_pages_part_of_the_day_is_not_an_invented_opening(self):
+        # 1 Nov: the admission published Guiglia with the page's "La mattina" and the
+        # audit, stricter than the admission, rejected it after the push.
+        old,raw,row,page,report=inputs(daypart="morning_not_clock_hours")
+        self.assertEqual(row["orario_testo"],"La mattina")
+        verify=lambda added:audit.verify_cohort({old["slug"]:old},{old["slug"]:old,row["slug"]:added},
+                                                report,[page],today=DAY)
+        with patch.object(audit,"preview",return_value=([old,raw],{"added_ids":[raw["slug"]]})),\
+             patch.object(audit,"verify_changes"),patch.object(audit,"matches_export",return_value=True):
+            self.assertTrue(verify(row)["release_safe"])
+            for hours in ("08:00–13:00",""):  # clock hours, or a part of the day no receipt states
+                with self.subTest(hours):
+                    claim={**row,"orario_testo":hours or "Il pomeriggio"}
+                    with self.assertRaisesRegex(ValueError,"unverified opening"):
+                        verify(claim)
 
     def test_reject_existing_catalog_mutation(self):
         old,raw,row,page,report=inputs()
