@@ -31,7 +31,7 @@ import eventiesagre_detail_refresh as editorial
 from editorial_calendar_scope import KEY, clean_editorial_evidence, source_identity, text_key
 from editorial_transport import INDEX_ACCEPT, discovery_index_url, failure_code, fetch as _http
 from eventiesagre_source_layout import MAX_BYTES
-from field_evidence import FIELDS, as_day, clean_receipts, fingerprint
+from field_evidence import FIELDS, as_day, clean_receipts, fingerprint, published_town
 from recurrence_refresh import explicit_rule
 import atomic_write
 
@@ -565,7 +565,9 @@ function of the observed page, so a verifier rebuilds exactly the same row.
 
 
 def _town(row):
-    return text_key(row.get("regione")), text_key(row.get("citta"))
+    # As the publisher wrote it: a card shown under its official comune (S31) still
+    # matches its own source's pages.
+    return text_key(row.get("regione")), text_key(published_town(row))
 
 
 def _weekdays(row):

@@ -79,6 +79,25 @@ class OfficialMunicipalityTests(unittest.TestCase):
         self.assertEqual(fixed["date_quality"],"sconosciuta")
         self.assertEqual(out[0]["url_fonte"],row["url_fonte"])
 
+    def test_any_province_code_or_province_page_as_town_is_named_from_the_title(self):
+        from catalog_quality_report import suspicious_city
+        cases = [  # eventiesagre, 1 Nov: 58 cards had a province code where the town belongs
+            (market("il-mercatino-della-creativita-a-fontanellato-pr", "PR", "PR", "Emilia-Romagna",
+                    "Il Mercatino Della Creatività A Fontanellato"), "Fontanellato"),
+            (market("caravanserraglio-ad-azzano-decimo-pn", "PN", "PN", "Friuli Venezia Giulia",
+                    "Caravanserraglio Ad Azzano Decimo"), "Azzano Decimo"),
+            # A page listing a whole province's markets names no town: it stays.
+            (market("mercatini-in-piemonte-a-torino-e-provincia-to", "Eventi Provincia Torino", "TO",
+                    "Piemonte", "Mercatini In Piemonte  A Torino E Provincia"), "Eventi Provincia Torino"),
+        ]
+        for row, city in cases:
+            with self.subTest(city):
+                row = {**row, "fonte": "eventiesagre.it"}
+                out, _ = reconcile([row], REFERENCE, apply=True)
+                self.assertEqual(out[0]["citta"], city)
+        # The quality report's and the app's own count of odd towns is not redefined.
+        self.assertFalse(suspicious_city("PR"))
+
     def test_longest_complete_municipality_suffix_wins(self):
         row=market("mercato-della-terra-a-piano-di-sorrento-piano-di-sorrento",
             "NA","NA","Campania","Mercato della Terra a Piano Di Sorrento")
@@ -203,6 +222,8 @@ class PublishedTownTests(unittest.TestCase):
             # Capitals on a Rome card: Roma Capitale's market, not the town of Gerano.
             (happings("GRANO", "RM", "Lazio"), "Roma", "rome"),
             (happings("Limbade", "VV", "Calabria"), "Limbadi", "spelling"),
+            # eventiesagre reads the card as published too: merged in 2014.
+            ({**happings("Crespina", "PI", "Toscana"), "fonte": "eventiesagre.it"}, "Crespina Lorenzana", "former"),
         ]
         for row, city, rule in cases:
             with self.subTest(row["citta"]):
@@ -217,6 +238,10 @@ class PublishedTownTests(unittest.TestCase):
                          ("Mercato settimanale di Ateleta", "Mercato settimanale di Atelena"))
         out, _ = self.fixed(happings("Nibbiano", "PC", "Emilia-Romagna"))
         self.assertEqual(out["nome"], "Mercato settimanale di Nibbiano")  # still names the place
+        # Editorial discovery still finds the card under its publisher's own town.
+        import editorial_discovery
+        out, _ = self.fixed({**happings("Crespina", "PI", "Toscana"), "fonte": "eventiesagre.it"})
+        self.assertEqual(editorial_discovery._town(out), ("toscana", "crespina"))
 
     def test_unclear_names_stay_as_published(self):
         rows = [
@@ -224,13 +249,34 @@ class PublishedTownTests(unittest.TestCase):
             happings("Cecchina", "RM", "Lazio"),         # hamlet of Albano Laziale, not Rome
             happings("Forio 3", "NA", "Campania"),       # S15: the publisher's numbering
             happings("Genzano", "", "Lazio"),            # no province to narrow it
-            happings("Capristrano", "VB", "Calabria"),   # VB is Piemonte's code: it waits
-            {**happings("Atelena", "AQ", "Abruzzo", slug="other-source"), "fonte": "eventiesagre.it"},
+            happings("Capristrano", "TO", "Calabria"),   # Piemonte's code, not a known Happings slip
+            {**happings("Atelena", "AQ", "Abruzzo", slug="other-source"), "fonte": "cosedicasa.com"},
+            {**happings("RM", "RM", "Lazio", slug="code-as-town"), "fonte": "eventiesagre.it"},
             {**happings("Atelena", "AQ", "Abruzzo", slug="verified"), "verificato_il": "2026-10-01"},
         ]
         out, report = reconcile(copy.deepcopy(rows), REFERENCE, apply=True)
         self.assertEqual(out, rows)
         self.assertEqual(report["counts"]["published_town_protected"], 1)
+
+    def test_happings_old_calabria_codes_name_the_comune_then_its_province_follows(self):
+        from province_reconciliation import KEY, supplement, valid_proof
+        # Happings' old pages wrote VB (Verbania) for Vibo Valentia and CR (Cremona) for Crotone.
+        for row, city, code in ((happings("Capristrano", "VB", "Calabria"), "Capistrano", "VV"),
+                                (happings("Belvedere Spinello", "CR", "Calabria"), "Belvedere di Spinello", "KR"),
+                                (happings("Francavilla", "VB", "Calabria"), "Francavilla Angitola", "VV")):
+            with self.subTest(row["citta"]):
+                named, _ = self.fixed(row)
+                self.assertEqual((named["citta"], named["provincia"]), (city, row["provincia"]))
+                # Next night the province step reads the comune it now names.
+                held = {**named, "coordinate_sospese_motivo": "punto_segnaposto_condiviso"}
+                for card in (named, held):
+                    out, report = supplement([card], [card], apply=True)
+                    self.assertEqual(out[0]["provincia"], code)
+                    self.assertTrue(valid_proof(out[0][KEY], out[0]))
+        # A hold that depends on the province (a point outside it) still protects the card.
+        far = {**self.fixed(happings("Capristrano", "VB", "Calabria"))[0],
+               "coordinate_sospese_motivo": "punto_fuori_provincia"}
+        self.assertEqual(supplement([far], [far], apply=True)[0], [far])
 
     def test_receipts_and_happings_matching_see_the_published_card(self):
         row = happings("Atelena", "AQ", "Abruzzo")

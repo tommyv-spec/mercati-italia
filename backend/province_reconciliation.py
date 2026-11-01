@@ -15,6 +15,8 @@ from functools import lru_cache
 from pathlib import Path
 from types import MappingProxyType
 
+from field_evidence import PUBLISHED_TOWN_FIXES
+
 KEY = "riconciliazione_provincia"
 METHOD = "comune_regione_esatti_istat"
 SOURCE_DATE = "2026-02-21"
@@ -124,8 +126,15 @@ def _eligible(row, registry):
     if (not target or not isinstance(previous, str)
             or not re.fullmatch(r"[A-Z]{2}", previous) or previous == target[1]):
         return None, None
+    # The town step's own ISTAT correction (S31) is no source proof: after it named the
+    # comune (Limbade VB -> Limbadi), the comune's province follows the same register.
+    # A withdrawn shared placeholder point does not depend on the province either.
+    ours = (("citta_originale", "localita_ricostruita_da")
+            if row.get("localita_ricostruita_da") in PUBLISHED_TOWN_FIXES.values() else ())
+    if row.get("coordinate_sospese_motivo") == "punto_segnaposto_condiviso" and ours:
+        ours += ("coordinate_sospese_motivo", "coordinate_originali")
     if (row.get("verificato_il") or row.get("date_quality") == "confermata"
-            or any(row.get(field) for field in PROTECTED_PROVENANCE)):
+            or any(row.get(field) for field in PROTECTED_PROVENANCE if field not in ours)):
         return None, "existing_source_or_verification_proof"
     return _proof(row, target), None
 

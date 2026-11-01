@@ -33,15 +33,18 @@ PROJECTION_WARNING = "Calendario da verificare: testo origine con mercati/locali
 MAX_SUGGESTIONS = 100
 MAX_AUTOMATIC_FIXES = 60
 MAX_FORECAST_QUARANTINE = 80
-# Town rules for cards whose source town is not itself a comune (S31). Only
-# happings.com: its steps read the card as published (field_evidence.as_published).
+# Town rules for cards whose source town is not itself a comune (S31). Only sources
+# whose steps read the card as published (field_evidence.as_published).
 FORMER_REFERENCE = Path(__file__).resolve().parent / "data" / "istat-comuni-soppressi.json"
-PUBLISHED_TOWN_SOURCE = "happings.com"
+PUBLISHED_TOWN_SOURCES = frozenset({"happings.com", "eventiesagre.it"})
 ROME_INVENTORY_SOURCE = "dati.comune.roma.it"  # Roma Capitale's own market list (d881)
 SPELLING_CUTOFF = 0.85
 CITY_FIX_BUDGET = 60  # town changes a night allowed by Autopilot and the release guard
 TOTAL_CHANGE_BUDGET = 80  # province_reconciliation.MAX_TOTAL_CHANGES
 RULE_ORDER = ("spelling", "former", "hamlet", "rome")
+# Happings' old pages wrote Verbania's and Cremona's codes for Vibo Valentia and Crotone.
+# The town rules look in the real province; the province step then corrects the code.
+LEGACY_PROVINCE_CODES = {("Calabria", "VB"): "VV", ("Calabria", "CR"): "KR"}
 ALIASES = {
     "Valle d'Aosta/Vallée d'Aoste": "Valle d'Aosta",
     "Friuli-Venezia Giulia": "Friuli Venezia Giulia",
@@ -109,7 +112,7 @@ def _today(name, links, current, seen=()):
 
 
 def published_town_proposal(record, official, former, rome_markets):
-    """(rule, comune) for a happings.com town that is not a comune of its region.
+    """(rule, comune) for a source town (PUBLISHED_TOWN_SOURCES) that is not a comune of its region.
 
     former:   a merged or renamed comune, followed to today's (Nibbiano -> Alta Val Tidone);
     hamlet:   "<comune> <more words>" (Africo Nuovo), or the start of exactly one
@@ -125,11 +128,13 @@ def published_town_proposal(record, official, former, rome_markets):
     name = key(town)
     province = str(record.get("provincia") or "").strip().upper()
     # Scraper text gluing two markets together is the title rule's case, never ours.
-    if (record.get("fonte") != PUBLISHED_TOWN_SOURCE or not registry or not name
+    if (record.get("fonte") not in PUBLISHED_TOWN_SOURCES or not registry or not name
             or name in registry or not re.fullmatch(r"[A-Z]{2}", province)
-            or suspicious_city(town)):
+            or suspicious_city(town) or misplaced_town(town)):
         return None
-    # A province code of another region contradicts the card: it waits (province rule).
+    # A province code of another region contradicts the card: it waits (province rule),
+    # unless it is one of Happings' known wrong codes for a province of this region.
+    province = LEGACY_PROVINCE_CODES.get((record.get("regione"), province), province)
     pool = {n: v for n, v in registry.items() if v[1] == province}
     if not pool:
         return None
@@ -149,7 +154,8 @@ def published_town_proposal(record, official, former, rome_markets):
         if starts:
             only = next(iter(starts))
             return ("hamlet", pool[only][0]) if len(starts) == 1 and only in pool else None
-    if province == "RM" and "roma" in pool and (name in rome_markets or town.upper() == town):
+    if (province == "RM" and "roma" in pool and record.get("fonte") == "happings.com"
+            and (name in rome_markets or town.upper() == town)):
         return "rome", pool["roma"][0]
     if numbered:
         return None
@@ -157,6 +163,14 @@ def published_town_proposal(record, official, former, rome_markets):
     rivals = difflib.get_close_matches(name, [old for old in former if leads(old)], n=1,
                                        cutoff=SPELLING_CUTOFF)
     return ("spelling", pool[close[0]][0]) if len(close) == 1 and not rivals else None
+
+
+def misplaced_town(city):
+    """A province code, "Eventi Provincia X" or several lines where the town belongs
+    (eventiesagre "PR" for "... A Fontanellato"): only the title rule may name the comune.
+    Kept apart from suspicious_city, whose count the quality report and the app share."""
+    town = str(city or "").strip()
+    return bool(re.fullmatch(r"[A-Z]{2}", town) or "\n" in town or key(town).startswith("eventi provincia"))
 
 
 def source_city_cross_contamination(raw):
@@ -174,7 +188,7 @@ def municipality_proposals(market, official):
     title=str(market.get("nome") or "").strip()
     slug=str(market.get("slug") or "")
     province=str(market.get("provincia") or "").upper()
-    if not suspicious_city(origcity) or region not in official:
+    if not (suspicious_city(origcity) or misplaced_town(origcity)) or region not in official:
         return []
     registry=official[region]
     tn=key(title)
@@ -193,7 +207,7 @@ def municipality_proposals(market, official):
             if not (slug.startswith(cslug+"-") and title.startswith(title.split(",",1)[0]+",")):
                 return
         elif typ=="title_suffix":
-            if not (cslug in sk and tn.endswith((" a "+n," di "+n," in "+n))):
+            if not (cslug in sk and tn.endswith((" a "+n," ad "+n," di "+n," in "+n))):
                 return
         candidates.append({"city":city,"province":required_province,
                            "method":typ,"score":score,"length":len(n)})
@@ -209,7 +223,7 @@ def municipality_proposals(market, official):
     # municipality suffix wins (Piano di Sorrento, not Sorrento).
     for municipality in registry:
         if len(municipality)<5: continue
-        if tn.endswith((" a "+municipality," di "+municipality,
+        if tn.endswith((" a "+municipality," ad "+municipality," di "+municipality,
                         " in "+municipality)):
             add("title_suffix",municipality,20)
     candidates.sort(key=lambda row:(-row["score"],-row["length"],row["city"]))
@@ -237,7 +251,7 @@ def reconcile(rows, official_reference, *, apply=False, former_reference=None):
         if not slug or slug in seen:raise ValueError("Repeated or missing market identity")
         seen.add(slug)
         changed=dict(record)
-        suspect=suspicious_city(record.get("citta"))
+        suspect=suspicious_city(record.get("citta")) or misplaced_town(record.get("citta"))
         original_bad_city=(record.get("citta_originale")
                            if record.get("citta_originale") else record.get("citta"))
         dangerous=source_city_cross_contamination(original_bad_city)
