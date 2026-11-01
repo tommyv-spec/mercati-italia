@@ -201,7 +201,7 @@ def run_job(run, wf, job_name, job, needs_results, mirror, env_base):
                 git("clone", "-q", "-c", "core.autocrlf=false", mirror, job_dir)
                 git("checkout", "-q", expand(spec.get("ref") or "main", ctx), cwd=job_dir)
                 set_origin(job_dir, push=run.rehearsal.origin if run.rehearsal else REPO_SSH)
-                if run.rehearsal and job_name == "candidate":
+                if run.rehearsal and job_name == "candidate" and not run.rehearsal.live:
                     # The replayed night's saved reads, for --resume; not its finished catalog.
                     saved = run.rehearsal.saved
                     shutil.copytree(saved, job_dir / "autopilot-output",
@@ -256,7 +256,7 @@ def run_workflow(name, event="schedule", rehearsal=None):
     run = Run(name + ("-rehearsal" if rehearsal else ""), event)
     run.say(f"workflow {name} ({event}) → {run.dir}")
     if rehearsal:
-        run.rehearsal, run.inputs = rehearsal, Ctx(offline="true", resume="true")
+        run.rehearsal, run.inputs = rehearsal, Ctx() if rehearsal.live else Ctx(offline="true", resume="true")
     mirror = rehearsal.origin if rehearsal else update_mirror()
     results = Ctx()
     github = Ctx(run_id=run.id, run_number=run.id, event_name=event, repository=REPO)
@@ -416,12 +416,15 @@ def replay_source(run_id=None):
     raise SystemExit(f"no market-autopilot run of {today} (UTC) with a finished catalog to replay")
 
 
-def rehearse(code=None, replay=None):
+def rehearse(code=None, replay=None, live=False):
     """Replay today's nightly run with new commits: that night's code and catalog plus the
     commits of `code` that DEV lacks, fed the source reads it saved (offline + resume).
     Runs the jobs that only read the repository, then the publish job's Happings admission
     without publishing, and writes how the catalog differs from that night's. Every job
-    clones a throwaway copy and pushes only into it; state.json and the alarms are untouched."""
+    clones a throwaway copy and pushes only into it; state.json and the alarms are untouched.
+    live: read the sources again instead (same bounds and pauses as the nightly; it starts from
+    that night's reader states, so it reads about the same pages). Needed when the change alters
+    the rows a reader receives: every saved read is bound to its exact input."""
     saved = replay_source(replay)
     for old in (HOME / "runs").glob("*-rehearsal"):
         rmtree(old)  # one at a time, so rehearsals never prune the night they replay
@@ -441,8 +444,9 @@ def rehearse(code=None, replay=None):
         if picked and picked.returncode:
             raise SystemExit("the tested commits do not apply to that night's code:\n" + picked.stderr[-2000:])
     git("push", "-q", "-f", "origin", f"HEAD:refs/heads/{DEV}", cwd=tree)
-    ok, run = run_workflow("market-autopilot", "workflow_dispatch", Ctx(origin=origin, saved=saved))
-    run.say(f"rehearsal of {saved.parent.parent.name} with {len(tested)} tested commit(s): {' '.join(tested) or '-'}")
+    ok, run = run_workflow("market-autopilot", "workflow_dispatch", Ctx(origin=origin, saved=saved, live=live))
+    run.say(f"{'live ' if live else ''}rehearsal of {saved.parent.parent.name} with {len(tested)} tested commit(s): "
+            f"{' '.join(tested) or '-'}")
     env = {**os.environ, "PYTHONUTF8": "1", "TZ": "UTC0"}
     if ok:
         mine = run.artifacts / f"mercati-checkpoints-{run.id}"
@@ -491,6 +495,7 @@ def main():
     rh = sub.add_parser("rehearse")
     rh.add_argument("--code", help="a local checkout: its commits that DEV lacks are tested")
     rh.add_argument("--replay", help="run id to replay (default: today's latest market-autopilot)")
+    rh.add_argument("--live", action="store_true", help="read the sources again instead of the saved reads")
     args = p.parse_args()
     names = sorted((p.stem for p in WORKFLOWS.glob("*.yml") if schedule_of(p.stem)),
                    key=lambda n: (schedule_of(n)[1].zfill(2), schedule_of(n)[0].zfill(2)))
@@ -506,7 +511,7 @@ def main():
         if args.cmd == "run":
             sys.exit(0 if run_workflow(args.workflow, event="workflow_dispatch")[0] else 1)
         if args.cmd == "rehearse":
-            sys.exit(0 if rehearse(args.code, args.replay) else 1)
+            sys.exit(0 if rehearse(args.code, args.replay, args.live) else 1)
         failures = [n for n in names if due(n, state, date.today())[0] and not run_workflow(n)[0]]
         scorecard()
         sys.exit(1 if failures else 0)
