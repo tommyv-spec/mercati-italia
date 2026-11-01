@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './styles.css'
+import { keepAppCurrent } from './lib/appUpdate.js'
+
+keepAppCurrent()
 
 // Links shared from the old site (/evento/<id>) open the same market.
 const legacyLink = window.location.pathname.match(/^\/evento\/([^/]+)/)
