@@ -50,6 +50,12 @@ Il risultato è nel log (`…-market-autopilot-rehearsal.log`): `rehearsal PASSE
 `catalog-diff.json` nella cartella del giro, con ogni scheda che cambia rispetto a quella notte.
 Senza `--code` è un collaudo della prova stessa: deve passare con zero differenze.
 
+Ogni lettore lega la lettura salvata alle schede esatte che riceve. Se la modifica cambia le
+schede prima o dentro un lettore (città, province, date delle pagine), la prova con le letture
+salvate si ferma con «Cannot resume …». In quel caso: `rehearse --live --code <cartella>` rilegge
+davvero le fonti (stessi limiti e pause della notte, partendo dallo stato di quella notte),
+sempre senza pubblicare. Le differenze includono allora anche ciò che le fonti hanno cambiato.
+
 Requisiti sul computer: Python 3.13 con PyYAML, Node 22, Git (con Git Bash su Windows), una chiave
 SSH con permesso di scrittura sul repository e il comando `gh` collegato a un account GitHub
 (serve solo per le issue di allarme).
