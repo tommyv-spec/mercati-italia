@@ -624,7 +624,10 @@ class CoseDiCasaBridgeTests(unittest.TestCase):
         after, report = preview(before, [cdc_document(name) for name in names], today=TODAY, publisher=CDC)
         by_name = dict(zip(names, after))
         self.assertEqual([v["slug"] for v in after], [v["slug"] for v in before])
-        self.assertTrue(all(not v["date"] for v in after))
+        # No edition is flattened into dates; only a date the page itself lists is shown
+        # (Todi's next opening, while the card's rule differs from the page's).
+        self.assertEqual({name: (v["date"], v["date_quality"]) for name, v in by_name.items() if v["date"]},
+                         {"todi": (["2027-03-21"], "riportata")})
         self.assertEqual(by_name["bologna"]["orario_testo"], "08:30–18:00")
         self.assertEqual(by_name["venezia"]["orario_testo"], "09:00–19:00")
         self.assertEqual(by_name["todi"]["orario_testo"], "09:00–tramonto")
@@ -737,6 +740,45 @@ class CoseDiCasaBridgeTests(unittest.TestCase):
             said["facts"]["scope_statements"] = [{"kind": "hours_qualification", "text": text, "evidence": []}]
             with self.subTest(text=text):
                 self.assertEqual(current_rule_hold(after, said, today=TODAY), hold)
+
+    def test_an_extra_edition_never_holds_the_rule_and_a_held_rule_keeps_the_listed_date(self):
+        document = deepcopy(cdc_document("bologna"))
+        document["parsed"]["conflicts"], document["parsed"]["status"] = [], "parsed"
+        event = document["parsed"]["event"]
+        event["occurrences"] = [{"date": "2026-11-08", "start_time": None, "end_time": None,
+                                 "status": "source_listed", "evidence": event["date_intervals"][0]["evidence"]}]
+        after = self.bologna_after_read(document)
+        evidence = clean_editorial_evidence(after[KEY], after, today=TODAY)
+        self.assertEqual(evidence["calendar_mode"], "limit_forecasts")
+        # Sanremo, 1 Nov: "Un'edizione straordinaria è prevista per sabato 26 e domenica 27
+        # dicembre 2026." adds days; the second-Sunday rule still gives its own.
+        extra = {"kind": "extra_edition_claim", "evidence": [],
+                 "text": "Un'edizione straordinaria è prevista per sabato 26 e domenica 27 dicembre 2026."}
+        unresolved = {"kind": "hours_qualification", "text": "dalle 9 alle 18, esclusi i festivi", "evidence": []}
+        for statements, hold in (([extra], None), ([extra, unresolved], "unresolved_editorial_calendar_qualifications")):
+            said = deepcopy(evidence)
+            said["facts"]["scope_statements"] = statements
+            with self.subTest(statements=len(statements)):
+                self.assertEqual(current_rule_hold(after, said, today=TODAY), hold)
+        # The rule held (Trieste: an extra October edition the reader cannot place): the date
+        # the page lists is still a stated fact, shown as reported, never as a prediction.
+        said = deepcopy(evidence)
+        said["facts"]["scope_statements"] = [unresolved]
+        held = {**after, KEY: said, "date": [], "date_quality": "sconosciuta"}
+        shown, reason = apply_editorial_scope(held, today=TODAY)
+        self.assertEqual((reason, shown["date"], shown["date_quality"], shown["proiezione_fonte"]),
+                         ("editorial_listed_dates_retained", ["2026-11-08"], "riportata", ""))
+        self.assertEqual(apply_editorial_scope(shown, today=TODAY), (shown, "editorial_listed_dates_retained"))
+        # Those dates follow the page: once passed, the page's next listing replaces them...
+        relisted = deepcopy(said)
+        relisted["facts"]["occurrences"][0]["date"] = "2026-12-13"
+        relisted["facts"]["edition_intervals"] = [{"start": "2026-12-12", "end": "2026-12-13"}]
+        relisted["facts"]["date_intervals"][0].update(start="2026-12-12", end="2026-12-13")
+        later = {**shown, KEY: relisted, "date": []}
+        self.assertEqual(apply_editorial_scope(later, today=TODAY)[0]["date"], ["2026-12-13"])
+        # ...while dates another source reported are never touched by this page.
+        other = {**held, "date": ["2026-11-22"], "date_quality": "riportata"}
+        self.assertEqual(apply_editorial_scope(other, today=TODAY), (other, "independent_calendar_preserved"))
 
     def test_listed_dates_stay_reported_then_the_rule_takes_over(self):
         document = deepcopy(cdc_document("bologna"))

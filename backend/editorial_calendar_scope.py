@@ -116,6 +116,8 @@ def current_rule_hold(row, evidence, *, today):
     if months != card.get("active_months"):
         return "editorial_page_months_not_in_rule"
     for statement in facts.get("scope_statements") or []:
+        if isinstance(statement, dict) and statement.get("kind") == "extra_edition_claim":
+            continue  # an extra edition (Savona 16-18 Dec) adds days; the rule's own still hold
         said = (statement_months(statement.get("text")) if isinstance(statement, dict)
                 and statement.get("kind") == "hours_qualification" else False)
         # Never predict in a month a sentence of the page leaves out.
@@ -361,6 +363,14 @@ def build_evidence(row, document, *, read_on, calendar_mode="limit_forecasts"):
     return result
 
 
+def _page_listed(row, evidence):
+    """The card's reported dates are this page's own listed dates (as the Happings
+    reader's `owned`), not another source's: they follow the page, never outlive it."""
+    listed = {v["date"] for v in evidence["facts"]["occurrences"]
+              if v["status"] in {"source_listed", "rescheduled"}}
+    return row.get("date_quality") == "riportata" and set(row.get("date") or []) <= listed
+
+
 def _independently_supported(row, evidence, today):
     if row.get("verificato_il") or row.get("date_quality") == "confermata":
         return True
@@ -368,7 +378,8 @@ def _independently_supported(row, evidence, today):
         from source_calendar import clean_source_calendar
         if clean_source_calendar(row["calendario_fonte"], row, today=today):
             return True
-    if row.get("date_quality") == "riportata" and evidence["calendar_mode"] != "reported_explicit":
+    if (row.get("date_quality") == "riportata" and evidence["calendar_mode"] != "reported_explicit"
+            and not _page_listed(row, evidence)):
         return True
     for receipt in clean_receipts(row.get("riscontri_campi"), row, today=today):
         updated = as_day(receipt.get("fonte_aggiornata_il"))
@@ -432,7 +443,7 @@ stored scope is held rather than silently falling back to an old forecast.
             if key in result:
                 result[key] = empty
         return result, "explicit_editorial_dates_retained"
-    if row.get("date_quality") not in {None, "", "prevista", "sconosciuta"}:
+    if row.get("date_quality") not in {None, "", "prevista", "sconosciuta"} and not _page_listed(row, evidence):
         return result, "non_projected_calendar_preserved"
     intervals = facts.get("edition_intervals", [])
     if facts["archive_marker"]:
@@ -468,6 +479,18 @@ stored scope is held rather than silently falling back to an old forecast.
     kept = [d for d in old_dates if isinstance(d, str) and as_day(d) and as_day(d) >= today
             and (reason == "editorial_rule_page_current" or any(i["start"] <= d <= i["end"] for i in intervals))] \
         if reason in ("editorial_edition_scope_filtered", "editorial_rule_page_current") else []
+    if not kept and current_rule and reason not in (
+            "editorial_rule_page_current", "archived_edition_forecast_held", "conflicting_editorial_calendar_held"):
+        # The rule cannot give dates, but the next date a re-read page lists in its own
+        # date field is a stated fact (cosedicasa Trieste "terza domenica" + an extra
+        # October edition: 15 Nov). Narrative lists in free text stay held (eventiesagre).
+        listed = _reported_dates(row, evidence, today)
+        if listed:
+            result["date"], result["date_quality"] = listed, "riportata"
+            for key, empty in PROJECTION_FIELDS.items():
+                if key in result:
+                    result[key] = empty
+            return result, "editorial_listed_dates_retained"
     result["date"] = kept
     if not kept:
         result["date_quality"] = "sconosciuta"
