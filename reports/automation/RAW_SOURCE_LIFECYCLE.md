@@ -4,7 +4,7 @@ Le fonti hanno un contratto per schema, identità, formato, granularità, data e
 Nessuna riga di venditore, concessione o testo grezzo viene persistita qui.
 La data di lettura non prova che un mercato abbia aperto oggi.
 
-- Schede nazionali confrontate: **14,385**
+- Schede nazionali confrontate: **14,418**
 - Fonti controllate: **6**
 - Record di mercato importati da questo audit: **0**
 - Aperture individuali verificate: **0**
@@ -14,7 +14,7 @@ La data di lettura non prova che un mercato abbia aperto oggi.
 | altoadige-odh-mercati | sola verifica, non apertura confermata | 29 | 0 | 29 | 0 | 174 | 43 | 0 |
 | bologna-generic-venues | sola verifica, non apertura confermata | 9 | 0 | 9 | 0 | 40 | 0 | 0 |
 | corciano-generic-shadow | sola verifica, non apertura confermata | 1 | 0 | 1 | 0 | 1 | 0 | 0 |
-| trentino-com-mercati | sola verifica, non apertura confermata | 23 | 0 | 23 | 0 | 31 | 28 | 0 |
+| trentino-com-mercati | sola verifica, non apertura confermata | 23 | 0 | 23 | 0 | 31 | 0 | 0 |
 | veneto-calendario-antiquariato | sola verifica, non apertura confermata | 30 | 0 | 30 | 0 | 38 | 0 | 0 |
 | veneto-calendario-mercati | sola verifica, non apertura confermata | 478 | 0 | 478 | 0 | 604 | 0 | 0 |
 

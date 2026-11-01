@@ -4,8 +4,8 @@ Rapporto automatico **in sola lettura**. Le notizie non sono conferme delle pros
 
 Fonte: https://www.comune.bologna.it/novita/comunicati-stampa/due-nuovi-mercati-sperimentali-navile-e-borgo-panigale-reno
 
-- Schede nazionali conservate: 14385
-- Schede con Comune Bologna: 58
+- Schede nazionali conservate: 14418
+- Schede con Comune Bologna: 59
 - Lead comunali: 4
 - Senza corrispondenze della stessa via nelle schede Bologna: 3
 - Nuove aperture confermate o mercati importati: **0**

@@ -1,12 +1,12 @@
 {
-  "catalog_count": 14385,
+  "catalog_count": 14418,
   "checked_source_profiles": 6,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-10-31",
+  "reference_date": "2026-11-01",
   "registry_sha256": "80605db324a99f822a1f41c167c04f66fa91d12efc77257f6654e7d84653d32d",
   "schema": 1,
   "source_checks": {
@@ -16,7 +16,7 @@
   "source_contract_schema": 1,
   "sources": {
     "altoadige-odh-mercati": {
-      "catalog_records_compared": 14385,
+      "catalog_records_compared": 14418,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -90,49 +90,49 @@
       ],
       "existing_record_ids_deleted": 0,
       "fingerprints": {
-        "00ce5208f8f53caeec94cc0d5aaf29e096b911bf04fb6ce1a0dc315fb6609421": "27f3ad9e61447e7bf0e5eb47eeba8cc0c2dbb240ccc30d04fa8997efff31996a",
-        "0d8f56a02c82e301892aa6ca5a0913d0b25a7a8fd6259e445fdb9b4f372b1adb": "40ebcd8606567a8f56cf37fec9566f81620444527e8060c14c5ff7fc5acc194a",
-        "130aaed8440234d6f94a366c2c63072047ff711685f8f3109a7c2c2c99293bad": "b362c78fea208de97d46e49f8b3c1aefcce49535d942a14b8ee630dbfec131f7",
-        "171308cb9ee727b6388c5b38e580c9a127f45361732da0e10bfe0504512ae047": "bc70a139301be2aef09404128ae75ffe9450cd55409708e99142b2509cea9f36",
-        "197b3700d04687d25d0356a227c6f47e2d8fafbdb69beb33cc05fad00d26807d": "f179e3dd53f03d8555cd699fa17644159dd67764f3048813b45c48104b38b844",
-        "2dc71a063ed0bb18326c070bda1d01913d97edaf72d0468631ebcce6fbf079f6": "3026a8099aee66545b55fa8de3be3b1d381f33d7f75f95419059c3e90fc37ecc",
-        "2df00dea9f34f861bf8551f1637db3461c0759b6700d60c473d37c7db0fbecd4": "792322fc4041c786482e6d30ef2cbc7bd5fdb076c6fad3663eeb3e0b25e4e2b0",
-        "318f68e0d3a07ef1c942fa142df965bf41028f67579657034ab43658e2003269": "42bbeb6d4ae2a618bf9b06d116b7477eac369d633facd4d66db95ca4e6422e92",
-        "3a55bebaf0eb0f59fb03e0943a57c27e3e3562da39bcac56f6b509f1eb037e92": "d7f93fe020dddb0088eebc6c096c5cc531c52625b1bb90bda9a9850eba73bc25",
-        "3a8e487b0fac7355f60594f346759b6b7528b963b5539e09664063c5cdde7826": "f8367ccb5bd17a7f0dff7120144551d90ca4026f33e918bd92083dac34f0f83a",
-        "3cff2da2905678eb0d826e1eb3f033e32095e45c2977fc6b5024bd43088fad3d": "b9a825a732ee8088d077f8b84dd8bcdb924a4a5b06f99d310376a334e47d75f5",
-        "3da186104be6f44dfb9f067c162f5445a94aef15fd2313ed9f8c641805f9a18b": "790a1f6002b5c0ca69f380ca441d6ce5a579972e2e5380557b0f61a02c7279aa",
-        "40ea7a043727f2c2cffdbb93ca0a4de61cc071fe1fb0ce1e495b0351f9029c2c": "77c63d4e965853ae76718041c050aaa0412531af9814c3c3c8244ffbed2647cc",
-        "47e1c49c1daa66f6288503c1152852d3d818df3921584cf306bfad92ca7e620f": "497afe4deeedf3db3c09ac1472341a4bbb409d0a2387a7901517e592d86d58b5",
-        "4d8c600d79feba84d7a655e53eda8de1df2f78a18ddccec469dcae498cbdaab8": "9aad1cb9fd4dfd73cf9633c0c7708445c866ee12cd0ec4322c4f7ae89e226657",
-        "54a0f9d5b30b1c9f9916204131b676cde32e8c70dced65c0ac29d84acef65802": "71b3e624a3da859bb7eac4b5d9c476d4153632fce190210c85c970836c8ed50c",
-        "68466a085e7d73182069e5b581cb186e79d6aff901fa03043486bd929776cb94": "a0b85133a99e789759cad377cef83e6df0f62575b282cfd5307663795bfaaafd",
-        "68c320ac34502e8ef84aa8af97cc3b9297018ddbb6c4b481c2162aa524185ae9": "bcfafdec530e8dfcdd1a2f9ff73b906f4560c57d1e3db3f4cab21b4c4a28dd7e",
-        "7043cd6cfc7e701859b73645b7341ee27b0f693dee404f67b81ba683f12f6ca7": "c78a082d2b702623c25b4037ffa6652e96e668dedc697088a1f3624691a797b1",
-        "70c52036b326cf387ee0d0b19272d69690575183ff9e76b3ab7ec77def885016": "6f1f6f2e459c2c464614db606f551a5abf2f1e8d46cf9a6432ee58f5950e0d8f",
-        "7746c5e3e611310eb3d845e3236d40217efa3bbc0a1be85221acb1214c47fb37": "190d3ab71ae23a118ffaccc59c8c5178e9e4b76bfe0e3f10ad128abba2841782",
-        "860df2982a1449b1f050f142d88d6f7420957b9b005957faaa9478a01febe3f8": "0ca78df58037ad39550cb85d81c713a697a3c96687ad4131112850a572d7cf2a",
-        "879f877f645864646073db9afebf9effead36757877053ecf61ec1415fad68e0": "4d377152146e8a776233b0527fffbf8e903ba9515b8232faa25ba583364346fa",
-        "a55ffdffd77fd10cba76c2b1ff112336ff394263009df75141cf41b57a8b2ff8": "c93337294492470dc4f618ddc752766aff84f2fafec63b991be2976221d2cf26",
-        "af7ba4a895fb7260012e43448a92e163d6934df5863c7424e06fae2bbb3c5632": "06412d82309a514ca2505ea53874cf8567b36af7e06e2c7e4bd4071e1a2cf2ee",
-        "b31d46a8db906f67ca88443806f2bec7814909b2527ed15f5cbea15404377209": "cae52e16df03a7c721d992fa2542742e24495e9d9b0229a2bf1df5dbb80933ef",
-        "c0f1944e79c0d1d67e8f1612c473e7ec5beffd30c381d20c2480da99d63fc1de": "3a9e4c3f13e704663e95f9a4026b56c9d1efa87f44cf14fb5f0ce617d4b44f35",
-        "c653b6b1ed3a6575cc8e25489cabb52f0c2765f2bd202de24ad064ceb1b934a5": "0c27e36166029afc7b12667effc21a56e2735d84b53aafb446df8376fd94a128",
-        "c8a61288f52873e4f5a36135af0efe8933708bc2b63b39b6d80c02456bc8125b": "a9cd0caf235cdf23fe59c7bd7bc84a201479aa126015fa2023815b60fbf7f048",
-        "cbb003b18f414c894a7e4cd9034d3e4ece08c4e86c03e27c6b879099cd577d55": "bb902e9edb4f237c512cab0c14c95307de818d47e191453bcf4184a586e91b3a",
-        "cd83861b674fc21513d18eaa204bee0a3838c746f73dcb3b5f7bcdbc38678766": "afe58bdebf01dfeba621cec635e4a23575bf026e57953dc28b34d9beb3014fbf",
-        "d42d359e1a97e74ad78a39ec52cefa46ed2369f01e2a9c82ddde72a4c38e281c": "0ea9e735fc3cb054f3fd66cba7586f49fe4d6fdbac8dda3ad327a555b500f935",
-        "da29edc2f7159b531ccd7b8db46d25289b2f298bb213c89a4a7e7a8afe9771b5": "d821c3e1f5cf143525c17546f8c1cc5a9d531892853e6c96e187034491566b6c",
-        "e01f7294831fe10264ce619d6700a97888b8115d43cfbe9982308e195229e7ec": "534509fa8151b0e02090df14805ae77c63f96bdfaa6da4fa7c1d641e1c03b0bd",
-        "e146ed2fdd2bffb8135dba15215fa66188dde77060672f6bdf499210e831e064": "f38e1d0c214ec4a41e70f29a3f682a76b032a03849827945f650ea5fb63056cb",
-        "e4b742afd6cab55987347a1b7f4855effae1e0211b27cd47eb5215f3a8d1a205": "c87b813711a1440998fcd6e404185060aae66b50da69004f5c266be6c4453278",
-        "e68e46308ef828bf1318afc515b952c9b45fbacf395da8980332d7d89fad2f88": "553b4691ca1b85e3a2b5cacd0592a809dbad4250e793ee2c76cd75a355a90a62",
-        "e93dede6c9052b8c9291f23e98855ddd0e2d7637378eb1567111f97ac0aeed78": "cf747b07ee7ed3845f503e7ce1060a629df13f1c6ac5b988148ad514c9b0586c",
-        "eb0a5f2f5d1ba874395366506447ed5e774eae210154c4fa6f854563f588ef1e": "67d3826b03c7c083ee280292c345e6fc552f2659bc81d55f7a1b5daca97a866f",
-        "f24fa6c123cd1db4a5ad4a6f591a9f8a186d9d49af5878c71a564c9ead7e3a1d": "0a829280097bac72876a052a17e031881194ea266dae97f38073ce1ee6f5eaa3",
-        "f6bb4c45ce04e8cc9f27fd2e6f2cb3e4829ba196f5d6a07a6dbbd473b403219f": "4ec8b673679ad183aed6d47cef8b007866a67c1daa7847b6b29e6eabf5387772",
-        "f8d7367dfb271c73227a2146e288c3e4b49f90f13745947ab8bf2c901d62ad7d": "1d215d69758b6d5c3c1427168f063d7ef14acdb6dfc268c796ff9fb336df71ab",
-        "fec950c0ff339a498bdf3feb80b2d33008fae75d247c6127e50c0d7d31b65bec": "9c81192470c5fe7e2ab59787d4152510c48650093713e47128d1e84b5cbfd2e0"
+        "00ce5208f8f53caeec94cc0d5aaf29e096b911bf04fb6ce1a0dc315fb6609421": "4ca71e44110b62c065b51d9b2fbaf6b6d775fa86be9fe2085aafb884288b0bcc",
+        "0d8f56a02c82e301892aa6ca5a0913d0b25a7a8fd6259e445fdb9b4f372b1adb": "c8ee74f6bed4a4d774dbd64805b608ae8c2da7e361fc70be282086d98abbb9a3",
+        "130aaed8440234d6f94a366c2c63072047ff711685f8f3109a7c2c2c99293bad": "563c3a0cf8287680e79940199997b0832188501eeae3f2d7140c1cbe7b84afc7",
+        "171308cb9ee727b6388c5b38e580c9a127f45361732da0e10bfe0504512ae047": "1b31bc6ecafabdb1c38b2821d7c2036f082fa3e657f04250b82af93b0afa5ec1",
+        "197b3700d04687d25d0356a227c6f47e2d8fafbdb69beb33cc05fad00d26807d": "5bce597090268bff742fce7f98e403d744b3a6ca825910f178ad40395e9b79b5",
+        "2dc71a063ed0bb18326c070bda1d01913d97edaf72d0468631ebcce6fbf079f6": "0048d046e08337391fac02217deccc916b94d8be25a35513c4468f2031dee6af",
+        "2df00dea9f34f861bf8551f1637db3461c0759b6700d60c473d37c7db0fbecd4": "e9c13be59289b6311aeaf7c4dd4d19de9c6ed6c60629741519212ec1abf0daf7",
+        "318f68e0d3a07ef1c942fa142df965bf41028f67579657034ab43658e2003269": "6b81e00efb8fb24329addac1bcf7f7ee51675dcac1f12e0f9e2277a765b9da1e",
+        "3a55bebaf0eb0f59fb03e0943a57c27e3e3562da39bcac56f6b509f1eb037e92": "569de92643c3e6a49af8e97ca05f73732cb50e4947cc10dbc288f4544ff2a2a1",
+        "3a8e487b0fac7355f60594f346759b6b7528b963b5539e09664063c5cdde7826": "cdd8861c09cfc2884033e5160d171d73ecc1d8e6d2aaa02a04eb2edfeac512c0",
+        "3cff2da2905678eb0d826e1eb3f033e32095e45c2977fc6b5024bd43088fad3d": "a9840806cc738013871277d2e32bc4cb9f106f7dc11cc51ed8b09083665fad12",
+        "3da186104be6f44dfb9f067c162f5445a94aef15fd2313ed9f8c641805f9a18b": "140da6417a244596204e5ec5e89d23efa8b4c11690e343f2ad34169921207da6",
+        "40ea7a043727f2c2cffdbb93ca0a4de61cc071fe1fb0ce1e495b0351f9029c2c": "627e024fcbc0e73488a4d36b837d4c8ebfef3b95ac083a792798382f3d412eed",
+        "47e1c49c1daa66f6288503c1152852d3d818df3921584cf306bfad92ca7e620f": "4018150cebaf5e7c81379add2a2dcbd3fd1c2fe7e3b5585ca9eb599caf847e0e",
+        "4d8c600d79feba84d7a655e53eda8de1df2f78a18ddccec469dcae498cbdaab8": "f13b277bc85c05faf7d2310bbce526a92f37c494cfc8b1716c7e007e13190eb4",
+        "54a0f9d5b30b1c9f9916204131b676cde32e8c70dced65c0ac29d84acef65802": "bab95d34fb3a828de674de97745730e62dc20693eeccc8421dfcd5b57acf6029",
+        "68466a085e7d73182069e5b581cb186e79d6aff901fa03043486bd929776cb94": "4b6aad67f0cfe8f646f3e82a00713dc0d69ea5f74cdfcfa509120c9605b927f3",
+        "68c320ac34502e8ef84aa8af97cc3b9297018ddbb6c4b481c2162aa524185ae9": "f3c1e4c930bab0528f1b37d255bda627d6ab2ded0faee14cf0a6f2ad262d9607",
+        "7043cd6cfc7e701859b73645b7341ee27b0f693dee404f67b81ba683f12f6ca7": "8434b32f5071e69302b06a8846c4ac8d0271da25f243f64a89f8db2243c7e0e3",
+        "70c52036b326cf387ee0d0b19272d69690575183ff9e76b3ab7ec77def885016": "03b970f121f9b2e25ffcc35a264b617ab7813efc8c445d672d2c16436dbceb1a",
+        "7746c5e3e611310eb3d845e3236d40217efa3bbc0a1be85221acb1214c47fb37": "2d8fce712612f2a38bb3d53446fb10eb72c3b894e628e91a248abd63475c4275",
+        "860df2982a1449b1f050f142d88d6f7420957b9b005957faaa9478a01febe3f8": "5a7bfe252b96d794671526430c2acfafbb7746f855caafbba3bebfb5d517e936",
+        "879f877f645864646073db9afebf9effead36757877053ecf61ec1415fad68e0": "64dbe98ed12b8475f8b0097005d7c1d583c14dcbb8fd86f66ec760d9e7fab75a",
+        "a55ffdffd77fd10cba76c2b1ff112336ff394263009df75141cf41b57a8b2ff8": "b990d8e9cc016be6acb3d3048faf37a48ce4d6ad1f5715db75eba55d1aa9c006",
+        "af7ba4a895fb7260012e43448a92e163d6934df5863c7424e06fae2bbb3c5632": "7491e4ba3e9a6598c98363ae9533930e3f4a2be58136f2f608dc4bf0cb6fbb93",
+        "b31d46a8db906f67ca88443806f2bec7814909b2527ed15f5cbea15404377209": "b6d467267ace36de16b41532a1baa4e44a8c60233e3ec7bcbf479e5308eca426",
+        "c0f1944e79c0d1d67e8f1612c473e7ec5beffd30c381d20c2480da99d63fc1de": "c509f6b23d40928d8035556a241e7b2a05f38b84734cc9fea9f5fcd1d839c7c9",
+        "c653b6b1ed3a6575cc8e25489cabb52f0c2765f2bd202de24ad064ceb1b934a5": "8d2bf7dd39016f0d81e00d8087682b48330bca18dd2477648a350c3469ee5e96",
+        "c8a61288f52873e4f5a36135af0efe8933708bc2b63b39b6d80c02456bc8125b": "66ab47c411e8d703c0a90fc083b8f372d71666a8a319ceae9a08362d41684646",
+        "cbb003b18f414c894a7e4cd9034d3e4ece08c4e86c03e27c6b879099cd577d55": "7667b8a0e5a17a60d16e79f53b755ddd3479374376040435e6ea77270eddb502",
+        "cd83861b674fc21513d18eaa204bee0a3838c746f73dcb3b5f7bcdbc38678766": "3a3ed562a1b35b86bc14a5b29880cf6f56ae1704de23af726bd5a4125b893643",
+        "d42d359e1a97e74ad78a39ec52cefa46ed2369f01e2a9c82ddde72a4c38e281c": "4815fa6a3e9aa631d5f650fea2e4b7138a3b633fc0f3a5c9f2f3503a6603c9c7",
+        "da29edc2f7159b531ccd7b8db46d25289b2f298bb213c89a4a7e7a8afe9771b5": "a806bbbc5a7d4bb2e5bad93df82f130a0e4679603287e5aef38441b6ddd3c8e7",
+        "e01f7294831fe10264ce619d6700a97888b8115d43cfbe9982308e195229e7ec": "f38f959d8f0721fd4f0e2f259f4da181a0ddba71d05f374ad3cb964ec5d1335e",
+        "e146ed2fdd2bffb8135dba15215fa66188dde77060672f6bdf499210e831e064": "e2c9c79dc33f404e535371489e6d9fb201b1dda50ed078decc73dfeb8e15e34c",
+        "e4b742afd6cab55987347a1b7f4855effae1e0211b27cd47eb5215f3a8d1a205": "990b125e86a3301012700b03920f42a0c70f39dc35cb8723236e17f8fa98208f",
+        "e68e46308ef828bf1318afc515b952c9b45fbacf395da8980332d7d89fad2f88": "aef99eb5d018acbf4a49069967f2f1848f850fc087b8f3549f5f0714cf80ada7",
+        "e93dede6c9052b8c9291f23e98855ddd0e2d7637378eb1567111f97ac0aeed78": "9667fe892368c192dfec337081be1093b3a624131d3e0015e439d52658f1c3d2",
+        "eb0a5f2f5d1ba874395366506447ed5e774eae210154c4fa6f854563f588ef1e": "6d7179d6ed1a5678a143bf2c478d5724e785c6522e8bf563fc786ced58a27b6d",
+        "f24fa6c123cd1db4a5ad4a6f591a9f8a186d9d49af5878c71a564c9ead7e3a1d": "314e615f3e6ea9b912dca99f6ddaa3d951f290d74fbb491804ebfef0ce41d7b4",
+        "f6bb4c45ce04e8cc9f27fd2e6f2cb3e4829ba196f5d6a07a6dbbd473b403219f": "8ca0698201d8da6998b073cca847c09e2c6bcd56aac96265934686a8db17bc03",
+        "f8d7367dfb271c73227a2146e288c3e4b49f90f13745947ab8bf2c901d62ad7d": "b4187dafc8b1990b7d57f9910f921b2bd59171e9e015ccaf8ccf175d51aaedfb",
+        "fec950c0ff339a498bdf3feb80b2d33008fae75d247c6127e50c0d7d31b65bec": "c0e141e21d616bac69fc791fb60bd8f199d8c06baea3c8bcbd47b1a9560b79c4"
       },
       "individual_market_openings_verified": 0,
       "license_reviewed_for_automatic_publication": false,
@@ -142,7 +142,7 @@
       "profile_fingerprint": "a43f6ddcaabada51250df1aa3944e622f4016e5ab80781cf41ec134aeca3c393",
       "publisher": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0",
       "publisher_data_age_days": 1,
-      "publisher_dataset_date": "2026-10-30",
+      "publisher_dataset_date": "2026-10-31",
       "review_required": true,
       "row_kind": "market_venue_day",
       "schema": 1,
@@ -150,20 +150,20 @@
       "source_data_scope": "dataset_not_per_market",
       "source_date_proof": {
         "profile_sha256": "a43f6ddcaabada51250df1aa3944e622f4016e5ab80781cf41ec134aeca3c393",
-        "read_on": "2026-10-31",
-        "request_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate=2026-09-01&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
+        "read_on": "2026-11-01",
+        "request_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate=2026-09-02&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
         "schema": 1,
-        "snapshot_sha256": "3e18ddcea33b69877ee2e046ce7b83fb688cf3543489ee3f0c75ce0c664830c1",
-        "source_date": "2026-10-30",
+        "snapshot_sha256": "9d62d42ba670c61256f04920b28c9294b000da8fb76be3d2a343bffba94fd7df",
+        "source_date": "2026-10-31",
         "source_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate={begindate}&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
         "strategy": "opendatahub_last_change_v1"
       },
       "source_id": "altoadige-odh-mercati",
-      "source_read_on": "2026-10-31",
+      "source_read_on": "2026-11-01",
       "source_schema_columns_sha256": "f7c0aecbc3a17a88cb77c75717ef0159bf84e3aa99c619f1c7b03a16f8e2b09f",
-      "source_snapshot_sha256": "3e18ddcea33b69877ee2e046ce7b83fb688cf3543489ee3f0c75ce0c664830c1",
+      "source_snapshot_sha256": "9d62d42ba670c61256f04920b28c9294b000da8fb76be3d2a343bffba94fd7df",
       "source_stage": {
-        "base_catalog_records": 14385,
+        "base_catalog_records": 14418,
         "counts": {
           "already_in_catalog_exact_source_id": 14,
           "publisher_distinct_address_count": 38,
@@ -247,7 +247,7 @@
         "profile_sha256": "a43f6ddcaabada51250df1aa3944e622f4016e5ab80781cf41ec134aeca3c393",
         "publication_enabled": false,
         "publisher": "Open Data Hub Alto Adige / Südtirol (LTS) — CC0",
-        "publisher_dataset_date": "2026-10-30",
+        "publisher_dataset_date": "2026-10-31",
         "review_reason_counts": {
           "existing_market_same_town_day": 10,
           "generic_city_market_day": 2,
@@ -261,28 +261,28 @@
         "schema": 1,
         "source_date_proof": {
           "profile_sha256": "a43f6ddcaabada51250df1aa3944e622f4016e5ab80781cf41ec134aeca3c393",
-          "read_on": "2026-10-31",
-          "request_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate=2026-09-01&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
+          "read_on": "2026-11-01",
+          "request_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate=2026-09-02&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
           "schema": 1,
-          "snapshot_sha256": "3e18ddcea33b69877ee2e046ce7b83fb688cf3543489ee3f0c75ce0c664830c1",
-          "source_date": "2026-10-30",
+          "snapshot_sha256": "9d62d42ba670c61256f04920b28c9294b000da8fb76be3d2a343bffba94fd7df",
+          "source_date": "2026-10-31",
           "source_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate={begindate}&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
           "strategy": "opendatahub_last_change_v1"
         },
         "source_id": "altoadige-odh-mercati",
         "source_kind": "market_venue_day",
         "source_license_automatically_verified": false,
-        "source_parsed_sha256": "84268b2900ba3f4a6babb3c2ee093d0c4ca3f6aea7f774367dff34bbd013a306",
-        "source_read_on": "2026-10-31",
+        "source_parsed_sha256": "120f30657bd87c5c96888d91b6e6d5286539238d420639db494d1f952b9b5d51",
+        "source_read_on": "2026-11-01",
         "source_schema_readonly": true,
-        "source_snapshot_sha256": "3e18ddcea33b69877ee2e046ce7b83fb688cf3543489ee3f0c75ce0c664830c1",
+        "source_snapshot_sha256": "9d62d42ba670c61256f04920b28c9294b000da8fb76be3d2a343bffba94fd7df",
         "source_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate={begindate}&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End",
         "verified_openings_created": 0
       },
       "source_url": "https://tourism.api.opendatahub.com/v1/Event?pagesize=1000&source=lts&begindate={begindate}&rawfilter=or%28like%28Detail.de.Title%2C%22markt%22%29%2Clike%28Detail.it.Title%2C%22mercat%22%29%29&fields=Id,Source,LicenseInfo.License,LastChange,Detail.it.Title,Detail.de.Title,ContactInfos.it.City,ContactInfos.it.Address,LocationInfo.MunicipalityInfo.Name.it,EventDate.%5B%2A%5D.From,EventDate.%5B%2A%5D.To,EventDate.%5B%2A%5D.Begin,EventDate.%5B%2A%5D.End"
     },
     "bologna-generic-venues": {
-      "catalog_records_compared": 14385,
+      "catalog_records_compared": 14418,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -306,27 +306,17 @@
         {
           "publication_permission": "none",
           "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "928f5e16b6ec6285"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
           "stable_identity_hash": "91e5130aa0bc6624"
         },
         {
           "publication_permission": "none",
           "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "928f5e16b6ec6285"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
           "stable_identity_hash": "da320e3c3b320d24"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "2ab6ecc2db0df2ea"
-        },
-        {
-          "publication_permission": "none",
-          "review_state": "source_level_new_candidate",
-          "stable_identity_hash": "b9d74e9ce4514bdc"
         },
         {
           "publication_permission": "none",
@@ -337,6 +327,16 @@
           "publication_permission": "none",
           "review_state": "source_level_new_candidate",
           "stable_identity_hash": "3b9c9c91cb427605"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "2ab6ecc2db0df2ea"
+        },
+        {
+          "publication_permission": "none",
+          "review_state": "source_level_new_candidate",
+          "stable_identity_hash": "b9d74e9ce4514bdc"
         },
         {
           "publication_permission": "none",
@@ -407,7 +407,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
       "publisher": "Comune di Bologna",
-      "publisher_data_age_days": 577,
+      "publisher_data_age_days": 578,
       "publisher_dataset_date": "2025-04-02",
       "review_required": true,
       "row_kind": "market_venue",
@@ -424,20 +424,20 @@
         "dataset_records_count": 249,
         "metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
         "profile_sha256": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
-        "read_on": "2026-10-31",
+        "read_on": "2026-11-01",
         "schema": 1,
         "snapshot_records_count": 79,
-        "snapshot_sha256": "f53bc0bb8da1495e770ec496a8b05b9b32eb41bee7ecb1283f5c520b949956b5",
+        "snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
         "source_date": "2025-04-02",
         "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
         "strategy": "opendatasoft_data_processed_v1"
       },
       "source_id": "bologna-generic-venues",
-      "source_read_on": "2026-10-31",
+      "source_read_on": "2026-11-01",
       "source_schema_columns_sha256": "d9ffe7fa29cd5cf5d3f933b16a8c0ca46f526dcc8958ae55529f61d84675b424",
-      "source_snapshot_sha256": "f53bc0bb8da1495e770ec496a8b05b9b32eb41bee7ecb1283f5c520b949956b5",
+      "source_snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
       "source_stage": {
-        "base_catalog_records": 14385,
+        "base_catalog_records": 14418,
         "counts": {
           "already_in_catalog_exact_source_id": 39,
           "informational_schedule_unknown": 12,
@@ -493,10 +493,10 @@
           "dataset_records_count": 249,
           "metadata_url": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/mercati-e-fiere",
           "profile_sha256": "abd45c59058b406ed3f7154368c24c5c6ba71436a193635ed56bb6cfdfc8620b",
-          "read_on": "2026-10-31",
+          "read_on": "2026-11-01",
           "schema": 1,
           "snapshot_records_count": 79,
-          "snapshot_sha256": "f53bc0bb8da1495e770ec496a8b05b9b32eb41bee7ecb1283f5c520b949956b5",
+          "snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
           "source_date": "2025-04-02",
           "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
           "strategy": "opendatasoft_data_processed_v1"
@@ -505,16 +505,16 @@
         "source_kind": "market_venue",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "8295965a493f3d9b4b029ac95b3d2ca8a55f6fe8d7bc398829175af0c21f94f1",
-        "source_read_on": "2026-10-31",
+        "source_read_on": "2026-11-01",
         "source_schema_readonly": true,
-        "source_snapshot_sha256": "f53bc0bb8da1495e770ec496a8b05b9b32eb41bee7ecb1283f5c520b949956b5",
+        "source_snapshot_sha256": "603b6ee6febc5646e28806be59cbd1f025018e918adbccf6927fce453f85ecfa",
         "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento",
         "verified_openings_created": 0
       },
       "source_url": "https://opendata.comune.bologna.it/api/records/1.0/search/?dataset=mercati-e-fiere&rows=100&q=tipologia_mercato%3Arionale+OR+tipologia_mercato%3Aperiodico+OR+tipologia%3A%22mercato+produttori+agricoli%22&fields=denominazione%2Cubicazione%2Ctipologia%2Ctipologia_mercato%2Cgiorni_svolgimento%2Corario_svolgimento"
     },
     "corciano-generic-shadow": {
-      "catalog_records_compared": 14385,
+      "catalog_records_compared": 14418,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -551,7 +551,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "f91af45860351e299edde05a3ef62e2e74c5cf8f1afb00318fd27681c8741852",
       "publisher": "Comune di Corciano",
-      "publisher_data_age_days": 297,
+      "publisher_data_age_days": 298,
       "publisher_dataset_date": "2026-01-07",
       "review_required": true,
       "row_kind": "market_venue",
@@ -559,11 +559,11 @@
       "source_data_marked_current_by_fetch_time": false,
       "source_data_scope": "dataset_not_per_market",
       "source_id": "corciano-generic-shadow",
-      "source_read_on": "2026-10-31",
+      "source_read_on": "2026-11-01",
       "source_schema_columns_sha256": "2afea7e535523faf2cb891263244e6c9c0d08f728788bb158f320676b9ae5fb7",
       "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
       "source_stage": {
-        "base_catalog_records": 14385,
+        "base_catalog_records": 14418,
         "counts": {
           "already_in_catalog_exact_source_id": 3,
           "publisher_distinct_address_count": 4,
@@ -601,7 +601,7 @@
         "source_kind": "market_venue",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "75d4fcd2b903041ac19d4f145c3b7240543050daba29670e3d6064245801e2f2",
-        "source_read_on": "2026-10-31",
+        "source_read_on": "2026-11-01",
         "source_schema_readonly": true,
         "source_snapshot_sha256": "1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121",
         "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv",
@@ -610,7 +610,7 @@
       "source_url": "https://comune.corciano.pg.it/download/oggetto_documenti/372/1O__Oelenco-mercati-settinamanali-comune-corciano.csv"
     },
     "trentino-com-mercati": {
-      "catalog_records_compared": 14385,
+      "catalog_records_compared": 14418,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -623,10 +623,10 @@
       },
       "diff": {
         "added_source_identities_since_last_scan": 0,
-        "changed_source_identities_since_last_scan": 28,
+        "changed_source_identities_since_last_scan": 0,
         "first_observation": false,
         "missing_source_identities_since_last_scan": 0,
-        "same_source_identities_since_last_scan": 0
+        "same_source_identities_since_last_scan": 28
       },
       "examples_hashes_only": [
         {
@@ -718,7 +718,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "dfefa4f0e2e7ec83d0ac68f04be5ba54b398ed4c1fc5a7f0d3196060cb0de008",
       "publisher": "trentino.com — calendario eventi (APT e Comuni del Trentino)",
-      "publisher_data_age_days": 0,
+      "publisher_data_age_days": 1,
       "publisher_dataset_date": "2026-10-31",
       "review_required": true,
       "row_kind": "market_venue_day",
@@ -727,20 +727,20 @@
       "source_data_scope": "dataset_not_per_market",
       "source_date_proof": {
         "profile_sha256": "dfefa4f0e2e7ec83d0ac68f04be5ba54b398ed4c1fc5a7f0d3196060cb0de008",
-        "read_on": "2026-10-31",
-        "request_url": "https://www.trentino.com/it/manifestazioni/results/?sid=dHBjOjE1O2Q6MjAyNi0xMC0yNCwyMDI2LTExLTIx",
+        "read_on": "2026-11-01",
+        "request_url": "https://www.trentino.com/it/manifestazioni/results/?sid=dHBjOjE1O2Q6MjAyNi0xMC0yNSwyMDI2LTExLTIy",
         "schema": 1,
-        "snapshot_sha256": "d23d658081b93dfcd17b1c3f190046feadbc59b2066b95131e90e5298267715c",
+        "snapshot_sha256": "c9d2f1602c2d7f60914832b92638638ae337c48790054721d0b1298cfba3a3af",
         "source_date": "2026-10-31",
         "source_url": "https://www.trentino.com/it/manifestazioni/results/",
         "strategy": "trentino_listed_dates_v1"
       },
       "source_id": "trentino-com-mercati",
-      "source_read_on": "2026-10-31",
+      "source_read_on": "2026-11-01",
       "source_schema_columns_sha256": "f7c0aecbc3a17a88cb77c75717ef0159bf84e3aa99c619f1c7b03a16f8e2b09f",
-      "source_snapshot_sha256": "d23d658081b93dfcd17b1c3f190046feadbc59b2066b95131e90e5298267715c",
+      "source_snapshot_sha256": "c9d2f1602c2d7f60914832b92638638ae337c48790054721d0b1298cfba3a3af",
       "source_stage": {
-        "base_catalog_records": 14385,
+        "base_catalog_records": 14418,
         "counts": {
           "already_in_catalog_exact_source_id": 5,
           "publisher_distinct_address_count": 20,
@@ -772,7 +772,7 @@
           },
           {
             "new_market_created": false,
-            "review_reason": "existing_market_same_locality_day",
+            "review_reason": "same_named_market_in_city",
             "source_identity_sha256": "058daedf29e7bbda2a1dc8037d0a8bff9ecaf7a1d49b366d95bd08a583e03e2a"
           },
           {
@@ -826,20 +826,19 @@
         "publisher": "trentino.com — calendario eventi (APT e Comuni del Trentino)",
         "publisher_dataset_date": "2026-10-31",
         "review_reason_counts": {
-          "existing_market_same_locality_day": 1,
           "generic_city_market_day": 5,
           "not_a_market_venue": 8,
-          "same_named_market_in_city": 9,
+          "same_named_market_in_city": 10,
           "venue_at_same_street_day": 8
         },
         "safe_candidates_not_published": 0,
         "schema": 1,
         "source_date_proof": {
           "profile_sha256": "dfefa4f0e2e7ec83d0ac68f04be5ba54b398ed4c1fc5a7f0d3196060cb0de008",
-          "read_on": "2026-10-31",
-          "request_url": "https://www.trentino.com/it/manifestazioni/results/?sid=dHBjOjE1O2Q6MjAyNi0xMC0yNCwyMDI2LTExLTIx",
+          "read_on": "2026-11-01",
+          "request_url": "https://www.trentino.com/it/manifestazioni/results/?sid=dHBjOjE1O2Q6MjAyNi0xMC0yNSwyMDI2LTExLTIy",
           "schema": 1,
-          "snapshot_sha256": "d23d658081b93dfcd17b1c3f190046feadbc59b2066b95131e90e5298267715c",
+          "snapshot_sha256": "c9d2f1602c2d7f60914832b92638638ae337c48790054721d0b1298cfba3a3af",
           "source_date": "2026-10-31",
           "source_url": "https://www.trentino.com/it/manifestazioni/results/",
           "strategy": "trentino_listed_dates_v1"
@@ -848,16 +847,16 @@
         "source_kind": "market_venue_day",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "947b8e137fa0e9612b3d5367201c568fce44672623065b95f5c21364aecb0235",
-        "source_read_on": "2026-10-31",
+        "source_read_on": "2026-11-01",
         "source_schema_readonly": true,
-        "source_snapshot_sha256": "d23d658081b93dfcd17b1c3f190046feadbc59b2066b95131e90e5298267715c",
+        "source_snapshot_sha256": "c9d2f1602c2d7f60914832b92638638ae337c48790054721d0b1298cfba3a3af",
         "source_url": "https://www.trentino.com/it/manifestazioni/results/",
         "verified_openings_created": 0
       },
       "source_url": "https://www.trentino.com/it/manifestazioni/results/"
     },
     "veneto-calendario-antiquariato": {
-      "catalog_records_compared": 14385,
+      "catalog_records_compared": 14418,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -976,7 +975,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
       "publisher": "Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo",
-      "publisher_data_age_days": 303,
+      "publisher_data_age_days": 304,
       "publisher_dataset_date": "2026-01-01",
       "review_required": true,
       "row_kind": "market_venue_month",
@@ -986,9 +985,9 @@
       "source_date_proof": {
         "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+mercatini+usato+2026.pdf/7ca1a502-6de9-4e5e-a247-4ec2f3e6cf3d",
         "document_year": 2026,
-        "landing_sha256": "0fa9ceaf6c8536540498e8aa2ff9e98b12288ee88004b9a7bd06ffb3eda676aa",
+        "landing_sha256": "a0250391052fa9088905dc35b4956c27a8e13d3d17b6f848b5c83b7717d63702",
         "profile_sha256": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
-        "read_on": "2026-10-31",
+        "read_on": "2026-11-01",
         "schema": 1,
         "snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
         "source_date": "2026-01-01",
@@ -996,11 +995,11 @@
         "strategy": "landing_page_year_v1"
       },
       "source_id": "veneto-calendario-antiquariato",
-      "source_read_on": "2026-10-31",
+      "source_read_on": "2026-11-01",
       "source_schema_columns_sha256": "92b1ad9e83bad920e396ef032bf6d0ecac90a216681873bda13227b86cdc2e66",
       "source_snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
       "source_stage": {
-        "base_catalog_records": 14385,
+        "base_catalog_records": 14418,
         "counts": {
           "already_in_catalog_exact_source_id": 8,
           "informational_schedule_unknown": 2,
@@ -1099,9 +1098,9 @@
         "source_date_proof": {
           "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+mercatini+usato+2026.pdf/7ca1a502-6de9-4e5e-a247-4ec2f3e6cf3d",
           "document_year": 2026,
-          "landing_sha256": "0fa9ceaf6c8536540498e8aa2ff9e98b12288ee88004b9a7bd06ffb3eda676aa",
+          "landing_sha256": "a0250391052fa9088905dc35b4956c27a8e13d3d17b6f848b5c83b7717d63702",
           "profile_sha256": "9944415be04c21cd21481366981c9289e3219f093b677c3c4061b71b0f8a5986",
-          "read_on": "2026-10-31",
+          "read_on": "2026-11-01",
           "schema": 1,
           "snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
           "source_date": "2026-01-01",
@@ -1112,7 +1111,7 @@
         "source_kind": "market_venue_month",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "a93f197534b443669c9bcefdbab3c9e37f016d9f37075ad940e0e9f883cdd7f2",
-        "source_read_on": "2026-10-31",
+        "source_read_on": "2026-11-01",
         "source_schema_readonly": true,
         "source_snapshot_sha256": "a7a8a154417dba77d95f88353d09a08b8778424ab11d1d12b77b21fc23423941",
         "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",
@@ -1121,7 +1120,7 @@
       "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche"
     },
     "veneto-calendario-mercati": {
-      "catalog_records_compared": 14385,
+      "catalog_records_compared": 14418,
       "catalog_records_imported": 0,
       "catalog_records_modified": 0,
       "counts": {
@@ -1133,7 +1132,7 @@
         "municipality_not_in_istat": 5,
         "needs_review_schedule_unknown": 1,
         "not_a_market_venue": 116,
-        "possible_same_street_other_publisher": 124,
+        "possible_same_street_other_publisher": 125,
         "rejected_identity_collisions": 1,
         "rows_observed": 698
       },
@@ -1778,7 +1777,7 @@
       "new_precise_coordinates": 0,
       "profile_fingerprint": "fec52e1016df400237911fd1c85bdaa5a155cf08d97e53d9ea18a47598098a4d",
       "publisher": "Regione del Veneto – Calendario regionale dei mercati",
-      "publisher_data_age_days": 303,
+      "publisher_data_age_days": 304,
       "publisher_dataset_date": "2026-01-01",
       "review_required": true,
       "row_kind": "market_venue_day",
@@ -1788,9 +1787,9 @@
       "source_date_proof": {
         "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+regionale+marcati+2026.pdf/be79e5c1-ceae-4e76-8207-3b49630ae080",
         "document_year": 2026,
-        "landing_sha256": "0b64b0cf49ef15f20adc95c14ef8e920499f394ff6f31e4dae7b26ecf21db55f",
+        "landing_sha256": "1d03ecb87f052e3010f246b4bcdfc1e676a03aa41df66f1215ed3eef2b5b509d",
         "profile_sha256": "fec52e1016df400237911fd1c85bdaa5a155cf08d97e53d9ea18a47598098a4d",
-        "read_on": "2026-10-31",
+        "read_on": "2026-11-01",
         "schema": 1,
         "snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
         "source_date": "2026-01-01",
@@ -1798,11 +1797,11 @@
         "strategy": "landing_page_year_v1"
       },
       "source_id": "veneto-calendario-mercati",
-      "source_read_on": "2026-10-31",
+      "source_read_on": "2026-11-01",
       "source_schema_columns_sha256": "dbdd165f016b119e164552e9c4593bda7fc3357697c3fd9d61d1e7f870c50fd9",
       "source_snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
       "source_stage": {
-        "base_catalog_records": 14385,
+        "base_catalog_records": 14418,
         "counts": {
           "already_in_catalog_exact_source_id": 94,
           "informational_schedule_unknown": 1,
@@ -1870,7 +1869,7 @@
           },
           {
             "new_market_created": false,
-            "review_reason": "existing_market_same_town_day",
+            "review_reason": "venue_at_same_street_day",
             "source_identity_sha256": "97a961550a8ca8f7ee152fe6b11eb1994d12682d1d671998b540664611e4561c"
           }
         ],
@@ -1891,7 +1890,7 @@
         "review_reason_counts": {
           "duplicate_publisher_identity": 2,
           "existing_market_same_locality_day": 2,
-          "existing_market_same_town_day": 239,
+          "existing_market_same_town_day": 238,
           "generic_city_market_day": 37,
           "incomplete_venue_identity": 4,
           "municipality_not_in_istat": 5,
@@ -1899,16 +1898,16 @@
           "not_a_market_venue": 116,
           "same_named_market_in_city": 79,
           "temporary_location_unreconciled": 3,
-          "venue_at_same_street_day": 116
+          "venue_at_same_street_day": 117
         },
         "safe_candidates_not_published": 0,
         "schema": 1,
         "source_date_proof": {
           "document_url": "https://www.regione.veneto.it/documents/10713/12114597/Calendario+regionale+marcati+2026.pdf/be79e5c1-ceae-4e76-8207-3b49630ae080",
           "document_year": 2026,
-          "landing_sha256": "0b64b0cf49ef15f20adc95c14ef8e920499f394ff6f31e4dae7b26ecf21db55f",
+          "landing_sha256": "1d03ecb87f052e3010f246b4bcdfc1e676a03aa41df66f1215ed3eef2b5b509d",
           "profile_sha256": "fec52e1016df400237911fd1c85bdaa5a155cf08d97e53d9ea18a47598098a4d",
-          "read_on": "2026-10-31",
+          "read_on": "2026-11-01",
           "schema": 1,
           "snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
           "source_date": "2026-01-01",
@@ -1919,7 +1918,7 @@
         "source_kind": "market_venue_day",
         "source_license_automatically_verified": false,
         "source_parsed_sha256": "4f41533c574305de9b1b1567a60f6aa21983e64d32933b78f3dae320eaac8316",
-        "source_read_on": "2026-10-31",
+        "source_read_on": "2026-11-01",
         "source_schema_readonly": true,
         "source_snapshot_sha256": "7cc2d5ccb3b31b3c082dc1c44e96fa2674ca43ad3d9d0a461d6b54c326956090",
         "source_url": "https://www.regione.veneto.it/web/attivita-produttive/al-dettaglio-su-aree-pubbliche",

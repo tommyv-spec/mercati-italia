@@ -5,41 +5,41 @@ Sono ispezionati fino a 3 CSV al giorno; nessun record o dato personale viene sa
 Nessuna fonte viene abilitata all'importazione.
 
 - Dataset trovati dalla ricerca CKAN: **87**.
-- Dataset con campione storico: **39**.
+- Dataset con campione storico: **42**.
 - Campioni in questo run: **3**.
 
-## Fiere e mercati - VALDOBBIADENE
-- Editore dichiarato: Comune di Valdobbiadene
+## Posteggi mercati e fiere - MINERBE
+- Editore dichiarato: Comune di Minerbe
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: concessions_not_market_visits
-- Righe amministrative lette: 6
-- Nomi distinti (NON mercato nuovo): 4
+- Categoria dei record: historic_stall_capacity_not_market_visits
+- Righe amministrative lette: 5
+- Nomi distinti (NON mercato nuovo): 1
 - Concessioni scadute: 0
 - Righe di posteggi storici: 0
-- Giorni settimanali espliciti: 0
-- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
+- Giorni settimanali espliciti: 5
+- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
 
-## Fiere e mercati - BRENDOLA
-- Editore dichiarato: Comune di Brendola
+## Fiere e mercati - NOVENTA PADOVANA
+- Editore dichiarato: Comune di Noventa Padovana
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: concessions_not_market_visits
-- Righe amministrative lette: 56
-- Nomi distinti (NON mercato nuovo): 2
-- Concessioni scadute: 54
+- Righe amministrative lette: 639
+- Nomi distinti (NON mercato nuovo): 4
+- Concessioni scadute: 532
 - Righe di posteggi storici: 0
 - Giorni settimanali espliciti: 0
 - Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
-## Fiere e mercati - SONA
-- Editore dichiarato: Comune di Sona
+## Fiere e mercati - MEOLO
+- Editore dichiarato: Comune di Meolo
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: concessions_not_market_visits
-- Righe amministrative lette: 21
+- Righe amministrative lette: 48
 - Nomi distinti (NON mercato nuovo): 2
-- Concessioni scadute: 4
+- Concessioni scadute: 48
 - Righe di posteggi storici: 0
 - Giorni settimanali espliciti: 0
 - Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
