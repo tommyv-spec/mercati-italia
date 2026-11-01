@@ -20,7 +20,24 @@ il catalogo che serve non è quello del ramo DEV, la ricostruisce da DEV (catalo
 pubblica con `firebase hosting:channel:deploy dev` e controlla che serva il catalogo giusto. Se non
 riesce si apre l'issue «[Automazione locale] app-dev — verifica richiesta». A mano:
 `python ops/runner.py devapp` (`--force` per ricostruirla comunque). La configurazione hosting sta in
-`ops/devapp-hosting.json` (copia di quella del sito, con un altro nome apposta).
+`ops/devapp-hosting.json` (vale anche per il sito pubblico, con un altro nome apposta).
+
+## Pubblicare sul sito (fuori-mercatini.com)
+
+Solo con il via del proprietario. Il sito riceve **esattamente** la versione già provata sull'app DEV,
+senza ricostruirla:
+
+```bash
+python ops/runner.py devapp      # l'app DEV serve il catalogo DEV di oggi
+npx firebase hosting:channel:list --project market-ef407 --json   # annotare la versione di "live"
+npx firebase hosting:clone market-ef407:dev market-ef407:live
+```
+
+Per tornare indietro: `npx firebase hosting:clone market-ef407@<versione annotata> market-ef407:live`.
+Il sito poi resta fermo: le notti aggiornano solo l'app DEV. Il primo rilascio di questa app è del
+1° novembre 2026; prima c'era la vecchia app Leaflet (versione `5e49e9ef9a5dfb91`). `public/sw.js`
+esiste solo per togliere dai telefoni il service worker della vecchia app; i vecchi link
+`/evento/<id>` aprono la stessa scheda.
 
 - Se il PC era spento, l'attività parte appena si riaccende; un lavoro settimanale saltato viene
   recuperato il giorno dopo.
