@@ -163,10 +163,12 @@ def install(repo, out):
     target,built=Path(repo)/"public/data/v1",Path(out)/"public/data/v1"
     def assets(folder):
         manifest=json.loads((folder/"manifest.json").read_text("utf-8"))
-        return {p.removeprefix("data/v1/") for p in
-                [manifest["index"],*(r["path"] for r in manifest["regions"])]}
+        paths=[manifest.get("index"),manifest.get("catalog"),manifest.get("events"),
+               *(r["path"] for r in manifest.get("regions",[]))]
+        return {p.removeprefix("data/v1/") for p in paths if p}
     keep=assets(target)|assets(built)
-    for old in [*target.glob("index-*.json"),*target.glob("regions/*.json")]:
+    for old in [*target.glob("index-*.json"),*target.glob("catalog-*.json"),
+                *target.glob("eventi-*.json"),*target.glob("regions/*.json")]:
         if old.relative_to(target).as_posix() not in keep:
             old.unlink()
     for name in sorted(assets(built))+["manifest.json"]:

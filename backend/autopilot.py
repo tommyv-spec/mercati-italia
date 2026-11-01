@@ -516,7 +516,7 @@ def prune_old_assets(output: Path, old_manifest: dict, new_manifest: dict):
     outside those two; never remove any new/old manifest referenced file.
     """
     def assets(manifest):
-        paths = {manifest.get("index"), manifest.get("catalog")}
+        paths = {manifest.get("index"), manifest.get("catalog"), manifest.get("events")}
         paths.update(part.get("path") for part in manifest.get("regions", []))
         return {s for s in paths if s}
     keep = assets(old_manifest) | assets(new_manifest)
