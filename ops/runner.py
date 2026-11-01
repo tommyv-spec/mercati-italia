@@ -9,6 +9,7 @@ A failed workflow opens (or comments on) one GitHub issue; success closes it.
     python ops/runner.py daily            # everything due today (scheduler entry)
     python ops/runner.py run <workflow>   # one workflow now, e.g. market-autopilot
     python ops/runner.py plan             # what "daily" would run, and why
+    python ops/runner.py devapp           # the DEV app (preview channel) on DEV's catalog; daily too
     python ops/runner.py rehearse --code <checkout>   # today's market-autopilot run
                                           # replayed with that checkout's new commits; nothing published
 
@@ -21,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
@@ -386,6 +388,72 @@ def scorecard():
         git("push", "-q", "origin", f"HEAD:{DEV}", cwd=work)
 
 
+# The DEV app: a Firebase preview channel of the production project. Only
+# `hosting:channel:deploy dev` is ever run here; the live site is never touched.
+DEVAPP_PROJECT, DEVAPP_CHANNEL = "market-ef407", "dev"
+DEVAPP_URL = "https://market-ef407--dev-n0hayy7b.web.app"
+
+
+def served_signature(url):
+    """content_signature of the catalog a site serves (None if it cannot be read)."""
+    import urllib.request
+    try:
+        with urllib.request.urlopen(url + "/data/v1/manifest.json", timeout=60) as reply:
+            return json.loads(reply.read())["content_signature"]
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
+def dev_app(force=False):
+    """Keep the DEV app on DEV's catalog: when the catalog it serves is not DEV's, rebuild
+    the app from DEV (catalog included) and deploy it to the preview channel, then check
+    that it serves DEV's catalog. A failure opens the usual alarm issue."""
+    work = HOME / "devapp"
+    log_path = HOME / "logs" / f"devapp-{date.today():%Y%m%d}.log"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    ok = False
+    with open(log_path, "a", encoding="utf-8", errors="replace") as log:
+        say = lambda text: (print(text, flush=True), log.write(f"[{datetime.now():%H:%M:%S}] {text}\n"), log.flush())
+        try:
+            mirror = update_mirror()
+            if not (work / ".git").exists():
+                rmtree(work)
+                git("clone", "-q", "-c", "core.autocrlf=false", mirror, work)
+            git("fetch", "-q", "origin", cwd=work)
+            git("checkout", "-q", "-B", DEV, f"origin/{DEV}", cwd=work)
+            git("reset", "-q", "--hard", f"origin/{DEV}", cwd=work)
+            want = json.loads((work / "public/data/v1/manifest.json").read_text("utf-8"))["content_signature"]
+            if not force and served_signature(DEVAPP_URL) == want:
+                say(f"DEV app already serves DEV's catalog {want[:12]}")
+                ok = True
+            else:
+                shutil.copy(work / "ops/devapp-hosting.json", work / "firebase.json")
+                lockfile = (work / "package-lock.json").read_bytes()
+                stamp = work / "node_modules" / ".runner-lock-sha"
+                fresh = stamp.is_file() and stamp.read_text() == hashlib.sha256(lockfile).hexdigest()
+                script = ("set -euo pipefail\n" + ("" if fresh else "npm ci --no-audit --no-fund\n")
+                          + "npx vite build\n"
+                          + f"firebase hosting:channel:deploy {DEVAPP_CHANNEL} --project {DEVAPP_PROJECT}"
+                            " --expires 30d --non-interactive\n")
+                say(f"building and deploying DEV {want[:12]} to the preview channel")
+                result = subprocess.run([BASH, "--noprofile", "--norc", "-c", script], cwd=work,
+                                        stdout=log, stderr=subprocess.STDOUT, timeout=1800)
+                if result.returncode:
+                    raise RuntimeError(f"build or deploy exit code {result.returncode}")
+                stamp.write_text(hashlib.sha256(lockfile).hexdigest())
+                for _ in range(10):  # the CDN may serve the old manifest for a moment
+                    if served_signature(DEVAPP_URL) == want:
+                        break
+                    time.sleep(30)
+                ok = served_signature(DEVAPP_URL) == want
+                say(f"DEV app {'now serves' if ok else 'does NOT serve'} DEV's catalog {want[:12]}")
+        except (OSError, subprocess.SubprocessError, RuntimeError, ValueError, KeyError) as error:
+            say(f"DEV app update failed: {error}")
+    notify("app-dev", ok, SimpleNamespace(id=f"app-dev-{date.today()}", log_path=log_path),
+           intro="L'app DEV (canale di anteprima) non mostra il catalogo DEV di oggi.")
+    return ok
+
+
 CATALOG = "candidate/public/data/v1/manifest.json"
 CATALOG_DIFF = """
 import json, sys
@@ -496,6 +564,8 @@ def main():
     rh.add_argument("--code", help="a local checkout: its commits that DEV lacks are tested")
     rh.add_argument("--replay", help="run id to replay (default: today's latest market-autopilot)")
     rh.add_argument("--live", action="store_true", help="read the sources again instead of the saved reads")
+    app = sub.add_parser("devapp")
+    app.add_argument("--force", action="store_true", help="rebuild and deploy even if already current")
     args = p.parse_args()
     names = sorted((p.stem for p in WORKFLOWS.glob("*.yml") if schedule_of(p.stem)),
                    key=lambda n: (schedule_of(n)[1].zfill(2), schedule_of(n)[0].zfill(2)))
@@ -512,9 +582,12 @@ def main():
             sys.exit(0 if run_workflow(args.workflow, event="workflow_dispatch")[0] else 1)
         if args.cmd == "rehearse":
             sys.exit(0 if rehearse(args.code, args.replay, args.live) else 1)
+        if args.cmd == "devapp":
+            sys.exit(0 if dev_app(force=args.force) else 1)
         failures = [n for n in names if due(n, state, date.today())[0] and not run_workflow(n)[0]]
         scorecard()
-        sys.exit(1 if failures else 0)
+        app_ok = dev_app()  # the DEV app shows tonight's DEV catalog
+        sys.exit(1 if failures or not app_ok else 0)
     finally:
         held.unlink(missing_ok=True)
 

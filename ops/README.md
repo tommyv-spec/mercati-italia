@@ -14,7 +14,13 @@ Ogni giorno alle 04:30 (ora del PC) l'attività di Windows **MercatiItalia-Autom
 | `market-autopilot` | ogni giorno | scarica le fonti ufficiali, aggiorna il catalogo DEV, ricostruisce l'app DEV |
 | `data-expansion-audit`, `event-leads-daily`, `regional-field-reconciliation`, `publisher-quality-daily`, `official-source-output-qa` | ogni giorno | report di controllo nel ramo DEV |
 
-Poi pubblica `reports/QUALITA.md`, la pagina unica sulla qualità dei dati.
+Poi pubblica `reports/QUALITA.md`, la pagina unica sulla qualità dei dati, e aggiorna l'**app DEV**
+(https://market-ef407--dev-n0hayy7b.web.app, canale di anteprima Firebase, mai il sito pubblico): se
+il catalogo che serve non è quello del ramo DEV, la ricostruisce da DEV (catalogo compreso), la
+pubblica con `firebase hosting:channel:deploy dev` e controlla che serva il catalogo giusto. Se non
+riesce si apre l'issue «[Automazione locale] app-dev — verifica richiesta». A mano:
+`python ops/runner.py devapp` (`--force` per ricostruirla comunque). La configurazione hosting sta in
+`ops/devapp-hosting.json` (copia di quella del sito, con un altro nome apposta).
 
 - Se il PC era spento, l'attività parte appena si riaccende; un lavoro settimanale saltato viene
   recuperato il giorno dopo.
