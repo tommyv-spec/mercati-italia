@@ -49,3 +49,9 @@ test('free entry is recognised in the wording sources use', () => {
   assert.equal(isFreeEntry('Ingresso 5 €'), false)
   assert.equal(isFreeEntry(''), false)
 })
+
+test('a name that starts like a fairground word is still a name', () => {
+  const arezzo = { name: 'Mercatino antiquariato e usato di Arezzo, Fiera Antiquaria, piazza Grande e dintorni', address: 'Fiera Antiquaria, piazza Grande e dintorni' }
+  assert.equal(displayName(arezzo), 'Fiera Antiquaria')
+  assert.equal(displayAddress(arezzo), 'piazza Grande e dintorni')
+})

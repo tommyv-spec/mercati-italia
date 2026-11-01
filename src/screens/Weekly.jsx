@@ -29,7 +29,7 @@ export default function Weekly({ city, markets, onOpen, onBack }) {
 
   return (
     <div className="weekly-screen">
-      <button type="button" className="back-home" onClick={onBack}><Icon name="chevronLeft" size={16} strokeWidth={2.2} /> Home</button>
+      <button type="button" className="back-home" onClick={onBack}><Icon name="chevronLeft" size={16} strokeWidth={2.2} /> Indietro</button>
       <h1>Mercati settimanali a {city}</h1>
       <p className="note" style={{ marginTop: 0 }}>{total} mercati comunali · tocca un mercato per orari e indirizzo</p>
       {groups.length === 0 && <div className="empty">Nessun mercato settimanale in catalogo per {city}.</div>}

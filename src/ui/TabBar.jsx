@@ -3,7 +3,7 @@ import Icon from './Icon.jsx'
 const TABS = [
   ['esplora', 'Esplora', 'compass'],
   ['mappa', 'Mappa', 'mapOutline'],
-  ['agenda', 'Agenda', 'calendar'],
+  ['salvati', 'Salvati', 'bookmark'],
   ['altro', 'Altro', 'dots'],
 ]
 

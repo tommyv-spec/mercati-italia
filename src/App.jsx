@@ -1,205 +1,333 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useMarkets } from "./hooks/useMarkets";
-import { displayEntries, weekdayFromISO } from './lib/marketGrouping';
-import WeeklyCityGroup from './components/WeeklyCityGroup.jsx';
+import { displayEntries } from './lib/marketGrouping';
 import { destinationForMarket } from './lib/marketDirections.js';
-import { effectiveDateFilter } from './lib/searchDateFilter.js';
-import Home from './screens/Home.jsx';
-import List from './screens/List.jsx';
+import Explore, { CATEGORY_FILTERS } from './screens/Explore.jsx';
 import Weekly from './screens/Weekly.jsx';
-import FilterSheet from './ui/FilterSheet.jsx';
-import EventRow from './ui/EventRow.jsx';
 import Detail from './screens/Detail.jsx';
 import MapScreen from './screens/MapScreen.jsx';
 import Agenda from './screens/Agenda.jsx';
 import More from './screens/More.jsx';
 import TabBar from './ui/TabBar.jsx';
-import { weekendOf, inWeekend } from './lib/weekend.js';
-import Icon from './ui/Icon.jsx';
-import { CATEGORY_COLORS, localISO, TODAY, todayStr, getNextDate, isFreeEntry } from './lib/display.js';
+import WhereSheet from './ui/WhereSheet.jsx';
+import WhenSheet from './ui/WhenSheet.jsx';
+import { todayStr, isFreeEntry } from './lib/display.js';
+import { DEFAULT_WHEN, whenDays, firstDayIn, whenLabel } from './lib/when.js';
+import { searchMarkets, matchCities } from './lib/search.js';
 import { haversine } from './services/staticMarkets.js';
 
-// ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
-// Market records come from the versioned static catalog, not bundled fixtures.
-const CATEGORIES = ["Alimentare", "Antiquariato", "Vintage e abbigliamento", "Usato", "Artigianato", "Misto"];
-const REGIONS = [];
-const CITIES = [];
+const NEAR_KM = 50;
+const PAGE = 30;
+// One history entry per opened layer, so the phone's Back closes the top layer and never leaves the app.
+const ROOT = { fuori: 1, tab: 'esplora', view: 'main', sheet: null, search: false, market: null };
+const WHERE_KEY = 'fuori.where';
+const PROMPT_KEY = 'fuori.where.prompt';
+const readStore = (key, fallback) => { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } };
+const writeStore = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* private mode: nothing to keep */ } };
+const hashMarket = () => new URLSearchParams(window.location.hash.replace(/^#/, '')).get('mercato');
+const urlFor = id => window.location.pathname + window.location.search + (id ? '#mercato=' + encodeURIComponent(id) : '');
+const rank = m => (m.dateQuality === 'riportata' || m.dateQuality === 'confermata' ? 10 : 0) + (m.description ? 3 : 0) +
+  (isFreeEntry(m.entry) ? 2 : 0) + (m.address ? 1 : 0);
+const matchCategory = (key, market) => {
+  const filter = CATEGORY_FILTERS.find(f => f.key === key);
+  if (!filter || key === 'tutti') return true;
+  return filter.free ? isFreeEntry(market.entry) : filter.cats.includes(market.category);
+};
 
-
-
-
-
-// ─── Main App ───────────────────────────────────────────────
 export default function App() {
-  // Data from Firebase (auto-seeds on first load)
   const {
-    markets: allMarkets,
-    loading: marketsLoading,
-    error: marketsError,
-    seedStatus,
-    favorites,
-    toggleFav: hookToggleFav,
-    getMarketDetails,
-    categories: hookCategories,
-    regions: hookRegions,
-    cities: hookCities,
-    categoryIcons: hookCatIcons,
-    categoryColors: hookCatColors,
-    dataMode,
-    userLat, userLng, positionStatus, positionError,
-    requestPosition, clearPosition, canonicalId,
+    markets: allMarkets, loading, error, favorites, toggleFav: hookToggleFav, getMarketDetails, cities,
+    userLat, userLng, positionStatus, positionError, requestPosition, clearPosition, canonicalId,
   } = useMarkets();
 
-  const [tab, setTab] = useState("esplora");
-  const [view, setView] = useState("home");        // esplora: home | list | weekly
-  const [weekendOffset, setWeekendOffset] = useState(0);
-  const [weeklyCity, setWeeklyCity] = useState("");
-  const [eventsOnly, setEventsOnly] = useState(false);   // list opened from the home events
-  const [freeOnly, setFreeOnly] = useState(false);       // list opened from the home 'Gratis' tile
-  const [viewMode, setViewMode] = useState("lista");
-  const [searchQuery, setSearchQuery] = useState("");
-  // Prioritize visits people can actually plan; deselect to browse undated markets.
-  const [dateFilter, setDateFilter] = useState('7giorni');
-  const [dateFilterExplicit, setDateFilterExplicit] = useState(false);
-  // Search should discover every market, including ones without a future
-  // date; manually selected calendar chips always remain authoritative.
-  const activeDateFilter = effectiveDateFilter(dateFilter, searchQuery, dateFilterExplicit);
-  const [weekdayFilter, setWeekdayFilter] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(60);
-  const [showFilters, setShowFilters] = useState(false);
-  const [showSort, setShowSort] = useState(false);
-  const [sortBy, setSortBy] = useState("data");
+  const [tab, setTab] = useState('esplora');
+  const [view, setView] = useState('main');          // esplora: main | weekly
+  const [sheet, setSheet] = useState(null);           // where | when
+  const [query, setQuery] = useState('');
+  const [where, setWhereState] = useState(() => {
+    const stored = readStore(WHERE_KEY, null);
+    return stored && ['city', 'region', 'italia'].includes(stored.mode) ? stored : { mode: 'italia' };
+  });
+  const [when, setWhen] = useState(DEFAULT_WHEN);
+  const [category, setCategory] = useState('tutti');
+  const [includeEstimated, setIncludeEstimated] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(PAGE);
+  const [promptDismissed, setPromptDismissed] = useState(() => readStore(PROMPT_KEY, false));
+  const [wantGps, setWantGps] = useState(false);
+  const [manualCity, setManualCity] = useState('');
+  const [weeklyCity, setWeeklyCity] = useState('');
   const [selectedMarket, setSelectedMarket] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState('');
-
   const [toast, setToast] = useState(null);
-
-  // Filter states
-  const [filterCategories, setFilterCategories] = useState([]);
-  const [filterRegion, setFilterRegion] = useState("");
-  const [filterCity, setFilterCity] = useState("");
-  const [filterDistance, setFilterDistance] = useState(100);
-  const [includeEstimatedNearby, setIncludeEstimatedNearby] = useState(false);
-  const [activeFilterCount, setActiveFilterCount] = useState(0);
-
-  // Pending filter states (applied on "Applica")
-  const [pendingCats, setPendingCats] = useState([]);
-  const [pendingRegion, setPendingRegion] = useState("");
-  const [pendingCity, setPendingCity] = useState("");
-  const [pendingDist, setPendingDist] = useState(100);
-
-  // Settings
-  const [locationMode, setLocationMode] = useState("none");
-  const [manualCity, setManualCity] = useState("");
-
-  // Map state
-
-  // Day headers stick right under the search bar, whatever its rendered height.
-  const headerRef = useRef(null);
-  useEffect(() => {
-    const el = headerRef.current;
-    if (!el || typeof ResizeObserver === 'undefined') return undefined;
-    const observer = new ResizeObserver(() =>
-      document.documentElement.style.setProperty('--header-h', el.offsetHeight + 'px'));
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [tab, view]);
-
-  // Bridge: use hook's categories/colors/icons, falling back to local constants
-  const CATS = hookCategories.length > 0 ? hookCategories : CATEGORIES;
-  const CAT_COLORS = Object.keys(hookCatColors).length > 0 ? hookCatColors : CATEGORY_COLORS;
-  const REGS = hookRegions.length > 0 ? hookRegions : REGIONS;
-  const CTS = hookCities.length > 0 ? hookCities : CITIES;
+  const selectedRef = useRef(null);
+  const marketsRef = useRef(allMarkets);
+  marketsRef.current = allMarkets;
+  const barRef = useRef(null);
   const canUseDistance = Number.isFinite(userLat) && Number.isFinite(userLng);
 
-  const toggleFav = useCallback((id, e) => {
-    if (e) e.stopPropagation();
-    hookToggleFav(id);
-  }, [hookToggleFav]);
+  // Day headers stick right under the Dove/Quando bar, whatever its height.
+  useEffect(() => {
+    const el = barRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const observer = new ResizeObserver(() => document.documentElement.style.setProperty('--header-h', el.offsetHeight + 'px'));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [tab, view, query]);
 
-  const openMarket = useCallback(async (market) => {
+  const showToast = useCallback(msg => { setToast(msg); setTimeout(() => setToast(null), 2200); }, []);
+  const toggleFav = useCallback(id => {
+    showToast(favorites.has(id) ? 'Tolto dai salvati.' : 'Salvato: lo trovi in «Salvati».');
+    hookToggleFav(id);
+  }, [favorites, hookToggleFav, showToast]);
+
+  const setWhere = useCallback(next => {
+    setWhereState(next);
+    setIncludeEstimated(false);
+    if (next.mode !== 'gps') writeStore(WHERE_KEY, next);
+    window.scrollTo(0, 0);
+  }, []);
+
+  // ─── Market page loading ─────────────────────────────────
+  const loadMarket = useCallback(async market => {
+    selectedRef.current = market;
     setSelectedMarket(market);
     setDetailError('');
     setDetailLoading(true);
     try {
       const detailed = await getMarketDetails(market.id);
-      setSelectedMarket(current => current?.id === market.id ? (detailed || market) : current);
-    } catch (error) {
-      setDetailError(error.message || 'Impossibile caricare i dettagli');
+      if (detailed && selectedRef.current?.id === market.id) { selectedRef.current = detailed; setSelectedMarket(detailed); }
+    } catch (err) {
+      setDetailError(err.message || 'Impossibile caricare i dettagli');
     } finally {
       setDetailLoading(false);
     }
   }, [getMarketDetails]);
 
-  const showToast = useCallback((msg) => {
-    setToast(msg);
-    setTimeout(() => setToast(null), 2000);
+  const openById = useCallback(async requested => {
+    // A link shared for a soft-merged copy opens its kept record; a concluded market still opens.
+    const id = await canonicalId(requested).catch(() => requested);
+    const item = marketsRef.current.find(m => m.id === id) || await getMarketDetails(id).catch(() => null);
+    if (item) loadMarket(item);
+  }, [canonicalId, getMarketDetails, loadMarket]);
+
+  // ─── History: every layer is one step back ───────────────
+  const snapRef = useRef(ROOT);
+  const applySnap = useCallback(s => {
+    snapRef.current = s;
+    setTab(s.tab);
+    setView(s.view);
+    setSheet(s.sheet);
+    if (!s.search) setQuery('');
+    if (!s.market) { selectedRef.current = null; setSelectedMarket(null); }
+    else if (selectedRef.current?.id !== s.market) openById(s.market);
+  }, [openById]);
+  const applyRef = useRef(applySnap);
+  applyRef.current = applySnap;
+  const go = useCallback(change => {
+    const next = { ...snapRef.current, ...change };
+    window.history.pushState(next, '', urlFor(next.market));
+    applyRef.current(next);
+  }, []);
+  const replace = useCallback(change => {
+    const next = { ...snapRef.current, ...change };
+    window.history.replaceState(next, '', urlFor(next.market));
+    applyRef.current(next);
+  }, []);
+  const back = useCallback(() => window.history.back(), []);
+
+  useEffect(() => {
+    if (window.history.state?.fuori) applyRef.current(window.history.state);
+    else {
+      const id = hashMarket();
+      window.history.replaceState(ROOT, '', urlFor(null));
+      if (id) {
+        // A shared link: the market page sits on top of Esplora, so Back stays in the app.
+        const next = { ...ROOT, market: id };
+        window.history.pushState(next, '', urlFor(id));
+        applyRef.current(next);
+      }
+    }
+    const onPop = e => {
+      if (e.state?.fuori) applyRef.current(e.state);
+      else if (!hashMarket()) applyRef.current(ROOT);
+    };
+    const onHash = () => {
+      const id = hashMarket();
+      if (!id || id === snapRef.current.market) return;
+      const next = { ...snapRef.current, market: id };
+      window.history.replaceState(next, '', window.location.href);
+      applyRef.current(next);
+    };
+    window.addEventListener('popstate', onPop);
+    window.addEventListener('hashchange', onHash);
+    return () => { window.removeEventListener('popstate', onPop); window.removeEventListener('hashchange', onHash); };
   }, []);
 
-  // Details are shareable by URL hash: no server-side route required.
-  useEffect(() => {
-    const openHash = async () => {
-      const hash = window.location.hash.replace(/^#/, '');
-      const requested = new URLSearchParams(hash).get('mercato');
-      // A link shared for a soft-merged copy opens its kept record.
-      const id = requested && await canonicalId(requested);
-      // A concluded market is not in the lists but its link still opens it.
-      const item = id && (allMarkets.find(market => market.id === id)
-        || await getMarketDetails(id).catch(() => null));
-      if (item) openMarket(item);
-    };
-    openHash();
-    window.addEventListener('hashchange', openHash);
-    return () => window.removeEventListener('hashchange', openHash);
-  }, [allMarkets, openMarket, canonicalId, getMarketDetails]);
+  const openMarket = useCallback(market => { loadMarket(market); go({ market: market.id }); }, [loadMarket, go]);
 
-  const closeMarket = () => {
-    setSelectedMarket(null);
-    if (window.location.hash.startsWith('#mercato=')) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+  const onQuery = q => {
+    setQuery(q);
+    setVisibleCount(PAGE);
+    if (q.trim() && !snapRef.current.search) go({ search: true });
+    else if (!q.trim() && snapRef.current.search) { snapRef.current = { ...snapRef.current, search: false }; back(); }
+  };
+  const onTab = id => {
+    if (id === snapRef.current.tab) {
+      if (id === 'esplora' && snapRef.current.view !== 'main') go({ view: 'main' });
+      window.scrollTo(0, 0);
+      return;
     }
+    go({ tab: id, view: 'main', sheet: null, search: false });
+    window.scrollTo(0, 0);
   };
 
-  const shareMarket = async (market) => {
+  // ─── Dove ────────────────────────────────────────────────
+  const askGps = () => {
+    if (canUseDistance) { setWhere({ mode: 'gps' }); if (snapRef.current.sheet) back(); return; }
+    setWantGps(true);
+    requestPosition();
+  };
+  useEffect(() => {
+    if (!wantGps) return;
+    if (positionStatus === 'ready' && canUseDistance) {
+      setWantGps(false);
+      setWhere({ mode: 'gps' });
+      if (snapRef.current.sheet) back();
+    } else if (['denied', 'error', 'unavailable'].includes(positionStatus)) setWantGps(false);
+  }, [wantGps, positionStatus, canUseDistance, setWhere, back]);
+  const confirmCity = () => {
+    const name = manualCity.trim().toLocaleLowerCase('it');
+    const match = cities.find(city => city.toLocaleLowerCase('it') === name);
+    if (!match) { showToast('Scegli una città presente nel catalogo.'); return; }
+    clearPosition();
+    setWhere({ mode: 'city', city: match });
+    setManualCity('');
+    back();
+  };
+  const chooseItaly = () => {
+    clearPosition();
+    setWhere({ mode: 'italia' });
+    setPromptDismissed(true);
+    writeStore(PROMPT_KEY, true);
+    if (snapRef.current.sheet) back();
+  };
+  const pickCity = city => { clearPosition(); setWhere({ mode: 'city', city }); back(); };
+
+  // ─── What Esplora shows ──────────────────────────────────
+  const days = useMemo(() => whenDays(when, todayStr), [when]);
+  const live = useMemo(() => allMarkets.filter(m => !m.concluded), [allMarkets]);
+  const center = useMemo(() => {
+    if (where.mode === 'gps' && canUseDistance) return { lat: userLat, lng: userLng };
+    if (where.mode !== 'city') return null;
+    const points = live.filter(m => m.city === where.city && Number.isFinite(m.lat) && Number.isFinite(m.lng));
+    if (!points.length) return null;
+    return { lat: points.reduce((s, m) => s + m.lat, 0) / points.length, lng: points.reduce((s, m) => s + m.lng, 0) / points.length };
+  }, [where, canUseDistance, userLat, userLng, live]);
+  const kmFrom = useCallback(m => (center && Number.isFinite(m.lat) && Number.isFinite(m.lng) ? haversine(center.lat, center.lng, m.lat, m.lng) : null), [center]);
+  const inWhere = useCallback(m => {
+    if (where.mode === 'gps') return Number.isFinite(m.distance) && m.distance <= NEAR_KM && (includeEstimated || m.positionQuality === 'precisa');
+    if (where.mode === 'city') { const km = kmFrom(m); return m.city === where.city || (km !== null && km <= NEAR_KM); }
+    if (where.mode === 'region') return m.region === where.region;
+    return true;
+  }, [where, includeEstimated, kmFrom]);
+  const whereShort = where.mode === 'gps' ? 'Vicino a me' : where.mode === 'city' ? where.city : where.mode === 'region' ? where.region : 'Tutta Italia';
+  const whereLabel = where.mode === 'city' ? where.city + ' e dintorni' : whereShort;
+
+  const baseEvents = useMemo(() => live
+    .filter(m => m.isEvent && inWhere(m))
+    .map(m => ({
+      market: m,
+      day: firstDayIn(m.dates, days, todayStr),
+      km: where.mode === 'city' ? kmFrom(m) : null,
+      twoDays: Boolean(days && days.length === 2 && days.every(d => m.dates.includes(d))),
+    }))
+    .filter(item => !days || item.day), [live, inWhere, days, where, kmFrom]);
+  const categoryCounts = useMemo(() => Object.fromEntries(CATEGORY_FILTERS.map(f =>
+    [f.key, baseEvents.filter(item => matchCategory(f.key, item.market)).length])), [baseEvents]);
+  const nearFirst = where.mode === 'gps' || where.mode === 'city';
+  const eventItems = useMemo(() => baseEvents
+    .filter(item => matchCategory(category, item.market))
+    .sort((a, b) => (a.day || '9999').localeCompare(b.day || '9999') ||
+      (nearFirst ? ((where.mode === 'gps' ? a.market.distance : a.km) ?? 999) - ((where.mode === 'gps' ? b.market.distance : b.km) ?? 999)
+        : rank(b.market) - rank(a.market)) ||
+      a.market.name.localeCompare(b.market.name, 'it')), [baseEvents, category, nearFirst, where]);
+  // Four posters for the richest events across Italy (colours dealt so neighbours differ).
+  const featured = useMemo(() => {
+    if (category !== 'tutti' || nearFirst || eventItems.length <= 8) return [];
+    const sorted = eventItems.filter(item => item.market.description).sort((a, b) => rank(b.market) - rank(a.market));
+    const perCat = new Map(); const picked = [];
+    for (const item of sorted) {
+      const c = item.market.category;
+      if ((perCat.get(c) || 0) >= 2) continue;
+      perCat.set(c, (perCat.get(c) || 0) + 1); picked.push(item);
+      if (picked.length === 4) break;
+    }
+    const groups = [...new Set(picked.map(i => i.market.category))].map(c => picked.filter(i => i.market.category === c));
+    const dealt = [];
+    while (dealt.length < picked.length) for (const g of groups) if (g.length) dealt.push(g.shift());
+    return dealt;
+  }, [eventItems, category, nearFirst]);
+  const listItems = useMemo(() => {
+    const shown = new Set(featured.map(i => i.market.id));
+    return eventItems.filter(i => !shown.has(i.market.id));
+  }, [eventItems, featured]);
+  useEffect(() => setVisibleCount(PAGE), [where, when, category]);
+
+  const nearestCity = useMemo(() => {
+    if (where.mode !== 'gps') return '';
+    const nearest = live.filter(m => Number.isFinite(m.distance) && m.distance <= 15 && m.positionQuality === 'precisa')
+      .sort((a, b) => a.distance - b.distance)[0];
+    return nearest ? nearest.city : '';
+  }, [where, live]);
+  const weeklyCityName = where.mode === 'city' ? where.city : nearestCity;
+  const weeklyMarkets = useMemo(() => !weeklyCityName ? [] : live
+    .filter(m => !m.isEvent && m.city === weeklyCityName && (!days || m.dates.some(d => days.includes(d))))
+    .sort((a, b) => (firstDayIn(a.dates, days, todayStr) || '9999').localeCompare(firstDayIn(b.dates, days, todayStr) || '9999') ||
+      a.name.localeCompare(b.name, 'it')), [live, weeklyCityName, days]);
+  const weeklyEntries = useMemo(() => displayEntries(weeklyMarkets, { keepSingleWeeklyGroups: when.kind === 'weekday' })
+    .map(entry => entry.kind === 'group' ? entry : { ...entry, day: firstDayIn(entry.market.dates, days, todayStr) }),
+  [weeklyMarkets, when, days]);
+  const regions = useMemo(() => {
+    if (where.mode !== 'italia') return [];
+    const counts = new Map();
+    for (const item of baseEvents) counts.set(item.market.region, (counts.get(item.market.region) || 0) + 1);
+    return [...counts.entries()].filter(([name]) => name).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'it'));
+  }, [where, baseEvents]);
+
+  const n = eventItems.length;
+  const resultsLine = `${n === 1 ? '1 mercatino o evento' : n.toLocaleString('it-IT') + ' mercatini ed eventi'} · ${whereLabel} · ${whenLabel(when).toLowerCase()}`;
+  const emptyActions = [
+    ...(when.kind !== 'weekend' || (when.offset || 0) === 0 ? [{ label: 'Prova il prossimo weekend', onClick: () => setWhen({ kind: 'weekend', offset: 1 }) }] : []),
+    ...(where.mode !== 'italia' ? [{ label: 'Allarga a tutta Italia', onClick: chooseItaly }] : []),
+    ...(when.kind !== 'tutte' ? [{ label: 'Tutte le date', onClick: () => setWhen({ kind: 'tutte' }) }] : []),
+  ];
+  const searchResults = useMemo(() => (query.trim() ? searchMarkets(live, query, todayStr) : []), [live, query]);
+  const cityMatches = useMemo(() => (query.trim() ? matchCities(cities, query) : []), [cities, query]);
+  const mapMarkets = useMemo(() => [...eventItems.map(i => i.market), ...weeklyMarkets], [eventItems, weeklyMarkets]);
+
+  // ─── Market page actions ─────────────────────────────────
+  const shareMarket = async market => {
     const url = new URL(window.location.href);
     url.hash = 'mercato=' + encodeURIComponent(market.id);
     const payload = { title: market.name, text: market.city, url: url.toString() };
     try {
-      if (navigator.share) {
-        await navigator.share(payload);
-      } else if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(payload.url);
-        showToast('Link del mercato copiato.');
-      } else {
-        window.prompt('Copia questo link per condividerlo:', payload.url);
-      }
-    } catch (error) {
-      if (error?.name !== 'AbortError') showToast('Condivisione non riuscita.');
+      if (navigator.share) await navigator.share(payload);
+      else if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(payload.url); showToast('Link del mercato copiato.'); }
+      else window.prompt('Copia questo link per condividerlo:', payload.url);
+    } catch (err) {
+      if (err?.name !== 'AbortError') showToast('Condivisione non riuscita.');
     }
   };
-
-  const openDirections = (market) => {
-    // The search-index preview does not contain municipality source holds.
-    // Directions must never be possible before full regional details arrive.
-    if (detailLoading || detailError) {
-      showToast('Indicazioni non disponibili finché i dettagli non sono verificati.');
-      return;
-    }
+  const openDirections = market => {
+    // Directions only after the full regional details (with the source holds) have arrived.
+    if (detailLoading || detailError) { showToast('Indicazioni non disponibili finché i dettagli non sono verificati.'); return; }
     const destination = destinationForMarket(market);
-    if (!destination) {
-      showToast('Indirizzo non abbastanza preciso per navigare.');
-      return;
-    }
-    const url = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(destination);
-    window.open(url, '_blank', 'noopener,noreferrer');
+    if (!destination) { showToast('Indirizzo non abbastanza preciso per navigare.'); return; }
+    window.open('https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(destination), '_blank', 'noopener,noreferrer');
   };
-
-  const copyMarketAddress = async (market) => {
-    if (!market.address?.trim()) {
-      showToast('Indirizzo non disponibile.');
-      return;
-    }
+  const copyMarketAddress = async market => {
+    if (!market.address?.trim()) { showToast('Indirizzo non disponibile.'); return; }
     try {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard not supported');
       await navigator.clipboard.writeText(market.address);
@@ -208,367 +336,53 @@ export default function App() {
       showToast('Seleziona il testo dell’indirizzo per copiarlo.');
     }
   };
+  const leaveMarketFor = change => replace({ market: null, tab: 'esplora', view: 'main', search: false, sheet: null, ...change });
 
-  const activateNearby = () => {
-    // Asking permission must not erase the visitor's current city/filter.
-    // Activate nearby only AFTER the browser provides coordinates.
-    setLocationMode('auto');
-    if (!canUseDistance) requestPosition();
-  };
-
-  useEffect(() => {
-    if (positionStatus === 'ready' && canUseDistance && locationMode === 'auto') {
-      setFilterCity('');
-      setFilterRegion('');
-      setIncludeEstimatedNearby(false);
-      setFilterDistance(50);
-      setActiveFilterCount(1 + Number(filterCategories.length > 0));
-      setSortBy('distanza');
-    } else if (['denied', 'error', 'unavailable'].includes(positionStatus) && locationMode === 'auto') {
-      // GPS denial is not an empty city search: keep all existing filters.
-      setLocationMode('none');
-    }
-  }, [positionStatus, canUseDistance, locationMode]);
-
-  const confirmManualCity = () => {
-    const name = manualCity.trim().toLocaleLowerCase('it');
-    const match = CTS.find(city => city.toLocaleLowerCase('it') === name);
-    if (!match) {
-      showToast('Scegli una città presente nel catalogo.');
-      return;
-    }
-    clearPosition();
-    setLocationMode('manual');
-    setFilterCity(match);
-    setFilterRegion('');
-    setFilterDistance(100);
-    setSortBy('data');
-    setActiveFilterCount(1);
-    setTab('esplora');
-    setView('list');
-    showToast('Filtra per città: ' + match);
-  };
-
-  const disableLocation = () => {
-    clearPosition();
-    setLocationMode('none');
-    setFilterCity('');
-    setFilterDistance(100);
-    setActiveFilterCount(Number(filterCategories.length > 0) + Number(Boolean(filterRegion)));
-    setSortBy('data');
-  };
-
-
-  // "Vedi tutti i mercati a <città>" from a card: every card of that town, any date.
-  const showCity = (city) => {
-    setFilterRegion('');
-    setFilterCity(city);
-    setSearchQuery('');
-    setDateFilter(null);
-    setDateFilterExplicit(true);
-    setActiveFilterCount(1 + Number(filterCategories.length > 0));
-    setTab('esplora');
-    setViewMode('lista');
-    setView('list');
-    closeMarket();
-    window.scrollTo(0, 0);
-  };
-
-  // Home -> list hand-offs (the list keeps today's filter engine).
-  const cityForToday = useMemo(() => {
-    if (filterCity) return filterCity;
-    if (!canUseDistance) return '';
-    const nearest = allMarkets
-      .filter(m => Number.isFinite(m.distance) && m.distance <= 15 && m.positionQuality === 'precisa')
-      .sort((a, b) => a.distance - b.distance)[0];
-    return nearest ? nearest.city : '';
-  }, [filterCity, canUseDistance, allMarkets]);
-  const countFilters = (cats, region, city) => Number(cats.length > 0) + Number(Boolean(region)) +
-    Number(Boolean(city)) + Number(canUseDistance && filterDistance < 100);
-  const goHome = () => { setView('home'); window.scrollTo(0, 0); };
-  const goList = () => { setView('list'); setViewMode('lista'); window.scrollTo(0, 0); };
-  const homeQuery = (q) => { setSearchQuery(q); if (q.trim()) goList(); };
-  const homeCategory = (cats) => {
-    setFreeOnly(false);
-    setEventsOnly(false);
-    setFilterCategories(cats);
-    setActiveFilterCount(countFilters(cats, filterRegion, filterCity));
-    setDateFilter(cats.includes('Misto') ? '7giorni' : 'weekend');
-    setDateFilterExplicit(true);
-    goList();
-  };
-  const homeRegion = (name) => {
-    setEventsOnly(true);
-    setFilterRegion(name);
-    setFilterCity('');
-    setActiveFilterCount(countFilters(filterCategories, name, ''));
-    setDateFilter('weekend');
-    setDateFilterExplicit(true);
-    goList();
-  };
-  const homeSeeAll = () => { setEventsOnly(true); setFreeOnly(false); setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
-  const homeFree = () => { setEventsOnly(true); setFreeOnly(true); setFilterCategories([]); setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
-  // Where the home looks from: the visitor (GPS) or the chosen city (centre of its precise points).
-  const homeCenter = useMemo(() => {
-    if (canUseDistance) return { lat: userLat, lng: userLng, label: 'vicino a te' };
-    if (!filterCity) return null;
-    const points = allMarkets.filter(m => m.city === filterCity && Number.isFinite(m.lat) && Number.isFinite(m.lng));
-    if (!points.length) return null;
-    return { lat: points.reduce((sum, m) => sum + m.lat, 0) / points.length,
-      lng: points.reduce((sum, m) => sum + m.lng, 0) / points.length, label: 'vicino a ' + filterCity };
-  }, [canUseDistance, userLat, userLng, filterCity, allMarkets]);
-  const openWeekly = (city) => { setWeeklyCity(city); setView('weekly'); window.scrollTo(0, 0); };
-  const renderHome = () => (
-    <Home markets={allMarkets} loading={marketsLoading} error={marketsError} onRetry={() => window.location.reload()}
-      query={searchQuery} onQuery={homeQuery} weekendOffset={weekendOffset} onWeekend={setWeekendOffset}
-      onSeeAll={homeSeeAll} onCategory={homeCategory} onRegion={homeRegion} onFree={homeFree}
-      onNearby={activateNearby} onAllItaly={disableLocation} positionStatus={positionStatus} canUseDistance={canUseDistance} center={homeCenter}
-      cityForToday={cityForToday} onWeeklyCity={openWeekly} onChooseCity={() => setTab('altro')}
-      onOpen={openMarket} favorites={favorites} onToggleFav={toggleFav} />
-  );
-
-  // Use hook's markets (already have distances computed)
-  const marketsWithDistance = allMarkets;
-
-  // Render at most 60 cards initially on slow mobile browsers.
-  useEffect(() => setVisibleCount(60), [searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekdayFilter]);
-
-  // Apply filters
-  const filteredMarkets = useMemo(() => {
-    let result = [...marketsWithDistance];
-
-    // Search
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      result = result.filter(m =>
-        m.name.toLowerCase().includes(q) ||
-        m.city.toLowerCase().includes(q) ||
-        m.category.toLowerCase().includes(q) ||
-        m.tags.some(t => t.toLowerCase().includes(q))
-      );
-    }
-
-    if (eventsOnly) result = result.filter(m => m.isEvent);
-    if (freeOnly) result = result.filter(m => isFreeEntry(m.entry));
-
-    // Date filter
-    if (activeDateFilter === "oggi") {
-      result = result.filter(m => m.dates.includes(todayStr));
-    } else if (activeDateFilter === "weekend") {
-      const weekend = weekendOf(TODAY, weekendOffset);
-      result = result.filter(m => inWeekend(m.dates, weekend));
-    } else if (activeDateFilter === "7giorni") {
-      const end = new Date(TODAY); end.setDate(end.getDate() + 7);
-      const endStr = localISO(end);
-      result = result.filter(m => m.dates.some(d => d >= todayStr && d <= endStr));
-    }
-
-    // A day-of-week filter is applied to individual source appointments BEFORE
-    // aggregating their city/venue display. It never alters the stored records.
-    if (weekdayFilter !== null) {
-      result = result.filter(m => (m.dates || []).some(
-        d => d >= todayStr && weekdayFromISO(d) === weekdayFilter
-      ));
-    }
-
-    // Category filter
-    if (filterCategories.length > 0) {
-      result = result.filter(m => filterCategories.includes(m.category));
-    }
-
-    // Region
-    if (filterRegion) {
-      result = result.filter(m => m.region === filterRegion);
-    }
-
-    // City
-    if (filterCity) {
-      result = result.filter(m => m.city === filterCity);
-    }
-
-    // Distance
-    if (canUseDistance && filterDistance < 100) {
-      result = result.filter(m =>
-        Number.isFinite(m.distance) &&
-        m.distance <= filterDistance &&
-        (includeEstimatedNearby || m.positionQuality === 'precisa')
-      );
-    }
-
-    // Sort
-    if (sortBy === "distanza" && canUseDistance) {
-      const priority = (market) => market.positionQuality === 'precisa'
-        ? 0 : market.positionQuality === 'approssimata' ? 1 : 2;
-      result.sort((a, b) => priority(a) - priority(b) ||
-        (a.distance ?? Infinity) - (b.distance ?? Infinity));
-    } else {
-      // Same-day markets should not default to an accidental alphabetical
-      // order by region (Abruzzo -> Veneto). Prefer more useful records.
-      const rank = market =>
-        (market.dateQuality === 'confermata' ? 50 : 0) +
-        (market.positionQuality === 'precisa' ? 9 : 0) +
-        (market.hours ? 5 : 0) +
-        (market.category !== 'Misto' ? 3 : 0);
-      result.sort((a, b) => {
-        const aDate = getNextDate(a.dates);
-        const bDate = getNextDate(b.dates);
-        return (aDate || '9999').localeCompare(bDate || '9999') ||
-          rank(b) - rank(a) ||
-          a.name.localeCompare(b.name, 'it');
-      });
-    }
-
-    return result;
-  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekendOffset, eventsOnly, freeOnly]);
-
-  // Group generic city-wide weekly listings only for presentation. The
-  // map and the underlying dataset retain every individually sourced record.
-  const groupedList = useMemo(() => displayEntries(filteredMarkets, {
-    keepSingleWeeklyGroups: weekdayFilter !== null,
-  }), [filteredMarkets, weekdayFilter]);
-
-  const openFilters = () => {
-    setPendingCats([...filterCategories]);
-    setPendingRegion(filterRegion);
-    setPendingCity(filterCity);
-    setPendingDist(filterDistance);
-    setShowFilters(true);
-  };
-
-  const applyFilters = () => {
-    setFilterCategories(pendingCats);
-    setFilterRegion(pendingRegion);
-    setFilterCity(pendingCity);
-    setFilterDistance(canUseDistance ? pendingDist : 100);
-    let count = 0;
-    if (pendingCats.length > 0) count++;
-    if (pendingRegion) count++;
-    if (pendingCity) count++;
-    if (canUseDistance && pendingDist < 100) count++;
-    setActiveFilterCount(count);
-    setShowFilters(false);
-  };
-
-  const resetFilters = () => {
-    setPendingCats([]);
-    setPendingRegion("");
-    setPendingCity("");
-    setPendingDist(100);
-    setFilterCategories([]);
-    setFilterRegion("");
-    setFilterCity("");
-    setFilterDistance(100);
-    setActiveFilterCount(0);
-    setIncludeEstimatedNearby(false);
-    setShowFilters(false);
-  };
-
-  const resetAllFilters = () => {
-    setFreeOnly(false);
-    setEventsOnly(false);
-    setFilterCategories([]);
-    setFilterRegion("");
-    setFilterCity("");
-    setFilterDistance(100);
-    setIncludeEstimatedNearby(false);
-    setActiveFilterCount(0);
-    setDateFilter(null);
-    setDateFilterExplicit(false);
-    setWeekdayFilter(null);
-    setSearchQuery("");
-  };
-
-  // ─── Map projection (Italy bounds) ────────────
-  const mapProject = useCallback((lat, lng, w, h) => {
-    const minLat = 36.5, maxLat = 47.5, minLng = 6.5, maxLng = 19.5;
-    const x = ((lng - minLng) / (maxLng - minLng)) * w;
-    const y = ((maxLat - lat) / (maxLat - minLat)) * h;
-    return { x, y };
-  }, []);
-
-  // ─── Render Functions ─────────────────────────
-
-  const renderList = () => (
-    <List
-      headerRef={headerRef} query={searchQuery} onQuery={setSearchQuery} onHome={goHome}
-      loading={marketsLoading} error={marketsError}
-      filteredMarkets={filteredMarkets} groupedList={groupedList} visibleCount={visibleCount}
-      onMore={() => setVisibleCount(n => n + 60)}
-      activeDateFilter={activeDateFilter}
-      onDateFilter={key => { setDateFilter(activeDateFilter === key ? null : key); setDateFilterExplicit(true); }}
-      weekdayFilter={weekdayFilter}
-      onWeekday={i => { setWeekdayFilter(v => v === i ? null : i); if (weekdayFilter !== i) setDateFilter('7giorni'); }}
-      onClearWeekday={() => setWeekdayFilter(null)}
-      filterCity={filterCity} filterRegion={filterRegion} filterCategories={filterCategories}
-      onRemoveCity={() => { setFilterCity(''); setActiveFilterCount(Math.max(0, activeFilterCount - 1)); }}
-      onRemoveRegion={() => { setFilterRegion(''); setActiveFilterCount(Math.max(0, activeFilterCount - 1)); }}
-      onRemoveCategories={() => { setFilterCategories([]); setActiveFilterCount(Math.max(0, activeFilterCount - 1)); }}
-      onResetAll={resetAllFilters} activeFilterCount={activeFilterCount} onOpenFilters={openFilters}
-      canUseDistance={canUseDistance} filterDistance={filterDistance} includeEstimatedNearby={includeEstimatedNearby}
-      onToggleEstimated={() => setIncludeEstimatedNearby(prev => !prev)}
-      positionStatus={positionStatus} positionError={positionError} onNearby={activateNearby}
-      sortBy={sortBy} onSort={setSortBy} showSort={showSort} setShowSort={setShowSort}
-      viewMode={viewMode} setViewMode={setViewMode}
-      userLat={userLat} userLng={userLng}
-      favorites={favorites} onToggleFav={toggleFav} onOpen={openMarket}
-      getMarketDetails={getMarketDetails} dataMode={dataMode}
-      eventsOnly={eventsOnly} onToggleEventsOnly={() => setEventsOnly(v => !v)}
-      freeOnly={freeOnly} onToggleFreeOnly={() => setFreeOnly(v => !v)}
-    />
-  );
-
-  const renderWeekly = () => (
-    <Weekly city={weeklyCity} markets={allMarkets} onOpen={openMarket} onBack={goHome} />
-  );
-
-  const renderFilterSheet = () => (
-    <FilterSheet onClose={() => setShowFilters(false)} cats={CATS} catColors={CAT_COLORS}
-      pendingCats={pendingCats} setPendingCats={setPendingCats}
-      regions={REGS} pendingRegion={pendingRegion} setPendingRegion={setPendingRegion}
-      cities={CTS.filter(c => !pendingRegion || allMarkets.find(m => m.city === c)?.region === pendingRegion)}
-      pendingCity={pendingCity} setPendingCity={setPendingCity}
-      pendingDist={pendingDist} setPendingDist={setPendingDist} canUseDistance={canUseDistance}
-      onReset={resetFilters} onApply={applyFilters} />
-  );
-
-  // Map tab: the list's markets, around the chosen city when there is one and no GPS.
-  const mapMarkets = useMemo(() => homeCenter && !canUseDistance
-    ? filteredMarkets.filter(m => Number.isFinite(m.lat) && Number.isFinite(m.lng) && haversine(homeCenter.lat, homeCenter.lng, m.lat, m.lng) <= 50)
-    : canUseDistance ? filteredMarkets : filteredMarkets.filter(m => m.isEvent), [filteredMarkets, homeCenter, canUseDistance]);
-  const renderMap = () => (
-    <MapScreen markets={mapMarkets} userLat={userLat} userLng={userLng} onSelect={openMarket}
-      label={`${mapMarkets.length.toLocaleString('it-IT')} mercati sulla mappa${filterCity ? ' · ' + filterCity : filterRegion ? ' · ' + filterRegion : homeCenter ? ' · ' + homeCenter.label : ''}`}
-      onList={() => { setTab('esplora'); setView('list'); setViewMode('lista'); }} />
-  );
-  const renderAgenda = () => (
-    <Agenda markets={allMarkets} favorites={favorites} onOpen={openMarket} onToggleFav={toggleFav}
-      onExplore={() => { setTab('esplora'); setView('home'); }} />
-  );
-  const renderMore = () => (
-    <More locationMode={locationMode} positionStatus={positionStatus} positionError={positionError} canUseDistance={canUseDistance}
-      manualCity={manualCity} setManualCity={setManualCity} cities={CTS}
-      onUseGps={activateNearby} onChooseCity={() => setLocationMode('manual')} onNoLocation={disableLocation} onConfirmCity={confirmManualCity} />
-  );
+  const context = { whereLabel: whereShort, whenLabel: whenLabel(when), onOpenWhere: () => go({ sheet: 'where' }), onOpenWhen: () => go({ sheet: 'when' }) };
 
   return (
-    <>
-      <div className="app-container" onClick={() => showSort && setShowSort(false)}>
-        {tab === "esplora" && (view === "home" ? renderHome() : view === "weekly" ? renderWeekly() : renderList())}
-        {tab === "mappa" && renderMap()}
-        {tab === "agenda" && renderAgenda()}
-        {tab === "altro" && renderMore()}
+    <div className="app-container">
+      {tab === 'esplora' && (view === 'weekly'
+        ? <Weekly city={weeklyCity} markets={live} onOpen={openMarket} onBack={back} />
+        : <Explore {...context} barRef={barRef} query={query} onQuery={onQuery} loading={loading} error={error}
+            onRetry={() => window.location.reload()}
+            showPrompt={where.mode === 'italia' && !promptDismissed} onPromptNearby={askGps} onPromptDismiss={chooseItaly}
+            category={category} onCategory={setCategory} categoryCounts={categoryCounts}
+            resultsLine={resultsLine} gps={where.mode === 'gps'} includeEstimated={includeEstimated}
+            onToggleEstimated={() => setIncludeEstimated(v => !v)}
+            items={listItems} featured={featured} visibleCount={visibleCount} onMore={() => setVisibleCount(c => c + PAGE)}
+            whenKind={when.kind} emptyActions={emptyActions}
+            weekly={{ city: weeklyCityName, entries: weeklyEntries }} weekdaySelected={when.kind === 'weekday' ? when.weekday : null}
+            onWeeklyAll={city => { setWeeklyCity(city); go({ view: 'weekly' }); }}
+            regions={regions} onRegion={region => setWhere({ mode: 'region', region })}
+            results={searchResults} cityMatches={cityMatches} onPickCity={pickCity} today={todayStr}
+            onOpen={openMarket} favorites={favorites} onToggleFav={toggleFav} getMarketDetails={getMarketDetails} />)}
+      {tab === 'mappa' && (
+        <MapScreen {...context} markets={mapMarkets} userLat={userLat} userLng={userLng} onSelect={openMarket}
+          label={`${mapMarkets.length.toLocaleString('it-IT')} mercati sulla mappa`}
+          onList={() => go({ tab: 'esplora', view: 'main' })} />
+      )}
+      {tab === 'salvati' && (
+        <Agenda markets={allMarkets} favorites={favorites} onOpen={openMarket} onToggleFav={toggleFav}
+          onExplore={() => go({ tab: 'esplora', view: 'main' })} />
+      )}
+      {tab === 'altro' && <More />}
 
-        {showFilters && renderFilterSheet()}
-        {selectedMarket && (
-          <Detail market={selectedMarket} loading={detailLoading} error={detailError} allMarkets={allMarkets}
-            favorites={favorites} onToggleFav={toggleFav} onBack={closeMarket} onShare={shareMarket}
-            onDirections={openDirections} onCopyAddress={copyMarketAddress} onOpen={openMarket}
-            onShowCity={showCity} onShowRegion={region => { closeMarket(); homeRegion(region); }} />
-        )}
-        {toast && <div className="toast">{toast}</div>}
-
-        <TabBar tab={tab} onTab={id => { setTab(id); if (id === 'esplora') { setViewMode('lista'); setView('home'); } }} />
-      </div>
-    </>
+      {sheet === 'where' && (
+        <WhereSheet where={where} cities={cities} manualCity={manualCity} setManualCity={setManualCity}
+          onGps={askGps} onCity={confirmCity} onItaly={chooseItaly} onClose={back}
+          positionStatus={positionStatus} positionError={positionError} />
+      )}
+      {sheet === 'when' && <WhenSheet when={when} onPick={w => { setWhen(w); back(); }} onClose={back} />}
+      {selectedMarket && (
+        <Detail market={selectedMarket} loading={detailLoading} error={detailError} allMarkets={allMarkets}
+          favorites={favorites} onToggleFav={toggleFav} onBack={back} onShare={shareMarket}
+          onDirections={openDirections} onCopyAddress={copyMarketAddress} onOpen={openMarket}
+          onShowCity={city => { clearPosition(); setWhere({ mode: 'city', city }); setWhen({ kind: 'tutte' }); leaveMarketFor({}); }}
+          onShowRegion={region => { setWhere({ mode: 'region', region }); leaveMarketFor({}); }} />
+      )}
+      {toast && <div className="toast" role="status">{toast}</div>}
+      <TabBar tab={tab} onTab={onTab} />
+    </div>
   );
 }

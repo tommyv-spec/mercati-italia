@@ -75,6 +75,28 @@ async function assertCards({ allowGroupedVenue = false } = {}) {
   }
 }
 
+// Dove and Quando are chosen in sheets opened from the bar at the top of Esplora.
+async function chooseWhen(name) {
+  await page.getByRole('button', { name: /^Quando/ }).first().click()
+  await page.locator('.sheet').waitFor()
+  await page.locator('.sheet').getByRole('button', { name }).first().click()
+  await page.locator('.sheet').waitFor({ state: 'hidden', timeout: 10000 })
+}
+async function chooseCity(city) {
+  await page.getByRole('button', { name: /^Dove/ }).first().click()
+  await page.locator('.sheet').waitFor()
+  await page.locator('.manual-city-input input').fill(city)
+  await page.getByRole('button', { name: 'Mostra', exact: true }).click()
+  await page.locator('.sheet').waitFor({ state: 'hidden', timeout: 10000 })
+  await page.getByText(city + ' e dintorni', { exact: false }).first().waitFor({ timeout: 20000 })
+}
+async function chooseItaly() {
+  await page.getByRole('button', { name: /^Dove/ }).first().click()
+  await page.locator('.sheet').waitFor()
+  await page.locator('.sheet').getByRole('button', { name: /Tutta Italia/ }).click()
+  await page.locator('.sheet').waitFor({ state: 'hidden', timeout: 10000 })
+}
+
 try {
   const response = await page.goto(BASE, { waitUntil: 'domcontentloaded', timeout: 45000 })
   assert.equal(response?.status(), 200)
@@ -84,7 +106,7 @@ try {
   assert.equal(await page.locator('.market-card .card-distance').count(), 0,
     'Without permission, app must not show fabricated distances')
 
-  // Real navigation: home → market detail → back.
+  // Real navigation: Esplora → market page → back, with the phone's Back button too.
   await page.locator('.market-card-open').first().click()
   await page.locator('.detail-page').waitFor()
   await page.getByText('Caricamento dettagli completi…').waitFor({ state: 'hidden', timeout: 20000 })
@@ -98,7 +120,10 @@ try {
     const opacity = await directions.evaluate(el => Number(getComputedStyle(el).opacity))
     assert.ok(opacity < 0.7, 'Disabled directions must look disabled to a visitor')
   }
-  await page.locator('.detail-back').click()
+  await page.goBack()
+  await page.locator('.detail-page').waitFor({ state: 'hidden', timeout: 10000 })
+  assert.equal(new URL(page.url()).origin, new URL(BASE).origin, 'The phone Back button must not leave the app')
+  await assertCards()
 
   // Lifecycle rule: Cernobbio's Mercatino delle Curiosità has no upcoming date and its
   // source shows the edition is over, so it is "concluso": gone from search and lists,
@@ -108,20 +133,13 @@ try {
   await page.waitForTimeout(1500)
   assert.equal(await page.locator('.market-card').filter({ hasText: 'Cernobbio' }).count(), 0,
     'A concluded market must leave search results')
-  // When a visitor *explicitly* selects the 7-day chip while searching, an
-  // undated market should disappear. Toggling it off restores the existing
-  // cards: no hidden persistent filter or fabricated schedule. Lombardy's
-  // registered sites ("sede da verificare") never state a weekday or a date.
+  // Search never hides a market for lacking a date, and never invents one:
+  // Lombardy's registered sites ("sede da verificare") state no weekday or date.
   await page.locator('.search-input').fill('sede da verificare')
   await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
-  await page.getByRole('button', { name: 'Prossimi 7 giorni', exact: true }).click()
-  await page.waitForFunction(() =>
-    (document.querySelector('.results-count')?.textContent || '').includes('0 appuntamenti previsti'),
-    null, { timeout: 20000 })
-  assert.equal(await page.locator('.market-card-open').count(), 0,
-    'Explicit seven-day filter must exclude markets with unknown dates')
-  await page.getByRole('button', { name: 'Prossimi 7 giorni', exact: true }).click()
-  await page.locator('.market-card-open').first().waitFor({ timeout: 20000 })
+  const undatedWhen = await page.locator('.market-card .when').allInnerTexts()
+  assert.ok(undatedWhen.length > 0 && undatedWhen.every(text => text.includes('Data da verificare')),
+    'Undated markets stay findable and say their date is unknown')
   await page.evaluate(() => {
     window.location.hash = 'mercato=cernobbio-mercatino-delle-curiosita-mercatino-delle-curiosita'
   })
@@ -138,11 +156,18 @@ try {
     { exact: false }).count(), 0,
     'An unscheduled market must never have a misleading future-date notice')
   await page.locator('.detail-back').click()
+  await page.locator('.detail-page').waitFor({ state: 'hidden', timeout: 10000 })
   await page.locator('.search-input').fill('')
   await assertCards()
 
+  // An explicit "Prossimi 7 giorni" never shows a market without a known date.
+  await chooseWhen('Prossimi 7 giorni')
+  await assertCards()
+  assert.equal(await page.locator('.market-card .when').filter({ hasText: 'Data da verificare' }).count(), 0,
+    'Explicit seven-day choice must exclude markets with unknown dates')
+
   // The map must be a real interactive map, not the old decorative SVG.
-  await page.getByRole('button', { name: 'Mappa', exact: true }).first().click()
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Mappa', exact: true }).click()
   await page.locator('.maplibregl-map').waitFor({ timeout: 20000 })
   assert.equal(await page.locator('.maplibregl-canvas').count(), 1)
   // A canvas alone is NOT a functioning map: MapLibre v6 previously
@@ -159,19 +184,10 @@ try {
   await page.getByRole('button', { name: 'Lista', exact: true }).first().click()
   await assertCards()
 
-  // Manual city selection filters actual results, not a cosmetic toast.
-  await page.locator('.bottom-tabs').getByRole('button', { name: 'Altro' }).click()
-  await page.getByRole('button', { name: /Scegli una città/ }).click()
-  await page.locator('.manual-city-input input').fill('Firenze')
-  await page.getByRole('button', { name: 'Filtra città' }).click()
-  // A group of real weekday markets is a valid Firenze search result,
-  // not an empty result set. The group-specific checks below still
-  // assert the venues and days rather than merely accepting any text.
+  // Choosing a town filters real results, not a cosmetic toast.
+  await chooseCity('Firenze')
   await assertCards({ allowGroupedVenue: true })
-  const citySearchResult = await page.locator(
-    '.market-card, [data-testid="weekly-city-group"]'
-  ).first().innerText()
-  assert.match(citySearchResult, /Firenze/i, 'Manual city filter did not affect the results')
+  assert.match(await page.locator('.results-count').innerText(), /Firenze/, 'The town choice did not reach the results')
 
   // Firenze's six generic weekday records must appear as one city group,
   // with four physical venue labels after lazy-loading regional details.
@@ -191,37 +207,30 @@ try {
   await cityGroup.getByRole('button', { name: /1 appuntamento senza sede identificata/ }).click()
   assert.equal(await cityGroup.locator('.weekly-venue[data-known="false"]').count(), 1)
   await cityGroup.getByRole('button', { name: /1 appuntamento senza sede identificata/ }).click()
-  await page.locator('.toast').waitFor({ state: 'hidden', timeout: 10000 })
   await page.screenshot({ path: 'ux-weekly-city.png', animations: 'disabled' })
 
   // Saturday must reveal only the specific Piazza I maggio schedule.
+  await page.getByRole('button', { name: /^Quando/ }).first().click()
+  await page.locator('.sheet').waitFor()
   await page.getByRole('button', { name: 'Mostra mercati del sabato' }).click()
+  await page.locator('.sheet').waitFor({ state: 'hidden', timeout: 10000 })
   const saturdayGroup = page.getByTestId('weekly-city-group').filter({
     hasText: 'Mercati settimanali a Firenze',
   }).first()
   await saturdayGroup.waitFor()
   await saturdayGroup.getByText('Piazza i maggio', { exact: true }).waitFor({ timeout: 25000 })
-  // The city group keeps a stable React key across weekday filter changes.
+  // The city group keeps a stable React key across weekday changes.
   // Wait until the previous weekday venues have actually been removed.
   await saturdayGroup.getByText('Largo Monzani', { exact: true })
     .waitFor({ state: 'hidden', timeout: 25000 })
   assert.equal(await saturdayGroup.locator('.weekly-venue[data-known="true"]').count(), 1)
   await page.screenshot({ path: 'ux-weekly-saturday.png', animations: 'disabled' })
-  await page.getByRole('button', { name: 'Togli filtro giorno' }).click()
-  await assertCards({ allowGroupedVenue: true })
-  // Restore nationwide results before exercising GPS. A real city filter
-  // legitimately collapses to one weekly-city group (zero market-card
-  // elements), so GPS must not inherit that unrelated city restriction.
-  await page.getByRole('button', { name: 'Azzera filtri' }).click()
-  await assertCards()
+  await chooseWhen('Prossimi 7 giorni')
 
   // Albizzate: Happings lists ONE Tuesday market (Piazzale Sefro); the three
   // imported copies are soft-merged in the data ("duplicato_di"). The visitor
   // sees one market, and a link shared for a merged copy opens the kept one.
-  await page.locator('.bottom-tabs').getByRole('button', { name: 'Altro' }).click()
-  await page.getByRole('button', { name: /Scegli una città/ }).click()
-  await page.locator('.manual-city-input input').fill('Albizzate')
-  await page.getByRole('button', { name: 'Filtra città' }).click()
+  await chooseCity('Albizzate')
   await assertCards()
   assert.equal(await page.locator('.market-card').filter({ hasText: 'Mercato settimanale' }).count(), 1,
     'Soft-merged copies of one listed market must show as one card')
@@ -232,19 +241,20 @@ try {
   await page.locator('.detail-page').filter({ hasText: /Piazzale Sefro/i }).waitFor({ timeout: 20000 })
   await page.screenshot({ path: 'ux-weekly-duplicate-detail.png', animations: 'disabled' })
   await page.locator('.detail-back').click()
-  await page.getByRole('button', { name: 'Azzera filtri' }).click()
+  await page.locator('.detail-page').waitFor({ state: 'hidden', timeout: 10000 })
+  await chooseItaly()
   await assertCards()
 
   // Location opt-in: only now is browser GPS permission used.
   await context.grantPermissions(['geolocation'], { origin: new URL(BASE).origin })
   await context.setGeolocation({ latitude: 43.77, longitude: 11.25 })
-  await page.getByRole('button', { name: /Mercati vicino a me|Vicino a me/ }).first().click()
+  await page.getByRole('button', { name: /^Dove/ }).first().click()
+  await page.locator('.sheet').waitFor()
+  await page.getByRole('button', { name: /Usa la mia posizione/ }).click()
   await page.getByText('Vicino a me · 50 km, posizioni precise', { exact: false }).waitFor({ timeout: 20000 })
   // By default, do not show approximate locations as truly nearby.
-  const trustedResults = await page.locator('.market-card').count()
   await page.getByRole('button', { name: 'Mostra anche posizioni indicative' }).first().click()
   await assertCards()
-  assert.ok(trustedResults >= 0)
   assert.equal(await page.locator('.market-card .card-distance').count() > 0, true,
     'No location status after GPS permission')
   assert.equal(await page.locator('.market-card .card-distance').filter({ hasText: 'circa 0 km' }).count(), 0,
@@ -252,10 +262,12 @@ try {
   await page.locator('.toast').waitFor({ state: 'hidden', timeout: 10000 })
   await page.screenshot({ path: 'ux-nearby.png', animations: 'disabled' })
 
-  // Existing favorites are local-only; Agenda never promises background push.
-  await page.locator('.bottom-tabs').getByRole('button', { name: 'Agenda' }).click()
+  // Saved markets are local-only; the page never promises background push.
+  await page.locator('.bottom-tabs').getByRole('button', { name: 'Salvati' }).click()
   await page.getByText('Le notifiche push automatiche non sono ancora attive.', { exact: false }).waitFor()
-  await page.locator('.bottom-tabs').getByRole('button', { name: 'Esplora' }).click()
+  await page.goBack()
+  await page.locator('.explore').waitFor({ timeout: 10000 })
+  assert.equal(new URL(page.url()).origin, new URL(BASE).origin, 'Back from a tab returns to Esplora')
 
   await page.screenshot({ path: 'ux-phone.png', fullPage: true, animations: 'disabled' })
   await fs.writeFile('ux-smoke-result.json', JSON.stringify({

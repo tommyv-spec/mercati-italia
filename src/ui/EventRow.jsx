@@ -15,7 +15,7 @@ const shortHours = text => (text && text.length <= 13 && /\d/.test(text) ? text 
 // One market in a list: category tile, when (and how sure), short title, place,
 // two lines of description, a Gratis mark. Class names .market-card / .card-name /
 // .card-city / .card-distance / .market-card-open are the nightly UI tests' contract.
-export default function EventRow({ market, date = null, twoDays = false, onOpen, onToggleFav, isFav, hot = true, showDate = true }) {
+export default function EventRow({ market, date = null, twoDays = false, onOpen, onToggleFav, isFav, hot = true, showDate = true, km: centreKm = null }) {
   const title = displayName(market)
   const address = displayAddress(market)
   const hours = shortHours(date ? sourceHoursForDate(market, date) : market.hours)
@@ -43,7 +43,7 @@ export default function EventRow({ market, date = null, twoDays = false, onOpen,
               : <span className={'unsure' + (when || hotLabel ? '' : ' lead')}>prevista</span>)}
           </span>
           <button type="button" className={'row-fav' + (isFav ? ' on' : '')}
-            aria-label={isFav ? 'Togli dall’agenda' : 'Salva in agenda'} onClick={() => onToggleFav(market.id)}>
+            aria-label={isFav ? 'Togli dai salvati' : 'Salva'} onClick={() => onToggleFav(market.id)}>
             <Icon name="bookmark" size={18} strokeWidth={isFav ? 2.4 : 1.8} />
           </button>
         </div>
@@ -54,6 +54,7 @@ export default function EventRow({ market, date = null, twoDays = false, onOpen,
           <Icon name="mapPin" size={13} strokeWidth={2} />
           <span><span className="card-city">{market.city}</span>{address ? ' · ' + address : ''}
             {km !== null && <span className="card-distance"> · circa {km} km{market.positionQuality !== 'precisa' ? ' (stimati)' : ''}</span>}
+            {km === null && Number.isFinite(centreKm) && centreKm >= 1.5 && <span className="card-km"> · a {Math.round(centreKm)} km</span>}
           </span>
         </p>
         {market.description && <p className="desc">{market.description}</p>}

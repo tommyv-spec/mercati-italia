@@ -142,20 +142,19 @@ await stage('source details and recency labels',async()=>{
 })
 
 await stage('filters and favorites across navigation',async()=>{
-  await page.locator('.bottom-tabs').getByRole('button',{name:'Impostazioni'}).click()
-  await page.getByRole('button',{name:/Scegli una città/}).click()
+  await page.getByRole('button',{name:/^Dove/}).first().click()
   await page.locator('.manual-city-input input').fill('Milano')
-  await page.getByRole('button',{name:'Filtra città'}).click()
+  await page.getByRole('button',{name:'Mostra',exact:true}).click()
   const before=await page.locator('.results-count').innerText()
-  await page.locator('.bottom-tabs').getByRole('button',{name:'Preferiti'}).click()
-  const favs=await page.getByText('Nessun preferito').count()
+  await page.locator('.bottom-tabs').getByRole('button',{name:'Salvati'}).click()
+  const favs=await page.getByText('Nessun mercato salvato').count()
   await page.locator('.bottom-tabs').getByRole('button',{name:'Esplora'}).click()
   const after=await page.locator('.results-count').innerText()
   return {before,after,favorites_empty:favs===1,city_filter_persisted:before===after}
 })
 
 await stage('map lazy load and navigation',async()=>{
-  await page.getByRole('button',{name:'Mappa',exact:true}).first().click()
+  await page.locator('.bottom-tabs').getByRole('button',{name:'Mappa',exact:true}).click()
   await page.locator('.maplibregl-map').waitFor({timeout:20000})
   const data={
     webgl_canvas:await page.locator('.maplibregl-canvas').count(),
@@ -169,10 +168,11 @@ await stage('map lazy load and navigation',async()=>{
 
 await stage('accessibility grouped venue state',async()=>{
   // Return to city filter, then open a group.
-  await page.locator('.bottom-tabs').getByRole('button',{name:'Impostazioni'}).click()
-  await page.getByRole('button',{name:/Scegli una città/}).click()
+  await page.getByRole('button',{name:/^Dove/}).first().click()
   await page.locator('.manual-city-input input').fill('Firenze')
-  await page.getByRole('button',{name:'Filtra città'}).click()
+  await page.getByRole('button',{name:'Mostra',exact:true}).click()
+  await page.getByRole('button',{name:/^Quando/}).first().click()
+  await page.locator('.sheet').getByRole('button',{name:'Prossimi 7 giorni'}).click()
   const group=page.getByTestId('weekly-city-group').filter({hasText:'Mercati settimanali a Firenze'}).first()
   await group.waitFor({timeout:20000})
   await group.getByRole('button',{name:'Visualizza sedi e giornate'}).click()

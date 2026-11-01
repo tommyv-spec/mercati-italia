@@ -56,7 +56,7 @@ export default function Detail({
         <button type="button" className="detail-back ico-btn" aria-label="Indietro" onClick={onBack}><Icon name="chevronLeft" size={18} strokeWidth={2} /></button>
         <div className="detail-bar-actions">
           <button type="button" className="ico-btn" aria-label="Condividi questo mercato" onClick={() => onShare(m)}><Icon name="upload" size={18} /></button>
-          <button type="button" className={'ico-btn' + (isFav ? ' on' : '')} aria-label={isFav ? 'Togli dall’agenda' : 'Salva in agenda'} onClick={() => onToggleFav(m.id)}>
+          <button type="button" className={'ico-btn' + (isFav ? ' on' : '')} aria-label={isFav ? 'Togli dai salvati' : 'Salva'} onClick={() => onToggleFav(m.id)}>
             <Icon name="bookmark" size={18} strokeWidth={isFav ? 2.4 : 1.8} />
           </button>
         </div>
@@ -88,8 +88,8 @@ export default function Detail({
         {disclosure && <p className="note">{disclosure}</p>}
         {m.concluded && <p role="note" className="note">Non più in programma: la fonte non indica nuove date.</p>}
         <div className="next-actions">
-          <button type="button" className="btn-primary" onClick={() => onToggleFav(m.id)}>
-            <Icon name="bell" size={18} color="currentColor" strokeWidth={2} />{isFav ? 'In agenda' : 'Ricordamelo'}
+          <button type="button" className="btn-primary" aria-pressed={isFav} onClick={() => onToggleFav(m.id)}>
+            <Icon name="bookmark" size={18} color="currentColor" strokeWidth={isFav ? 2.6 : 2} />{isFav ? 'Salvato' : 'Salva'}
           </button>
           <button type="button" className="btn-secondary" onClick={() => onDirections(m)} disabled={!canNavigate}
             title={!canNavigate ? 'Dettagli o sede non sufficienti per navigare' : 'Apri indicazioni stradali'}>
@@ -97,8 +97,8 @@ export default function Detail({
           </button>
         </div>
         {nextDate && (
-          <button type="button" className="link" onClick={() => downloadCalendarEvent(m, nextDate, sourceHoursForDate(m, nextDate))}>
-            Aggiungi al calendario
+          <button type="button" className="link link-icon" onClick={() => downloadCalendarEvent(m, nextDate, sourceHoursForDate(m, nextDate))}>
+            <Icon name="calendar" size={16} strokeWidth={2} />Aggiungi al calendario (promemoria)
           </button>
         )}
         {futureDates.length > 1 && (
@@ -124,7 +124,7 @@ export default function Detail({
 
       <div className="detail-notes">
         {sourceSchedule.notes.map((note, i) => <p key={note + i} className="note">{note}</p>)}
-        {addressConflicts.length > 0 && <p className="note">Indirizzo salvato, discordante con la fonte</p>}
+        {addressConflicts.length > 0 && <p className="note">Il nostro indirizzo non coincide con quello della fonte.</p>}
         {addressConflicts.map(conflict => (
           <div role="note" key={conflict.key}>
             <p className="note">La fonte indica invece: <strong>{conflict.sourceAddress}</strong>.{' '}
@@ -141,8 +141,8 @@ export default function Detail({
         )}
         {!canNavigate && !loading && (
           <p role="note" className="note">{addressConflicts.length > 0
-            ? 'Indicazioni sospese: l’indirizzo salvato è discordante con la fonte.'
-            : 'Indicazioni non disponibili: manca una sede riconciliata e verificabile.'}</p>
+            ? 'Indicazioni sospese: il nostro indirizzo e quello della fonte non coincidono.'
+            : 'Indicazioni non disponibili: la fonte non dà un indirizzo abbastanza preciso.'}</p>
         )}
         {m.address?.trim() && (
           <button type="button" className="link" onClick={() => onCopyAddress(m)}
@@ -152,7 +152,7 @@ export default function Detail({
 
       {(sourceSchedule.rows.length > 0 || editorial) && (
         <div className="detail-block">
-          <h2>Dalla fonte</h2>
+          <h2>Cosa dice la fonte</h2>
           {sourceSchedule.rows.length > 0 && (
             <details className="source-calendar" key={m.id} open={sourceSchedule.hasVariations || sourceSchedule.rows.length <= 3}>
               <summary>Date e orari riportati dalla fonte ({sourceSchedule.rows.length})</summary>

@@ -47,13 +47,13 @@ export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExpl
   return (
     <div className="agenda-screen">
       <div className="screen-head">
-        <h1>Agenda</h1>
-        <p className="note">I mercati che hai salvato, dal più vicino nel tempo. Le notifiche push automatiche non sono ancora attive. Controlla sempre se la data è confermata prima di partire.</p>
+        <h1>Salvati</h1>
+        <p className="note">I mercati che hai salvato, dal più vicino nel tempo. Le notifiche push automatiche non sono ancora attive. Per un promemoria usa «Aggiungi al calendario». Controlla sempre se la data è confermata prima di partire.</p>
       </div>
       {saved.length === 0 ? (
         <>
           <div className="empty">
-            Nessun mercato salvato.<br />Salva un mercato dalla ricerca per vederlo qui.<br />
+            Nessun mercato salvato.<br />Tocca il segnalibro su un mercato per ritrovarlo qui.<br />
             <button type="button" className="btn-secondary" onClick={onExplore}>Cerca mercati</button>
           </div>
           {suggestions.length > 0 && (

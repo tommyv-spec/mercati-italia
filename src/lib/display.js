@@ -78,7 +78,7 @@ export function uniqueByName(items, pick = item => item) {
 // shows the name; search and the market page keep the full source title.
 const SOURCE_TITLE = /^(Mercatino [^,]*?) di ([^,]+), (.+)$/
 const QUOTED = /^["“«]([^"”»]{2,})["”»]$/
-const PLACE_WORD = /^(via|viale|vicolo|piazza|piazzale|piazzetta|corso|largo|lungo|lungomare|lungolago|lungofiume|centro|parco|area|zona|località|loc\.|borgo|strada|contrada|passeggiata|portici|chiostro|giardini|giardino|parcheggio|campo|riva|banchina|presso|nel|nella|nei|in|sotto|ex|foro|rione|quartiere|frazione|fraz\.|stazione|porto|molo|spiazzo|sagrato|cortile|palazzo|villa|castello|fiera|polo|ippodromo|stadio)\b/i
+const PLACE_WORD = /^(via|viale|vicolo|piazza|piazzale|piazzetta|corso|largo|lungo|lungomare|lungolago|lungofiume|centro|parco|area|zona|località|loc\.|borgo|strada|contrada|passeggiata|portici|chiostro|giardini|giardino|parcheggio|campo|riva|banchina|presso|nel|nella|nei|in|sotto|ex|foro|rione|quartiere|frazione|fraz\.|stazione|porto|molo|spiazzo|sagrato|cortile|palazzo|villa|castello|polo|ippodromo|stadio)\b/i
 const GENERIC_NAMES = new Set(['antiquariato', 'artigianato', 'usato', 'vintage', 'collezionismo', 'modernariato', 'hobbisti', 'mercatino', 'il mercatino', 'mercato', 'il mercato', "mercatino dell'usato", "mercatino dell'antiquariato", 'antiquariato e usato', 'pulci'])
 const SMALL_WORDS = new Set(['di', 'del', 'della', 'dello', 'dei', 'degli', 'delle', 'a', 'al', 'alla', 'allo', 'ai', 'agli', 'alle', 'in', 'nel', 'nella', 'nello', 'nei', 'negli', 'nelle', 'su', 'sul', 'sulla', 'sullo', 'sui', 'sugli', 'sulle', 'da', 'dal', 'dalla', 'dai', 'e', 'ed', 'con', 'per', 'tra', 'fra', 'dell', 'nell', 'sull', 'dall', 'all', 'coll'])
 
