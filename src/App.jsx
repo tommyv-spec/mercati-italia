@@ -60,8 +60,6 @@ export default function App() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState('');
   const [toast, setToast] = useState(null);
-  // ponytail: list style picked from the address (?lista=) while the owner compares; one style stays after.
-  const [listStyle] = useState(() => { const v = new URLSearchParams(window.location.search).get('lista'); return ['righe', 'biglietti', 'locandine', 'griglia'].includes(v) ? v : 'biglietti'; });
   const selectedRef = useRef(null);
   const marketsRef = useRef(allMarkets);
   marketsRef.current = allMarkets;
@@ -353,7 +351,7 @@ export default function App() {
             resultsLine={resultsLine} gps={where.mode === 'gps'} includeEstimated={includeEstimated}
             onToggleEstimated={() => setIncludeEstimated(v => !v)}
             items={listItems} featured={featured} visibleCount={visibleCount} onMore={() => setVisibleCount(c => c + PAGE)}
-            whenKind={when.kind} emptyActions={emptyActions} listStyle={listStyle}
+            whenKind={when.kind} emptyActions={emptyActions}
             weekly={{ city: weeklyCityName, entries: weeklyEntries }} weekdaySelected={when.kind === 'weekday' ? when.weekday : null}
             onWeeklyAll={city => { setWeeklyCity(city); go({ view: 'weekly' }); }}
             regions={regions} onRegion={region => setWhere({ mode: 'region', region })}

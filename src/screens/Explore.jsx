@@ -2,15 +2,14 @@ import { Fragment } from 'react'
 import Icon from '../ui/Icon.jsx'
 import SearchField from '../ui/SearchField.jsx'
 import Section from '../ui/Section.jsx'
-import EventRow from '../ui/EventRow.jsx'
 import FeaturedTile from '../ui/FeaturedTile.jsx'
 import Skeleton from '../ui/Skeleton.jsx'
 import ContextBar from '../ui/ContextBar.jsx'
 import CategoryIcon, { categoryColor } from '../ui/CategoryIcon.jsx'
 import WeeklyCityGroup from '../components/WeeklyCityGroup.jsx'
 import { shouldAutoExpandWeeklyGroup } from '../lib/marketGrouping.js'
-import { dayHeaderLabel, localISO } from '../lib/display.js'
-import { TicketCard, PosterCard, GridTile, DayDivider } from '../ui/ListCards.jsx'
+import { localISO } from '../lib/display.js'
+import { TicketCard, TicketList, DayDivider } from '../ui/ListCards.jsx'
 
 export const CATEGORY_FILTERS = [
   { key: 'tutti', label: 'Tutti' },
@@ -95,7 +94,7 @@ export default function Explore(p) {
   )
 }
 
-function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onToggleFav, emptyActions, whenKind, listStyle, today }) {
+function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onToggleFav, emptyActions, today }) {
   if (!items.length) {
     return (
       <div className="empty">
@@ -112,11 +111,6 @@ function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onTo
     if (!days.length || days[days.length - 1].day !== it.day) days.push({ day: it.day, items: [] })
     days[days.length - 1].items.push(it)
   }
-  const Card = { biglietti: TicketCard, locandine: PosterCard, griglia: GridTile }[listStyle]
-  const card = it => Card
-    ? <Card key={it.market.id} market={it.market} date={it.day} km={it.km} onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(it.market.id)} />
-    : <EventRow key={it.market.id} market={it.market} date={it.day} twoDays={whenKind === 'weekend' && it.twoDays} showDate={!it.day}
-        hot={false} km={it.km} onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(it.market.id)} />
   return (
     <div className="section">
       {featured.length > 0 && (
@@ -124,12 +118,14 @@ function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onTo
           {featured.map(it => <FeaturedTile key={it.market.id} market={it.market} date={it.day} onOpen={onOpen} />)}
         </div>
       )}
-      <div className={Card ? 'list-area list-' + listStyle : 'markets-list rivista'}>
+      <div className="list-area">
         {days.map(group => (
           <Fragment key={group.day || 'nd'}>
-            {Card ? <DayDivider day={group.day} count={perDay.get(group.day)} today={today} tomorrow={tomorrow} />
-              : <h2 className="day-header">{dayHeaderLabel(group.day)}</h2>}
-            {Card ? <div className={listStyle === 'griglia' ? 'markets-grid' : 'cards-col'}>{group.items.map(card)}</div> : group.items.map(card)}
+            <DayDivider day={group.day} count={perDay.get(group.day)} today={today} tomorrow={tomorrow} />
+            <div className="cards-col">
+              {group.items.map(it => <TicketCard key={it.market.id} market={it.market} date={it.day} km={it.km} showDate={!it.day}
+                onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(it.market.id)} />)}
+            </div>
           </Fragment>
         ))}
       </div>
@@ -153,13 +149,15 @@ function WeeklySection({ weekly, onOpen, favorites, onToggleFav, getMarketDetail
       ) : weekly.entries.length === 0 ? (
         <div className="empty">Nessun mercato settimanale a {weekly.city} nei giorni scelti.</div>
       ) : (
-        <div className="markets-list rivista">
-          {weekly.entries.map(entry => entry.kind === 'group'
-            ? <WeeklyCityGroup key={entry.key} group={entry} loadMarket={getMarketDetails} onOpenMarket={onOpen}
-                selectedWeekday={weekdaySelected} autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdaySelected, weekly.city, '')} />
-            : <EventRow key={entry.key} market={entry.market} date={entry.day} hot={false}
-                onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(entry.market.id)} />)}
-        </div>
+        <>
+          {weekly.entries.filter(entry => entry.kind === 'group').map(entry => (
+            <WeeklyCityGroup key={entry.key} group={entry} loadMarket={getMarketDetails} onOpenMarket={onOpen}
+              selectedWeekday={weekdaySelected} autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdaySelected, weekly.city, '')} />
+          ))}
+          {weekly.entries.some(entry => entry.kind !== 'group') && (
+            <TicketList items={weekly.entries.filter(entry => entry.kind !== 'group')} onOpen={onOpen} onToggleFav={onToggleFav} favorites={favorites} />
+          )}
+        </>
       )}
       {weekly.city && <button type="button" className="box-link" onClick={() => onWeeklyAll(weekly.city)}>Tutti i mercati settimanali di {weekly.city}, giorno per giorno ›</button>}
     </Section>
@@ -186,12 +184,8 @@ function SearchResults({ query, results, cityMatches, onPickCity, visibleCount, 
         <div className="empty">Nessun mercato con queste parole. Prova con il nome della città o del mercatino.</div>
       ) : (
         <div className="section">
-          <div className="markets-list rivista">
-            {shown.map(m => {
-              const day = [...m.dates].sort().find(d => d >= today) || null
-              return <EventRow key={m.id} market={m} date={day} onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(m.id)} />
-            })}
-          </div>
+          <TicketList items={shown.map(m => ({ market: m, day: [...m.dates].sort().find(d => d >= today) || null }))}
+            onOpen={onOpen} onToggleFav={onToggleFav} favorites={favorites} />
           {visibleCount < results.length && (
             <button type="button" className="btn-secondary more-btn" onClick={onMore}>Mostra altri ({results.length - visibleCount})</button>
           )}

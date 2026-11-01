@@ -1,11 +1,18 @@
 import Icon from './Icon.jsx'
 import MarketArt from './MarketArt.jsx'
 import { categoryColor } from './CategoryIcon.jsx'
-import { displayName, displayAddress, isFreeEntry } from '../lib/display.js'
+import { displayName, displayAddress, isFreeEntry, todayStr, localISO } from '../lib/display.js'
 import { sourceHoursForDate } from '../lib/sourceCalendar.js'
 
 // Shared facts for the three list styles. Class names .market-card / .card-name /
 // .card-city / .card-distance / .market-card-open / .when are the nightly UI tests' contract.
+const tomorrowStr = (() => { const d = new Date(); d.setDate(d.getDate() + 1); return localISO(d) })()
+const dayLabel = iso => {
+  const d = new Date(iso + 'T12:00:00')
+  const label = d.toLocaleDateString('it-IT', { weekday: 'short' }).replace('.', '') + ' ' + d.getDate() + ' ' +
+    d.toLocaleDateString('it-IT', { month: 'short' }).replace('.', '')
+  return iso === todayStr ? 'Oggi · ' + label : iso === tomorrowStr ? 'Domani · ' + label : label
+}
 const SHORT_CATEGORY = { Antiquariato: 'Antico', 'Vintage e abbigliamento': 'Vintage', Usato: 'Usato', Artigianato: 'Artigiani', Alimentare: 'Cibo', Misto: 'Mercato' }
 function facts(market, date, centreKm) {
   const raw = date ? sourceHoursForDate(market, date) : market.hours
@@ -53,7 +60,7 @@ const Open = ({ market, title, onOpen }) => (
 )
 
 // A ticket: coloured stub with the drawing and the opening time, perforated edge, details.
-export function TicketCard({ market, date, km, onOpen, onToggleFav, isFav }) {
+export function TicketCard({ market, date, km, onOpen, onToggleFav, isFav, showDate = false }) {
   const f = facts(market, date, km)
   return (
     <article className="market-card ticket" style={{ '--c': f.color }}>
@@ -64,55 +71,14 @@ export function TicketCard({ market, date, km, onOpen, onToggleFav, isFav }) {
       </div>
       <div className="ticket-body">
         <div className="top">
-          <When f={f} date={date}><span className="ticket-cat">{market.category}</span></When>
+          {/* With the date in the line, the stub's colour and label already say the category. */}
+          <When f={f} date={date}>{showDate && date ? <span className="ticket-date">{dayLabel(date)}</span> : <span className="ticket-cat">{market.category}</span>}</When>
           <Fav market={market} isFav={isFav} onToggleFav={onToggleFav} />
         </div>
         <Open market={market} title={f.title} onOpen={onOpen} />
         <Place market={market} f={f} />
         {market.description && <p className="desc">{market.description}</p>}
         {f.free && <div className="foot"><span className="pill-free"><Icon name="ticket" size={13} strokeWidth={2} />Gratis</span></div>}
-      </div>
-    </article>
-  )
-}
-
-// A small poster: coloured header with the drawing, category and hours; details below.
-export function PosterCard({ market, date, km, onOpen, onToggleFav, isFav }) {
-  const f = facts(market, date, km)
-  const pattern = 'pc-p' + (market.id.length % 3)
-  return (
-    <article className={'market-card poster-card ' + pattern} style={{ '--c': f.color }}>
-      <div className="pc-head">
-        <span className="pc-eyebrow">{market.category}{f.hours ? ' · ' + f.hours : ''}</span>
-        <span className="pc-art" aria-hidden="true"><MarketArt market={market} size={84} strokeWidth={1.15} /></span>
-        <Fav market={market} isFav={isFav} onToggleFav={onToggleFav} className="pc-fav" />
-      </div>
-      <div className="pc-body">
-        <When f={f} date={date} />
-        <Open market={market} title={f.title} onOpen={onOpen} />
-        <Place market={market} f={f} />
-        {market.description && <p className="desc">{market.description}</p>}
-        {f.free && <div className="foot"><span className="pill-free"><Icon name="ticket" size={13} strokeWidth={2} />Gratis</span></div>}
-      </div>
-    </article>
-  )
-}
-
-// A grid tile: picture on top (drawing, time), short title, town.
-export function GridTile({ market, date, km, onOpen, onToggleFav, isFav }) {
-  const f = facts(market, date, km)
-  return (
-    <article className="market-card grid-tile" style={{ '--c': f.color }}>
-      <div className="gt-visual" aria-hidden="true">
-        <MarketArt market={market} size={58} strokeWidth={1.35} />
-        {f.start && <span className="gt-time">{f.hours}</span>}
-      </div>
-      <Fav market={market} isFav={isFav} onToggleFav={onToggleFav} className="gt-fav" />
-      <div className="gt-body">
-        <When f={f} date={date} />
-        <Open market={market} title={f.title} onOpen={onOpen} />
-        <Place market={market} f={{ ...f, address: '' }} className="place gt-place" />
-        {f.free && <span className="pill-free"><Icon name="ticket" size={12} strokeWidth={2} />Gratis</span>}
       </div>
     </article>
   )
@@ -131,5 +97,22 @@ export function DayDivider({ day, count, today, tomorrow }) {
       <span className="dd-txt">{hot && <span className="dd-hot">{hot}</span>}<b>{weekday.charAt(0).toUpperCase() + weekday.slice(1)}</b> {month}</span>
       <span className="dd-n">{count} {count === 1 ? 'mercatino' : 'mercatini'}</span>
     </h2>
+  )
+}
+
+// Tickets on the beige band, for lists without day headings (search, weekly markets, saved).
+export function TicketList({ items, showDate = true, onOpen, onToggleFav, favorites, after }) {
+  return (
+    <div className="list-area">
+      <div className="cards-col">
+        {items.map(it => (
+          <div key={it.market.id} className="ticket-wrap">
+            <TicketCard market={it.market} date={it.day} km={it.km} showDate={showDate} onOpen={onOpen}
+              onToggleFav={onToggleFav} isFav={favorites.has(it.market.id)} />
+            {after && after(it)}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

@@ -1,15 +1,10 @@
 import { useMemo } from 'react'
-import EventRow from '../ui/EventRow.jsx'
+import { TicketList } from '../ui/ListCards.jsx'
 import Section from '../ui/Section.jsx'
 import { TODAY, todayStr, getNextDate, localISO } from '../lib/display.js'
 import { weekendOf, inWeekend } from '../lib/weekend.js'
 import { downloadCalendarEvent } from '../lib/calendarFile.js'
 import { sourceHoursForDate } from '../lib/sourceCalendar.js'
-
-const shortDay = iso => {
-  const d = new Date(iso + 'T12:00:00')
-  return d.toLocaleDateString('it-IT', { weekday: 'short' }) + ' ' + d.getDate() + ' ' + d.toLocaleDateString('it-IT', { month: 'short' })
-}
 
 // Saved markets by when they open next; the weekend's events as suggestions when empty.
 export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExplore }) {
@@ -32,17 +27,17 @@ export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExpl
     .sort((a, b) => (b.description ? 1 : 0) - (a.description ? 1 : 0) || a.name.localeCompare(b.name, 'it'))
     .slice(0, 3), [markets, weekend, favorites])
 
-  const row = ({ market, next }) => (
-    <div key={market.id} className="agenda-item">
-      <EventRow market={market} date={next} onOpen={onOpen} onToggleFav={onToggleFav} isFav />
-      {next && (
-        <button type="button" className="link agenda-cal" onClick={() => downloadCalendarEvent(market, next, sourceHoursForDate(market, next))}>
-          Aggiungi al calendario
-        </button>
-      )}
-    </div>
+  const calendarLink = ({ market, day }) => day && (
+    <button type="button" className="link agenda-cal" onClick={() => downloadCalendarEvent(market, day, sourceHoursForDate(market, day))}>
+      Aggiungi al calendario
+    </button>
   )
-  const block = (title, items) => items.length > 0 && <Section title={title}>{items.map(row)}</Section>
+  const block = (title, items) => items.length > 0 && (
+    <Section title={title}>
+      <TicketList items={items.map(({ market, next }) => ({ market, day: next }))} onOpen={onOpen} onToggleFav={onToggleFav}
+        favorites={favorites} after={calendarLink} />
+    </Section>
+  )
 
   return (
     <div className="agenda-screen">
@@ -58,7 +53,8 @@ export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExpl
           </div>
           {suggestions.length > 0 && (
             <Section title="Da salvare questo weekend">
-              {suggestions.map(m => <EventRow key={m.id} market={m} date={m.dates.includes(weekend.sat) ? weekend.sat : weekend.sun} onOpen={onOpen} onToggleFav={onToggleFav} isFav={false} />)}
+              <TicketList items={suggestions.map(m => ({ market: m, day: m.dates.includes(weekend.sat) ? weekend.sat : weekend.sun }))}
+                onOpen={onOpen} onToggleFav={onToggleFav} favorites={favorites} />
             </Section>
           )}
         </>

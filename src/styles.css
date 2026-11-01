@@ -1726,7 +1726,6 @@ body {
 /* ─── List styles: beige band, white cards, calendar dividers ───────────── */
 .list-area { margin: 8px -20px 0; padding: 4px 16px 18px; background: var(--beige); border-radius: 26px 26px 0 0; }
 .cards-col { display: flex; flex-direction: column; gap: 12px; }
-.markets-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .list-area .market-card { margin: 0; padding: 0; border: 0; background: var(--white); border-radius: 18px;
   box-shadow: 0 1px 2px rgba(44, 36, 22, .06), 0 6px 18px -8px rgba(44, 36, 22, .18); overflow: hidden; position: relative; }
 .list-area .market-card-open { all: unset; cursor: pointer; display: block; }
@@ -1769,29 +1768,7 @@ body {
 .ticket-cat { color: var(--c); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 11px; }
 .ticket .card-name { font-size: 19px; }
 
-/* Locandine */
-.poster-card { display: flex; flex-direction: column; }
-.pc-head { position: relative; height: 92px; background: var(--c); color: #FDFBF7; padding: 14px 16px; overflow: hidden; isolation: isolate; }
-.pc-p1 .pc-head { background: repeating-linear-gradient(90deg, var(--c) 0 18px, color-mix(in srgb, var(--c) 86%, #000) 18px 36px); }
-.pc-p2 .pc-head { background: radial-gradient(color-mix(in srgb, var(--c) 78%, #FFF) 1.6px, transparent 1.8px) 0 0 / 14px 14px, var(--c); }
-.pc-eyebrow { position: relative; z-index: 1; font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
-.pc-art { position: absolute; right: 18px; bottom: -14px; color: rgba(253, 251, 247, .9); z-index: 0; }
-.pc-fav { position: absolute; left: 10px; bottom: 8px; width: 38px; height: 38px; border-radius: 999px; border: 0; background: rgba(253, 251, 247, .2); color: #FDFBF7;
-  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-.pc-fav.on { background: #FDFBF7; color: var(--c); }
-.pc-body { display: flex; flex-direction: column; gap: 5px; padding: 12px 16px 14px; }
-.poster-card .card-name { font-size: 20px; }
-
-/* Griglia */
-.grid-tile { display: flex; flex-direction: column; }
-.gt-visual { position: relative; height: 104px; display: flex; align-items: center; justify-content: center;
-  background: color-mix(in srgb, var(--c) 16%, #FDFBF7); color: var(--c); }
-.gt-time { position: absolute; left: 8px; bottom: 8px; font-size: 11.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--ink); }
-.gt-fav { position: absolute; right: 6px; top: 6px; width: 36px; height: 36px; border-radius: 999px; border: 0; background: rgba(255, 255, 255, .92); color: var(--ink-light);
-  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2; }
-.gt-fav.on { color: var(--terracotta); }
-.gt-body { display: flex; flex-direction: column; gap: 4px; padding: 10px 11px 12px; flex: 1 1 auto; }
-.grid-tile .card-name { font-size: 16.5px; }
-.grid-tile .gt-place { font-size: 12.5px; }
-.grid-tile .pill-free { align-self: flex-start; font-size: 11px; padding: 2px 8px; margin-top: 2px; }
-.grid-tile .when { font-size: 11px; }
+.ticket-date { color: var(--ink); font-weight: 700; }
+.ticket-wrap { display: flex; flex-direction: column; }
+.ticket-wrap .agenda-cal { align-self: flex-start; margin: 6px 0 0 6px; }
+.section .list-area { margin-top: 0; }
