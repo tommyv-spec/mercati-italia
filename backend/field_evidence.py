@@ -53,11 +53,19 @@ PUBLISHED_TOWN_FIXES = {
 
 
 def as_published(row):
-    """The card as its source wrote it: pages, receipts and matching use that spelling."""
-    if row.get("localita_ricostruita_da") not in PUBLISHED_TOWN_FIXES.values():
+    """The card as its source wrote it: pages, receipts and matching use that spelling.
+    A province filled from ISTAT where the source gave none (province_reconciliation,
+    "provincia_originale": "") is read back as blank, so earlier proofs stay bound."""
+    proof = row.get("riconciliazione_provincia")
+    filled = (isinstance(proof, dict) and proof.get("provincia_originale") == ""
+              and bool(row.get("provincia")) and proof.get("provincia") == row.get("provincia"))
+    if row.get("localita_ricostruita_da") not in PUBLISHED_TOWN_FIXES.values() and not filled:
         return row
-    return {**row, "citta": row.get("citta_originale") or row.get("citta"),
-            "nome": row.get("nome_originale") or row.get("nome")}
+    result = {**row, "provincia": ""} if filled else dict(row)
+    if row.get("localita_ricostruita_da") in PUBLISHED_TOWN_FIXES.values():
+        result.update(citta=row.get("citta_originale") or row.get("citta"),
+                      nome=row.get("nome_originale") or row.get("nome"))
+    return result
 
 
 def published_town(row):

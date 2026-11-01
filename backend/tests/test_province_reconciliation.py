@@ -47,13 +47,40 @@ class ProvinceReconciliationTests(unittest.TestCase):
             {**wrong_province("district"), "citta": "Roma Centro", "regione": "Lazio", "provincia": "MI"},
             {**wrong_province("wrong-region"), "regione": "Toscana"},
             {**wrong_province("two-cities"), "citta": "Monza Milano"},
-            {**wrong_province("empty-province"), "provincia": ""},
+            {**wrong_province("empty-ambiguous"), "citta": "Monza Milano", "provincia": ""},
             {**wrong_province("bad-code"), "provincia": "Milano"},
         ]
         after, report = reconcile(cases, REFERENCE, apply=True)
         self.assertEqual(after, cases)
         self.assertEqual(report["counts"]["province_fixed"], 0)
         self.assertEqual(check(cases, after, report)["changes"], 0)
+
+    def test_a_blank_province_is_filled_and_its_proofs_still_read_it_blank(self):
+        from field_evidence import as_published, clean_receipts, identity
+        # cosedicasa gives no province (295 cards, 1 Nov); the comune is unique in its region.
+        row = {**wrong_province("blank", "cosedicasa.com"), "provincia": ""}
+        row["riscontri_campi"] = [make_receipt(
+            row, values={"indirizzo": row["indirizzo"]}, source_url=row["url_fonte"],
+            source_name="cosedicasa.com", source_id="fixture", source_row="row-one",
+            read_on=TODAY.isoformat(), source_updated_on="", source_sha256="a" * 64, scope="pagina",
+            method="comune_provincia_giorno_univoco", fingerprint_kind="html_bytes")]
+        after, report = reconcile([row], REFERENCE, apply=True)
+        filled = after[0]
+        self.assertEqual((filled["provincia"], filled[KEY]["provincia_originale"]), ("MB", ""))
+        self.assertTrue(valid_proof(filled[KEY], filled))
+        self.assertEqual(check([row], after, report)["province_replacements"], 1)
+        # The receipt was never rewritten and still binds: the card as published is blank.
+        self.assertEqual(filled["riscontri_campi"], row["riscontri_campi"])
+        self.assertEqual(as_published(filled)["provincia"], "")
+        self.assertEqual(identity(filled), identity(row))
+        self.assertEqual(clean_receipts(filled["riscontri_campi"], filled, today=TODAY), row["riscontri_campi"])
+        # Through the exporter the card shows MB and keeps both the receipt and the proof.
+        shown, error = normalize(filled, TODAY)
+        self.assertIsNone(error)
+        self.assertEqual((shown["provincia"], shown[KEY], len(shown["riscontri_campi"])), ("MB", filled[KEY], 1))
+        # A blank province with another protection (a navigation hold) still waits.
+        held = {**row, "slug": "held", "navigazione_sospesa_motivo": "x"}
+        self.assertEqual(reconcile([held], REFERENCE, apply=True)[0], [held])
 
     def test_source_receipts_calendars_and_human_claims_are_not_rewritten(self):
         receipt_row = wrong_province("actual-receipt")

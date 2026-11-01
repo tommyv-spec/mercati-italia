@@ -103,7 +103,7 @@ def valid_proof(value, row):
     previous = value.get("provincia_originale")
     if (not target or row.get("provincia") != target[1]
             or not isinstance(row.get("slug"), str) or not row["slug"]
-            or not isinstance(previous, str) or not re.fullmatch(r"[A-Z]{2}", previous)
+            or not isinstance(previous, str) or not re.fullmatch(r"(?:[A-Z]{2})?", previous)
             or previous == target[1]):
         return False
     original = {**row, "provincia": previous}
@@ -124,13 +124,17 @@ def _eligible(row, registry):
     target = _target(row, registry)
     previous = row.get("provincia")
     if (not target or not isinstance(previous, str)
-            or not re.fullmatch(r"[A-Z]{2}", previous) or previous == target[1]):
+            or not re.fullmatch(r"(?:[A-Z]{2})?", previous) or previous == target[1]):
         return None, None
     # The town step's own ISTAT correction (S31) is no source proof: after it named the
     # comune (Limbade VB -> Limbadi), the comune's province follows the same register.
     # A withdrawn shared placeholder point does not depend on the province either.
     ours = (("citta_originale", "localita_ricostruita_da")
             if row.get("localita_ricostruita_da") in PUBLISHED_TOWN_FIXES.values() else ())
+    if previous == "":
+        # A blank province is filled (cosedicasa gives none: 274 cards). Receipts and page
+        # evidence read the card as published (field_evidence.as_published): still blank.
+        ours += ("riscontri_campi", "evidenza_editoriale")
     if row.get("coordinate_sospese_motivo") == "punto_segnaposto_condiviso" and ours:
         ours += ("coordinate_sospese_motivo", "coordinate_originali")
     if (row.get("verificato_il") or row.get("date_quality") == "confermata"
