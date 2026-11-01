@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14385,
-    "ids_retained": 14385,
-    "generic_weekly_with_specific_venue": 5948,
+    "original_records": 14417,
+    "ids_retained": 14417,
+    "generic_weekly_with_specific_venue": 5914,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3695,
-    "highly_supported_same_source_visit_groups": 915,
-    "suppressed_repeat_buttons_only": 1071,
-    "original_records_in_reversible_groups": 1986,
+    "venue_groups_examined": 3679,
+    "highly_supported_same_source_visit_groups": 909,
+    "suppressed_repeat_buttons_only": 1063,
+    "original_records_in_reversible_groups": 1972,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -25,12 +25,12 @@
     {
       "region": "Liguria",
       "groups": 38,
-      "extra_display_entries": 45
+      "extra_display_entries": 44
     },
     {
       "region": "Lombardia",
-      "groups": 629,
-      "extra_display_entries": 684
+      "groups": 623,
+      "extra_display_entries": 678
     },
     {
       "region": "Piemonte",
@@ -55,7 +55,7 @@
     {
       "region": "Veneto",
       "groups": 76,
-      "extra_display_entries": 92
+      "extra_display_entries": 91
     }
   ],
   "examples": [
@@ -338,7 +338,7 @@
         "mercato-settimanale-di-millesimo-millesimo",
         "mercato-settimanale-di-millesimo-millesimo-sabato"
       ],
-      "date": "2026-10-31"
+      "date": "2026-11-07"
     },
     {
       "region": "Liguria",
@@ -375,7 +375,7 @@
         "mercato-settimanale-di-pigna-pigna",
         "mercato-settimanale-di-pigna-pigna-sabato"
       ],
-      "date": "2026-10-31"
+      "date": "2026-11-07"
     },
     {
       "region": "Liguria",
@@ -533,7 +533,7 @@
         "mercato-settimanale-di-varazze-varazze",
         "mercato-settimanale-di-varazze-varazze-sabato"
       ],
-      "date": "2026-10-31"
+      "date": "2026-11-07"
     },
     {
       "region": "Liguria",

@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-10-31**.
-- Schede totali: **14,385**.
+- Data della misura: **2026-11-01**.
+- Schede totali: **14,417**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **560**.
-- Lettura della fonte registrata entro 30 giorni: **13,363**.
-- Fonte datata entro 30 giorni: **1,224**.
-- Di cui solo aggiornamento dataset, non del singolo mercato: **1,224**.
+- Importazione registrata entro 30 giorni: **592**.
+- Lettura della fonte registrata entro 30 giorni: **13,497**.
+- Fonte datata entro 30 giorni: **1,147**.
+- Di cui solo aggiornamento dataset, non del singolo mercato: **1,147**.
 - Schede con aggiornamento soltanto del dataset: **1,373**.
-- Fonte datata tra 31 e 365 giorni: **110**.
+- Fonte datata tra 31 e 365 giorni: **187**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **12,999**.
+- Schede con età del contenuto della fonte non comprovata: **13,031**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,275**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,329**.
+- Schede con date future previste: **11,242**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,297**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -44,7 +44,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | Comune di Bologna — dati ufficiali; apertura non confermata | opendata.comune.bologna.it | 39 | 0 | 39 | 0 | 39 |
 | Comune di Corciano, open data CC BY 4.0 (licenza dichiarata) | comune.corciano.pg.it | 3 | 0 | 3 | 0 | 3 |
 | Comune di Firenze - FeelFlorence (CC BY 4.0) | www.feelflorence.it | 4 | 0 | 4 | 0 | 4 |
-| Comune di Milano - Open Data (CC BY 4.0) | dati.comune.milano.it | 85 | 77 | 8 | 0 | 85 |
+| Comune di Milano - Open Data (CC BY 4.0) | dati.comune.milano.it | 85 | 0 | 85 | 0 | 85 |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | opendatahub.com | 14 | 14 | 0 | 0 | 14 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1128 | 1128 | 0 | 0 | 1127 |
 | Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | www.regione.veneto.it | 8 | 0 | 8 | 0 | 8 |
@@ -86,7 +86,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | emiliaromagnaturismo.it | emiliaromagnaturismo.it | 8 | 0 | 0 | 8 | 0 |
 | enjoysicilia.it | www.enjoysicilia.it | 3 | 0 | 0 | 3 | 0 |
 | eventi.bergamo.it | www.eventi.bergamo.it | 8 | 0 | 0 | 8 | 0 |
-| eventiesagre.it | www.eventiesagre.it | 2200 | 0 | 0 | 2200 | 2028 |
+| eventiesagre.it | www.eventiesagre.it | 2200 | 0 | 0 | 2200 | 2130 |
 | eventiinsardegna.it | www.eventiinsardegna.it | 1 | 0 | 0 | 1 | 0 |
 | eventiintoscana.it | www.eventiintoscana.it | 2 | 0 | 0 | 2 | 0 |
 | ferrarainfo.com | www.ferrarainfo.com | 2 | 0 | 0 | 2 | 0 |
@@ -131,7 +131,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 1 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
-| vintagery.it | vintagery.it | 160 | 0 | 0 | 160 | 160 |
+| vintagery.it | vintagery.it | 192 | 0 | 0 | 192 | 192 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -141,13 +141,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1190 | 3090 | 1919 | 8012 | 174 |
-| Orari | 1794 | 1975 | 2096 | 7778 | 742 |
-| Giorni | 1117 | 1869 | 2027 | 9175 | 197 |
+| Sede | 1196 | 3050 | 1939 | 8055 | 177 |
+| Orari | 1809 | 2337 | 2102 | 7420 | 749 |
+| Giorni | 1145 | 1856 | 2034 | 9175 | 207 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6177. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6209. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|

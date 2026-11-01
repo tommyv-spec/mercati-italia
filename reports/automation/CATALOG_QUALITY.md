@@ -4,18 +4,18 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,385**.
-- Orari mancanti: **1,794**.
-- Indirizzi mancanti: **1,190**.
-- Coordinate mancanti: **843**.
-- Date future mancanti: **2,476**.
+- Schede: **14,417**.
+- Orari mancanti: **1,809**.
+- Indirizzi mancanti: **1,196**.
+- Coordinate mancanti: **860**.
+- Date future mancanti: **2,548**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
-- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,500** gruppi, **1,793** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,385**.
+- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,494** gruppi, **1,783** righe in eccesso potenziali.
+- Verifiche umane documentate mancanti: **14,417**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
-- Incremento dei gruppi senza questa prova: **2** righe potenziali; le soglie del gate restano invariate.
+- Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
 
 ## Fonte di provenienza (primi editori)
 
@@ -25,7 +25,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | eventiesagre.it | 2,200 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
 | cosedicasa.com | 442 |
-| vintagery.it | 160 |
+| vintagery.it | 192 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
@@ -38,26 +38,26 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Regione | Schede | Orari mancanti | Indirizzi mancanti |
 |---|---:|---:|---:|
-| Abruzzo | 397 | 25 | 33 |
+| Abruzzo | 398 | 25 | 33 |
 | Basilicata | 36 | 3 | 9 |
-| Calabria | 336 | 38 | 37 |
+| Calabria | 338 | 40 | 37 |
 | Campania | 830 | 119 | 61 |
-| Emilia-Romagna | 932 | 170 | 103 |
-| Friuli Venezia Giulia | 267 | 27 | 17 |
-| Lazio | 1,090 | 97 | 59 |
-| Liguria | 405 | 56 | 53 |
-| Lombardia | 4,033 | 519 | 169 |
-| Marche | 302 | 52 | 40 |
-| Molise | 215 | 15 | 30 |
-| Piemonte | 1,369 | 161 | 177 |
-| Puglia | 497 | 50 | 39 |
-| Sardegna | 398 | 24 | 30 |
-| Sicilia | 414 | 55 | 40 |
-| Toscana | 998 | 191 | 107 |
-| Trentino-Alto Adige | 266 | 26 | 36 |
-| Umbria | 191 | 32 | 20 |
+| Emilia-Romagna | 934 | 171 | 103 |
+| Friuli Venezia Giulia | 269 | 29 | 19 |
+| Lazio | 1,091 | 98 | 60 |
+| Liguria | 407 | 58 | 54 |
+| Lombardia | 4,036 | 519 | 169 |
+| Marche | 303 | 51 | 40 |
+| Molise | 217 | 15 | 30 |
+| Piemonte | 1,369 | 160 | 177 |
+| Puglia | 500 | 52 | 40 |
+| Sardegna | 399 | 24 | 30 |
+| Sicilia | 419 | 59 | 41 |
+| Toscana | 1,001 | 191 | 107 |
+| Trentino-Alto Adige | 267 | 27 | 36 |
+| Umbria | 192 | 33 | 20 |
 | Valle d'Aosta | 58 | 8 | 7 |
-| Veneto | 1,351 | 126 | 123 |
+| Veneto | 1,353 | 127 | 123 |
 
 ## Località da verificare (campione limitato)
 
@@ -81,11 +81,11 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Liguria, Soldano · Piazza Vecchia · giorno=4 · 3 righe
 - Liguria, Uscio · Piazza resistenza · giorno=2 · 3 righe
 - Liguria, Vallebona · Piazza Libertà · giorno=1 · 3 righe
-- Liguria, Voltri · Piazza Gaggero · giorno=1 · 3 righe
 - Lombardia, Aicurzio · Piazza della Chiesa · giorno=1 · 3 righe
 - Lombardia, Albavilla · Via XXV Aprile · giorno=1 · 3 righe
 - Lombardia, Albiolo · Via Indipendenza · giorno=3 · 3 righe
 - Lombardia, Albizzate · PIAZZALE SEFRO · giorno=1 · 3 righe
+- Lombardia, Arconate · Via Pellico · giorno=5 · 3 righe
 
 Il report misura completezza e anomalie, NON l'accuratezza
 effettiva degli orari, la reale apertura o la qualità legale

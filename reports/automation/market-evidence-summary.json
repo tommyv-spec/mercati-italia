@@ -1,26 +1,26 @@
 {
-  "as_of": "2026-10-31",
+  "as_of": "2026-11-01",
   "confirmed_openings_added": 0,
   "coordinates_created": 0,
   "daily_detailed_tasks_saved_in_git": false,
-  "daily_shard": 12,
-  "daily_worklist_count": 501,
+  "daily_shard": 13,
+  "daily_worklist_count": 469,
   "distinct_source_labels": 92,
-  "incomplete_market_records_retained": 14385,
+  "incomplete_market_records_retained": 14417,
   "market_fields_changed": 0,
-  "market_identities_preserved": 14385,
-  "market_records_scanned": 14385,
+  "market_identities_preserved": 14417,
+  "market_records_scanned": 14417,
   "market_rows_added": 0,
   "market_rows_removed": 0,
   "may_enable_source_crawlers": false,
   "may_grant_source_reuse_rights": false,
   "missing_by_field": {
-    "coordinates": 14296,
-    "date": 2476,
-    "indirizzo": 5003,
-    "individual_edition_confirmation": 14385,
-    "orario_testo": 1794,
-    "ricorrenza_testo": 1117
+    "coordinates": 14328,
+    "date": 2548,
+    "indirizzo": 5012,
+    "individual_edition_confirmation": 14417,
+    "orario_testo": 1809,
+    "ricorrenza_testo": 1145
   },
   "official_join_results": {
     "city_weekday_only_unconfirmed_venue": 41,
@@ -28,14 +28,14 @@
     "exact_field_evidence_candidates": 0,
     "many_market_places_on_same_city_day": 12,
     "multiple_official_venues_on_same_street_day": 2,
-    "no_usable_source_match": 13175,
+    "no_usable_source_match": 13206,
     "review_only_field_candidates": 43,
     "same_source_id": 789,
-    "unique_city_province_street_weekday": 380
+    "unique_city_province_street_weekday": 381
   },
   "official_source_records": 1360,
   "official_source_status": "fresh_dataset_not_market_confirmation",
-  "original_market_ids_sha256": "ff817a8b0a4ca146232ad98814399a0eeec45266ead81f969867caaafa407ba4",
+  "original_market_ids_sha256": "974977389a9642470db7b0ff3f5b70f3b34ece1a460c9efaced43ea9548312be",
   "publisher_copyright_permissions_inferred": false,
   "report_only": true,
   "schema": 1,
@@ -47,7 +47,7 @@
         "adapter_scope": "happings_weekly_province_index",
         "authorized": true,
         "basis": "explicit_project_owner_instruction",
-        "checked_on": "2026-10-31",
+        "checked_on": "2026-11-01",
         "granted_by_this_report": false,
         "publication_channel": "dev-only",
         "record_sha256": "512250e027cd43a3b86a41294b842a896d5bbac6cdc0696e1f3eba0237b01d72",
@@ -58,7 +58,7 @@
       "bulk_scrape_allowed": true,
       "missing_fields": {
         "coordinates": 9913,
-        "date": 224,
+        "date": 250,
         "indirizzo": 4342,
         "individual_edition_confirmation": 9913,
         "orario_testo": 692,
@@ -76,7 +76,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2200,
-        "date": 1430,
+        "date": 1439,
         "indirizzo": 482,
         "individual_edition_confirmation": 2200,
         "orario_testo": 361,
@@ -112,9 +112,9 @@
       "missing_fields": {
         "coordinates": 442,
         "date": 88,
-        "indirizzo": 26,
+        "indirizzo": 28,
         "individual_edition_confirmation": 442,
-        "orario_testo": 173,
+        "orario_testo": 165,
         "ricorrenza_testo": 6
       },
       "next_automation": "check_page_schema_read_only_then_find_primary_organizer",
@@ -128,16 +128,16 @@
       "authorization": null,
       "bulk_scrape_allowed": false,
       "missing_fields": {
-        "coordinates": 160,
-        "date": 40,
-        "indirizzo": 35,
-        "individual_edition_confirmation": 160,
-        "orario_testo": 61,
-        "ricorrenza_testo": 132
+        "coordinates": 192,
+        "date": 76,
+        "indirizzo": 42,
+        "individual_edition_confirmation": 192,
+        "orario_testo": 84,
+        "ricorrenza_testo": 160
       },
       "next_automation": "consult_existing_operational_source_registries_then_find_primary_publisher",
       "publisher": "vintagery.it",
-      "records": 160,
+      "records": 192,
       "reuse_status": "not_resolved_by_this_worklist",
       "source_family": "source-family-not-resolved-by-this-worklist",
       "source_rows_removed": 0
@@ -480,7 +480,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 5,
-        "date": 1,
+        "date": 2,
         "indirizzo": 3,
         "individual_edition_confirmation": 5,
         "orario_testo": 1

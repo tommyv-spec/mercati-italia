@@ -4,7 +4,7 @@ Analisi **senza accesso al sito Happings** o altri siti editoriali.
 Gli stessi ID, Comune, provincia, giorno e URL originale non bastano
 a certificare l'unicità della sede in un intero Comune.
 
-- Schede nazionali controllate: **14385**
+- Schede nazionali controllate: **14417**
 - Schede Happings controllate: **9913**
 - Candidate che hanno già un indirizzo in un'altra scheda: **140**
 - Gruppi con più sedi note: **0**
