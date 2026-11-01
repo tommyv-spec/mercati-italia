@@ -1,6 +1,7 @@
 import os
 import sys
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -49,6 +50,58 @@ class EventsFileTests(unittest.TestCase):
         rows = events_rows(markets)
         self.assertEqual(rows, [["fiera", "Piazza Grande", "primo weekend", "Testo.", "Ingresso gratuito", "Arriva presto"]])
         self.assertEqual(EVENTS_FIELDS, ("slug", "indirizzo", "ricorrenza_testo", "descrizione", "ingresso", "consigli"))
+
+
+
+class EventsFileLifecycleTests(unittest.TestCase):
+    """The events asset must survive every step that copies or prunes catalog files."""
+
+    def setUp(self):
+        import tempfile
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+
+    def catalog(self, folder, **changes):
+        from export_static import export
+        from test_eventiesagre_detail_refresh import TODAY, row
+        return export([row(**changes)], folder / "public/data/v1", today=TODAY)["manifest"]
+
+    def test_validator_requires_a_matching_events_file(self):
+        from export_static import _write_asset, compact_json
+        from validate_static import validate
+        out = self.root / "public/data/v1"
+        manifest = self.catalog(self.root)
+        self.assertEqual(validate(out / "manifest.json")["records"], 1)
+        events = self.root / "public" / manifest["events"]
+        events.unlink()
+        with self.assertRaisesRegex(ValueError, "Missing events file"):
+            validate(out / "manifest.json")
+        manifest["events"] = _write_asset(out, "eventi-{hash}.json", [["forged", "", "", "", "", ""]])
+        (out / "manifest.json").write_bytes(compact_json(manifest))
+        with self.assertRaisesRegex(ValueError, "Events file differs"):
+            validate(out / "manifest.json")
+
+    def test_nightly_pruning_keeps_the_events_file(self):
+        from autopilot import prune_old_assets
+        out = self.root / "public/data/v1"
+        manifest = self.catalog(self.root)
+        (out / "eventi-00000000000000.json").write_text("{}")
+        prune_old_assets(out, {}, manifest)
+        self.assertTrue((self.root / "public" / manifest["events"]).is_file())
+        self.assertFalse((out / "eventi-00000000000000.json").exists())
+
+    def test_happings_bulk_install_copies_the_events_file(self):
+        from happings_bulk_catalog_publish import install
+        from validate_static import validate
+        repo, built = self.root / "repo", self.root / "built"
+        old = self.catalog(repo)
+        new = self.catalog(built, nome="Mercatino rinominato")
+        install(repo, built)
+        target = repo / "public/data/v1"
+        self.assertTrue((repo / "public" / new["events"]).is_file())
+        self.assertEqual(validate(target / "manifest.json")["records"], 1)
+        self.assertTrue(old["events"] == new["events"] or (repo / "public" / old["events"]).is_file())
 
 
 if __name__ == "__main__":
