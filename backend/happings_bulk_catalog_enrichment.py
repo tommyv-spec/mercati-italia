@@ -29,6 +29,7 @@ from happings_weekly_layout import WEEKDAYS, fold, province_page_key
 from merge_catalog import load_existing
 from stored_market_sibling_proposals import same_generic_venue, safe_stored_street
 import happings_source_enrichment as source
+from official_enrichment import INDICATIVE_VENUE_SOURCES
 
 DAYPART = {
     "morning_not_clock_hours": "La mattina",
@@ -159,7 +160,15 @@ def kept_record(rows, today, street=None, hours=None):
     already = {r.get("duplicato_di") for r in rows}
     listed = lambda r: bool(street) and (source._same_place(r.get("indirizzo"), street) or (
         r.get("fonte") != source.PUBLISHER and names_place(r, street, hours)))
-    return max(rows, key=lambda r: (listed(r),
+    # The page's street is only indicative (S29): a member whose street an official dataset
+    # states, naming another street and telling more, shows instead (Airuno: MERCap's Via
+    # Vittorio Emanuele II, 08:00-13:00, over the page's Via Postale Vecchia, "La mattina").
+    official = [r for r in rows if any(
+        x["valori"].get("indirizzo") == r.get("indirizzo") and x.get("fonte") not in INDICATIVE_VENUE_SOURCES
+        for x in clean_receipts(r.get("riscontri_campi"), r, today=today))]
+    outranked = lambda r: any(not shares_street(r, o) and visitor_facts(o, today) > visitor_facts(r, today)
+                              for o in official if o is not r)
+    return max(rows, key=lambda r: (listed(r) and not outranked(r),
                                     safe_stored_street(r.get("indirizzo")),
                                     "data" in visitor_facts(r, today), exact_hours(r),
                                     r["slug"] in already, data_value_score(r),

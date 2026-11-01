@@ -97,6 +97,28 @@ class BulkFieldTests(unittest.TestCase):
         self.assertEqual(by[ees["slug"]].get("duplicato_di"),happ["slug"])
         self.assertNotIn("duplicato_di",by[happ["slug"]])
 
+    def test_an_official_street_that_tells_more_outranks_the_pages_indicative_one(self):
+        from field_evidence import make_receipt
+        def official(row):
+            return {**row, "riscontri_campi": [make_receipt(
+                row, values={"indirizzo": row["indirizzo"], "orario_testo": row["orario_testo"]},
+                source_url="https://www.dati.lombardia.it/d/68zx-njaw",
+                source_name="Regione Lombardia – MERCap (CC0 1.0 dichiarata)", source_id="lombardia",
+                source_row="airuno:3", read_on=DAY.isoformat(), source_updated_on="2026-10-20",
+                source_sha256="c" * 64)]}
+        # Airuno, 1 Nov: the page says Via Postale Vecchia, "La mattina"; MERCap says
+        # Via Vittorio Emanuele II, 08:00-13:00 for the town's one Wednesday market.
+        page = {**base_row("airuno-mercoledi", street="Via Postale Vecchia"),
+                "orario_testo": "La mattina", "date": ["2026-10-29"]}
+        mercap = official({**base_row("airuno", street="VIA VITTORIO EMANUELE II"),
+                           "orario_testo": "08:00–13:00 (fonte comunale, da verificare)",
+                           "date": ["2026-10-29"]})
+        self.assertIs(bulk.kept_record([page, mercap], DAY, "Via Postale Vecchia"), mercap)
+        # The same street written differently, both with the hours: the page's card stays.
+        spelled = official({**mercap, "slug": "spelled", "indirizzo": "VIA POSTALE VECCHIA, 1"})
+        timed = {**page, "orario_testo": "08:00–13:00 (fonte comunale, da verificare)"}
+        self.assertIs(bulk.kept_record([timed, spelled], DAY, "Via Postale Vecchia"), timed)
+
     def test_any_source_card_at_the_listed_street_joins_and_the_most_detailed_shows(self):
         happ=base_row(street="Via Dalmazia"); happ["orario_testo"]="La mattina"
         official=base_row("lo-mercap-1-mercoledi")
