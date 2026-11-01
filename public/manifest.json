@@ -1,25 +1,26 @@
 {
+  "id": "/",
   "name": "Fuori — Mercatini d'Italia",
   "short_name": "Fuori",
-  "description": "Scopri mercati rionali, dell'antiquariato, vintage e artigianali vicino a te.",
+  "description": "Mercatini, fiere e mercati vicino a te: date, orari e indirizzi, giorno per giorno. Gratis, senza registrazione.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#F5F0E8",
-  "theme_color": "#F5F0E8",
+  "background_color": "#FDFBF7",
+  "theme_color": "#2C2416",
   "orientation": "portrait",
   "lang": "it",
+  "dir": "ltr",
+  "categories": ["lifestyle", "shopping", "travel"],
   "icons": [
-    {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "/screenshots/esplora.jpg", "sizes": "780x1688", "type": "image/jpeg", "form_factor": "narrow", "label": "Scegli dove e quando: i mercatini intorno a te" },
+    { "src": "/screenshots/lista.jpg", "sizes": "780x1688", "type": "image/jpeg", "form_factor": "narrow", "label": "Giorno per giorno, con orari e indirizzi" },
+    { "src": "/screenshots/scheda.jpg", "sizes": "780x1688", "type": "image/jpeg", "form_factor": "narrow", "label": "La scheda: prossima apertura, salva e indicazioni" }
   ]
 }

@@ -1772,3 +1772,25 @@ body {
 .ticket-wrap { display: flex; flex-direction: column; }
 .ticket-wrap .agenda-cal { align-self: flex-start; margin: 6px 0 0 6px; }
 .section .list-area { margin-top: 0; }
+
+/* ─── Install: banner above the tabs, steps, Altro panel ─────────────────── */
+.install-banner { position: fixed; left: 12px; right: 12px; bottom: calc(var(--tab-h) + 12px); z-index: 120; display: grid;
+  grid-template-columns: 44px minmax(0, 1fr); gap: 10px 12px; align-items: center; padding: 14px; border-radius: 18px;
+  background: var(--ink); color: var(--cream); box-shadow: 0 10px 30px -10px rgba(44, 36, 22, .55); max-width: 520px; margin: 0 auto; }
+.install-banner img { width: 44px; height: 44px; border-radius: 11px; }
+.install-text { display: flex; flex-direction: column; gap: 2px; }
+.install-text strong { font-size: 15.5px; }
+.install-text span { font-size: 13.5px; line-height: 1.4; color: rgba(253, 251, 247, .82); }
+.install-actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px; }
+.install-actions .btn-primary { background: var(--cream); color: var(--ink); height: 44px; flex: 1 1 auto; }
+.install-actions .link { color: rgba(253, 251, 247, .85); font-size: 15px; min-height: 44px; text-decoration: none; padding: 0 6px; }
+.install-steps { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.install-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.45; }
+.step-n { flex: 0 0 28px; height: 28px; border-radius: 999px; background: var(--ink); color: var(--cream); font-weight: 700; font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center; }
+.key { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; vertical-align: middle;
+  background: var(--white); border: 1px solid var(--sand); color: #1A73E8; margin: 0 2px; }
+.install-ok { display: inline-flex; align-items: center; gap: 6px; color: var(--olive); font-weight: 700; margin: 4px 0 0; }
+.install-inapp p { margin: 0 0 10px; font-size: 15px; line-height: 1.5; }
+.install-panel .btn-primary { width: 100%; margin-top: 4px; }
+.install-panel { background: color-mix(in srgb, var(--terracotta) 8%, var(--beige)); }

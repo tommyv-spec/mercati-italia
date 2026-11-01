@@ -11,6 +11,10 @@ import More from './screens/More.jsx';
 import TabBar from './ui/TabBar.jsx';
 import WhereSheet from './ui/WhereSheet.jsx';
 import WhenSheet from './ui/WhenSheet.jsx';
+import { InstallBanner, InstallSheet } from './ui/Install.jsx';
+import { useInstall } from './hooks/useInstall.js';
+import { shouldOffer } from './lib/install.js';
+import { track } from './lib/installEvents.js';
 import { todayStr, isFreeEntry } from './lib/display.js';
 import { DEFAULT_WHEN, whenDays, firstDayIn, whenLabel } from './lib/when.js';
 import { searchMarkets, matchCities } from './lib/search.js';
@@ -60,6 +64,8 @@ export default function App() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState('');
   const [toast, setToast] = useState(null);
+  const install = useInstall();
+  const [offer, setOffer] = useState(null);           // 'save' | 'open': the install invitation to show
   const selectedRef = useRef(null);
   const marketsRef = useRef(allMarkets);
   marketsRef.current = allMarkets;
@@ -76,10 +82,21 @@ export default function App() {
   }, [tab, view, query]);
 
   const showToast = useCallback(msg => { setToast(msg); setTimeout(() => setToast(null), 2200); }, []);
+  // `seen` = the state including what the visitor just did (the save or the open being counted).
+  const offerInstall = useCallback((trigger, seen = install.state) => {
+    if (!shouldOffer(seen, { trigger, platform: install.platform, now: Date.now() })) return false;
+    install.update(s => ({ shown: s.shown + 1, lastShownAt: Date.now(), shownThisVisit: true }));
+    setOffer(trigger);
+    track('install_prompt_shown', { trigger, platform: install.platform });
+    return true;
+  }, [install]);
   const toggleFav = useCallback(id => {
-    showToast(favorites.has(id) ? 'Tolto dai salvati.' : 'Salvato: lo trovi in «Salvati».');
+    const adding = !favorites.has(id);
     hookToggleFav(id);
-  }, [favorites, hookToggleFav, showToast]);
+    if (adding) install.update(s => ({ saves: s.saves + 1 }));
+    if (adding && offerInstall('save', { ...install.state, saves: install.state.saves + 1 })) return;
+    showToast(adding ? 'Salvato: lo trovi in «Salvati».' : 'Tolto dai salvati.');
+  }, [favorites, hookToggleFav, showToast, install, offerInstall]);
 
   const setWhere = useCallback(next => {
     setWhereState(next);
@@ -164,7 +181,12 @@ export default function App() {
     return () => { window.removeEventListener('popstate', onPop); window.removeEventListener('hashchange', onHash); };
   }, []);
 
-  const openMarket = useCallback(market => { loadMarket(market); go({ market: market.id }); }, [loadMarket, go]);
+  const openMarket = useCallback(market => {
+    loadMarket(market);
+    go({ market: market.id });
+    install.update(s => ({ opened: s.opened + 1 }));
+    offerInstall('open', { ...install.state, opened: install.state.opened + 1 });
+  }, [loadMarket, go, install, offerInstall]);
 
   const onQuery = q => {
     setQuery(q);
@@ -336,6 +358,23 @@ export default function App() {
       showToast('Seleziona il testo dell’indirizzo per copiarlo.');
     }
   };
+  // Installing: one tap where the browser allows it, otherwise the three-step guide.
+  const installNow = async () => {
+    setOffer(null);
+    if (install.platform === 'native') {
+      const outcome = await install.promptNative();
+      track('install_prompt_choice', { outcome });
+      if (outcome === 'dismissed') install.update(s => ({ dismissals: s.dismissals + 1 }));
+    } else {
+      track('install_steps_opened', { platform: install.platform });
+      go({ sheet: 'install' });
+    }
+  };
+  const dismissOffer = () => {
+    setOffer(null);
+    install.update(s => ({ dismissals: s.dismissals + 1 }));
+    track('install_prompt_dismissed', { platform: install.platform });
+  };
   const leaveMarketFor = change => replace({ market: null, tab: 'esplora', view: 'main', search: false, sheet: null, ...change });
 
   const context = { whereLabel: whereShort, whenLabel: whenLabel(when), onOpenWhere: () => go({ sheet: 'where' }), onOpenWhen: () => go({ sheet: 'when' }) };
@@ -366,7 +405,7 @@ export default function App() {
         <Agenda markets={allMarkets} favorites={favorites} onOpen={openMarket} onToggleFav={toggleFav}
           onExplore={() => go({ tab: 'esplora', view: 'main' })} />
       )}
-      {tab === 'altro' && <More />}
+      {tab === 'altro' && <More installPlatform={install.platform} onInstallNative={installNow} />}
 
       {sheet === 'where' && (
         <WhereSheet where={where} cities={cities} manualCity={manualCity} setManualCity={setManualCity}
@@ -374,6 +413,11 @@ export default function App() {
           positionStatus={positionStatus} positionError={positionError} />
       )}
       {sheet === 'when' && <WhenSheet when={when} onPick={w => { setWhen(w); back(); }} onClose={back} />}
+      {sheet === 'install' && <InstallSheet platform={install.platform} onClose={back} />}
+      {/* Never over a market page or a sheet: the invitation waits until the visitor is back on a list. */}
+      {offer && (offer === 'save' || !selectedMarket) && !sheet && (
+        <InstallBanner trigger={offer} onInstall={installNow} onDismiss={dismissOffer} />
+      )}
       {selectedMarket && (
         <Detail market={selectedMarket} loading={detailLoading} error={detailError} allMarkets={allMarkets}
           favorites={favorites} onToggleFav={toggleFav} onBack={back} onShare={shareMarket}
