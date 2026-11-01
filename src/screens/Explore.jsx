@@ -9,7 +9,8 @@ import ContextBar from '../ui/ContextBar.jsx'
 import CategoryIcon, { categoryColor } from '../ui/CategoryIcon.jsx'
 import WeeklyCityGroup from '../components/WeeklyCityGroup.jsx'
 import { shouldAutoExpandWeeklyGroup } from '../lib/marketGrouping.js'
-import { dayHeaderLabel } from '../lib/display.js'
+import { dayHeaderLabel, localISO } from '../lib/display.js'
+import { TicketCard, PosterCard, GridTile, DayDivider } from '../ui/ListCards.jsx'
 
 export const CATEGORY_FILTERS = [
   { key: 'tutti', label: 'Tutti' },
@@ -94,7 +95,7 @@ export default function Explore(p) {
   )
 }
 
-function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onToggleFav, emptyActions, whenKind }) {
+function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onToggleFav, emptyActions, whenKind, listStyle, today }) {
   if (!items.length) {
     return (
       <div className="empty">
@@ -103,7 +104,19 @@ function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onTo
       </div>
     )
   }
-  const shown = items.slice(0, visibleCount)
+  const tomorrow = localISO(new Date(new Date(today + 'T12:00:00').getTime() + 86400000))
+  const perDay = new Map()
+  for (const it of items) perDay.set(it.day, (perDay.get(it.day) || 0) + 1)
+  const days = []
+  for (const it of items.slice(0, visibleCount)) {
+    if (!days.length || days[days.length - 1].day !== it.day) days.push({ day: it.day, items: [] })
+    days[days.length - 1].items.push(it)
+  }
+  const Card = { biglietti: TicketCard, locandine: PosterCard, griglia: GridTile }[listStyle]
+  const card = it => Card
+    ? <Card key={it.market.id} market={it.market} date={it.day} km={it.km} onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(it.market.id)} />
+    : <EventRow key={it.market.id} market={it.market} date={it.day} twoDays={whenKind === 'weekend' && it.twoDays} showDate={!it.day}
+        hot={false} km={it.km} onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(it.market.id)} />
   return (
     <div className="section">
       {featured.length > 0 && (
@@ -111,12 +124,12 @@ function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onTo
           {featured.map(it => <FeaturedTile key={it.market.id} market={it.market} date={it.day} onOpen={onOpen} />)}
         </div>
       )}
-      <div className="markets-list rivista">
-        {shown.map((it, i) => (
-          <Fragment key={it.market.id}>
-            {(i === 0 || shown[i - 1].day !== it.day) && <h2 className="day-header">{dayHeaderLabel(it.day)}</h2>}
-            <EventRow market={it.market} date={it.day} twoDays={whenKind === 'weekend' && it.twoDays} showDate={!it.day}
-              hot={false} km={it.km} onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(it.market.id)} />
+      <div className={Card ? 'list-area list-' + listStyle : 'markets-list rivista'}>
+        {days.map(group => (
+          <Fragment key={group.day || 'nd'}>
+            {Card ? <DayDivider day={group.day} count={perDay.get(group.day)} today={today} tomorrow={tomorrow} />
+              : <h2 className="day-header">{dayHeaderLabel(group.day)}</h2>}
+            {Card ? <div className={listStyle === 'griglia' ? 'markets-grid' : 'cards-col'}>{group.items.map(card)}</div> : group.items.map(card)}
           </Fragment>
         ))}
       </div>

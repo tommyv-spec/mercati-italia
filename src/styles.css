@@ -1722,3 +1722,76 @@ body {
 .weekly-city-card { border-left: 1px solid var(--beige-dark); box-shadow: none; border-radius: 16px; background: color-mix(in srgb, var(--olive) 5%, #FFFFFF); }
 .link-icon { text-align: left; }
 .detail-notes a, .provenance a { color: var(--terracotta); }
+
+/* ─── List styles: beige band, white cards, calendar dividers ───────────── */
+.list-area { margin: 8px -20px 0; padding: 4px 16px 18px; background: var(--beige); border-radius: 26px 26px 0 0; }
+.cards-col { display: flex; flex-direction: column; gap: 12px; }
+.markets-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.list-area .market-card { margin: 0; padding: 0; border: 0; background: var(--white); border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(44, 36, 22, .06), 0 6px 18px -8px rgba(44, 36, 22, .18); overflow: hidden; position: relative; }
+.list-area .market-card-open { all: unset; cursor: pointer; display: block; }
+.list-area .market-card-open:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+.list-area .card-name { font-family: var(--font-display); font-weight: 400; color: var(--ink); margin: 0; line-height: 1.2;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.list-area .when { font-size: 12px; font-weight: 600; color: var(--ink-light); display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.list-area .when .sure { display: inline-flex; align-items: center; gap: 3px; color: var(--olive); }
+.list-area .when .unsure { color: var(--ink-lighter); font-weight: 500; }
+.list-area .place { display: flex; align-items: center; gap: 5px; margin: 0; font-size: 13.5px; color: var(--ink-lighter); min-width: 0; }
+.list-area .place > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.list-area .place svg { color: var(--c); flex: 0 0 auto; }
+.list-area .card-city { color: var(--ink); font-weight: 600; }
+.list-area .desc { font-size: 13.5px; line-height: 1.45; color: var(--ink-light); margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.list-area .foot { display: flex; gap: 6px; flex-wrap: wrap; }
+.list-area .row-fav { width: 40px; height: 40px; margin: -10px -10px -10px 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; color: var(--ink-lighter); cursor: pointer; flex: 0 0 auto; }
+.list-area .row-fav.on { color: var(--terracotta); }
+
+.day-divider { position: sticky; top: var(--header-h, 80px); z-index: 30; display: flex; align-items: center; gap: 12px; margin: 0 -16px 10px; padding: 14px 16px 10px;
+  background: var(--beige); font-weight: 400; }
+.dd-num { font-family: var(--font-display); font-size: 40px; line-height: .9; color: var(--ink); min-width: 44px; }
+.dd-txt { display: flex; flex-direction: column; font-size: 14px; color: var(--ink-light); line-height: 1.2; }
+.dd-txt b { font-size: 17px; color: var(--ink); font-weight: 700; }
+.dd-hot { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--terracotta); }
+.day-divider.hot .dd-num { color: var(--terracotta); }
+.dd-n { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--ink-light); background: rgba(255, 255, 255, .7); border-radius: 999px; padding: 4px 10px; }
+
+/* Biglietti */
+.ticket { display: flex; min-height: 132px; }
+.ticket-stub { position: relative; flex: 0 0 84px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px 6px;
+  background: var(--c); color: #FDFBF7; text-align: center; }
+.ticket-stub::after { content: ''; position: absolute; top: 8px; bottom: 8px; right: -1px; width: 2px;
+  background: radial-gradient(circle, var(--white) 1.4px, transparent 1.6px) 0 0 / 2px 8px repeat-y; }
+.ticket::before, .ticket::after { content: ''; position: absolute; left: 77px; width: 14px; height: 14px; border-radius: 999px; background: var(--beige); z-index: 1; }
+.ticket::before { top: -7px; } .ticket::after { bottom: -7px; }
+.ticket-time { font-family: var(--font-display); font-size: 22px; line-height: 1; }
+.ticket-until { font-size: 11px; font-weight: 600; letter-spacing: .04em; opacity: .9; }
+.ticket-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 5px; padding: 12px 14px 13px 16px; }
+.ticket .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.ticket-cat { color: var(--c); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 11px; }
+.ticket .card-name { font-size: 19px; }
+
+/* Locandine */
+.poster-card { display: flex; flex-direction: column; }
+.pc-head { position: relative; height: 92px; background: var(--c); color: #FDFBF7; padding: 14px 16px; overflow: hidden; isolation: isolate; }
+.pc-p1 .pc-head { background: repeating-linear-gradient(90deg, var(--c) 0 18px, color-mix(in srgb, var(--c) 86%, #000) 18px 36px); }
+.pc-p2 .pc-head { background: radial-gradient(color-mix(in srgb, var(--c) 78%, #FFF) 1.6px, transparent 1.8px) 0 0 / 14px 14px, var(--c); }
+.pc-eyebrow { position: relative; z-index: 1; font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.pc-art { position: absolute; right: 18px; bottom: -14px; color: rgba(253, 251, 247, .9); z-index: 0; }
+.pc-fav { position: absolute; left: 10px; bottom: 8px; width: 38px; height: 38px; border-radius: 999px; border: 0; background: rgba(253, 251, 247, .2); color: #FDFBF7;
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.pc-fav.on { background: #FDFBF7; color: var(--c); }
+.pc-body { display: flex; flex-direction: column; gap: 5px; padding: 12px 16px 14px; }
+.poster-card .card-name { font-size: 20px; }
+
+/* Griglia */
+.grid-tile { display: flex; flex-direction: column; }
+.gt-visual { position: relative; height: 104px; display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--c) 16%, #FDFBF7); color: var(--c); }
+.gt-time { position: absolute; left: 8px; bottom: 8px; font-size: 11.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--ink); }
+.gt-fav { position: absolute; right: 6px; top: 6px; width: 36px; height: 36px; border-radius: 999px; border: 0; background: rgba(255, 255, 255, .92); color: var(--ink-light);
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2; }
+.gt-fav.on { color: var(--terracotta); }
+.gt-body { display: flex; flex-direction: column; gap: 4px; padding: 10px 11px 12px; flex: 1 1 auto; }
+.grid-tile .card-name { font-size: 16.5px; }
+.grid-tile .gt-place { font-size: 12.5px; }
+.grid-tile .pill-free { align-self: flex-start; font-size: 11px; padding: 2px 8px; margin-top: 2px; }
+.grid-tile .when { font-size: 11px; }

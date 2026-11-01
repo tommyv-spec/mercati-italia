@@ -55,3 +55,10 @@ test('a name that starts like a fairground word is still a name', () => {
   assert.equal(displayName(arezzo), 'Fiera Antiquaria')
   assert.equal(displayAddress(arezzo), 'piazza Grande e dintorni')
 })
+
+test('"<Town>, “<Name>”" becomes the name, and the address drops a leading quoted name', () => {
+  const lonate = { name: 'Lonate Ceppino, “Mercatino del Riuso”', address: '“Mercatino del Riuso”, via della Giustizia' }
+  assert.equal(displayName(lonate), 'Mercatino del Riuso')
+  assert.equal(displayAddress(lonate), 'via della Giustizia')
+  assert.equal(displayName({ name: 'Valeggio sul Mincio, Valeggio Contemporanea' }), 'Valeggio sul Mincio, Valeggio Contemporanea')
+})

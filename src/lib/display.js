@@ -82,9 +82,16 @@ const PLACE_WORD = /^(via|viale|vicolo|piazza|piazzale|piazzetta|corso|largo|lun
 const GENERIC_NAMES = new Set(['antiquariato', 'artigianato', 'usato', 'vintage', 'collezionismo', 'modernariato', 'hobbisti', 'mercatino', 'il mercatino', 'mercato', 'il mercato', "mercatino dell'usato", "mercatino dell'antiquariato", 'antiquariato e usato', 'pulci'])
 const SMALL_WORDS = new Set(['di', 'del', 'della', 'dello', 'dei', 'degli', 'delle', 'a', 'al', 'alla', 'allo', 'ai', 'agli', 'alle', 'in', 'nel', 'nella', 'nello', 'nei', 'negli', 'nelle', 'su', 'sul', 'sulla', 'sullo', 'sui', 'sugli', 'sulle', 'da', 'dal', 'dalla', 'dai', 'e', 'ed', 'con', 'per', 'tra', 'fra', 'dell', 'nell', 'sull', 'dall', 'all', 'coll'])
 
+const TOWN_THEN_QUOTED = /^[^,"“«]+, (["“«]([^"”»]{2,})["”»])(?:,.*)?$/
+
 function sourceTitleParts(name) {
   const match = SOURCE_TITLE.exec(name || '')
-  if (!match) return null
+  if (!match) {
+    // "Lonate Ceppino, “Mercatino del Riuso”": the town, then the quoted name.
+    const townQuoted = TOWN_THEN_QUOTED.exec(name || '')
+    if (townQuoted && !GENERIC_NAMES.has(townQuoted[2].trim().toLowerCase())) return { title: townQuoted[2].trim(), lead: townQuoted[1] }
+    return null
+  }
   const rest = match[3].trim()
   // A quoted name may hold commas of its own: read up to the closing quote.
   const close = /^["“«]/.test(rest) ? rest.slice(1).search(/["”»]/) : -1
@@ -127,7 +134,8 @@ export function displayAddress(market) {
   let address = (market?.address || '').trim()
   const parts = sourceTitleParts(market?.name)
   if (parts?.lead && address.startsWith(parts.lead)) address = address.slice(parts.lead.length).replace(/^[\s,]+/, '')
-  return address
+  // A quoted name at the start of an address is the market's name, not the street.
+  return address.replace(/^["“«][^"”»]+["”»],?\s*/, '')
 }
 
 export function isFreeEntry(text) {
