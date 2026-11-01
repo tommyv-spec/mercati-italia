@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import SearchField from '../ui/SearchField.jsx'
-import Pill from '../ui/Pill.jsx'
+import Icon from '../ui/Icon.jsx'
+import CategoryIcon, { categoryColor } from '../ui/CategoryIcon.jsx'
 import Section from '../ui/Section.jsx'
 import EventRow from '../ui/EventRow.jsx'
 import FeaturedTile from '../ui/FeaturedTile.jsx'
@@ -8,16 +9,18 @@ import WeeklyRow from '../ui/WeeklyRow.jsx'
 import WeekendStepper from '../ui/WeekendStepper.jsx'
 import Skeleton from '../ui/Skeleton.jsx'
 import { weekendOf, inWeekend } from '../lib/weekend.js'
-import { TODAY, todayStr } from '../lib/display.js'
+import { TODAY, todayStr, isFreeEntry } from '../lib/display.js'
 import { italianKey } from '../lib/marketGrouping.js'
 import { haversine } from '../services/staticMarkets.js'
 
-const CATEGORY_PILLS = [
-  ['Antiquariato', ['Antiquariato']],
-  ['Vintage e usato', ['Vintage e abbigliamento', 'Usato']],
-  ['Artigianato', ['Artigianato']],
-  ['Alimentare', ['Alimentare']],
-  ['Settimanali', ['Misto']],
+// What people come looking for: one tile each, with how many there are.
+const TILES = [
+  { label: 'Antiquariato', cats: ['Antiquariato'] },
+  { label: 'Vintage e usato', cats: ['Vintage e abbigliamento', 'Usato'] },
+  { label: 'Gratis', free: true },
+  { label: 'Artigianato', cats: ['Artigianato'] },
+  { label: 'Alimentare', cats: ['Alimentare'] },
+  { label: 'Settimanali', cats: ['Misto'], weekly: true },
 ]
 const NEARBY_KM = 50
 const HOME_EVENTS = 10
@@ -35,7 +38,7 @@ const rank = m => (m.dateQuality === 'riportata' || m.dateQuality === 'confermat
 export default function Home({
   markets, loading, error, onRetry, query, onQuery, weekendOffset, onWeekend, onSeeAll, onCategory, onRegion,
   onNearby, onAllItaly, positionStatus, canUseDistance, center, cityForToday, onWeeklyCity, onChooseCity,
-  onOpen, favorites, onToggleFav,
+  onOpen, favorites, onToggleFav, onFree,
 }) {
   const weekend = useMemo(() => weekendOf(TODAY, weekendOffset), [weekendOffset])
   const live = useMemo(() => markets.filter(m => !m.concluded), [markets])
@@ -92,12 +95,17 @@ export default function Home({
   }, [events, featured, weekend])
   const firstDay = m => m.dates.includes(weekend.sat) ? weekend.sat : weekend.sun
   const bothDays = m => m.dates.includes(weekend.sat) && m.dates.includes(weekend.sun)
+  const weeklyToday = useMemo(() => live.filter(m => !m.isEvent && m.dates.includes(todayStr)).length, [live])
+  const tiles = TILES.map(t => ({ ...t,
+    count: t.weekly ? weeklyToday : t.free ? events.filter(m => isFreeEntry(m.entry)).length
+      : events.filter(m => t.cats.includes(m.category)).length,
+    unit: t.weekly ? 'oggi' : weekendOffset === 0 ? 'questo weekend' : 'nel weekend' }))
   const todayLabel = TODAY.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
   const scope = center ? center.label : 'in Italia'
 
   return (
     <div className="home">
-      <div className="band">
+      <div className="band band-awning">
         <div className="band-top">
           <span className="wordmark">Fuori</span>
           <span className="eyebrow">Mercatini d'Italia</span>
@@ -117,9 +125,15 @@ export default function Home({
         </div>
       </div>
 
-      <div className="pill-row">
-        {CATEGORY_PILLS.map(([label, cats]) => (
-          <Pill key={label} onClick={() => onCategory(cats)}>{label}</Pill>
+      <div className="cat-row" aria-label="Cosa cerchi">
+        {tiles.map(t => (
+          <button key={t.label} type="button" className="cat-card"
+            style={{ '--c': t.free ? 'var(--olive)' : categoryColor(t.cats[0]) }}
+            onClick={() => (t.free ? onFree() : onCategory(t.cats))}>
+            <span className="cat-card-ico">{t.free ? <Icon name="ticket" size={22} strokeWidth={1.8} /> : <CategoryIcon category={t.cats[0]} size={22} />}</span>
+            <span className="cat-card-label">{t.label}</span>
+            <span className="cat-card-n">{loading ? '…' : t.count.toLocaleString('it-IT') + ' ' + t.unit}</span>
+          </button>
         ))}
       </div>
 
@@ -143,7 +157,7 @@ export default function Home({
               <div key={day}>
                 <h3 className="day-sub">{longDay(day)}<span className="day-sub-n">{list.length}</span></h3>
                 {list.map(m => (
-                  <EventRow key={m.id} market={m} date={firstDay(m)} twoDays={bothDays(m)} hot={false}
+                  <EventRow key={m.id} market={m} date={firstDay(m)} twoDays={bothDays(m)} hot={false} showDate={false}
                     onOpen={onOpen} onToggleFav={onToggleFav} isFav={favorites.has(m.id)} />
                 ))}
               </div>
@@ -173,7 +187,11 @@ export default function Home({
 
       <Section title="Per regione">
         <div className="region-grid">
-          {regions.map(([name]) => <button key={name} type="button" className="region-link" onClick={() => onRegion(name)}>{name}</button>)}
+          {regions.map(([name, n]) => (
+            <button key={name} type="button" className="region-link" onClick={() => onRegion(name)}>
+              <span>{name}</span><span className="region-n">{n}</span>
+            </button>
+          ))}
         </div>
         <button type="button" className="box-link" onClick={() => onRegion('')}>Tutte le regioni ›</button>
       </Section>

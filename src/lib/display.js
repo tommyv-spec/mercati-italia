@@ -71,3 +71,65 @@ export function uniqueByName(items, pick = item => item) {
     return seen.has(key) ? false : seen.add(key);
   });
 }
+
+// ─── Display-only names ────────────────────────────────────────────────────
+// Some sources write "Mercatino antiquariato e usato di <Town>, "<Name>", <street…>":
+// the real name is inside, the rest repeats the town and the address. The card
+// shows the name; search and the market page keep the full source title.
+const SOURCE_TITLE = /^(Mercatino [^,]*?) di ([^,]+), (.+)$/
+const QUOTED = /^["“«]([^"”»]{2,})["”»]$/
+const PLACE_WORD = /^(via|viale|vicolo|piazza|piazzale|piazzetta|corso|largo|lungo|lungomare|lungolago|lungofiume|centro|parco|area|zona|località|loc\.|borgo|strada|contrada|passeggiata|portici|chiostro|giardini|giardino|parcheggio|campo|riva|banchina|presso|nel|nella|nei|in|sotto|ex|foro|rione|quartiere|frazione|fraz\.|stazione|porto|molo|spiazzo|sagrato|cortile|palazzo|villa|castello|fiera|polo|ippodromo|stadio)\b/i
+const GENERIC_NAMES = new Set(['antiquariato', 'artigianato', 'usato', 'vintage', 'collezionismo', 'modernariato', 'hobbisti', 'mercatino', 'il mercatino', 'mercato', 'il mercato', "mercatino dell'usato", "mercatino dell'antiquariato", 'antiquariato e usato', 'pulci'])
+const SMALL_WORDS = new Set(['di', 'del', 'della', 'dello', 'dei', 'degli', 'delle', 'a', 'al', 'alla', 'allo', 'ai', 'agli', 'alle', 'in', 'nel', 'nella', 'nello', 'nei', 'negli', 'nelle', 'su', 'sul', 'sulla', 'sullo', 'sui', 'sugli', 'sulle', 'da', 'dal', 'dalla', 'dai', 'e', 'ed', 'con', 'per', 'tra', 'fra', 'dell', 'nell', 'sull', 'dall', 'all', 'coll'])
+
+function sourceTitleParts(name) {
+  const match = SOURCE_TITLE.exec(name || '')
+  if (!match) return null
+  const rest = match[3].trim()
+  // A quoted name may hold commas of its own: read up to the closing quote.
+  const close = /^["“«]/.test(rest) ? rest.slice(1).search(/["”»]/) : -1
+  const first = close >= 0 ? rest.slice(0, close + 2) : rest.split(',')[0].trim()
+  const quoted = QUOTED.exec(first)
+  if (quoted) {
+    const inner = quoted[1].trim()
+    // "Artigianato", "Il Mercatino": a category word, not a name.
+    if (GENERIC_NAMES.has(inner.toLowerCase())) return { title: match[1] + ' di ' + match[2].trim(), lead: first }
+    const head = inner.split(/[\s'’]/)[0].toLowerCase()
+    // "Dell'Usato e delle Cose Antiche", "di tutto un po'": a name that starts with a preposition.
+    const title = SMALL_WORDS.has(head) ? 'Mercatino ' + inner.charAt(0).toLowerCase() + inner.slice(1)
+      : inner.charAt(0).toUpperCase() + inner.slice(1)
+    return { title, lead: first }
+  }
+  if (!PLACE_WORD.test(first)) return { title: first, lead: first }
+  return { title: match[1] + ' di ' + match[2].trim(), lead: '' }
+}
+
+// "Mercatino Dell’antiquariato A Piazzola Sul Brenta" → small words lower case.
+function softenTitleCase(name) {
+  const words = name.split(' ')
+  const capital = words.filter(w => /^[A-ZÀ-Ý]/.test(w)).length
+  if (words.length < 3 || capital / words.length < 0.75) return name
+  return words.map((word, i) => {
+    if (i === 0) return word
+    const [head, ...rest] = word.split(/(?<=['’])/)
+    if (SMALL_WORDS.has(head.replace(/['’]$/, '').toLowerCase())) return head.toLowerCase() + rest.join('')
+    return word
+  }).join(' ')
+}
+
+export function displayName(market) {
+  const name = (market?.name || '').trim()
+  const parts = sourceTitleParts(name)
+  return parts ? parts.title : softenTitleCase(name)
+}
+
+export function displayAddress(market) {
+  let address = (market?.address || '').trim()
+  const parts = sourceTitleParts(market?.name)
+  if (parts?.lead && address.startsWith(parts.lead)) address = address.slice(parts.lead.length).replace(/^[\s,]+/, '')
+  return address
+}
+
+export function isFreeEntry(text) {
+  return /gratuit|libero/i.test(text || '')
+}

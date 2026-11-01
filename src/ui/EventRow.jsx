@@ -1,34 +1,46 @@
 import Icon from './Icon.jsx'
-import { CATEGORY_COLORS, dateQualityLabel, todayStr, localISO } from '../lib/display.js'
+import { CategoryTile, categoryColor } from './CategoryIcon.jsx'
+import { displayName, displayAddress, isFreeEntry, todayStr, localISO } from '../lib/display.js'
+import { sourceHoursForDate } from '../lib/sourceCalendar.js'
 
-const MONTH = iso => new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { month: 'short' }).replace('.', '')
-const WEEKDAY = iso => new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'short' }).replace('.', '')
 const tomorrowStr = (() => { const d = new Date(); d.setDate(d.getDate() + 1); return localISO(d) })()
+const dayLabel = iso => {
+  const d = new Date(iso + 'T12:00:00')
+  return d.toLocaleDateString('it-IT', { weekday: 'short' }).replace('.', '') + ' ' + d.getDate() + ' ' +
+    d.toLocaleDateString('it-IT', { month: 'short' }).replace('.', '')
+}
+// A clock time fits the "when" line; a weekly timetable belongs on the market page.
+const shortHours = text => (text && text.length <= 13 && /\d/.test(text) ? text : '')
 
-// One market in a magazine list: a date leaf on the left, then category · place,
-// name, facts line, two-line description, quiet quality line. Class names
-// .market-card / .card-name / .card-city / .card-distance / .market-card-open are
-// the DOM contract of the nightly UI tests.
-export default function EventRow({ market, date = null, twoDays = false, onOpen, onToggleFav, isFav, hot = true }) {
-  const color = CATEGORY_COLORS[market.category] || '#6C6255'
-  const confirmed = market.dateQuality === 'confermata' || market.dateQuality === 'riportata'
-  const facts = [market.address, market.hours].filter(Boolean).join(' · ')
-  const km = Number.isFinite(market.distance) && market.distance >= 0.5 ? Math.round(market.distance) : null
+// One market in a list: category tile, when (and how sure), short title, place,
+// two lines of description, a Gratis mark. Class names .market-card / .card-name /
+// .card-city / .card-distance / .market-card-open are the nightly UI tests' contract.
+export default function EventRow({ market, date = null, twoDays = false, onOpen, onToggleFav, isFav, hot = true, showDate = true }) {
+  const title = displayName(market)
+  const address = displayAddress(market)
+  const hours = shortHours(date ? sourceHoursForDate(market, date) : market.hours)
+  const sure = market.dateQuality === 'confermata' || market.dateQuality === 'riportata'
   const hotLabel = hot && date === todayStr ? 'Oggi' : hot && date === tomorrowStr ? 'Domani' : ''
+  const km = Number.isFinite(market.distance) && market.distance >= 0.5 ? Math.round(market.distance) : null
+  const free = isFreeEntry(market.entry)
+  // Under a day heading the date is already said: only the hours, when a clock time is known.
+  const when = [
+    showDate || !date ? (date ? (twoDays ? dayLabel(date) + ' e dom' : dayLabel(date)) : 'Data da verificare')
+      : (twoDays ? 'Sabato e domenica' : ''),
+    hours,
+  ].filter(Boolean).join(' · ')
+  const tag = market.tags.find(t => t.toLowerCase() !== market.category.toLowerCase() && t.length < 18)
   return (
-    <article className="market-card event-row">
-      <div className={'leaf' + (date ? '' : ' leaf-empty')} aria-hidden="true">
-        {date ? <>
-          <span className="leaf-day">{Number(date.slice(8, 10))}</span>
-          <span className="leaf-mon">{twoDays ? WEEKDAY(date) + '·' + WEEKDAY(nextDay(date)) : WEEKDAY(date) + ' ' + MONTH(date)}</span>
-        </> : <Icon name="calendar" size={18} />}
-      </div>
+    <article className="market-card event-row" style={{ '--c': categoryColor(market.category) }}>
+      <CategoryTile category={market.category} />
       <div className="body">
         <div className="top">
-          <span className="eyebrow">
-            {hotLabel && <span className="eyebrow-hot">{hotLabel} · </span>}
-            <span className="cat" style={{ color }}><span className="dot" style={{ background: color }} />{market.category}</span>
-            {' · '}<span className="card-city">{market.city}</span>{market.region ? ' · ' + market.region : ''}
+          <span className="when">
+            {hotLabel && <b className="hot">{hotLabel}{when ? ' · ' : ''}</b>}
+            {when}
+            {date && (sure
+              ? <span className={'sure' + (when || hotLabel ? '' : ' lead')}><Icon name="check" size={13} strokeWidth={2.6} />confermata</span>
+              : <span className={'unsure' + (when || hotLabel ? '' : ' lead')}>prevista</span>)}
           </span>
           <button type="button" className={'row-fav' + (isFav ? ' on' : '')}
             aria-label={isFav ? 'Togli dall’agenda' : 'Salva in agenda'} onClick={() => onToggleFav(market.id)}>
@@ -36,25 +48,22 @@ export default function EventRow({ market, date = null, twoDays = false, onOpen,
           </button>
         </div>
         <button type="button" className="market-card-open" onClick={() => onOpen(market)}>
-          <h3 className="card-name">{market.name}</h3>
+          <h3 className="card-name">{title}</h3>
         </button>
-        {(facts || market.entry || km !== null) && (
-          <p className="meta">
-            {facts}
-            {market.entry && <>{facts ? ' · ' : ''}<span className="free">{market.entry}</span></>}
-            {km !== null && <span className="card-distance">{facts || market.entry ? ' · ' : ''}circa {km} km{market.positionQuality !== 'precisa' ? ' (stimati)' : ''}</span>}
-          </p>
-        )}
+        <p className="place">
+          <Icon name="mapPin" size={13} strokeWidth={2} />
+          <span><span className="card-city">{market.city}</span>{address ? ' · ' + address : ''}
+            {km !== null && <span className="card-distance"> · circa {km} km{market.positionQuality !== 'precisa' ? ' (stimati)' : ''}</span>}
+          </span>
+        </p>
         {market.description && <p className="desc">{market.description}</p>}
-        <div className="foot">
-          {confirmed
-            ? <span className="ok"><Icon name="check" size={14} strokeWidth={2.5} />Data confermata dalla fonte</span>
-            : <span>{market.dates.length ? dateQualityLabel(market.dateQuality) : 'Data da verificare'}</span>}
-          {market.tags.filter(t => t.toLowerCase() !== market.category.toLowerCase()).slice(0, 1).map(t => <span key={t} className="tag">{t}</span>)}
-        </div>
+        {(free || tag) && (
+          <div className="foot">
+            {free && <span className="pill-free"><Icon name="ticket" size={13} strokeWidth={2} />Gratis</span>}
+            {tag && <span className="tag">{tag}</span>}
+          </div>
+        )}
       </div>
     </article>
   )
 }
-
-function nextDay(iso) { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + 1); return localISO(d) }

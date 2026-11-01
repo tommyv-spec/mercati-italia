@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import Icon from '../ui/Icon.jsx'
-import { TODAY, todayStr, localISO, formatDateIT, dateQualityLabel, dayHeaderLabel, getNextDate, uniqueByName } from '../lib/display.js'
+import CategoryIcon, { categoryColor } from '../ui/CategoryIcon.jsx'
+import { TODAY, todayStr, localISO, formatDateIT, dateQualityLabel, dayHeaderLabel, getNextDate, uniqueByName, displayName, displayAddress, isFreeEntry } from '../lib/display.js'
 import { downloadCalendarEvent } from '../lib/calendarFile.js'
 import { reportUrl } from '../lib/report.js'
 import { haversine } from '../services/staticMarkets.js'
@@ -14,7 +15,6 @@ import { destinationForMarket } from '../lib/marketDirections.js'
 
 const longDate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
 const nextDay = iso => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + 1); return localISO(d) }
-const isFree = text => /gratuit|libero/i.test(text || '')
 
 // The market page in magazine order: what and when, next opening, facts, text, tips,
 // nearby, provenance. Every safety note of the previous page is kept.
@@ -45,9 +45,13 @@ export default function Detail({
   const disclosure = marketDateDisclosure(m.dates, m.dateQuality)
   const hours = summary.hours || (sourceSchedule.rows.length ? 'Vedi gli orari delle singole date' : '')
   const longDescription = (m.description || '').length > 420
+  const title = displayName(m)
+  const address = displayAddress(m)
 
   return (
     <div className="detail-page rivista">
+      <div className="detail-cover" style={{ '--c': categoryColor(m.category) }}>
+      <span className="detail-cover-art" aria-hidden="true"><CategoryIcon category={m.category} size={210} strokeWidth={0.9} /></span>
       <div className="detail-bar">
         <button type="button" className="detail-back ico-btn" aria-label="Indietro" onClick={onBack}><Icon name="chevronLeft" size={18} strokeWidth={2} /></button>
         <div className="detail-bar-actions">
@@ -59,11 +63,13 @@ export default function Detail({
       </div>
 
       <div className="detail-head">
-        <span className="eyebrow">{m.category}{summary.recurrence ? ' · ' + summary.recurrence : ''}</span>
-        <h1 className="detail-title">{m.name}</h1>
+        <span className="eyebrow cover-eyebrow"><span className="cover-ico"><CategoryIcon category={m.category} size={15} strokeWidth={2} /></span>
+          {m.category}{summary.recurrence ? ' · ' + summary.recurrence : ''}</span>
+        <h1 className="detail-title">{title}</h1>
         {loading && <div className="note">Caricamento dettagli completi…</div>}
         {error && <div role="alert" className="note">{error}. Sono visibili i dati sintetici.</div>}
-        <p className="detail-place"><strong>{m.city}</strong>{m.region && <span className="muted"> · {m.region}</span>}</p>
+        <p className="detail-place"><Icon name="mapPin" size={15} strokeWidth={2} /><span><strong>{m.city}</strong>{m.region && <span className="muted"> · {m.region}</span>}</span></p>
+      </div>
       </div>
 
       <div className="next-panel">
@@ -109,11 +115,11 @@ export default function Detail({
       </div>
 
       <div className="facts">
-        <div className="fact"><b>Orario</b><span>{hours || 'Orari non disponibili'}</span></div>
-        <div className="fact"><b>Dove</b><span className="detail-address">{m.address || 'Indirizzo non verificato'}</span></div>
-        {m.entry && <div className="fact"><b>Ingresso</b><span className={isFree(m.entry) ? 'free' : ''}>{m.entry}</span></div>}
-        {m.stalls && <div className="fact"><b>Banchi</b><span>Circa {m.stalls} secondo la fonte</span></div>}
-        {!m.entry && !m.stalls && summary.recurrence && <div className="fact"><b>Cadenza</b><span>{summary.recurrence}</span></div>}
+        <div className="fact"><b><Icon name="clock" size={14} strokeWidth={2} />Orario</b><span>{hours || 'Orari non disponibili'}</span></div>
+        <div className="fact"><b><Icon name="mapPin" size={14} strokeWidth={2} />Dove</b><span className="detail-address">{address || 'Indirizzo non verificato'}</span></div>
+        {m.entry && <div className="fact"><b><Icon name="ticket" size={14} strokeWidth={2} />Ingresso</b><span className={isFreeEntry(m.entry) ? 'free' : ''}>{m.entry}</span></div>}
+        {m.stalls && <div className="fact"><b><Icon name="users" size={14} strokeWidth={2} />Banchi</b><span>Circa {m.stalls} secondo la fonte</span></div>}
+        {!m.entry && !m.stalls && summary.recurrence && <div className="fact"><b><Icon name="calendar" size={14} strokeWidth={2} />Cadenza</b><span>{summary.recurrence}</span></div>}
       </div>
 
       <div className="detail-notes">
@@ -198,7 +204,7 @@ export default function Detail({
 
       {m.tips && (
         <div className="tip">
-          <span className="eyebrow">Consiglio pratico</span>
+          <span className="eyebrow tip-eyebrow"><Icon name="bulb" size={15} strokeWidth={2} />Consiglio pratico</span>
           <p>{m.tips}</p>
         </div>
       )}
@@ -209,7 +215,7 @@ export default function Detail({
           {nearby.map(({ market, km }) => (
             <button type="button" className="near" key={market.id} onClick={() => onOpen(market)}>
               <span className="d">{formatDateIT(getNextDate(market.dates))}</span>
-              <span><span className="t">{market.name}</span><span className="s">{market.city} · circa {Math.max(1, Math.round(km))} km</span></span>
+              <span><span className="t">{displayName(market)}</span><span className="s">{market.city} · circa {Math.max(1, Math.round(km))} km</span></span>
             </button>
           ))}
           <p className="note">Distanze indicative tra i punti sulla mappa, non tra gli ingressi dei mercati.</p>
@@ -233,6 +239,7 @@ export default function Detail({
       )}
 
       <div className="provenance">
+        {title !== m.name && <div style={{ marginBottom: 6 }}>Nome nella fonte: {m.name}</div>}
         {m.lastVerified ? 'Scheda verificata il ' + m.lastVerified : 'Verifica individuale non documentata'} · Fonte: {m.source || 'non disponibile'}
         {m.sourceUpdated ? (m.sourceUpdateScope === 'dataset'
           ? ' · dataset aggiornato il ' + m.sourceUpdated + ' (non verifica del singolo mercato)'
@@ -266,7 +273,7 @@ export default function Detail({
           {sameCity.slice(0, 5).map(market => (
             <button type="button" className="near" key={market.id} onClick={() => onOpen(market)}>
               <span className="d">{formatDateIT(getNextDate(market.dates))}</span>
-              <span><span className="t">{market.name}</span><span className="s">{market.category}{market.hours ? ' · ' + market.hours : ''}</span></span>
+              <span><span className="t">{displayName(market)}</span><span className="s">{market.category}{market.hours ? ' · ' + market.hours : ''}</span></span>
             </button>
           ))}
           {sameCity.length > 5 && (

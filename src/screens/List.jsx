@@ -22,7 +22,7 @@ export default function List({
   positionStatus, positionError, onNearby,
   sortBy, onSort, showSort, setShowSort, viewMode, setViewMode,
   userLat, userLng, favorites, onToggleFav, onOpen, getMarketDetails, dataMode,
-  eventsOnly = false, onToggleEventsOnly,
+  eventsOnly = false, onToggleEventsOnly, freeOnly = false, onToggleFreeOnly,
 }) {
   const nearbyLabel = positionStatus === 'ready'
     ? (includeEstimatedNearby ? 'Vicino a me · posizioni indicative' : 'Vicino a me · 50 km, posizioni precise')
@@ -47,32 +47,18 @@ export default function List({
       </div>
 
       <div className="list-tools">
-        <Pill onClick={onOpenFilters}><Icon name="filter" size={13} />{' '}Filtri{activeFilterCount > 0 ? ' · ' + activeFilterCount : ''}</Pill>
-        <div className="sort-wrap">
-          <Pill onClick={() => setShowSort(!showSort)}><Icon name="sort" size={13} />{' '}Ordina</Pill>
-          {showSort && (
-            <div className="sort-dropdown">
-              {[['data', 'Data', 'calendar'], ['distanza', 'Distanza', 'mapPin']].map(([key, label, icon]) => (
-                <button key={key} type="button" className={`sort-option ${sortBy === key ? 'active' : ''}`}
-                  disabled={key === 'distanza' && !canUseDistance}
-                  title={key === 'distanza' && !canUseDistance ? 'Attiva la posizione per ordinare per distanza' : ''}
-                  onClick={() => { onSort(key); setShowSort(false) }}>
-                  <Icon name={icon} size={16} /> {label}
-                  {sortBy === key && <Icon name="check" size={16} color="#B94439" />}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="list-tools">
+        <Pill active={activeFilterCount > 0} onClick={onOpenFilters}><Icon name="filter" size={13} />{' '}Filtri{activeFilterCount > 0 ? ' · ' + activeFilterCount : ''}</Pill>
         <button type="button" className={'pill' + (canUseDistance ? ' active' : '')} onClick={onNearby} disabled={positionStatus === 'requesting'}>
           <Icon name="mapPin" size={13} />{' '}{nearbyLabel}
         </button>
         {DATE_PILLS.map(([key, label]) => (
           <Pill key={key} active={activeDateFilter === key} onClick={() => onDateFilter(key)}>{label}</Pill>
         ))}
+        {canUseDistance && (
+          <Pill active={sortBy === 'distanza'} onClick={() => onSort(sortBy === 'distanza' ? 'data' : 'distanza')}>
+            <Icon name="sort" size={13} />{' '}Per distanza
+          </Pill>
+        )}
       </div>
       {positionError && <div role="alert" className="list-note" style={{ color: '#A5443D' }}>{positionError}</div>}
 
@@ -86,9 +72,10 @@ export default function List({
         )}
       </div>
 
-      {(filterCity || filterRegion || filterCategories.length > 0 || eventsOnly) && (
+      {(filterCity || filterRegion || filterCategories.length > 0 || eventsOnly || freeOnly) && (
         <div className="active-chips">
           {eventsOnly && <Pill active onClick={onToggleEventsOnly}>Solo mercatini ed eventi ×</Pill>}
+          {freeOnly && <Pill active onClick={onToggleFreeOnly}>Ingresso gratuito ×</Pill>}
           {filterCity && <Pill active onClick={onRemoveCity}>Città: {filterCity} ×</Pill>}
           {filterRegion && <Pill active onClick={onRemoveRegion}>Regione: {filterRegion} ×</Pill>}
           {filterCategories.length > 0 && <Pill active onClick={onRemoveCategories}>Categorie ×</Pill>}
@@ -132,7 +119,7 @@ export default function List({
                       ? <WeeklyCityGroup group={entry} loadMarket={getMarketDetails} onOpenMarket={onOpen}
                           selectedWeekday={weekdayFilter}
                           autoExpand={shouldAutoExpandWeeklyGroup(entry, weekdayFilter, filterCity, query)} />
-                      : <EventRow market={entry.market} date={getNextDate(entry.market.dates)} hot={false} onOpen={onOpen}
+                      : <EventRow market={entry.market} date={getNextDate(entry.market.dates)} showDate={sortBy === 'distanza'} hot={false} onOpen={onOpen}
                           onToggleFav={onToggleFav} isFav={favorites.has(entry.market.id)} />}
                   </Fragment>
                 )

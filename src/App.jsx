@@ -16,7 +16,7 @@ import More from './screens/More.jsx';
 import TabBar from './ui/TabBar.jsx';
 import { weekendOf, inWeekend } from './lib/weekend.js';
 import Icon from './ui/Icon.jsx';
-import { CATEGORY_COLORS, localISO, TODAY, todayStr, getNextDate } from './lib/display.js';
+import { CATEGORY_COLORS, localISO, TODAY, todayStr, getNextDate, isFreeEntry } from './lib/display.js';
 import { haversine } from './services/staticMarkets.js';
 
 // ─── Sample Data (kept as fallback, but primary source is useMarkets hook) ──
@@ -55,6 +55,7 @@ export default function App() {
   const [weekendOffset, setWeekendOffset] = useState(0);
   const [weeklyCity, setWeeklyCity] = useState("");
   const [eventsOnly, setEventsOnly] = useState(false);   // list opened from the home events
+  const [freeOnly, setFreeOnly] = useState(false);       // list opened from the home 'Gratis' tile
   const [viewMode, setViewMode] = useState("lista");
   const [searchQuery, setSearchQuery] = useState("");
   // Prioritize visits people can actually plan; deselect to browse undated markets.
@@ -288,6 +289,7 @@ export default function App() {
   const goList = () => { setView('list'); setViewMode('lista'); window.scrollTo(0, 0); };
   const homeQuery = (q) => { setSearchQuery(q); if (q.trim()) goList(); };
   const homeCategory = (cats) => {
+    setFreeOnly(false);
     setEventsOnly(false);
     setFilterCategories(cats);
     setActiveFilterCount(countFilters(cats, filterRegion, filterCity));
@@ -304,7 +306,8 @@ export default function App() {
     setDateFilterExplicit(true);
     goList();
   };
-  const homeSeeAll = () => { setEventsOnly(true); setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
+  const homeSeeAll = () => { setEventsOnly(true); setFreeOnly(false); setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
+  const homeFree = () => { setEventsOnly(true); setFreeOnly(true); setFilterCategories([]); setDateFilter('weekend'); setDateFilterExplicit(true); goList(); };
   // Where the home looks from: the visitor (GPS) or the chosen city (centre of its precise points).
   const homeCenter = useMemo(() => {
     if (canUseDistance) return { lat: userLat, lng: userLng, label: 'vicino a te' };
@@ -318,7 +321,7 @@ export default function App() {
   const renderHome = () => (
     <Home markets={allMarkets} loading={marketsLoading} error={marketsError} onRetry={() => window.location.reload()}
       query={searchQuery} onQuery={homeQuery} weekendOffset={weekendOffset} onWeekend={setWeekendOffset}
-      onSeeAll={homeSeeAll} onCategory={homeCategory} onRegion={homeRegion}
+      onSeeAll={homeSeeAll} onCategory={homeCategory} onRegion={homeRegion} onFree={homeFree}
       onNearby={activateNearby} onAllItaly={disableLocation} positionStatus={positionStatus} canUseDistance={canUseDistance} center={homeCenter}
       cityForToday={cityForToday} onWeeklyCity={openWeekly} onChooseCity={() => setTab('altro')}
       onOpen={openMarket} favorites={favorites} onToggleFav={toggleFav} />
@@ -346,6 +349,7 @@ export default function App() {
     }
 
     if (eventsOnly) result = result.filter(m => m.isEvent);
+    if (freeOnly) result = result.filter(m => isFreeEntry(m.entry));
 
     // Date filter
     if (activeDateFilter === "oggi") {
@@ -415,7 +419,7 @@ export default function App() {
     }
 
     return result;
-  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekendOffset, eventsOnly]);
+  }, [marketsWithDistance, searchQuery, activeDateFilter, weekdayFilter, filterCategories, filterRegion, filterCity, filterDistance, sortBy, canUseDistance, includeEstimatedNearby, weekendOffset, eventsOnly, freeOnly]);
 
   // Group generic city-wide weekly listings only for presentation. The
   // map and the underlying dataset retain every individually sourced record.
@@ -460,6 +464,7 @@ export default function App() {
   };
 
   const resetAllFilters = () => {
+    setFreeOnly(false);
     setEventsOnly(false);
     setFilterCategories([]);
     setFilterRegion("");
@@ -508,6 +513,7 @@ export default function App() {
       favorites={favorites} onToggleFav={toggleFav} onOpen={openMarket}
       getMarketDetails={getMarketDetails} dataMode={dataMode}
       eventsOnly={eventsOnly} onToggleEventsOnly={() => setEventsOnly(v => !v)}
+      freeOnly={freeOnly} onToggleFreeOnly={() => setFreeOnly(v => !v)}
     />
   );
 
