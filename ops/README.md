@@ -36,8 +36,17 @@ npx firebase hosting:clone market-ef407:dev market-ef407:live
 Per tornare indietro: `npx firebase hosting:clone market-ef407@<versione annotata> market-ef407:live`.
 Il sito poi resta fermo: le notti aggiornano solo l'app DEV. Il primo rilascio di questa app è del
 1° novembre 2026; prima c'era la vecchia app Leaflet (versione `5e49e9ef9a5dfb91`). `public/sw.js`
-esiste solo per togliere dai telefoni il service worker della vecchia app; i vecchi link
-`/evento/<id>` aprono la stessa scheda.
+esiste solo per togliere dai telefoni il service worker della vecchia app e ricaricare le pagine
+ancora aperte su di essa; i vecchi link `/evento/<id>` aprono la stessa scheda.
+
+Se DEV contiene lavori non ancora pronti: ramo `release/<data>` dall'ultimo tag `release-*` più le
+sole modifiche volute, `npx firebase hosting:channel:deploy swtest`, prove sul canale `swtest`, poi
+`npx firebase hosting:clone market-ef407:swtest market-ef407:live` e il tag `release-<data>`.
+
+Chi ha già l'app non deve fare nulla: la pagina è servita `no-cache`, e quando si torna su un'app
+rimasta aperta `src/lib/appUpdate.js` (al massimo ogni 5 minuti) confronta la pagina pubblicata e
+ricarica da sola sulla nuova versione, senza chiedere. Il catalogo si aggiorna già da sé
+(`src/hooks/useMarkets.js`).
 
 - Se il PC era spento, l'attività parte appena si riaccende; un lavoro settimanale saltato viene
   recuperato il giorno dopo.
