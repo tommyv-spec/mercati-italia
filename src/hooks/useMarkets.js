@@ -54,6 +54,8 @@ export function adaptMarket(m, userLat, userLng) {
     dates: m.date || [],
     hours: m.orario_testo || '',
     indexHoursScope: m.ambito_orari || '',
+    // Exact hours per date from the events file, for the list (the page reads the full calendar).
+    dateHours: m.orari_date && typeof m.orari_date === 'object' ? m.orari_date : null,
     recurrence: m.ricorrenza_testo || '',
     description: m.descrizione || '',
     // Stalls the source states (MERCap pitches, cosedicasa exhibitors); detail only.

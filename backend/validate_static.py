@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 
@@ -105,7 +106,8 @@ def validate(manifest_path: Path) -> dict:
     # catalogs; once the manifest names it, it must exist and match the markets.
     events_rel = manifest.get("events")
     if events_rel is not None:
-        if manifest.get("events_schema") != 1 or not re.fullmatch(r"data/v1/eventi-[a-f0-9]{14}\.json", str(events_rel)):
+        from export_static import EVENTS_SCHEMA, events_rows
+        if manifest.get("events_schema") != EVENTS_SCHEMA or not re.fullmatch(r"data/v1/eventi-[a-f0-9]{14}\.json", str(events_rel)):
             raise ValueError("Unsafe events path or schema")
         events_asset = public / events_rel
         if not events_asset.is_file():
@@ -113,8 +115,9 @@ def validate(manifest_path: Path) -> dict:
         events_blob = events_asset.read_bytes()
         if not hashlib.sha256(events_blob).hexdigest().startswith(events_rel.rsplit("-", 1)[-1].removesuffix(".json")):
             raise ValueError("Events file hash mismatch")
-        from export_static import events_rows
-        if json.loads(events_blob) != {"schema": 1, "markets": events_rows(all_markets)}:
+        # The export's own day, so revalidating later gives the same answer.
+        reference = date.fromisoformat(manifest["index_as_of"])
+        if json.loads(events_blob) != {"schema": EVENTS_SCHEMA, "markets": events_rows(all_markets, today=reference)}:
             raise ValueError("Events file differs from source market records")
     return {"records": len(all_markets), "assets": len(parts), "index_bytes": len(index_blob), "regions": len({m["regione"] for m in all_markets})}
 

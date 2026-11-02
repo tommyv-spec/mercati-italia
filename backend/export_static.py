@@ -888,10 +888,11 @@ def small_index(markets: list[dict], *, schema=5, today=None) -> list[list]:
 
 
 # Rich fields for the non-weekly markets only ("eventi"): the national index stays
-# small; the home shows address, cadence, a short description, entry and tips
-# without downloading a 10 MB regional file.
-EVENTS_SCHEMA = 1
-EVENTS_FIELDS = ("slug", "indirizzo", "ricorrenza_testo", "descrizione", "ingresso", "consigli")
+# small; the home shows address, cadence, a short description, entry, tips and
+# each listed date's exact hours without downloading a 10 MB regional file.
+# v2 adds "orari_date": {"YYYY-MM-DD": "HH:MM–HH:MM"}.
+EVENTS_SCHEMA = 2
+EVENTS_FIELDS = ("slug", "indirizzo", "ricorrenza_testo", "descrizione", "ingresso", "consigli", "orari_date")
 WEEKLY_TAGS = {"settimanale", "mercato settimanale", "mercato comunale", "MERCAP"}
 
 
@@ -929,7 +930,66 @@ def short_description(text, limit: int = 240) -> str:
     return cut + "…"
 
 
-def events_rows(markets: list[dict]) -> list[list]:
+_LISTED_STATUSES = {"source_listed", "cancelled", "postponed", "rescheduled"}
+_CALENDAR_CLOCK = re.compile(r"(?:[01]\d|2[0-3]):[0-5]\d")
+_EDITORIAL_CLOCK = re.compile(r"(?:[01]\d|2[0-3]):[0-5]\d|24:00")
+_EDITORIAL_CALENDAR_FIELDS = {"calendar", "recurrence", "edition", "occurrences", "suspensions"}
+
+
+def _one_range(items, clock, *, intervals_blocked):
+    """The single "HH:MM–HH:MM" these occurrences of one date give, or None."""
+    values = set()
+    for item in items:
+        start, end = item.get("start_time"), item.get("end_time")
+        if (item.get("status") not in ("source_listed", "rescheduled")
+                or intervals_blocked and (item.get("interval_start") or item.get("interval_end"))
+                or not (isinstance(start, str) and clock.fullmatch(start))
+                or not (isinstance(end, str) and clock.fullmatch(end))):
+            return None
+        values.add(start + "–" + end)
+    return values.pop() if len(values) == 1 else None
+
+
+def date_hours(market: dict, *, today: date) -> dict:
+    """Exact hours per listed date, only where the market page shows one exact range.
+
+    Same rules as sourceHoursForDate (src/lib/sourceCalendar.js) and
+    editorialHoursForDate (src/lib/editorialEvidence.js); anything else stays
+    unknown. tests/list-hours.test.mjs compares every exported date with the
+    market page on the real catalog.
+    """
+    days = [d for d in (market.get("date") or [])[:16] if isinstance(d, str)]
+    cancelled = {item.get("data") for item in market.get("eccezioni_calendario") or [] if isinstance(item, dict)}
+    calendar = market.get("calendario_fonte")
+    if calendar:
+        clock, blocked = _CALENDAR_CLOCK, True
+        occurrences = calendar.get("occorrenze") if isinstance(calendar, dict) else None
+    else:
+        proof = (clean_editorial_evidence(market[EDITORIAL_EVIDENCE], market, today=today)
+                 if market.get(EDITORIAL_EVIDENCE) is not None else None)
+        if proof is None:
+            return {}
+        fields = set()
+        for item in proof.get("conflicts") or []:
+            if isinstance(item, dict) and isinstance(item.get("field"), str) and item["field"].strip():
+                fields.add(item["field"])
+            elif isinstance(item, str) and re.search(r"calendar|edition|recurrence|archive_marker_date", item):
+                fields.add("calendar")
+        if fields & _EDITORIAL_CALENDAR_FIELDS or "hours" in fields or proof["facts"].get("archive_marker") is True:
+            return {}
+        clock, blocked = _EDITORIAL_CLOCK, False
+        occurrences = proof["facts"].get("occurrences")
+    occurrences = [o for o in occurrences or [] if isinstance(o, dict) and o.get("status") in _LISTED_STATUSES]
+    result = {}
+    for day in days:
+        matches = [o for o in occurrences if o.get("date") == day]
+        hours = None if day in cancelled or not matches else _one_range(matches, clock, intervals_blocked=blocked)
+        if hours:
+            result[day] = hours
+    return result
+
+
+def events_rows(markets: list[dict], *, today: date) -> list[list]:
     rows = []
     for market in markets:
         if market.get("concluso") or market.get("duplicato_di") or is_weekly_market(market):
@@ -941,13 +1001,14 @@ def events_rows(markets: list[dict]) -> list[list]:
             short_description(market.get("descrizione")),
             str(market.get("ingresso") or ""),
             str(market.get("consigli") or ""),
+            date_hours(market, today=today),
         ])
     return rows
 
 
 
-def _write_asset(output: Path, relative: str, markets: list[dict]):
-    body = compact_json({"schema": 1, "markets": markets})
+def _write_asset(output: Path, relative: str, markets: list[dict], schema: int = 1):
+    body = compact_json({"schema": schema, "markets": markets})
     if len(body) > MAX_MARKET_BYTES:
         raise ValueError("Static asset too large: " + relative)
     digest = hashlib.sha256(body).hexdigest()[:14]
@@ -982,6 +1043,7 @@ def export(records: list, out: Path, today: date | None = None,
             and previous.get("index")
             and (out.parent.parent / previous["index"]).is_file()
             and previous.get("events")
+            and previous.get("events_schema") == EVENTS_SCHEMA
             and (out.parent.parent / previous["events"]).is_file()):
         return {"unchanged": True, "stats": stats, "manifest": previous}
     if dry_run:
@@ -1006,7 +1068,7 @@ def export(records: list, out: Path, today: date | None = None,
     # One lightweight global index fetch on page load; full regional datasets
     # are immutable and fetched only when a market detail is opened.
     index_path = _write_asset(out, "index-{hash}.json", small_index(markets, schema=INDEX_SCHEMA, today=now))
-    events_path = _write_asset(out, "eventi-{hash}.json", events_rows(markets))
+    events_path = _write_asset(out, "eventi-{hash}.json", events_rows(markets, today=now), schema=EVENTS_SCHEMA)
 
     manifest = {
         "schema": 1, "layout": layout, "total": len(markets),

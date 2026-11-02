@@ -208,6 +208,10 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
       aria-label="Mappa interattiva dei mercati" style={{ margin: '0 16px 110px' }}>
       {/* A quiet line above the map: the map is the point of this screen. */}
       <div className="map-info">
+        <p className="map-count">
+          <strong>{pointMarkets.length.toLocaleString('it-IT')} sulla mappa</strong>
+          {markets.length > pointMarkets.length && ` · ${(markets.length - pointMarkets.length).toLocaleString('it-IT')} senza posizione, li trovi nella Lista`}
+        </p>
         <p>
           {preciseCount} posizioni precise
           {estimatedCount ? ` · ${estimatedCount} indicative` : ''}

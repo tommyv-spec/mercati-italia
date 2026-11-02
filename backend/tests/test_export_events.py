@@ -5,7 +5,10 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from export_static import EVENTS_FIELDS, events_rows, is_weekly_market, short_description  # noqa: E402
+from datetime import date  # noqa: E402
+from export_static import EVENTS_FIELDS, date_hours, events_rows, is_weekly_market, short_description  # noqa: E402
+
+TODAY = date(2026, 11, 3)
 
 
 class EventsFileTests(unittest.TestCase):
@@ -47,9 +50,27 @@ class EventsFileTests(unittest.TestCase):
             {"slug": "gone", "concluso": "fonte_non_riletta"},
             {"slug": "copy", "duplicato_di": "fiera"},
         ]
-        rows = events_rows(markets)
-        self.assertEqual(rows, [["fiera", "Piazza Grande", "primo weekend", "Testo.", "Ingresso gratuito", "Arriva presto"]])
-        self.assertEqual(EVENTS_FIELDS, ("slug", "indirizzo", "ricorrenza_testo", "descrizione", "ingresso", "consigli"))
+        rows = events_rows(markets, today=TODAY)
+        self.assertEqual(rows, [["fiera", "Piazza Grande", "primo weekend", "Testo.", "Ingresso gratuito", "Arriva presto", {}]])
+        self.assertEqual(EVENTS_FIELDS, ("slug", "indirizzo", "ricorrenza_testo", "descrizione", "ingresso", "consigli", "orari_date"))
+
+    def test_date_hours_only_where_the_source_gives_one_exact_range(self):
+        def occ(day, start="08:00", end="18:00", status="source_listed", **more):
+            return {"date": day, "start_time": start, "end_time": end, "status": status, **more}
+        market = {"date": ["2026-11-07", "2026-11-08", "2026-11-14", "2026-11-15", "2026-11-21", "2026-11-22", "2026-11-28"],
+                  "eccezioni_calendario": [{"data": "2026-11-14", "motivo": "maltempo"}],
+                  "calendario_fonte": {"occorrenze": [
+                      occ("2026-11-07"),
+                      occ("2026-11-08", end=None),                                     # closing time unknown
+                      occ("2026-11-14"),                                               # cancelled by an exception
+                      occ("2026-11-15", status="postponed"),
+                      occ("2026-11-21", interval_start="2026-11-21", interval_end="2026-11-22"),  # period, not a day
+                      occ("2026-11-28"), occ("2026-11-28", start="15:00", end="19:00"),  # two different times
+                  ]}}
+        self.assertEqual(date_hours(market, today=TODAY), {"2026-11-07": "08:00–18:00"})
+        # Without a source calendar or bound editorial evidence the list keeps the general hours.
+        self.assertEqual(date_hours({"date": ["2026-11-07"], "orario_testo": "08:00–18:00"}, today=TODAY), {})
+        self.assertEqual(date_hours({"date": ["2026-11-07"], "evidenza_editoriale": {"forged": True}}, today=TODAY), {})
 
 
 

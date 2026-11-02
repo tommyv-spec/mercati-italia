@@ -52,14 +52,25 @@ export function decodeIndexRecords(records, manifest) {
 }
 
 const EVENT_FIELDS = ['indirizzo', 'ricorrenza_testo', 'descrizione', 'ingresso', 'consigli']
+const DATE_HOURS = /^\d{2}:\d{2}–\d{2}:\d{2}$/
+
+// Schema 2 adds each listed date's exact hours: {"YYYY-MM-DD": "HH:MM–HH:MM"}.
+function dateHours(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+  const entries = Object.entries(value).filter(([day, hours]) => /^\d{4}-\d{2}-\d{2}$/.test(day) && DATE_HOURS.test(hours))
+  return entries.length ? Object.fromEntries(entries) : null
+}
 
 // data/v1/eventi-{hash}.json -> Map(slug -> rich fields). null when the file is unusable.
 export function decodeEventRows(data) {
-  if (!data || data.schema !== 1 || !Array.isArray(data.markets)) return null
+  if (!data || (data.schema !== 1 && data.schema !== 2) || !Array.isArray(data.markets)) return null
+  const cells = EVENT_FIELDS.length + (data.schema === 2 ? 2 : 1)
   const map = new Map()
   for (const row of data.markets) {
-    if (!Array.isArray(row) || row.length !== EVENT_FIELDS.length + 1 || typeof row[0] !== 'string') return null
-    map.set(row[0], Object.fromEntries(EVENT_FIELDS.map((key, i) => [key, typeof row[i + 1] === 'string' ? row[i + 1] : ''])))
+    if (!Array.isArray(row) || row.length !== cells || typeof row[0] !== 'string') return null
+    const rich = Object.fromEntries(EVENT_FIELDS.map((key, i) => [key, typeof row[i + 1] === 'string' ? row[i + 1] : '']))
+    if (data.schema === 2) rich.orari_date = dateHours(row[cells - 1])
+    map.set(row[0], rich)
   }
   return map
 }
@@ -70,6 +81,7 @@ export function mergeEventFields(record, events) {
   if (!rich) return { ...record, isEvent: false }
   const merged = { ...record, isEvent: true }
   for (const key of EVENT_FIELDS) if (!merged[key]) merged[key] = rich[key]
+  if (rich.orari_date) merged.orari_date = rich.orari_date
   return merged
 }
 
@@ -142,7 +154,7 @@ async function loadCatalogFromManifest(manifest) {
       ids.add(record.slug)
     }
     let events = null
-    if (typeof manifest.events === 'string' && manifest.events_schema === 1) {
+    if (typeof manifest.events === 'string' && (manifest.events_schema === 1 || manifest.events_schema === 2)) {
       events = decodeEventRows(await loadJSON(manifest.events, true).catch(() => null))
     }
     return { manifest, events, ...splitDuplicates(markets) }
@@ -252,7 +264,7 @@ export function haversine(lat1, lng1, lat2, lng2) {
   return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 }
 
-function normalize(m, userLat, userLng) {
+export function normalize(m, userLat, userLng) {
   const lat = typeof m.lat === 'number' && Number.isFinite(m.lat) ? m.lat : null
   const lng = typeof m.lng === 'number' && Number.isFinite(m.lng) ? m.lng : null
   return {
@@ -268,6 +280,7 @@ function normalize(m, userLat, userLng) {
     tags: m.tags || [],
     orario_testo: m.orario_testo || '',
     ambito_orari: HOURS_SCOPES.has(m.ambito_orari) ? m.ambito_orari : '',
+    orari_date: m.orari_date || null,
     ricorrenza_testo: m.ricorrenza_testo || '',
     descrizione: m.descrizione || '',
     posteggi: Number.isInteger(m.posteggi) && m.posteggi > 0 ? m.posteggi : null,

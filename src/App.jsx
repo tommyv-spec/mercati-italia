@@ -398,7 +398,7 @@ export default function App() {
             onOpen={openMarket} favorites={favorites} onToggleFav={toggleFav} getMarketDetails={getMarketDetails} />)}
       {tab === 'mappa' && (
         <MapScreen {...context} markets={mapMarkets} userLat={userLat} userLng={userLng} onSelect={openMarket}
-          label={`${mapMarkets.length.toLocaleString('it-IT')} mercati sulla mappa`}
+          label={`${mapMarkets.length.toLocaleString('it-IT')} mercati con questi filtri`}
           onList={() => go({ tab: 'esplora', view: 'main' })} />
       )}
       {tab === 'salvati' && (

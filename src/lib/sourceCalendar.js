@@ -121,6 +121,9 @@ export function sourceHoursForDate(market, day) {
   if (!market?.sourceCalendar) {
     const editorial = editorialHoursForDate(market, day)
     if (editorial !== null) return editorial
+    // A list record has no calendar, but the export wrote the page's exact hours for its dates.
+    const listed = market?.dateHours?.[day]
+    if (typeof listed === 'string' && /^\d{2}:\d{2}–\d{2}:\d{2}$/.test(listed)) return listed
     if (market?.indexHoursScope === 'storico') return 'Orari attuali da verificare'
     if (market?.indexHoursScope === 'per_data') return 'Vedi gli orari per data'
     return text(market?.hours) || 'Orario da verificare'

@@ -10,6 +10,15 @@ test('decodeEventRows builds a slug map and rejects bad rows', () => {
   assert.equal(map.get('fiera').consigli, 'Arriva presto')
   assert.equal(decodeEventRows({ schema: 2, markets: rows }), null)
   assert.equal(decodeEventRows({ schema: 1, markets: [['x', 'only-two']] }), null)
+  assert.equal(decodeEventRows({ schema: 3, markets: rows }), null)
+})
+
+test('schema 2 carries exact hours per date; anything else is dropped', () => {
+  const map = decodeEventRows({ schema: 2, markets: [[...rows[0], { '2026-11-07': '08:00–18:00', '2026-11-08': 'mattina', 'sabato': '08:00–18:00' }]] })
+  assert.deepEqual(map.get('fiera').orari_date, { '2026-11-07': '08:00–18:00' })
+  assert.equal(decodeEventRows({ schema: 2, markets: [[...rows[0], {}]] }).get('fiera').orari_date, null)
+  const merged = mergeEventFields({ slug: 'fiera', categoria: 'antiquariato', tags: [] }, map)
+  assert.deepEqual(merged.orari_date, { '2026-11-07': '08:00–18:00' })
 })
 
 test('mergeEventFields fills missing fields and flags events; fallback without a map', () => {
