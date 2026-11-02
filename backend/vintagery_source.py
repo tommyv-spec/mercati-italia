@@ -700,7 +700,11 @@ evidence must stay that source's (source_contract_activation.verify_static)."""
         if assigned:
             receipt = mark_managed_fields(receipt, list(assigned), manager=FILL_MANAGER)
         updated["riscontri_campi"] = clean_receipts([*prior, receipt], updated, today=today)
-        if not any(r["url"] == card["url"] for r in updated["riscontri_campi"]):
+        kept = [r for r in updated["riscontri_campi"] if r["url"] == card["url"]]
+        # An earlier read of this page with a check date this read lost keeps its receipt
+        # (field_evidence): nothing may then be filled from this read.
+        if not kept or (assigned and not any(r["sha256"] == receipt["sha256"]
+                                             and assigned.items() <= r["valori"].items() for r in kept)):
             outcome["reason"] = "receipt_not_kept"
             continue
         if updated == row:

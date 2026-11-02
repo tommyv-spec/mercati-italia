@@ -230,6 +230,20 @@ class FillTests(unittest.TestCase):
         self.assertEqual(after, before)
         self.assertEqual(report["fill"]["summary"]["held_by_reason"], {"official_source_today": 1})
 
+    def test_a_reread_that_lost_its_check_date_fills_nothing(self):
+        # Manziana, 2 Nov 2026: the page dropped its check date, so the earlier dated receipt
+        # stays and the hours read from the undated page have no receipt to stand on.
+        dated = snapshot(card(start_time="", end_time="",
+                              schedule_notes="Terza domenica del mese, esclusi luglio e agosto"))
+        before, _ = vg.apply([self.market(), elsewhere()], today=TODAY, snapshot=dated)
+        self.assertEqual((before[0]["indirizzo"], before[0]["orario_testo"]), ("Piazza Santo Stefano", ""))
+        later, undated = date(2026, 10, 21), snapshot(card(read_on="2026-10-21", verified_on=""))
+        after, report = vg.apply(before, today=later, snapshot=undated)
+        vg.verify(before, after, report, today=later, snapshot=undated)
+        self.assertEqual(after[0]["orario_testo"], "")
+        self.assertEqual(report["fill"]["summary"]["held_by_reason"], {"receipt_not_kept": 1})
+        vg.verify_exported([normalize(r, later)[0] for r in after], report, today=later)
+
 
 PAGE = ("Salta al contenutoVintagery … No, grazie Mercatini/Toscana/CarraraantiquariatoMercatino di Prova "
         "Carrara, Toscana Torna a luglioRicordameloProssima aperturaTorna a luglioScheda verificata il 17 ottobre "
