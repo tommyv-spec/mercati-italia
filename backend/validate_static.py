@@ -115,8 +115,9 @@ def validate(manifest_path: Path) -> dict:
         events_blob = events_asset.read_bytes()
         if not hashlib.sha256(events_blob).hexdigest().startswith(events_rel.rsplit("-", 1)[-1].removesuffix(".json")):
             raise ValueError("Events file hash mismatch")
-        # The export's own day, so revalidating later gives the same answer.
-        reference = date.fromisoformat(manifest["index_as_of"])
+        # The export's own day, so revalidating later gives the same answer
+        # (older manifests have no index_as_of: their generation day).
+        reference = date.fromisoformat(manifest.get("index_as_of") or str(manifest.get("generated_at") or "")[:10])
         if json.loads(events_blob) != {"schema": EVENTS_SCHEMA, "markets": events_rows(all_markets, today=reference)}:
             raise ValueError("Events file differs from source market records")
     return {"records": len(all_markets), "assets": len(parts), "index_bytes": len(index_blob), "regions": len({m["regione"] for m in all_markets})}
