@@ -6,7 +6,7 @@ Nessuna scheda nazionale è stata modificata, creata o confermata.
 
 - Sedi sulla mappa: **9**
 - Schede Roma nel catalogo: **140**
-- Fonte vecchia di **685 giorni**; nessun calendario 2026 dichiarato confermato.
+- Fonte vecchia di **686 giorni**; nessun calendario 2026 dichiarato confermato.
 
 | Sede sorgente | Tipo | Giorni | Matching | Schede candidate |
 |---|---|---|---|---:|
