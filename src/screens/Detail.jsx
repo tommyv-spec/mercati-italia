@@ -44,6 +44,7 @@ export default function Detail({
   const confirmed = m.dateQuality === 'confermata' || m.dateQuality === 'riportata'
   const disclosure = marketDateDisclosure(m.dates, m.dateQuality)
   const hours = summary.hours || (sourceSchedule.rows.length ? 'Vedi gli orari delle singole date' : '')
+  const nextHours = nextDate ? sourceHoursForDate(m, nextDate) : ''
   const longDescription = (m.description || '').length > 420
   const title = displayName(m)
   const address = displayAddress(m)
@@ -78,7 +79,7 @@ export default function Detail({
           <>
             <div className="next-day">{dayHeaderLabel(nextDate)}</div>
             {secondDate && <div className="next-second">e {longDate(secondDate)}</div>}
-            {sourceHoursForDate(m, nextDate) && <div className="next-hours">{sourceHoursForDate(m, nextDate)}</div>}
+            {nextHours && <div className="next-hours"><Icon name="clock" size={16} strokeWidth={2} />{nextHours}</div>}
             <div className={confirmed ? 'ok' : 'note'}>
               {confirmed && <Icon name="check" size={14} strokeWidth={2.5} />}
               {dateQualityLabel(m.dateQuality)}{m.lastVerified ? ', letta il ' + m.lastVerified : ''}
@@ -97,7 +98,7 @@ export default function Detail({
           </button>
         </div>
         {nextDate && (
-          <button type="button" className="link link-icon" onClick={() => downloadCalendarEvent(m, nextDate, sourceHoursForDate(m, nextDate))}>
+          <button type="button" className="link link-icon" onClick={() => downloadCalendarEvent(m, nextDate, nextHours)}>
             <Icon name="calendar" size={16} strokeWidth={2} />Aggiungi al calendario (promemoria)
           </button>
         )}
@@ -115,7 +116,8 @@ export default function Detail({
       </div>
 
       <div className="facts">
-        <div className="fact"><b><Icon name="clock" size={14} strokeWidth={2} />Orario</b><span>{hours || 'Orari non disponibili'}</span></div>
+        {/* The next opening already shows its hours: repeat them here only when they differ. */}
+        {(!nextHours || hours !== nextHours) && <div className="fact"><b><Icon name="clock" size={14} strokeWidth={2} />Orario</b><span>{hours || 'Orari non disponibili'}</span></div>}
         <div className="fact"><b><Icon name="mapPin" size={14} strokeWidth={2} />Dove</b><span className="detail-address">{address || 'Indirizzo non verificato'}</span></div>
         {m.entry && <div className="fact"><b><Icon name="ticket" size={14} strokeWidth={2} />Ingresso</b><span className={isFreeEntry(m.entry) ? 'free' : ''}>{m.entry}</span></div>}
         {m.stalls && <div className="fact"><b><Icon name="users" size={14} strokeWidth={2} />Banchi</b><span>Circa {m.stalls} secondo la fonte</span></div>}
@@ -149,6 +151,21 @@ export default function Detail({
             title={addressConflicts.length > 0 ? 'Copia l’indirizzo salvato, segnalato come discordante' : 'Copia indirizzo'}>Copia l’indirizzo</button>
         )}
       </div>
+
+      {m.description && (
+        <div className="detail-block">
+          <h2>Il mercato</h2>
+          <p className={longDescription && !expanded ? 'clamp' : ''}>{m.description}</p>
+          {longDescription && <button type="button" className="link" onClick={() => setExpanded(v => !v)}>{expanded ? 'Mostra meno' : 'Leggi tutto'}</button>}
+        </div>
+      )}
+
+      {m.tips && (
+        <div className="tip">
+          <span className="eyebrow tip-eyebrow"><Icon name="bulb" size={15} strokeWidth={2} />Consiglio pratico</span>
+          <p>{m.tips}</p>
+        </div>
+      )}
 
       {(sourceSchedule.rows.length > 0 || editorial) && (
         <div className="detail-block">
@@ -191,21 +208,6 @@ export default function Detail({
                 {' · pagina letta il ' + editorial.readOn}<br />{editorial.editorialDate}</p>
             </div>
           )}
-        </div>
-      )}
-
-      {m.description && (
-        <div className="detail-block">
-          <h2>Il mercato</h2>
-          <p className={longDescription && !expanded ? 'clamp' : ''}>{m.description}</p>
-          {longDescription && <button type="button" className="link" onClick={() => setExpanded(v => !v)}>{expanded ? 'Mostra meno' : 'Leggi tutto'}</button>}
-        </div>
-      )}
-
-      {m.tips && (
-        <div className="tip">
-          <span className="eyebrow tip-eyebrow"><Icon name="bulb" size={15} strokeWidth={2} />Consiglio pratico</span>
-          <p>{m.tips}</p>
         </div>
       )}
 

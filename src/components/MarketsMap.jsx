@@ -206,30 +206,19 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
   return (
     <section data-map-ready={ready ? 'true' : 'false'} data-visible-points={shown.length}
       aria-label="Mappa interattiva dei mercati" style={{ margin: '0 16px 110px' }}>
-      <div style={{ background: 'var(--white)', borderRadius: 12, padding: '12px 14px', marginBottom: 10, fontSize: 13 }}>
-        <strong>Mappa dei mercati</strong>
-        <span style={{ display: 'block', color: 'var(--ink-lighter)', marginTop: 4 }}>
+      {/* A quiet line above the map: the map is the point of this screen. */}
+      <div className="map-info">
+        <p>
           {preciseCount} posizioni precise
-          {estimatedCount ? ` · ${estimatedCount} posizioni indicative` : ''}
-        </span>
-        {estimatedCount > 0 && (
-          <button type="button" onClick={() => setShowEstimated(v => !v)}
-            style={{ border: '1px solid var(--beige-dark)', borderRadius: 20, padding: '8px 12px', marginTop: 8,
-              background: showEstimated ? 'var(--ink)' : 'var(--white)',
-              color: showEstimated ? '#fff' : 'var(--ink)', cursor: 'pointer', fontSize: 12 }}>
-            {showEstimated ? 'Mostra solo posizioni precise' : 'Includi posizioni indicative'}
-          </button>
-        )}
-        {shown.length === 0 && (
-          <div style={{ marginTop: 8, color: 'var(--ink-lighter)', fontSize: 12 }}>
-            Nessun mercato con posizione precisa per questi filtri. Puoi includere quelli indicativi.
-          </div>
-        )}
-        {showEstimated && (
-          <p style={{ fontSize: 12, color: '#886d42', margin: '8px 0 0' }}>
-            Le posizioni indicative possono essere al centro del comune, non nella sede del mercato.
-          </p>
-        )}
+          {estimatedCount ? ` · ${estimatedCount} indicative` : ''}
+          {estimatedCount > 0 && (
+            <button type="button" className="link" onClick={() => setShowEstimated(v => !v)}>
+              {showEstimated ? 'Mostra solo posizioni precise' : 'Includi posizioni indicative'}
+            </button>
+          )}
+        </p>
+        {shown.length === 0 && <p>Nessun mercato con posizione precisa per questi filtri. Puoi includere quelli indicativi.</p>}
+        {showEstimated && estimatedCount > 0 && <p>Le posizioni indicative possono essere al centro del comune, non nella sede del mercato.</p>}
       </div>
       <div ref={containerRef} role="application" aria-label="Mappa: trascina per spostarti, usa + e − per ingrandire"
         style={{ height: 'min(60vh, 600px)', minHeight: 340, width: '100%',

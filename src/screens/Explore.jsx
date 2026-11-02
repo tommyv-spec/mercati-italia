@@ -37,14 +37,15 @@ export default function Explore(p) {
         <>
           <ContextBar barRef={p.barRef} whereLabel={p.whereLabel} whenLabel={p.whenLabel} onWhere={p.onOpenWhere} onWhen={p.onOpenWhen} />
           {p.showPrompt && (
+            // One line, not a second screen: "Dove" above already picks a town.
             <div className="prompt" role="region" aria-label="Dove vuoi andare">
-              <strong>Dove vuoi andare?</strong>
-              <p>Ti mostriamo i mercatini entro 50 km, divisi per giorno.</p>
-              <div className="prompt-actions">
-                <button type="button" className="btn-primary" onClick={p.onPromptNearby}><Icon name="navigation" size={16} strokeWidth={2} />Mercati vicino a me</button>
-                <button type="button" className="btn-secondary" onClick={p.onOpenWhere}>Scegli una città</button>
-              </div>
-              <button type="button" className="link" onClick={p.onPromptDismiss}>Non ora, guardo tutta Italia</button>
+              <button type="button" className="prompt-main" onClick={p.onPromptNearby}>
+                <span className="prompt-ico"><Icon name="navigation" size={18} strokeWidth={2} /></span>
+                <span className="prompt-text"><strong>Mercati vicino a me</strong><span>Entro 50 km da dove sei, giorno per giorno</span></span>
+              </button>
+              <button type="button" className="prompt-close" aria-label="Non ora, guardo tutta Italia" onClick={p.onPromptDismiss}>
+                <Icon name="x" size={18} strokeWidth={2} />
+              </button>
             </div>
           )}
           <div className="cat-chips" aria-label="Che cosa cerchi">
@@ -114,9 +115,12 @@ function Events({ items, featured, visibleCount, onMore, onOpen, favorites, onTo
   return (
     <div className="section">
       {featured.length > 0 && (
-        <div className="feat-row" aria-label="In evidenza">
-          {featured.map(it => <FeaturedTile key={it.market.id} market={it.market} date={it.day} onOpen={onOpen} />)}
-        </div>
+        <>
+          <h2 className="feat-head">In evidenza</h2>
+          <div className="feat-row">
+            {featured.map(it => <FeaturedTile key={it.market.id} market={it.market} date={it.day} onOpen={onOpen} />)}
+          </div>
+        </>
       )}
       <div className="list-area">
         {days.map(group => (

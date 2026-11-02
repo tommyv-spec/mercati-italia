@@ -32,14 +32,6 @@ function facts(market, date, centreKm) {
     color: categoryColor(market.category),
   }
 }
-const When = ({ f, date, children }) => (
-  <span className="when">
-    {children}
-    {!date ? 'Data da verificare' : f.sure
-      ? <span className="sure"><Icon name="check" size={12} strokeWidth={2.8} />confermata</span>
-      : <span className="unsure">prevista</span>}
-  </span>
-)
 const Place = ({ market, f, className = 'place' }) => (
   <p className={className}>
     <Icon name="mapPin" size={13} strokeWidth={2} />
@@ -60,8 +52,11 @@ const Open = ({ market, title, onOpen }) => (
 )
 
 // A ticket: coloured stub with the drawing and the opening time, perforated edge, details.
+// Name first, then the place; the small line below says only what is not the norm.
 export function TicketCard({ market, date, km, onOpen, onToggleFav, isFav, showDate = false }) {
   const f = facts(market, date, km)
+  const status = !date ? 'Data da verificare' : f.sure ? '' : 'Data prevista'
+  const shownDate = showDate && date
   return (
     <article className="market-card ticket" style={{ '--c': f.color }}>
       <div className="ticket-stub" aria-hidden="true">
@@ -71,14 +66,17 @@ export function TicketCard({ market, date, km, onOpen, onToggleFav, isFav, showD
       </div>
       <div className="ticket-body">
         <div className="top">
-          {/* With the date in the line, the stub's colour and label already say the category. */}
-          <When f={f} date={date}>{showDate && date ? <span className="ticket-date">{dayLabel(date)}</span> : <span className="ticket-cat">{market.category}</span>}</When>
+          <Open market={market} title={f.title} onOpen={onOpen} />
           <Fav market={market} isFav={isFav} onToggleFav={onToggleFav} />
         </div>
-        <Open market={market} title={f.title} onOpen={onOpen} />
         <Place market={market} f={f} />
-        {market.description && <p className="desc">{market.description}</p>}
-        {f.free && <div className="foot"><span className="pill-free"><Icon name="ticket" size={13} strokeWidth={2} />Gratis</span></div>}
+        {(shownDate || status || f.free) && (
+          <p className="when">
+            {shownDate && <span className="ticket-date">{dayLabel(date)}</span>}
+            {status && <span className="unsure">{status}</span>}
+            {f.free && <span className="free-tag"><Icon name="ticket" size={13} strokeWidth={2} />Gratis</span>}
+          </p>
+        )}
       </div>
     </article>
   )

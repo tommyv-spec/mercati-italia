@@ -43,7 +43,6 @@ export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExpl
     <div className="agenda-screen">
       <div className="screen-head">
         <h1>Salvati</h1>
-        <p className="note">I mercati che hai salvato, dal più vicino nel tempo. Le notifiche push automatiche non sono ancora attive. Per un promemoria usa «Aggiungi al calendario». Controlla sempre se la data è confermata prima di partire.</p>
       </div>
       {saved.length === 0 ? (
         <>
@@ -67,6 +66,8 @@ export default function Agenda({ markets, favorites, onOpen, onToggleFav, onExpl
           {groups.senza.length > 0 && <p className="note" style={{ padding: '8px 20px 0' }}>Per questi mercati la fonte non indica una data futura: verifica la fonte ufficiale.</p>}
         </>
       )}
+      {/* The list first; how reminders work comes after it. */}
+      <p className="note agenda-note">I mercati che hai salvato, dal più vicino nel tempo. Le notifiche push automatiche non sono ancora attive. Per un promemoria usa «Aggiungi al calendario». Controlla sempre se la data è confermata prima di partire.</p>
     </div>
   )
 }
