@@ -1,14 +1,14 @@
 {
   "calendar_sources_quarantined": 0,
-  "changes": 60,
-  "checked_ids": 14385,
+  "changes": 80,
+  "checked_ids": 14418,
   "city_replacements": 60,
-  "contaminated_titles_repaired": 0,
+  "contaminated_titles_repaired": 2,
   "forecast_dates_removed": 0,
   "market_identities_deleted": 0,
-  "province_pending": 0,
-  "province_protected": 0,
-  "province_replacements": 0,
+  "province_pending": 261,
+  "province_protected": 10,
+  "province_replacements": 20,
   "publisher_urls_or_human_verifications_changed": 0,
   "samples": [
     {
@@ -17,9 +17,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Africo",
-      "old_city": "Africo Nuovo",
-      "slug": "mercato-settimanale-di-africo-nuovo-africo-nuovo-sabato"
+      "new_city": "Massa d'Albe",
+      "old_city": "AQ",
+      "slug": "mercatino-di-natale-a-massa-d-albe-massa-d-albe"
     },
     {
       "changes": [
@@ -27,9 +27,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Chiaravalle Centrale",
-      "old_city": "Chiaravalle",
-      "slug": "mercato-settimanale-di-chiaravalle-chiaravalle-sabato"
+      "new_city": "Roseto degli Abruzzi",
+      "old_city": "TE",
+      "slug": "mercatini-di-roseto-degli-abruzzi-roseto-degli-abruzzi"
     },
     {
       "changes": [
@@ -37,9 +37,33 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Lamezia Terme",
-      "old_city": "Lamezia Terme Nicastro",
-      "slug": "mercato-settimanale-di-lamezia-terme-nicastro-lamezia-terme-nicastro-mercoledi"
+      "new_city": "Cellino Attanasio",
+      "old_city": "TE",
+      "slug": "mercato-settimanale-di-cellino-attanasio-cellino-attanasio"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da",
+        "nome",
+        "nome_originale"
+      ],
+      "new_city": "Belvedere di Spinello",
+      "old_city": "Belvedere Spinello",
+      "slug": "mercato-settimanale-di-belvedere-spinello-belvedere-spinello-mercoledi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da",
+        "nome",
+        "nome_originale"
+      ],
+      "new_city": "Limbadi",
+      "old_city": "Limbade",
+      "slug": "mercato-settimanale-a-limbade-limbade-venerdi"
     },
     {
       "changes": [
@@ -47,9 +71,18 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Monasterace",
-      "old_city": "Monasterace Marina",
-      "slug": "mercato-settimanale-di-monasterace-marina-monasterace-marina-sabato"
+      "new_city": "Castelvetere sul Calore",
+      "old_city": "AV",
+      "slug": "mercato-settimanale-di-castelvetere-sul-calore-castelvetere-sul-calore"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Alfonsine",
+      "old_city": "Alfonsine",
+      "slug": "mercatino-antiquariato-e-usato-di-alfonsine-mercatino-dell-usato-piazza-della-re"
     },
     {
       "changes": [
@@ -57,9 +90,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "San Ferdinando",
-      "old_city": "San Ferdinando di Rosarno",
-      "slug": "mercato-settimanale-di-san-ferdinando-di-rosarno-san-ferdinando-di-rosarno-giove"
+      "new_city": "Castelnuovo Rangone",
+      "old_city": "MO",
+      "slug": "il-mercatino-da-forte-dei-marmi-a-castelnuovo-rangone-castelnuovo-rangone"
     },
     {
       "changes": [
@@ -67,9 +100,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Villapiana",
-      "old_city": "Villapiana Scalo",
-      "slug": "mercato-settimanale-di-villapiana-scalo-villapiana-scalo-mercoledi"
+      "new_city": "Spilamberto",
+      "old_city": "MO",
+      "slug": "mercatino-dell-antico-e-dell-usato-a-spilamberto-spilamberto"
     },
     {
       "changes": [
@@ -77,9 +110,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Riolo Terme",
-      "old_city": "Riolo Terme (estivo)",
-      "slug": "mercato-settimanale-di-riolo-terme-estivo-riolo-terme-estivo"
+      "new_city": "Modena",
+      "old_city": "MO",
+      "slug": "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-parco-novi-sad"
     },
     {
       "changes": [
@@ -87,9 +120,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Toano",
-      "old_city": "Toano (Cavola)",
-      "slug": "mercato-settimanale-di-toano-cavola-toano-cavola"
+      "new_city": "Fontanellato",
+      "old_city": "PR",
+      "slug": "e-domenica-a-spasso-ai-mercatini-di-fontanellato-fontanellato"
     },
     {
       "changes": [
@@ -97,9 +130,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Tresignana",
-      "old_city": "Tresigallo",
-      "slug": "mercato-settimanale-di-tresigallo-tresigallo-martedi"
+      "new_city": "Fontanellato",
+      "old_city": "PR",
+      "slug": "il-mercatino-della-creativita-a-fontanellato-fontanellato"
     },
     {
       "changes": [
@@ -107,9 +140,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Polesine Zibello",
-      "old_city": "Zibello",
-      "slug": "mercato-settimanale-di-zibello-zibello"
+      "new_city": "Azzano Decimo",
+      "old_city": "PN",
+      "slug": "caravanserraglio-ad-azzano-decimo-azzano-decimo"
     },
     {
       "changes": [
@@ -117,19 +150,85 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Valvasone Arzene",
-      "old_city": "Valvasone",
-      "slug": "mercato-settimanale-di-valvasone-valvasone-lunedi"
+      "new_city": "San Vito al Tagliamento",
+      "old_city": "PN",
+      "slug": "mercato-settimanale-di-san-vito-al-tagliamento-san-vito-al-tagliamento"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Pinzano al Tagliamento",
+      "old_city": "Pinzano al Tagliamento",
+      "slug": "il-mercato-del-borgo-pinzano-al-tagliamento"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Sutrio",
+      "old_city": "Sutrio",
+      "slug": "i-cjarsons-2026-sutrio"
     },
     {
       "changes": [
         "citta",
         "citta_originale",
         "localita_ricostruita_da"
+      ],
+      "new_city": "San Felice Circeo",
+      "old_city": "LT",
+      "slug": "antiqua-e-hobby-a-san-felice-circeo-san-felice-circeo"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Cittaducale",
+      "old_city": "RI",
+      "slug": "mercato-settimanale-di-cittaducale-cittaducale"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Contigliano",
+      "old_city": "RI",
+      "slug": "mercato-settimanale-di-contigliano-contigliano"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Stimigliano",
+      "old_city": "RI",
+      "slug": "mercato-settimanale-di-stimigliano-stimigliano"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
       ],
       "new_city": "Roma",
-      "old_city": "CAMPO MARZIO",
-      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-giovedi"
+      "old_city": "Roma",
+      "slug": "bonfire-market-roma"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Sabaudia",
+      "old_city": "Sabaudia",
+      "slug": "i-sapori-del-parco-sabaudia"
     },
     {
       "changes": [
@@ -137,9 +236,18 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Roma",
-      "old_city": "CAMPO MARZIO",
-      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-lunedi"
+      "new_city": "Montalto di Castro",
+      "old_city": "VT",
+      "slug": "il-mercatino-da-forte-dei-marmi-a-montalto-di-castro-montalto-di-castro"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Albenga",
+      "old_city": "Albenga",
+      "slug": "mercatino-antiquariato-e-usato-di-albenga-viale-martiri-della-liberta-albenga"
     },
     {
       "changes": [
@@ -147,9 +255,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Roma",
-      "old_city": "CAMPO MARZIO",
-      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-martedi"
+      "new_city": "Sant'Olcese",
+      "old_city": "GE",
+      "slug": "il-mercatino-da-forte-dei-marmi-a-sant-olcese-sant-olcese"
     },
     {
       "changes": [
@@ -157,9 +265,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Roma",
-      "old_city": "CAMPO MARZIO",
-      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-mercoledi"
+      "new_city": "Serra Riccò",
+      "old_city": "GE",
+      "slug": "il-mercatino-da-forte-dei-marmi-a-serra-ricco-serra-ricco"
     },
     {
       "changes": [
@@ -167,9 +275,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Tarquinia",
-      "old_city": "Tarquinia Lido",
-      "slug": "mercato-settimanale-di-tarquinia-lido-tarquinia-lido-mercoledi"
+      "new_city": "Ospedaletti",
+      "old_city": "IM",
+      "slug": "i-mercati-antiquari-di-ospedaletti-ospedaletti"
     },
     {
       "changes": [
@@ -177,9 +285,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Celle Ligure",
-      "old_city": "Celle",
-      "slug": "mercato-settimanale-di-celle-celle-venerdi"
+      "new_city": "Vallecrosia",
+      "old_city": "IM",
+      "slug": "mercante-per-un-giorno-a-vallecrosia-vallecrosia"
     },
     {
       "changes": [
@@ -187,9 +295,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Rossiglione",
-      "old_city": "Rossiglione Inferiore",
-      "slug": "mercato-settimanale-di-rossiglione-inferiore-rossiglione-inferiore-giovedi"
+      "new_city": "San Bartolomeo al Mare",
+      "old_city": "IM",
+      "slug": "mercatini-dell-artigianato-a-san-bartolomeo-al-mare-san-bartolomeo-al-mare"
     },
     {
       "changes": [
@@ -197,119 +305,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Rossiglione",
-      "old_city": "Rossiglione Inferiore",
-      "slug": "mercato-settimanale-di-rossiglione-inferiore-rossiglione-inferiore-sabato"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Rossiglione",
-      "old_city": "Rossiglione Inferiore",
-      "slug": "mercato-settimanale-di-rossiglione-inferiore-rossiglione-inferiore-venerdi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Rossiglione",
-      "old_city": "Rossiglione Superiore",
-      "slug": "mercato-settimanale-di-rossiglione-superiore-rossiglione-superiore-sabato"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Genova",
-      "old_city": "Voltri",
-      "slug": "mercato-settimanale-di-voltri-voltri"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Ossimo",
-      "old_city": "Ossimo Inferiore",
-      "slug": "mercato-settimanale-di-ossimo-ossimo-inferiore-martedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Ossimo",
-      "old_city": "Ossimo Superiore",
-      "slug": "mercato-settimanale-di-ossimo-ossimo-superiore-giovedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Uggiate con Ronago",
-      "old_city": "Uggiate-Trevano",
-      "slug": "mercato-settimanale-di-uggiate-trevano-uggiate-trevano"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Verderio",
-      "old_city": "Verderio Inferiore",
-      "slug": "mercato-settimanale-di-verderio-inferiore-verderio-inferiore"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Verderio",
-      "old_city": "Verderio Superiore",
-      "slug": "mercato-settimanale-di-verderio-superiore-verderio-superiore"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Vermezzo con Zelo",
-      "old_city": "Vermezzo",
-      "slug": "mercato-settimanale-di-vermezzo-vermezzo"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Borgo Virgilio",
-      "old_city": "Virgilio",
-      "slug": "mercato-settimanale-di-virgilio-virgilio"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Borgo Virgilio",
-      "old_city": "Virgilio",
-      "slug": "mercato-settimanale-di-virgilio-virgilio-sabato"
+      "new_city": "San Bartolomeo al Mare",
+      "old_city": "IM",
+      "slug": "mercatino-d-antiquariato-a-san-bartolomeo-al-mare-san-bartolomeo-al-mare"
     }
   ],
   "schema": 1,

@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,417**.
-- Orari mancanti: **1,809**.
-- Indirizzi mancanti: **1,196**.
-- Coordinate mancanti: **860**.
-- Date future mancanti: **2,548**.
+- Schede: **14,450**.
+- Orari mancanti: **1,821**.
+- Indirizzi mancanti: **1,199**.
+- Coordinate mancanti: **877**.
+- Date future mancanti: **2,647**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
-- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,494** gruppi, **1,783** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,417**.
+- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,495** gruppi, **1,784** righe in eccesso potenziali.
+- Verifiche umane documentate mancanti: **14,450**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -21,11 +21,11 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Fonte | Schede |
 |---|---:|
-| happings.com | 9,913 |
+| happings.com | 9,914 |
 | eventiesagre.it | 2,200 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,128 |
 | cosedicasa.com | 442 |
-| vintagery.it | 192 |
+| vintagery.it | 224 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
@@ -38,26 +38,26 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
 | Regione | Schede | Orari mancanti | Indirizzi mancanti |
 |---|---:|---:|---:|
-| Abruzzo | 398 | 25 | 33 |
-| Basilicata | 36 | 3 | 9 |
-| Calabria | 338 | 40 | 37 |
-| Campania | 830 | 119 | 61 |
-| Emilia-Romagna | 934 | 171 | 103 |
+| Abruzzo | 399 | 26 | 33 |
+| Basilicata | 37 | 3 | 9 |
+| Calabria | 339 | 40 | 37 |
+| Campania | 831 | 119 | 61 |
+| Emilia-Romagna | 938 | 173 | 104 |
 | Friuli Venezia Giulia | 269 | 29 | 19 |
-| Lazio | 1,091 | 98 | 60 |
+| Lazio | 1,093 | 99 | 60 |
 | Liguria | 407 | 58 | 54 |
-| Lombardia | 4,036 | 519 | 169 |
-| Marche | 303 | 51 | 40 |
+| Lombardia | 4,041 | 521 | 169 |
+| Marche | 305 | 51 | 41 |
 | Molise | 217 | 15 | 30 |
-| Piemonte | 1,369 | 160 | 177 |
-| Puglia | 500 | 52 | 40 |
-| Sardegna | 399 | 24 | 30 |
-| Sicilia | 419 | 59 | 41 |
-| Toscana | 1,001 | 191 | 107 |
+| Piemonte | 1,371 | 160 | 178 |
+| Puglia | 503 | 55 | 40 |
+| Sardegna | 400 | 24 | 30 |
+| Sicilia | 421 | 60 | 41 |
+| Toscana | 1,004 | 192 | 107 |
 | Trentino-Alto Adige | 267 | 27 | 36 |
-| Umbria | 192 | 33 | 20 |
+| Umbria | 194 | 33 | 20 |
 | Valle d'Aosta | 58 | 8 | 7 |
-| Veneto | 1,353 | 127 | 123 |
+| Veneto | 1,356 | 128 | 123 |
 
 ## Località da verificare (campione limitato)
 

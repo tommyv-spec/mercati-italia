@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-11-01**.
-- Schede totali: **14,417**.
+- Data della misura: **2026-11-03**.
+- Schede totali: **14,450**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **592**.
-- Lettura della fonte registrata entro 30 giorni: **13,497**.
+- Importazione registrata entro 30 giorni: **625**.
+- Lettura della fonte registrata entro 30 giorni: **13,600**.
 - Fonte datata entro 30 giorni: **1,147**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,147**.
 - Schede con aggiornamento soltanto del dataset: **1,373**.
 - Fonte datata tra 31 e 365 giorni: **187**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **13,031**.
+- Schede con età del contenuto della fonte non comprovata: **13,064**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,242**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,297**.
+- Schede con date future previste: **11,252**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,307**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -86,7 +86,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | emiliaromagnaturismo.it | emiliaromagnaturismo.it | 8 | 0 | 0 | 8 | 0 |
 | enjoysicilia.it | www.enjoysicilia.it | 3 | 0 | 0 | 3 | 0 |
 | eventi.bergamo.it | www.eventi.bergamo.it | 8 | 0 | 0 | 8 | 0 |
-| eventiesagre.it | www.eventiesagre.it | 2200 | 0 | 0 | 2200 | 2130 |
+| eventiesagre.it | www.eventiesagre.it | 2200 | 0 | 0 | 2200 | 2200 |
 | eventiinsardegna.it | www.eventiinsardegna.it | 1 | 0 | 0 | 1 | 0 |
 | eventiintoscana.it | www.eventiintoscana.it | 2 | 0 | 0 | 2 | 0 |
 | ferrarainfo.com | www.ferrarainfo.com | 2 | 0 | 0 | 2 | 0 |
@@ -95,7 +95,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 1 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 5 |
-| happings.com | www.happings.com | 9913 | 0 | 1 | 9912 | 9226 |
+| happings.com | www.happings.com | 9914 | 0 | 1 | 9913 | 9227 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 1 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -131,7 +131,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 1 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
-| vintagery.it | vintagery.it | 192 | 0 | 0 | 192 | 192 |
+| vintagery.it | vintagery.it | 224 | 0 | 0 | 224 | 224 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -141,13 +141,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1196 | 3050 | 1939 | 8055 | 177 |
-| Orari | 1809 | 2337 | 2102 | 7420 | 749 |
-| Giorni | 1145 | 1856 | 2034 | 9175 | 207 |
+| Sede | 1199 | 3118 | 1948 | 8007 | 178 |
+| Orari | 1821 | 1861 | 2102 | 7910 | 756 |
+| Giorni | 1174 | 1857 | 2033 | 9175 | 211 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6209. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6242. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|

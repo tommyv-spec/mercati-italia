@@ -4,9 +4,9 @@ Analisi **senza accesso al sito Happings** o altri siti editoriali.
 Gli stessi ID, Comune, provincia, giorno e URL originale non bastano
 a certificare l'unicità della sede in un intero Comune.
 
-- Schede nazionali controllate: **14417**
-- Schede Happings controllate: **9913**
-- Candidate che hanno già un indirizzo in un'altra scheda: **140**
+- Schede nazionali controllate: **14450**
+- Schede Happings controllate: **9914**
+- Candidate che hanno già un indirizzo in un'altra scheda: **139**
 - Gruppi con più sedi note: **0**
 - Campi riempiti senza prova indipendente: **0**
 
@@ -15,10 +15,10 @@ a certificare l'unicità della sede in un intero Comune.
 | Struttura URL | Schede | Indirizzo assente | Sede non specifica | Orari assenti |
 |---|---:|---:|---:|---:|
 | town_detail_legacy | 4746 | 15 | 2064 | 292 |
-| province_index_old_a | 4487 | 541 | 2454 | 361 |
+| province_index_old_a | 4487 | 540 | 2453 | 361 |
 | province_index_old_ad | 414 | 48 | 335 | 39 |
 | other_historical_layout | 248 | 0 | 0 | 0 |
-| province_index_canonical | 18 | 0 | 0 | 0 |
+| province_index_canonical | 19 | 0 | 0 | 0 |
 
 Le vecchie pagine `ad-...` possono non essere più raggiungibili:
 non cancellare mai le schede; controllare origine e redirect prima
@@ -42,7 +42,6 @@ di abilitare la stessa struttura del parser automatico.
 - mercato-settimanale-di-bozzolo-bozzolo-venerdi ← mercato-settimanale-a-bozzolo-bozzolo-venerdi (sede già archiviata: PIAZZA EUROPA)
 - mercato-settimanale-a-bresso-bresso-mercoledi ← mercato-settimanale-di-bresso-bresso-mercoledi (sede già archiviata: Via Villoresi)
 - mercato-settimanale-a-brugherio-brugherio-venerdi ← mercato-settimanale-di-brugherio-brugherio-venerdi (sede già archiviata: Frazione San Damiano)
-- mercato-settimanale-a-drezzo-drezzo-lunedi ← mercato-settimanale-di-drezzo-drezzo-lunedi (sede già archiviata: Via alla Chiesa)
 - mercato-settimanale-di-gavirate-gavirate-venerdi ← mercato-settimanale-a-gavirate-gavirate-venerdi (sede già archiviata: VIALE GIUSEPPE GARIBALDI; PIAZZA BESOZZI; PIAZZA DELLA REPUBBLICA; VIA MARSALA)
 - mercato-settimanale-a-limbiate-limbiate-martedi ← mercato-settimanale-di-limbiate-limbiate-martedi (sede già archiviata: Piazza A. Moro)
 - mercato-settimanale-di-limbiate-limbiate ← mercato-settimanale-di-limbiate-limbiate-martedi (sede già archiviata: Piazza A. Moro)
@@ -51,6 +50,7 @@ di abilitare la stessa struttura del parser automatico.
 - mercato-settimanale-di-mediglia-mediglia ← mercato-settimanale-di-mediglia-mediglia-venerdi (sede già archiviata: Via Melozzo da Forlì)
 - mercato-settimanale-a-milano-milano-lunedi ← mercato-settimanale-di-milano-milano-lunedi (sede già archiviata: Via Arpino)
 - mercato-settimanale-di-milano-milano ← mercato-settimanale-di-milano-milano-lunedi (sede già archiviata: Via Arpino)
+- mercato-settimanale-a-moglia-moglia-martedi ← mercato-settimanale-di-moglia-moglia-martedi (sede già archiviata: Frazione Bondanello)
 
 Ogni proposta conserva entrambi gli ID, lo stesso URL fonte originale
 e una ragione esplicita per cui non viene promossa a sede verificata.

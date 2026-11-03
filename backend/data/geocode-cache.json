@@ -451,6 +451,11 @@
    "query": "Corso Vittorio Emanuele, Campagnano di Roma, Italia",
    "type": "residential"
   },
+  "corso vittorio emanuele|gioia del colle|ba": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-03",
+   "query": "Corso Vittorio Emanuele, Gioia del Colle, Italia"
+  },
   "donatello|cuneo|cn": {
    "miss": "solo_localita",
    "queried_on": "2026-10-25",
@@ -480,6 +485,16 @@
    "queried_on": "2026-10-25",
    "query": "Galleria Mazzini, Genova, Italia",
    "type": "pharmacy"
+  },
+  "galleria xxv aprile|cremona|cr": {
+   "class": "highway",
+   "lat": 45.134797,
+   "lng": 10.022525,
+   "name": "Galleria XXV Aprile, Centro storico, Cremona, Lombardia, 26100, Italia",
+   "osm": "way/73034201",
+   "queried_on": "2026-11-03",
+   "query": "Galleria XXV Aprile, Cremona, Italia",
+   "type": "pedestrian"
   },
   "garibaldi|san martino dall argine|mn": {
    "class": "highway",
@@ -765,6 +780,16 @@
    "queried_on": "2026-10-25",
    "query": "LUNGOMARE Dante Alighieri, Trapani, Italia",
    "type": "tertiary"
+  },
+  "lungomare europa|soverato|cz": {
+   "class": "highway",
+   "lat": 38.687995,
+   "lng": 16.555382,
+   "name": "Lungomare Europa, Soverato Marina, Soverato, Catanzaro, Calabria, 88068, Italia",
+   "osm": "way/167174110",
+   "queried_on": "2026-11-03",
+   "query": "Lungomare Europa, Soverato, Italia",
+   "type": "pedestrian"
   },
   "lungomare federico ii di svevia|gela|cl": {
    "class": "highway",
@@ -1486,6 +1511,11 @@
    "query": "piazza Carlo Alberto, Torino, Italia",
    "type": "square"
   },
+  "piazza carlo bocchi|adria|ro": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-03",
+   "query": "Piazza Carlo Bocchi, Adria, Italia"
+  },
   "piazza carlo felice|torino|to": {
    "class": "highway",
    "lat": 45.064187,
@@ -1765,6 +1795,11 @@
    "queried_on": "2026-10-25",
    "query": "piazza Colombo, Sanremo, Italia",
    "type": "residential"
+  },
+  "piazza conti di rovero|san zenone degli ezzelini|tv": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-03",
+   "query": "Piazza Conti di Rovero, San Zenone degli Ezzelini, Italia"
   },
   "piazza cortesini|orbetello|gr": {
    "class": "highway",
@@ -2065,6 +2100,11 @@
    "queried_on": "2026-10-27",
    "query": "Piazza del Granatiere, Jesolo, Italia",
    "type": "tertiary"
+  },
+  "piazza del municipio|campobasso|cb": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-03",
+   "query": "Piazza del Municipio, Campobasso, Italia"
   },
   "piazza del municipio|romagnese|pv": {
    "miss": "nessun_risultato",
@@ -3406,6 +3446,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA Marchesi, Montevarchi, Italia"
   },
+  "piazza marconi|folgaria|tn": {
+   "class": "place",
+   "lat": 45.915012,
+   "lng": 11.172802,
+   "name": "Piazza Guglielmo Marconi, Folgaria, Magnifica Comunità degli Altipiani Cimbri, Provincia di Trento, Trentino-Alto Adige/Südtirol, Italia",
+   "osm": "way/1192644303",
+   "queried_on": "2026-11-03",
+   "query": "Piazza Marconi, Folgaria, Italia",
+   "type": "square"
+  },
   "piazza marconi|pavia|pv": {
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
@@ -3806,6 +3856,11 @@
    "query": "PIAZZA PIAZZA UMBERTO I, Besana in Brianza, Italia",
    "type": "square"
   },
+  "piazza piemonte a rocca malatina|guiglia|mo": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-03",
+   "query": "piazza Piemonte a Rocca Malatina, Guiglia, Italia"
+  },
   "piazza piloni|belluno|bl": {
    "class": "amenity",
    "lat": 46.140757,
@@ -3870,6 +3925,11 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA Regina Elena, Avola, Italia",
    "type": "square"
+  },
+  "piazza repubblica|carloforte|ci": {
+   "miss": "provincia_diversa",
+   "queried_on": "2026-11-03",
+   "query": "Piazza Repubblica, Carloforte, Italia"
   },
   "piazza rinascita|carbonia|ci": {
    "miss": "provincia_diversa",
@@ -4201,6 +4261,16 @@
    "query": "piazza Sant'Eustorgio, Milano, Italia",
    "type": "pedestrian"
   },
+  "piazza santa caterina|finale ligure|sv": {
+   "class": "highway",
+   "lat": 44.17575,
+   "lng": 8.326832,
+   "name": "Piazza Santa Caterina, Monticello, Finalborgo, Finale Ligure, Savona, Liguria, 17024, Italia",
+   "osm": "way/27653231",
+   "queried_on": "2026-11-03",
+   "query": "Piazza Santa Caterina, Finale Ligure, Italia",
+   "type": "pedestrian"
+  },
   "piazza santa croce|firenze|fi": {
    "class": "highway",
    "lat": 43.768945,
@@ -4471,6 +4541,16 @@
    "query": "PIAZZA UMBERTO I, Marcaria, Italia",
    "type": "pedestrian"
   },
+  "piazza unita d italia|palermo|pa": {
+   "class": "leisure",
+   "lat": 38.137428,
+   "lng": 13.344176,
+   "name": "Piazza Unità d'Italia, Quartiere Matteotti, VIII Circoscrizione, Palermo, Sicilia, Italia",
+   "osm": "way/45202596",
+   "queried_on": "2026-11-03",
+   "query": "Piazza Unità d'Italia, Palermo, Italia",
+   "type": "park"
+  },
   "piazza unita|carenno|lc": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -4526,6 +4606,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Viii Agosto-Lato Via Indipendenza, Bologna, Italia"
   },
+  "piazza viii agosto|bologna|bo": {
+   "class": "amenity",
+   "lat": 44.500382,
+   "lng": 11.345364,
+   "name": "Parcheggio interrato Piazza VIII Agosto, Piazza dell'Otto Agosto, Ghetto ebraico, Irnerio, Santo Stefano, Bologna, Emilia-Romagna, 40121, Italia",
+   "osm": "way/1134004657",
+   "queried_on": "2026-11-03",
+   "query": "Piazza VIII Agosto, Bologna, Italia",
+   "type": "parking"
+  },
   "piazza vittoria|brescia|bs": {
    "class": "highway",
    "lat": 45.538417,
@@ -4550,6 +4640,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Vittorio Emanuele III, Arcade, Italia",
    "type": "secondary"
+  },
+  "piazza vittorio emanuele ii|campobasso|cb": {
+   "class": "place",
+   "lat": 41.558374,
+   "lng": 14.659614,
+   "name": "Piazza Vittorio Emanuele II, Centro Murattiano, Campobasso, Molise, 86100, Italia",
+   "osm": "way/261652636",
+   "queried_on": "2026-11-03",
+   "query": "Piazza Vittorio Emanuele II, Campobasso, Italia",
+   "type": "square"
   },
   "piazza vittorio emanuele ii|rieti|ri": {
    "class": "place",
@@ -4880,6 +4980,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
    "query": "PZZA OFFELLA, Parona, Italia"
+  },
+  "riva martiri delle foibe|lecco|lc": {
+   "class": "highway",
+   "lat": 45.858466,
+   "lng": 9.385179,
+   "name": "Riva Martiri delle Foibe, Santo Stefano, Castello, Lecco, Lombardia, 23900, Italia",
+   "osm": "way/162373090",
+   "queried_on": "2026-11-03",
+   "query": "Riva Martiri delle Foibe, Lecco, Italia",
+   "type": "footway"
   },
   "riviera mazzini|lendinara|ro": {
    "miss": "nessun_risultato",
@@ -5786,6 +5896,16 @@
    "query": "Via Del Lavoro, Bologna, Italia",
    "type": "secondary"
   },
+  "via del porto|gabicce mare|pu": {
+   "class": "highway",
+   "lat": 43.96723,
+   "lng": 12.751492,
+   "name": "Via del Porto, Gabicce Mare, Pesaro e Urbino, Marche, 61011, Italia",
+   "osm": "way/35277008",
+   "queried_on": "2026-11-03",
+   "query": "Via del Porto, Gabicce Mare, Italia",
+   "type": "residential"
+  },
   "via del quadraro|roma|rm": {
    "class": "highway",
    "lat": 41.854697,
@@ -6336,6 +6456,11 @@
    "query": "Via Garibaldi, Cittadella, Italia",
    "type": "residential"
   },
+  "via generale vincenzo magliocco|palermo|pa": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-03",
+   "query": "Via Generale Vincenzo Magliocco, Palermo, Italia"
+  },
   "via giacomo leopardi|offanengo|cr": {
    "class": "highway",
    "lat": 45.376643,
@@ -6419,6 +6544,16 @@
    "osm": "way/198272371",
    "queried_on": "2026-10-30",
    "query": "VIA Giovanni Prati, Vicenza, Italia",
+   "type": "residential"
+  },
+  "via giuseppe ungaretti|rende|cs": {
+   "class": "highway",
+   "lat": 39.330807,
+   "lng": 16.245944,
+   "name": "Via Giuseppe Ungaretti, Sant' Agostino, Commenda, Roges, Rende, Cosenza, Calabria, 87036, Italia",
+   "osm": "way/127284460",
+   "queried_on": "2026-11-03",
+   "query": "Via Giuseppe Ungaretti, Rende, Italia",
    "type": "residential"
   },
   "via giuseppe verdi|casnate con bernate|co": {
@@ -6725,6 +6860,11 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "Via Mantegna, Villanova di Camposampiero, Italia"
+  },
+  "via manzoni|piacenza|pc": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-03",
+   "query": "Via Manzoni, Piacenza, Italia"
   },
   "via marco minghetti|roma|rm": {
    "class": "highway",
@@ -8021,6 +8161,11 @@
    "query": "VIA Tranquilli, Ascoli Piceno, Italia",
    "type": "residential"
   },
+  "via trento|lanciano|ch": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-03",
+   "query": "Via Trento, Lanciano, Italia"
+  },
   "via triestina|venezia|ve": {
    "class": "highway",
    "lat": 45.504577,
@@ -8541,6 +8686,16 @@
    "query": "Viale Matteotti, Fiorenzuola d'Arda, Italia",
    "type": "secondary"
   },
+  "viale matteotti|grottaglie|ta": {
+   "class": "highway",
+   "lat": 40.537046,
+   "lng": 17.434871,
+   "name": "Viale Giacomo Matteotti, Quartiere delle Ceramiche, Grottaglie, Taranto, Puglia, 74023, Italia",
+   "osm": "way/733601044",
+   "queried_on": "2026-11-03",
+   "query": "Viale Matteotti, Grottaglie, Italia",
+   "type": "tertiary"
+  },
   "viale matteotti|pavia|pv": {
    "class": "highway",
    "lat": 45.190123,
@@ -8650,6 +8805,16 @@
    "miss": "comune_diverso",
    "queried_on": "2026-10-26",
    "query": "viale Tirreno, Grosseto, Italia"
+  },
+  "viale trento|terni|tr": {
+   "class": "highway",
+   "lat": 42.547392,
+   "lng": 12.64742,
+   "name": "Viale Trento, San Valentino, Terni, Umbria, 05100, Italia",
+   "osm": "way/53547701",
+   "queried_on": "2026-11-03",
+   "query": "Viale Trento, Terni, Italia",
+   "type": "tertiary"
   },
   "viale umberto i|atri|te": {
    "class": "highway",

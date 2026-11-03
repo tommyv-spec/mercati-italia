@@ -7,32 +7,32 @@ Coordinates can veto a join; they never establish market identity.
 No forecast, human verification, original source, or identity changed.
 
 - Held official rows screened: **1360**
-- Existing market cards with added information: **772**
+- Existing market cards with added information: **773**
 - Missing hours supplied from official regional source: **1**
 - Missing/vague venues supplied from the complete source: **0**
 - Managed venues updated from the same source ID: **0**
-- Official source attributions attached: **1**
-- exact_matches: 152
-- existing_hours_differ_from_official: 4
-- existing_hours_preserved: 152
-- field_observation_records_updated: 772
-- held_unique_town_coordinates_conflict: 104
-- held_unique_town_daypart_or_place_disagrees: 209
+- Official source attributions attached: **2**
+- exact_matches: 153
+- existing_hours_differ_from_official: 5
+- existing_hours_preserved: 153
+- field_observation_records_updated: 773
+- held_unique_town_coordinates_conflict: 106
+- held_unique_town_daypart_or_place_disagrees: 210
 - held_unique_town_multiple_eligible_sources: 40
-- held_unique_town_no_eligible_source: 1192
+- held_unique_town_no_eligible_source: 1188
 - held_unique_town_raw_same_city_day_competitor: 30
 - held_unique_town_raw_unknown_weekday_competitor: 46
 - held_unique_town_target_identity_incomplete: 71
-- held_unique_town_unmanaged_indirizzo: 382
+- held_unique_town_unmanaged_indirizzo: 383
 - hours_added: 1
-- municipality_day_unique_matches: 624
+- municipality_day_unique_matches: 625
 - observed_spelling_matches: 25
-- official_source_attributions_added: 1
+- official_source_attributions_added: 2
 - skipped_coordinates_conflict: 3
-- skipped_legacy_without_explicit_annual_weekday: 332
+- skipped_legacy_without_explicit_annual_weekday: 335
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
-- skipped_no_exact_legacy_market: 649
+- skipped_no_exact_legacy_market: 648
 - skipped_no_exact_location_or_day: 548
 - skipped_official_raw_identity_unproved_or_conflicting: 56
 - skipped_official_without_explicit_annual_weekday: 523
