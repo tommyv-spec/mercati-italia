@@ -5,44 +5,44 @@ Sono ispezionati fino a 3 CSV al giorno; nessun record o dato personale viene sa
 Nessuna fonte viene abilitata all'importazione.
 
 - Dataset trovati dalla ricerca CKAN: **87**.
-- Dataset con campione storico: **45**.
+- Dataset con campione storico: **48**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - SOAVE
-- Editore dichiarato: Comune di Soave
+## Fiere e mercati - TORRI DI QUARTESOLO
+- Editore dichiarato: Comune di Torri di Quartesolo
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 1
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 21
 - Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 1
-- Giorni settimanali espliciti: 1
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Concessioni scadute: 13
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
-## Posteggi mercati e fiere - CEREA
-- Editore dichiarato: Comune di Cerea
+## Posteggi mercati e fiere - BRENDOLA
+- Editore dichiarato: Comune di Brendola
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 13
+- Righe amministrative lette: 7
 - Nomi distinti (NON mercato nuovo): 2
 - Concessioni scadute: 0
-- Righe di posteggi storici: 13
-- Giorni settimanali espliciti: 0
+- Righe di posteggi storici: 7
+- Giorni settimanali espliciti: 7
 - Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
 
-## Posteggi mercati e fiere - MEOLO
-- Editore dichiarato: Comune di Meolo
+## Fiere e mercati - PONTE SAN NICOLO
+- Editore dichiarato: Comune di Ponte San Nicolò
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 3
-- Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 3
-- Giorni settimanali espliciti: 3
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 238
+- Nomi distinti (NON mercato nuovo): 18
+- Concessioni scadute: 202
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
 
 Le sedi saranno aggiunte solo dopo confronto con catalogo, identità univoche,

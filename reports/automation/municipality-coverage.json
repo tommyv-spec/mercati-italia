@@ -3,12 +3,12 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 14418,
+  "catalog_market_ids_preserved": 14450,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 5052,
-  "municipalities_without_catalog_listings": 2842,
+  "municipalities_with_catalog_listings": 5056,
+  "municipalities_without_catalog_listings": 2838,
   "represented_percent": 64.0,
   "regions": [
     {
@@ -65,9 +65,9 @@
     {
       "region": "Sicilia",
       "istat_municipalities": 391,
-      "with_at_least_one_catalog_market": 201,
-      "without_catalog_market": 190,
-      "represented_percent": 51.4,
+      "with_at_least_one_catalog_market": 202,
+      "without_catalog_market": 189,
+      "represented_percent": 51.7,
       "unrepresented_examples_for_source_search": [
         "Altavilla Milicia",
         "Castelmola",
@@ -116,9 +116,9 @@
     {
       "region": "Liguria",
       "istat_municipalities": 234,
-      "with_at_least_one_catalog_market": 110,
-      "without_catalog_market": 124,
-      "represented_percent": 47.0,
+      "with_at_least_one_catalog_market": 111,
+      "without_catalog_market": 123,
+      "represented_percent": 47.4,
       "unrepresented_examples_for_source_search": [
         "Costarainera",
         "Olivetta San Michele",
@@ -133,9 +133,9 @@
     {
       "region": "Abruzzo",
       "istat_municipalities": 305,
-      "with_at_least_one_catalog_market": 192,
-      "without_catalog_market": 113,
-      "represented_percent": 63.0,
+      "with_at_least_one_catalog_market": 193,
+      "without_catalog_market": 112,
+      "represented_percent": 63.3,
       "unrepresented_examples_for_source_search": [
         "Castel Castagna",
         "Civitella Messer Raimondo",
@@ -150,9 +150,9 @@
     {
       "region": "Basilicata",
       "istat_municipalities": 131,
-      "with_at_least_one_catalog_market": 18,
-      "without_catalog_market": 113,
-      "represented_percent": 13.7,
+      "with_at_least_one_catalog_market": 19,
+      "without_catalog_market": 112,
+      "represented_percent": 14.5,
       "unrepresented_examples_for_source_search": [
         "Albano di Lucania",
         "Episcopia",
@@ -355,10 +355,6 @@
   "unmatched_city_examples": [
     {
       "region": "Abruzzo",
-      "reported_city": "AQ"
-    },
-    {
-      "region": "Abruzzo",
       "reported_city": "Atelena"
     },
     {
@@ -382,20 +378,8 @@
       "reported_city": "Secirano"
     },
     {
-      "region": "Abruzzo",
-      "reported_city": "TE"
-    },
-    {
-      "region": "Abruzzo",
-      "reported_city": "TE"
-    },
-    {
       "region": "Calabria",
       "reported_city": "Amantea Campora S.G:"
-    },
-    {
-      "region": "Calabria",
-      "reported_city": "Belvedere Spinello"
     },
     {
       "region": "Calabria",
@@ -412,6 +396,22 @@
     {
       "region": "Calabria",
       "reported_city": "Caria"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Corigliano Calabro"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Francavilla"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Isola Capo Rizzuto"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Lamezia Terme Nicastro"
     }
   ],
   "interpretation": "absence of a listing is NOT evidence a municipality has any active market"
