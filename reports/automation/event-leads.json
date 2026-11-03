@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14418,
-  "baseline_market_records": 14418,
+  "baseline_market_ids_preserved": 14450,
+  "baseline_market_records": 14450,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -9,9 +9,9 @@
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
       "leads_found": 2,
-      "not_matching_market_scope": 106,
+      "not_matching_market_scope": 112,
       "requests": 1,
-      "rows_examined": 108,
+      "rows_examined": 114,
       "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
       "state": "discovery_leads_only"
     },
@@ -48,7 +48,7 @@
       "first_seen": "2026-11-02",
       "id": "firenze-feelflorence:97",
       "kind": "market_candidate",
-      "last_seen": "2026-11-02",
+      "last_seen": "2026-11-03",
       "opening_confirmed": false,
       "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
@@ -56,6 +56,176 @@
       "start": "2026-11-14",
       "status": "source_lead_unverified",
       "title": "Mercato di Natale in Piazza Santa Croce"
+    },
+    {
+      "catalog_import_allowed": false,
+      "city": "Firenze",
+      "end": "2027-03-01",
+      "first_seen": "2026-11-03",
+      "id": "firenze-feelflorence:106",
+      "kind": "market_candidate",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "firenze-feelflorence",
+      "source_url": "https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti",
+      "start": "2026-12-03",
+      "status": "source_lead_unverified",
+      "title": "Magnifico 1492. Collezionismo mediceo a Palazzo Pitti"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21191687",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191687_Il+Mercatino+Delle+Pulci+A+Bussana+Di+Sanremo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183828",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183828_Mercato+Settimanale+Di+Rabbi.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183750",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183750_Mercato+Settimanale+Di+Moena.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183740",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183740_Mercato+Settimanale+Di+Primiero+San+Martino+Di+Castrozza.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183736",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183736_Mercato+Settimanale+Di+Vipiteno.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183731",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183731_Mercato+Settimanale+Di+Sesto.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183702",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183702_Mercato+Settimanale+Di+Baselga+Di+Pine.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183700",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183700_Mercato+Settimanale+Di+Arco.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183681",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183681_Mercato+Settimanale+Di+Egna.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:21183677",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183677_Mercato+Settimanale+Di+Castelbello+ciardes.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21163878",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21163878_Riciclo+Recupero+Riuso.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21079886",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21079886_Antiquariato+E+Collezionismo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-25",
+      "id": "eventiesagre-index:21044727",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21044727_Mercatino+Del+Riciclo+E+Riutilizzo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-03",
+      "id": "eventiesagre-index:12567",
+      "last_seen": "2026-11-03",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/12567_Mercato+Contadino+di+Arco.html",
+      "status": "external_pointer_only_no_fact_reuse"
     },
     {
       "catalog_import_allowed": false,
@@ -70,7 +240,7 @@
       "source_id": "firenze-feelflorence",
       "source_url": "https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti",
       "start": "2026-12-03",
-      "status": "source_lead_unverified",
+      "status": "not_seen_again_not_a_market_closure",
       "title": "Magnifico 1492. Collezionismo mediceo a Palazzo Pitti"
     },
     {
@@ -82,7 +252,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185263_Mercato+Settimanale+Di+Stintino.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -93,7 +263,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185206_Mercato+Settimanale+Di+Scano+Di+Montiferro.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -104,7 +274,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185188_Mercato+Settimanale+Di+Villanova+Tulo.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -115,7 +285,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185050_Mercato+Settimanale+Di+Orosei.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -126,7 +296,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185013_Mercato+Settimanale+Di+Cuglieri.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -137,7 +307,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21185012_Mercato+Settimanale+Di+Cabras.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -148,7 +318,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21184987_Mercato+Settimanale+Di+Maracalagonis.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -159,7 +329,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21184971_Mercato+Settimanale+Di+Aritzo.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -170,7 +340,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21184968_Mercato+Settimanale+Di+Castelsardo.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -181,7 +351,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21181161_Mercato+Settimanale+Di+Oristano.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -192,7 +362,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Collezionismo/21174403_La+Fiera+Del+Disco+A+Salerno.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -203,7 +373,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21169155_Svuota+La+Cantina+In+Allegria.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -214,7 +384,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21106295_Mercatino+Dell+usato.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -225,7 +395,7 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21105625_Mercatino+Delle+Pulci+E+Degli+Hobbysti.html",
-      "status": "external_pointer_only_no_fact_reuse"
+      "status": "not_seen_again_not_a_market_closure"
     },
     {
       "catalog_import_allowed": false,
@@ -688,17 +858,6 @@
     {
       "catalog_import_allowed": false,
       "first_seen": "2026-10-25",
-      "id": "eventiesagre-index:21191687",
-      "last_seen": "2026-10-25",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21191687_Il+Mercatino+Delle+Pulci+A+Bussana+Di+Sanremo.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-10-25",
       "id": "eventiesagre-index:21191654",
       "last_seen": "2026-10-25",
       "opening_confirmed": false,
@@ -727,17 +886,6 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21180064_Mercatino+a+Pomponesco+Mn.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-10-25",
-      "id": "eventiesagre-index:21163878",
-      "last_seen": "2026-10-25",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21163878_Riciclo+Recupero+Riuso.html",
       "status": "not_seen_again_not_a_market_closure"
     },
     {
@@ -776,34 +924,12 @@
     {
       "catalog_import_allowed": false,
       "first_seen": "2026-10-25",
-      "id": "eventiesagre-index:21079886",
-      "last_seen": "2026-10-25",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21079886_Antiquariato+E+Collezionismo.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-10-25",
       "id": "eventiesagre-index:21075404",
       "last_seen": "2026-10-25",
       "opening_confirmed": false,
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Vari/21075404_Mercatino+Dell+antiquariato.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-10-25",
-      "id": "eventiesagre-index:21044727",
-      "last_seen": "2026-10-25",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Usato/21044727_Mercatino+Del+Riciclo+E+Riutilizzo.html",
       "status": "not_seen_again_not_a_market_closure"
     },
     {
@@ -1281,7 +1407,7 @@
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-11-02",
+  "reference_date": "2026-11-03",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
