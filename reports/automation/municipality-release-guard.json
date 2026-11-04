@@ -1,12 +1,12 @@
 {
   "calendar_sources_quarantined": 0,
   "changes": 80,
-  "checked_ids": 14418,
+  "checked_ids": 14451,
   "city_replacements": 60,
-  "contaminated_titles_repaired": 2,
+  "contaminated_titles_repaired": 4,
   "forecast_dates_removed": 0,
   "market_identities_deleted": 0,
-  "province_pending": 261,
+  "province_pending": 243,
   "province_protected": 10,
   "province_replacements": 20,
   "publisher_urls_or_human_verifications_changed": 0,
@@ -15,11 +15,13 @@
       "changes": [
         "citta",
         "citta_originale",
-        "localita_ricostruita_da"
+        "localita_ricostruita_da",
+        "nome",
+        "nome_originale"
       ],
-      "new_city": "Massa d'Albe",
-      "old_city": "AQ",
-      "slug": "mercatino-di-natale-a-massa-d-albe-massa-d-albe"
+      "new_city": "Capistrano",
+      "old_city": "Capristrano",
+      "slug": "mercato-settimanale-di-capristrano-capristrano-venerdi"
     },
     {
       "changes": [
@@ -27,19 +29,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Roseto degli Abruzzi",
-      "old_city": "TE",
-      "slug": "mercatini-di-roseto-degli-abruzzi-roseto-degli-abruzzi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Cellino Attanasio",
-      "old_city": "TE",
-      "slug": "mercato-settimanale-di-cellino-attanasio-cellino-attanasio"
+      "new_city": "Francavilla Angitola",
+      "old_city": "Francavilla",
+      "slug": "mercato-settimanale-di-francavilla-francavilla-sabato"
     },
     {
       "changes": [
@@ -49,9 +41,9 @@
         "nome",
         "nome_originale"
       ],
-      "new_city": "Belvedere di Spinello",
-      "old_city": "Belvedere Spinello",
-      "slug": "mercato-settimanale-di-belvedere-spinello-belvedere-spinello-mercoledi"
+      "new_city": "Isola di Capo Rizzuto",
+      "old_city": "Isola Capo Rizzuto",
+      "slug": "mercato-settimanale-di-isola-capo-rizzuto-isola-capo-rizzuto-lunedi"
     },
     {
       "changes": [
@@ -63,7 +55,7 @@
       ],
       "new_city": "Limbadi",
       "old_city": "Limbade",
-      "slug": "mercato-settimanale-a-limbade-limbade-venerdi"
+      "slug": "mercato-settimanale-di-limbade-limbade-venerdi"
     },
     {
       "changes": [
@@ -71,164 +63,105 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Castelvetere sul Calore",
-      "old_city": "AV",
-      "slug": "mercato-settimanale-di-castelvetere-sul-calore-castelvetere-sul-calore"
+      "new_city": "Monterosso Calabro",
+      "old_city": "Monterosso",
+      "slug": "mercato-settimanale-di-monterosso-monterosso-martedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da",
+        "nome",
+        "nome_originale"
+      ],
+      "new_city": "Nardodipace",
+      "old_city": "Nardo di Pace",
+      "slug": "mercato-settimanale-di-nardo-di-pace-nardo-di-pace-venerdi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "San Costantino Calabro",
+      "old_city": "San Costantino",
+      "slug": "mercato-settimanale-di-san-costantino-san-costantino-martedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "San Gregorio d'Ippona",
+      "old_city": "San Gregorio",
+      "slug": "mercato-settimanale-di-san-gregorio-san-gregorio-martedi"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Alfonsine",
-      "old_city": "Alfonsine",
-      "slug": "mercatino-antiquariato-e-usato-di-alfonsine-mercatino-dell-usato-piazza-della-re"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Castelnuovo Rangone",
-      "old_city": "MO",
-      "slug": "il-mercatino-da-forte-dei-marmi-a-castelnuovo-rangone-castelnuovo-rangone"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Spilamberto",
-      "old_city": "MO",
-      "slug": "mercatino-dell-antico-e-dell-usato-a-spilamberto-spilamberto"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Modena",
-      "old_city": "MO",
-      "slug": "shopping-invernale-il-parco-novi-sad-ospita-il-mercato-di-modena-parco-novi-sad"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Fontanellato",
-      "old_city": "PR",
-      "slug": "e-domenica-a-spasso-ai-mercatini-di-fontanellato-fontanellato"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Fontanellato",
-      "old_city": "PR",
-      "slug": "il-mercatino-della-creativita-a-fontanellato-fontanellato"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Azzano Decimo",
-      "old_city": "PN",
-      "slug": "caravanserraglio-ad-azzano-decimo-azzano-decimo"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "San Vito al Tagliamento",
-      "old_city": "PN",
-      "slug": "mercato-settimanale-di-san-vito-al-tagliamento-san-vito-al-tagliamento"
+      "new_city": "Borgo Val di Taro",
+      "old_city": "Borgo Val di Taro",
+      "slug": "mercatino-antiquariato-e-usato-di-borgo-val-di-taro-viale-bottego-borgo-val-di-t"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Pinzano al Tagliamento",
-      "old_city": "Pinzano al Tagliamento",
-      "slug": "il-mercato-del-borgo-pinzano-al-tagliamento"
+      "new_city": "Aviano",
+      "old_city": "Aviano",
+      "slug": "mercatino-antiquariato-e-usato-di-aviano-anticamente-ad-aviano-piazza-duomo-via"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Sutrio",
-      "old_city": "Sutrio",
-      "slug": "i-cjarsons-2026-sutrio"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "San Felice Circeo",
-      "old_city": "LT",
-      "slug": "antiqua-e-hobby-a-san-felice-circeo-san-felice-circeo"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Cittaducale",
-      "old_city": "RI",
-      "slug": "mercato-settimanale-di-cittaducale-cittaducale"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Contigliano",
-      "old_city": "RI",
-      "slug": "mercato-settimanale-di-contigliano-contigliano"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Stimigliano",
-      "old_city": "RI",
-      "slug": "mercato-settimanale-di-stimigliano-stimigliano"
+      "new_city": "Anzio",
+      "old_city": "Anzio",
+      "slug": "mercatino-antiquariato-e-usato-di-anzio-piazza-garibaldi-anzio"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
+      ],
+      "new_city": "Anzio",
+      "old_city": "Anzio",
+      "slug": "mercatino-antiquariato-e-usato-di-anzio-via-porto-neroniano-anzio"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Aprilia",
+      "old_city": "Aprilia",
+      "slug": "mercatino-antiquariato-e-usato-di-aprilia-il-mercatino-di-aprilia-piazza-roma-vi"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Ariccia",
+      "old_city": "Ariccia",
+      "slug": "mercatino-antiquariato-e-usato-di-ariccia-corso-garibaldi-piazza-repubblica-piaz"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "Roma",
-      "slug": "bonfire-market-roma"
-    },
-    {
-      "changes": [
-        "provincia",
-        "riconciliazione_provincia"
-      ],
-      "new_city": "Sabaudia",
-      "old_city": "Sabaudia",
-      "slug": "i-sapori-del-parco-sabaudia"
+      "old_city": "CAMPO MARZIO",
+      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-sabato"
     },
     {
       "changes": [
@@ -236,18 +169,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Montalto di Castro",
-      "old_city": "VT",
-      "slug": "il-mercatino-da-forte-dei-marmi-a-montalto-di-castro-montalto-di-castro"
-    },
-    {
-      "changes": [
-        "provincia",
-        "riconciliazione_provincia"
-      ],
-      "new_city": "Albenga",
-      "old_city": "Albenga",
-      "slug": "mercatino-antiquariato-e-usato-di-albenga-viale-martiri-della-liberta-albenga"
+      "new_city": "Roma",
+      "old_city": "CAMPO MARZIO",
+      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-venerdi"
     },
     {
       "changes": [
@@ -255,9 +179,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Sant'Olcese",
-      "old_city": "GE",
-      "slug": "il-mercatino-da-forte-dei-marmi-a-sant-olcese-sant-olcese"
+      "new_city": "Roma",
+      "old_city": "CASAL BERTONE",
+      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-giovedi"
     },
     {
       "changes": [
@@ -265,9 +189,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Serra Riccò",
-      "old_city": "GE",
-      "slug": "il-mercatino-da-forte-dei-marmi-a-serra-ricco-serra-ricco"
+      "new_city": "Roma",
+      "old_city": "CASAL BERTONE",
+      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-lunedi"
     },
     {
       "changes": [
@@ -275,9 +199,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Ospedaletti",
-      "old_city": "IM",
-      "slug": "i-mercati-antiquari-di-ospedaletti-ospedaletti"
+      "new_city": "Roma",
+      "old_city": "CASAL BERTONE",
+      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-martedi"
     },
     {
       "changes": [
@@ -285,9 +209,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Vallecrosia",
-      "old_city": "IM",
-      "slug": "mercante-per-un-giorno-a-vallecrosia-vallecrosia"
+      "new_city": "Roma",
+      "old_city": "CASAL BERTONE",
+      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-mercoledi"
     },
     {
       "changes": [
@@ -295,9 +219,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "San Bartolomeo al Mare",
-      "old_city": "IM",
-      "slug": "mercatini-dell-artigianato-a-san-bartolomeo-al-mare-san-bartolomeo-al-mare"
+      "new_city": "Roma",
+      "old_city": "CASAL BERTONE",
+      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-sabato"
     },
     {
       "changes": [
@@ -305,9 +229,89 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "San Bartolomeo al Mare",
-      "old_city": "IM",
-      "slug": "mercatino-d-antiquariato-a-san-bartolomeo-al-mare-san-bartolomeo-al-mare"
+      "new_city": "Roma",
+      "old_city": "CASAL BERTONE",
+      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-venerdi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASAL DE PAZZI",
+      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-giovedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASAL DE PAZZI",
+      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-lunedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASAL DE PAZZI",
+      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-martedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASAL DE PAZZI",
+      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-mercoledi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASAL DE PAZZI",
+      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-sabato"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASAL DE PAZZI",
+      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-venerdi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASILINO",
+      "slug": "mercato-settimanale-di-casilino-casilino"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "CASILINO",
+      "slug": "mercato-settimanale-di-casilino-casilino-giovedi"
     }
   ],
   "schema": 1,

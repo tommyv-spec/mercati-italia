@@ -268,17 +268,32 @@
       "status": "resolved"
     },
     {
-      "attempts": 1,
+      "attempts": 3,
       "city_keys": [
         "avellino"
       ],
       "first_seen_on": "2026-10-27",
-      "last_attempt_on": "2026-11-03",
+      "last_attempt_on": "2026-11-04",
       "last_error": null,
-      "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-4/",
+      "last_success_on": "2026-11-04",
+      "next_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-4.html",
-      "proof": null,
+      "proof": {
+        "canonical_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "final_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "matched_city_days": [
+          {
+            "city_key": "avellino",
+            "weekday": 3
+          }
+        ],
+        "observed_on": "2026-11-04",
+        "province_heading": "avellino",
+        "requested_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "resource_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+        "source_html_sha256": "b89aec64fb64a359351ba0dd82c696f114f74403483f2ea153cb7fb78b4e62cd",
+        "source_rows": 110
+      },
       "province": "AV",
       "redirects": [
         {
@@ -286,10 +301,16 @@
           "observed_on": "2026-11-03",
           "requested_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-4.html",
           "status_code": 301
+        },
+        {
+          "location_url": "https://www.happings.com/it/mercati-settimanali-a-avellino-e-provincia/",
+          "observed_on": "2026-11-04",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-avellino-4/",
+          "status_code": 301
         }
       ],
       "region": "campania",
-      "status": "redirect_observed"
+      "status": "resolved"
     },
     {
       "attempts": 0,
