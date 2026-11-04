@@ -11,26 +11,26 @@ Ogni giorno alle 04:30 (ora del PC) l'attività di Windows **MercatiItalia-Autom
 | Lavoro | Frequenza | Cosa fa |
 |---|---|---|
 | `happings-weekly-fields` | lunedì | rilegge le 107 pagine settimanali Happings e completa i campi |
-| `market-autopilot` | ogni giorno | scarica le fonti ufficiali, aggiorna il catalogo DEV, ricostruisce l'app DEV |
+| `market-autopilot` | ogni giorno | scarica le fonti, aggiorna il catalogo (salvato nel ramo DEV) |
 | `data-expansion-audit`, `event-leads-daily`, `regional-field-reconciliation`, `publisher-quality-daily`, `official-source-output-qa` | ogni giorno | report di controllo nel ramo DEV |
 
-Poi pubblica `reports/QUALITA.md`, la pagina unica sulla qualità dei dati, e aggiorna l'**app DEV**
-(https://market-ef407--dev-n0hayy7b.web.app, canale di anteprima Firebase, mai il sito pubblico): se
-il catalogo che serve non è quello del ramo DEV, la ricostruisce da DEV (catalogo compreso), la
-pubblica con `firebase hosting:channel:deploy dev` e controlla che serva il catalogo giusto. Se non
-riesce si apre l'issue «[Automazione locale] app-dev — verifica richiesta». A mano:
-`python ops/runner.py devapp` (`--force` per ricostruirla comunque). La configurazione hosting sta in
+Poi pubblica `reports/QUALITA.md`, la pagina unica sulla qualità dei dati, mette il catalogo della
+notte sul **sito pubblico** (sezione sotto) e infine aggiorna il **link di anteprima**
+(https://market-ef407--dev-n0hayy7b.web.app, canale Firebase `dev`): serve solo a guardare le
+modifiche all'app non ancora rilasciate, e il sito pubblico non dipende da lui. Se non si aggiorna
+si apre l'issue «[Automazione locale] app-dev — verifica richiesta». A mano:
+`python ops/runner.py devapp` (`--force` per ricostruirlo comunque). La configurazione hosting sta in
 `ops/devapp-hosting.json` (vale anche per il sito pubblico, con un altro nome apposta).
 
 ## Il sito pubblico (fuori-mercatini.com)
 
 **Il catalogo va sul sito da solo** (proprietario, 4 novembre 2026: il sito aggiornato è la
 conseguenza di un'automazione che funziona). Dopo una notte riuscita (nessun lavoro fallito,
-`QUALITA.md` senza segnali rossi, app DEV aggiornata) `runner.py daily` mette sul sito il catalogo
-che l'app DEV ha appena ricevuto, dentro l'app dell'ultimo rilascio (il tag `release-*` più recente):
+`QUALITA.md` senza segnali rossi) `runner.py daily` mette sul sito il catalogo della notte, dentro
+l'app dell'ultimo rilascio (il tag `release-*` più recente):
 
-1. costruisce quel tag con la cartella `public/data` di DEV e lo pubblica sul canale di anteprima
-   `release`;
+1. costruisce quel tag con la cartella `public/data` salvata stanotte nel ramo DEV e lo pubblica sul
+   canale di anteprima `release`;
 2. lo apre in un browser da telefono (`ops/live-smoke.mjs`): l'elenco deve mostrare mercati e
    aprire una scheda, senza errori;
 3. copia quella stessa versione sul sito (`hosting:clone market-ef407:release market-ef407:live`) e
@@ -87,7 +87,7 @@ python ops/runner.py plan                 # cosa verrebbe eseguito oggi e perch�
 python ops/runner.py run market-autopilot # un lavoro subito
 python ops/runner.py daily                # tutto ciò che è in scadenza
 python ops/runner.py rehearse --code <cartella>   # prova generale di una modifica, senza pubblicare
-python ops/runner.py live                 # il catalogo dell'app DEV sul sito, nell'app dell'ultimo tag release-*
+python ops/runner.py live                 # il catalogo della notte sul sito, nell'app dell'ultimo tag release-*
 powershell -ExecutionPolicy Bypass -File ops/install-windows.ps1   # (re)installa l'attività
 ```
 

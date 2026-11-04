@@ -9,9 +9,9 @@ A failed workflow opens (or comments on) one GitHub issue; success closes it.
     python ops/runner.py daily            # everything due today (scheduler entry)
     python ops/runner.py run <workflow>   # one workflow now, e.g. market-autopilot
     python ops/runner.py plan             # what "daily" would run, and why
-    python ops/runner.py devapp           # the DEV app (preview channel) on DEV's catalog; daily too
-    python ops/runner.py live             # the live site on the DEV app's catalog, inside the newest
+    python ops/runner.py live             # the public site (PROD) on tonight's catalog, inside the newest
                                           # release-* app; daily too, after a night with no failure
+    python ops/runner.py devapp           # the preview link for app changes not yet released; daily too
     python ops/runner.py rehearse --code <checkout>   # today's market-autopilot run
                                           # replayed with that checkout's new commits; nothing published
 
@@ -391,8 +391,9 @@ def scorecard():
     return flags == 0
 
 
-# The DEV app: a Firebase preview channel of the production project. Only live_app() below
-# ever touches the live site, and only by copying a version it checked on its own channel.
+# The DEV app: a preview link (Firebase preview channel of the production project) where app
+# changes not yet released can be looked at. The public site does not depend on it. Only
+# live_app() below touches the live site, by copying a version it checked on its own channel.
 DEVAPP_PROJECT, DEVAPP_CHANNEL = "market-ef407", "dev"
 DEVAPP_URL = "https://market-ef407--dev-n0hayy7b.web.app"
 
@@ -505,9 +506,10 @@ def live_hold_reason(last, live_version, tag):
 
 
 def live_app():
-    """Put on the live site exactly the catalog the DEV app just got, inside the released app:
-    build it on the `release` preview channel, open it in a browser, then copy that same version
-    to live and check the site serves it. Anything wrong: live keeps its catalog, alarm issue."""
+    """Put tonight's catalog (public/data as the night saved it on the data branch) on the public
+    site, inside the released app: build it on the `release` preview channel, open it in a browser,
+    then copy that same version to live and check the site serves it. Anything wrong: the site
+    keeps its catalog, alarm issue."""
     work, record_path = HOME / "liveapp", HOME / "live.json"
     log_path = HOME / "logs" / f"live-{date.today():%Y%m%d}.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -523,7 +525,7 @@ def live_app():
             out = lambda *a, cwd=work: subprocess.run(["git", *a], cwd=cwd, capture_output=True, text=True,
                                                       check=True).stdout.split()
             tag = out("tag", "-l", "release-*", "--sort=-creatordate")[0]
-            data = out("rev-parse", "HEAD", cwd=HOME / "devapp")[0]  # what the DEV app serves
+            data = out("rev-parse", f"origin/{DEV}")[0]  # tonight's catalog, as the night saved it
             git("checkout", "-q", "--force", "--detach", tag, cwd=work)
             git("clean", "-fdq", cwd=work)
             rmtree(work / "public/data")
@@ -539,7 +541,7 @@ def live_app():
                 say(f"live already serves catalog {want[:12]} in {tag}")
                 ok = True
             else:
-                say(f"building {tag} with DEV {data[:7]}'s catalog {want[:12]} on channel {LIVE_CANDIDATE}")
+                say(f"building {tag} with {data[:7]}'s catalog {want[:12]} on channel {LIVE_CANDIDATE}")
                 url = build_and_deploy(work, LIVE_CANDIDATE, log)
                 if not serves(url, want):
                     raise RuntimeError(f"{url} does not serve catalog {want[:12]}")
@@ -712,12 +714,12 @@ def main():
             sys.exit(0 if live_app() else 1)
         failures = [n for n in names if due(n, state, date.today())[0] and not run_workflow(n)[0]]
         clean = scorecard()
-        app_ok = dev_app()  # the DEV app shows tonight's DEV catalog
-        # The live site follows only a night that went well; otherwise it keeps its catalog and
-        # the failing job's own alarm says why.
-        live_ok = live_app() if app_ok and clean and not failures else None
+        # The public site (PROD) takes tonight's catalog after a night that went well; otherwise
+        # it keeps its catalog and the failing job's own alarm says why.
+        live_ok = live_app() if clean and not failures else None
         if live_ok is None:
-            print(f"live site left as it was: failed jobs {failures}, quality clean {clean}, DEV app {app_ok}")
+            print(f"public site left as it was: failed jobs {failures}, quality clean {clean}")
+        app_ok = dev_app()  # the preview link for app changes not yet released; never gates PROD
         sys.exit(1 if failures or not app_ok or live_ok is False else 0)
     finally:
         held.unlink(missing_ok=True)
