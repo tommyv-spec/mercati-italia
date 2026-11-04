@@ -537,12 +537,22 @@ def twin_key(row: dict) -> tuple:
             tuple(row.get("date") or []))
 
 
+def real_street(row: dict) -> bool:
+    """The address names a street, not "centro" or nothing."""
+    from catalog_quality_report import VAGUE_ADDRESSES, key
+    street = str(row.get("indirizzo") or "").strip()
+    return bool(street) and key(street) not in VAGUE_ADDRESSES and len(slugify(street)) >= 6
+
+
+def market_town(row: dict) -> tuple:
+    row = as_published(row)
+    return (row.get("regione"), slugify(row.get("citta") or ""))
+
+
 def venue_slot(row: dict) -> tuple | None:
     """Region, town and calendar of a market at a real street (None when any is unknown)."""
-    from catalog_quality_report import VAGUE_ADDRESSES, key
     from recurrence_refresh import calendar_key, forecast_rule
-    street = str(row.get("indirizzo") or "").strip()
-    if not street or key(street) in VAGUE_ADDRESSES or len(slugify(street)) < 6:
+    if not real_street(row):
         return None
     rule = forecast_rule(row)
     row = as_published(row)
@@ -597,11 +607,40 @@ def same_venue(a: dict, b: dict) -> bool:
             and shares_street(a, b))
 
 
+def gives_no_day(row: dict) -> bool:
+    """A card at a real street that states no day at all: no rule, no dates
+    (MERCap rows that carry only a venue, Vintagery's undated pages)."""
+    from recurrence_refresh import forecast_rule
+    return real_street(row) and not row.get("date") and not forecast_rule(row)
+
+
+def dayless_copy_of(dated: dict, row: dict) -> bool:
+    """`row` gives no day; `dated` is a dated market of the same kind at its street in its town."""
+    pa, pb = dayparts(dated), dayparts(row)
+    return (gives_no_day(row) and bool(dated.get("date")) and dated.get("categoria") == row.get("categoria")
+            and market_town(dated) == market_town(row) and shares_street(dated, row)
+            and not (pa and pb and not pa & pb))
+
+
+def official_row_of(holder: dict, row: dict) -> bool:
+    """`holder` carries official_enrichment's receipt that it is the only market of its town,
+    province and weekday in `row`'s official source row: `row` is that row's own card."""
+    from official_enrichment import UNIQUE_TOWN_METHOD
+    ident = str(row.get("id_fonte") or "")
+    return bool(ident) and market_town(holder) == market_town(row) and any(
+        isinstance(p, dict) and p.get("metodo") == UNIQUE_TOWN_METHOD and p.get("fonte") == row.get("fonte")
+        and str(p.get("riga_fonte") or "") == ident and isinstance(p.get("valori"), dict) and bool(p["valori"])
+        and all(holder.get(k) == v for k, v in p["valori"].items())
+        for p in holder.get("riscontri_campi") or [])
+
+
 def same_market(kept: dict, copy: dict) -> bool:
     """The one definition of a soft-merged copy, shared by export, enrichment and checks."""
     if twin_key(kept) == twin_key(copy):
         return True
-    return kept.get("fonte") != copy.get("fonte") and same_venue(kept, copy)
+    return kept.get("fonte") != copy.get("fonte") and (
+        same_venue(kept, copy) or official_row_of(kept, copy) or official_row_of(copy, kept)
+        or dayless_copy_of(kept, copy))
 
 
 def exact_hours(row: dict) -> bool:
@@ -651,6 +690,41 @@ def soft_merge_markers(rows: list[dict]) -> tuple[dict[str, str], Counter]:
             if all(same_venue(a, b) for a, b in combinations(venue, 2)):
                 venues[(slot, venue[0]["slug"])] = venue
     merge(venues, "same_venue_other_source", True)
+    open_rows = [r for r in rows if not r.get("duplicato_di") and r["slug"] not in markers]
+    # An official row's own card, when official_enrichment proved another card is the only
+    # market of that town and weekday in the row (and copied its facts with a receipt).
+    official = defaultdict(list)
+    for row in rows:
+        if row.get("id_fonte"):
+            official[(row.get("fonte"), str(row["id_fonte"]))].append(row)
+    holders = defaultdict(list)
+    for row in open_rows:
+        found = {t["slug"]: t for p in row.get("riscontri_campi") or [] if isinstance(p, dict)
+                 for t in official.get((p.get("fonte"), str(p.get("riga_fonte") or "")), [])
+                 if t is not row and official_row_of(row, t)}
+        if len(found) == 1 and all(len(official[(t["fonte"], str(t["id_fonte"]))]) == 1 for t in found.values()):
+            target = next(iter(found.values()))
+            if not target.get("duplicato_di") and target["slug"] not in markers:
+                holders[target["slug"]].append((row, target))
+    merge({slug: [*pairs[0]] for slug, pairs in holders.items() if len(pairs) == 1},
+          "official_row_of_unique_market", True)
+    # A card that gives no day, at the street of exactly one dated market of the same kind
+    # from another source in its town (and the only such card of its source there).
+    dated, dayless = defaultdict(list), defaultdict(list)
+    for row in rows:
+        if not row.get("duplicato_di") and row["slug"] not in markers:
+            if row.get("date"):
+                dated[market_town(row)].append(row)
+            elif gives_no_day(row):
+                dayless[market_town(row)].append(row)
+    groups = {}
+    for town, cards in dayless.items():
+        for row in cards:
+            hits = [d for d in dated[town] if d["fonte"] != row["fonte"] and dayless_copy_of(d, row)]
+            rivals = [o for o in cards if o is not row and o["fonte"] == row["fonte"] and shares_street(o, row)]
+            if len(hits) == 1 and not rivals:
+                groups[row["slug"]] = [hits[0], row]
+    merge(groups, "dayless_same_street", True)
     return markers, counts
 
 
@@ -864,6 +938,8 @@ def prepare(raw_records: list, today: date, *, preserve_ids=None) -> tuple[list[
         "same_source_duplicates_merged": safe_merged,
         "exact_twins_soft_merged": merge_counts["exact_twins"],
         "same_venue_other_source_soft_merged": merge_counts["same_venue_other_source"],
+        "official_row_of_unique_market_soft_merged": merge_counts["official_row_of_unique_market"],
+        "dayless_same_street_soft_merged": merge_counts["dayless_same_street"],
         "concluded_hidden": dict(Counter(m["concluso"] for m in cleaned if m.get("concluso"))),
         "input": len(raw_records), "accepted": len(cleaned), "skipped": dict(skipped),
         "id_collisions_kept_separate": collisions,

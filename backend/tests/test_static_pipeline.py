@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from export_static import export, normalize, prepare, parse_location, parse_dates, small_index, INDEX_FIELDS
+from export_static import export, normalize, prepare, same_market, parse_location, parse_dates, small_index, INDEX_FIELDS
 from source_milano import convert
 from source_firenze import convert as convert_firenze
 from field_evidence import identity, make_receipt, mark_managed_fields, valid_receipt
@@ -360,6 +360,57 @@ class ExportTests(unittest.TestCase):
                      url_fonte="https://example.org/markets/4", **weekly)
         undated = {**a, "date": []}
         self.assertEqual(merged(undated, old, b), {"a": "", "old": "a", "b": ""})
+
+    def test_an_official_row_proved_unique_in_its_town_is_its_holders_market(self):
+        # Albaredo per San Marco, 4 Nov 2026: official_enrichment proved the Happings card is the
+        # only Friday market of the town in MERCap row 100108 and copied its hours; the row's own
+        # card ("Via San Marco") was still shown next to it ("Piazza San Marco").
+        from field_evidence import make_receipt
+        from official_enrichment import UNIQUE_TOWN_METHOD
+        mercap, hours = "Regione Lombardia – MERCap", "07:30–12:00 (fonte comunale, da verificare)"
+        weekly = dict(regione="Lombardia", citta="Albaredo per San Marco", provincia="SO", categoria="misto")
+        row = market("lo-mercap-100108-venerdi", fonte=mercap, id_fonte="100108", url_fonte="https://example.org/mercap",
+                     indirizzo="VIA SAN MARCO", ricorrenza_testo="Ogni venerdì", orario_testo=hours, **weekly)
+        holder = market("albaredo", fonte="happings.com", indirizzo="Piazza San Marco",
+                        ricorrenza_testo="settimanale - venerdì", orario_testo=hours, **weekly)
+        proof = lambda target, ident="100108": make_receipt(
+            target, values={"orario_testo": hours}, source_url="https://example.org/mercap", source_name=mercap,
+            source_id="lombardia", source_row=ident, read_on="2026-10-11", source_updated_on="2026-10-01",
+            source_sha256="a" * 64, method=UNIQUE_TOWN_METHOD)
+        merged = lambda *rows: {r["slug"]: r.get("duplicato_di", "")
+                                for r in prepare(list(rows), self.today, preserve_ids={r["slug"] for r in rows})[0]}
+        self.assertFalse(any(merged(holder, row).values()))
+        proved = {**holder, "riscontri_campi": [proof(holder)]}
+        marks = merged(proved, row)
+        self.assertEqual(sorted(marks.values()), ["", next(k for k, v in marks.items() if not v)])
+        self.assertTrue(same_market(proved, row) and same_market(row, proved))
+        # A receipt for another row, or one whose hours the card no longer shows, proves nothing.
+        self.assertFalse(any(merged({**holder, "riscontri_campi": [proof(holder, "100109")]}, row).values()))
+        self.assertFalse(any(merged({**proved, "orario_testo": "La mattina"}, row).values()))
+
+    def test_a_card_that_gives_no_day_is_the_dated_market_of_its_kind_at_its_street(self):
+        # Bedero Valcuvia: MERCap names only the venue, Happings the same square on Tuesdays.
+        town = dict(regione="Lombardia", citta="Bedero Valcuvia", provincia="VA", categoria="misto")
+        dated = market("bedero", fonte="happings.com", indirizzo="Piazza V. Veneto",
+                       ricorrenza_testo="settimanale - martedì", orario_testo="La mattina", **town)
+        blank = market("lo-mercap-100007-senza-giorno", fonte="Regione Lombardia – MERCap", id_fonte="100007",
+                       url_fonte="https://example.org/mercap", indirizzo="P.ZZA V.VENETO", date=[],
+                       date_quality="sconosciuta", ricorrenza_testo="Periodicità: da verificare; date da verificare",
+                       **town)
+        merged = lambda *rows: {r["slug"]: r.get("duplicato_di", "")
+                                for r in prepare(list(rows), self.today, preserve_ids={r["slug"] for r in rows})[0]}
+        self.assertEqual(merged(dated, blank), {"bedero": "", blank["slug"]: "bedero"})
+        other_day = market("bedero-ven", fonte="eventiesagre.it", url_fonte="https://example.org/markets/2",
+                           indirizzo="Piazza V. Veneto", ricorrenza_testo="Ogni venerdì", **town)
+        twin_blank = {**blank, "slug": "lo-mercap-100008-senza-giorno", "id_fonte": "100008"}
+        for rows, why in (([dated, {**blank, "categoria": "antiquariato"}], "an antiques fair on the same square"),
+                          ([dated, {**blank, "indirizzo": "Via Roma"}], "another street"),
+                          ([dated, {**blank, "ricorrenza_testo": "Ogni giovedì"}], "it gives a day: another market"),
+                          ([dated, other_day, blank], "two dated markets there: which one?"),
+                          ([dated, blank, twin_blank], "two dayless rows of one source there")):
+            with self.subTest(why):
+                self.assertFalse(any(v == "bedero" or v == "bedero-ven" for k, v in merged(*rows).items()
+                                     if k.startswith("lo-mercap")))
 
     def test_a_hidden_copy_that_learned_more_becomes_the_shown_card(self):
         from export_static import relead_copies
