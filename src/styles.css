@@ -1741,7 +1741,7 @@ body {
 .list-area .when { margin: 0; font-size: 12.5px; font-weight: 600; color: var(--ink-light); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .list-area .when > * + *::before { content: '·'; margin-right: 6px; color: var(--ink-lighter); font-weight: 400; }
 .list-area .when .unsure { color: #8A6A12; }
-.list-area .when .free-tag { display: inline-flex; align-items: center; gap: 4px; color: var(--olive); }
+.list-area .when .free-tag { display: inline-flex; align-items: center; gap: 4px; color: var(--ink-lighter); font-weight: 500; }
 .list-area .when .free-tag svg { margin-right: 0; }
 .list-area .place { display: flex; align-items: center; gap: 5px; margin: 0; font-size: 13.5px; color: var(--ink-lighter); min-width: 0; }
 .list-area .place > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
@@ -1752,29 +1752,32 @@ body {
 .list-area .row-fav { width: 40px; height: 40px; margin: -10px -10px -10px 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; color: var(--ink-lighter); cursor: pointer; flex: 0 0 auto; }
 .list-area .row-fav.on { color: var(--terracotta); }
 
-.day-divider { position: sticky; top: var(--header-h, 80px); z-index: 30; display: flex; align-items: center; gap: 12px; margin: 0 -16px 10px; padding: 14px 16px 10px;
+/* One line: it stays stuck under Dove/Quando while scrolling, so it must be slim. */
+.day-divider { position: sticky; top: var(--header-h, 80px); z-index: 30; display: flex; align-items: center; gap: 10px; margin: 0 -16px 8px; padding: 10px 16px 8px;
   background: var(--beige); font-weight: 400; }
-.dd-num { font-family: var(--font-display); font-size: 40px; line-height: .9; color: var(--ink); min-width: 44px; }
-.dd-txt { display: flex; flex-direction: column; font-size: 14px; color: var(--ink-light); line-height: 1.2; }
+.dd-num { font-family: var(--font-display); font-size: 30px; line-height: 1; color: var(--ink); min-width: 34px; }
+.dd-txt { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 5px; font-size: 15px; color: var(--ink-light); line-height: 1.2; }
 .dd-txt b { font-size: 17px; color: var(--ink); font-weight: 700; }
-.dd-hot { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--terracotta); }
+.dd-hot { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--terracotta); align-self: center; }
 .day-divider.hot .dd-num { color: var(--terracotta); }
 .dd-n { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--ink-light); background: rgba(255, 255, 255, .7); border-radius: 999px; padding: 4px 10px; }
 
 /* Biglietti */
-.ticket { display: flex; min-height: 104px; }
-.ticket-stub { position: relative; flex: 0 0 76px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px 6px;
-  background: var(--c); color: #FDFBF7; text-align: center; }
+.ticket { display: flex; min-height: 92px; }
+/* The stub is a tint of the category colour: the drawing carries the colour, the time is ink.
+   A full-colour stub on every card made the list a wall of one colour louder than the names. */
+.ticket-stub { position: relative; flex: 0 0 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 10px 6px;
+  background: color-mix(in srgb, var(--c) 12%, #FFFFFF); color: var(--c); text-align: center; }
 .ticket-stub::after { content: ''; position: absolute; top: 8px; bottom: 8px; right: -1px; width: 2px;
-  background: radial-gradient(circle, var(--white) 1.4px, transparent 1.6px) 0 0 / 2px 8px repeat-y; }
-.ticket::before, .ticket::after { content: ''; position: absolute; left: 69px; width: 14px; height: 14px; border-radius: 999px; background: var(--beige); z-index: 1; }
+  background: radial-gradient(circle, var(--beige-dark) 1.4px, transparent 1.6px) 0 0 / 2px 8px repeat-y; }
+.ticket::before, .ticket::after { content: ''; position: absolute; left: 65px; width: 14px; height: 14px; border-radius: 999px; background: var(--beige); z-index: 1; }
 .ticket::before { top: -7px; } .ticket::after { bottom: -7px; }
-.ticket-time { font-family: var(--font-display); font-size: 22px; line-height: 1; }
-.ticket-until { font-size: 11px; font-weight: 600; letter-spacing: .04em; opacity: .9; }
+.ticket-time { font-family: var(--font-display); font-size: 21px; line-height: 1; color: var(--ink); margin-top: 2px; }
+.ticket-until { font-size: 11px; font-weight: 600; color: var(--ink-light); }
 .ticket-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 13px 12px 13px 16px; }
 .ticket .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 4px; }
 .ticket .top .market-card-open { flex: 1 1 auto; min-width: 0; }
-.ticket .card-name { font-size: 19px; }
+.ticket .card-name { font-size: 18.5px; }
 
 .ticket-date { color: var(--ink); font-weight: 700; }
 .ticket-wrap { display: flex; flex-direction: column; }
@@ -1808,3 +1811,48 @@ body {
 .map-info p { margin: 0 0 4px; }
 .map-info .link { margin-left: 8px; min-height: 32px; font-weight: 600; text-decoration: none; }
 .agenda-note { padding: 20px 20px 0; line-height: 1.5; }
+
+/* ─── Hierarchy round (2026-11-05): markets on the first screen, quieter chrome ── */
+.band.band-awning { padding: 14px 20px 16px; gap: 12px; }
+.band-awning .wordmark { font-size: 28px; }
+.feat { min-height: 148px; flex-basis: 228px; padding: 14px 14px 12px; gap: 4px; }
+.feat-title { font-size: 19px; -webkit-line-clamp: 2; }
+.feat-sub { -webkit-line-clamp: 1; }
+.feat-row { margin-bottom: 8px; }
+.cat-chip:disabled { opacity: .42; cursor: default; }
+.context-bar.stuck { padding-top: 8px; padding-bottom: 8px; border-bottom-color: var(--beige-dark); }
+.context-bar.stuck .ctx { min-height: 40px; }
+.context-bar.stuck .ctx-k { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Market page: one caution line, honest hours, actions always in reach, sources in one box. */
+.detail-page.rivista { padding-bottom: 0; }
+.next-hours { flex-wrap: wrap; }
+.next-hours-note { flex: 1 0 100%; padding-left: 22px; font-size: 13px; font-weight: 400; color: var(--ink-lighter); }
+.next-hours.quiet { font-size: 15px; font-weight: 500; color: var(--ink-light); }
+.next-panel .note.disclosure { border-left: 3px solid #C9A227; padding-left: 10px; color: var(--ink-light); }
+.source-calendar summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 4px 0; }
+.source-calendar summary::-webkit-details-marker { display: none; }
+.source-calendar summary::after { content: ''; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s; }
+.source-calendar[open] > summary::after { transform: rotate(-135deg) translate(-1px, -1px); }
+.next-panel .source-calendar { margin-top: 2px; }
+.next-panel .source-calendar summary { color: var(--terracotta); font-size: 14px; }
+.fact strong { font-weight: 700; }
+.fact .muted { font-size: 14px; color: var(--ink-lighter); }
+.detail-tags { padding-top: 12px; }
+.source-box { margin: 30px 20px 0; padding: 14px 16px 16px; background: var(--beige); border-radius: 16px; }
+.source-box > h2 { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-lighter); margin: 0 0 4px; }
+.source-box p { font-size: 14px; line-height: 1.5; margin: 0 0 6px; }
+.source-box .source-calendar { margin-top: 4px; }
+.source-box .provenance { padding: 10px 0 0; }
+.detail-actions { position: sticky; bottom: 0; z-index: 5; display: flex; gap: 10px; margin-top: 28px;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--cream) 97%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--beige-dark); }
+.detail-actions .btn-secondary, .detail-actions .btn-primary { flex: 1 1 0; margin: 0; height: 48px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.detail-actions .btn-primary { flex-grow: 1.4; }
+.map-bar { justify-content: space-between; padding: 6px 20px 6px; }
+.map-label { font-size: 15px; font-weight: 700; color: var(--ink); }
+.map-info { margin: 0 4px 8px; }
+.source-box a, .source-box .link { color: var(--terracotta); }

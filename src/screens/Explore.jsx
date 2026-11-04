@@ -51,6 +51,7 @@ export default function Explore(p) {
           <div className="cat-chips" aria-label="Che cosa cerchi">
             {CATEGORY_FILTERS.map(f => (
               <button key={f.key} type="button" aria-pressed={p.category === f.key}
+                disabled={!loading && !p.categoryCounts[f.key] && p.category !== f.key}
                 className={'cat-chip' + (p.category === f.key ? ' on' : '')}
                 style={{ '--c': f.free ? 'var(--olive)' : f.cats ? categoryColor(f.cats[0]) : 'var(--ink)' }}
                 onClick={() => p.onCategory(f.key)}>

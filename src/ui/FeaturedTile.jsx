@@ -1,6 +1,6 @@
 import CategoryIcon, { categoryColor } from './CategoryIcon.jsx'
 import Icon from './Icon.jsx'
-import { displayName, displayAddress, isFreeEntry } from '../lib/display.js'
+import { cardName, displayAddress, isFreeEntry } from '../lib/display.js'
 
 const DAY = iso => new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' }).replace(/\./g, '')
 
@@ -10,7 +10,7 @@ export default function FeaturedTile({ market, date, onOpen }) {
     <button type="button" className="feat" style={{ background: categoryColor(market.category) }} onClick={() => onOpen(market)}>
       <span className="feat-art" aria-hidden="true"><CategoryIcon category={market.category} size={150} strokeWidth={1.1} /></span>
       <span className="feat-eyebrow">{date ? DAY(date) + ' · ' : ''}{market.city}</span>
-      <span className="feat-title">{displayName(market)}</span>
+      <span className="feat-title">{cardName(market)}</span>
       <span className="feat-sub">{displayAddress(market) || market.region}</span>
       <span className="feat-foot">
         <span className="feat-cat">{market.category}</span>

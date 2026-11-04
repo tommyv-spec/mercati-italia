@@ -15,6 +15,10 @@ import { destinationForMarket } from '../lib/marketDirections.js'
 
 const longDate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
 const nextDay = iso => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + 1); return localISO(d) }
+const CLOCK = /^(\d{1,2}[:.]\d{2}\s*[–-]\s*\d{1,2}[:.]\d{2})/
+// "2026-10-28" → "28 ott 2026": one date format on the page. Anything else is kept as written.
+const itDate = s => /^\d{4}-\d{2}-\d{2}$/.test(s || '')
+  ? new Date(s + 'T12:00:00').toLocaleDateString('it-IT', { day: 'numeric', month: 'short', year: 'numeric' }) : s
 
 // The market page in magazine order: what and when, next opening, facts, text, tips,
 // nearby, provenance. Every safety note of the previous page is kept.
@@ -45,6 +49,10 @@ export default function Detail({
   const disclosure = marketDateDisclosure(m.dates, m.dateQuality)
   const hours = summary.hours || (sourceSchedule.rows.length ? 'Vedi gli orari delle singole date' : '')
   const nextHours = nextDate ? sourceHoursForDate(m, nextDate) : ''
+  const nextClock = CLOCK.test(nextHours)
+  const hoursClock = CLOCK.exec(hours)?.[1] || ''
+  const hoursRest = (hoursClock ? hours.slice(hoursClock.length) : hours).replace(/^[\s;,.]+/, '')
+  const usualHours = !nextClock && /^Orar(io|i)\b/.test(nextHours) ? hoursClock : ''
   const longDescription = (m.description || '').length > 420
   const title = displayName(m)
   const address = displayAddress(m)
@@ -57,9 +65,6 @@ export default function Detail({
         <button type="button" className="detail-back ico-btn" aria-label="Indietro" onClick={onBack}><Icon name="chevronLeft" size={18} strokeWidth={2} /></button>
         <div className="detail-bar-actions">
           <button type="button" className="ico-btn" aria-label="Condividi questo mercato" onClick={() => onShare(m)}><Icon name="upload" size={18} /></button>
-          <button type="button" className={'ico-btn' + (isFav ? ' on' : '')} aria-label={isFav ? 'Togli dai salvati' : 'Salva'} onClick={() => onToggleFav(m.id)}>
-            <Icon name="bookmark" size={18} strokeWidth={isFav ? 2.4 : 1.8} />
-          </button>
         </div>
       </div>
 
@@ -79,24 +84,23 @@ export default function Detail({
           <>
             <div className="next-day">{dayHeaderLabel(nextDate)}</div>
             {secondDate && <div className="next-second">e {longDate(secondDate)}</div>}
-            {nextHours && <div className="next-hours"><Icon name="clock" size={16} strokeWidth={2} />{nextHours}</div>}
-            <div className={confirmed ? 'ok' : 'note'}>
-              {confirmed && <Icon name="check" size={14} strokeWidth={2.5} />}
-              {dateQualityLabel(m.dateQuality)}{m.lastVerified ? ', letta il ' + m.lastVerified : ''}
-            </div>
+            {nextHours && (nextClock
+              ? <div className="next-hours"><Icon name="clock" size={16} strokeWidth={2} />{nextHours}</div>
+              : usualHours
+                // The date has no hours of its own: the usual ones, said to be the usual ones.
+                ? <div className="next-hours"><Icon name="clock" size={16} strokeWidth={2} />{usualHours}<span className="next-hours-note">orario abituale, da verificare per questa data</span></div>
+                : <div className={'next-hours' + (nextHours === 'Annullato' ? '' : ' quiet')}><Icon name="clock" size={16} strokeWidth={2} />{nextHours}</div>)}
+            {/* One line about how sure the date is: the disclosure when there is one, else the label. */}
+            {!disclosure && (
+              <div className={confirmed ? 'ok' : 'note'}>
+                {confirmed && <Icon name="check" size={14} strokeWidth={2.5} />}
+                {dateQualityLabel(m.dateQuality)}{m.lastVerified ? ', letta il ' + m.lastVerified : ''}
+              </div>
+            )}
           </>
         ) : <div className="next-day">Date da verificare</div>}
-        {disclosure && <p className="note">{disclosure}</p>}
+        {disclosure && <p className="note disclosure">{disclosure}</p>}
         {m.concluded && <p role="note" className="note">Non più in programma: la fonte non indica nuove date.</p>}
-        <div className="next-actions">
-          <button type="button" className="btn-primary" aria-pressed={isFav} onClick={() => onToggleFav(m.id)}>
-            <Icon name="bookmark" size={18} color="currentColor" strokeWidth={isFav ? 2.6 : 2} />{isFav ? 'Salvato' : 'Salva'}
-          </button>
-          <button type="button" className="btn-secondary" onClick={() => onDirections(m)} disabled={!canNavigate}
-            title={!canNavigate ? 'Dettagli o sede non sufficienti per navigare' : 'Apri indicazioni stradali'}>
-            <Icon name="pin" size={18} strokeWidth={2} />Indicazioni
-          </button>
-        </div>
         {nextDate && (
           <button type="button" className="link link-icon" onClick={() => downloadCalendarEvent(m, nextDate, nextHours)}>
             <Icon name="calendar" size={16} strokeWidth={2} />Aggiungi al calendario (promemoria)
@@ -117,7 +121,13 @@ export default function Detail({
 
       <div className="facts">
         {/* The next opening already shows its hours: repeat them here only when they differ. */}
-        {(!nextHours || hours !== nextHours) && <div className="fact"><b><Icon name="clock" size={14} strokeWidth={2} />Orario</b><span>{hours || 'Orari non disponibili'}</span></div>}
+        {(!nextHours || hours !== nextHours) && !(hoursClock && !hoursRest && (hoursClock === nextHours || hoursClock === usualHours)) && (
+          <div className="fact"><b><Icon name="clock" size={14} strokeWidth={2} />Orario</b>
+            {/* The clock already shown under the date is not repeated: only what the source adds. */}
+            <span>{!hours ? 'Orari non disponibili' : hoursClock && hoursClock === usualHours ? <span className="muted">{hoursRest}</span>
+              : <>{hoursClock && <strong>{hoursClock}</strong>}{hoursClock && hoursRest && <br />}
+                {hoursRest && <span className={hoursClock ? 'muted' : ''}>{hoursRest}</span>}</>}</span></div>
+        )}
         <div className="fact"><b><Icon name="mapPin" size={14} strokeWidth={2} />Dove</b><span className="detail-address">{address || 'Indirizzo non verificato'}</span></div>
         {m.entry && <div className="fact"><b><Icon name="ticket" size={14} strokeWidth={2} />Ingresso</b><span className={isFreeEntry(m.entry) ? 'free' : ''}>{m.entry}</span></div>}
         {m.stalls && <div className="fact"><b><Icon name="users" size={14} strokeWidth={2} />Banchi</b><span>Circa {m.stalls} secondo la fonte</span></div>}
@@ -160,6 +170,10 @@ export default function Detail({
         </div>
       )}
 
+      {m.tags && m.tags.length > 0 && (
+        <div className="detail-tags">{m.tags.map(t => <span key={t} className="tag">{t}</span>)}</div>
+      )}
+
       {m.tips && (
         <div className="tip">
           <span className="eyebrow tip-eyebrow"><Icon name="bulb" size={15} strokeWidth={2} />Consiglio pratico</span>
@@ -167,47 +181,15 @@ export default function Detail({
         </div>
       )}
 
-      {(sourceSchedule.rows.length > 0 || editorial) && (
+      {(contacts.organizer || contacts.links.length > 0) && (
         <div className="detail-block">
-          <h2>Cosa dice la fonte</h2>
-          {sourceSchedule.rows.length > 0 && (
-            <details className="source-calendar" key={m.id} open={sourceSchedule.hasVariations || sourceSchedule.rows.length <= 3}>
-              <summary>Date e orari riportati dalla fonte ({sourceSchedule.rows.length})</summary>
-              <dl>
-                {sourceSchedule.rows.map(row => (
-                  <div key={row.key} className="source-calendar-row" data-period={row.kind === 'interval'}>
-                    <dt>{row.label}</dt>
-                    <dd>{row.status && <strong>{row.status}{row.hours ? ' · ' : ''}</strong>}{row.hours}
-                      {row.note && <p className="source-calendar-note">{row.note}</p>}</dd>
-                  </div>
-                ))}
-              </dl>
-            </details>
-          )}
-          {editorial && (
-            <div>
-              <p className="note"><strong>{editorial.title}</strong></p>
-              {editorial.notes.map((note, i) => <p key={note + i} className="note">{note}</p>)}
-              {editorial.hours && <p><strong>{editorial.hoursLabel}:</strong> {editorial.hours}</p>}
-              {editorial.recurrence && <p className="note">Cadenza descritta nella pagina: {editorial.recurrence}</p>}
-              {editorial.rows.length > 0 && (
-                <details className="source-calendar" key={m.id + '/editorial'} open={editorial.rows.length <= 3}>
-                  <summary>Date e periodi descritti nella pagina ({editorial.rows.length})</summary>
-                  <dl>
-                    {editorial.rows.map(row => (
-                      <div key={row.key} className="source-calendar-row" data-period={row.kind === 'interval'}>
-                        <dt>{row.label}</dt>
-                        <dd><strong>{row.status}{row.hours ? ' · ' : ''}</strong>{row.hours}
-                          {row.note && <p className="source-calendar-note">{row.note}</p>}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </details>
-              )}
-              <p className="note"><a href={editorial.sourceUrl} target="_blank" rel="noopener noreferrer">{editorial.sourceName}</a>
-                {' · pagina letta il ' + editorial.readOn}<br />{editorial.editorialDate}</p>
-            </div>
-          )}
+          <h2>Contatti</h2>
+          {contacts.organizer && <p>Organizzatore: {contacts.organizer.href
+            ? <a href={contacts.organizer.href} target="_blank" rel="noopener noreferrer">{contacts.organizer.label}</a>
+            : contacts.organizer.label}</p>}
+          {contacts.links.map((contact, i) => (
+            <p key={contact.href + i} style={{ overflowWrap: 'anywhere' }}><a href={contact.href} target="_blank" rel="noopener noreferrer">{contact.label}</a></p>
+          ))}
         </div>
       )}
 
@@ -224,51 +206,6 @@ export default function Detail({
         </div>
       )}
 
-      {(contacts.organizer || contacts.links.length > 0) && (
-        <div className="detail-block">
-          <h2>Contatti riportati dalla fonte</h2>
-          {contacts.organizer && <p>Organizzatore: {contacts.organizer.href
-            ? <a href={contacts.organizer.href} target="_blank" rel="noopener noreferrer">{contacts.organizer.label}</a>
-            : contacts.organizer.label}</p>}
-          {contacts.links.map((contact, i) => (
-            <p key={contact.href + i} style={{ overflowWrap: 'anywhere' }}><a href={contact.href} target="_blank" rel="noopener noreferrer">{contact.label}</a></p>
-          ))}
-        </div>
-      )}
-
-      {m.tags && m.tags.length > 0 && (
-        <div className="detail-tags">{m.tags.map(t => <span key={t} className="tag">{t}</span>)}</div>
-      )}
-
-      <div className="provenance">
-        {title !== m.name && <div style={{ marginBottom: 6 }}>Nome nella fonte: {m.name}</div>}
-        {m.lastVerified ? 'Scheda verificata il ' + m.lastVerified : 'Verifica individuale non documentata'} · Fonte: {m.source || 'non disponibile'}
-        {m.sourceUpdated ? (m.sourceUpdateScope === 'dataset'
-          ? ' · dataset aggiornato il ' + m.sourceUpdated + ' (non verifica del singolo mercato)'
-          : ' · data dichiarata dalla fonte: ' + m.sourceUpdated) : ''}
-        {m.sourceUrl && <> · <a href={m.sourceUrl} target="_blank" rel="noopener noreferrer">Controlla la fonte originale</a></>}
-        {(m.sourceEvidence || []).filter(s => s.url !== m.sourceUrl).slice(0, 3).map((s, i) => (
-          <span key={s.url + i}> · Fonte aggiuntiva: <a href={s.url} target="_blank" rel="noopener noreferrer">{s.nome}</a></span>
-        ))}
-        {(m.fieldEvidence || []).map((evidence, i) => (
-          <div key={evidence.sourceUrl + evidence.readOn + i} style={{ marginTop: 8 }}>
-            <strong>{evidence.fields}: riscontro nella fonte</strong> ·{' '}
-            <a href={evidence.sourceUrl} target="_blank" rel="noopener noreferrer">{evidence.sourceName}</a>
-            {' · letta il ' + evidence.readOn} · {evidence.sourceDate ? 'data dei contenuti: ' + evidence.sourceDate : 'data dei contenuti non dichiarata'}
-          </div>
-        ))}
-        {(m.calendarExceptions || []).filter(e => e.data >= todayStr).map((exception, i) => (
-          <div key={exception.data + i} style={{ marginTop: 8 }}>
-            <strong>{exception.data}: edizione annullata</strong> · {exception.motivo}{' '}
-            <a href={exception.url} target="_blank" rel="noopener noreferrer">Fonte</a>
-          </div>
-        ))}
-        <div style={{ marginTop: 10 }}>
-          Informazioni non corrette? <a href={reportUrl(m)}>Segnala un errore</a>
-          {m.region && <> · <button type="button" className="link" onClick={() => onShowRegion(m.region)}>Altri mercatini in {m.region} ›</button></>}
-        </div>
-      </div>
-
       {sameCity.length > 0 && (
         <div className="detail-block">
           <h2>Altri mercati a {m.city}</h2>
@@ -283,6 +220,89 @@ export default function Detail({
           )}
         </div>
       )}
+
+      {/* Where every fact comes from, in one quiet box at the end: the page above is for
+          visitors, this part is for checking. */}
+      <section className="source-box" aria-label="Fonti e verifiche">
+        <h2>Fonti e verifiche</h2>
+        {sourceSchedule.rows.length > 0 && (
+          <details className="source-calendar" key={m.id} open={sourceSchedule.hasVariations || sourceSchedule.rows.length <= 3}>
+            <summary>Date e orari riportati dalla fonte ({sourceSchedule.rows.length})</summary>
+            <dl>
+              {sourceSchedule.rows.map(row => (
+                <div key={row.key} className="source-calendar-row" data-period={row.kind === 'interval'}>
+                  <dt>{row.label}</dt>
+                  <dd>{row.status && <strong>{row.status}{row.hours ? ' · ' : ''}</strong>}{row.hours}
+                    {row.note && <p className="source-calendar-note">{row.note}</p>}</dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+        )}
+        {editorial && (
+          <div>
+            <p className="note"><strong>{editorial.title}</strong></p>
+            {editorial.notes.map((note, i) => <p key={note + i} className="note">{note}</p>)}
+            {editorial.hours && <p><strong>{editorial.hoursLabel}:</strong> {editorial.hours}</p>}
+            {editorial.recurrence && <p className="note">Cadenza descritta nella pagina: {editorial.recurrence}</p>}
+            {editorial.rows.length > 0 && (
+              <details className="source-calendar" key={m.id + '/editorial'} open={editorial.rows.length <= 3}>
+                <summary>Date e periodi descritti nella pagina ({editorial.rows.length})</summary>
+                <dl>
+                  {editorial.rows.map(row => (
+                    <div key={row.key} className="source-calendar-row" data-period={row.kind === 'interval'}>
+                      <dt>{row.label}</dt>
+                      <dd><strong>{row.status}{row.hours ? ' · ' : ''}</strong>{row.hours}
+                        {row.note && <p className="source-calendar-note">{row.note}</p>}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </details>
+            )}
+            <p className="note"><a href={editorial.sourceUrl} target="_blank" rel="noopener noreferrer">{editorial.sourceName}</a>
+              {' · pagina letta il ' + itDate(editorial.readOn)}<br />{editorial.editorialDate}</p>
+          </div>
+        )}
+        <div className="provenance">
+          {title !== m.name && <div style={{ marginBottom: 6 }}>Nome nella fonte: {m.name}</div>}
+          {m.lastVerified ? 'Scheda verificata il ' + itDate(m.lastVerified) : 'Verifica individuale non documentata'} · Fonte: {m.source || 'non disponibile'}
+          {m.sourceUpdated ? (m.sourceUpdateScope === 'dataset'
+            ? ' · dataset aggiornato il ' + itDate(m.sourceUpdated) + ' (non verifica del singolo mercato)'
+            : ' · data dichiarata dalla fonte: ' + itDate(m.sourceUpdated)) : ''}
+          {m.sourceUrl && <> · <a href={m.sourceUrl} target="_blank" rel="noopener noreferrer">Controlla la fonte originale</a></>}
+          {(m.sourceEvidence || []).filter(s => s.url !== m.sourceUrl).slice(0, 3).map((s, i) => (
+            <span key={s.url + i}> · Fonte aggiuntiva: <a href={s.url} target="_blank" rel="noopener noreferrer">{s.nome}</a></span>
+          ))}
+          {(m.fieldEvidence || []).map((evidence, i) => (
+            <div key={evidence.sourceUrl + evidence.readOn + i} style={{ marginTop: 8 }}>
+              <strong>{evidence.fields}: riscontro nella fonte</strong> ·{' '}
+              <a href={evidence.sourceUrl} target="_blank" rel="noopener noreferrer">{evidence.sourceName}</a>
+              {' · letta il ' + itDate(evidence.readOn)} · {evidence.sourceDate ? 'data dei contenuti: ' + itDate(evidence.sourceDate) : 'data dei contenuti non dichiarata'}
+            </div>
+          ))}
+          {(m.calendarExceptions || []).filter(e => e.data >= todayStr).map((exception, i) => (
+            <div key={exception.data + i} style={{ marginTop: 8 }}>
+              <strong>{itDate(exception.data)}: edizione annullata</strong> · {exception.motivo}{' '}
+              <a href={exception.url} target="_blank" rel="noopener noreferrer">Fonte</a>
+            </div>
+          ))}
+          <div style={{ marginTop: 10 }}>
+            Informazioni non corrette? <a href={reportUrl(m)}>Segnala un errore</a>
+            {m.region && <> · <button type="button" className="link" onClick={() => onShowRegion(m.region)}>Altri mercatini in {m.region} ›</button></>}
+          </div>
+        </div>
+      </section>
+
+      {/* The two things a visitor does here stay in reach at the bottom of the screen. */}
+      <div className="detail-actions">
+        <button type="button" className="btn-secondary" aria-pressed={isFav} onClick={() => onToggleFav(m.id)}>
+          <Icon name="bookmark" size={18} color="currentColor" strokeWidth={isFav ? 2.6 : 2} />{isFav ? 'Salvato' : 'Salva'}
+        </button>
+        <button type="button" className="btn-primary" onClick={() => onDirections(m)} disabled={!canNavigate}
+          title={!canNavigate ? 'Dettagli o sede non sufficienti per navigare' : 'Apri indicazioni stradali'}>
+          <Icon name="pin" size={18} strokeWidth={2} />Indicazioni
+        </button>
+      </div>
     </div>
   )
 }

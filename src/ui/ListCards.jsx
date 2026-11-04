@@ -1,7 +1,7 @@
 import Icon from './Icon.jsx'
 import MarketArt from './MarketArt.jsx'
 import { categoryColor } from './CategoryIcon.jsx'
-import { displayName, displayAddress, isFreeEntry, todayStr, localISO } from '../lib/display.js'
+import { cardName, displayAddress, isFreeEntry, todayStr, localISO } from '../lib/display.js'
 import { sourceHoursForDate } from '../lib/sourceCalendar.js'
 
 // Shared facts for the three list styles. Class names .market-card / .card-name /
@@ -13,13 +13,12 @@ const dayLabel = iso => {
     d.toLocaleDateString('it-IT', { month: 'short' }).replace('.', '')
   return iso === todayStr ? 'Oggi · ' + label : iso === tomorrowStr ? 'Domani · ' + label : label
 }
-const SHORT_CATEGORY = { Antiquariato: 'Antico', 'Vintage e abbigliamento': 'Vintage', Usato: 'Usato', Artigianato: 'Artigiani', Alimentare: 'Cibo', Misto: 'Mercato' }
 function facts(market, date, centreKm) {
   const raw = date ? sourceHoursForDate(market, date) : market.hours
   const clock = /^(\d{1,2})[:.](\d{2})\s*[–-]\s*(\d{1,2})[:.](\d{2})$/.exec((raw || '').trim())
   const gpsKm = Number.isFinite(market.distance) && market.distance >= 0.5 ? Math.round(market.distance) : null
   return {
-    title: displayName(market),
+    title: cardName(market),
     address: displayAddress(market),
     start: clock ? Number(clock[1]) + ':' + clock[2] : '',
     end: clock ? clock[3] + ':' + clock[4] : '',
@@ -51,18 +50,18 @@ const Open = ({ market, title, onOpen }) => (
   <button type="button" className="market-card-open" onClick={() => onOpen(market)}><h3 className="card-name">{title}</h3></button>
 )
 
-// A ticket: coloured stub with the drawing and the opening time, perforated edge, details.
-// Name first, then the place; the small line below says only what is not the norm.
+// A ticket: a stub tinted in the category colour with the drawing and, when the source gives
+// it, the opening time; perforated edge; then name, place and one quiet line for what is not
+// the norm. The stub only answers "at what time?", so it never outshouts the name.
 export function TicketCard({ market, date, km, onOpen, onToggleFav, isFav, showDate = false }) {
   const f = facts(market, date, km)
   const status = !date ? 'Data da verificare' : f.sure ? '' : 'Data prevista'
   const shownDate = showDate && date
   return (
     <article className="market-card ticket" style={{ '--c': f.color }}>
-      <div className="ticket-stub" aria-hidden="true">
-        <MarketArt market={market} size={34} strokeWidth={1.6} />
-        {f.start ? <><span className="ticket-time">{f.start}</span><span className="ticket-until">fino {f.end}</span></>
-          : <span className="ticket-until">{SHORT_CATEGORY[market.category] || 'Mercato'}</span>}
+      <div className={'ticket-stub' + (f.start ? '' : ' no-time')} aria-hidden="true">
+        <MarketArt market={market} size={f.start ? 26 : 34} strokeWidth={1.7} />
+        {f.start && <><span className="ticket-time">{f.start}</span><span className="ticket-until">fino {f.end}</span></>}
       </div>
       <div className="ticket-body">
         <div className="top">
@@ -74,7 +73,7 @@ export function TicketCard({ market, date, km, onOpen, onToggleFav, isFav, showD
           <p className="when">
             {shownDate && <span className="ticket-date">{dayLabel(date)}</span>}
             {status && <span className="unsure">{status}</span>}
-            {f.free && <span className="free-tag"><Icon name="ticket" size={13} strokeWidth={2} />Gratis</span>}
+            {f.free && <span className="free-tag">Gratis</span>}
           </p>
         )}
       </div>

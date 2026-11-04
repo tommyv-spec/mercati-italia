@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { displayName, displayAddress, isFreeEntry } from '../src/lib/display.js'
+import { displayName, displayAddress, isFreeEntry, cardName } from '../src/lib/display.js'
 
 const m = (name, address = '') => ({ name, address })
 
@@ -61,4 +61,16 @@ test('"<Town>, “<Name>”" becomes the name, and the address drops a leading q
   assert.equal(displayName(lonate), 'Mercatino del Riuso')
   assert.equal(displayAddress(lonate), 'via della Giustizia')
   assert.equal(displayName({ name: 'Valeggio sul Mincio, Valeggio Contemporanea' }), 'Valeggio sul Mincio, Valeggio Contemporanea')
+})
+
+test('a card drops the town from the name, because the town is printed below it', () => {
+  const card = (name, city) => cardName({ name, city })
+  assert.equal(card("Mercatino dell'Antiquariato di Como", 'Como'), "Mercatino dell'Antiquariato")
+  assert.equal(card('Mercato settimanale di Firenze', 'Firenze'), 'Mercato settimanale')
+  assert.equal(card('Mercatino antiquariato e usato di Nardò', 'Nardo'), 'Mercatino antiquariato e usato')
+  assert.equal(card("Happymarkt — Mercato dell'Usato di Bolzano", 'Bolzano'), "Happymarkt — Mercato dell'Usato")
+  assert.equal(card('Curiosità a Magenta', 'Magenta'), 'Curiosità a Magenta')  // one word left: keep it whole
+  assert.equal(card('Fiera Antiquaria del Valdarno', 'Terranuova Bracciolini'), 'Fiera Antiquaria del Valdarno')
+  assert.equal(card('Mercato di Sassuolo', ''), 'Mercato di Sassuolo')
+  assert.equal(card('Fiera dell’Antiquario Città di Pistoia', 'Pistoia'), 'Fiera dell’Antiquario Città di Pistoia')  // the town is part of the name
 })

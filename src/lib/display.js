@@ -130,6 +130,20 @@ export function displayName(market) {
   return parts ? parts.title : softenTitleCase(name)
 }
 
+// On a card the town is printed right below the name: "Mercatino dell'Antiquariato di Como"
+// reads "Mercatino dell'Antiquariato" above "Como". A one-word rest keeps the full name, and
+// so does a town that is part of the name ("… Città di Pistoia", "Comune di …").
+const fold = text => (text || '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim()
+const TOWN_IN_NAME = /\b(citt[aà]|comune|provincia|paese|borgo|terra|valle|pro loco)$/i
+export function cardName(market) {
+  const name = displayName(market)
+  const city = fold(market?.city)
+  if (!city || !fold(name).endsWith(' ' + city)) return name
+  const rest = name.slice(0, name.length - city.length)
+  const head = rest.replace(/(?:\s+(?:di|a|in)|\s*[,–—-])\s+$/, '').trim()
+  return head.length < rest.trim().length && head.split(/\s+/).length >= 2 && !TOWN_IN_NAME.test(head) ? head : name
+}
+
 export function displayAddress(market) {
   let address = (market?.address || '').trim()
   const parts = sourceTitleParts(market?.name)

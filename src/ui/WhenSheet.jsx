@@ -8,11 +8,13 @@ const same = (a, b) => a.kind === b.kind && (a.offset || 0) === (b.offset || 0) 
 
 // Quando: one choice that Esplora and Mappa both follow.
 export default function WhenSheet({ when, onPick, onClose }) {
+  // Every choice says which days it means, so the tiles read alike.
+  const day = offset => { const d = new Date(TODAY); d.setDate(d.getDate() + offset); return d.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' }) }
   const options = [
-    { kind: 'oggi' }, { kind: 'domani' },
+    { kind: 'oggi', sub: day(0) }, { kind: 'domani', sub: day(1) },
     { kind: 'weekend', offset: 0, sub: weekendOf(TODAY, 0).sub },
     { kind: 'weekend', offset: 1, sub: weekendOf(TODAY, 1).sub },
-    { kind: '7giorni' }, { kind: 'tutte', sub: 'Anche i mercatini senza una data prossima' },
+    { kind: '7giorni', sub: 'fino a ' + day(7) }, { kind: 'tutte', sub: 'Anche i mercatini senza una data prossima' },
   ]
   return (
     <Sheet title="Quando?" onClose={onClose}>

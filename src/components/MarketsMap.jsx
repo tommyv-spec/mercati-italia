@@ -76,7 +76,7 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
       minZoom: 4,
       maxZoom: 18,
       maxBounds: [[5.4, 35], [20.4, 48.6]],
-      attributionControl: true,
+      attributionControl: { compact: true },
       cooperativeGestures: false,
     })
     mapRef.current = map
@@ -113,6 +113,8 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
 
     map.on('load', () => {
       if (!mapRef.current) return
+      // The credits start folded behind their (i) button: the line under the map names them too.
+      containerRef.current?.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show')
       map.addSource('markets', {
         type: 'geojson', data: { type: 'FeatureCollection', features: [] },
         cluster: true, clusterRadius: 46, clusterMaxZoom: 13,
@@ -207,14 +209,12 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
     <section data-map-ready={ready ? 'true' : 'false'} data-visible-points={shown.length}
       aria-label="Mappa interattiva dei mercati" style={{ margin: '0 16px 110px' }}>
       {/* A quiet line above the map: the map is the point of this screen. */}
+      {/* One quiet line above the map: the map is the point of this screen. */}
       <div className="map-info">
-        <p className="map-count">
-          <strong>{pointMarkets.length.toLocaleString('it-IT')} sulla mappa</strong>
-          {markets.length > pointMarkets.length && ` · ${(markets.length - pointMarkets.length).toLocaleString('it-IT')} senza posizione, li trovi nella Lista`}
-        </p>
         <p>
-          {preciseCount} posizioni precise
+          {preciseCount} {preciseCount === 1 ? 'posizione precisa' : 'posizioni precise'}
           {estimatedCount ? ` · ${estimatedCount} indicative` : ''}
+          {markets.length > pointMarkets.length && ` · ${(markets.length - pointMarkets.length).toLocaleString('it-IT')} senza posizione (nella Lista)`}
           {estimatedCount > 0 && (
             <button type="button" className="link" onClick={() => setShowEstimated(v => !v)}>
               {showEstimated ? 'Mostra solo posizioni precise' : 'Includi posizioni indicative'}
@@ -222,17 +222,15 @@ export default function MarketsMap({ markets, userLat, userLng, onSelect }) {
           )}
         </p>
         {shown.length === 0 && <p>Nessun mercato con posizione precisa per questi filtri. Puoi includere quelli indicativi.</p>}
-        {showEstimated && estimatedCount > 0 && <p>Le posizioni indicative possono essere al centro del comune, non nella sede del mercato.</p>}
       </div>
       <div ref={containerRef} role="application" aria-label="Mappa: trascina per spostarti, usa + e − per ingrandire"
-        style={{ height: 'min(60vh, 600px)', minHeight: 340, width: '100%',
+        style={{ height: 'calc(100dvh - var(--header-h, 72px) - var(--tab-h, 64px) - 190px)', minHeight: 340, width: '100%',
           borderRadius: 14, overflow: 'hidden', position: 'relative', background: '#e9eeea' }} />
       {error && <p role="alert" style={{ fontSize: 12, marginTop: 9, color: '#AB453B' }}>{error}</p>}
       {!ready && !error && <p style={{ fontSize: 12, marginTop: 9, color: 'var(--ink-lighter)' }}>Caricamento mappa…</p>}
-      <p style={{ fontSize: 11, color: 'var(--ink-lighter)', marginTop: 10 }}>
-        Mappa © OpenFreeMap; mappa e posizioni sulle vie © OpenStreetMap contributors.
-        Tocca un punto o un gruppo per esplorare.
-        Le date dei mercati possono non essere confermate.
+      <p style={{ fontSize: 11, color: 'var(--ink-lighter)', marginTop: 8 }}>
+        {showEstimated && estimatedCount > 0 ? 'Le posizioni indicative possono essere al centro del comune, non nella sede del mercato. ' : ''}
+        Mappa © OpenFreeMap · posizioni sulle vie © OpenStreetMap contributors.
       </p>
     </section>
   )
