@@ -3,18 +3,18 @@
 Solo ricerca. Il dato ufficiale regionale non verifica la singola apertura.
 Coordinate indicative mai utilizzate per confermare una sede.
 
-- Schede nazionali conservate: **14450**
+- Schede nazionali conservate: **14483**
 - Righe ufficiali esaminate: **1360**
-- Data dichiarata del dataset: **2026-10-20**
+- Data dichiarata del dataset: **2026-11-03**
 - Legacy con orario vuoto e città+provincia+via+giorno univoci: **0**
 - Legacy con indirizzo vuoto vicine a una sola sede: **1** (soltanto ricerca; possibile centro comunale)
 - Campi aggiornati da questo job: **0**
 
 ## Conteggi e motivi di blocco
 
-- legacy_lombardia_records_checked: **2913**
-- legacy_no_exact_street_day_match: **1992**
-- legacy_no_safe_street_or_day: **398**
+- legacy_lombardia_records_checked: **2919**
+- legacy_no_exact_street_day_match: **1991**
+- legacy_no_safe_street_or_day: **405**
 - missing_address_multiple_official_venues: **10**
 - missing_address_no_matching_official_town_day: **95**
 - missing_address_without_grounded_venue: **14**
