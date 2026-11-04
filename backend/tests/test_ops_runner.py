@@ -20,6 +20,13 @@ class RunnerTests(unittest.TestCase):
         self.assertTrue(r.condition("${{ always() }}", ctx, default=False))
         self.assertFalse(r.condition(None, ctx, default=False))
 
+    def test_the_night_never_undoes_a_release_made_by_hand(self):
+        last = {"tag": "release-2026-11-03", "version": "aaa"}
+        self.assertIsNone(r.live_hold_reason({}, "zzz", "release-2026-11-03"))  # first night
+        self.assertIsNone(r.live_hold_reason(last, "aaa", "release-2026-11-03"))  # live is ours
+        self.assertIsNone(r.live_hold_reason(last, "bbb", "release-2026-11-05"))  # tagged release
+        self.assertIn("tag", r.live_hold_reason(last, "bbb", "release-2026-11-03"))  # untagged one
+
     def test_no_job_starts_in_the_last_hour_before_utc_midnight(self):
         from datetime import datetime, timezone
         at = lambda h, m: datetime(2026, 10, 25, h, m, tzinfo=timezone.utc)

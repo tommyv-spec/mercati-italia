@@ -22,22 +22,43 @@ riesce si apre l'issue «[Automazione locale] app-dev — verifica richiesta». 
 `python ops/runner.py devapp` (`--force` per ricostruirla comunque). La configurazione hosting sta in
 `ops/devapp-hosting.json` (vale anche per il sito pubblico, con un altro nome apposta).
 
-## Pubblicare sul sito (fuori-mercatini.com)
+## Il sito pubblico (fuori-mercatini.com)
 
-Solo con il via del proprietario. Il sito riceve **esattamente** la versione già provata sull'app DEV,
-senza ricostruirla:
+**Il catalogo va sul sito da solo** (proprietario, 4 novembre 2026: il sito aggiornato è la
+conseguenza di un'automazione che funziona). Dopo una notte riuscita (nessun lavoro fallito,
+`QUALITA.md` senza segnali rossi, app DEV aggiornata) `runner.py daily` mette sul sito il catalogo
+che l'app DEV ha appena ricevuto, dentro l'app dell'ultimo rilascio (il tag `release-*` più recente):
+
+1. costruisce quel tag con la cartella `public/data` di DEV e lo pubblica sul canale di anteprima
+   `release`;
+2. lo apre in un browser da telefono (`ops/live-smoke.mjs`): l'elenco deve mostrare mercati e
+   aprire una scheda, senza errori;
+3. copia quella stessa versione sul sito (`hosting:clone market-ef407:release market-ef407:live`) e
+   controlla che il sito serva il nuovo catalogo.
+
+Se qualcosa non va il sito tiene il catalogo di prima e si apre l'issue
+«[Automazione locale] app-live — verifica richiesta». L'ultima pubblicazione è in
+`%LOCALAPPDATA%\mercati-italia\runner\live.json` (versione e versione precedente); il log
+`logs\live-<data>.log` riporta il comando per tornare indietro. A mano: `python ops/runner.py live`.
+
+**L'app (aspetto, funzioni) va sul sito solo con il via del proprietario**, e ogni rilascio prende un
+tag `release-<data>`: è il tag che dice alle notti quale app usare. Il sito riceve **esattamente** la
+versione già provata sull'app DEV, senza ricostruirla:
 
 ```bash
 python ops/runner.py devapp      # l'app DEV serve il catalogo DEV di oggi
 npx firebase hosting:channel:list --project market-ef407 --json   # annotare la versione di "live"
 npx firebase hosting:clone market-ef407:dev market-ef407:live
+git tag -a release-<data> -m "..." <commit dell'app DEV> && git push origin release-<data>
 ```
 
 Per tornare indietro: `npx firebase hosting:clone market-ef407@<versione annotata> market-ef407:live`.
-Il sito poi resta fermo: le notti aggiornano solo l'app DEV. Il primo rilascio di questa app è del
-1° novembre 2026; prima c'era la vecchia app Leaflet (versione `5e49e9ef9a5dfb91`). `public/sw.js`
-esiste solo per togliere dai telefoni il service worker della vecchia app e ricaricare le pagine
-ancora aperte su di essa; i vecchi link `/evento/<id>` aprono la stessa scheda.
+Un rilascio (o un ritorno indietro) fatto a mano senza un tag nuovo ferma le notti: vedono che il
+sito non è più la versione messa da loro e aspettano il tag invece di rimettere l'app di prima.
+Il primo rilascio di questa app è del 1° novembre 2026; prima c'era la vecchia app Leaflet
+(versione `5e49e9ef9a5dfb91`). `public/sw.js` esiste solo per togliere dai telefoni il service
+worker della vecchia app e ricaricare le pagine ancora aperte su di essa; i vecchi link
+`/evento/<id>` aprono la stessa scheda.
 
 Se DEV contiene lavori non ancora pronti: ramo `release/<data>` dall'ultimo tag `release-*` più le
 sole modifiche volute, `npx firebase hosting:channel:deploy swtest`, prove sul canale `swtest`, poi
@@ -66,6 +87,7 @@ python ops/runner.py plan                 # cosa verrebbe eseguito oggi e perch�
 python ops/runner.py run market-autopilot # un lavoro subito
 python ops/runner.py daily                # tutto ciò che è in scadenza
 python ops/runner.py rehearse --code <cartella>   # prova generale di una modifica, senza pubblicare
+python ops/runner.py live                 # il catalogo dell'app DEV sul sito, nell'app dell'ultimo tag release-*
 powershell -ExecutionPolicy Bypass -File ops/install-windows.ps1   # (re)installa l'attività
 ```
 

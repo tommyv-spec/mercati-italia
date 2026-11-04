@@ -10,6 +10,8 @@ A failed workflow opens (or comments on) one GitHub issue; success closes it.
     python ops/runner.py run <workflow>   # one workflow now, e.g. market-autopilot
     python ops/runner.py plan             # what "daily" would run, and why
     python ops/runner.py devapp           # the DEV app (preview channel) on DEV's catalog; daily too
+    python ops/runner.py live             # the live site on the DEV app's catalog, inside the newest
+                                          # release-* app; daily too, after a night with no failure
     python ops/runner.py rehearse --code <checkout>   # today's market-autopilot run
                                           # replayed with that checkout's new commits; nothing published
 
@@ -386,10 +388,11 @@ def scorecard():
         git("-c", "user.name=mercati-runner", "-c", "user.email=runner@mercati.local",
             "commit", "-q", "-m", "report: weekly data quality scorecard (DEV only)", cwd=work)
         git("push", "-q", "origin", f"HEAD:{DEV}", cwd=work)
+    return flags == 0
 
 
-# The DEV app: a Firebase preview channel of the production project. Only
-# `hosting:channel:deploy dev` is ever run here; the live site is never touched.
+# The DEV app: a Firebase preview channel of the production project. Only live_app() below
+# ever touches the live site, and only by copying a version it checked on its own channel.
 DEVAPP_PROJECT, DEVAPP_CHANNEL = "market-ef407", "dev"
 DEVAPP_URL = "https://market-ef407--dev-n0hayy7b.web.app"
 
@@ -427,31 +430,151 @@ def dev_app(force=False):
                 say(f"DEV app already serves DEV's catalog {want[:12]}")
                 ok = True
             else:
-                shutil.copy(work / "ops/devapp-hosting.json", work / "firebase.json")
-                lockfile = (work / "package-lock.json").read_bytes()
-                stamp = work / "node_modules" / ".runner-lock-sha"
-                fresh = stamp.is_file() and stamp.read_text() == hashlib.sha256(lockfile).hexdigest()
-                script = ("set -euo pipefail\n" + ("" if fresh else "npm ci --no-audit --no-fund\n")
-                          + "npx vite build\n"
-                          + f"firebase hosting:channel:deploy {DEVAPP_CHANNEL} --project {DEVAPP_PROJECT}"
-                            " --expires 30d --non-interactive\n")
                 say(f"building and deploying DEV {want[:12]} to the preview channel")
-                result = subprocess.run([BASH, "--noprofile", "--norc", "-c", script], cwd=work,
-                                        stdout=log, stderr=subprocess.STDOUT, timeout=1800)
-                if result.returncode:
-                    raise RuntimeError(f"build or deploy exit code {result.returncode}")
-                stamp.write_text(hashlib.sha256(lockfile).hexdigest())
-                for _ in range(10):  # the CDN may serve the old manifest for a moment
-                    if served_signature(DEVAPP_URL) == want:
-                        break
-                    time.sleep(30)
-                ok = served_signature(DEVAPP_URL) == want
+                build_and_deploy(work, DEVAPP_CHANNEL, log)
+                ok = serves(DEVAPP_URL, want)
                 say(f"DEV app {'now serves' if ok else 'does NOT serve'} DEV's catalog {want[:12]}")
         except (OSError, subprocess.SubprocessError, RuntimeError, ValueError, KeyError) as error:
             say(f"DEV app update failed: {error}")
     notify("app-dev", ok, SimpleNamespace(id=f"app-dev-{date.today()}", log_path=log_path),
            intro="L'app DEV (canale di anteprima) non mostra il catalogo DEV di oggi.")
     return ok
+
+
+def firebase(command, work, log=None, timeout=1800):
+    """One firebase CLI command (the machine's logged-in CLI) in a checkout; stdout returned."""
+    result = subprocess.run([BASH, "--noprofile", "--norc", "-c", f"firebase {command} --non-interactive"],
+                            cwd=work, stdout=subprocess.PIPE, stderr=log or subprocess.DEVNULL,
+                            text=True, timeout=timeout)
+    if log:
+        log.write(result.stdout)
+    if result.returncode:
+        raise RuntimeError(f"firebase {command.split()[0]} exit code {result.returncode}")
+    return result.stdout
+
+
+def build_and_deploy(work, channel, log):
+    """Build the checkout in `work` and deploy it to a PREVIEW channel of the production
+    project (never the live site); returns the channel's URL."""
+    shutil.copy(work / "ops/devapp-hosting.json", work / "firebase.json")
+    lockfile = (work / "package-lock.json").read_bytes()
+    stamp = work / "node_modules" / ".runner-lock-sha"
+    fresh = stamp.is_file() and stamp.read_text() == hashlib.sha256(lockfile).hexdigest()
+    script = "set -euo pipefail\n" + ("" if fresh else "npm ci --no-audit --no-fund\n") + "npx vite build\n"
+    result = subprocess.run([BASH, "--noprofile", "--norc", "-c", script], cwd=work,
+                            stdout=log, stderr=subprocess.STDOUT, timeout=1800)
+    if result.returncode:
+        raise RuntimeError(f"build exit code {result.returncode}")
+    stamp.write_text(hashlib.sha256(lockfile).hexdigest())
+    firebase(f"hosting:channel:deploy {channel} --project {DEVAPP_PROJECT} --expires 30d", work, log)
+    return channels(work)[channel]["url"]
+
+
+def channels(work):
+    """{channel: {url, version}} of the production project's hosting channels ("live" included)."""
+    found = json.loads(firebase(f"hosting:channel:list --project {DEVAPP_PROJECT} --json", work, timeout=300))
+    return {c["name"].rsplit("/", 1)[-1]: {"url": c.get("url"), "version": ((c.get("release") or {}).get(
+        "version") or {}).get("name", "").rsplit("/", 1)[-1]} for c in found["result"]["channels"]}
+
+
+def serves(url, want):
+    """Waits until `url` serves catalog `want` (the CDN may keep the old manifest a moment)."""
+    for _ in range(10):
+        if served_signature(url) == want:
+            return True
+        time.sleep(30)
+    return served_signature(url) == want
+
+
+# The live site takes tonight's catalog by itself when the night went well (owner, 2026-11-04:
+# "the fact that they are in prod is a consequence of the worker working fine"). The app around
+# it stays the one the owner last released, the newest `release-*` tag: app changes on DEV go
+# live only through a new release tag.
+LIVE_URL, LIVE_CANDIDATE = "https://fuori-mercatini.com", "release"
+
+
+def live_hold_reason(last, live_version, tag):
+    """Why the night must leave the live site alone, or None. The runner never undoes a release
+    made by hand: when live is no longer the version the runner put there and no newer release
+    tag names the app it holds, the runner waits for that tag."""
+    if last.get("version") and live_version != last["version"] and last.get("tag") == tag:
+        return (f"the live site is version {live_version}, not {last['version']} put there by this runner, "
+                f"and the newest release tag is still {tag}: tag the app that was released by hand "
+                "(git tag -a release-YYYY-MM-DD <commit>, push the tag) and the next night goes on")
+    return None
+
+
+def live_app():
+    """Put on the live site exactly the catalog the DEV app just got, inside the released app:
+    build it on the `release` preview channel, open it in a browser, then copy that same version
+    to live and check the site serves it. Anything wrong: live keeps its catalog, alarm issue."""
+    work, record_path = HOME / "liveapp", HOME / "live.json"
+    log_path = HOME / "logs" / f"live-{date.today():%Y%m%d}.log"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    ok = False
+    with open(log_path, "a", encoding="utf-8", errors="replace") as log:
+        say = lambda text: (print(text, flush=True), log.write(f"[{datetime.now():%H:%M:%S}] {text}\n"), log.flush())
+        try:
+            mirror = update_mirror()
+            if not (work / ".git").exists():
+                rmtree(work)
+                git("clone", "-q", "-c", "core.autocrlf=false", mirror, work)
+            git("fetch", "-q", "--tags", "--force", "origin", cwd=work)
+            out = lambda *a, cwd=work: subprocess.run(["git", *a], cwd=cwd, capture_output=True, text=True,
+                                                      check=True).stdout.split()
+            tag = out("tag", "-l", "release-*", "--sort=-creatordate")[0]
+            data = out("rev-parse", "HEAD", cwd=HOME / "devapp")[0]  # what the DEV app serves
+            git("checkout", "-q", "--force", "--detach", tag, cwd=work)
+            git("clean", "-fdq", cwd=work)
+            rmtree(work / "public/data")
+            git("checkout", "-q", data, "--", "public/data", cwd=work)
+            shutil.copy(work / "ops/devapp-hosting.json", work / "firebase.json")  # the CLI needs one
+            last = json.loads(record_path.read_text("utf-8")) if record_path.exists() else {}
+            live = channels(work)["live"]["version"]
+            hold = live_hold_reason(last, live, tag)
+            if hold:
+                raise RuntimeError(hold)
+            want = json.loads((work / "public/data/v1/manifest.json").read_text("utf-8"))["content_signature"]
+            if last.get("tag") == tag and served_signature(LIVE_URL) == want:
+                say(f"live already serves catalog {want[:12]} in {tag}")
+                ok = True
+            else:
+                say(f"building {tag} with DEV {data[:7]}'s catalog {want[:12]} on channel {LIVE_CANDIDATE}")
+                url = build_and_deploy(work, LIVE_CANDIDATE, log)
+                if not serves(url, want):
+                    raise RuntimeError(f"{url} does not serve catalog {want[:12]}")
+                smoke(url, log)
+                say(f"browser check passed on {url}; copying it to live (now version {live})")
+                firebase(f"hosting:clone {DEVAPP_PROJECT}:{LIVE_CANDIDATE} {DEVAPP_PROJECT}:live", work, log)
+                if not serves(LIVE_URL, want):
+                    raise RuntimeError(f"{LIVE_URL} does not serve catalog {want[:12]} after the copy")
+                version = channels(work)["live"]["version"]
+                record_path.write_text(json.dumps(
+                    {"tag": tag, "data": data, "signature": want, "version": version, "previous": live,
+                     "at": datetime.now(timezone.utc).isoformat(timespec="minutes")}, indent=1) + "\n", "utf-8")
+                say(f"LIVE now serves catalog {want[:12]} in {tag}, version {version}. Undo: firebase "
+                    f"hosting:clone {DEVAPP_PROJECT}@{live} {DEVAPP_PROJECT}:live")
+                ok = True
+        except (OSError, IndexError, subprocess.SubprocessError, RuntimeError, ValueError, KeyError) as error:
+            say(f"live site left as it was: {error}")
+    notify("app-live", ok, SimpleNamespace(id=f"app-live-{date.today()}", log_path=log_path),
+           intro="Il sito pubblico (fuori-mercatini.com) non ha preso il catalogo di stanotte: "
+                 "mostra ancora quello di prima.")
+    return ok
+
+
+def smoke(url, log):
+    """ops/live-smoke.mjs: the built app opened in a phone-sized browser must list markets and
+    open one without an error. Playwright lives in its own folder, installed once."""
+    tool = HOME / "smoke"
+    tool.mkdir(parents=True, exist_ok=True)
+    shutil.copy(Path(__file__).with_name("live-smoke.mjs"), tool / "live-smoke.mjs")
+    install = "" if (tool / "node_modules" / "playwright").is_dir() else (
+        "npm install --no-audit --no-fund playwright@1.55.0\nnpx playwright install chromium\n")
+    result = subprocess.run([BASH, "--noprofile", "--norc", "-c", f"set -euo pipefail\n{install}node live-smoke.mjs {url}\n"],
+                            cwd=tool, stdout=log, stderr=subprocess.STDOUT, timeout=900)
+    if result.returncode:
+        raise RuntimeError(f"browser check failed on {url} (exit code {result.returncode})")
 
 
 CATALOG = "candidate/public/data/v1/manifest.json"
@@ -566,6 +689,7 @@ def main():
     rh.add_argument("--live", action="store_true", help="read the sources again instead of the saved reads")
     app = sub.add_parser("devapp")
     app.add_argument("--force", action="store_true", help="rebuild and deploy even if already current")
+    sub.add_parser("live")
     args = p.parse_args()
     names = sorted((p.stem for p in WORKFLOWS.glob("*.yml") if schedule_of(p.stem)),
                    key=lambda n: (schedule_of(n)[1].zfill(2), schedule_of(n)[0].zfill(2)))
@@ -584,10 +708,17 @@ def main():
             sys.exit(0 if rehearse(args.code, args.replay, args.live) else 1)
         if args.cmd == "devapp":
             sys.exit(0 if dev_app(force=args.force) else 1)
+        if args.cmd == "live":
+            sys.exit(0 if live_app() else 1)
         failures = [n for n in names if due(n, state, date.today())[0] and not run_workflow(n)[0]]
-        scorecard()
+        clean = scorecard()
         app_ok = dev_app()  # the DEV app shows tonight's DEV catalog
-        sys.exit(1 if failures or not app_ok else 0)
+        # The live site follows only a night that went well; otherwise it keeps its catalog and
+        # the failing job's own alarm says why.
+        live_ok = live_app() if app_ok and clean and not failures else None
+        if live_ok is None:
+            print(f"live site left as it was: failed jobs {failures}, quality clean {clean}, DEV app {app_ok}")
+        sys.exit(1 if failures or not app_ok or live_ok is False else 0)
     finally:
         held.unlink(missing_ok=True)
 
