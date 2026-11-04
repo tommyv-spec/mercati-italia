@@ -4,28 +4,28 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **5,056** (64.0%).
-- Comuni senza schede in catalogo: **2,838**.
-- Schede esistenti conservate: **14,450**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **5,066** (64.2%).
+- Comuni senza schede in catalogo: **2,828**.
+- Schede esistenti conservate: **14,483**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
-| Piemonte | 1180 | 536 | 644 | 45.4% |
+| Piemonte | 1180 | 538 | 642 | 45.6% |
 | Lombardia | 1501 | 1079 | 422 | 71.9% |
-| Calabria | 404 | 192 | 212 | 47.5% |
+| Calabria | 404 | 196 | 208 | 48.5% |
 | Sicilia | 391 | 202 | 189 | 51.7% |
 | Sardegna | 377 | 200 | 177 | 53.1% |
-| Trentino-Alto Adige | 282 | 121 | 161 | 42.9% |
+| Trentino-Alto Adige | 282 | 123 | 159 | 43.6% |
 | Liguria | 234 | 111 | 123 | 47.4% |
 | Abruzzo | 305 | 193 | 112 | 63.3% |
 | Basilicata | 131 | 19 | 112 | 14.5% |
 | Marche | 225 | 116 | 109 | 51.6% |
 | Friuli Venezia Giulia | 215 | 108 | 107 | 50.2% |
 | Campania | 550 | 450 | 100 | 81.8% |
-| Veneto | 559 | 460 | 99 | 82.3% |
+| Veneto | 559 | 461 | 98 | 82.5% |
 | Lazio | 378 | 306 | 72 | 81.0% |
 | Emilia-Romagna | 330 | 282 | 48 | 85.5% |
-| Valle d'Aosta | 74 | 27 | 47 | 36.5% |
+| Valle d'Aosta | 74 | 28 | 46 | 37.8% |
 | Toscana | 273 | 232 | 41 | 85.0% |
 | Umbria | 92 | 66 | 26 | 71.7% |
 | Puglia | 257 | 234 | 23 | 91.1% |
@@ -50,7 +50,7 @@ Esempi selezionati stabilmente per regione (non sono mercati identificati).
 - **Veneto:** Bagnolo di Po, Canda, Erbè, Gaiba, Giacciano con Baruchella, Rivoli Veronese, Salcedo, San Nicolò di Comelico
 - **Lazio:** Frasso Sabino, Micigliano, Montenero Sabino, Poggio San Lorenzo, Rocca Canterano, Roccagiovine, Saracinesco, Turania
 - **Emilia-Romagna:** Bertinoro, Cerignale, Dovadola, Longiano, Montecopiolo, Pellegrino Parmense, Prignano sulla Secchia, Santa Sofia
-- **Valle d'Aosta:** Antey-Saint-André, Arnad, Arvier, Brusson, Cogne, Issime, Rhêmes-Saint-Georges, Verrayes
+- **Valle d'Aosta:** Arnad, Arvier, Brusson, Cogne, Issime, Rhêmes-Saint-Georges, Saint-Rhémy-en-Bosses, Verrayes
 - **Toscana:** Abbadia San Salvatore, Londa, Molazzana, Murlo, Ortignano Raggiolo, Radicondoli, Vagli Sotto, Villa Collemandina
 - **Umbria:** Castel Ritaldi, Fabro, Ficulle, Fossato di Vico, Montegabbione, Poggiodomo, Preci, Stroncone
 - **Puglia:** Castelluccio Valmaggiore, Celle di San Vito, Mattinata, Panni, Poggio Imperiale, San Nicandro Garganico, Troia, Vico del Gargano

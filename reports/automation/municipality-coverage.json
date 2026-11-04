@@ -3,20 +3,20 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 14450,
+  "catalog_market_ids_preserved": 14483,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 5056,
-  "municipalities_without_catalog_listings": 2838,
-  "represented_percent": 64.0,
+  "municipalities_with_catalog_listings": 5066,
+  "municipalities_without_catalog_listings": 2828,
+  "represented_percent": 64.2,
   "regions": [
     {
       "region": "Piemonte",
       "istat_municipalities": 1180,
-      "with_at_least_one_catalog_market": 536,
-      "without_catalog_market": 644,
-      "represented_percent": 45.4,
+      "with_at_least_one_catalog_market": 538,
+      "without_catalog_market": 642,
+      "represented_percent": 45.6,
       "unrepresented_examples_for_source_search": [
         "Crova",
         "Faule",
@@ -48,9 +48,9 @@
     {
       "region": "Calabria",
       "istat_municipalities": 404,
-      "with_at_least_one_catalog_market": 192,
-      "without_catalog_market": 212,
-      "represented_percent": 47.5,
+      "with_at_least_one_catalog_market": 196,
+      "without_catalog_market": 208,
+      "represented_percent": 48.5,
       "unrepresented_examples_for_source_search": [
         "Brancaleone",
         "Fiumara",
@@ -99,9 +99,9 @@
     {
       "region": "Trentino-Alto Adige",
       "istat_municipalities": 282,
-      "with_at_least_one_catalog_market": 121,
-      "without_catalog_market": 161,
-      "represented_percent": 42.9,
+      "with_at_least_one_catalog_market": 123,
+      "without_catalog_market": 159,
+      "represented_percent": 43.6,
       "unrepresented_examples_for_source_search": [
         "Croviana",
         "Falzes",
@@ -218,9 +218,9 @@
     {
       "region": "Veneto",
       "istat_municipalities": 559,
-      "with_at_least_one_catalog_market": 460,
-      "without_catalog_market": 99,
-      "represented_percent": 82.3,
+      "with_at_least_one_catalog_market": 461,
+      "without_catalog_market": 98,
+      "represented_percent": 82.5,
       "unrepresented_examples_for_source_search": [
         "Bagnolo di Po",
         "Canda",
@@ -269,17 +269,17 @@
     {
       "region": "Valle d'Aosta",
       "istat_municipalities": 74,
-      "with_at_least_one_catalog_market": 27,
-      "without_catalog_market": 47,
-      "represented_percent": 36.5,
+      "with_at_least_one_catalog_market": 28,
+      "without_catalog_market": 46,
+      "represented_percent": 37.8,
       "unrepresented_examples_for_source_search": [
-        "Antey-Saint-André",
         "Arnad",
         "Arvier",
         "Brusson",
         "Cogne",
         "Issime",
         "Rhêmes-Saint-Georges",
+        "Saint-Rhémy-en-Bosses",
         "Verrayes"
       ]
     },
@@ -387,10 +387,6 @@
     },
     {
       "region": "Calabria",
-      "reported_city": "Capristrano"
-    },
-    {
-      "region": "Calabria",
       "reported_city": "Caria"
     },
     {
@@ -403,15 +399,19 @@
     },
     {
       "region": "Calabria",
-      "reported_city": "Francavilla"
-    },
-    {
-      "region": "Calabria",
-      "reported_city": "Isola Capo Rizzuto"
-    },
-    {
-      "region": "Calabria",
       "reported_city": "Lamezia Terme Nicastro"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Monsoreto"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Pannaconi"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Reggio Calabria"
     }
   ],
   "interpretation": "absence of a listing is NOT evidence a municipality has any active market"

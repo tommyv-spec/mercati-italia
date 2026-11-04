@@ -327,7 +327,7 @@
     {
       "actual_rows_examined": null,
       "candidate_status": "not_sampled",
-      "dataset_date_declared": "2026-10-20",
+      "dataset_date_declared": "2026-11-03",
       "individual_events_confirmed": 0,
       "license_needs_review": true,
       "market_entries_added": 0,
@@ -887,11 +887,11 @@
       "strong": []
     },
     "schema": 1,
-    "source_age_days": 580,
+    "source_age_days": 581,
     "source_ids_sha256": "c045561fc022bba002e2cc3252d75550c8d0b0669cbc7ed911e2886d5c788471"
   },
-  "catalog_market_ids_retained": 14450,
-  "date": "2026-11-03",
+  "catalog_market_ids_retained": 14483,
+  "date": "2026-11-04",
   "location_conflicts_documented": 1,
   "location_conflicts_source_sha256": "985b6705ef852f2dbf5ecab4aec8459d1945e7183df299a4d1a6fda198d9d6bc",
   "market_events_confirmed": 0,
@@ -1007,5 +1007,5 @@
   "schema": 1,
   "sources_checked": 50,
   "sources_imported": 0,
-  "unrepresented_municipalities_are_not_market_claims": 2838
+  "unrepresented_municipalities_are_not_market_claims": 2828
 }
