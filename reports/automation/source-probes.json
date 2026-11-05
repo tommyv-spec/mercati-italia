@@ -23,9 +23,9 @@
       "viability": "legacy_probe"
     },
     "0cffe11e-1a55-471e-9bc0-3fec3247b7d9": {
-      "checked_date": "2026-10-20",
-      "column_fingerprint": null,
-      "status": "offline_skipped",
+      "checked_date": "2026-11-05",
+      "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
+      "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
     },
     "23edf989-5a91-47ff-a6b1-fb0a9cce061d": {
@@ -41,7 +41,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-11-04",
+      "checked_date": "2026-11-05",
       "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
       "status": "schema_preview_only",
       "viability": "venue_inventory_missing_visit_days"
@@ -95,7 +95,7 @@
       "viability": "manual_schema_review_required"
     },
     "74600cc1-0adb-4ae3-8255-30556e03e932": {
-      "checked_date": "2026-10-31",
+      "checked_date": "2026-11-05",
       "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
       "status": "schema_preview_only",
       "viability": "historical_aggregate_not_venues"
@@ -227,20 +227,43 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-11-04",
+  "reference_date": "2026-11-05",
   "reports": [
     {
       "adapter_enabled": false,
-      "error": "TimeoutError: The read operation timed out",
       "events_confirmed": 0,
-      "field_hints": {},
-      "fields": [],
+      "field_hints": {
+        "market_type": [
+          "FIERA/MERCATO"
+        ],
+        "name": [
+          "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
+        ]
+      },
+      "fields": [
+        "NOME",
+        "FIERA/MERCATO",
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
+      ],
       "format": "CSV",
-      "id": "ecfe375b-8322-47da-972f-c208649a8b9d",
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/99b2e177-101c-4505-ac1d-f38639b861fd.csv",
+      "id": "0cffe11e-1a55-471e-9bc0-3fec3247b7d9",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
+      "sample_bytes": 14546,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/1bb563f3-e2b4-4b93-8974-0165285f5913.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
-      "status": "needs_review",
-      "title": "Fiere e mercati - Comune di Sona"
+      "status": "schema_preview_only",
+      "title": "Posteggi mercati e fiere - Comune di Pianiga",
+      "truncated": false
     },
     {
       "adapter_enabled": false,
@@ -250,6 +273,7 @@
           "comune"
         ],
         "statistics_count": [
+          "mercati",
           "attivazioni",
           "cessazioni"
         ],
@@ -261,9 +285,11 @@
         "comune",
         "provincia",
         "anno",
+        "mercati",
         "totale",
         "attivazioni",
         "cessazioni",
+        "posteggi",
         "alimentare_totale",
         "alimentare_attivazioni",
         "alimentare_cessazioni",
@@ -275,16 +301,16 @@
         "produttori_cessazioni"
       ],
       "format": "CSV",
-      "id": "f4407fb8-5e36-4311-8422-02d463741780",
+      "id": "74600cc1-0adb-4ae3-8255-30556e03e932",
       "review_blockers": [
         "explicit_market_name_missing"
       ],
       "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
-      "schema_viability": "manual_schema_review_required",
+      "sample_url": "https://dati.lazio.it/dataset/74600cc1-0adb-4ae3-8255-30556e03e932/resource/2d48b4df-5df7-48c5-81d8-a8f8758d7756/download/oscomercatimensili.csv",
+      "schema_viability": "historical_aggregate_not_venues",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Censimento dei mercati itineranti",
+      "title": "Censimento dei mercati mensili",
       "truncated": true
     },
     {

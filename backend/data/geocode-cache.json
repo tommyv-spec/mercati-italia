@@ -556,6 +556,11 @@
    "query": "Ippodromo del Visarno, Firenze, Italia",
    "type": "bus_stop"
   },
+  "kellereistrasse|caldaro sulla strada del vino|bz": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-05",
+   "query": "Kellereistraße, Caldaro sulla strada del vino, Italia"
+  },
   "laggio di cadore|vigo di cadore|bl": {
    "miss": "solo_localita",
    "queried_on": "2026-10-27",
@@ -785,6 +790,11 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-11-04",
    "query": "Lungolago Lavello, Calolziocorte, Italia"
+  },
+  "lungomare centro|porto recanati|mc": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-05",
+   "query": "Lungomare Centro, Porto Recanati, Italia"
   },
   "lungomare cristoforo colombo|castrignano del capo|le": {
    "miss": "comune_diverso",
@@ -1260,6 +1270,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "Pescheria comunale centro storico, Piove di Sacco, Italia"
+  },
+  "piaz de ciampedel|campitello di fassa|tn": {
+   "class": "highway",
+   "lat": 46.476629,
+   "lng": 11.741621,
+   "name": "Piaz de Ciampedel, Campitello, Pian, Campitello di Fassa - Ciampedel, Campitello di Fassa, Comun General de Fascia, Provincia di Trento, Trentino-Alto Adige/Südtirol, 38036, Italia",
+   "osm": "way/58656815",
+   "queried_on": "2026-11-05",
+   "query": "Piaz de Ciampedel, Campitello di Fassa, Italia",
+   "type": "unclassified"
   },
   "piazza 8 marzo|alpignano|to": {
    "class": "amenity",
@@ -1956,6 +1976,11 @@
    "query": "PIAZZA Dante, Chieri, Italia",
    "type": "residential"
   },
+  "piazza dante|gromo|bg": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Dante, Gromo, Italia"
+  },
   "piazza dario roncatti|castelnovo bariano|ro": {
    "class": "highway",
    "lat": 45.059497,
@@ -2205,6 +2230,16 @@
    "queried_on": "2026-10-25",
    "query": "Piazza Del Popolo, Latina, Italia",
    "type": "square"
+  },
+  "piazza del popolo|ravenna|ra": {
+   "class": "highway",
+   "lat": 44.417767,
+   "lng": 12.199702,
+   "name": "Piazza del Popolo, Corso Nord, Ravenna, Emilia-Romagna, 48121, Italia",
+   "osm": "way/27436628",
+   "queried_on": "2026-11-05",
+   "query": "Piazza del Popolo, Ravenna, Italia",
+   "type": "pedestrian"
   },
   "piazza del popolo|san martino buon albergo|vr": {
    "class": "highway",
@@ -2466,6 +2501,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA DELLE ARTI, Campodolcino, Italia"
   },
+  "piazza delle erbe|mezzolombardo|tn": {
+   "class": "place",
+   "lat": 46.213094,
+   "lng": 11.089125,
+   "name": "Piazza delle Erbe, Mezzolombardo, Comunità Rotaliana-Königsberg, Provincia di Trento, Trentino-Alto Adige/Südtirol, Italia",
+   "osm": "way/106646019",
+   "queried_on": "2026-11-05",
+   "query": "Piazza delle Erbe, Mezzolombardo, Italia",
+   "type": "square"
+  },
   "piazza delle erbe|san gimignano|si": {
    "class": "place",
    "lat": 43.467989,
@@ -2505,6 +2550,16 @@
    "queried_on": "2026-10-30",
    "query": "PIAZZA delle Penne Nere, Verona, Italia",
    "type": "service"
+  },
+  "piazza dessi|quartu sant elena|ca": {
+   "class": "leisure",
+   "lat": 39.236182,
+   "lng": 9.207048,
+   "name": "Piazza Natale Dessì, Mràxini Arrùbiu/Margine Rosso, Quartu Sant'Aleni/Quartu Sant'Elena, Casteddu/Cagliari, Sardigna/Sardegna, 09045, Italia",
+   "osm": "way/1493861494",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Dessì, Quartu Sant'Elena, Italia",
+   "type": "park"
   },
   "piazza di baura|ferrara|fe": {
    "miss": "nessun_risultato",
@@ -2826,6 +2881,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Fischele, San Martino Buon Albergo, Italia"
   },
+  "piazza flaminio|vittorio veneto|tv": {
+   "class": "highway",
+   "lat": 45.999225,
+   "lng": 12.289627,
+   "name": "Piazza Flaminio, Porta Cadore, Serravalle, Vittorio Veneto, Treviso, Veneto, 31029, Italia",
+   "osm": "way/113964860",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Flaminio, Vittorio Veneto, Italia",
+   "type": "residential"
+  },
   "piazza forlimpopoli|ravenna|ra": {
    "class": "amenity",
    "lat": 44.309334,
@@ -2960,6 +3025,16 @@
    "queried_on": "2026-10-30",
    "query": "Piazza Garibaldi, Sassuolo, Italia",
    "type": "square"
+  },
+  "piazza garibaldi|soresina|cr": {
+   "class": "highway",
+   "lat": 45.287417,
+   "lng": 9.853853,
+   "name": "Piazza Giuseppe Garibaldi, Soresina, Cremona, Lombardia, 26015, Italia",
+   "osm": "way/446866564",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Garibaldi, Soresina, Italia",
+   "type": "residential"
   },
   "piazza garibaldi|trevi|pg": {
    "miss": "comune_diverso",
@@ -3255,6 +3330,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "Piazza Guadagnini/Strada Rosa, Valdobbiadene, Italia"
+  },
+  "piazza guarana|sesto calende|va": {
+   "class": "highway",
+   "lat": 45.723812,
+   "lng": 8.636417,
+   "name": "Piazza Guarana, Abbazia, Sesto Calende, Varese, Lombardia, 21018, Italia",
+   "osm": "way/201376235",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Guarana, Sesto Calende, Italia",
+   "type": "pedestrian"
   },
   "piazza i maggio|faedis|ud": {
    "class": "highway",
@@ -3581,6 +3666,16 @@
    "query": "piazza Marina, Palermo, Italia",
    "type": "square"
   },
+  "piazza mario cermenati|lecco|lc": {
+   "class": "highway",
+   "lat": 45.855838,
+   "lng": 9.388543,
+   "name": "Piazza Mario Cermenati, Santo Stefano, Castello, Lecco, Lombardia, 23900, Italia",
+   "osm": "relation/7448671",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Mario Cermenati, Lecco, Italia",
+   "type": "pedestrian"
+  },
   "piazza mario pagano|potenza|pz": {
    "class": "place",
    "lat": 40.638377,
@@ -3690,6 +3785,16 @@
    "miss": "comune_diverso",
    "queried_on": "2026-10-27",
    "query": "PIAZZA Matteotti, Cosenza, Italia"
+  },
+  "piazza matteotti|massa lombarda|ra": {
+   "class": "highway",
+   "lat": 44.446369,
+   "lng": 11.828061,
+   "name": "Piazza Giacomo Matteotti, Massa Lombarda, Unione dei comuni della Bassa Romagna, Ravenna, Emilia-Romagna, 48024, Italia",
+   "osm": "way/1256502489",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Matteotti, Massa Lombarda, Italia",
+   "type": "pedestrian"
   },
   "piazza matteotti|modena|mo": {
    "class": "highway",
@@ -3805,6 +3910,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Municipio, Angiari, Italia",
    "type": "tertiary"
+  },
+  "piazza municipio|brunico|bz": {
+   "class": "highway",
+   "lat": 46.79619,
+   "lng": 11.935655,
+   "name": "Rathausplatz - Piazza Municipio, Altstadt - Centro Storico, Bruneck - Brunico, Pustertal - Val Pusteria, Bolzano - Bozen, Trentino-Alto Adige/Südtirol, 39031, Italia",
+   "osm": "relation/4086566",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Municipio, Brunico, Italia",
+   "type": "pedestrian"
   },
   "piazza municipio|cervignano d adda|lo": {
    "class": "highway",
@@ -4000,6 +4115,11 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Puntoni, Bologna, Italia",
    "type": "square"
+  },
+  "piazza quintino sella|iglesias|ci": {
+   "miss": "provincia_diversa",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Quintino Sella, Iglesias, Italia"
   },
   "piazza r olivotto|marano lagunare|ud": {
    "miss": "nessun_risultato",
@@ -4821,10 +4941,25 @@
    "query": "piazza Vittorio Veneto, Torino, Italia",
    "type": "square"
   },
+  "piazza vue du cervin|antey saint andre|ao": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-05",
+   "query": "Piazza Vue du Cervin, Antey-Saint-André, Italia"
+  },
   "piazza wojtyla|porto sant elpidio|fm": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-29",
    "query": "PIAZZA Wojtyla, Porto Sant'Elpidio, Italia"
+  },
+  "piazza xx settembre|civitanova marche|mc": {
+   "class": "place",
+   "lat": 43.30726,
+   "lng": 13.72976,
+   "name": "Piazza Venti Settembre, Centro, Civitanova Marche, Macerata, Marche, Italia",
+   "osm": "relation/20110925",
+   "queried_on": "2026-11-05",
+   "query": "Piazza XX Settembre, Civitanova Marche, Italia",
+   "type": "square"
   },
   "piazza xx settembre|melara|ro": {
    "miss": "nessun_risultato",
@@ -4870,6 +5005,11 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
    "query": "PIAZZALE A. CAPELLI, Olmeneta, Italia"
+  },
+  "piazzale antistante la basilica di san nicola|bari|ba": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-05",
+   "query": "Piazzale antistante la Basilica di San Nicola, Bari, Italia"
   },
   "piazzale bertacchi|sondrio|so": {
    "class": "place",
@@ -5410,6 +5550,16 @@
    "queried_on": "2026-10-27",
    "query": "Via Andreas Hofer, Lana, Italia",
    "type": "secondary"
+  },
+  "via angelo anelli|desenzano del garda|bs": {
+   "class": "highway",
+   "lat": 45.468628,
+   "lng": 10.543313,
+   "name": "Via Angelo Anelli, Desenzano del Garda, Brescia, Lombardia, 25015, Italia",
+   "osm": "way/349894006",
+   "queried_on": "2026-11-05",
+   "query": "Via Angelo Anelli, Desenzano del Garda, Italia",
+   "type": "residential"
   },
   "via arioli venegoni|milano|mi": {
    "class": "highway",
@@ -6001,6 +6151,16 @@
    "query": "Via dei Bacchettoni, Lucca, Italia",
    "type": "residential"
   },
+  "via dei crispolti|roma|rm": {
+   "class": "highway",
+   "lat": 41.909609,
+   "lng": 12.550441,
+   "name": "Via dei Crispolti, Casal Bruciato, Municipio Roma IV, Roma, Roma Capitale, Lazio, 00157, Italia",
+   "osm": "way/26980131",
+   "queried_on": "2026-11-05",
+   "query": "VIA DEI CRISPOLTI, Roma, Italia",
+   "type": "residential"
+  },
   "via dei granai di nerva|roma|rm": {
    "class": "highway",
    "lat": 41.834615,
@@ -6044,6 +6204,16 @@
    "osm": "way/1563903477",
    "queried_on": "2026-10-25",
    "query": "Via del Cottanello, Roma, Italia",
+   "type": "residential"
+  },
+  "via del grano|roma|rm": {
+   "class": "highway",
+   "lat": 41.876877,
+   "lng": 12.575766,
+   "name": "Via del Grano, Alessandrino, Municipio Roma V, Roma, Roma Capitale, Lazio, 00172, Italia",
+   "osm": "way/27458947",
+   "queried_on": "2026-11-05",
+   "query": "VIA DEL GRANO, Roma, Italia",
    "type": "residential"
   },
   "via del laghetto|belluno|bl": {
@@ -6185,6 +6355,16 @@
    "queried_on": "2026-11-01",
    "query": "Via della Libertà, San Giorgio di Piano, Italia",
    "type": "residential"
+  },
+  "via della resistenza|san bartolomeo al mare|im": {
+   "class": "highway",
+   "lat": 43.920933,
+   "lng": 8.104024,
+   "name": "Via della Resistenza, San Bartolomeo al Mare, Provincia di Imperia, Liguria, 18016, Italia",
+   "osm": "way/23053253",
+   "queried_on": "2026-11-05",
+   "query": "Via della Resistenza, San Bartolomeo al Mare, Italia",
+   "type": "pedestrian"
   },
   "via della scuola|perugia|pg": {
    "class": "highway",
@@ -7101,6 +7281,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA Marina, Sorso, Italia"
   },
+  "via marinella|crotone|kr": {
+   "class": "highway",
+   "lat": 39.082462,
+   "lng": 17.125181,
+   "name": "Via Marinella, Marinella, Crotone, Calabria, 88900, Italia",
+   "osm": "way/159004757",
+   "queried_on": "2026-11-05",
+   "query": "Via Marinella, Crotone, Italia",
+   "type": "service"
+  },
   "via martiri della liberta|sanremo|im": {
    "class": "highway",
    "lat": 43.822726,
@@ -7360,6 +7550,16 @@
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
    "query": "VIA PACATI, Valbondione, Italia"
+  },
+  "via palazzo di citta|susa|to": {
+   "class": "highway",
+   "lat": 45.135459,
+   "lng": 7.046264,
+   "name": "Via Palazzo di Città, Borgo Storico, Balma di Grosso, Susa, Torino, Piemonte, 10059, Italia",
+   "osm": "way/457974135",
+   "queried_on": "2026-11-05",
+   "query": "Via Palazzo di Città, Susa, Italia",
+   "type": "residential"
   },
   "via paleocapa|savona|sv": {
    "class": "highway",
@@ -8715,6 +8915,11 @@
    "queried_on": "2026-10-25",
    "query": "Viale dei Caduti per la Resistenza, Roma, Italia",
    "type": "residential"
+  },
+  "viale dei lecci|firenze|fi": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-05",
+   "query": "Viale dei Lecci, Firenze, Italia"
   },
   "viale dell appennino|forli|fc": {
    "class": "highway",

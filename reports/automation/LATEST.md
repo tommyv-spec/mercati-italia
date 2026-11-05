@@ -2,16 +2,16 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [20261104-043008-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261104-043008-market-autopilot) — UTC 2026-11-04T04:26:59.424399+00:00
+- Ultimo run: [20261105-043004-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261105-043004-market-autopilot) — UTC 2026-11-05T04:24:42.780922+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
-- Schede nel catalogo: **14,483**
-- Schede con date previste a +60 giorni: **11,209**
-- Schede con date previste a +90 giorni: **11,150**
-- Indice nazionale gzip: **477.3 KiB**
+- Schede nel catalogo: **14,515**
+- Schede con date previste a +60 giorni: **11,155**
+- Schede con date previste a +90 giorni: **11,098**
+- Indice nazionale gzip: **479.6 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
-- Orari mancanti: **1,831**
+- Orari mancanti: **1,850**
 - Dataset pubblici candidati individuati: **43** (licenze da verificare)
 - Fonti conservate nello storico: **50**; nuove: **0**; aggiornate: **0**.
 - Possibili elenchi/sedi: **6**; statistiche storiche aggregate: **14**.
@@ -20,7 +20,7 @@
 - Corciano: **3** record senza conflitti su **4**, in revisione **1**, impronta sorgente **1c42627045f28ab7d0bd187493339f27b3e2c7afcfd5155bf7f739cf49a83121**.
 - Enrichment ufficiale: attivo; **0** orari mancanti recuperati in questo run, **0** fonti collegate, **152** corrispondenze esatte su **1360** record fonte in revisione.
 - Riconciliazione ISTAT (21 febbraio 2026): attiva, **60** Comuni corretti e **0** titoli ripuliti in questo run; **0** calendari sospesi (**0** date previste), **21** casi ancora ambigui. Nessuna conferma di apertura generata.
-- Province amministrative riconciliate: **20**; in attesa del budget dei prossimi cicli **243**; protette da prove o verifiche preesistenti **10**. Tetto complessivo invariato: 80 schede per ciclo ISTAT.
+- Province amministrative riconciliate: **20**; in attesa del budget dei prossimi cicli **227**; protette da prove o verifiche preesistenti **14**. Tetto complessivo invariato: 80 schede per ciclo ISTAT.
 - Revisione manuale di pagine originali e Comuni ISTAT: attiva; **0** Comuni sistemati, **0** punti geografici incompatibili sospesi, **0** indicazioni stradali disabilitate in questo run. Nessuna verifica di mercato inventata.
 - Protezioni ancora attive nel sito statico DEV: **16** navigazioni sospese, **7** coordinate in quarantena, **16** schede verificate dopo esportazione. Questi sono totali attuali, non modifiche del singolo run.
 - Roma Municipio XIII (mappa pubblicata nel 2024): **2** coordinate ancora sospese e **2** percorsi bloccati. Totale protezioni con prova per tutte le fonti revisionate: **9** coordinate e **18** navigazioni. Nessuna apertura 2026 confermata dal documento storico.
@@ -28,11 +28,11 @@
 - Import generico tramite contratti di interi dataset: **6** fonti con licenza e identità approvate, **0** nuove schede in questo run, **0** calendari solo previsti, **0** indicazioni sospese. Nessuna singola apertura verificata automaticamente.
 - Aggiornamenti generici con prove per campo: **0** valori gestiti aggiornati e **149** schede con riscontri aggiornati o ritirati; identità conservate.
 - Dettagli Happings: **32** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
-- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **1489** gruppi settimanali con possibile sovrapposizione (**1778** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **909** gruppi provati dalla stessa fonte, **1063** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14483** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1148**; oltre soglia: **51**; senza data: **13096**.
+- Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **1483** gruppi settimanali con possibile sovrapposizione (**1772** righe candidate, non cancellate).
+- Miglioramento UX reversibile: **909** gruppi provati dalla stessa fonte, **1063** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14515** ID originali preservati.
+- Fonti datate negli ultimi 30 giorni: **1148**; oltre soglia: **51**; senza data: **13128**.
 - Aggiornamenti del solo dataset (non dei singoli mercati): **1374**, di cui recenti **1148**.
-- Date previste con origine vecchia/sconosciuta: **10274**.
+- Date previste con origine vecchia/sconosciuta: **10221**.
 - Metadati degli enti leggibili: **3/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_content_dates_are_unproven

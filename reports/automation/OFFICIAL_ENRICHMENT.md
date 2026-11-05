@@ -7,7 +7,7 @@ Coordinates can veto a join; they never establish market identity.
 No forecast, human verification, original source, or identity changed.
 
 - Held official rows screened: **1360**
-- Existing market cards with added information: **774**
+- Existing market cards with added information: **773**
 - Missing hours supplied from official regional source: **0**
 - Missing/vague venues supplied from the complete source: **0**
 - Managed venues updated from the same source ID: **0**
@@ -15,28 +15,26 @@ No forecast, human verification, original source, or identity changed.
 - exact_matches: 152
 - existing_hours_differ_from_official: 4
 - existing_hours_preserved: 152
-- field_observation_records_updated: 774
+- field_observation_records_updated: 773
 - held_unique_town_coordinates_conflict: 106
 - held_unique_town_daypart_or_place_disagrees: 212
 - held_unique_town_multiple_eligible_sources: 40
-- held_unique_town_no_eligible_source: 1186
+- held_unique_town_no_eligible_source: 1185
 - held_unique_town_raw_same_city_day_competitor: 30
 - held_unique_town_raw_unknown_weekday_competitor: 46
 - held_unique_town_target_identity_incomplete: 72
 - held_unique_town_unmanaged_indirizzo: 383
-- identity_contradiction_receipts_retired: 1
 - municipality_day_unique_matches: 625
 - observed_spelling_matches: 25
-- obsolete_source_claims_retired: 1
 - skipped_coordinates_conflict: 3
-- skipped_legacy_without_explicit_annual_weekday: 339
+- skipped_legacy_without_explicit_annual_weekday: 346
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
 - skipped_no_exact_legacy_market: 650
 - skipped_no_exact_location_or_day: 547
 - skipped_official_raw_identity_unproved_or_conflicting: 56
 - skipped_official_without_explicit_annual_weekday: 522
-- unique_town_targets_screened: 2317
+- unique_town_targets_screened: 2316
 
 ## Example exact matches
 

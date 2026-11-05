@@ -50,27 +50,27 @@
     ]
   },
   "field_evidence": {
-    "date": "2026-11-04",
+    "date": "2026-11-05",
     "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
     "metrics": {
-      "indirizzo:mancante": 1202,
-      "indirizzo:riscontrato_data_fonte_sconosciuta": 8038,
-      "indirizzo:riscontrato_fonte_recente": 1959,
-      "indirizzo:riscontro_da_aggiornare": 178,
-      "indirizzo:senza_riscontro_documentato": 3106,
-      "markets": 14483,
+      "indirizzo:mancante": 1206,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 8127,
+      "indirizzo:riscontrato_fonte_recente": 1972,
+      "indirizzo:riscontro_da_aggiornare": 180,
+      "indirizzo:senza_riscontro_documentato": 3030,
+      "markets": 14515,
       "markets_with_all_three_fields_source_supported": 1227,
-      "markets_with_recent_field_evidence": 2709,
-      "orario_testo:mancante": 1831,
-      "orario_testo:riscontrato_data_fonte_sconosciuta": 7486,
-      "orario_testo:riscontrato_fonte_recente": 2113,
+      "markets_with_recent_field_evidence": 2722,
+      "orario_testo:mancante": 1850,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 7083,
+      "orario_testo:riscontrato_fonte_recente": 2120,
       "orario_testo:riscontro_da_aggiornare": 762,
-      "orario_testo:senza_riscontro_documentato": 2291,
-      "ricorrenza_testo:mancante": 1205,
-      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 9176,
-      "ricorrenza_testo:riscontrato_fonte_recente": 2035,
-      "ricorrenza_testo:riscontro_da_aggiornare": 211,
-      "ricorrenza_testo:senza_riscontro_documentato": 1856
+      "orario_testo:senza_riscontro_documentato": 2700,
+      "ricorrenza_testo:mancante": 1231,
+      "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 9179,
+      "ricorrenza_testo:riscontrato_fonte_recente": 2036,
+      "ricorrenza_testo:riscontro_da_aggiornare": 217,
+      "ricorrenza_testo:senza_riscontro_documentato": 1852
     },
     "publishers": [
       {
@@ -382,15 +382,15 @@
       },
       {
         "indirizzo:riscontrato_data_fonte_sconosciuta": 17,
-        "indirizzo:riscontrato_fonte_recente": 226,
-        "indirizzo:riscontro_da_aggiornare": 135,
+        "indirizzo:riscontrato_fonte_recente": 224,
+        "indirizzo:riscontro_da_aggiornare": 137,
         "indirizzo:senza_riscontro_documentato": 64,
         "markets": 442,
         "markets_with_all_three_fields_source_supported": 67,
-        "markets_with_recent_field_evidence": 249,
-        "orario_testo:mancante": 154,
+        "markets_with_recent_field_evidence": 247,
+        "orario_testo:mancante": 153,
         "orario_testo:riscontrato_data_fonte_sconosciuta": 13,
-        "orario_testo:riscontrato_fonte_recente": 102,
+        "orario_testo:riscontrato_fonte_recente": 103,
         "orario_testo:riscontro_da_aggiornare": 173,
         "publisher": "cosedicasa.com",
         "ricorrenza_testo:mancante": 5,
@@ -432,9 +432,9 @@
       },
       {
         "indirizzo:mancante": 438,
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 14,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 91,
         "indirizzo:riscontrato_fonte_recente": 21,
-        "indirizzo:senza_riscontro_documentato": 1727,
+        "indirizzo:senza_riscontro_documentato": 1650,
         "markets": 2200,
         "markets_with_all_three_fields_source_supported": 4,
         "markets_with_recent_field_evidence": 45,
@@ -444,11 +444,11 @@
         "orario_testo:riscontro_da_aggiornare": 390,
         "orario_testo:senza_riscontro_documentato": 1420,
         "publisher": "eventiesagre.it",
-        "ricorrenza_testo:mancante": 710,
+        "ricorrenza_testo:mancante": 708,
         "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 635,
         "ricorrenza_testo:riscontrato_fonte_recente": 13,
-        "ricorrenza_testo:riscontro_da_aggiornare": 7,
-        "ricorrenza_testo:senza_riscontro_documentato": 835
+        "ricorrenza_testo:riscontro_da_aggiornare": 13,
+        "ricorrenza_testo:senza_riscontro_documentato": 831
       },
       {
         "indirizzo:senza_riscontro_documentato": 1,
@@ -516,9 +516,9 @@
         "markets_with_all_three_fields_source_supported": 242,
         "markets_with_recent_field_evidence": 1007,
         "orario_testo:mancante": 692,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 7423,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 7014,
         "orario_testo:riscontrato_fonte_recente": 995,
-        "orario_testo:senza_riscontro_documentato": 804,
+        "orario_testo:senza_riscontro_documentato": 1213,
         "publisher": "happings.com",
         "ricorrenza_testo:mancante": 47,
         "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 8524,
@@ -788,19 +788,20 @@
         "ricorrenza_testo:mancante": 3
       },
       {
-        "indirizzo:mancante": 48,
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 75,
-        "indirizzo:riscontrato_fonte_recente": 133,
-        "markets": 256,
+        "indirizzo:mancante": 52,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 87,
+        "indirizzo:riscontrato_fonte_recente": 148,
+        "indirizzo:senza_riscontro_documentato": 1,
+        "markets": 288,
         "markets_with_all_three_fields_source_supported": 17,
-        "markets_with_recent_field_evidence": 150,
-        "orario_testo:mancante": 117,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 49,
-        "orario_testo:riscontrato_fonte_recente": 90,
+        "markets_with_recent_field_evidence": 165,
+        "orario_testo:mancante": 137,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 55,
+        "orario_testo:riscontrato_fonte_recente": 96,
         "publisher": "vintagery.it",
-        "ricorrenza_testo:mancante": 221,
-        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 4,
-        "ricorrenza_testo:riscontrato_fonte_recente": 27,
+        "ricorrenza_testo:mancante": 249,
+        "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 7,
+        "ricorrenza_testo:riscontrato_fonte_recente": 28,
         "ricorrenza_testo:senza_riscontro_documentato": 4
       },
       {
@@ -836,8 +837,8 @@
   },
   "metrics": {
     "dataset_updated_not_specific_market": 1374,
-    "forecast_from_stale_or_unknown_source": 10274,
-    "import_within_30d": 657,
+    "forecast_from_stale_or_unknown_source": 10221,
+    "import_within_30d": 689,
     "legacy_update_timestamp_without_source_date": 12561,
     "recent_dataset_only_update": 1148,
     "source_date_31_to_90d": 78,
@@ -845,15 +846,15 @@
     "source_date_91_to_365d": 109,
     "source_date_from_declared_source_content": 1387,
     "source_date_outside_limit": 51,
-    "source_date_unknown": 13096,
+    "source_date_unknown": 13128,
     "source_date_within_30d": 1148,
-    "source_read_within_30d": 13633,
-    "total": 14483,
-    "with_any_future_date": 11794,
-    "with_forecast_dates": 11220,
-    "with_import_timestamp": 657,
-    "with_source_read_timestamp": 13633,
-    "without_documented_verification": 14483,
+    "source_read_within_30d": 13665,
+    "total": 14515,
+    "with_any_future_date": 11756,
+    "with_forecast_dates": 11167,
+    "with_import_timestamp": 689,
+    "with_source_read_timestamp": 13665,
+    "without_documented_verification": 14515,
     "without_import_timestamp": 13826,
     "without_source_read_timestamp": 850
   },
@@ -880,7 +881,7 @@
       "status": "metadata_checked"
     }
   ],
-  "reference_date": "2026-11-04",
+  "reference_date": "2026-11-05",
   "safe_for_automatic_quality_promotion": true,
   "schema": 1,
   "snapshot_measurement_not_event_verification": true,
@@ -888,10 +889,10 @@
     "future": 0,
     "historical": 239,
     "recent": 1148,
-    "unknown": 13096
+    "unknown": 13128
   },
   "source_date_unknown_reasons": {
-    "source_content_date_unproven": 13096
+    "source_content_date_unproven": 13128
   },
   "source_domains_top": [
     {
@@ -911,7 +912,7 @@
       "domain": "www.cosedicasa.com"
     },
     {
-      "count": 256,
+      "count": 288,
       "domain": "vintagery.it"
     },
     {
@@ -954,7 +955,7 @@
         "content_date": "2026-01-27",
         "held_reasons": {
           "multiple_or_missing_source_venues": 47,
-          "no_single_explicit_annual_weekday": 29
+          "no_single_explicit_annual_weekday": 31
         },
         "layout_complete": true,
         "matched_markets": 4,
@@ -969,8 +970,8 @@
           "rows_with_numeric_hours": 6,
           "unique_source_row_ids": 6
         },
-        "read_on": "2026-11-04",
-        "sha256": "2f921e5db21999cdd9da0192b56f9b59a8b2ff343cf2da808582752fbf79ff5b",
+        "read_on": "2026-11-05",
+        "sha256": "47662f00c3a3ba87bffcd29386874484c75f98f907125aadf724bb8679b31d1c",
         "source_id": "bassa-romagna-farmers",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
@@ -980,7 +981,7 @@
         "content_date": "2026-10-20",
         "held_reasons": {
           "multiple_or_missing_source_venues": 35,
-          "no_single_explicit_annual_weekday": 29,
+          "no_single_explicit_annual_weekday": 31,
           "venue_identity_not_established": 5
         },
         "layout_complete": true,
@@ -996,8 +997,8 @@
           "rows_with_numeric_hours": 0,
           "unique_source_row_ids": 20
         },
-        "read_on": "2026-11-04",
-        "sha256": "e99a57726e75144e5b0cebd4f36caaeff1a649ddd3478c83ffa5019dc8c5a9fb",
+        "read_on": "2026-11-05",
+        "sha256": "8eefd8b491d0bf683fe2a3f9baf6cbd1d7d46c28bd0d41e9481e025aac4d9fb9",
         "source_id": "bassa-romagna-weekly",
         "status": "retrieved",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
@@ -1015,29 +1016,29 @@
         "official_adapter": 1221,
         "roma_d881_existing_inventory": 70,
         "source_contract_active": 160,
-        "source_layout_needed": 414
+        "source_layout_needed": 446
       },
       "market_layout_statuses": {
         "disabled": 62,
         "supported": 13699,
-        "unsupported": 722
+        "unsupported": 754
       },
       "market_read_statuses": {
         "disabled": 62,
         "not_observed": 2642,
-        "not_read": 722,
-        "not_selected": 8687,
+        "not_read": 754,
+        "not_selected": 8500,
         "publisher_source_held_for_review": 14,
-        "retrieved": 2356
+        "retrieved": 2543
       },
-      "markets": 14483,
+      "markets": 14515,
       "schema": 1,
       "secondary_corroboration": {
         "counts_describe": "comparison_eligibility",
         "eligible_markets": 651,
         "market_read_statuses": {
-          "not_selected": 586,
-          "retrieved": 65
+          "not_selected": 459,
+          "retrieved": 192
         },
         "mode": "existing_address_exact_match",
         "publisher": "happings.com",
@@ -1045,7 +1046,7 @@
       },
       "source_admission_registry": "valid",
       "source_contract_configuration": "valid",
-      "unique_primary_urls": 6274
+      "unique_primary_urls": 6306
     }
   },
   "source_summaries": [
@@ -1601,14 +1602,14 @@
     {
       "domain": "www.cosedicasa.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 116,
+        "forecast_from_stale_or_unknown_source": 103,
         "import_within_30d": 10,
         "legacy_update_timestamp_without_source_date": 432,
         "source_date_unknown": 442,
         "source_read_within_30d": 440,
         "total": 442,
-        "with_any_future_date": 362,
-        "with_forecast_dates": 116,
+        "with_any_future_date": 364,
+        "with_forecast_dates": 103,
         "with_import_timestamp": 10,
         "with_source_read_timestamp": 440,
         "without_documented_verification": 442,
@@ -1673,14 +1674,14 @@
     {
       "domain": "www.eventiesagre.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 743,
+        "forecast_from_stale_or_unknown_source": 742,
         "import_within_30d": 3,
         "legacy_update_timestamp_without_source_date": 2197,
         "source_date_unknown": 2200,
         "source_read_within_30d": 2200,
         "total": 2200,
-        "with_any_future_date": 746,
-        "with_forecast_dates": 743,
+        "with_any_future_date": 745,
+        "with_forecast_dates": 742,
         "with_import_timestamp": 3,
         "with_source_read_timestamp": 2200,
         "without_documented_verification": 2200,
@@ -1798,7 +1799,7 @@
     {
       "domain": "www.happings.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 9358,
+        "forecast_from_stale_or_unknown_source": 9318,
         "import_within_30d": 267,
         "legacy_update_timestamp_without_source_date": 9647,
         "source_date_31_to_90d": 1,
@@ -1806,8 +1807,8 @@
         "source_date_unknown": 9913,
         "source_read_within_30d": 9227,
         "total": 9914,
-        "with_any_future_date": 9601,
-        "with_forecast_dates": 9358,
+        "with_any_future_date": 9560,
+        "with_forecast_dates": 9318,
         "with_import_timestamp": 267,
         "with_source_read_timestamp": 9227,
         "without_documented_verification": 9914,
@@ -2280,16 +2281,16 @@
     {
       "domain": "vintagery.it",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 27,
-        "import_within_30d": 256,
-        "source_date_unknown": 256,
-        "source_read_within_30d": 256,
-        "total": 256,
-        "with_any_future_date": 109,
-        "with_forecast_dates": 27,
-        "with_import_timestamp": 256,
-        "with_source_read_timestamp": 256,
-        "without_documented_verification": 256
+        "forecast_from_stale_or_unknown_source": 28,
+        "import_within_30d": 288,
+        "source_date_unknown": 288,
+        "source_read_within_30d": 288,
+        "total": 288,
+        "with_any_future_date": 111,
+        "with_forecast_dates": 28,
+        "with_import_timestamp": 288,
+        "with_source_read_timestamp": 288,
+        "without_documented_verification": 288
       },
       "publisher": "vintagery.it"
     },

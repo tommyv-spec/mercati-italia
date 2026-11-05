@@ -1,157 +1,69 @@
 {
   "calendar_sources_quarantined": 0,
   "changes": 80,
-  "checked_ids": 14451,
+  "checked_ids": 14483,
   "city_replacements": 60,
-  "contaminated_titles_repaired": 4,
+  "contaminated_titles_repaired": 0,
   "forecast_dates_removed": 0,
   "market_identities_deleted": 0,
-  "province_pending": 243,
-  "province_protected": 10,
+  "province_pending": 227,
+  "province_protected": 14,
   "province_replacements": 20,
   "publisher_urls_or_human_verifications_changed": 0,
   "samples": [
     {
       "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da",
-        "nome",
-        "nome_originale"
+        "provincia",
+        "riconciliazione_provincia"
       ],
-      "new_city": "Capistrano",
-      "old_city": "Capristrano",
-      "slug": "mercato-settimanale-di-capristrano-capristrano-venerdi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Francavilla Angitola",
-      "old_city": "Francavilla",
-      "slug": "mercato-settimanale-di-francavilla-francavilla-sabato"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da",
-        "nome",
-        "nome_originale"
-      ],
-      "new_city": "Isola di Capo Rizzuto",
-      "old_city": "Isola Capo Rizzuto",
-      "slug": "mercato-settimanale-di-isola-capo-rizzuto-isola-capo-rizzuto-lunedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da",
-        "nome",
-        "nome_originale"
-      ],
-      "new_city": "Limbadi",
-      "old_city": "Limbade",
-      "slug": "mercato-settimanale-di-limbade-limbade-venerdi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Monterosso Calabro",
-      "old_city": "Monterosso",
-      "slug": "mercato-settimanale-di-monterosso-monterosso-martedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da",
-        "nome",
-        "nome_originale"
-      ],
-      "new_city": "Nardodipace",
-      "old_city": "Nardo di Pace",
-      "slug": "mercato-settimanale-di-nardo-di-pace-nardo-di-pace-venerdi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "San Costantino Calabro",
-      "old_city": "San Costantino",
-      "slug": "mercato-settimanale-di-san-costantino-san-costantino-martedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "San Gregorio d'Ippona",
-      "old_city": "San Gregorio",
-      "slug": "mercato-settimanale-di-san-gregorio-san-gregorio-martedi"
+      "new_city": "Budrio",
+      "old_city": "Budrio",
+      "slug": "mercatino-antiquariato-e-usato-di-budrio-incanti-e-mercanti-centro-storico-e-pia"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Borgo Val di Taro",
-      "old_city": "Borgo Val di Taro",
-      "slug": "mercatino-antiquariato-e-usato-di-borgo-val-di-taro-viale-bottego-borgo-val-di-t"
+      "new_city": "Cadeo",
+      "old_city": "Cadeo",
+      "slug": "mercatino-antiquariato-e-usato-di-cadeo-mercatino-degli-hobbisti-lungo-il-contro"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Aviano",
-      "old_city": "Aviano",
-      "slug": "mercatino-antiquariato-e-usato-di-aviano-anticamente-ad-aviano-piazza-duomo-via"
+      "new_city": "Caorso",
+      "old_city": "Caorso",
+      "slug": "mercatino-antiquariato-e-usato-di-caorso-mercatino-storico-con-hobbisti-ricordi"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Anzio",
-      "old_city": "Anzio",
-      "slug": "mercatino-antiquariato-e-usato-di-anzio-piazza-garibaldi-anzio"
+      "new_city": "Castel di Casio",
+      "old_city": "Castel di Casio",
+      "slug": "mercatino-antiquariato-e-usato-di-castel-di-casio-la-soffitta-della-torre-centro"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Anzio",
-      "old_city": "Anzio",
-      "slug": "mercatino-antiquariato-e-usato-di-anzio-via-porto-neroniano-anzio"
+      "new_city": "Cassacco",
+      "old_city": "Cassacco",
+      "slug": "mercatino-antiquariato-e-usato-di-cassacco-centro-commerciale-julia-center-strad"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Aprilia",
-      "old_city": "Aprilia",
-      "slug": "mercatino-antiquariato-e-usato-di-aprilia-il-mercatino-di-aprilia-piazza-roma-vi"
-    },
-    {
-      "changes": [
-        "provincia",
-        "riconciliazione_provincia"
-      ],
-      "new_city": "Ariccia",
-      "old_city": "Ariccia",
-      "slug": "mercatino-antiquariato-e-usato-di-ariccia-corso-garibaldi-piazza-repubblica-piaz"
+      "new_city": "Cassino",
+      "old_city": "Cassino",
+      "slug": "mercatino-antiquariato-e-usato-di-cassino-piazza-labriola-e-corso-della-repubbli"
     },
     {
       "changes": [
@@ -160,8 +72,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CAMPO MARZIO",
-      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-sabato"
+      "old_city": "ESQUILINO",
+      "slug": "mercato-settimanale-di-esquilino-esquilino-giovedi"
     },
     {
       "changes": [
@@ -170,8 +82,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CAMPO MARZIO",
-      "slug": "mercato-settimanale-di-campo-marzio-campo-marzio-venerdi"
+      "old_city": "ESQUILINO",
+      "slug": "mercato-settimanale-di-esquilino-esquilino-martedi"
     },
     {
       "changes": [
@@ -180,8 +92,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL BERTONE",
-      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-giovedi"
+      "old_city": "ESQUILINO",
+      "slug": "mercato-settimanale-di-esquilino-esquilino-mercoledi"
     },
     {
       "changes": [
@@ -190,8 +102,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL BERTONE",
-      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-lunedi"
+      "old_city": "ESQUILINO",
+      "slug": "mercato-settimanale-di-esquilino-esquilino-sabato"
     },
     {
       "changes": [
@@ -200,8 +112,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL BERTONE",
-      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-martedi"
+      "old_city": "ESQUILINO",
+      "slug": "mercato-settimanale-di-esquilino-esquilino-venerdi"
     },
     {
       "changes": [
@@ -210,8 +122,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL BERTONE",
-      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-mercoledi"
+      "old_city": "FIDENE",
+      "slug": "mercato-settimanale-di-fidene-fidene-giovedi"
     },
     {
       "changes": [
@@ -220,8 +132,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL BERTONE",
-      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-sabato"
+      "old_city": "FIDENE",
+      "slug": "mercato-settimanale-di-fidene-fidene-lunedi"
     },
     {
       "changes": [
@@ -230,8 +142,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL BERTONE",
-      "slug": "mercato-settimanale-di-casal-bertone-casal-bertone-venerdi"
+      "old_city": "FIDENE",
+      "slug": "mercato-settimanale-di-fidene-fidene-martedi"
     },
     {
       "changes": [
@@ -240,8 +152,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL DE PAZZI",
-      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-giovedi"
+      "old_city": "FIDENE",
+      "slug": "mercato-settimanale-di-fidene-fidene-mercoledi"
     },
     {
       "changes": [
@@ -250,8 +162,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL DE PAZZI",
-      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-lunedi"
+      "old_city": "FIDENE",
+      "slug": "mercato-settimanale-di-fidene-fidene-sabato"
     },
     {
       "changes": [
@@ -260,8 +172,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL DE PAZZI",
-      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-martedi"
+      "old_city": "FIDENE",
+      "slug": "mercato-settimanale-di-fidene-fidene-venerdi"
     },
     {
       "changes": [
@@ -270,8 +182,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL DE PAZZI",
-      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-mercoledi"
+      "old_city": "FLAMINIO I",
+      "slug": "mercato-settimanale-di-flaminio-i-flaminio-i"
     },
     {
       "changes": [
@@ -280,8 +192,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL DE PAZZI",
-      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-sabato"
+      "old_city": "FLAMINIO II",
+      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii-giovedi"
     },
     {
       "changes": [
@@ -290,8 +202,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASAL DE PAZZI",
-      "slug": "mercato-settimanale-di-casal-de-pazzi-casal-de-pazzi-venerdi"
+      "old_city": "FLAMINIO II",
+      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii-lunedi"
     },
     {
       "changes": [
@@ -300,8 +212,8 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASILINO",
-      "slug": "mercato-settimanale-di-casilino-casilino"
+      "old_city": "FLAMINIO II",
+      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii-martedi"
     },
     {
       "changes": [
@@ -310,8 +222,88 @@
         "localita_ricostruita_da"
       ],
       "new_city": "Roma",
-      "old_city": "CASILINO",
-      "slug": "mercato-settimanale-di-casilino-casilino-giovedi"
+      "old_city": "FLAMINIO II",
+      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii-mercoledi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "FLAMINIO II",
+      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii-sabato"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "FLAMINIO II",
+      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii-venerdi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "GRANO",
+      "slug": "mercato-settimanale-di-grano-grano-giovedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "GRANO",
+      "slug": "mercato-settimanale-di-grano-grano-lunedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "GRANO",
+      "slug": "mercato-settimanale-di-grano-grano-martedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "GRANO",
+      "slug": "mercato-settimanale-di-grano-grano-mercoledi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "GRANO",
+      "slug": "mercato-settimanale-di-grano-grano-sabato"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "GRANO",
+      "slug": "mercato-settimanale-di-grano-grano-venerdi"
     }
   ],
   "schema": 1,

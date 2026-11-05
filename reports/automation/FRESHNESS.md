@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-11-04**.
-- Schede totali: **14,483**.
+- Data della misura: **2026-11-05**.
+- Schede totali: **14,515**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **657**.
-- Lettura della fonte registrata entro 30 giorni: **13,633**.
+- Importazione registrata entro 30 giorni: **689**.
+- Lettura della fonte registrata entro 30 giorni: **13,665**.
 - Fonte datata entro 30 giorni: **1,148**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,148**.
 - Schede con aggiornamento soltanto del dataset: **1,374**.
 - Fonte datata tra 31 e 365 giorni: **187**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **13,096**.
+- Schede con età del contenuto della fonte non comprovata: **13,128**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,220**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,274**.
+- Schede con date future previste: **11,167**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,221**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -131,7 +131,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 1 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
-| vintagery.it | vintagery.it | 256 | 0 | 0 | 256 | 256 |
+| vintagery.it | vintagery.it | 288 | 0 | 0 | 288 | 288 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -141,13 +141,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1202 | 3106 | 1959 | 8038 | 178 |
-| Orari | 1831 | 2291 | 2113 | 7486 | 762 |
-| Giorni | 1205 | 1856 | 2035 | 9176 | 211 |
+| Sede | 1206 | 3030 | 1972 | 8127 | 180 |
+| Orari | 1850 | 2700 | 2120 | 7083 | 762 |
+| Giorni | 1231 | 1852 | 2036 | 9179 | 217 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6274. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6306. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|

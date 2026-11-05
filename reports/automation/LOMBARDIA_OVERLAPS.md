@@ -7,8 +7,7 @@ Nessun record storico viene cancellato o dichiarato verificato.
 - Sorgenti Lombardia: **1360**.
 - Importabili senza conflitto esatto: **1127**.
 - Da rivedere: **233**.
-- existing_lombardia_identity: 1126
-- no_exact_venue_overlap: 1
+- existing_lombardia_identity: 1127
 - quarantined_same_location_same_weekday: 99
 - quarantined_same_location_unknown_or_conflicting_schedule: 134
 
