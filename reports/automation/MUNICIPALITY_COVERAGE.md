@@ -4,9 +4,9 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **5,066** (64.2%).
-- Comuni senza schede in catalogo: **2,828**.
-- Schede esistenti conservate: **14,483**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **5,067** (64.2%).
+- Comuni senza schede in catalogo: **2,827**.
+- Schede esistenti conservate: **14,515**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
@@ -15,7 +15,7 @@ I risultati indicano dove cercare fonti comunali o regionali affidabili.
 | Calabria | 404 | 196 | 208 | 48.5% |
 | Sicilia | 391 | 202 | 189 | 51.7% |
 | Sardegna | 377 | 200 | 177 | 53.1% |
-| Trentino-Alto Adige | 282 | 123 | 159 | 43.6% |
+| Trentino-Alto Adige | 282 | 124 | 158 | 44.0% |
 | Liguria | 234 | 111 | 123 | 47.4% |
 | Abruzzo | 305 | 193 | 112 | 63.3% |
 | Basilicata | 131 | 19 | 112 | 14.5% |
