@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-11-05**.
-- Schede totali: **14,515**.
+- Data della misura: **2026-11-06**.
+- Schede totali: **14,548**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **689**.
-- Lettura della fonte registrata entro 30 giorni: **13,665**.
-- Fonte datata entro 30 giorni: **1,148**.
-- Di cui solo aggiornamento dataset, non del singolo mercato: **1,148**.
-- Schede con aggiornamento soltanto del dataset: **1,374**.
-- Fonte datata tra 31 e 365 giorni: **187**.
+- Importazione registrata entro 30 giorni: **722**.
+- Lettura della fonte registrata entro 30 giorni: **13,698**.
+- Fonte datata entro 30 giorni: **1,147**.
+- Di cui solo aggiornamento dataset, non del singolo mercato: **1,147**.
+- Schede con aggiornamento soltanto del dataset: **1,375**.
+- Fonte datata tra 31 e 365 giorni: **189**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **13,128**.
+- Schede con età del contenuto della fonte non comprovata: **13,160**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,167**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,221**.
+- Schede con date future previste: **11,129**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,182**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -46,8 +46,8 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | Comune di Firenze - FeelFlorence (CC BY 4.0) | www.feelflorence.it | 4 | 0 | 4 | 0 | 4 |
 | Comune di Milano - Open Data (CC BY 4.0) | dati.comune.milano.it | 85 | 0 | 85 | 0 | 85 |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | opendatahub.com | 14 | 14 | 0 | 0 | 14 |
-| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1129 | 1129 | 0 | 0 | 1128 |
-| Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | www.regione.veneto.it | 8 | 0 | 8 | 0 | 8 |
+| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1129 | 1128 | 1 | 0 | 1128 |
+| Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | www.regione.veneto.it | 9 | 0 | 9 | 0 | 9 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | www.regione.veneto.it | 94 | 0 | 94 | 0 | 94 |
 | Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata) | www.comune.roma.it | 5 | 0 | 5 | 0 | 0 |
 | algherohospitality.it | www.algherohospitality.it | 7 | 0 | 0 | 7 | 0 |
@@ -131,7 +131,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 1 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
-| vintagery.it | vintagery.it | 288 | 0 | 0 | 288 | 288 |
+| vintagery.it | vintagery.it | 320 | 0 | 0 | 320 | 320 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -141,13 +141,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1206 | 3030 | 1972 | 8127 | 180 |
-| Orari | 1850 | 2700 | 2120 | 7083 | 762 |
-| Giorni | 1231 | 1852 | 2036 | 9179 | 217 |
+| Sede | 1211 | 3028 | 1988 | 8139 | 182 |
+| Orari | 1864 | 3066 | 2129 | 6726 | 763 |
+| Giorni | 1258 | 1853 | 2039 | 9181 | 217 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6306. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6338. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|

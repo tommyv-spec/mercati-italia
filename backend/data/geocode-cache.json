@@ -16,6 +16,11 @@
    "queried_on": "2026-10-25",
    "query": "ANTICO MERCATO BOSINO, Varese, Italia"
   },
+  "aree autorizzate del centro cittadino|sciacca|ag": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-06",
+   "query": "Aree autorizzate del centro cittadino, Sciacca, Italia"
+  },
   "bastioni porta nuova|milano|mi": {
    "class": "highway",
    "lat": 45.479678,
@@ -381,6 +386,11 @@
    "query": "Corso Mazzini, Cava de' Tirreni, Italia",
    "type": "tertiary"
   },
+  "corso nazario sauro|giulianova|te": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-06",
+   "query": "Corso Nazario Sauro, Giulianova, Italia"
+  },
   "corso porta reno|ferrara|fe": {
    "class": "highway",
    "lat": 44.834355,
@@ -455,6 +465,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-11-03",
    "query": "Corso Vittorio Emanuele, Gioia del Colle, Italia"
+  },
+  "corso vittorio emanuele|noto|sr": {
+   "class": "highway",
+   "lat": 36.890782,
+   "lng": 15.071058,
+   "name": "Corso Vittorio Emanuele, Piano Alto, Noto, Siracusa, Sicilia, 96017, Italia",
+   "osm": "way/698048465",
+   "queried_on": "2026-11-06",
+   "query": "Corso Vittorio Emanuele, Noto, Italia",
+   "type": "pedestrian"
   },
   "donatello|cuneo|cn": {
    "miss": "solo_localita",
@@ -620,6 +640,16 @@
    "queried_on": "2026-10-27",
    "query": "Largo Cardinale Lercaro, Bologna, Italia",
    "type": "residential"
+  },
+  "largo della fontanella di borghese|roma|rm": {
+   "class": "place",
+   "lat": 41.903673,
+   "lng": 12.476717,
+   "name": "Largo della Fontanella di Borghese, Campo Marzio, Municipio Roma I, Roma, Roma Capitale, Lazio, 00186, Italia",
+   "osm": "node/6938551404",
+   "queried_on": "2026-11-06",
+   "query": "Largo della Fontanella di Borghese, Roma, Italia",
+   "type": "square"
   },
   "largo di s silvia|roma|rm": {
    "class": "highway",
@@ -811,6 +841,16 @@
    "query": "LUNGOMARE Dante Alighieri, Trapani, Italia",
    "type": "tertiary"
   },
+  "lungomare dante|alghero|ss": {
+   "class": "highway",
+   "lat": 40.553967,
+   "lng": 8.315944,
+   "name": "Lungomare Dante Alighieri, Mercede, l'Alguer/Alghero, Tàttari/Sassari, Sardigna/Sardegna, 07041, Italia",
+   "osm": "way/80178860",
+   "queried_on": "2026-11-06",
+   "query": "Lungomare Dante, Alghero, Italia",
+   "type": "pedestrian"
+  },
   "lungomare europa|soverato|cz": {
    "class": "highway",
    "lat": 38.687995,
@@ -990,6 +1030,16 @@
    "queried_on": "2026-10-25",
    "query": "MONTE GRAPPA, Cusano Milanino, Italia",
    "type": "residential"
+  },
+  "mostra d oltremare|napoli|na": {
+   "class": "building",
+   "lat": 40.826194,
+   "lng": 14.186957,
+   "name": "Palacongressi Mostra d'Oltremare, Viale Antonio Pigafetta, Rione Cavalleggeri Aosta, Fuorigrotta, Municipalità 10, Napoli, Campania, 80125, Italia",
+   "osm": "way/225546330",
+   "queried_on": "2026-11-06",
+   "query": "Mostra d'Oltremare, Napoli, Italia",
+   "type": "service"
   },
   "nuovo centro notarbartolo|palermo|pa": {
    "miss": "nessun_risultato",
@@ -1891,6 +1941,16 @@
    "query": "piazza CRATI, Roma, Italia",
    "type": "residential"
   },
+  "piazza cristoforo colombo|castellammare di stabia|na": {
+   "class": "place",
+   "lat": 40.692666,
+   "lng": 14.477162,
+   "name": "Piazza Cristoforo Colombo, Caporivo, Castellammare di Stabia, Napoli, Campania, Italia",
+   "osm": "relation/5178935",
+   "queried_on": "2026-11-06",
+   "query": "Piazza Cristoforo Colombo, Castellammare di Stabia, Italia",
+   "type": "square"
+  },
   "piazza d armi|chivasso|to": {
    "miss": "via_diversa",
    "queried_on": "2026-10-29",
@@ -2156,6 +2216,21 @@
    "query": "PIAZZA DEL COMUNE, Cremona, Italia",
    "type": "pedestrian"
   },
+  "piazza del duca|senigallia|an": {
+   "class": "place",
+   "lat": 43.715023,
+   "lng": 13.21968,
+   "name": "Piazza del Duca, Rione Porto, Senigallia, Ancona, Marche, Italia",
+   "osm": "way/22733195",
+   "queried_on": "2026-11-06",
+   "query": "Piazza del Duca, Senigallia, Italia",
+   "type": "square"
+  },
+  "piazza del duomo|avezzano|aq": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-06",
+   "query": "Piazza del Duomo, Avezzano, Italia"
+  },
   "piazza del duomo|pistoia|pt": {
    "class": "highway",
    "lat": 43.933641,
@@ -2221,6 +2296,26 @@
    "query": "PIAZZA del Popolo, Avigliana, Italia",
    "type": "residential"
   },
+  "piazza del popolo|copparo|fe": {
+   "class": "highway",
+   "lat": 44.893755,
+   "lng": 11.828137,
+   "name": "Piazza del Popolo, Parolino, Ponte San Pietro, Copparo, Unione Terre e Fiumi, Ferrara, Emilia-Romagna, 44034, Italia",
+   "osm": "way/100262027",
+   "queried_on": "2026-11-06",
+   "query": "Piazza del Popolo, Copparo, Italia",
+   "type": "tertiary"
+  },
+  "piazza del popolo|fermo|fm": {
+   "class": "highway",
+   "lat": 43.161242,
+   "lng": 13.718326,
+   "name": "Piazza del Popolo, Villa Vitali, Fermo, Marche, 63900, Italia",
+   "osm": "way/563497894",
+   "queried_on": "2026-11-06",
+   "query": "Piazza del Popolo, Fermo, Italia",
+   "type": "pedestrian"
+  },
   "piazza del popolo|latina|lt": {
    "class": "place",
    "lat": 41.467316,
@@ -2260,6 +2355,11 @@
    "queried_on": "2026-10-30",
    "query": "PIAZZA del Popolo, Verona, Italia",
    "type": "pedestrian"
+  },
+  "piazza dell arenella|cosenza|cs": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-06",
+   "query": "Piazza dell'Arenella, Cosenza, Italia"
   },
   "piazza della chiesa|cercivento|ud": {
    "miss": "nessun_risultato",
@@ -2731,6 +2831,11 @@
    "query": "Piazza Eleonora d'Arborea, Oristano, Italia",
    "type": "square"
   },
+  "piazza emile chanoux|aosta|ao": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-06",
+   "query": "Piazza Émile Chanoux, Aosta, Italia"
+  },
   "piazza emilia|ferrara|fe": {
    "class": "highway",
    "lat": 44.86325,
@@ -2790,6 +2895,16 @@
    "queried_on": "2026-10-31",
    "query": "Piazza Esperanto, Grosseto, Italia",
    "type": "parking"
+  },
+  "piazza europa|castell arquato|pc": {
+   "class": "place",
+   "lat": 44.852555,
+   "lng": 9.870104,
+   "name": "Piazza Europa, Castell'Arquato, Strada per Bacedasco, Castell'Arquato, Piacenza, Emilia-Romagna, Italia",
+   "osm": "way/293408952",
+   "queried_on": "2026-11-06",
+   "query": "Piazza Europa, Castell'Arquato, Italia",
+   "type": "square"
   },
   "piazza europa|collecchio|pr": {
    "class": "place",
@@ -3100,6 +3215,16 @@
    "queried_on": "2026-10-29",
    "query": "Piazza Giacomo Manzù, Clusone, Italia",
    "type": "pedestrian"
+  },
+  "piazza giacomo matteotti|buonconvento|si": {
+   "class": "place",
+   "lat": 43.137575,
+   "lng": 11.481542,
+   "name": "Piazza Giacomo Matteotti, Quartiere Centro Storico, Buonconvento, Siena, Toscana, Italia",
+   "osm": "way/1186443961",
+   "queried_on": "2026-11-06",
+   "query": "Piazza Giacomo Matteotti, Buonconvento, Italia",
+   "type": "square"
   },
   "piazza giacomo matteotti|genova|ge": {
    "class": "highway",
@@ -4081,6 +4206,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Pio X, Villa del Conte, Italia"
   },
+  "piazza pisanelli|tricase|le": {
+   "class": "highway",
+   "lat": 39.931116,
+   "lng": 18.361354,
+   "name": "Piazza Giuseppe Pisanelli, Tricase, Lecce, Puglia, 73039, Italia",
+   "osm": "way/236115098",
+   "queried_on": "2026-11-06",
+   "query": "Piazza Pisanelli, Tricase, Italia",
+   "type": "residential"
+  },
   "piazza primo maggio|udine|ud": {
    "class": "place",
    "lat": 46.06596,
@@ -4931,6 +5066,16 @@
    "query": "Piazza Vittorio Veneto, Sona, Italia",
    "type": "pedestrian"
   },
+  "piazza vittorio veneto|termoli|cb": {
+   "class": "place",
+   "lat": 42.00099,
+   "lng": 14.994809,
+   "name": "Piazza Vittorio Veneto, Termoli, Campobasso, Molise, 86039, Italia",
+   "osm": "relation/9175531",
+   "queried_on": "2026-11-06",
+   "query": "Piazza Vittorio Veneto, Termoli, Italia",
+   "type": "square"
+  },
   "piazza vittorio veneto|torino|to": {
    "class": "place",
    "lat": 45.065145,
@@ -5171,6 +5316,11 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZALE SANTUARIO, Urgnano, Italia"
   },
+  "piazzale stazione ferroviaria pescara porta nuova|pescara|pe": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-06",
+   "query": "Piazzale Stazione Ferroviaria Pescara Porta Nuova, Pescara, Italia"
+  },
   "piazzale verdi|lucca|lu": {
    "class": "highway",
    "lat": 43.842863,
@@ -5370,6 +5520,21 @@
    "queried_on": "2026-10-27",
    "query": "Strada Provinciale, Codevilla, Italia",
    "type": "secondary"
+  },
+  "strada provinciale|sannicandro di bari|ba": {
+   "class": "highway",
+   "lat": 40.960826,
+   "lng": 16.811622,
+   "name": "Strada Provinciale Acquaviva Sannicandro, Sannicandro di Bari, Bari, Puglia, 70028, Italia",
+   "osm": "way/175194406",
+   "queried_on": "2026-11-06",
+   "query": "Strada Provinciale, Sannicandro di Bari, Italia",
+   "type": "secondary"
+  },
+  "strada statale|curon venosta|bz": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-06",
+   "query": "Strada Statale, Curon Venosta, Italia"
   },
   "teatro cartiere carrara|firenze|fi": {
    "class": "amenity",
@@ -6536,6 +6701,11 @@
    "queried_on": "2026-10-25",
    "query": "Via Euterpe, Rimini, Italia"
   },
+  "via f sacchetti|roma|rm": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-06",
+   "query": "VIA F. SACCHETTI, Roma, Italia"
+  },
   "via fabiani|vicenza|vi": {
    "class": "highway",
    "lat": 45.543975,
@@ -7185,6 +7355,16 @@
    "queried_on": "2026-11-04",
    "query": "Via Madonna delle Grazie, Valle di Maddaloni, Italia",
    "type": "residential"
+  },
+  "via maestri comacini|como|co": {
+   "class": "highway",
+   "lat": 45.811496,
+   "lng": 9.083844,
+   "name": "Via Maestri Comacini, Città murata, Sant'Agostino, Como, Lombardia, 22100, Italia",
+   "osm": "way/25070798",
+   "queried_on": "2026-11-06",
+   "query": "Via Maestri Comacini, Como, Italia",
+   "type": "pedestrian"
   },
   "via maffei|sondrio|so": {
    "class": "highway",
@@ -8251,6 +8431,16 @@
    "query": "Via S. Rocco, Monza, Italia",
    "type": "residential"
   },
+  "via salvatore averna|caltanissetta|cl": {
+   "class": "highway",
+   "lat": 37.475904,
+   "lng": 14.057398,
+   "name": "Via Salvatore Averna, San Luca, Caltanissetta, Sicilia, 93100, Italia",
+   "osm": "way/94125775",
+   "queried_on": "2026-11-06",
+   "query": "Via Salvatore Averna, Caltanissetta, Italia",
+   "type": "tertiary"
+  },
   "via san carlo|caserta|ce": {
    "class": "highway",
    "lat": 41.07364,
@@ -8334,6 +8524,16 @@
    "osm": "way/27285800",
    "queried_on": "2026-10-25",
    "query": "Via Sant'Igino Papa, Roma, Italia",
+   "type": "residential"
+  },
+  "via santa cecilia|dervio|lc": {
+   "class": "highway",
+   "lat": 46.070014,
+   "lng": 9.307098,
+   "name": "Via Santa Cecilia, Castello, Dervio, Lecco, Lombardia, 23824, Italia",
+   "osm": "way/110328574",
+   "queried_on": "2026-11-06",
+   "query": "Via Santa Cecilia, Dervio, Italia",
    "type": "residential"
   },
   "via santa croce|milano|mi": {

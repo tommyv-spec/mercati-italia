@@ -27,7 +27,7 @@ No forecast, human verification, original source, or identity changed.
 - municipality_day_unique_matches: 625
 - observed_spelling_matches: 25
 - skipped_coordinates_conflict: 3
-- skipped_legacy_without_explicit_annual_weekday: 346
+- skipped_legacy_without_explicit_annual_weekday: 348
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
 - skipped_no_exact_legacy_market: 650

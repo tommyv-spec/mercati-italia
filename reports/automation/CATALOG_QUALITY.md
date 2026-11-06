@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,515**.
-- Orari mancanti: **1,850**.
-- Indirizzi mancanti: **1,206**.
-- Coordinate mancanti: **888**.
-- Date future mancanti: **2,759**.
+- Schede: **14,548**.
+- Orari mancanti: **1,864**.
+- Indirizzi mancanti: **1,211**.
+- Coordinate mancanti: **902**.
+- Date future mancanti: **2,815**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
-- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,483** gruppi, **1,772** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,515**.
+- Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,476** gruppi, **1,765** righe in eccesso potenziali.
+- Verifiche umane documentate mancanti: **14,548**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -25,14 +25,14 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | eventiesagre.it | 2,200 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,129 |
 | cosedicasa.com | 442 |
-| vintagery.it | 288 |
+| vintagery.it | 320 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
 | Comune di Bologna — dati ufficiali; apertura non confermata | 39 |
 | cosafareafirenze.it | 22 |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | 14 |
-| trentino.com | 9 |
+| Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | 9 |
 
 ## Regioni
 
@@ -41,23 +41,23 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Abruzzo | 402 | 28 | 33 |
 | Basilicata | 37 | 3 | 9 |
 | Calabria | 342 | 43 | 38 |
-| Campania | 833 | 121 | 61 |
-| Emilia-Romagna | 943 | 175 | 105 |
-| Friuli Venezia Giulia | 269 | 29 | 19 |
-| Lazio | 1,095 | 98 | 60 |
-| Liguria | 409 | 58 | 54 |
-| Lombardia | 4,051 | 522 | 168 |
-| Marche | 311 | 55 | 42 |
-| Molise | 218 | 16 | 30 |
-| Piemonte | 1,372 | 160 | 178 |
-| Puglia | 508 | 58 | 41 |
-| Sardegna | 404 | 27 | 30 |
-| Sicilia | 425 | 61 | 41 |
-| Toscana | 1,008 | 191 | 108 |
+| Campania | 836 | 122 | 61 |
+| Emilia-Romagna | 944 | 176 | 105 |
+| Friuli Venezia Giulia | 270 | 29 | 19 |
+| Lazio | 1,098 | 100 | 61 |
+| Liguria | 410 | 58 | 54 |
+| Lombardia | 4,054 | 524 | 169 |
+| Marche | 313 | 56 | 42 |
+| Molise | 219 | 16 | 30 |
+| Piemonte | 1,373 | 160 | 178 |
+| Puglia | 509 | 59 | 41 |
+| Sardegna | 406 | 29 | 31 |
+| Sicilia | 428 | 63 | 41 |
+| Toscana | 1,013 | 192 | 108 |
 | Trentino-Alto Adige | 272 | 30 | 36 |
-| Umbria | 196 | 34 | 21 |
-| Valle d'Aosta | 61 | 10 | 8 |
-| Veneto | 1,359 | 131 | 124 |
+| Umbria | 197 | 34 | 22 |
+| Valle d'Aosta | 62 | 10 | 9 |
+| Veneto | 1,363 | 132 | 124 |
 
 ## Località da verificare (campione limitato)
 
