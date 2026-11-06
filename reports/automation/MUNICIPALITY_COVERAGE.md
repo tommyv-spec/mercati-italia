@@ -4,9 +4,9 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **5,067** (64.2%).
-- Comuni senza schede in catalogo: **2,827**.
-- Schede esistenti conservate: **14,515**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **5,068** (64.2%).
+- Comuni senza schede in catalogo: **2,826**.
+- Schede esistenti conservate: **14,548**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
@@ -26,7 +26,7 @@ I risultati indicano dove cercare fonti comunali o regionali affidabili.
 | Lazio | 378 | 306 | 72 | 81.0% |
 | Emilia-Romagna | 330 | 282 | 48 | 85.5% |
 | Valle d'Aosta | 74 | 28 | 46 | 37.8% |
-| Toscana | 273 | 232 | 41 | 85.0% |
+| Toscana | 273 | 233 | 40 | 85.3% |
 | Umbria | 92 | 66 | 26 | 71.7% |
 | Puglia | 257 | 234 | 23 | 91.1% |
 | Molise | 136 | 122 | 14 | 89.7% |
