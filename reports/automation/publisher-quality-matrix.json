@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-11-06",
+  "as_of": "2026-11-07",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -904,7 +904,7 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 32,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 3,
         "address_missing": 57,
@@ -1238,7 +1238,7 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "coordinates_missing": 6,
         "hours_missing": 2,
@@ -12496,7 +12496,7 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-11-06",
+    "generated_for_date": "2026-11-07",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
