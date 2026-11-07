@@ -1,23 +1,45 @@
 # Mercati Italia — scoperta automatica eventi: solo segnali
 
-Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-11-06**.
+Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-11-07**.
 Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 
 - Schede di mercato esistenti conservate: **14548**
 - Segnali ufficiali nell'ultima scansione: **3**
-- Collegamenti esterni, non dati riutilizzabili: **0**
+- Collegamenti esterni, non dati riutilizzabili: **19**
 
 | Fonte | Stato | Richieste |
 |---|---|---:|
 | firenze-feelflorence | discovery_leads_only | 1 |
 | bologna-agenda | discovery_leads_only | 1 |
-| eventiesagre-index | source_unavailable_or_schema_review | 0 |
+| eventiesagre-index | discovery_leads_only | 3 |
 
 ## Segnali da verificare presso Comune o organizzatore
 
+- Fiera delle arti tessili — https://www.feelflorence.it/it/eventi/fiera-delle-arti-tessili — stato: source_lead_unverified
 - Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: source_lead_unverified
 - Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: source_lead_unverified
-- Fiera delle arti tessili — https://www.feelflorence.it/it/eventi/fiera-delle-arti-tessili — stato: source_lead_unverified
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21195466_Il+Mercatino+Creativo+A+Baricella.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21195297_Il+Mercatino+D+antiquariato+Vintage+E+Collezionismo+A+Reggio+Emilia.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21190195_Il+Mercatino+Degli+Zavagli+A+Modena.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21189616_Car+Boot+Forli.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21188570_Il+Mercatino+Di+Castelvetro.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186299_Mercato+Settimanale+Di+Vizzini.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186295_Mercato+Settimanale+Di+Scordia.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186293_Mercato+Settimanale+Di+Santa+Venerina.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186270_Mercato+Settimanale+Di+Mineo.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186266_Mercato+Settimanale+Di+Maletto.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186254_Mercato+Settimanale+Di+Avola.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186217_Mercato+Settimanale+Di+Cerami.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186187_Mercato+Settimanale+Di+Sciacca.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186050_Mercato+Settimanale+Di+Collesano.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21186022_Mercato+Settimanale+Di+Castellammare+Del+Golfo.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21157844_Mercatino+Del+Riuso+A+Praticello.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21125141_Car+Boot+Savignano.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21095864_Mercatino+Del+Riuso+a+Parma.html — stato: external_pointer_only_no_fact_reuse
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21082821_Mercatino+Del+Riuso.html — stato: external_pointer_only_no_fact_reuse
+- Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
+- Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: not_seen_again_not_a_market_closure
+- Fiera delle arti tessili — https://www.feelflorence.it/it/eventi/fiera-delle-arti-tessili — stato: not_seen_again_not_a_market_closure
 - Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
 - Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: not_seen_again_not_a_market_closure
 - Fiera delle arti tessili — https://www.feelflorence.it/it/eventi/fiera-delle-arti-tessili — stato: not_seen_again_not_a_market_closure
@@ -28,28 +50,6 @@ Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182411_Mercato+Settimanale+Di+San+Felice+Del+Benaco.html — stato: not_seen_again_not_a_market_closure
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182401_Mercato+Settimanale+Di+Rezzato.html — stato: not_seen_again_not_a_market_closure
 - Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182150_Mercato+Settimanale+Di+Sospiro.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182107_Mercato+Settimanale+Di+Calolziocorte.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182092_Mercato+Settimanale+Di+Rivarolo+Del+Re+Ed+Uniti.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182089_Mercato+Settimanale+Di+Pieve+D+olmi.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21181700_Mercato+Settimanale+Di+Medole.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21181064_Mercato+Settimanale+Di+Pero.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21180997_Mercato+Settimanale+Di+Binasco.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21180810_Mercato+Settimanale+Di+Cunardo.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21180743_Il+Mercatino+Dell+usato+E+Dell+antiquariato+A+Trieste.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21180742_Il+Mercatino+Dell+usato+A+Cervignano+Del+Friuli.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21139023_Mercatino+dell+usato+a+Mortegliano.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21112946_Mercatino+Dell+usato.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21096919_Il+Mercatino+delle+Millemila+cose+a+Zopplola.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21018029_Mercatino+delle+Pulci+e+del+Libro+usato+a+Gemona+del+Friuli.html — stato: not_seen_again_not_a_market_closure
-- Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
-- Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: not_seen_again_not_a_market_closure
-- Fiera delle arti tessili — https://www.feelflorence.it/it/eventi/fiera-delle-arti-tessili — stato: not_seen_again_not_a_market_closure
-- Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
-- Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Usato/21191687_Il+Mercatino+Delle+Pulci+A+Bussana+Di+Sanremo.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183828_Mercato+Settimanale+Di+Rabbi.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183750_Mercato+Settimanale+Di+Moena.html — stato: not_seen_again_not_a_market_closure
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Filiera+Corta/21183740_Mercato+Settimanale+Di+Primiero+San+Martino+Di+Castrozza.html — stato: not_seen_again_not_a_market_closure
 
 Non importare contenuti di EventiESagre: si raccolgono solo URL e ID.
 Non usare le date generiche di inizio/fine come apertura verificata.
