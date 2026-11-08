@@ -4,8 +4,8 @@
   "offline": false,
   "imports": 0,
   "verified_events": 0,
-  "reference_date": "2026-11-06",
-  "catalog_total": 87,
+  "reference_date": "2026-11-08",
+  "catalog_total": null,
   "sample_limit": 3,
   "history": {
     "25177cb0-f763-44ca-8c30-dd8111c58cc3": {
@@ -351,91 +351,8 @@
       "kind": "concessions_not_market_visits"
     }
   },
-  "sources": [
-    {
-      "id": "9b8705b9-1a8e-4a0e-b25c-a928d8c09ff8",
-      "title": "Fiere e mercati - PIANIGA",
-      "publisher": "Comune di Pianiga",
-      "source_modified_claim": "",
-      "resource_id": "a78e7163-ce0f-47ba-8e77-11889cf7b5e7",
-      "resource_last_modified": "2026-11-04T09:05:09.134056",
-      "claimed_license": "CC-BY-4.0",
-      "status": "sampled_complete_csv",
-      "market_import_permission": false,
-      "markets_confirmed": 0,
-      "csv_sha256": "2679c702b881a041b0e515c426f570a6d7432116ddbebc018e0ad96225784a23",
-      "source_rows_read": 38,
-      "distinct_market_names_not_new_markets": 4,
-      "explicit_valid_weekdays": 0,
-      "rows_with_addresses": 0,
-      "rows_with_hours": 0,
-      "expired_concession_rows": 21,
-      "historical_stall_rows": 0,
-      "source_kind": "concessions_not_market_visits",
-      "fields": [
-        "nome_mercato",
-        "fiera_mercato",
-        "attivita",
-        "data_validita_concessione",
-        "data_scadenza_concessione"
-      ]
-    },
-    {
-      "id": "a85406df-337e-4b57-8129-48f98a52a1e5",
-      "title": "Fiere e mercati - SANDRIGO",
-      "publisher": "Comune di Sandrigo",
-      "source_modified_claim": "",
-      "resource_id": "980cb302-6cad-4b99-b0a8-afab9dbe2c7b",
-      "resource_last_modified": "2026-11-03T12:07:07.339364",
-      "claimed_license": "CC-BY-4.0",
-      "status": "sampled_complete_csv",
-      "market_import_permission": false,
-      "markets_confirmed": 0,
-      "csv_sha256": "fe5c0ef3832bd1e43558d69156e28b548bd574b7b426e068325015c6186bea31",
-      "source_rows_read": 110,
-      "distinct_market_names_not_new_markets": 4,
-      "explicit_valid_weekdays": 0,
-      "rows_with_addresses": 0,
-      "rows_with_hours": 0,
-      "expired_concession_rows": 46,
-      "historical_stall_rows": 0,
-      "source_kind": "concessions_not_market_visits",
-      "fields": [
-        "nome_mercato",
-        "fiera_mercato",
-        "attivita",
-        "data_validita_concessione",
-        "data_scadenza_concessione"
-      ]
-    },
-    {
-      "id": "b52c3e9d-587c-4dc3-b266-4ac5aa1f8098",
-      "title": "Fiere e mercati - MARCON",
-      "publisher": "Comune di Marcon",
-      "source_modified_claim": "",
-      "resource_id": "5a4f69f4-bbbb-4532-804b-25cf7a403fc8",
-      "resource_last_modified": "2026-11-03T13:50:06.780472",
-      "claimed_license": "CC-BY-4.0",
-      "status": "sampled_complete_csv",
-      "market_import_permission": false,
-      "markets_confirmed": 0,
-      "csv_sha256": "d3ae6f9a1c1e1eda7bb6ea9fe4ef894453755bd592be9f8808552233b98946fb",
-      "source_rows_read": 79,
-      "distinct_market_names_not_new_markets": 3,
-      "explicit_valid_weekdays": 0,
-      "rows_with_addresses": 0,
-      "rows_with_hours": 0,
-      "expired_concession_rows": 61,
-      "historical_stall_rows": 0,
-      "source_kind": "concessions_not_market_visits",
-      "fields": [
-        "nome_mercato",
-        "fiera_mercato",
-        "attivita",
-        "data_validita_concessione",
-        "data_scadenza_concessione"
-      ]
-    }
-  ],
-  "errors": []
+  "sources": [],
+  "errors": [
+    "TimeoutError: The read operation timed out"
+  ]
 }
