@@ -22,19 +22,19 @@ No forecast, human verification, original source, or identity changed.
 - held_unique_town_no_eligible_source: 1185
 - held_unique_town_raw_same_city_day_competitor: 30
 - held_unique_town_raw_unknown_weekday_competitor: 46
-- held_unique_town_target_identity_incomplete: 72
+- held_unique_town_target_identity_incomplete: 73
 - held_unique_town_unmanaged_indirizzo: 383
 - municipality_day_unique_matches: 625
 - observed_spelling_matches: 25
 - skipped_coordinates_conflict: 3
-- skipped_legacy_without_explicit_annual_weekday: 348
+- skipped_legacy_without_explicit_annual_weekday: 350
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
 - skipped_no_exact_legacy_market: 650
 - skipped_no_exact_location_or_day: 547
 - skipped_official_raw_identity_unproved_or_conflicting: 56
 - skipped_official_without_explicit_annual_weekday: 522
-- unique_town_targets_screened: 2316
+- unique_town_targets_screened: 2317
 
 ## Example exact matches
 

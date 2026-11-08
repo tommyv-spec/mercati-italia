@@ -46,6 +46,11 @@
    "queried_on": "2026-10-25",
    "query": "Bolzaneto, Genova, Italia"
   },
+  "borgo antico|salerno|sa": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-08",
+   "query": "borgo antico, Salerno, Italia"
+  },
   "borgo cavour|treviso|tv": {
    "class": "highway",
    "lat": 45.66726,
@@ -316,6 +321,16 @@
    "query": "corso Garibaldi, Brindisi, Italia",
    "type": "living_street"
   },
+  "corso garibaldi|cingoli|mc": {
+   "class": "highway",
+   "lat": 43.375783,
+   "lng": 13.215211,
+   "name": "Corso Giuseppe Garibaldi, Carciole, Pozzo, Cingoli, Macerata, Marche, 62011, Italia",
+   "osm": "way/176875279",
+   "queried_on": "2026-11-08",
+   "query": "Corso Garibaldi, Cingoli, Italia",
+   "type": "residential"
+  },
   "corso garibaldi|lucca|lu": {
    "class": "highway",
    "lat": 43.840116,
@@ -324,6 +339,16 @@
    "osm": "way/178667310",
    "queried_on": "2026-10-25",
    "query": "Corso Garibaldi, Lucca, Italia",
+   "type": "residential"
+  },
+  "corso giuseppe garibaldi|urbino|pu": {
+   "class": "highway",
+   "lat": 43.725124,
+   "lng": 12.636019,
+   "name": "Corso Giuseppe Garibaldi, Urbino, Pesaro e Urbino, Marche, 61029, Italia",
+   "osm": "way/86108382",
+   "queried_on": "2026-11-08",
+   "query": "Corso Giuseppe Garibaldi, Urbino, Italia",
    "type": "residential"
   },
   "corso indipendenza|rivarolo canavese|to": {
@@ -401,6 +426,16 @@
    "query": "corso Porta Reno, Ferrara, Italia",
    "type": "residential"
   },
+  "corso roma|spilimbergo|pn": {
+   "class": "highway",
+   "lat": 46.111174,
+   "lng": 12.902885,
+   "name": "Corso Roma, Istrago, Spilimbergo, Pordenone, Friuli-Venezia Giulia, 33097, Italia",
+   "osm": "way/437855476",
+   "queried_on": "2026-11-08",
+   "query": "Corso Roma, Spilimbergo, Italia",
+   "type": "pedestrian"
+  },
   "corso san martino|vercelli|vc": {
    "class": "highway",
    "lat": 45.3218,
@@ -475,6 +510,21 @@
    "queried_on": "2026-11-06",
    "query": "Corso Vittorio Emanuele, Noto, Italia",
    "type": "pedestrian"
+  },
+  "corte delle rose|conegliano|tv": {
+   "class": "highway",
+   "lat": 45.88576,
+   "lng": 12.298987,
+   "name": "Corte delle Rose, Piazza d'Armi, Monticella, Conegliano, Treviso, Veneto, 31015, Italia",
+   "osm": "way/102009976",
+   "queried_on": "2026-11-08",
+   "query": "Corte delle Rose, Conegliano, Italia",
+   "type": "footway"
+  },
+  "darsena di citta|ravenna|ra": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-08",
+   "query": "Darsena di città, Ravenna, Italia"
   },
   "donatello|cuneo|cn": {
    "miss": "solo_localita",
@@ -1726,6 +1776,16 @@
    "query": "Piazza Cavallotti, Livorno, Italia",
    "type": "pedestrian"
   },
+  "piazza cavour|anagni|fr": {
+   "class": "amenity",
+   "lat": 41.742211,
+   "lng": 13.157611,
+   "name": "Piazza Cavour, Strada Vittorio Emanuele, Anagni, Frosinone, Lazio, 03012, Italia",
+   "osm": "way/163084318",
+   "queried_on": "2026-11-08",
+   "query": "Piazza Cavour, Anagni, Italia",
+   "type": "parking"
+  },
   "piazza cavour|ancona|an": {
    "class": "place",
    "lat": 43.616819,
@@ -2326,6 +2386,11 @@
    "query": "Piazza Del Popolo, Latina, Italia",
    "type": "square"
   },
+  "piazza del popolo|petralia soprana|pa": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-08",
+   "query": "Piazza del Popolo, Petralia Soprana, Italia"
+  },
   "piazza del popolo|ravenna|ra": {
    "class": "highway",
    "lat": 44.417767,
@@ -2499,6 +2564,16 @@
    "osm": "way/168992503",
    "queried_on": "2026-10-25",
    "query": "Piazza della Repubblica, Pontremoli, Italia",
+   "type": "square"
+  },
+  "piazza della repubblica|portogruaro|ve": {
+   "class": "place",
+   "lat": 45.775575,
+   "lng": 12.837689,
+   "name": "Piazza della Repubblica, Confine, Portogruaro, Venezia, Veneto, 30026, Italia",
+   "osm": "way/1551024080",
+   "queried_on": "2026-11-08",
+   "query": "piazza della Repubblica, Portogruaro, Italia",
    "type": "square"
   },
   "piazza della repubblica|san giovanni valdarno|ar": {
@@ -2685,6 +2760,11 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Di Porta San Mamolo, Bologna, Italia",
    "type": "square"
+  },
+  "piazza di san martino|val masino|so": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-08",
+   "query": "Piazza di San Martino, Val Masino, Italia"
   },
   "piazza diaz|milano|mi": {
    "class": "highway",
@@ -3110,6 +3190,16 @@
    "queried_on": "2026-11-04",
    "query": "Piazza Garibaldi, Cassano delle Murge, Italia",
    "type": "unclassified"
+  },
+  "piazza garibaldi|castel del piano|gr": {
+   "class": "highway",
+   "lat": 42.893146,
+   "lng": 11.536989,
+   "name": "Piazza Giuseppe Garibaldi, Castel del Piano, Unione dei Comuni Montani Amiata Grossetana, Grosseto, Toscana, 58033, Italia",
+   "osm": "way/223676111",
+   "queried_on": "2026-11-08",
+   "query": "Piazza Garibaldi, Castel del Piano, Italia",
+   "type": "tertiary"
   },
   "piazza garibaldi|orzinuovi|bs": {
    "class": "place",
@@ -3755,6 +3845,16 @@
    "queried_on": "2026-11-03",
    "query": "Piazza Marconi, Folgaria, Italia",
    "type": "square"
+  },
+  "piazza marconi|martina franca|ta": {
+   "class": "highway",
+   "lat": 40.701224,
+   "lng": 17.33892,
+   "name": "Piazza Marconi, Martina Franca, Taranto, Puglia, 74015, Italia",
+   "osm": "way/46340829",
+   "queried_on": "2026-11-08",
+   "query": "Piazza Marconi, Martina Franca, Italia",
+   "type": "pedestrian"
   },
   "piazza marconi|pavia|pv": {
    "miss": "comune_diverso",
@@ -4546,6 +4646,16 @@
    "query": "PIAZZA San Nicolò, Brenzone sul Garda, Italia",
    "type": "pedestrian"
   },
+  "piazza san paolo|montecchio maggiore|vi": {
+   "class": "highway",
+   "lat": 45.495583,
+   "lng": 11.434973,
+   "name": "Piazza San Paolo, Alte Ceccato, Montecchio Maggiore, Vicenza, Veneto, 36075, Italia",
+   "osm": "way/31959642",
+   "queried_on": "2026-11-08",
+   "query": "Piazza San Paolo, Montecchio Maggiore, Italia",
+   "type": "residential"
+  },
   "piazza san pio da pietralcina|cerro al lambro|mi": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -4705,6 +4815,16 @@
    "queried_on": "2026-10-25",
    "query": "Piazza Savonarola, Firenze, Italia",
    "type": "pedestrian"
+  },
+  "piazza scammacca|catania|ct": {
+   "class": "place",
+   "lat": 37.503757,
+   "lng": 15.088901,
+   "name": "Piazza Scammacca, San Berillo, Centro storico, Catania, Sicilia, Italia",
+   "osm": "way/412284117",
+   "queried_on": "2026-11-08",
+   "query": "Piazza Scammacca, Catania, Italia",
+   "type": "square"
   },
   "piazza sciesa|genova|ge": {
    "class": "place",
@@ -4905,6 +5025,16 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA UMBERTO I, Marcaria, Italia",
    "type": "pedestrian"
+  },
+  "piazza unione europea|messina|me": {
+   "class": "place",
+   "lat": 38.193792,
+   "lng": 15.556335,
+   "name": "Piazza Unione Europea, Torre Vittoria, IV Circoscrizione, Messina, Sicilia, Italia",
+   "osm": "way/590828519",
+   "queried_on": "2026-11-08",
+   "query": "Piazza Unione Europea, Messina, Italia",
+   "type": "square"
   },
   "piazza unita d italia|palermo|pa": {
    "class": "leisure",
@@ -5956,6 +6086,16 @@
    "query": "via Campolino, Vigonza, Italia",
    "type": "tertiary"
   },
+  "via caneve|venezia|ve": {
+   "class": "highway",
+   "lat": 45.495816,
+   "lng": 12.24542,
+   "name": "Via Caneve, Carpenedo, Mestre-Carpenedo, Mestre, Venezia, Veneto, 30170, Italia",
+   "osm": "way/757908682",
+   "queried_on": "2026-11-08",
+   "query": "via Caneve, Venezia, Italia",
+   "type": "pedestrian"
+  },
   "via cappuccini|tirano|so": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
@@ -6155,6 +6295,11 @@
    "queried_on": "2026-10-25",
    "query": "via Concordia, Palermo, Italia",
    "type": "residential"
+  },
+  "via conte giovanni battista camozzi|costa di mezzate|bg": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-08",
+   "query": "Via Conte Giovanni Battista Camozzi, Costa di Mezzate, Italia"
   },
   "via contini|brescia|bs": {
    "class": "highway",
@@ -6520,6 +6665,16 @@
    "queried_on": "2026-11-01",
    "query": "Via della Libertà, San Giorgio di Piano, Italia",
    "type": "residential"
+  },
+  "via della pace|piombino|li": {
+   "class": "highway",
+   "lat": 42.93736,
+   "lng": 10.5254,
+   "name": "Via della Pace, Montemazzano, Piombino, Livorno, Toscana, 57025, Italia",
+   "osm": "way/830887208",
+   "queried_on": "2026-11-08",
+   "query": "Via della Pace, Piombino, Italia",
+   "type": "tertiary"
   },
   "via della resistenza|san bartolomeo al mare|im": {
    "class": "highway",
@@ -7071,6 +7226,16 @@
    "query": "VIA Giovanni Prati, Vicenza, Italia",
    "type": "residential"
   },
+  "via giuseppe garibaldi|poggio a caiano|po": {
+   "class": "highway",
+   "lat": 43.812717,
+   "lng": 11.056299,
+   "name": "Via Giuseppe Garibaldi, Santa Cristina in Pilli, Poggio a Caiano, Prato, Toscana, 59016, Italia",
+   "osm": "way/260614796",
+   "queried_on": "2026-11-08",
+   "query": "Via Giuseppe Garibaldi, Poggio a Caiano, Italia",
+   "type": "residential"
+  },
   "via giuseppe ungaretti|rende|cs": {
    "class": "highway",
    "lat": 39.330807,
@@ -7400,6 +7565,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA MAISETTI, Mezzoldo, Italia",
    "type": "secondary"
+  },
+  "via mameli|varazze|sv": {
+   "class": "highway",
+   "lat": 44.359853,
+   "lng": 8.579354,
+   "name": "Via Goffredo Mameli, Cantalupo, Varazze, Savona, Liguria, 17019, Italia",
+   "osm": "way/34847452",
+   "queried_on": "2026-11-08",
+   "query": "via Mameli, Varazze, Italia",
+   "type": "pedestrian"
   },
   "via mantegna|villanova di camposampiero|pd": {
    "miss": "nessun_risultato",
@@ -9056,6 +9231,16 @@
    "query": "VIALE Antonio Mellusi, Benevento, Italia",
    "type": "residential"
   },
+  "viale armando diaz|cagliari|ca": {
+   "class": "highway",
+   "lat": 39.207498,
+   "lng": 9.124149,
+   "name": "Viale Armando Diaz, Bonaria, Casteddu/Cagliari, Sardigna/Sardegna, 09125, Italia",
+   "osm": "way/640540604",
+   "queried_on": "2026-11-08",
+   "query": "Viale Armando Diaz, Cagliari, Italia",
+   "type": "secondary"
+  },
   "viale bari|gallipoli|le": {
    "class": "highway",
    "lat": 40.05437,
@@ -9390,6 +9575,16 @@
    "queried_on": "2026-10-25",
    "query": "viale Roma, Vicenza, Italia",
    "type": "residential"
+  },
+  "viale san modestino|mercogliano|av": {
+   "class": "highway",
+   "lat": 40.922609,
+   "lng": 14.744627,
+   "name": "Viale San Modestino, Capocastello, Mercogliano, Avellino, Campania, 83013, Italia",
+   "osm": "way/251951119",
+   "queried_on": "2026-11-08",
+   "query": "Viale San Modestino, Mercogliano, Italia",
+   "type": "unclassified"
   },
   "viale sirotti|ravenna|ra": {
    "miss": "nessun_risultato",

@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-11-06**.
-- Schede totali: **14,548**.
+- Data della misura: **2026-11-08**.
+- Schede totali: **14,580**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **722**.
-- Lettura della fonte registrata entro 30 giorni: **13,698**.
+- Importazione registrata entro 30 giorni: **754**.
+- Lettura della fonte registrata entro 30 giorni: **13,730**.
 - Fonte datata entro 30 giorni: **1,147**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,147**.
 - Schede con aggiornamento soltanto del dataset: **1,375**.
 - Fonte datata tra 31 e 365 giorni: **189**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **13,160**.
+- Schede con età del contenuto della fonte non comprovata: **13,192**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,129**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,182**.
+- Schede con date future previste: **11,121**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,174**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,6 +25,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
+- Da correggere: publisher_refresh_incomplete
 - Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
@@ -131,7 +132,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 1 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
-| vintagery.it | vintagery.it | 320 | 0 | 0 | 320 | 320 |
+| vintagery.it | vintagery.it | 352 | 0 | 0 | 352 | 352 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -141,20 +142,20 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1211 | 3028 | 1988 | 8139 | 182 |
-| Orari | 1864 | 3066 | 2129 | 6726 | 763 |
-| Giorni | 1258 | 1853 | 2039 | 9181 | 217 |
+| Sede | 1217 | 3019 | 1995 | 8165 | 184 |
+| Orari | 1880 | 3337 | 2142 | 6257 | 964 |
+| Giorni | 1285 | 1855 | 2039 | 9184 | 217 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6338. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6370. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
 | bassa-romagna-farmers | retrieved | 4 | 0 |
-| bassa-romagna-weekly | retrieved | 11 | 0 |
+| bassa-romagna-weekly | layout_changed | 0 | 0 |
 
-Conflitti mantenuti in revisione: 6.
+Conflitti mantenuti in revisione: 4.
 
 
 ## Limiti del sistema
