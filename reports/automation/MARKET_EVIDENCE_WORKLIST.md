@@ -3,31 +3,31 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14580**
+- ID controllati e conservati: **14612**
 - Etichette di fonte: **92**
-- Casi nel lotto di lavoro del giorno: **460**
+- Casi nel lotto di lavoro del giorno: **455**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **14491**
-- date: **2860**
-- indirizzo: **5037**
-- individual_edition_confirmation: **14580**
-- orario_testo: **1880**
-- ricorrenza_testo: **1285**
+- coordinates: **14523**
+- date: **2892**
+- indirizzo: **5041**
+- individual_edition_confirmation: **14612**
+- orario_testo: **1876**
+- ricorrenza_testo: **1315**
 
 ## Origini ordinate per numero di schede
 
 | Origine | Schede | Orari | Sedi | Trattamento |
 |---|---:|---:|---:|---|
-| happings.com | 9914 | 692 | 4339 | happings-weekly-or-detail |
-| eventiesagre.it | 2200 | 361 | 482 | eventiesagre-event-index |
+| happings.com | 9914 | 678 | 4337 | happings-weekly-or-detail |
+| eventiesagre.it | 2200 | 360 | 482 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1129 | 342 | 3 | lombardia-mercap |
-| cosedicasa.com | 442 | 152 | 30 | cosedicasa-editorial-calendar |
-| vintagery.it | 352 | 168 | 68 | source-family-not-resolved-by-this-worklist |
+| cosedicasa.com | 442 | 150 | 30 | cosedicasa-editorial-calendar |
+| vintagery.it | 384 | 181 | 74 | source-family-not-resolved-by-this-worklist |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
@@ -123,7 +123,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 12
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 13368
+- no_usable_source_match: 13400
 - review_only_field_candidates: 43
 - same_source_id: 790
 - unique_city_province_street_weekday: 381

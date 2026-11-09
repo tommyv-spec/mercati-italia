@@ -546,6 +546,16 @@
    "queried_on": "2026-10-25",
    "query": "Galleria del centro cittadino, Imola, Italia"
   },
+  "galleria italia|seriate|bg": {
+   "class": "building",
+   "lat": 45.684556,
+   "lng": 9.717043,
+   "name": "Galleria Italia, Viale Italia, Paderno, Seriate, Bergamo, Lombardia, 24068, Italia",
+   "osm": "relation/1468842",
+   "queried_on": "2026-11-09",
+   "query": "Galleria Italia, Seriate, Italia",
+   "type": "yes"
+  },
   "galleria mazzini|genova|ge": {
    "class": "amenity",
    "lat": 44.40877,
@@ -901,6 +911,11 @@
    "query": "Lungomare Dante, Alghero, Italia",
    "type": "pedestrian"
   },
+  "lungomare di nicotera marina|nicotera|vv": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-09",
+   "query": "Lungomare di Nicotera Marina, Nicotera, Italia"
+  },
   "lungomare europa|soverato|cz": {
    "class": "highway",
    "lat": 38.687995,
@@ -965,6 +980,11 @@
    "queried_on": "2026-10-29",
    "query": "Marina Garibaldi, Milazzo, Italia",
    "type": "pedestrian"
+  },
+  "marina|pietrasanta|lu": {
+   "miss": "solo_localita",
+   "queried_on": "2026-11-09",
+   "query": "Marina, Pietrasanta, Italia"
   },
   "mercatino del centro storico|saronno|va": {
    "miss": "nessun_risultato",
@@ -1481,6 +1501,16 @@
    "queried_on": "2026-10-30",
    "query": "PIAZZA antistante Centro Commerciale Il Girasole, Corciano, Italia"
   },
+  "piazza aranci|massa|ms": {
+   "class": "highway",
+   "lat": 44.036927,
+   "lng": 10.141813,
+   "name": "Piazza Aranci, Martana, Capaccola, San Carlo, Massa, Massa-Carrara, Toscana, 54100, Italia",
+   "osm": "relation/5441181",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Aranci, Massa, Italia",
+   "type": "pedestrian"
+  },
   "piazza ardizzone|castano primo|mi": {
    "class": "amenity",
    "lat": 45.549693,
@@ -1705,6 +1735,11 @@
    "queried_on": "2026-10-29",
    "query": "PIAZZA Carmine, Reggio di Calabria, Italia",
    "type": "pedestrian"
+  },
+  "piazza carratelli|cosenza|cs": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Carratelli, Cosenza, Italia"
   },
   "piazza castello|benevento|bn": {
    "class": "highway",
@@ -2321,6 +2356,11 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA DEL MUNICIPIO, Romagnese, Italia"
   },
+  "piazza del municipio|saint vincent|ao": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-09",
+   "query": "Piazza del Municipio, Saint-Vincent, Italia"
+  },
   "piazza del paese|santo stefano al mare|im": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
@@ -2536,6 +2576,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza della repubblica Corso Cavour, San Stino di Livenza, Italia"
   },
+  "piazza della repubblica|lucera|fg": {
+   "class": "highway",
+   "lat": 41.507368,
+   "lng": 15.333341,
+   "name": "Piazza della Repubblica, Lucera, Foggia, Puglia, 71036, Italia",
+   "osm": "way/401817146",
+   "queried_on": "2026-11-09",
+   "query": "Piazza della Repubblica, Lucera, Italia",
+   "type": "residential"
+  },
   "piazza della repubblica|orvieto|tr": {
    "class": "place",
    "lat": 42.718326,
@@ -2675,6 +2725,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
    "query": "PIAZZA DELLE ARTI, Campodolcino, Italia"
+  },
+  "piazza delle carceri|prato|po": {
+   "class": "highway",
+   "lat": 43.878826,
+   "lng": 11.098026,
+   "name": "Piazza delle Carceri, Viale Piave, I lecci, Prato, Toscana, 59100, Italia",
+   "osm": "node/3216788590",
+   "queried_on": "2026-11-09",
+   "query": "Piazza delle Carceri, Prato, Italia",
+   "type": "bus_stop"
   },
   "piazza delle erbe|mezzolombardo|tn": {
    "class": "place",
@@ -3106,6 +3166,16 @@
    "query": "piazza Fra' Girolamo Savonarola, Firenze, Italia",
    "type": "pedestrian"
   },
+  "piazza francesco ferrucci|san marcello piteglio|pt": {
+   "class": "place",
+   "lat": 43.989527,
+   "lng": 10.769302,
+   "name": "Piazza Francesco Ferrucci, Calamecca, San Marcello Piteglio, Unione di comuni montani Appennino Pistoiese, Pistoia, Toscana, 51028, Italia",
+   "osm": "way/1251115119",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Francesco Ferrucci, San Marcello Piteglio, Italia",
+   "type": "square"
+  },
   "piazza g a dalla bona|sant anna d alfaedo|vr": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
@@ -3170,6 +3240,16 @@
    "queried_on": "2026-11-04",
    "query": "Piazza Garibaldi, Assisi, Italia",
    "type": "pedestrian"
+  },
+  "piazza garibaldi|caltanissetta|cl": {
+   "class": "place",
+   "lat": 37.489747,
+   "lng": 14.06328,
+   "name": "Piazza Giuseppe Garibaldi, Quartiere Provvidenza, Caltanissetta, Sicilia, 93100, Italia",
+   "osm": "way/391001589",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Garibaldi, Caltanissetta, Italia",
+   "type": "square"
   },
   "piazza garibaldi|cantu|co": {
    "class": "highway",
@@ -3341,6 +3421,16 @@
    "queried_on": "2026-10-25",
    "query": "piazza Giacomo Matteotti, Spoleto, Italia"
   },
+  "piazza giacomo matteotti|umbertide|pg": {
+   "class": "highway",
+   "lat": 43.306337,
+   "lng": 12.327019,
+   "name": "Piazza Giacomo Matteotti, Umbertide, Perugia, Umbria, 06019, Italia",
+   "osm": "way/83389474",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Giacomo Matteotti, Umbertide, Italia",
+   "type": "pedestrian"
+  },
   "piazza giardini pubblici|codroipo|ud": {
    "class": "leisure",
    "lat": 45.962525,
@@ -3385,6 +3475,11 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Giovanni Paolo I, Vittorio Veneto, Italia",
    "type": "square"
+  },
+  "piazza giovanni pascoli|barga|lu": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Giovanni Pascoli, Barga, Italia"
   },
   "piazza giovanni verga|catania|ct": {
    "class": "place",
@@ -3721,6 +3816,16 @@
    "query": "Piazza Liberta, Faenza, Italia",
    "type": "pedestrian"
   },
+  "piazza liberta|luino|va": {
+   "class": "place",
+   "lat": 46.003102,
+   "lng": 8.742333,
+   "name": "Piazza libertà, Creva, Luino, Comunità Montana Valli del Verbano, Varese, Lombardia, Italia",
+   "osm": "way/561314726",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Libertà, Luino, Italia",
+   "type": "square"
+  },
   "piazza liberta|povoletto|ud": {
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
@@ -3764,6 +3869,16 @@
    "osm": "way/290004867",
    "queried_on": "2026-10-25",
    "query": "PIAZZA Lombardia, Busto Garolfo, Italia",
+   "type": "square"
+  },
+  "piazza luca signorelli|cortona|ar": {
+   "class": "place",
+   "lat": 43.275466,
+   "lng": 11.985079,
+   "name": "Piazza Luca Signorelli, Cortona, Toppello, Camucia, Cortona, Arezzo, Toscana, Italia",
+   "osm": "way/124014142",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Luca Signorelli, Cortona, Italia",
    "type": "square"
   },
   "piazza lucio dalla|bologna|bo": {
@@ -4185,6 +4300,11 @@
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
    "query": "piazza Noacco, Cassacco, Italia"
+  },
+  "piazza norberto turriziani|frosinone|fr": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Norberto Turriziani, Frosinone, Italia"
   },
   "piazza ognissanti|firenze|fi": {
    "class": "place",
@@ -4924,6 +5044,16 @@
    "osm": "way/132465313",
    "queried_on": "2026-10-25",
    "query": "Piazza Stradivari, Cremona, Italia",
+   "type": "square"
+  },
+  "piazza terraglio|bassano del grappa|vi": {
+   "class": "place",
+   "lat": 45.768445,
+   "lng": 11.732754,
+   "name": "Piazza Terraglio, Angarano, Bassano del Grappa, Vicenza, Veneto, 36061, Italia",
+   "osm": "way/130050233",
+   "queried_on": "2026-11-09",
+   "query": "Piazza Terraglio, Bassano del Grappa, Italia",
    "type": "square"
   },
   "piazza terranegra|legnago|vr": {
@@ -6201,6 +6331,16 @@
    "query": "Via Cesalpino, Arezzo, Italia",
    "type": "living_street"
   },
+  "via cesare battisti|san dona di piave|ve": {
+   "class": "highway",
+   "lat": 45.628291,
+   "lng": 12.566302,
+   "name": "Via Cesare Battisti, San Donà di Piave, Venezia, Veneto, 30027, Italia",
+   "osm": "way/27619596",
+   "queried_on": "2026-11-09",
+   "query": "Via Cesare Battisti, San Donà di Piave, Italia",
+   "type": "tertiary"
+  },
   "via cesare lombroso|milano|mi": {
    "class": "highway",
    "lat": 45.456201,
@@ -6480,6 +6620,16 @@
    "queried_on": "2026-10-25",
    "query": "Via dei Granai di Nerva, Roma, Italia",
    "type": "residential"
+  },
+  "via dei pensieri|livorno|li": {
+   "class": "highway",
+   "lat": 43.523378,
+   "lng": 10.316416,
+   "name": "Via dei Pensieri, Ardenza, Consiglio di Zona 5, Livorno, Toscana, 57128, Italia",
+   "osm": "way/117410214",
+   "queried_on": "2026-11-09",
+   "query": "Via dei Pensieri, Livorno, Italia",
+   "type": "unclassified"
   },
   "via del casale di san basilio|roma|rm": {
    "class": "highway",
@@ -6840,6 +6990,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "Via Europa, Borgoricco, Italia"
+  },
+  "via europa|cormano|mi": {
+   "class": "highway",
+   "lat": 45.542964,
+   "lng": 9.164653,
+   "name": "Via Europa, Cormano, Molinazzo, Cormano, Zona Omogenea Milano Nord, Milano, Lombardia, 20032, Italia",
+   "osm": "way/81130442",
+   "queried_on": "2026-11-09",
+   "query": "Via Europa, Cormano, Italia",
+   "type": "unclassified"
   },
   "via europa|polaveno|bs": {
    "class": "highway",
@@ -7675,6 +7835,11 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "Via Matteotti Località Megliadino San Fidenzio, Borgo Veneto, Italia"
+  },
+  "via matteotti|bologna|bo": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-09",
+   "query": "Via Matteotti, Bologna, Italia"
   },
   "via mazzini|sarzana|sp": {
    "class": "highway",
@@ -9281,6 +9446,11 @@
    "query": "VIALE Camillo Golgi, Pavia, Italia",
    "type": "secondary"
   },
+  "viale centrale del bosco dei preti|thiene|vi": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-09",
+   "query": "Viale centrale del Bosco dei Preti, Thiene, Italia"
+  },
   "viale cesare battisti|como|co": {
    "class": "highway",
    "lat": 45.80747,
@@ -9495,6 +9665,16 @@
    "queried_on": "2026-10-25",
    "query": "Viale Matteotti, Pavia, Italia",
    "type": "tertiary"
+  },
+  "viale mazzini|teramo|te": {
+   "class": "highway",
+   "lat": 42.660491,
+   "lng": 13.698498,
+   "name": "Viale Mazzini, Coste Sant'Agostino, San Giorgio, Scapriano, Teramo, Abruzzo, 64100, Italia",
+   "osm": "way/93040830",
+   "queried_on": "2026-11-09",
+   "query": "Viale Mazzini, Teramo, Italia",
+   "type": "residential"
   },
   "viale oliva|valenza|al": {
    "class": "highway",
