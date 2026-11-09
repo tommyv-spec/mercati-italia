@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-11-08",
+  "as_of": "2026-11-09",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -653,7 +653,7 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14580,
+  "catalog_record_count": 14612,
   "catalog_source_labels_count": 92,
   "market_confirmations": 0,
   "market_updates": 0,
@@ -667,18 +667,18 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
-        "address_generic_not_navigable": 3738,
-        "address_missing": 601,
-        "coordinates_missing": 333,
-        "future_dates_missing": 384,
-        "hours_missing": 692,
+        "address_generic_not_navigable": 3749,
+        "address_missing": 588,
+        "coordinates_missing": 330,
+        "future_dates_missing": 370,
+        "hours_missing": 678,
         "records": 9914,
         "source_or_import_date_unknown": 267
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 35913,
+      "priority_workload_score_not_evidence": 35898,
       "publisher": "happings.com",
       "records": 9914,
       "rights_classification": "see_existing_happings_operational_policy",
@@ -695,7 +695,7 @@
           "mercato-settimanale-a-barisciano-barisciano-giovedi",
           "mercato-settimanale-di-bussi-sul-tirino-bussi-sul-tirino",
           "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
-          "mercato-settimanale-di-cellino-attanasio-cellino-attanasio"
+          "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "coordinates_missing": [
           "mercato-settimanale-a-atelena-atelena-mercoledi",
@@ -709,14 +709,14 @@
           "mercato-settimanale-a-barisciano-barisciano-giovedi",
           "mercato-settimanale-di-bussi-sul-tirino-bussi-sul-tirino",
           "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
-          "mercato-settimanale-di-cellino-attanasio-cellino-attanasio"
+          "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "hours_missing": [
           "mercato-settimanale-a-balsorano-balsorano-martedi",
           "mercato-settimanale-a-barisciano-barisciano-giovedi",
           "mercato-settimanale-di-bussi-sul-tirino-bussi-sul-tirino",
           "mercato-settimanale-di-castiglione-messer-marino-in-provincia-di-mercato-settima",
-          "mercato-settimanale-di-cellino-attanasio-cellino-attanasio"
+          "mercato-settimanale-di-crognaleto-crognaleto"
         ],
         "source_or_import_date_unknown": [
           "happings-mercato-di-campagna-amica-di-atri-3d19a276a90a",
@@ -735,16 +735,16 @@
       "fields": {
         "address_generic_not_navigable": 44,
         "address_missing": 438,
-        "coordinates_missing": 102,
-        "future_dates_missing": 1456,
-        "hours_missing": 361,
+        "coordinates_missing": 101,
+        "future_dates_missing": 1457,
+        "hours_missing": 360,
         "records": 2200,
         "source_or_import_date_unknown": 3
       },
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5956,
+      "priority_workload_score_not_evidence": 5955,
       "publisher": "eventiesagre.it",
       "records": 2200,
       "rights_classification": "urls_only_no_bulk_content_reuse",
@@ -850,15 +850,15 @@
       "fields": {
         "address_generic_not_navigable": 30,
         "coordinates_missing": 24,
-        "future_dates_missing": 83,
-        "hours_missing": 152,
+        "future_dates_missing": 82,
+        "hours_missing": 150,
         "records": 442,
         "source_or_import_date_unknown": 10
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1009,
+      "priority_workload_score_not_evidence": 1004,
       "publisher": "cosedicasa.com",
       "records": 442,
       "rights_classification": "publisher_rights_unreviewed",
@@ -907,19 +907,19 @@
       "count_delta_since_last_audit": 32,
       "fields": {
         "address_generic_not_navigable": 3,
-        "address_missing": 65,
-        "coordinates_missing": 182,
-        "future_dates_missing": 242,
-        "hours_missing": 168,
-        "records": 352,
-        "source_or_import_date_unknown": 352
+        "address_missing": 71,
+        "coordinates_missing": 199,
+        "future_dates_missing": 288,
+        "hours_missing": 181,
+        "records": 384,
+        "source_or_import_date_unknown": 384
       },
       "kind": "other_legacy_or_publisher",
       "layout": "unclassified_source_page",
       "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 1143,
+      "priority_workload_score_not_evidence": 1265,
       "publisher": "vintagery.it",
-      "records": 352,
+      "records": 384,
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -935,32 +935,32 @@
           "mercato-antiquariato-cortemaggiore"
         ],
         "coordinates_missing": [
+          "mercatino-del-collezionismo-avezzano",
           "mostra-mercato-mostra-d-antiquariato-di-avezzano-avezzano",
           "curiosando-mercatino-estivo-giulianova",
           "mercatini-estivi-litorale-teramano-giulianova",
-          "mercatino-dell-antiquariato-di-lanciano-lanciano",
-          "mercantico-pescara-vecchia-pescara"
+          "mercatino-dell-antiquariato-di-lanciano-lanciano"
         ],
         "future_dates_missing": [
+          "mercatino-del-collezionismo-avezzano",
           "mostra-mercato-mostra-d-antiquariato-di-avezzano-avezzano",
           "curiosando-mercatino-estivo-giulianova",
           "mercatini-estivi-litorale-teramano-giulianova",
-          "caccia-all-affare-pescara-fiere-pescara",
-          "mercantico-pescara-vecchia-pescara"
+          "caccia-all-affare-pescara-fiere-pescara"
         ],
         "hours_missing": [
           "curiosando-mercatino-estivo-giulianova",
           "mercatini-estivi-litorale-teramano-giulianova",
           "mercantico-pescara-vecchia-pescara",
           "caccia-all-affare-sulmona",
-          "teramo-vintage-market-teramo"
+          "sulmonantiqua-sulmona"
         ],
         "source_or_import_date_unknown": [
+          "mercatino-del-collezionismo-avezzano",
           "mostra-mercato-mostra-d-antiquariato-di-avezzano-avezzano",
           "curiosando-mercatino-estivo-giulianova",
           "mercatini-estivi-litorale-teramano-giulianova",
-          "mercatino-dell-antiquariato-di-lanciano-lanciano",
-          "caccia-all-affare-pescara-fiere-pescara"
+          "mercatino-dell-antiquariato-di-lanciano-lanciano"
         ]
       }
     },
@@ -6817,6 +6817,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--022f85070ccd",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/940f59eb-3ae5-4be8-b23d-417be194e7cb"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--0275eb8e958a",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -6925,6 +6943,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--05e6b2df4db2",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/8a76ec6d-a122-444d-b931-3df2f15cebd3"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--07c5325acc1d",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -6958,6 +6994,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/0f96e5ba-4e81-4fc1-8306-e558542303ae"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--088bdb5a151a",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/17407618-fc96-412a-bcb5-95756b8cd594"
       },
       {
         "catalog_records": 1,
@@ -7249,6 +7303,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--154e9ded8b83",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/baee1220-b909-46c6-a714-72512763c4b2"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--15633598948f",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -7429,6 +7501,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--192cf93d4ab1",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/28ac5029-cac2-4531-865f-71bff0e606ff"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--193460c667b0",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -7444,6 +7534,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/5ea3e8b8-0b7c-4ae4-bcf9-89b99a2734c3"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--1a1188499c31",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/93791fa5-7a2d-4c4e-ac45-e18e8cb0ebc2"
       },
       {
         "catalog_records": 1,
@@ -7645,6 +7753,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--2394f0553844",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/48106ecd-f7d8-4ade-a671-27dc5aeda998"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--23bc2fe595b9",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -7678,6 +7804,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/66a913b7-c64a-4833-aada-81236c4dabad"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--25752358dd14",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/450ec34e-b697-4c7b-83ff-4a8b971c38c1"
       },
       {
         "catalog_records": 1,
@@ -8437,6 +8581,42 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--465e8cd3853b",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/01c82ba3-e2e5-4cc1-9b57-50a850b4a57b"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--46e8f0a6a780",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/1a2fa8b6-90fd-4ab0-b92e-6b6e6101aa96"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--47a26fbcbc92",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -8560,6 +8740,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/f5cdc695-b1fa-4687-a989-91ff4fcbfe14"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--49866aa0e740",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/a5eb83bb-9191-42b7-a0ed-a882ea08a1bd"
       },
       {
         "catalog_records": 1,
@@ -8851,6 +9049,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--51d2b77c4ee8",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/bd390f23-ac65-4293-a602-3a96ef12dc73"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--52b2cd7159aa",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -8974,6 +9190,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/2c77f932-0e0d-464d-9b23-6d1521ea2c37"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--587eacc8607c",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/19774fa5-fd3a-489c-b5ac-6b634df41a2c"
       },
       {
         "catalog_records": 1,
@@ -9298,6 +9532,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/48d9e465-099f-4031-a0ee-0641c445558f"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--63a48797e1ae",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/0737f0bd-cfae-4eb8-b3c8-4e643151158d"
       },
       {
         "catalog_records": 1,
@@ -10381,6 +10633,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--8e2fc7f332a1",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/4bba1e29-31ad-4c77-a664-2a45a08af7bd"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--8e4ea3de8b1a",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -10471,6 +10741,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--903e0b8277fb",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/3780811f-b873-4947-b2a6-4bd8852184dc"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--910cb6b72ff0",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -10540,6 +10828,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/cb76ab7a-5543-4949-afe5-cdea95fbea04"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--95f7190737b4",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/6160b1fd-ea78-4272-98ef-e34067ea7453"
       },
       {
         "catalog_records": 1,
@@ -10648,6 +10954,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/f5c7ac43-cfe3-422d-b345-d4c407a4ab5b"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--9b09eddf57f9",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/26009a1c-e55a-4fe5-af22-08aa8453477d"
       },
       {
         "catalog_records": 1,
@@ -10867,6 +11191,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--a1a9321e18bf",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/029bac4c-8efb-4c63-91e3-b6fdda7e97ba"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--a2108de2641f",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -11026,6 +11368,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/6243d2a1-6432-4373-ae21-18776b99ea4d"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--a881eddb82da",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/31c686fa-d761-415a-a74f-3c2cac3478dc"
       },
       {
         "catalog_records": 1,
@@ -11296,6 +11656,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/48d6f06c-b2f0-4060-84d6-e0e83d78af4f"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--b2d34d14359e",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/cc39c6cf-92bf-4068-85f5-b1b921aaeba3"
       },
       {
         "catalog_records": 1,
@@ -11767,6 +12145,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--c714feac7974",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/592872ff-ba1f-49c4-91f6-8c613e3500ac"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--c7c5f13dfb2d",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -11857,6 +12253,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--cb28d17a4096",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/ea913b91-2fa0-46e3-b7f0-871e488dee0e"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--cc61dc65363b",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -11908,6 +12322,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/64581e2a-9dee-4fac-9304-750b4b28e733"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--d01967e3b245",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/94f39146-21fb-4fa3-9c16-66fdba8715ff"
       },
       {
         "catalog_records": 1,
@@ -12037,6 +12469,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--d52efa557567",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/cea5a9a1-6d41-4f71-9491-6ca5f8e7977e"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--d5bed7102326",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -12070,6 +12520,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/72012647-06e4-404b-8b53-258eff084019"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--d6e669a0baa1",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/bdba7ef2-da56-4035-b4dd-6f2dff62520f"
       },
       {
         "catalog_records": 1,
@@ -12217,6 +12685,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--dbaa59d3a401",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/b4393d28-143b-40f3-8c96-e1fa6e2c567a"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--dc1fad662839",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -12361,6 +12847,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--de587e7ac3fd",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/e883de8b-359e-4724-abdd-490b94205757"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--decb352e2e2c",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -12469,6 +12973,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--e7945d684596",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/970cb214-346a-42f3-95ee-56ed53fe2cb4"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--e7c7628b43cf",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -12523,6 +13045,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--ea49a9d67fe6",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/cbf6fc95-e777-4d07-a15b-3dcdfa664f7e"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--eb8f8b0e8c73",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -12541,6 +13081,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--ed1a94a50bf7",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/5e35c94a-f4fe-455d-9ae5-16e680f8fc4b"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--ed1d2929c032",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -12556,6 +13114,24 @@
         "review_status": "not_reviewed",
         "reviewed_at": null,
         "url_pattern": "/mercatini/c2ed3c2c-eb05-416a-8b88-99a2d1bf800e"
+      },
+      {
+        "catalog_records": 1,
+        "format_id": "vintagery.it--ee202d38674c",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/e2614651-152c-4894-a7a3-010ab17528b3"
       },
       {
         "catalog_records": 1,
@@ -13072,23 +13648,23 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-11-08",
+    "generated_for_date": "2026-11-09",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
       "auxiliary_format_units": 27,
       "catalog_records_modified": 0,
       "completed_tasks": 23,
-      "formats_requiring_recheck": 466,
+      "formats_requiring_recheck": 498,
       "formats_with_documented_source_read": 104,
       "formats_with_open_corrections": 106,
       "formats_with_sample_attempt": 110,
       "network_reads_performed": 0,
       "open_tasks": 36,
       "partial_review_formats": 105,
-      "primary_format_units": 466,
+      "primary_format_units": 498,
       "reviewed_sample_formats": 0,
-      "unreviewed_formats": 361
+      "unreviewed_formats": 393
     }
   },
   "source_labels_added_since_previous": [],
