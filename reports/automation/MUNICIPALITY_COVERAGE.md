@@ -4,9 +4,9 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **5,069** (64.2%).
-- Comuni senza schede in catalogo: **2,825**.
-- Schede esistenti conservate: **14,580**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **5,070** (64.2%).
+- Comuni senza schede in catalogo: **2,824**.
+- Schede esistenti conservate: **14,612**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
@@ -25,7 +25,7 @@ I risultati indicano dove cercare fonti comunali o regionali affidabili.
 | Veneto | 559 | 461 | 98 | 82.5% |
 | Lazio | 378 | 306 | 72 | 81.0% |
 | Emilia-Romagna | 330 | 282 | 48 | 85.5% |
-| Valle d'Aosta | 74 | 28 | 46 | 37.8% |
+| Valle d'Aosta | 74 | 29 | 45 | 39.2% |
 | Toscana | 273 | 233 | 40 | 85.3% |
 | Umbria | 92 | 66 | 26 | 71.7% |
 | Puglia | 257 | 234 | 23 | 91.1% |
@@ -50,7 +50,7 @@ Esempi selezionati stabilmente per regione (non sono mercati identificati).
 - **Veneto:** Bagnolo di Po, Canda, Erbè, Gaiba, Giacciano con Baruchella, Rivoli Veronese, Salcedo, San Nicolò di Comelico
 - **Lazio:** Frasso Sabino, Micigliano, Montenero Sabino, Poggio San Lorenzo, Rocca Canterano, Roccagiovine, Saracinesco, Turania
 - **Emilia-Romagna:** Bertinoro, Cerignale, Dovadola, Longiano, Montecopiolo, Pellegrino Parmense, Prignano sulla Secchia, Santa Sofia
-- **Valle d'Aosta:** Arnad, Arvier, Brusson, Cogne, Issime, Rhêmes-Saint-Georges, Saint-Rhémy-en-Bosses, Verrayes
+- **Valle d'Aosta:** Arnad, Arvier, Cogne, Issime, Rhêmes-Saint-Georges, Saint-Rhémy-en-Bosses, Torgnon, Verrayes
 - **Toscana:** Abbadia San Salvatore, Londa, Molazzana, Murlo, Ortignano Raggiolo, Radicondoli, Vagli Sotto, Villa Collemandina
 - **Umbria:** Castel Ritaldi, Fabro, Ficulle, Fossato di Vico, Montegabbione, Poggiodomo, Preci, Stroncone
 - **Puglia:** Castelluccio Valmaggiore, Celle di San Vito, Mattinata, Panni, Poggio Imperiale, San Nicandro Garganico, Troia, Vico del Gargano

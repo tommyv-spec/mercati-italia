@@ -2,36 +2,36 @@
 
 **Analisi in sola lettura.** Nessun mercato, dato fonte o appuntamento modificato.
 
-- Schede: **14,580**
-- Senza orari: **1,880** (12.9%)
-- Senza indirizzo: **1,217** (8.3%)
-- Senza prossime date: **2,860**
-- Senza coordinate precise verificate: **14,491**
-- Senza verifica singola documentata: **14,580**
+- Schede: **14,612**
+- Senza orari: **1,876** (12.8%)
+- Senza indirizzo: **1,210** (8.3%)
+- Senza prossime date: **2,892**
+- Senza coordinate precise verificate: **14,523**
+- Senza verifica singola documentata: **14,612**
 
 ## Regioni da migliorare (volume di dati mancanti, non punteggio di affidabilità)
 
 | Regione | Schede | Senza orario | Senza indirizzo | Senza prossima data | Gap pesato |
 |---|---:|---:|---:|---:|---:|
-| Lombardia | 4057 | 524 | 167 | 728 | 16176 |
-| Piemonte | 1373 | 160 | 178 | 209 | 5582 |
-| Veneto | 1366 | 133 | 124 | 200 | 5345 |
-| Emilia-Romagna | 946 | 178 | 106 | 363 | 4673 |
-| Toscana | 1020 | 195 | 108 | 245 | 4592 |
-| Lazio | 1102 | 103 | 64 | 248 | 4487 |
-| Campania | 836 | 122 | 61 | 105 | 3311 |
-| Puglia | 510 | 59 | 41 | 74 | 2011 |
-| Sicilia | 430 | 65 | 42 | 92 | 1845 |
-| Liguria | 412 | 58 | 55 | 101 | 1823 |
-| Abruzzo | 403 | 29 | 33 | 50 | 1512 |
-| Sardegna | 406 | 29 | 31 | 48 | 1511 |
-| Marche | 313 | 56 | 42 | 84 | 1443 |
-| Calabria | 344 | 45 | 38 | 55 | 1408 |
-| Trentino-Alto Adige | 273 | 30 | 36 | 74 | 1203 |
-| Friuli Venezia Giulia | 271 | 29 | 20 | 80 | 1180 |
-| Umbria | 199 | 35 | 23 | 48 | 892 |
+| Lombardia | 4060 | 522 | 166 | 730 | 16183 |
+| Piemonte | 1376 | 157 | 177 | 210 | 5583 |
+| Veneto | 1371 | 137 | 125 | 207 | 5395 |
+| Emilia-Romagna | 947 | 177 | 107 | 364 | 4678 |
+| Toscana | 1023 | 196 | 109 | 251 | 4624 |
+| Lazio | 1104 | 101 | 62 | 249 | 4486 |
+| Campania | 837 | 122 | 60 | 106 | 3315 |
+| Puglia | 513 | 58 | 39 | 76 | 2019 |
+| Sicilia | 430 | 63 | 40 | 93 | 1838 |
+| Liguria | 413 | 58 | 55 | 102 | 1829 |
+| Abruzzo | 405 | 29 | 32 | 51 | 1519 |
+| Sardegna | 407 | 28 | 30 | 48 | 1509 |
+| Marche | 314 | 56 | 42 | 84 | 1446 |
+| Calabria | 346 | 47 | 38 | 57 | 1426 |
+| Trentino-Alto Adige | 274 | 30 | 36 | 76 | 1212 |
+| Friuli Venezia Giulia | 272 | 30 | 21 | 81 | 1191 |
+| Umbria | 200 | 35 | 23 | 50 | 901 |
 | Molise | 219 | 16 | 30 | 28 | 849 |
-| Valle d'Aosta | 63 | 11 | 9 | 17 | 291 |
+| Valle d'Aosta | 64 | 11 | 9 | 18 | 297 |
 | Basilicata | 37 | 3 | 9 | 11 | 171 |
 
 ## Comuni da verificare prima
@@ -40,14 +40,14 @@ Fino a due per regione. È una coda di approfondimento: **non** prova che gli or
 
 | Comune | Regione | Schede | Orari mancanti | Indirizzi mancanti | Date mancanti |
 |---|---|---:|---:|---:|---:|
-| Roma | Lazio | 368 | 33 | 8 | 113 |
-| Milano | Lombardia | 134 | 14 | 16 | 36 |
+| Roma | Lazio | 380 | 33 | 8 | 114 |
+| Milano | Lombardia | 134 | 14 | 16 | 35 |
 | Bologna | Emilia-Romagna | 60 | 8 | 4 | 54 |
 | Firenze | Toscana | 56 | 12 | 4 | 41 |
-| Genova | Liguria | 37 | 14 | 9 | 15 |
-| Torino | Piemonte | 33 | 5 | 3 | 14 |
+| Genova | Liguria | 40 | 14 | 9 | 15 |
+| Torino | Piemonte | 34 | 5 | 3 | 15 |
 | Ravenna | Emilia-Romagna | 18 | 13 | 4 | 11 |
-| Palermo | Sicilia | 20 | 8 | 4 | 12 |
+| Palermo | Sicilia | 20 | 8 | 4 | 13 |
 | Como | Lombardia | 21 | 8 | 0 | 12 |
 | Lucca | Toscana | 22 | 9 | 0 | 9 |
 | Ancona | Marche | 24 | 3 | 7 | 7 |

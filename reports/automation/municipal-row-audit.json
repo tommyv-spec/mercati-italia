@@ -4,8 +4,8 @@
   "offline": false,
   "imports": 0,
   "verified_events": 0,
-  "reference_date": "2026-11-08",
-  "catalog_total": null,
+  "reference_date": "2026-11-09",
+  "catalog_total": 87,
   "sample_limit": 3,
   "history": {
     "25177cb0-f763-44ca-8c30-dd8111c58cc3": {
@@ -349,10 +349,113 @@
       "resource_last_modified": "2026-11-03T13:50:06.780472",
       "status": "sampled_complete_csv",
       "kind": "concessions_not_market_visits"
+    },
+    "59bc71a8-69a1-4b5b-bdec-d7837b2b4eca": {
+      "checked_on": "2026-11-09",
+      "resource_last_modified": "2026-11-03T10:10:52.158530",
+      "status": "sampled_complete_csv",
+      "kind": "concessions_not_market_visits"
+    },
+    "6431478f-a5d7-40bb-8dc9-747cc778ac50": {
+      "checked_on": "2026-11-09",
+      "resource_last_modified": "2026-11-01T09:26:08.842066",
+      "status": "sampled_complete_csv",
+      "kind": "concessions_not_market_visits"
+    },
+    "6778aeeb-3dda-4d10-ae51-5cfa5d95b77d": {
+      "checked_on": "2026-11-09",
+      "resource_last_modified": "2026-11-02T11:19:53.525394",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
     }
   },
-  "sources": [],
-  "errors": [
-    "TimeoutError: The read operation timed out"
-  ]
+  "sources": [
+    {
+      "id": "59bc71a8-69a1-4b5b-bdec-d7837b2b4eca",
+      "title": "Fiere e mercati - RIESE PIO X",
+      "publisher": "Comune di Riese Pio X",
+      "source_modified_claim": "",
+      "resource_id": "eacac85a-ea10-4533-b343-fd60220b16f5",
+      "resource_last_modified": "2026-11-03T10:10:52.158530",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "c541a25243edee15dd197a2f6ec62db630fea124ec5227d3c906ed99d3378c58",
+      "source_rows_read": 8,
+      "distinct_market_names_not_new_markets": 2,
+      "explicit_valid_weekdays": 0,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 3,
+      "historical_stall_rows": 0,
+      "source_kind": "concessions_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "attivita",
+        "data_validita_concessione",
+        "data_scadenza_concessione"
+      ]
+    },
+    {
+      "id": "6431478f-a5d7-40bb-8dc9-747cc778ac50",
+      "title": "Fiere e mercati - COGOLLO DEL CENGIO",
+      "publisher": "Comune di Cogollo del Cengio",
+      "source_modified_claim": "",
+      "resource_id": "41e7b110-67af-466d-9d35-17fa038bb06d",
+      "resource_last_modified": "2026-11-01T09:26:08.842066",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "01cd99d947398cc63d76652d82256f18f85c1ead2c13c6e6ddfc9e734a85fb0b",
+      "source_rows_read": 9,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 0,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 8,
+      "historical_stall_rows": 0,
+      "source_kind": "concessions_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "attivita",
+        "data_validita_concessione",
+        "data_scadenza_concessione"
+      ]
+    },
+    {
+      "id": "6778aeeb-3dda-4d10-ae51-5cfa5d95b77d",
+      "title": "Posteggi mercati e fiere - LAZISE",
+      "publisher": "Comune di Lazise",
+      "source_modified_claim": "",
+      "resource_id": "f87f571f-9aae-4edd-91e3-e60e8feebbd9",
+      "resource_last_modified": "2026-11-02T11:19:53.525394",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "b91d4645e32b44955623338d3632d8d847efbb14788bae7c0528af453cca0972",
+      "source_rows_read": 8,
+      "distinct_market_names_not_new_markets": 3,
+      "explicit_valid_weekdays": 8,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 4,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    }
+  ],
+  "errors": []
 }
