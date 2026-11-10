@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14612,
-  "baseline_market_records": 14612,
+  "baseline_market_ids_preserved": 14644,
+  "baseline_market_records": 14644,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -9,9 +9,9 @@
       "event_confirmations": 0,
       "id": "firenze-feelflorence",
       "leads_found": 2,
-      "not_matching_market_scope": 105,
+      "not_matching_market_scope": 109,
       "requests": 1,
-      "rows_examined": 107,
+      "rows_examined": 111,
       "schema_digest": "fbb827b3d20053b7f3c0cb912af7cd45e2fe88220f0f28148737897f37acd5a5",
       "state": "discovery_leads_only"
     },
@@ -45,7 +45,7 @@
       "first_seen": "2026-10-25",
       "id": "firenze-feelflorence:95",
       "kind": "market_candidate",
-      "last_seen": "2026-11-09",
+      "last_seen": "2026-11-10",
       "opening_confirmed": false,
       "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
@@ -61,7 +61,7 @@
       "first_seen": "2026-11-09",
       "id": "firenze-feelflorence:78",
       "kind": "market_candidate",
-      "last_seen": "2026-11-09",
+      "last_seen": "2026-11-10",
       "opening_confirmed": false,
       "possible_existing_market_ids": [],
       "source_id": "firenze-feelflorence",
@@ -2228,7 +2228,7 @@
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-11-09",
+  "reference_date": "2026-11-10",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
