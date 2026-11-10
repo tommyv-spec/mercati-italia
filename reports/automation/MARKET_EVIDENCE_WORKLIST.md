@@ -3,21 +3,21 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14612**
+- ID controllati e conservati: **14644**
 - Etichette di fonte: **92**
-- Casi nel lotto di lavoro del giorno: **455**
+- Casi nel lotto di lavoro del giorno: **454**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **14523**
-- date: **2892**
-- indirizzo: **5041**
-- individual_edition_confirmation: **14612**
-- orario_testo: **1876**
-- ricorrenza_testo: **1315**
+- coordinates: **14555**
+- date: **2910**
+- indirizzo: **5048**
+- individual_edition_confirmation: **14644**
+- orario_testo: **1890**
+- ricorrenza_testo: **1343**
 
 ## Origini ordinate per numero di schede
 
@@ -27,7 +27,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | eventiesagre.it | 2200 | 360 | 482 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1129 | 342 | 3 | lombardia-mercap |
 | cosedicasa.com | 442 | 150 | 30 | cosedicasa-editorial-calendar |
-| vintagery.it | 384 | 181 | 74 | source-family-not-resolved-by-this-worklist |
+| vintagery.it | 416 | 195 | 81 | source-family-not-resolved-by-this-worklist |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
 | dati.comune.roma.it | 70 | 2 | 0 | source-family-not-resolved-by-this-worklist |
@@ -118,13 +118,13 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
 ## Riscontri ufficiali per singola scheda
 
-- city_weekday_only_unconfirmed_venue: 41
+- city_weekday_only_unconfirmed_venue: 42
 - coordinates_disagree: 20
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 12
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 13400
-- review_only_field_candidates: 43
+- no_usable_source_match: 13431
+- review_only_field_candidates: 44
 - same_source_id: 790
 - unique_city_province_street_weekday: 381
 

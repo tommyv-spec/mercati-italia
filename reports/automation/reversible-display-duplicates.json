@@ -4,14 +4,14 @@
   "display_grouping_only": true,
   "criteria": "exact municipality, region, street, category, source URL, weekly dates, mutually compatible hours and coordinates",
   "metrics": {
-    "original_records": 14612,
-    "ids_retained": 14612,
-    "generic_weekly_with_specific_venue": 5657,
+    "original_records": 14644,
+    "ids_retained": 14644,
+    "generic_weekly_with_specific_venue": 5619,
     "malformed_source_city_labels_guarded_in_ui": 2,
-    "venue_groups_examined": 3650,
-    "highly_supported_same_source_visit_groups": 902,
-    "suppressed_repeat_buttons_only": 1057,
-    "original_records_in_reversible_groups": 1959,
+    "venue_groups_examined": 3618,
+    "highly_supported_same_source_visit_groups": 898,
+    "suppressed_repeat_buttons_only": 1053,
+    "original_records_in_reversible_groups": 1951,
     "market_identities_deleted": 0,
     "event_confirmations_created": 0,
     "verification_claims_created": 0
@@ -24,13 +24,13 @@
     },
     {
       "region": "Liguria",
-      "groups": 38,
-      "extra_display_entries": 44
+      "groups": 37,
+      "extra_display_entries": 43
     },
     {
       "region": "Lombardia",
-      "groups": 617,
-      "extra_display_entries": 672
+      "groups": 616,
+      "extra_display_entries": 671
     },
     {
       "region": "Piemonte",
@@ -44,8 +44,8 @@
     },
     {
       "region": "Toscana",
-      "groups": 47,
-      "extra_display_entries": 66
+      "groups": 46,
+      "extra_display_entries": 65
     },
     {
       "region": "Trentino-Alto Adige",
@@ -54,8 +54,8 @@
     },
     {
       "region": "Veneto",
-      "groups": 76,
-      "extra_display_entries": 91
+      "groups": 75,
+      "extra_display_entries": 90
     }
   ],
   "examples": [
@@ -81,7 +81,7 @@
         "mercato-settimanale-di-ferrara-ferrara",
         "mercato-settimanale-di-ferrara-ferrara-lunedi"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Emilia-Romagna",
@@ -94,7 +94,7 @@
         "mercato-settimanale-di-modena-modena",
         "mercato-settimanale-di-modena-modena-lunedi"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Emilia-Romagna",
@@ -131,7 +131,7 @@
         "mercato-settimanale-di-andora-andora",
         "mercato-settimanale-di-andora-andora-lunedi"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Liguria",
@@ -228,7 +228,7 @@
         "mercato-settimanale-di-ceriale-ceriale",
         "mercato-settimanale-di-ceriale-ceriale-lunedi"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Liguria",
@@ -277,7 +277,7 @@
         "mercato-settimanale-di-follo-follo",
         "mercato-settimanale-di-follo-follo-lunedi"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Liguria",
@@ -301,7 +301,7 @@
         "mercato-settimanale-di-loano-loano",
         "mercato-settimanale-di-loano-loano-lunedi"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Liguria",
@@ -411,7 +411,7 @@
         "mercato-settimanale-di-quiliano-quiliano",
         "mercato-settimanale-di-quiliano-quiliano-lunedi"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Liguria",
@@ -447,7 +447,7 @@
         "mercato-settimanale-a-recco-recco-lunedi",
         "mercato-settimanale-di-recco-recco"
       ],
-      "date": "2026-11-09"
+      "date": "2026-11-16"
     },
     {
       "region": "Liguria",
