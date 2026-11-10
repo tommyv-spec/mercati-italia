@@ -3,12 +3,12 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 14612,
+  "catalog_market_ids_preserved": 14644,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 5070,
-  "municipalities_without_catalog_listings": 2824,
+  "municipalities_with_catalog_listings": 5071,
+  "municipalities_without_catalog_listings": 2823,
   "represented_percent": 64.2,
   "regions": [
     {
@@ -65,9 +65,9 @@
     {
       "region": "Sicilia",
       "istat_municipalities": 391,
-      "with_at_least_one_catalog_market": 202,
-      "without_catalog_market": 189,
-      "represented_percent": 51.7,
+      "with_at_least_one_catalog_market": 203,
+      "without_catalog_market": 188,
+      "represented_percent": 51.9,
       "unrepresented_examples_for_source_search": [
         "Altavilla Milicia",
         "Castelmola",
@@ -387,10 +387,6 @@
     },
     {
       "region": "Calabria",
-      "reported_city": "Corigliano Calabro"
-    },
-    {
-      "region": "Calabria",
       "reported_city": "Lamezia Terme Nicastro"
     },
     {
@@ -412,6 +408,10 @@
     {
       "region": "Calabria",
       "reported_city": "San Pietro a Madia"
+    },
+    {
+      "region": "Calabria",
+      "reported_city": "Vibo Marina"
     }
   ],
   "interpretation": "absence of a listing is NOT evidence a municipality has any active market"
