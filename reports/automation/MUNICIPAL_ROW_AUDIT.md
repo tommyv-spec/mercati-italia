@@ -8,41 +8,41 @@ Nessuna fonte viene abilitata all'importazione.
 - Dataset con campione storico: **63**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - GALLIERA VENETA
-- Editore dichiarato: Comune di Galliera Veneta
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 5
-- Nomi distinti (NON mercato nuovo): 2
-- Concessioni scadute: 0
-- Righe di posteggi storici: 0
-- Giorni settimanali espliciti: 5
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
-
-## Fiere e mercati - CROCETTA DEL MONTELLO
-- Editore dichiarato: Comune di Crocetta del Montello
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: concessions_not_market_visits
-- Righe amministrative lette: 11
-- Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 0
-- Giorni settimanali espliciti: 0
-- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
-
-## Fiere e mercati - CASTELNUOVO DEL GARDA
+## Posteggi mercati e fiere - CASTELNUOVO DEL GARDA
 - Editore dichiarato: Comune di Castelnuovo del Garda
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: concessions_not_market_visits
-- Righe amministrative lette: 49
-- Nomi distinti (NON mercato nuovo): 2
-- Concessioni scadute: 48
-- Righe di posteggi storici: 0
+- Categoria dei record: historic_stall_capacity_not_market_visits
+- Righe amministrative lette: 12
+- Nomi distinti (NON mercato nuovo): 1
+- Concessioni scadute: 0
+- Righe di posteggi storici: 12
+- Giorni settimanali espliciti: 12
+- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+
+## Posteggi mercati e fiere - COGOLLO DEL CENGIO
+- Editore dichiarato: Comune di Cogollo del Cengio
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: historic_stall_capacity_not_market_visits
+- Righe amministrative lette: 6
+- Nomi distinti (NON mercato nuovo): 1
+- Concessioni scadute: 0
+- Righe di posteggi storici: 6
 - Giorni settimanali espliciti: 0
-- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
+- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+
+## Posteggi mercati e fiere - SAN STINO DI LIVENZA
+- Editore dichiarato: Comune di San Stino di Livenza
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: historic_stall_capacity_not_market_visits
+- Righe amministrative lette: 120
+- Nomi distinti (NON mercato nuovo): 8
+- Concessioni scadute: 0
+- Righe di posteggi storici: 114
+- Giorni settimanali espliciti: 54
+- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
 
 
 Le sedi saranno aggiunte solo dopo confronto con catalogo, identità univoche,

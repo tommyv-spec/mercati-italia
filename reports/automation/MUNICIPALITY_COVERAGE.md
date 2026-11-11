@@ -4,13 +4,13 @@
 I risultati indicano dove cercare fonti comunali o regionali affidabili.
 
 - Comuni ISTAT: **7,894**.
-- Comuni con almeno una scheda nel catalogo: **5,071** (64.2%).
-- Comuni senza schede in catalogo: **2,823**.
-- Schede esistenti conservate: **14,644**; nuove schede: **0**.
+- Comuni con almeno una scheda nel catalogo: **5,073** (64.3%).
+- Comuni senza schede in catalogo: **2,821**.
+- Schede esistenti conservate: **14,689**; nuove schede: **0**.
 
 | Regione | Comuni ufficiali | Con almeno una scheda | Senza schede | Copertura |
 |---|---:|---:|---:|---:|
-| Piemonte | 1180 | 538 | 642 | 45.6% |
+| Piemonte | 1180 | 539 | 641 | 45.7% |
 | Lombardia | 1501 | 1079 | 422 | 71.9% |
 | Calabria | 404 | 197 | 207 | 48.8% |
 | Sicilia | 391 | 203 | 188 | 51.9% |
@@ -19,7 +19,7 @@ I risultati indicano dove cercare fonti comunali o regionali affidabili.
 | Liguria | 234 | 111 | 123 | 47.4% |
 | Abruzzo | 305 | 193 | 112 | 63.3% |
 | Basilicata | 131 | 19 | 112 | 14.5% |
-| Marche | 225 | 116 | 109 | 51.6% |
+| Marche | 225 | 117 | 108 | 52.0% |
 | Friuli Venezia Giulia | 215 | 108 | 107 | 50.2% |
 | Campania | 550 | 450 | 100 | 81.8% |
 | Veneto | 559 | 461 | 98 | 82.5% |
@@ -44,7 +44,7 @@ Esempi selezionati stabilmente per regione (non sono mercati identificati).
 - **Liguria:** Costarainera, Olivetta San Michele, Ortovero, Plodio, Pornassio, Riomaggiore, Testico, Zuccarello
 - **Abruzzo:** Castel Castagna, Civitella Messer Raimondo, Crecchio, Montebello sul Sangro, Pennadomo, San Pio delle Camere, Vicoli, Villalago
 - **Basilicata:** Albano di Lucania, Episcopia, Irsina, Oliveto Lucano, Rapone, Rivello, Venosa, Vietri di Potenza
-- **Marche:** Cagli, Monte Cerignone, Petritoli, Pioraco, Poggio San Marcello, San Lorenzo in Campo, Vallefoglia, Visso
+- **Marche:** Cagli, Monte Cerignone, Montefalcone Appennino, Petritoli, Poggio San Marcello, San Lorenzo in Campo, Vallefoglia, Visso
 - **Friuli Venezia Giulia:** Artegna, Colloredo di Monte Albano, Malborghetto Valbruna, Remanzacco, Romans d'Isonzo, Torreano, Tramonti di Sotto, Villesse
 - **Campania:** Agerola, Castel di Sasso, Contrada, Cuccaro Vetere, Domicella, Laureana Cilento, Letino, Morigerati
 - **Veneto:** Bagnolo di Po, Canda, Erbè, Gaiba, Giacciano con Baruchella, Rivoli Veronese, Salcedo, San Nicolò di Comelico

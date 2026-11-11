@@ -3,20 +3,20 @@
   "review_only": true,
   "istat_reference_date": "2026-02-21",
   "istat_original_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-  "catalog_market_ids_preserved": 14644,
+  "catalog_market_ids_preserved": 14689,
   "catalog_entries_added": 0,
   "events_confirmed": 0,
   "municipalities_total": 7894,
-  "municipalities_with_catalog_listings": 5071,
-  "municipalities_without_catalog_listings": 2823,
-  "represented_percent": 64.2,
+  "municipalities_with_catalog_listings": 5073,
+  "municipalities_without_catalog_listings": 2821,
+  "represented_percent": 64.3,
   "regions": [
     {
       "region": "Piemonte",
       "istat_municipalities": 1180,
-      "with_at_least_one_catalog_market": 538,
-      "without_catalog_market": 642,
-      "represented_percent": 45.6,
+      "with_at_least_one_catalog_market": 539,
+      "without_catalog_market": 641,
+      "represented_percent": 45.7,
       "unrepresented_examples_for_source_search": [
         "Crova",
         "Faule",
@@ -167,14 +167,14 @@
     {
       "region": "Marche",
       "istat_municipalities": 225,
-      "with_at_least_one_catalog_market": 116,
-      "without_catalog_market": 109,
-      "represented_percent": 51.6,
+      "with_at_least_one_catalog_market": 117,
+      "without_catalog_market": 108,
+      "represented_percent": 52.0,
       "unrepresented_examples_for_source_search": [
         "Cagli",
         "Monte Cerignone",
+        "Montefalcone Appennino",
         "Petritoli",
-        "Pioraco",
         "Poggio San Marcello",
         "San Lorenzo in Campo",
         "Vallefoglia",
@@ -371,10 +371,6 @@
     },
     {
       "region": "Calabria",
-      "reported_city": "Amantea Campora S.G:"
-    },
-    {
-      "region": "Calabria",
       "reported_city": "Brattirò"
     },
     {
@@ -384,10 +380,6 @@
     {
       "region": "Calabria",
       "reported_city": "Caria"
-    },
-    {
-      "region": "Calabria",
-      "reported_city": "Lamezia Terme Nicastro"
     },
     {
       "region": "Calabria",
@@ -412,6 +404,14 @@
     {
       "region": "Calabria",
       "reported_city": "Vibo Marina"
+    },
+    {
+      "region": "Campania",
+      "reported_city": "AV"
+    },
+    {
+      "region": "Campania",
+      "reported_city": "Ceraso 1"
     }
   ],
   "interpretation": "absence of a listing is NOT evidence a municipality has any active market"
