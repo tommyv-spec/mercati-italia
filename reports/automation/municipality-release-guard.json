@@ -1,14 +1,14 @@
 {
   "calendar_sources_quarantined": 0,
   "changes": 80,
-  "checked_ids": 14612,
-  "city_replacements": 60,
+  "checked_ids": 14657,
+  "city_replacements": 58,
   "contaminated_titles_repaired": 0,
   "forecast_dates_removed": 0,
   "market_identities_deleted": 0,
-  "province_pending": 147,
+  "province_pending": 125,
   "province_protected": 14,
-  "province_replacements": 20,
+  "province_replacements": 22,
   "publisher_urls_or_human_verifications_changed": 0,
   "samples": [
     {
@@ -17,9 +17,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Corigliano-Rossano",
-      "old_city": "Corigliano Calabro",
-      "slug": "mercato-settimanale-di-corigliano-calabro-corigliano-calabro"
+      "new_city": "Amantea",
+      "old_city": "Amantea Campora S.G:",
+      "slug": "mercato-settimanale-di-amantea-campora-s-g-amantea-campora-s-g"
     },
     {
       "changes": [
@@ -27,38 +27,45 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Capaccio Paestum",
-      "old_city": "Capaccio",
-      "slug": "mercato-settimanale-di-capaccio-capaccio-giovedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Valsamoggia",
-      "old_city": "Bazzano",
-      "slug": "mercato-settimanale-di-bazzano-bazzano"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Riva del Po",
-      "old_city": "Berra",
-      "slug": "mercato-settimanale-di-berra-berra-martedi"
+      "new_city": "Lamezia Terme",
+      "old_city": "Lamezia Terme Nicastro",
+      "slug": "mercato-settimanale-di-lamezia-terme-nicastro-lamezia-terme-nicastro"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Imola",
-      "old_city": "Imola",
-      "slug": "mercatino-antiquariato-e-usato-di-imola-cos-antiche-galleria-del-centro-cittadin"
+      "new_city": "Massa Lombarda",
+      "old_city": "Massa Lombarda",
+      "slug": "mercatino-antiquariato-e-usato-di-massa-lombarda-mercatino-degli-hobbisti-piazza"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Medicina",
+      "old_city": "Medicina",
+      "slug": "mercatino-antiquariato-e-usato-di-medicina-i-portici-di-medicina-centro-storico"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Mirandola",
+      "old_city": "Mirandola",
+      "slug": "mercatino-antiquariato-e-usato-di-mirandola-piazza-costituente-e-vie-attigue-cen"
+    },
+    {
+      "changes": [
+        "provincia",
+        "riconciliazione_provincia"
+      ],
+      "new_city": "Montecchio Emilia",
+      "old_city": "Montecchio Emilia",
+      "slug": "mercatino-antiquariato-e-usato-di-montecchio-emilia-robi-veci-centro-storico-pia"
     },
     {
       "changes": [
@@ -66,59 +73,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Fiscaglia",
-      "old_city": "Massa Fiscaglia",
-      "slug": "mercato-settimanale-di-massa-fiscaglia-massa-fiscaglia"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Sorbolo Mezzani",
-      "old_city": "Mezzani",
-      "slug": "mercato-settimanale-di-mezzani-mezzani-martedi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Montescudo-Monte Colombo",
-      "old_city": "Monte Colombo",
-      "slug": "mercato-settimanale-di-montescudo-monte-colombo"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Riva del Po",
-      "old_city": "Ro",
-      "slug": "mercato-settimanale-di-ro-ro-mercoledi"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Valsamoggia",
-      "old_city": "Savigno",
-      "slug": "mercato-settimanale-di-savigno-savigno"
-    },
-    {
-      "changes": [
-        "citta",
-        "citta_originale",
-        "localita_ricostruita_da"
-      ],
-      "new_city": "Valsamoggia",
-      "old_city": "Savigno",
-      "slug": "mercato-settimanale-di-savigno-savigno-martedi"
+      "new_city": "Sissa Trecasali",
+      "old_city": "Sissa",
+      "slug": "mercato-settimanale-di-sissa-sissa-lunedi"
     },
     {
       "changes": [
@@ -128,7 +85,7 @@
       ],
       "new_city": "Sorbolo Mezzani",
       "old_city": "Sorbolo",
-      "slug": "mercato-settimanale-a-sorbolo-sorbolo-mercoledi"
+      "slug": "mercato-settimanale-di-sorbolo-sorbolo-mercoledi"
     },
     {
       "changes": [
@@ -138,34 +95,34 @@
       ],
       "new_city": "Polesine Zibello",
       "old_city": "Zibello",
-      "slug": "mercato-settimanale-a-zibello-zibello-giovedi"
+      "slug": "mercato-settimanale-di-zibello-zibello-giovedi"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Gradisca d’Isonzo",
-      "old_city": "Gradisca d’Isonzo",
-      "slug": "mercatino-antiquariato-e-usato-di-gradisca-disonzo-mercatino-dell-usato-di-alpe"
+      "new_city": "Monfalcone",
+      "old_city": "Monfalcone",
+      "slug": "mercatino-antiquariato-e-usato-di-monfalcone-mercatino-della-rocca-centro-storic"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Isola del Liri",
-      "old_city": "Isola del Liri",
-      "slug": "mercatino-antiquariato-e-usato-di-isola-del-liri-una-cascata-piena-di-occasioni"
+      "new_city": "Muggia",
+      "old_city": "Muggia",
+      "slug": "mercatino-antiquariato-e-usato-di-muggia-corte-dei-miracoli-piazza-della-repubbl"
     },
     {
       "changes": [
         "provincia",
         "riconciliazione_provincia"
       ],
-      "new_city": "Loano",
-      "old_city": "Loano",
-      "slug": "mercatino-antiquariato-e-usato-di-loano-antichita-e-collezionismo-corso-europa-s"
+      "new_city": "Muggia",
+      "old_city": "Muggia",
+      "slug": "mercatino-antiquariato-e-usato-di-muggia-mostra-dellingegno-artistico-creativo-c"
     },
     {
       "changes": [
@@ -173,9 +130,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Genova",
-      "old_city": "Molassana",
-      "slug": "mercato-settimanale-di-molassana-molassana-lunedi"
+      "new_city": "Roma",
+      "old_city": "CASILINO",
+      "slug": "mercato-settimanale-di-casilino-casilino-lunedi"
     },
     {
       "changes": [
@@ -183,9 +140,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Genova",
-      "old_city": "Voltri",
-      "slug": "mercato-settimanale-a-voltri-voltri-martedi"
+      "new_city": "Roma",
+      "old_city": "CELIO",
+      "slug": "mercato-settimanale-di-celio-celio"
     },
     {
       "changes": [
@@ -193,9 +150,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Borgo Virgilio",
-      "old_city": "Borgoforte",
-      "slug": "mercato-settimanale-di-borgoforte-borgoforte-sabato"
+      "new_city": "Roma",
+      "old_city": "CRATI",
+      "slug": "mercato-settimanale-di-crati-crati"
     },
     {
       "changes": [
@@ -203,9 +160,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Val Brembilla",
-      "old_city": "Brembilla",
-      "slug": "mercato-settimanale-di-brembilla-brembilla-lunedi"
+      "new_city": "Roma",
+      "old_city": "ESQUILINO",
+      "slug": "mercato-settimanale-di-esquilino-esquilino-lunedi"
     },
     {
       "changes": [
@@ -213,9 +170,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Solbiate con Cagno",
-      "old_city": "Cagno",
-      "slug": "mercato-settimanale-di-cagno-cagno-martedi"
+      "new_city": "Roma",
+      "old_city": "FIDENE",
+      "slug": "mercato-settimanale-di-fidene-fidene"
     },
     {
       "changes": [
@@ -223,9 +180,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Borgocarbonara",
-      "old_city": "Carbonara di Po",
-      "slug": "mercato-settimanale-di-carbonara-di-po-carbonara-di-po-giovedi"
+      "new_city": "Roma",
+      "old_city": "FLAMINIO II",
+      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii"
     },
     {
       "changes": [
@@ -233,9 +190,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Castelgerundo",
-      "old_city": "Cavacurta",
-      "slug": "mercato-settimanale-di-cavacurta-cavacurta-lunedi"
+      "new_city": "Roma",
+      "old_city": "GRANO",
+      "slug": "mercato-settimanale-di-grano-grano"
     },
     {
       "changes": [
@@ -243,9 +200,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "San Fermo della Battaglia",
-      "old_city": "Cavallasca",
-      "slug": "mercato-settimanale-di-cavallasca-cavallasca-mercoledi"
+      "new_city": "Roma",
+      "old_city": "ITALIA",
+      "slug": "mercato-settimanale-di-italia-italia"
     },
     {
       "changes": [
@@ -253,9 +210,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Bellagio",
-      "old_city": "Civenna",
-      "slug": "mercato-settimanale-di-civenna-civenna-venerdi"
+      "new_city": "Roma",
+      "old_city": "LABICANO",
+      "slug": "mercato-settimanale-di-labicano-labicano-lunedi"
     },
     {
       "changes": [
@@ -263,9 +220,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Colverde",
-      "old_city": "Drezzo",
-      "slug": "mercato-settimanale-di-drezzo-drezzo-lunedi"
+      "new_city": "Roma",
+      "old_city": "MACAO",
+      "slug": "mercato-settimanale-di-macao-macao"
     },
     {
       "changes": [
@@ -273,9 +230,9 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Sermide e Felonica",
-      "old_city": "Felonica",
-      "slug": "mercato-settimanale-di-felonica-felonica-venerdi"
+      "new_city": "Roma",
+      "old_city": "MONTESACRO",
+      "slug": "mercato-settimanale-di-montesacro-montesacro-lunedi"
     },
     {
       "changes": [
@@ -283,27 +240,69 @@
         "citta_originale",
         "localita_ricostruita_da"
       ],
-      "new_city": "Godiasco Salice Terme",
-      "old_city": "Godiasco",
-      "slug": "mercato-settimanale-di-godiasco-godiasco-giovedi"
+      "new_city": "Roma",
+      "old_city": "Nomentano",
+      "slug": "mercato-settimanale-di-nomentano-nomentano-lunedi"
     },
     {
       "changes": [
-        "provincia",
-        "riconciliazione_provincia"
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
       ],
-      "new_city": "Gravedona ed Uniti",
-      "old_city": "Gravedona ed Uniti",
-      "slug": "mercatino-antiquariato-e-usato-di-gravedona-ed-uniti-lungo-lago-centro-storico-g"
+      "new_city": "Roma",
+      "old_city": "PARIOLI",
+      "slug": "mercato-settimanale-di-parioli-parioli"
     },
     {
       "changes": [
-        "provincia",
-        "riconciliazione_provincia"
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
       ],
-      "new_city": "Imbersago",
-      "old_city": "Imbersago",
-      "slug": "mercatino-antiquariato-e-usato-di-imbersago-mercatino-dell-antico-piazza-garibal"
+      "new_city": "Roma",
+      "old_city": "PERESTRELLO",
+      "slug": "mercato-settimanale-di-perestrello-perestrello"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "PINCIANO",
+      "slug": "mercato-settimanale-di-pinciano-pinciano-lunedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "REBIBBIA",
+      "slug": "mercato-settimanale-di-rebibbia-rebibbia-lunedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "REGOLA I",
+      "slug": "mercato-settimanale-di-regola-i-regola-i-lunedi"
+    },
+    {
+      "changes": [
+        "citta",
+        "citta_originale",
+        "localita_ricostruita_da"
+      ],
+      "new_city": "Roma",
+      "old_city": "SACCHETTI",
+      "slug": "mercato-settimanale-di-sacchetti-sacchetti-lunedi"
     }
   ],
   "schema": 1,

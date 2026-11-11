@@ -4,12 +4,14 @@ Uno stesso indirizzo non dimostra che due schede sono lo stesso mercato.
 Le nuove schede con giorno uguale o ignoto vengono messe in revisione.
 Nessun record storico viene cancellato o dichiarato verificato.
 
-- Sorgenti Lombardia: **1360**.
-- Importabili senza conflitto esatto: **1127**.
-- Da rivedere: **233**.
-- existing_lombardia_identity: 1127
-- quarantined_same_location_same_weekday: 99
-- quarantined_same_location_unknown_or_conflicting_schedule: 134
+- Sorgenti Lombardia: **1368**.
+- Importabili senza conflitto esatto: **1134**.
+- Da rivedere: **234**.
+- existing_lombardia_identity: 1121
+- no_exact_venue_overlap: 10
+- quarantined_same_location_same_weekday: 101
+- quarantined_same_location_unknown_or_conflicting_schedule: 133
+- same_place_distinct_documented_day: 3
 
 ## Esempi da esaminare
 

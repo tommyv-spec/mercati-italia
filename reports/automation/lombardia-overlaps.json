@@ -1,13 +1,15 @@
 {
-  "accepted": 1127,
+  "accepted": 1134,
   "counts": {
-    "existing_lombardia_identity": 1127,
-    "quarantined_same_location_same_weekday": 99,
-    "quarantined_same_location_unknown_or_conflicting_schedule": 134
+    "existing_lombardia_identity": 1121,
+    "no_exact_venue_overlap": 10,
+    "quarantined_same_location_same_weekday": 101,
+    "quarantined_same_location_unknown_or_conflicting_schedule": 133,
+    "same_place_distinct_documented_day": 3
   },
   "deleted_existing_records": 0,
   "market_confirmations": 0,
-  "quarantined": 233,
+  "quarantined": 234,
   "quarantined_examples": [
     {
       "citta": "Albizzate",
@@ -527,29 +529,6 @@
       ],
       "indirizzo": "VIALE DANTE",
       "official_slug": "lo-mercap-100246-senza-giorno",
-      "reason": "same_location_unknown_or_conflicting_schedule",
-      "source_weekdays": []
-    },
-    {
-      "citta": "Bellusco",
-      "existing_market_days": [
-        [
-          2
-        ],
-        [
-          2
-        ],
-        [
-          2
-        ]
-      ],
-      "existing_market_ids": [
-        "mercato-settimanale-a-bellusco-bellusco-mercoledi",
-        "mercato-settimanale-di-bellusco-bellusco",
-        "mercato-settimanale-di-bellusco-bellusco-mercoledi"
-      ],
-      "indirizzo": "PIAZZA LIBERTA",
-      "official_slug": "lo-mercap-100247-senza-giorno",
       "reason": "same_location_unknown_or_conflicting_schedule",
       "source_weekdays": []
     },
@@ -1451,12 +1430,16 @@
         ],
         [
           5
+        ],
+        [
+          5
         ]
       ],
       "existing_market_ids": [
         "mercato-settimanale-di-pieve-di-coriano-borgo-mantovano",
         "mercato-settimanale-di-pieve-di-coriano-borgo-mantovano-sabato",
-        "mercato-settimanale-di-pieve-di-coriano-pieve-di-coriano"
+        "mercato-settimanale-di-pieve-di-coriano-pieve-di-coriano",
+        "mercato-settimanale-di-pieve-di-coriano-pieve-di-coriano-sabato"
       ],
       "indirizzo": "PIAZZA ALDO MORO",
       "official_slug": "lo-mercap-100705-senza-giorno",
@@ -1616,11 +1599,30 @@
       "source_weekdays": [
         3
       ]
+    },
+    {
+      "citta": "Cornegliano Laudense",
+      "existing_market_days": [
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "existing_market_ids": [
+        "mercato-settimanale-di-cornegliano-laudense-cornegliano-laudense",
+        "mercato-settimanale-di-cornegliano-laudense-cornegliano-laudense-venerdi"
+      ],
+      "indirizzo": "PIAZZA GIOVANNI XXIII",
+      "official_slug": "lo-mercap-100761-senza-giorno",
+      "reason": "same_location_unknown_or_conflicting_schedule",
+      "source_weekdays": []
     }
   ],
   "region": "Lombardia",
   "review_only": true,
   "schema": 1,
   "source_prefix": "lo-mercap-",
-  "source_total": 1360
+  "source_total": 1368
 }

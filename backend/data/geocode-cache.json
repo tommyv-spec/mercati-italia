@@ -71,6 +71,11 @@
    "query": "borgo Dora, Torino, Italia",
    "type": "platform"
   },
+  "borgo medievale|venzone|ud": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-11",
+   "query": "Borgo Medievale, Venzone, Italia"
+  },
   "borgo murato di filetto|villafranca in lunigiana|ms": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-31",
@@ -341,6 +346,11 @@
    "query": "Corso Garibaldi, Lucca, Italia",
    "type": "residential"
   },
+  "corso garibaldi|nuoro|nu": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-11",
+   "query": "Corso Garibaldi, Nuoro, Italia"
+  },
   "corso giuseppe garibaldi|urbino|pu": {
    "class": "highway",
    "lat": 43.725124,
@@ -590,6 +600,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-11-04",
    "query": "Giardini della Villa Comunale, Sulmona, Italia"
+  },
+  "giardini mariele ventre|sestri levante|ge": {
+   "class": "leisure",
+   "lat": 44.273331,
+   "lng": 9.39576,
+   "name": "Giardini Pubblici Mariele Ventre, Sestri Levante, Genova, Liguria, Italia",
+   "osm": "way/59283161",
+   "queried_on": "2026-11-11",
+   "query": "Giardini Mariele Ventre, Sestri Levante, Italia",
+   "type": "park"
   },
   "giardini oasi|barcellona pozzo di gotto|me": {
    "miss": "nessun_risultato",
@@ -916,6 +936,16 @@
    "query": "Lungomare Dante, Alghero, Italia",
    "type": "pedestrian"
   },
+  "lungomare della repubblica|grottammare|ap": {
+   "class": "highway",
+   "lat": 42.988337,
+   "lng": 13.871467,
+   "name": "Lungomare della Repubblica, Grottammare, Ascoli Piceno, Marche, 63066, Italia",
+   "osm": "way/54579348",
+   "queried_on": "2026-11-11",
+   "query": "Lungomare della Repubblica, Grottammare, Italia",
+   "type": "tertiary"
+  },
   "lungomare di nicotera marina|nicotera|vv": {
    "miss": "via_diversa",
    "queried_on": "2026-11-09",
@@ -985,6 +1015,11 @@
    "queried_on": "2026-10-29",
    "query": "Marina Garibaldi, Milazzo, Italia",
    "type": "pedestrian"
+  },
+  "marina|carrara|ms": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-11",
+   "query": "Marina, Carrara, Italia"
   },
   "marina|pietrasanta|lu": {
    "miss": "solo_localita",
@@ -1120,6 +1155,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-11-01",
    "query": "Nuovo Centro Notarbartolo, Palermo, Italia"
+  },
+  "oratorio san filippo neri|gussago|bs": {
+   "class": "amenity",
+   "lat": 45.593071,
+   "lng": 10.155235,
+   "name": "Oratorio San Filippo Neri, Via Chiesa, Casaglio, Sale, Gussago, Brescia, Lombardia, 25064, Italia",
+   "osm": "way/332511987",
+   "queried_on": "2026-11-11",
+   "query": "Oratorio San Filippo Neri, Gussago, Italia",
+   "type": "community_centre"
   },
   "p le bertet|ranica|bg": {
    "miss": "nessun_risultato",
@@ -1349,6 +1394,16 @@
    "osm": "way/35174434",
    "queried_on": "2026-10-31",
    "query": "Parco Ermanno Olmi, Bergamo, Italia",
+   "type": "park"
+  },
+  "parco miralfiore|pesaro|pu": {
+   "class": "leisure",
+   "lat": 43.904379,
+   "lng": 12.901336,
+   "name": "Parco Miralfiore, Pantano, Pesaro, Pesaro e Urbino, Marche, Italia",
+   "osm": "way/196176606",
+   "queried_on": "2026-11-11",
+   "query": "Parco Miralfiore, Pesaro, Italia",
    "type": "park"
   },
   "parco novi sad|modena|mo": {
@@ -1666,6 +1721,16 @@
    "query": "PIAZZA Caduti, Mogliano Veneto, Italia",
    "type": "square"
   },
+  "piazza calvi|lorenzago di cadore|bl": {
+   "class": "place",
+   "lat": 46.480237,
+   "lng": 12.458098,
+   "name": "Piazza Pier Fortunato Calvi, Lorenzago di Cadore, Belluno, Veneto, 32040, Italia",
+   "osm": "way/383683111",
+   "queried_on": "2026-11-11",
+   "query": "Piazza Calvi, Lorenzago di Cadore, Italia",
+   "type": "square"
+  },
   "piazza cambiaghi|monza|mb": {
    "class": "highway",
    "lat": 45.581066,
@@ -1826,6 +1891,16 @@
    "query": "Piazza Cavallotti, Livorno, Italia",
    "type": "pedestrian"
   },
+  "piazza cavour|agrigento|ag": {
+   "class": "place",
+   "lat": 37.307827,
+   "lng": 13.588968,
+   "name": "Piazza Cavour, San Vito, Calcarelle, Agrigento, Sicilia, 92100, Italia",
+   "osm": "way/707072918",
+   "queried_on": "2026-11-11",
+   "query": "Piazza Cavour, Agrigento, Italia",
+   "type": "square"
+  },
   "piazza cavour|anagni|fr": {
    "class": "amenity",
    "lat": 41.742211,
@@ -1905,6 +1980,11 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZA Cavour, Trecate, Italia",
    "type": "pedestrian"
+  },
+  "piazza centrale al cortile della scuola|nova ponente|bz": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-11",
+   "query": "piazza centrale al cortile della scuola, Nova Ponente, Italia"
   },
   "piazza centrale|monguelfo tesido|bz": {
    "class": "highway",
@@ -2280,6 +2360,11 @@
    "queried_on": "2026-10-25",
    "query": "Piazza dei Frutti, Padova, Italia",
    "type": "pedestrian"
+  },
+  "piazza dei martiri|san pietro in casale|bo": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-11",
+   "query": "Piazza dei Martiri, San Pietro in Casale, Italia"
   },
   "piazza dei signori|vicenza|vi": {
    "class": "highway",
@@ -2791,6 +2876,16 @@
    "query": "Piazza delle Carceri, Prato, Italia",
    "type": "bus_stop"
   },
+  "piazza delle erbe|belluno|bl": {
+   "class": "highway",
+   "lat": 46.138808,
+   "lng": 12.218197,
+   "name": "Piazza delle Erbe, Borgo Prà, Castion, Belluno, Veneto, 32100, Italia",
+   "osm": "way/399918586",
+   "queried_on": "2026-11-11",
+   "query": "Piazza delle Erbe, Belluno, Italia",
+   "type": "pedestrian"
+  },
   "piazza delle erbe|mezzolombardo|tn": {
    "class": "place",
    "lat": 46.213094,
@@ -2840,6 +2935,11 @@
    "queried_on": "2026-10-30",
    "query": "PIAZZA delle Penne Nere, Verona, Italia",
    "type": "service"
+  },
+  "piazza delle perdonanze|manduria|ta": {
+   "miss": "via_diversa",
+   "queried_on": "2026-11-11",
+   "query": "Piazza delle Perdonanze, Manduria, Italia"
   },
   "piazza dessi|quartu sant elena|ca": {
    "class": "leisure",
@@ -5746,6 +5846,11 @@
    "query": "PIAZZETTA MERCANTI, Meda, Italia",
    "type": "service"
   },
+  "piazzetta municipio|polistena|rc": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-11",
+   "query": "Piazzetta Municipio, Polistena, Italia"
+  },
   "piazze|verres|ao": {
    "miss": "nessun_risultato",
    "queried_on": "2026-11-01",
@@ -5895,6 +6000,11 @@
    "queried_on": "2026-11-06",
    "query": "Strada Provinciale, Sannicandro di Bari, Italia",
    "type": "secondary"
+  },
+  "strada statale briantea|vedano olona|va": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-11",
+   "query": "Strada Statale Briantea, Vedano Olona, Italia"
   },
   "strada statale|curon venosta|bz": {
    "miss": "nessun_risultato",
@@ -7045,6 +7155,16 @@
    "miss": "comune_diverso",
    "queried_on": "2026-10-25",
    "query": "via Don Minzoni, Matera, Italia"
+  },
+  "via don pasquino fiorenzi|modena|mo": {
+   "class": "highway",
+   "lat": 44.655075,
+   "lng": 10.895513,
+   "name": "Via Don Pasquino Fiorenzi, Madonnina, San Faustino-Madonnina-Quattroville, Tre Olmi, Modena, Emilia-Romagna, 41123, Italia",
+   "osm": "way/32060358",
+   "queried_on": "2026-11-11",
+   "query": "Via Don Pasquino Fiorenzi, Modena, Italia",
+   "type": "residential"
   },
   "via donatori di sangue|seriate|bg": {
    "miss": "nessun_risultato",
@@ -8596,6 +8716,11 @@
    "query": "Via Punta di Ferro, Forlì, Italia",
    "type": "tertiary"
   },
+  "via raffaello sanzio|carbonia|ci": {
+   "miss": "provincia_diversa",
+   "queried_on": "2026-11-11",
+   "query": "via Raffaello Sanzio, Carbonia, Italia"
+  },
   "via ramodipalo centro|lendinara|ro": {
    "class": "highway",
    "lat": 45.081131,
@@ -9421,6 +9546,16 @@
    "query": "VIA Vittorio Veneto, Bresso, Italia",
    "type": "secondary"
   },
+  "via vittorio veneto|carignano|to": {
+   "class": "highway",
+   "lat": 44.905837,
+   "lng": 7.675242,
+   "name": "Via Vittorio Veneto, Regione Tetti Brus, Carignano, Torino, Piemonte, 10041, Italia",
+   "osm": "way/173342467",
+   "queried_on": "2026-11-11",
+   "query": "via Vittorio Veneto, Carignano, Italia",
+   "type": "residential"
+  },
   "via vittorio veneto|rovigo|ro": {
    "class": "highway",
    "lat": 45.052448,
@@ -9551,6 +9686,16 @@
    "queried_on": "2026-10-29",
    "query": "Viale Allea Mariano Dallapè, Stradella, Italia"
   },
+  "viale antonio gramsci|isola di capo rizzuto|kr": {
+   "class": "highway",
+   "lat": 38.95349,
+   "lng": 17.085324,
+   "name": "Viale Antonio Gramsci, Isola di Capo Rizzuto, Crotone, Calabria, 88841, Italia",
+   "osm": "way/304071443",
+   "queried_on": "2026-11-11",
+   "query": "Viale Antonio Gramsci, Isola di Capo Rizzuto, Italia",
+   "type": "residential"
+  },
   "viale antonio mellusi|benevento|bn": {
    "class": "highway",
    "lat": 41.125895,
@@ -9680,6 +9825,16 @@
    "queried_on": "2026-10-25",
    "query": "viale della Rimembranza, Vercelli, Italia",
    "type": "tertiary"
+  },
+  "viale delle industrie|san marco evangelista|ce": {
+   "class": "highway",
+   "lat": 41.031946,
+   "lng": 14.331028,
+   "name": "Viale delle Industrie, Zona Industriale Marcianise Nord, San Marco Evangelista, Caserta, Campania, 81025, Italia",
+   "osm": "way/232021164",
+   "queried_on": "2026-11-11",
+   "query": "Viale delle Industrie, San Marco Evangelista, Italia",
+   "type": "unclassified"
   },
   "viale di vigna pia|roma|rm": {
    "class": "highway",
@@ -9921,6 +10076,11 @@
    "queried_on": "2026-10-25",
    "query": "VIALE RIMEMBRANZE, Pisogne, Italia"
   },
+  "viale rimembranze|porlezza|co": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-11",
+   "query": "Viale Rimembranze, Porlezza, Italia"
+  },
   "viale roma|vicenza|vi": {
    "class": "highway",
    "lat": 45.543336,
@@ -10040,6 +10200,11 @@
    "queried_on": "2026-10-27",
    "query": "Vicolo Caduti di Nassirya, Carbonera, Italia",
    "type": "residential"
+  },
+  "villa comunale|mascalucia|ct": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-11",
+   "query": "Villa Comunale, Mascalucia, Italia"
   },
   "villa le streghe|narni|tr": {
    "miss": "nessun_risultato",

@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-11-10**.
-- Schede totali: **14,644**.
+- Data della misura: **2026-11-11**.
+- Schede totali: **14,689**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **818**.
-- Lettura della fonte registrata entro 30 giorni: **13,808**.
-- Fonte datata entro 30 giorni: **1,147**.
-- Di cui solo aggiornamento dataset, non del singolo mercato: **1,147**.
-- Schede con aggiornamento soltanto del dataset: **1,375**.
+- Importazione registrata entro 30 giorni: **850**.
+- Lettura della fonte registrata entro 30 giorni: **13,853**.
+- Fonte datata entro 30 giorni: **1,160**.
+- Di cui solo aggiornamento dataset, non del singolo mercato: **1,160**.
+- Schede con aggiornamento soltanto del dataset: **1,388**.
 - Fonte datata tra 31 e 365 giorni: **189**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **13,256**.
+- Schede con età del contenuto della fonte non comprovata: **13,288**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,171**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,224**.
+- Schede con date future previste: **11,182**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,222**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -33,7 +33,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 | Ente | Lettura metadati | Aggiornamento dati dichiarato |
 |---|---|---|
 | Comune di Bologna | metadata_checked | 2025-04-02 |
-| Regione Lombardia | metadata_checked | 2026-11-03 |
+| Regione Lombardia | metadata_checked | 2026-11-10 |
 | Roma Capitale | metadata_checked | 2022-07-04 |
 
 ## Copertura di tutte le fonti del catalogo
@@ -47,7 +47,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | Comune di Firenze - FeelFlorence (CC BY 4.0) | www.feelflorence.it | 4 | 0 | 4 | 0 | 4 |
 | Comune di Milano - Open Data (CC BY 4.0) | dati.comune.milano.it | 85 | 0 | 85 | 0 | 85 |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | opendatahub.com | 14 | 14 | 0 | 0 | 14 |
-| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1129 | 1128 | 1 | 0 | 1128 |
+| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1142 | 1141 | 1 | 0 | 1141 |
 | Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | www.regione.veneto.it | 9 | 0 | 9 | 0 | 9 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | www.regione.veneto.it | 94 | 0 | 94 | 0 | 94 |
 | Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata) | www.comune.roma.it | 5 | 0 | 5 | 0 | 0 |
@@ -132,7 +132,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | varesenews.it | www.varesenews.it | 2 | 0 | 0 | 2 | 0 |
 | veneziatoday.it | www.veneziatoday.it | 3 | 0 | 0 | 3 | 1 |
 | vicenzatoday.it | www.vicenzatoday.it | 3 | 0 | 0 | 3 | 0 |
-| vintagery.it | vintagery.it | 416 | 0 | 0 | 416 | 416 |
+| vintagery.it | vintagery.it | 448 | 0 | 0 | 448 | 448 |
 | viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | wwwservizi.regione.emilia-romagna.it | wwwservizi.regione.emilia-romagna.itnote.asp | 1 | 0 | 0 | 1 | 0 |
 
@@ -142,13 +142,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1217 | 3118 | 2012 | 8113 | 184 |
-| Orari | 1890 | 1112 | 2167 | 8101 | 1374 |
-| Giorni | 1343 | 1842 | 2040 | 9202 | 217 |
+| Sede | 1223 | 3088 | 2039 | 8155 | 184 |
+| Orari | 1905 | 1477 | 2194 | 7739 | 1374 |
+| Giorni | 1371 | 1842 | 2059 | 9201 | 216 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6434. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6466. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|

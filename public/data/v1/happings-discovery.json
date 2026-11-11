@@ -56,16 +56,16 @@
       "status": "unavailable"
     },
     "https://www.happings.com/happings_event-sitemap11.xml": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
-      "failures": 2,
+      "failures": 3,
       "kind": "sitemap",
-      "last_attempt": "2026-11-03",
+      "last_attempt": "2026-11-11",
       "last_error": "TimeoutError",
       "last_sha256": "6f52e41d50023b00d9f76061933f47d26f07e12270a68a32ca5fe4ff4217a85f",
       "last_success": "2026-10-20",
       "last_success_at": "2026-10-20T15:38:35.764963+00:00",
-      "next_due": "2026-11-05",
+      "next_due": "2026-11-15",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -83,16 +83,16 @@
       "status": "unavailable"
     },
     "https://www.happings.com/happings_event-sitemap12.xml": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
-      "failures": 2,
+      "failures": 3,
       "kind": "sitemap",
-      "last_attempt": "2026-11-03",
+      "last_attempt": "2026-11-11",
       "last_error": "TimeoutError",
       "last_sha256": "0500c3aa92acc41855ed3039e25d076da404063b47fa90a0013e1816ed06021a",
       "last_success": "2026-10-20",
       "last_success_at": "2026-10-20T15:38:44.923801+00:00",
-      "next_due": "2026-11-05",
+      "next_due": "2026-11-15",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -374,16 +374,16 @@
       "status": "unavailable"
     },
     "https://www.happings.com/it/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-21",
       "failures": 0,
       "kind": "home",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e6a4d1269268bbc1e68bc508b4fa65e98918a3340a40fc336b1bdbbe9725c52e",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:55:13.287059+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "88b4e28de29ded94c85ac364c0b46ec54f13db7536f8df91221742c4d69358dd",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:22:26.495860+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "homepage_seed",
@@ -668,16 +668,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/16/": {
-      "attempts": 2,
+      "attempts": 3,
       "discovered_at": "2026-10-24",
       "failures": 0,
       "kind": "archive",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "41dc0ddfd0ff32f7c4eb90257758f3fd7202e19dcb7c8f0d8ff2b4ee81d909f8",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T03:53:16.965024+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "df7a306f01ddf62743549c6327bf67d5727decae9f9c5c3c12edccc35cd39027",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:22:36.372651+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "html_link",
@@ -1097,16 +1097,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/26/": {
-      "attempts": 2,
+      "attempts": 3,
       "discovered_at": "2026-10-21",
       "failures": 0,
       "kind": "archive",
-      "last_attempt": "2026-10-30",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "20585b07549f272a452581e6a189689b1aba7a6eb9e72740bf9368cf15465117",
-      "last_success": "2026-10-30",
-      "last_success_at": "2026-10-30T11:40:16.211488+00:00",
-      "next_due": "2026-11-06",
+      "last_sha256": "9b6fe748077d7542a59e23b72eba2d0c3b1e704ffcbbd5d93100734055054cbc",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:22:31.336082+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "html_link",
@@ -12798,6 +12798,12 @@
           "observed_at": "2026-11-09",
           "sha256": "c49a92da048fd96643a56c2cf70846bd17c4f8053252f3ac650584db87701fce",
           "url": "https://www.happings.com/it/happing/cene-rap-pola/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "efd34609718c401e63587671c9556efb37712f8d347afcab89d06d00b3364c22",
+          "url": "https://www.happings.com/it/happing/empisa-guerre-stellari-experience-3/"
         }
       ],
       "status": "retrieved"
@@ -18573,6 +18579,12 @@
           "observed_at": "2026-11-10",
           "sha256": "57b8ffe7913d3fe9d92f0cfdda460bd40a6e85fe6e162a8c91e0d5cee2af3919",
           "url": "https://www.happings.com/it/happing/concerto-musik-meran-coro-nazionale-maschile-estone/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "a725aeeb905df21797a19b7ec7485da71bbbd8e465cf857ea41e148f5557728c",
+          "url": "https://www.happings.com/it/happing/delfeayo-marsalis-quintet-a-bolzano/"
         }
       ],
       "status": "retrieved"
@@ -18890,16 +18902,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/conferenza-locchio-lorgano-sensoriale-piu-complesso/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "a29d80a45e68c99c404ea5e234f0dda77361b1a101471392f766dcd7a78778b0",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:22.980734+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "d18aed7fcd9c8b572b4fe67e7b94c380237a96ac11b8760eb431d4d86c2b8ef8",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:23:28.620442+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -18929,16 +18941,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/connessioni-cosmiche/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "c4608fd89f53fc3c0f67437bf2f9bc302c5dce52dde6ed4e9efc66b3920a76ad",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:27.678181+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "4db9ae11fc0e7d35809b70b31aa1b773b467fdd8c552abe63b6167afa2f45644",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:25.453406+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -18968,16 +18980,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/connessioni-dove-il-digitale-incontra-limpresa/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "daddeef17f2c64b40e121f37a505bbd0fa81f48aea332c6752df9216a91c2ace",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:31.864963+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "ee1a1103f1028b19e9725ff9e1fc008fe175c2732734e9421c9d3eb424107935",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:25:14.435332+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19007,16 +19019,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/conoscere-i-vini-della-cantina-passir/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b89b291dd27e9d7df6e66dd5d0923ad3500ea3e2c5d2f0ce229d5ec1790421db",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:36.391802+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "3b71abd7134156445b43298c63a83f7d570b3349667d7dab22eedc383d29355e",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:20.846597+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19035,21 +19047,27 @@
           "observed_at": "2026-10-25",
           "sha256": "b89b291dd27e9d7df6e66dd5d0923ad3500ea3e2c5d2f0ce229d5ec1790421db",
           "url": "https://www.happings.com/it/happing/conoscere-i-vini-della-cantina-passir/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "3b71abd7134156445b43298c63a83f7d570b3349667d7dab22eedc383d29355e",
+          "url": "https://www.happings.com/it/happing/conoscere-i-vini-della-cantina-passir/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/conoscere-il-mondo-di-kneipp-a-sarentino/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "5aa08a951154d1ede95ade92c91be212a5e0299f706103a9903694df4a1ada99",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:40.758123+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "5c0aa1ba6f00d8d07a9460259f7293a79a77cb4fa22b528a0bdd4a76b9507d1a",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:51.795696+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19079,16 +19097,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/consegna-letterine-a-babbo-natale/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0c339fdbe9fa2c9409393402789d122625753672d900787d933f49ed1c052e3f",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:49.099898+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "e4cf9afa4e62324ab6194e5222f9a2388a2fb0bb417d8fed790f5de74825e749",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:57.692958+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19118,16 +19136,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/control-resonant-meeting-with-mikael-kasurinen/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "917be998bd5f32416b43ef286c130b073e6416852e1ef893bb3ddad0ed220cbd",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:54.321969+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "b973068a87945a7d2e25c69efa33eff617f2fc21952be51bbba50546ce0f2bd0",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:04.206191+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19268,16 +19286,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/coordina-efficacemente-i-gruppi/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "6ee741cb5c270c9669d113a305b2f22c3a69689e7e60efaab280ae732d8de443",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:03:58.642650+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "ad8fbd36ca5a2742e6cbe06d552c7caa7d783626755a25bd36658978b8f52f29",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:09.054137+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19307,16 +19325,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corpi-digitali-le-regole-del-gioco-nel-sex-work-online/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "15bf6cce8db0307ac97e9a294d2c03bc88885bee78950c0528b4b82056834b39",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:02.995862+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "99a1b2b9db96e13ea8e493914a9ea464cd15e722366bafb6a1f1def4a6c07fe9",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:14.801425+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19346,16 +19364,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corriamo-di-gusto/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f9a194153be31b1477e7756efd844025c54b96ca262a9eb21a07d21e4a420d85",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:07.297041+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "25994b2d5989c426b4efbc3ebc2284e9764224baf5f69da77fd1e6891a4fcd10",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:20.565722+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19385,16 +19403,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corsi-di-ballo-liscio-e-di-gruppo/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "4fec3ed80cdf3e7a959e69ddf41e994cad6916aed5ad39692ad3bf3be461700e",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:12.063277+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "490df3c131f4bd9892d1e9e4b59654babb3d17784ef37efbf40584dcfe9c17b9",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:26.109191+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19424,16 +19442,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corso-di-kaiserschmarrn-alla-malga-gostner/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "78d6223d406d0e2b2d32b97eedf815a3c4fc933f415a455b290e248f67caa209",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:16.485237+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "b01e073eb53d1dac1ecf4a0d4fe827736f585f50d1428367c7387ba5e7959038",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:32.051881+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19463,16 +19481,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corso-di-panificazione-il-pane-come-una-volta-a-tesido/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "06aa25ae3fa0131728ebd80c225f5b1e571f677717735a5a7871f0b249d6976f",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:20.998033+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "16e1916f1f79e39bf8a0fc7ff0ebf4da14dd91f725ed57cf798890d987361c85",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:37.402002+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19502,16 +19520,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corso-di-scultura-introduzione-allintaglio-del-legno/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "a799f59082a20aad6d52d60f3c06d3dfa51a5a97ae49a0728fb0ad15b7b5fe72",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:26.057283+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "daa698f4fc99f4268733e1868ec5222ea8a00f9fc4bec0ca3343d69364fbbed5",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:46.303663+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19541,16 +19559,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corso-di-tecnica/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "8df63c9a015a7437e8a28944f76f59dbb05ab3d4c22108c74ce4d7af56466741",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:30.523970+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "39e3faa78c4466f9f52889625ca403084bd8a8b29e7dcd1279afe4ebd8673c87",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:27:52.884372+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19569,21 +19587,27 @@
           "observed_at": "2026-11-08",
           "sha256": "cf74543b04fb7803824f0caed0dc2fc4e73823df369cfc203d07edb278076fdb",
           "url": "https://www.happings.com/it/happing/tiro-con-larco-tradizionale/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "39e3faa78c4466f9f52889625ca403084bd8a8b29e7dcd1279afe4ebd8673c87",
+          "url": "https://www.happings.com/it/happing/corso-di-tecnica/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corso-di-tiro-con-larco-nel-bosco-talai/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "a48ef9d403858886c6f65f95962218769fe5b0e5cae4f4270d03c8be144e4c24",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:36.056038+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "dc2a744fe90ccadf0ac367fc983f9f8e9b4b7ff078435fc6c4682d533b3f6321",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:00.090289+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19613,16 +19637,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corso-dinglese-a2-3/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "89040af1fe193709d4a9300c757cf5c002d81c21820f2d40167b24863228f4d1",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:41.005468+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "64b28c838bd6c6eb000a26c61e69e0b908c578d18fe3f2b84ed1ee554ce64f5a",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:05.704354+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19652,16 +19676,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/corso-dinglese-b2-1/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "7e2f1f4e27390ba85184c9042a05f255178e03794d234288ecf09f4cf364de76",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:47.810048+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "ec055047e35c9deae3d53f4d89feabb591f81430e15fe2b8129a3c067248143f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:11.528757+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19680,21 +19704,27 @@
           "observed_at": "2026-11-09",
           "sha256": "8fb5fc6cab4730b96d8d3113757bc95d873468a9b6582c74af6ff2c4e178589b",
           "url": "https://www.happings.com/it/happing/workshop-di-character-design-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "ec055047e35c9deae3d53f4d89feabb591f81430e15fe2b8129a3c067248143f",
+          "url": "https://www.happings.com/it/happing/corso-dinglese-b2-1/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cortina-sulla-strada-del-vino-la-piccola-venezia/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "3be6f285fb069247b87f6e805821e22155e715ac95126e7b78942923bd39554c",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:52.395618+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "3f9d6bea161dfb64b495f21974a3c66e33cf53e62cb2ebf7ac56baacc5329590",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:17.121195+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19724,16 +19754,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cose-da-maschi-e-cose-da-femmine/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f020440e96a3a8c01a795aaf47681f684246a787c243d0b21ab34ae6aa62c0cb",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:04:56.902272+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "8f832384a530d19d4d7b720171419e5b3cf92529439b2529aaf129c66b0e926a",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:23.844480+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19763,16 +19793,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/costituzione-2226-larp/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9eb2bb0ecd0af8947255c0eb6294db818fbf70483f0dfb98ca9c3326d19da65e",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:01.495645+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "c14fbc17a215db6d0538dd1537cf03c45dcba60b9e5ce5c229fec4e7bce78765",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:29.341881+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19802,16 +19832,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/countdown-to-mass-extinction/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "a264fa29ad2df4b5616495f66e673366b8df2bd8e83b7b4937baa88f450227ff",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:06.307104+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "6f4403c67e9fdfd26e6e1b525cee8207677d15ea42519c681b4718c98bf8385f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:35.065553+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19841,16 +19871,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/creativamente-idee-forme-e-colori-della-fantasia/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "d228c275d6a3a813d622ccc47b68f1232505fa01552fa58cf7eefb78d48d3f94",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:11.324512+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "f7403f405f605226161675aa22ca9f9fffc990a6940dc6b4348906564cae0107",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:41.133560+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19880,16 +19910,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cremunich-tanta-robba-oktoberfest/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b06080e3ce09802d61bed1e84587f96fbdc91cbfc81319ada13fe0d15a582c06",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:16.027797+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "06a4f3a13beb0eee15631a56f89017837a85fde9d96ce5d23fb3d0d00103f9e3",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:47.603103+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19919,16 +19949,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/croce-rossa-in-piazza/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "5b233bf3da0e784da096230681e394fa44b434fc8341690a9b01931336500640",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:21.260372+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "4b4d66c322335473e108aa01c5a1e074565b402ad709b01bc60743c3d57724f1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:53.404525+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19958,16 +19988,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/csi-robot/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "4785dce5c02d25236c924f6ba8b4b1a87f4af295ad3695087792cb6e2495106e",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:26.395353+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "e411ced58d2ad43d6a9d4407a3ea69a74d33eb528064f0512b5cbe42db489f60",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:28:59.630539+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -19997,16 +20027,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cuarteto-casals/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "8a562e808dc22a87eba623d66c09377557ed460c5dc68fad1e1c5cf97fd9fcd0",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:33.430686+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "6aeda3542e1f0a8812face88802a8f33633bb1906fbe3b47bbacafd0b7e54660",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:06.107406+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20036,16 +20066,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cucina-contadina-altoatesina/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "11757f209b7bd3feb62ea5c76b9dc7e299abf39b602088211b6d8e8a6c5ec9c7",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:38.222597+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "e3f038e21229996335ea813d3802635e126bdc27fb9675536d54aaf34ab3e19a",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:12.777826+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20064,21 +20094,27 @@
           "observed_at": "2026-10-31",
           "sha256": "6c73852cf0f978aaa0fc8002f8492cbd92d0bfa3a39f907c47bad348f7edd2c6",
           "url": "https://www.happings.com/it/happing/kitchen-masterclass-the-time-of-transformation/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "e3f038e21229996335ea813d3802635e126bdc27fb9675536d54aaf34ab3e19a",
+          "url": "https://www.happings.com/it/happing/cucina-contadina-altoatesina/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cucine-migranti-il-brasile/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "75c70b878412cd1a5919ace23e2e9af2b2d61636a9bafa5f9b2deb8a97f3cee1",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:43.688924+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "2401cbd4d99572cfd157516ccdf11775a0b383b29b30c6b884711f0f0f6763d2",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:18.587996+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20108,16 +20144,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/culinaria-alle-castagne-keschtnriggl/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "6167ca88b7a19697810172c305dbbc6e74471ed5b63b8dcb31fc14c2aaf31a35",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:51.261867+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "67c5a637b12a0d95484e9ec5e9535991038815a078904f95f753a10b1f61af23",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:24.693482+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20147,16 +20183,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cuor-di-coniglio/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "6b9360a91765a241c279554ee5610a4e697185826235c9b664e4d07d28c117e2",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:05:56.537217+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "e8a09da833010617a7d8e0d4a399835b09711f7f402cb53024fe1b0b9292bcd5",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:30.444507+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20186,16 +20222,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/cyberpunk-edgerunners-2-panel/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b7049aef17d37a9a1f9e75b078e44f20c6ce1f0be23f8f860147ce7b367e16ef",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:01.379203+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "254c302ed4bcac939720e7302a1a89a6ee3e4b5e8f009cf1d6f50264bf6155dd",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:36.441943+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20225,16 +20261,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/da-akab-ai-nuovi-esordi-la-collana-tana-un-viaggio-dallunderground-alleditoria-delite-audace/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "746eec82e5526f23c373dac54ded7461565cb1aaf2e9cf65f370fb4fc035a5ff",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:06.760059+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "8eac8615c7c2aad988a76f25ac72dfd5289ff1f66ede02a89fa1a497f83e2a9e",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:43.209988+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20264,16 +20300,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/da-vicino-a-contatto-con-lopera/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "2ed3566d18b4bdcb8a84ee4e8526e1ab32ca703eb28bd7d18a75606207cc375a",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:11.734485+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "27baaedf8c23daacf1b90ca463de00878df131bc0ad6be68d334c29392770ae1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:49.355212+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20303,16 +20339,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/da-vicino-oltre-la-cornice-quando-larte-si-fa-terra-albero-e-respiro/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "fc8e242dbd025ab007c58cff624c183098893a50a9fe7433386ab59b48fa75be",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:17.450346+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "d58872c4851de7fae718acd37221ef56da372d5040fcd6911446c7a5ffdbf097",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:29:57.782316+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20342,16 +20378,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/da-vicino-oltre-la-superficie-lo-spazio-nellarte/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f034dc2e8d5b7f029c3eb305d992e59a2c9b7714626e7d663cd3835521094d65",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:24.340546+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "8a607ef343ff950f5a424afc1e3f22489a06ffe8aa27c059b38110f41db54c77",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:30:03.950712+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20381,16 +20417,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dai-prati-della-croda-rossa-al-passo-monte-croce-nelle-dolomiti-di-sesto/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "285912d8ff4436fd5f5b840934fbdeb3764c6579495e1bb91e1d4d8c3721f37d",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:29.245856+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "f80a7c5636655da9a088d805bf6a392099551faf3546850545b554333b89afa5",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:30:10.084798+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20420,16 +20456,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dai-singoli-sensori-a-una-rete-di-radar-ultrasonici-cooperativi/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e3192baadd31d34a8a60cf7a7b489985a451be94a1f6def3ce17653fa1d16c77",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:34.187748+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "8d6c2ea447c0e7e65bfdb4939f463e44369ed6aa8e04a45ac0cc386ec67312ed",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:30:15.840119+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20459,16 +20495,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dal-grappolo-duva-al-vino-visita-alla-cantina-sankt-pauls/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "4962662a3ae2247aaa75a583e13ca288e442c19667f5faa39ee95e85b779fcbe",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:42.594010+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "d893abecbbf2997342ebb35b10eb6b86ae854b1ff57549fc41e497e398e3b6e5",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:30:21.810181+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20498,16 +20534,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dal-latte-al-formaggio-visita-al-maso-lenkhof/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "cec2d51c7a0757f1f79a3720798c807ea32ddcd398a8280cd564b9e2464d008e",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:47.576749+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "fe160d1ec7e915697644ad5603b1152179bb59b86aed56ef0ebf527a5f91a779",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:30:31.514179+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20537,16 +20573,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dal-podcast-al-fumetto-achille-kipi-di-mario-moroni-il-futuro-e-gia-qui/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "59e37f09f8fb9f159f84f220d19734747459a071a6ff7f23df2ec583969aa3ec",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:53.020075+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "7d99ce2ecbf80d0df3be7b758fefb913d81868d088aa71474f08eadd610d794c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:31:27.116770+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20576,16 +20612,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dalla-stampa-alla-pittura-passando-per-lutilizzo-dellaerografo-e-dei-colori-a-olio/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "5df3253f2066b7a1a19fc0cb30890b19a2f58827d0d7b2d8cd2151866c4ab02b",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:06:59.482327+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "bb1f9d68d34fdaaddbf88b24b4e18f68667add3e27dcda9d9c62e129f7dee95f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:31:34.649730+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20615,16 +20651,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dalla-vigna-alla-cantina-rebhof/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e8e675283d738fd0c031fcca95ed9d684f13b9c6c5268a306fe9906abace9343",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:05.925720+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "257ebdd561030dd316b98e026218cd74d2c3c427bf4a1b4a104fba93de7f3fb1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:31:44.859693+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20654,16 +20690,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dalla-vite-alla-bottiglia-alla-tenuta-waldthaler/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "aeaaf22218ac63889dec9ab504ada95180f31f7a4427a7d8311a0c2f2c5a24b9",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:11.234470+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "8e6b0bcea7caffa57ddfb2620ac67bb623c1382ffd5b8c3d41da83c36654d973",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:31:51.315123+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20693,16 +20729,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dallidea-al-concetto/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "1f56f5160284aec3b403e317e0ab3a9250771e75a0fdb088339fbd24b7628f5a",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:16.759838+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "887b2aa9441d53702cc9a1d9f455d62d02dac2472c5f49b2d2a405dc02822a4a",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:31:57.605288+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20732,16 +20768,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/danganronpa-raduno-nazionale/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "a617ddea96d248ca42fd1436692821e9b9a3096fba7c2eb57eba0984ec549a3e",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:22.209972+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "9523800122804bb6441ef3196b1ce02137792389eb3f69915cff639e83bad3fc",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:05.100378+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20771,16 +20807,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/daniela-perani-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "d522045ff104a50a7acbe932f7847540411e0a2dc772d29f312d48159fa0dc84",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:29.053089+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "74e155964ad21b79c55ac71269a1cfe6756496b78339060abba29d744041114c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:11.371054+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20810,16 +20846,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dante-e-il-cosmo-dellimmaginazione/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "3541a4d24115963dfc8aa03b344f672896ff1ef42c1182a8625d95f2f53194a9",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:35.754711+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "fc9fe0153442a89ff438675900d79f80424e171b517fdd7e2b8e70d33f27d596",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:18.091168+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20849,16 +20885,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/daoud/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "ac3fa8d390c619ba97556bd7b55194a9e4e6d03e8786eac1d6b04769963d3744",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:41.707480+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "ef120119aac538ea232e0c3bcaf393cbfd558078ad0576d2e03481f7e233a07c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:24.418780+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20888,16 +20924,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dario-guarascio-alessandro-volpi-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9c67445b79d939e5ae21db57e9bb4f9e361a40c6f518d13bbc930a5bb38c74a2",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:07:52.902815+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "2f23bcc1c4d9b70dde0a473c477b81fbc753ef75203c2764b72496e361d01137",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:32.007261+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20927,16 +20963,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dark-souls-echoes-of-lordran-15th-anniversary-live-orchestra/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f6d0df63785a03553c38a9eaee7e495edfcb5bd95a72a07ff21687d44745983d",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:08:01.193564+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "6f1acec15f039332b724ed7b96e6c3e373914f7eda4757082243dc08a3d27032",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:38.547266+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -20966,16 +21002,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/das-blau-ferner-raume-lesung-mit-vera-zwerger-bonell/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-25",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "04ddf9de597d4aff05849a9fec8af74ed83b076eb2896ca56ad850d67ec19e45",
-      "last_success": "2026-10-25",
-      "last_success_at": "2026-10-25T21:08:06.345545+00:00",
-      "next_due": "2026-11-01",
+      "last_sha256": "58f4f33d3cee694232e9f89a71fee2bed2c201847372bbcdf436eabf09ef8dbb",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:44.647045+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21005,16 +21041,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dati-sensori-e-intelligenza-artificiale/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "30baa0587cf624b74fe2f9fa9c4ee6ace33ffd0d27338bd1cfbd27081315f860",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:48:16.129412+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "bab6a31a981931f6b41690c6a6efe5cce483288b6415756f732356fda59f0313",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:50.783372+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21044,16 +21080,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/davide-bennato-marco-gisotti-riccardo-milani-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "af008c3f7ffa25d9f025d20301198c42f3c1ec2ab23203686c781b1bc30c945c",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:48:20.937349+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "bc7baade739f983e6f043c771813c9d9f82bd42e2b60e0b7ae30319269caa298",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:32:59.499548+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21083,16 +21119,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/davide-boosta-dileo-stefano-mancuso-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b22906b7a1b5b61129c98c446c17a2bc44083237f119ea0ae88140daf227da68",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:48:26.057378+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "fa20f686e735e1c348b922e55f8b4d50b35a87cee24bcbb3d3b434a8fa360284",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:33:13.962053+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21122,16 +21158,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/davide-cecchini-cristiana-favretto-valerio-marchini-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b8131994959a22f06fb5469eb658eb2c6ffcd9280628cd6d15f6dfd98522bb58",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:48:31.219629+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "f68081e3f7579627c11eb146258e189023afc602619c4e70f80de2b7715acf5d",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:33:21.391727+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21161,16 +21197,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dawn-to-earth-2026-la-fiera-premia-antonio-guida/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "fab61642bbdcc4fb46dde631c8a0d252ca29295893548505018cdc2c367ae129",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:48:39.135096+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "eeca88be4a928183cc4c27c1175a248e626ff2ed4c17e0dd78616a50c33c025c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:33:27.937652+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21200,16 +21236,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dead-river-e-notte-stellata/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b6fdcd4828aa01fb2d547c815804c6c25b43ac5e47eab29514918a5143bfe588",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:48:44.345231+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "8596b53d9381cf67ad2bc7195e389820bff717319b50f6f95aab6e50044b1766",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:33:34.219517+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21239,16 +21275,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-prodotti-locali-a-base-di-mela/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0e623ef6b10403929495d1590a8bd34025a1742735ce1ad260dbb7a5d20679a8",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:48:54.120008+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "c222eb5781bcf793628a06574354682b2b85ee22a3b8bcf47b5158019b5423ee",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:33:41.409924+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21278,16 +21314,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vini-alla-cantina-unterhofer/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0d83b6d643228b50c0b45c03b6d8b1fcb1e6db09830854b18b4be87b0ab53524",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:03.691500+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "d690eb69d970a6fd71d3236d7d5db9392602f18de10c3d6727360442fe745169",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:33:47.402935+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21317,16 +21353,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vini-alla-tenuta-franz-gojer/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "c7aead6729ba86ddc90be16aa213519c4dfd15e19c5a8212ad70354f50af2bf6",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:10.966350+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "7717dd94bb6f0e5c91904d0d9444f2e3e85a6df420f9f51f705d509ea2264a8b",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:33:54.569162+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21339,21 +21375,33 @@
           "observed_at": "2026-10-26",
           "sha256": "c7aead6729ba86ddc90be16aa213519c4dfd15e19c5a8212ad70354f50af2bf6",
           "url": "https://www.happings.com/it/happing/degustazione-di-vini-alla-tenuta-franz-gojer/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "7717dd94bb6f0e5c91904d0d9444f2e3e85a6df420f9f51f705d509ea2264a8b",
+          "url": "https://www.happings.com/it/happing/degustazione-di-vini-alla-tenuta-franz-gojer/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "c2a5e643fa4564e570584047418650f4954f10178e186642a9d776715587ad15",
+          "url": "https://www.happings.com/it/happing/degustazione-di-vini-presso-hannsl-am-ort/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vini-allenoteca-weinmesser/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "3526f62f68e73735f65b05c5cd6284c0ca13902ff122c0d6c046b5c055b126cc",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:16.230486+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "6c0efd64b464c701710c4a8175a003b50296b51476c9adb2acf2ff0c364d86bf",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:34:00.438199+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21383,16 +21431,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vini-e-bollicine-alla-cantina-kettmeir/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9ec3001c3b292d8d93a19a79653d3ba302a1795f71469bcbdc436de9eb779b99",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:21.361211+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "d9465db0d7399b3c3ff2d8fc18eb70692d3ab37127f1b89cda48e77dda07847c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:34:06.695237+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21422,16 +21470,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vini-e-visita-della-tenuta-haidenhof/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "5c59d7bec465c47e080df0de13e0855cc30edcb320143fe9030578d2a78ce8f3",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:26.806697+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "0dbf5071718c9c1dbffd912150b725c34c3b842b54f8645f8b743b5cf683d241",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:34:13.307116+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21461,16 +21509,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vini-presso-hannsl-am-ort/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e365f677f32e30034ccb6c8d17c465a72f0e470ac9d2cc61d77c59b6dd47c1f4",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:31.853919+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "c2a5e643fa4564e570584047418650f4954f10178e186642a9d776715587ad15",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:34:19.308714+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21500,16 +21548,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vino-e-birra-nella-tenuta-moser/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "40006a6dc0ea6f5fcfc91a740eab78cf73625eb8ba5402d38ee97401d85e8678",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:37.526823+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "c48353b06e53d319d4763ef5373398ab29c0ba46303e07a2e5d05189ab6dc304",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:34:26.068447+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21539,16 +21587,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-di-vino-nella-tenuta-bergmannhof/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "fc0d20684ed5d8500ddfd90302abca83b048be4b564655537ffaa805be47ba58",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:43.214071+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "a293636d800944880c90b776ede4416d094156e95a08c77a99f071a3495c889d",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:34:40.398098+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21567,21 +21615,27 @@
           "observed_at": "2026-11-08",
           "sha256": "96f13a807dbe9a3cc9c1e46b01368b17f5e26398230bcd73d0809501e71720dd",
           "url": "https://www.happings.com/it/happing/visita-e-degustazione-dei-vini-da-aperitivo-al-kranzelhof/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "a293636d800944880c90b776ede4416d094156e95a08c77a99f071a3495c889d",
+          "url": "https://www.happings.com/it/happing/degustazione-di-vino-nella-tenuta-bergmannhof/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/degustazione-e-visita-alla-tenuta-hillepranter/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e901e31fae0b677dc8c2bcc1b69b463bb2c02095ce93d38a40fceb602e210bf0",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:49.338566+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "bbd5b99c71981651c8bf767b5c0ff52eefc376aa68818ed775e81ec6cb798741",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:34:50.786190+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21600,21 +21654,27 @@
           "observed_at": "2026-11-05",
           "sha256": "d9ae406dd8ba75d123697ac09f48597e87f52b76b4ce4ade4b073af3f2710cbf",
           "url": "https://www.happings.com/it/happing/autumn-fest/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "bbd5b99c71981651c8bf767b5c0ff52eefc376aa68818ed775e81ec6cb798741",
+          "url": "https://www.happings.com/it/happing/degustazione-e-visita-alla-tenuta-hillepranter/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/delfeayo-marsalis-quintet-a-bolzano/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e078793b7468bc41e0d9eac8c03b1d364356902a24fa9fa53b33e6d276b8af23",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:54.803489+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "a725aeeb905df21797a19b7ec7485da71bbbd8e465cf857ea41e148f5557728c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:35:05.096605+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21644,16 +21704,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/democrazia-e-intelligenza-artificiale/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0136b0f8ec64fdd1d9093b1684f7e70bcbf8a568948f9a4fff84ab24cf4ec7e9",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:49:59.784149+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "0d0c9fb62e8fc5718a11d0431f4e9b81935952866206ccc5cf52da90b9f51f32",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:35:12.184558+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21683,16 +21743,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dentro-il-computer-impossibile/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "81b5b57984a1bf9dc064ba86cc712398e23ab281d1c3f6c32ca6157b1d2848bf",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:04.750567+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "5a3da02ee7a28bbfe6fa6d69913f106d03cc7c2215b8c34a94b0cc5471eab564",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:35:18.743812+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21722,16 +21782,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dentro-la-gogna/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "5025e8abad12b14b3dec7bbe8ee1976dd28e750c2f96dcece743da68d544f8f5",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:10.188598+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "e35fba31422121401a3dfe96c0b196e992303e8257611234591ded1b66258639",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:35:29.559524+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21750,21 +21810,27 @@
           "observed_at": "2026-10-26",
           "sha256": "0f603c77b15488a849a144a925116cfb4e49feb9c78bde5286f246a33ee88f7d",
           "url": "https://www.happings.com/it/happing/empisa-laboratori-stellari-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "e35fba31422121401a3dfe96c0b196e992303e8257611234591ded1b66258639",
+          "url": "https://www.happings.com/it/happing/dentro-la-gogna/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dentro-la-mente-del-principiante/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "8aad55ab9e8dd434c313fabb992f3719b7509b76a8a9adeebd5054d104c09096",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:15.168434+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "41342d58a40801e578a9410a2387ae6fec0fc30eeaa53ee29de7d9b69d480fff",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:35:37.277180+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21794,16 +21860,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dentro-lo-schermo-dietro-le-sbarre/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "d750b0d7f41cb17712b83b8b9b8608133eed631c29f8ffa2e0eb5402f4a3021c",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:20.559470+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "11aaa74764deab4706d76923aacf8e67c0b76b9a6e469287fcb8008731b32aa4",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:35:45.222975+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21833,16 +21899,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dido-and-aeneas/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e0dd5973c92f0d3a9c1aa5e9a0da8a49dbe1964c02cc921ef522b63b56e62c64",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:25.646398+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "a5241a709785953f001e239182c5dc91549b1f4436a55c811b6569bf1beb4a61",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:35:54.306542+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21872,16 +21938,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/die-quelle-teatro-a-silandro/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9551c6f053a437fc90f6f4c1e96331c592b70ff614c6ecf539ad87572ddabb76",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:43.566326+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "84ebeaacac38ab06b87bbf80b9e2144aee5422aae871198154124c575a2199c1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:36:00.590967+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21911,16 +21977,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/die-windschnuren-touren-a-castel-prosels/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "4e1de72f36cd7285dc95896b936a6453b33ae26c3935e326f1057a18380cb4ec",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:48.564831+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "544226cf9676cbcfb226db3aefdda9abd895e667059d5ff3bdc59094a48341b3",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:36:07.726684+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21950,16 +22016,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/digitalizzare-per-loggi-digitalizzare-per-la-storia/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "68b7801c2f56a6788b671482f1fc123a58d40b1080c0fe4590db4e3a336f77ab",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:50:54.372884+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "f22608864c5b1932bdefbfa6f8f0953c75824bb0f4f29ca435c8a8cc204028c0",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:36:13.590405+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -21989,16 +22055,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dio-salvi-i-rockers/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "98b91cee9b3c555edea17e65e95e6a750b8d2317268f67fb9ad8fcc1304a230b",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:00.349663+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "ea612b8d82dd9c66fd8e95fa127031f3c1c9b00452d4755de59ef5fb3025e0f6",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:36:20.800524+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22028,16 +22094,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dire-e-buono-non-basta-alla-scoperta-del-parmigiano-reggiano/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f1ecc4172bcbbf55bcf36d869eff23c9f286b0f380447bdadfff202070807305",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:06.246644+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "24d1c70317e4e1b8357f65a5cbc847fd7c186fd43fe225fec318fb2cac3e1817",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:36:27.716313+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22067,16 +22133,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/distilleria-di-olio-di-pino-mugo-allalpe-di-villandro/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "bc6ea7cbb7e90efd92b9aa722f8f6374972fa2fcabf0ab47050c8533de55a4e1",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:11.479962+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "4d434a07bb36c7658187593374de8fe76506c89ed9f60f6b6999a4792554a1b9",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:37:45.747496+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22106,16 +22172,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/distilleria-roner-visita-in-italiano-con-degustazione/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "a8981d22a3e6992f5c2b01d5549bf505683c23f87128c788b72136a292c21927",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:16.789100+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "b14fb71361419acb3ec35bf0f34fdf99e0790c29b29f2204f5d6049b38dd195c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:37:52.709633+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22145,16 +22211,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/divertimento-stratopico-a-lucca-comics-and-games/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f995fd8043e6b19f7f3238d488ba1366e9578972c9075afb02157d1a610dc73c",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:22.599394+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "5dc932146a896032e3940d7a5d405d7be8824d557c0d9896b1ea175a4f4f514d",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:02.286240+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22173,21 +22239,27 @@
           "observed_at": "2026-10-31",
           "sha256": "de68b29d7319973bf2a6211dcd5fa6aa366cde64b332e30b4ec2befb832e8977",
           "url": "https://www.happings.com/it/happing/james-nachtwey-witness-to-our-time/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "5dc932146a896032e3940d7a5d405d7be8824d557c0d9896b1ea175a4f4f514d",
+          "url": "https://www.happings.com/it/happing/divertimento-stratopico-a-lucca-comics-and-games/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dj-show/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "29ff1eb948bba8c9824215d2e4d48be85e8f60f091bc48131bd3bc1d682c8c22",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:27.700187+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "9bb4ae75d52fad79bdf631a41a223416da61e94000f7ba7cb15344b10b14a7b2",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:09.437782+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22217,16 +22289,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/donato-a-grasso-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "199c99e617c497960671e99151d0c3bb8a328ffec3ba04a033e806ecd5b44249",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:33.305858+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "053444ca2bb5eaed8aed6017031362cfb4ff2ce03f0b731ef31bf7135a681261",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:16.277724+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22256,16 +22328,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/donne-mostra-di-sculture-al-kranzelhof/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e16644cd0f8525fcc269588d18474a8fe204d47b005a45434fc69d14ee24294a",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:39.210406+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "55b99afc2d0fa840f47add2d753df873a2a0a90ce3c86f84508c904390e87ce2",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:23.614605+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22295,16 +22367,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dopo-la-prova/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b960668ee3deb6cb098211a47d1b2f9bb5556b54216fed91ee6c5ab873b8ca5e",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:44.664266+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "32b44d83ae28007ea42748c2dd530f9e9edccd257cf5ac0484bb7a2abe1d8303",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:30.761131+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22323,21 +22395,27 @@
           "observed_at": "2026-11-03",
           "sha256": "446487c018a8068bf5466cd57512cc6a4c15c3208ca1ae7433cd2705201d0496",
           "url": "https://www.happings.com/it/happing/nausicaa-della-valle-del-vento/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "32b44d83ae28007ea42748c2dd530f9e9edccd257cf5ac0484bb7a2abe1d8303",
+          "url": "https://www.happings.com/it/happing/dopo-la-prova/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dress-code-terra-di-mezzo/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "18192bcdc35041b63cc7f08957877875b64b5b8944412ce623cb31488f354f2e",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:50.580254+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "5b9a4d9617ca58afd1a36b9a777b0128e869853ea19e3c55cf4e99e8b392720c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:38.189834+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22367,16 +22445,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dress-digitarian/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "6edfc8962f2b502058243dfd4f2455c8521d23f46a488dfdf709e73c306f1b05",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:51:55.756882+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "78d899400b74705550ae3d618e7cde56b9c25574fbce8e8aa380476b5f95b641",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:50.051227+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22406,16 +22484,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/drive/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "aeaa20365ed9886d48c3dfdd2d064c430c47b886cd4f719a2d5f1a152b05deec",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:01.248623+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "73d72006f5bc2bc7660214561c350d0c8f4717ceec56344f26d63545b1aa2c97",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:38:57.040193+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22445,16 +22523,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/droppodcast-live-lcg2026/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "da02eca41ffd3f136c9b601462356b1f208a93fab1ca2a91e72e134b2284f7bc",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:05.768023+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "ba1465f43402fd15606334d05b2f48376cbe37ee2447ec33bb9adc4cd063d211",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:03.862682+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22484,16 +22562,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dumbo/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "d86eaa513c09e1bd8158ec6be7527eefabb7468230e73bda160c88afe2005486",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:11.009009+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "dd24d8460f00010022a1f06b9a4e9207524238e84715fcd1fdb79889bd0a7b95",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:11.498585+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22523,16 +22601,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dungeons-digital/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "da9839ce42d40ad97d4730a33ec2fe3906a12c7be1946679223396a4c26f44ef",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:16.941699+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "58b577ff88d979f6139623d8b2fe50104b1dceae7c1a8820c08da0e3b7e5f5b3",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:18.295153+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22589,16 +22667,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/duo-quarta-marangoni/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "4c9f04498470a027baa974b0bec62839e0a82dcf7a1c901f26fc6f8b6d0b55a4",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:22.391545+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "bf5965974d7418c548978bcfc00a81c6b33648771f6434435e30d16382031573",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:26.454296+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22628,16 +22706,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/dylan-dog-40-anniversario-la-parata-dell-incubo/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "aefe11d44d95979a4e5e7f1d04544ba7fd78ca7c985d0b2632254a1b51cb78a9",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:28.150081+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "9d3fa6b307829bf0a7ab804e40cbf072f359977fba8d9b559f315247e12eff27",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:33.377248+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22667,16 +22745,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/e-bike-dalla-val-casies-al-lago-di-braies/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b8978669349c06f7cb0c9fcb123c017d11aa532a0d804e8c5ae7e230b9f8e15c",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:33.952059+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "5148db713b4ec93ec60297c22e71d6b745ba66270b3a0aeec9195f6bda40d86c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:40.304602+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22706,16 +22784,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/e-bike-tour-dal-seceda-alla-vallunga/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "bf5b125936cb7e89f7dd8066ac7b0b289cd7248da289bbeeaaa6a0e8fd498cdc",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:39.769987+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "929d7b3fe390934e8d986f0027be6d99d53f4f57165f8388c1af6108a2ce7c01",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:50.777757+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22745,16 +22823,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/e-bike-tour-torggelen-da-castelrotto/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "95f5f16e32bd29dede94a98e335222ee5f7ebd9688456f752b5632dc1fd817b0",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:45.487780+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "1695bb33de16225d2cc1d88b77f33f7f80fe8da0e621a932ddd36aa89aea717a",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:39:57.847469+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22773,21 +22851,27 @@
           "observed_at": "2026-11-01",
           "sha256": "85becb52c8c267fa96d1270cb50c93f7ffafa758bfee032faf55afe2ef8f9850",
           "url": "https://www.happings.com/it/happing/monte-strudelkopf-panorama-sulle-dolomiti-unesco/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "1695bb33de16225d2cc1d88b77f33f7f80fe8da0e621a932ddd36aa89aea717a",
+          "url": "https://www.happings.com/it/happing/e-bike-tour-torggelen-da-castelrotto/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/e-se-incontrassi-un-fantasma-raccontare-una-storia-horror-comedy-a-fumetti/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "374a5f64336d8d6c81c4137a0b5911bb8b1b453a90be33717d7bc9d01c0af8a0",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:51.141658+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "ace0c074c0cba64421c9fc7d1a067e73a0b27372925856b9dd03118537a25b74",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:40:08.600144+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22817,16 +22901,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/eatinero-cremona-2026/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "eeeee0a0e501452954b1181a775a004e0b1c9f4c0f5906babef3a50042a8eadc",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:52:57.154464+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "924d95ff5f33ba5664b5c58a4d57f1d0ed3c5449ef29f846aa0d09f40869bd43",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:40:17.339908+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22856,16 +22940,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/ecg-extreme-cosplay-gathering-selezioni-italiane/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0d6707c8e989d1d98f19afc10b81cea38c01400284701fea9ad769b5e1b56e32",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:03.212778+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "c3bede3c447a42c271b2d3760bda65e9cf386361eaf093401554bb9cc2818caa",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:40:38.032559+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22895,16 +22979,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/eco-festa/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e137cd0da09e96f34e829c08bdb6c5707b4aa42d747851b583e39398691ecb2b",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:10.133945+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "7fb6478132d59c2c9c0a25ba4c31cc1a2c983d204f81dcf230d67a84fb05b783",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:40:44.340278+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22934,16 +23018,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/edizioni-ets-presenta-gli-etruschi-e-la-cultura-italiana-dal-re-buono-alla-presidenza-einaudi/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e41f590fdfb35246030fa8e453751bc94889e3986bef474f5817f86ca3d2108e",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:15.005568+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "8e6c11542f7d7bc80eb90b8a12cea3dca4411ce082f48cc8fd4f2576bf0f8885",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:40:51.458002+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -22973,16 +23057,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/edizioni-ets-presenta-lalveare-scientifico-o-il-caffe-di-negrin/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "3497a60e648f8ffc7ebaeda162ee55897ecd54308249834d556980459da2a015",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:20.488392+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "4a541755a75220eb46100f395bf077d5e5393ef63cee08cb7bb6d34eb7105bc9",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:40:58.656659+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23012,16 +23096,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/edizioni-ets-presenta-viaggio-nel-mondo-dei-pugili-di-loic-wacquant/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "4af938d171a50514d90cd7186d90dfdf83dde4fcf80a58311c0041aafd1710ef",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:26.123334+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "29c199af50ca61d6fad4af353e9d2f085a40f03d75a047e05fffcdce64588141",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:41:10.545800+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23051,16 +23135,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/edoardo-camurri-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9c5fe8b193b5165df2fcb3a0e7922dc8da6195b2dbd778a48337f953678db6e8",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:31.732104+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "04d6267ce2dd58200874992ad8d2068f8fe34ec26dfb63bb2af22417a12c5d0c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:41:18.435113+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23090,16 +23174,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/effigi-presenta-intelligenza-artificiale-e-dazi-la-guerra-fredda-di-trump-allunione-europea/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "31c9914c2bddebf5be295fac04bbddc5d3ab1b1e9f6e92ec6452fc773d417233",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:39.205958+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "813569a981912f5b8b55cdf6fd3e0f04942b430ed73feec5ecbb6148a7448ba9",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:41:25.456499+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23129,16 +23213,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/eine-weihnachtsgeschichte-a-silandro/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "dfcceaafb488851d6ecea15481b66a63e42cf7ef76d709687fdfc95b8fa70e2d",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:45.466273+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "14b3fa3d5472f16f287172654f4b4e00940a155a6e27b7491d63c376a810b8f5",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:41:33.047791+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23168,16 +23252,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/elogio-della-follia-digitale/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b7de271ddff1e843683f5168bf96e21808c8fe73a2abcd461f40ab54ed06cfd9",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:51.041114+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "2f5bf4d7bcd3e22b5db43518d942a08d9280d34c90bdf03d3e1efc78124f800f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:41:40.355360+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23196,21 +23280,27 @@
           "observed_at": "2026-11-09",
           "sha256": "c49a92da048fd96643a56c2cf70846bd17c4f8053252f3ac650584db87701fce",
           "url": "https://www.happings.com/it/happing/cene-rap-pola/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "2f5bf4d7bcd3e22b5db43518d942a08d9280d34c90bdf03d3e1efc78124f800f",
+          "url": "https://www.happings.com/it/happing/elogio-della-follia-digitale/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/emeral-sounds-gens-dys/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b58491a3efa2717cfac857a2a3c8ba44ec2ec1a72fb16ccce64828b15e5fefa1",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:53:56.922773+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "90ad3aba0f1edb1208df27074f857f732f723784994ccc819e82d757d8c145c5",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:41:48.118593+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23229,21 +23319,27 @@
           "observed_at": "2026-11-08",
           "sha256": "66fc39b70cf87f204ed70281185ca89f225ce56f789062d8dad7a6b55b3c268d",
           "url": "https://www.happings.com/it/happing/topolino-lab-firmacopie-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "90ad3aba0f1edb1208df27074f857f732f723784994ccc819e82d757d8c145c5",
+          "url": "https://www.happings.com/it/happing/emeral-sounds-gens-dys/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/emeral-sounds-i-santi-bevitori/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "acbbdaaeb98df22cf2c85cc8f3099ee01a012456f0f37ce8000378de47a1591d",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:02.902951+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "a693310f0d0919436d2b62c28cb2282d365b3afa69c0a474f28bc1d777e1842c",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:41:55.577043+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23273,16 +23369,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/emeral-sounds-uncle-bard-the-dirty-bastards/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b21ca9dd4b83594b38e60e112f11fb296c6bf7eb097f7aa3be700c9d138a56f7",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:13.922665+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "0ba444b72acd0a615a0687558ddc842e0a4d4124dac435d88be631ddc7c7f909",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:42:04.217307+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23301,21 +23397,27 @@
           "observed_at": "2026-10-31",
           "sha256": "6f968be3d8479be1eb0591d7f75e90194aaf60f5540a18db2999a6ed103cc3c2",
           "url": "https://www.happings.com/it/happing/incontro-con-edurne-portela-e-jose-ovejero/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "0ba444b72acd0a615a0687558ddc842e0a4d4124dac435d88be631ddc7c7f909",
+          "url": "https://www.happings.com/it/happing/emeral-sounds-uncle-bard-the-dirty-bastards/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-guerre-stellari-experience-2/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "2eb7b0c86ef2bc2815218e0019e2191a1276061fc9885165575dd09a30394766",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:23.650762+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "e99aeaa30e441fc3ce9226e3a18e25d6c595975e3216900be284a557ac137737",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:42:23.172356+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23345,16 +23447,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-guerre-stellari-experience-3/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9cd2df86c164192eda1a5bfdf13ebad27a606fa3ccc04b342cfeb6e36677d845",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:29.740195+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "efd34609718c401e63587671c9556efb37712f8d347afcab89d06d00b3364c22",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:42:32.863150+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23384,16 +23486,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-guerre-stellari-experience-4/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "66522e42227b902b21e419b550d3bf8eb6de1e29d704d4df049c44d443b03ce0",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:35.966337+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "728550a40863dab65f3907cc99a0150e1bccf5f701e46cc6386c0a9d491d48d8",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:42:40.987518+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23423,16 +23525,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-guerre-stellari-experience-5/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "c5591137494f307b95912e29be78857e5f3ec9b810a59789a1194e35a580e920",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:42.544996+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "e638556117fb8ff8113cef2cc4242deffbbbee0d4232b0b5754d0c7d05b7e672",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:42:47.854900+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23462,16 +23564,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-guerre-stellari-experience/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "62c96f2ddd8b7420758e44b48847fd8a5f4cb372d814777a3c4a9bafd439ea94",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:49.362835+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "6b8371af7819aeab400008baddf0380e5c5a32dcd1a762fed1b204eb8cc73e78",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:42:56.418877+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23501,16 +23603,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-laboratori-stellari-2/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "dff54f6ee1d3a38f4c9e075b270ba91cc435a7de9a3a9f617423b9b214a1e4cf",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:54:55.462545+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "7cdab15fd04420808f8716b24267660037f64023e92163d1461c8527fdc05299",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:43:09.250792+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23523,21 +23625,27 @@
           "observed_at": "2026-10-26",
           "sha256": "dff54f6ee1d3a38f4c9e075b270ba91cc435a7de9a3a9f617423b9b214a1e4cf",
           "url": "https://www.happings.com/it/happing/empisa-laboratori-stellari-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "7cdab15fd04420808f8716b24267660037f64023e92163d1461c8527fdc05299",
+          "url": "https://www.happings.com/it/happing/empisa-laboratori-stellari-2/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-laboratori-stellari-3/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0f603c77b15488a849a144a925116cfb4e49feb9c78bde5286f246a33ee88f7d",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:55:01.673740+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "fdb1463f7b7ca6376b0d58fd19b9acd7cfe712669c33de77656f8315201cc9e1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:43:29.599977+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23567,16 +23675,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-laboratori-stellari-4/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "6c8831b8c543122f8a7cbf326ac95c7e92992b778268763de30b038c06609022",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T00:55:08.026234+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "895fe1b8418c07e6807114022a92bcca50c5c4e433741d6434daffda8e66fa38",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:43:39.871895+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23606,16 +23714,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-laboratori-stellari-5/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9709f9eb1292608e518566f2317477075553b72bf1d0bc214a8dff120c115a30",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:58:52.246226+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "271b4328ad1c87fba9435accc5cd60d2a72319367f2999d1b9fbb99763841fa1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:45:37.895618+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23645,16 +23753,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-laboratori-stellari/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "27146263ab90475426cf7a33ffba7e6bc3d8b86dd141de5b4334438351794d47",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:58:57.142325+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "933d2ae4d5ae6433e2971bfe00da16852f33dbc2b649752c37c220d2a7fbf370",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:45:45.660506+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23684,16 +23792,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-10/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "4703be08288e161ca6ec573c183d54cedfd6f84390535fc1ceb5127c7729f28a",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:02.457678+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "863630557481bd1d1850614ac80d850e2f38ad34b104b45c25c601f1be00bab1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:45:53.808608+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23723,16 +23831,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-2/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "3ed075cf8d926aeae3107edbf094d3970df59316541093ee78e1a937dd28c7ec",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:08.504571+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "e601389940b4cd97275553994c1840c474ce3e57420bcc7f502b590836338ec8",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:46:06.254013+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23762,16 +23870,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-3/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "42cafb8ef943beeab5b55ac33f196868757f22a0199c95da5a482474b178b1a7",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:15.285990+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "9ab06b4258f9e49d2e3db5f7ee0566a070485b69e7e7097d114c419e6c2fb076",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:46:13.105536+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23790,21 +23898,27 @@
           "observed_at": "2026-10-26",
           "sha256": "42cafb8ef943beeab5b55ac33f196868757f22a0199c95da5a482474b178b1a7",
           "url": "https://www.happings.com/it/happing/empisa-scuole-padawan-3/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "9ab06b4258f9e49d2e3db5f7ee0566a070485b69e7e7097d114c419e6c2fb076",
+          "url": "https://www.happings.com/it/happing/empisa-scuole-padawan-3/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-4/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "199c0e8b9af6a02737fa3dfaaabcea46bbc045bfad1faeb37a5e488041c3ed66",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:20.283622+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "1ac24648490f5067d33925df8abafe7f31f88a9264d94449918123ebb5810b6b",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:46:21.260279+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23834,16 +23948,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-5/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "392729e922ef740445e6967f418673cf141fb2a36b93b6069ef65863179e09c4",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:25.386845+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "08d97041238073efed4a3105a028d0619b9260859cca2d3d68a24ecaed61174d",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:46:28.786792+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23873,16 +23987,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-6/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "506aaa6a1416f55b298b57b303d571693d18a32496d22c3b8aeccbaa67023dfd",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:30.623186+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "ea282ddb049b3023532b31bf3e2068137e086465b2278c0454aedd1fa360bcd9",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:46:37.049026+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23912,16 +24026,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-7/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "aa0b09bd1a84916686cf94ffe71331cb5c03d3aeb60f064833085c469299c1e9",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:35.753723+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "34a5a04c2ed3e049dcf11989d4506d5ef9a183f0861c85e6d31a2f6ae0a0b232",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:46:48.575712+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23951,16 +24065,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-8/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "49aa0633dbc3179b1200e8387b2dfbd5ffc65b29833bd3483a060c09bb0451e5",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:40.983915+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "79a945bbac05591fd4539c19f0e5249b89e0ca5965a7208d2f9c74697d5a1deb",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:46:58.999704+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -23990,16 +24104,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan-9/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "3605965a13161428256d339fcb1434bf499611d5aedd01d0f18bdf683ed79077",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:46.040508+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "db92a90a458499ea37e4da3f7346d11169ef210e3e526621397521cb0295611b",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:47:07.626749+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -24018,21 +24132,27 @@
           "observed_at": "2026-10-26",
           "sha256": "3605965a13161428256d339fcb1434bf499611d5aedd01d0f18bdf683ed79077",
           "url": "https://www.happings.com/it/happing/empisa-scuole-padawan-9/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "db92a90a458499ea37e4da3f7346d11169ef210e3e526621397521cb0295611b",
+          "url": "https://www.happings.com/it/happing/empisa-scuole-padawan-9/"
         }
       ],
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/empisa-scuole-padawan/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-26",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "27adece97a0cee7881a5f1a329ac46f2b8b33203739b31f71f0cc970737d1994",
-      "last_success": "2026-10-26",
-      "last_success_at": "2026-10-26T01:59:51.118611+00:00",
-      "next_due": "2026-11-02",
+      "last_sha256": "6d4e50429e553892ee855ec99294ad13fbba7c06fd4ec3a22db6da385af7c67d",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:47:15.604157+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -25446,6 +25566,12 @@
           "observed_at": "2026-11-03",
           "sha256": "ec10414a943a6c5ad1a3d50cde958dd7fe03825c768d2c357fd3b916549bcc9c",
           "url": "https://www.happings.com/it/happing/ometti-di-pietra-tour-in-e-mtb/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "5148db713b4ec93ec60297c22e71d6b745ba66270b3a0aeec9195f6bda40d86c",
+          "url": "https://www.happings.com/it/happing/e-bike-dalla-val-casies-al-lago-di-braies/"
         }
       ],
       "status": "retrieved"
@@ -25779,6 +25905,12 @@
           "observed_at": "2026-10-26",
           "sha256": "a2a27dbe86174ebfcfc3216f776bc2989755ff253bd3a5214c3dfeb31a124dae",
           "url": "https://www.happings.com/it/happing/esibizioni-musicali-battle-for-vilegis-2/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "74e155964ad21b79c55ac71269a1cfe6756496b78339060abba29d744041114c",
+          "url": "https://www.happings.com/it/happing/daniela-perani-pianeta-terra-festival/"
         }
       ],
       "status": "retrieved"
@@ -31125,6 +31257,12 @@
           "observed_at": "2026-11-09",
           "sha256": "39cd5cda051b9ab960f95506360bcc68e276a3eb7552bb7083d7dc1b58be48b6",
           "url": "https://www.happings.com/it/happing/castagnata/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "ea612b8d82dd9c66fd8e95fa127031f3c1c9b00452d4755de59ef5fb3025e0f6",
+          "url": "https://www.happings.com/it/happing/dio-salvi-i-rockers/"
         }
       ],
       "status": "retrieved"
@@ -34215,6 +34353,12 @@
           "observed_at": "2026-10-30",
           "sha256": "68a2abb86b904be125030d797f5bde461ab4fbb860d3735c13c179bc961a7813",
           "url": "https://www.happings.com/it/happing/geografie-fragili/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "f22608864c5b1932bdefbfa6f8f0953c75824bb0f4f29ca435c8a8cc204028c0",
+          "url": "https://www.happings.com/it/happing/digitalizzare-per-loggi-digitalizzare-per-la-storia/"
         }
       ],
       "status": "retrieved"
@@ -34638,6 +34782,12 @@
           "observed_at": "2026-10-30",
           "sha256": "f3e76f098b06cb9a2e163191d1ead881c7aece1861721027b071dae4ad3c991a",
           "url": "https://www.happings.com/it/happing/giggerle-sunntig-dei-vigili-del-fuoco-di-santantonio/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "c48353b06e53d319d4763ef5373398ab29c0ba46303e07a2e5d05189ab6dc304",
+          "url": "https://www.happings.com/it/happing/degustazione-di-vino-e-birra-nella-tenuta-moser/"
         }
       ],
       "status": "retrieved"
@@ -35211,6 +35361,12 @@
           "observed_at": "2026-10-31",
           "sha256": "6062cbdc7ff895cd359f0c52f87344a29544db52e80201ead865a18672b9d391",
           "url": "https://www.happings.com/it/happing/kron-aktiv-allenamento-tecnica-mtb/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "5148db713b4ec93ec60297c22e71d6b745ba66270b3a0aeec9195f6bda40d86c",
+          "url": "https://www.happings.com/it/happing/e-bike-dalla-val-casies-al-lago-di-braies/"
         }
       ],
       "status": "retrieved"
@@ -39084,6 +39240,12 @@
           "observed_at": "2026-10-31",
           "sha256": "53d6cc06f09b214cfbbff23edfa46c266623f44c8ca5b2e0323422037b03fa3e",
           "url": "https://www.happings.com/it/happing/keemar-il-fantasy-con-cui-esplorare-le-markee-da-protagonista/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "d18aed7fcd9c8b572b4fe67e7b94c380237a96ac11b8760eb431d4d86c2b8ef8",
+          "url": "https://www.happings.com/it/happing/conferenza-locchio-lorgano-sensoriale-piu-complesso/"
         }
       ],
       "status": "retrieved"
@@ -41481,6 +41643,12 @@
           "observed_at": "2026-10-31",
           "sha256": "d3a15eb66b4e5dc4b21d932f22466096edb32ed36945be586104aa12b66d31db",
           "url": "https://www.happings.com/it/happing/incontro-con-dacia-maraini-in-marcia-per-la-liberta-il-difficile-cammino-che-porto-le-donne-italiane-al-voto/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "c3bede3c447a42c271b2d3760bda65e9cf386361eaf093401554bb9cc2818caa",
+          "url": "https://www.happings.com/it/happing/ecg-extreme-cosplay-gathering-selezioni-italiane/"
         }
       ],
       "status": "retrieved"
@@ -43788,6 +43956,12 @@
           "observed_at": "2026-11-01",
           "sha256": "d72cf9a49c76afb4670a7f3ab904fd2662b96e8ffded63862037902bd9c9d8dd",
           "url": "https://www.happings.com/it/happing/la-forza-delle-erbe-dellacqua-e-dei-profumi/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "39e3faa78c4466f9f52889625ca403084bd8a8b29e7dcd1279afe4ebd8673c87",
+          "url": "https://www.happings.com/it/happing/corso-di-tecnica/"
         }
       ],
       "status": "retrieved"
@@ -45384,6 +45558,12 @@
           "observed_at": "2026-11-06",
           "sha256": "1f287eb744ba6617174a384f50543517ab8e3df097f93d3a8667313aabfd58fb",
           "url": "https://www.happings.com/it/happing/tartufo-reale-un-tributo-alleccellenza/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "4b4d66c322335473e108aa01c5a1e074565b402ad709b01bc60743c3d57724f1",
+          "url": "https://www.happings.com/it/happing/croce-rossa-in-piazza/"
         }
       ],
       "status": "retrieved"
@@ -46341,6 +46521,12 @@
           "observed_at": "2026-11-01",
           "sha256": "d0ae3ae0af5883b39e51350eb372ac2d252f1fdf46a5060d36a05a39615cf195",
           "url": "https://www.happings.com/it/happing/le-tre-marie-a-laives/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "5dc932146a896032e3940d7a5d405d7be8824d557c0d9896b1ea175a4f4f514d",
+          "url": "https://www.happings.com/it/happing/divertimento-stratopico-a-lucca-comics-and-games/"
         }
       ],
       "status": "retrieved"
@@ -47799,6 +47985,12 @@
           "observed_at": "2026-11-01",
           "sha256": "de649858aaabf475a1ab1e2e59a35b1ea9251d35d8c742ff4a9a94d5e5216b09",
           "url": "https://www.happings.com/it/happing/lucca-cosplay-academy-legacy-edition/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "99a1b2b9db96e13ea8e493914a9ea464cd15e722366bafb6a1f1def4a6c07fe9",
+          "url": "https://www.happings.com/it/happing/corpi-digitali-le-regole-del-gioco-nel-sex-work-online/"
         }
       ],
       "status": "retrieved"
@@ -48612,6 +48804,12 @@
           "observed_at": "2026-11-01",
           "sha256": "e826838fab70f8cd43a2334bcfb184b4a164efc299522a0532b437abca7cb1e0",
           "url": "https://www.happings.com/it/happing/marcello-ceccaroni-pianeta-terra-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "e411ced58d2ad43d6a9d4407a3ea69a74d33eb528064f0512b5cbe42db489f60",
+          "url": "https://www.happings.com/it/happing/csi-robot/"
         }
       ],
       "status": "retrieved"
@@ -49809,6 +50007,12 @@
           "observed_at": "2026-11-01",
           "sha256": "123b018b7be1b7c8f3951c8311ad856c331ee765c1158adcdce7a1c156b26659",
           "url": "https://www.happings.com/it/happing/memorie-di-una-schiava/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "9ab06b4258f9e49d2e3db5f7ee0566a070485b69e7e7097d114c419e6c2fb076",
+          "url": "https://www.happings.com/it/happing/empisa-scuole-padawan-3/"
         }
       ],
       "status": "retrieved"
@@ -50867,16 +51071,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-dellarte-e-dellartigianato/": {
-      "attempts": 2,
+      "attempts": 3,
       "discovered_at": "2026-10-28",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b93db0883f759343c4e6496c28f0612949a2fc26fb01332cce369d5e3bab805c",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:56:16.072363+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "9329656cfc8efd6f6aed316664e641ea687962fcc85a0cfd5ec910b0452f62c2",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:23:34.208998+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "html_link",
@@ -55118,16 +55322,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-del-venerdi-mattina-a-lana/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "c1b302832ea66a31d2d1d4755d1419d1e3a0de6bf5a4ec769655d8618fbab897",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:56:20.942342+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "a2c4652d2709ffbc82742cb77c1ce23aad1fbdd7759aeb8077fe11e0c7695442",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:23:41.467058+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55157,16 +55361,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-della-terra-slow-food/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "59b7121650129867d25099e93363954fb7573572a09f4d906094be9b4985f688",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:56:30.139214+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "5ab574408e553a43c85e78aaa5f2ebc07a2ed6f75d21d744c7737f5e0a091250",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:23:47.093256+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55274,16 +55478,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-aulla/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9de6714a53481f5152717b5672d687300e61b4cbe777aee915b0c3d528ec1b5d",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:56:35.033376+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "7b9b3ca89301c1e8becc690f7dc29b7b183b804e90db334f693ead5f6139e16a",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:23:54.500060+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55313,16 +55517,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-benevento-cortile-sacro-cuore/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "97e7f034d51d44373625a6eea815fe2321db47dc0a263f89f9f7bf2bab2f4785",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:56:45.032483+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "4a1408fb616fbd097a2db0cd940f9e0aa3e9997e513aebf137127f13e20594b9",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:23:59.650371+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55352,16 +55556,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-agricoltura-damare-a-nervi-di-genova/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "56d298e59695bd1f4093bab600b2758363d35f3822dadbc80b7f4cb6b063b96e",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:56:50.040482+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "66a8a1bddd95495be1c96a788037d90a62e50b19a0c0a9359b66380d0f120a45",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:06.782902+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55391,16 +55595,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-agricoltura-damare-a-piazza-matteotti-a-genova/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "aad3555743151d0311ed9733dd25d8e887892115cad6f0667e09cf5aa0ccd6a9",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:56:59.993945+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "886acd504ea5f4fa3e548bcaa18a3f4c01caf5cbd17d64b35a355e42deaf77c1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:11.172063+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55469,16 +55673,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-al-parco-baden-powell-di-potenza/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "c5adb6f3b09bd1d7bf712a9e9e083bfb14263a23f87a1e99cd5b11d400c2114f",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:57:05.135130+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "3fbd6084888fdea4a068e42a08aa003df69727382df9a45e99460d79a758c98e",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:17.148954+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55508,16 +55712,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-cuneo-piazza-della-costituzione/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "ddaf9f2376c1fe3e08cc07240496af9c3eb9f02027260384110e109503218669",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:57:15.511651+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "b97eca367acc1ff1f4fbcecb6bacf4dc3ade3306716a5ec95c200a87321d0998",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:29.994232+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55625,16 +55829,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-alghero/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0b843a3fd75c47334199e10bd4e7b066ffdecc47b7721086d7bbed22c1ed46d4",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:57:20.677572+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "275172738a0eb892343567d6c0662a9868fd908ce634fa2525efe29d716b535d",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:36.513083+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55664,16 +55868,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-alpignano/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "808b6c52d1e9e191e713654f652430ba0c7f775bc29d9e1b1dd874a65b4c9d43",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:57:32.068200+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "c760495aa0b768e75ac3d7115f1a4de580711eea8cceb341d4138569233d6508",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:42.026555+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55703,16 +55907,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-arezzo/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "9739abcb1b114f06ab031c5326f8fbe1798a833c63a07b5355edf859686ec036",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:57:37.155975+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "64ad67eb1511cffd99499106a387f5d048f154df50151697455013ffe8ad2714",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:47.254236+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55781,16 +55985,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-avellino/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "d160be2d0f0a219919767c7c79a2d24d49df4fda90325dc957a11854ba9c9fc1",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:57:48.244112+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "b913955261f5eb656b49546b69938d413111135fa54fdb5b74a9ca99945205b6",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:51.528775+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55820,16 +56024,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-avigliana/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "88e6edcc5c3dbe46e0508d6e76ccfd9eff001cc7b7542a2fcbb0859dcd11fd27",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:57:53.279917+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "e37c5a388cc2813bc2991c0c4c887b61b4dcb32a4ce8749b6db14e5f5ef2796f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:24:57.303764+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55859,16 +56063,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-avola/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "563d12a975a9c1e76fd7a683ff2529c081bee4abc54471d1fb2bd8314a337caa",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:02.828396+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "956bf54bc72343561b6432f5ef67f9c5713aecbe5da1cdf39faabace9b5a01f3",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:25:02.649763+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55898,16 +56102,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bardolino/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "b783ec267233d984d991f1e9e58a6a0a34f9dfd195fff6c204b9ec8e07d13739",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:08.023305+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "a24ad8b445449c27b82c92b5504e17b550803f718c6cb49326722b43c0a07d9f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:25:07.387664+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55976,16 +56180,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bologna-piazzetta-don-antonio-gavinelli/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "8b3231637a9bf243daaa9c04697d5346198d94b214a72d131eb5f0fe67113d56",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:18.396067+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "95222b6ca9f60bea8eb83c0acc692bda0c4dccd17c7d2154d164f855c5b7544f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:25:20.337236+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56015,16 +56219,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bologna-via-po/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "511af08dbba81f8012ec3387b12b124dcc728cc594b6b43c455d627c623d7157",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:23.559156+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "48a6e3f75ef010b4d3db3a857a860d4c19e39eaba924cba01f9c2468ddef9cea",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:25:44.979312+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56054,16 +56258,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-bresso/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "360199d9aa4d91660e49ad2c255b9a5bf0095e8e2a10867918fe27e0ceaabe7e",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:34.308784+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "0d469b444e41ebc64f9eaba3ae3870ba690af72efcf4e01191d8ccc77950ae7e",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:25:50.190279+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56249,16 +56453,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-camaiore/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f68d4dd035cef61d08aba12f013d3997025cc50f8a4e0b2ee691e7cb9aec2578",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:39.500578+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "70a052ff6ca948f4c65313a6e69fad7aadf397549b2625b86261ef2d2e4afd80",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:25:55.784742+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56288,16 +56492,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cantu/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "eaa751fb8927f4fc2a597dba775ccb2eea2c30a4495a784e29cf2c539110c6dd",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:50.120254+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "8436a74fbc276d3a3a562fcc0db7b501e4e7f0c4f131a22b81b82488ee81beec",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:00.223377+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56327,16 +56531,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-carrara/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "67265a1a6a4c0e76b606e6027845c30ad98f81e1efc6db01b6358f606d53da98",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:58:55.362941+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "1f9eab13f74ba3d7c74dbde63f08c263ca4513fe14d93b13f0f1b20c11a864a1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:04.581300+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56366,16 +56570,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cascina/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "f477659a0ea3a5fc0a9782ee7adc1399d5395b39bfed7cf6c6c01ffae9a10c87",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:59:05.894935+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "a8f3c1ff321267d6323084d3236e3115f0a189630874685ed05c61ace2f24aa1",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:10.476368+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56405,16 +56609,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castano-primo/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "2f1fbcd3b77ba1c4e311477d93381575c44e774e43a0fcee13475fc975778ec0",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:59:11.211904+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "3fd97b593b75dc349f6dbfb88cd44ed165fb5e834617d6e24bf26c0bde4c473e",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:15.736337+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56444,16 +56648,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelfiorentino/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "62db5020979096912691f5378e48d7655035a1e6de71e1c5e94a380a70d759c7",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:59:21.787076+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "3396f2aa58de4beb15735e485a3675617b22480b91017e9c5c44a96970719894",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:26.096922+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56483,16 +56687,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-castelnuovo-del-garda/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "a4779f4ebb1f25fbcaf0e8b754fd495c84b842863175f2da866e8e8f56b6cbc0",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:59:27.246557+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "a9e0022dd5b14a87c59643f3f915f5c6570fab2c5c0abbb9192c615bb87b1160",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:30.694382+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56522,16 +56726,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-catanzaro/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "0365c707476f9ec5cb3460c8ea369facfaae4ca994e8ce62b2f2f66b539e0ac4",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:59:38.411093+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "67c45db0d4805d01839bd865e3507478fe90f50a46640dec4cda012562ac127f",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:35.931749+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56561,16 +56765,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-collecchio/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "e44fc7ba7e951bfa80b672e2df995cf394d2eecdeedb9ad640c47239873b217e",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:59:43.736677+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "2ed340469d306f1f5068f1312f3bb4425a6c88b67d4d5c46fe7e98fa7dbb758e",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:40.552675+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56639,16 +56843,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cormons/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-04",
+      "last_attempt": "2026-11-11",
       "last_error": null,
-      "last_sha256": "71b384626989458c0176db5ed94df289abd1726279d9ef002a62a66f76adcc04",
-      "last_success": "2026-11-04",
-      "last_success_at": "2026-11-04T03:59:55.308346+00:00",
-      "next_due": "2026-11-11",
+      "last_sha256": "0cc4fd6aa712c33e137fc3154a61c51600182e5b022622af99f11c3de39201e7",
+      "last_success": "2026-11-11",
+      "last_success_at": "2026-11-11T04:26:46.180814+00:00",
+      "next_due": "2026-11-18",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -62187,6 +62391,12 @@
           "observed_at": "2026-11-04",
           "sha256": "753905fa84ab9f37883c1990527b99a85f079b3561f8c7527f38e847a16ea20f",
           "url": "https://www.happings.com/it/happing/princesa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "c3bede3c447a42c271b2d3760bda65e9cf386361eaf093401554bb9cc2818caa",
+          "url": "https://www.happings.com/it/happing/ecg-extreme-cosplay-gathering-selezioni-italiane/"
         }
       ],
       "status": "retrieved"
@@ -67587,6 +67797,12 @@
           "observed_at": "2026-11-04",
           "sha256": "bb705a1678791f745417376e17cc60fa0e84351d96440989ce0102f8a426520c",
           "url": "https://www.happings.com/it/happing/pisa-book-translation-awards-2026-cerimonia-di-premiazione-e-lectio-magistralis-di-guido-paduano/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "dd24d8460f00010022a1f06b9a4e9207524238e84715fcd1fdb79889bd0a7b95",
+          "url": "https://www.happings.com/it/happing/dumbo/"
         }
       ],
       "status": "retrieved"
@@ -67620,6 +67836,12 @@
           "observed_at": "2026-11-04",
           "sha256": "f6b1433cdc552283830d9bf3b377e67cbaadda3dd40a9e7e3be3b39c76dfcf1a",
           "url": "https://www.happings.com/it/happing/pisa-university-press-presenta-emozionabili-intelligenza-artificiale-generativa-tra-emozioni-racconti-e-musica/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "55b99afc2d0fa840f47add2d753df873a2a0a90ce3c86f84508c904390e87ce2",
+          "url": "https://www.happings.com/it/happing/donne-mostra-di-sculture-al-kranzelhof/"
         }
       ],
       "status": "retrieved"
@@ -69195,6 +69417,12 @@
           "observed_at": "2026-11-04",
           "sha256": "28149ef96909f785b697dd58e55b9c990bb5415329b7cb7e35c1d30cca4e4983",
           "url": "https://www.happings.com/it/happing/proiezione-film-the-war-photographer/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "11aaa74764deab4706d76923aacf8e67c0b76b9a6e469287fcb8008731b32aa4",
+          "url": "https://www.happings.com/it/happing/dentro-lo-schermo-dietro-le-sbarre/"
         }
       ],
       "status": "retrieved"
@@ -69534,6 +69762,18 @@
           "observed_at": "2026-11-04",
           "sha256": "43f75e0ad157225f4cd48cb4aae9ee7d37045a40b468e2de6ef3ef47815eeb64",
           "url": "https://www.happings.com/it/happing/qa-con-mikael-kasurinen/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "6f1acec15f039332b724ed7b96e6c3e373914f7eda4757082243dc08a3d27032",
+          "url": "https://www.happings.com/it/happing/dark-souls-echoes-of-lordran-15th-anniversary-live-orchestra/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "08d97041238073efed4a3105a028d0619b9260859cca2d3d68a24ecaed61174d",
+          "url": "https://www.happings.com/it/happing/empisa-scuole-padawan-5/"
         }
       ],
       "status": "retrieved"
@@ -69561,6 +69801,18 @@
           "observed_at": "2026-11-04",
           "sha256": "4a54ee83b0e37890219eaddab488a758d6d3d702e7e8e8420768793d5d1259aa",
           "url": "https://www.happings.com/it/happing/quale-eredita-per-la-terra-di-mezzo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "bc7baade739f983e6f043c771813c9d9f82bd42e2b60e0b7ae30319269caa298",
+          "url": "https://www.happings.com/it/happing/davide-bennato-marco-gisotti-riccardo-milani-pianeta-terra-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "34a5a04c2ed3e049dcf11989d4506d5ef9a183f0861c85e6d31a2f6ae0a0b232",
+          "url": "https://www.happings.com/it/happing/empisa-scuole-padawan-7/"
         }
       ],
       "status": "retrieved"
@@ -70545,6 +70797,12 @@
           "observed_at": "2026-11-04",
           "sha256": "b0ed27ecf8b9b349469d0eab9eaf7b70a378c93e03f1b754150db324b53c0627",
           "url": "https://www.happings.com/it/happing/raduno-parata-clic-community-of-riot-italian-cosplayers/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "84ebeaacac38ab06b87bbf80b9e2144aee5422aae871198154124c575a2199c1",
+          "url": "https://www.happings.com/it/happing/die-quelle-teatro-a-silandro/"
         }
       ],
       "status": "retrieved"
@@ -70689,6 +70947,12 @@
           "observed_at": "2026-11-08",
           "sha256": "95ce5a747f15f055c8011aae73f7aeb64bf921b30ff0932b4aa646779fadc911",
           "url": "https://www.happings.com/it/happing/cambiare-la-percezione-giocando/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "053444ca2bb5eaed8aed6017031362cfb4ff2ce03f0b731ef31bf7135a681261",
+          "url": "https://www.happings.com/it/happing/donato-a-grasso-pianeta-terra-festival/"
         }
       ],
       "status": "retrieved"
@@ -70956,6 +71220,12 @@
           "observed_at": "2026-11-04",
           "sha256": "9ef7762a6103f493f59d05556052411ecb18ba2a077911785d8de1fcec422fd0",
           "url": "https://www.happings.com/it/happing/rassegna-del-gusto-a-vandoies/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "8e6b0bcea7caffa57ddfb2620ac67bb623c1382ffd5b8c3d41da83c36654d973",
+          "url": "https://www.happings.com/it/happing/dalla-vite-alla-bottiglia-alla-tenuta-waldthaler/"
         }
       ],
       "status": "retrieved"
@@ -72942,6 +73212,12 @@
           "observed_at": "2026-11-06",
           "sha256": "9ff18b4938c442622dfcdcef878434002ae26b2f70468e107014d12538926caf",
           "url": "https://www.happings.com/it/happing/mercatino-contadino-a-chiusa/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "3b71abd7134156445b43298c63a83f7d570b3349667d7dab22eedc383d29355e",
+          "url": "https://www.happings.com/it/happing/conoscere-i-vini-della-cantina-passir/"
         }
       ],
       "status": "retrieved"
@@ -76023,6 +76299,12 @@
           "observed_at": "2026-11-05",
           "sha256": "65af6cd2991299cda9600bee8b3de1520e0e1d5bcfb8f2c3b1e824b1ae4d9546",
           "url": "https://www.happings.com/it/happing/spettacolo-autunno-lungo-gli-antichi-sentieri-dei-pastori/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "f80a7c5636655da9a088d805bf6a392099551faf3546850545b554333b89afa5",
+          "url": "https://www.happings.com/it/happing/dai-prati-della-croda-rossa-al-passo-monte-croce-nelle-dolomiti-di-sesto/"
         }
       ],
       "status": "retrieved"
@@ -77097,6 +77379,12 @@
           "observed_at": "2026-11-08",
           "sha256": "207fb03c8bc09d95a412b80dd252966bced7b375ff15341513026d1cbf732788",
           "url": "https://www.happings.com/it/happing/the-sound-of-science/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "c14fbc17a215db6d0538dd1537cf03c45dcba60b9e5ce5c229fec4e7bce78765",
+          "url": "https://www.happings.com/it/happing/costituzione-2226-larp/"
         }
       ],
       "status": "retrieved"
@@ -78204,6 +78492,12 @@
           "observed_at": "2026-11-06",
           "sha256": "9e655988bf75baa4d69d42586c273fb69c3e78e23499f0f45d6952fc8fcdc5d9",
           "url": "https://www.happings.com/it/happing/teatro-la-tempesta/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "84ebeaacac38ab06b87bbf80b9e2144aee5422aae871198154124c575a2199c1",
+          "url": "https://www.happings.com/it/happing/die-quelle-teatro-a-silandro/"
         }
       ],
       "status": "retrieved"
@@ -78993,6 +79287,12 @@
           "observed_at": "2026-11-06",
           "sha256": "6703848c0671e167eee9e5948586b6c43c4708ad37c6145afad641571ed4bb59",
           "url": "https://www.happings.com/it/happing/terlanovino-tour-in-bici-tra-meleti-vigneti-e-castelli/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "f80a7c5636655da9a088d805bf6a392099551faf3546850545b554333b89afa5",
+          "url": "https://www.happings.com/it/happing/dai-prati-della-croda-rossa-al-passo-monte-croce-nelle-dolomiti-di-sesto/"
         }
       ],
       "status": "retrieved"
@@ -83346,6 +83646,12 @@
           "observed_at": "2026-11-08",
           "sha256": "91754721618cc406f233a90b3b329cf5a6b9d919037e4abb7e412091daa9b577",
           "url": "https://www.happings.com/it/happing/vania-de-luca-padre-roberto-pasolini-pianeta-terra-festival/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-11",
+          "sha256": "ace0c074c0cba64421c9fc7d1a067e73a0b27372925856b9dd03118537a25b74",
+          "url": "https://www.happings.com/it/happing/e-se-incontrassi-un-fantasma-raccontare-una-storia-horror-comedy-a-fumetti/"
         }
       ],
       "status": "retrieved"

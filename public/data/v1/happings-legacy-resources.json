@@ -609,17 +609,32 @@
       "status": "pending"
     },
     {
-      "attempts": 1,
+      "attempts": 3,
       "city_keys": [
         "camerano"
       ],
       "first_seen_on": "2026-10-27",
-      "last_attempt_on": "2026-11-10",
+      "last_attempt_on": "2026-11-11",
       "last_error": null,
-      "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-camerano-1/",
+      "last_success_on": "2026-11-11",
+      "next_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-camerano-1.html",
-      "proof": null,
+      "proof": {
+        "canonical_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "final_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "matched_city_days": [
+          {
+            "city_key": "camerano",
+            "weekday": 2
+          }
+        ],
+        "observed_on": "2026-11-11",
+        "province_heading": "ancona",
+        "requested_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "resource_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "source_html_sha256": "1f0b09dcc853c0f469bedc72fed78f640c6c9391702b85693ef95a32ac68c2ab",
+        "source_rows": 88
+      },
       "province": "AN",
       "redirects": [
         {
@@ -627,10 +642,16 @@
           "observed_on": "2026-11-10",
           "requested_url": "https://www.happings.com/it/mercato-settimanale-a-camerano-1.html",
           "status_code": 301
+        },
+        {
+          "location_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+          "observed_on": "2026-11-11",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-camerano-1/",
+          "status_code": 301
         }
       ],
       "region": "marche",
-      "status": "redirect_observed"
+      "status": "resolved"
     },
     {
       "attempts": 0,
