@@ -5,44 +5,44 @@ Sono ispezionati fino a 3 CSV al giorno; nessun record o dato personale viene sa
 Nessuna fonte viene abilitata all'importazione.
 
 - Dataset trovati dalla ricerca CKAN: **87**.
-- Dataset con campione storico: **63**.
+- Dataset con campione storico: **64**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - CASTELNUOVO DEL GARDA
-- Editore dichiarato: Comune di Castelnuovo del Garda
+## Fiere e mercati - FONTE
+- Editore dichiarato: Comune di Fonte
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 12
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 37
 - Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 12
-- Giorni settimanali espliciti: 12
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
-
-## Posteggi mercati e fiere - COGOLLO DEL CENGIO
-- Editore dichiarato: Comune di Cogollo del Cengio
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 6
-- Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 6
+- Concessioni scadute: 21
+- Righe di posteggi storici: 0
 - Giorni settimanali espliciti: 0
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
-## Posteggi mercati e fiere - SAN STINO DI LIVENZA
-- Editore dichiarato: Comune di San Stino di Livenza
+## Fiere e mercati - MINERBE
+- Editore dichiarato: Comune di Minerbe
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 120
-- Nomi distinti (NON mercato nuovo): 8
-- Concessioni scadute: 0
-- Righe di posteggi storici: 114
-- Giorni settimanali espliciti: 54
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 29
+- Nomi distinti (NON mercato nuovo): 1
+- Concessioni scadute: 27
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
+
+## Fiere e mercati - CORDIGNANO
+- Editore dichiarato: Comune di Cordignano
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 20
+- Nomi distinti (NON mercato nuovo): 3
+- Concessioni scadute: 19
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
 
 Le sedi saranno aggiunte solo dopo confronto con catalogo, identità univoche,
