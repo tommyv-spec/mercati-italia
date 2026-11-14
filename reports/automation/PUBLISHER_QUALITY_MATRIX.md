@@ -4,7 +4,7 @@
 presenti nel catalogo e, separatamente, le fonti ufficiali candidate.
 Nessun dato viene riletto o ripubblicato dal sito terzo.
 
-- Schede controllate: **14689**
+- Schede controllate: **14721**
 - Fonti distinte nelle schede: **92**
 - Dataset ufficiali candidati: **50**
 - Nuovi eventi certificati: **0**; schede modificate: **0**
@@ -15,8 +15,8 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 |---|---:|---:|---:|---:|---:|---:|---|
 | happings.com | 9914 | 678 | 588 | 329 | 0 | 0 | weekly_area_index_and_event_details |
 | eventiesagre.it | 2200 | 360 | 438 | 100 | 0 | 0 | regional_listing_and_details |
-| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1142 | 342 | 1 | 154 | 0 | 0 | one_market_id_per_weekday |
-| vintagery.it | 448 | 211 | 84 | 232 | 0 | 0 | unclassified_source_page |
+| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1142 | 342 | 1 | 151 | 0 | 0 | one_market_id_per_weekday |
+| vintagery.it | 480 | 226 | 90 | 246 | 0 | 0 | unclassified_source_page |
 | cosedicasa.com | 442 | 149 | 0 | 24 | 0 | 0 | monthly_recurrence_with_exceptions |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | 44 | 0 | 0 | unclassified_source_page |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | 0 | 8 | 0 | one_venue_with_weekdays |
@@ -123,7 +123,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 - Licenze: existing_adapter_source_scope
 - Prossimo passo: Run source-row identity and town+street+weekday checks from the approved official MERCap adapter. Quarantine conflicting venue/day.
 
-### vintagery.it — 448 schede
+### vintagery.it — 480 schede
 - Carenze strutturali: **non** prova che il dato originale sia scorretto.
 - Licenze: source_rights_and_structure_require_review
 - Prossimo passo: Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.
@@ -210,7 +210,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 
 ## Formati delle fonti: avanzamento dei controlli
 
-Unità primarie: **562**; campioni confrontati: **0**; parziali: **105**; non esaminati: **457**.
+Unità primarie: **594**; campioni confrontati: **0**; parziali: **105**; non esaminati: **489**.
 
 Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna il registro dal catalogo senza nuove richieste alle fonti. Prove e TODO completi in `backend/data/source-format-review-ledger.json` e `reports/automation/SOURCE_FORMAT_CHECKLIST.md`.
 
@@ -348,10 +348,12 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--07c5325acc1d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--086064ac0e34 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--088bdb5a151a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--08c8ec8151ef | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0a14b0c17c39 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0a6227c67a46 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0b403e231d84 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0b8c567988fa | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--0ba73fcd3fef | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0cba1c1014fc | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0d3b93b18dfe | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--0d863079e55c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -379,6 +381,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--17268c421897 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--172c684cae6f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--17a6f4f4ea48 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--17d71be4dbcb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--181cbb818f1a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--1909c631c429 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--192cf93d4ab1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -388,6 +391,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--1a2eec38a34d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--1a41cdf799ff | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--1bfb66ad7073 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--1e150cd7a179 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--1ec3445f77ce | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--1f27cad35b4a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--1f6a5cc11137 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -412,6 +416,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--2d9e604a4f43 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--2daf6d136198 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--2e9104f54e9b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--2f23392fa052 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--2f4c8a99d823 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3014b5d4757a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--30a9c0b3ecc7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -427,6 +432,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--3751a2f122d5 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--383fda622550 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--38de9d272a90 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--39445ec6ef85 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3acba2d4c66b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3b349da0d128 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--3b8c096304bf | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -441,6 +447,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--3ec9e30be356 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4063737743c0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--407d7687396e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--40e7194e2308 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--41ebdf1486c2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--42c62904bc21 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--43cedcfea7ba | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -459,6 +466,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--48378daebbe7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--485e1637c4bb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--48997fbbf27f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--489ded9ed185 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--48a493321411 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--48e01c1995af | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--48e5210f3b0d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -470,12 +478,14 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--4af27c4c9db7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4b2fcc3c4fcb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4b49bb99896e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--4b4e62b86d72 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4b61dbc0ce7e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4b8a05758d6e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4bc181f15bbd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4c9b0a08d1ed | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4cb83d63f9e1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4ce0eecaa289 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--4cf43f21f3ef | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4d035cdfa211 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4e05011f960c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--4e8e00f52ae0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -493,6 +503,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--548fed827afd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--558b691a2f58 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--563ddd437343 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--566453129490 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--587eacc8607c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--59b5f32521d7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--5a0d0f3a5cac | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -526,6 +537,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--669414a45f4d | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6848611baa6c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--68897a29ca3e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--68982eaf1488 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--68e5b98c38eb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--690534f1e958 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--69225d5628a0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -535,6 +547,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--6a01d01d3d96 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6ad3768d0ee3 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6b03bee2e088 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--6b1037b3adc9 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6b613166992e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6b9d5a025799 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--6bd9bd51ce24 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -560,6 +573,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--731cc2be645e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7520b2293d86 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--75e1ba1b13c7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--7710174ecab9 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7748bc7f01ea | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--775f2d1be7c4 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--777ade7dfb9c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -567,19 +581,23 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--7932b72b1a5e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--79f1ea0fa785 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7d41357ac131 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--7d7deebd7116 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7dfa6cb84b5f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--7e6084cc6bfd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--810b2e6a8c28 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--8190b3314e1e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--81bab15c7626 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--821ebfddce95 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--828567e27f6b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--85ca47e9b08c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--85e9e2003a21 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--867c345f8055 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--86e76d397e44 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--87a57eecab0c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--88f71ce5b763 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--8910bd2f48b6 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--89221809189a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--894358e5a17f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--894786ce71d5 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--8a8d197e1f67 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--8c177695cda8 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -605,6 +623,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--9765b4bbc1b5 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--97a285525ceb | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--98fb0991e873 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--9901fa71ac38 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--993507a9d2d1 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--9ab74384f64f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--9b07afdec752 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -622,6 +641,8 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--9f2133267cf3 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--9f6607f3c0ad | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--9fd752de880f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--a0fe5d93700a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--a114e0ccb7be | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--a140a12f73d6 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--a1a9321e18bf | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--a2108de2641f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -656,13 +677,16 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--b2d34d14359e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b36c1f1b117b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b60d80e073d4 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--b70e1d0af8ff | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b76d1e1697e2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--b792e7bcaf1e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b7cde1e002b0 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b82adea4ec99 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b8574775b2f8 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b8b8ca9d8013 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b8baddb6e647 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--b8f72e57206c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--b988e4b5a0d6 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--ba6e68cfe084 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--ba8f1ecf1bc9 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--bb8ffa7a9380 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -697,6 +721,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--d0d0e457e74f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--d0d7d2fe9839 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--d1b1aef0e53a | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--d276d1a399e5 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--d2b75aef1bbc | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--d2f6e68726d7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--d322e2ddf967 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -726,8 +751,13 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--de39936ae072 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--de3e1d514425 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--de587e7ac3fd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--de99976731e2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--decb352e2e2c | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--def08ff7377b | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--e07907c99b64 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--e205f94b8537 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--e38e148b428e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--e3f39273d6c6 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--e474fe18c271 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--e5387962e128 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--e5d8d516c056 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -738,6 +768,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--e7c7628b43cf | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--e7e1aad33b26 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--e95e944e6fff | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--ea034b6f6a38 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--ea49a9d67fe6 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--eb8f8b0e8c73 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--ed1a94a50bf7 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
@@ -771,6 +802,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--f891af72443f | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fb4b590ba082 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fbac2f2c9072 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--fbb52df34f58 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fbc081ce0da2 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fc55181b403e | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--fc9808633532 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
