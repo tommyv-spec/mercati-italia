@@ -3,21 +3,21 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14689**
+- ID controllati e conservati: **14721**
 - Etichette di fonte: **92**
-- Casi nel lotto di lavoro del giorno: **494**
+- Casi nel lotto di lavoro del giorno: **462**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **14600**
-- date: **2937**
-- indirizzo: **5054**
-- individual_edition_confirmation: **14689**
-- orario_testo: **1905**
-- ricorrenza_testo: **1371**
+- coordinates: **14632**
+- date: **2971**
+- indirizzo: **5060**
+- individual_edition_confirmation: **14721**
+- orario_testo: **1920**
+- ricorrenza_testo: **1400**
 
 ## Origini ordinate per numero di schede
 
@@ -26,7 +26,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | happings.com | 9914 | 678 | 4337 | happings-weekly-or-detail |
 | eventiesagre.it | 2200 | 360 | 482 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1142 | 342 | 3 | lombardia-mercap |
-| vintagery.it | 448 | 211 | 87 | source-family-not-resolved-by-this-worklist |
+| vintagery.it | 480 | 226 | 93 | source-family-not-resolved-by-this-worklist |
 | cosedicasa.com | 442 | 149 | 30 | cosedicasa-editorial-calendar |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
@@ -123,7 +123,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 12
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 13459
+- no_usable_source_match: 13491
 - review_only_field_candidates: 45
 - same_source_id: 803
 - unique_city_province_street_weekday: 384

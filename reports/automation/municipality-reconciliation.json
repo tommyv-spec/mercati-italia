@@ -1,18 +1,14 @@
 {
   "coordinates_changed": 0,
   "counts": {
-    "city_fixed": 58,
     "cross_market_scraper_text": 20,
     "needs_manual_municipality_review": 21,
-    "province_candidates": 147,
-    "province_fixed": 22,
-    "province_pending": 125,
+    "province_candidates": 125,
+    "province_fixed": 80,
+    "province_pending": 45,
     "province_protected": 14,
-    "published_town_candidates": 58,
-    "published_town_former": 20,
-    "published_town_hamlet": 8,
+    "published_town_candidates": 0,
     "published_town_pending": 0,
-    "published_town_rome": 30,
     "suspicious_before": 21
   },
   "enabled": true,
@@ -268,1020 +264,90 @@
       "slug": "gusto-italiano-veneto-venezia",
       "source": "https://www.eventiesagre.it/Mercatini_Artigianato/21090694_Gusto+Italiano.html",
       "suggested_city": null
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Scarperia",
-      "province": "FI",
-      "region": "Toscana",
-      "slug": "mercato-settimanale-di-scarperia-scarperia",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
-      "suggested_city": "Scarperia e San Piero"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Scarperia",
-      "province": "FI",
-      "region": "Toscana",
-      "slug": "mercato-settimanale-di-scarperia-scarperia-venerdi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
-      "suggested_city": "Scarperia e San Piero"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 18,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Sermide",
-      "province": "MN",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-sermide-sermide-mercoledi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-mantova.html",
-      "suggested_city": "Sermide e Felonica"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Sissa",
-      "province": "PR",
-      "region": "Emilia-Romagna",
-      "slug": "mercato-settimanale-di-sissa-sissa-lunedi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-parma.html",
-      "suggested_city": "Sissa Trecasali"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Solbiate",
-      "province": "CO",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-solbiate-solbiate-venerdi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-como.html",
-      "suggested_city": "Solbiate con Cagno"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 18,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Sorbolo",
-      "province": "PR",
-      "region": "Emilia-Romagna",
-      "slug": "mercato-settimanale-di-sorbolo-sorbolo-mercoledi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-parma.html",
-      "suggested_city": "Sorbolo Mezzani"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 18,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Stia",
-      "province": "AR",
-      "region": "Toscana",
-      "slug": "mercato-settimanale-di-stia-stia",
-      "source": "https://www.happings.com/it/mercati-settimanali-ad-arezzo.html",
-      "suggested_city": "Pratovecchio Stia"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 0,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Tavarnelle Val di Pesa",
-      "province": "FI",
-      "region": "Toscana",
-      "slug": "mercato-settimanale-di-tavarnelle-val-di-pesa-tavarnelle-val-di-pesa",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-firenze.html",
-      "suggested_city": "Barberino Tavarnelle"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Tiarno di Sopra",
-      "province": "TN",
-      "region": "Trentino-Alto Adige",
-      "slug": "mercato-settimanale-di-tiarno-di-sopra-tiarno-di-sopra-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-tiarno-di-sopra.html",
-      "suggested_city": "Ledro"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 18,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Trichiana",
-      "province": "BL",
-      "region": "Veneto",
-      "slug": "mercato-settimanale-di-trichiana-trichiana-mercoledi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-belluno.html",
-      "suggested_city": "Borgo Valbelluna"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 18,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Trivero",
-      "province": "BI",
-      "region": "Piemonte",
-      "slug": "mercato-settimanale-di-trivero-trivero",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-biella.html",
-      "suggested_city": "Valdilana"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Uggiate-Trevano",
-      "province": "CO",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-uggiate-trevano-uggiate-trevano-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-uggiate-trevano.html",
-      "suggested_city": "Uggiate con Ronago"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Verderio Inferiore",
-      "province": "LC",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-verderio-inferiore-verderio-inferiore-venerdi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-verderio-inferiore.html",
-      "suggested_city": "Verderio"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Verderio Superiore",
-      "province": "LC",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-verderio-superiore-verderio-superiore-sabato",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-verderio-superiore.html",
-      "suggested_city": "Verderio"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Vermezzo",
-      "province": "MI",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-vermezzo-vermezzo-venerdi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-milano.html",
-      "suggested_city": "Vermezzo con Zelo"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 18,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Virgilio",
-      "province": "MN",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-virgilio-virgilio-martedi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-mantova.html",
-      "suggested_city": "Borgo Virgilio"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 18,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Voltri",
-      "province": "GE",
-      "region": "Liguria",
-      "slug": "mercato-settimanale-di-voltri-voltri-martedi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
-      "suggested_city": "Genova"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Zambana",
-      "province": "TN",
-      "region": "Trentino-Alto Adige",
-      "slug": "mercato-settimanale-di-zambana-zambana-venerdi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-zambana.html",
-      "suggested_city": "Terre d'Adige"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Zelo Surrigone",
-      "province": "MI",
-      "region": "Lombardia",
-      "slug": "mercato-settimanale-di-zelo-surrigone-zelo-surrigone-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-zelo-surrigone.html",
-      "suggested_city": "Vermezzo con Zelo"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni soppressi o rinominati; comune di oggi",
-      "method": "former",
-      "original_city": "Zibello",
-      "province": "PR",
-      "region": "Emilia-Romagna",
-      "slug": "mercato-settimanale-di-zibello-zibello-giovedi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-parma.html",
-      "suggested_city": "Polesine Zibello"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Castrì",
-      "province": "LE",
-      "region": "Puglia",
-      "slug": "mercato-settimanale-a-castri-castri-giovedi",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-lecce.html",
-      "suggested_city": "Castri di Lecce"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 0,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Amantea Campora S.G:",
-      "province": "CS",
-      "region": "Calabria",
-      "slug": "mercato-settimanale-di-amantea-campora-s-g-amantea-campora-s-g",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-cosenza.html",
-      "suggested_city": "Amantea"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Castegnero",
-      "province": "VI",
-      "region": "Veneto",
-      "slug": "mercato-settimanale-di-castegnero-castegnero-sabato",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-castegnero.html",
-      "suggested_city": "Castegnero Nanto"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Celle",
-      "province": "SV",
-      "region": "Liguria",
-      "slug": "mercato-settimanale-di-celle-celle",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-savona.html",
-      "suggested_city": "Celle Ligure"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 0,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Lamezia Terme Nicastro",
-      "province": "CZ",
-      "region": "Calabria",
-      "slug": "mercato-settimanale-di-lamezia-terme-nicastro-lamezia-terme-nicastro",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-catanzaro.html",
-      "suggested_city": "Lamezia Terme"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 14,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Murisengo",
-      "province": "AL",
-      "region": "Piemonte",
-      "slug": "mercato-settimanale-di-murisengo-murisengo-lunedi",
-      "source": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/21182892_Mercato+Settimanale+Di+Murisengo.html",
-      "suggested_city": "Murisengo Monferrato"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Rossiglione Inferiore",
-      "province": "GE",
-      "region": "Liguria",
-      "slug": "mercato-settimanale-di-rossiglione-inferiore-rossiglione-inferiore",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-genova.html",
-      "suggested_city": "Rossiglione"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 0,
-      "label": "ISTAT comuni 2026-02-21; frazione o nome breve del comune",
-      "method": "hamlet",
-      "original_city": "Taggia (Arma di Taggia)",
-      "province": "IM",
-      "region": "Liguria",
-      "slug": "mercato-settimanale-di-taggia-arma-di-taggia-taggia-arma-di-taggia",
-      "source": "https://www.happings.com/it/mercati-settimanali-ad-imperia.html",
-      "suggested_city": "Taggia"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "CASILINO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-casilino-casilino-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-casilino.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "CELIO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-celio-celio",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "CRATI",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-crati-crati",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "ESQUILINO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-esquilino-esquilino-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-esquilino.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "FIDENE",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-fidene-fidene",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "FLAMINIO II",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-flaminio-ii-flaminio-ii",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "GRANO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-grano-grano",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "ITALIA",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-italia-italia",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "LABICANO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-labicano-labicano-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-labicano.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "MACAO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-macao-macao",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "MONTESACRO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-montesacro-montesacro-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-montesacro.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "Nomentano",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-nomentano-nomentano-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-nomentano.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "PARIOLI",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-parioli-parioli",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "PERESTRELLO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-perestrello-perestrello",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "PINCIANO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-pinciano-pinciano-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-pinciano.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "REBIBBIA",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-rebibbia-rebibbia-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-rebibbia.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "REGOLA I",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-regola-i-regola-i-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-regola-i.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "SACCHETTI",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-sacchetti-sacchetti-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-sacchetti.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "SALARIO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-salario-salario",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "SAN SABA",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-san-saba-san-saba-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-san-saba.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "SANTA LUCIA",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-santa-lucia-santa-lucia",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "SAVOIA",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-savoia-savoia",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "SERPENTARA",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-serpentara-serpentara",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "SOMMEILLER",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-sommeiller-sommeiller-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-sommeiller.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "STEVENSON",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-stevenson-stevenson-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-stevenson.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "TESTACCIO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-testaccio-testaccio-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-testaccio.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "TIBURTINO I",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-tiburtino-i-tiburtino-i",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "TRASTEVERE",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-trastevere-trastevere-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-trastevere.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "TUFELLO",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-tufello-tufello",
-      "source": "https://www.happings.com/it/mercati-settimanali-a-roma.html",
-      "suggested_city": "Roma"
-    },
-    {
-      "calendar_cross_contaminated": false,
-      "changed": true,
-      "future_dates_before": 17,
-      "label": "Roma Capitale, mercati rionali; comune di Roma",
-      "method": "rome",
-      "original_city": "VIMINALE",
-      "province": "RM",
-      "region": "Lazio",
-      "slug": "mercato-settimanale-di-viminale-viminale-lunedi",
-      "source": "https://www.happings.com/it/mercato-settimanale-a-viminale.html",
-      "suggested_city": "Roma"
     }
   ],
   "ids_preserved": true,
   "istat_reference": "2026-02-21",
   "market_confirmations_created": 0,
   "province_corrections": {
-    "applied": 22,
-    "eligible": 147,
+    "applied": 80,
+    "eligible": 125,
     "metodo": "comune_regione_esatti_istat",
-    "pending": 125,
-    "prior_municipality_changes": 58,
+    "pending": 45,
+    "prior_municipality_changes": 0,
     "proofs": [
       {
-        "comune_istat": "Marostica",
+        "comune_istat": "Nardò",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Marostica",
-          "regione": "Veneto",
-          "slug": "mercatino-antiquariato-e-usato-di-marostica-piazza-castello-marostica"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "VI",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Martina Franca",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Martina Franca",
+          "citta": "Nardò",
           "regione": "Puglia",
-          "slug": "mercatino-antiquariato-e-usato-di-martina-franca-antiquariato-in-valle-d-itria-c"
+          "slug": "mercatino-antiquariato-e-usato-di-nardo-di-tutto-un-po-via-xx-settembre-nardo"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "TA",
+        "provincia": "LE",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Martina Franca",
+        "comune_istat": "Nizza Monferrato",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Martina Franca",
-          "regione": "Puglia",
-          "slug": "mercatino-antiquariato-e-usato-di-martina-franca-antiquariato-in-valle-d-itria-i"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "TA",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Martina Franca",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Martina Franca",
-          "regione": "Puglia",
-          "slug": "mercatino-antiquariato-e-usato-di-martina-franca-il-mercatino-dell-antiquariato"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "TA",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Martinengo",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Martinengo",
-          "regione": "Lombardia",
-          "slug": "mercatino-antiquariato-e-usato-di-martinengo-borgo-storico-sotto-i-portici-medie"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "BG",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Martinengo",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Martinengo",
-          "regione": "Lombardia",
-          "slug": "mercatino-antiquariato-e-usato-di-martinengo-borgo-storico-sotto-i-portici-medio"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "BG",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Massa Lombarda",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Massa Lombarda",
-          "regione": "Emilia-Romagna",
-          "slug": "mercatino-antiquariato-e-usato-di-massa-lombarda-mercatino-degli-hobbisti-piazza"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "RA",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Medicina",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Medicina",
-          "regione": "Emilia-Romagna",
-          "slug": "mercatino-antiquariato-e-usato-di-medicina-i-portici-di-medicina-centro-storico"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "BO",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Merano",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Merano",
-          "regione": "Trentino-Alto Adige",
-          "slug": "mercatino-antiquariato-e-usato-di-merano-mercatino-delle-pulci-passeggiata-d-inv"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "BZ",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Mesagne",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Mesagne",
-          "regione": "Puglia",
-          "slug": "mercatino-antiquariato-e-usato-di-mesagne-mesagne-vecchi-tempi-via-tenente-ugo-g"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "BR",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Mirandola",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Mirandola",
-          "regione": "Emilia-Romagna",
-          "slug": "mercatino-antiquariato-e-usato-di-mirandola-piazza-costituente-e-vie-attigue-cen"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "MO",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Modica",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Modica",
-          "regione": "Sicilia",
-          "slug": "mercatino-antiquariato-e-usato-di-modica-viale-medaglie-d-oro-modica"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "RG",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Moncalieri",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Moncalieri",
+          "citta": "Nizza Monferrato",
           "regione": "Piemonte",
-          "slug": "mercatino-antiquariato-e-usato-di-moncalieri-antiq-aria-centro-storico-moncalier"
+          "slug": "mercatino-antiquariato-e-usato-di-nizza-monferrato-il-mercatino-dellantiquariato"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "TO",
+        "provincia": "AT",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Monfalcone",
+        "comune_istat": "Noale",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Monfalcone",
-          "regione": "Friuli Venezia Giulia",
-          "slug": "mercatino-antiquariato-e-usato-di-monfalcone-mercatino-della-rocca-centro-storic"
-        },
-        "metodo": "comune_regione_esatti_istat",
-        "provincia": "GO",
-        "provincia_originale": "",
-        "schema": 1,
-        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
-        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
-      },
-      {
-        "comune_istat": "Montagnana",
-        "data_riferimento": "2026-02-21",
-        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
-        "mercato": {
-          "citta": "Montagnana",
+          "citta": "Noale",
           "regione": "Veneto",
-          "slug": "mercatino-antiquariato-e-usato-di-montagnana-centro-storico-via-matteotti-e-via"
+          "slug": "mercatino-antiquariato-e-usato-di-noale-mercatinoale-centro-storico-piazza-caste"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "PD",
+        "provincia": "VE",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montecchio Emilia",
+        "comune_istat": "Noto",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montecchio Emilia",
+          "citta": "Noto",
+          "regione": "Sicilia",
+          "slug": "mercatino-antiquariato-e-usato-di-noto-mercatino-delle-pulci-centro-storico-noto"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "SR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Novellara",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Novellara",
           "regione": "Emilia-Romagna",
-          "slug": "mercatino-antiquariato-e-usato-di-montecchio-emilia-robi-veci-centro-storico-pia"
+          "slug": "mercatino-antiquariato-e-usato-di-novellara-mercatino-dell-antiquariato-e-degli"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "RE",
@@ -1291,61 +357,109 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montegrotto Terme",
+        "comune_istat": "Novi Ligure",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montegrotto Terme",
-          "regione": "Veneto",
-          "slug": "mercatino-antiquariato-e-usato-di-montegrotto-terme-lungo-viale-stazione-piazza"
+          "citta": "Novi Ligure",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-novi-ligure-novantico-centro-storico-corso-mar"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "PD",
+        "provincia": "AL",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montemurlo",
+        "comune_istat": "Orbassano",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montemurlo",
+          "citta": "Orbassano",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-orbassano-centro-cittadino-orbassano"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Orbetello",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Orbetello",
           "regione": "Toscana",
-          "slug": "mercatino-antiquariato-e-usato-di-montemurlo-mostra-mercato-novecento-piazza-don"
+          "slug": "mercatino-antiquariato-e-usato-di-orbetello-orbetello-antiquaria-via-solferino-v"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "PO",
+        "provincia": "GR",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montevarchi",
+        "comune_istat": "Ormea",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montevarchi",
-          "regione": "Toscana",
-          "slug": "mercatino-antiquariato-e-usato-di-montevarchi-il-mercatino-di-via-dei-musei-via"
+          "citta": "Ormea",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-ormea-antiquariato-del-cuore-centro-storico-or"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "AR",
+        "provincia": "CN",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Montichiari",
+        "comune_istat": "Orvieto",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Montichiari",
+          "citta": "Orvieto",
+          "regione": "Umbria",
+          "slug": "mercatino-antiquariato-e-usato-di-orvieto-anticamente-orvieto-piazza-della-repub"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Orvieto",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Orvieto",
+          "regione": "Umbria",
+          "slug": "mercatino-antiquariato-e-usato-di-orvieto-mercatino-di-artigianato-via-della-cos"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Orzinuovi",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Orzinuovi",
           "regione": "Lombardia",
-          "slug": "mercatino-antiquariato-e-usato-di-montichiari-mercatino-delle-cose-introvabili-p"
+          "slug": "mercatino-antiquariato-e-usato-di-orzinuovi-la-piazza-dei-tesori-antichi-piazza"
         },
         "metodo": "comune_regione_esatti_istat",
         "provincia": "BS",
@@ -1355,32 +469,1088 @@
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Muggia",
+        "comune_istat": "Ospedaletti",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Muggia",
-          "regione": "Friuli Venezia Giulia",
-          "slug": "mercatino-antiquariato-e-usato-di-muggia-corte-dei-miracoli-piazza-della-repubbl"
+          "citta": "Ospedaletti",
+          "regione": "Liguria",
+          "slug": "mercatino-antiquariato-e-usato-di-ospedaletti-i-mercati-antiquari-di-ospedaletti"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "TS",
+        "provincia": "IM",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
         "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
       },
       {
-        "comune_istat": "Muggia",
+        "comune_istat": "Ostiglia",
         "data_riferimento": "2026-02-21",
         "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
         "mercato": {
-          "citta": "Muggia",
-          "regione": "Friuli Venezia Giulia",
-          "slug": "mercatino-antiquariato-e-usato-di-muggia-mostra-dellingegno-artistico-creativo-c"
+          "citta": "Ostiglia",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-ostiglia-mostra-scambio-cose-del-passato-centr"
         },
         "metodo": "comune_regione_esatti_istat",
-        "provincia": "TS",
+        "provincia": "MN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Ostuni",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Ostuni",
+          "regione": "Puglia",
+          "slug": "mercatino-antiquariato-e-usato-di-ostuni-villa-comunale-via-giordano-bruno-via-m"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Otranto",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Otranto",
+          "regione": "Puglia",
+          "slug": "mercatino-antiquariato-e-usato-di-otranto-otranto-antiqua-lungomare-terra-d-otra"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "LE",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Palmanova",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Palmanova",
+          "regione": "Friuli Venezia Giulia",
+          "slug": "mercatino-antiquariato-e-usato-di-palmanova-palmanova-oggetti-e-cose-di-altri-te"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "UD",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Passignano sul Trasimeno",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Passignano sul Trasimeno",
+          "regione": "Umbria",
+          "slug": "mercatino-antiquariato-e-usato-di-passignano-sul-trasimeno-mercatino-del-pidocch"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PG",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pavullo nel Frignano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pavullo nel Frignano",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-pavullo-nel-frignano-il-mercatino-del-passato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pergine Valsugana",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pergine Valsugana",
+          "regione": "Trentino-Alto Adige",
+          "slug": "mercatino-antiquariato-e-usato-di-pergine-valsugana-mercatino-delle-pulci-centro"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pescia",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pescia",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-pescia-pescia-antiqua-piazza-del-grano-piazza"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PT",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Piazzola sul Brenta",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Piazzola sul Brenta",
+          "regione": "Veneto",
+          "slug": "mercatino-antiquariato-e-usato-di-piazzola-sul-brenta-cose-d-altri-tempi-piazza"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PD",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pietra Ligure",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pietra Ligure",
+          "regione": "Liguria",
+          "slug": "mercatino-antiquariato-e-usato-di-pietra-ligure-pietrantico-centro-storico-e-lun"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "SV",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pietrasanta",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pietrasanta",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-pietrasanta-antiquari-a-pietrasanta-piazza-sta"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "LU",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pieve di Cento",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pieve di Cento",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-pieve-di-cento-chi-cerca-trova-cose-d-altri-te"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pieve di Teco",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pieve di Teco",
+          "regione": "Liguria",
+          "slug": "mercatino-antiquariato-e-usato-di-pieve-di-teco-sotto-i-portici-medievali-pieve"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "IM",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pinerolo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pinerolo",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-pinerolo-far-rivivere-lusato-viale-alberato-di"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pinerolo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pinerolo",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-pinerolo-via-buniva-piazza-barbieri-sotto-i-po"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Piove di Sacco",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Piove di Sacco",
+          "regione": "Veneto",
+          "slug": "mercatino-antiquariato-e-usato-di-piove-di-sacco-mercatino-dei-portici-centro-st"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PD",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Poggio Rusco",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Poggio Rusco",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-poggio-rusco-antichita-della-corte-del-poggio"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Polesella",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Polesella",
+          "regione": "Veneto",
+          "slug": "mercatino-antiquariato-e-usato-di-polesella-soffitte-in-piazza-piazza-matteotti"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "RO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Ponsacco",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Ponsacco",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-ponsacco-ponsacco-retro-centro-storico-piazza"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PI",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Ponte San Nicolò",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Ponte San Nicolò",
+          "regione": "Veneto",
+          "slug": "mercatino-antiquariato-e-usato-di-ponte-san-nicolo-mercatino-dell-antiquariato-p"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PD",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pontenure",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pontenure",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-pontenure-via-marconi-e-vie-limitrofe-pontenur"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PC",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Pontremoli",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Pontremoli",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-pontremoli-centro-storico-pontremoli"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MS",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Porcari",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Porcari",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-porcari-mercatino-del-riuso-piazza-degli-alpin"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "LU",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Portobuffolè",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Portobuffolè",
+          "regione": "Veneto",
+          "slug": "mercatino-antiquariato-e-usato-di-portobuffole-centro-storico-portobuffole"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TV",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Portogruaro",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Portogruaro",
+          "regione": "Veneto",
+          "slug": "mercatino-antiquariato-e-usato-di-portogruaro-centro-storico-piazzetta-duomo-e-p"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VE",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Povegliano Veronese",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Povegliano Veronese",
+          "regione": "Veneto",
+          "slug": "mercatino-antiquariato-e-usato-di-povegliano-veronese-piazza-iv-novembre-povegli"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "VR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Predosa",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Predosa",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-predosa-il-mercatino-del-lido-di-predosa-lungo"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "AL",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Racconigi",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Racconigi",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-racconigi-il-trovarobe-centro-storico-davanti"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "CN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Rapallo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Rapallo",
+          "regione": "Liguria",
+          "slug": "mercatino-antiquariato-e-usato-di-rapallo-l-antico-piazza-garibaldi-centro-stori"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "GE",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Recanati",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Recanati",
+          "regione": "Marche",
+          "slug": "mercatino-antiquariato-e-usato-di-recanati-lantico-a-recanati-piazza-leopardi-co"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MC",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Recco",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Recco",
+          "regione": "Liguria",
+          "slug": "mercatino-antiquariato-e-usato-di-recco-recco-antiqua-piazza-san-giovanni-buono"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "GE",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Rivoli",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Rivoli",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-rivoli-via-piol-centro-storico-rivoli"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Romano di Lombardia",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Romano di Lombardia",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-romano-di-lombardia-centro-storico-romano-di-l"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BG",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Roncadelle",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Roncadelle",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-roncadelle-mercatino-del-tempo-che-fu-centro-c"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BS",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Roncadelle",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Roncadelle",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-roncadelle-parco-cono-ottico-via-amendola-ronc"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BS",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Ronchi dei Legionari",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Ronchi dei Legionari",
+          "regione": "Friuli Venezia Giulia",
+          "slug": "mercatino-antiquariato-e-usato-di-ronchi-dei-legionari-di-tutto-un-po-parco-exce"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "GO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Rovato",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Rovato",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-rovato-la-soffitta-in-piazza-piazza-palestro-r"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BS",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Rovereto",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Rovereto",
+          "regione": "Trentino-Alto Adige",
+          "slug": "mercatino-antiquariato-e-usato-di-rovereto-mercatino-d-altri-tempi-centro-storic"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Rutigliano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Rutigliano",
+          "regione": "Puglia",
+          "slug": "mercatino-antiquariato-e-usato-di-rutigliano-mercato-dell-antiquariato-e-del-col"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BA",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sabaudia",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sabaudia",
+          "regione": "Lazio",
+          "slug": "mercatino-antiquariato-e-usato-di-sabaudia-mostra-mercato-sotto-la-torre-piazza"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "LT",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sabbioneta",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sabbioneta",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-sabbioneta-via-gonzaga-e-piazza-ducale-sabbion"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sacile",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sacile",
+          "regione": "Friuli Venezia Giulia",
+          "slug": "mercatino-antiquariato-e-usato-di-sacile-sacellum-la-piazza-delle-antichita-piaz"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Salò",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Salò",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-salo-mercatino-salo2-parcheggio-antistante-al"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BS",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Benedetto Po",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Benedetto Po",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-san-benedetto-po-amarcord-mercatino-delle-cose"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Daniele del Friuli",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Daniele del Friuli",
+          "regione": "Friuli Venezia Giulia",
+          "slug": "mercatino-antiquariato-e-usato-di-san-daniele-del-friuli-piazza-vittorio-emanuel"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "UD",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Donato Milanese",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Donato Milanese",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-san-donato-milanese-pulci-e-non-solo-parcheggi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "MI",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Genesio ed Uniti",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Genesio ed Uniti",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-san-genesio-ed-uniti-piazza-repossi-via-fermi"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PV",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Giovanni in Marignano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Giovanni in Marignano",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-san-giovanni-in-marignano-il-mercatino-delle-p"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "RN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Giovanni in Marignano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Giovanni in Marignano",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-san-giovanni-in-marignano-il-vecchio-e-l-antic"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "RN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Giovanni in Persiceto",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Giovanni in Persiceto",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-san-giovanni-in-persiceto-fiera-dell-antiquari"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Giovanni Valdarno",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Giovanni Valdarno",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-san-giovanni-valdarno-san-giovanni-antiqua-cen"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "AR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Giuliano Terme",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Giuliano Terme",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-san-giuliano-terme-antiqua-centro-storico-san"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PI",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Marcello Piteglio",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Marcello Piteglio",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-san-marcello-piteglio-centro-storico-maresca-f"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PT",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Marcello Piteglio",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Marcello Piteglio",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-san-marcello-piteglio-giardini-pubblici-san-ma"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PT",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Marcello Piteglio",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Marcello Piteglio",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-san-marcello-piteglio-piazza-francesco-ferrucc"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PT",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Mauro Torinese",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Mauro Torinese",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-san-mauro-torinese-artigianato-creativo-ponte"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "TO",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Miniato",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Miniato",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-san-miniato-mercatino-del-piccolo-antiquariato"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "PI",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Pellegrino Terme",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Pellegrino Terme",
+          "regione": "Lombardia",
+          "slug": "mercatino-antiquariato-e-usato-di-san-pellegrino-terme-viale-papa-giovanni-xxiii"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BG",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "San Vito dei Normanni",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "San Vito dei Normanni",
+          "regione": "Puglia",
+          "slug": "mercatino-antiquariato-e-usato-di-san-vito-dei-normanni-antigua-exfadda-centro-c"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sanremo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sanremo",
+          "regione": "Liguria",
+          "slug": "mercatino-antiquariato-e-usato-di-sanremo-mercato-antiquario-di-sanremo-piazza-c"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "IM",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sanremo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sanremo",
+          "regione": "Liguria",
+          "slug": "mercatino-antiquariato-e-usato-di-sanremo-piccolo-brocante-piazza-san-siro-sanre"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "IM",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sansepolcro",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sansepolcro",
+          "regione": "Toscana",
+          "slug": "mercatino-antiquariato-e-usato-di-sansepolcro-mercatino-del-tarlo-via-torre-di-b"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "AR",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Santarcangelo di Romagna",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Santarcangelo di Romagna",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-santarcangelo-di-romagna-la-casa-del-tempo-pia"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "RN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Santeramo in Colle",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Santeramo in Colle",
+          "regione": "Puglia",
+          "slug": "mercatino-antiquariato-e-usato-di-santeramo-in-colle-la-piazzolla-piazza-garibal"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "BA",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Sant'Ilario d'Enza",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Sant’Ilario d’Enza",
+          "regione": "Emilia-Romagna",
+          "slug": "mercatino-antiquariato-e-usato-di-santilario-denza-antiquari-in-piazza-via-roma"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "RE",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Santo Stefano Belbo",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Santo Stefano Belbo",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-santo-stefano-belbo-mercatino-senza-tempo-piaz"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "CN",
+        "provincia_originale": "",
+        "schema": 1,
+        "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
+        "sha256_registro": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14"
+      },
+      {
+        "comune_istat": "Savigliano",
+        "data_riferimento": "2026-02-21",
+        "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.xlsx",
+        "mercato": {
+          "citta": "Savigliano",
+          "regione": "Piemonte",
+          "slug": "mercatino-antiquariato-e-usato-di-savigliano-centro-storico-piazza-santa-rosa-e"
+        },
+        "metodo": "comune_regione_esatti_istat",
+        "provincia": "CN",
         "provincia_originale": "",
         "schema": 1,
         "sha256_fonte": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",
@@ -1404,14 +1574,14 @@
       "todi-artigianando-mostra-mercato-della-creativita-giardini-oberdan-artigianando",
       "valeggio-sul-mincio-valeggio-contemporanea-valeggio-contemporanea"
     ],
-    "remaining_slots": 22,
+    "remaining_slots": 80,
     "review_only": false,
     "schema": 1,
     "source_registry_sha256": "6e94770332bd5d979dabfb8f9f3cefd714712912cc5543f94a5688fbdd772a14",
     "total_change_budget": 80
   },
   "publisher_sources_replaced": 0,
-  "records_total": 14657,
+  "records_total": 14689,
   "review_only": false,
   "schema": 1,
   "source_file_sha256": "83842076860450f7e482daecea6b7a769f5f93d0bf5b0d48802b44896d7a26d5",

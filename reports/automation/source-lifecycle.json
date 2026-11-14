@@ -1,12 +1,12 @@
 {
-  "catalog_count": 14644,
+  "catalog_count": 14689,
   "checked_source_profiles": 4,
   "market_confirmations": 0,
   "market_identity_deletions": 0,
   "market_imports": 0,
   "market_updates": 0,
   "read_only": true,
-  "reference_date": "2026-11-11",
+  "reference_date": "2026-11-14",
   "registry_sha256": "80605db324a99f822a1f41c167c04f66fa91d12efc77257f6654e7d84653d32d",
   "schema": 1,
   "source_checks": {
@@ -16,7 +16,7 @@
   "source_contract_schema": 1,
   "sources": {
     "corciano": {
-      "catalog_records_compared": 14644,
+      "catalog_records_compared": 14689,
       "confirmed_events_created": 0,
       "counts": {
         "address_present": 4,
@@ -60,7 +60,7 @@
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "firenze": {
-      "catalog_records_compared": 14644,
+      "catalog_records_compared": 14689,
       "confirmed_events_created": 0,
       "counts": {
         "address_present": 4,
@@ -100,22 +100,22 @@
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "lombardia": {
-      "catalog_records_compared": 14644,
+      "catalog_records_compared": 14689,
       "confirmed_events_created": 0,
       "counts": {
         "address_present": 1367,
         "coordinates_not_opening_proof": 1137,
-        "existing_ids_seen_in_catalog": 1121,
+        "existing_ids_seen_in_catalog": 1134,
         "forecast_only_not_confirmed": 866,
         "hours_present": 905,
-        "source_ids_not_yet_in_catalog": 247,
+        "source_ids_not_yet_in_catalog": 234,
         "source_records_scanned": 1368
       },
       "diff": {
-        "changed_existing_identities_since_last_scan": 1353,
+        "changed_existing_identities_since_last_scan": 0,
         "first_observation": false,
-        "missing_source_identities_since_last_scan": 7,
-        "new_source_identities_since_last_scan": 15
+        "missing_source_identities_since_last_scan": 0,
+        "new_source_identities_since_last_scan": 0
       },
       "fingerprints": {
         "0014db7289fcba3fe8fb2935f3b92245e6b700b1f97c8f6ae58c06e128be95e5": "e9f1a7d16d6921d48a045f6ee401f6b1c905862162bf27e8f6b2781ad73d8bbc",
@@ -1499,16 +1499,16 @@
       "source_screening": {
         "already_quarantined_by_venue_overlap_review": 234,
         "exact_reviewed_id_partition_verified": true,
-        "outside_catalog_source_ids_not_necessarily_new_markets": 247,
+        "outside_catalog_source_ids_not_necessarily_new_markets": 234,
         "quarantine_source_id_set_sha256": "69a5db9cd8cf45353eee2d397f1b7dca40523876e4c0474da85c3bdadbf2ece7",
-        "remaining_identities_without_overlap_disposition": 13,
+        "remaining_identities_without_overlap_disposition": 0,
         "screening_missing_exact_source_id_proof": false,
         "source_screening_counts_are_not_market_opening_proofs": true
       },
       "vanished_source_ids_do_not_imply_market_closed": true
     },
     "milano": {
-      "catalog_records_compared": 14644,
+      "catalog_records_compared": 14689,
       "confirmed_events_created": 0,
       "counts": {
         "coordinates_not_opening_proof": 85,

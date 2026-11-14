@@ -466,6 +466,16 @@
    "query": "corso Taranto, Torino, Italia",
    "type": "residential"
   },
+  "corso telesio|cosenza|cs": {
+   "class": "highway",
+   "lat": 39.289151,
+   "lng": 16.259531,
+   "name": "Corso Bernardino Telesio, Massa, Cosenza, Calabria, 87100, Italia",
+   "osm": "way/120661946",
+   "queried_on": "2026-11-14",
+   "query": "Corso Telesio, Cosenza, Italia",
+   "type": "residential"
+  },
   "corso trieste|novara|no": {
    "class": "highway",
    "lat": 45.449417,
@@ -871,6 +881,16 @@
    "queried_on": "2026-10-25",
    "query": "LARGO SANDRO PERTINI, Uggiate Con Ronago, Italia"
   },
+  "largo trattati di roma|gualdo tadino|pg": {
+   "class": "highway",
+   "lat": 43.233821,
+   "lng": 12.777422,
+   "name": "Largo Trattati di Roma, Gualdo Tadino, Perugia, Umbria, 06023, Italia",
+   "osm": "way/89356169",
+   "queried_on": "2026-11-14",
+   "query": "Largo Trattati di Roma, Gualdo Tadino, Italia",
+   "type": "residential"
+  },
   "lido lugana|sirmione|bs": {
    "miss": "solo_localita",
    "queried_on": "2026-10-25",
@@ -970,6 +990,16 @@
    "queried_on": "2026-10-31",
    "query": "Lungomare Federico II di Svevia, Gela, Italia",
    "type": "tertiary"
+  },
+  "lungomare gramsci|porto san giorgio|fm": {
+   "class": "highway",
+   "lat": 43.165129,
+   "lng": 13.807344,
+   "name": "Lungomare Antonio Gramsci, Salvano, Porto San Giorgio, Fermo, Marche, 63822, Italia",
+   "osm": "way/978240555",
+   "queried_on": "2026-11-14",
+   "query": "Lungomare Gramsci, Porto San Giorgio, Italia",
+   "type": "residential"
   },
   "lungomare pedonale cristoforo colombo|margherita di savoia|bt": {
    "miss": "nessun_risultato",
@@ -1416,10 +1446,30 @@
    "query": "Parco Novi Sad, Modena, Italia",
    "type": "pedestrian"
   },
+  "parco nuove gemme|spinea|ve": {
+   "class": "leisure",
+   "lat": 45.495369,
+   "lng": 12.168601,
+   "name": "Parco Nuove Gemme, Orgnano, Rossignago, Spinea, Venezia, Veneto, 30038, Italia",
+   "osm": "way/39063704",
+   "queried_on": "2026-11-14",
+   "query": "Parco Nuove Gemme, Spinea, Italia",
+   "type": "park"
+  },
   "parco porta spinola|mariano comense|co": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
    "query": "PARCO Porta Spinola, Mariano Comense, Italia"
+  },
+  "parco san giovanni bosco|lignano sabbiadoro|ud": {
+   "class": "leisure",
+   "lat": 45.688158,
+   "lng": 13.143032,
+   "name": "Parco San Giovanni Bosco, Lignano Sabbiadoro, Udine, Friuli-Venezia Giulia, 33054, Italia",
+   "osm": "relation/16078927",
+   "queried_on": "2026-11-14",
+   "query": "Parco San Giovanni Bosco, Lignano Sabbiadoro, Italia",
+   "type": "park"
   },
   "parco santa lucia|assemini|ca": {
    "miss": "nessun_risultato",
@@ -1751,6 +1801,16 @@
    "query": "Piazza campo del palio, Asti, Italia",
    "type": "parking"
   },
+  "piazza cantiere|dolo|ve": {
+   "class": "highway",
+   "lat": 45.4227,
+   "lng": 12.074601,
+   "name": "Piazza Cantiere, Dolo 2000, Dolo, Venezia, Veneto, 30031, Italia",
+   "osm": "way/236221784",
+   "queried_on": "2026-11-14",
+   "query": "Piazza Cantiere, Dolo, Italia",
+   "type": "pedestrian"
+  },
   "piazza capitini|bologna|bo": {
    "class": "highway",
    "lat": 44.495096,
@@ -1815,6 +1875,11 @@
    "queried_on": "2026-10-29",
    "query": "PIAZZA Carmine, Reggio di Calabria, Italia",
    "type": "pedestrian"
+  },
+  "piazza carmine|san severo|fg": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-14",
+   "query": "Piazza Carmine, San Severo, Italia"
   },
   "piazza carratelli|cosenza|cs": {
    "miss": "nessun_risultato",
@@ -2656,6 +2721,16 @@
    "query": "Piazza della Libertà, Battaglia Terme, Italia",
    "type": "unclassified"
   },
+  "piazza della liberta|casole d elsa|si": {
+   "class": "place",
+   "lat": 43.34176,
+   "lng": 11.042997,
+   "name": "Piazza della Libertà, La Corsina, Casole d'Elsa, Siena, Toscana, Italia",
+   "osm": "way/1182944541",
+   "queried_on": "2026-11-14",
+   "query": "Piazza della Libertà, Casole d'Elsa, Italia",
+   "type": "square"
+  },
   "piazza della liberta|castelnuovo del garda|vr": {
    "class": "highway",
    "lat": 45.439491,
@@ -3436,6 +3511,16 @@
    "query": "Piazza Garibaldi, Castel del Piano, Italia",
    "type": "tertiary"
   },
+  "piazza garibaldi|colico|lc": {
+   "class": "highway",
+   "lat": 46.137102,
+   "lng": 9.370029,
+   "name": "Piazza Giuseppe Garibaldi, Pontèe, Bassana, Villatico, Colico, Lecco, Lombardia, 23823, Italia",
+   "osm": "way/1126153074",
+   "queried_on": "2026-11-14",
+   "query": "Piazza Garibaldi, Colico, Italia",
+   "type": "pedestrian"
+  },
   "piazza garibaldi|orzinuovi|bs": {
    "class": "place",
    "lat": 45.403883,
@@ -3706,6 +3791,16 @@
    "query": "piazza Giuseppe Massari, Bari, Italia",
    "type": "residential"
   },
+  "piazza giuseppe verdi|roma|rm": {
+   "class": "highway",
+   "lat": 41.919514,
+   "lng": 12.494855,
+   "name": "Piazza Giuseppe Verdi, Pinciano, Municipio Roma II, Roma, Roma Capitale, Lazio, 00198, Italia",
+   "osm": "way/184986203",
+   "queried_on": "2026-11-14",
+   "query": "Piazza Giuseppe Verdi, Roma, Italia",
+   "type": "residential"
+  },
   "piazza giustinian recanati|treviso|tv": {
    "class": "highway",
    "lat": 45.662262,
@@ -3970,6 +4065,16 @@
    "queried_on": "2026-10-27",
    "query": "Piazza Lambrakis, Bologna, Italia",
    "type": "square"
+  },
+  "piazza lavinia|anzio|rm": {
+   "class": "highway",
+   "lat": 41.498936,
+   "lng": 12.586409,
+   "name": "Piazza Lavinia, Lido di Lavinio, Lido di Enea, Lavinio, Anzio, Roma Capitale, Lazio, 00042, Italia",
+   "osm": "relation/9468069",
+   "queried_on": "2026-11-14",
+   "query": "Piazza Lavinia, Anzio, Italia",
+   "type": "pedestrian"
   },
   "piazza liberta|faenza|ra": {
    "class": "highway",
@@ -5436,6 +5541,16 @@
    "query": "piazza Vittoria, Brescia, Italia",
    "type": "pedestrian"
   },
+  "piazza vittoria|como|co": {
+   "class": "highway",
+   "lat": 45.805916,
+   "lng": 9.085131,
+   "name": "Piazza Vittoria, San Vitale, San Bartolomeo, Como, Lombardia, Italia",
+   "osm": "way/475945380",
+   "queried_on": "2026-11-14",
+   "query": "PIAZZA VITTORIA, Como, Italia",
+   "type": "pedestrian"
+  },
   "piazza vittorio emanuele ii a villorba capoluogo|villorba|tv": {
    "miss": "nessun_risultato",
    "queried_on": "2026-10-27",
@@ -5480,6 +5595,16 @@
    "queried_on": "2026-11-04",
    "query": "Piazza Vittorio Emanuele II, Rovigo, Italia",
    "type": "pedestrian"
+  },
+  "piazza vittorio emanuele ii|salo|bs": {
+   "class": "highway",
+   "lat": 45.606434,
+   "lng": 10.522718,
+   "name": "Piazza Vittorio Emanuele II, Muro, Villa di Salò, Salò, Comunità Montana Parco Alto Garda bresciano, Brescia, Lombardia, 25087, Italia",
+   "osm": "way/25544505",
+   "queried_on": "2026-11-14",
+   "query": "Piazza Vittorio Emanuele II, Salò, Italia",
+   "type": "residential"
   },
   "piazza vittorio puntoni|bologna|bo": {
    "class": "place",
@@ -5545,6 +5670,16 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-29",
    "query": "Piazza XX Settembre, Melara, Italia"
+  },
+  "piazza xx settembre|monopoli|ba": {
+   "class": "highway",
+   "lat": 40.951253,
+   "lng": 17.301895,
+   "name": "Piazza Venti Settembre, Monopoli, Bari, Puglia, 70034, Italia",
+   "osm": "way/232419849",
+   "queried_on": "2026-11-14",
+   "query": "Piazza XX Settembre, Monopoli, Italia",
+   "type": "pedestrian"
   },
   "piazza xx settembre|ovada|al": {
    "class": "highway",
@@ -5701,6 +5836,11 @@
    "queried_on": "2026-10-25",
    "query": "PIAZZALE FS-corso Crimea, Alessandria, Italia"
   },
+  "piazzale gerani|matelica|mc": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-14",
+   "query": "Piazzale Gerani, Matelica, Italia"
+  },
   "piazzale goisis|bergamo|bg": {
    "class": "highway",
    "lat": 45.709062,
@@ -5830,6 +5970,11 @@
    "queried_on": "2026-10-29",
    "query": "PIAZZETTA Don Antonio Gavinelli, Bologna, Italia",
    "type": "pedestrian"
+  },
+  "piazzetta immacolata|mazara del vallo|tp": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-14",
+   "query": "Piazzetta Immacolata, Mazara del Vallo, Italia"
   },
   "piazzetta lungo via trieste|piazzola sul brenta|pd": {
    "miss": "nessun_risultato",
@@ -6199,6 +6344,16 @@
    "osm": "way/349894006",
    "queried_on": "2026-11-05",
    "query": "Via Angelo Anelli, Desenzano del Garda, Italia",
+   "type": "residential"
+  },
+  "via angilla vecchia|potenza|pz": {
+   "class": "highway",
+   "lat": 40.647455,
+   "lng": 15.798087,
+   "name": "Via Angilla Vecchia, Risorgimento, Potenza, Basilicata, 85100, Italia",
+   "osm": "way/216498319",
+   "queried_on": "2026-11-14",
+   "query": "Via Angilla Vecchia, Potenza, Italia",
    "type": "residential"
   },
   "via arioli venegoni|milano|mi": {
@@ -7306,6 +7461,11 @@
    "query": "Via Fauglia, Roma, Italia",
    "type": "residential"
   },
+  "via ferruccio lolli|marzabotto|bo": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-14",
+   "query": "Via Ferruccio Lolli, Marzabotto, Italia"
+  },
   "via filippo meda|roma|rm": {
    "class": "highway",
    "lat": 41.913327,
@@ -7639,6 +7799,16 @@
    "osm": "way/198272371",
    "queried_on": "2026-10-30",
    "query": "VIA Giovanni Prati, Vicenza, Italia",
+   "type": "residential"
+  },
+  "via giovanni pugliese carratelli|taranto|ta": {
+   "class": "highway",
+   "lat": 40.445811,
+   "lng": 17.272999,
+   "name": "Via Prof. Giovanni Pugliese Carratelli, Salinella, Taranto, Puglia, 74121, Italia",
+   "osm": "way/212461082",
+   "queried_on": "2026-11-14",
+   "query": "Via Giovanni Pugliese Carratelli, Taranto, Italia",
    "type": "residential"
   },
   "via giuseppe garibaldi|poggio a caiano|po": {
@@ -9781,6 +9951,16 @@
    "query": "viale Cesare Battisti, Como, Italia",
    "type": "tertiary"
   },
+  "viale dante alighieri|grado|go": {
+   "class": "highway",
+   "lat": 45.676556,
+   "lng": 13.390288,
+   "name": "Viale Dante Alighieri, Città Giardino, Grado, Gorizia, Friuli-Venezia Giulia, 34073, Italia",
+   "osm": "way/1067714473",
+   "queried_on": "2026-11-14",
+   "query": "Viale Dante Alighieri, Grado, Italia",
+   "type": "pedestrian"
+  },
   "viale dei caduti per la resistenza|roma|rm": {
    "class": "highway",
    "lat": 41.777262,
@@ -9825,6 +10005,16 @@
    "queried_on": "2026-10-25",
    "query": "viale della Rimembranza, Vercelli, Italia",
    "type": "tertiary"
+  },
+  "viale della vittoria|pioraco|mc": {
+   "class": "highway",
+   "lat": 43.178648,
+   "lng": 12.982533,
+   "name": "Viale della Vittoria, Pioraco, Macerata, Marche, 62025, Italia",
+   "osm": "way/70108236",
+   "queried_on": "2026-11-14",
+   "query": "Viale della Vittoria, Pioraco, Italia",
+   "type": "unclassified"
   },
   "viale delle industrie|san marco evangelista|ce": {
    "class": "highway",
@@ -9950,6 +10140,11 @@
    "miss": "nessun_risultato",
    "queried_on": "2026-10-25",
    "query": "Viale Grassi, Palermo, Italia"
+  },
+  "viale iv giugno|fiuggi|fr": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-14",
+   "query": "Viale IV Giugno, Fiuggi, Italia"
   },
   "viale marconi|toscolano maderno|bs": {
    "miss": "comune_diverso",
@@ -10200,6 +10395,11 @@
    "queried_on": "2026-10-27",
    "query": "Vicolo Caduti di Nassirya, Carbonera, Italia",
    "type": "residential"
+  },
+  "vie principali|mirabella eclano|av": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-14",
+   "query": "Vie principali, Mirabella Eclano, Italia"
   },
   "villa comunale|mascalucia|ct": {
    "miss": "nessun_risultato",

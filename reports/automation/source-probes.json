@@ -41,7 +41,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-11-11",
+      "checked_date": "2026-11-14",
       "column_fingerprint": "2b5a8970268e9c2d0c4b277a67c9b83f7a12345474ae456b43366b3f7414e125",
       "status": "schema_preview_only",
       "viability": "venue_inventory_missing_visit_days"
@@ -155,7 +155,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "cd73e997-4838-4724-8863-5595fe96417b": {
-      "checked_date": "2026-10-21",
+      "checked_date": "2026-11-14",
       "column_fingerprint": "6dd6199a12c7fdb9f4e7ae03a4839b9da9dc4c63526f501f72758e49dc5afa3a",
       "status": "schema_preview_only",
       "viability": "manual_schema_review_required"
@@ -209,7 +209,7 @@
       "viability": "manual_schema_review_required"
     },
     "ede498b0-03e3-48e3-88fa-c3753604ad4f": {
-      "checked_date": "2026-11-08",
+      "checked_date": "2026-11-14",
       "column_fingerprint": "b909797104ab5341465fae7abd5d75fe85d8f5fdd071cc1b60f966ef2f649822",
       "status": "schema_preview_only",
       "viability": "historical_aggregate_not_venues"
@@ -227,33 +227,91 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-11-11",
+  "reference_date": "2026-11-14",
   "reports": [
     {
       "adapter_enabled": false,
-      "error": "TimeoutError: The read operation timed out",
       "events_confirmed": 0,
-      "field_hints": {},
-      "fields": [],
+      "field_hints": {
+        "market_type": [
+          "FIERA/MERCATO"
+        ],
+        "name": [
+          "NOME"
+        ],
+        "weekday": [
+          "GIORNO"
+        ]
+      },
+      "fields": [
+        "NOME",
+        "FIERA/MERCATO",
+        "GIORNO",
+        "INIZIO PERIODO",
+        "FINE PERIODO",
+        "TIPO POSTEGGIO",
+        "TOTALE POSTEGGI"
+      ],
       "format": "CSV",
-      "id": "a7035a08-15c1-4dff-896b-abecf8c1de87",
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/42ec076f-d7e9-4fa2-99ef-c5497a7e2ebd.csv",
+      "id": "cd73e997-4838-4724-8863-5595fe96417b",
+      "review_blockers": [
+        "municipality_must_be_validated_from_publisher_context"
+      ],
+      "sample_bytes": 203,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/706b9aac-6eae-402d-84c4-653f970e2157.csv",
+      "schema_viability": "manual_schema_review_required",
       "source_license_verified": false,
-      "status": "needs_review",
-      "title": "Posteggi mercati e fiere - Comune di Fontaniva"
+      "status": "schema_preview_only",
+      "title": "Posteggi mercati e fiere - Comune di Soave",
+      "truncated": false
     },
     {
       "adapter_enabled": false,
-      "error": "HTTPError: HTTP Error 500: INTERNAL SERVER ERROR",
       "events_confirmed": 0,
-      "field_hints": {},
-      "fields": [],
+      "field_hints": {
+        "municipality": [
+          "comune"
+        ],
+        "statistics_count": [
+          "mercati",
+          "attivazioni",
+          "cessazioni"
+        ],
+        "statistics_year": [
+          "anno"
+        ]
+      },
+      "fields": [
+        "comune",
+        "provincia",
+        "anno",
+        "mercati",
+        "totale",
+        "attivazioni",
+        "cessazioni",
+        "posteggi",
+        "alimentare_totale",
+        "alimentare_attivazioni",
+        "alimentare_cessazioni",
+        "nonalimentare_totale",
+        "nonalimentare_attivazioni",
+        "nonalimentare_cessazioni",
+        "produttori_totale",
+        "produttori_attivazioni",
+        "produttori_cessazioni"
+      ],
       "format": "CSV",
-      "id": "5cb467ed-a783-4507-a36a-c0a0f6a7d9a7",
-      "sample_url": "https://dati.lazio.it/dataset/5cb467ed-a783-4507-a36a-c0a0f6a7d9a7/resource/97f6ae01-f57f-49e7-a713-349d8fce8160/download/oscomercatigiornalieri.csv",
+      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
+      "review_blockers": [
+        "explicit_market_name_missing"
+      ],
+      "sample_bytes": 65536,
+      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
+      "schema_viability": "historical_aggregate_not_venues",
       "source_license_verified": false,
-      "status": "needs_review",
-      "title": "Censimento dei mercati giornalieri"
+      "status": "schema_preview_only",
+      "title": "Censimento dei mercati quindicinali",
+      "truncated": true
     },
     {
       "adapter_enabled": false,
