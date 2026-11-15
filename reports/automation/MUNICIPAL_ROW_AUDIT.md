@@ -5,44 +5,44 @@ Sono ispezionati fino a 3 CSV al giorno; nessun record o dato personale viene sa
 Nessuna fonte viene abilitata all'importazione.
 
 - Dataset trovati dalla ricerca CKAN: **87**.
-- Dataset con campione storico: **67**.
+- Dataset con campione storico: **70**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - SONA
-- Editore dichiarato: Comune di Sona
+## Posteggi mercati e fiere - SAREGO
+- Editore dichiarato: Comune di Sarego
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
 - Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 4
-- Nomi distinti (NON mercato nuovo): 2
+- Righe amministrative lette: 1
+- Nomi distinti (NON mercato nuovo): 1
 - Concessioni scadute: 0
+- Righe di posteggi storici: 1
+- Giorni settimanali espliciti: 1
+- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+
+## Fiere e mercati - CAZZANO DI TRAMIGNA
+- Editore dichiarato: Comune di Cazzano di Tramigna
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 5
+- Nomi distinti (NON mercato nuovo): 1
+- Concessioni scadute: 5
 - Righe di posteggi storici: 0
-- Giorni settimanali espliciti: 4
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
-## Posteggi mercati e fiere - FONTANIVA
-- Editore dichiarato: Comune di Fontaniva
+## Fiere e mercati - NEGRAR DI VALPOLICELLA
+- Editore dichiarato: Comune di Negrar di Valpolicella
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 34
-- Nomi distinti (NON mercato nuovo): 6
-- Concessioni scadute: 0
-- Righe di posteggi storici: 29
-- Giorni settimanali espliciti: 18
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
-
-## Posteggi mercati e fiere - VALDOBBIADENE
-- Editore dichiarato: Comune di Valdobbiadene
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 14
-- Nomi distinti (NON mercato nuovo): 4
-- Concessioni scadute: 0
-- Righe di posteggi storici: 14
-- Giorni settimanali espliciti: 11
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 137
+- Nomi distinti (NON mercato nuovo): 1
+- Concessioni scadute: 137
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
 
 Le sedi saranno aggiunte solo dopo confronto con catalogo, identità univoche,
